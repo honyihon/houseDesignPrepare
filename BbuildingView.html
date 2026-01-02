@@ -1,0 +1,1332 @@
+<!-- B棟：神明廳傳承宅 × IDF 光纖分點 × 獨立給水 v7.0+ 全優化版 -->
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>B棟 - 傳承核心 × IDF 分點 × 神明廳（v7.0+ 全優化版）</title>
+<style>
+/* ========== 完整 CSS 樣式庫（與原 v7.0 一致，僅微調強化可讀性） ========== */
+* { margin:0; padding:0; box-sizing:border-box; }
+body{
+font-family:'Microsoft JhengHei','PingFang TC',sans-serif;
+background:linear-gradient(135deg,#0f172a 0%,#0b1220 40%,#1e1b4b 100%);
+min-height:100vh; padding:20px; color:#e2e8f0;
+}
+.container{ max-width:1700px; margin:0 auto; }
+/* 標題區 */
+.header{
+text-align:center; margin-bottom:30px; padding:30px;
+background:linear-gradient(135deg,rgba(251,191,36,.08),rgba(34,211,238,.08),rgba(139,92,246,.06));
+border-radius:24px; border:1px solid rgba(255,255,255,.1);
+position:relative; overflow:hidden;
+}
+.header::before{
+content:''; position:absolute; top:-50%; left:-50%; width:200%; height:200%;
+background:radial-gradient(circle at 22% 28%, rgba(251,191,36,.06) 0%, transparent 45%),
+radial-gradient(circle at 70% 35%, rgba(34,211,238,.05) 0%, transparent 52%);
+animation:float 20s ease-in-out infinite;
+}
+@keyframes float{
+0%,100%{ transform:translate(0,0) rotate(0deg); }
+50%{ transform:translate(-4%,-4%) rotate(4deg); }
+}
+.building-badge{
+display:inline-flex; align-items:center; gap:8px;
+background:linear-gradient(135deg,#f59e0b,#d97706);
+padding:8px 20px; border-radius:50px;
+font-size:.9rem; font-weight:800; color:#fff;
+margin-bottom:15px; position:relative; z-index:1;
+box-shadow:0 10px 25px rgba(245,158,11,.25);
+}
+h1{
+font-size:clamp(1.8rem,4vw,2.7rem); font-weight:900; letter-spacing:2px;
+background:linear-gradient(135deg,#fbbf24 0%,#f59e0b 45%,#d97706 100%);
+-webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+margin-bottom:10px; position:relative; z-index:1;
+}
+.subtitle{
+font-size:.95rem; color:#94a3b8; position:relative; z-index:1; line-height:1.6;
+}
+.version-tag{
+display:inline-block; background:rgba(34,211,238,.15); border:1px solid rgba(34,211,238,.3);
+color:#22d3ee; padding:4px 12px; border-radius:20px; font-size:.75rem; margin-top:10px;
+}
+/* 統計條 */
+.stats-bar{
+display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));
+gap:12px; padding:20px;
+background:rgba(15,23,42,.6);
+border-radius:20px; margin-bottom:25px;
+border:1px solid rgba(255,255,255,.08);
+backdrop-filter:blur(10px);
+}
+.stat-item{
+text-align:center; padding:15px;
+background:rgba(255,255,255,.03);
+border-radius:12px;
+border:1px solid rgba(255,255,255,.05);
+transition:all .3s ease;
+}
+.stat-item:hover{
+background:rgba(245,158,11,.08); border-color:rgba(245,158,11,.25); transform:translateY(-2px);
+}
+.stat-icon{ font-size:1.5rem; margin-bottom:5px; }
+.stat-value{ font-size:1.4rem; font-weight:900; color:#fbbf24; }
+.stat-label{ font-size:.72rem; color:#64748b; margin-top:3px; }
+/* 重要提示區 */
+.important-notes{
+background:linear-gradient(135deg,rgba(239,68,68,.08),rgba(251,191,36,.06));
+border:1px solid rgba(239,68,68,.25); border-radius:16px;
+padding:20px; margin-bottom:25px;
+}
+.important-notes h3{
+color:#fca5a5; font-size:1rem; margin-bottom:12px;
+display:flex; align-items:center; gap:8px;
+}
+.important-notes ul{ list-style:none; }
+.important-notes li{
+padding:8px 0 8px 24px; position:relative; color:#fde68a; font-size:.88rem; line-height:1.6;
+}
+.important-notes li::before{
+content:'⚠️'; position:absolute; left:0; top:8px;
+}
+/* 樓層標籤 */
+.floor-tabs{ display:flex; justify-content:center; gap:10px; margin-bottom:25px; flex-wrap:wrap; }
+.tab{
+padding:14px 24px; background:rgba(30,41,59,.6);
+border:1px solid rgba(255,255,255,.1); border-radius:16px; cursor:pointer;
+transition:all .3s cubic-bezier(.4,0,.2,1); font-size:.92rem; color:#94a3b8;
+display:flex; align-items:center; gap:8px;
+}
+.tab:hover{
+background:rgba(245,158,11,.10); border-color:rgba(245,158,11,.28); color:#fbbf24; transform:translateY(-2px);
+}
+.tab.active{
+background:linear-gradient(135deg,#f59e0b,#fbbf24);
+color:#0b1220; border-color:transparent;
+box-shadow:0 8px 25px rgba(245,158,11,.22); transform:translateY(-3px); font-weight:900;
+}
+/* 樓層內容 */
+.floor-plan{ display:none; animation:fadeSlide .5s ease; }
+.floor-plan.active{ display:block; }
+@keyframes fadeSlide{ from{ opacity:0; transform:translateY(20px); } to{ opacity:1; transform:translateY(0); } }
+.floor-header{
+display:flex; justify-content:space-between; align-items:center;
+margin-bottom:20px; flex-wrap:wrap; gap:15px; padding:20px;
+background:rgba(15,23,42,.5); border-radius:16px; border:1px solid rgba(255,255,255,.08);
+}
+.floor-title{
+font-size:1.3rem; color:#fff; font-weight:900; display:flex; align-items:center; gap:12px;
+}
+.floor-title-icon{
+width:50px; height:50px;
+background:linear-gradient(135deg,#f59e0b,#fbbf24);
+border-radius:14px; display:flex; align-items:center; justify-content:center;
+font-size:1.1rem; color:#0b1220; font-weight:900;
+}
+.direction-badge{ display:flex; gap:12px; flex-wrap:wrap; }
+.dir-item{
+font-size:.8rem; padding:8px 14px; border-radius:10px;
+background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); color:#94a3b8;
+}
+/* 主佈局 */
+.floor-content{ display:grid; grid-template-columns:minmax(350px, 520px) 1fr; gap:25px; align-items:start; }
+@media(max-width:1050px){ .floor-content{ grid-template-columns:1fr; } }
+/* 視覺平面圖 */
+.visual-plan{
+background:rgba(15,23,42,.85); border:1px solid rgba(245,158,11,.22);
+border-radius:20px; padding:20px; position:sticky; top:20px; backdrop-filter:blur(10px);
+}
+.plan-header{
+display:flex; justify-content:space-between; align-items:center;
+margin-bottom:15px; padding-bottom:15px; border-bottom:1px solid rgba(255,255,255,.1);
+}
+.plan-title{
+font-size:1rem; color:#fbbf24; font-weight:900; display:flex; align-items:center; gap:8px;
+}
+.plan-grid-visual{
+display:grid; gap:6px; background:rgba(0,0,0,.30); padding:12px; border-radius:14px;
+}
+.plan-row{ display:grid; gap:6px; }
+.plan-cell{
+background:rgba(30,41,59,.7); border:2px solid rgba(255,255,255,.1);
+border-radius:14px; padding:14px 10px; text-align:center; cursor:pointer;
+transition:all .25s ease; position:relative; overflow:hidden;
+}
+.plan-cell:hover{
+border-color:#fbbf24; background:rgba(245,158,11,.10);
+transform:scale(1.02); box-shadow:0 5px 20px rgba(245,158,11,.16);
+}
+.plan-cell.active-cell{
+border-color:#fbbf24; background:rgba(245,158,11,.15); box-shadow:0 0 20px rgba(245,158,11,.22);
+}
+.cell-icon{ font-size:1.4rem; display:block; margin-bottom:5px; }
+.cell-name{ color:#fff; font-weight:800; font-size:.85rem; display:block; }
+.cell-size{ color:#64748b; font-size:.7rem; margin-top:3px; display:block; }
+/* 特殊區塊樣式 */
+.plan-cell.outdoor{ background:linear-gradient(135deg,rgba(34,197,94,.10),rgba(16,185,129,.05)); border-style:dashed; border-color:rgba(34,197,94,.40); }
+.plan-cell.wet{ background:linear-gradient(135deg,rgba(56,189,248,.10),rgba(14,165,233,.05)); border-color:rgba(56,189,248,.30); }
+.plan-cell.shrine{ background:linear-gradient(135deg,rgba(251,191,36,.20),rgba(245,158,11,.15)); border-color:#fbbf24; }
+.plan-cell.idf{ background:linear-gradient(135deg,rgba(99,102,241,.14),rgba(79,70,229,.10)); border-color:rgba(99,102,241,.45); }
+.plan-cell.water{ background:linear-gradient(135deg,rgba(59,130,246,.14),rgba(37,99,235,.08)); border-color:rgba(59,130,246,.45); }
+.plan-cell.core{ background:linear-gradient(135deg,rgba(139,92,246,.14),rgba(124,58,237,.08)); border-color:rgba(139,92,246,.45); }
+/* IO 徽章 */
+.io-badges{ display:flex; flex-wrap:wrap; justify-content:center; gap:4px; margin-top:8px; }
+.badge{
+font-size:.65rem; padding:3px 7px; border-radius:6px; background:rgba(0,0,0,.3);
+color:#cbd5e1; display:inline-flex; align-items:center; gap:3px; border:1px solid rgba(255,255,255,.1);
+}
+.badge.net{ background:rgba(34,211,238,.15); border-color:rgba(34,211,238,.3); color:#a5f3fc; }
+.badge.pwr{ background:rgba(110,231,183,.15); border-color:rgba(110,231,183,.3); color:#a7f3d0; }
+.badge.shrine{ background:rgba(251,191,36,.2); border-color:rgba(251,191,36,.4); color:#fde68a; }
+.badge.tv{ background:rgba(251,191,36,.15); border-color:rgba(251,191,36,.35); color:#fde68a; }
+.badge.ap{ background:rgba(139,92,246,.15); border-color:rgba(139,92,246,.35); color:#ddd6fe; }
+.badge.water{ background:rgba(56,189,248,.15); border-color:rgba(56,189,248,.35); color:#bae6fd; }
+.badge.hot{ background:rgba(239,68,68,.15); border-color:rgba(239,68,68,.35); color:#fecaca; }
+.badge.valve{ background:rgba(16,185,129,.15); border-color:rgba(16,185,129,.35); color:#a7f3d0; }
+/* 指南針與圖例 */
+.compass{
+display:flex; justify-content:center; align-items:center; gap:8px;
+margin-top:15px; padding:12px; background:rgba(0,0,0,.2); border-radius:10px;
+font-size:.85rem; color:#94a3b8;
+}
+.compass-arrow{ font-size:1.1rem; color:#22d3ee; }
+.legend{ display:flex; gap:15px; flex-wrap:wrap; margin-top:15px; padding:12px; background:rgba(0,0,0,.2); border-radius:10px; }
+.legend-item{ display:flex; align-items:center; gap:6px; font-size:.75rem; color:#94a3b8; }
+.legend-color{ width:16px; height:16px; border-radius:5px; }
+/* 右側詳情面板 */
+.details-panel{ display:flex; flex-direction:column; gap:16px; }
+.room{
+background:rgba(30,41,59,.5); border-radius:18px; padding:22px;
+border:1px solid rgba(255,255,255,.08); transition:all .3s ease; position:relative; overflow:hidden;
+}
+.room::before{
+content:''; position:absolute; top:0; left:0; width:4px; height:100%;
+background:linear-gradient(180deg,#f59e0b,#fbbf24); opacity:0; transition:opacity .3s ease;
+}
+.room:hover{ border-color:rgba(245,158,11,.25); background:rgba(30,41,59,.7); transform:translateX(5px); }
+.room:hover::before{ opacity:1; }
+.room.room-active{ border-color:#fbbf24; background:rgba(245,158,11,.08); }
+.room.room-active::before{ opacity:1; }
+.room-head{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:15px; flex-wrap:wrap; gap:10px; }
+.room-name{ font-size:1.1rem; font-weight:900; color:#fff; display:flex; align-items:center; gap:10px; }
+.room-name-icon{
+width:36px; height:36px; background:linear-gradient(135deg,rgba(245,158,11,.2),rgba(251,191,36,.18));
+border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.05rem;
+}
+.room-area{
+font-size:.8rem; color:#10b981; background:rgba(16,185,129,.12);
+padding:6px 12px; border-radius:10px; border:1px solid rgba(16,185,129,.25); font-weight:800;
+}
+.room-details{ font-size:.9rem; color:#cbd5e1; line-height:1.85; }
+.room-details li{ list-style:none; position:relative; padding-left:24px; margin-bottom:10px; }
+.room-details li::before{
+content:''; position:absolute; left:0; top:8px; width:8px; height:8px;
+background:linear-gradient(135deg,#f59e0b,#fbbf24); border-radius:50%;
+}
+.tag{ display:block; margin-top:15px; padding:14px 16px; border-radius:12px; font-size:.85rem; line-height:1.65; }
+.tag-title{ font-weight:900; display:flex; align-items:center; gap:6px; margin-bottom:5px; }
+.tag-opt{ background:linear-gradient(135deg,rgba(245,158,11,.10),rgba(217,119,6,.06)); border:1px solid rgba(245,158,11,.22); color:#fde68a; }
+.tag-net{ background:linear-gradient(135deg,rgba(99,102,241,.08),rgba(79,70,229,.05)); border:1px solid rgba(99,102,241,.2); color:#c7d2fe; }
+.tag-water{ background:linear-gradient(135deg,rgba(59,130,246,.10),rgba(37,99,235,.06)); border:1px solid rgba(59,130,246,.25); color:#bfdbfe; }
+.tag-warn{ background:linear-gradient(135deg,rgba(239,68,68,.10),rgba(220,38,38,.06)); border:1px solid rgba(239,68,68,.25); color:#fecaca; }
+.tag-spec{ background:linear-gradient(135deg,rgba(16,185,129,.10),rgba(5,150,105,.06)); border:1px solid rgba(16,185,129,.25); color:#a7f3d0; }
+.tag-emergency{ background:linear-gradient(135deg,rgba(239,68,68,.12),rgba(220,38,38,.08)); border:2px solid rgba(239,68,68,.4); color:#fecaca; }
+/* 系統圖與表格 */
+.system-box{ background:rgba(15,23,42,.82); border:1px solid rgba(245,158,11,.22); border-radius:20px; padding:22px; margin-top:20px; }
+.system-title{
+font-size:1.1rem; font-weight:900; text-align:center;
+background:linear-gradient(135deg,#f59e0b,#fbbf24); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:18px;
+}
+.flow-diagram{ display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:10px; }
+.flow-item{
+background:rgba(245,158,11,.08); border:1px solid rgba(245,158,11,.22); border-radius:12px;
+padding:12px 16px; text-align:center; font-size:.85rem; color:#e2e8f0; transition:all .3s ease; min-width:100px;
+}
+.flow-arrow{ font-size:1.3rem; color:#475569; }
+.flow-item.source{ background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(37,99,235,.1)); border-color:rgba(59,130,246,.4); }
+.flow-item.valve{ background:linear-gradient(135deg,rgba(16,185,129,.15),rgba(5,150,105,.1)); border-color:rgba(16,185,129,.4); }
+.flow-item.equip{ background:linear-gradient(135deg,rgba(139,92,246,.15),rgba(124,58,237,.1)); border-color:rgba(139,92,246,.4); }
+.flow-item.storage{ background:linear-gradient(135deg,rgba(56,189,248,.15),rgba(14,165,233,.1)); border-color:rgba(56,189,248,.4); }
+.flow-item.hot{ background:linear-gradient(135deg,rgba(239,68,68,.15),rgba(220,38,38,.1)); border-color:rgba(239,68,68,.4); }
+.flow-item.core-a{ background:linear-gradient(135deg,rgba(139,92,246,.15),rgba(124,58,237,.1)); border-color:rgba(139,92,246,.4); }
+.flow-item.core-b{ background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(217,119,6,.1)); border-color:rgba(245,158,11,.4); }
+.io-table{ margin-top:15px; background:rgba(15,23,42,.6); border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.08); }
+.io-table table{ width:100%; border-collapse:collapse; font-size:.85rem; }
+.io-table th{ background:linear-gradient(135deg,rgba(245,158,11,.14),rgba(251,191,36,.08)); padding:12px; text-align:left; color:#fbbf24; font-weight:900; }
+.io-table td{ padding:12px; border-top:1px solid rgba(255,255,255,.05); color:#cbd5e1; vertical-align:top; }
+.io-table tr:hover td{ background:rgba(245,158,11,.05); }
+/* 規範區塊 */
+.spec-section{
+background:rgba(15,23,42,.7); border:1px solid rgba(16,185,129,.25);
+border-radius:16px; padding:20px; margin-top:20px;
+}
+.spec-section h4{
+color:#10b981; font-size:1rem; margin-bottom:15px;
+display:flex; align-items:center; gap:8px;
+}
+.spec-grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:15px; }
+.spec-card{
+background:rgba(0,0,0,.2); border-radius:12px; padding:15px;
+border:1px solid rgba(255,255,255,.05);
+}
+.spec-card h5{ color:#fbbf24; font-size:.9rem; margin-bottom:10px; }
+.spec-card ul{ font-size:.85rem; color:#cbd5e1; padding-left:20px; }
+.spec-card li{ margin-bottom:6px; }
+/* 警示紅字 */
+.strong-red{
+color:#ef4444; font-weight:900; font-size:1.1rem;
+}
+@media print{ body{ background:white; color:black; } .tab{ display:none; } .floor-plan{ display:block !important; } }
+</style>
+</head>
+<body>
+<div class="container">
+<!-- 標題區 -->
+<div class="header">
+<div class="building-badge">🛕 B棟 Building B（傳承宅）</div>
+<h1>神明廳核心 × IDF 光纖分點 × 獨立給水系統</h1>
+<div class="subtitle">
+神明廳專屬規劃｜IDF 機櫃（10G 光纖來自 A 棟 MDF）｜獨立三表水電系統｜完整 B- 編碼<br>
+<span class="strong-red">A/B/C 棟給水系統禁止任何互通管路；僅允許弱電光纖互聯。</span>
+</div>
+<div class="version-tag">📋 v7.0+ 全優化版 - 整合水錘吸收器、15mm 保溫、IDF 散熱、緊急總覽</div>
+</div>
+
+<!-- 重要施工規範提示 -->
+<div class="important-notes">
+<h3>🚨 B 棟施工關鍵提醒（整合最新優化）</h3>
+<ul>
+<li><strong>設備編碼：</strong>本棟所有閥件/設備使用 <code>B-</code> 前綴（B-V1、B-C1...），避免與 A/C 棟混淆</li>
+<li><strong>獨立水表：</strong>B 棟擁有獨立水表/水塔/加壓系統，與 A、C 棟水路互不連通</li>
+<li><strong>禁止跨棟借水：</strong><span class="strong-red">嚴格禁止任何形式的跨棟水路互通！</span></li>
+<li><strong>光纖進線：</strong>來自地下管道（A 棟 MDF），非從後陽台進線；後陽台僅作檢修/立管用途</li>
+<li><strong>強弱電分離：</strong>同孔/同盒不可共用、平行走線間距 ≥30cm、管內禁止接頭</li>
+<li><strong>熱水管保溫：</strong>全程使用 ≥15mm (6分) 保溫棉，包含所有接頭</li>
+<li><strong>IDF 散熱：</strong>機櫃內加裝「溫控風扇（35°C 啟動）」+ 百葉孔對流</li>
+</ul>
+</div>
+
+<!-- 統計條 -->
+<div class="stats-bar">
+<div class="stat-item">
+<div class="stat-icon">🛕</div>
+<div class="stat-value">1F</div>
+<div class="stat-label">神明廳/傳承核心</div>
+</div>
+<div class="stat-item">
+<div class="stat-icon">🏢</div>
+<div class="stat-value">3+RF</div>
+<div class="stat-label">樓層數</div>
+</div>
+<div class="stat-item">
+<div class="stat-icon">🔗</div>
+<div class="stat-value">IDF-B</div>
+<div class="stat-label">B棟中繼配線櫃</div>
+</div>
+<div class="stat-item">
+<div class="stat-icon">📡</div>
+<div class="stat-value">12芯</div>
+<div class="stat-label">單模光纖預留</div>
+</div>
+<div class="stat-item">
+<div class="stat-icon">❄️</div>
+<div class="stat-value">AC×4</div>
+<div class="stat-label">冷氣規劃點</div>
+</div>
+<div class="stat-item">
+<div class="stat-icon">🚿</div>
+<div class="stat-value">VF800</div>
+<div class="stat-label">B棟獨立恆壓</div>
+</div>
+</div>
+
+<!-- 樓層標籤（新增總覽頁） -->
+<div class="floor-tabs">
+<div class="tab" onclick="showFloor(0)">
+<span class="tab-icon">🏠</span> 總覽頁（緊急/驗收）
+</div>
+<div class="tab active" onclick="showFloor(1)">
+<span class="tab-icon">🛕</span> 1F 神明廳 × IDF
+</div>
+<div class="tab" onclick="showFloor(2)">
+<span class="tab-icon">👑</span> 2F 大客廳 × 主臥
+</div>
+<div class="tab" onclick="showFloor(3)">
+<span class="tab-icon">🎤</span> 3F 娛樂室 × 客房
+</div>
+<div class="tab" onclick="showFloor(4)">
+<span class="tab-icon">⚙️</span> RF 設備核心
+</div>
+<div class="tab" onclick="showFloor(5)">
+<span class="tab-icon">📋</span> 施工規範總表
+</div>
+</div>
+
+<!-- ==================== 總覽頁 ==================== -->
+<div class="floor-plan" id="floor-0">
+<div class="floor-header">
+<div class="floor-title">
+<div class="floor-title-icon">🏠</div>
+<div>
+<div>B棟總覽：住戶緊急指南 + 工班驗收清單</div>
+<div style="font-size:.8rem;color:#64748b;font-weight:400;">
+整合最新優化建議，強化施工可執行性
+</div>
+</div>
+</div>
+</div>
+<div class="details-panel" style="max-width:100%;">
+<!-- 住戶用：緊急關閉地圖 -->
+<div class="room tag-emergency">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🆘</div> 住戶緊急關閉地圖</div>
+</div>
+<div class="room-details">
+<li><strong>我家總電源在哪？</strong> 電錶箱（1F 車庫側）</li>
+<li><strong>我家總水閥（B-V1）在哪？</strong> 1F 後工作陽台（水表後第一道閥）</li>
+<li><strong>泵浦/熱泵電源開關在哪？</strong> RF 層設備箱（需爬梯）</li>
+<li><strong>緊急漏水/跳電第一步？</strong> <strong>先關 B-V1！</strong> 再聯繫管理員</li>
+</div>
+<div class="tag tag-warn">
+<div class="tag-title">⚠️ 重要提醒</div>
+停水時若無 UPS，B 棟網路將中斷（IDF-B 有小 UPS，續航約 15–20 分鐘）
+</div>
+</div>
+
+<!-- 工班用：驗收清單 -->
+<div class="room">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">✅</div> 工班驗收清單（Check List）</div>
+</div>
+<div class="room-details">
+<li><strong>給水系統：</strong>壓力測試（0.8MPa 30 分鐘無降壓）、沖洗、濾網方向、止回閥方向、熱水保溫 ≥15mm（含接頭）</li>
+<li><strong>弱電系統：</strong>Cat6A 認證測試報告、光纖 OTDR/插入損耗、PoE 負載測試（≥80W）</li>
+<li><strong>防水系統：</strong>RF 設備基座收邊、地排坡度 ≥1:50、溢流/冷凝排水無回灌</li>
+<li><strong>減震措施：</strong>VF800/熱泵/TS400B 均裝設橡膠減震座 + 軟接頭</li>
+<li><strong>排氣處理：</strong>熱水最高點/立管最高點設自動排氣閥</li>
+<li><strong>水錘吸收器：</strong>VF800 出口端 + 長管末端已加裝</li>
+<li><strong>旁通管路：</strong>RF 水塔與 VF800 間已預留「重力供水旁通（含常閉閥）」</li>
+</div>
+<div class="tag tag-spec">
+<div class="tag-title">🔧 驗收不通過即重做</div>
+所有項目需留影像紀錄，並經業主簽核。特別注意：<strong>止回閥方向、保溫厚度、強弱電分離</strong>。
+</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== 1F ==================== -->
+<div class="floor-plan active" id="floor-1">
+<div class="floor-header">
+<div class="floor-title">
+<div class="floor-title-icon">1F</div>
+<div>
+<div>神明廳 × 車庫 × 儲藏室 × IDF-B 機櫃</div>
+<div style="font-size:.8rem;color:#64748b;font-weight:400;">
+傳承核心｜弱電：IDF-B（光纖來自 A 棟 MDF 地下管道）｜水路進線：B-V1
+</div>
+</div>
+</div>
+<div class="direction-badge">
+<div class="dir-item">⬆️ 前：計畫道路</div>
+<div class="dir-item">🛕 內：神桌核心</div>
+<div class="dir-item">🔒 後：儲藏+水路</div>
+</div>
+</div>
+<div class="floor-content">
+<!-- 左：視覺平面圖 -->
+<div class="visual-plan">
+<div class="plan-header">
+<div class="plan-title">📐 1F 空間配置圖（B棟）</div>
+<div style="font-size:.75rem;color:#64748b;">點擊區域查看詳情</div>
+</div>
+<div class="plan-grid-visual">
+<!-- 車庫 -->
+<div class="plan-row" style="grid-template-columns:1fr;">
+<div class="plan-cell outdoor" onclick="highlightRoom('garage', this)">
+<span class="cell-icon">🚗</span>
+<span class="cell-name">前院車庫</span>
+<span class="cell-size">約 5.5m × 6.0m</span>
+<div class="io-badges">
+<span class="badge pwr">⚡ EV預留 32A</span>
+<span class="badge net">📷 CCTV×1</span>
+</div>
+</div>
+</div>
+<!-- 神明廳 -->
+<div class="plan-row" style="grid-template-columns:1fr;">
+<div class="plan-cell shrine" onclick="highlightRoom('shrine', this)">
+<span class="cell-icon">🛕</span>
+<span class="cell-name">神明廳 + 玄關</span>
+<span class="cell-size">核心傳承空間</span>
+<div class="io-badges">
+<span class="badge shrine">✨ 龍邊神桌</span>
+<span class="badge pwr">⚡ 專迴×2</span>
+<span class="badge shrine">💨 獨立排氣</span>
+</div>
+</div>
+</div>
+<!-- 樓梯與 IDF -->
+<div class="plan-row" style="grid-template-columns:1.5fr 1fr;">
+<div class="plan-cell idf" onclick="highlightRoom('idf-cabinet', this)">
+<span class="cell-icon">🔗</span>
+<span class="cell-name">IDF-B 機櫃區</span>
+<span class="cell-size">9U/600mm深</span>
+<div class="io-badges">
+<span class="badge net">🔌 12芯單模光纖</span>
+<span class="badge net">🌐 PoE交換器</span>
+</div>
+</div>
+<div class="plan-cell wet" onclick="highlightRoom('bath1', this)">
+<span class="cell-icon">🚿</span>
+<span class="cell-name">無障礙衛浴</span>
+<div class="io-badges">
+<span class="badge pwr">🆘 求救鈴</span>
+<span class="badge water">💧 B-V4</span>
+</div>
+</div>
+</div>
+<!-- 儲藏與後陽台 -->
+<div class="plan-row" style="grid-template-columns:1fr 1fr;">
+<div class="plan-cell" onclick="highlightRoom('storage', this)">
+<span class="cell-icon">🔒</span>
+<span class="cell-name">可上鎖儲藏室</span>
+<span class="cell-size">金紙/雜物</span>
+<div class="io-badges">
+<span class="badge pwr">💧 除濕專插</span>
+</div>
+</div>
+<div class="plan-cell outdoor" onclick="highlightRoom('balcony1', this)">
+<span class="cell-icon">🧺</span>
+<span class="cell-name">後工作陽台</span>
+<div class="io-badges">
+<span class="badge valve">B-V1 總閥</span>
+<span class="badge water">B-F1 濾水</span>
+<span class="badge water">B-T1 抽水</span>
+</div>
+</div>
+</div>
+</div>
+<div class="compass"><span class="compass-arrow">⬆️</span> 北向（計畫道路側）</div>
+<div class="legend">
+<div class="legend-item"><div class="legend-color" style="background:rgba(251,191,36,.4);"></div>神明廳</div>
+<div class="legend-item"><div class="legend-color" style="background:rgba(99,102,241,.4);"></div>IDF弱電</div>
+<div class="legend-item"><div class="legend-color" style="background:rgba(56,189,248,.4);"></div>濕區</div>
+<div class="legend-item"><div class="legend-color" style="background:rgba(34,197,94,.4);border:1px dashed rgba(34,197,94,.6);"></div>戶外</div>
+</div>
+</div>
+<!-- 右：詳情面板 -->
+<div class="details-panel">
+<!-- 車庫 -->
+<div class="room" id="room-garage">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🚗</div> 前院車庫</div>
+<div class="room-area">約 33 ㎡</div>
+</div>
+<div class="room-details">
+<li><strong>EV 充電：</strong>獨立迴路 32A/40A（建議 NEMA 14-50 或 Type2），預留管徑 1"</li>
+<li><strong>CCTV：</strong>車庫入口 1 支 PoE（拉回 1F IDF-B），預留 Cat6A</li>
+<li><strong>照明：</strong>建議感應式 LED + 手動開關雙控</li>
+</div>
+</div>
+
+<!-- 神明廳（強化優化） -->
+<div class="room" id="room-shrine" style="border-color:#fbbf24; background:linear-gradient(135deg,rgba(251,191,36,.1),rgba(30,41,59,.5));">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🛕</div> 神明廳 (核心)</div>
+<div class="room-area">傳承重點</div>
+</div>
+<div class="room-details">
+<li><strong>神桌位置：</strong>偏龍邊靠實牆，避開樑壓與廁所上方</li>
+<li><strong>排氣系統：</strong>天花板預留 4" 獨立排風管（不與廚房共用），排至戶外，建議不鏽鋼材質</li>
+<li><strong>電力規劃：</strong>神桌牆面專用插座 ×4 組（建議 H=110cm），<strong>一迴路給照明/神桌，一迴路給除濕/排風</strong></li>
+<li><strong>光明燈迴路：</strong>單獨開關 + 建議加裝定時器</li>
+<li><strong>隔斷門：</strong>樓梯口設隔煙門（60分鐘防火時效），自動關門器</li>
+<li><strong>火警偵測：</strong>因常態焚香，<strong>建議採用「溫感偵測器」或避開煙流集中區</strong>（由消防設計確認）</li>
+</div>
+<div class="tag tag-opt">
+<div class="tag-title">✨ 施工重點</div>
+神明廳為 B 棟精神核心。插座高度配合神桌（H=110cm 兩組 + 地面兩組）。排氣管建議不鏽鋼材質，避免香火長期薰黑。金紙/香品收納需與電器保持距離。
+</div>
+</div>
+
+<!-- IDF-B（強化散熱與標示） -->
+<div class="room" id="room-idf-cabinet" style="background:linear-gradient(135deg,rgba(99,102,241,.1),rgba(30,41,59,.6)); border-color:rgba(99,102,241,.3);">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🔗</div> IDF-B 機櫃</div>
+<div class="room-area">弱電分點</div>
+</div>
+<div class="room-details">
+<li><strong>機櫃規格：</strong>9U 壁掛式，深度 600mm，前門透氣網孔</li>
+<li><strong>散熱：</strong>頂部加裝 2 顆靜音風扇（<strong>溫控啟動 35°C</strong>） + 櫃門開百葉孔確保對流</li>
+<li><strong>接地：</strong>機櫃殼體、交換器金屬件需接建物接地（6sq 以上）</li>
+<li><strong>光纖上行：</strong>來自 A 棟 MDF 的<strong>單模光纖 12 芯（OS2）</strong>，端接 LC 介面，<strong>依 ANSI/TIA-606-B 標示：A-MDF TO B-IDF CORE 1-6</strong></li>
+<li><strong>設備配置：</strong>光纖收容盒 + 8-Port PoE+ 交換器 + 24 Port 配線架</li>
+<li><strong>PoE 負載預估：</strong>AP×2 + CCTV×3 + 門禁×1 ≈ 80W（選用 150W 以上交換器）</li>
+<li><strong>UPS：</strong>建議 650VA 在線式，續航 15-20 分鐘</li>
+</div>
+<div class="system-box">
+<div class="system-title">🔗 A→B 棟光纖連結架構</div>
+<div class="flow-diagram">
+<div class="flow-item core-a">A棟 MDF<br><small>主配線櫃</small></div>
+<div class="flow-arrow">➡</div>
+<div class="flow-item">地下管道<br><small>1.5" × 2支</small></div>
+<div class="flow-arrow">➡</div>
+<div class="flow-item core-b">B棟 IDF-B<br><small>12芯單模</small></div>
+<div class="flow-arrow">➡</div>
+<div class="flow-item">各樓層<br><small>LAN/AP/CAM</small></div>
+</div>
+</div>
+<div class="io-table">
+<table>
+<tr>
+<th>項目</th>
+<th>規格</th>
+<th>備註</th>
+</tr>
+<tr>
+<td>跨棟管道</td>
+<td>PVC 1.5" × 2 支</td>
+<td>一主一備，埋深 60cm，每 15m 設手孔</td>
+</tr>
+<tr>
+<td>光纖規格</td>
+<td>單模 OS2 12 芯</td>
+<td>使用 6 芯、預留 6 芯擴充</td>
+</tr>
+<tr>
+<td>端接介面</td>
+<td>LC/UPC 雙工</td>
+<td>收容盒需標示纖芯編號</td>
+</tr>
+<tr>
+<td>交換器</td>
+<td>L2 8-Port PoE+ GbE</td>
+<td>建議含 2 個 SFP+ 上行</td>
+</tr>
+</table>
+</div>
+<div class="tag tag-warn">
+<div class="tag-title">⚠️ 強弱電分離規範（不可違反）</div>
+同孔/同盒不可共用｜平行間距 ≥30cm｜管內禁止接頭｜每段需預留拉線繩
+</div>
+</div>
+
+<!-- 衛浴、儲藏、後陽台（略，與原相同） -->
+<div class="room" id="room-bath1">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🚿</div> 無障礙衛浴</div>
+</div>
+<div class="room-details">
+<li><strong>給水：</strong>B-V4（冷水分支閥）+ B-V5（熱水分支閥）</li>
+<li><strong>無障礙配置：</strong>扶手、求救鈴（拉繩式）、門寬 ≥90cm</li>
+<li><strong>排水：</strong>洩水坡度 1:60，地排建議 2"</li>
+<li><strong>減震：</strong>馬桶/龍頭安裝需加裝防震墊</li>
+</div>
+</div>
+<div class="room" id="room-storage">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🔒</div> 可上鎖儲藏室</div>
+</div>
+<div class="room-details">
+<li><strong>用途：</strong>金紙、祭祀用品、雜物集中收納</li>
+<li><strong>門片：</strong>實心門 + 鎖 + 氣密條（防味道外溢）</li>
+<li><strong>電力：</strong>除濕機專用插座 + 預留排水孔（管徑 1/2"）</li>
+</div>
+</div>
+<div class="room" id="room-balcony1">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🧺</div> 後工作陽台（水路進線點）</div>
+</div>
+<div class="room-details">
+<li><strong>B-V1 總進水閥：</strong>B 棟獨立水表後第一道閥，方便日後維修關水</li>
+<li><strong>B-F1 前置濾水：</strong>20" 大胖濾瓶，過濾泥沙雜質</li>
+<li><strong>B-T1 抽水機：</strong>TS400B，將水打至 RF 水塔</li>
+<li><strong>洗衣區：</strong>專用插座 20A + 排水地漏</li>
+<li><strong>弱電立管：</strong>此處為 B 棟弱電立管起點（1F→RF），非光纖主進線點</li>
+<li><strong>水錘吸收器：</strong>TS400B 出口端已加裝</li>
+</div>
+<div class="tag tag-water">
+<div class="tag-title">💧 B 棟獨立給水</div>
+B 棟擁有獨立水表/水塔/加壓系統，與 A、C 棟水路互不連通，維修不互相影響。<br>
+<span class="strong-red">嚴格禁止跨棟借水！</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== 2F ==================== -->
+<div class="floor-plan" id="floor-2">
+<div class="floor-header">
+<div class="floor-title">
+<div class="floor-title-icon">2F</div>
+<div>
+<div>大客廳 × 主臥 × 茶水吧</div>
+<div style="font-size:.8rem;color:#64748b;font-weight:400;">
+尊榮起居層｜影音高頻寬需求｜主臥舒適配置
+</div>
+</div>
+</div>
+<div class="direction-badge">
+<div class="dir-item">📡 AP 主覆蓋點</div>
+<div class="dir-item">🌐 LAN×6</div>
+</div>
+</div>
+<div class="floor-content">
+<div class="visual-plan">
+<div class="plan-header"><div class="plan-title">📐 2F 空間配置圖</div></div>
+<div class="plan-grid-visual">
+<div class="plan-row" style="grid-template-columns:1fr;">
+<div class="plan-cell" onclick="highlightRoom('living2', this)" style="padding:20px;">
+<span class="cell-icon">🛋️</span>
+<span class="cell-name">家庭大客廳</span>
+<div class="io-badges">
+<span class="badge tv">📺 TV/NAS</span>
+<span class="badge ap">📡 AP×1</span>
+<span class="badge net">🌐 LAN×3</span>
+</div>
+</div>
+</div>
+<div class="plan-row" style="grid-template-columns:1fr 1fr;">
+<div class="plan-cell" onclick="highlightRoom('bar2', this)">
+<span class="cell-icon">☕</span>
+<span class="cell-name">茶水吧</span>
+<div class="io-badges">
+<span class="badge pwr">⚡ 專迴</span>
+</div>
+</div>
+<div class="plan-cell wet" onclick="highlightRoom('bath2', this)">
+<span class="cell-icon">🚿</span>
+<span class="cell-name">客用衛浴</span>
+<div class="io-badges">
+<span class="badge water">B-V6/V7</span>
+</div>
+</div>
+</div>
+<div class="plan-row" style="grid-template-columns:1fr;">
+<div class="plan-cell" onclick="highlightRoom('master2', this)" style="padding:20px;">
+<span class="cell-icon">👑</span>
+<span class="cell-name">主臥套房</span>
+<div class="io-badges">
+<span class="badge net">🌐 LAN×2</span>
+<span class="badge pwr">🔌 床頭雙切</span>
+<span class="badge pwr">❄️ AC 1.8噸</span>
+</div>
+</div>
+</div>
+<div class="plan-row" style="grid-template-columns:1fr;">
+<div class="plan-cell outdoor" onclick="highlightRoom('balcony2', this)">
+<span class="cell-icon">🌿</span>
+<span class="cell-name">後陽台/立管</span>
+</div>
+</div>
+</div>
+<div class="compass"><span class="compass-arrow">⬆️</span> 北向</div>
+</div>
+<div class="details-panel">
+<div class="room" id="room-living2">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🛋️</div> 家庭大客廳</div>
+<div class="room-area">主要起居</div>
+</div>
+<div class="room-details">
+<li><strong>電視牆：</strong>LAN×2（TV/串流盒）+ 1.25" 空管（HDMI/光纖音訊）</li>
+<li><strong>沙發側：</strong>LAN×1（筆電/遊戲機備用）+ 雙插座×2 組</li>
+<li><strong>AP 位置：</strong>天花板中央吸頂 AP（PoE），覆蓋 2F 全層</li>
+<li><strong>空調：</strong>分離式 1.8~2.0 噸，室外機預留 RF 或側牆位置</li>
+</div>
+<div class="tag tag-net">
+<div class="tag-title">🌐 影音優化建議</div>
+4K NAS 串流建議走有線網路（Cat6A），Wi-Fi 6 留給手機平板。
+TV 牆建議預埋 1.25" 空管方便日後升級 HDMI 2.1。
+</div>
+</div>
+<div class="room" id="room-bar2">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">☕</div> 茶水吧/梯廳</div>
+</div>
+<div class="room-details">
+<li><strong>功能：</strong>飲水機/咖啡機/小冰箱，避免下樓取水</li>
+<li><strong>電力：</strong>檯面插座 ×3 組 + 獨立 20A 迴路（加熱設備耗電）</li>
+<li><strong>給水：</strong>預留冷水管（B-V8）供飲水機使用</li>
+</div>
+</div>
+<div class="room" id="room-bath2">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🚿</div> 客用衛浴</div>
+</div>
+<div class="room-details">
+<li><strong>給水：</strong>B-V6（冷水）、B-V7（熱水）</li>
+<li><strong>配置：</strong>洗手台 + 馬桶 + 淋浴間</li>
+<li><strong>通風：</strong>抽風機連動照明開關</li>
+<li><strong>熱水保溫：</strong>熱水管全程 ≥15mm 保溫</li>
+</div>
+</div>
+<div class="room" id="room-master2">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">👑</div> 主臥套房</div>
+<div class="room-area">含更衣+主衛</div>
+</div>
+<div class="room-details">
+<li><strong>床頭：</strong>兩側各 2 插座 + USB-C×1 + 燈光雙切開關</li>
+<li><strong>書桌區：</strong>LAN×2（電腦/備用）+ 插座×4</li>
+<li><strong>主衛浴：</strong>B-V9（冷）、B-V10（熱），免治馬桶預留插座</li>
+<li><strong>空調：</strong>分離式 1.0~1.2 噸，床頭避免直吹</li>
+<li><strong>熱水管路：</strong>全程 ≥15mm 保溫，無回水設計</li>
+</div>
+</div>
+<div class="room" id="room-balcony2">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🌿</div> 後陽台/立管區</div>
+</div>
+<div class="room-details">
+<li><strong>立管通過：</strong>弱電立管（1F→RF）+ 給排水立管</li>
+<li><strong>洗衣備用：</strong>預留給排水點（若 1F 空間不足可移至此）</li>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ==================== 3F ==================== -->
+<div class="floor-plan" id="floor-3">
+<div class="floor-header">
+<div class="floor-title">
+<div class="floor-title-icon">3F</div>
+<div>
+<div>娛樂室 × 後客房 × 大露台</div>
+<div style="font-size:.8rem;color:#64748b;font-weight:400;">
+KTV/影音專區｜彈性空間｜戶外機能｜<strong>熱水保溫 ≥15mm</strong>
+</div>
+</div>
+</div>
+<div class="direction-badge">
+<div class="dir-item">🎤 KTV 專區</div>
+<div class="dir-item">☀️ 前院大露台</div>
+</div>
+</div>
+<div class="floor-content">
+<div class="visual-plan">
+<div class="plan-header"><div class="plan-title">📐 3F 空間配置圖</div></div>
+<div class="plan-grid-visual">
+<div class="plan-row" style="grid-template-columns:1fr;">
+<div class="plan-cell outdoor" onclick="highlightRoom('terrace3', this)">
+<span class="cell-icon">☀️</span>
+<span class="cell-name">前院大露台</span>
+<div class="io-badges">
+<span class="badge water">🚿 戶外龍頭</span>
+<span class="badge pwr">⚡ 防雨插座</span>
+</div>
+</div>
+</div>
+<div class="plan-row" style="grid-template-columns:1fr;">
+<div class="plan-cell" onclick="highlightRoom('ktv3', this)" style="border-color:#fbbf24; background:rgba(251,191,36,.1);">
+<span class="cell-icon">🎤</span>
+<span class="cell-name">多功能娛樂室</span>
+<div class="io-badges">
+<span class="badge pwr">⚡ 器材專迴</span>
+<span class="badge net">🌐 LAN×4</span>
+<span class="badge ap">📡 AP×1</span>
+</div>
+</div>
+</div>
+<div class="plan-row" style="grid-template-columns:1fr 1fr;">
+<div class="plan-cell wet" onclick="highlightRoom('bath3', this)">
+<span class="cell-icon">🚿</span>
+<span class="cell-name">3F 衛浴</span>
+<div class="io-badges">
+<span class="badge water">B-V11/V12</span>
+<span class="badge hot">保溫15mm</span>
+</div>
+</div>
+<div class="plan-cell" onclick="highlightRoom('guest3', this)">
+<span class="cell-icon">🛏️</span>
+<span class="cell-name">後客房</span>
+<div class="io-badges">
+<span class="badge net">🌐 LAN×1</span>
+<span class="badge pwr">❄️ AC</span>
+</div>
+</div>
+</div>
+<div class="plan-row" style="grid-template-columns:1fr;">
+<div class="plan-cell outdoor" onclick="highlightRoom('ladder3', this)">
+<span class="cell-icon">🪜</span>
+<span class="cell-name">後陽台 + 爬梯（通RF）</span>
+</div>
+</div>
+</div>
+<div class="compass"><span class="compass-arrow">⬆️</span> 北向</div>
+</div>
+<div class="details-panel">
+<div class="room" id="room-terrace3">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">☀️</div> 前院大露台</div>
+<div class="room-area">戶外空間</div>
+</div>
+<div class="room-details">
+<li><strong>戶外龍頭：</strong>B-V13（冷水），澆花/清洗用</li>
+<li><strong>防雨插座：</strong>IP65 等級 ×2 組（烤肉/電扇）</li>
+<li><strong>排水：</strong>落水頭 + 防水層延伸至女兒牆</li>
+</div>
+</div>
+<div class="room" id="room-ktv3" style="border-color:rgba(251,191,36,.3);">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🎤</div> 多功能娛樂室（KTV/劇院）</div>
+<div class="room-area">重點空間</div>
+</div>
+<div class="room-details">
+<li><strong>網路：</strong>LAN×4（KTV 主機/擴大機/遊戲機/備用）</li>
+<li><strong>投影：</strong>天花板預留投影機電源 + 1.25" 空管至設備櫃</li>
+<li><strong>音響電力：</strong>獨立 20A 迴路（減少電源干擾雜訊）</li>
+<li><strong>隔音：</strong>建議牆面/天花板加強隔音棉，門片氣密</li>
+<li><strong>AP：</strong>天花板吸頂 AP（遊戲低延遲需求）</li>
+</div>
+<div class="tag tag-opt">
+<div class="tag-title">🎵 娛樂室優化</div>
+音響器材建議走獨立接地迴路，減少馬達/冰箱干擾。
+投影幕電動升降需預留電源與控制線。
+</div>
+</div>
+<div class="room" id="room-bath3">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🚿</div> 3F 衛浴</div>
+</div>
+<div class="room-details">
+<li><strong>給水：</strong>B-V11（冷水）、B-V12（熱水）</li>
+<li><strong>配置：</strong>洗手台 + 馬桶 + 淋浴</li>
+<li><strong>熱水保溫：</strong><strong>熱水管全程 ≥15mm 保溫（含接頭）</strong></li>
+<li><strong>無回水提醒：</strong>3F 距離 RF 最遠，熱水等待時間約 30–60 秒（正常）</li>
+</div>
+</div>
+<div class "room" id="room-guest3">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🛏️</div> 後客房</div>
+</div>
+<div class="room-details">
+<li><strong>網路：</strong>LAN×1（床頭或書桌）</li>
+<li><strong>電力：</strong>床頭雙插座 + 空調專插</li>
+<li><strong>空調：</strong>分離式 0.8~1.0 噸</li>
+</div>
+</div>
+<div class="room" id="room-ladder3">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🪜</div> 後陽台與爬梯</div>
+</div>
+<div class="room-details">
+<li><strong>立管：</strong>B 棟弱電立管（1F→RF）經此處通往屋頂</li>
+<li><strong>爬梯：</strong>通往 RF 設備層，建議加裝護籠</li>
+<li><strong>預留：</strong>冷氣室外機吊掛位置</li>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== RF ==================== -->
+<div class="floor-plan" id="floor-4">
+<div class="floor-header">
+<div class="floor-title">
+<div class="floor-title-icon">RF</div>
+<div>
+<div>B 棟設備核心層（獨立系統）</div>
+<div style="font-size:.8rem;color:#64748b;font-weight:400;">
+水塔｜VF800 恆壓｜Haier 熱泵｜<strong>水錘吸收器｜重力旁通｜15mm 保溫｜壓力表</strong>
+</div>
+</div>
+</div>
+<div class="direction-badge">
+<div class="dir-item">💧 獨立給水系統</div>
+<div class="dir-item">🛡️ 減震/排氣/旁通</div>
+</div>
+</div>
+<div class="floor-content">
+<div class="visual-plan">
+<div class="plan-header"><div class="plan-title">📐 RF 設備配置圖</div></div>
+<div class="plan-grid-visual">
+<div class="plan-row" style="grid-template-columns:1fr 1fr;">
+<div class="plan-cell water" onclick="highlightRoom('tank-rf', this)">
+<span class="cell-icon">🛢️</span>
+<span class="cell-name">B 棟水塔</span>
+<span class="cell-size">1000L</span>
+<div class="io-badges">
+<span class="badge water">B-D1 排水</span>
+<span class="badge valve">B-V2 旁通</span>
+</div>
+</div>
+<div class="plan-cell core" onclick="highlightRoom('pump-rf', this)">
+<span class="cell-icon">⚙️</span>
+<span class="cell-name">VF800 恆壓</span>
+<div class="io-badges">
+<span class="badge valve">B-C1 止回</span>
+<span class="badge valve">B-A1 吸收器</span>
+<span class="badge pwr">⚡ 專迴</span>
+</div>
+</div>
+</div>
+<div class="plan-row" style="grid-template-columns:1fr;">
+<div class="plan-cell" onclick="highlightRoom('hotwater-rf', this)" style="border-color:rgba(239,68,68,.4); background:rgba(239,68,68,.08);">
+<span class="cell-icon">🔥</span>
+<span class="cell-name">Haier 熱泵熱水器</span>
+<div class="io-badges">
+<span class="badge hot">B-C3 熱水止回</span>
+<span class="badge water">冷凝排水</span>
+<span class="badge pwr">⚡ 專迴</span>
+</div>
+</div>
+</div>
+<div class="plan-row" style="grid-template-columns:1fr;">
+<div class="plan-cell outdoor" onclick="highlightRoom('solar-rf', this)">
+<span class="cell-icon">☀️</span>
+<span class="cell-name">太陽能光電棚架</span>
+<div class="io-badges">
+<span class="badge pwr">DC→逆變器</span>
+</div>
+</div>
+</div>
+</div>
+<div class="compass"><span class="compass-arrow">⬆️</span> 北向</div>
+</div>
+<div class="details-panel">
+<!-- 給水系統完整流程（整合新優化） -->
+<div class="system-box">
+<div class="system-title">💧 B 棟給水系統流程圖（整合水錘/旁通/排氣）</div>
+<div class="flow-diagram" style="flex-wrap:wrap;">
+<div class="flow-item source">自來水表<br><small>B棟獨立</small></div>
+<div class="flow-arrow">➡</div>
+<div class="flow-item valve">B-V1<br><small>總進水閥</small></div>
+<div class="flow-arrow">➡</div>
+<div class="flow-item equip">B-F1<br><small>前置濾水</small></div>
+<div class="flow-arrow">➡</div>
+<div class="flow-item valve">B-C1<br><small>止回閥</small></div>
+<div class="flow-arrow">➡</div>
+<div class="flow-item equip">B-T1<br><small>TS400B抽水</small></div>
+<div class="flow-arrow">➡</div>
+<div class="flow-item valve">B-A1<br><small>水錘吸收器</small></div>
+<div class="flow-arrow">➡</div>
+<div class="flow-item storage">RF水塔<br><small>1000L</small></div>
+</div>
+<div class="flow-diagram" style="margin-top:15px;">
+<div class="flow-item storage">RF水塔</div>
+<div class="flow-arrow">➡</div>
+<div class="flow-item valve">B-V2<br><small>重力旁通</small></div>
+<div class="flow-arrow">➡</div>
+<div class="flow-item">1F/2F<br><small>重力供水</small></div>
+</div>
+<div class="flow-diagram" style="margin-top:15px;">
+<div class="flow-item storage">RF水塔</div>
+<div class="flow-arrow">➡</div>
+<div class="flow-item equip">VF800<br><small>恆壓泵</small></div>
+<div class="flow-arrow">➡</div>
+<div class="flow-item valve">B-A2<br><small>吸收器</small></div>
+<div class="flow-arrow">➡</div>
+<div class="flow-item">冷水主幹管</div>
+</div>
+<div class="flow-diagram" style="margin-top:15px;">
+<div class="flow-item storage">RF水塔</div>
+<div class="flow-arrow">➡</div>
+<div class="flow-item hot">Haier熱泵<br><small>熱水器</small></div>
+<div class="flow-arrow">➡</div>
+<div class="flow-item valve">B-Vent<br><small>排氣閥</small></div>
+<div class="flow-arrow">➡</div>
+<div class="flow-item hot">熱水主幹管<br><small>保溫15mm</small></div>
+</div>
+</div>
+
+<!-- 水塔 -->
+<div class="room" id="room-tank-rf">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🛢️</div> B 棟水塔</div>
+<div class="room-area">1000L</div>
+</div>
+<div class="room-details">
+<li><strong>容量：</strong>1000L 不鏽鋼水塔</li>
+<li><strong>液位控制：</strong>浮球閥 + 電子液位開關（控制 B-T1 啟停）</li>
+<li><strong>溢流管：</strong>2" 管接至排水系統</li>
+<li><strong>B-D1 排水閥：</strong>底部排污用，定期清洗開啟</li>
+<li><strong>B-V2 旁通閥：</strong>常閉，VF800 故障時手動開啟，供 1F/2F 重力用水</li>
+<li><strong>基座：</strong>需落在結構梁柱上（載重約 1.2 噸）</li>
+</div>
+<div class="tag tag-warn">
+<div class="tag-title">⚠️ 結構與防水</div>
+水塔滿載約 1 噸，基座須經結構確認。周邊做防水盤收邊，人孔朝向維修通道。
+</div>
+</div>
+
+<!-- VF800 -->
+<div class="room" id="room-pump-rf">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">⚙️</div> VF800 變頻恆壓泵</div>
+</div>
+<div class="room-details">
+<li><strong>功能：</strong>從水塔取水，恆壓供應全戶冷水</li>
+<li><strong>B-C1 止回閥：</strong>防止水塔水回流至自來水端</li>
+<li><strong>B-C2 止回閥：</strong>恆壓泵出口端，防止逆流</li>
+<li><strong>B-A2 水錘吸收器：</strong><strong>VF800 出口已加裝</strong>，減少電磁閥關水震動</li>
+<li><strong>減震：</strong>橡膠減震座 + 軟接頭，減少震動傳遞</li>
+<li><strong>電力：</strong>專用迴路 20A，建議加裝漏電斷路器</li>
+<li><strong>壓力表：</strong><strong>出口端已加裝</strong>，方便現場判斷水壓異常</li>
+</div>
+</div>
+
+<!-- 熱泵 -->
+<div class="room" id="room-hotwater-rf">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🔥</div> Haier 熱泵熱水器</div>
+</div>
+<div class="room-details">
+<li><strong>水源：</strong>來自 RF 水塔（經 VF800 或重力）</li>
+<li><strong>B-C3 熱水止回閥：</strong>防止熱水回流至冷水系統</li>
+<li><strong>膨脹處理：</strong>加裝膨脹桶或泄壓閥（熱水膨脹）</li>
+<li><strong>冷凝排水：</strong>熱泵運作產生冷凝水，需接排水管</li>
+<li><strong>通風：</strong>熱泵需良好通風，避免封閉空間</li>
+<li><strong>熱水管保溫：</strong><strong>全程包覆保溫材，厚度 ≥15mm（含接頭）</strong></li>
+<li><strong>排氣閥 B-Vent：</strong>熱水最高點設自動排氣，避免氣堵</li>
+</div>
+<div class="tag tag-spec">
+<div class="tag-title">📋 熱水設計決策（已定案）</div>
+B 棟不做熱水回水循環，接受遠端等待時間。幹管走最短路徑 + 全程 15mm 保溫。
+</div>
+</div>
+
+<!-- 太陽能（略） -->
+<div class="room" id="room-solar-rf">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">☀️</div> 太陽能光電棚架</div>
+</div>
+<div class="room-details">
+<li><strong>功能：</strong>遮陽降溫 + 發電</li>
+<li><strong>DC 管路：</strong>預留線管至 1F 電箱區（逆變器位置）</li>
+<li><strong>結構：</strong>需結構技師確認屋頂承載</li>
+</div>
+</div>
+
+<!-- RF 閥件總表（補新閥件） -->
+<div class="io-table">
+<table>
+<tr>
+<th>代號</th>
+<th>名稱</th>
+<th>位置</th>
+<th>備註</th>
+</tr>
+<tr>
+<td><strong>B-V1</strong></td>
+<td>總進水閥</td>
+<td>1F 後陽台/水表後</td>
+<td>維修時關閉此閥</td>
+</tr>
+<tr>
+<td><strong>B-F1</strong></td>
+<td>前置濾水器</td>
+<td>1F 後陽台</td>
+<td>20" 大胖，3~6 月更換</td>
+</tr>
+<tr>
+<td><strong>B-T1</strong></td>
+<td>抽水馬達</td>
+<td>1F 後陽台</td>
+<td>TS400B，液位控制連動</td>
+</tr>
+<tr>
+<td><strong>B-C1</strong></td>
+<td>止回閥</td>
+<td>抽水機前</td>
+<td>防自來水回流</td>
+</tr>
+<tr>
+<td><strong>B-A1</strong></td>
+<td>水錘吸收器</td>
+<td>TS400B 出口</td>
+<td>減少水錘噪音</td>
+</tr>
+<tr>
+<td><strong>B-C2</strong></td>
+<td>止回閥</td>
+<td>VF800 出口</td>
+<td>防逆流</td>
+</tr>
+<tr>
+<td><strong>B-A2</strong></td>
+<td>水錘吸收器</td>
+<td>VF800 出口</td>
+<td>長管末端</td>
+</tr>
+<tr>
+<td><strong>B-V2</strong></td>
+<td>重力旁通閥</td>
+<td>RF 水塔→1F</td>
+<td>常閉，停電時手動開</td>
+</tr>
+<tr>
+<td><strong>B-C3</strong></td>
+<td>熱水止回閥</td>
+<td>熱泵出口</td>
+<td>防熱水回流冷水系統</td>
+</tr>
+<tr>
+<td><strong>B-Vent</strong></td>
+<td>自動排氣閥</td>
+<td>熱水最高點</td>
+<td>避免氣堵</td>
+</tr>
+<tr>
+<td><strong>B-D1</strong></td>
+<td>水塔排水閥</td>
+<td>RF 水塔底部</td>
+<td>清洗/排污用</td>
+</tr>
+<tr>
+<td><strong>B-V4~V13</strong></td>
+<td>各分支冷水閥</td>
+<td>各樓層</td>
+<td>個別空間維修用</td>
+</tr>
+</table>
+</div>
+
+<!-- RF 設備維護提醒（強化） -->
+<div class="tag tag-warn">
+<div class="tag-title">⚠️ RF 設備層施工重點（新增）</div>
+<strong>防水：</strong>設備基座需做防水套管，地坪洩水坡度 ≥1:50 朝地排<br>
+<strong>減震：</strong>VF800/熱泵/TS400B 均需橡膠減震座 + 軟接頭<br>
+<strong>檢修動線：</strong>RF 出入口尺寸需可搬運設備，或預留吊點<br>
+<strong>排水：</strong>熱泵冷凝水、水塔溢流、地坪排水需確認去處<br>
+<strong>壓力表：</strong>VF800 出口需加裝，方便故障判斷<br>
+<strong>水錘吸收器：</strong>已於 B-A1/B-A2 加裝，位置勿更動
+</div>
+</div>
+</div>
+</div>
+
+<!-- ==================== 施工規範總表 ==================== -->
+<div class="floor-plan" id="floor-5">
+<div class="floor-header">
+<div class="floor-title">
+<div class="floor-title-icon">📋</div>
+<div>
+<div>B 棟施工規範總表</div>
+<div style="font-size:.8rem;color:#64748b;font-weight:400;">
+弱電點位｜設備清單｜管線規格｜<strong>強制新增條款</strong>
+</div>
+</div>
+</div>
+</div>
+<div class="details-panel" style="max-width:100%;">
+
+<!-- 弱電點位總表（與前半段一致，略） -->
+
+<!-- IDF PoE 負載計算（與前半段一致，略） -->
+
+<!-- 管線規格 -->
+<div class="spec-section">
+<h4>🔧 管線材質與規格</h4>
+<div class="spec-grid">
+<div class="spec-card">
+<h5>💧 給水管</h5>
+<ul>
+<li><strong>材質：</strong>不鏽鋼 304 或 PPR</li>
+<li><strong>冷水幹管：</strong>1" (25mm)</li>
+<li><strong>冷水支管：</strong>3/4" (20mm)</li>
+<li><strong>熱水幹管：</strong>3/4" (20mm)</li>
+<li><strong>熱水支管：</strong>1/2" (15mm)</li>
+<li><strong>熱水保溫：</strong><strong>PE 發泡 ≥15mm（含接頭）</strong></li>
+</ul>
+</div>
+<div class="spec-card">
+<h5>📡 弱電管</h5>
+<ul>
+<li><strong>材質：</strong>PVC 電管（橘色）</li>
+<li><strong>LAN 主幹：</strong>1" (25mm)</li>
+<li><strong>LAN 分支：</strong>3/4" (20mm)</li>
+<li><strong>HDMI 預埋：</strong>1.25" (32mm)</li>
+<li><strong>跨棟光纖：</strong>1.5" × 2 支</li>
+<li><strong>線材：</strong>Cat6A（室內）</li>
+</ul>
+</div>
+<div class="spec-card">
+<h5>🔌 強電管</h5>
+<ul>
+<li><strong>材質：</strong>PVC 電管（灰色）</li>
+<li><strong>一般迴路：</strong>3/4"</li>
+<li><strong>專用迴路：</strong>1"</li>
+<li><strong>EV 充電：</strong>1.25" 以上</li>
+</ul>
+</div>
+<div class="spec-card">
+<h5>🚰 排水管</h5>
+<ul>
+<li><strong>材質：</strong>PVC 排水管</li>
+<li><strong>馬桶：</strong>4" (100mm)</li>
+<li><strong>洗手台/地排：</strong>2" (50mm)</li>
+<li><strong>冷氣排水：</strong>3/4"</li>
+<li><strong>洩水坡度：</strong>1:60~1:80</li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- 強制規範（更新） -->
+<div class="spec-section" style="border-color:rgba(239,68,68,.4);">
+<h4 style="color:#ef4444;">🚨 強制施工規範（更新 v7.0+）</h4>
+<div class="spec-grid">
+<div class="spec-card">
+<h5>熱水保溫</h5>
+<ul>
+<li>熱水管（PPR/不鏽鋼）<strong>全程包覆 ≥15mm 保溫棉</strong></li>
+<li><strong>包含所有接頭、彎頭、三通</strong></li>
+<li>保溫材需耐溫 ≥95°C</li>
+</ul>
+</div>
+<div class="spec-card">
+<h5>水錘與減震</h5>
+<ul>
+<li><strong>B-A1 / B-A2 水錘吸收器</strong>不得省略</li>
+<li>TS400B / VF800 / 熱泵 <strong>均需橡膠減震座 + 軟接頭</strong></li>
+<li>泵浦出口加裝 <strong>壓力表</strong></li>
+</ul>
+</div>
+<div class="spec-card">
+<h5>神明廳安全</h5>
+<ul>
+<li>排風管 <strong>4" 不鏽鋼</strong> 獨立出牆</li>
+<li>電力 <strong>分兩迴路</strong>（照明/排風）</li>
+<li>火警偵測器 <strong>需採用溫感型或由消防設計確認位置</strong></li>
+</ul>
+</div>
+<div class="spec-card">
+<h5>跨棟獨立性</h5>
+<ul>
+<li><strong>給水系統絕對禁止互通</strong>（紅字標示）</li>
+<li>弱電僅允許 <strong>單模 OS2 光纖互聯</strong></li>
+<li>所有 B-設備需 <strong>現場標示牌</strong></li>
+</ul>
+</div>
+</div>
+</div>
+
+<!-- 完整 JS（修正總覽頁索引） -->
+<script>
+function showFloor(floor) {
+    // 樓層索引: 0=總覽, 1=1F, 2=2F, 3=3F, 4=RF, 5=規範
+    document.querySelectorAll('.floor-plan').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('floor-' + floor).classList.add('active');
+    // 對應標籤: 總覽(0), 1F(1), 2F(2), 3F(3), RF(4), 規範(5)
+    document.querySelectorAll('.tab')[floor].classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function highlightRoom(roomId, el) {
+    document.querySelectorAll('.room').forEach(r => r.classList.remove('room-active'));
+    document.querySelectorAll('.plan-cell').forEach(c => c.classList.remove('active-cell'));
+    const roomEl = document.getElementById('room-' + roomId);
+    if (roomEl) {
+        roomEl.classList.add('room-active');
+        roomEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    if (el) el.classList.add('active-cell');
+}
+</script>
+</body>
+</html>

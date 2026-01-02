@@ -1,0 +1,1858 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>C棟 - 邊間綠意 × IDF 1F 核心 × 獨立給水（整合版 v7.0）</title>
+    <style>
+        /* ========== 核心樣式庫 v7.0 (參照 A棟) ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft JhengHei', 'PingFang TC', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #0b1220 40%, #1e1b4b 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #e2e8f0;
+        }
+
+        .container {
+            max-width: 1700px;
+            margin: 0 auto;
+        }
+
+        /* 標題區 */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, .08), rgba(34, 211, 238, .08), rgba(59, 130, 246, .06));
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, .1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background:
+                radial-gradient(circle at 22% 28%, rgba(16, 185, 129, .06) 0%, transparent 45%),
+                radial-gradient(circle at 70% 35%, rgba(34, 211, 238, .05) 0%, transparent 52%),
+                radial-gradient(circle at 55% 78%, rgba(59, 130, 246, .05) 0%, transparent 55%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(-4%, -4%) rotate(4deg);
+            }
+        }
+
+        .building-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: .9rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 10px 25px rgba(16, 185, 129, .25);
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 4vw, 2.7rem);
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #22d3ee 0%, #3b82f6 50%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: .95rem;
+            color: #94a3b8;
+            position: relative;
+            z-index: 1;
+            line-height: 1.6;
+        }
+
+        .version-info {
+            display: inline-block;
+            background: rgba(16, 185, 129, .15);
+            border: 1px solid rgba(16, 185, 129, .3);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: .75rem;
+            color: #6ee7b7;
+            margin-top: 10px;
+        }
+
+        /* 統計條 */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            padding: 20px;
+            background: rgba(15, 23, 42, .6);
+            border-radius: 20px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, .08);
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, .03);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, .05);
+            transition: all .3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(34, 211, 238, .08);
+            border-color: rgba(34, 211, 238, .25);
+            transform: translateY(-2px);
+        }
+
+        .stat-icon {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #22d3ee;
+        }
+
+        .stat-label {
+            font-size: .72rem;
+            color: #64748b;
+            margin-top: 3px;
+        }
+
+        /* 樓層標籤 */
+        .floor-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 14px 24px;
+            background: rgba(30, 41, 59, .6);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all .3s cubic-bezier(.4, 0, .2, 1);
+            font-size: .92rem;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tab:hover {
+            background: rgba(34, 211, 238, .10);
+            border-color: rgba(34, 211, 238, .28);
+            color: #22d3ee;
+            transform: translateY(-2px);
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, .22);
+            transform: translateY(-3px);
+            font-weight: 900;
+        }
+
+        .tab-icon {
+            font-size: 1.1rem;
+        }
+
+        /* 樓層內容 */
+        .floor-plan {
+            display: none;
+            animation: fadeSlide .5s ease;
+        }
+
+        .floor-plan.active {
+            display: block;
+        }
+
+        @keyframes fadeSlide {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .floor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 20px;
+            background: rgba(15, 23, 42, .5);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .floor-title {
+            font-size: 1.3rem;
+            color: #fff;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .floor-title-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: #fff;
+            font-weight: 900;
+        }
+
+        .direction-badge {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .dir-item {
+            font-size: .8rem;
+            padding: 8px 14px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .1);
+            color: #94a3b8;
+        }
+
+        /* 主佈局 */
+        .floor-content {
+            display: grid;
+            grid-template-columns: minmax(350px, 520px) 1fr;
+            gap: 25px;
+            align-items: start;
+        }
+
+        @media(max-width:1050px) {
+            .floor-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 視覺平面圖 */
+        .visual-plan {
+            background: rgba(15, 23, 42, .85);
+            border: 1px solid rgba(34, 211, 238, .22);
+            border-radius: 20px;
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .plan-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        .plan-title {
+            font-size: 1rem;
+            color: #22d3ee;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .plan-grid-visual {
+            display: grid;
+            gap: 6px;
+            background: rgba(0, 0, 0, .30);
+            padding: 12px;
+            border-radius: 14px;
+        }
+
+        .plan-row {
+            display: grid;
+            gap: 6px;
+        }
+
+        .plan-cell {
+            background: rgba(30, 41, 59, .7);
+            border: 2px solid rgba(255, 255, 255, .1);
+            border-radius: 14px;
+            padding: 14px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all .25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-cell:hover {
+            border-color: #22d3ee;
+            background: rgba(34, 211, 238, .10);
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(34, 211, 238, .16);
+        }
+
+        .plan-cell.active-cell {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, .12);
+            box-shadow: 0 0 20px rgba(16, 185, 129, .22);
+        }
+
+        .cell-icon {
+            font-size: 1.4rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .cell-name {
+            color: #fff;
+            font-weight: 800;
+            font-size: .85rem;
+            display: block;
+        }
+
+        .cell-size {
+            color: #64748b;
+            font-size: .7rem;
+            margin-top: 3px;
+            display: block;
+        }
+
+        /* 特殊區塊樣式 */
+        .plan-cell.outdoor {
+            background: linear-gradient(135deg, rgba(34, 197, 94, .10), rgba(16, 185, 129, .05));
+            border-style: dashed;
+            border-color: rgba(34, 197, 94, .40);
+        }
+
+        .plan-cell.wet {
+            background: linear-gradient(135deg, rgba(56, 189, 248, .10), rgba(14, 165, 233, .05));
+            border-color: rgba(56, 189, 248, .30);
+        }
+
+        .plan-cell.idf {
+            background: linear-gradient(135deg, rgba(34, 211, 238, .15), rgba(59, 130, 246, .1));
+            border-color: #22d3ee;
+        }
+
+        .plan-cell.stair {
+            background: linear-gradient(135deg, rgba(251, 191, 36, .12), rgba(245, 158, 11, .06));
+            border-color: rgba(251, 191, 36, .4);
+            border-style: solid;
+        }
+
+        .plan-cell.sliding-door {
+            background: linear-gradient(135deg, rgba(239, 68, 68, .1), rgba(220, 38, 38, .05));
+            border-color: rgba(239, 68, 68, .4);
+            border-width: 3px;
+            border-style: double;
+        }
+
+        /* IO 徽章 */
+        .io-badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 4px;
+            margin-top: 8px;
+        }
+
+        .badge {
+            font-size: .65rem;
+            padding: 3px 7px;
+            border-radius: 6px;
+            background: rgba(0, 0, 0, .3);
+            color: #cbd5e1;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            border: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        .badge.net {
+            background: rgba(34, 211, 238, .15);
+            border-color: rgba(34, 211, 238, .3);
+            color: #a5f3fc;
+        }
+
+        .badge.pwr {
+            background: rgba(110, 231, 183, .15);
+            border-color: rgba(110, 231, 183, .3);
+            color: #bbf7d0;
+        }
+
+        .badge.tv {
+            background: rgba(251, 191, 36, .15);
+            border-color: rgba(251, 191, 36, .3);
+            color: #fde68a;
+        }
+
+        .badge.ap {
+            background: rgba(139, 92, 246, .15);
+            border-color: rgba(139, 92, 246, .3);
+            color: #ddd6fe;
+        }
+
+        .badge.water {
+            background: rgba(59, 130, 246, .18);
+            border-color: rgba(59, 130, 246, .35);
+            color: #bfdbfe;
+        }
+
+        .badge.hot {
+            background: rgba(239, 68, 68, .18);
+            border-color: rgba(239, 68, 68, .35);
+            color: #fecaca;
+        }
+
+        .badge.stair {
+            background: rgba(251, 191, 36, .15);
+            border-color: rgba(251, 191, 36, .35);
+            color: #fde68a;
+        }
+
+        .compass {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(0, 0, 0, .2);
+            border-radius: 10px;
+            font-size: .85rem;
+            color: #94a3b8;
+        }
+
+        .compass-arrow {
+            font-size: 1.3rem;
+            margin-right: 10px;
+        }
+
+        /* 右側詳情面板 */
+        .details-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .room {
+            background: rgba(30, 41, 59, .5);
+            border-radius: 18px;
+            padding: 22px;
+            border: 1px solid rgba(255, 255, 255, .08);
+            transition: all .3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .room::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #10b981, #3b82f6);
+            opacity: 0;
+            transition: opacity .3s ease;
+        }
+
+        .room:hover {
+            border-color: rgba(34, 211, 238, .25);
+            background: rgba(30, 41, 59, .7);
+            transform: translateX(5px);
+        }
+
+        .room:hover::before {
+            opacity: 1;
+        }
+
+        .room.room-active {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, .08);
+        }
+
+        .room.room-active::before {
+            opacity: 1;
+        }
+
+        .room-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .room-name {
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .room-name-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, .2), rgba(59, 130, 246, .18));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.05rem;
+        }
+
+        .room-area {
+            font-size: .8rem;
+            color: #22d3ee;
+            background: rgba(34, 211, 238, .1);
+            padding: 5px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(34, 211, 238, .2);
+            font-weight: 800;
+        }
+
+        .room-details {
+            font-size: .9rem;
+            color: #cbd5e1;
+            line-height: 1.85;
+        }
+
+        .room-details li {
+            list-style: none;
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 10px;
+        }
+
+        .room-details li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            border-radius: 50%;
+        }
+
+        /* 標籤與警告框 */
+        .tag {
+            display: block;
+            margin-top: 15px;
+            padding: 14px 16px;
+            border-radius: 12px;
+            font-size: .85rem;
+            line-height: 1.65;
+        }
+
+        .tag-title {
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 5px;
+        }
+
+        .tag-net {
+            background: linear-gradient(135deg, rgba(34, 211, 238, .08), rgba(6, 182, 212, .05));
+            border: 1px solid rgba(34, 211, 238, .2);
+            color: #a5f3fc;
+        }
+
+        .tag-net .tag-title {
+            color: #22d3ee;
+        }
+
+        .tag-water {
+            background: linear-gradient(135deg, rgba(59, 130, 246, .10), rgba(37, 99, 235, .06));
+            border: 1px solid rgba(59, 130, 246, .25);
+            color: #bfdbfe;
+        }
+
+        .tag-water .tag-title {
+            color: #3b82f6;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(239, 68, 68, .12), rgba(220, 38, 38, .08));
+            border: 2px solid rgba(239, 68, 68, .4);
+            border-radius: 14px;
+            padding: 18px;
+            margin-top: 15px;
+        }
+
+        .warning-title {
+            font-size: 1rem;
+            font-weight: 900;
+            color: #f87171;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .warning-content {
+            font-size: .85rem;
+            color: #fecaca;
+            line-height: 1.7;
+        }
+
+        .spec-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, .10), rgba(168, 85, 247, .06));
+            border: 1px solid rgba(139, 92, 246, .35);
+            border-radius: 14px;
+            padding: 18px;
+            margin-top: 15px;
+        }
+
+        .spec-title {
+            font-size: 1rem;
+            font-weight: 900;
+            color: #a855f7;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .spec-content {
+            font-size: .85rem;
+            color: #ddd6fe;
+            line-height: 1.7;
+        }
+
+        .spec-content li {
+            margin-bottom: 6px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .spec-content li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #a855f7;
+            font-weight: bold;
+        }
+
+        /* 系統圖與表格 */
+        .system-box {
+            background: rgba(15, 23, 42, .82);
+            border: 1px solid rgba(34, 211, 238, .22);
+            border-radius: 20px;
+            padding: 22px;
+            margin-top: 20px;
+        }
+
+        .system-title {
+            font-size: 1.1rem;
+            font-weight: 900;
+            text-align: center;
+            background: linear-gradient(135deg, #22d3ee, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 18px;
+        }
+
+        .flow-diagram {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .flow-item {
+            background: rgba(34, 211, 238, .08);
+            border: 1px solid rgba(34, 211, 238, .22);
+            border-radius: 12px;
+            padding: 12px 16px;
+            text-align: center;
+            font-size: .85rem;
+            color: #e2e8f0;
+            transition: all .3s ease;
+            min-width: 120px;
+        }
+
+        .flow-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(34, 211, 238, .14);
+        }
+
+        .flow-arrow {
+            font-size: 1.5rem;
+            color: #475569;
+        }
+
+        .io-table {
+            margin-top: 15px;
+            background: rgba(15, 23, 42, .6);
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .io-table table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .85rem;
+        }
+
+        .io-table th {
+            background: linear-gradient(135deg, rgba(34, 211, 238, .14), rgba(59, 130, 246, .08));
+            padding: 12px;
+            text-align: left;
+            color: #22d3ee;
+            font-weight: 900;
+        }
+
+        .io-table td {
+            padding: 12px;
+            border-top: 1px solid rgba(255, 255, 255, .05);
+            color: #cbd5e1;
+            vertical-align: top;
+        }
+
+        .io-table tr:hover td {
+            background: rgba(255, 255, 255, .03);
+        }
+
+        .io-table .important {
+            background: rgba(251, 191, 36, .08);
+        }
+
+        .io-table .required {
+            background: rgba(239, 68, 68, .08);
+        }
+
+        /* 總覽頁專用 */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .checklist-card {
+            background: rgba(0, 0, 0, .2);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .checklist-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checklist-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: .9rem;
+            color: #cbd5e1;
+            align-items: flex-start;
+        }
+
+        .check-box {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #64748b;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+
+            .tab {
+                display: none;
+            }
+
+            .floor-plan {
+                display: block !important;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- 標題區 -->
+        <div class="header">
+            <div class="building-badge">🏡 C棟 Building C（邊間 Edge）</div>
+            <h1>邊間綠意 × IDF 1F 核心 × 獨立給水</h1>
+            <div class="subtitle">
+                弱電整合 v7.0｜IDF 機櫃 1F 樓梯下（主動散熱）｜獨立水表/水塔/VF800/熱泵<br>
+                新增：水錘吸收器、熱水保溫 >15mm、重力旁通迴路、ANSI/TIA-606-B 標示
+            </div>
+            <div class="version-info">v7.0｜整合優化建議 + 總覽頁 + 施工紅線條款</div>
+        </div>
+
+        <!-- 統計條 -->
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-icon">📐</div>
+                <div class="stat-value">32</div>
+                <div class="stat-label">建築地坪（坪）</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">🖥️</div>
+                <div class="stat-value">1F</div>
+                <div class="stat-label">IDF 樓梯下</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">🚪</div>
+                <div class="stat-value">拉門</div>
+                <div class="stat-label">1F↔2F 區隔</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">💧</div>
+                <div class="stat-value">Indep.</div>
+                <div class="stat-label">C棟獨立水表</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">🌿</div>
+                <div class="stat-value">Side</div>
+                <div class="stat-label">側院綠意</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">🔨</div>
+                <div class="stat-value">v7.0</div>
+                <div class="stat-label">施工規範升級</div>
+            </div>
+        </div>
+
+        <!-- 樓層標籤 -->
+        <div class="floor-tabs">
+            <div class="tab active" onclick="showFloor('overview')">
+                <span class="tab-icon">📋</span> 總覽與規範
+            </div>
+            <div class="tab" onclick="showFloor(1)">
+                <span class="tab-icon">🖥️</span> 1F IDF×孝親
+            </div>
+            <div class="tab" onclick="showFloor(2)">
+                <span class="tab-icon">🛏️</span> 2F 主臥×書房
+            </div>
+            <div class="tab" onclick="showFloor(3)">
+                <span class="tab-icon">🎮</span> 3F 娛樂×客房
+            </div>
+            <div class="tab" onclick="showFloor(4)">
+                <span class="tab-icon">⚙️</span> RF 設備層
+            </div>
+            <div class="tab" onclick="showFloor(5)">
+                <span class="tab-icon">💧</span> 系統總表
+            </div>
+        </div>
+
+        <!-- ==================== 總覽頁 (新增) ==================== -->
+        <div class="floor-plan active" id="floor-overview">
+            <div class="floor-header">
+                <div class="floor-title">
+                    <div class="floor-title-icon">📋</div>
+                    <div>
+                        <div>總覽頁：緊急地圖 × 驗收清單 × 紅線條款</div>
+                        <div style="font-size:.8rem;color:#64748b;font-weight:400;">
+                            住戶緊急應變指南｜工班施工與驗收標準
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="floor-content" style="grid-template-columns:1fr;">
+                <div class="overview-grid">
+                    <!-- 住戶緊急地圖 -->
+                    <div class="checklist-card"
+                        style="border-color:rgba(239,68,68,.4);background:linear-gradient(135deg,rgba(239,68,68,.1),rgba(0,0,0,.2));">
+                        <div class="checklist-title" style="color:#f87171;">🚨 住戶緊急關閉地圖</div>
+                        <div class="checklist-item">
+                            <div class="check-box" style="border-color:#f87171;"></div>
+                            <div><strong>全戶斷水（C-V1）：</strong>位於 1F 前院水表箱內。爆管漏水時請先關此閥。</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="check-box" style="border-color:#f87171;"></div>
+                            <div><strong>全戶斷電（總開關）：</strong>位於 1F 車庫/玄關配電箱內（Main Breaker）。</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="check-box" style="border-color:#f87171;"></div>
+                            <div><strong>加壓馬達斷電：</strong>位於 1F 配電箱「加壓馬達」迴路，或 RF 現場開關。</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="check-box" style="border-color:#f87171;"></div>
+                            <div><strong>熱泵斷電：</strong>位於 RF 熱泵旁防水開關箱，或 1F 配電箱專迴。</div>
+                        </div>
+                    </div>
+
+                    <!-- 工班紅線條款 -->
+                    <div class="checklist-card" style="border-color:rgba(251,191,36,.4);">
+                        <div class="checklist-title" style="color:#fbbf24;">🚫 工班「紅線條款」（做錯重來）</div>
+                        <div class="checklist-item">
+                            <div class="check-box"></div>
+                            <div><strong>強弱電分離：</strong>110/220V 與網路/光纖「絕對不可」同管，平行距離 >30cm。</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="check-box"></div>
+                            <div><strong>光纖規格：</strong>A→C 必須使用「單模 OS2」光纖，管內預留拉線繩。</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="check-box"></div>
+                            <div><strong>冷熱不混：</strong>VF800 只接冷水，Haier 熱泵只接熱水。必裝止回閥。</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="check-box"></div>
+                            <div><strong>熱水保溫：</strong>所有熱水管（PPR/不鏽鋼）必須包覆厚度 <strong>15mm (1.5cm)</strong> 以上保溫棉。</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="check-box"></div>
+                            <div><strong>排水坡度：</strong>RF 設備層地面排水坡度需做 1:50 以上。</div>
+                        </div>
+                    </div>
+
+                    <!-- 驗收清單 -->
+                    <div class="checklist-card" style="border-color:rgba(34,211,238,.4);">
+                        <div class="checklist-title" style="color:#22d3ee;">✅ 完工驗收清單</div>
+                        <div class="checklist-item">
+                            <div class="check-box"></div>
+                            <div><strong>給水：</strong>壓力測試（持壓）、管路沖洗、濾網方向正確、止回閥方向正確。</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="check-box"></div>
+                            <div><strong>弱電：</strong>Cat6A 認證測試報告、光纖 OTDR/插入損耗測試。</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="check-box"></div>
+                            <div><strong>標示：</strong>光纖/網路線兩端標籤（ANSI/TIA-606-B）、閥門掛牌。</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="check-box"></div>
+                            <div><strong>防水：</strong>RF 設備基座收邊、溢流/冷凝排水測試。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 1F ==================== -->
+        <div class="floor-plan" id="floor-1">
+            <div class="floor-header">
+                <div class="floor-title">
+                    <div class="floor-title-icon">1F</div>
+                    <div>
+                        <div>IDF 機櫃 × 孝親房 × 側院 × 樓梯</div>
+                        <div style="font-size:.8rem;color:#64748b;font-weight:400;">
+                            IDF 位於樓梯下方（主動散熱）｜樓梯前拉門阻隔｜邊間側院
+                        </div>
+                    </div>
+                </div>
+                <div class="direction-badge">
+                    <div class="dir-item">⬆️ 前：計畫道路</div>
+                    <div class="dir-item">➡️ 右：側院（邊間）</div>
+                    <div class="dir-item">🖥️ IDF 弱電櫃</div>
+                </div>
+            </div>
+
+            <div class="floor-content">
+                <!-- 左：視覺平面圖 -->
+                <div class="visual-plan">
+                    <div class="plan-header">
+                        <div class="plan-title">📐 1F 空間配置圖</div>
+                        <div class="room-area">約 32 坪</div>
+                    </div>
+
+                    <div class="plan-grid-visual">
+                        <!-- Row 1: 前院車庫 -->
+                        <div class="plan-row" style="grid-template-columns:1fr;">
+                            <div class="plan-cell outdoor" onclick="highlightRoom('garage', this)">
+                                <span class="cell-icon">🚗</span>
+                                <span class="cell-name">前院車庫</span>
+                                <span class="cell-size">約 2 車位 + 機車</span>
+                                <div class="io-badges">
+                                    <span class="badge pwr">🔌 EV 充電</span>
+                                    <span class="badge cam">📷 CCTV</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 2: 玄關 + 客廳 + 側院 -->
+                        <div class="plan-row" style="grid-template-columns:1fr 2fr 1fr;">
+                            <div class="plan-cell" onclick="highlightRoom('entrance', this)">
+                                <span class="cell-icon">🚪</span>
+                                <span class="cell-name">玄關</span>
+                                <div class="io-badges">
+                                    <span class="badge net">🔔 對講</span>
+                                </div>
+                            </div>
+                            <div class="plan-cell" onclick="highlightRoom('living', this)">
+                                <span class="cell-icon">🛋️</span>
+                                <span class="cell-name">客廳</span>
+                                <span class="cell-size">約 8 坪</span>
+                                <div class="io-badges">
+                                    <span class="badge net">🌐 ×2</span>
+                                    <span class="badge tv">📺 TV</span>
+                                    <span class="badge ap">📶 AP</span>
+                                </div>
+                            </div>
+                            <div class="plan-cell outdoor" onclick="highlightRoom('sideyard', this)">
+                                <span class="cell-icon">🌿</span>
+                                <span class="cell-name">側院</span>
+                                <span class="cell-size">邊間優勢</span>
+                                <div class="io-badges">
+                                    <span class="badge water">🚿 澆灌</span>
+                                    <span class="badge cam">📷</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 3: 餐廳 + 廚房 + 樓梯/IDF -->
+                        <div class="plan-row" style="grid-template-columns:1.2fr 1.3fr 1fr;">
+                            <div class="plan-cell" onclick="highlightRoom('dining', this)">
+                                <span class="cell-icon">🍽️</span>
+                                <span class="cell-name">餐廳</span>
+                                <div class="io-badges">
+                                    <span class="badge net">🌐 ×1</span>
+                                </div>
+                            </div>
+                            <div class="plan-cell wet" onclick="highlightRoom('kitchen', this)">
+                                <span class="cell-icon">🍳</span>
+                                <span class="cell-name">廚房</span>
+                                <div class="io-badges">
+                                    <span class="badge water">💧 冷熱</span>
+                                    <span class="badge pwr">🔌 專迴×3</span>
+                                </div>
+                            </div>
+                            <div class="plan-cell idf highlight" onclick="highlightRoom('stair1f', this)">
+                                <span class="cell-icon">🪜</span>
+                                <span class="cell-name">樓梯 + IDF</span>
+                                <span class="cell-size">樓梯下弱電櫃</span>
+                                <div class="io-badges">
+                                    <span class="badge net">12U IDF</span>
+                                    <span class="badge pwr">❄️ 散熱</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 4: 拉門阻隔（1F↔2F 樓梯前） -->
+                        <div class="plan-row" style="grid-template-columns:2.5fr 1fr;">
+                            <div class="plan-cell" onclick="highlightRoom('elder', this)">
+                                <span class="cell-icon">🛏️</span>
+                                <span class="cell-name">孝親房</span>
+                                <span class="cell-size">約 5 坪｜長輩友善</span>
+                                <div class="io-badges">
+                                    <span class="badge net">🌐 ×2</span>
+                                    <span class="badge tv">📺</span>
+                                    <span class="badge pwr">🔌 USB-C</span>
+                                </div>
+                            </div>
+                            <div class="plan-cell sliding-door" onclick="highlightRoom('sliding-door', this)">
+                                <span class="cell-icon">🚪</span>
+                                <span class="cell-name">拉門阻隔</span>
+                                <span class="cell-size">公私區隔</span>
+                                <div class="io-badges">
+                                    <span class="badge stair">🔒 隔音</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 5: 孝親衛浴 + 後工作陽台 -->
+                        <div class="plan-row" style="grid-template-columns:1.5fr 1.5fr;">
+                            <div class="plan-cell wet" onclick="highlightRoom('elder-bath', this)">
+                                <span class="cell-icon">🚿</span>
+                                <span class="cell-name">孝親衛浴</span>
+                                <div class="io-badges">
+                                    <span class="badge water">💧 無障礙</span>
+                                    <span class="badge pwr">🔌 免治</span>
+                                </div>
+                            </div>
+                            <div class="plan-cell outdoor" onclick="highlightRoom('service', this)">
+                                <span class="cell-icon">🧺</span>
+                                <span class="cell-name">後工作陽台</span>
+                                <div class="io-badges">
+                                    <span class="badge water">💧 洗衣</span>
+                                    <span class="badge fiber">🟡 A→C進線</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="compass">
+                        <span class="compass-arrow">⬆️</span> 北（計畫道路側）
+                    </div>
+                </div>
+
+                <!-- 右：詳情面板 -->
+                <div class="details-panel">
+                    <!-- 樓梯 + IDF（核心重點） -->
+                    <div class="room" id="room-stair1f">
+                        <div class="room-head">
+                            <div class="room-name">
+                                <div class="room-name-icon">🪜</div>
+                                1F 樓梯間 + IDF 弱電機櫃
+                            </div>
+                            <div class="room-area">核心節點</div>
+                        </div>
+                        <div class="room-details">
+                            <li><strong>位置：</strong>利用 1F 樓梯下方閒置空間設置弱電機櫃（12U 壁掛，深度 450-600mm）。</li>
+                            <li><strong>光纖進線：</strong>地下管道由 A 棟 MDF 引入，單模 12 芯 LC 端接。</li>
+                            <li><strong>⚠️ 散熱優化：</strong>櫃體內加裝「溫控風扇」，設定 35°C 自動啟動，櫃門開百葉孔。</li>
+                            <li><strong>⚠️ 隔音優化：</strong>機櫃使用「減震墊」壁掛或落地，避免風扇震動傳導至樓梯結構。</li>
+                            <li><strong>維修：</strong>設計活動門片或可拆卸背板，方便人員查修。</li>
+                        </div>
+                        <div class="tag tag-net">
+                            <div class="tag-title">🖥️ IDF 機櫃規格</div>
+                            12U 壁掛/落地｜深度 600mm｜進氣百葉｜溫控風扇<br>
+                            內含：光纖終端箱、PoE+ 交換器、UPS 1000VA
+                        </div>
+                    </div>
+
+                    <!-- 拉門阻隔 -->
+                    <div class="room" id="room-sliding-door">
+                        <div class="room-head">
+                            <div class="room-name">
+                                <div class="room-name-icon">🚪</div>
+                                樓梯前拉門阻隔（1F↔2F）
+                            </div>
+                            <div class="room-area">公私區隔</div>
+                        </div>
+                        <div class="room-details">
+                            <li><strong>功能：</strong>區隔 1F 公共區域與 2F 以上私人空間，提升冷房效率與隱私。</li>
+                            <li><strong>形式：</strong>建議「吊軌式」橫拉門（無地軌），美觀且不絆腳。</li>
+                            <li><strong>隔音：</strong>選用隔音等級較高的門片（STC 30+）。</li>
+                        </div>
+                    </div>
+
+                    <!-- 側院 -->
+                    <div class="room" id="room-sideyard">
+                        <div class="room-head">
+                            <div class="room-name">
+                                <div class="room-name-icon">🌿</div>
+                                側院（邊間優勢）
+                            </div>
+                        </div>
+                        <div class="room-details">
+                            <li><strong>智慧澆灌：</strong>預埋澆灌電磁閥控制線回 IDF。</li>
+                            <li><strong>戶外給水：</strong>戶外龍頭 ×1（C-V6），建議加裝水錘吸收器。</li>
+                            <li><strong>安防：</strong>側院 CCTV ×1（PoE 供電）。</li>
+                        </div>
+                    </div>
+
+                    <!-- 孝親房 -->
+                    <div class="room" id="room-elder">
+                        <div class="room-head">
+                            <div class="room-name">
+                                <div class="room-name-icon">🛏️</div>
+                                孝親房 / 長輩房
+                            </div>
+                        </div>
+                        <div class="room-details">
+                            <li><strong>無障礙：</strong>門寬 ≥90cm，室內無高低差。</li>
+                            <li><strong>緊急呼叫：</strong>預留緊急按鈕線路回 IDF。</li>
+                        </div>
+                    </div>
+
+                    <!-- 後工作陽台 -->
+                    <div class="room" id="room-service">
+                        <div class="room-head">
+                            <div class="room-name">
+                                <div class="room-name-icon">🧺</div>
+                                後工作陽台
+                            </div>
+                        </div>
+                        <div class="room-details">
+                            <li><strong>跨棟介面：</strong>A→C 光纖與弱電管路從此處地下管進入。</li>
+                            <li><strong>給水進線：</strong>C 棟獨立水表位置。</li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 2F ==================== -->
+        <div class="floor-plan" id="floor-2">
+            <div class="floor-header">
+                <div class="floor-title">
+                    <div class="floor-title-icon">2F</div>
+                    <div>
+                        <div>主臥套房 × 書房 × 樓梯</div>
+                        <div style="font-size:.8rem;color:#64748b;font-weight:400;">
+                            私密生活層｜主臥面側院景觀｜樓梯連接 1F/3F
+                        </div>
+                    </div>
+                </div>
+                <div class="direction-badge">
+                    <div class="dir-item">➡️ 右：側院採光</div>
+                </div>
+            </div>
+
+            <div class="floor-content">
+                <div class="visual-plan">
+                    <div class="plan-header">
+                        <div class="plan-title">📐 2F 空間配置圖</div>
+                    </div>
+
+                    <div class="plan-grid-visual">
+                        <!-- Row 1: 前陽台 -->
+                        <div class="plan-row" style="grid-template-columns:1fr;">
+                            <div class="plan-cell outdoor" onclick="highlightRoom('balcony2f', this)">
+                                <span class="cell-icon">🌅</span>
+                                <span class="cell-name">前陽台</span>
+                                <div class="io-badges">
+                                    <span class="badge pwr">🔌 戶外插座</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 2: 主臥 + 主臥衛浴 + 樓梯 -->
+                        <div class="plan-row" style="grid-template-columns:2fr 1fr 0.8fr;">
+                            <div class="plan-cell" onclick="highlightRoom('master', this)">
+                                <span class="cell-icon">🛏️</span>
+                                <span class="cell-name">主臥室</span>
+                                <span class="cell-size">約 8 坪｜面側院</span>
+                                <div class="io-badges">
+                                    <span class="badge net">🌐 ×2</span>
+                                    <span class="badge tv">📺</span>
+                                    <span class="badge ap">📶</span>
+                                </div>
+                            </div>
+                            <div class="plan-cell wet" onclick="highlightRoom('master-bath', this)">
+                                <span class="cell-icon">🛁</span>
+                                <span class="cell-name">主臥衛浴</span>
+                                <div class="io-badges">
+                                    <span class="badge water">💧 浴缸</span>
+                                </div>
+                            </div>
+                            <div class="plan-cell stair" onclick="highlightRoom('stair2f', this)">
+                                <span class="cell-icon">🪜</span>
+                                <span class="cell-name">樓梯</span>
+                                <div class="io-badges">
+                                    <span class="badge stair">⬇️1F ⬆️3F</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 3: 更衣室 + 書房 + 公共衛浴 -->
+                        <div class="plan-row" style="grid-template-columns:1fr 1.5fr 1fr;">
+                            <div class="plan-cell" onclick="highlightRoom('closet', this)">
+                                <span class="cell-icon">👔</span>
+                                <span class="cell-name">更衣室</span>
+                            </div>
+                            <div class="plan-cell" onclick="highlightRoom('study', this)">
+                                <span class="cell-icon">📚</span>
+                                <span class="cell-name">書房/兼客房</span>
+                                <span class="cell-size">約 4 坪</span>
+                                <div class="io-badges">
+                                    <span class="badge net">🌐 ×2</span>
+                                    <span class="badge pwr">🔌 UPS</span>
+                                </div>
+                            </div>
+                            <div class="plan-cell wet" onclick="highlightRoom('bath2f', this)">
+                                <span class="cell-icon">🚿</span>
+                                <span class="cell-name">公共衛浴</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="compass"><span class="compass-arrow">⬆️</span> 北</div>
+                </div>
+
+                <div class="details-panel">
+                    <div class="room" id="room-master">
+                        <div class="room-head">
+                            <div class="room-name">
+                                <div class="room-name-icon">🛏️</div>
+                                主臥室
+                            </div>
+                        </div>
+                        <div class="room-details">
+                            <li><strong>景觀：</strong>面向側院，享受邊間採光。</li>
+                            <li><strong>網路：</strong>CAT6 ×2（床頭 + 電視牆）。</li>
+                        </div>
+                    </div>
+
+                    <div class="room" id="room-study">
+                        <div class="room-head">
+                            <div class="room-name">
+                                <div class="room-name-icon">📚</div>
+                                書房 / 兼客房
+                            </div>
+                        </div>
+                        <div class="room-details">
+                            <li><strong>網路：</strong>CAT6 ×2，適合雙螢幕工作站。</li>
+                            <li><strong>電力：</strong>UPS 專用插座預留。</li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 3F ==================== -->
+        <div class="floor-plan" id="floor-3">
+            <div class="floor-header">
+                <div class="floor-title">
+                    <div class="floor-title-icon">3F</div>
+                    <div>
+                        <div>娛樂室 × 客房 × 樓梯→RF</div>
+                        <div style="font-size:.8rem;color:#64748b;font-weight:400;">
+                            家庭影院 / 遊戲室｜客房含獨立衛浴｜樓梯通往 RF 設備層
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="floor-content">
+                <div class="visual-plan">
+                    <div class="plan-header">
+                        <div class="plan-title">📐 3F 空間配置圖</div>
+                    </div>
+
+                    <div class="plan-grid-visual">
+                        <!-- Row 1: 前露台 -->
+                        <div class="plan-row" style="grid-template-columns:1fr;">
+                            <div class="plan-cell outdoor" onclick="highlightRoom('terrace3f', this)">
+                                <span class="cell-icon">🌇</span>
+                                <span class="cell-name">前露台</span>
+                                <div class="io-badges">
+                                    <span class="badge cam">📷 CCTV</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 2: 娛樂室 + 樓梯 -->
+                        <div class="plan-row" style="grid-template-columns:2.5fr 0.8fr;">
+                            <div class="plan-cell" onclick="highlightRoom('entertainment', this)">
+                                <span class="cell-icon">🎮</span>
+                                <span class="cell-name">娛樂室 / 視聽室</span>
+                                <span class="cell-size">約 10 坪</span>
+                                <div class="io-badges">
+                                    <span class="badge net">🌐 ×4</span>
+                                    <span class="badge tv">📺 投影</span>
+                                    <span class="badge ap">📶 AP</span>
+                                </div>
+                            </div>
+                            <div class="plan-cell stair" onclick="highlightRoom('stair3f', this)">
+                                <span class="cell-icon">🪜</span>
+                                <span class="cell-name">樓梯</span>
+                                <div class="io-badges">
+                                    <span class="badge stair">⬇️2F ⬆️RF</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 3: 客房 + 客房衛浴 + 多功能 -->
+                        <div class="plan-row" style="grid-template-columns:1.5fr 1fr 1fr;">
+                            <div class="plan-cell" onclick="highlightRoom('guest', this)">
+                                <span class="cell-icon">🛏️</span>
+                                <span class="cell-name">客房</span>
+                                <div class="io-badges">
+                                    <span class="badge net">🌐 ×2</span>
+                                </div>
+                            </div>
+                            <div class="plan-cell wet" onclick="highlightRoom('guest-bath', this)">
+                                <span class="cell-icon">🚿</span>
+                                <span class="cell-name">客房衛浴</span>
+                            </div>
+                            <div class="plan-cell" onclick="highlightRoom('multi', this)">
+                                <span class="cell-icon">🧘</span>
+                                <span class="cell-name">多功能區</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="compass"><span class="compass-arrow">⬆️</span> 北</div>
+                </div>
+
+                <div class="details-panel">
+                    <div class="room" id="room-entertainment">
+                        <div class="room-head">
+                            <div class="room-name">
+                                <div class="room-name-icon">🎮</div>
+                                娛樂室 / 視聽室
+                            </div>
+                        </div>
+                        <div class="room-details">
+                            <li><strong>網路：</strong>CAT6 ×4（投影區、遊戲機區、音響區、預留）。</li>
+                            <li><strong>視聽：</strong>HDMI 管預埋（投影機→設備櫃）、5.1/7.1 喇叭線預埋。</li>
+                        </div>
+                    </div>
+
+                    <div class="room" id="room-stair3f">
+                        <div class="room-head">
+                            <div class="room-name">
+                                <div class="room-name-icon">🪜</div>
+                                3F 樓梯間 → RF
+                            </div>
+                        </div>
+                        <div class="room-details">
+                            <li><strong>RF 出口：</strong>樓梯通往 RF 的出口需設防水門或人孔蓋。</li>
+                            <li><strong>弱電立管：</strong>繼續延伸至 RF（預留未來擴充）。</li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== RF 設備層 ==================== -->
+        <div class="floor-plan" id="floor-4">
+            <div class="floor-header">
+                <div class="floor-title">
+                    <div class="floor-title-icon">RF</div>
+                    <div>
+                        <div>水塔 × 熱泵 × 太陽能 × 樓梯出口</div>
+                        <div style="font-size:.8rem;color:#64748b;font-weight:400;">
+                            獨立給水系統｜水錘吸收器｜重力旁通｜15mm 保溫
+                        </div>
+                    </div>
+                </div>
+                <div class="direction-badge">
+                    <div class="dir-item">💧 獨立水表</div>
+                    <div class="dir-item">❄️ VF800</div>
+                    <div class="dir-item">♨️ Haier</div>
+                </div>
+            </div>
+
+            <div class="floor-content">
+                <div class="visual-plan">
+                    <div class="plan-header">
+                        <div class="plan-title">📐 RF 設備配置圖</div>
+                    </div>
+
+                    <div class="plan-grid-visual">
+                        <!-- Row 1: 樓梯出口 + 弱電管道 -->
+                        <div class="plan-row" style="grid-template-columns:1fr 1fr;">
+                            <div class="plan-cell stair" onclick="highlightRoom('stair-rf', this)">
+                                <span class="cell-icon">🪜</span>
+                                <span class="cell-name">樓梯出口</span>
+                                <span class="cell-size">防水門/人孔蓋</span>
+                            </div>
+                            <div class="plan-cell core" onclick="highlightRoom('riser-rf', this)">
+                                <span class="cell-icon">🔌</span>
+                                <span class="cell-name">弱電管道出口</span>
+                                <div class="io-badges">
+                                    <span class="badge net">預留擴充</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 2: 水塔 + 加壓 + 熱泵 -->
+                        <div class="plan-row" style="grid-template-columns:1fr 1fr 1fr;">
+                            <div class="plan-cell water" onclick="highlightRoom('water-tank', this)">
+                                <span class="cell-icon">💧</span>
+                                <span class="cell-name">不鏽鋼水塔</span>
+                                <span class="cell-size">1000L</span>
+                                <div class="io-badges">
+                                    <span class="badge water">C-T1</span>
+                                </div>
+                            </div>
+                            <div class="plan-cell" onclick="highlightRoom('pump', this)">
+                                <span class="cell-icon">⚡</span>
+                                <span class="cell-name">加壓系統</span>
+                                <div class="io-badges">
+                                    <span class="badge pwr">VF800</span>
+                                    <span class="badge water">🔨 水錘吸收</span>
+                                </div>
+                            </div>
+                            <div class="plan-cell" onclick="highlightRoom('heatpump', this)">
+                                <span class="cell-icon">🔥</span>
+                                <span class="cell-name">熱泵熱水器</span>
+                                <div class="io-badges">
+                                    <span class="badge pwr">Haier 200L</span>
+                                    <span class="badge hot">♨️ 15mm保溫</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 3: 太陽能 + 曬衣 -->
+                        <div class="plan-row" style="grid-template-columns:1.5fr 1fr;">
+                            <div class="plan-cell outdoor" onclick="highlightRoom('solar', this)">
+                                <span class="cell-icon">☀️</span>
+                                <span class="cell-name">太陽能板區</span>
+                                <div class="io-badges">
+                                    <span class="badge pwr">逆變器</span>
+                                </div>
+                            </div>
+                            <div class="plan-cell outdoor" onclick="highlightRoom('laundry-rf', this)">
+                                <span class="cell-icon">👕</span>
+                                <span class="cell-name">曬衣區</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="compass"><span class="compass-arrow">⬆️</span> 北</div>
+                </div>
+
+                <div class="details-panel">
+                    <!-- 給水系統（重點優化！） -->
+                    <div class="room" id="room-pump">
+                        <div class="room-head">
+                            <div class="room-name">
+                                <div class="room-name-icon">⚡</div>
+                                加壓系統 (VF800)
+                            </div>
+                            <div class="room-area">冷水恆壓</div>
+                        </div>
+                        <div class="room-details">
+                            <li><strong>設備：</strong>VF800 變頻恆壓泵。</li>
+                            <li><strong>⚠️ 水錘吸收器：</strong>VF800 出口端加裝水錘吸收器，防止關水震動。</li>
+                            <li><strong>⚠️ 重力旁通迴路：</strong>水塔與 VF800 間增設旁通管（含常閉閥 C-V2），停電時可開啟靠重力供水至低樓層。</li>
+                            <li><strong>壓力表：</strong>出口處加裝壓力表，方便判讀。</li>
+                        </div>
+                    </div>
+
+                    <div class="room" id="room-heatpump">
+                        <div class="room-head">
+                            <div class="room-name">
+                                <div class="room-name-icon">🔥</div>
+                                熱泵熱水器 (Haier)
+                            </div>
+                            <div class="room-area">熱水供應</div>
+                        </div>
+                        <div class="room-details">
+                            <li><strong>設備：</strong>Haier 空氣能熱泵 200L。</li>
+                            <li><strong>⚠️ 保溫優化：</strong>熱水管（PPR/不鏽鋼）強制包覆 <strong>15mm (6分)</strong> 以上保溫棉。</li>
+                            <li><strong>排氣：</strong>熱水最高點設自動排氣閥。</li>
+                            <li><strong>止回閥：</strong>進水端必裝止回閥 (C-C2)。</li>
+                        </div>
+                    </div>
+
+                    <div class="room" id="room-water-tank">
+                        <div class="room-head">
+                            <div class="room-name">
+                                <div class="room-name-icon">💧</div>
+                                不鏽鋼水塔
+                            </div>
+                            <div class="room-area">1000L</div>
+                        </div>
+                        <div class="room-details">
+                            <li><strong>水源：</strong>C 棟獨立水表 → TS400B 揚水 → 水塔。</li>
+                            <li><strong>排水：</strong>底部設排水閥 (C-D1)，溢流管接至地排。</li>
+                            <li><strong>防水：</strong>基座需做防水收邊，地面洩水坡度 1:50。</li>
+                        </div>
+                    </div>
+
+                    <div class="spec-box">
+                        <div class="spec-title">🔧 RF 施工重點</div>
+                        <div class="spec-content">
+                            <li><strong>水錘吸收：</strong>VF800 出口、長距離管末端。</li>
+                            <li><strong>保溫厚度：</strong>熱水管保溫棉厚度 ≥15mm。</li>
+                            <li><strong>重力旁通：</strong>預留停電供水迴路。</li>
+                            <li><strong>設備基座：</strong>需設防水墩座，避免積水鏽蝕。</li>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 系統總表 ==================== -->
+        <div class="floor-plan" id="floor-5">
+            <div class="floor-header">
+                <div class="floor-title">
+                    <div class="floor-title-icon">💧</div>
+                    <div>
+                        <div>系統總表：給水流程 × 弱電點位 × 閥件編碼</div>
+                        <div style="font-size:.8rem;color:#64748b;font-weight:400;">
+                            C 棟獨立系統架構總覽
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="floor-content" style="grid-template-columns:1fr;">
+                <div class="details-panel" style="max-width:100%;">
+
+                    <!-- 給水流程圖 -->
+                    <div class="system-box">
+                        <div class="system-title">💧 C 棟給水系統流程（含優化）</div>
+                        <div class="flow-diagram">
+                            <div class="flow-item">🚰 自來水表<small>C 棟獨立</small></div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-item">C-V1 總閥</div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-item">TS400B<small>揚水泵</small></div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-item">C-T1 水塔<small>1000L</small></div>
+                        </div>
+                        <div class="flow-diagram" style="margin-top:15px;">
+                            <div class="flow-item">C-T1 水塔</div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-item" style="border-color:#fbbf24;background:rgba(251,191,36,.1);">
+                                旁通迴路<br><small>C-V2 常閉</small>
+                            </div>
+                            <div class="flow-arrow">↘</div>
+                            <div class="flow-item">VF800<br><small>+水錘吸收器</small></div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-item">冷水幹管</div>
+                        </div>
+                    </div>
+
+                    <!-- 閥件編碼表 -->
+                    <div class="system-box">
+                        <div class="system-title">🔧 C 棟閥件編碼表</div>
+                        <div class="io-table">
+                            <table>
+                                <tr>
+                                    <th>編碼</th>
+                                    <th>名稱</th>
+                                    <th>位置</th>
+                                    <th>功能</th>
+                                </tr>
+                                <tr>
+                                    <td>C-V1</td>
+                                    <td>總進水閥</td>
+                                    <td>水表後</td>
+                                    <td>全戶緊急關斷</td>
+                                </tr>
+                                <tr class="important">
+                                    <td>C-V2</td>
+                                    <td>VF800 旁通閥</td>
+                                    <td>RF</td>
+                                    <td>停電時重力供水（常閉）</td>
+                                </tr>
+                                <tr>
+                                    <td>C-V3</td>
+                                    <td>廚房總閥</td>
+                                    <td>1F</td>
+                                    <td>廚房獨立控制</td>
+                                </tr>
+                                <tr>
+                                    <td>C-V4</td>
+                                    <td>孝親衛浴閥</td>
+                                    <td>1F</td>
+                                    <td>衛浴獨立控制</td>
+                                </tr>
+                                <tr>
+                                    <td>C-V5</td>
+                                    <td>主臥衛浴閥</td>
+                                    <td>2F</td>
+                                    <td>衛浴獨立控制</td>
+                                </tr>
+                                <tr>
+                                    <td>C-V6</td>
+                                    <td>側院戶外閥</td>
+                                    <td>1F</td>
+                                    <td>澆灌/清洗</td>
+                                </tr>
+                                <tr>
+                                    <td>C-V7</td>
+                                    <td>3F衛浴閥</td>
+                                    <td>3F</td>
+                                    <td>衛浴獨立控制</td>
+                                </tr>
+                                <tr>
+                                    <td>C-C1</td>
+                                    <td>水表後逆止閥</td>
+                                    <td>C-V1後</td>
+                                    <td>防回流</td>
+                                </tr>
+                                <tr>
+                                    <td>C-C2</td>
+                                    <td>熱泵出水逆止閥</td>
+                                    <td>熱泵</td>
+                                    <td>防熱水回流</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 弱電點位總表 -->
+                    <div class="system-box">
+                        <div class="system-title">🌐 C 棟弱電點位總表</div>
+                        <div class="io-table">
+                            <table>
+                                <tr>
+                                    <th>樓層</th>
+                                    <th>空間</th>
+                                    <th>CAT6</th>
+                                    <th>TV</th>
+                                    <th>AP</th>
+                                    <th>CCTV</th>
+                                    <th>備註</th>
+                                </tr>
+                                <tr class="important">
+                                    <td>1F</td>
+                                    <td>IDF（樓梯下）</td>
+                                    <td>匯集</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>12U 機櫃 + 溫控風扇</td>
+                                </tr>
+                                <tr>
+                                    <td>1F</td>
+                                    <td>客廳</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>-</td>
+                                    <td>天花 AP</td>
+                                </tr>
+                                <tr>
+                                    <td>1F</td>
+                                    <td>孝親房</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>緊急呼叫</td>
+                                </tr>
+                                <tr>
+                                    <td>1F</td>
+                                    <td>車庫/側院</td>
+                                    <td>1</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>2</td>
+                                    <td>EV充電、澆灌</td>
+                                </tr>
+                                <tr>
+                                    <td>2F</td>
+                                    <td>主臥室</td>
+                                    <td>2</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>-</td>
+                                    <td>智慧窗簾</td>
+                                </tr>
+                                <tr>
+                                    <td>2F</td>
+                                    <td>書房</td>
+                                    <td>2</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>工作站</td>
+                                </tr>
+                                <tr>
+                                    <td>3F</td>
+                                    <td>娛樂室</td>
+                                    <td>4</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>-</td>
+                                    <td>HDMI/喇叭線</td>
+                                </tr>
+                                <tr>
+                                    <td>3F</td>
+                                    <td>前露台</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>1</td>
+                                    <td>戶外 CCTV</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- 跨棟介面 -->
+                    <div class="warning-box" style="border-color:rgba(139,92,246,.5);">
+                        <div class="warning-title" style="color:#a855f7;">🔗 跨棟弱電介面（A→C）</div>
+                        <div class="warning-content">
+                            <strong>路徑：</strong>A 棟 MDF（1F）→ 地下管道 → C 棟 IDF（1F 樓梯下）<br>
+                            <strong>管徑：</strong>1.5" PVC ×2（一主一備），埋深 ≥60cm<br>
+                            <strong>光纖：</strong>單模 OS2，12 芯，LC/UPC 端接<br>
+                            <strong>標示：</strong>依 ANSI/TIA-606-B 標準標示（例：A-MDF TO C-IDF CORE 1-6）
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showFloor(n) {
+            document.querySelectorAll('.floor-plan').forEach(f => f.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+
+            const targetId = (n === 'overview') ? 'floor-overview' : 'floor-' + n;
+            document.getElementById(targetId).classList.add('active');
+
+            // Find the tab that was clicked (simple logic based on index or text content could be used, 
+            // but here we just rely on the onclick handler updating the UI state if we had references.
+            // Since we don't pass 'this', we iterate to find matching index for numeric floors)
+            if (typeof n === 'number') {
+                document.querySelectorAll('.tab')[n].classList.add('active'); // index 0 is overview
+            } else {
+                document.querySelectorAll('.tab')[0].classList.add('active');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function highlightRoom(roomId, cell) {
+            document.querySelectorAll('.plan-cell').forEach(c => c.classList.remove('active-cell'));
+            document.querySelectorAll('.room').forEach(r => r.classList.remove('room-active'));
+
+            if (cell) cell.classList.add('active-cell');
+            const room = document.getElementById('room-' + roomId);
+            if (room) {
+                room.classList.add('room-active');
+                room.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>儲藏室平面配置圖 - 含神轎</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Microsoft JhengHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 25px;
+            font-size: 1rem;
+        }
+        
+        .floor-plan-container {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .dimensions {
+            text-align: center;
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .floor-plan {
+            position: relative;
+            width: 100%;
+            max-width: 520px;
+            aspect-ratio: 1.15;
+            margin: 0 auto;
+            border: 4px solid #333;
+            background: #fafafa;
+            border-radius: 4px;
+        }
+        
+        .zone {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 4px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        
+        .zone:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+            z-index: 10;
+        }
+        
+        .zone-icon {
+            font-size: 1.4rem;
+            margin-bottom: 2px;
+        }
+        
+        /* 神轎專區 - 最重要的位置 */
+        .sedan-chair {
+            left: 25%;
+            top: 3%;
+            width: 50%;
+            height: 38%;
+            background: linear-gradient(180deg, #c62828, #8e0000);
+            color: white;
+            border: 3px solid #ffca28;
+            box-shadow: 0 0 20px rgba(198, 40, 40, 0.4);
+        }
+        
+        .sedan-chair .zone-icon {
+            font-size: 2.2rem;
+        }
+        
+        .sedan-detail {
+            font-size: 0.65rem;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        /* 左側層架區 */
+        .shelf-left {
+            left: 2%;
+            top: 3%;
+            width: 20%;
+            height: 94%;
+            background: linear-gradient(180deg, #4CAF50, #2E7D32);
+            color: white;
+            border: 2px solid #1B5E20;
+        }
+        
+        /* 右側層架區 */
+        .shelf-right {
+            right: 2%;
+            top: 3%;
+            width: 20%;
+            height: 55%;
+            background: linear-gradient(180deg, #2196F3, #1565C0);
+            color: white;
+            border: 2px solid #0D47A1;
+        }
+        
+        /* 拜拜用具區 */
+        .worship {
+            right: 2%;
+            top: 60%;
+            width: 20%;
+            height: 37%;
+            background: linear-gradient(180deg, #FF9800, #F57C00);
+            color: white;
+            border: 2px solid #E65100;
+        }
+        
+        /* 工具區 - 洞洞板 */
+        .tools {
+            left: 25%;
+            top: 44%;
+            width: 22%;
+            height: 22%;
+            background: linear-gradient(180deg, #9C27B0, #6A1B9A);
+            color: white;
+            border: 2px solid #4A148C;
+        }
+        
+        /* L型走道 */
+        .walkway {
+            left: 50%;
+            top: 44%;
+            width: 25%;
+            height: 30%;
+            background: repeating-linear-gradient(
+                45deg,
+                #f5f5f5,
+                #f5f5f5 10px,
+                #e0e0e0 10px,
+                #e0e0e0 20px
+            );
+            border: 2px dashed #999;
+            color: #666;
+        }
+        
+        .walkway2 {
+            left: 25%;
+            top: 68%;
+            width: 50%;
+            height: 10%;
+            background: repeating-linear-gradient(
+                45deg,
+                #f5f5f5,
+                #f5f5f5 10px,
+                #e0e0e0 10px,
+                #e0e0e0 20px
+            );
+            border: 2px dashed #999;
+            border-top: none;
+            color: #666;
+            font-size: 0.65rem;
+        }
+        
+        /* 門後收納 */
+        .door-storage {
+            left: 25%;
+            bottom: 3%;
+            width: 12%;
+            height: 17%;
+            background: linear-gradient(180deg, #607D8B, #455A64);
+            color: white;
+            border: 2px solid #37474F;
+            font-size: 0.65rem;
+        }
+        
+        /* 大型物品區 */
+        .large-items {
+            left: 40%;
+            bottom: 3%;
+            width: 35%;
+            height: 17%;
+            background: linear-gradient(90deg, #795548, #5D4037);
+            color: white;
+            border: 2px solid #3E2723;
+        }
+        
+        /* 門 */
+        .door {
+            left: 38%;
+            bottom: -4px;
+            width: 24%;
+            height: 6%;
+            background: #8D6E63;
+            border: 3px solid #5D4037;
+            border-bottom: none;
+            color: white;
+            font-size: 0.75rem;
+        }
+        
+        .door-swing {
+            position: absolute;
+            left: 38%;
+            bottom: 4%;
+            width: 20%;
+            height: 16%;
+            border: 2px dashed #8D6E63;
+            border-radius: 0 0 100% 0;
+            border-top: none;
+            border-left: none;
+            pointer-events: none;
+        }
+        
+        /* 神轎架說明 */
+        .sedan-stand {
+            position: absolute;
+            left: 30%;
+            top: 32%;
+            width: 40%;
+            height: 6%;
+            background: #5d4037;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 0.6rem;
+            font-weight: 500;
+        }
+        
+        .legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.78rem;
+            color: #444;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+        
+        .sedan-highlight {
+            margin-top: 20px;
+            padding: 18px;
+            background: linear-gradient(135deg, #fff8e1, #ffecb3);
+            border-radius: 12px;
+            border-left: 4px solid #c62828;
+        }
+        
+        .sedan-highlight h3 {
+            color: #c62828;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .sedan-highlight ul {
+            color: #555;
+            font-size: 0.85rem;
+            line-height: 1.9;
+            padding-left: 20px;
+        }
+        
+        .sedan-highlight li {
+            margin-bottom: 5px;
+        }
+        
+        .tips {
+            margin-top: 20px;
+            padding: 18px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .tips h3 {
+            color: #333;
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+        
+        .tips ul {
+            color: #555;
+            font-size: 0.85rem;
+            line-height: 1.8;
+            padding-left: 20px;
+        }
+        
+        .side-view {
+            margin-top: 25px;
+            padding: 20px;
+            background: #e8f5e9;
+            border-radius: 12px;
+        }
+        
+        .side-view h3 {
+            color: #2e7d32;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+        
+        .side-diagram {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 5px;
+            height: 180px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .stand-leg {
+            width: 15px;
+            height: 80px;
+            background: #795548;
+            border-radius: 3px;
+        }
+        
+        .stand-top {
+            position: absolute;
+            bottom: 90px;
+            width: 180px;
+            height: 12px;
+            background: #5d4037;
+            border-radius: 4px;
+        }
+        
+        .sedan-icon {
+            position: absolute;
+            bottom: 105px;
+            font-size: 3.5rem;
+        }
+        
+        .height-label {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            top: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end;
+            font-size: 0.7rem;
+            color: #666;
+        }
+        
+        .height-line {
+            position: absolute;
+            right: 60px;
+            bottom: 20px;
+            top: 20px;
+            width: 2px;
+            background: #ccc;
+        }
+        
+        .height-mark {
+            position: absolute;
+            right: 55px;
+            width: 12px;
+            height: 2px;
+            background: #999;
+        }
+        
+        @media (max-width: 600px) {
+            .floor-plan {
+                aspect-ratio: 1;
+            }
+            
+            .zone {
+                font-size: 0.58rem;
+            }
+            
+            .zone-icon {
+                font-size: 1.1rem;
+            }
+            
+            .sedan-chair .zone-icon {
+                font-size: 1.6rem;
+            }
+            
+            h1 {
+                font-size: 1.4rem;
+            }
+            
+            .legend {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .sedan-stand {
+                font-size: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏠 儲藏室配置圖（含神轎）</h1>
+        <p class="subtitle">7-8坪空間 ｜ 神轎專區設計</p>
+        
+        <div class="floor-plan-container">
+            <p class="dimensions">📐 約 3.5m x 4.2m ｜ 神轎區預留 170cm x 120cm</p>
+            
+            <div class="floor-plan">
+                <!-- 左側層架 -->
+                <div class="zone shelf-left">
+                    <span class="zone-icon">📦</span>
+                    <span>雜物<br>收納<br>層架</span>
+                </div>
+                
+                <!-- 神轎專區 -->
+                <div class="zone sedan-chair">
+                    <span class="zone-icon">🛕</span>
+                    <span>神轎專區</span>
+                    <span class="sedan-detail">架高保護｜防塵罩</span>
+                </div>
+                <div class="sedan-stand">🔲 專用轎架（離地60-80cm）</div>
+                
+                <!-- 右側層架 -->
+                <div class="zone shelf-right">
+                    <span class="zone-icon">📚</span>
+                    <span>收納箱<br>堆疊區</span>
+                </div>
+                
+                <!-- 拜拜用具 -->
+                <div class="zone worship">
+                    <span class="zone-icon">🙏</span>
+                    <span>拜拜<br>用具區</span>
+                </div>
+                
+                <!-- 工具區 -->
+                <div class="zone tools">
+                    <span class="zone-icon">🔧</span>
+                    <span>工具區<br>洞洞板</span>
+                </div>
+                
+                <!-- L型走道 -->
+                <div class="zone walkway">
+                    <span class="zone-icon">🚶</span>
+                    <span>走道</span>
+                </div>
+                
+                <div class="zone walkway2">
+                    <span>← 進出動線 →</span>
+                </div>
+                
+                <!-- 門後收納 -->
+                <div class="zone door-storage">
+                    <span class="zone-icon">🪝</span>
+                    <span>門後<br>掛架</span>
+                </div>
+                
+                <!-- 大型物品區 -->
+                <div class="zone large-items">
+                    <span class="zone-icon">🧳</span>
+                    <span>大型物品暫放</span>
+                </div>
+                
+                <!-- 門 -->
+                <div class="zone door">
+                    <span>🚪 門</span>
+                </div>
+                
+                <div class="door-swing"></div>
+            </div>
+            
+            <div class="legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: linear-gradient(180deg, #c62828, #8e0000); border: 2px solid #ffca28;"></div>
+                    <span>神轎專區（核心）</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: linear-gradient(180deg, #4CAF50, #2E7D32);"></div>
+                    <span>雜物收納層架</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: linear-gradient(180deg, #2196F3, #1565C0);"></div>
+                    <span>收納箱堆疊區</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: linear-gradient(180deg, #FF9800, #F57C00);"></div>
+                    <span>拜拜用具區</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: linear-gradient(180deg, #9C27B0, #6A1B9A);"></div>
+                    <span>工具洞洞板</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: linear-gradient(90deg, #795548, #5D4037);"></div>
+                    <span>大型物品暫放</span>
+                </div>
+            </div>
+            
+            <div class="sedan-highlight">
+                <h3>🛕 神轎存放重點</h3>
+                <ul>
+                    <li><strong>專用轎架</strong>：訂做鐵架或實木架，離地 60-80cm，避免受潮</li>
+                    <li><strong>防塵罩</strong>：用紅布或專用防塵套蓋住，保護金箔與彩繪</li>
+                    <li><strong>通風</strong>：轎架下方保持空曠，讓空氣流通防霉</li>
+                    <li><strong>預留取出空間</strong>：前方走道至少 80cm，方便抬轎進出</li>
+                    <li><strong>轎架下方利用</strong>：可放出轎用的涼傘、旗幟、鑼鼓等配件</li>
+                </ul>
+            </div>
+            
+            <div class="side-view">
+                <h3>📐 轎架側面示意圖</h3>
+                <div class="side-diagram">
+                    <div class="stand-leg" style="margin-right: 130px;"></div>
+                    <div class="stand-leg"></div>
+                    <div class="stand-top"></div>
+                    <div class="sedan-icon">🛕</div>
+                    <div class="height-line"></div>
+                    <div class="height-mark" style="bottom: 20px;"></div>
+                    <div class="height-mark" style="bottom: 95px;"></div>
+                    <div class="height-mark" style="top: 20px;"></div>
+                    <div class="height-label">
+                        <span>200cm<br>(天花板)</span>
+                        <span>80cm<br>(架高)</span>
+                        <span>0cm<br>(地面)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tips">
+                <h3>💡 整體配置說明</h3>
+                <ul>
+                    <li><strong>神轎放最裡面</strong>：不常移動，放後方最安全，需要時再搬出</li>
+                    <li><strong>拜拜用具就近放</strong>：香燭金紙放神轎旁邊，方便出轎前準備</li>
+                    <li><strong>L型走道設計</strong>：確保能走到神轎前方，也能到達各收納區</li>
+                    <li><strong>轎架下方空間</strong>：放旗幟架、鑼鼓、涼傘等出轎配件</li>
+                    <li><strong>工具區在側邊</strong>：維修轎子需要工具時方便拿取</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
