@@ -344,22 +344,22 @@ color:#ef4444; font-weight:900; font-size:1.1rem;
 
 <!-- 樓層標籤（新增總覽頁） -->
 <div class="floor-tabs">
-<div class="tab" onclick="showFloor(0)">
+<div class="tab" data-floor="0" onclick="showFloor(0)">
 <span class="tab-icon">🏠</span> 總覽頁（緊急/驗收）
 </div>
-<div class="tab active" onclick="showFloor(1)">
+<div class="tab active" data-floor="1" onclick="showFloor(1)">
 <span class="tab-icon">🛕</span> 1F 神明廳 × IDF
 </div>
-<div class="tab" onclick="showFloor(2)">
+<div class="tab" data-floor="2" onclick="showFloor(2)">
 <span class="tab-icon">👑</span> 2F 大客廳 × 主臥
 </div>
-<div class="tab" onclick="showFloor(3)">
+<div class="tab" data-floor="3" onclick="showFloor(3)">
 <span class="tab-icon">🎤</span> 3F 娛樂室 × 客房
 </div>
-<div class="tab" onclick="showFloor(4)">
+<div class="tab" data-floor="4" onclick="showFloor(4)">
 <span class="tab-icon">⚙️</span> RF 設備核心
 </div>
-<div class="tab" onclick="showFloor(5)">
+<div class="tab" data-floor="5" onclick="showFloor(5)">
 <span class="tab-icon">📋</span> 施工規範總表
 </div>
 </div>
@@ -643,7 +643,7 @@ color:#ef4444; font-weight:900; font-size:1.1rem;
 </div>
 </div>
 
-<div class="room" id="room-balcony1"><div class="room" id="room-balcony1">>
+<div class="room" id="room-balcony1">
 <div class="room-head">
 <div class="room-name"><div class="room-name-icon">🧺</div> 後工作陽台（水路進線點）</div>
 </div>
@@ -1312,16 +1312,23 @@ B 棟不做熱水回水循環，接受遠端等待時間。幹管走最短路徑
 </div>
 </div>
 </div>
-
+<!-- 收尾：規範面板與容器 -->
+</div> <!-- details-panel -->
+</div> <!-- floor-plan 規範 -->
+</div> <!-- container -->
 <!-- 完整 JS（修正總覽頁索引） -->
 <script>
 function showFloor(floor) {
     // 樓層索引: 0=總覽, 1=1F, 2=2F, 3=3F, 4=RF, 5=規範
-    document.querySelectorAll('.floor-plan').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.getElementById('floor-' + floor).classList.add('active');
+    const floors = document.querySelectorAll('.floor-plan');
+    floors.forEach(p => p.classList.remove('active'));
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(t => t.classList.remove('active'));
+    const targetFloor = document.getElementById('floor-' + floor);
+    if (targetFloor) targetFloor.classList.add('active');
     // 對應標籤: 總覽(0), 1F(1), 2F(2), 3F(3), RF(4), 規範(5)
-    document.querySelectorAll('.tab')[floor].classList.add('active');
+    const targetTab = document.querySelector(`.tab[data-floor="${floor}"]`) || tabs[floor];
+    if (targetTab) targetTab.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 function highlightRoom(roomId, el) {
