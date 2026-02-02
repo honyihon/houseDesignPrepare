@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>C棟 - 邊間綠意 × IDF 1F 核心 × 獨立給水（整合版 v9.0）</title>
+    <title>C棟 - 邊間綠意 × IDF 1F 核心 × 獨立給水（整合版 v9.2）</title>
     <style>
         * {
             margin: 0;
@@ -51,8 +51,15 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            50% { transform: translate(-4%, -4%) rotate(4deg); }
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(-4%, -4%) rotate(4deg);
+            }
         }
 
         .building-badge {
@@ -130,9 +137,22 @@
             transform: translateY(-2px);
         }
 
-        .stat-icon { font-size: 1.5rem; margin-bottom: 5px; }
-        .stat-value { font-size: 1.4rem; font-weight: 900; color: #22d3ee; }
-        .stat-label { font-size: .72rem; color: #64748b; margin-top: 3px; }
+        .stat-icon {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #22d3ee;
+        }
+
+        .stat-label {
+            font-size: .72rem;
+            color: #64748b;
+            margin-top: 3px;
+        }
 
         .floor-tabs {
             display: flex;
@@ -172,14 +192,29 @@
             font-weight: 900;
         }
 
-        .tab-icon { font-size: 1.1rem; }
+        .tab-icon {
+            font-size: 1.1rem;
+        }
 
-        .floor-plan { display: none; animation: fadeSlide .5s ease; }
-        .floor-plan.active { display: block; }
+        .floor-plan {
+            display: none;
+            animation: fadeSlide .5s ease;
+        }
+
+        .floor-plan.active {
+            display: block;
+        }
 
         @keyframes fadeSlide {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .floor-header {
@@ -217,7 +252,11 @@
             font-weight: 900;
         }
 
-        .direction-badge { display: flex; gap: 12px; flex-wrap: wrap; }
+        .direction-badge {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
 
         .dir-item {
             font-size: .8rem;
@@ -236,7 +275,9 @@
         }
 
         @media(max-width:1050px) {
-            .floor-content { grid-template-columns: 1fr; }
+            .floor-content {
+                grid-template-columns: 1fr;
+            }
         }
 
         .visual-plan {
@@ -275,7 +316,10 @@
             border-radius: 14px;
         }
 
-        .plan-row { display: grid; gap: 6px; }
+        .plan-row {
+            display: grid;
+            gap: 6px;
+        }
 
         .plan-cell {
             background: rgba(30, 41, 59, .7);
@@ -302,9 +346,25 @@
             box-shadow: 0 0 20px rgba(16, 185, 129, .22);
         }
 
-        .cell-icon { font-size: 1.4rem; display: block; margin-bottom: 5px; }
-        .cell-name { color: #fff; font-weight: 800; font-size: .85rem; display: block; }
-        .cell-size { color: #64748b; font-size: .7rem; margin-top: 3px; display: block; }
+        .cell-icon {
+            font-size: 1.4rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .cell-name {
+            color: #fff;
+            font-weight: 800;
+            font-size: .85rem;
+            display: block;
+        }
+
+        .cell-size {
+            color: #64748b;
+            font-size: .7rem;
+            margin-top: 3px;
+            display: block;
+        }
 
         .plan-cell.outdoor {
             background: linear-gradient(135deg, rgba(34, 197, 94, .10), rgba(16, 185, 129, .05));
@@ -374,16 +434,65 @@
             border: 1px solid rgba(255, 255, 255, .1);
         }
 
-        .badge.net { background: rgba(34, 211, 238, .15); border-color: rgba(34, 211, 238, .3); color: #a5f3fc; }
-        .badge.pwr { background: rgba(110, 231, 183, .15); border-color: rgba(110, 231, 183, .3); color: #bbf7d0; }
-        .badge.tv { background: rgba(251, 191, 36, .15); border-color: rgba(251, 191, 36, .3); color: #fde68a; }
-        .badge.ap { background: rgba(139, 92, 246, .15); border-color: rgba(139, 92, 246, .3); color: #ddd6fe; }
-        .badge.water { background: rgba(59, 130, 246, .18); border-color: rgba(59, 130, 246, .35); color: #bfdbfe; }
-        .badge.hot { background: rgba(239, 68, 68, .18); border-color: rgba(239, 68, 68, .35); color: #fecaca; }
-        .badge.stair { background: rgba(251, 191, 36, .15); border-color: rgba(251, 191, 36, .35); color: #fde68a; }
-        .badge.typhoon { background: rgba(168, 85, 247, .18); border-color: rgba(168, 85, 247, .35); color: #e9d5ff; }
-        .badge.escape { background: rgba(239, 68, 68, .18); border-color: rgba(239, 68, 68, .35); color: #fca5a5; }
-        .badge.new { background: rgba(16, 185, 129, .2); border-color: rgba(16, 185, 129, .4); color: #6ee7b7; }
+        .badge.net {
+            background: rgba(34, 211, 238, .15);
+            border-color: rgba(34, 211, 238, .3);
+            color: #a5f3fc;
+        }
+
+        .badge.pwr {
+            background: rgba(110, 231, 183, .15);
+            border-color: rgba(110, 231, 183, .3);
+            color: #bbf7d0;
+        }
+
+        .badge.tv {
+            background: rgba(251, 191, 36, .15);
+            border-color: rgba(251, 191, 36, .3);
+            color: #fde68a;
+        }
+
+        .badge.ap {
+            background: rgba(139, 92, 246, .15);
+            border-color: rgba(139, 92, 246, .3);
+            color: #ddd6fe;
+        }
+
+        .badge.water {
+            background: rgba(59, 130, 246, .18);
+            border-color: rgba(59, 130, 246, .35);
+            color: #bfdbfe;
+        }
+
+        .badge.hot {
+            background: rgba(239, 68, 68, .18);
+            border-color: rgba(239, 68, 68, .35);
+            color: #fecaca;
+        }
+
+        .badge.stair {
+            background: rgba(251, 191, 36, .15);
+            border-color: rgba(251, 191, 36, .35);
+            color: #fde68a;
+        }
+
+        .badge.typhoon {
+            background: rgba(168, 85, 247, .18);
+            border-color: rgba(168, 85, 247, .35);
+            color: #e9d5ff;
+        }
+
+        .badge.escape {
+            background: rgba(239, 68, 68, .18);
+            border-color: rgba(239, 68, 68, .35);
+            color: #fca5a5;
+        }
+
+        .badge.new {
+            background: rgba(16, 185, 129, .2);
+            border-color: rgba(16, 185, 129, .4);
+            color: #6ee7b7;
+        }
 
         .compass {
             display: flex;
@@ -397,9 +506,16 @@
             color: #94a3b8;
         }
 
-        .compass-arrow { font-size: 1.3rem; margin-right: 10px; }
+        .compass-arrow {
+            font-size: 1.3rem;
+            margin-right: 10px;
+        }
 
-        .details-panel { display: flex; flex-direction: column; gap: 16px; }
+        .details-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
 
         .room {
             background: rgba(30, 41, 59, .5);
@@ -429,9 +545,18 @@
             transform: translateX(5px);
         }
 
-        .room:hover::before { opacity: 1; }
-        .room.room-active { border-color: #10b981; background: rgba(16, 185, 129, .08); }
-        .room.room-active::before { opacity: 1; }
+        .room:hover::before {
+            opacity: 1;
+        }
+
+        .room.room-active {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, .08);
+        }
+
+        .room.room-active::before {
+            opacity: 1;
+        }
 
         .room-head {
             display: flex;
@@ -472,7 +597,11 @@
             font-weight: 800;
         }
 
-        .room-details { font-size: .9rem; color: #cbd5e1; line-height: 1.85; }
+        .room-details {
+            font-size: .9rem;
+            color: #cbd5e1;
+            line-height: 1.85;
+        }
 
         .room-details li {
             list-style: none;
@@ -501,28 +630,43 @@
             line-height: 1.65;
         }
 
-        .tag-title { font-weight: 900; display: flex; align-items: center; gap: 6px; margin-bottom: 5px; }
+        .tag-title {
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 5px;
+        }
 
         .tag-net {
             background: linear-gradient(135deg, rgba(34, 211, 238, .08), rgba(6, 182, 212, .05));
             border: 1px solid rgba(34, 211, 238, .2);
             color: #a5f3fc;
         }
-        .tag-net .tag-title { color: #22d3ee; }
+
+        .tag-net .tag-title {
+            color: #22d3ee;
+        }
 
         .tag-water {
             background: linear-gradient(135deg, rgba(59, 130, 246, .10), rgba(37, 99, 235, .06));
             border: 1px solid rgba(59, 130, 246, .25);
             color: #bfdbfe;
         }
-        .tag-water .tag-title { color: #3b82f6; }
+
+        .tag-water .tag-title {
+            color: #3b82f6;
+        }
 
         .tag-typhoon {
             background: linear-gradient(135deg, rgba(168, 85, 247, .12), rgba(139, 92, 246, .06));
             border: 1px solid rgba(168, 85, 247, .35);
             color: #e9d5ff;
         }
-        .tag-typhoon .tag-title { color: #a855f7; }
+
+        .tag-typhoon .tag-title {
+            color: #a855f7;
+        }
 
         .warning-box {
             background: linear-gradient(135deg, rgba(239, 68, 68, .12), rgba(220, 38, 38, .08));
@@ -542,7 +686,11 @@
             margin-bottom: 10px;
         }
 
-        .warning-content { font-size: .85rem; color: #fecaca; line-height: 1.7; }
+        .warning-content {
+            font-size: .85rem;
+            color: #fecaca;
+            line-height: 1.7;
+        }
 
         .spec-box {
             background: linear-gradient(135deg, rgba(139, 92, 246, .10), rgba(168, 85, 247, .06));
@@ -562,10 +710,25 @@
             margin-bottom: 10px;
         }
 
-        .spec-content { font-size: .85rem; color: #ddd6fe; line-height: 1.7; }
+        .spec-content {
+            font-size: .85rem;
+            color: #ddd6fe;
+            line-height: 1.7;
+        }
 
-        .spec-content li { margin-bottom: 6px; padding-left: 20px; position: relative; }
-        .spec-content li::before { content: '✓'; position: absolute; left: 0; color: #a855f7; font-weight: bold; }
+        .spec-content li {
+            margin-bottom: 6px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .spec-content li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #a855f7;
+            font-weight: bold;
+        }
 
         .system-box {
             background: rgba(15, 23, 42, .82);
@@ -606,8 +769,15 @@
             min-width: 120px;
         }
 
-        .flow-item:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(34, 211, 238, .14); }
-        .flow-arrow { font-size: 1.5rem; color: #475569; }
+        .flow-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(34, 211, 238, .14);
+        }
+
+        .flow-arrow {
+            font-size: 1.5rem;
+            color: #475569;
+        }
 
         .io-table {
             margin-top: 15px;
@@ -617,7 +787,11 @@
             border: 1px solid rgba(255, 255, 255, .08);
         }
 
-        .io-table table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+        .io-table table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .85rem;
+        }
 
         .io-table th {
             background: linear-gradient(135deg, rgba(34, 211, 238, .14), rgba(59, 130, 246, .08));
@@ -634,10 +808,21 @@
             vertical-align: top;
         }
 
-        .io-table tr:hover td { background: rgba(255, 255, 255, .03); }
-        .io-table .important { background: rgba(251, 191, 36, .08); }
-        .io-table .required { background: rgba(239, 68, 68, .08); }
-        .io-table .new { background: rgba(16, 185, 129, .08); }
+        .io-table tr:hover td {
+            background: rgba(255, 255, 255, .03);
+        }
+
+        .io-table .important {
+            background: rgba(251, 191, 36, .08);
+        }
+
+        .io-table .required {
+            background: rgba(239, 68, 68, .08);
+        }
+
+        .io-table .new {
+            background: rgba(16, 185, 129, .08);
+        }
 
         .overview-grid {
             display: grid;
@@ -694,9 +879,19 @@
         }
 
         @media print {
-            body { background: white; color: black; }
-            .tab { display: none; }
-            .floor-plan { display: block !important; page-break-after: always; }
+            body {
+                background: white;
+                color: black;
+            }
+
+            .tab {
+                display: none;
+            }
+
+            .floor-plan {
+                display: block !important;
+                page-break-after: always;
+            }
         }
     </style>
 </head>
@@ -707,11 +902,11 @@
             <div class="building-badge">🏡 C棟 Building C（邊間 Edge）</div>
             <h1>邊間綠意 × IDF 1F 核心 × 獨立給水</h1>
             <div class="subtitle">
-                弱電整合 v9.0｜IDF 機櫃 1F 樓梯下｜獨立水表/水塔/VF800/熱泵<br>
+                弱電整合 v9.2｜IDF 機櫃 1F 樓梯下｜獨立水表/水塔/VF800/熱泵<br>
                 🆕 2F 公共層＋客房重新規劃｜3F 主臥層＋運動空間｜四衣櫃飯店級配置<br>
-                🌀 颱風防護強化｜側院格柵導風牆｜RF 排水坡度 1:50
+                🧩 8 條不後悔條款｜濕區機房等級｜運動隔振｜RF 排水/固定強化
             </div>
-            <div class="version-info">v9.0｜2F/3F 空間配置大改版 + 施工重點提醒</div>
+            <div class="version-info">v9.2｜8 條不後悔條款 + 風險點位再強化</div>
         </div>
 
         <div class="stats-bar">
@@ -776,7 +971,7 @@
                     <div>
                         <div>總覽頁：緊急地圖 × 施工重點 × 驗收清單</div>
                         <div style="font-size:.8rem;color:#64748b;font-weight:400;">
-                            住戶緊急應變指南｜工班施工紅線條款｜設計師必讀 5 件事
+                            住戶緊急應變指南｜工班施工紅線條款｜不後悔 8 條款（可施工/可驗收）
                         </div>
                     </div>
                 </div>
@@ -785,7 +980,8 @@
             <div class="floor-content" style="grid-template-columns:1fr;">
                 <div class="overview-grid">
                     <!-- 住戶緊急地圖 -->
-                    <div class="checklist-card" style="border-color:rgba(239,68,68,.4);background:linear-gradient(135deg,rgba(239,68,68,.1),rgba(0,0,0,.2));">
+                    <div class="checklist-card"
+                        style="border-color:rgba(239,68,68,.4);background:linear-gradient(135deg,rgba(239,68,68,.1),rgba(0,0,0,.2));">
                         <div class="checklist-title" style="color:#f87171;">🚨 住戶緊急關閉地圖</div>
                         <div class="checklist-item">
                             <div class="check-box" style="border-color:#f87171;"></div>
@@ -805,33 +1001,47 @@
                         </div>
                     </div>
 
-                    <!-- ⚠️ 設計師必讀 5 件事（新增） -->
-                    <div class="checklist-card" style="border-color:rgba(251,191,36,.5);background:linear-gradient(135deg,rgba(251,191,36,.12),rgba(0,0,0,.2));">
-                        <div class="checklist-title" style="color:#fbbf24;">⚠️ 一定要提醒設計師的 5 件事</div>
+                    <!-- ⚠️ 不後悔條款 8 件（更新） -->
+                    <div class="checklist-card"
+                        style="border-color:rgba(251,191,36,.5);background:linear-gradient(135deg,rgba(251,191,36,.12),rgba(0,0,0,.2));">
+                        <div class="checklist-title" style="color:#fbbf24;">✅ 不後悔條款 8 件（可施工/可驗收）</div>
                         <div class="checklist-item">
                             <div class="check-box" style="border-color:#fbbf24;"></div>
-                            <div><strong>2F / 3F 廁所上下對齊：</strong>管道間位置必須垂直對齊，避免轉彎造成堵塞。</div>
+                            <div><strong>2F 前陽台洗衣區：</strong>濕區機房等級 → 二次防水＋門檻擋水＋坡度/地漏＋緊急溢流路徑＋排水可清通。</div>
                         </div>
                         <div class="checklist-item">
                             <div class="check-box" style="border-color:#fbbf24;"></div>
-                            <div><strong>小廚房爐具選擇：</strong>建議使用 IH 爐（較安全），需預留 220V 專迴。</div>
+                            <div><strong>3F 運動區：</strong>隔振連續層/浮式作法＋跑步機專用隔振底座＋位置靠樑柱。</div>
                         </div>
                         <div class="checklist-item">
                             <div class="check-box" style="border-color:#fbbf24;"></div>
-                            <div><strong>客房牆體：</strong>建議採用輕隔間（未來可彈性調整空間）。</div>
+                            <div><strong>IDF/樓梯下機櫃：</strong>進排氣對流＋濾網防塵＋除濕/溫濕監控＋避開給排水/冷凝水。</div>
                         </div>
                         <div class="checklist-item">
                             <div class="check-box" style="border-color:#fbbf24;"></div>
-                            <div><strong>運動區地板：</strong>需做避震墊＋隔音處理（防止低頻傳導至 2F）。</div>
+                            <div><strong>側院三紅線：</strong>淨寬不被堆物吃掉（固定花台/地坪界定）＋排水獨立可清通＋遮陽防蚊/好清掃。</div>
                         </div>
                         <div class="checklist-item">
                             <div class="check-box" style="border-color:#fbbf24;"></div>
-                            <div><strong>洗衣機位置（2F 前陽台）：</strong>防水層一定要加強處理。</div>
+                            <div><strong>格柵抗風：</strong>門窗性能等級附第三方報告＋結構檢核設計風載＋固定細節可驗證/可維修。</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="check-box" style="border-color:#fbbf24;"></div>
+                            <div><strong>RF 設備：</strong>落水頭/溢流口可清理＋堵塞備援/溢流路徑＋基座固定抗風掀/耐震。</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="check-box" style="border-color:#fbbf24;"></div>
+                            <div><strong>承重擺位：</strong>水塔/熱泵/跑步機對樑靠柱＋分散載重底座＋就位前結構/機電確認錨定。</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="check-box" style="border-color:#fbbf24;"></div>
+                            <div><strong>住警器：</strong>列入驗收清單，配置位置/顆數/維護方式寫入交付文件。</div>
                         </div>
                     </div>
 
                     <!-- 颱風後檢查清單 -->
-                    <div class="checklist-card" style="border-color:rgba(168,85,247,.5);background:linear-gradient(135deg,rgba(168,85,247,.12),rgba(0,0,0,.2));">
+                    <div class="checklist-card"
+                        style="border-color:rgba(168,85,247,.5);background:linear-gradient(135deg,rgba(168,85,247,.12),rgba(0,0,0,.2));">
                         <div class="checklist-title" style="color:#a855f7;">🌀 颱風後檢查清單</div>
                         <div class="checklist-item">
                             <div class="check-box" style="border-color:#a855f7;"></div>
@@ -864,6 +1074,18 @@
                         </div>
                         <div class="checklist-item">
                             <div class="check-box"></div>
+                            <div><strong>開關盒 N 線：</strong>所有開關盒須有 N 線（藍套）＋深盒 ≥5cm。</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="check-box"></div>
+                            <div><strong>AP 檢修口：</strong>天花 AP 點位必留 20×20cm 可開啟檢修口。</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="check-box"></div>
+                            <div><strong>影音預埋管：</strong>HDMI/音響管路需直通或 45° 轉彎＋預留拉線繩。</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="check-box"></div>
                             <div><strong>光纖規格：</strong>A→C 必須使用「單模 OS2」光纖，管內預留拉線繩。</div>
                         </div>
                         <div class="checklist-item">
@@ -882,10 +1104,41 @@
                             <div class="check-box"></div>
                             <div><strong>溢流管規格：</strong>RF 溢流管由 2" 增至 <strong>3"</strong>，並設緊急溢流口。</div>
                         </div>
+                        <div class="checklist-item">
+                            <div class="check-box"></div>
+                            <div><strong>跨棟給水禁止：</strong>不得跨棟借水，只允許弱電光纖互聯。</div>
+                        </div>
+                    </div>
+
+                    <!-- 隱藏痛點補強清單 -->
+                    <div class="checklist-card"
+                        style="border-color:rgba(59,130,246,.35);background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(0,0,0,.2));">
+                        <div class="checklist-title" style="color:#93c5fd;">🧩 隱藏痛點補強（避免日後敲牆）</div>
+                        <div class="checklist-item">
+                            <div class="check-box" style="border-color:#93c5fd;"></div>
+                            <div><strong>排水靜音：</strong>管道間糞管/污水管包覆隔音棉或採雙層螺旋靜音管。</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="check-box" style="border-color:#93c5fd;"></div>
+                            <div><strong>濕區 R 角 + 防水高度：</strong>牆地交界做 R 角；淋浴區 ≥180cm，其餘濕區 ≥30cm。</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="check-box" style="border-color:#93c5fd;"></div>
+                            <div><strong>掃地機器人上下水：</strong>1F 櫃體預留 2 分進水＋Ø32mm 排水孔。</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="check-box" style="border-color:#93c5fd;"></div>
+                            <div><strong>電動窗簾電源：</strong>客廳/主臥窗簾盒內側頂部預留 110V 插座。</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="check-box" style="border-color:#93c5fd;"></div>
+                            <div><strong>浴室擴充用電：</strong>鏡後除霧電源 + 馬桶對面 120cm 高插座（電熱毛巾架）。</div>
+                        </div>
                     </div>
 
                     <!-- 2F/3F 關鍵尺寸（新增） -->
-                    <div class="checklist-card" style="border-color:rgba(34,211,238,.4);background:linear-gradient(135deg,rgba(34,211,238,.08),rgba(0,0,0,.2));">
+                    <div class="checklist-card"
+                        style="border-color:rgba(34,211,238,.4);background:linear-gradient(135deg,rgba(34,211,238,.08),rgba(0,0,0,.2));">
                         <div class="checklist-title" style="color:#22d3ee;">📏 2F / 3F 關鍵尺寸（必須確認）</div>
                         <div class="checklist-item">
                             <div class="check-box" style="border-color:#22d3ee;"></div>
@@ -930,11 +1183,19 @@
                         </div>
                         <div class="checklist-item">
                             <div class="check-box"></div>
+                            <div><strong>住警器：</strong>配置位置/顆數核對、功能測試、維護說明交付。</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="check-box"></div>
                             <div><strong>防水：</strong>RF 設備基座收邊、溢流/冷凝排水測試、2F 陽台防水層。</div>
                         </div>
                         <div class="checklist-item">
                             <div class="check-box"></div>
-                            <div><strong>隔音：</strong>1F 拉門隔音測試 STC ≥30、3F 運動區避震墊驗收。</div>
+                            <div><strong>RF 固定：</strong>設備基座錨定、抗風掀/耐震固定與溢流口清通驗收。</div>
+                        </div>
+                        <div class="checklist-item">
+                            <div class="check-box"></div>
+                            <div><strong>隔音：</strong>1F 拉門隔音測試 STC ≥30、3F 運動區隔振系統驗收。</div>
                         </div>
                     </div>
                 </div>
@@ -949,7 +1210,7 @@
                     <div>
                         <div>IDF 機櫃 × 孝親房 × 導風側院 × 樓梯</div>
                         <div style="font-size:.8rem;color:#64748b;font-weight:400;">
-                            IDF 位於樓梯下方（百葉門+溫控風扇 35°C）｜側院格柵導風牆 45°
+                            IDF 位於樓梯下方（百葉門+溫控風扇 35°C + 濾網/除濕）｜側院格柵導風牆 45°
                         </div>
                     </div>
                 </div>
@@ -1006,7 +1267,7 @@
                                 <div class="io-badges">
                                     <span class="badge water">🚿 澆灌</span>
                                     <span class="badge net">📷</span>
-                                    <span class="badge escape">🚨 逃生≥90cm</span>
+                                    <span class="badge escape">🚨 淨寬保留</span>
                                 </div>
                             </div>
                         </div>
@@ -1100,11 +1361,15 @@
                             <li><strong>位置：</strong>利用 1F 樓梯下方閒置空間設置弱電機櫃（12U 壁掛，深度 600mm）。</li>
                             <li><strong>光纖進線：</strong>地下管道由 A 棟 MDF 引入，單模 OS2 12 芯 LC 端接。</li>
                             <li><strong>⚠️ 散熱優化：</strong>櫃體採「百葉門」設計 + 頂部溫控風扇 ×2，設定 <strong>35°C 自動啟動</strong>。</li>
+                            <li><strong>⚠️ 進排氣對流：</strong>保留進氣/排氣路徑，外加濾網防塵。</li>
+                            <li><strong>⚠️ 除濕監控：</strong>加設除濕或溫濕監控，降低高溫高濕風險。</li>
+                            <li><strong>⚠️ 避水：</strong>機櫃位置不得貼近給排水立管或冷凝排水，必要時加設隔離板。</li>
+                            <li><strong>檢修電源：</strong>機櫃旁預留獨立插座，供維護/測試使用。</li>
                             <li><strong>減震：</strong>機櫃使用「減震墊」壁掛或落地，避免風扇震動傳導至樓梯結構。</li>
                         </div>
                         <div class="tag tag-net">
                             <div class="tag-title">🖥️ IDF 機櫃規格</div>
-                            12U 壁掛/落地｜深度 600mm｜百葉門｜溫控風扇 ×2（35°C）<br>
+                            12U 壁掛/落地｜深度 600mm｜百葉門｜溫控風扇 ×2（35°C）｜濾網/除濕預留<br>
                             內含：光纖終端箱、PoE+ 交換器、UPS 1000VA、SPD 防雷
                         </div>
                     </div>
@@ -1136,13 +1401,20 @@
                         <div class="room-details">
                             <li><strong>⚠️ 保留原則：</strong>不與車庫合併，維持邊間通風、採光、防火間隔優勢。</li>
                             <li><strong>⚠️ 格柵導風牆：</strong>設置角度 <strong>45° 對西南季風</strong>，引導夏季風流入室內。</li>
+                            <li><strong>⚠️ 格柵規格：</strong>格柵間距 ≤10cm；門窗性能等級具第三方檢測報告；格柵結構與固定由結構技師依設計風載檢核（錨栓規格/間距/植入深度/防蝕/可拆修）。</li>
+                            <li><strong>⚠️ 防蝕材質：</strong>外露固定件依鹽害等級選材（316 或熱浸鍍鋅+塗裝），異材接觸需隔離。</li>
                             <li><strong>⚠️ 地面鋪設：</strong>採 <strong>透水磚</strong> 或 <strong>架高木地板</strong>，利於排水散熱。</li>
-                            <li><strong>⚠️ 排水獨立：</strong>地漏獨立排水，<strong>不可與室內共管</strong>。</li>
+                            <li><strong>⚠️ 淨寬管理：</strong>用固定花台/地坪界定，確保淨寬不被堆物吃掉。</li>
+                            <li><strong>⚠️ 排水獨立：</strong>側院與車庫/室內分流，落水頭/地漏可拆洗、可清通；必要時管徑加大作保守保險。</li>
+                            <li><strong>⚠️ 清掃口：</strong>排水管每 10m 設 1 處清掃口，維修友善。</li>
+                            <li><strong>⚠️ 排水坡度：</strong>側院地坪坡度 ≥1:100，並保留颱風溢流路徑。</li>
+                            <li><strong>⚠️ 遮陽防蚊：</strong>加設遮陽/防蚊措施，避免通風區變死角。</li>
                         </div>
                         <div class="warning-box">
-                            <div class="warning-title">🚨 消防逃生要求</div>
+                            <div class="warning-title">🚨 逃生動線定位</div>
                             <div class="warning-content">
-                                側院需符合消防法逃生通道規定：淨寬 <strong>≥90cm</strong>，通暢至前院
+                                若側院定位為「正式避難通路」，需依建築/消防審查確認實際適用法規與淨寬；
+                                本案以通風/維修動線為主，淨寬保留且不得堆置雜物。
                             </div>
                         </div>
                     </div>
@@ -1156,7 +1428,8 @@
                         </div>
                         <div class="room-details">
                             <li><strong>無障礙：</strong>門寬 ≥90cm，室內無高低差。</li>
-                            <li><strong>⚠️ 緊急呼叫：</strong>床邊預留 <strong>雙迴路緊急按鈕</strong>（一個接 2F 客廳、一個接 1F 客廳聲光警報）。</li>
+                            <li><strong>⚠️ 緊急呼叫：</strong>床邊預留 <strong>有線式雙迴路緊急按鈕</strong>（供電一路＋訊號一路，訊號回 IDF；連動 2F 與 1F
+                                客廳聲光警報）。</li>
                             <li><strong>網路：</strong>CAT6 ×2（床頭 + 電視牆）。</li>
                         </div>
                     </div>
@@ -1171,6 +1444,8 @@
                         <div class="room-details">
                             <li><strong>無障礙設計：</strong>扶手、止滑地磚、淋浴座椅預留。</li>
                             <li><strong>⚠️ 求救鈴連動：</strong>訊號回 IDF，同步連動 1F 客廳聲光警報。</li>
+                            <li><strong>⚠️ 防水：</strong>牆地交界做 R 角；淋浴區防水高度 ≥180cm，其餘濕區 ≥30cm。</li>
+                            <li><strong>電力預留：</strong>鏡後除霧電源 + 馬桶對面 120cm 高插座（電熱毛巾架）。</li>
                         </div>
                     </div>
                 </div>
@@ -1192,7 +1467,7 @@
                 <div class="direction-badge">
                     <div class="dir-item">⬆️ 南：前陽台</div>
                     <div class="dir-item">⬇️ 北：廁所（對齊管道）</div>
-                    <div class="dir-item">🆕 v9.0 重新規劃</div>
+                    <div class="dir-item">🆕 v9.2 重新規劃</div>
                 </div>
             </div>
 
@@ -1213,7 +1488,7 @@
                                 <div class="io-badges">
                                     <span class="badge water">💧 洗衣機</span>
                                     <span class="badge pwr">🔌 專迴</span>
-                                    <span class="badge new">⚠️ 防水加強</span>
+                                    <span class="badge new">⚠️ 濕區機房</span>
                                 </div>
                             </div>
                         </div>
@@ -1235,7 +1510,8 @@
 
                         <!-- 客房 + 樓梯 -->
                         <div class="plan-row" style="grid-template-columns:2fr 1fr;">
-                            <div class="plan-cell" onclick="highlightRoom('guestroom2f', this)" style="border-color:rgba(168,85,247,.4);background:linear-gradient(135deg,rgba(168,85,247,.1),rgba(139,92,246,.05));">
+                            <div class="plan-cell" onclick="highlightRoom('guestroom2f', this)"
+                                style="border-color:rgba(168,85,247,.4);background:linear-gradient(135deg,rgba(168,85,247,.1),rgba(139,92,246,.05));">
                                 <span class="cell-icon">🛏️</span>
                                 <span class="cell-name">客房 / 多功能房</span>
                                 <span class="cell-size">約 3.5 坪｜可關門獨立空間</span>
@@ -1335,8 +1611,10 @@
                             <li><strong>定位：</strong>2F 專屬輕食/飲料準備區，減少上下樓。</li>
                             <li><strong>流理台：</strong>長度 <strong>≥ 240 cm</strong>，含水槽＋料理區。</li>
                             <li><strong>冰箱位：</strong><strong>75 × 70 cm</strong>（寬×深），可放中型冰箱。</li>
-                            <li><strong>⚠️ 爐具建議：</strong>使用 <strong>IH 爐</strong>（較安全，無明火），需預留 220V 專迴。</li>
+                            <li><strong>⚠️ IH 專迴：</strong>線徑 ≥2.5mm²，20A 斷路器，插座設於檯面上方 10–15cm 或採嵌入式 T-slot。</li>
+                            <li><strong>⚠️ 爐具建議：</strong>使用 <strong>IH 爐</strong>（較安全，無明火）。</li>
                             <li><strong>排風：</strong>需設排風扇或小型抽油煙機。</li>
+                            <li><strong>火災偵測：</strong>定溫＋偵煙探測器連動 IDF，全棟同步響鈴。</li>
                         </div>
                         <div class="dimension-note">
                             <strong>📏 關鍵尺寸：</strong>冰箱位 75×70cm｜流理台 ≥240cm
@@ -1355,6 +1633,8 @@
                             <li><strong>配置：</strong>乾濕分離設計，馬桶＋洗手台（乾區）+ 淋浴間（濕區）。</li>
                             <li><strong>⚠️ 管道對齊：</strong>位置必須與 <strong>3F 廁所上下垂直對齊</strong>，避免管道轉彎造成堵塞。</li>
                             <li><strong>免治馬桶：</strong>預留專用插座。</li>
+                            <li><strong>⚠️ 防水：</strong>牆地交界做 R 角；淋浴區防水高度 ≥180cm，其餘濕區 ≥30cm。</li>
+                            <li><strong>電力預留：</strong>鏡後除霧電源 + 馬桶對面 120cm 高插座（電熱毛巾架）。</li>
                         </div>
                         <div class="dimension-note">
                             <strong>📏 關鍵尺寸：</strong>最小 <strong>150 × 180 cm</strong>
@@ -1372,13 +1652,15 @@
                         <div class="room-details">
                             <li><strong>功能：</strong>專門用於洗衣機＋曬衣桿。</li>
                             <li><strong>洗衣機：</strong>預留冷水龍頭＋排水＋專用電源插座。</li>
-                            <li><strong>⚠️ 防水層：</strong>陽台地面防水層 <strong>一定要加強處理</strong>，避免滲水至 1F。</li>
+                            <li><strong>⚠️ 防水層：</strong>陽台地面防水層 <strong>二次防水</strong>，避免滲水至 1F。</li>
+                            <li><strong>⚠️ 排水：</strong>坡度/地漏完善，地漏可拆洗清通，並設 <strong>緊急溢流路徑</strong> 防倒灌。</li>
+                            <li><strong>⚠️ 門檻擋水：</strong>設止水門檻或擋水條，颱風橫雨不回灌室內。</li>
                             <li><strong>曬衣桿：</strong>可安裝升降式曬衣架。</li>
                         </div>
                         <div class="warning-box">
                             <div class="warning-title">⚠️ 防水重點提醒</div>
                             <div class="warning-content">
-                                洗衣機位置的防水層務必加強處理！建議做防水層 + 洩水坡 + 門檻擋水。
+                                洗衣區請視同濕區機房：二次防水 + 洩水坡 + 門檻擋水 + 可清通排水 + 緊急溢流。
                             </div>
                         </div>
                     </div>
@@ -1408,7 +1690,7 @@
                     <div>
                         <div>🆕 主臥層：大主臥（四衣櫃）× 運動空間</div>
                         <div style="font-size:.8rem;color:#64748b;font-weight:400;">
-                            飯店級主臥 11.5 坪｜衣櫃 ×4 一整排 360cm｜運動區需避震隔音
+                            飯店級主臥 11.5 坪｜衣櫃 ×4 一整排 360cm｜運動區需隔振分散
                         </div>
                     </div>
                 </div>
@@ -1442,7 +1724,8 @@
 
                         <!-- 主臥（核心） -->
                         <div class="plan-row" style="grid-template-columns:1fr;">
-                            <div class="plan-cell master" onclick="highlightRoom('master3f', this)" style="min-height:140px;">
+                            <div class="plan-cell master" onclick="highlightRoom('master3f', this)"
+                                style="min-height:140px;">
                                 <span class="cell-icon">🛏️</span>
                                 <span class="cell-name">主臥室（飯店級配置）</span>
                                 <span class="cell-size">約 11.5 坪｜雙人床＋梳妝台＋衣櫃×4</span>
@@ -1464,7 +1747,7 @@
                                 <div class="io-badges">
                                     <span class="badge pwr">🔌 ×2</span>
                                     <span class="badge net">🌐 ×1</span>
-                                    <span class="badge new">⚠️ 避震+隔音</span>
+                                    <span class="badge new">⚠️ 隔振+分散</span>
                                 </div>
                             </div>
                             <div class="plan-cell stair" onclick="highlightRoom('stair3f', this)">
@@ -1534,18 +1817,19 @@
                         <div class="room-details">
                             <li><strong>定位：</strong>居家健身專區，可放跑步機、瑜伽墊、簡易重訓器材。</li>
                             <li><strong>設備建議：</strong>跑步機、瑜伽墊、啞鈴架、拉筋器材。</li>
-                            <li><strong>⚠️ 地板避震：</strong>必須鋪設 <strong>避震墊</strong>（橡膠墊或 EVA 拼接墊）。</li>
-                            <li><strong>⚠️ 隔音處理：</strong>地板需做隔音層，防止跑步機震動傳導至 2F 客廳。</li>
+                            <li><strong>⚠️ 隔振作法：</strong>連續隔振層或浮式地坪，薄墊只能改善高頻衝擊聲。</li>
+                            <li><strong>⚠️ 專用底座：</strong>跑步機加設隔振底座＋分散載重底板。</li>
+                            <li><strong>⚠️ 擺位：</strong>設備靠樑柱/對樑放置，降低結構低頻傳導。</li>
+                            <li><strong>⚠️ 地坪高差：</strong>完成面需與相鄰空間齊平；如需過渡坡道，坡度 ≤1:12。</li>
                             <li><strong>通風：</strong>確保有窗戶或空調，運動時需良好換氣。</li>
                             <li><strong>電力：</strong>跑步機需專用插座。</li>
-                            <li><strong>鏡子：</strong>可安裝全身鏡（瑜伽/重訓確認姿勢）。</li>
+                            <li><strong>鏡子：</strong>可安裝全身鏡（瑜伽/重訓確認姿勢），牆面需做補強。</li>
+                            <li><strong>收納電源：</strong>衣櫃/收納櫃內預留插座（除濕棒/感應燈）。</li>
                         </div>
                         <div class="warning-box">
                             <div class="warning-title">⚠️ 運動區施工重點</div>
                             <div class="warning-content">
-                                <strong>地板必須做避震＋隔音！</strong><br>
-                                建議做法：結構層 → 隔音毯 → 避震墊 → 面材<br>
-                                防止跑步機低頻震動傳導至 2F 客廳影響生活品質。
+                                <strong>低頻震動最惱人：</strong>請以「隔振連續層 + 專用底座 + 靠樑擺位」處理，避免傳到 2F 客廳。
                             </div>
                         </div>
                     </div>
@@ -1563,6 +1847,8 @@
                             <li><strong>定位：</strong>主臥專屬衛浴，方便夜間使用。</li>
                             <li><strong>⚠️ 管道對齊：</strong>位置必須與 <strong>2F 廁所上下垂直對齊</strong>，避免管道轉彎造成堵塞。</li>
                             <li><strong>免治馬桶：</strong>預留專用插座。</li>
+                            <li><strong>⚠️ 防水：</strong>牆地交界做 R 角；淋浴區防水高度 ≥180cm，其餘濕區 ≥30cm。</li>
+                            <li><strong>電力預留：</strong>鏡後除霧電源 + 馬桶對面 120cm 高插座（電熱毛巾架）。</li>
                         </div>
                         <div class="dimension-note">
                             <strong>📏 關鍵尺寸：</strong>最小 <strong>150 × 180 cm</strong>
@@ -1609,7 +1895,7 @@
                     <div>
                         <div>水塔 × 熱泵 × 預留擴充 × 樓梯出口</div>
                         <div style="font-size:.8rem;color:#64748b;font-weight:400;">
-                            獨立給水系統｜排水坡度 1:50｜設備基座抬高 15cm
+                            獨立給水系統｜排水坡度 1:50｜溢流可清通｜設備基座抬高 15cm
                         </div>
                     </div>
                 </div>
@@ -1733,6 +2019,7 @@
                             <li><strong>水源：</strong>C 棟獨立水表 → TS400B 揚水 → 水塔。</li>
                             <li><strong>⚠️ 設備基座：</strong>抬高 <strong>15cm</strong>。</li>
                             <li><strong>⚠️ 溢流管：</strong>由 2" 增至 <strong>3"</strong>，並設緊急溢流口。</li>
+                            <li><strong>⚠️ 擺位：</strong>基座對樑/靠柱，設備就位前由結構/機電確認承載與錨定。</li>
                         </div>
                     </div>
 
@@ -1740,9 +2027,16 @@
                         <div class="spec-title">🌀 RF 颱風防護施工重點</div>
                         <div class="spec-content">
                             <li><strong>排水坡度：</strong>RF 地坪坡度 <strong>1:50</strong>（優於一般 1:100）。</li>
-                            <li><strong>溢流管：</strong>3" 管徑 + 緊急溢流口。</li>
+                            <li><strong>溢流管：</strong>3" 管徑 + 緊急溢流口 + 溢流路徑。</li>
+                            <li><strong>落水頭可清理：</strong>落水頭/溢流口可拆洗清通，避免堵塞倒灌。</li>
                             <li><strong>設備基座：</strong>所有設備抬高 15cm，防止淹水。</li>
+                            <li><strong>抗風耐震：</strong>設備基座需錨定，檢核抗風掀與耐震固定細節。</li>
+                            <li><strong>擺位承重：</strong>設備基座位置需與結構樑位對應，就位前由結構/機電確認。</li>
                             <li><strong>閥件保護：</strong>關鍵閥加裝防風防撞保護箱。</li>
+                            <li><strong>弱電出口防水：</strong>PVC 鴨嘴彎頭（Drip Loop）出口朝下，避免雨水倒灌。</li>
+                            <li><strong>檢修友善：</strong>RF 預留檢修照明＋110V 插座、吊裝動線。</li>
+                            <li><strong>二次防水：</strong>所有穿屋面孔洞做二次防水收邊＋封堵。</li>
+                            <li><strong>交付保養：</strong>颱風後巡檢與清理清單納入交付文件。</li>
                         </div>
                     </div>
                 </div>
@@ -1757,7 +2051,7 @@
                     <div>
                         <div>系統總表：給水流程 × 弱電點位 × 閥件編碼</div>
                         <div style="font-size:.8rem;color:#64748b;font-weight:400;">
-                            C 棟獨立系統架構總覽｜v9.0 2F/3F 新配置
+                            C 棟獨立系統架構總覽｜v9.2 2F/3F 新配置 + 維護預留
                         </div>
                     </div>
                 </div>
@@ -1784,14 +2078,15 @@
                             <div class="flow-arrow">→</div>
                             <div class="flow-item">冷水幹管</div>
                             <div class="flow-arrow">→</div>
-                            <div class="flow-item" style="border-color:#ef4444;background:rgba(239,68,68,.1);">Haier 熱泵</div>
+                            <div class="flow-item" style="border-color:#ef4444;background:rgba(239,68,68,.1);">Haier 熱泵
+                            </div>
                             <div class="flow-arrow">→</div>
                             <div class="flow-item" style="border-color:#ef4444;">熱水幹管</div>
                         </div>
                     </div>
 
                     <div class="system-box">
-                        <div class="system-title">🌐 C 棟弱電點位總表（v9.0 更新）</div>
+                        <div class="system-title">🌐 C 棟弱電點位總表（v9.2 更新）</div>
                         <div class="io-table">
                             <table>
                                 <tr>
@@ -1808,7 +2103,7 @@
                                     <td>匯集</td>
                                     <td>-</td>
                                     <td>-</td>
-                                    <td>12U｜百葉門｜溫控風扇 35°C</td>
+                                    <td>12U｜百葉門｜溫控風扇 35°C｜濾網/除濕預留</td>
                                 </tr>
                                 <tr>
                                     <td>1F</td>
@@ -1864,7 +2159,7 @@
                                     <td>1</td>
                                     <td>-</td>
                                     <td>-</td>
-                                    <td>🆕 避震墊＋隔音必做</td>
+                                    <td>🆕 隔振連續層＋專用底座</td>
                                 </tr>
                                 <tr>
                                     <td>3F</td>

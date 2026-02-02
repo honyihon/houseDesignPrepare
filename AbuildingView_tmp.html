@@ -1142,6 +1142,221 @@
                 page-break-after: always;
             }
         }
+
+        /* ============ 插座視覺化系統 ============ */
+        .plan-wrap {
+            position: relative;
+            max-width: 1100px;
+            margin: 20px auto;
+            background: rgba(15, 23, 42, .85);
+            border: 1px solid rgba(251, 191, 36, .22);
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        .plan-img {
+            width: 100%;
+            display: block;
+            border-radius: 14px;
+            min-height: 400px;
+            background: rgba(30, 41, 59, .7);
+        }
+
+        .plan-img-placeholder {
+            width: 100%;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(30, 41, 59, .7);
+            border: 2px dashed rgba(255, 255, 255, .2);
+            border-radius: 14px;
+            color: #64748b;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .outlet-layer {
+            position: absolute;
+            inset: 20px;
+            pointer-events: none;
+        }
+
+        .outlet {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            pointer-events: auto;
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            border: 2px solid #fbbf24;
+            background: rgba(251, 191, 36, .2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            line-height: 1;
+            color: #fbbf24;
+            cursor: pointer;
+            transition: all .2s ease;
+        }
+
+        .outlet:hover {
+            transform: translate(-50%, -50%) scale(1.3);
+            background: rgba(251, 191, 36, .4);
+            z-index: 10;
+        }
+
+        .outlet[data-type="RCD"] {
+            border-style: dashed;
+            border-color: #22d3ee;
+            background: rgba(34, 211, 238, .2);
+            color: #22d3ee;
+        }
+
+        .outlet[data-type="OUTDOOR"] {
+            border-radius: 999px;
+            border-color: #22c55e;
+            background: rgba(34, 197, 94, .2);
+            color: #22c55e;
+        }
+
+        .outlet[data-type="DEDICATED"] {
+            box-shadow: 0 0 0 3px rgba(139, 92, 246, .3);
+            border-color: #a855f7;
+            background: rgba(139, 92, 246, .2);
+            color: #a855f7;
+        }
+
+        .outlet[data-type="DATA"] {
+            background: rgba(100, 116, 139, .3);
+            border-color: #64748b;
+            color: #94a3b8;
+        }
+
+        .outlet-tooltip {
+            position: absolute;
+            left: 26px;
+            top: -6px;
+            background: #111;
+            color: #fff;
+            padding: 8px 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            white-space: nowrap;
+            display: none;
+            z-index: 20;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, .5);
+        }
+
+        .outlet:focus .outlet-tooltip,
+        .outlet:hover .outlet-tooltip {
+            display: block;
+        }
+
+        .outlet-controls {
+            position: absolute;
+            right: 30px;
+            bottom: 30px;
+            display: flex;
+            gap: 8px;
+            background: rgba(15, 23, 42, .95);
+            border: 1px solid rgba(255, 255, 255, .15);
+            border-radius: 10px;
+            padding: 10px;
+            z-index: 5;
+        }
+
+        .outlet-controls button,
+        .outlet-controls select {
+            padding: 8px 12px;
+            border: 1px solid rgba(255, 255, 255, .2);
+            background: rgba(30, 41, 59, .8);
+            color: #e2e8f0;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: .85rem;
+            transition: all .2s ease;
+        }
+
+        .outlet-controls button:hover,
+        .outlet-controls select:hover {
+            background: rgba(251, 191, 36, .15);
+            border-color: rgba(251, 191, 36, .4);
+        }
+
+        .outlet-legend {
+            position: absolute;
+            left: 30px;
+            bottom: 30px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            background: rgba(15, 23, 42, .95);
+            border: 1px solid rgba(255, 255, 255, .15);
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: .75rem;
+            color: #94a3b8;
+            z-index: 5;
+        }
+
+        .outlet-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .outlet-legend-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 2px solid;
+            border-radius: 3px;
+        }
+
+        .outlet-legend-dot.normal {
+            border-color: #fbbf24;
+            background: rgba(251, 191, 36, .2);
+        }
+
+        .outlet-legend-dot.rcd {
+            border-color: #22d3ee;
+            border-style: dashed;
+            background: rgba(34, 211, 238, .2);
+        }
+
+        .outlet-legend-dot.outdoor {
+            border-color: #22c55e;
+            border-radius: 999px;
+            background: rgba(34, 197, 94, .2);
+        }
+
+        .outlet-legend-dot.dedicated {
+            border-color: #a855f7;
+            background: rgba(139, 92, 246, .2);
+        }
+
+        .outlet-legend-dot.data {
+            border-color: #64748b;
+            background: rgba(100, 116, 139, .3);
+        }
+
+        .plan-wrap-title {
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: #fbbf24;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .plan-wrap-subtitle {
+            font-size: .8rem;
+            color: #64748b;
+            font-weight: 400;
+        }
     </style>
 </head>
 
@@ -1367,7 +1582,8 @@
                                 </tr>
                                 <tr>
                                     <td><strong>洗澡熱水</strong></td>
-                                    <td>目前未啟用迴水（已預留回水管＋循環泵電源），打開熱水後請等 <strong>15~40 秒</strong>（視樓層），冷水流掉後熱水才來，這是正常的。</td>
+                                    <td>目前未啟用迴水（已預留回水管＋循環泵電源），打開熱水後請等 <strong>15~40 秒</strong>（視樓層），冷水流掉後熱水才來，這是正常的。
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td><strong>喝水</strong></td>
@@ -1733,6 +1949,53 @@
                         </div>
                     </div>
 
+                    <!-- ========== 優化摘要（必修重點）========== -->
+                    <div class="system-box" style="border-color:rgba(239,68,68,.5);">
+                        <div class="system-title" style="color:#ef4444;">🔥 優化摘要｜必修重點（會爆/必做）</div>
+                        <div class="io-table">
+                            <table>
+                                <tr>
+                                    <th>項目</th>
+                                    <th>問題</th>
+                                    <th>建議做法</th>
+                                </tr>
+                                <tr class="required">
+                                    <td><strong>1️⃣ 家務動線</strong></td>
+                                    <td>後工作陽台不要穿越「1F 多功能房」</td>
+                                    <td><strong>首選：</strong>廚房/餐廳側開門 ≥75–80cm 直達後陽台<br>
+                                        <strong>次選：</strong>多功能房做雙出入口（公共區↔後陽台），後陽台側用口袋門/滑門<br>
+                                        <strong>加碼：</strong>後陽台門內側做「家務櫃」（清潔用品、吸塵器、除濕機、熨斗集中收納＋插座）
+                                    </td>
+                                </tr>
+                                <tr class="required">
+                                    <td><strong>2️⃣ 1F 公衛</strong></td>
+                                    <td>門對餐廳＝聚會時最尷尬</td>
+                                    <td><strong>最有效：</strong>公衛做兩段式（外側洗手台乾區＋內側馬桶/淋浴濕區）<br>
+                                        門片改側移/口袋門＋氣密條＋強排風（獨立排風直出＋止逆）
+                                    </td>
+                                </tr>
+                                <tr class="important">
+                                    <td><strong>3️⃣ 收納策略</strong></td>
+                                    <td>老人＋小孩＋傭人＋貓＋常聚會＝沒有隱形收納整潔必破功</td>
+                                    <td><strong>玄關三段櫃：</strong>落塵櫃／推車大物櫃／快取櫃<br>
+                                        <strong>每層樓梯/走廊：</strong>頂天立地櫃（深 35–40cm）<br>
+                                        • 2F：毛巾/備品/清潔耗材<br>
+                                        • 3F：玩具/棉被/聚會備品
+                                    </td>
+                                </tr>
+                                <tr class="important">
+                                    <td><strong>4️⃣ 地插建議</strong></td>
+                                    <td>幼兒＋貓＋常拖地＝地插是清潔維護陷阱＋風險點</td>
+                                    <td><strong>結論：能不做就不做</strong><br>
+                                        餐廳火鍋/電磁爐需求改用：<br>
+                                        • 中島側板插座（離地 30–45cm）<br>
+                                        • 餐邊櫃側板插座取代地插
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
                     <!-- A/B/C 棟系統比較 -->
                     <div class="system-box">
                         <div class="system-title">📊 三棟系統配置比較（A/B/C 互不連通）</div>
@@ -1894,7 +2157,7 @@
                                 <span class="cell-icon">🍽️</span>
                                 <span class="cell-name">餐廳</span>
                                 <div class="io-badges">
-                                    <span class="badge pwr">🔌 地插</span>
+                                    <span class="badge pwr">🔌 餐邊插座</span>
                                 </div>
                             </div>
                             <div class="plan-cell wet" onclick="highlightRoom('bath1', this)">
@@ -2056,8 +2319,8 @@
                             <li><strong>機櫃規格：</strong>19吋 18U，深度 600mm，落地式（非壁掛）</li>
                             <li><strong>機櫃空間：</strong>空間大一號，預留理線架/線槽 + 110V 插座</li>
                             <li><strong>維修空間：</strong>前方 ≥80cm、後方 ≥60cm、上方排風空間<span class="new-badge">新增</span></li>
-                            <li><strong>散熱：</strong>前門下方百葉進氣口或前網孔門 + 後排風，頂部排風扇 × 2 + <strong>溫控開關（35°C 自動啟動）</strong><span
-                                    class="new-badge">新增</span></li>
+                            <li><strong>散熱：</strong>前門下方百葉進氣口或前網孔門 + 後排風，頂部排風扇 × 2 + <strong>溫控開關（35°C
+                                    自動啟動）</strong><span class="new-badge">新增</span></li>
                             <li><strong>降噪：</strong>儲藏室門加氣密條，牆面貼吸音棉 ≥25mm，降低 PoE/NAS 風扇噪音</li>
                             <li><strong>除濕：</strong>預留除濕機插座，濕度建議 &lt;60%，門縫氣密</li>
                             <li><strong>防水：</strong>MDF 區域地坪做微止水坎或門檻式防水分區，避免清洗水流入</li>
@@ -2218,7 +2481,8 @@
                             <li><strong>電器迴路：</strong>IH/烤箱 220V 專迴 + 電器櫃 110V 專迴</li>
                             <li><strong>安全：</strong>瓦斯偵測器/偵熱器預留電源與訊號線</li>
                             <li><strong>給水：</strong>冷熱水雙管到洗碗槽</li>
-                            <li><strong>中島預留：</strong>水槽下 3–4 組插座（洗碗機/飲水機/廚餘機）＋ 洗碗機專用進排水＋ 廚餘機耐熱防堵排水；地插若用彈出式需 IP54 金屬防水型或改設中島側板</li>
+                            <li><strong>中島預留：</strong>水槽下 3–4 組插座（洗碗機/飲水機/廚餘機）＋ 洗碗機專用進排水＋ 廚餘機耐熱防堵排水；地插若用彈出式需 IP54
+                                金屬防水型或改設中島側板</li>
                             <li><strong>飲水預留：</strong>RO 淨水器位置（軟水後再過濾）或硬水旁通點</li>
                             <li><strong>暗廚強制通風：</strong>強排油煙機≥1000 m³/h + 24小時低噪換氣扇，獨立電迴路並分開排風管。</li>
                             <li><strong>採光補強：</strong>廚房與後陽台隔間上緣預留透光玻璃磚/長虹玻璃，引入後陽台自然光。</li>
@@ -2593,7 +2857,8 @@
                             </div>
                         </div>
                         <div class="room-details">
-                            <li><strong>AP 點位：</strong>天花板預留 AP（PoE），設計 ≥20×20cm 可開式檢修口或在間接照明溝槽旁<span class="new-badge">設計提醒</span>
+                            <li><strong>AP 點位：</strong>天花板預留 AP（PoE），設計 ≥20×20cm 可開式檢修口或在間接照明溝槽旁<span
+                                    class="new-badge">設計提醒</span>
                             </li>
                             <li><strong>住警器：</strong>每層一顆 + 夜間感應照明</li>
                             <li><strong>走廊收納：</strong>走廊一側可做深35-40cm頂天立地櫃，整合書架/展示/雜物收納。</li>
@@ -2671,7 +2936,7 @@
                     </div>
 
                     <!-- 熱水升級選項（新增！） -->
-                        <div class="tag tag-opt" style="margin-top:20px;">
+                    <div class="tag tag-opt" style="margin-top:20px;">
                         <div class="tag-title">♨️ 熱水升級選項（避免日後抱怨）<span class="new-badge">v8.0 新增</span></div>
                         若未來覺得等待時間太長，可擇一升級：<br>
                         <strong>選項1：</strong>3F 最遠衛浴加裝局部小型即熱式或小儲熱桶<br>
@@ -2862,7 +3127,8 @@
                             <li><strong>除霧鏡/毛巾架：</strong>鏡後插座（除霧）＋牆面 120cm 插座（電熱毛巾架）</li>
                             <li><strong>給水：</strong>冷水 + 熱水（支管 1/2"）</li>
                             <li><strong>注意：</strong>3F 距離 RF 熱水源最遠，未啟用回水時等待時間最長（約 30–60 秒）</li>
-                            <li><strong>水錘吸收器：</strong>3F 為長距離管末端，採活塞式，角閥後/設備前加裝<span class="new-badge">v8.0 新增</span></li>
+                            <li><strong>水錘吸收器：</strong>3F 為長距離管末端，採活塞式，角閥後/設備前加裝<span class="new-badge">v8.0 新增</span>
+                            </li>
                             <li><strong>扶手預留：</strong>淋浴區/馬桶旁牆面預埋木芯或鋼襯</li>
                         </div>
                     </div>
@@ -3205,7 +3471,8 @@
                     <div class="spec-box">
                         <div class="spec-title">🔧 RF 設備層：防水/噪音/檢修規範</div>
                         <div class="spec-content">
-                            <li><strong>防水：</strong>所有設備基座防水套管 + 排水坡度 1:50 以上導向地排，基座周邊做止水緣＋導流坡<span class="new-badge">坡度規範</span>
+                            <li><strong>防水：</strong>所有設備基座防水套管 + 排水坡度 1:50 以上導向地排，基座周邊做止水緣＋導流坡<span
+                                    class="new-badge">坡度規範</span>
                             </li>
                             <li><strong>排水：</strong>熱泵冷凝水、水塔溢流、地面排水統一導向落水頭</li>
                             <li><strong>溢流口：</strong>屋頂設緊急溢流口（≥3"），位置靠女兒牆最低點，外排且防回流</li>
@@ -3295,7 +3562,7 @@
 
                     <!-- RF 設備清單（v8.0 更新編碼） -->
                     <div class="system-box">
-                    <div class="system-title">📊 RF 給水設備清單（A棟編碼 v8.1）</div>
+                        <div class="system-title">📊 RF 給水設備清單（A棟編碼 v8.1）</div>
                         <div class="io-table">
                             <table>
                                 <tr>
@@ -3588,7 +3855,7 @@
 
                     <!-- 閥件編碼總表（v8.0 更新） -->
                     <div class="system-box">
-                    <div class="system-title">📋 A棟給水閥件/設備編碼總表（v8.1）</div>
+                        <div class="system-title">📋 A棟給水閥件/設備編碼總表（v8.1）</div>
                         <div class="io-table">
                             <table>
                                 <tr>
@@ -3820,7 +4087,8 @@
                             <strong>2. 水錘吸收器 A-WHA/A-WHA2：</strong>TS400B 出口 + VF800 出口端加裝<span
                                 class="new-badge">v8.0</span><br>
                             <strong>3. 水錘吸收器型式/位置：</strong>採活塞式，角閥後、用水設備前；3F 衛浴末端需加裝<br>
-                            <strong>4. 回水循環預留閥 A-WH-RV01：</strong>熱水回水主管末端加常閉球閥並貼標籤「回水循環預留口｜勿動」，施工圖標註座標（例：A-1F-WH-RV01）<br>
+                            <strong>4. 回水循環預留閥
+                                A-WH-RV01：</strong>熱水回水主管末端加常閉球閥並貼標籤「回水循環預留口｜勿動」，施工圖標註座標（例：A-1F-WH-RV01）<br>
                             <strong>5. 回水啟用控制：</strong>中央循環泵需加定時器＋溫控啟停，或採零冷水恆溫龍頭（內建微型回水泵）<br>
                             <strong>6. 重力旁通閥 A-VB：</strong>水塔→繞過 VF800→冷水幹管，常閉，緊急時手動開啟<span
                                 class="new-badge">v8.0</span><br>
@@ -4378,7 +4646,8 @@
                     <div class="warning-box">
                         <div class="warning-title">⚠️ 給水電/弱電工班的「紅線條款」（不可做錯）</div>
                         <div class="warning-content">
-                            <strong>弱電管路：</strong>⚠️ 強弱電分離：110/220V 電線與網路線/光纖「絕對不可」穿在同一支管內/同槽內，平行走線距離需 >30cm，交會需 90°<br><br>
+                            <strong>弱電管路：</strong>⚠️ 強弱電分離：110/220V 電線與網路線/光纖「絕對不可」穿在同一支管內/同槽內，平行走線距離需 >30cm，交會需
+                            90°<br><br>
                             <strong>光纖骨幹：</strong>A→B / A→C 必須使用 單模 OS2 光纖（不可用多模）。每棟地下管路需預留「拉線繩」供未來抽換<br><br>
                             <strong>給水管路：</strong>冷熱不混用：VF800 只接冷水、Haier 熱泵只接熱水。設備出口必裝 止回閥 (Check Valve)<br><br>
                             <strong>熱水保溫：</strong>所有熱水管（PPR/不鏽鋼）必須包覆 厚度 15mm（6分）以上 的保溫棉，接頭處也要包<br><br>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>A棟 - 主棟核心 × 10G MDF 中樞 × 給水系統（整合版 v8.0）</title>
+    <title>A棟 - 主棟核心 × 10G MDF 中樞 × 給水系統（整合版 v8.1）</title>
     <style>
         * {
             margin: 0;
@@ -1155,7 +1155,7 @@
                 三戶三水表｜僅 A 棟安裝瑞士水全戶軟水｜B/C 棟獨立水表/水塔/VF800/熱泵（與 A 互不連通）<br>
                 弱電：MDF 主機櫃（核心交換/路由/NVR/NAS）｜三棟 10G 單模光纖互聯（埋地管路）
             </div>
-            <div class="version-info">v8.0｜整合優化建議 + 水錘吸收器 + 旁通迴路 + MDF 接地 + 驗收清單 + 緊急關閉地圖</div>
+            <div class="version-info">v8.1｜可更新進文件 + PRV 減壓 + 緊急溢流口 + 漏水偵測 + 貼紙規範</div>
         </div>
 
         <!-- 統計條 -->
@@ -1197,8 +1197,8 @@
             </div>
             <div class="stat-item">
                 <div class="stat-icon">🔧</div>
-                <div class="stat-value">v8.0</div>
-                <div class="stat-label">新增優化項目</div>
+                <div class="stat-value">v8.1</div>
+                <div class="stat-label">最新優化項目</div>
             </div>
         </div>
 
@@ -1227,6 +1227,9 @@
             </div>
             <div class="tab" onclick="showFloor(7)">
                 <span class="tab-icon">✅</span> 驗收清單
+            </div>
+            <div class="tab" onclick="showFloor(8)">
+                <span class="tab-icon">🏷️</span> 貼紙規範
             </div>
         </div>
 
@@ -1416,8 +1419,8 @@
                                 </tr>
                                 <tr>
                                     <td>開關盒 N 線</td>
-                                    <td>全屋開關盒預留中性線</td>
-                                    <td>智慧開關（HomeKit/Google/Zigbee）必備</td>
+                                    <td>白(N)/黑(L)/黃綠(GND)三線齊全；N 線套藍色套管</td>
+                                    <td>配電箱端子排標示「N-SWITCH / N-LIGHT」分離，開關盒深度 ≥5cm 以容納智慧模組</td>
                                 </tr>
                                 <tr>
                                     <td>Cat6A 主幹</td>
@@ -1426,13 +1429,33 @@
                                 </tr>
                                 <tr>
                                     <td>AP 點位 + PoE</td>
-                                    <td>每層 1–2 點，走道/樓梯間</td>
-                                    <td>PoE Type 3/4 供電，升級免開牆</td>
+                                    <td>每層 1–2 點，走道/樓梯間；天花預留 ≥20×20cm 可開式檢修口</td>
+                                    <td>PoE Type 3/4 供電，間接照明溝槽旁也需留檢修孔</td>
                                 </tr>
                                 <tr>
                                     <td>弱電機櫃空間</td>
                                     <td>空間大一號＋強制散熱</td>
                                     <td>預留 110V 插座、線槽/理線架</td>
+                                </tr>
+                                <tr>
+                                    <td>電動窗簾電源</td>
+                                    <td>窗簾盒內側頂部預留 110V 插座（非線頭）</td>
+                                    <td>客廳/主臥/大面窗統一規格，日後免明線</td>
+                                </tr>
+                                <tr>
+                                    <td>掃地機上下水</td>
+                                    <td>玄關/客廳櫃體預留 2 分進水 + Ø32mm 排水孔（貼牆）</td>
+                                    <td>對應自動上下水基座，後續免鑿牆</td>
+                                </tr>
+                                <tr>
+                                    <td>浴室升級預留</td>
+                                    <td>鏡後插座（除霧鏡）＋毛巾架插座（牆面約 120cm 高）</td>
+                                    <td>乾區插座防水等級需符合浴室規範</td>
+                                </tr>
+                                <tr>
+                                    <td>太陽能/淨水預留</td>
+                                    <td>總電箱預留 1.5" PVC 併網專迴直通 RF；總進水處留 RO/軟水機旁通空間</td>
+                                    <td>避免未來加裝需拆牆或改管</td>
                                 </tr>
                             </table>
                         </div>
@@ -1461,6 +1484,34 @@
                                     <td>冷暖風機</td>
                                     <td>阿拉斯加冷暖風機（浴廁）</td>
                                     <td>獨立迴路，搭配止逆閥與獨立風管</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="system-box">
+                        <div class="system-title">🔇 排水與靜音工程（事後無法補救）</div>
+                        <div class="io-table">
+                            <table>
+                                <tr>
+                                    <th>項目</th>
+                                    <th>做法</th>
+                                    <th>備註</th>
+                                </tr>
+                                <tr>
+                                    <td>糞管/污水管靜音</td>
+                                    <td>管道間直立排水管包覆隔音棉或改雙層螺旋靜音管</td>
+                                    <td>穿越 1F/2F 上方區域需優先處理</td>
+                                </tr>
+                                <tr>
+                                    <td>濕區 R 角</td>
+                                    <td>牆地交界先做 R 角，再施作防水層</td>
+                                    <td>避免防水膜折角破裂滲漏</td>
+                                </tr>
+                                <tr>
+                                    <td>防水高度</td>
+                                    <td>淋浴區 ≥180cm；其他濕區 ≥30cm</td>
+                                    <td>磁磚上牆前完成驗收</td>
                                 </tr>
                             </table>
                         </div>
@@ -1516,7 +1567,7 @@
                                 </tr>
                                 <tr>
                                     <td>排水管強化</td>
-                                    <td>溢流管 2"→3" + 加設「緊急溢流口」</td>
+                                    <td>溢流管 2"→3" + 緊急溢流口 ≥3"（靠女兒牆最低點、外排防回流）</td>
                                     <td>提升排洪，避免頂層淹水</td>
                                 </tr>
                                 <tr>
@@ -1526,23 +1577,43 @@
                                 </tr>
                                 <tr>
                                     <td>設備基座</td>
-                                    <td>水塔/VF800/熱泵基座抬高 <strong>15cm</strong></td>
+                                    <td>水塔/VF800/熱泵基座抬高 <strong>15cm</strong> + 止水緣＋導流坡</td>
                                     <td>防淹水短路</td>
                                 </tr>
                                 <tr>
                                     <td>弱電手孔</td>
-                                    <td>地下手孔蓋改用球墨鑄鐵、防風掀</td>
+                                    <td>地下手孔蓋改用球墨鑄鐵、防風掀；底部碎石排水層＋蓋板止水膠條</td>
                                     <td>維持骨幹鏈路不中斷</td>
                                 </tr>
                                 <tr>
                                     <td>外窗規格</td>
-                                    <td>抗風壓 ≥360 kgf/m²，西向膠合玻璃 5+0.76PVB+5</td>
+                                    <td>依 CNS 11528 抗風壓等級 ≥360 kgf/m²，西向膠合玻璃 5+0.76PVB+5</td>
                                     <td>防破裂飛濺與結構損傷</td>
+                                </tr>
+                                <tr>
+                                    <td>西向遮陽</td>
+                                    <td>控制開窗面積，深窗簷＋格柵＋小窗組合</td>
+                                    <td>降低西曬熱負荷與風壓衝擊</td>
                                 </tr>
                                 <tr>
                                     <td>門窗五金強化</td>
                                     <td>依耐風設計規範加強固定件與五金</td>
                                     <td>提升抗風壓與耐用度</td>
+                                </tr>
+                                <tr>
+                                    <td>弱電出口防水</td>
+                                    <td>PVC 防水鴨嘴彎頭（Drip Loop）出口朝下</td>
+                                    <td>防止雨水沿管壁倒灌，圖面需標準大樣</td>
+                                </tr>
+                                <tr>
+                                    <td>屋頂維修友善</td>
+                                    <td>檢修照明＋插座＋吊裝動線＋溢流口</td>
+                                    <td>即使未裝太陽能也需保留維修條件</td>
+                                </tr>
+                                <tr>
+                                    <td>屋面穿孔防水</td>
+                                    <td>所有穿屋面孔洞二次防水收邊＋封堵，施工圖出穿孔套管＋收邊大樣，驗收拍照存檔</td>
+                                    <td>避免日後滲漏與壁癌</td>
                                 </tr>
                                 <tr>
                                     <td>外掛物預埋件</td>
@@ -1606,6 +1677,11 @@
                                     <td>穿堂煞</td>
                                     <td>大門直通後門/落地窗 → 設玄關屏風或儲物櫃遮蔽</td>
                                     <td>A 棟有樓梯隔斷門，仍需確認視線</td>
+                                </tr>
+                                <tr>
+                                    <td>樓梯對位/防煙門</td>
+                                    <td>各層樓梯直上直下對位，1F/2F/3F/RF 平面圖畫死隔斷門位置</td>
+                                    <td>門片需 60 分鐘防火時效；依《建築技術規則》127/130 條檢核</td>
                                 </tr>
                                 <tr>
                                     <td>樑壓關鍵區</td>
@@ -1922,7 +1998,7 @@
                         </div>
                         <div class="tag tag-opt">
                             <div class="tag-title">🔧 留管/施工提醒</div>
-                            車庫 → MDF：弱電專用管 25mm×2（門禁/攝影分流），禁止與強電同管，管內預留拉線繩。
+                            車庫 → MDF：弱電專用管 25mm×2（門禁/攝影分流），禁止與強電同管/同槽；強弱電平行 ≥30cm、交會 90°，管內預留拉線繩。
                         </div>
                     </div>
 
@@ -1937,7 +2013,7 @@
                             <li><strong>鞋櫃插座：</strong>除濕/烘鞋棒插座（2孔+USB）</li>
                             <li><strong>智慧門鈴：</strong>門口攝影機走 PoE（回 A-MDF）或預留電源＋網路</li>
                             <li><strong>包裹收納櫃：</strong>嵌入式櫃體深度 ≥30cm，預留對講主機線路</li>
-                            <li><strong>掃地機：</strong>基座插座＋上下水預留（選配）</li>
+                            <li><strong>掃地機：</strong>基座插座＋2 分進水＋Ø32mm 排水孔（貼牆）預留（選配）</li>
                             <li><strong>智慧門鎖：</strong>標準孔位 + 供電/訊號線預留</li>
                             <li><strong>一鍵全關：</strong>玄關設 One-Touch 全關（保留冰箱/網路）</li>
                             <li><strong>無障礙坡道：</strong>車庫至玄關動線確認零高差；若有落差，以坡度≤1:12的斜坡並加扶手處理。</li>
@@ -1956,6 +2032,7 @@
                             <li><strong>電視牆：</strong>LAN×4（TV / 串流盒 / 遊戲機 / 備援）＋ 插座雙組以上</li>
                             <li><strong>Wi-Fi：</strong>天花板預留 AP（PoE 可省插座）</li>
                             <li><strong>影音預留：</strong>電視牆 ↔ 天花投影（選配）預留 <strong>35mm（1吋以上）</strong>管</li>
+                            <li><strong>電動窗簾：</strong>窗簾盒內側頂部預留 110V 插座</li>
                         </div>
                         <div class="tag tag-net">
                             <div class="tag-title">🌐 弱電/網路</div>
@@ -1979,8 +2056,12 @@
                             <li><strong>機櫃規格：</strong>19吋 18U，深度 600mm，落地式（非壁掛）</li>
                             <li><strong>機櫃空間：</strong>空間大一號，預留理線架/線槽 + 110V 插座</li>
                             <li><strong>維修空間：</strong>前方 ≥80cm、後方 ≥60cm、上方排風空間<span class="new-badge">新增</span></li>
-                            <li><strong>散熱：</strong>進風百葉門 + 頂部排風扇 × 2 + <strong>溫控開關（35°C 自動啟動）</strong><span
+                            <li><strong>散熱：</strong>前門下方百葉進氣口或前網孔門 + 後排風，頂部排風扇 × 2 + <strong>溫控開關（35°C 自動啟動）</strong><span
                                     class="new-badge">新增</span></li>
+                            <li><strong>降噪：</strong>儲藏室門加氣密條，牆面貼吸音棉 ≥25mm，降低 PoE/NAS 風扇噪音</li>
+                            <li><strong>除濕：</strong>預留除濕機插座，濕度建議 &lt;60%，門縫氣密</li>
+                            <li><strong>防水：</strong>MDF 區域地坪做微止水坎或門檻式防水分區，避免清洗水流入</li>
+                            <li><strong>漏水偵測：</strong>MDF 機櫃區設漏水偵測器（蜂鳴/推播）</li>
                             <li><strong>接地：</strong>機櫃接地線 6sq 以上 → 接地端子排 → 建物接地<span class="new-badge">新增</span></li>
                             <li><strong>走線：</strong>上出線，配線架 24port × 2（1 用 1 備）</li>
                             <li><strong>核心設備：</strong>路由/防火牆、核心交換器（含 10G SFP+）、PoE 交換器</li>
@@ -1994,8 +2075,8 @@
                             <div class="spec-title">📋 MDF 機櫃詳細規格（v8.0 強化版）</div>
                             <div class="spec-content">
                                 <li>尺寸：18U × 600mm 深 × 600mm 寬（落地式）</li>
-                                <li>門板：前玻璃門（觀察用）+ 後網孔門（散熱）</li>
-                                <li>散熱：頂部 120mm 風扇 × 2，進氣百葉，<strong>溫控開關 35°C</strong></li>
+                                <li>門板：前網孔門或前玻璃門（需下方百葉進氣）+ 後網孔門（散熱）</li>
+                                <li>散熱：頂部 120mm 風扇 × 2，前進氣百葉，<strong>溫控開關 35°C</strong></li>
                                 <li>配線架：Cat6A 24port × 2（A 棟 + 備用擴充）</li>
                                 <li>光纖配線盤：LC 雙工 12 芯 × 1（跨棟光纖端接）</li>
                                 <li><strong>接地：機櫃 + PoE 交換器 + 光纖配線盤金屬件 → 等電位接地</strong></li>
@@ -2056,15 +2137,16 @@
                         <div class="warning-box">
                             <div class="warning-title">⚠️ 跨棟光纖施工規範（不可違反）</div>
                             <div class="warning-content">
-                                <strong>1. 管路：</strong>每方向 2 支管（主+備），不得與強電同管/同手孔<br>
-                                <strong>2. 轉彎：</strong>曲率半徑 ≥30cm，超過 2 個 90° 彎需加手孔/拉線箱<br>
-                                <strong>3. 手孔間距：</strong>每 25~30m 或每段長距離轉折，至少一個拉線箱/手孔<span
+                                <strong>1. 管路：</strong>每方向 2 支管（主+備），不得與強電同管/同槽/同手孔<br>
+                                <strong>2. 強弱電距離：</strong>平行距離 ≥30cm，交會需 90°<br>
+                                <strong>3. 轉彎：</strong>曲率半徑 ≥30cm，超過 2 個 90° 彎需加手孔/拉線箱<br>
+                                <strong>4. 手孔間距：</strong>每 25~30m 或每段長距離轉折，至少一個拉線箱/手孔<span
                                     class="new-badge">新增</span><br>
-                                <strong>4. 拉線：</strong>每管內預留尼龍拉線繩，<strong>管內禁止接頭</strong>（管外接續須在手孔內可維修）<span
+                                <strong>5. 拉線：</strong>每管內預留尼龍拉線繩，<strong>管內禁止接頭</strong>（管外接續須在手孔內可維修）<span
                                     class="new-badge">新增</span><br>
-                                <strong>5. 備用纖芯：</strong>12 芯至少用 4 芯，備 8 芯供未來擴充<br>
-                                <strong>6. 端接：</strong>兩端 LC 雙工，配線盤集中在 MDF/IDF<br>
-                                <strong>7. 標示：</strong>依 ANSI/TIA-606-B 簡易標準，兩端防水標籤註明「來源-目的-芯數」<span
+                                <strong>6. 備用纖芯：</strong>12 芯至少用 4 芯，備 8 芯供未來擴充<br>
+                                <strong>7. 端接：</strong>兩端 LC 雙工，配線盤集中在 MDF/IDF<br>
+                                <strong>8. 標示：</strong>依 ANSI/TIA-606-B 簡易標準，兩端防水標籤註明「來源-目的-芯數」<span
                                     class="new-badge">新增</span>
                             </div>
                         </div>
@@ -2080,6 +2162,7 @@
                         <div class="room-details">
                             <li><strong>節能：</strong>冷氣分層不互相拉扯，降低能耗</li>
                             <li><strong>安全/門片：</strong>煙囪效應防護；門片需自動關閉、門縫氣密，建議透明防火氣密門方便看見樓梯</li>
+                            <li><strong>防火等級：</strong>門片需 60 分鐘防火時效；1F/2F/3F/RF 平面圖標示門位並保持直上直下對位</li>
                             <li><strong>標示：</strong>🪜 樓梯在此（1F→2F→3F→RF），搭配門貼/地貼箭頭，與各層樓梯標示文字一致</li>
                             <li><strong>配套：</strong>感應燈 + 住警器 + 緊急照明，夜間也清楚</li>
                             <li><strong>雙邊扶手與夜間警示：</strong>連續扶手端部水平延伸後下折，踏步前緣可嵌防滑LED燈條</li>
@@ -2094,7 +2177,7 @@
                             </div>
                         </div>
                         <div class="room-details">
-                            <li><strong>地插：</strong>火鍋/電磁爐/吸塵器（建議獨立迴路）</li>
+                            <li><strong>地插：</strong>火鍋/電磁爐/吸塵器（建議獨立迴路）；彈出式地插需 IP54 以上金屬防水型，或改設中島側板</li>
                         </div>
                     </div>
 
@@ -2110,10 +2193,11 @@
                             <li><strong>暖風機：</strong>確認電壓（110/220V），預留專用迴路</li>
                             <li><strong>獨立排風：</strong>排風管直通室外 + 止逆閥（阿拉斯加冷暖風機）</li>
                             <li><strong>智能馬桶：</strong>防水插座 + 進水角閥 + 等電位接地端子</li>
+                            <li><strong>除霧鏡/毛巾架：</strong>鏡後插座（除霧）＋牆面 120cm 插座（電熱毛巾架）</li>
                             <li><strong>給水：</strong>冷水（VF800 供應）+ 熱水（Haier 供應）</li>
                             <li><strong>管徑：</strong>冷/熱水支管 1/2"（15mm），PPR 或不鏽鋼</li>
                             <li><strong>扶手預留：</strong>淋浴區/馬桶旁牆面預埋木芯或鋼襯</li>
-                            <li><strong>門片對餐廳：</strong>若門正對餐桌，使用實心隔音門＋門檻密封條，或做隱形門弱化存在感。</li>
+                            <li><strong>門片對餐廳：</strong>建議採用「側開/滑門 + 門片氣密 + 獨立排風強化」，必要時做隱形門弱化存在感。</li>
                         </div>
                         <div class="tag tag-water">
                             <div class="tag-title">💧 給水說明</div>
@@ -2134,7 +2218,7 @@
                             <li><strong>電器迴路：</strong>IH/烤箱 220V 專迴 + 電器櫃 110V 專迴</li>
                             <li><strong>安全：</strong>瓦斯偵測器/偵熱器預留電源與訊號線</li>
                             <li><strong>給水：</strong>冷熱水雙管到洗碗槽</li>
-                            <li><strong>中島預留：</strong>水槽下 3–4 組插座（洗碗機/飲水機/廚餘機）＋ 洗碗機專用進排水＋ 廚餘機耐熱防堵排水</li>
+                            <li><strong>中島預留：</strong>水槽下 3–4 組插座（洗碗機/飲水機/廚餘機）＋ 洗碗機專用進排水＋ 廚餘機耐熱防堵排水；地插若用彈出式需 IP54 金屬防水型或改設中島側板</li>
                             <li><strong>飲水預留：</strong>RO 淨水器位置（軟水後再過濾）或硬水旁通點</li>
                             <li><strong>暗廚強制通風：</strong>強排油煙機≥1000 m³/h + 24小時低噪換氣扇，獨立電迴路並分開排風管。</li>
                             <li><strong>採光補強：</strong>廚房與後陽台隔間上緣預留透光玻璃磚/長虹玻璃，引入後陽台自然光。</li>
@@ -2157,7 +2241,7 @@
                         <div class="room-details">
                             <li><strong>床頭：</strong>插座雙組＋USB</li>
                             <li><strong>網路：</strong>LAN×2（Cat6A 回 A-MDF）</li>
-                            <li><strong>後陽台動線：</strong>如需穿越本房，考慮廚房側增設≥75cm輔助門；若不改動則定位為管家房/工作室。</li>
+                            <li><strong>後陽台動線（必檢）：</strong>是否需穿越本房？若是→施工前決定是否增設 ≥75cm 輔助門。</li>
                         </div>
                     </div>
 
@@ -2190,14 +2274,17 @@
                             <li><strong>水表：</strong>A 棟獨立水表（三戶三水表，與 B/C 互不連通）</li>
                             <li><strong>A-V1 總開關閥：</strong>球閥 1"，方便整戶關水</li>
                             <li><strong>A-F1 粗濾器：</strong>Y型濾網 1"，擋大顆粒，延長瑞士水壽命</li>
+                            <li><strong>A-PRV 減壓閥（含壓力表）：</strong>建議設於 A-F1 後，穩定夜間高水壓、降低水錘</li>
                             <li><strong>⚠️ 原水旁通分支：</strong>A-F1 後、瑞士水前分出 T0 三通 → A-VR 原水閥 → 1F 戶外龍頭（洗車/沖地）</li>
                             <li><strong>瑞士水 全戶淨軟水機：</strong>全屋唯一軟水入口，之後所有水都是軟水</li>
                             <li><strong>軟水/淨水旁通：</strong>總進水處預留 U 型旁通管＋球閥，並預留 110V 插座與安裝空間</li>
                             <li><strong>瑞士水區域規劃：</strong>回洗排水管到地排、鹽桶位置與補鹽空間、地坪防水托盤/洩漏感知<span class="new-badge">新增</span>
                             </li>
+                            <li><strong>漏水偵測：</strong>瑞士水機座 + TS400B 區域設漏水偵測器（蜂鳴/推播），可選配自動關水電動閥</li>
+                            <li><strong>補鹽動線：</strong>鹽桶區設墊高平台防潮，10kg 鹽包搬運路徑無障礙</li>
                             <li><strong>A-V2 軟水機出水閥：</strong>檢修用球閥 1"（前後加<strong>活接/由令</strong>方便拆卸）<span
                                     class="new-badge">新增</span></li>
-                            <li><strong>TS400B 抽水機：</strong>吸水口接瑞士水出水，加壓送水上樓</li>
+                            <li><strong>TS400B 抽水機：</strong>吸水口接瑞士水出水，加壓送水上樓；橡膠減震腳墊＋<strong>金屬軟接頭</strong></li>
                             <li><strong>A-C1 止回閥：</strong>TS400B 出口，防止水塔回壓（必裝！）</li>
                             <li><strong>A-WHA 水錘吸收器：</strong>TS400B 出口端加裝，吸收快速關水衝擊<span class="new-badge">新增</span></li>
                             <li><strong>A-V3 抽水上行閥：</strong>維修 TS400B 可關閉</li>
@@ -2213,7 +2300,7 @@
                         </div>
 
                         <div class="water-flow-diagram">
-                            <div class="water-flow-title">📊 1F 給水進線流程圖（v8.0 強化版）</div>
+                            <div class="water-flow-title">📊 1F 給水進線流程圖（v8.1 強化版）</div>
                             <div class="water-flow-content">
                                 <span class="label">市政自來水（A棟獨立水表）</span>
                                 ↓
@@ -2223,6 +2310,10 @@
                                 ↓
                                 ┌─────────────────┐
                                 │ <span class="device">A-F1 粗濾器</span> │ Y型濾網 1"
+                                └─────────────────┘
+                                ↓
+                                ┌─────────────────┐
+                                │ <span class="device">A-PRV 減壓閥</span> │ 含壓力表
                                 └─────────────────┘
                                 ↓
                                 <span class="label">T0 三通</span> ─────────────┐
@@ -2277,6 +2368,7 @@
                                 <li>原水旁通支管：1/2"（15mm），PPR 或不鏽鋼</li>
                                 <li>所有球閥：銅球閥或 304 不鏽鋼球閥</li>
                                 <li>止回閥 A-C1：青銅或 304 不鏽鋼，垂直安裝</li>
+                                <li><strong>A-PRV 減壓閥：</strong>可調式，附壓力表（建議設於 A-F1 後）</li>
                                 <li><strong>活接/由令：每個主設備前後加裝，方便拆卸維修</strong><span class="new-badge">新增</span></li>
                                 <li>立管固定：每 1.5m 一個管夾，穿樓板處加套管</li>
                                 <li><strong>水錘吸收器 A-WHA：安裝於 TS400B 出口端</strong><span class="new-badge">新增</span></li>
@@ -2451,6 +2543,7 @@
                             <li><strong>床頭兩側：</strong>各 2 組插座＋USB</li>
                             <li><strong>電視牆：</strong>LAN×2 + TV 預留 + <strong>35mm 空管</strong></li>
                             <li><strong>智慧控制：</strong>床頭可整合燈光/窗簾/空調（選配）</li>
+                            <li><strong>電動窗簾：</strong>窗簾盒內側頂部預留 110V 插座</li>
                             <li><strong>衛浴門對床：</strong>可調整床頭朝向，或改隱藏滑門並強化門扇氣密度以隔絕濕氣與噪音。</li>
                         </div>
                     </div>
@@ -2466,6 +2559,7 @@
                             <li><strong>暖風機：</strong>確認 110/220V，預留專用迴路</li>
                             <li><strong>獨立排風：</strong>排風管直通室外 + 止逆閥（阿拉斯加冷暖風機）</li>
                             <li><strong>智能馬桶：</strong>防水插座 + 進水角閥 + 等電位接地端子</li>
+                            <li><strong>除霧鏡/毛巾架：</strong>鏡後插座（除霧）＋牆面 120cm 插座（電熱毛巾架）</li>
                             <li><strong>給水：</strong>冷水 1/2" + 熱水 1/2"（PPR 或不鏽鋼）</li>
                             <li><strong>熱水保溫：</strong>熱水管全程保溫 <strong>15mm（6分）以上</strong><span
                                     class="new-badge">規格強化</span></li>
@@ -2499,7 +2593,7 @@
                             </div>
                         </div>
                         <div class="room-details">
-                            <li><strong>AP 點位：</strong>天花板預留 AP（PoE），設計維修孔或在間接照明溝槽旁<span class="new-badge">設計提醒</span>
+                            <li><strong>AP 點位：</strong>天花板預留 AP（PoE），設計 ≥20×20cm 可開式檢修口或在間接照明溝槽旁<span class="new-badge">設計提醒</span>
                             </li>
                             <li><strong>住警器：</strong>每層一顆 + 夜間感應照明</li>
                             <li><strong>走廊收納：</strong>走廊一側可做深35-40cm頂天立地櫃，整合書架/展示/雜物收納。</li>
@@ -2551,6 +2645,7 @@
                             <li><strong>暖風機：</strong>預留迴路</li>
                             <li><strong>獨立排風：</strong>排風管直通室外 + 止逆閥（阿拉斯加冷暖風機）</li>
                             <li><strong>智能馬桶：</strong>防水插座 + 進水角閥 + 等電位接地端子</li>
+                            <li><strong>除霧鏡/毛巾架：</strong>鏡後插座（除霧）＋牆面 120cm 插座（電熱毛巾架）</li>
                             <li><strong>給水：</strong>冷水 + 熱水（支管 1/2"）</li>
                             <li><strong>扶手預留：</strong>淋浴區/馬桶旁牆面預埋木芯或鋼襯</li>
                         </div>
@@ -2576,11 +2671,12 @@
                     </div>
 
                     <!-- 熱水升級選項（新增！） -->
-                    <div class="tag tag-opt" style="margin-top:20px;">
+                        <div class="tag tag-opt" style="margin-top:20px;">
                         <div class="tag-title">♨️ 熱水升級選項（避免日後抱怨）<span class="new-badge">v8.0 新增</span></div>
                         若未來覺得等待時間太長，可擇一升級：<br>
                         <strong>選項1：</strong>3F 最遠衛浴加裝局部小型即熱式或小儲熱桶<br>
-                        <strong>選項2：</strong>預留回水管路 + 循環泵電源（先不裝泵，保留彈性）
+                        <strong>選項2：</strong>預留回水管路 + 循環泵電源（先不裝泵，保留彈性）<br>
+                        <strong>選項3：</strong>零冷水恆溫龍頭（內建微型回水泵）或中央循環泵加定時器＋溫控啟停
                     </div>
 
                     <div class="system-box">
@@ -2726,6 +2822,7 @@
                         <div class="room-details">
                             <li><strong>影音設備：</strong>LAN×4（TV/遊戲機/串流盒/NAS 播放器）全 Cat6A</li>
                             <li><strong>投影系統：</strong>天花預留投影掛架＋HDMI/電源管路 <strong>35mm 以上</strong></li>
+                            <li><strong>影音管路：</strong>管路直通無 90°，轉向採兩個 45°；管徑 ≥32mm（EMT/PVC），內留拉線繩</li>
                             <li><strong>音響：</strong>5.1/7.1 環繞走線預留</li>
                             <li><strong>AP：</strong>天花 AP 一顆，覆蓋整個 3F</li>
                             <li><strong>RF 噪音隔離：</strong>天花採減震吊桿＋多層石膏板＋隔音棉，降低VF800/熱泵震動傳遞。</li>
@@ -2762,9 +2859,10 @@
                             <li><strong>暖風機：</strong>預留迴路</li>
                             <li><strong>獨立排風：</strong>排風管直通室外 + 止逆閥（阿拉斯加冷暖風機）</li>
                             <li><strong>智能馬桶：</strong>防水插座 + 進水角閥 + 等電位接地端子</li>
+                            <li><strong>除霧鏡/毛巾架：</strong>鏡後插座（除霧）＋牆面 120cm 插座（電熱毛巾架）</li>
                             <li><strong>給水：</strong>冷水 + 熱水（支管 1/2"）</li>
                             <li><strong>注意：</strong>3F 距離 RF 熱水源最遠，未啟用回水時等待時間最長（約 30–60 秒）</li>
-                            <li><strong>水錘吸收器：</strong>3F 為長距離管末端，建議加裝<span class="new-badge">v8.0 新增</span></li>
+                            <li><strong>水錘吸收器：</strong>3F 為長距離管末端，採活塞式，角閥後/設備前加裝<span class="new-badge">v8.0 新增</span></li>
                             <li><strong>扶手預留：</strong>淋浴區/馬桶旁牆面預埋木芯或鋼襯</li>
                         </div>
                     </div>
@@ -2965,7 +3063,7 @@
                             <li><strong>目的：</strong>未來加太陽能監控、天氣站都不用打牆</li>
                             <li><strong>管徑：</strong>2 支 1" PVC 管（Ø28–32mm），管內預留拉繩</li>
                             <li><strong>路徑：</strong>1F 電表箱 → 垂直貫穿每層 → RF；每層電錶箱皆經過（預留穿孔）</li>
-                            <li><strong>RF 出口：</strong>RF 出口加防水彎頭 + 防塵蓋，管路由下往上彎避免雨水倒灌</li>
+                            <li><strong>RF 出口：</strong>PVC 防水鴨嘴彎頭（Drip Loop）出口朝下 + 防塵蓋，管路由下往上彎避免雨水倒灌</li>
                             <li><strong>避讓：</strong>避開給水管、油煙管、弱電管</li>
                             <li><strong>電表預留：</strong>1F 電表箱預留 A-M2 併網電表、A-M3 EV 充電表空間</li>
                             <li><strong>封堵：</strong>穿樓板孔務必防火填塞</li>
@@ -2989,6 +3087,7 @@
                             <li><strong>A-D1 排水閥：</strong>水塔底部，方便清洗/排空</li>
                             <li><strong>結構載重：</strong>1000L ≈ 1 噸，必須落在梁/柱可承載位置</li>
                             <li><strong>防水盤：</strong>水塔底座做防水收邊，排水坡度導向地排</li>
+                            <li><strong>漏水偵測：</strong>水塔/溢流口附近設漏水偵測器（蜂鳴/推播）</li>
                         </div>
 
                         <div class="spec-box">
@@ -3019,8 +3118,8 @@
                                     class="new-badge">新增水錘吸收器</span></li>
                             <li><strong>壓力表：</strong>VF800 出口加裝壓力表，便於現場判斷水壓問題<span class="new-badge">v8.0 新增</span></li>
                             <li><strong>電源：</strong>專用迴路（變頻設備），建議加突波保護</li>
-                            <li><strong>減震：</strong>橡膠減震座 + 軟接頭 + 管路固定點</li>
-                            <li><strong>減震：</strong>底座加橡膠墊並使用進出水軟接頭，降低低頻震動噪音。</li>
+                            <li><strong>減震：</strong>橡膠減震座 + <strong>金屬軟接頭</strong> + 管路固定點</li>
+                            <li><strong>減震：</strong>底座加橡膠墊並使用進出水<strong>金屬軟接頭</strong>，降低低頻震動噪音。</li>
                         </div>
 
                         <!-- 重力旁通迴路（新增！） -->
@@ -3029,7 +3128,7 @@
                                     class="new-badge">v8.0 新增</span></div>
                             <div class="spec-content">
                                 <li><strong>目的：</strong>VF800 故障或停電時，低樓層（1F/2F）仍能靠重力有水可用</li>
-                                <li><strong>做法：</strong>水塔出口 → 旁通管（繞過 VF800）→ 常閉球閥 A-VB → 匯入冷水幹管</li>
+                                <li><strong>做法：</strong>水塔出口 → 旁通管（繞過 VF800）→ 常閉球閥 A-VB → 匯入冷水幹管（匯入端加止回閥 A-CB 防逆流）</li>
                                 <li><strong>A-VB 旁通閥：</strong>平時常閉，緊急時手動開啟</li>
                                 <li><strong>水壓說明：</strong>重力供水水壓較弱，僅供緊急應急使用</li>
                                 <li><strong>標示：</strong>旁通閥旁貼「緊急重力供水-VF800故障時開啟」</li>
@@ -3061,7 +3160,7 @@
                             <li><strong>電源：</strong>專用迴路</li>
                             <li><strong>減震：</strong>橡膠減震座，避免夜間噪音擾民</li>
                             <li><strong>高點排氣：</strong>熱水最高點/立管最高點設自動排氣或手動排氣<span class="new-badge">v8.0 新增</span></li>
-                            <li><strong>減震：</strong>基座橡膠墊＋軟管接頭吸收啟停震動，並與3F天花隔音設計搭配。</li>
+                            <li><strong>減震：</strong>基座橡膠墊＋<strong>金屬軟接頭</strong>吸收啟停震動，並與3F天花隔音設計搭配。</li>
                         </div>
 
                         <div class="warning-box">
@@ -3070,7 +3169,8 @@
                                 <strong>1. 止回閥 A-C3：</strong>防止熱水倒流回水塔，必裝！<br>
                                 <strong>2. 壓力表：</strong>熱水出口端，便於現場判斷。<br>
                                 <strong>3. 高點排氣閥：</strong>熱水系統最高點，初次運轉或維修後排空氣。<br>
-                                <strong>4. 熱水管與冷水管完全分開：</strong>VF800 不管熱水。
+                                <strong>4. T&amp;P 泄壓閥：</strong>依設備規範設 T&amp;P 泄壓閥，排水導管接至地排/安全位置。<br>
+                                <strong>5. 熱水管與冷水管完全分開：</strong>VF800 不管熱水。
                             </div>
                         </div>
                     </div>
@@ -3105,9 +3205,11 @@
                     <div class="spec-box">
                         <div class="spec-title">🔧 RF 設備層：防水/噪音/檢修規範</div>
                         <div class="spec-content">
-                            <li><strong>防水：</strong>所有設備基座防水套管 + 排水坡度 1:50 以上導向地排<span class="new-badge">坡度規範</span>
+                            <li><strong>防水：</strong>所有設備基座防水套管 + 排水坡度 1:50 以上導向地排，基座周邊做止水緣＋導流坡<span class="new-badge">坡度規範</span>
                             </li>
                             <li><strong>排水：</strong>熱泵冷凝水、水塔溢流、地面排水統一導向落水頭</li>
+                            <li><strong>溢流口：</strong>屋頂設緊急溢流口（≥3"），位置靠女兒牆最低點，外排且防回流</li>
+                            <li><strong>孔洞封堵：</strong>所有穿屋面孔洞做二次防水收邊＋封堵，施工圖需出套管＋收邊大樣，驗收拍照存檔</li>
                             <li><strong>噪音：</strong>VF800 + TS400B（1F）+ 熱泵均需橡膠減震座、軟接頭</li>
                             <li><strong>管路固定：</strong>每 1.5m 一個管夾，避免震動傳到樓板</li>
                             <li><strong>吊裝動線：</strong>RF 出入口尺寸、爬梯可否搬運大型設備、預留吊點</li>
@@ -3182,9 +3284,18 @@
                         </div>
                     </div>
 
+                    <div class="spec-box" style="border-color:rgba(59,130,246,.3);">
+                        <div class="spec-title" style="color:#60a5fa;">🧩 立管分層隔離閥（建議）</div>
+                        <div class="spec-content">
+                            <li>冷水立管於 2F/3F 分歧處設 A-V2F / A-V3F</li>
+                            <li>熱水立管可同理設分層隔離閥</li>
+                            <li>目的：局部漏水/維修時不需全戶停水</li>
+                        </div>
+                    </div>
+
                     <!-- RF 設備清單（v8.0 更新編碼） -->
                     <div class="system-box">
-                        <div class="system-title">📊 RF 給水設備清單（A棟編碼 v8.0）</div>
+                    <div class="system-title">📊 RF 給水設備清單（A棟編碼 v8.1）</div>
                         <div class="io-table">
                             <table>
                                 <tr>
@@ -3236,6 +3347,12 @@
                                     <td><strong>VF800 故障時緊急供水</strong></td>
                                 </tr>
                                 <tr class="new-item">
+                                    <td><strong>A-CB</strong></td>
+                                    <td><strong>旁通止回閥</strong></td>
+                                    <td><strong>3/4"</strong></td>
+                                    <td><strong>旁通匯入端防逆流</strong></td>
+                                </tr>
+                                <tr class="new-item">
                                     <td><strong>A-WHA2</strong></td>
                                     <td><strong>水錘吸收器</strong></td>
                                     <td><strong>1"</strong></td>
@@ -3277,6 +3394,12 @@
                                     <td>球閥 3/4"</td>
                                     <td>熱水總控制</td>
                                 </tr>
+                                <tr class="new-item">
+                                    <td><strong>A-WH-RV01</strong></td>
+                                    <td><strong>回水循環預留閥（常閉）</strong></td>
+                                    <td><strong>球閥 1/2"</strong></td>
+                                    <td><strong>熱水回水主管末端，貼「回水循環預留口｜勿動」</strong></td>
+                                </tr>
                                 <tr>
                                     <td>A-D1</td>
                                     <td>排水閥</td>
@@ -3303,7 +3426,7 @@
                 <div class="floor-title">
                     <div class="floor-title-icon">💧</div>
                     <div>
-                        <div>給水系統總覽（A棟 v8.0）</div>
+                        <div>給水系統總覽（A棟 v8.1）</div>
                         <div style="font-size:.8rem;color:#64748b;font-weight:400;">
                             自來水 → 瑞士水 → TS400B → 水塔 → VF800 / Haier → 各樓層｜回水預留（未啟用）｜含水錘吸收器/旁通/壓力表
                         </div>
@@ -3316,13 +3439,15 @@
 
                     <!-- 系統總流程 -->
                     <div class="system-box" style="border-color:rgba(59,130,246,.4);">
-                        <div class="system-title" style="font-size:1.3rem;">💧 A棟給水系統全流程（v8.0）</div>
+                        <div class="system-title" style="font-size:1.3rem;">💧 A棟給水系統全流程（v8.1）</div>
                         <div class="flow-diagram" style="gap:8px;">
                             <div class="flow-item water-flow">🚰 A棟水表</div>
                             <div class="flow-arrow">→</div>
                             <div class="flow-item water-flow">A-V1</div>
                             <div class="flow-arrow">→</div>
                             <div class="flow-item water-flow">A-F1</div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-item water-flow">A-PRV</div>
                             <div class="flow-arrow">→</div>
                             <div class="flow-item"
                                 style="background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.3);">
@@ -3361,6 +3486,11 @@
                             <div class="flow-arrow">→</div>
                             <div class="flow-item hot-flow">熱水幹管 3/4"<br><small>保溫 15mm</small></div>
                         </div>
+                    </div>
+
+                    <div class="tag tag-water" style="margin-top:15px;">
+                        <div class="tag-title">♨️ 回水循環預留與啟用</div>
+                        回水主管末端設 A-WH-RV01 常閉球閥並標示；啟用時中央循環泵需加定時器＋溫控啟停，或採零冷水恆溫龍頭（內建微型回水泵）。
                     </div>
 
                     <!-- 管徑/材質/保溫總表 -->
@@ -3429,7 +3559,7 @@
                                     <td><strong>3/4"（20mm）</strong></td>
                                     <td><strong>PPR 或 CPVC</strong></td>
                                     <td><strong>保溫棉 15mm（6分）以上</strong></td>
-                                    <td><strong>RF→各樓層</strong></td>
+                                    <td><strong>RF→各樓層</strong><br>3F 最遠端出水 &lt;10 秒，超時升級 1"</td>
                                 </tr>
                                 <tr>
                                     <td>熱水立管</td>
@@ -3458,7 +3588,7 @@
 
                     <!-- 閥件編碼總表（v8.0 更新） -->
                     <div class="system-box">
-                        <div class="system-title">📋 A棟給水閥件/設備編碼總表（v8.0）</div>
+                    <div class="system-title">📋 A棟給水閥件/設備編碼總表（v8.1）</div>
                         <div class="io-table">
                             <table>
                                 <tr>
@@ -3481,6 +3611,13 @@
                                     <td>1F A-V1 後</td>
                                     <td>Y型濾網 1"</td>
                                     <td>保護瑞士水</td>
+                                </tr>
+                                <tr class="new-item">
+                                    <td><strong>A-PRV</strong></td>
+                                    <td><strong>減壓閥</strong></td>
+                                    <td><strong>1F A-F1 後</strong></td>
+                                    <td><strong>含壓力表</strong></td>
+                                    <td><strong>穩定供水壓力</strong></td>
                                 </tr>
                                 <tr>
                                     <td>A-T0</td>
@@ -3538,6 +3675,13 @@
                                     <td>球閥 1"</td>
                                     <td>維修用</td>
                                 </tr>
+                                <tr class="new-item">
+                                    <td><strong>A-V2F / A-V3F</strong></td>
+                                    <td><strong>分層隔離閥</strong></td>
+                                    <td><strong>2F/3F 立管分歧處</strong></td>
+                                    <td><strong>球閥 3/4"</strong></td>
+                                    <td><strong>分區維修不需全戶停水</strong></td>
+                                </tr>
                                 <tr class="important">
                                     <td><strong>水塔</strong></td>
                                     <td><strong>WT-L-1000B #304</strong></td>
@@ -3588,6 +3732,13 @@
                                     <td><strong>緊急重力供水</strong></td>
                                 </tr>
                                 <tr class="new-item">
+                                    <td><strong>A-CB</strong></td>
+                                    <td><strong>旁通止回閥</strong></td>
+                                    <td><strong>RF 旁通匯入點</strong></td>
+                                    <td><strong>3/4"</strong></td>
+                                    <td><strong>防止旁通逆流</strong></td>
+                                </tr>
+                                <tr class="new-item">
                                     <td><strong>A-WHA2</strong></td>
                                     <td><strong>水錘吸收器</strong></td>
                                     <td><strong>RF VF800 出口</strong></td>
@@ -3629,6 +3780,13 @@
                                     <td>球閥 3/4"</td>
                                     <td>熱水總控制</td>
                                 </tr>
+                                <tr class="new-item">
+                                    <td><strong>A-WH-RV01</strong></td>
+                                    <td><strong>回水循環預留閥（常閉）</strong></td>
+                                    <td><strong>RF 熱水回水主管末端</strong></td>
+                                    <td><strong>球閥 1/2"</strong></td>
+                                    <td><strong>貼「回水循環預留口｜勿動」</strong></td>
+                                </tr>
                                 <tr>
                                     <td>A-D1</td>
                                     <td>排水閥</td>
@@ -3661,20 +3819,28 @@
                             <strong>1. A-C1/A-C3 止回閥：</strong>TS400B 出口、Haier 入口前必裝，防止回壓/倒流<br>
                             <strong>2. 水錘吸收器 A-WHA/A-WHA2：</strong>TS400B 出口 + VF800 出口端加裝<span
                                 class="new-badge">v8.0</span><br>
-                            <strong>3. 重力旁通閥 A-VB：</strong>水塔→繞過 VF800→冷水幹管，常閉，緊急時手動開啟<span
+                            <strong>3. 水錘吸收器型式/位置：</strong>採活塞式，角閥後、用水設備前；3F 衛浴末端需加裝<br>
+                            <strong>4. 回水循環預留閥 A-WH-RV01：</strong>熱水回水主管末端加常閉球閥並貼標籤「回水循環預留口｜勿動」，施工圖標註座標（例：A-1F-WH-RV01）<br>
+                            <strong>5. 回水啟用控制：</strong>中央循環泵需加定時器＋溫控啟停，或採零冷水恆溫龍頭（內建微型回水泵）<br>
+                            <strong>6. 重力旁通閥 A-VB：</strong>水塔→繞過 VF800→冷水幹管，常閉，緊急時手動開啟<span
                                 class="new-badge">v8.0</span><br>
-                            <strong>4. 壓力表：</strong>VF800 出口、Haier 熱水出口各一，便於現場診斷<span class="new-badge">v8.0</span><br>
-                            <strong>5. 活接/由令：</strong>每個主設備前後加裝，方便拆卸維修<span class="new-badge">v8.0</span><br>
-                            <strong>6. 排氣閥：</strong>熱水最高點/立管最高點設自動或手動排氣<span class="new-badge">v8.0</span><br>
-                            <strong>7. 球閥隔離原則：</strong>每個主設備前後都有球閥，可單獨關閉維修<br>
-                            <strong>8. 冷熱分管：</strong>VF800 只管冷水，Haier 只管熱水，絕不混接<br>
-                            <strong>9. 熱水管保溫：</strong>全程 <strong>15mm（6分）以上</strong>保溫棉，含接頭處也要包<span
+                            <strong>7. 旁通止回 A-CB：</strong>旁通匯入端加止回閥，避免 VF800 運轉時逆流<br>
+                            <strong>8. 壓力表：</strong>VF800 出口、Haier 熱水出口各一，便於現場診斷<span class="new-badge">v8.0</span><br>
+                            <strong>9. A-PRV 減壓閥：</strong>A-F1 後設減壓閥含壓力表，交屋紀錄設定值<br>
+                            <strong>10. 活接/由令：</strong>每個主設備前後加裝，方便拆卸維修<span class="new-badge">v8.0</span><br>
+                            <strong>11. 排氣閥：</strong>熱水最高點/立管最高點設自動或手動排氣<span class="new-badge">v8.0</span><br>
+                            <strong>12. T&amp;P 泄壓閥：</strong>熱水器依規範設 T&amp;P 泄壓閥，排水導管接至地排/安全位置<br>
+                            <strong>13. 球閥隔離原則：</strong>每個主設備前後都有球閥，可單獨關閉維修<br>
+                            <strong>14. 分層隔離閥：</strong>冷水立管於 2F/3F 分歧處設 A-V2F/A-V3F，熱水同理，方便局部維修<br>
+                            <strong>15. 冷熱分管：</strong>VF800 只管冷水，Haier 只管熱水，絕不混接<br>
+                            <strong>16. 熱水管保溫：</strong>全程 <strong>15mm（6分）以上</strong>保溫棉，含接頭處也要包<span
                                 class="new-badge">規格強化</span><br>
-                            <strong>10. 液位控制：</strong>水塔浮球閥 + 電子液位開關，訊號線回 1F 控制箱<br>
-                            <strong>11. 管路固定：</strong>每 1.5m 一個管夾，穿樓板處加套管並封堵<br>
-                            <strong>12. 減震措施：</strong>TS400B、VF800、Haier 均需橡膠減震座 + 軟接頭<br>
-                            <strong>13. 排水坡度：</strong>RF 設備層地面排水坡度 1:50 以上<span class="new-badge">v8.0</span><br>
-                            <strong>14. 瑞士水區域：</strong>回洗排水管到地排、鹽桶區、防水托盤/漏水偵測<span class="new-badge">v8.0</span>
+                            <strong>17. 熱水幹管效能：</strong>3F 最遠端出水 &lt;10 秒；超時主幹管升級 1"<br>
+                            <strong>18. 液位控制：</strong>水塔浮球閥 + 電子液位開關，訊號線回 1F 控制箱<br>
+                            <strong>19. 管路固定：</strong>每 1.5m 一個管夾，穿樓板處加套管並封堵<br>
+                            <strong>20. 減震措施：</strong>TS400B、VF800、Haier 均需橡膠減震座 + <strong>金屬軟接頭</strong>（不可用塑膠）<br>
+                            <strong>21. 排水坡度：</strong>RF 設備層地面排水坡度 1:50 以上<span class="new-badge">v8.0</span><br>
+                            <strong>22. 瑞士水區域：</strong>回洗排水管到地排、鹽桶區、防水托盤/漏水偵測<span class="new-badge">v8.0</span>
                         </div>
                     </div>
 
@@ -3914,8 +4080,8 @@
                     <div class="warning-box" style="border-color:rgba(139,92,246,.5);">
                         <div class="warning-title" style="color:#a855f7;">📐 弱電施工規範（v8.0 不可違反條款）</div>
                         <div class="warning-content">
-                            <strong>1. 管路分離：</strong>弱電專用管，不得與強電同管、同孔、同盒<br>
-                            <strong>2. 平行間距：</strong>弱電與強電平行走線需保持 ≥30cm 間距<br>
+                            <strong>1. 管路分離：</strong>弱電專用管，不得與強電同管、同孔、同盒、同槽<br>
+                            <strong>2. 平行間距：</strong>弱電與強電平行走線需保持 ≥30cm 間距，交會需 90°<br>
                             <strong>3. 拉線繩：</strong>每段管路必須預留尼龍拉線繩<br>
                             <strong>4. 管內無接頭：</strong>Cat6A 線纜管內禁止接頭，必須整條拉通<br>
                             <strong>5. 穿樓板封堵：</strong>所有穿樓板孔洞須防火填塞<br>
@@ -3926,7 +4092,9 @@
                             <strong>9. 機櫃接地：</strong>MDF 機櫃 + PoE 交換器 + 光纖配線盤金屬件 → 等電位接地<span
                                 class="new-badge">v8.0</span><br>
                             <strong>10. 突波保護：</strong>配電箱端 SPD（二級）+ 機櫃防雷 PDU<span class="new-badge">v8.0</span><br>
-                            <strong>11. 維修淨空：</strong>MDF 前 ≥80cm、後 ≥60cm，AP 天花預留維修孔<span class="new-badge">v8.0</span>
+                            <strong>11. 維修淨空：</strong>MDF 前 ≥80cm、後 ≥60cm，AP 天花預留 ≥20×20cm 可開式檢修口<span
+                                class="new-badge">v8.0</span><br>
+                            <strong>12. 影音預埋管：</strong>娛樂室/電視牆管路需直通無 90°，轉向改兩個 45°；管徑 ≥32mm（EMT 或 PVC），內留拉線繩
                         </div>
                     </div>
 
@@ -4070,16 +4238,23 @@
                             <li>壓力測試：管路加壓 10 kg/cm² 持續 30 分鐘，壓降 ≤ 0.5 kg/cm²</li>
                             <li>管路沖洗：初次使用前，開啟各龍頭沖洗 5 分鐘以上，排除管內雜質</li>
                             <li>濾網方向：Y 型濾網箭頭指向水流方向</li>
+                            <li>A-PRV 減壓閥：設定值與壓力表讀值記錄</li>
                             <li>止回閥方向：A-C1、A-C2、A-C3 箭頭指向水流方向</li>
+                            <li>旁通止回 A-CB：匯入端止回閥方向正確</li>
                             <li>球閥操作：所有球閥開關順暢，無卡澀</li>
+                            <li>分層隔離閥：2F/3F 立管分層閥標示清楚、可獨立關閉</li>
                             <li>活接/由令：主設備前後已安裝，可拆卸</li>
                             <li>水錘吸收器：A-WHA（1F）、A-WHA2（RF）已安裝</li>
+                            <li>水錘吸收器型式：活塞式，角閥後/設備前；3F 末端已加裝</li>
                             <li>重力旁通閥 A-VB：常閉位置，標示清楚</li>
+                            <li>回水循環預留閥 A-WH-RV01：常閉＋標籤「回水循環預留口｜勿動」</li>
                             <li>壓力表：VF800 出口、Haier 出口各一，讀數正常</li>
                             <li>排氣閥：熱水最高點已安裝，初次運轉已排氣</li>
+                            <li>T&amp;P 泄壓閥：熱水器依規範設置，排水導管接至地排/安全位置</li>
                             <li>熱水保溫：全程 15mm 以上，含接頭處</li>
+                            <li>熱水效能：3F 最遠端出水時間 &lt;10 秒（超時需評估幹管升級）</li>
                             <li>液位控制：水塔浮球閥 + 電子液位開關運作正常</li>
-                            <li>TS400B/VF800/Haier：減震座 + 軟接頭已安裝</li>
+                            <li>TS400B/VF800/Haier：減震座 + 金屬軟接頭已安裝</li>
                             <li>瑞士水區域：回洗排水管到地排、鹽桶區、防水托盤</li>
                             <li>管路固定：每 1.5m 管夾，穿樓板處加套管並封堵</li>
                         </div>
@@ -4096,6 +4271,9 @@
                             <li>管路拉線繩：每段管路已預留尼龍拉線繩</li>
                             <li>穿樓板封堵：所有孔洞已防火填塞</li>
                             <li>線纜標示：兩端編號清楚（如 A-1F-LAN-01）</li>
+                            <li>AP 維修孔：天花 ≥20×20cm 可開式檢修口完成</li>
+                            <li>影音預埋管：直通無 90°、轉向用兩個 45°，管內留拉線繩</li>
+                            <li>RF 弱電出口：PVC 防水鴨嘴彎頭（Drip Loop）出口朝下</li>
                             <li>MDF 機櫃接地：機櫃 + PoE 交換器 + 光纖配線盤 → 等電位接地</li>
                             <li>突波保護：配電箱端 SPD（二級）+ 機櫃防雷 PDU</li>
                             <li>溫控風扇：設定 35°C 自動啟動，運作正常</li>
@@ -4110,11 +4288,50 @@
                         <div class="checklist-content">
                             <li>RF 設備基座：防水套管收邊完成</li>
                             <li>RF 地面排水：坡度 1:50 以上，導向地排</li>
+                            <li>屋頂溢流口：位置與排水路徑確認</li>
+                            <li>緊急溢流口：口徑 ≥3"，外排且防回流</li>
+                            <li>屋面穿孔：二次防水收邊＋封堵完成</li>
                             <li>熱泵冷凝水：排水管接到地排/落水頭，無回灌</li>
                             <li>水塔溢流管：接到屋外落水頭，無積水</li>
                             <li>瑞士水區域：回洗排水通暢，地坪防水托盤完整</li>
+                            <li>濕區 R 角：牆地交接 R 角完成，防水層無破膜</li>
+                            <li>防水高度：淋浴區 ≥180cm，其他濕區 ≥30cm</li>
+                            <li>糞管/污水管：管道間直立排水管已包覆隔音棉或使用靜音管</li>
                             <li>1F 給水區：漏水偵測器已安裝（選配）</li>
                             <li>後工作陽台：漏水偵測器已安裝</li>
+                        </div>
+                    </div>
+
+                    <div class="system-box">
+                        <div class="system-title">🧾 量測紀錄表（日期/數值/照片）</div>
+                        <div class="io-table">
+                            <table>
+                                <tr>
+                                    <th>項目</th>
+                                    <th>量測內容</th>
+                                    <th>紀錄</th>
+                                </tr>
+                                <tr>
+                                    <td>水壓數據</td>
+                                    <td>VF800 出口壓力表：靜壓 / 動壓</td>
+                                    <td>日期：____｜數值：____｜照片：____</td>
+                                </tr>
+                                <tr>
+                                    <td>漏水測試</td>
+                                    <td>RF 淹水測試（含溢流口）＋浴室 24h 閉水試驗</td>
+                                    <td>日期：____｜結果：____｜照片：____</td>
+                                </tr>
+                                <tr>
+                                    <td>弱電測試（Cat6A）</td>
+                                    <td>Fluke 或至少線序/長度測試報告</td>
+                                    <td>日期：____｜數值：____｜照片：____</td>
+                                </tr>
+                                <tr>
+                                    <td>弱電測試（光纖）</td>
+                                    <td>OTDR 或至少通光/衰減記錄</td>
+                                    <td>日期：____｜數值：____｜照片：____</td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
 
@@ -4135,22 +4352,22 @@
                                 </tr>
                                 <tr>
                                     <td>天花板 AP 點</td>
-                                    <td>客廳/走廊天花預留網路孔，設計維修孔或在間接照明溝槽旁，不要封死</td>
+                                    <td>客廳/走廊天花預留網路孔，設計 ≥20×20cm 可開式檢修口或在間接照明溝槽旁，不要封死</td>
                                     <td>☐</td>
                                 </tr>
                                 <tr>
                                     <td>電視牆</td>
-                                    <td>預埋 35mm（1吋以上）空管（跑 HDMI/光纖線），不要只留插座</td>
+                                    <td>預埋 35mm（1吋以上）空管（跑 HDMI/光纖線），管路直通無 90°、轉向用兩個 45°</td>
                                     <td>☐</td>
                                 </tr>
                                 <tr>
                                     <td>主臥電視牆</td>
-                                    <td>預埋 35mm 空管</td>
+                                    <td>預埋 35mm 空管，管路直通無 90°、轉向用兩個 45°</td>
                                     <td>☐</td>
                                 </tr>
                                 <tr>
                                     <td>娛樂室</td>
-                                    <td>投影掛架位置 + HDMI/電源管路 35mm，環繞音響預留管</td>
+                                    <td>投影掛架位置 + HDMI/電源管路 35mm，管路直通無 90°、轉向用兩個 45°，環繞音響預留管</td>
                                     <td>☐</td>
                                 </tr>
                             </table>
@@ -4161,15 +4378,85 @@
                     <div class="warning-box">
                         <div class="warning-title">⚠️ 給水電/弱電工班的「紅線條款」（不可做錯）</div>
                         <div class="warning-content">
-                            <strong>弱電管路：</strong>⚠️ 強弱電分離：110/220V 電線與網路線/光纖「絕對不可」穿在同一支管內，平行走線距離需 >30cm<br><br>
+                            <strong>弱電管路：</strong>⚠️ 強弱電分離：110/220V 電線與網路線/光纖「絕對不可」穿在同一支管內/同槽內，平行走線距離需 >30cm，交會需 90°<br><br>
                             <strong>光纖骨幹：</strong>A→B / A→C 必須使用 單模 OS2 光纖（不可用多模）。每棟地下管路需預留「拉線繩」供未來抽換<br><br>
                             <strong>給水管路：</strong>冷熱不混用：VF800 只接冷水、Haier 熱泵只接熱水。設備出口必裝 止回閥 (Check Valve)<br><br>
                             <strong>熱水保溫：</strong>所有熱水管（PPR/不鏽鋼）必須包覆 厚度 15mm（6分）以上 的保溫棉，接頭處也要包<br><br>
+                            <strong>回水預留：</strong>回水主管末端常閉球閥（A-WH-RV01）＋永久標籤「回水循環預留口｜勿動」<br><br>
+                            <strong>開關盒 N 線：</strong>每個開關盒需有 N 線且套藍色套管，開關盒深度 ≥5cm；配電箱端子排標示 N-SWITCH / N-LIGHT 分離<br><br>
+                            <strong>AP 檢修口：</strong>天花 AP 點位必留 ≥20×20cm 可開式檢修口，不可封死<br><br>
+                            <strong>影音預埋管：</strong>管路直通無 90°、轉向用兩個 45°，管徑 ≥32mm 並留拉線繩<br><br>
                             <strong>排水坡度：</strong>RF 設備層（水塔/熱泵）地面排水坡度需做 1:50 以上，避免積水鏽蝕設備腳座<br><br>
                             <strong>跨棟禁止：</strong>⚠️ A/B/C 給水系統禁止任何互通管路；僅允許弱電光纖互聯
                         </div>
                     </div>
 
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 貼紙規範 ==================== -->
+        <div class="floor-plan" id="floor-8">
+            <div class="floor-header">
+                <div class="floor-title">
+                    <div class="floor-title-icon">🏷️</div>
+                    <div>
+                        <div>A棟設備編碼總表 + 貼紙規範</div>
+                        <div style="font-size:.8rem;color:#64748b;font-weight:400;">
+                            交付後維修必備｜閥件/電箱/弱電標示統一
+                        </div>
+                    </div>
+                </div>
+                <div class="direction-badge">
+                    <div class="dir-item">💧 閥件貼紙</div>
+                    <div class="dir-item">⚡ 電箱回路</div>
+                    <div class="dir-item">🌐 弱電標示</div>
+                </div>
+            </div>
+
+            <div class="floor-content" style="grid-template-columns:1fr;">
+                <div class="details-panel" style="max-width:100%;">
+                    <div class="spec-box">
+                        <div class="spec-title">🏷️ 貼紙原則（全棟統一）</div>
+                        <div class="spec-content">
+                            <li>材質：耐水/耐油 PVC 貼紙或防水護貝，字體清晰、不可手寫</li>
+                            <li>位置：貼於閥柄/電箱/弱電端點旁 5–10cm 內，維修可視角度</li>
+                            <li>一致性：貼紙編碼需與本圖面/表單一致，維修記錄同步更新</li>
+                        </div>
+                    </div>
+
+                    <div class="system-box">
+                        <div class="system-title">📌 必貼清單與範例</div>
+                        <div class="io-table">
+                            <table>
+                                <tr>
+                                    <th>類別</th>
+                                    <th>必貼項目</th>
+                                    <th>貼紙範例</th>
+                                </tr>
+                                <tr>
+                                    <td>給水閥件</td>
+                                    <td>A-V1、A-V2、A-V3、A-VB、A-CB、A-PRV、A-V2F/A-V3F</td>
+                                    <td>A-V1 / A-PRV / A-VB</td>
+                                </tr>
+                                <tr>
+                                    <td>電箱回路</td>
+                                    <td>抽水、加壓、熱泵、MDF、冰箱</td>
+                                    <td>A-DB-抽水 / A-DB-熱泵</td>
+                                </tr>
+                                <tr>
+                                    <td>弱電/光纖</td>
+                                    <td>A-MDF → B-IDF、A-MDF → C-IDF 光纖芯號</td>
+                                    <td>A-MDF→B-IDF / 芯 01-02</td>
+                                </tr>
+                                <tr>
+                                    <td>弱電端點</td>
+                                    <td>房間 LAN/TV/AP/CCTV 點位</td>
+                                    <td>A-1F-LAN-01 / A-2F-AP-01</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
