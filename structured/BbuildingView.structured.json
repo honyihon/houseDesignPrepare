@@ -1,0 +1,2050 @@
+{
+  "schema_version": "house-design-structured-v2",
+  "generated_at": "2026-04-17T06:16:11.616035+00:00",
+  "source_file": "BbuildingView.html",
+  "meta": {
+    "title": "B棟 - 傳承核心 × IDF 分點 × 神明廳（v8.3 全優化版）",
+    "lang": "zh-TW"
+  },
+  "tabs": [
+    {
+      "order": 1,
+      "icon": "🏠",
+      "label": "總覽頁（緊急/驗收）",
+      "is_active_default": false,
+      "target_floor_id": "floor-0"
+    },
+    {
+      "order": 2,
+      "icon": "🛕",
+      "label": "1F 神明廳 × IDF",
+      "is_active_default": true,
+      "target_floor_id": "floor-1"
+    },
+    {
+      "order": 3,
+      "icon": "👑",
+      "label": "2F 大客廳 × 主臥",
+      "is_active_default": false,
+      "target_floor_id": "floor-2"
+    },
+    {
+      "order": 4,
+      "icon": "🎤",
+      "label": "3F 娛樂室 × 客房",
+      "is_active_default": false,
+      "target_floor_id": "floor-3"
+    },
+    {
+      "order": 5,
+      "icon": "⚙️",
+      "label": "RF 設備核心",
+      "is_active_default": false,
+      "target_floor_id": "floor-4"
+    },
+    {
+      "order": 6,
+      "icon": "📋",
+      "label": "施工規範總表",
+      "is_active_default": false,
+      "target_floor_id": "floor-5"
+    }
+  ],
+  "floors": [
+    {
+      "order": 1,
+      "id": "floor-0",
+      "title": "🏠",
+      "subtitle": "B棟總覽：住戶緊急指南 + 工班驗收清單 | 整合最新優化建議，強化施工可執行性",
+      "direction_badges": [],
+      "geometry_mm": {},
+      "geometry_source": "",
+      "plan_rows": [],
+      "plan_cells": [],
+      "rooms": [
+        {
+          "order": 1,
+          "id": "",
+          "name": "🆘 住戶緊急關閉地圖",
+          "area": "",
+          "details": [
+            "我家總電源在哪？ 電錶箱（1F 車庫側）",
+            "我家總水閥（B-V1）在哪？ 1F 後工作陽台（水表後第一道閥）",
+            "泵浦/熱泵電源開關在哪？ RF 層設備箱（需爬梯）",
+            "緊急漏水/跳電第一步？ 先關 B-V1！ 再聯繫管理員",
+            "緊急關閉卡： 玄關張貼「水/電/瓦斯關閉步驟」卡，三棟格式統一"
+          ],
+          "tags": [
+            {
+              "title": "⚠️ 重要提醒",
+              "content": "停水時若無 UPS，B 棟網路將中斷（IDF-B 有小 UPS，續航約 15–20 分鐘）",
+              "classes": [
+                "tag-warn"
+              ]
+            }
+          ],
+          "classes": [
+            "tag-emergency"
+          ],
+          "geometry_mm": {},
+          "target_cell_id": ""
+        },
+        {
+          "order": 2,
+          "id": "",
+          "name": "🌀 颱風後檢查清單",
+          "area": "",
+          "details": [
+            "弱電手孔： 檢查地下手孔是否進水，若有積水需立即抽排並檢查光纖",
+            "RF 閥件： 檢查 B-V1、B-V2、旁通閥等是否損壞或位移",
+            "防水蓋板： 檢查 RF 維修人孔蓋、設備保護箱是否位移或破損",
+            "排水系統： 確認 RF 地排、溢流口、落水頭濾網/第二溢流是否暢通",
+            "設備基座： 檢查水塔/熱泵/VF800 基座是否有積水痕跡"
+          ],
+          "tags": [],
+          "classes": [],
+          "geometry_mm": {},
+          "target_cell_id": ""
+        },
+        {
+          "order": 3,
+          "id": "",
+          "name": "✅ 工班驗收清單（Check List）",
+          "area": "",
+          "details": [
+            "給水系統： 壓力測試（0.8MPa 30 分鐘無降壓）、沖洗、濾網方向、止回閥方向、熱水保溫 ≥15mm（含接頭）",
+            "弱電系統： Cat6A 認證測試報告、光纖 OTDR/插入損耗、PoE 負載測試（≥80W）",
+            "IDF 散熱： 風扇分段啟動/溫濕度顯示與告警功能確認",
+            "AP 點位： 天花 AP 點位均有 ≥20×20cm 檢修口（可開啟）",
+            "防水系統： RF 設備基座收邊、地坪洩水坡度 ≥1:50、溢流/冷凝排水無回灌",
+            "武轎儲藏室： 地坪洩水坡度/地漏排水能力灑水驗收，除濕排水孔止逆/防蟲",
+            "濕區防水： R 角完整、淋浴區防水高度 ≥180cm、其他濕區 ≥30cm",
+            "神明廳補氣/氣密： 補氣口位置/可調風量/止回/防雨防蟲，樓梯口門縫氣密條 + 門下擋條",
+            "減震措施： VF800/熱泵/TS400B 均裝設橡膠減震座 + 軟接頭",
+            "抗震固定： 水塔/熱泵/泵浦基座錨定到結構（錨栓/支架）",
+            "排氣處理： 熱水最高點/立管最高點設自動排氣閥",
+            "水錘吸收器： VF800 出口端 + 長管末端已加裝",
+            "回水循環： 循環泵運轉/控制模式驗收，回水主管末端常閉球閥 + 永久標示",
+            "旁通管路： RF 水塔與 VF800 間已預留「重力供水旁通（含常閉閥）」",
+            "颱風防護： 閥件保護箱、設備基座抬高 15cm、手孔蓋球墨鑄鐵"
+          ],
+          "tags": [
+            {
+              "title": "🔧 驗收不通過即重做",
+              "content": "所有項目需留影像紀錄，並經業主簽核。特別注意： 止回閥方向、保溫厚度、強弱電分離、颱風防護措施 。",
+              "classes": [
+                "tag-spec"
+              ]
+            }
+          ],
+          "classes": [],
+          "geometry_mm": {},
+          "target_cell_id": ""
+        }
+      ],
+      "tables": [],
+      "checklists": [],
+      "section_blocks": []
+    },
+    {
+      "order": 2,
+      "id": "floor-1",
+      "title": "1F",
+      "subtitle": "神明廳 × 車庫 × 武轎儲藏室 × IDF-B 機櫃 | 傳承核心｜弱電：IDF-B（光纖來自 A 棟 MDF 地下管道）｜水路進線：B-V1",
+      "direction_badges": [
+        "⬆️ 前：計畫道路",
+        "🛕 內：神桌核心",
+        "🔒 後：儲藏+水路"
+      ],
+      "geometry_mm": {
+        "width_mm": 11000.0,
+        "depth_mm": 5300.0,
+        "north_deg": 0.0
+      },
+      "geometry_source": "auto-grid-v1",
+      "plan_rows": [
+        {
+          "order": 1,
+          "classes": [],
+          "grid_template_columns": "1fr",
+          "column_weights": [
+            1.0
+          ],
+          "cell_orders": [
+            1
+          ],
+          "row_height_mm": 1200.0
+        },
+        {
+          "order": 2,
+          "classes": [],
+          "grid_template_columns": "1fr",
+          "column_weights": [
+            1.0
+          ],
+          "cell_orders": [
+            2
+          ],
+          "row_height_mm": 1300.0
+        },
+        {
+          "order": 3,
+          "classes": [],
+          "grid_template_columns": "1fr 1fr 1fr",
+          "column_weights": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "cell_orders": [
+            3,
+            4,
+            5
+          ],
+          "row_height_mm": 1100.0
+        },
+        {
+          "order": 4,
+          "classes": [],
+          "grid_template_columns": "1fr 1fr",
+          "column_weights": [
+            1.0,
+            1.0
+          ],
+          "cell_orders": [
+            6,
+            7
+          ],
+          "row_height_mm": 1700.0
+        }
+      ],
+      "plan_cells": [
+        {
+          "order": 1,
+          "target_room_id": "garage",
+          "icon": "🚗",
+          "name": "前院車庫",
+          "size": "約 5.5m × 6.0m",
+          "badges": [
+            "⚡ EV預留 32A",
+            "📷 CCTV×1",
+            "🚿 B-V14 戶外龍頭"
+          ],
+          "classes": [
+            "outdoor"
+          ],
+          "row_order": 1,
+          "col_order": 1,
+          "col_weight": 1.0,
+          "row_template_columns": [
+            1.0
+          ],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 0.0,
+            "w_mm": 11000.0,
+            "h_mm": 1200.0
+          },
+          "openings_mm": {
+            "door_mm": 900.0,
+            "window_mm": 0.0
+          },
+          "is_entry": false,
+          "material": "concrete+drain"
+        },
+        {
+          "order": 2,
+          "target_room_id": "shrine",
+          "icon": "🛕",
+          "name": "神明廳 + 玄關",
+          "size": "核心傳承空間",
+          "badges": [
+            "✨ 龍邊神桌",
+            "⚡ 專迴×2",
+            "💨 獨立排氣"
+          ],
+          "classes": [
+            "shrine"
+          ],
+          "row_order": 2,
+          "col_order": 1,
+          "col_weight": 1.0,
+          "row_template_columns": [
+            1.0
+          ],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 1200.0,
+            "w_mm": 11000.0,
+            "h_mm": 1300.0
+          },
+          "openings_mm": {
+            "door_mm": 1000.0,
+            "window_mm": 900.0
+          },
+          "is_entry": true,
+          "material": "tile"
+        },
+        {
+          "order": 3,
+          "target_room_id": "stair1",
+          "icon": "🪜",
+          "name": "樓梯間",
+          "size": "⬆️ 2F",
+          "badges": [
+            "感應燈",
+            "住警器"
+          ],
+          "classes": [
+            "stair"
+          ],
+          "row_order": 3,
+          "col_order": 1,
+          "col_weight": 1.0,
+          "row_template_columns": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 2500.0,
+            "w_mm": 3667.0,
+            "h_mm": 1100.0
+          },
+          "openings_mm": {
+            "door_mm": 900.0,
+            "window_mm": 600.0
+          },
+          "is_entry": false,
+          "material": "concrete+paint"
+        },
+        {
+          "order": 4,
+          "target_room_id": "idf-cabinet",
+          "icon": "🔗",
+          "name": "IDF-B 機櫃",
+          "size": "樓梯下空間",
+          "badges": [
+            "🔌 12芯光纖",
+            "🌐 PoE交換器"
+          ],
+          "classes": [
+            "idf"
+          ],
+          "row_order": 3,
+          "col_order": 2,
+          "col_weight": 1.0,
+          "row_template_columns": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "geometry_mm": {
+            "x_mm": 3667.0,
+            "y_mm": 2500.0,
+            "w_mm": 3667.0,
+            "h_mm": 1100.0
+          },
+          "openings_mm": {
+            "door_mm": 800.0,
+            "window_mm": 600.0
+          },
+          "is_entry": false,
+          "material": "service+utility"
+        },
+        {
+          "order": 5,
+          "target_room_id": "bath1",
+          "icon": "🚿",
+          "name": "無障礙衛浴",
+          "size": "",
+          "badges": [
+            "🆘 求救鈴",
+            "💧 B-V4"
+          ],
+          "classes": [
+            "wet"
+          ],
+          "row_order": 3,
+          "col_order": 3,
+          "col_weight": 1.0,
+          "row_template_columns": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "geometry_mm": {
+            "x_mm": 7333.0,
+            "y_mm": 2500.0,
+            "w_mm": 3667.0,
+            "h_mm": 1100.0
+          },
+          "openings_mm": {
+            "door_mm": 800.0,
+            "window_mm": 600.0
+          },
+          "is_entry": false,
+          "material": "tile+waterproof"
+        },
+        {
+          "order": 6,
+          "target_room_id": "storage",
+          "icon": "🔒",
+          "name": "武轎儲藏室",
+          "size": "淨開口依武轎尺寸",
+          "badges": [
+            "💧 除濕專插",
+            "轉向圓徑180cm"
+          ],
+          "classes": [
+            "storage-wide"
+          ],
+          "row_order": 4,
+          "col_order": 1,
+          "col_weight": 1.0,
+          "row_template_columns": [
+            1.0,
+            1.0
+          ],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 3600.0,
+            "w_mm": 5500.0,
+            "h_mm": 1700.0
+          },
+          "openings_mm": {
+            "door_mm": 800.0,
+            "window_mm": 600.0
+          },
+          "is_entry": false,
+          "material": "service+utility"
+        },
+        {
+          "order": 7,
+          "target_room_id": "balcony1",
+          "icon": "🧺",
+          "name": "後工作陽台",
+          "size": "",
+          "badges": [
+            "B-V1 總閥",
+            "B-F1 濾水",
+            "B-T1 抽水"
+          ],
+          "classes": [
+            "outdoor"
+          ],
+          "row_order": 4,
+          "col_order": 2,
+          "col_weight": 1.0,
+          "row_template_columns": [
+            1.0,
+            1.0
+          ],
+          "geometry_mm": {
+            "x_mm": 5500.0,
+            "y_mm": 3600.0,
+            "w_mm": 5500.0,
+            "h_mm": 1700.0
+          },
+          "openings_mm": {
+            "door_mm": 900.0,
+            "window_mm": 0.0
+          },
+          "is_entry": false,
+          "material": "concrete+drain"
+        }
+      ],
+      "rooms": [
+        {
+          "order": 1,
+          "id": "garage",
+          "name": "🚗 前院車庫",
+          "area": "約 33 ㎡",
+          "details": [
+            "EV 充電： 獨立迴路 32A/40A（建議 NEMA 14-50 或 Type2），預留管徑 1\"",
+            "CCTV： 車庫入口 1 支 PoE（拉回 1F IDF-B），預留 Cat6A",
+            "照明： 建議感應式 LED + 手動開關雙控",
+            "B-V14 戶外龍頭： 接冷水支管（濾水器後），旁設 IP65 防水插座（洗車機用），配防撞保護罩",
+            "車庫高度： 不得高於屋簷，保持明堂開闊（風水考量）"
+          ],
+          "tags": [
+            {
+              "title": "🌀 颱風防護",
+              "content": "車庫入口建議預留防颱板軌道，大面窗採膠合玻璃，抗風壓等級目標 ≥360 kgf/m²",
+              "classes": [
+                "tag-typhoon"
+              ]
+            }
+          ],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 0.0,
+            "w_mm": 11000.0,
+            "h_mm": 1200.0
+          },
+          "target_cell_id": "slot-1"
+        },
+        {
+          "order": 2,
+          "id": "shrine",
+          "name": "神 神明廳 (核心)",
+          "area": "傳承重點",
+          "details": [
+            "神桌位置： 偏龍邊靠實牆，避開樑壓與廁所上方。",
+            "神桌背牆規範： 實牆 RC ≥15cm（不可輕隔間）、背後無廁所/浴室/樓梯/電梯/主要排水立管、不可樑壓、龍邊（左）靠實牆為佳、高度約 110cm（文公尺吉位）、背牆不可走任何電線管（防高溫干擾）",
+            "背牆虛實處理： 若管線/樑柱必經，RC 牆後加輕隔間假牆藏管，正面保持實牆",
+            "神明燈插座： 左右各預留專用插座（獨立回路），採耐熱電線",
+            "排風系統： 天花預留 4\" 獨立排風管（不與廚房共用），最短路徑直通戶外，建議 304 不鏽鋼，出口加防蟲網/防雨罩，排風扇可調速/延時。",
+            "補氣路徑： 固定補氣百葉/進氣口（可調風量、止回、防雨防蟲），位置避開直吹神桌，避免負壓回灌",
+            "電力規劃： 神桌牆面專用插座 ×4（建議 H=110cm），一迴路給照明/神桌，一迴路給除濕/排風。",
+            "隔斷/氣密門： 樓梯口隔煙門（60 分鐘防火）或隱藏拉門需門縫氣密條 + 門下擋條，減少香氣外溢並保留動線；化解穿堂煞。",
+            "火警偵測： 熱感應式探測器，訊號回 IDF-B 聯動聲光警報與手機推播。",
+            "防火建材： 神桌背牆與天花採防火矽酸鈣板；光明燈/佛龕燈獨立專用迴路。",
+            "滅火設備： 懸掛式自動滅火球或家用滅火器，放在易取處。",
+            "玄關一鍵全關： One-Touch 全關開關，關閉全屋照明（保留冰箱/弱電）。",
+            "智慧門鎖/對講： 門邊預留電源/訊號線路，門扇依門鎖標準孔位加工。",
+            "包裹收納櫃： 玄關嵌入式收納櫃深度 ≥30cm，內預留插座。",
+            "空調餘量： 焚香熱負荷大，冷房能力預留 20-30% 或配獨立空調。"
+          ],
+          "tags": [
+            {
+              "title": "☯️ 風水紅線清單",
+              "content": "神桌背牆：實牆 RC ≥15cm｜背後無廁所/浴室/樓梯/主要排水立管｜不可樑壓｜龍邊靠實牆｜高度約 110cm（文公尺）｜背牆禁走電線管",
+              "classes": [
+                "tag-fengshui"
+              ]
+            },
+            {
+              "title": "施工建議",
+              "content": "神明廳為 B 棟精神核心。桌面高度依神桌（H=110cm 左右 + 桌面厚度）校正；電氣、金屬件以不鏽鋼為佳，耐香火油煙。可選配 PM2.5/溫濕度感測器聯動排風。",
+              "classes": [
+                "tag-opt"
+              ]
+            }
+          ],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 1200.0,
+            "w_mm": 11000.0,
+            "h_mm": 1300.0
+          },
+          "target_cell_id": "slot-2"
+        },
+        {
+          "order": 3,
+          "id": "stair1",
+          "name": "🪜 樓梯間（1F）",
+          "area": "⬆️ 2F",
+          "details": [
+            "位置： 設於神明廳後方右側（避開神桌正沖）",
+            "標示： 🪜 樓梯間（⬆️2F）- 帶箭頭圖示",
+            "照明： 感應式 LED 燈 + 手動開關雙控",
+            "安全設備： 住警器（火災/一氧化碳偵測）",
+            "隔斷門： 透明防火氣密門（可見樓梯又防煙），60 分鐘防火等級 + 門縫氣密條/門下擋條",
+            "IDF-B 位置： 機櫃設於樓梯下空間（與 A/C 棟一致）"
+          ],
+          "tags": [
+            {
+              "title": "📋 樓梯標示統一規範",
+              "content": "1F：🪜 樓梯間（⬆️2F）｜2F：🪜 樓梯間（⬇️1F ⬆️3F）｜3F：🪜 樓梯間（⬇️2F ⬆️RF）｜RF：🪜 樓梯出口（⬇️3F）+ 防水人孔蓋",
+              "classes": [
+                "tag-spec"
+              ]
+            }
+          ],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 2500.0,
+            "w_mm": 3667.0,
+            "h_mm": 1100.0
+          },
+          "target_cell_id": "slot-3"
+        },
+        {
+          "order": 4,
+          "id": "idf-cabinet",
+          "name": "🔗 IDF-B 機櫃",
+          "area": "弱電分點｜樓梯下空間",
+          "details": [
+            "機櫃規格： 15U 壁掛式（建議大一號，預留 ≥1/3 空位），深度 600mm，百葉門 + 前門透氣網孔",
+            "散熱： 頂部加裝 2 顆靜音風扇（ 28–30°C 低速 / 32°C 中速 / 35°C 高速 ） + 櫃門百葉孔對流 + 溫濕度顯示/告警",
+            "櫃內配電： 預留 110V 插座 ×2 + PDU + 櫃內維修照明 + 理線架/走線槽（UPS/交換器/配線架）",
+            "位置： 移至 1F 樓梯下空間（與 A/C 一致），避開神明廳排風管（防髒空氣進入）",
+            "避水/避悶： 不貼近給排水管，避免密閉悶箱，必要時加防水托盤",
+            "接地： 機櫃殼體、交換器金屬件需接建物接地（6sq 以上）+ SPD 防雷",
+            "維修淨空： 前 ≥80cm、後 ≥60cm",
+            "光纖上行： 來自 A 棟 MDF 的 單模光纖 12 芯（OS2） ，端接 LC 介面， 依 ANSI/TIA-606-B 標示：A-MDF TO B-IDF CORE 1-6",
+            "設備配置： 光纖收容盒 + 8-Port PoE+ 交換器 + 24 Port 配線架",
+            "PoE 負載預估： AP×2 + CCTV×3 + 門禁×1 ≈ 80W（選用 150W 以上交換器）",
+            "UPS： 建議 650VA 在線式，續航 15-20 分鐘；若目標僅安全關機即可，容量可維持現規；若需颱風停電仍維持監控/求救通知，需升級容量或備援"
+          ],
+          "tags": [
+            {
+              "title": "⚠️ 強弱電分離規範（不可違反）",
+              "content": "同孔/同盒不可共用｜依規範低壓 ≥15cm、高壓 ≥50cm｜本案平行 ≥30cm、交叉 90°｜管內禁止接頭｜每段需預留拉線繩",
+              "classes": [
+                "tag-warn"
+              ]
+            }
+          ],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 3667.0,
+            "y_mm": 2500.0,
+            "w_mm": 3667.0,
+            "h_mm": 1100.0
+          },
+          "target_cell_id": "slot-4"
+        },
+        {
+          "order": 5,
+          "id": "bath1",
+          "name": "浴 無障礙衛浴",
+          "area": "",
+          "details": [
+            "給水： B-V4（冷水分支閥）+ B-V5（熱水分支閥）",
+            "無障礙配置： 淋浴滑桿、扶手、求救鈴（拉繩式），門淨寬 ≥80cm（法規底線）；本案 ≥90cm。",
+            "牆面補強： 淋浴區/馬桶旁預埋木芯或鋼襯，後續可裝 L 型扶手。",
+            "智能馬桶： 防水插座 + 進水角閥 + 等電位接地端子預留。",
+            "排水： 洩水坡度 1:60，地排建議 2\"",
+            "減震： 馬桶/龍頭安裝加防震墊。",
+            "緊急拉繩訊號： 預埋 2C 線回 IDF-B， 同步連動 1F 客廳聲光警報 （長輩跌倒可立即反應）"
+          ],
+          "tags": [],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 7333.0,
+            "y_mm": 2500.0,
+            "w_mm": 3667.0,
+            "h_mm": 1100.0
+          },
+          "target_cell_id": "slot-5"
+        },
+        {
+          "order": 6,
+          "id": "storage",
+          "name": "🔒 武轎儲藏室",
+          "area": "特殊動線需求",
+          "details": [
+            "用途： 武轎、金紙、祭祀用品、雜物集中收納。",
+            "門片/淨開口： 以「淨開口」為準，≥（武轎最寬處 + 10~15cm）；若需整座進出目標 ≥150cm，折疊/上掀門需註明折疊後淨開口；採無門檻或活動式門檻",
+            "動線規範： 通道淨寬 ≥150cm｜大門→儲藏室 避免 90 度直角（建議 135° 斜角）｜地面防滑平整",
+            "防水/排水驗收： 地面整體防水 + 洩水坡度導向地漏，無門檻也不回灌；需做灑水/淹水測試確認排水能力",
+            "轎架轉向： 室內通道預留「轎架轉向圓徑 180cm」",
+            "除濕排水： 除濕機專用插座 + 預留排水孔（管徑 1/2\"）貼牆設置，排水孔加止逆/防蟲/濾網防回灌",
+            "層板/掛勾： 內部規劃層板＋掛勾，分類放置香燭/供品，保持乾燥整潔。",
+            "氣密： 實心門 + 鎖 + 氣密條（防味道外溢）。"
+          ],
+          "tags": [
+            {
+              "title": "🛕 武轎動線建議",
+              "content": "武轎進出頻繁時需確保動線順暢，建議大門至儲藏室採 135° 斜角設計，避免直角轉彎困難。地面需完全平整無高差。",
+              "classes": [
+                "tag-opt"
+              ]
+            }
+          ],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 3600.0,
+            "w_mm": 5500.0,
+            "h_mm": 1700.0
+          },
+          "target_cell_id": "slot-6"
+        },
+        {
+          "order": 7,
+          "id": "balcony1",
+          "name": "🧺 後工作陽台（水路進線點）",
+          "area": "",
+          "details": [
+            "B-V1 總進水閥： B 棟獨立水表後第一道閥，方便日後維修關水， 加裝防風防撞保護箱",
+            "B-F1 前置濾水： 20\" 大胖濾瓶，過濾泥沙雜質",
+            "軟水/淨水旁通： 總進水處預留 U 型旁通管 + 閥門 + 110V 插座 + 更換空間",
+            "B-T1 抽水機： TS400B，將水打至 RF 水塔",
+            "洗衣區： 專用插座 20A + 排水地漏",
+            "弱電立管： 此處為 B 棟弱電立管起點（1F→RF），非光纖主進線點",
+            "水錘吸收器： TS400B 出口端已加裝"
+          ],
+          "tags": [
+            {
+              "title": "💧 B 棟獨立給水",
+              "content": "B 棟擁有獨立水表/水塔/加壓系統，與 A、C 棟水路互不連通，維修不互相影響。 嚴格禁止跨棟借水！",
+              "classes": [
+                "tag-water"
+              ]
+            }
+          ],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 5500.0,
+            "y_mm": 3600.0,
+            "w_mm": 5500.0,
+            "h_mm": 1700.0
+          },
+          "target_cell_id": "slot-7"
+        }
+      ],
+      "tables": [
+        {
+          "order": 1,
+          "context_title": "🔗 A→B 棟光纖連結架構",
+          "headers": [
+            "項目",
+            "規格",
+            "備註"
+          ],
+          "rows": [
+            [
+              "跨棟管道",
+              "PVC 1.5\" × 2 支",
+              "一主一備，埋深 60cm，每 15m 設手孔（球墨鑄鐵蓋）"
+            ],
+            [
+              "光纖規格",
+              "單模 OS2 12 芯",
+              "使用 6 芯、預留 6 芯擴充"
+            ],
+            [
+              "端接介面",
+              "LC/UPC 雙工",
+              "收容盒需標示纖芯編號"
+            ],
+            [
+              "交換器",
+              "L2 8-Port PoE+ GbE",
+              "建議含 2 個 SFP+ 上行"
+            ]
+          ]
+        }
+      ],
+      "checklists": [],
+      "section_blocks": [
+        {
+          "order": 1,
+          "title": "🔗 A→B 棟光纖連結架構",
+          "classes": [
+            "system-box"
+          ],
+          "bullet_items": []
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "id": "floor-2",
+      "title": "2F",
+      "subtitle": "大客廳 × 主臥 × 茶水吧 | 尊榮起居層｜影音高頻寬需求｜主臥舒適配置",
+      "direction_badges": [
+        "📡 AP 主覆蓋點",
+        "🌐 LAN×6"
+      ],
+      "geometry_mm": {
+        "width_mm": 11000.0,
+        "depth_mm": 5400.0,
+        "north_deg": 0.0
+      },
+      "geometry_source": "auto-grid-v1",
+      "plan_rows": [
+        {
+          "order": 1,
+          "classes": [],
+          "grid_template_columns": "1fr",
+          "column_weights": [
+            1.0
+          ],
+          "cell_orders": [
+            1
+          ],
+          "row_height_mm": 1300.0
+        },
+        {
+          "order": 2,
+          "classes": [],
+          "grid_template_columns": "1fr 1fr 1fr",
+          "column_weights": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "cell_orders": [
+            2,
+            3,
+            4
+          ],
+          "row_height_mm": 1100.0
+        },
+        {
+          "order": 3,
+          "classes": [],
+          "grid_template_columns": "1fr",
+          "column_weights": [
+            1.0
+          ],
+          "cell_orders": [
+            5
+          ],
+          "row_height_mm": 1300.0
+        },
+        {
+          "order": 4,
+          "classes": [],
+          "grid_template_columns": "1fr",
+          "column_weights": [
+            1.0
+          ],
+          "cell_orders": [
+            6
+          ],
+          "row_height_mm": 1700.0
+        }
+      ],
+      "plan_cells": [
+        {
+          "order": 1,
+          "target_room_id": "living2",
+          "icon": "🛋️",
+          "name": "家庭大客廳",
+          "size": "",
+          "badges": [
+            "📺 TV/NAS",
+            "📡 AP×1",
+            "🌐 LAN×3"
+          ],
+          "classes": [],
+          "row_order": 1,
+          "col_order": 1,
+          "col_weight": 1.0,
+          "row_template_columns": [
+            1.0
+          ],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 0.0,
+            "w_mm": 11000.0,
+            "h_mm": 1300.0
+          },
+          "openings_mm": {
+            "door_mm": 900.0,
+            "window_mm": 1800.0
+          },
+          "is_entry": false,
+          "material": "wood+paint"
+        },
+        {
+          "order": 2,
+          "target_room_id": "stair2",
+          "icon": "🪜",
+          "name": "樓梯間",
+          "size": "⬇️1F ⬆️3F",
+          "badges": [],
+          "classes": [
+            "stair"
+          ],
+          "row_order": 2,
+          "col_order": 1,
+          "col_weight": 1.0,
+          "row_template_columns": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 1300.0,
+            "w_mm": 3667.0,
+            "h_mm": 1100.0
+          },
+          "openings_mm": {
+            "door_mm": 900.0,
+            "window_mm": 600.0
+          },
+          "is_entry": false,
+          "material": "concrete+paint"
+        },
+        {
+          "order": 3,
+          "target_room_id": "bar2",
+          "icon": "☕",
+          "name": "茶水吧",
+          "size": "",
+          "badges": [
+            "⚡ 專迴"
+          ],
+          "classes": [],
+          "row_order": 2,
+          "col_order": 2,
+          "col_weight": 1.0,
+          "row_template_columns": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "geometry_mm": {
+            "x_mm": 3667.0,
+            "y_mm": 1300.0,
+            "w_mm": 3667.0,
+            "h_mm": 1100.0
+          },
+          "openings_mm": {
+            "door_mm": 900.0,
+            "window_mm": 1000.0
+          },
+          "is_entry": false,
+          "material": "paint+default"
+        },
+        {
+          "order": 4,
+          "target_room_id": "bath2",
+          "icon": "🚿",
+          "name": "客用衛浴",
+          "size": "",
+          "badges": [
+            "B-V6/V7"
+          ],
+          "classes": [
+            "wet"
+          ],
+          "row_order": 2,
+          "col_order": 3,
+          "col_weight": 1.0,
+          "row_template_columns": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "geometry_mm": {
+            "x_mm": 7333.0,
+            "y_mm": 1300.0,
+            "w_mm": 3667.0,
+            "h_mm": 1100.0
+          },
+          "openings_mm": {
+            "door_mm": 800.0,
+            "window_mm": 600.0
+          },
+          "is_entry": false,
+          "material": "tile+waterproof"
+        },
+        {
+          "order": 5,
+          "target_room_id": "master2",
+          "icon": "👑",
+          "name": "主臥套房",
+          "size": "",
+          "badges": [
+            "🌐 LAN×2",
+            "🔌 床頭雙切",
+            "❄️ AC 1.8噸"
+          ],
+          "classes": [],
+          "row_order": 3,
+          "col_order": 1,
+          "col_weight": 1.0,
+          "row_template_columns": [
+            1.0
+          ],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 2400.0,
+            "w_mm": 11000.0,
+            "h_mm": 1300.0
+          },
+          "openings_mm": {
+            "door_mm": 900.0,
+            "window_mm": 1200.0
+          },
+          "is_entry": false,
+          "material": "wood+paint"
+        },
+        {
+          "order": 6,
+          "target_room_id": "balcony2",
+          "icon": "🌿",
+          "name": "後陽台/立管",
+          "size": "",
+          "badges": [],
+          "classes": [
+            "outdoor"
+          ],
+          "row_order": 4,
+          "col_order": 1,
+          "col_weight": 1.0,
+          "row_template_columns": [
+            1.0
+          ],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 3700.0,
+            "w_mm": 11000.0,
+            "h_mm": 1700.0
+          },
+          "openings_mm": {
+            "door_mm": 900.0,
+            "window_mm": 0.0
+          },
+          "is_entry": false,
+          "material": "concrete+drain"
+        }
+      ],
+      "rooms": [
+        {
+          "order": 1,
+          "id": "stair2",
+          "name": "🪜 樓梯間（2F）",
+          "area": "⬇️1F ⬆️3F",
+          "details": [
+            "標示： 🪜 樓梯間（⬇️1F ⬆️3F）- 帶箭頭圖示",
+            "照明： 感應式 LED 燈",
+            "安全設備： 住警器"
+          ],
+          "tags": [],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 1300.0,
+            "w_mm": 3667.0,
+            "h_mm": 1100.0
+          },
+          "target_cell_id": "slot-2"
+        },
+        {
+          "order": 2,
+          "id": "living2",
+          "name": "🛋️ 家庭大客廳",
+          "area": "主要起居",
+          "details": [
+            "電視牆： LAN×2（TV/串流盒）+ 1.25\" 空管（HDMI/光纖音訊）",
+            "沙發側： LAN×1（筆電/遊戲機備用）+ 雙插座×2 組",
+            "AP 位置： 天花板中央吸頂 AP（PoE），覆蓋 2F 全層",
+            "空調： 分離式 1.8~2.0 噸，室外機預留 RF 或側牆位置",
+            "無障礙衛浴求救鈴聯動： 聲光警報器安裝於客廳明顯處"
+          ],
+          "tags": [
+            {
+              "title": "🌐 影音優化建議",
+              "content": "4K NAS 串流建議走有線網路（Cat6A），Wi-Fi 6 留給手機平板。 TV 牆建議預埋 1.25\" 空管方便日後升級 HDMI 2.1。",
+              "classes": [
+                "tag-net"
+              ]
+            }
+          ],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 0.0,
+            "w_mm": 11000.0,
+            "h_mm": 1300.0
+          },
+          "target_cell_id": "slot-1"
+        },
+        {
+          "order": 3,
+          "id": "bar2",
+          "name": "☕ 茶水吧/梯廳",
+          "area": "",
+          "details": [
+            "功能： 飲水機/咖啡機/小冰箱，避免下樓取水",
+            "電力： 檯面插座 ×3 組 + 獨立 20A 迴路（加熱設備耗電）",
+            "給水： 預留冷水管（B-V8）供飲水機使用",
+            "中島/吧檯擴充： 下櫃預留 3~4 組插座（洗碗機/加熱飲水/廚餘機）",
+            "洗碗/廚餘： 預留進排水口，廚餘機排水需耐熱防堵"
+          ],
+          "tags": [],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 3667.0,
+            "y_mm": 1300.0,
+            "w_mm": 3667.0,
+            "h_mm": 1100.0
+          },
+          "target_cell_id": "slot-3"
+        },
+        {
+          "order": 4,
+          "id": "bath2",
+          "name": "🚿 客用衛浴",
+          "area": "",
+          "details": [
+            "給水： B-V6（冷水）、B-V7（熱水）",
+            "配置： 洗手台 + 馬桶 + 淋浴間",
+            "通風： 抽風機連動照明開關， 獨立排風管直通室外 + 止逆閥防串味",
+            "牆面補強： 馬桶旁/淋浴區預埋木芯或鋼襯",
+            "智能馬桶： 防水插座 + 進水角閥 + 等電位接地端子預留",
+            "熱水保溫： 熱水管全程 ≥15mm 保溫"
+          ],
+          "tags": [],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 7333.0,
+            "y_mm": 1300.0,
+            "w_mm": 3667.0,
+            "h_mm": 1100.0
+          },
+          "target_cell_id": "slot-4"
+        },
+        {
+          "order": 5,
+          "id": "master2",
+          "name": "👑 主臥套房",
+          "area": "含更衣+主衛",
+          "details": [
+            "床頭： 兩側各 2 插座 + USB-C×1 + 燈光雙切開關",
+            "書桌區： LAN×2（電腦/備用）+ 插座×4",
+            "主衛浴： B-V9（冷）、B-V10（熱），免治馬桶防水插座 + 等電位接地端子預留",
+            "空調： 分離式 1.0~1.2 噸，床頭避免直吹",
+            "熱水管路： 全程 ≥15mm 保溫，回水循環完工即啟用（回水管/循環泵電源列驗收）"
+          ],
+          "tags": [],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 2400.0,
+            "w_mm": 11000.0,
+            "h_mm": 1300.0
+          },
+          "target_cell_id": "slot-5"
+        },
+        {
+          "order": 6,
+          "id": "balcony2",
+          "name": "🌿 後陽台/立管區",
+          "area": "",
+          "details": [
+            "立管通過： 弱電立管（1F→RF）+ 給排水立管",
+            "洗衣備用： 預留給排水點（若 1F 空間不足可移至此）"
+          ],
+          "tags": [],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 3700.0,
+            "w_mm": 11000.0,
+            "h_mm": 1700.0
+          },
+          "target_cell_id": "slot-6"
+        }
+      ],
+      "tables": [],
+      "checklists": [],
+      "section_blocks": []
+    },
+    {
+      "order": 4,
+      "id": "floor-3",
+      "title": "3F",
+      "subtitle": "娛樂室 × 後客房 × 大露台 | KTV/影音專區｜彈性空間｜戶外機能｜ | 熱水保溫 ≥15mm",
+      "direction_badges": [
+        "🎤 KTV 專區",
+        "☀️ 前院大露台"
+      ],
+      "geometry_mm": {
+        "width_mm": 11000.0,
+        "depth_mm": 5300.0,
+        "north_deg": 0.0
+      },
+      "geometry_source": "auto-grid-v1",
+      "plan_rows": [
+        {
+          "order": 1,
+          "classes": [],
+          "grid_template_columns": "1fr",
+          "column_weights": [
+            1.0
+          ],
+          "cell_orders": [
+            1
+          ],
+          "row_height_mm": 1200.0
+        },
+        {
+          "order": 2,
+          "classes": [],
+          "grid_template_columns": "1fr 1fr",
+          "column_weights": [
+            1.0,
+            1.0
+          ],
+          "cell_orders": [
+            2,
+            3
+          ],
+          "row_height_mm": 1300.0
+        },
+        {
+          "order": 3,
+          "classes": [],
+          "grid_template_columns": "1fr 1fr",
+          "column_weights": [
+            1.0,
+            1.0
+          ],
+          "cell_orders": [
+            4,
+            5
+          ],
+          "row_height_mm": 1100.0
+        },
+        {
+          "order": 4,
+          "classes": [],
+          "grid_template_columns": "1fr",
+          "column_weights": [
+            1.0
+          ],
+          "cell_orders": [
+            6
+          ],
+          "row_height_mm": 1700.0
+        }
+      ],
+      "plan_cells": [
+        {
+          "order": 1,
+          "target_room_id": "terrace3",
+          "icon": "☀️",
+          "name": "前院大露台",
+          "size": "",
+          "badges": [
+            "🚿 戶外龍頭",
+            "⚡ 防雨插座"
+          ],
+          "classes": [
+            "outdoor"
+          ],
+          "row_order": 1,
+          "col_order": 1,
+          "col_weight": 1.0,
+          "row_template_columns": [
+            1.0
+          ],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 0.0,
+            "w_mm": 11000.0,
+            "h_mm": 1200.0
+          },
+          "openings_mm": {
+            "door_mm": 900.0,
+            "window_mm": 0.0
+          },
+          "is_entry": false,
+          "material": "concrete+drain"
+        },
+        {
+          "order": 2,
+          "target_room_id": "stair3",
+          "icon": "🪜",
+          "name": "樓梯間",
+          "size": "⬇️2F ⬆️RF",
+          "badges": [],
+          "classes": [
+            "stair"
+          ],
+          "row_order": 2,
+          "col_order": 1,
+          "col_weight": 1.0,
+          "row_template_columns": [
+            1.0,
+            1.0
+          ],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 1200.0,
+            "w_mm": 5500.0,
+            "h_mm": 1300.0
+          },
+          "openings_mm": {
+            "door_mm": 900.0,
+            "window_mm": 600.0
+          },
+          "is_entry": false,
+          "material": "concrete+paint"
+        },
+        {
+          "order": 3,
+          "target_room_id": "ktv3",
+          "icon": "🎤",
+          "name": "多功能娛樂室",
+          "size": "",
+          "badges": [
+            "⚡ 器材專迴",
+            "🌐 LAN×4",
+            "📡 AP×1"
+          ],
+          "classes": [],
+          "row_order": 2,
+          "col_order": 2,
+          "col_weight": 1.0,
+          "row_template_columns": [
+            1.0,
+            1.0
+          ],
+          "geometry_mm": {
+            "x_mm": 5500.0,
+            "y_mm": 1200.0,
+            "w_mm": 5500.0,
+            "h_mm": 1300.0
+          },
+          "openings_mm": {
+            "door_mm": 900.0,
+            "window_mm": 1000.0
+          },
+          "is_entry": false,
+          "material": "paint+default"
+        },
+        {
+          "order": 4,
+          "target_room_id": "bath3",
+          "icon": "🚿",
+          "name": "3F 衛浴",
+          "size": "",
+          "badges": [
+            "B-V11/V12",
+            "保溫15mm"
+          ],
+          "classes": [
+            "wet"
+          ],
+          "row_order": 3,
+          "col_order": 1,
+          "col_weight": 1.0,
+          "row_template_columns": [
+            1.0,
+            1.0
+          ],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 2500.0,
+            "w_mm": 5500.0,
+            "h_mm": 1100.0
+          },
+          "openings_mm": {
+            "door_mm": 800.0,
+            "window_mm": 600.0
+          },
+          "is_entry": false,
+          "material": "tile+waterproof"
+        },
+        {
+          "order": 5,
+          "target_room_id": "guest3",
+          "icon": "🛏️",
+          "name": "後客房",
+          "size": "",
+          "badges": [
+            "🌐 LAN×1",
+            "❄️ AC"
+          ],
+          "classes": [],
+          "row_order": 3,
+          "col_order": 2,
+          "col_weight": 1.0,
+          "row_template_columns": [
+            1.0,
+            1.0
+          ],
+          "geometry_mm": {
+            "x_mm": 5500.0,
+            "y_mm": 2500.0,
+            "w_mm": 5500.0,
+            "h_mm": 1100.0
+          },
+          "openings_mm": {
+            "door_mm": 900.0,
+            "window_mm": 1200.0
+          },
+          "is_entry": false,
+          "material": "wood+paint"
+        },
+        {
+          "order": 6,
+          "target_room_id": "ladder3",
+          "icon": "🪜",
+          "name": "後陽台 + 爬梯（通RF）",
+          "size": "",
+          "badges": [],
+          "classes": [
+            "outdoor"
+          ],
+          "row_order": 4,
+          "col_order": 1,
+          "col_weight": 1.0,
+          "row_template_columns": [
+            1.0
+          ],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 3600.0,
+            "w_mm": 11000.0,
+            "h_mm": 1700.0
+          },
+          "openings_mm": {
+            "door_mm": 900.0,
+            "window_mm": 600.0
+          },
+          "is_entry": false,
+          "material": "concrete+paint"
+        }
+      ],
+      "rooms": [
+        {
+          "order": 1,
+          "id": "stair3",
+          "name": "🪜 樓梯間（3F）",
+          "area": "⬇️2F ⬆️RF",
+          "details": [
+            "標示： 🪜 樓梯間（⬇️2F ⬆️RF）- 帶箭頭圖示",
+            "照明： 感應式 LED 燈",
+            "安全設備： 住警器"
+          ],
+          "tags": [],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 1200.0,
+            "w_mm": 5500.0,
+            "h_mm": 1300.0
+          },
+          "target_cell_id": "slot-2"
+        },
+        {
+          "order": 2,
+          "id": "terrace3",
+          "name": "☀️ 前院大露台",
+          "area": "戶外空間",
+          "details": [
+            "戶外龍頭： B-V13（冷水），澆花/清洗用",
+            "防雨插座： IP65 等級 ×2 組（烤肉/電扇）",
+            "排水： 落水頭（加濾網/檢修口）+ 防水層延伸至女兒牆"
+          ],
+          "tags": [
+            {
+              "title": "🌀 颱風防護",
+              "content": "露台排水需確保暢通，落水頭防堵/可檢修，女兒牆高度符合法規，防水層延伸確實",
+              "classes": [
+                "tag-typhoon"
+              ]
+            }
+          ],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 0.0,
+            "w_mm": 11000.0,
+            "h_mm": 1200.0
+          },
+          "target_cell_id": "slot-1"
+        },
+        {
+          "order": 3,
+          "id": "ktv3",
+          "name": "🎤 多功能娛樂室（KTV/劇院）",
+          "area": "重點空間",
+          "details": [
+            "網路： LAN×4（KTV 主機/擴大機/遊戲機/備用）",
+            "投影： 天花板預留投影機電源 + 1.25\" 空管至設備櫃",
+            "影音預埋管： 32mm EMT/PVC 直通無 90°，需轉向用兩個 45° 彎頭，並預留拉線繩",
+            "音響電力： 獨立 20A 迴路（減少電源干擾雜訊）",
+            "隔音/氣密： 3F 地坪採浮式地板或 ≥10mm 橡膠隔音墊；2F 天花雙層石膏板 + 隔音棉；門縫氣密條 + 穿孔封堵",
+            "AP： 天花板吸頂 AP（遊戲低延遲需求）"
+          ],
+          "tags": [
+            {
+              "title": "🎵 娛樂室優化",
+              "content": "音響器材建議走獨立接地迴路，減少馬達/冰箱干擾。 投影幕電動升降需預留電源與控制線。",
+              "classes": [
+                "tag-opt"
+              ]
+            }
+          ],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 5500.0,
+            "y_mm": 1200.0,
+            "w_mm": 5500.0,
+            "h_mm": 1300.0
+          },
+          "target_cell_id": "slot-3"
+        },
+        {
+          "order": 4,
+          "id": "bath3",
+          "name": "🚿 3F 衛浴",
+          "area": "",
+          "details": [
+            "給水： B-V11（冷水）、B-V12（熱水）",
+            "配置： 洗手台 + 馬桶 + 淋浴",
+            "通風： 獨立排風管直通室外 + 止逆閥防串味",
+            "牆面補強： 馬桶旁/淋浴區預埋木芯或鋼襯",
+            "智能馬桶： 防水插座 + 進水角閥 + 等電位接地端子預留",
+            "熱水保溫： 熱水管全程 ≥15mm 保溫（含接頭）",
+            "回水循環： 完工即啟用循環泵，3F 出水時間目標 <10 秒；若超時評估熱水幹管升級 1\""
+          ],
+          "tags": [],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 2500.0,
+            "w_mm": 5500.0,
+            "h_mm": 1100.0
+          },
+          "target_cell_id": "slot-4"
+        },
+        {
+          "order": 5,
+          "id": "guest3",
+          "name": "🛏️ 後客房",
+          "area": "",
+          "details": [
+            "網路： LAN×1（床頭或書桌）",
+            "電力： 床頭雙插座 + 空調專插",
+            "空調： 分離式 0.8~1.0 噸"
+          ],
+          "tags": [],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 5500.0,
+            "y_mm": 2500.0,
+            "w_mm": 5500.0,
+            "h_mm": 1100.0
+          },
+          "target_cell_id": "slot-5"
+        },
+        {
+          "order": 6,
+          "id": "ladder3",
+          "name": "🪜 後陽台與爬梯",
+          "area": "",
+          "details": [
+            "立管： B 棟弱電立管（1F→RF）經此處通往屋頂",
+            "爬梯： 通往 RF 設備層，建議加裝護籠",
+            "預留： 冷氣室外機吊掛位置"
+          ],
+          "tags": [],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 3600.0,
+            "w_mm": 11000.0,
+            "h_mm": 1700.0
+          },
+          "target_cell_id": "slot-6"
+        }
+      ],
+      "tables": [],
+      "checklists": [],
+      "section_blocks": []
+    },
+    {
+      "order": 5,
+      "id": "floor-4",
+      "title": "RF",
+      "subtitle": "B 棟設備核心層（獨立系統） | 水塔｜VF800 恆壓｜Haier 熱泵｜ | 水錘吸收器｜重力旁通｜15mm 保溫｜壓力表｜颱風防護",
+      "direction_badges": [
+        "💧 獨立給水系統",
+        "🛡️ 抗震/減震/排氣/旁通",
+        "🌀 颱風強化"
+      ],
+      "geometry_mm": {
+        "width_mm": 11000.0,
+        "depth_mm": 5400.0,
+        "north_deg": 0.0
+      },
+      "geometry_source": "auto-grid-v1",
+      "plan_rows": [
+        {
+          "order": 1,
+          "classes": [],
+          "grid_template_columns": "1fr",
+          "column_weights": [
+            1.0
+          ],
+          "cell_orders": [
+            1
+          ],
+          "row_height_mm": 1300.0
+        },
+        {
+          "order": 2,
+          "classes": [],
+          "grid_template_columns": "1fr 1fr",
+          "column_weights": [
+            1.0,
+            1.0
+          ],
+          "cell_orders": [
+            2,
+            3
+          ],
+          "row_height_mm": 1100.0
+        },
+        {
+          "order": 3,
+          "classes": [],
+          "grid_template_columns": "1fr",
+          "column_weights": [
+            1.0
+          ],
+          "cell_orders": [
+            4
+          ],
+          "row_height_mm": 1300.0
+        },
+        {
+          "order": 4,
+          "classes": [],
+          "grid_template_columns": "1fr",
+          "column_weights": [
+            1.0
+          ],
+          "cell_orders": [
+            5
+          ],
+          "row_height_mm": 1700.0
+        }
+      ],
+      "plan_cells": [
+        {
+          "order": 1,
+          "target_room_id": "stairRF",
+          "icon": "🪜",
+          "name": "樓梯出口",
+          "size": "⬇️3F + 防水人孔蓋",
+          "badges": [],
+          "classes": [
+            "stair"
+          ],
+          "row_order": 1,
+          "col_order": 1,
+          "col_weight": 1.0,
+          "row_template_columns": [
+            1.0
+          ],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 0.0,
+            "w_mm": 11000.0,
+            "h_mm": 1300.0
+          },
+          "openings_mm": {
+            "door_mm": 900.0,
+            "window_mm": 600.0
+          },
+          "is_entry": false,
+          "material": "concrete+paint"
+        },
+        {
+          "order": 2,
+          "target_room_id": "tank-rf",
+          "icon": "🛢️",
+          "name": "B 棟水塔",
+          "size": "1000L｜基座抬高15cm",
+          "badges": [
+            "B-D1 排水",
+            "B-V2 旁通",
+            "🌀 防颱基座"
+          ],
+          "classes": [
+            "water"
+          ],
+          "row_order": 2,
+          "col_order": 1,
+          "col_weight": 1.0,
+          "row_template_columns": [
+            1.0,
+            1.0
+          ],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 1300.0,
+            "w_mm": 5500.0,
+            "h_mm": 1100.0
+          },
+          "openings_mm": {
+            "door_mm": 800.0,
+            "window_mm": 600.0
+          },
+          "is_entry": false,
+          "material": "service+utility"
+        },
+        {
+          "order": 3,
+          "target_room_id": "pump-rf",
+          "icon": "⚙️",
+          "name": "VF800 恆壓",
+          "size": "基座抬高15cm",
+          "badges": [
+            "B-C1 止回",
+            "B-A2 吸收器",
+            "⚡ 專迴"
+          ],
+          "classes": [
+            "core"
+          ],
+          "row_order": 2,
+          "col_order": 2,
+          "col_weight": 1.0,
+          "row_template_columns": [
+            1.0,
+            1.0
+          ],
+          "geometry_mm": {
+            "x_mm": 5500.0,
+            "y_mm": 1300.0,
+            "w_mm": 5500.0,
+            "h_mm": 1100.0
+          },
+          "openings_mm": {
+            "door_mm": 800.0,
+            "window_mm": 600.0
+          },
+          "is_entry": false,
+          "material": "service+utility"
+        },
+        {
+          "order": 4,
+          "target_room_id": "hotwater-rf",
+          "icon": "🔥",
+          "name": "Haier 熱泵熱水器",
+          "size": "基座抬高15cm",
+          "badges": [
+            "B-C3 熱水止回",
+            "冷凝排水→回收",
+            "⚡ 專迴"
+          ],
+          "classes": [],
+          "row_order": 3,
+          "col_order": 1,
+          "col_weight": 1.0,
+          "row_template_columns": [
+            1.0
+          ],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 2400.0,
+            "w_mm": 11000.0,
+            "h_mm": 1300.0
+          },
+          "openings_mm": {
+            "door_mm": 900.0,
+            "window_mm": 1000.0
+          },
+          "is_entry": false,
+          "material": "paint+default"
+        },
+        {
+          "order": 5,
+          "target_room_id": "platform-rf",
+          "icon": "🏗️",
+          "name": "活動平台 / 曬衣棚架",
+          "size": "預留孔：未來太陽能擴充",
+          "badges": [
+            "預留管路→1F電表"
+          ],
+          "classes": [
+            "outdoor"
+          ],
+          "row_order": 4,
+          "col_order": 1,
+          "col_weight": 1.0,
+          "row_template_columns": [
+            1.0
+          ],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 3700.0,
+            "w_mm": 11000.0,
+            "h_mm": 1700.0
+          },
+          "openings_mm": {
+            "door_mm": 900.0,
+            "window_mm": 0.0
+          },
+          "is_entry": false,
+          "material": "concrete+drain"
+        }
+      ],
+      "rooms": [
+        {
+          "order": 1,
+          "id": "stairRF",
+          "name": "🪜 樓梯出口（RF）",
+          "area": "⬇️3F",
+          "details": [
+            "標示： 🪜 樓梯出口（⬇️3F）+ 防水人孔蓋",
+            "人孔蓋： 可掀式防水蓋板，標示「設備層入口」"
+          ],
+          "tags": [],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 0.0,
+            "w_mm": 11000.0,
+            "h_mm": 1300.0
+          },
+          "target_cell_id": "slot-1"
+        },
+        {
+          "order": 2,
+          "id": "tank-rf",
+          "name": "🛢️ B 棟水塔",
+          "area": "1000L",
+          "details": [
+            "容量： 1000L 不鏽鋼水塔",
+            "液位控制： 浮球閥 + 電子液位開關（控制 B-T1 啟停）",
+            "溢流管： 3\" 管 接至排水系統 + 設「緊急溢流口/第二溢流導排」",
+            "B-D1 排水閥： 底部排污用，定期清洗開啟",
+            "B-V2 旁通閥： 常閉，VF800 故障時手動開啟，供 1F/2F 重力用水， 加裝防風防撞保護箱",
+            "基座： 需落在結構梁柱上（載重約 1.2 噸），並做抗震錨定， 抬高 15cm 防颱風淹水"
+          ],
+          "tags": [
+            {
+              "title": "🌀 颱風防護強化",
+              "content": "基座抬高 15cm｜溢流管增至 3\"｜設緊急溢流口/第二溢流｜落水頭防堵可檢修｜閥件加裝防風防撞保護箱｜地坪洩水坡度 1:50",
+              "classes": [
+                "tag-typhoon"
+              ]
+            }
+          ],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 1300.0,
+            "w_mm": 5500.0,
+            "h_mm": 1100.0
+          },
+          "target_cell_id": "slot-2"
+        },
+        {
+          "order": 3,
+          "id": "pump-rf",
+          "name": "⚙️ VF800 變頻恆壓泵",
+          "area": "",
+          "details": [
+            "功能： 從水塔取水，恆壓供應全戶冷水",
+            "B-C1 止回閥： 防止水塔水回流至自來水端",
+            "B-C2 止回閥： 恆壓泵出口端，防止逆流",
+            "B-A2 水錘吸收器： VF800 出口已加裝 ，減少電磁閥關水震動",
+            "減震： 橡膠減震座 + 軟接頭，減少震動傳遞",
+            "抗震： 設備基座錨定到結構（錨栓/支架），列入驗收",
+            "電力： 專用迴路 20A，建議加裝漏電斷路器",
+            "壓力表： 出口端已加裝 ，方便現場判斷水壓異常",
+            "基座： 抬高 15cm 防颱風淹水導致馬達短路"
+          ],
+          "tags": [],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 5500.0,
+            "y_mm": 1300.0,
+            "w_mm": 5500.0,
+            "h_mm": 1100.0
+          },
+          "target_cell_id": "slot-3"
+        },
+        {
+          "order": 4,
+          "id": "hotwater-rf",
+          "name": "🔥 Haier 熱泵熱水器",
+          "area": "",
+          "details": [
+            "水源： 來自 RF 水塔（經 VF800 或重力）",
+            "B-C3 熱水止回閥： 防止熱水回流至冷水系統",
+            "膨脹處理： 加裝膨脹桶或泄壓閥（熱水膨脹）",
+            "冷凝排水： 熱泵運作產生冷凝水， 經 3-way 閥回收至水塔（年節水約 5–10%）",
+            "通風： 熱泵需良好通風，避免封閉空間",
+            "熱水管保溫： 全程包覆保溫材，厚度 ≥15mm（含接頭）",
+            "排氣閥 B-Vent： 熱水最高點設自動排氣，避免氣堵",
+            "抗震： 設備基座錨定到結構（錨栓/支架），列入驗收",
+            "基座： 抬高 15cm 防颱風淹水"
+          ],
+          "tags": [
+            {
+              "title": "📋 熱水設計決策（已定案）",
+              "content": "B 棟完工即裝回水循環泵（定時/溫控/按鍵三選一），回水末端設常閉球閥 + 永久標示；回水管與電源列入驗收。幹管走最短路徑 + 全程 15mm 保溫。",
+              "classes": [
+                "tag-spec"
+              ]
+            }
+          ],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 2400.0,
+            "w_mm": 11000.0,
+            "h_mm": 1300.0
+          },
+          "target_cell_id": "slot-4"
+        },
+        {
+          "order": 5,
+          "id": "platform-rf",
+          "name": "🏗️ 活動平台 / 曬衣棚架",
+          "area": "未來擴充預留",
+          "details": [
+            "功能： 曬衣、活動空間",
+            "太陽能預留： 2 支 1.5\" PVC 管，路徑：1F 電表箱 → 垂直貫穿每層 → RF",
+            "預留管路： 每層電錶箱皆經過（預留穿孔），管內預留拉繩，RF 出口加 PVC 防水鴨嘴彎頭（Drip Loop）+ 防塵蓋",
+            "預留電表空間： B-M2 併網電表空間、B-M3 EV 充電表",
+            "維修人孔： 可掀式防水蓋板，標示「非使用中｜未來擴充用（太陽能監控/氣象站）」",
+            "檢修配電： RF 預留檢修照明 + 110V 防雨插座/檢修用 PDU，方便保養",
+            "吊裝動線： 預留設備吊點/吊裝動線，便於未來更換水塔/熱泵",
+            "穿屋面孔洞： 二次防水收邊 + 封堵，避免長期滲漏",
+            "結構： 需結構技師確認屋頂承載"
+          ],
+          "tags": [
+            {
+              "title": "☀️ 未來太陽能擴充",
+              "content": "雖目前無太陽能規劃，但預留管路可供未來加設。管路出口應由下向上彎（防雨水倒灌）。",
+              "classes": [
+                "tag-opt"
+              ]
+            }
+          ],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 3700.0,
+            "w_mm": 11000.0,
+            "h_mm": 1700.0
+          },
+          "target_cell_id": "slot-5"
+        }
+      ],
+      "tables": [
+        {
+          "order": 1,
+          "context_title": "💧 B 棟給水系統流程圖（整合水錘/旁通/排氣/颱風防護）",
+          "headers": [
+            "代號",
+            "名稱",
+            "位置",
+            "備註"
+          ],
+          "rows": [
+            [
+              "B-V1",
+              "總進水閥",
+              "1F 後陽台/水表後",
+              "維修時關閉此閥 + 防風防撞保護箱"
+            ],
+            [
+              "B-F1",
+              "前置濾水器",
+              "1F 後陽台",
+              "20\" 大胖，3~6 月更換"
+            ],
+            [
+              "B-T1",
+              "抽水馬達",
+              "1F 後陽台",
+              "TS400B，液位控制連動"
+            ],
+            [
+              "B-C1",
+              "止回閥",
+              "抽水機前",
+              "防自來水回流"
+            ],
+            [
+              "B-A1",
+              "水錘吸收器",
+              "TS400B 出口",
+              "減少水錘噪音"
+            ],
+            [
+              "B-C2",
+              "止回閥",
+              "VF800 出口",
+              "防逆流"
+            ],
+            [
+              "B-A2",
+              "水錘吸收器",
+              "VF800 出口",
+              "長管末端"
+            ],
+            [
+              "B-V2",
+              "重力旁通閥",
+              "RF 水塔→1F",
+              "常閉，停電時手動開 + 防風保護箱"
+            ],
+            [
+              "B-C3",
+              "熱水止回閥",
+              "熱泵出口",
+              "防熱水回流冷水系統"
+            ],
+            [
+              "B-Vent",
+              "自動排氣閥",
+              "熱水最高點",
+              "避免氣堵"
+            ],
+            [
+              "B-D1",
+              "水塔排水閥",
+              "RF 水塔底部",
+              "清洗/排污用"
+            ],
+            [
+              "B-V4~V13",
+              "各分支冷水閥",
+              "各樓層",
+              "個別空間維修用"
+            ],
+            [
+              "B-V14",
+              "戶外龍頭",
+              "1F 車庫",
+              "冷水支管（濾水器後）+ 防撞保護罩"
+            ]
+          ]
+        }
+      ],
+      "checklists": [],
+      "section_blocks": [
+        {
+          "order": 1,
+          "title": "💧 B 棟給水系統流程圖（整合水錘/旁通/排氣/颱風防護）",
+          "classes": [
+            "system-box"
+          ],
+          "bullet_items": []
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "id": "floor-5",
+      "title": "📋",
+      "subtitle": "B 棟施工規範總表 | 弱電點位｜設備清單｜管線規格｜ | 颱風防護｜風水規範｜強制條款",
+      "direction_badges": [],
+      "geometry_mm": {},
+      "geometry_source": "",
+      "plan_rows": [],
+      "plan_cells": [],
+      "rooms": [],
+      "tables": [],
+      "checklists": [],
+      "section_blocks": []
+    }
+  ],
+  "storage_zones": [],
+  "summary": {
+    "tab_count": 6,
+    "floor_count": 6,
+    "plan_cell_count": 24,
+    "precise_plan_cell_count": 24,
+    "room_count": 27,
+    "table_count": 2,
+    "checklist_count": 0,
+    "storage_zone_count": 0
+  }
+}

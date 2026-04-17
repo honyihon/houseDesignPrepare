@@ -1,0 +1,1005 @@
+{
+  "schema_version": "expert-review-v1",
+  "generated_at": "2026-04-17T06:16:14.797874+00:00",
+  "input": {
+    "request_file": "design_request.md",
+    "mode": "concept",
+    "selection": "best",
+    "buildings": [
+      "A",
+      "B",
+      "C"
+    ],
+    "rule_dir": "scripts\\rules"
+  },
+  "hard_gate": "pass",
+  "critical_failures": [],
+  "warnings": [
+    {
+      "rule_id": "BR-TW-002",
+      "domain": "building_regulation",
+      "severity": "warning",
+      "passed": false,
+      "message": "每層建議維持單一主入口標記。",
+      "fail_message": "入口標記數量異常。",
+      "fix_hint": "每層僅保留一個 data-entry=\"true\"。",
+      "evidence": [
+        "A:floor-2 entry_count=0",
+        "A:floor-3 entry_count=0",
+        "A:floor-4 entry_count=0",
+        "B:floor-2 entry_count=0",
+        "B:floor-3 entry_count=0",
+        "B:floor-4 entry_count=0",
+        "C:floor-2 entry_count=0",
+        "C:floor-3 entry_count=0",
+        "C:floor-4 entry_count=0"
+      ],
+      "source_doc": "住宅設計實務",
+      "source_article": "動線與出入口一致性",
+      "source_url": "https://law.moj.gov.tw/",
+      "hard_gate_eligible": false
+    },
+    {
+      "rule_id": "ACC-TW-002",
+      "domain": "accessibility",
+      "severity": "warning",
+      "passed": false,
+      "message": "無障礙空間門寬建議達到 800mm 以上。",
+      "fail_message": "無障礙關聯格位門寬不足。",
+      "fix_hint": "調整無障礙格位的 data-door-mm。",
+      "evidence": [
+        "A: no cell matched accessible keyword '無障礙'",
+        "C: no cell matched accessible keyword '無障礙'"
+      ],
+      "source_doc": "建築物無障礙設施設計規範",
+      "source_article": "出入口與門扇尺度",
+      "source_url": "https://law.moj.gov.tw/",
+      "hard_gate_eligible": false
+    }
+  ],
+  "infos": [],
+  "citation_issues": [],
+  "citations": [
+    {
+      "rule_id": "BR-TW-002",
+      "source_doc": "住宅設計實務",
+      "source_article": "動線與出入口一致性",
+      "source_url": "https://law.moj.gov.tw/"
+    },
+    {
+      "rule_id": "ACC-TW-002",
+      "source_doc": "建築物無障礙設施設計規範",
+      "source_article": "出入口與門扇尺度",
+      "source_url": "https://law.moj.gov.tw/"
+    }
+  ],
+  "score_breakdown": {
+    "weights": {
+      "circulation": 0.35,
+      "daylight": 0.25,
+      "mep": 0.2,
+      "fengshui": 0.2
+    },
+    "evaluated_floor_count": 12,
+    "averages": {
+      "circulation": 59.19,
+      "daylight": 62.15,
+      "mep": 64.85,
+      "fengshui": 75.19,
+      "composite": 64.26
+    },
+    "recommended_strategy_distribution": {
+      "circulation": 7,
+      "mep": 3,
+      "baseline": 1,
+      "daylight": 1
+    },
+    "pipeline_changed_floor_count": 4
+  },
+  "expert_recommendations": [
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "pipeline_best": "mep",
+      "expert_best": "circulation",
+      "changed_from_pipeline": true,
+      "top_scores": {
+        "circulation": 61.59,
+        "daylight": 62.27,
+        "mep": 58.18,
+        "fengshui": 78.57,
+        "composite": 64.47
+      },
+      "ranked": [
+        {
+          "id": "circulation",
+          "strategy": "circulation",
+          "scores": {
+            "circulation": 61.59,
+            "daylight": 62.27,
+            "mep": 58.18,
+            "fengshui": 78.57,
+            "composite": 64.47
+          }
+        },
+        {
+          "id": "daylight",
+          "strategy": "daylight",
+          "scores": {
+            "circulation": 61.59,
+            "daylight": 62.27,
+            "mep": 58.18,
+            "fengshui": 78.57,
+            "composite": 64.47
+          }
+        },
+        {
+          "id": "baseline",
+          "strategy": "baseline",
+          "scores": {
+            "circulation": 58.95,
+            "daylight": 47.27,
+            "mep": 72.73,
+            "fengshui": 73.57,
+            "composite": 61.71
+          }
+        },
+        {
+          "id": "mep",
+          "strategy": "mep",
+          "scores": {
+            "circulation": 56.55,
+            "daylight": 54.77,
+            "mep": 70.45,
+            "fengshui": 51.07,
+            "composite": 57.79
+          }
+        }
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-2",
+      "pipeline_best": "mep",
+      "expert_best": "mep",
+      "changed_from_pipeline": false,
+      "top_scores": {
+        "circulation": 63.93,
+        "daylight": 54.69,
+        "mep": 65.62,
+        "fengshui": 65.84,
+        "composite": 62.34
+      },
+      "ranked": [
+        {
+          "id": "mep",
+          "strategy": "mep",
+          "scores": {
+            "circulation": 63.93,
+            "daylight": 54.69,
+            "mep": 65.62,
+            "fengshui": 65.84,
+            "composite": 62.34
+          }
+        },
+        {
+          "id": "circulation",
+          "strategy": "circulation",
+          "scores": {
+            "circulation": 64.38,
+            "daylight": 54.69,
+            "mep": 55.62,
+            "fengshui": 72.67,
+            "composite": 61.86
+          }
+        },
+        {
+          "id": "daylight",
+          "strategy": "daylight",
+          "scores": {
+            "circulation": 62.5,
+            "daylight": 54.69,
+            "mep": 55.62,
+            "fengshui": 63.35,
+            "composite": 59.34
+          }
+        },
+        {
+          "id": "baseline",
+          "strategy": "baseline",
+          "scores": {
+            "circulation": 55.36,
+            "daylight": 44.38,
+            "mep": 58.75,
+            "fengshui": 28.57,
+            "composite": 47.93
+          }
+        }
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-3",
+      "pipeline_best": "mep",
+      "expert_best": "mep",
+      "changed_from_pipeline": false,
+      "top_scores": {
+        "circulation": 60.83,
+        "daylight": 73.33,
+        "mep": 58.33,
+        "fengshui": 91.11,
+        "composite": 69.51
+      },
+      "ranked": [
+        {
+          "id": "mep",
+          "strategy": "mep",
+          "scores": {
+            "circulation": 60.83,
+            "daylight": 73.33,
+            "mep": 58.33,
+            "fengshui": 91.11,
+            "composite": 69.51
+          }
+        },
+        {
+          "id": "circulation",
+          "strategy": "circulation",
+          "scores": {
+            "circulation": 60.83,
+            "daylight": 73.33,
+            "mep": 45.0,
+            "fengshui": 91.11,
+            "composite": 66.84
+          }
+        },
+        {
+          "id": "daylight",
+          "strategy": "daylight",
+          "scores": {
+            "circulation": 60.83,
+            "daylight": 73.33,
+            "mep": 45.0,
+            "fengshui": 91.11,
+            "composite": 66.84
+          }
+        },
+        {
+          "id": "baseline",
+          "strategy": "baseline",
+          "scores": {
+            "circulation": 56.17,
+            "daylight": 59.58,
+            "mep": 58.33,
+            "fengshui": 46.67,
+            "composite": 55.55
+          }
+        }
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-4",
+      "pipeline_best": "mep",
+      "expert_best": "mep",
+      "changed_from_pipeline": false,
+      "top_scores": {
+        "circulation": 53.5,
+        "daylight": 57.5,
+        "mep": 83.33,
+        "fengshui": 50.0,
+        "composite": 59.77
+      },
+      "ranked": [
+        {
+          "id": "mep",
+          "strategy": "mep",
+          "scores": {
+            "circulation": 53.5,
+            "daylight": 57.5,
+            "mep": 83.33,
+            "fengshui": 50.0,
+            "composite": 59.77
+          }
+        },
+        {
+          "id": "baseline",
+          "strategy": "baseline",
+          "scores": {
+            "circulation": 54.0,
+            "daylight": 57.5,
+            "mep": 79.58,
+            "fengshui": 50.0,
+            "composite": 59.19
+          }
+        },
+        {
+          "id": "circulation",
+          "strategy": "circulation",
+          "scores": {
+            "circulation": 57.0,
+            "daylight": 57.5,
+            "mep": 64.17,
+            "fengshui": 50.0,
+            "composite": 57.16
+          }
+        },
+        {
+          "id": "daylight",
+          "strategy": "daylight",
+          "scores": {
+            "circulation": 57.0,
+            "daylight": 57.5,
+            "mep": 64.17,
+            "fengshui": 50.0,
+            "composite": 57.16
+          }
+        }
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-1",
+      "pipeline_best": "circulation",
+      "expert_best": "baseline",
+      "changed_from_pipeline": true,
+      "top_scores": {
+        "circulation": 56.43,
+        "daylight": 51.79,
+        "mep": 78.57,
+        "fengshui": 75.93,
+        "composite": 63.6
+      },
+      "ranked": [
+        {
+          "id": "baseline",
+          "strategy": "baseline",
+          "scores": {
+            "circulation": 56.43,
+            "daylight": 51.79,
+            "mep": 78.57,
+            "fengshui": 75.93,
+            "composite": 63.6
+          }
+        },
+        {
+          "id": "circulation",
+          "strategy": "circulation",
+          "scores": {
+            "circulation": 57.14,
+            "daylight": 63.57,
+            "mep": 78.57,
+            "fengshui": 55.56,
+            "composite": 62.72
+          }
+        },
+        {
+          "id": "daylight",
+          "strategy": "daylight",
+          "scores": {
+            "circulation": 57.14,
+            "daylight": 63.57,
+            "mep": 78.57,
+            "fengshui": 55.56,
+            "composite": 62.72
+          }
+        },
+        {
+          "id": "mep",
+          "strategy": "mep",
+          "scores": {
+            "circulation": 57.14,
+            "daylight": 63.57,
+            "mep": 78.57,
+            "fengshui": 55.56,
+            "composite": 62.72
+          }
+        }
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-2",
+      "pipeline_best": "circulation",
+      "expert_best": "circulation",
+      "changed_from_pipeline": false,
+      "top_scores": {
+        "circulation": 63.83,
+        "daylight": 68.75,
+        "mep": 61.67,
+        "fengshui": 94.29,
+        "composite": 70.72
+      },
+      "ranked": [
+        {
+          "id": "circulation",
+          "strategy": "circulation",
+          "scores": {
+            "circulation": 63.83,
+            "daylight": 68.75,
+            "mep": 61.67,
+            "fengshui": 94.29,
+            "composite": 70.72
+          }
+        },
+        {
+          "id": "daylight",
+          "strategy": "daylight",
+          "scores": {
+            "circulation": 63.83,
+            "daylight": 68.75,
+            "mep": 61.67,
+            "fengshui": 94.29,
+            "composite": 70.72
+          }
+        },
+        {
+          "id": "baseline",
+          "strategy": "baseline",
+          "scores": {
+            "circulation": 62.67,
+            "daylight": 55.0,
+            "mep": 61.67,
+            "fengshui": 87.14,
+            "composite": 65.45
+          }
+        },
+        {
+          "id": "mep",
+          "strategy": "mep",
+          "scores": {
+            "circulation": 59.67,
+            "daylight": 68.75,
+            "mep": 61.67,
+            "fengshui": 51.43,
+            "composite": 60.69
+          }
+        }
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-3",
+      "pipeline_best": "circulation",
+      "expert_best": "circulation",
+      "changed_from_pipeline": false,
+      "top_scores": {
+        "circulation": 60.83,
+        "daylight": 73.33,
+        "mep": 53.33,
+        "fengshui": 91.11,
+        "composite": 68.51
+      },
+      "ranked": [
+        {
+          "id": "circulation",
+          "strategy": "circulation",
+          "scores": {
+            "circulation": 60.83,
+            "daylight": 73.33,
+            "mep": 53.33,
+            "fengshui": 91.11,
+            "composite": 68.51
+          }
+        },
+        {
+          "id": "daylight",
+          "strategy": "daylight",
+          "scores": {
+            "circulation": 60.83,
+            "daylight": 73.33,
+            "mep": 53.33,
+            "fengshui": 91.11,
+            "composite": 68.51
+          }
+        },
+        {
+          "id": "mep",
+          "strategy": "mep",
+          "scores": {
+            "circulation": 60.83,
+            "daylight": 73.33,
+            "mep": 53.33,
+            "fengshui": 73.33,
+            "composite": 64.95
+          }
+        },
+        {
+          "id": "baseline",
+          "strategy": "baseline",
+          "scores": {
+            "circulation": 57.67,
+            "daylight": 45.83,
+            "mep": 53.33,
+            "fengshui": 80.0,
+            "composite": 58.31
+          }
+        }
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-4",
+      "pipeline_best": "daylight",
+      "expert_best": "daylight",
+      "changed_from_pipeline": false,
+      "top_scores": {
+        "circulation": 52.25,
+        "daylight": 57.0,
+        "mep": 70.0,
+        "fengshui": 50.0,
+        "composite": 56.54
+      },
+      "ranked": [
+        {
+          "id": "daylight",
+          "strategy": "daylight",
+          "scores": {
+            "circulation": 52.25,
+            "daylight": 57.0,
+            "mep": 70.0,
+            "fengshui": 50.0,
+            "composite": 56.54
+          }
+        },
+        {
+          "id": "mep",
+          "strategy": "mep",
+          "scores": {
+            "circulation": 52.25,
+            "daylight": 57.0,
+            "mep": 70.0,
+            "fengshui": 50.0,
+            "composite": 56.54
+          }
+        },
+        {
+          "id": "circulation",
+          "strategy": "circulation",
+          "scores": {
+            "circulation": 53.75,
+            "daylight": 57.0,
+            "mep": 65.5,
+            "fengshui": 50.0,
+            "composite": 56.16
+          }
+        },
+        {
+          "id": "baseline",
+          "strategy": "baseline",
+          "scores": {
+            "circulation": 53.0,
+            "daylight": 57.0,
+            "mep": 65.5,
+            "fengshui": 50.0,
+            "composite": 55.9
+          }
+        }
+      ]
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-1",
+      "pipeline_best": "mep",
+      "expert_best": "circulation",
+      "changed_from_pipeline": true,
+      "top_scores": {
+        "circulation": 65.1,
+        "daylight": 62.5,
+        "mep": 70.0,
+        "fengshui": 73.57,
+        "composite": 67.12
+      },
+      "ranked": [
+        {
+          "id": "circulation",
+          "strategy": "circulation",
+          "scores": {
+            "circulation": 65.1,
+            "daylight": 62.5,
+            "mep": 70.0,
+            "fengshui": 73.57,
+            "composite": 67.12
+          }
+        },
+        {
+          "id": "daylight",
+          "strategy": "daylight",
+          "scores": {
+            "circulation": 60.9,
+            "daylight": 76.0,
+            "mep": 54.0,
+            "fengshui": 63.57,
+            "composite": 63.83
+          }
+        },
+        {
+          "id": "mep",
+          "strategy": "mep",
+          "scores": {
+            "circulation": 60.9,
+            "daylight": 76.0,
+            "mep": 70.0,
+            "fengshui": 46.43,
+            "composite": 63.6
+          }
+        },
+        {
+          "id": "baseline",
+          "strategy": "baseline",
+          "scores": {
+            "circulation": 63.0,
+            "daylight": 46.0,
+            "mep": 70.0,
+            "fengshui": 62.86,
+            "composite": 60.12
+          }
+        }
+      ]
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-2",
+      "pipeline_best": "daylight",
+      "expert_best": "circulation",
+      "changed_from_pipeline": true,
+      "top_scores": {
+        "circulation": 60.83,
+        "daylight": 62.08,
+        "mep": 53.33,
+        "fengshui": 81.82,
+        "composite": 63.84
+      },
+      "ranked": [
+        {
+          "id": "circulation",
+          "strategy": "circulation",
+          "scores": {
+            "circulation": 60.83,
+            "daylight": 62.08,
+            "mep": 53.33,
+            "fengshui": 81.82,
+            "composite": 63.84
+          }
+        },
+        {
+          "id": "daylight",
+          "strategy": "daylight",
+          "scores": {
+            "circulation": 54.0,
+            "daylight": 62.08,
+            "mep": 66.67,
+            "fengshui": 40.0,
+            "composite": 55.75
+          }
+        },
+        {
+          "id": "mep",
+          "strategy": "mep",
+          "scores": {
+            "circulation": 53.0,
+            "daylight": 62.08,
+            "mep": 66.67,
+            "fengshui": 35.45,
+            "composite": 54.49
+          }
+        },
+        {
+          "id": "baseline",
+          "strategy": "baseline",
+          "scores": {
+            "circulation": 56.33,
+            "daylight": 48.33,
+            "mep": 66.67,
+            "fengshui": 34.55,
+            "composite": 52.04
+          }
+        }
+      ]
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-3",
+      "pipeline_best": "circulation",
+      "expert_best": "circulation",
+      "changed_from_pipeline": false,
+      "top_scores": {
+        "circulation": 57.0,
+        "daylight": 62.5,
+        "mep": 50.0,
+        "fengshui": 100.0,
+        "composite": 65.58
+      },
+      "ranked": [
+        {
+          "id": "circulation",
+          "strategy": "circulation",
+          "scores": {
+            "circulation": 57.0,
+            "daylight": 62.5,
+            "mep": 50.0,
+            "fengshui": 100.0,
+            "composite": 65.58
+          }
+        },
+        {
+          "id": "mep",
+          "strategy": "mep",
+          "scores": {
+            "circulation": 50.0,
+            "daylight": 62.5,
+            "mep": 50.0,
+            "fengshui": 44.44,
+            "composite": 52.01
+          }
+        },
+        {
+          "id": "daylight",
+          "strategy": "daylight",
+          "scores": {
+            "circulation": 50.0,
+            "daylight": 62.5,
+            "mep": 50.0,
+            "fengshui": 22.22,
+            "composite": 47.57
+          }
+        },
+        {
+          "id": "baseline",
+          "strategy": "baseline",
+          "scores": {
+            "circulation": 51.75,
+            "daylight": 46.0,
+            "mep": 50.0,
+            "fengshui": 13.89,
+            "composite": 42.39
+          }
+        }
+      ]
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-4",
+      "pipeline_best": "circulation",
+      "expert_best": "circulation",
+      "changed_from_pipeline": false,
+      "top_scores": {
+        "circulation": 54.17,
+        "daylight": 60.0,
+        "mep": 75.83,
+        "fengshui": 50.0,
+        "composite": 59.13
+      },
+      "ranked": [
+        {
+          "id": "circulation",
+          "strategy": "circulation",
+          "scores": {
+            "circulation": 54.17,
+            "daylight": 60.0,
+            "mep": 75.83,
+            "fengshui": 50.0,
+            "composite": 59.13
+          }
+        },
+        {
+          "id": "daylight",
+          "strategy": "daylight",
+          "scores": {
+            "circulation": 54.17,
+            "daylight": 60.0,
+            "mep": 75.83,
+            "fengshui": 50.0,
+            "composite": 59.13
+          }
+        },
+        {
+          "id": "mep",
+          "strategy": "mep",
+          "scores": {
+            "circulation": 54.17,
+            "daylight": 60.0,
+            "mep": 75.83,
+            "fengshui": 50.0,
+            "composite": 59.13
+          }
+        },
+        {
+          "id": "baseline",
+          "strategy": "baseline",
+          "scores": {
+            "circulation": 55.0,
+            "daylight": 60.0,
+            "mep": 68.33,
+            "fengshui": 50.0,
+            "composite": 57.92
+          }
+        }
+      ]
+    }
+  ],
+  "signoff": {
+    "exists": false,
+    "decision": "",
+    "reviewer_role": "",
+    "reviewer_name": "",
+    "date": ""
+  },
+  "artifacts": {
+    "normalized_request": "structured\\expert_review\\request_normalized.json",
+    "room_program": "structured\\room_program.json",
+    "candidates": "structured\\candidates\\layout_candidates.json",
+    "viewer": "structured/candidates/viewer.html",
+    "pdf": "structured/candidates/print_bundle.pdf"
+  },
+  "rule_results": [
+    {
+      "rule_id": "ACC-TW-001",
+      "domain": "accessibility",
+      "severity": "critical",
+      "passed": true,
+      "message": "各棟方案應包含無障礙考量文本。",
+      "fail_message": "建築說明中未找到無障礙關鍵詞。",
+      "fix_hint": "在對應棟別補充無障礙空間與動線規範。",
+      "evidence": [],
+      "source_doc": "建築物無障礙設施設計規範",
+      "source_article": "總則與適用範圍",
+      "source_url": "https://law.moj.gov.tw/",
+      "hard_gate_eligible": true
+    },
+    {
+      "rule_id": "BR-TW-001",
+      "domain": "building_regulation",
+      "severity": "critical",
+      "passed": true,
+      "message": "每個含平面格位的樓層應具備外框尺寸。",
+      "fail_message": "樓層缺少必要的外框尺寸屬性。",
+      "fix_hint": "在 .floor-plan 補上 data-floor-width-mm 與 data-floor-depth-mm。",
+      "evidence": [],
+      "source_doc": "建築技術規則",
+      "source_article": "建築設計施工編（通則）",
+      "source_url": "https://law.moj.gov.tw/",
+      "hard_gate_eligible": true
+    },
+    {
+      "rule_id": "ACC-TW-002",
+      "domain": "accessibility",
+      "severity": "warning",
+      "passed": false,
+      "message": "無障礙空間門寬建議達到 800mm 以上。",
+      "fail_message": "無障礙關聯格位門寬不足。",
+      "fix_hint": "調整無障礙格位的 data-door-mm。",
+      "evidence": [
+        "A: no cell matched accessible keyword '無障礙'",
+        "C: no cell matched accessible keyword '無障礙'"
+      ],
+      "source_doc": "建築物無障礙設施設計規範",
+      "source_article": "出入口與門扇尺度",
+      "source_url": "https://law.moj.gov.tw/",
+      "hard_gate_eligible": false
+    },
+    {
+      "rule_id": "ACC-TW-003",
+      "domain": "accessibility",
+      "severity": "warning",
+      "passed": true,
+      "message": "需求文件應明確記載無障礙或高齡居住要求。",
+      "fail_message": "需求文件缺少無障礙相關敘述。",
+      "fix_hint": "在需求檔加入無障礙與長期居住條件。",
+      "evidence": [],
+      "source_doc": "專案治理規範",
+      "source_article": "需求完整性檢核",
+      "source_url": "https://law.moj.gov.tw/",
+      "hard_gate_eligible": false
+    },
+    {
+      "rule_id": "BR-TW-002",
+      "domain": "building_regulation",
+      "severity": "warning",
+      "passed": false,
+      "message": "每層建議維持單一主入口標記。",
+      "fail_message": "入口標記數量異常。",
+      "fix_hint": "每層僅保留一個 data-entry=\"true\"。",
+      "evidence": [
+        "A:floor-2 entry_count=0",
+        "A:floor-3 entry_count=0",
+        "A:floor-4 entry_count=0",
+        "B:floor-2 entry_count=0",
+        "B:floor-3 entry_count=0",
+        "B:floor-4 entry_count=0",
+        "C:floor-2 entry_count=0",
+        "C:floor-3 entry_count=0",
+        "C:floor-4 entry_count=0"
+      ],
+      "source_doc": "住宅設計實務",
+      "source_article": "動線與出入口一致性",
+      "source_url": "https://law.moj.gov.tw/",
+      "hard_gate_eligible": false
+    },
+    {
+      "rule_id": "BR-TW-003",
+      "domain": "building_regulation",
+      "severity": "warning",
+      "passed": true,
+      "message": "一般門寬建議不小於 800mm。",
+      "fail_message": "發現門寬低於建議下限。",
+      "fix_hint": "調整 data-door-mm 至合理範圍。",
+      "evidence": [],
+      "source_doc": "建築技術規則",
+      "source_article": "門廊與開口尺度",
+      "source_url": "https://law.moj.gov.tw/",
+      "hard_gate_eligible": false
+    },
+    {
+      "rule_id": "FENG-001",
+      "domain": "fengshui",
+      "severity": "warning",
+      "passed": true,
+      "message": "需求中建議明示風水偏好或禁忌。",
+      "fail_message": "需求文件未包含風水偏好資訊。",
+      "fix_hint": "在需求檔增加風水偏好與不可違反清單。",
+      "evidence": [],
+      "source_doc": "傳統空間配置實務",
+      "source_article": "風水條件收斂",
+      "source_url": "https://example.com/fengshui-guideline",
+      "hard_gate_eligible": false
+    },
+    {
+      "rule_id": "INT-001",
+      "domain": "interior_design",
+      "severity": "warning",
+      "passed": true,
+      "message": "動線分數應維持在可接受門檻以上。",
+      "fail_message": "候選方案動線分數偏低。",
+      "fix_hint": "調整公共空間與入口鄰近關係。",
+      "evidence": [],
+      "source_doc": "室內設計實務",
+      "source_article": "動線配置原則",
+      "source_url": "https://example.com/interior-guideline",
+      "hard_gate_eligible": false
+    },
+    {
+      "rule_id": "INT-002",
+      "domain": "interior_design",
+      "severity": "warning",
+      "passed": true,
+      "message": "機電維護分數建議達標。",
+      "fail_message": "候選方案機電分數偏低。",
+      "fix_hint": "提升濕區與設備區集中度。",
+      "evidence": [],
+      "source_doc": "室內設計實務",
+      "source_article": "機電與維護可達性",
+      "source_url": "https://example.com/interior-guideline",
+      "hard_gate_eligible": false
+    },
+    {
+      "rule_id": "INT-003",
+      "domain": "interior_design",
+      "severity": "warning",
+      "passed": true,
+      "message": "需求文件應包含偏好描述（採光、收納、智能家居）。",
+      "fail_message": "需求文件缺少偏好段落。",
+      "fix_hint": "在需求檔補上偏好與取捨說明。",
+      "evidence": [],
+      "source_doc": "專案需求規範",
+      "source_article": "需求完備度",
+      "source_url": "https://example.com/interior-guideline",
+      "hard_gate_eligible": false
+    },
+    {
+      "rule_id": "FENG-002",
+      "domain": "fengshui",
+      "severity": "info",
+      "passed": true,
+      "message": "風水與採光通常需同步滿足。",
+      "fail_message": "候選方案採光分數偏低。",
+      "fix_hint": "提高主要生活空間的外窗或對外側配置。",
+      "evidence": [],
+      "source_doc": "住宅配置參考",
+      "source_article": "採光與格局平衡",
+      "source_url": "https://example.com/fengshui-guideline",
+      "hard_gate_eligible": false
+    }
+  ],
+  "report_hash": "0840b5a22335ddce407bc9ddc6948ffdb9efaf5c7c3bce51c57799a02ae3a83b"
+}

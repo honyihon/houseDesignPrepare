@@ -1,0 +1,65 @@
+{
+  "schema_version": "residential-defaults-tw-v1",
+  "profile": "tw_general_residential_2026",
+  "updated_at": "2026-04-17",
+  "notes": [
+    "Used when source drawing does not provide exact dimensions.",
+    "Values are practical defaults for concept/draft layout conversion."
+  ],
+  "geometry": {
+    "px_per_mm": 0.06,
+    "wall_thickness_mm": {
+      "interior": 115,
+      "exterior": 200
+    },
+    "door_width_mm": {
+      "entry": 1000,
+      "interior": 900,
+      "bathroom": 800,
+      "service": 800
+    },
+    "door_height_mm": 2100,
+    "window_width_mm": {
+      "living": 1800,
+      "dining": 1500,
+      "bedroom": 1200,
+      "kitchen": 900,
+      "bath": 600,
+      "service": 600,
+      "other": 1000
+    }
+  },
+  "furniture_mm": {
+    "bed_double": {
+      "width": 1500,
+      "depth": 1900
+    },
+    "sofa_3": {
+      "width": 2100,
+      "depth": 900
+    },
+    "dining_table_6": {
+      "width": 1600,
+      "depth": 800
+    },
+    "kitchen_counter_depth": 650
+  },
+  "drawing": {
+    "font_family": "Segoe UI, Microsoft JhengHei, sans-serif",
+    "interior_wall_factor": 0.32,
+    "exterior_wall_extra_px": 1.2,
+    "window_line_width_px": 2.2,
+    "dimension_line_color": "#777"
+  },
+  "validation": {
+    "required_markers": [
+      "ENT",
+      "DW:",
+      "WIN:",
+      "DIM:",
+      "LEGEND:",
+      "ELEV:"
+    ],
+    "min_exported_floor_count": 1
+  }
+}
