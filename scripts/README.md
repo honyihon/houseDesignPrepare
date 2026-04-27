@@ -280,3 +280,33 @@ Fix:
 - Ensure each `onclick="highlightRoom('xxx', this)"` matches `id="room-xxx"`.
 - Keep DOM skeleton unchanged:
   - `.floor-plan > .plan-grid-visual > .plan-row > .plan-cell`
+
+## Claude Code MCP (WSL)
+
+Project-level MCP config is in:
+- `.mcp.json`
+
+Included MCP servers:
+- `playwright` (browser navigation/scraping)
+- `brave-search` (web search API)
+
+### WSL setup
+
+1. Prepare env vars:
+
+```bash
+cp .env.mcp.example .env.mcp
+# edit .env.mcp and set BRAVE_API_KEY
+source .env.mcp
+```
+
+2. Start Claude Code from this project root so it picks up `.mcp.json`.
+
+3. Verify in Claude Code:
+- MCP server list should include `playwright` and `brave-search`.
+- Ask Claude to run a quick web lookup (for example a recent regulation update) and cite sources.
+
+### Notes
+
+- If `BRAVE_API_KEY` is missing, `brave-search` may fail to start; `playwright` can still be used for manual web browsing tasks.
+- This repo keeps MCP settings at project scope (no global machine-level config required).

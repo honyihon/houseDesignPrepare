@@ -72,4 +72,5 @@ powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1
 | `scripts/lib/standards.py` | Typed access to the defaults config |
 | `scripts/WEB_TO_PLAN_PROMPTS.zh-TW.md` | Prompt templates for HTML→plan conversion workflow |
 | `scripts/run_full_pipeline.ps1` | Pipeline orchestrator (concept/draft/ifc modes) |
+| `.mcp.json` | Project-level MCP servers (playwright + brave-search) for web lookup tasks |
 | `網路架構.txt` | Network architecture doc (standalone, not processed by pipeline) |
