@@ -1,6 +1,6 @@
 {
   "schema_version": "layout-candidates-v1",
-  "generated_at": "2026-04-17T06:16:12.313601+00:00",
+  "generated_at": "2026-04-28T08:56:16.510221+00:00",
   "source_program_file": "room_program.json",
   "evaluated_floor_count": 12,
   "skipped_floor_count": 10,
@@ -26,10 +26,10 @@
           ],
           "room_to_slot": {
             "A:floor-1:balcony1": "slot-7",
-            "A:floor-1:bath1": "slot-8",
-            "A:floor-1:mdf": "slot-11",
-            "A:floor-1:water-inlet": "slot-10",
-            "A:floor-1:kitchen": "slot-4",
+            "A:floor-1:bath1": "slot-11",
+            "A:floor-1:mdf": "slot-4",
+            "A:floor-1:water-inlet": "slot-8",
+            "A:floor-1:kitchen": "slot-10",
             "A:floor-1:flex1": "slot-1",
             "A:floor-1:living": "slot-2",
             "A:floor-1:entry": "slot-3",
@@ -40,11 +40,11 @@
           "unplaced_room_uids": [],
           "unassigned_slots": [],
           "scores": {
-            "circulation": 56.55,
-            "daylight": 54.77,
-            "mep": 70.45,
+            "circulation": 55.59,
+            "daylight": 53.41,
+            "mep": 72.73,
             "utilization": 100.0,
-            "total": 60.88,
+            "total": 60.94,
             "penalty_unplaced_rooms": 0.0
           },
           "pair_details": [
@@ -88,12 +88,12 @@
               "slot_id": "slot-4",
               "slot_order": 4,
               "slot_name": "A-MDF 主機櫃",
-              "room_uid": "A:floor-1:kitchen",
-              "room_name": "🍳 廚房 Kitchen",
+              "room_uid": "A:floor-1:mdf",
+              "room_name": "🖥️ A-MDF 主機櫃（三棟中樞） v8.0 強化",
               "dimension_fit": {
-                "circulation": 0.0,
+                "circulation": 0.09000000000000001,
                 "daylight": 0.2,
-                "mep": 0.5
+                "mep": 1.0
               }
             },
             {
@@ -136,11 +136,11 @@
               "slot_id": "slot-8",
               "slot_order": 8,
               "slot_name": "廚房",
-              "room_uid": "A:floor-1:bath1",
-              "room_name": "🚿 1F 公用衛浴",
+              "room_uid": "A:floor-1:water-inlet",
+              "room_name": "💧 給水進線區（1F 地面/陽台側） v8.0 強化",
               "dimension_fit": {
                 "circulation": 0.0,
-                "daylight": 0.2,
+                "daylight": -0.1,
                 "mep": 1.0
               }
             },
@@ -160,8 +160,8 @@
               "slot_id": "slot-10",
               "slot_order": 10,
               "slot_name": "後工作陽台",
-              "room_uid": "A:floor-1:water-inlet",
-              "room_name": "💧 給水進線區（1F 地面/陽台側） v8.0 強化",
+              "room_uid": "A:floor-1:kitchen",
+              "room_name": "🍳 廚房 Kitchen",
               "dimension_fit": {
                 "circulation": 0.0,
                 "daylight": -0.1,
@@ -172,348 +172,10 @@
               "slot_id": "slot-11",
               "slot_order": 11,
               "slot_name": "給水進線區",
-              "room_uid": "A:floor-1:mdf",
-              "room_name": "🖥️ A-MDF 主機櫃（三棟中樞） v8.0 強化",
-              "dimension_fit": {
-                "circulation": 0.3,
-                "daylight": 0.2,
-                "mep": 1.0
-              }
-            }
-          ]
-        },
-        {
-          "id": "circulation",
-          "strategy": "circulation",
-          "weights": {
-            "circulation": 0.65,
-            "daylight": 0.2,
-            "mep": 0.15
-          },
-          "rationale": [
-            "優先優化動線：公共區靠近入口，私領域往內層。"
-          ],
-          "room_to_slot": {
-            "A:floor-1:flex1": "slot-10",
-            "A:floor-1:living": "slot-1",
-            "A:floor-1:entry": "slot-2",
-            "A:floor-1:dining": "slot-3",
-            "A:floor-1:balcony1": "slot-7",
-            "A:floor-1:bath1": "slot-8",
-            "A:floor-1:stair-door": "slot-4",
-            "A:floor-1:garage": "slot-5",
-            "A:floor-1:mdf": "slot-11",
-            "A:floor-1:water-inlet": "slot-6",
-            "A:floor-1:kitchen": "slot-9"
-          },
-          "unplaced_room_uids": [],
-          "unassigned_slots": [],
-          "scores": {
-            "circulation": 61.59,
-            "daylight": 62.27,
-            "mep": 58.18,
-            "utilization": 100.0,
-            "total": 60.6,
-            "penalty_unplaced_rooms": 0.0
-          },
-          "pair_details": [
-            {
-              "slot_id": "slot-1",
-              "slot_order": 1,
-              "slot_name": "前院車庫",
-              "room_uid": "A:floor-1:living",
-              "room_name": "🛋️ 客廳 Living Room",
-              "dimension_fit": {
-                "circulation": 0.6,
-                "daylight": 1.0,
-                "mep": 0.0
-              }
-            },
-            {
-              "slot_id": "slot-2",
-              "slot_order": 2,
-              "slot_name": "玄關",
-              "room_uid": "A:floor-1:entry",
-              "room_name": "🚪 玄關 Entrance",
-              "dimension_fit": {
-                "circulation": 0.54,
-                "daylight": -0.35,
-                "mep": 0.0
-              }
-            },
-            {
-              "slot_id": "slot-3",
-              "slot_order": 3,
-              "slot_name": "客廳",
-              "room_uid": "A:floor-1:dining",
-              "room_name": "🍽️ 餐廳 Dining",
-              "dimension_fit": {
-                "circulation": 0.48,
-                "daylight": -0.35,
-                "mep": 0.0
-              }
-            },
-            {
-              "slot_id": "slot-4",
-              "slot_order": 4,
-              "slot_name": "A-MDF 主機櫃",
-              "room_uid": "A:floor-1:stair-door",
-              "room_name": "🚪 樓梯口隔斷門（節能/防煙）",
-              "dimension_fit": {
-                "circulation": 0.0,
-                "daylight": 0.2,
-                "mep": 0.0
-              }
-            },
-            {
-              "slot_id": "slot-5",
-              "slot_order": 5,
-              "slot_name": "🚪✨ 梯間隔斷門",
-              "room_uid": "A:floor-1:garage",
-              "room_name": "🚗 前院車庫 Garage",
-              "dimension_fit": {
-                "circulation": 0.0,
-                "daylight": 0.2,
-                "mep": 0.0
-              }
-            },
-            {
-              "slot_id": "slot-6",
-              "slot_order": 6,
-              "slot_name": "餐廳",
-              "room_uid": "A:floor-1:water-inlet",
-              "room_name": "💧 給水進線區（1F 地面/陽台側） v8.0 強化",
-              "dimension_fit": {
-                "circulation": 0.0,
-                "daylight": 0.2,
-                "mep": -0.6
-              }
-            },
-            {
-              "slot_id": "slot-7",
-              "slot_order": 7,
-              "slot_name": "1F 公用衛浴",
-              "room_uid": "A:floor-1:balcony1",
-              "room_name": "🧺 後工作陽台",
-              "dimension_fit": {
-                "circulation": 0.0,
-                "daylight": 0.2,
-                "mep": 1.0
-              }
-            },
-            {
-              "slot_id": "slot-8",
-              "slot_order": 8,
-              "slot_name": "廚房",
               "room_uid": "A:floor-1:bath1",
               "room_name": "🚿 1F 公用衛浴",
               "dimension_fit": {
                 "circulation": 0.0,
-                "daylight": 0.2,
-                "mep": 1.0
-              }
-            },
-            {
-              "slot_id": "slot-9",
-              "slot_order": 9,
-              "slot_name": "多功能房/客房",
-              "room_uid": "A:floor-1:kitchen",
-              "room_name": "🍳 廚房 Kitchen",
-              "dimension_fit": {
-                "circulation": 0.0,
-                "daylight": 0.2,
-                "mep": -0.6
-              }
-            },
-            {
-              "slot_id": "slot-10",
-              "slot_order": 10,
-              "slot_name": "後工作陽台",
-              "room_uid": "A:floor-1:flex1",
-              "room_name": "🛏️ 多功能房/客房",
-              "dimension_fit": {
-                "circulation": 0.63,
-                "daylight": 1.0,
-                "mep": 0.0
-              }
-            },
-            {
-              "slot_id": "slot-11",
-              "slot_order": 11,
-              "slot_name": "給水進線區",
-              "room_uid": "A:floor-1:mdf",
-              "room_name": "🖥️ A-MDF 主機櫃（三棟中樞） v8.0 強化",
-              "dimension_fit": {
-                "circulation": 0.3,
-                "daylight": 0.2,
-                "mep": 1.0
-              }
-            }
-          ]
-        },
-        {
-          "id": "daylight",
-          "strategy": "daylight",
-          "weights": {
-            "circulation": 0.2,
-            "daylight": 0.65,
-            "mep": 0.15
-          },
-          "rationale": [
-            "優先優化採光：客廳/臥室/書房盡量放在戶外或採光友善格位。"
-          ],
-          "room_to_slot": {
-            "A:floor-1:flex1": "slot-10",
-            "A:floor-1:living": "slot-1",
-            "A:floor-1:entry": "slot-2",
-            "A:floor-1:dining": "slot-3",
-            "A:floor-1:balcony1": "slot-7",
-            "A:floor-1:bath1": "slot-8",
-            "A:floor-1:stair-door": "slot-4",
-            "A:floor-1:garage": "slot-5",
-            "A:floor-1:mdf": "slot-11",
-            "A:floor-1:water-inlet": "slot-6",
-            "A:floor-1:kitchen": "slot-9"
-          },
-          "unplaced_room_uids": [],
-          "unassigned_slots": [],
-          "scores": {
-            "circulation": 61.59,
-            "daylight": 62.27,
-            "mep": 58.18,
-            "utilization": 100.0,
-            "total": 60.6,
-            "penalty_unplaced_rooms": 0.0
-          },
-          "pair_details": [
-            {
-              "slot_id": "slot-1",
-              "slot_order": 1,
-              "slot_name": "前院車庫",
-              "room_uid": "A:floor-1:living",
-              "room_name": "🛋️ 客廳 Living Room",
-              "dimension_fit": {
-                "circulation": 0.6,
-                "daylight": 1.0,
-                "mep": 0.0
-              }
-            },
-            {
-              "slot_id": "slot-2",
-              "slot_order": 2,
-              "slot_name": "玄關",
-              "room_uid": "A:floor-1:entry",
-              "room_name": "🚪 玄關 Entrance",
-              "dimension_fit": {
-                "circulation": 0.54,
-                "daylight": -0.35,
-                "mep": 0.0
-              }
-            },
-            {
-              "slot_id": "slot-3",
-              "slot_order": 3,
-              "slot_name": "客廳",
-              "room_uid": "A:floor-1:dining",
-              "room_name": "🍽️ 餐廳 Dining",
-              "dimension_fit": {
-                "circulation": 0.48,
-                "daylight": -0.35,
-                "mep": 0.0
-              }
-            },
-            {
-              "slot_id": "slot-4",
-              "slot_order": 4,
-              "slot_name": "A-MDF 主機櫃",
-              "room_uid": "A:floor-1:stair-door",
-              "room_name": "🚪 樓梯口隔斷門（節能/防煙）",
-              "dimension_fit": {
-                "circulation": 0.0,
-                "daylight": 0.2,
-                "mep": 0.0
-              }
-            },
-            {
-              "slot_id": "slot-5",
-              "slot_order": 5,
-              "slot_name": "🚪✨ 梯間隔斷門",
-              "room_uid": "A:floor-1:garage",
-              "room_name": "🚗 前院車庫 Garage",
-              "dimension_fit": {
-                "circulation": 0.0,
-                "daylight": 0.2,
-                "mep": 0.0
-              }
-            },
-            {
-              "slot_id": "slot-6",
-              "slot_order": 6,
-              "slot_name": "餐廳",
-              "room_uid": "A:floor-1:water-inlet",
-              "room_name": "💧 給水進線區（1F 地面/陽台側） v8.0 強化",
-              "dimension_fit": {
-                "circulation": 0.0,
-                "daylight": 0.2,
-                "mep": -0.6
-              }
-            },
-            {
-              "slot_id": "slot-7",
-              "slot_order": 7,
-              "slot_name": "1F 公用衛浴",
-              "room_uid": "A:floor-1:balcony1",
-              "room_name": "🧺 後工作陽台",
-              "dimension_fit": {
-                "circulation": 0.0,
-                "daylight": 0.2,
-                "mep": 1.0
-              }
-            },
-            {
-              "slot_id": "slot-8",
-              "slot_order": 8,
-              "slot_name": "廚房",
-              "room_uid": "A:floor-1:bath1",
-              "room_name": "🚿 1F 公用衛浴",
-              "dimension_fit": {
-                "circulation": 0.0,
-                "daylight": 0.2,
-                "mep": 1.0
-              }
-            },
-            {
-              "slot_id": "slot-9",
-              "slot_order": 9,
-              "slot_name": "多功能房/客房",
-              "room_uid": "A:floor-1:kitchen",
-              "room_name": "🍳 廚房 Kitchen",
-              "dimension_fit": {
-                "circulation": 0.0,
-                "daylight": 0.2,
-                "mep": -0.6
-              }
-            },
-            {
-              "slot_id": "slot-10",
-              "slot_order": 10,
-              "slot_name": "後工作陽台",
-              "room_uid": "A:floor-1:flex1",
-              "room_name": "🛏️ 多功能房/客房",
-              "dimension_fit": {
-                "circulation": 0.63,
-                "daylight": 1.0,
-                "mep": 0.0
-              }
-            },
-            {
-              "slot_id": "slot-11",
-              "slot_order": 11,
-              "slot_name": "給水進線區",
-              "room_uid": "A:floor-1:mdf",
-              "room_name": "🖥️ A-MDF 主機櫃（三棟中樞） v8.0 強化",
-              "dimension_fit": {
-                "circulation": 0.3,
                 "daylight": 0.2,
                 "mep": 1.0
               }
@@ -548,10 +210,10 @@
           "unassigned_slots": [],
           "scores": {
             "circulation": 58.95,
-            "daylight": 47.27,
+            "daylight": 45.91,
             "mep": 72.73,
             "utilization": 100.0,
-            "total": 60.27,
+            "total": 59.86,
             "penalty_unplaced_rooms": 0.0
           },
           "pair_details": [
@@ -647,7 +309,7 @@
               "room_name": "🍳 廚房 Kitchen",
               "dimension_fit": {
                 "circulation": 0.0,
-                "daylight": 0.2,
+                "daylight": -0.1,
                 "mep": 1.0
               }
             },
@@ -688,10 +350,348 @@
               }
             }
           ]
+        },
+        {
+          "id": "circulation",
+          "strategy": "circulation",
+          "weights": {
+            "circulation": 0.65,
+            "daylight": 0.2,
+            "mep": 0.15
+          },
+          "rationale": [
+            "優先優化動線：公共區靠近入口，私領域往內層。"
+          ],
+          "room_to_slot": {
+            "A:floor-1:flex1": "slot-10",
+            "A:floor-1:living": "slot-1",
+            "A:floor-1:entry": "slot-8",
+            "A:floor-1:dining": "slot-2",
+            "A:floor-1:balcony1": "slot-7",
+            "A:floor-1:bath1": "slot-11",
+            "A:floor-1:stair-door": "slot-3",
+            "A:floor-1:garage": "slot-4",
+            "A:floor-1:mdf": "slot-9",
+            "A:floor-1:water-inlet": "slot-5",
+            "A:floor-1:kitchen": "slot-6"
+          },
+          "unplaced_room_uids": [],
+          "unassigned_slots": [],
+          "scores": {
+            "circulation": 59.95,
+            "daylight": 68.41,
+            "mep": 49.77,
+            "utilization": 100.0,
+            "total": 58.92,
+            "penalty_unplaced_rooms": 0.0
+          },
+          "pair_details": [
+            {
+              "slot_id": "slot-1",
+              "slot_order": 1,
+              "slot_name": "前院車庫",
+              "room_uid": "A:floor-1:living",
+              "room_name": "🛋️ 客廳 Living Room",
+              "dimension_fit": {
+                "circulation": 0.6,
+                "daylight": 1.0,
+                "mep": 0.0
+              }
+            },
+            {
+              "slot_id": "slot-2",
+              "slot_order": 2,
+              "slot_name": "玄關",
+              "room_uid": "A:floor-1:dining",
+              "room_name": "🍽️ 餐廳 Dining",
+              "dimension_fit": {
+                "circulation": 0.54,
+                "daylight": -0.35,
+                "mep": 0.0
+              }
+            },
+            {
+              "slot_id": "slot-3",
+              "slot_order": 3,
+              "slot_name": "客廳",
+              "room_uid": "A:floor-1:stair-door",
+              "room_name": "🚪 樓梯口隔斷門（節能/防煙）",
+              "dimension_fit": {
+                "circulation": 0.0,
+                "daylight": 0.2,
+                "mep": 0.0
+              }
+            },
+            {
+              "slot_id": "slot-4",
+              "slot_order": 4,
+              "slot_name": "A-MDF 主機櫃",
+              "room_uid": "A:floor-1:garage",
+              "room_name": "🚗 前院車庫 Garage",
+              "dimension_fit": {
+                "circulation": 0.0,
+                "daylight": 0.2,
+                "mep": 0.0
+              }
+            },
+            {
+              "slot_id": "slot-5",
+              "slot_order": 5,
+              "slot_name": "🚪✨ 梯間隔斷門",
+              "room_uid": "A:floor-1:water-inlet",
+              "room_name": "💧 給水進線區（1F 地面/陽台側） v8.0 強化",
+              "dimension_fit": {
+                "circulation": 0.0,
+                "daylight": 0.2,
+                "mep": -0.6
+              }
+            },
+            {
+              "slot_id": "slot-6",
+              "slot_order": 6,
+              "slot_name": "餐廳",
+              "room_uid": "A:floor-1:kitchen",
+              "room_name": "🍳 廚房 Kitchen",
+              "dimension_fit": {
+                "circulation": 0.0,
+                "daylight": 0.2,
+                "mep": -0.6
+              }
+            },
+            {
+              "slot_id": "slot-7",
+              "slot_order": 7,
+              "slot_name": "1F 公用衛浴",
+              "room_uid": "A:floor-1:balcony1",
+              "room_name": "🧺 後工作陽台",
+              "dimension_fit": {
+                "circulation": 0.0,
+                "daylight": 0.2,
+                "mep": 1.0
+              }
+            },
+            {
+              "slot_id": "slot-8",
+              "slot_order": 8,
+              "slot_name": "廚房",
+              "room_uid": "A:floor-1:entry",
+              "room_name": "🚪 玄關 Entrance",
+              "dimension_fit": {
+                "circulation": 0.18000000000000002,
+                "daylight": 1.0,
+                "mep": 0.0
+              }
+            },
+            {
+              "slot_id": "slot-9",
+              "slot_order": 9,
+              "slot_name": "多功能房/客房",
+              "room_uid": "A:floor-1:mdf",
+              "room_name": "🖥️ A-MDF 主機櫃（三棟中樞） v8.0 強化",
+              "dimension_fit": {
+                "circulation": 0.24,
+                "daylight": 0.2,
+                "mep": -0.85
+              }
+            },
+            {
+              "slot_id": "slot-10",
+              "slot_order": 10,
+              "slot_name": "後工作陽台",
+              "room_uid": "A:floor-1:flex1",
+              "room_name": "🛏️ 多功能房/客房",
+              "dimension_fit": {
+                "circulation": 0.63,
+                "daylight": 1.0,
+                "mep": 0.0
+              }
+            },
+            {
+              "slot_id": "slot-11",
+              "slot_order": 11,
+              "slot_name": "給水進線區",
+              "room_uid": "A:floor-1:bath1",
+              "room_name": "🚿 1F 公用衛浴",
+              "dimension_fit": {
+                "circulation": 0.0,
+                "daylight": 0.2,
+                "mep": 1.0
+              }
+            }
+          ]
+        },
+        {
+          "id": "daylight",
+          "strategy": "daylight",
+          "weights": {
+            "circulation": 0.2,
+            "daylight": 0.65,
+            "mep": 0.15
+          },
+          "rationale": [
+            "優先優化採光：客廳/臥室/書房盡量放在戶外或採光友善格位。"
+          ],
+          "room_to_slot": {
+            "A:floor-1:flex1": "slot-10",
+            "A:floor-1:living": "slot-1",
+            "A:floor-1:entry": "slot-8",
+            "A:floor-1:dining": "slot-2",
+            "A:floor-1:balcony1": "slot-7",
+            "A:floor-1:bath1": "slot-11",
+            "A:floor-1:stair-door": "slot-3",
+            "A:floor-1:garage": "slot-4",
+            "A:floor-1:mdf": "slot-9",
+            "A:floor-1:water-inlet": "slot-5",
+            "A:floor-1:kitchen": "slot-6"
+          },
+          "unplaced_room_uids": [],
+          "unassigned_slots": [],
+          "scores": {
+            "circulation": 59.95,
+            "daylight": 68.41,
+            "mep": 49.77,
+            "utilization": 100.0,
+            "total": 58.92,
+            "penalty_unplaced_rooms": 0.0
+          },
+          "pair_details": [
+            {
+              "slot_id": "slot-1",
+              "slot_order": 1,
+              "slot_name": "前院車庫",
+              "room_uid": "A:floor-1:living",
+              "room_name": "🛋️ 客廳 Living Room",
+              "dimension_fit": {
+                "circulation": 0.6,
+                "daylight": 1.0,
+                "mep": 0.0
+              }
+            },
+            {
+              "slot_id": "slot-2",
+              "slot_order": 2,
+              "slot_name": "玄關",
+              "room_uid": "A:floor-1:dining",
+              "room_name": "🍽️ 餐廳 Dining",
+              "dimension_fit": {
+                "circulation": 0.54,
+                "daylight": -0.35,
+                "mep": 0.0
+              }
+            },
+            {
+              "slot_id": "slot-3",
+              "slot_order": 3,
+              "slot_name": "客廳",
+              "room_uid": "A:floor-1:stair-door",
+              "room_name": "🚪 樓梯口隔斷門（節能/防煙）",
+              "dimension_fit": {
+                "circulation": 0.0,
+                "daylight": 0.2,
+                "mep": 0.0
+              }
+            },
+            {
+              "slot_id": "slot-4",
+              "slot_order": 4,
+              "slot_name": "A-MDF 主機櫃",
+              "room_uid": "A:floor-1:garage",
+              "room_name": "🚗 前院車庫 Garage",
+              "dimension_fit": {
+                "circulation": 0.0,
+                "daylight": 0.2,
+                "mep": 0.0
+              }
+            },
+            {
+              "slot_id": "slot-5",
+              "slot_order": 5,
+              "slot_name": "🚪✨ 梯間隔斷門",
+              "room_uid": "A:floor-1:water-inlet",
+              "room_name": "💧 給水進線區（1F 地面/陽台側） v8.0 強化",
+              "dimension_fit": {
+                "circulation": 0.0,
+                "daylight": 0.2,
+                "mep": -0.6
+              }
+            },
+            {
+              "slot_id": "slot-6",
+              "slot_order": 6,
+              "slot_name": "餐廳",
+              "room_uid": "A:floor-1:kitchen",
+              "room_name": "🍳 廚房 Kitchen",
+              "dimension_fit": {
+                "circulation": 0.0,
+                "daylight": 0.2,
+                "mep": -0.6
+              }
+            },
+            {
+              "slot_id": "slot-7",
+              "slot_order": 7,
+              "slot_name": "1F 公用衛浴",
+              "room_uid": "A:floor-1:balcony1",
+              "room_name": "🧺 後工作陽台",
+              "dimension_fit": {
+                "circulation": 0.0,
+                "daylight": 0.2,
+                "mep": 1.0
+              }
+            },
+            {
+              "slot_id": "slot-8",
+              "slot_order": 8,
+              "slot_name": "廚房",
+              "room_uid": "A:floor-1:entry",
+              "room_name": "🚪 玄關 Entrance",
+              "dimension_fit": {
+                "circulation": 0.18000000000000002,
+                "daylight": 1.0,
+                "mep": 0.0
+              }
+            },
+            {
+              "slot_id": "slot-9",
+              "slot_order": 9,
+              "slot_name": "多功能房/客房",
+              "room_uid": "A:floor-1:mdf",
+              "room_name": "🖥️ A-MDF 主機櫃（三棟中樞） v8.0 強化",
+              "dimension_fit": {
+                "circulation": 0.24,
+                "daylight": 0.2,
+                "mep": -0.85
+              }
+            },
+            {
+              "slot_id": "slot-10",
+              "slot_order": 10,
+              "slot_name": "後工作陽台",
+              "room_uid": "A:floor-1:flex1",
+              "room_name": "🛏️ 多功能房/客房",
+              "dimension_fit": {
+                "circulation": 0.63,
+                "daylight": 1.0,
+                "mep": 0.0
+              }
+            },
+            {
+              "slot_id": "slot-11",
+              "slot_order": 11,
+              "slot_name": "給水進線區",
+              "room_uid": "A:floor-1:bath1",
+              "room_name": "🚿 1F 公用衛浴",
+              "dimension_fit": {
+                "circulation": 0.0,
+                "daylight": 0.2,
+                "mep": 1.0
+              }
+            }
+          ]
         }
       ],
       "best_candidate_id": "mep",
-      "best_total_score": 60.88
+      "best_total_score": 60.94
     },
     {
       "building_id": "A",

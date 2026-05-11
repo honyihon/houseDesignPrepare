@@ -1,8 +1,8 @@
 # Expert Review Report
 
-- Generated: `2026-04-17T06:16:14.797874+00:00`
+- Generated: `2026-04-28T08:56:39.038216+00:00`
 - Mode: `concept`
-- Buildings: `A,B,C`
+- Buildings: `C`
 - Hard Gate: **PASS**
 
 ## Critical Failures
@@ -12,7 +12,7 @@
 ## Score Breakdown
 
 - Weights: circulation=0.35, daylight=0.25, mep=0.2, fengshui=0.2
-- Averages: circulation=59.19, daylight=62.15, mep=64.85, fengshui=75.19, composite=64.26
+- Averages: circulation=59.05, daylight=62.66, mep=64.15, fengshui=74.44, composite=64.05
 - Floors changed by expert weighting: 4
 
 ## Citations

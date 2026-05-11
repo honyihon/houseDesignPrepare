@@ -1,4 +1,20 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(powershell *)",
+      "Bash(pip3 list *)",
+      "Bash(python3 scripts/extract_layout_data.py)",
+      "Bash(python3 scripts/build_room_program.py)",
+      "Bash(python3 scripts/generate_layout_candidates.py)",
+      "Bash(python3 scripts/render_candidate_viewer.py)",
+      "Bash(python3 scripts/export_top1_svgs.py --selection auto)",
+      "Bash(python3 scripts/export_top1_svgs.py --selection best)",
+      "Bash(python3 scripts/validate_layout_bundle.py)",
+      "Bash(python3 scripts/evaluate_expert_gates.py --stage normalize)",
+      "Bash(python3 scripts/evaluate_expert_gates.py --request inputs/design_request.md --buildings A --mode concept --selection best --stage full)",
+      "Bash(python3 *)"
+    ]
+  },
   "enabledMcpjsonServers": [
     "playwright",
     "brave-search"

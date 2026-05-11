@@ -1694,6 +1694,12 @@
 </table>
 </div>
 </div>
+<div class="system-box" style="border-color:rgba(239,68,68,.4);">
+<div class="system-title" style="color:#ef4444;">⚠️ 採光、通風、逃生距離正式檢核（需專業計算）</div>
+<div style="padding:12px;background:rgba(239,68,68,.06);color:#7f1d1d;font-size:.85rem;">
+<strong>重要聲明：</strong>本文件 HTML 示意圖中的窗戶位置、開口大小與動線標註僅供設計參考，<strong>不可替代</strong>建築師進行的居室採光面積計算、通風開口面積計算、避難步行距離檢核與無障礙動線審查。上述項目需於設計會議後由建築師出具正式計算書，並依《建築技術規則》檢核通過。
+</div>
+</div>
 <div class="system-box">
 <div class="system-title">🔇 排水與靜音工程（事後無法補救）</div>
 <div class="io-table">
@@ -2153,19 +2159,20 @@
 <span class="badge pwr">🔌 餐邊插座</span>
 </div>
 </div>
-<div class="plan-cell wet" data-door-mm="800" data-h-mm="1100" data-material="tile+waterproof" data-w-mm="5500" data-window-mm="600" data-x-mm="5500" data-y-mm="3600" onclick="highlightRoom('bath1', this)">
+<div class="plan-cell wet" data-door-direction="side" data-door-mm="800" data-exhaust-duct="independent" data-h-mm="1100" data-material="tile+waterproof" data-w-mm="5500" data-window-mm="600" data-x-mm="5500" data-y-mm="3600" onclick="highlightRoom('bath1', this)">
 <span class="cell-icon">🚿</span>
 <span class="cell-name">1F 公用衛浴</span>
 <div class="io-badges">
 <span class="badge pwr">🔌 暖風機</span>
 <span class="badge water">💧 冷水</span>
 <span class="badge hot">♨️ 熱水</span>
+<span class="badge sec">🚪 側開門（避餐廳）</span>
 </div>
 </div>
 </div>
 <!-- 廚房 + 多功能房 -->
 <div class="plan-row" data-row-h-mm="1300" style="grid-template-columns:1.2fr 1fr;">
-<div class="plan-cell" data-door-mm="900" data-h-mm="1300" data-material="tile+stainless" data-w-mm="6000" data-window-mm="900" data-x-mm="0" data-y-mm="4700" onclick="highlightRoom('kitchen', this)">
+<div class="plan-cell" data-back-balcony-door="true" data-back-balcony-door-mm="800" data-erv-sleeve="true" data-erv-sleeve-mm="100-150" data-door-mm="900" data-exhaust-duct="independent" data-h-mm="1300" data-material="tile+stainless" data-w-mm="6000" data-window-mm="900" data-x-mm="0" data-y-mm="4700" onclick="highlightRoom('kitchen', this)">
 <span class="cell-icon">🍳</span>
 <span class="cell-name">廚房</span>
 <span class="cell-size">約 3 坪（示意）</span>
@@ -2174,6 +2181,7 @@
 <span class="badge sec">🔥 偵測器</span>
 <span class="badge water">💧 冷水</span>
 <span class="badge hot">♨️ 熱水</span>
+<span class="badge escape">🚪 直達後陽台</span>
 </div>
 </div>
 <div class="plan-cell" data-door-mm="900" data-h-mm="1300" data-material="wood+paint" data-w-mm="5000" data-window-mm="1200" data-x-mm="6000" data-y-mm="4700" onclick="highlightRoom('flex1', this)">
@@ -2435,7 +2443,15 @@
 <li><strong>給水：</strong>冷水（VF800 供應）+ 熱水（Haier 供應）</li>
 <li><strong>管徑：</strong>冷/熱水支管 1/2"（15mm），PPR 或不鏽鋼</li>
 <li><strong>扶手預留：</strong>淋浴區/馬桶旁牆面預埋木芯或鋼襯</li>
-<li><strong>門片對餐廳：</strong>採用「側移/口袋門 + 門片氣密 + 獨立排風強化」，必要時用霧面長虹玻璃或隱形門弱化存在感。</li>
+<li><strong>門片對餐廳（第一優先修正）：</strong>
+<ul style="margin-top:4px;padding-left:16px;">
+<li><strong>門向：</strong>門片改為側開或口袋門，開門方向不得直對餐廳座位區；建議門軸設於靠廚房側，開門後牆面遮蔽視線。</li>
+<li><strong>兩段式乾濕分離：</strong>外側洗手台乾區外移（可視為緩衝），內側馬桶/淋浴濕區獨立門片。</li>
+<li><strong>視線遮擋：</strong>增設屏風、儲物櫃或植栽隔斷，阻擋公衛門與餐廳之間直線視線；門片改用霧面長虹玻璃或隱藏門降低存在感。</li>
+<li><strong>排風強化：</strong>獨立排風直出＋止逆閥，確保濕氣與異味不往餐廳擴散。</li>
+</ul>
+</li>
+<li><strong>浴廁排風管（結構期必做）：</strong>獨立 Ø100mm 排風管直通室外，不可與廚房油煙管或 ERV 新風管共管；結構階段預埋套管，出口加防蟲網/防雨罩。</li>
 </div>
 <div class="tag tag-water">
 <div class="tag-title">💧 給水說明</div>
@@ -2458,8 +2474,11 @@
 <li><strong>中島預留：</strong>水槽下 3–4 組插座（洗碗機/飲水機/廚餘機）＋ 洗碗機專用進排水＋ 廚餘機耐熱防堵排水；地插若用彈出式需 IP54
                                 金屬防水型或改設中島側板</li>
 <li><strong>飲水預留：</strong>RO 淨水器位置（軟水後再過濾）或硬水旁通點</li>
-<li><strong>暗廚強制通風：</strong>強排油煙機≥1000 m³/h + 24小時低噪換氣扇，獨立電迴路並分開排風管。</li>
+<li><strong>暗廚強制通風：</strong>強排油煙機≥1000 m³/h + 24小時低噪換氣扇，獨立電迴路並<strong>分開排風管（不可與浴廁ERV共管）</strong>。</li>
+<li><strong>ERV 套管預留（結構期必做）：</strong>全熱交換器穿樑套管 Ø100–150mm，位置需於結構階段預埋；施工圖標註套管中心線高度、穿樑/穿牆限制區，避免事後打樑。廚房油煙管、浴廁排風管、ERV新風管三路獨立，禁止共管。</li>
 <li><strong>採光補強：</strong>廚房與後陽台隔間上緣預留透光玻璃磚/長虹玻璃，引入後陽台自然光。</li>
+<li><strong>後陽台直達動線（第一優先）：</strong>廚房/餐廳側開門 ≥75–80cm 直達後陽台，<strong>不得穿越多功能房</strong>。若現有動線必經多功能房，需增設獨立門位。平面圖標註：門淨寬 ≥75cm、門檻零高差或斜坡處理。</li>
+<li><strong>家務櫃（加碼）：</strong>後陽台門內側預留「家務櫃」空間（清潔用品、吸塵器、除濕機、熨斗集中收納＋插座/排水）。</li>
 </div>
 <div class="tag tag-opt">
 <div class="tag-title">💡 飲用水選項</div>
@@ -3096,6 +3115,7 @@
 <li><strong>緊急照明：</strong>通往 RF 的動線需有照明</li>
 <li><strong>夜間感應：</strong>樓梯/走道夜燈迴路預留</li>
 <li><strong>穿樓板封堵：</strong>立管穿樓板處須防火填塞</li>
+<li style="color:#ef4444;"><strong>⚠️ 需專業計算（第一優先）：</strong>樓梯級高、級深、2R+T、平台淨深、扶手高度、踏步止滑、緊急照明與避難步行距離，需由建築師/結構技師依《建築技術規則》正式計算與檢核；本 HTML 僅為示意，不可替代法規審查。</li>
 </div>
 </div>
 <div class="room special-outdoor" data-h-mm="1700" data-target-cell="slot-6" data-w-mm="11000" data-x-mm="0" data-y-mm="3500" id="room-terrace3">
@@ -3278,6 +3298,7 @@
 <li><strong>結構載重：</strong>1000L ≈ 1 噸，必須落在梁/柱可承載位置</li>
 <li><strong>防水盤：</strong>水塔底座做防水收邊，排水坡度導向地排</li>
 <li><strong>漏水偵測：</strong>水塔/溢流口附近設漏水偵測器（蜂鳴/推播）</li>
+<li style="color:#ef4444;"><strong>⚠️ 需專業計算（第一優先）：</strong>RF 水塔（約 1 噸）、熱泵、VF800、太陽能設備、棚架等載重與錨定，需由結構技師正式計算並確認樑柱承載力；本 HTML 僅標示設備位置示意，不可替代結構計算書。</li>
 </div>
 <div class="spec-box">
 <div class="spec-title">📋 水塔控制與檢修規範</div>

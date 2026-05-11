@@ -1,13 +1,13 @@
 # Layout Candidate Summary
 
-- Generated at: `2026-04-17T06:16:12.324229+00:00`
+- Generated at: `2026-04-28T08:56:16.532276+00:00`
 - Evaluated floors: **12**
 
 ## Best Candidate by Floor
 
 | Building | Floor | Best Strategy | Total | Circulation | Daylight | MEP |
 |---|---|---:|---:|---:|---:|---:|
-| A | floor-1 1F | mep | 60.88 | 56.55 | 54.77 | 70.45 |
+| A | floor-1 1F | mep | 60.94 | 55.59 | 53.41 | 72.73 |
 | A | floor-2 2F | mep | 61.75 | 63.93 | 54.69 | 65.62 |
 | A | floor-3 3F | mep | 63.7 | 60.83 | 73.33 | 58.33 |
 | A | floor-4 RF | mep | 65.14 | 53.5 | 57.5 | 83.33 |

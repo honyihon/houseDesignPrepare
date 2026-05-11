@@ -1,16 +1,14 @@
 {
   "schema_version": "expert-review-v1",
-  "generated_at": "2026-04-17T06:16:14.797874+00:00",
+  "generated_at": "2026-04-28T08:56:39.038216+00:00",
   "input": {
     "request_file": "design_request.md",
     "mode": "concept",
     "selection": "best",
     "buildings": [
-      "A",
-      "B",
       "C"
     ],
-    "rule_dir": "scripts\\rules"
+    "rule_dir": "scripts/rules"
   },
   "hard_gate": "pass",
   "critical_failures": [],
@@ -24,12 +22,6 @@
       "fail_message": "入口標記數量異常。",
       "fix_hint": "每層僅保留一個 data-entry=\"true\"。",
       "evidence": [
-        "A:floor-2 entry_count=0",
-        "A:floor-3 entry_count=0",
-        "A:floor-4 entry_count=0",
-        "B:floor-2 entry_count=0",
-        "B:floor-3 entry_count=0",
-        "B:floor-4 entry_count=0",
         "C:floor-2 entry_count=0",
         "C:floor-3 entry_count=0",
         "C:floor-4 entry_count=0"
@@ -48,7 +40,6 @@
       "fail_message": "無障礙關聯格位門寬不足。",
       "fix_hint": "調整無障礙格位的 data-door-mm。",
       "evidence": [
-        "A: no cell matched accessible keyword '無障礙'",
         "C: no cell matched accessible keyword '無障礙'"
       ],
       "source_doc": "建築物無障礙設施設計規範",
@@ -82,11 +73,11 @@
     },
     "evaluated_floor_count": 12,
     "averages": {
-      "circulation": 59.19,
-      "daylight": 62.15,
-      "mep": 64.85,
-      "fengshui": 75.19,
-      "composite": 64.26
+      "circulation": 59.05,
+      "daylight": 62.66,
+      "mep": 64.15,
+      "fengshui": 74.44,
+      "composite": 64.05
     },
     "recommended_strategy_distribution": {
       "circulation": 7,
@@ -104,33 +95,33 @@
       "expert_best": "circulation",
       "changed_from_pipeline": true,
       "top_scores": {
-        "circulation": 61.59,
-        "daylight": 62.27,
-        "mep": 58.18,
-        "fengshui": 78.57,
-        "composite": 64.47
+        "circulation": 59.95,
+        "daylight": 68.41,
+        "mep": 49.77,
+        "fengshui": 69.64,
+        "composite": 61.97
       },
       "ranked": [
         {
           "id": "circulation",
           "strategy": "circulation",
           "scores": {
-            "circulation": 61.59,
-            "daylight": 62.27,
-            "mep": 58.18,
-            "fengshui": 78.57,
-            "composite": 64.47
+            "circulation": 59.95,
+            "daylight": 68.41,
+            "mep": 49.77,
+            "fengshui": 69.64,
+            "composite": 61.97
           }
         },
         {
           "id": "daylight",
           "strategy": "daylight",
           "scores": {
-            "circulation": 61.59,
-            "daylight": 62.27,
-            "mep": 58.18,
-            "fengshui": 78.57,
-            "composite": 64.47
+            "circulation": 59.95,
+            "daylight": 68.41,
+            "mep": 49.77,
+            "fengshui": 69.64,
+            "composite": 61.97
           }
         },
         {
@@ -138,21 +129,21 @@
           "strategy": "baseline",
           "scores": {
             "circulation": 58.95,
-            "daylight": 47.27,
+            "daylight": 45.91,
             "mep": 72.73,
             "fengshui": 73.57,
-            "composite": 61.71
+            "composite": 61.37
           }
         },
         {
           "id": "mep",
           "strategy": "mep",
           "scores": {
-            "circulation": 56.55,
-            "daylight": 54.77,
-            "mep": 70.45,
-            "fengshui": 51.07,
-            "composite": 57.79
+            "circulation": 55.59,
+            "daylight": 53.41,
+            "mep": 72.73,
+            "fengshui": 36.79,
+            "composite": 54.71
           }
         }
       ]
@@ -826,9 +817,9 @@
     "date": ""
   },
   "artifacts": {
-    "normalized_request": "structured\\expert_review\\request_normalized.json",
-    "room_program": "structured\\room_program.json",
-    "candidates": "structured\\candidates\\layout_candidates.json",
+    "normalized_request": "structured/expert_review/request_normalized.json",
+    "room_program": "structured/room_program.json",
+    "candidates": "structured/candidates/layout_candidates.json",
     "viewer": "structured/candidates/viewer.html",
     "pdf": "structured/candidates/print_bundle.pdf"
   },
@@ -870,7 +861,6 @@
       "fail_message": "無障礙關聯格位門寬不足。",
       "fix_hint": "調整無障礙格位的 data-door-mm。",
       "evidence": [
-        "A: no cell matched accessible keyword '無障礙'",
         "C: no cell matched accessible keyword '無障礙'"
       ],
       "source_doc": "建築物無障礙設施設計規範",
@@ -901,12 +891,6 @@
       "fail_message": "入口標記數量異常。",
       "fix_hint": "每層僅保留一個 data-entry=\"true\"。",
       "evidence": [
-        "A:floor-2 entry_count=0",
-        "A:floor-3 entry_count=0",
-        "A:floor-4 entry_count=0",
-        "B:floor-2 entry_count=0",
-        "B:floor-3 entry_count=0",
-        "B:floor-4 entry_count=0",
         "C:floor-2 entry_count=0",
         "C:floor-3 entry_count=0",
         "C:floor-4 entry_count=0"
@@ -1001,5 +985,5 @@
       "hard_gate_eligible": false
     }
   ],
-  "report_hash": "0840b5a22335ddce407bc9ddc6948ffdb9efaf5c7c3bce51c57799a02ae3a83b"
+  "report_hash": "99e4b849ae914f81c7495d7e72bc1592fb0be6fa25fdfa084b73531c8bbde451"
 }
