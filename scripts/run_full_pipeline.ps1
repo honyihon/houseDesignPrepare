@@ -42,14 +42,15 @@ function Invoke-Step {
 
 Write-Host ("Running mode: {0} | selection: {1}" -f $Mode, $resolvedSelection) -ForegroundColor DarkCyan
 
-Invoke-Step -Name "Step 1/6 extract_layout_data" -Arguments @("scripts/extract_layout_data.py")
-Invoke-Step -Name "Step 2/6 build_room_program" -Arguments @("scripts/build_room_program.py")
-Invoke-Step -Name "Step 3/6 generate_layout_candidates" -Arguments @("scripts/generate_layout_candidates.py")
-Invoke-Step -Name "Step 4/6 render_candidate_viewer" -Arguments @("scripts/render_candidate_viewer.py")
-Invoke-Step -Name "Step 5/6 export_top1_svgs" -Arguments @("scripts/export_top1_svgs.py", "--selection", $resolvedSelection)
+Invoke-Step -Name "Step 1/7 extract_layout_data" -Arguments @("scripts/extract_layout_data.py")
+Invoke-Step -Name "Step 2/7 build_room_program" -Arguments @("scripts/build_room_program.py")
+Invoke-Step -Name "Step 3/7 evaluate_architect_metrics" -Arguments @("scripts/evaluate_architect_metrics.py")
+Invoke-Step -Name "Step 4/7 generate_layout_candidates" -Arguments @("scripts/generate_layout_candidates.py")
+Invoke-Step -Name "Step 5/7 render_candidate_viewer" -Arguments @("scripts/render_candidate_viewer.py")
+Invoke-Step -Name "Step 6/7 export_top1_svgs" -Arguments @("scripts/export_top1_svgs.py", "--selection", $resolvedSelection)
 
 if ($Mode -ne "concept") {
-    Invoke-Step -Name "Step 6/6 export_print_bundle_pdf" -Arguments @(
+    Invoke-Step -Name "Step 7/7 export_print_bundle_pdf" -Arguments @(
         "scripts/export_print_bundle_pdf.py",
         "--paper",
         $Paper,

@@ -26,6 +26,7 @@ Convert the static building HTML pages into structured JSON files for downstream
 ```bash
 python scripts/extract_layout_data.py
 python scripts/build_room_program.py
+python scripts/evaluate_architect_metrics.py
 python scripts/generate_layout_candidates.py
 python scripts/render_candidate_viewer.py
 python scripts/export_top1_svgs.py
@@ -117,6 +118,15 @@ This file unifies all buildings into one normalized schema:
 - plan-cell mapping to rooms
 - tables/checklists/section bullets converted into constraints
 
+## Output for Architect Metrics
+
+After running `evaluate_architect_metrics.py`, you'll get:
+
+- `structured/architect_metrics/metrics.json`
+- `structured/architect_metrics/report.md`
+
+This advisory layer adds concept-level daylight, door width, floor area, egress proxy, and structure-review metadata. It does not replace Taiwan code, daylight, ventilation, egress, or structural professional calculations.
+
 ## Output for Step 3
 
 After running `generate_layout_candidates.py`, you'll get:
@@ -128,6 +138,7 @@ Each evaluated floor includes:
 - `baseline`, `circulation`, `daylight`, `mep` candidates
 - per-candidate scores (`circulation`, `daylight`, `mep`, `utilization`, `total`)
 - room-slot assignment details and unplaced/unassigned lists
+- daylight fit from `structured/architect_metrics/metrics.json` when available, with fallback to the original outdoor-slot heuristic
 
 ## Output for Step 4
 

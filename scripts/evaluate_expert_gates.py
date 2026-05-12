@@ -25,6 +25,7 @@ REPORT_DIR = ROOT / "structured" / "expert_review"
 RULE_DIR = ROOT / "scripts" / "rules"
 PROGRAM_FILE = ROOT / "structured" / "room_program.json"
 CANDIDATE_FILE = ROOT / "structured" / "candidates" / "layout_candidates.json"
+ARCHITECT_METRICS_FILE = ROOT / "structured" / "architect_metrics" / "metrics.json"
 NORMALIZED_REQUEST_FILE = REPORT_DIR / "request_normalized.json"
 DEFAULT_REPORT_JSON = REPORT_DIR / "report.json"
 DEFAULT_REPORT_MD = REPORT_DIR / "report.md"
@@ -194,6 +195,7 @@ class RuleEvalContext:
     soups: dict[str, BeautifulSoup]
     program: dict[str, Any]
     candidates: dict[str, Any]
+    architect_metrics: dict[str, Any]
 
 
 def build_context(
@@ -211,6 +213,7 @@ def build_context(
 
     program = load_json(PROGRAM_FILE) if PROGRAM_FILE.exists() else {}
     candidates = load_json(CANDIDATE_FILE) if CANDIDATE_FILE.exists() else {}
+    architect_metrics = load_json(ARCHITECT_METRICS_FILE) if ARCHITECT_METRICS_FILE.exists() else {}
     return RuleEvalContext(
         request_text=request_text,
         request_sections=request_sections,
@@ -218,6 +221,7 @@ def build_context(
         soups=soups,
         program=program,
         candidates=candidates,
+        architect_metrics=architect_metrics,
     )
 
 
@@ -569,6 +573,29 @@ def generate_report_md(report: dict[str, Any]) -> str:
     )
     lines.append("")
 
+    lines.append("## Architect Metrics")
+    lines.append("")
+    architect_summary = report.get("architect_metrics_summary", {})
+    if not architect_summary:
+        lines.append("- Not generated")
+    else:
+        status_counts = architect_summary.get("status_counts", {})
+        lines.append(f"- Evaluated floors: {architect_summary.get('evaluated_floor_count', 0)}")
+        lines.append(
+            f"- Status: ok={status_counts.get('ok', 0)}, "
+            f"advisory={status_counts.get('advisory', 0)}, "
+            f"missing_data={status_counts.get('missing_data', 0)}, "
+            f"professional_required={status_counts.get('professional_required', 0)}"
+        )
+        lines.append(
+            f"- Daylight avg: {architect_summary.get('daylight_factor_avg_pct', 0)}%; "
+            f"below target rooms: {architect_summary.get('daylight_rooms_below_target', 0)}"
+        )
+        top_issues = architect_summary.get("top_issues", [])
+        if top_issues:
+            lines.append(f"- First issue: {top_issues[0]}")
+    lines.append("")
+
     lines.append("## Citations")
     lines.append("")
     citations = report.get("citations", [])
@@ -621,6 +648,7 @@ def update_task_board(path: Path, report: dict[str, Any]) -> None:
             f"- Critical Failures: {len(report.get('critical_failures', []))}",
             f"- Warning Count: {len(report.get('warnings', []))}",
             f"- Expert Composite Avg: {report.get('score_breakdown', {}).get('averages', {}).get('composite', 0)}",
+            f"- Architect Metrics Advisory: {report.get('architect_metrics_summary', {}).get('status_counts', {}).get('advisory', 0)}",
             TASK_BOARD_MARKER_END,
         ]
     )
@@ -671,6 +699,80 @@ def rule_result_item(
         "source_url": normalize_whitespace(str(rule.get("source_url", ""))),
         "hard_gate_eligible": hard_gate_eligible,
     }
+
+
+def architect_metric_rule_results(metrics_payload: dict[str, Any]) -> list[dict[str, Any]]:
+    if not metrics_payload:
+        return [
+            {
+                "rule_id": "ARCH-MET-000",
+                "domain": "architect_metrics",
+                "severity": "info",
+                "passed": False,
+                "message": "Architect metrics report not found.",
+                "fail_message": "Run scripts/evaluate_architect_metrics.py after room_program is generated.",
+                "fix_hint": "Use the full pipeline or run the architect metrics step manually.",
+                "evidence": ["structured/architect_metrics/metrics.json missing"],
+                "source_doc": "Skills-Architects calculator adaptation",
+                "source_article": "Concept advisory metrics",
+                "source_url": "https://github.com/Amanbh997/Skills-Architects",
+                "hard_gate_eligible": False,
+            }
+        ]
+
+    summary = metrics_payload.get("summary", {})
+    status_counts = summary.get("status_counts", {})
+    generated_at = normalize_whitespace(str(metrics_payload.get("generated_at", "")))
+    results: list[dict[str, Any]] = []
+
+    advisory_count = to_int(status_counts.get("advisory"), 0)
+    missing_count = to_int(status_counts.get("missing_data"), 0)
+    if advisory_count or missing_count:
+        results.append(
+            {
+                "rule_id": "ARCH-MET-001",
+                "domain": "architect_metrics",
+                "severity": "warning",
+                "passed": False,
+                "message": "Concept architect metrics found advisory or missing-data items.",
+                "fail_message": "Some rooms need better daylight, door, geometry, or metadata before design review.",
+                "fix_hint": "Review structured/architect_metrics/report.md and update HTML geometry/openings or request professional calculation.",
+                "evidence": [
+                    f"generated_at={generated_at}",
+                    f"advisory={advisory_count}",
+                    f"missing_data={missing_count}",
+                    *[str(v) for v in summary.get("top_issues", [])[:8]],
+                ],
+                "source_doc": "Skills-Architects calculator adaptation",
+                "source_article": "Daylight/door/geometry advisory screening",
+                "source_url": "https://github.com/Amanbh997/Skills-Architects",
+                "hard_gate_eligible": False,
+            }
+        )
+
+    professional_count = to_int(status_counts.get("professional_required"), 0)
+    if professional_count:
+        results.append(
+            {
+                "rule_id": "ARCH-MET-002",
+                "domain": "architect_metrics",
+                "severity": "info",
+                "passed": False,
+                "message": "Architect metrics identified items requiring professional review.",
+                "fail_message": "Formal daylight, ventilation, egress, or structural review is still required.",
+                "fix_hint": "Keep these items as architect/engineer confirmation tasks; do not treat concept metrics as signoff.",
+                "evidence": [
+                    f"generated_at={generated_at}",
+                    f"professional_required={professional_count}",
+                ],
+                "source_doc": "Skills-Architects calculator adaptation",
+                "source_article": "Professional review advisory screening",
+                "source_url": "https://github.com/Amanbh997/Skills-Architects",
+                "hard_gate_eligible": False,
+            }
+        )
+
+    return results
 
 
 def stable_report_hash(report: dict[str, Any]) -> str:
@@ -724,6 +826,8 @@ def build_report(
                     }
                 )
 
+    rule_results.extend(architect_metric_rule_results(ctx.architect_metrics))
+
     critical_failures = [
         r
         for r in rule_results
@@ -748,6 +852,7 @@ def build_report(
         "normalized_request": str(NORMALIZED_REQUEST_FILE.relative_to(ROOT)) if NORMALIZED_REQUEST_FILE.exists() else "",
         "room_program": str(PROGRAM_FILE.relative_to(ROOT)) if PROGRAM_FILE.exists() else "",
         "candidates": str(CANDIDATE_FILE.relative_to(ROOT)) if CANDIDATE_FILE.exists() else "",
+        "architect_metrics": str(ARCHITECT_METRICS_FILE.relative_to(ROOT)) if ARCHITECT_METRICS_FILE.exists() else "",
         "viewer": "structured/candidates/viewer.html" if (ROOT / "structured/candidates/viewer.html").exists() else "",
         "pdf": "structured/candidates/print_bundle.pdf"
         if (ROOT / "structured/candidates/print_bundle.pdf").exists()
@@ -771,6 +876,7 @@ def build_report(
         "citation_issues": citation_issues,
         "citations": citations,
         "score_breakdown": score_breakdown,
+        "architect_metrics_summary": ctx.architect_metrics.get("summary", {}),
         "expert_recommendations": recommendations,
         "signoff": signoff_status,
         "artifacts": artifacts,

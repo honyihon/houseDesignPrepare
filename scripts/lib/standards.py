@@ -36,6 +36,15 @@ FALLBACK_DEFAULTS: dict[str, Any] = {
             "other": 1000,
         },
     },
+    "architect_metrics": {
+        "room_height_mm": 3000,
+        "window_sill_height_mm": 900,
+        "window_height_mm": 1200,
+        "glazing_transmittance": 0.65,
+        "average_reflectance": 0.5,
+        "daylight_target_pct": 2.0,
+        "egress_proxy_warning_m": 30.0,
+    },
     "furniture_mm": {
         "bed_double": {"width": 1500, "depth": 1900},
         "sofa_3": {"width": 2100, "depth": 900},

@@ -10,9 +10,12 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from lib.architect_metrics import build_daylight_score_index
+
 
 ROOT = Path(__file__).resolve().parents[1]
 PROGRAM_FILE = ROOT / "structured" / "room_program.json"
+ARCHITECT_METRICS_FILE = ROOT / "structured" / "architect_metrics" / "metrics.json"
 OUTPUT_DIR = ROOT / "structured" / "candidates"
 OUTPUT_FILE = OUTPUT_DIR / "layout_candidates.json"
 SUMMARY_MD = OUTPUT_DIR / "summary.md"
@@ -66,6 +69,9 @@ class RoomTraits:
     is_service: bool
     needs_daylight: bool
     mep_heavy: bool
+    daylight_metric_score: float | None
+    daylight_metric_status: str
+    daylight_metric_source: str
 
 
 @dataclass
@@ -79,9 +85,27 @@ class SlotTraits:
     is_service: bool
 
 
-def room_traits(room: dict[str, Any]) -> RoomTraits:
+def load_daylight_score_index() -> tuple[dict[str, dict[str, Any]], str]:
+    if not ARCHITECT_METRICS_FILE.exists():
+        return {}, "missing"
+    try:
+        payload = json.loads(ARCHITECT_METRICS_FILE.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}, "invalid_json"
+    return build_daylight_score_index(payload), "loaded"
+
+
+def room_traits(room: dict[str, Any], daylight_index: dict[str, dict[str, Any]] | None = None) -> RoomTraits:
     name = normalize_whitespace(room.get("name", ""))
     text = normalize_match_text(name)
+    daylight_index = daylight_index or {}
+    daylight_metric = daylight_index.get(str(room.get("uid", "")), {})
+    daylight_metric_score = None
+    if "fit_score" in daylight_metric:
+        try:
+            daylight_metric_score = float(daylight_metric.get("fit_score"))
+        except (TypeError, ValueError):
+            daylight_metric_score = None
 
     is_public = has_any_keyword(text, ["客廳", "餐廳", "玄關", "娛樂", "茶水", "書房", "神明廳"])
     is_private = has_any_keyword(text, ["主臥", "臥", "客房", "孝親"])
@@ -102,6 +126,9 @@ def room_traits(room: dict[str, Any]) -> RoomTraits:
         is_service=is_service,
         needs_daylight=needs_daylight,
         mep_heavy=mep_heavy,
+        daylight_metric_score=daylight_metric_score,
+        daylight_metric_status=str(daylight_metric.get("status", "")),
+        daylight_metric_source=str(daylight_metric.get("source", "")),
     )
 
 
@@ -145,7 +172,10 @@ def base_dimension_scores(room: RoomTraits, slot: SlotTraits) -> dict[str, float
 
     daylight = 0.0
     if room.needs_daylight:
-        daylight += 1.0 if slot.is_outdoor else -0.35
+        if room.daylight_metric_score is not None:
+            daylight += room.daylight_metric_score
+        else:
+            daylight += 1.0 if slot.is_outdoor else -0.35
     else:
         daylight += 0.2 if not slot.is_outdoor else -0.1
 
@@ -167,6 +197,20 @@ def base_dimension_scores(room: RoomTraits, slot: SlotTraits) -> dict[str, float
         "circulation": max(-1.0, min(1.0, circulation)),
         "daylight": max(-1.0, min(1.0, daylight)),
         "mep": max(-1.0, min(1.0, mep)),
+    }
+
+
+def dimension_fit_sources(room: RoomTraits) -> dict[str, str]:
+    if room.needs_daylight and room.daylight_metric_score is not None:
+        daylight = room.daylight_metric_source or "architect_metrics:daylight_factor"
+    elif room.needs_daylight:
+        daylight = "fallback:outdoor_slot_heuristic"
+    else:
+        daylight = "fallback:non_daylight_room_heuristic"
+    return {
+        "circulation": "heuristic:room_privacy_and_entrance_proximity",
+        "daylight": daylight,
+        "mep": "heuristic:wet_service_slot_fit",
     }
 
 
@@ -303,6 +347,7 @@ def score_candidate(
                 "room_uid": uid,
                 "room_name": room.name,
                 "dimension_fit": dims,
+                "dimension_fit_sources": dimension_fit_sources(room),
             }
         )
 
@@ -352,10 +397,14 @@ def candidate_rationale(strategy: str) -> list[str]:
     return []
 
 
-def build_floor_candidates(building: dict[str, Any], floor: dict[str, Any]) -> dict[str, Any]:
+def build_floor_candidates(
+    building: dict[str, Any],
+    floor: dict[str, Any],
+    daylight_index: dict[str, dict[str, Any]] | None = None,
+) -> dict[str, Any]:
     room_items = floor["rooms"]
     slot_items = floor["plan_cells"]
-    room_traits_list = [room_traits(r) for r in room_items]
+    room_traits_list = [room_traits(r, daylight_index) for r in room_items]
     slot_traits_list = [slot_traits(s, max_order=len(slot_items)) for s in slot_items]
 
     baseline_map, baseline_unplaced = build_baseline_assignment(floor, room_traits_list, slot_traits_list)
@@ -431,6 +480,7 @@ def generate_summary_md(floor_results: list[dict[str, Any]]) -> str:
     lines.append("")
     lines.append("- `baseline` uses original mapping (+ fuzzy fallback).")
     lines.append("- `circulation/daylight/mep` are greedy strategy candidates based on weighted heuristics.")
+    lines.append("- Daylight score uses `structured/architect_metrics/metrics.json` when available, then falls back to the original outdoor-slot heuristic.")
     lines.append("- Use this as a fast screening layer before manual architectural refinement.")
     lines.append("")
     return "\n".join(lines)
@@ -441,6 +491,7 @@ def main() -> None:
         raise SystemExit("room_program.json not found. Run scripts/build_room_program.py first.")
 
     data = json.loads(PROGRAM_FILE.read_text(encoding="utf-8"))
+    daylight_index, architect_metrics_status = load_daylight_score_index()
     floor_results: list[dict[str, Any]] = []
     skipped_floors = []
 
@@ -455,13 +506,16 @@ def main() -> None:
                     }
                 )
                 continue
-            floor_results.append(build_floor_candidates(building, floor))
+            floor_results.append(build_floor_candidates(building, floor, daylight_index))
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     payload = {
         "schema_version": SCHEMA_VERSION,
         "generated_at": now_iso(),
         "source_program_file": str(PROGRAM_FILE.name),
+        "architect_metrics_file": str(ARCHITECT_METRICS_FILE.relative_to(ROOT)),
+        "architect_metrics_status": architect_metrics_status,
+        "architect_daylight_metric_count": len(daylight_index),
         "evaluated_floor_count": len(floor_results),
         "skipped_floor_count": len(skipped_floors),
         "floors": floor_results,

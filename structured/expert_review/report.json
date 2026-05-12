@@ -1,14 +1,16 @@
 {
   "schema_version": "expert-review-v1",
-  "generated_at": "2026-04-28T08:56:39.038216+00:00",
+  "generated_at": "2026-05-12T00:30:42.482967+00:00",
   "input": {
     "request_file": "design_request.md",
     "mode": "concept",
     "selection": "best",
     "buildings": [
+      "A",
+      "B",
       "C"
     ],
-    "rule_dir": "scripts/rules"
+    "rule_dir": "scripts\\rules"
   },
   "hard_gate": "pass",
   "critical_failures": [],
@@ -22,6 +24,12 @@
       "fail_message": "入口標記數量異常。",
       "fix_hint": "每層僅保留一個 data-entry=\"true\"。",
       "evidence": [
+        "A:floor-2 entry_count=0",
+        "A:floor-3 entry_count=0",
+        "A:floor-4 entry_count=0",
+        "B:floor-2 entry_count=0",
+        "B:floor-3 entry_count=0",
+        "B:floor-4 entry_count=0",
         "C:floor-2 entry_count=0",
         "C:floor-3 entry_count=0",
         "C:floor-4 entry_count=0"
@@ -40,15 +48,60 @@
       "fail_message": "無障礙關聯格位門寬不足。",
       "fix_hint": "調整無障礙格位的 data-door-mm。",
       "evidence": [
+        "A: no cell matched accessible keyword '無障礙'",
         "C: no cell matched accessible keyword '無障礙'"
       ],
       "source_doc": "建築物無障礙設施設計規範",
       "source_article": "出入口與門扇尺度",
       "source_url": "https://law.moj.gov.tw/",
       "hard_gate_eligible": false
+    },
+    {
+      "rule_id": "ARCH-MET-001",
+      "domain": "architect_metrics",
+      "severity": "warning",
+      "passed": false,
+      "message": "Concept architect metrics found advisory or missing-data items.",
+      "fail_message": "Some rooms need better daylight, door, geometry, or metadata before design review.",
+      "fix_hint": "Review structured/architect_metrics/report.md and update HTML geometry/openings or request professional calculation.",
+      "evidence": [
+        "generated_at=2026-05-12T00:30:39.298494+00:00",
+        "advisory=27",
+        "missing_data=31",
+        "A:floor-1::egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+        "A:floor-1:A:floor-1:entry:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "A:floor-1:A:floor-1:living:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "A:floor-1:A:floor-1:living:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "A:floor-1:A:floor-1:mdf:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "A:floor-1:A:floor-1:stair-door:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "A:floor-1:A:floor-1:bath1:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "A:floor-1:A:floor-1:kitchen:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required"
+      ],
+      "source_doc": "Skills-Architects calculator adaptation",
+      "source_article": "Daylight/door/geometry advisory screening",
+      "source_url": "https://github.com/Amanbh997/Skills-Architects",
+      "hard_gate_eligible": false
     }
   ],
-  "infos": [],
+  "infos": [
+    {
+      "rule_id": "ARCH-MET-002",
+      "domain": "architect_metrics",
+      "severity": "info",
+      "passed": false,
+      "message": "Architect metrics identified items requiring professional review.",
+      "fail_message": "Formal daylight, ventilation, egress, or structural review is still required.",
+      "fix_hint": "Keep these items as architect/engineer confirmation tasks; do not treat concept metrics as signoff.",
+      "evidence": [
+        "generated_at=2026-05-12T00:30:39.298494+00:00",
+        "professional_required=20"
+      ],
+      "source_doc": "Skills-Architects calculator adaptation",
+      "source_article": "Professional review advisory screening",
+      "source_url": "https://github.com/Amanbh997/Skills-Architects",
+      "hard_gate_eligible": false
+    }
+  ],
   "citation_issues": [],
   "citations": [
     {
@@ -73,55 +126,91 @@
     },
     "evaluated_floor_count": 12,
     "averages": {
-      "circulation": 59.05,
-      "daylight": 62.66,
-      "mep": 64.15,
-      "fengshui": 74.44,
-      "composite": 64.05
+      "circulation": 59.21,
+      "daylight": 58.65,
+      "mep": 65.1,
+      "fengshui": 75.34,
+      "composite": 63.47
     },
     "recommended_strategy_distribution": {
-      "circulation": 7,
+      "daylight": 2,
       "mep": 3,
       "baseline": 1,
-      "daylight": 1
+      "circulation": 6
     },
-    "pipeline_changed_floor_count": 4
+    "pipeline_changed_floor_count": 3
+  },
+  "architect_metrics_summary": {
+    "status_counts": {
+      "ok": 81,
+      "professional_required": 20,
+      "advisory": 27,
+      "missing_data": 31
+    },
+    "metric_type_counts": {
+      "floor_area": 12,
+      "egress_distance_proxy": 12,
+      "door_width": 74,
+      "daylight_factor": 23,
+      "structure_load_review": 38
+    },
+    "building_counts": {
+      "A": 67,
+      "B": 54,
+      "C": 38
+    },
+    "evaluated_floor_count": 12,
+    "skipped_floor_count": 10,
+    "daylight_factor_avg_pct": 1.17,
+    "daylight_rooms_below_target": 22,
+    "door_width_advisory_count": 6,
+    "top_issues": [
+      "A:floor-1::egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+      "A:floor-1:A:floor-1:entry:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "A:floor-1:A:floor-1:living:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "A:floor-1:A:floor-1:living:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+      "A:floor-1:A:floor-1:mdf:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+      "A:floor-1:A:floor-1:stair-door:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+      "A:floor-1:A:floor-1:bath1:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+      "A:floor-1:A:floor-1:kitchen:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "A:floor-1:A:floor-1:flex1:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "A:floor-1:A:floor-1:balcony1:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+      "A:floor-1:A:floor-1:water-inlet:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+      "A:floor-2::egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+      "A:floor-2:A:floor-2:master:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "A:floor-2:A:floor-2:master-bath:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "A:floor-2:A:floor-2:master-bath:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+      "A:floor-2:A:floor-2:study:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "A:floor-2:A:floor-2:study:door_width - door width 800mm is below advisory minimum 900mm",
+      "A:floor-2:A:floor-2:study:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+      "A:floor-2:A:floor-2:bedroom2:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "A:floor-3::egress_distance_proxy - egress proxy requires one entry marker or stair/landing cell"
+    ]
   },
   "expert_recommendations": [
     {
       "building_id": "A",
       "floor_id": "floor-1",
       "pipeline_best": "mep",
-      "expert_best": "circulation",
+      "expert_best": "daylight",
       "changed_from_pipeline": true,
       "top_scores": {
-        "circulation": 59.95,
-        "daylight": 68.41,
-        "mep": 49.77,
-        "fengshui": 69.64,
-        "composite": 61.97
+        "circulation": 61.77,
+        "daylight": 61.93,
+        "mep": 61.14,
+        "fengshui": 80.36,
+        "composite": 65.4
       },
       "ranked": [
-        {
-          "id": "circulation",
-          "strategy": "circulation",
-          "scores": {
-            "circulation": 59.95,
-            "daylight": 68.41,
-            "mep": 49.77,
-            "fengshui": 69.64,
-            "composite": 61.97
-          }
-        },
         {
           "id": "daylight",
           "strategy": "daylight",
           "scores": {
-            "circulation": 59.95,
-            "daylight": 68.41,
-            "mep": 49.77,
-            "fengshui": 69.64,
-            "composite": 61.97
+            "circulation": 61.77,
+            "daylight": 61.93,
+            "mep": 61.14,
+            "fengshui": 80.36,
+            "composite": 65.4
           }
         },
         {
@@ -129,21 +218,32 @@
           "strategy": "baseline",
           "scores": {
             "circulation": 58.95,
-            "daylight": 45.91,
+            "daylight": 60.56,
             "mep": 72.73,
             "fengshui": 73.57,
-            "composite": 61.37
+            "composite": 65.03
+          }
+        },
+        {
+          "id": "circulation",
+          "strategy": "circulation",
+          "scores": {
+            "circulation": 61.77,
+            "daylight": 61.93,
+            "mep": 56.14,
+            "fengshui": 80.36,
+            "composite": 64.4
           }
         },
         {
           "id": "mep",
           "strategy": "mep",
           "scores": {
-            "circulation": 55.59,
-            "daylight": 53.41,
+            "circulation": 59.5,
+            "daylight": 61.93,
             "mep": 72.73,
-            "fengshui": 36.79,
-            "composite": 54.71
+            "fengshui": 60.0,
+            "composite": 62.85
           }
         }
       ]
@@ -156,10 +256,10 @@
       "changed_from_pipeline": false,
       "top_scores": {
         "circulation": 63.93,
-        "daylight": 54.69,
+        "daylight": 57.61,
         "mep": 65.62,
         "fengshui": 65.84,
-        "composite": 62.34
+        "composite": 63.07
       },
       "ranked": [
         {
@@ -167,10 +267,10 @@
           "strategy": "mep",
           "scores": {
             "circulation": 63.93,
-            "daylight": 54.69,
+            "daylight": 57.61,
             "mep": 65.62,
             "fengshui": 65.84,
-            "composite": 62.34
+            "composite": 63.07
           }
         },
         {
@@ -178,10 +278,10 @@
           "strategy": "circulation",
           "scores": {
             "circulation": 64.38,
-            "daylight": 54.69,
+            "daylight": 57.61,
             "mep": 55.62,
             "fengshui": 72.67,
-            "composite": 61.86
+            "composite": 62.59
           }
         },
         {
@@ -189,10 +289,10 @@
           "strategy": "daylight",
           "scores": {
             "circulation": 62.5,
-            "daylight": 54.69,
+            "daylight": 57.61,
             "mep": 55.62,
             "fengshui": 63.35,
-            "composite": 59.34
+            "composite": 60.07
           }
         },
         {
@@ -200,10 +300,10 @@
           "strategy": "baseline",
           "scores": {
             "circulation": 55.36,
-            "daylight": 44.38,
+            "daylight": 55.74,
             "mep": 58.75,
             "fengshui": 28.57,
-            "composite": 47.93
+            "composite": 50.77
           }
         }
       ]
@@ -216,10 +316,10 @@
       "changed_from_pipeline": false,
       "top_scores": {
         "circulation": 60.83,
-        "daylight": 73.33,
+        "daylight": 66.91,
         "mep": 58.33,
         "fengshui": 91.11,
-        "composite": 69.51
+        "composite": 67.91
       },
       "ranked": [
         {
@@ -227,10 +327,10 @@
           "strategy": "mep",
           "scores": {
             "circulation": 60.83,
-            "daylight": 73.33,
+            "daylight": 66.91,
             "mep": 58.33,
             "fengshui": 91.11,
-            "composite": 69.51
+            "composite": 67.91
           }
         },
         {
@@ -238,10 +338,10 @@
           "strategy": "circulation",
           "scores": {
             "circulation": 60.83,
-            "daylight": 73.33,
+            "daylight": 66.91,
             "mep": 45.0,
             "fengshui": 91.11,
-            "composite": 66.84
+            "composite": 65.24
           }
         },
         {
@@ -249,10 +349,10 @@
           "strategy": "daylight",
           "scores": {
             "circulation": 60.83,
-            "daylight": 73.33,
+            "daylight": 66.91,
             "mep": 45.0,
             "fengshui": 91.11,
-            "composite": 66.84
+            "composite": 65.24
           }
         },
         {
@@ -260,10 +360,10 @@
           "strategy": "baseline",
           "scores": {
             "circulation": 56.17,
-            "daylight": 59.58,
+            "daylight": 64.41,
             "mep": 58.33,
             "fengshui": 46.67,
-            "composite": 55.55
+            "composite": 56.76
           }
         }
       ]
@@ -336,10 +436,10 @@
       "changed_from_pipeline": true,
       "top_scores": {
         "circulation": 56.43,
-        "daylight": 51.79,
+        "daylight": 51.63,
         "mep": 78.57,
         "fengshui": 75.93,
-        "composite": 63.6
+        "composite": 63.56
       },
       "ranked": [
         {
@@ -347,10 +447,10 @@
           "strategy": "baseline",
           "scores": {
             "circulation": 56.43,
-            "daylight": 51.79,
+            "daylight": 51.63,
             "mep": 78.57,
             "fengshui": 75.93,
-            "composite": 63.6
+            "composite": 63.56
           }
         },
         {
@@ -358,10 +458,10 @@
           "strategy": "circulation",
           "scores": {
             "circulation": 57.14,
-            "daylight": 63.57,
+            "daylight": 53.77,
             "mep": 78.57,
             "fengshui": 55.56,
-            "composite": 62.72
+            "composite": 60.27
           }
         },
         {
@@ -369,10 +469,10 @@
           "strategy": "daylight",
           "scores": {
             "circulation": 57.14,
-            "daylight": 63.57,
+            "daylight": 53.77,
             "mep": 78.57,
             "fengshui": 55.56,
-            "composite": 62.72
+            "composite": 60.27
           }
         },
         {
@@ -380,10 +480,10 @@
           "strategy": "mep",
           "scores": {
             "circulation": 57.14,
-            "daylight": 63.57,
+            "daylight": 53.77,
             "mep": 78.57,
             "fengshui": 55.56,
-            "composite": 62.72
+            "composite": 60.27
           }
         }
       ]
@@ -396,10 +496,10 @@
       "changed_from_pipeline": false,
       "top_scores": {
         "circulation": 63.83,
-        "daylight": 68.75,
+        "daylight": 58.74,
         "mep": 61.67,
         "fengshui": 94.29,
-        "composite": 70.72
+        "composite": 68.22
       },
       "ranked": [
         {
@@ -407,10 +507,10 @@
           "strategy": "circulation",
           "scores": {
             "circulation": 63.83,
-            "daylight": 68.75,
+            "daylight": 58.74,
             "mep": 61.67,
             "fengshui": 94.29,
-            "composite": 70.72
+            "composite": 68.22
           }
         },
         {
@@ -418,10 +518,10 @@
           "strategy": "daylight",
           "scores": {
             "circulation": 63.83,
-            "daylight": 68.75,
+            "daylight": 58.74,
             "mep": 61.67,
             "fengshui": 94.29,
-            "composite": 70.72
+            "composite": 68.22
           }
         },
         {
@@ -429,21 +529,21 @@
           "strategy": "baseline",
           "scores": {
             "circulation": 62.67,
-            "daylight": 55.0,
+            "daylight": 56.24,
             "mep": 61.67,
             "fengshui": 87.14,
-            "composite": 65.45
+            "composite": 65.76
           }
         },
         {
           "id": "mep",
           "strategy": "mep",
           "scores": {
-            "circulation": 59.67,
-            "daylight": 68.75,
+            "circulation": 61.83,
+            "daylight": 58.74,
             "mep": 61.67,
-            "fengshui": 51.43,
-            "composite": 60.69
+            "fengshui": 65.71,
+            "composite": 61.8
           }
         }
       ]
@@ -456,10 +556,10 @@
       "changed_from_pipeline": false,
       "top_scores": {
         "circulation": 60.83,
-        "daylight": 73.33,
+        "daylight": 60.79,
         "mep": 53.33,
         "fengshui": 91.11,
-        "composite": 68.51
+        "composite": 65.38
       },
       "ranked": [
         {
@@ -467,10 +567,10 @@
           "strategy": "circulation",
           "scores": {
             "circulation": 60.83,
-            "daylight": 73.33,
+            "daylight": 60.79,
             "mep": 53.33,
             "fengshui": 91.11,
-            "composite": 68.51
+            "composite": 65.38
           }
         },
         {
@@ -478,10 +578,10 @@
           "strategy": "daylight",
           "scores": {
             "circulation": 60.83,
-            "daylight": 73.33,
+            "daylight": 60.79,
             "mep": 53.33,
             "fengshui": 91.11,
-            "composite": 68.51
+            "composite": 65.38
           }
         },
         {
@@ -489,10 +589,10 @@
           "strategy": "mep",
           "scores": {
             "circulation": 60.83,
-            "daylight": 73.33,
+            "daylight": 60.79,
             "mep": 53.33,
             "fengshui": 73.33,
-            "composite": 64.95
+            "composite": 61.82
           }
         },
         {
@@ -500,10 +600,10 @@
           "strategy": "baseline",
           "scores": {
             "circulation": 57.67,
-            "daylight": 45.83,
+            "daylight": 55.79,
             "mep": 53.33,
             "fengshui": 80.0,
-            "composite": 58.31
+            "composite": 60.8
           }
         }
       ]
@@ -571,15 +671,15 @@
     {
       "building_id": "C",
       "floor_id": "floor-1",
-      "pipeline_best": "mep",
+      "pipeline_best": "circulation",
       "expert_best": "circulation",
-      "changed_from_pipeline": true,
+      "changed_from_pipeline": false,
       "top_scores": {
         "circulation": 65.1,
-        "daylight": 62.5,
+        "daylight": 50.58,
         "mep": 70.0,
         "fengshui": 73.57,
-        "composite": 67.12
+        "composite": 64.14
       },
       "ranked": [
         {
@@ -587,32 +687,32 @@
           "strategy": "circulation",
           "scores": {
             "circulation": 65.1,
-            "daylight": 62.5,
+            "daylight": 50.58,
             "mep": 70.0,
             "fengshui": 73.57,
-            "composite": 67.12
+            "composite": 64.14
           }
         },
         {
           "id": "daylight",
           "strategy": "daylight",
           "scores": {
-            "circulation": 60.9,
-            "daylight": 76.0,
-            "mep": 54.0,
-            "fengshui": 63.57,
-            "composite": 63.83
+            "circulation": 65.1,
+            "daylight": 50.58,
+            "mep": 70.0,
+            "fengshui": 73.57,
+            "composite": 64.14
           }
         },
         {
           "id": "mep",
           "strategy": "mep",
           "scores": {
-            "circulation": 60.9,
-            "daylight": 76.0,
+            "circulation": 65.1,
+            "daylight": 50.58,
             "mep": 70.0,
-            "fengshui": 46.43,
-            "composite": 63.6
+            "fengshui": 67.86,
+            "composite": 63.0
           }
         },
         {
@@ -620,10 +720,10 @@
           "strategy": "baseline",
           "scores": {
             "circulation": 63.0,
-            "daylight": 46.0,
+            "daylight": 47.58,
             "mep": 70.0,
             "fengshui": 62.86,
-            "composite": 60.12
+            "composite": 60.52
           }
         }
       ]
@@ -631,15 +731,15 @@
     {
       "building_id": "C",
       "floor_id": "floor-2",
-      "pipeline_best": "daylight",
+      "pipeline_best": "mep",
       "expert_best": "circulation",
       "changed_from_pipeline": true,
       "top_scores": {
         "circulation": 60.83,
-        "daylight": 62.08,
+        "daylight": 57.35,
         "mep": 53.33,
         "fengshui": 81.82,
-        "composite": 63.84
+        "composite": 62.66
       },
       "ranked": [
         {
@@ -647,32 +747,32 @@
           "strategy": "circulation",
           "scores": {
             "circulation": 60.83,
-            "daylight": 62.08,
+            "daylight": 57.35,
             "mep": 53.33,
             "fengshui": 81.82,
-            "composite": 63.84
+            "composite": 62.66
           }
         },
         {
           "id": "daylight",
           "strategy": "daylight",
           "scores": {
-            "circulation": 54.0,
-            "daylight": 62.08,
-            "mep": 66.67,
-            "fengshui": 40.0,
-            "composite": 55.75
+            "circulation": 60.83,
+            "daylight": 57.35,
+            "mep": 53.33,
+            "fengshui": 81.82,
+            "composite": 62.66
           }
         },
         {
           "id": "mep",
           "strategy": "mep",
           "scores": {
-            "circulation": 53.0,
-            "daylight": 62.08,
+            "circulation": 58.5,
+            "daylight": 57.35,
             "mep": 66.67,
-            "fengshui": 35.45,
-            "composite": 54.49
+            "fengshui": 58.18,
+            "composite": 59.78
           }
         },
         {
@@ -680,10 +780,10 @@
           "strategy": "baseline",
           "scores": {
             "circulation": 56.33,
-            "daylight": 48.33,
+            "daylight": 54.85,
             "mep": 66.67,
             "fengshui": 34.55,
-            "composite": 52.04
+            "composite": 53.67
           }
         }
       ]
@@ -696,10 +796,10 @@
       "changed_from_pipeline": false,
       "top_scores": {
         "circulation": 57.0,
-        "daylight": 62.5,
+        "daylight": 63.73,
         "mep": 50.0,
         "fengshui": 100.0,
-        "composite": 65.58
+        "composite": 65.88
       },
       "ranked": [
         {
@@ -707,32 +807,32 @@
           "strategy": "circulation",
           "scores": {
             "circulation": 57.0,
-            "daylight": 62.5,
+            "daylight": 63.73,
             "mep": 50.0,
             "fengshui": 100.0,
-            "composite": 65.58
-          }
-        },
-        {
-          "id": "mep",
-          "strategy": "mep",
-          "scores": {
-            "circulation": 50.0,
-            "daylight": 62.5,
-            "mep": 50.0,
-            "fengshui": 44.44,
-            "composite": 52.01
+            "composite": 65.88
           }
         },
         {
           "id": "daylight",
           "strategy": "daylight",
           "scores": {
-            "circulation": 50.0,
-            "daylight": 62.5,
+            "circulation": 57.0,
+            "daylight": 63.73,
             "mep": 50.0,
-            "fengshui": 22.22,
-            "composite": 47.57
+            "fengshui": 100.0,
+            "composite": 65.88
+          }
+        },
+        {
+          "id": "mep",
+          "strategy": "mep",
+          "scores": {
+            "circulation": 57.0,
+            "daylight": 63.73,
+            "mep": 50.0,
+            "fengshui": 100.0,
+            "composite": 65.88
           }
         },
         {
@@ -740,10 +840,10 @@
           "strategy": "baseline",
           "scores": {
             "circulation": 51.75,
-            "daylight": 46.0,
+            "daylight": 47.23,
             "mep": 50.0,
             "fengshui": 13.89,
-            "composite": 42.39
+            "composite": 42.7
           }
         }
       ]
@@ -817,9 +917,10 @@
     "date": ""
   },
   "artifacts": {
-    "normalized_request": "structured/expert_review/request_normalized.json",
-    "room_program": "structured/room_program.json",
-    "candidates": "structured/candidates/layout_candidates.json",
+    "normalized_request": "structured\\expert_review\\request_normalized.json",
+    "room_program": "structured\\room_program.json",
+    "candidates": "structured\\candidates\\layout_candidates.json",
+    "architect_metrics": "structured\\architect_metrics\\metrics.json",
     "viewer": "structured/candidates/viewer.html",
     "pdf": "structured/candidates/print_bundle.pdf"
   },
@@ -861,6 +962,7 @@
       "fail_message": "無障礙關聯格位門寬不足。",
       "fix_hint": "調整無障礙格位的 data-door-mm。",
       "evidence": [
+        "A: no cell matched accessible keyword '無障礙'",
         "C: no cell matched accessible keyword '無障礙'"
       ],
       "source_doc": "建築物無障礙設施設計規範",
@@ -883,6 +985,32 @@
       "hard_gate_eligible": false
     },
     {
+      "rule_id": "ARCH-MET-001",
+      "domain": "architect_metrics",
+      "severity": "warning",
+      "passed": false,
+      "message": "Concept architect metrics found advisory or missing-data items.",
+      "fail_message": "Some rooms need better daylight, door, geometry, or metadata before design review.",
+      "fix_hint": "Review structured/architect_metrics/report.md and update HTML geometry/openings or request professional calculation.",
+      "evidence": [
+        "generated_at=2026-05-12T00:30:39.298494+00:00",
+        "advisory=27",
+        "missing_data=31",
+        "A:floor-1::egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+        "A:floor-1:A:floor-1:entry:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "A:floor-1:A:floor-1:living:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "A:floor-1:A:floor-1:living:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "A:floor-1:A:floor-1:mdf:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "A:floor-1:A:floor-1:stair-door:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "A:floor-1:A:floor-1:bath1:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "A:floor-1:A:floor-1:kitchen:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required"
+      ],
+      "source_doc": "Skills-Architects calculator adaptation",
+      "source_article": "Daylight/door/geometry advisory screening",
+      "source_url": "https://github.com/Amanbh997/Skills-Architects",
+      "hard_gate_eligible": false
+    },
+    {
       "rule_id": "BR-TW-002",
       "domain": "building_regulation",
       "severity": "warning",
@@ -891,6 +1019,12 @@
       "fail_message": "入口標記數量異常。",
       "fix_hint": "每層僅保留一個 data-entry=\"true\"。",
       "evidence": [
+        "A:floor-2 entry_count=0",
+        "A:floor-3 entry_count=0",
+        "A:floor-4 entry_count=0",
+        "B:floor-2 entry_count=0",
+        "B:floor-3 entry_count=0",
+        "B:floor-4 entry_count=0",
         "C:floor-2 entry_count=0",
         "C:floor-3 entry_count=0",
         "C:floor-4 entry_count=0"
@@ -971,6 +1105,23 @@
       "hard_gate_eligible": false
     },
     {
+      "rule_id": "ARCH-MET-002",
+      "domain": "architect_metrics",
+      "severity": "info",
+      "passed": false,
+      "message": "Architect metrics identified items requiring professional review.",
+      "fail_message": "Formal daylight, ventilation, egress, or structural review is still required.",
+      "fix_hint": "Keep these items as architect/engineer confirmation tasks; do not treat concept metrics as signoff.",
+      "evidence": [
+        "generated_at=2026-05-12T00:30:39.298494+00:00",
+        "professional_required=20"
+      ],
+      "source_doc": "Skills-Architects calculator adaptation",
+      "source_article": "Professional review advisory screening",
+      "source_url": "https://github.com/Amanbh997/Skills-Architects",
+      "hard_gate_eligible": false
+    },
+    {
       "rule_id": "FENG-002",
       "domain": "fengshui",
       "severity": "info",
@@ -985,5 +1136,5 @@
       "hard_gate_eligible": false
     }
   ],
-  "report_hash": "99e4b849ae914f81c7495d7e72bc1592fb0be6fa25fdfa084b73531c8bbde451"
+  "report_hash": "d038215129dbf94120265541d0bc1d747466c90a0073a5ffd9310eebaf37c9d3"
 }

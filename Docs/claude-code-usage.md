@@ -1,9 +1,9 @@
 # Claude Code 指令使用教學
 
 適用 repo：`D:\I29786\workspace\houseDesignPrepare`  
-更新日期：2026-04-28
+更新日期：2026-05-12
 
-這份文件整理本專案的 Claude Code 設定、自訂 slash command、等效 PowerShell 指令，以及日常設計/出圖流程的建議用法。本專案主要用途是把 A/B/C 棟與儲藏空間的 HTML 平面配置轉成結構化 JSON，再產生候選配置、SVG 圖面、PDF bundle 與專家審查報告。
+這份文件整理本專案的 Claude Code 設定、自訂 slash command、等效 PowerShell 指令，以及日常設計/出圖流程的建議用法。本專案主要用途是把 A/B/C 棟與儲藏空間的 HTML 平面配置轉成結構化 JSON，再產生建築計算輔助、候選配置、SVG 圖面、PDF bundle 與專家審查報告。
 
 ## 目前 Claude Code 設定
 
@@ -187,13 +187,125 @@ decision: approved
    檢查 A/B/C canonical HTML 的幾何欄位、入口數量、房間對應與尺寸範圍。
 
 4. `run_full_pipeline.ps1`  
-   執行 HTML 轉 JSON、候選配置、viewer、SVG、PDF 等主管線。
+   執行 HTML 轉 JSON、建築計算輔助、候選配置、viewer、SVG、PDF 等主管線。
 
 5. `validate_layout_bundle.py`  
    驗證 `room_program.json`、SVG manifest 與必要圖面標記。
 
 6. `evaluate_expert_gates.py --stage report`  
    產出最終審查報告，並更新 `task-board.md` 的 last run 區塊。
+
+## 新增功能：建築計算輔助
+
+本專案已加入 `Architect Metrics` 計算輔助層，將 `Skills-Architects` 的 calculator 思路接進本地 pipeline。它會從 `structured/room_program.json` 讀取 A/B/C 棟樓層、房間、格位幾何、門窗尺寸，產生概念級檢核結果。
+
+這個功能會檢查：
+
+- 採光概念值：使用簡化 daylight factor 估算，並產生窗地比、概念採光係數與 target 比較。
+- 門寬：依入口、一般室內門、衛浴、設備/服務空間做 advisory 檢查。
+- 樓層面積：由 `data-floor-width-mm`、`data-floor-depth-mm` 推算。
+- 逃生距離 proxy：用入口、樓梯、走廊或玄關到各格位中心的直線距離做早期風險提示。
+- RF/設備/運動區等結構載重文字完整性：只提醒需要結構技師確認，不做結構安全判定。
+
+重要限制：
+
+- 這些結果是 `advisory`，不是法規通過證明。
+- 台灣法規 hard gate 仍以 `scripts/rules/*.yaml` 與專業確認為準。
+- 採光、通風、逃生距離、樓梯、RF 載重、設備錨定仍需建築師、法規或結構技師正式計算。
+- 報告中不應把 `Architect Metrics` 寫成「已通過法規」。
+
+### 如何執行
+
+一般使用者不需要單獨執行，因為 `run_full_pipeline.ps1` 已經會自動跑：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 -Mode concept -Selection best
+```
+
+若只想更新建築計算輔助，可手動執行：
+
+```powershell
+python scripts/evaluate_architect_metrics.py
+```
+
+指定棟別：
+
+```powershell
+python scripts/evaluate_architect_metrics.py --buildings A,B,C
+```
+
+輸出檔：
+
+| 檔案 | 說明 |
+|---|---|
+| `structured/architect_metrics/metrics.json` | 機器可讀的計算結果，schema 為 `architect-metrics-v1` |
+| `structured/architect_metrics/report.md` | 人可讀摘要，列出 status 統計、採光概念結果、門寬提示與 top issues |
+
+### Status 解讀
+
+| Status | 意義 |
+|---|---|
+| `ok` | 概念資料足夠，且 advisory 檢查未發現明顯問題 |
+| `advisory` | 有設計提醒，例如採光概念值低於 target、門寬低於建議值 |
+| `missing_data` | 缺少幾何、門窗、入口、樓梯或其他必要 metadata |
+| `professional_required` | 必須由建築師、法規、空調、水電或結構技師正式確認 |
+
+目前 `report.md` 會呈現類似摘要：
+
+```text
+Evaluated floors: 12
+Skipped floors: 10
+Metric types: daylight_factor, door_width, egress_distance_proxy, floor_area, structure_load_review
+```
+
+`storage` 目前沒有 `plan_cells`，會被列為 skipped，這是預期行為。
+
+### 對候選配置分數的影響
+
+`generate_layout_candidates.py` 會優先讀取：
+
+```text
+structured/architect_metrics/metrics.json
+```
+
+如果某房間有 `daylight_factor` 結果，候選配置的 daylight score 會使用該概念採光分數；若沒有資料，才回到舊的 `outdoor` 格位 heuristic。
+
+可在下列檔案確認是否有讀到新資料：
+
+```text
+structured/candidates/layout_candidates.json
+```
+
+檢查欄位：
+
+```json
+"architect_metrics_status": "loaded",
+"architect_daylight_metric_count": 22
+```
+
+每個 candidate 的 `pair_details` 也會標示 daylight 來源：
+
+```json
+"dimension_fit_sources": {
+  "daylight": "architect_metrics:daylight_factor"
+}
+```
+
+### 對專家報告的影響
+
+`evaluate_expert_gates.py` 會把 Architect Metrics 摘要放進：
+
+```text
+structured/expert_review/report.md
+```
+
+新增章節：
+
+```text
+## Architect Metrics
+```
+
+若有 `advisory` 或 `missing_data`，會加入 warning；若有 `professional_required`，會加入 info。這些都不會變成 hard gate failure。
 
 ## 重要輸出檔
 
@@ -204,6 +316,8 @@ decision: approved
 | `structured/expert_review/report.json` | 機器可讀專家審查報告 |
 | `structured/expert_review/report.md` | 人可讀專家審查報告 |
 | `structured/room_program.json` | 整合後的棟別/樓層/房間資料 |
+| `structured/architect_metrics/metrics.json` | 建築計算輔助 JSON，供候選配置採光分數與專家報告引用 |
+| `structured/architect_metrics/report.md` | 建築計算輔助摘要報告 |
 | `structured/candidates/layout_candidates.json` | 各樓層候選配置與分數 |
 | `structured/candidates/summary.md` | 候選配置摘要 |
 | `structured/candidates/viewer.html` | 可切換樓層與候選配置的瀏覽器檢視 |
@@ -243,6 +357,7 @@ powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 -PythonEx
 ```powershell
 python scripts/extract_layout_data.py
 python scripts/build_room_program.py
+python scripts/evaluate_architect_metrics.py
 python scripts/generate_layout_candidates.py
 python scripts/render_candidate_viewer.py
 python scripts/export_top1_svgs.py --selection baseline

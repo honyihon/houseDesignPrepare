@@ -1,0 +1,3508 @@
+{
+  "schema_version": "architect-metrics-v1",
+  "generated_at": "2026-05-12T00:30:39.298494+00:00",
+  "source_program_schema": "room-program-v2",
+  "selected_buildings": [
+    "A",
+    "B",
+    "C",
+    "STORAGE"
+  ],
+  "evaluated_floor_count": 12,
+  "skipped_floor_count": 10,
+  "metrics_count": 159,
+  "metrics": [
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "room_uid": "",
+      "metric_type": "floor_area",
+      "inputs": {
+        "geometry_mm": {
+          "width_mm": 11000.0,
+          "depth_mm": 7700.0,
+          "north_deg": 0.0
+        }
+      },
+      "result": {
+        "floor_area_sqm": 84.7
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "room_uid": "",
+      "metric_type": "egress_distance_proxy",
+      "inputs": {
+        "method": "cell-center direct distance proxy; not code travel path",
+        "anchor_cell": "玄關",
+        "anchor_type": "entry",
+        "warning_threshold_m": 30.0
+      },
+      "result": {
+        "max_proxy_direct_distance_m": 8.13,
+        "avg_proxy_direct_distance_m": 4.69,
+        "farthest_cell": "給水進線區"
+      },
+      "status": "professional_required",
+      "confidence": "medium",
+      "issues": [
+        "formal egress route and travel distance calculation remains professional work"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "room_uid": "A:floor-1:garage",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "room_uid": "A:floor-1:entry",
+      "metric_type": "daylight_factor",
+      "inputs": {
+        "room_width_m": 3.67,
+        "room_depth_m": 1.3,
+        "room_height_m": 3.0,
+        "window_width_m": 0.9,
+        "raw_window_width_m": 0.9,
+        "window_height_m": 1.2,
+        "window_sill_height_m": 0.9,
+        "glazing_transmittance": 0.65,
+        "average_reflectance": 0.5,
+        "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
+      },
+      "result": {
+        "window_area_m2": 1.08,
+        "floor_area_m2": 4.767,
+        "total_surface_area_m2": 39.336,
+        "window_to_floor_ratio_pct": 22.66,
+        "visible_sky_angle_deg": 58.2,
+        "sky_angle_factor": 0.6471,
+        "daylight_factor_pct": 1.54,
+        "target_daylight_factor_pct": 2.0
+      },
+      "status": "advisory",
+      "confidence": "medium",
+      "issues": [
+        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "room_uid": "A:floor-1:entry",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "entry",
+        "minimum_mm": 1000
+      },
+      "result": {
+        "door_width_mm": 1000.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "room_uid": "A:floor-1:living",
+      "metric_type": "daylight_factor",
+      "inputs": {
+        "room_width_m": 7.33,
+        "room_depth_m": 1.3,
+        "room_height_m": 3.0,
+        "window_width_m": 1.8,
+        "raw_window_width_m": 1.8,
+        "window_height_m": 1.2,
+        "window_sill_height_m": 0.9,
+        "glazing_transmittance": 0.65,
+        "average_reflectance": 0.5,
+        "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
+      },
+      "result": {
+        "window_area_m2": 2.16,
+        "floor_area_m2": 9.533,
+        "total_surface_area_m2": 70.864,
+        "window_to_floor_ratio_pct": 22.66,
+        "visible_sky_angle_deg": 58.2,
+        "sky_angle_factor": 0.6471,
+        "daylight_factor_pct": 1.71,
+        "target_daylight_factor_pct": 2.0
+      },
+      "status": "advisory",
+      "confidence": "medium",
+      "issues": [
+        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "room_uid": "A:floor-1:living",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "room_uid": "A:floor-1:living",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "設備"
+        ],
+        "review_terms_found": []
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "room_uid": "A:floor-1:mdf",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "service",
+        "minimum_mm": 800
+      },
+      "result": {
+        "door_width_mm": 800.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "room_uid": "A:floor-1:mdf",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "設備"
+        ],
+        "review_terms_found": [
+          "防水",
+          "維修"
+        ]
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "room_uid": "A:floor-1:stair-door",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "room_uid": "A:floor-1:stair-door",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "rf"
+        ],
+        "review_terms_found": []
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "room_uid": "A:floor-1:dining",
+      "metric_type": "daylight_factor",
+      "inputs": {
+        "room_width_m": 5.5,
+        "room_depth_m": 1.1,
+        "room_height_m": 3.0,
+        "window_width_m": 1.5,
+        "raw_window_width_m": 1.5,
+        "window_height_m": 1.2,
+        "window_sill_height_m": 0.9,
+        "glazing_transmittance": 0.65,
+        "average_reflectance": 0.5,
+        "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
+      },
+      "result": {
+        "window_area_m2": 1.8,
+        "floor_area_m2": 6.05,
+        "total_surface_area_m2": 51.7,
+        "window_to_floor_ratio_pct": 29.75,
+        "visible_sky_angle_deg": 62.4,
+        "sky_angle_factor": 0.6928,
+        "daylight_factor_pct": 2.09,
+        "target_daylight_factor_pct": 2.0
+      },
+      "status": "ok",
+      "confidence": "medium",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "room_uid": "A:floor-1:dining",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "room_uid": "A:floor-1:bath1",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "bathroom",
+        "minimum_mm": 800
+      },
+      "result": {
+        "door_width_mm": 800.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "room_uid": "A:floor-1:bath1",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "rf",
+          "水塔",
+          "熱泵",
+          "vf800"
+        ],
+        "review_terms_found": [
+          "結構",
+          "防水"
+        ]
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": true
+      },
+      "status": "professional_required",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "room_uid": "A:floor-1:kitchen",
+      "metric_type": "daylight_factor",
+      "inputs": {
+        "room_width_m": 6.0,
+        "room_depth_m": 1.3,
+        "room_height_m": 3.0,
+        "window_width_m": 0.9,
+        "raw_window_width_m": 0.9,
+        "window_height_m": 1.2,
+        "window_sill_height_m": 0.9,
+        "glazing_transmittance": 0.65,
+        "average_reflectance": 0.5,
+        "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
+      },
+      "result": {
+        "window_area_m2": 1.08,
+        "floor_area_m2": 7.8,
+        "total_surface_area_m2": 59.4,
+        "window_to_floor_ratio_pct": 13.85,
+        "visible_sky_angle_deg": 58.2,
+        "sky_angle_factor": 0.6471,
+        "daylight_factor_pct": 1.02,
+        "target_daylight_factor_pct": 2.0
+      },
+      "status": "advisory",
+      "confidence": "medium",
+      "issues": [
+        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "room_uid": "A:floor-1:kitchen",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "bathroom",
+        "minimum_mm": 800
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "room_uid": "A:floor-1:flex1",
+      "metric_type": "daylight_factor",
+      "inputs": {
+        "room_width_m": 5.0,
+        "room_depth_m": 1.3,
+        "room_height_m": 3.0,
+        "window_width_m": 1.2,
+        "raw_window_width_m": 1.2,
+        "window_height_m": 1.2,
+        "window_sill_height_m": 0.9,
+        "glazing_transmittance": 0.65,
+        "average_reflectance": 0.5,
+        "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
+      },
+      "result": {
+        "window_area_m2": 1.44,
+        "floor_area_m2": 6.5,
+        "total_surface_area_m2": 50.8,
+        "window_to_floor_ratio_pct": 22.15,
+        "visible_sky_angle_deg": 58.2,
+        "sky_angle_factor": 0.6471,
+        "daylight_factor_pct": 1.59,
+        "target_daylight_factor_pct": 2.0
+      },
+      "status": "advisory",
+      "confidence": "medium",
+      "issues": [
+        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "room_uid": "A:floor-1:flex1",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "room_uid": "A:floor-1:balcony1",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "bathroom",
+        "minimum_mm": 800
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "room_uid": "A:floor-1:balcony1",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "設備"
+        ],
+        "review_terms_found": [
+          "防水"
+        ]
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "room_uid": "A:floor-1:water-inlet",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "bathroom",
+        "minimum_mm": 800
+      },
+      "result": {
+        "door_width_mm": 800.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "room_uid": "A:floor-1:water-inlet",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "水塔"
+        ],
+        "review_terms_found": [
+          "防水",
+          "維修"
+        ]
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-2",
+      "room_uid": "",
+      "metric_type": "floor_area",
+      "inputs": {
+        "geometry_mm": {
+          "width_mm": 11000.0,
+          "depth_mm": 5200.0,
+          "north_deg": 0.0
+        }
+      },
+      "result": {
+        "floor_area_sqm": 57.2
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-2",
+      "room_uid": "",
+      "metric_type": "egress_distance_proxy",
+      "inputs": {
+        "method": "cell-center direct distance proxy; not code travel path",
+        "anchor_cell": "🚶 走廊",
+        "anchor_type": "stair",
+        "warning_threshold_m": 30.0
+      },
+      "result": {
+        "max_proxy_direct_distance_m": 6.08,
+        "avg_proxy_direct_distance_m": 3.41,
+        "farthest_cell": "2F 公用衛浴"
+      },
+      "status": "professional_required",
+      "confidence": "medium",
+      "issues": [
+        "formal egress route and travel distance calculation remains professional work"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-2",
+      "room_uid": "A:floor-2:master",
+      "metric_type": "daylight_factor",
+      "inputs": {
+        "room_width_m": 7.33,
+        "room_depth_m": 1.1,
+        "room_height_m": 3.0,
+        "window_width_m": 1.2,
+        "raw_window_width_m": 1.2,
+        "window_height_m": 1.2,
+        "window_sill_height_m": 0.9,
+        "glazing_transmittance": 0.65,
+        "average_reflectance": 0.5,
+        "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
+      },
+      "result": {
+        "window_area_m2": 1.44,
+        "floor_area_m2": 8.066,
+        "total_surface_area_m2": 66.731,
+        "window_to_floor_ratio_pct": 17.85,
+        "visible_sky_angle_deg": 62.4,
+        "sky_angle_factor": 0.6928,
+        "daylight_factor_pct": 1.3,
+        "target_daylight_factor_pct": 2.0
+      },
+      "status": "advisory",
+      "confidence": "medium",
+      "issues": [
+        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-2",
+      "room_uid": "A:floor-2:master",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-2",
+      "room_uid": "A:floor-2:master-bath",
+      "metric_type": "daylight_factor",
+      "inputs": {
+        "room_width_m": 3.67,
+        "room_depth_m": 1.1,
+        "room_height_m": 3.0,
+        "window_width_m": 0.6,
+        "raw_window_width_m": 0.6,
+        "window_height_m": 1.2,
+        "window_sill_height_m": 0.9,
+        "glazing_transmittance": 0.65,
+        "average_reflectance": 0.5,
+        "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
+      },
+      "result": {
+        "window_area_m2": 0.72,
+        "floor_area_m2": 4.034,
+        "total_surface_area_m2": 36.669,
+        "window_to_floor_ratio_pct": 17.85,
+        "visible_sky_angle_deg": 62.4,
+        "sky_angle_factor": 0.6928,
+        "daylight_factor_pct": 1.18,
+        "target_daylight_factor_pct": 2.0
+      },
+      "status": "advisory",
+      "confidence": "medium",
+      "issues": [
+        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-2",
+      "room_uid": "A:floor-2:master-bath",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "bathroom",
+        "minimum_mm": 800
+      },
+      "result": {
+        "door_width_mm": 800.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-2",
+      "room_uid": "A:floor-2:master-bath",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "rf"
+        ],
+        "review_terms_found": [
+          "防水"
+        ]
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-2",
+      "room_uid": "A:floor-2:walkin",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-2",
+      "room_uid": "A:floor-2:hall2",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-2",
+      "room_uid": "A:floor-2:study",
+      "metric_type": "daylight_factor",
+      "inputs": {
+        "room_width_m": 5.5,
+        "room_depth_m": 1.1,
+        "room_height_m": 3.0,
+        "window_width_m": 0.6,
+        "raw_window_width_m": 0.6,
+        "window_height_m": 1.2,
+        "window_sill_height_m": 0.9,
+        "glazing_transmittance": 0.65,
+        "average_reflectance": 0.5,
+        "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
+      },
+      "result": {
+        "window_area_m2": 0.72,
+        "floor_area_m2": 6.05,
+        "total_surface_area_m2": 51.7,
+        "window_to_floor_ratio_pct": 11.9,
+        "visible_sky_angle_deg": 62.4,
+        "sky_angle_factor": 0.6928,
+        "daylight_factor_pct": 0.84,
+        "target_daylight_factor_pct": 2.0
+      },
+      "status": "advisory",
+      "confidence": "medium",
+      "issues": [
+        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-2",
+      "room_uid": "A:floor-2:study",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 800.0
+      },
+      "status": "advisory",
+      "confidence": "high",
+      "issues": [
+        "door width 800mm is below advisory minimum 900mm"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-2",
+      "room_uid": "A:floor-2:study",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "設備"
+        ],
+        "review_terms_found": []
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-2",
+      "room_uid": "A:floor-2:bedroom2",
+      "metric_type": "daylight_factor",
+      "inputs": {
+        "room_width_m": 5.5,
+        "room_depth_m": 1.1,
+        "room_height_m": 3.0,
+        "window_width_m": 1.2,
+        "raw_window_width_m": 1.2,
+        "window_height_m": 1.2,
+        "window_sill_height_m": 0.9,
+        "glazing_transmittance": 0.65,
+        "average_reflectance": 0.5,
+        "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
+      },
+      "result": {
+        "window_area_m2": 1.44,
+        "floor_area_m2": 6.05,
+        "total_surface_area_m2": 51.7,
+        "window_to_floor_ratio_pct": 23.8,
+        "visible_sky_angle_deg": 62.4,
+        "sky_angle_factor": 0.6928,
+        "daylight_factor_pct": 1.67,
+        "target_daylight_factor_pct": 2.0
+      },
+      "status": "advisory",
+      "confidence": "medium",
+      "issues": [
+        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-2",
+      "room_uid": "A:floor-2:bedroom2",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-2",
+      "room_uid": "A:floor-2:bath2",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "bathroom",
+        "minimum_mm": 800
+      },
+      "result": {
+        "door_width_mm": 800.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-2",
+      "room_uid": "A:floor-2:balcony2",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "bathroom",
+        "minimum_mm": 800
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-3",
+      "room_uid": "",
+      "metric_type": "floor_area",
+      "inputs": {
+        "geometry_mm": {
+          "width_mm": 11000.0,
+          "depth_mm": 5200.0,
+          "north_deg": 0.0
+        }
+      },
+      "result": {
+        "floor_area_sqm": 57.2
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-3",
+      "room_uid": "",
+      "metric_type": "egress_distance_proxy",
+      "inputs": {
+        "method": "cell-center direct distance proxy",
+        "entry_count": 0
+      },
+      "result": {
+        "max_proxy_direct_distance_m": 0.0
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "egress proxy requires one entry marker or stair/landing cell"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-3",
+      "room_uid": "A:floor-3:entertainment",
+      "metric_type": "daylight_factor",
+      "inputs": {
+        "room_width_m": 11.0,
+        "room_depth_m": 1.1,
+        "window_width_m": 0.0,
+        "method": "BRE simplified daylight factor adapted from Skills-Architects"
+      },
+      "result": {
+        "daylight_factor_pct": 0.0,
+        "target_daylight_factor_pct": 2.0
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "missing window width for daylight-sensitive room"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-3",
+      "room_uid": "A:floor-3:entertainment",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-3",
+      "room_uid": "A:floor-3:entertainment",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "rf",
+          "熱泵",
+          "vf800",
+          "設備"
+        ],
+        "review_terms_found": []
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-3",
+      "room_uid": "A:floor-3:guest",
+      "metric_type": "daylight_factor",
+      "inputs": {
+        "room_width_m": 6.6,
+        "room_depth_m": 1.1,
+        "room_height_m": 3.0,
+        "window_width_m": 1.2,
+        "raw_window_width_m": 1.2,
+        "window_height_m": 1.2,
+        "window_sill_height_m": 0.9,
+        "glazing_transmittance": 0.65,
+        "average_reflectance": 0.5,
+        "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
+      },
+      "result": {
+        "window_area_m2": 1.44,
+        "floor_area_m2": 7.26,
+        "total_surface_area_m2": 60.72,
+        "window_to_floor_ratio_pct": 19.83,
+        "visible_sky_angle_deg": 62.4,
+        "sky_angle_factor": 0.6928,
+        "daylight_factor_pct": 1.42,
+        "target_daylight_factor_pct": 2.0
+      },
+      "status": "advisory",
+      "confidence": "medium",
+      "issues": [
+        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-3",
+      "room_uid": "A:floor-3:guest",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-3",
+      "room_uid": "A:floor-3:bath3",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "bathroom",
+        "minimum_mm": 800
+      },
+      "result": {
+        "door_width_mm": 800.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-3",
+      "room_uid": "A:floor-3:bath3",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "rf",
+          "設備"
+        ],
+        "review_terms_found": [
+          "防水"
+        ]
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-3",
+      "room_uid": "A:floor-3:multi",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-3",
+      "room_uid": "A:floor-3:stair3",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-3",
+      "room_uid": "A:floor-3:stair3",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "rf"
+        ],
+        "review_terms_found": [
+          "結構",
+          "技師"
+        ]
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": true
+      },
+      "status": "professional_required",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-3",
+      "room_uid": "A:floor-3:terrace3",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-4",
+      "room_uid": "",
+      "metric_type": "floor_area",
+      "inputs": {
+        "geometry_mm": {
+          "width_mm": 11000.0,
+          "depth_mm": 3900.0,
+          "north_deg": 0.0
+        }
+      },
+      "result": {
+        "floor_area_sqm": 42.9
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-4",
+      "room_uid": "",
+      "metric_type": "egress_distance_proxy",
+      "inputs": {
+        "method": "cell-center direct distance proxy",
+        "entry_count": 0
+      },
+      "result": {
+        "max_proxy_direct_distance_m": 0.0
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "egress proxy requires one entry marker or stair/landing cell"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-4",
+      "room_uid": "A:floor-4:riser",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "service",
+        "minimum_mm": 800
+      },
+      "result": {
+        "door_width_mm": 800.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-4",
+      "room_uid": "A:floor-4:riser",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "rf",
+          "太陽能"
+        ],
+        "review_terms_found": [
+          "防水",
+          "維修"
+        ]
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-4",
+      "room_uid": "A:floor-4:water-tank",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 800.0
+      },
+      "status": "advisory",
+      "confidence": "high",
+      "issues": [
+        "door width 800mm is below advisory minimum 900mm"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-4",
+      "room_uid": "A:floor-4:water-tank",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "rf",
+          "水塔",
+          "熱泵",
+          "vf800",
+          "太陽能",
+          "棚架",
+          "設備"
+        ],
+        "review_terms_found": [
+          "結構",
+          "技師",
+          "載重",
+          "承載",
+          "錨定",
+          "防水"
+        ]
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": true
+      },
+      "status": "professional_required",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-4",
+      "room_uid": "A:floor-4:vf800",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 800.0
+      },
+      "status": "advisory",
+      "confidence": "high",
+      "issues": [
+        "door width 800mm is below advisory minimum 900mm"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-4",
+      "room_uid": "A:floor-4:vf800",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "vf800",
+          "設備"
+        ],
+        "review_terms_found": []
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-4",
+      "room_uid": "A:floor-4:haier",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-4",
+      "room_uid": "A:floor-4:haier",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "水塔",
+          "熱泵",
+          "太陽能"
+        ],
+        "review_terms_found": [
+          "基座"
+        ]
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-4",
+      "room_uid": "A:floor-4:solar",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "service",
+        "minimum_mm": 800
+      },
+      "result": {
+        "door_width_mm": 800.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-4",
+      "room_uid": "A:floor-4:solar",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "太陽能",
+          "設備"
+        ],
+        "review_terms_found": []
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-4",
+      "room_uid": "A:floor-4:laundry-rf",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-4",
+      "room_uid": "A:floor-4:laundry-rf",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "rf",
+          "設備"
+        ],
+        "review_terms_found": [
+          "防水"
+        ]
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-1",
+      "room_uid": "",
+      "metric_type": "floor_area",
+      "inputs": {
+        "geometry_mm": {
+          "width_mm": 11000.0,
+          "depth_mm": 5300.0,
+          "north_deg": 0.0
+        }
+      },
+      "result": {
+        "floor_area_sqm": 58.3
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-1",
+      "room_uid": "",
+      "metric_type": "egress_distance_proxy",
+      "inputs": {
+        "method": "cell-center direct distance proxy; not code travel path",
+        "anchor_cell": "神明廳 + 玄關",
+        "anchor_type": "entry",
+        "warning_threshold_m": 30.0
+      },
+      "result": {
+        "max_proxy_direct_distance_m": 3.86,
+        "avg_proxy_direct_distance_m": 2.53,
+        "farthest_cell": "樓梯間"
+      },
+      "status": "professional_required",
+      "confidence": "medium",
+      "issues": [
+        "formal egress route and travel distance calculation remains professional work"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-1",
+      "room_uid": "B:floor-1:garage",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-1",
+      "room_uid": "B:floor-1:shrine",
+      "metric_type": "daylight_factor",
+      "inputs": {
+        "room_width_m": 11.0,
+        "room_depth_m": 1.3,
+        "room_height_m": 3.0,
+        "window_width_m": 0.9,
+        "raw_window_width_m": 0.9,
+        "window_height_m": 1.2,
+        "window_sill_height_m": 0.9,
+        "glazing_transmittance": 0.65,
+        "average_reflectance": 0.5,
+        "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
+      },
+      "result": {
+        "window_area_m2": 1.08,
+        "floor_area_m2": 14.3,
+        "total_surface_area_m2": 102.4,
+        "window_to_floor_ratio_pct": 7.55,
+        "visible_sky_angle_deg": 58.2,
+        "sky_angle_factor": 0.6471,
+        "daylight_factor_pct": 0.59,
+        "target_daylight_factor_pct": 2.0
+      },
+      "status": "advisory",
+      "confidence": "medium",
+      "issues": [
+        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-1",
+      "room_uid": "B:floor-1:shrine",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "entry",
+        "minimum_mm": 1000
+      },
+      "result": {
+        "door_width_mm": 1000.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-1",
+      "room_uid": "B:floor-1:shrine",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "設備"
+        ],
+        "review_terms_found": [
+          "維修"
+        ]
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-1",
+      "room_uid": "B:floor-1:stair1",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-1",
+      "room_uid": "B:floor-1:stair1",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "rf",
+          "設備"
+        ],
+        "review_terms_found": [
+          "結構",
+          "技師",
+          "防水"
+        ]
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": true
+      },
+      "status": "professional_required",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-1",
+      "room_uid": "B:floor-1:idf-cabinet",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "service",
+        "minimum_mm": 800
+      },
+      "result": {
+        "door_width_mm": 800.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-1",
+      "room_uid": "B:floor-1:idf-cabinet",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "設備"
+        ],
+        "review_terms_found": [
+          "防水",
+          "維修"
+        ]
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-1",
+      "room_uid": "B:floor-1:bath1",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "bathroom",
+        "minimum_mm": 800
+      },
+      "result": {
+        "door_width_mm": 800.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-1",
+      "room_uid": "B:floor-1:storage",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "service",
+        "minimum_mm": 800
+      },
+      "result": {
+        "door_width_mm": 800.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-1",
+      "room_uid": "B:floor-1:balcony1",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "bathroom",
+        "minimum_mm": 800
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-1",
+      "room_uid": "B:floor-1:balcony1",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "rf",
+          "水塔"
+        ],
+        "review_terms_found": [
+          "維修"
+        ]
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-2",
+      "room_uid": "",
+      "metric_type": "floor_area",
+      "inputs": {
+        "geometry_mm": {
+          "width_mm": 11000.0,
+          "depth_mm": 5400.0,
+          "north_deg": 0.0
+        }
+      },
+      "result": {
+        "floor_area_sqm": 59.4
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-2",
+      "room_uid": "",
+      "metric_type": "egress_distance_proxy",
+      "inputs": {
+        "method": "cell-center direct distance proxy; not code travel path",
+        "anchor_cell": "樓梯間",
+        "anchor_type": "stair",
+        "warning_threshold_m": 30.0
+      },
+      "result": {
+        "max_proxy_direct_distance_m": 7.33,
+        "avg_proxy_direct_distance_m": 3.88,
+        "farthest_cell": "客用衛浴"
+      },
+      "status": "professional_required",
+      "confidence": "medium",
+      "issues": [
+        "formal egress route and travel distance calculation remains professional work"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-2",
+      "room_uid": "B:floor-2:stair2",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-2",
+      "room_uid": "B:floor-2:stair2",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "設備"
+        ],
+        "review_terms_found": []
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-2",
+      "room_uid": "B:floor-2:living2",
+      "metric_type": "daylight_factor",
+      "inputs": {
+        "room_width_m": 11.0,
+        "room_depth_m": 1.3,
+        "room_height_m": 3.0,
+        "window_width_m": 1.8,
+        "raw_window_width_m": 1.8,
+        "window_height_m": 1.2,
+        "window_sill_height_m": 0.9,
+        "glazing_transmittance": 0.65,
+        "average_reflectance": 0.5,
+        "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
+      },
+      "result": {
+        "window_area_m2": 2.16,
+        "floor_area_m2": 14.3,
+        "total_surface_area_m2": 102.4,
+        "window_to_floor_ratio_pct": 15.1,
+        "visible_sky_angle_deg": 58.2,
+        "sky_angle_factor": 0.6471,
+        "daylight_factor_pct": 1.18,
+        "target_daylight_factor_pct": 2.0
+      },
+      "status": "advisory",
+      "confidence": "medium",
+      "issues": [
+        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-2",
+      "room_uid": "B:floor-2:living2",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-2",
+      "room_uid": "B:floor-2:living2",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "rf"
+        ],
+        "review_terms_found": []
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-2",
+      "room_uid": "B:floor-2:bar2",
+      "metric_type": "daylight_factor",
+      "inputs": {
+        "room_width_m": 3.67,
+        "room_depth_m": 1.1,
+        "room_height_m": 3.0,
+        "window_width_m": 1.0,
+        "raw_window_width_m": 1.0,
+        "window_height_m": 1.2,
+        "window_sill_height_m": 0.9,
+        "glazing_transmittance": 0.65,
+        "average_reflectance": 0.5,
+        "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
+      },
+      "result": {
+        "window_area_m2": 1.2,
+        "floor_area_m2": 4.034,
+        "total_surface_area_m2": 36.669,
+        "window_to_floor_ratio_pct": 29.75,
+        "visible_sky_angle_deg": 62.4,
+        "sky_angle_factor": 0.6928,
+        "daylight_factor_pct": 1.96,
+        "target_daylight_factor_pct": 2.0
+      },
+      "status": "advisory",
+      "confidence": "medium",
+      "issues": [
+        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-2",
+      "room_uid": "B:floor-2:bar2",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-2",
+      "room_uid": "B:floor-2:bar2",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "設備"
+        ],
+        "review_terms_found": []
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-2",
+      "room_uid": "B:floor-2:bath2",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "bathroom",
+        "minimum_mm": 800
+      },
+      "result": {
+        "door_width_mm": 800.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-2",
+      "room_uid": "B:floor-2:master2",
+      "metric_type": "daylight_factor",
+      "inputs": {
+        "room_width_m": 11.0,
+        "room_depth_m": 1.3,
+        "room_height_m": 3.0,
+        "window_width_m": 1.2,
+        "raw_window_width_m": 1.2,
+        "window_height_m": 1.2,
+        "window_sill_height_m": 0.9,
+        "glazing_transmittance": 0.65,
+        "average_reflectance": 0.5,
+        "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
+      },
+      "result": {
+        "window_area_m2": 1.44,
+        "floor_area_m2": 14.3,
+        "total_surface_area_m2": 102.4,
+        "window_to_floor_ratio_pct": 10.07,
+        "visible_sky_angle_deg": 58.2,
+        "sky_angle_factor": 0.6471,
+        "daylight_factor_pct": 0.79,
+        "target_daylight_factor_pct": 2.0
+      },
+      "status": "advisory",
+      "confidence": "medium",
+      "issues": [
+        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-2",
+      "room_uid": "B:floor-2:master2",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-2",
+      "room_uid": "B:floor-2:balcony2",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "bathroom",
+        "minimum_mm": 800
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-2",
+      "room_uid": "B:floor-2:balcony2",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "rf"
+        ],
+        "review_terms_found": []
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-3",
+      "room_uid": "",
+      "metric_type": "floor_area",
+      "inputs": {
+        "geometry_mm": {
+          "width_mm": 11000.0,
+          "depth_mm": 5300.0,
+          "north_deg": 0.0
+        }
+      },
+      "result": {
+        "floor_area_sqm": 58.3
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-3",
+      "room_uid": "",
+      "metric_type": "egress_distance_proxy",
+      "inputs": {
+        "method": "cell-center direct distance proxy; not code travel path",
+        "anchor_cell": "樓梯間",
+        "anchor_type": "stair",
+        "warning_threshold_m": 30.0
+      },
+      "result": {
+        "max_proxy_direct_distance_m": 5.63,
+        "avg_proxy_direct_distance_m": 3.19,
+        "farthest_cell": "後客房"
+      },
+      "status": "professional_required",
+      "confidence": "medium",
+      "issues": [
+        "formal egress route and travel distance calculation remains professional work"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-3",
+      "room_uid": "B:floor-3:stair3",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-3",
+      "room_uid": "B:floor-3:stair3",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "rf",
+          "設備"
+        ],
+        "review_terms_found": []
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-3",
+      "room_uid": "B:floor-3:terrace3",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-3",
+      "room_uid": "B:floor-3:ktv3",
+      "metric_type": "daylight_factor",
+      "inputs": {
+        "room_width_m": 5.5,
+        "room_depth_m": 1.3,
+        "room_height_m": 3.0,
+        "window_width_m": 1.0,
+        "raw_window_width_m": 1.0,
+        "window_height_m": 1.2,
+        "window_sill_height_m": 0.9,
+        "glazing_transmittance": 0.65,
+        "average_reflectance": 0.5,
+        "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
+      },
+      "result": {
+        "window_area_m2": 1.2,
+        "floor_area_m2": 7.15,
+        "total_surface_area_m2": 55.1,
+        "window_to_floor_ratio_pct": 16.78,
+        "visible_sky_angle_deg": 58.2,
+        "sky_angle_factor": 0.6471,
+        "daylight_factor_pct": 1.22,
+        "target_daylight_factor_pct": 2.0
+      },
+      "status": "advisory",
+      "confidence": "medium",
+      "issues": [
+        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-3",
+      "room_uid": "B:floor-3:ktv3",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-3",
+      "room_uid": "B:floor-3:ktv3",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "設備"
+        ],
+        "review_terms_found": []
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-3",
+      "room_uid": "B:floor-3:bath3",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "bathroom",
+        "minimum_mm": 800
+      },
+      "result": {
+        "door_width_mm": 800.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-3",
+      "room_uid": "B:floor-3:guest3",
+      "metric_type": "daylight_factor",
+      "inputs": {
+        "room_width_m": 5.5,
+        "room_depth_m": 1.1,
+        "room_height_m": 3.0,
+        "window_width_m": 1.2,
+        "raw_window_width_m": 1.2,
+        "window_height_m": 1.2,
+        "window_sill_height_m": 0.9,
+        "glazing_transmittance": 0.65,
+        "average_reflectance": 0.5,
+        "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
+      },
+      "result": {
+        "window_area_m2": 1.44,
+        "floor_area_m2": 6.05,
+        "total_surface_area_m2": 51.7,
+        "window_to_floor_ratio_pct": 23.8,
+        "visible_sky_angle_deg": 62.4,
+        "sky_angle_factor": 0.6928,
+        "daylight_factor_pct": 1.67,
+        "target_daylight_factor_pct": 2.0
+      },
+      "status": "advisory",
+      "confidence": "medium",
+      "issues": [
+        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-3",
+      "room_uid": "B:floor-3:guest3",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-3",
+      "room_uid": "B:floor-3:ladder3",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "bathroom",
+        "minimum_mm": 800
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-3",
+      "room_uid": "B:floor-3:ladder3",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "rf",
+          "設備"
+        ],
+        "review_terms_found": []
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-4",
+      "room_uid": "",
+      "metric_type": "floor_area",
+      "inputs": {
+        "geometry_mm": {
+          "width_mm": 11000.0,
+          "depth_mm": 5400.0,
+          "north_deg": 0.0
+        }
+      },
+      "result": {
+        "floor_area_sqm": 59.4
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-4",
+      "room_uid": "",
+      "metric_type": "egress_distance_proxy",
+      "inputs": {
+        "method": "cell-center direct distance proxy; not code travel path",
+        "anchor_cell": "樓梯出口",
+        "anchor_type": "stair",
+        "warning_threshold_m": 30.0
+      },
+      "result": {
+        "max_proxy_direct_distance_m": 3.9,
+        "avg_proxy_direct_distance_m": 2.46,
+        "farthest_cell": "活動平台 / 曬衣棚架"
+      },
+      "status": "professional_required",
+      "confidence": "medium",
+      "issues": [
+        "formal egress route and travel distance calculation remains professional work"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-4",
+      "room_uid": "B:floor-4:stairRF",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-4",
+      "room_uid": "B:floor-4:stairRF",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "rf",
+          "設備"
+        ],
+        "review_terms_found": [
+          "防水"
+        ]
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-4",
+      "room_uid": "B:floor-4:tank-rf",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 800.0
+      },
+      "status": "advisory",
+      "confidence": "high",
+      "issues": [
+        "door width 800mm is below advisory minimum 900mm"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-4",
+      "room_uid": "B:floor-4:tank-rf",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "rf",
+          "水塔",
+          "熱泵",
+          "vf800",
+          "太陽能",
+          "棚架",
+          "設備"
+        ],
+        "review_terms_found": [
+          "結構",
+          "技師",
+          "載重",
+          "承載",
+          "錨定",
+          "基座"
+        ]
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": true
+      },
+      "status": "professional_required",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-4",
+      "room_uid": "B:floor-4:pump-rf",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 800.0
+      },
+      "status": "advisory",
+      "confidence": "high",
+      "issues": [
+        "door width 800mm is below advisory minimum 900mm"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-4",
+      "room_uid": "B:floor-4:pump-rf",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "水塔",
+          "vf800",
+          "設備"
+        ],
+        "review_terms_found": [
+          "結構",
+          "錨定",
+          "基座"
+        ]
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": true
+      },
+      "status": "professional_required",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-4",
+      "room_uid": "B:floor-4:hotwater-rf",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-4",
+      "room_uid": "B:floor-4:hotwater-rf",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "rf",
+          "水塔",
+          "熱泵",
+          "vf800",
+          "設備"
+        ],
+        "review_terms_found": [
+          "結構",
+          "錨定",
+          "基座"
+        ]
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": true
+      },
+      "status": "professional_required",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-4",
+      "room_uid": "B:floor-4:platform-rf",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-4",
+      "room_uid": "B:floor-4:platform-rf",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "rf",
+          "水塔",
+          "熱泵",
+          "太陽能",
+          "棚架",
+          "設備"
+        ],
+        "review_terms_found": [
+          "結構",
+          "技師",
+          "承載",
+          "防水",
+          "維修"
+        ]
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": true
+      },
+      "status": "professional_required",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path"
+      ]
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-1",
+      "room_uid": "",
+      "metric_type": "floor_area",
+      "inputs": {
+        "geometry_mm": {
+          "width_mm": 11000.0,
+          "depth_mm": 7000.0,
+          "north_deg": 0.0
+        }
+      },
+      "result": {
+        "floor_area_sqm": 77.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-1",
+      "room_uid": "",
+      "metric_type": "egress_distance_proxy",
+      "inputs": {
+        "method": "cell-center direct distance proxy; not code travel path",
+        "anchor_cell": "玄關",
+        "anchor_type": "entry",
+        "warning_threshold_m": 30.0
+      },
+      "result": {
+        "max_proxy_direct_distance_m": 8.46,
+        "avg_proxy_direct_distance_m": 5.05,
+        "farthest_cell": "拉門阻隔"
+      },
+      "status": "professional_required",
+      "confidence": "medium",
+      "issues": [
+        "formal egress route and travel distance calculation remains professional work"
+      ]
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-1",
+      "room_uid": "C:floor-1:stair1f",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "service",
+        "minimum_mm": 800
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-1",
+      "room_uid": "C:floor-1:sliding-door",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-1",
+      "room_uid": "C:floor-1:sideyard",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-1",
+      "room_uid": "C:floor-1:elder",
+      "metric_type": "daylight_factor",
+      "inputs": {
+        "room_width_m": 7.86,
+        "room_depth_m": 1.3,
+        "room_height_m": 3.0,
+        "window_width_m": 1.0,
+        "raw_window_width_m": 1.0,
+        "window_height_m": 1.2,
+        "window_sill_height_m": 0.9,
+        "glazing_transmittance": 0.65,
+        "average_reflectance": 0.5,
+        "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
+      },
+      "result": {
+        "window_area_m2": 1.2,
+        "floor_area_m2": 10.214,
+        "total_surface_area_m2": 75.37,
+        "window_to_floor_ratio_pct": 11.75,
+        "visible_sky_angle_deg": 58.2,
+        "sky_angle_factor": 0.6471,
+        "daylight_factor_pct": 0.89,
+        "target_daylight_factor_pct": 2.0
+      },
+      "status": "advisory",
+      "confidence": "medium",
+      "issues": [
+        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+      ]
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-1",
+      "room_uid": "C:floor-1:elder",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-1",
+      "room_uid": "C:floor-1:elder-bath",
+      "metric_type": "daylight_factor",
+      "inputs": {
+        "room_width_m": 5.5,
+        "room_depth_m": 1.7,
+        "room_height_m": 3.0,
+        "window_width_m": 0.6,
+        "raw_window_width_m": 0.6,
+        "window_height_m": 1.2,
+        "window_sill_height_m": 0.9,
+        "glazing_transmittance": 0.65,
+        "average_reflectance": 0.5,
+        "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
+      },
+      "result": {
+        "window_area_m2": 0.72,
+        "floor_area_m2": 9.35,
+        "total_surface_area_m2": 61.9,
+        "window_to_floor_ratio_pct": 7.7,
+        "visible_sky_angle_deg": 51.0,
+        "sky_angle_factor": 0.5668,
+        "daylight_factor_pct": 0.57,
+        "target_daylight_factor_pct": 2.0
+      },
+      "status": "advisory",
+      "confidence": "medium",
+      "issues": [
+        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+      ]
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-1",
+      "room_uid": "C:floor-1:elder-bath",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "bathroom",
+        "minimum_mm": 800
+      },
+      "result": {
+        "door_width_mm": 800.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-2",
+      "room_uid": "",
+      "metric_type": "floor_area",
+      "inputs": {
+        "geometry_mm": {
+          "width_mm": 11000.0,
+          "depth_mm": 6200.0,
+          "north_deg": 0.0
+        }
+      },
+      "result": {
+        "floor_area_sqm": 68.2
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-2",
+      "room_uid": "",
+      "metric_type": "egress_distance_proxy",
+      "inputs": {
+        "method": "cell-center direct distance proxy; not code travel path",
+        "anchor_cell": "樓梯",
+        "anchor_type": "stair",
+        "warning_threshold_m": 30.0
+      },
+      "result": {
+        "max_proxy_direct_distance_m": 5.5,
+        "avg_proxy_direct_distance_m": 3.7,
+        "farthest_cell": "客房 / 多功能房"
+      },
+      "status": "professional_required",
+      "confidence": "medium",
+      "issues": [
+        "formal egress route and travel distance calculation remains professional work"
+      ]
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-2",
+      "room_uid": "C:floor-2:living2f",
+      "metric_type": "daylight_factor",
+      "inputs": {
+        "room_width_m": 11.0,
+        "room_depth_m": 1.3,
+        "room_height_m": 3.0,
+        "window_width_m": 1.8,
+        "raw_window_width_m": 1.8,
+        "window_height_m": 1.2,
+        "window_sill_height_m": 0.9,
+        "glazing_transmittance": 0.65,
+        "average_reflectance": 0.5,
+        "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
+      },
+      "result": {
+        "window_area_m2": 2.16,
+        "floor_area_m2": 14.3,
+        "total_surface_area_m2": 102.4,
+        "window_to_floor_ratio_pct": 15.1,
+        "visible_sky_angle_deg": 58.2,
+        "sky_angle_factor": 0.6471,
+        "daylight_factor_pct": 1.18,
+        "target_daylight_factor_pct": 2.0
+      },
+      "status": "advisory",
+      "confidence": "medium",
+      "issues": [
+        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+      ]
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-2",
+      "room_uid": "C:floor-2:living2f",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-2",
+      "room_uid": "C:floor-2:guestroom2f",
+      "metric_type": "daylight_factor",
+      "inputs": {
+        "room_width_m": 7.33,
+        "room_depth_m": 1.3,
+        "room_height_m": 3.0,
+        "window_width_m": 1.2,
+        "raw_window_width_m": 1.2,
+        "window_height_m": 1.2,
+        "window_sill_height_m": 0.9,
+        "glazing_transmittance": 0.65,
+        "average_reflectance": 0.5,
+        "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
+      },
+      "result": {
+        "window_area_m2": 1.44,
+        "floor_area_m2": 9.533,
+        "total_surface_area_m2": 70.864,
+        "window_to_floor_ratio_pct": 15.11,
+        "visible_sky_angle_deg": 58.2,
+        "sky_angle_factor": 0.6471,
+        "daylight_factor_pct": 1.14,
+        "target_daylight_factor_pct": 2.0
+      },
+      "status": "advisory",
+      "confidence": "medium",
+      "issues": [
+        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+      ]
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-2",
+      "room_uid": "C:floor-2:guestroom2f",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-2",
+      "room_uid": "C:floor-2:kitchen2f",
+      "metric_type": "daylight_factor",
+      "inputs": {
+        "room_width_m": 11.0,
+        "room_depth_m": 1.3,
+        "room_height_m": 3.0,
+        "window_width_m": 0.9,
+        "raw_window_width_m": 0.9,
+        "window_height_m": 1.2,
+        "window_sill_height_m": 0.9,
+        "glazing_transmittance": 0.65,
+        "average_reflectance": 0.5,
+        "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
+      },
+      "result": {
+        "window_area_m2": 1.08,
+        "floor_area_m2": 14.3,
+        "total_surface_area_m2": 102.4,
+        "window_to_floor_ratio_pct": 7.55,
+        "visible_sky_angle_deg": 58.2,
+        "sky_angle_factor": 0.6471,
+        "daylight_factor_pct": 0.59,
+        "target_daylight_factor_pct": 2.0
+      },
+      "status": "advisory",
+      "confidence": "medium",
+      "issues": [
+        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+      ]
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-2",
+      "room_uid": "C:floor-2:kitchen2f",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "bathroom",
+        "minimum_mm": 800
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-2",
+      "room_uid": "C:floor-2:bath2f",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "bathroom",
+        "minimum_mm": 800
+      },
+      "result": {
+        "door_width_mm": 800.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-2",
+      "room_uid": "C:floor-2:balcony2f",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "bathroom",
+        "minimum_mm": 800
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-2",
+      "room_uid": "C:floor-2:stair2f",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-3",
+      "room_uid": "",
+      "metric_type": "floor_area",
+      "inputs": {
+        "geometry_mm": {
+          "width_mm": 11000.0,
+          "depth_mm": 4900.0,
+          "north_deg": 0.0
+        }
+      },
+      "result": {
+        "floor_area_sqm": 53.9
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-3",
+      "room_uid": "",
+      "metric_type": "egress_distance_proxy",
+      "inputs": {
+        "method": "cell-center direct distance proxy; not code travel path",
+        "anchor_cell": "樓梯",
+        "anchor_type": "stair",
+        "warning_threshold_m": 30.0
+      },
+      "result": {
+        "max_proxy_direct_distance_m": 5.5,
+        "avg_proxy_direct_distance_m": 3.54,
+        "farthest_cell": "運動空間"
+      },
+      "status": "professional_required",
+      "confidence": "medium",
+      "issues": [
+        "formal egress route and travel distance calculation remains professional work"
+      ]
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-3",
+      "room_uid": "C:floor-3:master3f",
+      "metric_type": "daylight_factor",
+      "inputs": {
+        "room_width_m": 11.0,
+        "room_depth_m": 1.3,
+        "room_height_m": 3.0,
+        "window_width_m": 1.2,
+        "raw_window_width_m": 1.2,
+        "window_height_m": 1.2,
+        "window_sill_height_m": 0.9,
+        "glazing_transmittance": 0.65,
+        "average_reflectance": 0.5,
+        "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
+      },
+      "result": {
+        "window_area_m2": 1.44,
+        "floor_area_m2": 14.3,
+        "total_surface_area_m2": 102.4,
+        "window_to_floor_ratio_pct": 10.07,
+        "visible_sky_angle_deg": 58.2,
+        "sky_angle_factor": 0.6471,
+        "daylight_factor_pct": 0.79,
+        "target_daylight_factor_pct": 2.0
+      },
+      "status": "advisory",
+      "confidence": "medium",
+      "issues": [
+        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+      ]
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-3",
+      "room_uid": "C:floor-3:master3f",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-3",
+      "room_uid": "C:floor-3:fitness3f",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-3",
+      "room_uid": "C:floor-3:fitness3f",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "跑步機",
+          "運動",
+          "設備"
+        ],
+        "review_terms_found": [
+          "結構",
+          "技師",
+          "載重",
+          "承載"
+        ]
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": true
+      },
+      "status": "professional_required",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path"
+      ]
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-3",
+      "room_uid": "C:floor-3:bath3f",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "bathroom",
+        "minimum_mm": 800
+      },
+      "result": {
+        "door_width_mm": 800.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-3",
+      "room_uid": "C:floor-3:terrace3f",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-3",
+      "room_uid": "C:floor-3:stair3f",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-3",
+      "room_uid": "C:floor-3:stair3f",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "rf"
+        ],
+        "review_terms_found": [
+          "防水"
+        ]
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-4",
+      "room_uid": "",
+      "metric_type": "floor_area",
+      "inputs": {
+        "geometry_mm": {
+          "width_mm": 11000.0,
+          "depth_mm": 4100.0,
+          "north_deg": 0.0
+        }
+      },
+      "result": {
+        "floor_area_sqm": 45.1
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-4",
+      "room_uid": "",
+      "metric_type": "egress_distance_proxy",
+      "inputs": {
+        "method": "cell-center direct distance proxy; not code travel path",
+        "anchor_cell": "樓梯出口（⬇️3F）",
+        "anchor_type": "stair",
+        "warning_threshold_m": 30.0
+      },
+      "result": {
+        "max_proxy_direct_distance_m": 6.59,
+        "avg_proxy_direct_distance_m": 3.68,
+        "farthest_cell": "曬衣區"
+      },
+      "status": "professional_required",
+      "confidence": "medium",
+      "issues": [
+        "formal egress route and travel distance calculation remains professional work"
+      ]
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-4",
+      "room_uid": "C:floor-4:pump",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-4",
+      "room_uid": "C:floor-4:pump",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "水塔",
+          "vf800",
+          "設備"
+        ],
+        "review_terms_found": [
+          "基座"
+        ]
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-4",
+      "room_uid": "C:floor-4:heatpump",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 900.0
+      },
+      "status": "ok",
+      "confidence": "high",
+      "issues": []
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-4",
+      "room_uid": "C:floor-4:heatpump",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "熱泵",
+          "設備"
+        ],
+        "review_terms_found": [
+          "基座"
+        ]
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": false
+      },
+      "status": "missing_data",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "missing explicit structural/load review wording in room notes"
+      ]
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-4",
+      "room_uid": "C:floor-4:water-tank",
+      "metric_type": "door_width",
+      "inputs": {
+        "category": "interior",
+        "minimum_mm": 900
+      },
+      "result": {
+        "door_width_mm": 800.0
+      },
+      "status": "advisory",
+      "confidence": "high",
+      "issues": [
+        "door width 800mm is below advisory minimum 900mm"
+      ]
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-4",
+      "room_uid": "C:floor-4:water-tank",
+      "metric_type": "structure_load_review",
+      "inputs": {
+        "matched_keywords": [
+          "rf",
+          "水塔",
+          "熱泵",
+          "vf800",
+          "太陽能",
+          "棚架",
+          "設備"
+        ],
+        "review_terms_found": [
+          "結構",
+          "技師",
+          "載重",
+          "承載",
+          "錨定",
+          "基座"
+        ]
+      },
+      "result": {
+        "requires_professional_review": true,
+        "has_load_or_structural_note": true
+      },
+      "status": "professional_required",
+      "confidence": "medium",
+      "issues": [
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path"
+      ]
+    }
+  ],
+  "skipped_floors": [
+    {
+      "building_id": "A",
+      "floor_id": "floor-0",
+      "reason": "missing plan_cells"
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-5",
+      "reason": "missing plan_cells"
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-6",
+      "reason": "missing plan_cells"
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-7",
+      "reason": "missing plan_cells"
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-8",
+      "reason": "missing plan_cells"
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-0",
+      "reason": "missing plan_cells"
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-5",
+      "reason": "missing plan_cells"
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-overview",
+      "reason": "missing plan_cells"
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-5",
+      "reason": "missing plan_cells"
+    },
+    {
+      "building_id": "STORAGE",
+      "floor_id": "floor-0",
+      "reason": "missing plan_cells"
+    }
+  ],
+  "method_notes": [
+    "Metrics are concept-level advisory screening only.",
+    "Taiwan code, daylight, ventilation, egress, and structural compliance require professional calculation.",
+    "Daylight factor adapts the Skills-Architects simplified daylight calculator method."
+  ],
+  "summary": {
+    "status_counts": {
+      "ok": 81,
+      "professional_required": 20,
+      "advisory": 27,
+      "missing_data": 31
+    },
+    "metric_type_counts": {
+      "floor_area": 12,
+      "egress_distance_proxy": 12,
+      "door_width": 74,
+      "daylight_factor": 23,
+      "structure_load_review": 38
+    },
+    "building_counts": {
+      "A": 67,
+      "B": 54,
+      "C": 38
+    },
+    "evaluated_floor_count": 12,
+    "skipped_floor_count": 10,
+    "daylight_factor_avg_pct": 1.17,
+    "daylight_rooms_below_target": 22,
+    "door_width_advisory_count": 6,
+    "top_issues": [
+      "A:floor-1::egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+      "A:floor-1:A:floor-1:entry:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "A:floor-1:A:floor-1:living:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "A:floor-1:A:floor-1:living:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+      "A:floor-1:A:floor-1:mdf:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+      "A:floor-1:A:floor-1:stair-door:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+      "A:floor-1:A:floor-1:bath1:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+      "A:floor-1:A:floor-1:kitchen:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "A:floor-1:A:floor-1:flex1:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "A:floor-1:A:floor-1:balcony1:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+      "A:floor-1:A:floor-1:water-inlet:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+      "A:floor-2::egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+      "A:floor-2:A:floor-2:master:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "A:floor-2:A:floor-2:master-bath:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "A:floor-2:A:floor-2:master-bath:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+      "A:floor-2:A:floor-2:study:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "A:floor-2:A:floor-2:study:door_width - door width 800mm is below advisory minimum 900mm",
+      "A:floor-2:A:floor-2:study:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+      "A:floor-2:A:floor-2:bedroom2:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "A:floor-3::egress_distance_proxy - egress proxy requires one entry marker or stair/landing cell"
+    ]
+  },
+  "source_program_file": "D:\\I29786\\workspace\\houseDesignPrepare\\structured\\room_program.json"
+}
