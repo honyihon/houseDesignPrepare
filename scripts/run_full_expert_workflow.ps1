@@ -5,6 +5,8 @@ param(
     [string]$Mode = "draft",
     [ValidateSet("auto", "baseline", "best")]
     [string]$Selection = "auto",
+    [ValidateSet("presentation", "technical", "debug")]
+    [string]$DrawingStyle = "presentation",
     [ValidateSet("a3", "a4")]
     [string]$Paper = "a3",
     [string]$Buildings = "A,B,C",
@@ -80,10 +82,10 @@ function Assert-IfCSignoff {
     }
 }
 
-Write-Host ("Running expert workflow | mode={0} | selection={1} | buildings={2}" -f $Mode, $resolvedSelection, $buildingsArg) -ForegroundColor DarkCyan
+Write-Host ("Running expert workflow | mode={0} | selection={1} | buildings={2} | drawing style={3}" -f $Mode, $resolvedSelection, $buildingsArg, $DrawingStyle) -ForegroundColor DarkCyan
 Write-Host ("Request file: {0}" -f $resolvedRequestPath) -ForegroundColor DarkCyan
 
-Invoke-PythonStep -Name "Step 1/6 normalize requirement" -Arguments @(
+Invoke-PythonStep -Name "Step 1/7 normalize requirement" -Arguments @(
     "scripts/evaluate_expert_gates.py",
     "--stage", "normalize",
     "--request", $resolvedRequestPath,
@@ -92,7 +94,7 @@ Invoke-PythonStep -Name "Step 1/6 normalize requirement" -Arguments @(
     "--selection", $resolvedSelection
 )
 
-Invoke-PythonStep -Name "Step 2/6 expert rules preflight gate" -Arguments @(
+Invoke-PythonStep -Name "Step 2/7 expert rules preflight gate" -Arguments @(
     "scripts/evaluate_expert_gates.py",
     "--stage", "gate",
     "--request", $resolvedRequestPath,
@@ -107,7 +109,7 @@ if ($preflightGate -eq "fail") {
     exit 10
 }
 
-Invoke-PythonStep -Name "Step 3/6 HTML consistency check" -Arguments @(
+Invoke-PythonStep -Name "Step 3/7 HTML consistency check" -Arguments @(
     "scripts/check_html_consistency.py",
     "--buildings", $buildingsArg
 )
@@ -116,22 +118,23 @@ if ($Mode -eq "ifc") {
     Assert-IfCSignoff -Path $Signoff
 }
 
-Write-Host ("`n==> Step 4/6 run_full_pipeline ({0})" -f $Mode) -ForegroundColor Cyan
+Write-Host ("`n==> Step 4/7 run_full_pipeline ({0})" -f $Mode) -ForegroundColor Cyan
 powershell -ExecutionPolicy Bypass -File "scripts/run_full_pipeline.ps1" `
     -Mode $Mode `
     -Paper $Paper `
     -Selection $resolvedSelection `
+    -DrawingStyle $DrawingStyle `
     -Output $Output `
     -PythonExe $PythonExe
 if ($LASTEXITCODE -ne 0) {
     throw ("Step failed: run_full_pipeline (exit code {0})" -f $LASTEXITCODE)
 }
 
-Invoke-PythonStep -Name "Step 5/6 validate layout bundle" -Arguments @(
+Invoke-PythonStep -Name "Step 5/7 validate layout bundle" -Arguments @(
     "scripts/validate_layout_bundle.py"
 )
 
-Invoke-PythonStep -Name "Step 6/6 summarize expert report" -Arguments @(
+Invoke-PythonStep -Name "Step 6/7 summarize expert report" -Arguments @(
     "scripts/evaluate_expert_gates.py",
     "--stage", "report",
     "--request", $resolvedRequestPath,
@@ -147,8 +150,16 @@ if ($finalGate -eq "fail") {
     exit 10
 }
 
+Invoke-PythonStep -Name "Step 7/7 export final design HTML" -Arguments @(
+    "scripts/export_final_design_html.py",
+    "--mode", $Mode,
+    "--selection", $resolvedSelection,
+    "--buildings", $buildingsArg
+)
+
 Write-Host "`nExpert workflow completed successfully." -ForegroundColor Green
 Write-Host ("Report: {0}" -f (Resolve-Path -LiteralPath "structured/expert_review/report.md").Path) -ForegroundColor Green
+Write-Host ("Final HTML: {0}" -f (Resolve-Path -LiteralPath "structured/final_design_html/index.html").Path) -ForegroundColor Green
 if ($Mode -ne "concept" -and (Test-Path -LiteralPath $Output)) {
     Write-Host ("Output: {0}" -f (Resolve-Path -LiteralPath $Output).Path) -ForegroundColor Green
 }

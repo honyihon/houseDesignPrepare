@@ -35,6 +35,7 @@ OUT_DIR = ROOT / "structured" / "candidates" / "svg"
 MANIFEST_FILE = OUT_DIR / "manifest.json"
 INDEX_FILE = OUT_DIR / "index.html"
 SCHEMA_VERSION = "layout-top1-svg-v2"
+PRESENTATION_VERSION = 2
 
 # Common residential defaults (April 2026 baseline):
 # - Door minima from IRC R311.2 (egress clear width >= 32 in / 813 mm).
@@ -56,6 +57,56 @@ INTERIOR_WALL_FACTOR = float(DRAWING_DEFAULTS.get("interior_wall_factor", 0.32) 
 EXTERIOR_WALL_EXTRA_PX = float(DRAWING_DEFAULTS.get("exterior_wall_extra_px", 1.2) or 1.2)
 WINDOW_LINE_WIDTH_PX = float(DRAWING_DEFAULTS.get("window_line_width_px", 2.2) or 2.2)
 DIMENSION_LINE_COLOR = str(DRAWING_DEFAULTS.get("dimension_line_color", "#777"))
+VALID_DRAWING_STYLES = ("presentation", "technical", "debug")
+VALIDATION_MARKERS = ["ENT", "DW:", "WIN:", "DIM:", "LEGEND:", "ELEV:"]
+
+BASE_STYLE_PROFILE: dict[str, Any] = {
+    "show_debug_header": False,
+    "show_room_notes": False,
+    "show_opening_labels": False,
+    "show_dimensions": True,
+    "show_dimension_subchains": False,
+    "show_right_legend": False,
+    "show_bottom_legend": True,
+    "show_elevation_indices": False,
+    "show_furniture": True,
+    "show_score_line": False,
+    "presentation_version": PRESENTATION_VERSION,
+    "plan_left_px": 58,
+    "plan_top_px": 90,
+    "plan_width_px": 1040,
+    "right_panel_width_px": 64,
+    "bottom_padding_px": 136,
+    "furniture_opacity": 0.42,
+    "colors": {
+        "paper": "#f3f4f6",
+        "plan_background": "#ffffff",
+        "frame": "#d1d5db",
+        "text": "#111827",
+        "muted": "#64748b",
+        "wall_outer": "#111827",
+        "wall_inner": "#374151",
+        "dimension": "#9ca3af",
+        "door": "#475569",
+        "window": "#2563eb",
+        "furniture_fill": "#ffffff",
+        "furniture_stroke": "#64748b",
+        "label_halo": "#ffffff",
+        "hatch": "#94a3b8",
+    },
+    "room_fills": {
+        "entry": "#fffaf3",
+        "living": "#fffaf3",
+        "dining": "#fffbeb",
+        "bedroom": "#f7f8ff",
+        "bath": "#f3fdff",
+        "kitchen": "#f5fff8",
+        "service": "#f7f9fc",
+        "stair": "#f8fafc",
+        "outdoor": "#f2fbf5",
+        "other": "#ffffff",
+    },
+}
 
 
 def now_iso() -> str:
@@ -70,7 +121,132 @@ def parse_args() -> argparse.Namespace:
         default="baseline",
         help="Candidate selection strategy (default: baseline).",
     )
+    parser.add_argument(
+        "--style",
+        choices=VALID_DRAWING_STYLES,
+        default=default_drawing_style(),
+        help="Drawing style profile (default: configured default, usually presentation).",
+    )
     return parser.parse_args()
+
+
+def default_drawing_style() -> str:
+    value = str(DRAWING_DEFAULTS.get("default_style", "presentation") or "presentation")
+    return value if value in VALID_DRAWING_STYLES else "presentation"
+
+
+def drawing_profile(style: str) -> dict[str, Any]:
+    profile = dict(BASE_STYLE_PROFILE)
+    profile["colors"] = dict(BASE_STYLE_PROFILE["colors"])
+    profile["room_fills"] = dict(BASE_STYLE_PROFILE["room_fills"])
+
+    configured_profiles = DRAWING_DEFAULTS.get("style_profiles", {})
+    raw_profile = configured_profiles.get(style, {}) if isinstance(configured_profiles, dict) else {}
+    if isinstance(raw_profile, dict):
+        for key, value in raw_profile.items():
+            if key in {"colors", "room_fills"} and isinstance(value, dict):
+                merged = dict(profile.get(key, {}))
+                merged.update({str(k): str(v) for k, v in value.items()})
+                profile[key] = merged
+            else:
+                profile[key] = value
+
+    profile["name"] = style
+    return profile
+
+
+def presentation_version(profile: dict[str, Any], style: str) -> int:
+    if style != "presentation":
+        return 0
+    try:
+        return int(profile.get("presentation_version", PRESENTATION_VERSION) or PRESENTATION_VERSION)
+    except (TypeError, ValueError):
+        return PRESENTATION_VERSION
+
+
+def is_presentation_v2(profile: dict[str, Any], style: str) -> bool:
+    return presentation_version(profile, style) >= 2
+
+
+def style_bool(profile: dict[str, Any], key: str, default: bool = False) -> bool:
+    value = profile.get(key, default)
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, str):
+        return value.strip().lower() in {"1", "true", "yes", "on"}
+    return bool(value)
+
+
+def style_float(profile: dict[str, Any], key: str, default: float) -> float:
+    try:
+        return float(profile.get(key, default))
+    except (TypeError, ValueError):
+        return default
+
+
+def style_color(profile: dict[str, Any], key: str, default: str) -> str:
+    colors = profile.get("colors", {})
+    if isinstance(colors, dict):
+        value = colors.get(key)
+        if value:
+            return str(value)
+    return default
+
+
+def room_fill_color(profile: dict[str, Any], kind: str, drawing_style: str = "") -> str:
+    if is_presentation_v2(profile, drawing_style) and kind in {"bath", "service", "outdoor"}:
+        return f"url(#p2-{kind}-hatch)"
+    fills = profile.get("room_fills", {})
+    if isinstance(fills, dict):
+        return str(fills.get(kind) or fills.get("other") or "#ffffff")
+    return "#ffffff"
+
+
+def room_area_text(slot: dict[str, Any], pair_map: dict[str, dict[str, Any]], room_index: dict[str, dict[str, Any]]) -> str:
+    pair = pair_map.get(slot["slot_id"])
+    if pair:
+        room_uid = str(pair.get("room_uid", ""))
+        indexed = room_index.get(room_uid, {})
+        area_text = normalize(str(indexed.get("area_text", "")))
+        if area_text:
+            return area_text
+    return normalize(slot.get("size_text", ""))
+
+
+def compact_room_label(room_name: str, slot: dict[str, Any], width: float, height: float) -> str:
+    if width < 78 or height < 58:
+        return f"R{slot.get('order', '')}".strip()
+    limit = text_limit_from_width(width, 4, 24 if width < 145 else 34)
+    return truncate_text(room_name, limit)
+
+
+def display_room_name(value: str) -> str:
+    text = normalize(value)
+    match = re.match(r"^([^\w\u4e00-\u9fff\s]+)\s*(.+)$", text, flags=re.UNICODE)
+    return normalize(match.group(2)) if match else text
+
+
+def room_label_info(
+    room_name: str,
+    slot: dict[str, Any],
+    width: float,
+    height: float,
+    profile: dict[str, Any],
+    drawing_style: str,
+) -> dict[str, Any]:
+    display_name = display_room_name(room_name) or "未指派"
+    if not is_presentation_v2(profile, drawing_style):
+        label = compact_room_label(display_name, slot, width, height)
+        return {"label": label, "full_label": display_name, "compact": label.startswith("R")}
+
+    code = f"R{slot.get('order', '')}".strip()
+    usable_w = max(0.0, width - 30.0)
+    approx_text_w = len(display_name) * 7.2
+    compact = width < 124 or height < 78 or approx_text_w > usable_w or len(display_name) > 22
+    if compact:
+        return {"label": code, "full_label": display_name, "compact": True}
+    limit = text_limit_from_width(width, 6, 30)
+    return {"label": truncate_text(display_name, limit), "full_label": display_name, "compact": False}
 
 
 def normalize(value: str) -> str:
@@ -255,6 +431,49 @@ def svg_text(x: float, y: float, text: str, size: int = 13, weight: int = 400, c
         f'<text x="{x:.1f}" y="{y:.1f}" fill="{color}" font-size="{size}" '
         f'font-family="{html.escape(SVG_FONT_FAMILY)}" font-weight="{weight}">{html.escape(text)}</text>'
     )
+
+
+def svg_text_centered(
+    x: float,
+    y: float,
+    text: str,
+    size: int = 13,
+    weight: int = 400,
+    color: str = "#111827",
+    halo: str = "#ffffff",
+) -> str:
+    return (
+        f'<text x="{x:.1f}" y="{y:.1f}" fill="{color}" font-size="{size}" '
+        f'font-family="{html.escape(SVG_FONT_FAMILY)}" font-weight="{weight}" text-anchor="middle" '
+        f'dominant-baseline="middle" paint-order="stroke" stroke="{halo}" stroke-width="2.4" '
+        f'stroke-linejoin="round">{html.escape(text)}</text>'
+    )
+
+
+def presentation_defs(profile: dict[str, Any], drawing_style: str) -> str:
+    if not is_presentation_v2(profile, drawing_style):
+        return ""
+    fills = profile.get("room_fills", {}) if isinstance(profile.get("room_fills"), dict) else {}
+    hatch = style_color(profile, "hatch", "#94a3b8")
+    wet_fill = str(fills.get("bath", "#ecfeff"))
+    service_fill = str(fills.get("service", "#f1f5f9"))
+    outdoor_fill = str(fills.get("outdoor", "#ecfdf5"))
+    return f"""
+<defs>
+  <pattern id="p2-bath-hatch" patternUnits="userSpaceOnUse" width="9" height="9" patternTransform="rotate(45)">
+    <rect width="9" height="9" fill="{wet_fill}"/>
+    <line x1="0" y1="0" x2="0" y2="9" stroke="{hatch}" stroke-width="0.55" opacity="0.28"/>
+  </pattern>
+  <pattern id="p2-service-hatch" patternUnits="userSpaceOnUse" width="10" height="10">
+    <rect width="10" height="10" fill="{service_fill}"/>
+    <path d="M 0 10 L 10 0" stroke="{hatch}" stroke-width="0.5" opacity="0.20"/>
+  </pattern>
+  <pattern id="p2-outdoor-hatch" patternUnits="userSpaceOnUse" width="12" height="12">
+    <rect width="12" height="12" fill="{outdoor_fill}"/>
+    <path d="M 0 6 H 12 M 6 0 V 12" stroke="{hatch}" stroke-width="0.45" opacity="0.18"/>
+  </pattern>
+</defs>
+"""
 
 
 def render_slot_card(
@@ -534,7 +753,7 @@ def choose_door_edges(
     return chosen
 
 
-def draw_furniture(parts: list[str], rect: dict[str, Any], kind: str) -> None:
+def draw_furniture(parts: list[str], rect: dict[str, Any], kind: str, profile: dict[str, Any]) -> None:
     x = float(rect["x"])
     y = float(rect["y"])
     w = float(rect["w"])
@@ -542,8 +761,11 @@ def draw_furniture(parts: list[str], rect: dict[str, Any], kind: str) -> None:
     if min(w, h) < 92:
         return
 
-    stroke = "#555"
-    fill = "#f6f6f6"
+    stroke = style_color(profile, "furniture_stroke", "#555")
+    fill = style_color(profile, "furniture_fill", "#f6f6f6")
+    opacity = max(0.1, min(1.0, style_float(profile, "furniture_opacity", 1.0)))
+    if opacity < 1.0:
+        parts.append(f'<g opacity="{opacity:.2f}">')
 
     if kind == "bedroom":
         bed_cfg = FURNITURE_MM.get("bed_double", {"width": 1500, "depth": 1900})
@@ -555,10 +777,10 @@ def draw_furniture(parts: list[str], rect: dict[str, Any], kind: str) -> None:
         pillow_w = bw * 0.22
         pillow_h = bh * 0.20
         parts.append(
-            f'<rect x="{bx + bw * 0.08:.1f}" y="{by + 5:.1f}" width="{pillow_w:.1f}" height="{pillow_h:.1f}" fill="#ececec" stroke="{stroke}" stroke-width="0.9"/>'
+            f'<rect x="{bx + bw * 0.08:.1f}" y="{by + 5:.1f}" width="{pillow_w:.1f}" height="{pillow_h:.1f}" fill="{fill}" stroke="{stroke}" stroke-width="0.9"/>'
         )
         parts.append(
-            f'<rect x="{bx + bw * 0.70:.1f}" y="{by + 5:.1f}" width="{pillow_w:.1f}" height="{pillow_h:.1f}" fill="#ececec" stroke="{stroke}" stroke-width="0.9"/>'
+            f'<rect x="{bx + bw * 0.70:.1f}" y="{by + 5:.1f}" width="{pillow_w:.1f}" height="{pillow_h:.1f}" fill="{fill}" stroke="{stroke}" stroke-width="0.9"/>'
         )
     elif kind == "living":
         sofa_cfg = FURNITURE_MM.get("sofa_3", {"width": 2100, "depth": 900})
@@ -571,7 +793,7 @@ def draw_furniture(parts: list[str], rect: dict[str, Any], kind: str) -> None:
         ch = h * 0.12
         cx = x + (w - cw) / 2
         cy = sy - h * 0.18
-        parts.append(f'<rect x="{cx:.1f}" y="{cy:.1f}" width="{cw:.1f}" height="{ch:.1f}" fill="#efefef" stroke="{stroke}" stroke-width="1.0"/>')
+        parts.append(f'<rect x="{cx:.1f}" y="{cy:.1f}" width="{cw:.1f}" height="{ch:.1f}" fill="{fill}" stroke="{stroke}" stroke-width="1.0"/>')
     elif kind == "dining":
         table_cfg = FURNITURE_MM.get("dining_table_6", {"width": 1600, "depth": 800})
         tw = min(w * 0.60, max(76.0, table_cfg["width"] * PX_PER_MM))
@@ -587,7 +809,7 @@ def draw_furniture(parts: list[str], rect: dict[str, Any], kind: str) -> None:
             (tx + tw + r * 1.8, ty + th * 0.75),
         ]
         for cx, cy in chair_points:
-            parts.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{r:.1f}" fill="#f5f5f5" stroke="{stroke}" stroke-width="0.9"/>')
+            parts.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="{r:.1f}" fill="{fill}" stroke="{stroke}" stroke-width="0.9"/>')
     elif kind == "kitchen":
         kitchen_depth_mm = float(FURNITURE_MM.get("kitchen_counter_depth", 650))
         counter_depth_px = max(14.0, kitchen_depth_mm * PX_PER_MM * 0.35)
@@ -603,8 +825,8 @@ def draw_furniture(parts: list[str], rect: dict[str, Any], kind: str) -> None:
         wc_h = min(24.0, h * 0.20)
         bx = x + w * 0.56
         by = y + h * 0.55
-        parts.append(f'<rect x="{bx:.1f}" y="{by:.1f}" width="{wc_w:.1f}" height="{wc_h:.1f}" fill="#f5f5f5" stroke="{stroke}" stroke-width="1.0"/>')
-        parts.append(f'<ellipse cx="{bx + wc_w / 2:.1f}" cy="{by - 8:.1f}" rx="{wc_w / 2:.1f}" ry="7" fill="#fbfbfb" stroke="{stroke}" stroke-width="0.9"/>')
+        parts.append(f'<rect x="{bx:.1f}" y="{by:.1f}" width="{wc_w:.1f}" height="{wc_h:.1f}" fill="{fill}" stroke="{stroke}" stroke-width="1.0"/>')
+        parts.append(f'<ellipse cx="{bx + wc_w / 2:.1f}" cy="{by - 8:.1f}" rx="{wc_w / 2:.1f}" ry="7" fill="{fill}" stroke="{stroke}" stroke-width="0.9"/>')
     elif kind == "stair":
         steps = 7
         for i in range(steps):
@@ -614,6 +836,8 @@ def draw_furniture(parts: list[str], rect: dict[str, Any], kind: str) -> None:
         parts.append(
             f'<rect x="{x + 7:.1f}" y="{y + 7:.1f}" width="{w - 14:.1f}" height="{h - 14:.1f}" fill="none" stroke="#8a8a8a" stroke-dasharray="5 4" stroke-width="0.9"/>'
         )
+    if opacity < 1.0:
+        parts.append("</g>")
 
 
 def draw_internal_door(
@@ -621,6 +845,7 @@ def draw_internal_door(
     edge: dict[str, Any],
     rects: dict[str, dict[str, Any]],
     kind_map: dict[str, str],
+    profile: dict[str, Any],
 ) -> None:
     kind_a = kind_map.get(edge["a"], "other")
     kind_b = kind_map.get(edge["b"], "other")
@@ -637,11 +862,15 @@ def draw_internal_door(
     area_b = float(b["w"]) * float(b["h"])
     swing_room = a if area_a <= area_b else b
 
+    door_color = style_color(profile, "door", "#666")
+    wall_cut_color = style_color(profile, "plan_background", "#ffffff")
+    show_labels = style_bool(profile, "show_opening_labels", True)
+
     if edge["orientation"] == "v":
         x = float(edge["x"])
         mid = (float(edge["y1"]) + float(edge["y2"])) / 2
         y0 = mid - span / 2
-        parts.append(f'<line x1="{x:.1f}" y1="{y0:.1f}" x2="{x:.1f}" y2="{y0 + span:.1f}" stroke="#ffffff" stroke-width="4.8"/>')
+        parts.append(f'<line x1="{x:.1f}" y1="{y0:.1f}" x2="{x:.1f}" y2="{y0 + span:.1f}" stroke="{wall_cut_color}" stroke-width="4.8"/>')
         sign = -1 if float(swing_room["x"]) + float(swing_room["w"]) / 2 < x else 1
         r = span
         hx = x
@@ -649,17 +878,18 @@ def draw_internal_door(
         ex = x + sign * r
         ey = hy
         sweep = 1 if sign > 0 else 0
-        parts.append(f'<line x1="{hx:.1f}" y1="{hy:.1f}" x2="{ex:.1f}" y2="{ey:.1f}" stroke="#222" stroke-width="1.2"/>')
+        parts.append(f'<line x1="{hx:.1f}" y1="{hy:.1f}" x2="{ex:.1f}" y2="{ey:.1f}" stroke="{door_color}" stroke-width="1.2"/>')
         parts.append(
             f'<path d="M {x:.1f} {hy + r:.1f} A {r:.1f} {r:.1f} 0 0 {sweep} {ex:.1f} {ey:.1f}" '
-            f'fill="none" stroke="#666" stroke-width="0.9"/>'
+            f'fill="none" stroke="{door_color}" stroke-width="0.9"/>'
         )
-        parts.append(svg_text(x + 4, y0 + span + 9, f"DW:{int(round(door_mm / 10.0))}", size=8, weight=500, color="#666"))
+        if show_labels:
+            parts.append(svg_text(x + 4, y0 + span + 9, f"DW:{int(round(door_mm / 10.0))}", size=8, weight=500, color=door_color))
     else:
         y = float(edge["y"])
         mid = (float(edge["x1"]) + float(edge["x2"])) / 2
         x0 = mid - span / 2
-        parts.append(f'<line x1="{x0:.1f}" y1="{y:.1f}" x2="{x0 + span:.1f}" y2="{y:.1f}" stroke="#ffffff" stroke-width="4.8"/>')
+        parts.append(f'<line x1="{x0:.1f}" y1="{y:.1f}" x2="{x0 + span:.1f}" y2="{y:.1f}" stroke="{wall_cut_color}" stroke-width="4.8"/>')
         sign = -1 if float(swing_room["y"]) + float(swing_room["h"]) / 2 < y else 1
         r = span
         hx = x0
@@ -667,39 +897,44 @@ def draw_internal_door(
         ex = hx
         ey = y + sign * r
         sweep = 0 if sign > 0 else 1
-        parts.append(f'<line x1="{hx:.1f}" y1="{hy:.1f}" x2="{ex:.1f}" y2="{ey:.1f}" stroke="#222" stroke-width="1.2"/>')
+        parts.append(f'<line x1="{hx:.1f}" y1="{hy:.1f}" x2="{ex:.1f}" y2="{ey:.1f}" stroke="{door_color}" stroke-width="1.2"/>')
         parts.append(
             f'<path d="M {hx + r:.1f} {y:.1f} A {r:.1f} {r:.1f} 0 0 {sweep} {ex:.1f} {ey:.1f}" '
-            f'fill="none" stroke="#666" stroke-width="0.9"/>'
+            f'fill="none" stroke="{door_color}" stroke-width="0.9"/>'
         )
-        parts.append(svg_text(x0 + span + 4, y + 10, f"DW:{int(round(door_mm / 10.0))}", size=8, weight=500, color="#666"))
+        if show_labels:
+            parts.append(svg_text(x0 + span + 4, y + 10, f"DW:{int(round(door_mm / 10.0))}", size=8, weight=500, color=door_color))
 
 
-def draw_entrance_marker(parts: list[str], rect: dict[str, Any], side: str) -> None:
+def draw_entrance_marker(parts: list[str], rect: dict[str, Any], side: str, profile: dict[str, Any]) -> None:
     x = float(rect["x"])
     y = float(rect["y"])
     w = float(rect["w"])
     h = float(rect["h"])
     entry_mm = int(DOOR_WIDTH_MM["entry"])
     span = min(max(38.0, entry_mm * PX_PER_MM), max(38.0, min(w, h) * 0.62))
+    door_color = style_color(profile, "door", "#666")
+    wall_cut_color = style_color(profile, "plan_background", "#ffffff")
+    show_labels = style_bool(profile, "show_opening_labels", True)
 
     if side in {"left", "right"}:
         wall_x = x if side == "left" else x + w
         center_y = y + h * 0.66
         y0 = center_y - span / 2
-        parts.append(f'<line x1="{wall_x:.1f}" y1="{y0:.1f}" x2="{wall_x:.1f}" y2="{y0 + span:.1f}" stroke="#ffffff" stroke-width="5.4"/>')
+        parts.append(f'<line x1="{wall_x:.1f}" y1="{y0:.1f}" x2="{wall_x:.1f}" y2="{y0 + span:.1f}" stroke="{wall_cut_color}" stroke-width="5.4"/>')
         sign = -1 if side == "left" else 1
         tri_x = wall_x + sign * 34
         tri_y = center_y + 34
         points = f"{tri_x - 10:.1f},{tri_y + 6:.1f} {tri_x + 10:.1f},{tri_y + 6:.1f} {tri_x:.1f},{tri_y - 12:.1f}"
-        parts.append(f'<polygon points="{points}" fill="#666"/>')
-        parts.append(svg_text(tri_x - 10, tri_y + 22, "ENT", size=10, weight=700, color="#333"))
-        parts.append(svg_text(tri_x - 12, tri_y + 34, f"DW:{int(round(entry_mm / 10.0))}", size=8, weight=500, color="#666"))
+        parts.append(f'<polygon points="{points}" fill="{door_color}"/>')
+        if show_labels:
+            parts.append(svg_text(tri_x - 10, tri_y + 22, "ENT", size=10, weight=700, color=style_color(profile, "text", "#333")))
+            parts.append(svg_text(tri_x - 12, tri_y + 34, f"DW:{int(round(entry_mm / 10.0))}", size=8, weight=500, color=door_color))
     else:
         wall_y = y if side == "top" else y + h
         center_x = x + w * 0.50
         x0 = center_x - span / 2
-        parts.append(f'<line x1="{x0:.1f}" y1="{wall_y:.1f}" x2="{x0 + span:.1f}" y2="{wall_y:.1f}" stroke="#ffffff" stroke-width="5.4"/>')
+        parts.append(f'<line x1="{x0:.1f}" y1="{wall_y:.1f}" x2="{x0 + span:.1f}" y2="{wall_y:.1f}" stroke="{wall_cut_color}" stroke-width="5.4"/>')
         sign = -1 if side == "top" else 1
         tri_x = center_x
         tri_y = wall_y + sign * 34
@@ -709,9 +944,10 @@ def draw_entrance_marker(parts: list[str], rect: dict[str, Any], side: str) -> N
         else:
             points = f"{tri_x - 10:.1f},{tri_y + 6:.1f} {tri_x + 10:.1f},{tri_y + 6:.1f} {tri_x:.1f},{tri_y - 12:.1f}"
             text_y = tri_y - 14
-        parts.append(f'<polygon points="{points}" fill="#666"/>')
-        parts.append(svg_text(tri_x - 10, text_y, "ENT", size=10, weight=700, color="#333"))
-        parts.append(svg_text(tri_x - 12, text_y + 12, f"DW:{int(round(entry_mm / 10.0))}", size=8, weight=500, color="#666"))
+        parts.append(f'<polygon points="{points}" fill="{door_color}"/>')
+        if show_labels:
+            parts.append(svg_text(tri_x - 10, text_y, "ENT", size=10, weight=700, color=style_color(profile, "text", "#333")))
+            parts.append(svg_text(tri_x - 12, text_y + 12, f"DW:{int(round(entry_mm / 10.0))}", size=8, weight=500, color=door_color))
 
 
 def pick_entrance_side(
@@ -869,6 +1105,7 @@ def draw_window_symbol(
     side: str,
     width_mm: int,
     exterior_wall_px: float,
+    profile: dict[str, Any],
 ) -> None:
     x = float(rect["x"])
     y = float(rect["y"])
@@ -876,53 +1113,59 @@ def draw_window_symbol(
     h = float(rect["h"])
     span = window_span_px(width_mm, h if side in {"left", "right"} else w)
     opening_stroke = max(4.8, exterior_wall_px + 2.4)
+    window_color = style_color(profile, "window", "#2d6ea3")
+    wall_cut_color = style_color(profile, "plan_background", "#ffffff")
+    window_line_width = style_float(profile, "window_line_width_px", WINDOW_LINE_WIDTH_PX)
+    show_labels = style_bool(profile, "show_opening_labels", True)
 
     if side in {"left", "right"}:
         wall_x = x if side == "left" else x + w
         center_y = y + h * 0.5
         y0 = center_y - span / 2
-        parts.append(f'<line x1="{wall_x:.1f}" y1="{y0:.1f}" x2="{wall_x:.1f}" y2="{y0 + span:.1f}" stroke="#ffffff" stroke-width="{opening_stroke:.1f}"/>')
+        parts.append(f'<line x1="{wall_x:.1f}" y1="{y0:.1f}" x2="{wall_x:.1f}" y2="{y0 + span:.1f}" stroke="{wall_cut_color}" stroke-width="{opening_stroke:.1f}"/>')
         in_sign = 1 if side == "left" else -1
         pane_x = wall_x + in_sign * 2.8
-        parts.append(f'<line x1="{pane_x:.1f}" y1="{y0 + 1.2:.1f}" x2="{pane_x:.1f}" y2="{y0 + span - 1.2:.1f}" stroke="#2d6ea3" stroke-width="{WINDOW_LINE_WIDTH_PX:.1f}"/>')
+        parts.append(f'<line x1="{pane_x:.1f}" y1="{y0 + 1.2:.1f}" x2="{pane_x:.1f}" y2="{y0 + span - 1.2:.1f}" stroke="{window_color}" stroke-width="{window_line_width:.1f}"/>')
         label_x = wall_x + 8 if side == "left" else wall_x - 62
-        parts.append(svg_text(label_x, y0 - 4, f"WIN:{width_mm}", size=8, weight=500, color="#2d6ea3"))
+        if show_labels:
+            parts.append(svg_text(label_x, y0 - 4, f"WIN:{width_mm}", size=8, weight=500, color=window_color))
     else:
         wall_y = y if side == "top" else y + h
         center_x = x + w * 0.5
         x0 = center_x - span / 2
-        parts.append(f'<line x1="{x0:.1f}" y1="{wall_y:.1f}" x2="{x0 + span:.1f}" y2="{wall_y:.1f}" stroke="#ffffff" stroke-width="{opening_stroke:.1f}"/>')
+        parts.append(f'<line x1="{x0:.1f}" y1="{wall_y:.1f}" x2="{x0 + span:.1f}" y2="{wall_y:.1f}" stroke="{wall_cut_color}" stroke-width="{opening_stroke:.1f}"/>')
         in_sign = 1 if side == "top" else -1
         pane_y = wall_y + in_sign * 2.8
-        parts.append(f'<line x1="{x0 + 1.2:.1f}" y1="{pane_y:.1f}" x2="{x0 + span - 1.2:.1f}" y2="{pane_y:.1f}" stroke="#2d6ea3" stroke-width="{WINDOW_LINE_WIDTH_PX:.1f}"/>')
+        parts.append(f'<line x1="{x0 + 1.2:.1f}" y1="{pane_y:.1f}" x2="{x0 + span - 1.2:.1f}" y2="{pane_y:.1f}" stroke="{window_color}" stroke-width="{window_line_width:.1f}"/>')
         label_y = wall_y - 6 if side == "top" else wall_y + 14
-        parts.append(svg_text(x0, label_y, f"WIN:{width_mm}", size=8, weight=500, color="#2d6ea3"))
+        if show_labels:
+            parts.append(svg_text(x0, label_y, f"WIN:{width_mm}", size=8, weight=500, color=window_color))
 
 
-def draw_dimension_horizontal(parts: list[str], x1: float, x2: float, y: float, label: str) -> None:
+def draw_dimension_horizontal(parts: list[str], x1: float, x2: float, y: float, label: str, color: str = DIMENSION_LINE_COLOR) -> None:
     if x2 <= x1:
         return
-    parts.append(f'<line x1="{x1:.1f}" y1="{y:.1f}" x2="{x2:.1f}" y2="{y:.1f}" stroke="{DIMENSION_LINE_COLOR}" stroke-width="0.9"/>')
-    parts.append(f'<line x1="{x1:.1f}" y1="{y - 4:.1f}" x2="{x1:.1f}" y2="{y + 4:.1f}" stroke="{DIMENSION_LINE_COLOR}" stroke-width="0.9"/>')
-    parts.append(f'<line x1="{x2:.1f}" y1="{y - 4:.1f}" x2="{x2:.1f}" y2="{y + 4:.1f}" stroke="{DIMENSION_LINE_COLOR}" stroke-width="0.9"/>')
-    parts.append(f'<line x1="{x1 + 3:.1f}" y1="{y - 3:.1f}" x2="{x1:.1f}" y2="{y:.1f}" stroke="{DIMENSION_LINE_COLOR}" stroke-width="0.9"/>')
-    parts.append(f'<line x1="{x1 + 3:.1f}" y1="{y + 3:.1f}" x2="{x1:.1f}" y2="{y:.1f}" stroke="{DIMENSION_LINE_COLOR}" stroke-width="0.9"/>')
-    parts.append(f'<line x1="{x2 - 3:.1f}" y1="{y - 3:.1f}" x2="{x2:.1f}" y2="{y:.1f}" stroke="{DIMENSION_LINE_COLOR}" stroke-width="0.9"/>')
-    parts.append(f'<line x1="{x2 - 3:.1f}" y1="{y + 3:.1f}" x2="{x2:.1f}" y2="{y:.1f}" stroke="{DIMENSION_LINE_COLOR}" stroke-width="0.9"/>')
-    parts.append(svg_text((x1 + x2) / 2 - 34, y - 6, label, size=8, weight=500, color=DIMENSION_LINE_COLOR))
+    parts.append(f'<line x1="{x1:.1f}" y1="{y:.1f}" x2="{x2:.1f}" y2="{y:.1f}" stroke="{color}" stroke-width="0.9"/>')
+    parts.append(f'<line x1="{x1:.1f}" y1="{y - 4:.1f}" x2="{x1:.1f}" y2="{y + 4:.1f}" stroke="{color}" stroke-width="0.9"/>')
+    parts.append(f'<line x1="{x2:.1f}" y1="{y - 4:.1f}" x2="{x2:.1f}" y2="{y + 4:.1f}" stroke="{color}" stroke-width="0.9"/>')
+    parts.append(f'<line x1="{x1 + 3:.1f}" y1="{y - 3:.1f}" x2="{x1:.1f}" y2="{y:.1f}" stroke="{color}" stroke-width="0.9"/>')
+    parts.append(f'<line x1="{x1 + 3:.1f}" y1="{y + 3:.1f}" x2="{x1:.1f}" y2="{y:.1f}" stroke="{color}" stroke-width="0.9"/>')
+    parts.append(f'<line x1="{x2 - 3:.1f}" y1="{y - 3:.1f}" x2="{x2:.1f}" y2="{y:.1f}" stroke="{color}" stroke-width="0.9"/>')
+    parts.append(f'<line x1="{x2 - 3:.1f}" y1="{y + 3:.1f}" x2="{x2:.1f}" y2="{y:.1f}" stroke="{color}" stroke-width="0.9"/>')
+    parts.append(svg_text((x1 + x2) / 2 - 34, y - 6, label, size=8, weight=500, color=color))
 
 
-def draw_dimension_vertical(parts: list[str], x: float, y1: float, y2: float, label: str) -> None:
+def draw_dimension_vertical(parts: list[str], x: float, y1: float, y2: float, label: str, color: str = DIMENSION_LINE_COLOR) -> None:
     if y2 <= y1:
         return
-    parts.append(f'<line x1="{x:.1f}" y1="{y1:.1f}" x2="{x:.1f}" y2="{y2:.1f}" stroke="{DIMENSION_LINE_COLOR}" stroke-width="0.9"/>')
-    parts.append(f'<line x1="{x - 4:.1f}" y1="{y1:.1f}" x2="{x + 4:.1f}" y2="{y1:.1f}" stroke="{DIMENSION_LINE_COLOR}" stroke-width="0.9"/>')
-    parts.append(f'<line x1="{x - 4:.1f}" y1="{y2:.1f}" x2="{x + 4:.1f}" y2="{y2:.1f}" stroke="{DIMENSION_LINE_COLOR}" stroke-width="0.9"/>')
-    parts.append(f'<line x1="{x - 3:.1f}" y1="{y1 + 3:.1f}" x2="{x:.1f}" y2="{y1:.1f}" stroke="{DIMENSION_LINE_COLOR}" stroke-width="0.9"/>')
-    parts.append(f'<line x1="{x + 3:.1f}" y1="{y1 + 3:.1f}" x2="{x:.1f}" y2="{y1:.1f}" stroke="{DIMENSION_LINE_COLOR}" stroke-width="0.9"/>')
-    parts.append(f'<line x1="{x - 3:.1f}" y1="{y2 - 3:.1f}" x2="{x:.1f}" y2="{y2:.1f}" stroke="{DIMENSION_LINE_COLOR}" stroke-width="0.9"/>')
-    parts.append(f'<line x1="{x + 3:.1f}" y1="{y2 - 3:.1f}" x2="{x:.1f}" y2="{y2:.1f}" stroke="{DIMENSION_LINE_COLOR}" stroke-width="0.9"/>')
-    parts.append(svg_text(x + 7, (y1 + y2) / 2, label, size=8, weight=500, color=DIMENSION_LINE_COLOR))
+    parts.append(f'<line x1="{x:.1f}" y1="{y1:.1f}" x2="{x:.1f}" y2="{y2:.1f}" stroke="{color}" stroke-width="0.9"/>')
+    parts.append(f'<line x1="{x - 4:.1f}" y1="{y1:.1f}" x2="{x + 4:.1f}" y2="{y1:.1f}" stroke="{color}" stroke-width="0.9"/>')
+    parts.append(f'<line x1="{x - 4:.1f}" y1="{y2:.1f}" x2="{x + 4:.1f}" y2="{y2:.1f}" stroke="{color}" stroke-width="0.9"/>')
+    parts.append(f'<line x1="{x - 3:.1f}" y1="{y1 + 3:.1f}" x2="{x:.1f}" y2="{y1:.1f}" stroke="{color}" stroke-width="0.9"/>')
+    parts.append(f'<line x1="{x + 3:.1f}" y1="{y1 + 3:.1f}" x2="{x:.1f}" y2="{y1:.1f}" stroke="{color}" stroke-width="0.9"/>')
+    parts.append(f'<line x1="{x - 3:.1f}" y1="{y2 - 3:.1f}" x2="{x:.1f}" y2="{y2:.1f}" stroke="{color}" stroke-width="0.9"/>')
+    parts.append(f'<line x1="{x + 3:.1f}" y1="{y2 - 3:.1f}" x2="{x:.1f}" y2="{y2:.1f}" stroke="{color}" stroke-width="0.9"/>')
+    parts.append(svg_text(x + 7, (y1 + y2) / 2, label, size=8, weight=500, color=color))
 
 
 def draw_dimension_chains(
@@ -934,7 +1177,12 @@ def draw_dimension_chains(
     grouped_rows: list[list[dict[str, Any]]],
     rects: dict[str, dict[str, Any]],
     source_bounds_mm: dict[str, float] | None = None,
+    profile: dict[str, Any] | None = None,
 ) -> None:
+    if profile is None:
+        profile = {}
+    dim_color = style_color(profile, "dimension", DIMENSION_LINE_COLOR)
+    show_subchains = style_bool(profile, "show_dimension_subchains", True)
     if source_bounds_mm:
         total_w_mm = int(round(source_bounds_mm.get("width_mm", 0.0)))
         total_d_mm = int(round(source_bounds_mm.get("depth_mm", 0.0)))
@@ -942,8 +1190,11 @@ def draw_dimension_chains(
         total_w_mm = mm_from_px(plan_right - plan_left)
         total_d_mm = mm_from_px(plan_bottom - plan_top)
 
-    draw_dimension_horizontal(parts, plan_left, plan_right, plan_bottom + 22, f"DIM:W {total_w_mm}mm")
-    draw_dimension_vertical(parts, plan_left - 28, plan_top, plan_bottom, f"DIM:D {total_d_mm}mm")
+    draw_dimension_horizontal(parts, plan_left, plan_right, plan_bottom + 22, f"DIM:W {total_w_mm}mm", color=dim_color)
+    draw_dimension_vertical(parts, plan_left - 28, plan_top, plan_bottom, f"DIM:D {total_d_mm}mm", color=dim_color)
+
+    if not show_subchains:
+        return
 
     if grouped_rows:
         row0 = grouped_rows[0]
@@ -954,7 +1205,7 @@ def draw_dimension_chains(
             x1 = float(rect["x"])
             x2 = x1 + float(rect["w"])
             width_mm = int(round(float(rect.get("w_mm", mm_from_px(x2 - x1)))))
-            draw_dimension_horizontal(parts, x1, x2, plan_bottom + 40, f"DIM:C{idx + 1} {width_mm}")
+            draw_dimension_horizontal(parts, x1, x2, plan_bottom + 40, f"DIM:C{idx + 1} {width_mm}", color=dim_color)
 
     for row_idx, row_slots in enumerate(grouped_rows):
         if not row_slots:
@@ -965,15 +1216,16 @@ def draw_dimension_chains(
         y1 = float(first_rect["y"])
         y2 = y1 + float(first_rect["h"])
         height_mm = int(round(float(first_rect.get("h_mm", mm_from_px(y2 - y1)))))
-        draw_dimension_vertical(parts, plan_right + 20, y1, y2, f"DIM:R{row_idx + 1} {height_mm}")
+        draw_dimension_vertical(parts, plan_right + 20, y1, y2, f"DIM:R{row_idx + 1} {height_mm}", color=dim_color)
 
 
-def draw_north_arrow(parts: list[str], center_x: float, center_y: float) -> None:
+def draw_north_arrow(parts: list[str], center_x: float, center_y: float, profile: dict[str, Any]) -> None:
     r = 14.0
-    parts.append(f'<circle cx="{center_x:.1f}" cy="{center_y:.1f}" r="{r:.1f}" fill="#ffffff" stroke="#222" stroke-width="1.1"/>')
+    text_color = style_color(profile, "text", "#222")
+    parts.append(f'<circle cx="{center_x:.1f}" cy="{center_y:.1f}" r="{r:.1f}" fill="#ffffff" stroke="{text_color}" stroke-width="1.1"/>')
     points = f"{center_x:.1f},{center_y - 10:.1f} {center_x - 5:.1f},{center_y + 3:.1f} {center_x + 5:.1f},{center_y + 3:.1f}"
-    parts.append(f'<polygon points="{points}" fill="#222"/>')
-    parts.append(svg_text(center_x - 10, center_y + 24, "N↑", size=10, weight=700, color="#222"))
+    parts.append(f'<polygon points="{points}" fill="{text_color}"/>')
+    parts.append(svg_text(center_x - 10, center_y + 24, "N↑", size=10, weight=700, color=text_color))
 
 
 def draw_material_legend(
@@ -984,35 +1236,96 @@ def draw_material_legend(
     height: float,
     interior_wall_px: float,
     exterior_wall_px: float,
+    profile: dict[str, Any],
 ) -> None:
-    parts.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{width:.1f}" height="{height:.1f}" fill="#ffffff" stroke="#b5b5b5" stroke-width="1.0"/>')
-    parts.append(svg_text(x + 10, y + 18, "LEGEND:", size=11, weight=700, color="#222"))
+    text_color = style_color(profile, "text", "#222")
+    muted_color = style_color(profile, "muted", "#333")
+    outer_color = style_color(profile, "wall_outer", "#111")
+    inner_color = style_color(profile, "wall_inner", "#1d1d1d")
+    door_color = style_color(profile, "door", "#666")
+    window_color = style_color(profile, "window", "#2d6ea3")
+    furniture_fill = style_color(profile, "furniture_fill", "#f6f6f6")
+    furniture_stroke = style_color(profile, "furniture_stroke", "#666")
+    window_line_width = style_float(profile, "window_line_width_px", WINDOW_LINE_WIDTH_PX)
+
+    parts.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{width:.1f}" height="{height:.1f}" fill="#ffffff" stroke="{style_color(profile, "frame", "#b5b5b5")}" stroke-width="1.0"/>')
+    parts.append(svg_text(x + 10, y + 18, "LEGEND:", size=11, weight=700, color=text_color))
 
     cy = y + 34
-    parts.append(f'<line x1="{x + 10:.1f}" y1="{cy:.1f}" x2="{x + 48:.1f}" y2="{cy:.1f}" stroke="#111" stroke-width="{exterior_wall_px:.1f}"/>')
-    parts.append(svg_text(x + 56, cy + 4, "Exterior wall", size=9, weight=500, color="#333"))
+    parts.append(f'<line x1="{x + 10:.1f}" y1="{cy:.1f}" x2="{x + 48:.1f}" y2="{cy:.1f}" stroke="{outer_color}" stroke-width="{exterior_wall_px:.1f}"/>')
+    parts.append(svg_text(x + 56, cy + 4, "Exterior wall", size=9, weight=500, color=muted_color))
 
     cy += 18
-    parts.append(f'<line x1="{x + 10:.1f}" y1="{cy:.1f}" x2="{x + 48:.1f}" y2="{cy:.1f}" stroke="#1d1d1d" stroke-width="{interior_wall_px:.1f}"/>')
-    parts.append(svg_text(x + 56, cy + 4, "Interior wall", size=9, weight=500, color="#333"))
+    parts.append(f'<line x1="{x + 10:.1f}" y1="{cy:.1f}" x2="{x + 48:.1f}" y2="{cy:.1f}" stroke="{inner_color}" stroke-width="{interior_wall_px:.1f}"/>')
+    parts.append(svg_text(x + 56, cy + 4, "Interior wall", size=9, weight=500, color=muted_color))
 
     cy += 18
     parts.append(f'<line x1="{x + 10:.1f}" y1="{cy:.1f}" x2="{x + 38:.1f}" y2="{cy:.1f}" stroke="#ffffff" stroke-width="4.8"/>')
-    parts.append(f'<line x1="{x + 24:.1f}" y1="{cy:.1f}" x2="{x + 40:.1f}" y2="{cy - 12:.1f}" stroke="#222" stroke-width="1.1"/>')
-    parts.append(svg_text(x + 56, cy + 4, "Door swing (DW)", size=9, weight=500, color="#333"))
+    parts.append(f'<line x1="{x + 24:.1f}" y1="{cy:.1f}" x2="{x + 40:.1f}" y2="{cy - 12:.1f}" stroke="{door_color}" stroke-width="1.1"/>')
+    parts.append(svg_text(x + 56, cy + 4, "Door swing (DW)", size=9, weight=500, color=muted_color))
 
     cy += 18
     parts.append(f'<line x1="{x + 10:.1f}" y1="{cy:.1f}" x2="{x + 44:.1f}" y2="{cy:.1f}" stroke="#ffffff" stroke-width="4.8"/>')
-    parts.append(f'<line x1="{x + 11:.1f}" y1="{cy:.1f}" x2="{x + 43:.1f}" y2="{cy:.1f}" stroke="#2d6ea3" stroke-width="{WINDOW_LINE_WIDTH_PX:.1f}"/>')
-    parts.append(svg_text(x + 56, cy + 4, "Window opening (WIN)", size=9, weight=500, color="#333"))
+    parts.append(f'<line x1="{x + 11:.1f}" y1="{cy:.1f}" x2="{x + 43:.1f}" y2="{cy:.1f}" stroke="{window_color}" stroke-width="{window_line_width:.1f}"/>')
+    parts.append(svg_text(x + 56, cy + 4, "Window opening (WIN)", size=9, weight=500, color=muted_color))
 
     cy += 18
-    parts.append(f'<polygon points="{x + 16:.1f},{cy - 6:.1f} {x + 26:.1f},{cy - 6:.1f} {x + 21:.1f},{cy + 3:.1f}" fill="#666"/>')
-    parts.append(svg_text(x + 56, cy + 4, "Entrance marker (ENT)", size=9, weight=500, color="#333"))
+    parts.append(f'<polygon points="{x + 16:.1f},{cy - 6:.1f} {x + 26:.1f},{cy - 6:.1f} {x + 21:.1f},{cy + 3:.1f}" fill="{door_color}"/>')
+    parts.append(svg_text(x + 56, cy + 4, "Entrance marker (ENT)", size=9, weight=500, color=muted_color))
 
     cy += 18
-    parts.append(f'<rect x="{x + 10:.1f}" y="{cy - 7:.1f}" width="26" height="12" fill="#f6f6f6" stroke="#666" stroke-width="0.9"/>')
-    parts.append(svg_text(x + 56, cy + 3, "Furniture block", size=9, weight=500, color="#333"))
+    parts.append(f'<rect x="{x + 10:.1f}" y="{cy - 7:.1f}" width="26" height="12" fill="{furniture_fill}" stroke="{furniture_stroke}" stroke-width="0.9"/>')
+    parts.append(svg_text(x + 56, cy + 3, "Furniture block", size=9, weight=500, color=muted_color))
+
+
+def draw_bottom_legend(
+    parts: list[str],
+    x: float,
+    y: float,
+    width: float,
+    interior_wall_px: float,
+    exterior_wall_px: float,
+    profile: dict[str, Any],
+    drawing_style: str,
+    compact_entries: list[dict[str, str]] | None = None,
+) -> None:
+    text_color = style_color(profile, "text", "#111")
+    muted_color = style_color(profile, "muted", "#64748b")
+    outer_color = style_color(profile, "wall_outer", "#111")
+    inner_color = style_color(profile, "wall_inner", "#334155")
+    door_color = style_color(profile, "door", "#475569")
+    window_color = style_color(profile, "window", "#2563eb")
+    fills = profile.get("room_fills", {}) if isinstance(profile.get("room_fills"), dict) else {}
+
+    parts.append(svg_text(x, y, "LEGEND:", size=9, weight=700, color=text_color))
+    cursor = x + 58
+    samples = [
+        ("公共", fills.get("living", "#fff7ed")),
+        ("臥室", fills.get("bedroom", "#eef2ff")),
+        ("濕區", "url(#p2-bath-hatch)" if is_presentation_v2(profile, drawing_style) else fills.get("bath", "#ecfeff")),
+        ("設備", "url(#p2-service-hatch)" if is_presentation_v2(profile, drawing_style) else fills.get("service", "#f1f5f9")),
+        ("戶外", "url(#p2-outdoor-hatch)" if is_presentation_v2(profile, drawing_style) else fills.get("outdoor", "#ecfdf5")),
+    ]
+    for label, fill in samples:
+        parts.append(f'<rect x="{cursor:.1f}" y="{y - 10:.1f}" width="18" height="10" fill="{fill}" stroke="#cbd5e1" stroke-width="0.8"/>')
+        parts.append(svg_text(cursor + 23, y, label, size=9, weight=500, color=muted_color))
+        cursor += 62
+
+    line_x = min(x + width - 292, cursor + 8)
+    parts.append(f'<line x1="{line_x:.1f}" y1="{y - 5:.1f}" x2="{line_x + 28:.1f}" y2="{y - 5:.1f}" stroke="{outer_color}" stroke-width="{exterior_wall_px:.1f}"/>')
+    parts.append(svg_text(line_x + 36, y, "外牆", size=9, weight=500, color=muted_color))
+    parts.append(f'<line x1="{line_x + 74:.1f}" y1="{y - 5:.1f}" x2="{line_x + 102:.1f}" y2="{y - 5:.1f}" stroke="{inner_color}" stroke-width="{interior_wall_px:.1f}"/>')
+    parts.append(svg_text(line_x + 110, y, "內牆", size=9, weight=500, color=muted_color))
+    parts.append(f'<line x1="{line_x + 148:.1f}" y1="{y - 5:.1f}" x2="{line_x + 174:.1f}" y2="{y - 5:.1f}" stroke="{window_color}" stroke-width="2.0"/>')
+    parts.append(svg_text(line_x + 182, y, "窗", size=9, weight=500, color=muted_color))
+    parts.append(f'<line x1="{line_x + 212:.1f}" y1="{y - 5:.1f}" x2="{line_x + 238:.1f}" y2="{y - 5:.1f}" stroke="{door_color}" stroke-width="1.2"/>')
+    parts.append(svg_text(line_x + 246, y, "門", size=9, weight=500, color=muted_color))
+
+    compact_entries = compact_entries or []
+    if compact_entries:
+        items = [f"{item['code']}={item['room_name']}" for item in compact_entries[:8]]
+        suffix = " ..." if len(compact_entries) > 8 else ""
+        parts.append(svg_text(x, y + 18, "短碼: " + " / ".join(items) + suffix, size=8, weight=500, color=muted_color))
 
 
 def draw_elevation_indices(
@@ -1052,6 +1365,8 @@ def render_floor_svg(
     best_candidate: dict[str, Any],
     room_index: dict[str, dict[str, Any]],
     out_path: Path,
+    drawing_style: str,
+    profile: dict[str, Any],
 ) -> dict[str, Any]:
     slot_count = max(1, len(slots))
     use_source_rows = has_source_row_layout(slots)
@@ -1065,9 +1380,9 @@ def render_floor_svg(
     row_h = 148.0
     row_gap = 0.0
     col_gap = 0.0
-    plan_left = 58.0
-    plan_top = 116.0
-    plan_w = 980.0
+    plan_left = style_float(profile, "plan_left_px", 58.0)
+    plan_top = style_float(profile, "plan_top_px", 90.0)
+    plan_w = style_float(profile, "plan_width_px", 1040.0)
     source_bounds_mm: dict[str, float] | None = None
     precise_scale = 1.0
     precise_min_x = 0.0
@@ -1083,8 +1398,10 @@ def render_floor_svg(
         source_bounds_mm = {"width_mm": source_w_mm, "depth_mm": source_h_mm}
     else:
         plan_h = row_count * row_h + max(0, row_count - 1) * row_gap
-    right_panel_w = 236.0
-    bottom_padding = 152.0
+    right_panel_w = style_float(profile, "right_panel_width_px", 36.0)
+    bottom_padding = style_float(profile, "bottom_padding_px", 118.0)
+    if style_bool(profile, "show_right_legend", False):
+        right_panel_w = max(236.0, right_panel_w)
     width = int(plan_left + plan_w + right_panel_w)
     height = int(plan_top + plan_h + bottom_padding)
     plan_right = plan_left + plan_w
@@ -1095,6 +1412,16 @@ def render_floor_svg(
     strategy = best_candidate.get("id", "")
     interior_wall_px = max(1.8, WALL_MM["interior"] * PX_PER_MM * INTERIOR_WALL_FACTOR)
     exterior_wall_px = max(interior_wall_px + EXTERIOR_WALL_EXTRA_PX, WALL_MM["exterior"] * PX_PER_MM * INTERIOR_WALL_FACTOR)
+    if is_presentation_v2(profile, drawing_style):
+        interior_wall_px = max(2.2, interior_wall_px)
+        exterior_wall_px = max(interior_wall_px + 2.0, exterior_wall_px)
+    paper_color = style_color(profile, "paper", "#f6f6f6")
+    plan_background = style_color(profile, "plan_background", "#ffffff")
+    frame_color = style_color(profile, "frame", "#b5b5b5")
+    text_color = style_color(profile, "text", "#111")
+    muted_color = style_color(profile, "muted", "#555")
+    wall_outer_color = style_color(profile, "wall_outer", "#111")
+    wall_inner_color = style_color(profile, "wall_inner", "#1d1d1d")
 
     rects: dict[str, dict[str, Any]] = {}
     if use_precise_geometry:
@@ -1197,43 +1524,70 @@ def render_floor_svg(
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
         f'viewBox="0 0 {width} {height}" role="img" aria-label="{html.escape(floor["building_id"])} {html.escape(floor["floor_id"])}">'
     )
-    parts.append(f'<rect x="0" y="0" width="{width}" height="{height}" fill="#f6f6f6"/>')
-    parts.append(f'<rect x="{plan_left - 12:.1f}" y="{plan_top - 22:.1f}" width="{plan_w + 24:.1f}" height="{plan_h + 34:.1f}" fill="#ffffff" stroke="#b5b5b5" stroke-width="1.2"/>')
+    metadata = {
+        "schema_version": SCHEMA_VERSION,
+        "drawing_style": drawing_style,
+        "presentation_version": presentation_version(profile, drawing_style),
+        "building_id": floor.get("building_id", ""),
+        "floor_id": floor.get("floor_id", ""),
+        "candidate_id": best_candidate.get("id", ""),
+        "validation_markers": VALIDATION_MARKERS,
+    }
+    parts.append(f"<metadata>{html.escape(json.dumps(metadata, ensure_ascii=False))}</metadata>")
+    defs = presentation_defs(profile, drawing_style)
+    if defs:
+        parts.append(defs)
+    parts.append(f'<rect x="0" y="0" width="{width}" height="{height}" fill="{paper_color}"/>')
+    if is_presentation_v2(profile, drawing_style):
+        parts.append(f'<rect x="{plan_left - 18:.1f}" y="{plan_top - 28:.1f}" width="{plan_w + 36:.1f}" height="{plan_h + 74:.1f}" fill="{plan_background}" stroke="{frame_color}" stroke-width="1.1"/>')
+        parts.append(f'<rect x="{plan_left - 8:.1f}" y="{plan_top - 18:.1f}" width="{plan_w + 16:.1f}" height="{plan_h + 22:.1f}" fill="none" stroke="#e2e8f0" stroke-width="0.8"/>')
+    else:
+        parts.append(f'<rect x="{plan_left - 12:.1f}" y="{plan_top - 22:.1f}" width="{plan_w + 24:.1f}" height="{plan_h + 34:.1f}" fill="{plan_background}" stroke="{frame_color}" stroke-width="1.2"/>')
 
     title = f'[{floor["building_id"]}] {floor["floor_id"]} {normalize(floor.get("floor_title", ""))}'.strip()
     subtitle = normalize(floor.get("tab_label", "")) or "Floor Plan"
-    parts.append(svg_text(plan_left, 34, title, size=20, weight=700, color="#111"))
-    parts.append(svg_text(plan_left, 58, subtitle, size=13, weight=500, color="#333"))
-    parts.append(
-        svg_text(
-            plan_left,
-            80,
-            f'Strategy: {strategy} | Total {scores.get("total", 0):.2f} | C {scores.get("circulation", 0):.1f} D {scores.get("daylight", 0):.1f} M {scores.get("mep", 0):.1f}',
-            size=11,
-            weight=500,
-            color="#555",
+    parts.append(svg_text(plan_left, 32, title, size=19, weight=700, color=text_color))
+    parts.append(svg_text(plan_left, 55, subtitle, size=12, weight=500, color=muted_color))
+    if is_presentation_v2(profile, drawing_style):
+        block_x = max(plan_left + 360, plan_right - 274)
+        block_y = 18.0
+        block_w = min(274.0, plan_right - block_x)
+        parts.append(f'<rect x="{block_x:.1f}" y="{block_y:.1f}" width="{block_w:.1f}" height="48" fill="#ffffff" stroke="{frame_color}" stroke-width="0.8"/>')
+        parts.append(svg_text(block_x + 10, block_y + 17, "住宅平面討論圖", size=10, weight=700, color=text_color))
+        parts.append(svg_text(block_x + 10, block_y + 33, f"Selection: {strategy} | {drawing_style} v{presentation_version(profile, drawing_style)}", size=8, weight=500, color=muted_color))
+        parts.append(svg_text(block_x + block_w - 84, block_y + 33, "Scale: diagram", size=8, weight=500, color=muted_color))
+    if style_bool(profile, "show_debug_header", False) or style_bool(profile, "show_score_line", False):
+        parts.append(
+            svg_text(
+                plan_left,
+                76,
+                f'Strategy: {strategy} | Total {scores.get("total", 0):.2f} | C {scores.get("circulation", 0):.1f} D {scores.get("daylight", 0):.1f} M {scores.get("mep", 0):.1f}',
+                size=10,
+                weight=500,
+                color=muted_color,
+            )
         )
-    )
-    parts.append(
-        svg_text(
-            plan_left,
-            96,
-            DEFAULTS_HEADER_LINE,
-            size=9,
-            weight=400,
-            color="#666",
+    if style_bool(profile, "show_debug_header", False):
+        parts.append(
+            svg_text(
+                plan_left,
+                94,
+                DEFAULTS_HEADER_LINE,
+                size=9,
+                weight=400,
+                color=muted_color,
+            )
         )
-    )
-    parts.append(
-        svg_text(
-            plan_left,
-            110,
-            "Layout source: precise-mm geometry" if use_precise_geometry else "Layout source: heuristic row/column",
-            size=9,
-            weight=500,
-            color="#4b5563",
+        parts.append(
+            svg_text(
+                plan_left,
+                110,
+                "Layout source: precise-mm geometry" if use_precise_geometry else "Layout source: heuristic row/column",
+                size=9,
+                weight=500,
+                color=muted_color,
+            )
         )
-    )
 
     ordered_slots = sorted(
         slot_ids,
@@ -1244,6 +1598,7 @@ def render_floor_svg(
             int(rects[sid].get("col_idx", 0)),
         ),
     )
+    compact_label_entries: list[dict[str, str]] = []
     for slot_id in ordered_slots:
         rect = rects[slot_id]
         slot = rect["slot"]
@@ -1253,30 +1608,40 @@ def render_floor_svg(
         h = float(rect["h"])
 
         kind = kind_map.get(slot_id, "other")
-        fill = "#fdfdfd"
-        if kind == "outdoor":
-            fill = "#fafafa"
-        elif kind == "service":
-            fill = "#fcfcfc"
-        elif kind == "bath":
-            fill = "#fbfbfb"
-        parts.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h:.1f}" fill="{fill}" stroke="#1d1d1d" stroke-width="{interior_wall_px:.1f}"/>')
+        fill = room_fill_color(profile, kind, drawing_style)
+        parts.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h:.1f}" fill="{fill}" stroke="{wall_inner_color}" stroke-width="{interior_wall_px:.1f}"/>')
+
+        if style_bool(profile, "show_furniture", True) and is_presentation_v2(profile, drawing_style):
+            draw_furniture(parts, rect, kind, profile)
 
         room_name = room_name_map.get(slot_id, "未指派")
-        label = truncate_text(room_name, text_limit_from_width(w, 6, 34))
-        parts.append(svg_text(x + 8, y + 20, label, size=12, weight=700, color="#111"))
+        label_info = room_label_info(room_name, slot, w, h, profile, drawing_style)
+        label = str(label_info["label"])
+        if label_info.get("compact"):
+            compact_label_entries.append({"code": label, "room_name": str(label_info["full_label"]), "slot_id": slot_id})
 
-        size_text = truncate_text(normalize(slot.get("size_text", "")), text_limit_from_width(w, 8, 42))
-        if size_text:
-            parts.append(svg_text(x + 8, y + 38, size_text, size=9, weight=400, color="#575757"))
+        size_text = truncate_text(room_area_text(slot, pair_map, room_index), text_limit_from_width(w, 7, 32))
+        if is_presentation_v2(profile, drawing_style):
+            center_x = x + w / 2
+            center_y = y + h / 2
+            halo = style_color(profile, "label_halo", "#ffffff")
+            parts.append(svg_text_centered(center_x, center_y - (7 if size_text and not label_info.get("compact") else 0), label, size=12, weight=700, color=text_color, halo=halo))
+            if size_text and not label_info.get("compact") and h >= 70 and w >= 112:
+                parts.append(svg_text_centered(center_x, center_y + 11, size_text, size=8, weight=500, color=muted_color, halo=halo))
+        else:
+            parts.append(svg_text(x + 8, y + 20, label, size=12, weight=700, color=text_color))
+            if size_text and h >= 70 and w >= 95:
+                parts.append(svg_text(x + 8, y + 38, size_text, size=9, weight=400, color=muted_color))
 
-        notes = pick_room_notes(slot, pair_map, room_index)
-        for idx, note in enumerate(notes):
-            note_line = truncate_text(note, text_limit_from_width(w, 10, 64))
-            note_y = y + h - 8 - (len(notes) - idx - 1) * 11
-            parts.append(svg_text(x + 8, note_y, note_line, size=8, weight=400, color="#666"))
+        if style_bool(profile, "show_room_notes", False):
+            notes = pick_room_notes(slot, pair_map, room_index)
+            for idx, note in enumerate(notes):
+                note_line = truncate_text(note, text_limit_from_width(w, 10, 64))
+                note_y = y + h - 8 - (len(notes) - idx - 1) * 11
+                parts.append(svg_text(x + 8, note_y, note_line, size=8, weight=400, color=muted_color))
 
-        draw_furniture(parts, rect, kind)
+        if style_bool(profile, "show_furniture", True) and not is_presentation_v2(profile, drawing_style):
+            draw_furniture(parts, rect, kind, profile)
 
     for slot_id in ordered_slots:
         rect = rects[slot_id]
@@ -1286,13 +1651,13 @@ def render_floor_svg(
         h = float(rect["h"])
         outer = room_by_slot.get(slot_id, {}).get("outer_sides", {})
         if outer.get("top"):
-            parts.append(f'<line x1="{x:.1f}" y1="{y:.1f}" x2="{x + w:.1f}" y2="{y:.1f}" stroke="#111" stroke-width="{exterior_wall_px:.1f}"/>')
+            parts.append(f'<line x1="{x:.1f}" y1="{y:.1f}" x2="{x + w:.1f}" y2="{y:.1f}" stroke="{wall_outer_color}" stroke-width="{exterior_wall_px:.1f}"/>')
         if outer.get("right"):
-            parts.append(f'<line x1="{x + w:.1f}" y1="{y:.1f}" x2="{x + w:.1f}" y2="{y + h:.1f}" stroke="#111" stroke-width="{exterior_wall_px:.1f}"/>')
+            parts.append(f'<line x1="{x + w:.1f}" y1="{y:.1f}" x2="{x + w:.1f}" y2="{y + h:.1f}" stroke="{wall_outer_color}" stroke-width="{exterior_wall_px:.1f}"/>')
         if outer.get("bottom"):
-            parts.append(f'<line x1="{x:.1f}" y1="{y + h:.1f}" x2="{x + w:.1f}" y2="{y + h:.1f}" stroke="#111" stroke-width="{exterior_wall_px:.1f}"/>')
+            parts.append(f'<line x1="{x:.1f}" y1="{y + h:.1f}" x2="{x + w:.1f}" y2="{y + h:.1f}" stroke="{wall_outer_color}" stroke-width="{exterior_wall_px:.1f}"/>')
         if outer.get("left"):
-            parts.append(f'<line x1="{x:.1f}" y1="{y:.1f}" x2="{x:.1f}" y2="{y + h:.1f}" stroke="#111" stroke-width="{exterior_wall_px:.1f}"/>')
+            parts.append(f'<line x1="{x:.1f}" y1="{y:.1f}" x2="{x:.1f}" y2="{y + h:.1f}" stroke="{wall_outer_color}" stroke-width="{exterior_wall_px:.1f}"/>')
 
     root_entry_side = ""
     if root_slot and root_slot in rects:
@@ -1312,20 +1677,25 @@ def render_floor_svg(
         rect = rects.get(slot_id)
         if not rect:
             continue
-        draw_window_symbol(parts, rect, str(win["side"]), int(win["width_mm"]), exterior_wall_px)
+        draw_window_symbol(parts, rect, str(win["side"]), int(win["width_mm"]), exterior_wall_px, profile)
 
     for edge in door_edges:
-        draw_internal_door(parts, edge, rects, kind_map)
+        draw_internal_door(parts, edge, rects, kind_map, profile)
 
     if root_slot and root_slot in rects and root_entry_side:
-        draw_entrance_marker(parts, rects[root_slot], root_entry_side)
+        draw_entrance_marker(parts, rects[root_slot], root_entry_side, profile)
 
-    draw_elevation_indices(parts, plan_left, plan_top, plan_right, plan_bottom)
-    draw_dimension_chains(parts, plan_left, plan_top, plan_right, plan_bottom, grouped_rows, rects, source_bounds_mm=source_bounds_mm)
-    draw_north_arrow(parts, plan_right + 62, 58)
-    draw_material_legend(parts, plan_right + 18, 82, right_panel_w - 28, 148, interior_wall_px, exterior_wall_px)
+    if style_bool(profile, "show_elevation_indices", True):
+        draw_elevation_indices(parts, plan_left, plan_top, plan_right, plan_bottom)
+    if style_bool(profile, "show_dimensions", True):
+        draw_dimension_chains(parts, plan_left, plan_top, plan_right, plan_bottom, grouped_rows, rects, source_bounds_mm=source_bounds_mm, profile=profile)
+    draw_north_arrow(parts, plan_right + 24, 40, profile)
+    if style_bool(profile, "show_right_legend", False):
+        draw_material_legend(parts, plan_right + 18, 82, right_panel_w - 28, 148, interior_wall_px, exterior_wall_px, profile)
+    if style_bool(profile, "show_bottom_legend", False):
+        draw_bottom_legend(parts, plan_left, plan_bottom + 58, plan_w, interior_wall_px, exterior_wall_px, profile, drawing_style, compact_label_entries)
 
-    parts.append(svg_text(plan_left, height - 12, f"Generated: {now_iso()} | {SCHEMA_VERSION}", size=9, weight=400, color="#666"))
+    parts.append(svg_text(plan_left, height - 12, f"Generated: {now_iso()} | {SCHEMA_VERSION} | style={drawing_style}", size=9, weight=400, color=muted_color))
     parts.append("</svg>")
 
     out_path.write_text("\n".join(parts), encoding="utf-8")
@@ -1334,26 +1704,30 @@ def render_floor_svg(
         "path": str(out_path),
         "width": width,
         "height": height,
+        "drawing_style": drawing_style,
         "slot_count": len(slots),
         "strategy": strategy,
         "score_total": scores.get("total", 0),
         "layout_mode": "blueprint-precise-mm" if use_precise_geometry else ("blueprint-source-row" if use_source_rows else "blueprint-grid"),
         "precise_geometry": use_precise_geometry,
         "window_count": len(window_specs),
-        "has_dimensions": True,
-        "has_legend": True,
-        "has_elevation_index": True,
+        "has_dimensions": style_bool(profile, "show_dimensions", True),
+        "has_legend": style_bool(profile, "show_right_legend", False) or style_bool(profile, "show_bottom_legend", False),
+        "has_elevation_index": style_bool(profile, "show_elevation_indices", True),
+        "presentation_version": presentation_version(profile, drawing_style),
+        "compact_label_count": len(compact_label_entries),
+        "compact_labels": compact_label_entries,
     }
 
 
-def render_index_html(records: list[dict[str, Any]]) -> str:
+def render_index_html(records: list[dict[str, Any]], drawing_style: str) -> str:
     cards = []
     for rec in records:
         cards.append(
             f"""
       <article class="card">
         <h3>{html.escape(rec['title'])}</h3>
-        <p class="meta">Strategy: <b>{html.escape(rec['strategy'])}</b> · Total: <b>{rec['score_total']:.2f}</b> · Slots: {rec['slot_count']}</p>
+        <p class="meta">Style: <b>{html.escape(drawing_style)}</b> · Strategy: <b>{html.escape(rec['strategy'])}</b> · Total: <b>{rec['score_total']:.2f}</b> · Slots: {rec['slot_count']} · Compact labels: {rec.get('compact_label_count', 0)}</p>
         <a class="link" href="{html.escape(rec['file'])}" target="_blank">{html.escape(rec['file'])}</a>
         <img src="{html.escape(rec['file'])}" alt="{html.escape(rec['title'])}" loading="lazy"/>
       </article>
@@ -1400,7 +1774,7 @@ def render_index_html(records: list[dict[str, Any]]) -> str:
 </head>
 <body>
   <h1>Top1 SVG Export Index</h1>
-  <div class="sub">Generated: {html.escape(now_iso())} · Total: {len(records)} floors</div>
+  <div class="sub">Generated: {html.escape(now_iso())} · Drawing style: {html.escape(drawing_style)} · Total: {len(records)} floors</div>
   <section class="grid">
     {''.join(cards)}
   </section>
@@ -1411,6 +1785,7 @@ def render_index_html(records: list[dict[str, Any]]) -> str:
 
 def main() -> None:
     args = parse_args()
+    profile = drawing_profile(args.style)
     if not PROGRAM_FILE.exists():
         raise SystemExit(f"Missing {PROGRAM_FILE}. Run build_room_program.py first.")
     if not CANDIDATES_FILE.exists():
@@ -1448,7 +1823,7 @@ def main() -> None:
 
         slug = f"{safe_slug(b_id)}_{safe_slug(f_id)}_{safe_slug(selected.get('id', args.selection))}"
         out_file = OUT_DIR / f"{slug}.svg"
-        rendered = render_floor_svg(floor, slots, selected, room_index, out_file)
+        rendered = render_floor_svg(floor, slots, selected, room_index, out_file, args.style, profile)
         record = {
             "building_id": b_id,
             "floor_id": f_id,
@@ -1456,6 +1831,9 @@ def main() -> None:
             "strategy": rendered["strategy"],
             "score_total": rendered["score_total"],
             "slot_count": rendered["slot_count"],
+            "drawing_style": args.style,
+            "presentation_version": rendered.get("presentation_version", 0),
+            "compact_label_count": rendered.get("compact_label_count", 0),
             "file": out_file.name,
             "path": str(out_file),
             "svg": rendered,
@@ -1463,6 +1841,7 @@ def main() -> None:
         records.append(record)
 
     records.sort(key=lambda r: (r["building_id"], r["floor_id"]))
+    compact_label_count = sum(int(r.get("compact_label_count", 0) or 0) for r in records)
 
     manifest = {
         "schema_version": SCHEMA_VERSION,
@@ -1475,17 +1854,21 @@ def main() -> None:
             "config_loaded": RESIDENTIAL_DEFAULTS.get("_meta", {}).get("config_loaded", False),
         },
         "candidate_selection": args.selection,
+        "drawing_style": args.style,
+        "presentation_version": presentation_version(profile, args.style),
+        "compact_label_count": compact_label_count,
         "exported_count": len(records),
         "skipped_count": len(skipped),
         "exports": records,
         "skipped": skipped,
     }
     MANIFEST_FILE.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
-    INDEX_FILE.write_text(render_index_html(records), encoding="utf-8")
+    INDEX_FILE.write_text(render_index_html(records, args.style), encoding="utf-8")
 
     print(f"Exported SVG count: {len(records)}")
     print(f"Skipped floors:      {len(skipped)}")
     print(f"Selection mode:      {args.selection}")
+    print(f"Drawing style:       {args.style}")
     print(f"Manifest: {MANIFEST_FILE}")
     print(f"Index:    {INDEX_FILE}")
 

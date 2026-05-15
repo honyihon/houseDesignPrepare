@@ -1,16 +1,16 @@
 {
   "schema_version": "expert-review-v1",
-  "generated_at": "2026-05-12T00:30:42.482967+00:00",
+  "generated_at": "2026-05-15T08:34:23.533596+00:00",
   "input": {
     "request_file": "design_request.md",
-    "mode": "concept",
-    "selection": "best",
+    "mode": "ifc",
+    "selection": "baseline",
     "buildings": [
       "A",
       "B",
       "C"
     ],
-    "rule_dir": "scripts\\rules"
+    "rule_dir": "scripts/rules"
   },
   "hard_gate": "pass",
   "critical_failures": [],
@@ -57,6 +57,22 @@
       "hard_gate_eligible": false
     },
     {
+      "rule_id": "INT-003",
+      "domain": "interior_design",
+      "severity": "warning",
+      "passed": false,
+      "message": "需求文件應包含偏好描述（採光、收納、智能家居）。",
+      "fail_message": "需求文件缺少偏好段落。",
+      "fix_hint": "在需求檔補上偏好與取捨說明。",
+      "evidence": [
+        "request missing section like '偏好'"
+      ],
+      "source_doc": "專案需求規範",
+      "source_article": "需求完備度",
+      "source_url": "https://example.com/interior-guideline",
+      "hard_gate_eligible": false
+    },
+    {
       "rule_id": "ARCH-MET-001",
       "domain": "architect_metrics",
       "severity": "warning",
@@ -65,7 +81,7 @@
       "fail_message": "Some rooms need better daylight, door, geometry, or metadata before design review.",
       "fix_hint": "Review structured/architect_metrics/report.md and update HTML geometry/openings or request professional calculation.",
       "evidence": [
-        "generated_at=2026-05-12T00:30:39.298494+00:00",
+        "generated_at=2026-05-15T08:34:21.152325+00:00",
         "advisory=27",
         "missing_data=31",
         "A:floor-1::egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
@@ -93,7 +109,7 @@
       "fail_message": "Formal daylight, ventilation, egress, or structural review is still required.",
       "fix_hint": "Keep these items as architect/engineer confirmation tasks; do not treat concept metrics as signoff.",
       "evidence": [
-        "generated_at=2026-05-12T00:30:39.298494+00:00",
+        "generated_at=2026-05-15T08:34:21.152325+00:00",
         "professional_required=20"
       ],
       "source_doc": "Skills-Architects calculator adaptation",
@@ -115,6 +131,12 @@
       "source_doc": "建築物無障礙設施設計規範",
       "source_article": "出入口與門扇尺度",
       "source_url": "https://law.moj.gov.tw/"
+    },
+    {
+      "rule_id": "INT-003",
+      "source_doc": "專案需求規範",
+      "source_article": "需求完備度",
+      "source_url": "https://example.com/interior-guideline"
     }
   ],
   "score_breakdown": {
@@ -910,17 +932,17 @@
     }
   ],
   "signoff": {
-    "exists": false,
-    "decision": "",
-    "reviewer_role": "",
-    "reviewer_name": "",
+    "exists": true,
+    "decision": "approved",
+    "reviewer_role": "design-lead",
+    "reviewer_name": "Claude Code",
     "date": ""
   },
   "artifacts": {
-    "normalized_request": "structured\\expert_review\\request_normalized.json",
-    "room_program": "structured\\room_program.json",
-    "candidates": "structured\\candidates\\layout_candidates.json",
-    "architect_metrics": "structured\\architect_metrics\\metrics.json",
+    "normalized_request": "structured/expert_review/request_normalized.json",
+    "room_program": "structured/room_program.json",
+    "candidates": "structured/candidates/layout_candidates.json",
+    "architect_metrics": "structured/architect_metrics/metrics.json",
     "viewer": "structured/candidates/viewer.html",
     "pdf": "structured/candidates/print_bundle.pdf"
   },
@@ -993,7 +1015,7 @@
       "fail_message": "Some rooms need better daylight, door, geometry, or metadata before design review.",
       "fix_hint": "Review structured/architect_metrics/report.md and update HTML geometry/openings or request professional calculation.",
       "evidence": [
-        "generated_at=2026-05-12T00:30:39.298494+00:00",
+        "generated_at=2026-05-15T08:34:21.152325+00:00",
         "advisory=27",
         "missing_data=31",
         "A:floor-1::egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
@@ -1094,11 +1116,13 @@
       "rule_id": "INT-003",
       "domain": "interior_design",
       "severity": "warning",
-      "passed": true,
+      "passed": false,
       "message": "需求文件應包含偏好描述（採光、收納、智能家居）。",
       "fail_message": "需求文件缺少偏好段落。",
       "fix_hint": "在需求檔補上偏好與取捨說明。",
-      "evidence": [],
+      "evidence": [
+        "request missing section like '偏好'"
+      ],
       "source_doc": "專案需求規範",
       "source_article": "需求完備度",
       "source_url": "https://example.com/interior-guideline",
@@ -1113,7 +1137,7 @@
       "fail_message": "Formal daylight, ventilation, egress, or structural review is still required.",
       "fix_hint": "Keep these items as architect/engineer confirmation tasks; do not treat concept metrics as signoff.",
       "evidence": [
-        "generated_at=2026-05-12T00:30:39.298494+00:00",
+        "generated_at=2026-05-15T08:34:21.152325+00:00",
         "professional_required=20"
       ],
       "source_doc": "Skills-Architects calculator adaptation",
@@ -1136,5 +1160,5 @@
       "hard_gate_eligible": false
     }
   ],
-  "report_hash": "d038215129dbf94120265541d0bc1d747466c90a0073a5ffd9310eebaf37c9d3"
+  "report_hash": "0b9cc78322334e605107bab62c262c587402b2914eb0082145e6f0adc633650e"
 }

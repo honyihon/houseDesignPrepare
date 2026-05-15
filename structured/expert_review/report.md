@@ -1,7 +1,7 @@
 # Expert Review Report
 
-- Generated: `2026-05-12T00:30:42.482967+00:00`
-- Mode: `concept`
+- Generated: `2026-05-15T08:34:23.533596+00:00`
+- Mode: `ifc`
 - Buildings: `A,B,C`
 - Hard Gate: **PASS**
 
@@ -26,3 +26,4 @@
 
 - `BR-TW-002` 住宅設計實務 動線與出入口一致性 (https://law.moj.gov.tw/)
 - `ACC-TW-002` 建築物無障礙設施設計規範 出入口與門扇尺度 (https://law.moj.gov.tw/)
+- `INT-003` 專案需求規範 需求完備度 (https://example.com/interior-guideline)

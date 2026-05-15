@@ -10,6 +10,7 @@
 - mode: <concept|draft|ifc>
 - buildings: <A,B,C>
 - selection: <auto|baseline|best>
+- drawing_style: <presentation|technical|debug，預設 presentation>
 
 請按以下固定順序執行，且每一步都要回報結果摘要：
 
@@ -25,7 +26,7 @@
    - 若有 critical：停止，列出檔案、樓層、證據與最小修正建議。
 
 4) 主管線輸出
-   - powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 -Mode <mode> -Selection <selection>
+   - powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 -Mode <mode> -Selection <selection> -DrawingStyle <drawing_style>
 
 5) Bundle 驗證
    - python scripts/validate_layout_bundle.py
@@ -33,12 +34,17 @@
 6) 最終匯總報告 + task board 更新
    - python scripts/evaluate_expert_gates.py --stage report --request <request_file> --buildings <buildings> --mode <mode> --selection <selection>
 
+7) Final HTML 討論版輸出
+   - python scripts/export_final_design_html.py --mode <mode> --selection <selection> --buildings <buildings>
+   - 輸出到 structured/final_design_html/，不可覆蓋 canonical HTML 原檔。
+   - final HTML 必須保留 canonical HTML 的可視格位，不可把候選配置 assignment 套成房間搬位；候選結果只作摘要與 JSON metadata。
+
 回報格式：
 - Hard gate：PASS/FAIL
 - Critical / Warning / Info 數量
 - score_breakdown（circulation/daylight/mep/fengshui/composite）
 - expert_recommendations 中與 pipeline_best 不同的樓層數
-- 產物路徑：report.json、report.md、viewer.html、print_bundle.pdf（若 mode 非 concept）
+- 產物路徑：report.json、report.md、viewer.html、final_design_html/index.html、print_bundle.pdf（若 mode 非 concept）
 
 限制：
 - 僅使用非 `_tmp` HTML 作為正式輸入。

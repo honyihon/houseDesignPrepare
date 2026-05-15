@@ -1,0 +1,2732 @@
+﻿<!DOCTYPE html>
+
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<title>C棟 - 邊間綠意 × IDF 1F 核心 × 獨立給水（整合版 v9.2）</title>
+<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft JhengHei', 'PingFang TC', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #0b1220 40%, #1e1b4b 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #e2e8f0;
+        }
+
+        .container {
+            max-width: 1700px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, .08), rgba(34, 211, 238, .08), rgba(59, 130, 246, .06));
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, .1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background:
+                radial-gradient(circle at 22% 28%, rgba(16, 185, 129, .06) 0%, transparent 45%),
+                radial-gradient(circle at 70% 35%, rgba(34, 211, 238, .05) 0%, transparent 52%),
+                radial-gradient(circle at 55% 78%, rgba(59, 130, 246, .05) 0%, transparent 55%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(-4%, -4%) rotate(4deg);
+            }
+        }
+
+        .building-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: .9rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 10px 25px rgba(16, 185, 129, .25);
+        }
+
+        h1 {
+            font-size: clamp(1.8rem, 4vw, 2.7rem);
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #22d3ee 0%, #3b82f6 50%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: .95rem;
+            color: #94a3b8;
+            position: relative;
+            z-index: 1;
+            line-height: 1.6;
+        }
+
+        .version-info {
+            display: inline-block;
+            background: rgba(16, 185, 129, .15);
+            border: 1px solid rgba(16, 185, 129, .3);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: .75rem;
+            color: #6ee7b7;
+            margin-top: 10px;
+        }
+
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 12px;
+            padding: 20px;
+            background: rgba(15, 23, 42, .6);
+            border-radius: 20px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, .08);
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, .03);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, .05);
+            transition: all .3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(34, 211, 238, .08);
+            border-color: rgba(34, 211, 238, .25);
+            transform: translateY(-2px);
+        }
+
+        .stat-icon {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .stat-value {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #22d3ee;
+        }
+
+        .stat-label {
+            font-size: .72rem;
+            color: #64748b;
+            margin-top: 3px;
+        }
+
+        .floor-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 14px 24px;
+            background: rgba(30, 41, 59, .6);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all .3s cubic-bezier(.4, 0, .2, 1);
+            font-size: .92rem;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tab:hover {
+            background: rgba(34, 211, 238, .10);
+            border-color: rgba(34, 211, 238, .28);
+            color: #22d3ee;
+            transform: translateY(-2px);
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, .22);
+            transform: translateY(-3px);
+            font-weight: 900;
+        }
+
+        .tab-icon {
+            font-size: 1.1rem;
+        }
+
+        .floor-plan {
+            display: none;
+            animation: fadeSlide .5s ease;
+        }
+
+        .floor-plan.active {
+            display: block;
+        }
+
+        @keyframes fadeSlide {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .floor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 20px;
+            background: rgba(15, 23, 42, .5);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .floor-title {
+            font-size: 1.3rem;
+            color: #fff;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .floor-title-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: #fff;
+            font-weight: 900;
+        }
+
+        .direction-badge {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .dir-item {
+            font-size: .8rem;
+            padding: 8px 14px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid rgba(255, 255, 255, .1);
+            color: #94a3b8;
+        }
+
+        .floor-content {
+            display: grid;
+            grid-template-columns: minmax(350px, 520px) 1fr;
+            gap: 25px;
+            align-items: start;
+        }
+
+        @media(max-width:1050px) {
+            .floor-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .visual-plan {
+            background: rgba(15, 23, 42, .85);
+            border: 1px solid rgba(34, 211, 238, .22);
+            border-radius: 20px;
+            padding: 20px;
+            position: sticky;
+            top: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .plan-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        .plan-title {
+            font-size: 1rem;
+            color: #22d3ee;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .plan-grid-visual {
+            display: grid;
+            gap: 6px;
+            background: rgba(0, 0, 0, .30);
+            padding: 12px;
+            border-radius: 14px;
+        }
+
+        .plan-row {
+            display: grid;
+            gap: 6px;
+        }
+
+        .plan-cell {
+            background: rgba(30, 41, 59, .7);
+            border: 2px solid rgba(255, 255, 255, .1);
+            border-radius: 14px;
+            padding: 14px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all .25s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-cell:hover {
+            border-color: #22d3ee;
+            background: rgba(34, 211, 238, .10);
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(34, 211, 238, .16);
+        }
+
+        .plan-cell.active-cell {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, .12);
+            box-shadow: 0 0 20px rgba(16, 185, 129, .22);
+        }
+
+        .cell-icon {
+            font-size: 1.4rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .cell-name {
+            color: #fff;
+            font-weight: 800;
+            font-size: .85rem;
+            display: block;
+        }
+
+        .cell-size {
+            color: #64748b;
+            font-size: .7rem;
+            margin-top: 3px;
+            display: block;
+        }
+
+        .plan-cell.outdoor {
+            background: linear-gradient(135deg, rgba(34, 197, 94, .10), rgba(16, 185, 129, .05));
+            border-style: dashed;
+            border-color: rgba(34, 197, 94, .40);
+        }
+
+        .plan-cell.wet {
+            background: linear-gradient(135deg, rgba(56, 189, 248, .10), rgba(14, 165, 233, .05));
+            border-color: rgba(56, 189, 248, .30);
+        }
+
+        .plan-cell.idf {
+            background: linear-gradient(135deg, rgba(34, 211, 238, .15), rgba(59, 130, 246, .1));
+            border-color: #22d3ee;
+        }
+
+        .plan-cell.stair {
+            background: linear-gradient(135deg, rgba(251, 191, 36, .12), rgba(245, 158, 11, .06));
+            border-color: rgba(251, 191, 36, .4);
+        }
+
+        .plan-cell.sliding-door {
+            background: linear-gradient(135deg, rgba(239, 68, 68, .1), rgba(220, 38, 38, .05));
+            border-color: rgba(239, 68, 68, .4);
+            border-width: 3px;
+            border-style: double;
+        }
+
+        .plan-cell.typhoon {
+            background: linear-gradient(135deg, rgba(168, 85, 247, .12), rgba(139, 92, 246, .06));
+            border-color: rgba(168, 85, 247, .5);
+        }
+
+        .plan-cell.kitchen {
+            background: linear-gradient(135deg, rgba(251, 146, 60, .12), rgba(234, 88, 12, .06));
+            border-color: rgba(251, 146, 60, .4);
+        }
+
+        .plan-cell.master {
+            background: linear-gradient(135deg, rgba(244, 114, 182, .12), rgba(219, 39, 119, .06));
+            border-color: rgba(244, 114, 182, .4);
+        }
+
+        .plan-cell.fitness {
+            background: linear-gradient(135deg, rgba(34, 197, 94, .15), rgba(22, 163, 74, .08));
+            border-color: rgba(34, 197, 94, .5);
+        }
+
+        .io-badges {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 4px;
+            margin-top: 8px;
+        }
+
+        .badge {
+            font-size: .65rem;
+            padding: 3px 7px;
+            border-radius: 6px;
+            background: rgba(0, 0, 0, .3);
+            color: #cbd5e1;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            border: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        .badge.net {
+            background: rgba(34, 211, 238, .15);
+            border-color: rgba(34, 211, 238, .3);
+            color: #a5f3fc;
+        }
+
+        .badge.pwr {
+            background: rgba(110, 231, 183, .15);
+            border-color: rgba(110, 231, 183, .3);
+            color: #bbf7d0;
+        }
+
+        .badge.tv {
+            background: rgba(251, 191, 36, .15);
+            border-color: rgba(251, 191, 36, .3);
+            color: #fde68a;
+        }
+
+        .badge.ap {
+            background: rgba(139, 92, 246, .15);
+            border-color: rgba(139, 92, 246, .3);
+            color: #ddd6fe;
+        }
+
+        .badge.water {
+            background: rgba(59, 130, 246, .18);
+            border-color: rgba(59, 130, 246, .35);
+            color: #bfdbfe;
+        }
+
+        .badge.hot {
+            background: rgba(239, 68, 68, .18);
+            border-color: rgba(239, 68, 68, .35);
+            color: #fecaca;
+        }
+
+        .badge.stair {
+            background: rgba(251, 191, 36, .15);
+            border-color: rgba(251, 191, 36, .35);
+            color: #fde68a;
+        }
+
+        .badge.typhoon {
+            background: rgba(168, 85, 247, .18);
+            border-color: rgba(168, 85, 247, .35);
+            color: #e9d5ff;
+        }
+
+        .badge.escape {
+            background: rgba(239, 68, 68, .18);
+            border-color: rgba(239, 68, 68, .35);
+            color: #fca5a5;
+        }
+
+        .badge.new {
+            background: rgba(16, 185, 129, .2);
+            border-color: rgba(16, 185, 129, .4);
+            color: #6ee7b7;
+        }
+
+        .compass {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15px;
+            padding: 12px;
+            background: rgba(0, 0, 0, .2);
+            border-radius: 10px;
+            font-size: .85rem;
+            color: #94a3b8;
+        }
+
+        .compass-arrow {
+            font-size: 1.3rem;
+            margin-right: 10px;
+        }
+
+        .details-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .room {
+            background: rgba(30, 41, 59, .5);
+            border-radius: 18px;
+            padding: 22px;
+            border: 1px solid rgba(255, 255, 255, .08);
+            transition: all .3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .room::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #10b981, #3b82f6);
+            opacity: 0;
+            transition: opacity .3s ease;
+        }
+
+        .room:hover {
+            border-color: rgba(34, 211, 238, .25);
+            background: rgba(30, 41, 59, .7);
+            transform: translateX(5px);
+        }
+
+        .room:hover::before {
+            opacity: 1;
+        }
+
+        .room.room-active {
+            border-color: #10b981;
+            background: rgba(16, 185, 129, .08);
+        }
+
+        .room.room-active::before {
+            opacity: 1;
+        }
+
+        .room-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .room-name {
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .room-name-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, .2), rgba(59, 130, 246, .18));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.05rem;
+        }
+
+        .room-area {
+            font-size: .8rem;
+            color: #22d3ee;
+            background: rgba(34, 211, 238, .1);
+            padding: 5px 12px;
+            border-radius: 8px;
+            border: 1px solid rgba(34, 211, 238, .2);
+            font-weight: 800;
+        }
+
+        .room-details {
+            font-size: .9rem;
+            color: #cbd5e1;
+            line-height: 1.85;
+        }
+
+        .room-details li {
+            list-style: none;
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 10px;
+        }
+
+        .room-details li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            border-radius: 50%;
+        }
+
+        .tag {
+            display: block;
+            margin-top: 15px;
+            padding: 14px 16px;
+            border-radius: 12px;
+            font-size: .85rem;
+            line-height: 1.65;
+        }
+
+        .tag-title {
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 5px;
+        }
+
+        .tag-net {
+            background: linear-gradient(135deg, rgba(34, 211, 238, .08), rgba(6, 182, 212, .05));
+            border: 1px solid rgba(34, 211, 238, .2);
+            color: #a5f3fc;
+        }
+
+        .tag-net .tag-title {
+            color: #22d3ee;
+        }
+
+        .tag-water {
+            background: linear-gradient(135deg, rgba(59, 130, 246, .10), rgba(37, 99, 235, .06));
+            border: 1px solid rgba(59, 130, 246, .25);
+            color: #bfdbfe;
+        }
+
+        .tag-water .tag-title {
+            color: #3b82f6;
+        }
+
+        .tag-typhoon {
+            background: linear-gradient(135deg, rgba(168, 85, 247, .12), rgba(139, 92, 246, .06));
+            border: 1px solid rgba(168, 85, 247, .35);
+            color: #e9d5ff;
+        }
+
+        .tag-typhoon .tag-title {
+            color: #a855f7;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, rgba(239, 68, 68, .12), rgba(220, 38, 38, .08));
+            border: 2px solid rgba(239, 68, 68, .4);
+            border-radius: 14px;
+            padding: 18px;
+            margin-top: 15px;
+        }
+
+        .warning-title {
+            font-size: 1rem;
+            font-weight: 900;
+            color: #f87171;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .warning-content {
+            font-size: .85rem;
+            color: #fecaca;
+            line-height: 1.7;
+        }
+
+        .spec-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, .10), rgba(168, 85, 247, .06));
+            border: 1px solid rgba(139, 92, 246, .35);
+            border-radius: 14px;
+            padding: 18px;
+            margin-top: 15px;
+        }
+
+        .spec-title {
+            font-size: 1rem;
+            font-weight: 900;
+            color: #a855f7;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .spec-content {
+            font-size: .85rem;
+            color: #ddd6fe;
+            line-height: 1.7;
+        }
+
+        .spec-content li {
+            margin-bottom: 6px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .spec-content li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #a855f7;
+            font-weight: bold;
+        }
+
+        .system-box {
+            background: rgba(15, 23, 42, .82);
+            border: 1px solid rgba(34, 211, 238, .22);
+            border-radius: 20px;
+            padding: 22px;
+            margin-top: 20px;
+        }
+
+        .system-title {
+            font-size: 1.1rem;
+            font-weight: 900;
+            text-align: center;
+            background: linear-gradient(135deg, #22d3ee, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 18px;
+        }
+
+        .flow-diagram {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .flow-item {
+            background: rgba(34, 211, 238, .08);
+            border: 1px solid rgba(34, 211, 238, .22);
+            border-radius: 12px;
+            padding: 12px 16px;
+            text-align: center;
+            font-size: .85rem;
+            color: #e2e8f0;
+            transition: all .3s ease;
+            min-width: 120px;
+        }
+
+        .flow-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(34, 211, 238, .14);
+        }
+
+        .flow-arrow {
+            font-size: 1.5rem;
+            color: #475569;
+        }
+
+        .io-table {
+            margin-top: 15px;
+            background: rgba(15, 23, 42, .6);
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .08);
+        }
+
+        .io-table table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .85rem;
+        }
+
+        .io-table th {
+            background: linear-gradient(135deg, rgba(34, 211, 238, .14), rgba(59, 130, 246, .08));
+            padding: 12px;
+            text-align: left;
+            color: #22d3ee;
+            font-weight: 900;
+        }
+
+        .io-table td {
+            padding: 12px;
+            border-top: 1px solid rgba(255, 255, 255, .05);
+            color: #cbd5e1;
+            vertical-align: top;
+        }
+
+        .io-table tr:hover td {
+            background: rgba(255, 255, 255, .03);
+        }
+
+        .io-table .important {
+            background: rgba(251, 191, 36, .08);
+        }
+
+        .io-table .required {
+            background: rgba(239, 68, 68, .08);
+        }
+
+        .io-table .new {
+            background: rgba(16, 185, 129, .08);
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .checklist-card {
+            background: rgba(0, 0, 0, .2);
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .checklist-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checklist-item {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: .9rem;
+            color: #cbd5e1;
+            align-items: flex-start;
+        }
+
+        .check-box {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #64748b;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .dimension-note {
+            background: linear-gradient(135deg, rgba(251, 191, 36, .15), rgba(245, 158, 11, .08));
+            border: 1px solid rgba(251, 191, 36, .4);
+            border-radius: 10px;
+            padding: 12px;
+            margin-top: 12px;
+            font-size: .85rem;
+            color: #fde68a;
+        }
+
+        .dimension-note strong {
+            color: #fbbf24;
+        }
+
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+
+            .tab {
+                display: none;
+            }
+
+            .floor-plan {
+                display: block !important;
+                page-break-after: always;
+            }
+        }
+    </style>
+<style id="final-design-sync-style">
+.final-sync-summary,
+.final-floor-note {
+    border: 1px solid rgba(96, 165, 250, .45);
+    background: rgba(15, 23, 42, .78);
+    color: #e5eefc;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin: 14px 0;
+    box-shadow: 0 10px 30px rgba(2, 6, 23, .18);
+}
+.final-sync-summary h2 {
+    margin: 0 0 8px;
+    color: #93c5fd;
+    font-size: 1.05rem;
+}
+.final-sync-summary p,
+.final-floor-note p {
+    margin: 5px 0;
+    color: #cbd5e1;
+    line-height: 1.45;
+}
+.final-sync-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 8px;
+    margin-top: 10px;
+}
+.final-sync-kpi {
+    border: 1px solid rgba(148, 163, 184, .25);
+    border-radius: 8px;
+    padding: 8px 10px;
+    background: rgba(30, 41, 59, .58);
+}
+.final-sync-kpi b {
+    display: block;
+    color: #f8fafc;
+    font-size: .92rem;
+}
+.final-sync-kpi span {
+    color: #94a3b8;
+    font-size: .76rem;
+}
+.final-floor-note {
+    border-color: rgba(45, 212, 191, .36);
+    background: rgba(8, 47, 73, .48);
+}
+.final-floor-note strong {
+    color: #5eead4;
+}
+.final-floor-note ul {
+    margin: 6px 0 0 18px;
+    padding: 0;
+    color: #cbd5e1;
+    font-size: .84rem;
+}
+.final-candidate-mismatch {
+    color: #fde68a;
+}
+.badge.final-sync,
+.final-sync-chip {
+    border-color: rgba(45, 212, 191, .55) !important;
+    color: #99f6e4 !important;
+    background: rgba(20, 184, 166, .14) !important;
+}
+</style></head>
+<body>
+<div class="container"><section class="final-sync-summary" id="final-design-notes">
+<h2>Final Design Notes - Building C</h2>
+<p>This is a generated discussion copy. It keeps the canonical source layout and stores candidate analysis as metadata only.</p>
+<div class="final-sync-grid">
+<div class="final-sync-kpi"><b>ifc</b><span>Mode</span></div>
+<div class="final-sync-kpi"><b>baseline</b><span>Export selection</span></div>
+<div class="final-sync-kpi"><b>PASS</b><span>Hard gate</span></div>
+<div class="final-sync-kpi"><b>4</b><span>Analyzed floors</span></div>
+<div class="final-sync-kpi"><b>19</b><span>Candidate assignments</span></div>
+<div class="final-sync-kpi"><b>0</b><span>Rejected visual moves</span></div>
+<div class="final-sync-kpi"><b>0</b><span>Applied visual moves</span></div>
+<div class="final-sync-kpi"><b>4/1</b><span>Warnings / Info</span></div>
+</div>
+<p>Report generated: 2026-05-15T08:34:23.533596+00:00 | hash: 0b9cc7832233</p>
+<ul><li>BR-TW-002: 每層建議維持單一主入口標記。 (C:floor-2 entry_count=0)</li><li>BR-TW-002: 每層建議維持單一主入口標記。 (C:floor-3 entry_count=0)</li><li>BR-TW-002: 每層建議維持單一主入口標記。 (C:floor-4 entry_count=0)</li><li>ACC-TW-002: 無障礙空間門寬建議達到 800mm 以上。 (C: no cell matched accessible keyword '無障礙')</li></ul>
+</section>
+<div class="header">
+<div class="building-badge">🏡 C棟 Building C（邊間 Edge）</div>
+<h1>邊間綠意 × IDF 1F 核心 × 獨立給水</h1>
+<div class="subtitle">
+                弱電整合 v9.2｜IDF 機櫃 1F 樓梯下｜獨立水表/水塔/VF800/熱泵<br/>
+                🆕 2F 公共層＋客房重新規劃｜3F 主臥層＋運動空間｜四衣櫃飯店級配置<br/>
+                🧩 8 條不後悔條款｜濕區機房等級｜運動隔振｜RF 排水/固定強化
+            </div>
+<div class="version-info">v9.2｜8 條不後悔條款 + 風險點位再強化</div>
+</div>
+<div class="stats-bar">
+<div class="stat-item">
+<div class="stat-icon">📐</div>
+<div class="stat-value">32</div>
+<div class="stat-label">建築地坪（坪）</div>
+</div>
+<div class="stat-item">
+<div class="stat-icon">🛋️</div>
+<div class="stat-value">2F</div>
+<div class="stat-label">公共層＋客房</div>
+</div>
+<div class="stat-item">
+<div class="stat-icon">🛏️</div>
+<div class="stat-value">3F</div>
+<div class="stat-label">主臥層＋運動</div>
+</div>
+<div class="stat-item">
+<div class="stat-icon">👗</div>
+<div class="stat-value">4櫃</div>
+<div class="stat-label">360cm 衣櫃排</div>
+</div>
+<div class="stat-item">
+<div class="stat-icon">🌿</div>
+<div class="stat-value">Side</div>
+<div class="stat-label">導風格柵側院</div>
+</div>
+<div class="stat-item">
+<div class="stat-icon">🌀</div>
+<div class="stat-value">1:50</div>
+<div class="stat-label">RF 排水坡度</div>
+</div>
+</div>
+<div class="floor-tabs">
+<div class="tab active" onclick="showFloor('overview')">
+<span class="tab-icon">📋</span> 總覽與規範
+            </div>
+<div class="tab" onclick="showFloor(1)">
+<span class="tab-icon">🖥️</span> 1F IDF×孝親
+            </div>
+<div class="tab" onclick="showFloor(2)">
+<span class="tab-icon">🛋️</span> 2F 公共×客房
+            </div>
+<div class="tab" onclick="showFloor(3)">
+<span class="tab-icon">🛏️</span> 3F 主臥×運動
+            </div>
+<div class="tab" onclick="showFloor(4)">
+<span class="tab-icon">⚙️</span> RF 設備層
+            </div>
+<div class="tab" onclick="showFloor(5)">
+<span class="tab-icon">💧</span> 系統總表
+            </div>
+</div>
+<!-- ==================== 總覽頁 ==================== -->
+<div class="floor-plan active" id="floor-overview">
+<div class="floor-header">
+<div class="floor-title">
+<div class="floor-title-icon">📋</div>
+<div>
+<div>總覽頁：緊急地圖 × 施工重點 × 驗收清單</div>
+<div style="font-size:.8rem;color:#64748b;font-weight:400;">
+                            住戶緊急應變指南｜工班施工紅線條款｜不後悔 8 條款（可施工/可驗收）
+                        </div>
+</div>
+</div>
+</div>
+<div class="floor-content" style="grid-template-columns:1fr;">
+<div class="overview-grid">
+<!-- 住戶緊急地圖 -->
+<div class="checklist-card" style="border-color:rgba(239,68,68,.4);background:linear-gradient(135deg,rgba(239,68,68,.1),rgba(0,0,0,.2));">
+<div class="checklist-title" style="color:#f87171;">🚨 住戶緊急關閉地圖</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#f87171;"></div>
+<div><strong>全戶斷水（C-V1）：</strong>位於 1F 前院水表箱內。爆管漏水時請先關此閥。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#f87171;"></div>
+<div><strong>全戶斷電（總開關）：</strong>位於 1F 車庫/玄關配電箱內（Main Breaker）。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#f87171;"></div>
+<div><strong>加壓馬達斷電：</strong>位於 1F 配電箱「加壓馬達」迴路，或 RF 現場開關。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#f87171;"></div>
+<div><strong>熱泵斷電：</strong>位於 RF 熱泵旁防水開關箱，或 1F 配電箱專迴。</div>
+</div>
+</div>
+<!-- ⚠️ 不後悔條款 8 件（更新） -->
+<div class="checklist-card" style="border-color:rgba(251,191,36,.5);background:linear-gradient(135deg,rgba(251,191,36,.12),rgba(0,0,0,.2));">
+<div class="checklist-title" style="color:#fbbf24;">✅ 不後悔條款 8 件（可施工/可驗收）</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#fbbf24;"></div>
+<div><strong>2F 前陽台洗衣區：</strong>濕區機房等級 → 二次防水＋門檻擋水＋坡度/地漏＋緊急溢流路徑＋排水可清通。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#fbbf24;"></div>
+<div><strong>3F 運動區：</strong>隔振連續層/浮式作法＋跑步機專用隔振底座＋位置靠樑柱。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#fbbf24;"></div>
+<div><strong>IDF/樓梯下機櫃：</strong>進排氣對流＋濾網防塵＋除濕/溫濕監控＋避開給排水/冷凝水。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#fbbf24;"></div>
+<div><strong>側院三紅線：</strong>淨寬不被堆物吃掉（固定花台/地坪界定）＋排水獨立可清通＋遮陽防蚊/好清掃。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#fbbf24;"></div>
+<div><strong>格柵抗風：</strong>門窗性能等級附第三方報告＋結構檢核設計風載＋固定細節可驗證/可維修。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#fbbf24;"></div>
+<div><strong>RF 設備：</strong>落水頭/溢流口可清理＋堵塞備援/溢流路徑＋基座固定抗風掀/耐震。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#fbbf24;"></div>
+<div><strong>承重擺位：</strong>水塔/熱泵/跑步機對樑靠柱＋分散載重底座＋就位前結構/機電確認錨定。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#fbbf24;"></div>
+<div><strong>住警器：</strong>列入驗收清單，配置位置/顆數/維護方式寫入交付文件。</div>
+</div>
+</div>
+<!-- 颱風後檢查清單 -->
+<div class="checklist-card" style="border-color:rgba(168,85,247,.5);background:linear-gradient(135deg,rgba(168,85,247,.12),rgba(0,0,0,.2));">
+<div class="checklist-title" style="color:#a855f7;">🌀 颱風後檢查清單</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#a855f7;"></div>
+<div><strong>弱電手孔：</strong>檢查地下手孔是否進水，若有積水需抽乾。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#a855f7;"></div>
+<div><strong>RF 閥件：</strong>檢查 V1、旁通閥保護箱是否損壞位移。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#a855f7;"></div>
+<div><strong>防水蓋板：</strong>檢查 RF 弱電出口蓋板是否位移或破損。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#a855f7;"></div>
+<div><strong>溢流口：</strong>清理 RF 溢流口落葉雜物，確保暢通。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#a855f7;"></div>
+<div><strong>側院格柵：</strong>檢查導風格柵是否鬆脫或變形。</div>
+</div>
+</div>
+<!-- 工班紅線條款 -->
+<div class="checklist-card" style="border-color:rgba(239,68,68,.4);">
+<div class="checklist-title" style="color:#f87171;">🚫 工班「紅線條款」（做錯重來）</div>
+<div class="checklist-item">
+<div class="check-box"></div>
+<div><strong>強弱電分離：</strong>110/220V 與網路/光纖「絕對不可」同管，平行距離 &gt;30cm。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box"></div>
+<div><strong>開關盒 N 線：</strong>所有開關盒須有 N 線（藍套）＋深盒 ≥5cm。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box"></div>
+<div><strong>AP 檢修口：</strong>天花 AP 點位必留 20×20cm 可開啟檢修口。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box"></div>
+<div><strong>影音預埋管：</strong>HDMI/音響管路需直通或 45° 轉彎＋預留拉線繩。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box"></div>
+<div><strong>光纖規格：</strong>A→C 必須使用「單模 OS2」光纖，管內預留拉線繩。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box"></div>
+<div><strong>冷熱不混：</strong>VF800 只接冷水，Haier 熱泵只接熱水。必裝止回閥。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box"></div>
+<div><strong>熱水保溫：</strong>所有熱水管必須包覆厚度 <strong>≥15mm</strong> 保溫棉。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box"></div>
+<div><strong>RF 排水坡度：</strong>設備層地面排水坡度需做 <strong>1:50</strong> 以上。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box"></div>
+<div><strong>溢流管規格：</strong>RF 溢流管由 2" 增至 <strong>3"</strong>，並設緊急溢流口。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box"></div>
+<div><strong>跨棟給水禁止：</strong>不得跨棟借水，只允許弱電光纖互聯。</div>
+</div>
+</div>
+<!-- 隱藏痛點補強清單 -->
+<div class="checklist-card" style="border-color:rgba(59,130,246,.35);background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(0,0,0,.2));">
+<div class="checklist-title" style="color:#93c5fd;">🧩 隱藏痛點補強（避免日後敲牆）</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#93c5fd;"></div>
+<div><strong>排水靜音：</strong>管道間糞管/污水管包覆隔音棉或採雙層螺旋靜音管。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#93c5fd;"></div>
+<div><strong>濕區 R 角 + 防水高度：</strong>牆地交界做 R 角；淋浴區 ≥180cm，其餘濕區 ≥30cm。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#93c5fd;"></div>
+<div><strong>掃地機器人上下水：</strong>1F 櫃體預留 2 分進水＋Ø32mm 排水孔。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#93c5fd;"></div>
+<div><strong>電動窗簾電源：</strong>客廳/主臥窗簾盒內側頂部預留 110V 插座。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#93c5fd;"></div>
+<div><strong>浴室擴充用電：</strong>鏡後除霧電源 + 馬桶對面 120cm 高插座（電熱毛巾架）。</div>
+</div>
+</div>
+<!-- 2F/3F 關鍵尺寸（新增） -->
+<div class="checklist-card" style="border-color:rgba(34,211,238,.4);background:linear-gradient(135deg,rgba(34,211,238,.08),rgba(0,0,0,.2));">
+<div class="checklist-title" style="color:#22d3ee;">📏 2F / 3F 關鍵尺寸（必須確認）</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#22d3ee;"></div>
+<div><strong>2F 客房：</strong>最小淨寬 <strong>210–240 cm</strong>，確保單人床+走道舒適。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#22d3ee;"></div>
+<div><strong>2F 廚房冰箱位：</strong><strong>75 × 70 cm</strong>（寬×深）。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#22d3ee;"></div>
+<div><strong>2F 廚房流理台：</strong>長度 <strong>≥ 240 cm</strong>。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#22d3ee;"></div>
+<div><strong>2F / 3F 廁所：</strong>最小 <strong>150 × 180 cm</strong>。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#22d3ee;"></div>
+<div><strong>3F 主臥衣櫃牆：</strong>需 <strong>≥ 4 米</strong>（放置 4 櫃 × 90cm = 360cm）。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box" style="border-color:#22d3ee;"></div>
+<div><strong>客房門：</strong>建議拉門或隱藏門（省空間）。</div>
+</div>
+</div>
+<!-- 驗收清單 -->
+<div class="checklist-card" style="border-color:rgba(16,185,129,.4);">
+<div class="checklist-title" style="color:#10b981;">✅ 完工驗收清單</div>
+<div class="checklist-item">
+<div class="check-box"></div>
+<div><strong>給水：</strong>壓力測試（持壓）、管路沖洗、濾網方向正確、止回閥方向正確。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box"></div>
+<div><strong>弱電：</strong>Cat6A 認證測試報告、光纖 OTDR/插入損耗測試。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box"></div>
+<div><strong>標示：</strong>光纖/網路線兩端標籤（ANSI/TIA-606-B）、閥門掛牌。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box"></div>
+<div><strong>住警器：</strong>配置位置/顆數核對、功能測試、維護說明交付。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box"></div>
+<div><strong>防水：</strong>RF 設備基座收邊、溢流/冷凝排水測試、2F 陽台防水層。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box"></div>
+<div><strong>RF 固定：</strong>設備基座錨定、抗風掀/耐震固定與溢流口清通驗收。</div>
+</div>
+<div class="checklist-item">
+<div class="check-box"></div>
+<div><strong>隔音：</strong>1F 拉門隔音測試 STC ≥30、3F 運動區隔振系統驗收。</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ==================== 1F ==================== -->
+<div class="floor-plan" data-floor-depth-mm="7000" data-floor-width-mm="11000" data-geometry-source="auto-grid-v1" data-north-deg="0" id="floor-1">
+<div class="floor-header">
+<div class="floor-title">
+<div class="floor-title-icon">1F</div>
+<div>
+<div>IDF 機櫃 × 孝親房 × 導風側院 × 樓梯</div>
+<div style="font-size:.8rem;color:#64748b;font-weight:400;">
+                            IDF 位於樓梯下方（百葉門+溫控風扇 35°C + 濾網/除濕）｜側院格柵導風牆 45°
+                        </div>
+</div>
+</div>
+<div class="direction-badge">
+<div class="dir-item">⬆️ 前：計畫道路</div>
+<div class="dir-item">➡️ 右：側院（邊間）</div>
+<div class="dir-item">🖥️ IDF 弱電櫃</div>
+</div>
+</div><div class="final-floor-note" data-final-building-id="C" data-final-floor-id="floor-1">
+<p><strong>Candidate selection:</strong> baseline | total=60.8 | circulation=63.0 | daylight=47.6 | mep=70.0 | utilization=100.0</p>
+<p><strong>Canonical snapshot:</strong> visual room names, onclick targets, geometry, doors and windows are kept from the source HTML.</p>
+<p><strong>Candidate analysis:</strong> 5 matched / 0 rejected / 0 applied to visible cells.</p>
+<p>Expert weighting prefers `circulation`; this copy follows export selection `baseline`.</p>
+<ul class="final-candidate-mismatch"><li>No candidate/canonical room-slot mismatch was found for this floor.</li></ul>
+<ul><li>No floor-specific warning was found in the latest report.</li></ul>
+</div>
+<div class="floor-content">
+<div class="visual-plan">
+<div class="plan-header">
+<div class="plan-title">📐 1F 空間配置圖</div>
+<div class="room-area">約 32 坪</div>
+</div>
+<div class="plan-grid-visual">
+<div class="plan-row" data-row-h-mm="1200" style="grid-template-columns:1fr;">
+<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1200" data-material="concrete+drain" data-w-mm="11000" data-window-mm="0" data-x-mm="0" data-y-mm="0" onclick="highlightRoom('garage', this)">
+<span class="cell-icon">🚗</span>
+<span class="cell-name">前院車庫</span>
+<span class="cell-size">約 2 車位 + 機車</span>
+<div class="io-badges">
+<span class="badge pwr">🔌 EV 充電</span>
+<span class="badge net">📷 CCTV</span>
+<span class="badge typhoon">🌀 防颱軌道</span>
+</div>
+</div>
+</div>
+<div class="plan-row" data-row-h-mm="1700" style="grid-template-columns:1fr 2fr 1fr;">
+<div class="plan-cell" data-door-mm="1000" data-entry="true" data-h-mm="1700" data-material="tile" data-w-mm="2750" data-window-mm="900" data-x-mm="0" data-y-mm="1200" onclick="highlightRoom('entrance', this)">
+<span class="cell-icon">🚪</span>
+<span class="cell-name">玄關</span>
+<div class="io-badges">
+<span class="badge net">🔔 對講</span>
+</div>
+</div>
+<div class="plan-cell" data-door-mm="900" data-h-mm="1700" data-material="wood+paint" data-w-mm="5500" data-window-mm="1800" data-x-mm="2750" data-y-mm="1200" onclick="highlightRoom('living', this)">
+<span class="cell-icon">🛋️</span>
+<span class="cell-name">客廳</span>
+<span class="cell-size">約 8 坪</span>
+<div class="io-badges">
+<span class="badge net">🌐 ×2</span>
+<span class="badge tv">📺 TV</span>
+<span class="badge ap">📶 AP</span>
+</div>
+</div>
+<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-w-mm="2750" data-window-mm="0" data-x-mm="8250" data-y-mm="1200" onclick="highlightRoom('sideyard', this)">
+<span class="cell-icon">🌿</span>
+<span class="cell-name">側院</span>
+<span class="cell-size">格柵導風 45°</span>
+<div class="io-badges">
+<span class="badge water">🚿 澆灌</span>
+<span class="badge net">📷</span>
+<span class="badge escape">🚨 淨寬保留</span>
+</div>
+</div>
+</div>
+<div class="plan-row" data-row-h-mm="1100" style="grid-template-columns:1.2fr 1.3fr 1fr;">
+<div class="plan-cell" data-door-mm="900" data-h-mm="1100" data-material="tile+paint" data-w-mm="3771" data-window-mm="1500" data-x-mm="0" data-y-mm="2900" onclick="highlightRoom('dining', this)">
+<span class="cell-icon">🍽️</span>
+<span class="cell-name">餐廳</span>
+<div class="io-badges">
+<span class="badge net">🌐 ×1</span>
+</div>
+</div>
+<div class="plan-cell wet" data-door-mm="800" data-h-mm="1100" data-material="tile+waterproof" data-w-mm="4086" data-window-mm="600" data-x-mm="3771" data-y-mm="2900" onclick="highlightRoom('kitchen', this)">
+<span class="cell-icon">🍳</span>
+<span class="cell-name">廚房</span>
+<div class="io-badges">
+<span class="badge water">💧 冷熱</span>
+<span class="badge pwr">🔌 專迴×3</span>
+</div>
+</div>
+<div class="plan-cell idf" data-door-mm="900" data-h-mm="1100" data-material="concrete+paint" data-w-mm="3143" data-window-mm="600" data-x-mm="7857" data-y-mm="2900" onclick="highlightRoom('stair1f', this)">
+<span class="cell-icon">🪜</span>
+<span class="cell-name">樓梯 + IDF</span>
+<span class="cell-size">樓梯下弱電櫃</span>
+<div class="io-badges">
+<span class="badge net">12U IDF</span>
+<span class="badge pwr">❄️ 35°C風扇</span>
+<span class="badge stair">⬆️2F</span>
+</div>
+</div>
+</div>
+<div class="plan-row" data-row-h-mm="1300" style="grid-template-columns:2.5fr 1fr;">
+<div class="plan-cell" data-door-mm="900" data-h-mm="1300" data-material="paint+default" data-w-mm="7857" data-window-mm="1000" data-x-mm="0" data-y-mm="4000" onclick="highlightRoom('elder', this)">
+<span class="cell-icon">🛏️</span>
+<span class="cell-name">孝親房</span>
+<span class="cell-size">約 5 坪｜長輩友善</span>
+<div class="io-badges">
+<span class="badge net">🌐 ×2</span>
+<span class="badge tv">📺</span>
+<span class="badge pwr">🔌 USB-C</span>
+<span class="badge hot">🆘 雙迴路緊急鈕</span>
+</div>
+</div>
+<div class="plan-cell sliding-door" data-door-mm="900" data-h-mm="1300" data-material="paint+default" data-w-mm="3143" data-window-mm="1000" data-x-mm="7857" data-y-mm="4000" onclick="highlightRoom('sliding-door', this)">
+<span class="cell-icon">🚪</span>
+<span class="cell-name">拉門阻隔</span>
+<span class="cell-size">吊軌無地軌</span>
+<div class="io-badges">
+<span class="badge stair">🔒 STC≥30</span>
+</div>
+</div>
+</div>
+<div class="plan-row" data-row-h-mm="1700" style="grid-template-columns:1.5fr 1.5fr;">
+<div class="plan-cell wet" data-door-mm="800" data-h-mm="1700" data-material="tile+waterproof" data-w-mm="5500" data-window-mm="600" data-x-mm="0" data-y-mm="5300" onclick="highlightRoom('elder-bath', this)">
+<span class="cell-icon">🚿</span>
+<span class="cell-name">孝親衛浴</span>
+<div class="io-badges">
+<span class="badge water">💧 無障礙</span>
+<span class="badge pwr">🔌 免治</span>
+<span class="badge hot">🆘 求救鈴</span>
+</div>
+</div>
+<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-w-mm="5500" data-window-mm="0" data-x-mm="5500" data-y-mm="5300" onclick="highlightRoom('service', this)">
+<span class="cell-icon">🧺</span>
+<span class="cell-name">後工作陽台</span>
+<div class="io-badges">
+<span class="badge water">💧 洗衣</span>
+<span class="badge net">🟡 A→C進線</span>
+</div>
+</div>
+</div>
+</div>
+<div class="compass">
+<span class="compass-arrow">⬆️</span> 北（計畫道路側）
+                    </div>
+</div>
+<div class="details-panel">
+<div class="room" data-h-mm="1100" data-target-cell="slot-7" data-w-mm="3143" data-x-mm="7857" data-y-mm="2900" id="room-stair1f">
+<div class="room-head">
+<div class="room-name">
+<div class="room-name-icon">🪜</div>
+                                1F 樓梯間（⬆️2F）+ IDF 弱電機櫃
+                            </div>
+<div class="room-area">核心節點</div>
+</div>
+<div class="room-details">
+<li><strong>位置：</strong>利用 1F 樓梯下方閒置空間設置弱電機櫃（12U 壁掛，深度 600mm）。</li>
+<li><strong>光纖進線：</strong>地下管道由 A 棟 MDF 引入，單模 OS2 12 芯 LC 端接。</li>
+<li><strong>⚠️ 散熱優化：</strong>櫃體採「百葉門」設計 + 頂部溫控風扇 ×2，設定 <strong>35°C 自動啟動</strong>。</li>
+<li><strong>⚠️ 進排氣對流：</strong>保留進氣/排氣路徑，外加濾網防塵。</li>
+<li><strong>⚠️ 除濕監控：</strong>加設除濕或溫濕監控，降低高溫高濕風險。</li>
+<li><strong>⚠️ 避水：</strong>機櫃位置不得貼近給排水立管或冷凝排水，必要時加設隔離板。</li>
+<li><strong>檢修電源：</strong>機櫃旁預留獨立插座，供維護/測試使用。</li>
+<li><strong>減震：</strong>機櫃使用「減震墊」壁掛或落地，避免風扇震動傳導至樓梯結構。</li>
+<li style="color:#ef4444;"><strong>⚠️ 需專業計算（第一優先）：</strong>樓梯級高、級深、2R+T、平台淨深、扶手高度、踏步止滑、緊急照明與避難步行距離，需由建築師/結構技師依《建築技術規則》正式計算與檢核；本 HTML 僅為示意，不可替代法規審查。</li>
+</div>
+<div class="tag tag-net">
+<div class="tag-title">🖥️ IDF 機櫃規格</div>
+                            12U 壁掛/落地｜深度 600mm｜百葉門｜溫控風扇 ×2（35°C）｜濾網/除濕預留<br/>
+                            內含：光纖終端箱、PoE+ 交換器、UPS 1000VA、SPD 防雷
+                        </div>
+</div>
+<div class="room" data-h-mm="1300" data-target-cell="slot-9" data-w-mm="3143" data-x-mm="7857" data-y-mm="4000" id="room-sliding-door">
+<div class="room-head">
+<div class="room-name">
+<div class="room-name-icon">🚪</div>
+                                樓梯前拉門阻隔（1F↔2F）
+                            </div>
+<div class="room-area">公私區隔</div>
+</div>
+<div class="room-details">
+<li><strong>功能：</strong>區隔 1F 公共區域與 2F 以上私人空間，提升冷房效率與隱私。</li>
+<li><strong>形式：</strong>「吊軌式」橫拉門（無地軌），美觀且不絆腳。</li>
+<li><strong>⚠️ 隔音：</strong>門片隔音等級 <strong>STC ≥30</strong>。</li>
+<li><strong>⚠️ 無障礙：</strong>門寬 <strong>≥90cm</strong>，與孝親房動線銜接。</li>
+</div>
+</div>
+<div class="room" data-h-mm="1700" data-target-cell="slot-4" data-w-mm="2750" data-x-mm="8250" data-y-mm="1200" id="room-sideyard">
+<div class="room-head">
+<div class="room-name">
+<div class="room-name-icon">🌿</div>
+                                側院（邊間優勢｜通風關鍵）
+                            </div>
+<div class="room-area">風道核心</div>
+</div>
+<div class="room-details">
+<li><strong>⚠️ 保留原則：</strong>不與車庫合併，維持邊間通風、採光、防火間隔優勢。</li>
+<li><strong>⚠️ 格柵導風牆：</strong>設置角度 <strong>45° 對西南季風</strong>，引導夏季風流入室內。</li>
+<li><strong>⚠️ 格柵規格：</strong>格柵間距 ≤10cm；門窗性能等級具第三方檢測報告；格柵結構與固定由結構技師依設計風載檢核（錨栓規格/間距/植入深度/防蝕/可拆修）。</li>
+<li><strong>⚠️ 防蝕材質：</strong>外露固定件依鹽害等級選材（316 或熱浸鍍鋅+塗裝），異材接觸需隔離。</li>
+<li><strong>⚠️ 地面鋪設：</strong>採 <strong>透水磚</strong> 或 <strong>架高木地板</strong>，利於排水散熱。</li>
+<li><strong>⚠️ 淨寬管理（第一優先補強）：</strong>用固定花台/地坪界定，確保淨寬不被堆物吃掉。<strong>設計凍結條款：側院淨寬 ≥150cm（或依建築師計算之最小淨寬），完工後不得堆置雜物、花盆、腳踏車等；物業管理規約需明文禁止。</strong></li>
+<li><strong>⚠️ 排水獨立：</strong>側院與車庫/室內分流，落水頭/地漏可拆洗、可清通；必要時管徑加大作保守保險。</li>
+<li><strong>⚠️ 清掃口：</strong>排水管每 10m 設 1 處清掃口，維修友善。</li>
+<li><strong>⚠️ 排水坡度：</strong>側院地坪坡度 ≥1:100，並保留颱風溢流路徑。</li>
+<li><strong>⚠️ 格柵固定（第一優先補強）：</strong>格柵結構由結構技師依設計風載檢核（錨栓規格/間距/植入深度/防蝕/可拆修），<strong>固定細節需出施工詳圖並列入驗收</strong>。</li>
+<li><strong>⚠️ 遮陽防蚊：</strong>加設遮陽/防蚊措施，避免通風區變死角。</li>
+</div>
+<div class="warning-box">
+<div class="warning-title">🚨 逃生動線定位</div>
+<div class="warning-content">
+                                若側院定位為「正式避難通路」，需依建築/消防審查確認實際適用法規與淨寬；
+                                本案以通風/維修動線為主，淨寬保留且不得堆置雜物。
+                            </div>
+</div>
+<div style="padding:12px;background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.3);border-radius:8px;margin-top:10px;color:#7f1d1d;font-size:.85rem;">
+<strong>⚠️ 採光、通風、逃生距離正式檢核（需專業計算）：</strong>本文件 HTML 示意圖中的窗戶位置、開口大小與動線標註僅供設計參考，<strong>不可替代</strong>建築師進行的居室採光面積計算、通風開口面積計算、避難步行距離檢核與無障礙動線審查。上述項目需於設計會議後由建築師出具正式計算書，並依《建築技術規則》檢核通過。
+</div>
+</div>
+<div class="room" data-h-mm="1300" data-target-cell="slot-8" data-w-mm="7857" data-x-mm="0" data-y-mm="4000" id="room-elder">
+<div class="room-head">
+<div class="room-name">
+<div class="room-name-icon">🛏️</div>
+                                孝親房 / 長輩房
+                            </div>
+</div>
+<div class="room-details">
+<li><strong>無障礙（第一優先補強）：</strong>
+<ul style="margin-top:4px;padding-left:16px;">
+<li><strong>門寬：</strong>≥90cm（建議 ≥100cm 以便輪椅進出）。</li>
+<li><strong>室內淨寬：</strong>床邊至對牆淨寬 ≥150cm，確保輪椅迴轉空間（迴轉直徑 ≥150cm）。</li>
+<li><strong>零高低差：</strong>室內地坪與走廊/衛浴間無門檻或門檻 ≤2cm 配合斜坡。</li>
+<li><strong>動線：</strong>玄關 → 客廳 → 孝親房 → 孝親衛浴需形成連續無障礙動線，轉彎處淨寬 ≥150cm。</li>
+</ul>
+</li>
+<li><strong>⚠️ 緊急呼叫：</strong>床邊預留 <strong>有線式雙迴路緊急按鈕</strong>（供電一路＋訊號一路，訊號回 IDF；連動 2F 與 1F
+                                客廳聲光警報 <strong>+ 手機推播</strong>）。</li>
+<li><strong>網路：</strong>CAT6 ×2（床頭 + 電視牆）。</li>
+</div>
+</div>
+<div class="room" data-h-mm="1700" data-target-cell="slot-10" data-w-mm="5500" data-x-mm="0" data-y-mm="5300" id="room-elder-bath">
+<div class="room-head">
+<div class="room-name">
+<div class="room-name-icon">🚿</div>
+                                孝親衛浴
+                            </div>
+</div>
+<div class="room-details">
+<li><strong>無障礙設計（第一優先補強）：</strong>
+<ul style="margin-top:4px;padding-left:16px;">
+<li><strong>門寬：</strong>≥90cm（建議向內開或拉門，避免阻擋通道）。</li>
+<li><strong>迴轉空間：</strong>淋浴區/馬桶前方預留 ≥150×180cm 輪椅迴轉空間。</li>
+<li><strong>扶手：</strong>淋浴區與馬桶旁牆面預埋木芯或鋼襯，日後可安裝 L 型扶手。</li>
+<li><strong>止滑地磚：</strong>濕區選用防滑係數 ≥0.6 地磚。</li>
+<li><strong>淋浴座椅：</strong>預留折疊淋浴座椅安裝牆面補強。</li>
+</ul>
+</li>
+<li><strong>⚠️ 求救鈴連動：</strong>訊號回 IDF，同步連動 1F 客廳聲光警報 <strong>+ 手機推播</strong>。</li>
+<li><strong>⚠️ 防水：</strong>牆地交界做 R 角；淋浴區防水高度 ≥180cm，其餘濕區 ≥30cm。</li>
+<li><strong>電力預留：</strong>鏡後除霧電源 + 馬桶對面 120cm 高插座（電熱毛巾架）。</li>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ==================== 2F（全新配置） ==================== -->
+<div class="floor-plan" data-floor-depth-mm="6200" data-floor-width-mm="11000" data-geometry-source="auto-grid-v1" data-north-deg="0" id="floor-2">
+<div class="floor-header">
+<div class="floor-title">
+<div class="floor-title-icon">2F</div>
+<div>
+<div>🆕 公共層：客廳（主角）× 客房 × 小廚房</div>
+<div style="font-size:.8rem;color:#64748b;font-weight:400;">
+                            客廳 8.5 坪為核心｜可關門客房 3.5 坪｜小廚房含冰箱｜洗衣曬衣前陽台
+                        </div>
+</div>
+</div>
+<div class="direction-badge">
+<div class="dir-item">⬆️ 南：前陽台</div>
+<div class="dir-item">⬇️ 北：廁所（對齊管道）</div>
+<div class="dir-item">🆕 v9.2 重新規劃</div>
+</div>
+</div><div class="final-floor-note" data-final-building-id="C" data-final-floor-id="floor-2">
+<p><strong>Candidate selection:</strong> baseline | total=59.5 | circulation=56.3 | daylight=54.9 | mep=66.7 | utilization=100.0</p>
+<p><strong>Canonical snapshot:</strong> visual room names, onclick targets, geometry, doors and windows are kept from the source HTML.</p>
+<p><strong>Candidate analysis:</strong> 6 matched / 0 rejected / 0 applied to visible cells.</p>
+<p>Expert weighting prefers `circulation`; this copy follows export selection `baseline`.</p>
+<ul class="final-candidate-mismatch"><li>No candidate/canonical room-slot mismatch was found for this floor.</li></ul>
+<ul><li>BR-TW-002: 每層建議維持單一主入口標記。 (C:floor-2 entry_count=0)</li></ul>
+</div>
+<div class="floor-content">
+<div class="visual-plan">
+<div class="plan-header">
+<div class="plan-title">📐 2F 空間配置圖（新版）</div>
+<div class="room-area">約 21 坪</div>
+</div>
+<div class="plan-grid-visual">
+<!-- 南：前陽台 -->
+<div class="plan-row" data-row-h-mm="1200" style="grid-template-columns:1fr;">
+<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1200" data-material="concrete+drain" data-w-mm="11000" data-window-mm="0" data-x-mm="0" data-y-mm="0" onclick="highlightRoom('balcony2f', this)">
+<span class="cell-icon">🧺</span>
+<span class="cell-name">前陽台（洗衣曬衣）</span>
+<span class="cell-size">約 1.8 坪</span>
+<div class="io-badges">
+<span class="badge water">💧 洗衣機</span>
+<span class="badge pwr">🔌 專迴</span>
+<span class="badge new">⚠️ 濕區機房</span>
+</div>
+</div>
+</div>
+<!-- 客廳（主角） -->
+<div class="plan-row" data-row-h-mm="1300" style="grid-template-columns:1fr;">
+<div class="plan-cell" data-door-mm="900" data-h-mm="1300" data-material="wood+paint" data-w-mm="11000" data-window-mm="1800" data-x-mm="0" data-y-mm="1200" onclick="highlightRoom('living2f', this)" style="min-height:120px;">
+<span class="cell-icon">🛋️</span>
+<span class="cell-name">客廳（主角空間）</span>
+<span class="cell-size">約 8.5 坪｜L型沙發＋電視牆＋茶几</span>
+<div class="io-badges">
+<span class="badge net">🌐 ×2</span>
+<span class="badge tv">📺 電視牆</span>
+<span class="badge ap">📶 天花AP</span>
+<span class="badge pwr">🔌 ×6</span>
+</div>
+</div>
+</div>
+<!-- 客房 + 樓梯 -->
+<div class="plan-row" data-row-h-mm="1300" style="grid-template-columns:2fr 1fr;">
+<div class="plan-cell" data-door-mm="900" data-h-mm="1300" data-material="wood+paint" data-w-mm="7333" data-window-mm="1200" data-x-mm="0" data-y-mm="2500" onclick="highlightRoom('guestroom2f', this)" style="border-color:rgba(168,85,247,.4);background:linear-gradient(135deg,rgba(168,85,247,.1),rgba(139,92,246,.05));">
+<span class="cell-icon">🛏️</span>
+<span class="cell-name">客房 / 多功能房</span>
+<span class="cell-size">約 3.5 坪｜可關門獨立空間</span>
+<div class="io-badges">
+<span class="badge net">🌐 ×1</span>
+<span class="badge pwr">🔌 ×2</span>
+<span class="badge new">🚪 拉門/隱藏門</span>
+</div>
+</div>
+<div class="plan-cell stair" data-door-mm="900" data-h-mm="1300" data-material="concrete+paint" data-w-mm="3667" data-window-mm="600" data-x-mm="7333" data-y-mm="2500" onclick="highlightRoom('stair2f', this)">
+<span class="cell-icon">🪜</span>
+<span class="cell-name">樓梯</span>
+<div class="io-badges">
+<span class="badge stair">⬇️1F ⬆️3F</span>
+</div>
+</div>
+</div>
+<!-- 小廚房 -->
+<div class="plan-row" data-row-h-mm="1300" style="grid-template-columns:1fr;">
+<div class="plan-cell kitchen" data-door-mm="900" data-h-mm="1300" data-material="tile+stainless" data-w-mm="11000" data-window-mm="900" data-x-mm="0" data-y-mm="3800" onclick="highlightRoom('kitchen2f', this)">
+<span class="cell-icon">🍳</span>
+<span class="cell-name">小型廚房</span>
+<span class="cell-size">約 4.5 坪｜流理台 240cm + 冰箱 75cm</span>
+<div class="io-badges">
+<span class="badge water">💧 冷熱水</span>
+<span class="badge pwr">⚡ IH爐專迴 220V</span>
+<span class="badge pwr">🔌 冰箱專迴</span>
+</div>
+</div>
+</div>
+<!-- 北：廁所 -->
+<div class="plan-row" data-row-h-mm="1100" style="grid-template-columns:1fr;">
+<div class="plan-cell wet" data-door-mm="800" data-h-mm="1100" data-material="tile+waterproof" data-w-mm="11000" data-window-mm="600" data-x-mm="0" data-y-mm="5100" onclick="highlightRoom('bath2f', this)">
+<span class="cell-icon">🚿</span>
+<span class="cell-name">廁所（乾濕分離）</span>
+<span class="cell-size">約 2.8 坪｜對齊 3F 管道</span>
+<div class="io-badges">
+<span class="badge water">💧 乾濕分離</span>
+<span class="badge pwr">🔌 免治</span>
+<span class="badge new">⚠️ 上下對齊3F</span>
+</div>
+</div>
+</div>
+</div>
+<div class="compass"><span class="compass-arrow">⬆️</span> 南（前陽台側）</div>
+</div>
+<div class="details-panel">
+<div class="room" data-h-mm="1300" data-target-cell="slot-2" data-w-mm="11000" data-x-mm="0" data-y-mm="1200" id="room-living2f">
+<div class="room-head">
+<div class="room-name">
+<div class="room-name-icon">🛋️</div>
+                                客廳（2F 主角空間）
+                            </div>
+<div class="room-area">約 8.5 坪</div>
+</div>
+<div class="room-details">
+<li><strong>定位：</strong>2F 的核心空間，家人日常生活、接待客人的主要區域。</li>
+<li><strong>家具配置：</strong>L型沙發＋茶几＋電視牆。</li>
+<li><strong>網路：</strong>CAT6 ×2（電視牆 + 沙發後備用）。</li>
+<li><strong>AP：</strong>天花板預留 PoE AP 點位（覆蓋 2F 全層）。</li>
+<li><strong>電力：</strong>牆面插座 ×6 以上，充電方便。</li>
+</div>
+</div>
+<div class="room" data-h-mm="1300" data-target-cell="slot-3" data-w-mm="7333" data-x-mm="0" data-y-mm="2500" id="room-guestroom2f">
+<div class="room-head">
+<div class="room-name">
+<div class="room-name-icon">🛏️</div>
+                                客房 / 多功能房
+                            </div>
+<div class="room-area">約 3.5 坪</div>
+</div>
+<div class="room-details">
+<li><strong>定位：</strong>可關門的獨立空間，平時作書房/瑜伽/客房使用。</li>
+<li><strong>家具配置：</strong>單人床或沙發床 + 書桌 + 衣櫃。</li>
+<li><strong>⚠️ 門型建議：</strong>採用 <strong>拉門或隱藏門</strong>（省空間，開闔不佔走道）。</li>
+<li><strong>⚠️ 牆體建議：</strong>輕隔間（未來可彈性調整空間配置）。</li>
+</div>
+<div class="dimension-note">
+<strong>📏 關鍵尺寸：</strong>客房最小淨寬 <strong>210–240 cm</strong>，確保單人床＋走道舒適。
+                        </div>
+</div>
+<div class="room" data-h-mm="1300" data-target-cell="slot-5" data-w-mm="11000" data-x-mm="0" data-y-mm="3800" id="room-kitchen2f">
+<div class="room-head">
+<div class="room-name">
+<div class="room-name-icon">🍳</div>
+                                小型廚房
+                            </div>
+<div class="room-area">約 4.5 坪</div>
+</div>
+<div class="room-details">
+<li><strong>定位：</strong>2F 專屬輕食/飲料準備區，減少上下樓。</li>
+<li><strong>流理台：</strong>長度 <strong>≥ 240 cm</strong>，含水槽＋料理區。</li>
+<li><strong>冰箱位：</strong><strong>75 × 70 cm</strong>（寬×深），可放中型冰箱。</li>
+<li><strong>⚠️ IH 專迴：</strong>線徑 ≥2.5mm²，20A 斷路器，插座設於檯面上方 10–15cm 或採嵌入式 T-slot。</li>
+<li><strong>⚠️ 爐具建議：</strong>使用 <strong>IH 爐</strong>（較安全，無明火）。</li>
+<li><strong>排風：</strong>需設排風扇或小型抽油煙機。</li>
+<li><strong>火災偵測：</strong>定溫＋偵煙探測器連動 IDF，全棟同步響鈴。</li>
+</div>
+<div class="dimension-note">
+<strong>📏 關鍵尺寸：</strong>冰箱位 75×70cm｜流理台 ≥240cm
+                        </div>
+</div>
+<div class="room" data-h-mm="1100" data-target-cell="slot-6" data-w-mm="11000" data-x-mm="0" data-y-mm="5100" id="room-bath2f">
+<div class="room-head">
+<div class="room-name">
+<div class="room-name-icon">🚿</div>
+                                廁所（乾濕分離）
+                            </div>
+<div class="room-area">約 2.8 坪</div>
+</div>
+<div class="room-details">
+<li><strong>配置：</strong>乾濕分離設計，馬桶＋洗手台（乾區）+ 淋浴間（濕區）。</li>
+<li><strong>⚠️ 管道對齊（第一優先/設計凍結）：</strong>位置必須與 <strong>3F 廁所上下垂直對齊</strong>，避免管道轉彎造成堵塞。<strong>凍結條款：2F/3F 衛浴位置於結構體施工前鎖定，後期不得以房間或衣櫃功能為由移位；設計變更需經建築師/水電/結構三方簽核。</strong></li>
+<li><strong>免治馬桶：</strong>預留專用插座。</li>
+<li><strong>⚠️ 防水：</strong>牆地交界做 R 角；淋浴區防水高度 ≥180cm，其餘濕區 ≥30cm。</li>
+<li><strong>電力預留：</strong>鏡後除霧電源 + 馬桶對面 120cm 高插座（電熱毛巾架）。</li>
+</div>
+<div class="dimension-note">
+<strong>📏 關鍵尺寸：</strong>最小 <strong>150 × 180 cm</strong>
+</div>
+</div>
+<div class="room" data-h-mm="1200" data-target-cell="slot-1" data-w-mm="11000" data-x-mm="0" data-y-mm="0" id="room-balcony2f">
+<div class="room-head">
+<div class="room-name">
+<div class="room-name-icon">🧺</div>
+                                前陽台（洗衣曬衣區）
+                            </div>
+<div class="room-area">約 1.8 坪</div>
+</div>
+<div class="room-details">
+<li><strong>功能：</strong>專門用於洗衣機＋曬衣桿。</li>
+<li><strong>洗衣機：</strong>預留冷水龍頭＋排水＋專用電源插座。</li>
+<li><strong>⚠️ 防水層（第一優先補強）：</strong>
+<ul style="margin-top:4px;padding-left:16px;">
+<li><strong>二次防水：</strong>陽台地面防水層（柔性防水塗料 + 防水毯），上翻牆面 ≥30cm。</li>
+<li><strong>門檻高度：</strong>室內外交界處設止水門檻，高度 ≥5cm 或配合擋水條，颱風橫雨不回灌室內。</li>
+<li><strong>排水坡度：</strong>地坪坡度 ≥1:50 導向地漏。</li>
+<li><strong>地漏：</strong>建議管徑 ≥2"（50mm），可拆洗清通；施工圖標註位置與管徑。</li>
+<li><strong>緊急溢流：</strong>設緊急溢流口（高度低於門檻），溢流水導向獨立排水管，不可排入室內；施工圖標註溢流去處。</li>
+<li><strong>施工圖要求：</strong>補陽台防水剖面圖（含門檻詳圖、排水管徑、溢流去處），驗收時做灑水測試。</li>
+</ul>
+</li>
+<li><strong>曬衣桿：</strong>可安裝升降式曬衣架。</li>
+</div>
+<div class="warning-box">
+<div class="warning-title">⚠️ 防水重點提醒（第一優先）</div>
+<div class="warning-content">
+                                洗衣區請視同濕區機房：二次防水 + 洩水坡（≥1:50）+ 門檻擋水（≥5cm）+ 可清通排水（≥2"）+ 緊急溢流（獨立去水）。<strong>施工圖需補防水剖面與排水詳圖。</strong>
+</div>
+</div>
+</div>
+<div class="room" data-h-mm="1300" data-target-cell="slot-4" data-w-mm="3667" data-x-mm="7333" data-y-mm="2500" id="room-stair2f">
+<div class="room-head">
+<div class="room-name">
+<div class="room-name-icon">🪜</div>
+                                2F 樓梯間（⬇️1F ⬆️3F）
+                            </div>
+</div>
+<div class="room-details">
+<li><strong>標示：</strong>帶箭頭樓梯圖示，標註上下樓層方向。</li>
+<li><strong>感應燈：</strong>夜間自動照明。</li>
+<li><strong>住警器：</strong>依法規設置。</li>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ==================== 3F（全新配置） ==================== -->
+<div class="floor-plan" data-floor-depth-mm="4900" data-floor-width-mm="11000" data-geometry-source="auto-grid-v1" data-north-deg="0" id="floor-3">
+<div class="floor-header">
+<div class="floor-title">
+<div class="floor-title-icon">3F</div>
+<div>
+<div>🆕 主臥層：大主臥（四衣櫃）× 運動空間</div>
+<div style="font-size:.8rem;color:#64748b;font-weight:400;">
+                            飯店級主臥 11.5 坪｜衣櫃 ×4 一整排 360cm｜運動區需隔振分散
+                        </div>
+</div>
+</div>
+<div class="direction-badge">
+<div class="dir-item">⬆️ 南：前露台</div>
+<div class="dir-item">⬇️ 北：廁所（對齊管道）</div>
+<div class="dir-item">👗 4 衣櫃 360cm</div>
+</div>
+</div><div class="final-floor-note" data-final-building-id="C" data-final-floor-id="floor-3">
+<p><strong>Candidate selection:</strong> baseline | total=49.8 | circulation=51.8 | daylight=47.2 | mep=50.0 | utilization=100.0</p>
+<p><strong>Canonical snapshot:</strong> visual room names, onclick targets, geometry, doors and windows are kept from the source HTML.</p>
+<p><strong>Candidate analysis:</strong> 5 matched / 0 rejected / 0 applied to visible cells.</p>
+<p>Expert weighting prefers `circulation`; this copy follows export selection `baseline`.</p>
+<ul class="final-candidate-mismatch"><li>No candidate/canonical room-slot mismatch was found for this floor.</li></ul>
+<ul><li>BR-TW-002: 每層建議維持單一主入口標記。 (C:floor-3 entry_count=0)</li></ul>
+</div>
+<div class="floor-content">
+<div class="visual-plan">
+<div class="plan-header">
+<div class="plan-title">📐 3F 空間配置圖（新版）</div>
+<div class="room-area">約 21 坪</div>
+</div>
+<div class="plan-grid-visual">
+<!-- 南：前露台 -->
+<div class="plan-row" data-row-h-mm="1200" style="grid-template-columns:1fr;">
+<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1200" data-material="concrete+drain" data-w-mm="11000" data-window-mm="0" data-x-mm="0" data-y-mm="0" onclick="highlightRoom('terrace3f', this)">
+<span class="cell-icon">🌅</span>
+<span class="cell-name">前露台（通風曬衣）</span>
+<span class="cell-size">約 1.8 坪</span>
+<div class="io-badges">
+<span class="badge pwr">🔌 戶外插座</span>
+<span class="badge net">📷 CCTV</span>
+</div>
+</div>
+</div>
+<!-- 主臥（核心） -->
+<div class="plan-row" data-row-h-mm="1300" style="grid-template-columns:1fr;">
+<div class="plan-cell master" data-door-mm="900" data-h-mm="1300" data-material="wood+paint" data-w-mm="11000" data-window-mm="1200" data-x-mm="0" data-y-mm="1200" onclick="highlightRoom('master3f', this)" style="min-height:140px;">
+<span class="cell-icon">🛏️</span>
+<span class="cell-name">主臥室（飯店級配置）</span>
+<span class="cell-size">約 11.5 坪｜雙人床＋梳妝台＋衣櫃×4</span>
+<div class="io-badges">
+<span class="badge net">🌐 ×2</span>
+<span class="badge tv">📺 電視</span>
+<span class="badge ap">📶 AP</span>
+<span class="badge new">👗 360cm 衣櫃牆</span>
+</div>
+</div>
+</div>
+<!-- 運動空間 + 樓梯 -->
+<div class="plan-row" data-row-h-mm="1300" style="grid-template-columns:2fr 1fr;">
+<div class="plan-cell fitness" data-door-mm="900" data-h-mm="1300" data-material="paint+default" data-w-mm="7333" data-window-mm="1000" data-x-mm="0" data-y-mm="2500" onclick="highlightRoom('fitness3f', this)">
+<span class="cell-icon">🏃</span>
+<span class="cell-name">運動空間</span>
+<span class="cell-size">約 4.5 坪｜跑步機/瑜伽/重訓</span>
+<div class="io-badges">
+<span class="badge pwr">🔌 ×2</span>
+<span class="badge net">🌐 ×1</span>
+<span class="badge new">⚠️ 隔振+分散</span>
+</div>
+</div>
+<div class="plan-cell stair" data-door-mm="900" data-h-mm="1300" data-material="concrete+paint" data-w-mm="3667" data-window-mm="600" data-x-mm="7333" data-y-mm="2500" onclick="highlightRoom('stair3f', this)">
+<span class="cell-icon">🪜</span>
+<span class="cell-name">樓梯</span>
+<div class="io-badges">
+<span class="badge stair">⬇️2F ⬆️RF</span>
+</div>
+</div>
+</div>
+<!-- 北：廁所 -->
+<div class="plan-row" data-row-h-mm="1100" style="grid-template-columns:1fr;">
+<div class="plan-cell wet" data-door-mm="800" data-h-mm="1100" data-material="tile+waterproof" data-w-mm="11000" data-window-mm="600" data-x-mm="0" data-y-mm="3800" onclick="highlightRoom('bath3f', this)">
+<span class="cell-icon">🚿</span>
+<span class="cell-name">廁所（乾濕分離）</span>
+<span class="cell-size">約 2.8 坪｜夜間方便使用</span>
+<div class="io-badges">
+<span class="badge water">💧 乾濕分離</span>
+<span class="badge pwr">🔌 免治</span>
+<span class="badge new">⚠️ 上下對齊2F</span>
+</div>
+</div>
+</div>
+</div>
+<div class="compass"><span class="compass-arrow">⬆️</span> 南（前露台側）</div>
+</div>
+<div class="details-panel">
+<div class="room" data-h-mm="1300" data-target-cell="slot-2" data-w-mm="11000" data-x-mm="0" data-y-mm="1200" id="room-master3f">
+<div class="room-head">
+<div class="room-name">
+<div class="room-name-icon">🛏️</div>
+                                主臥室（飯店級配置）
+                            </div>
+<div class="room-area">約 11.5 坪</div>
+</div>
+<div class="room-details">
+<li><strong>定位：</strong>3F 的核心空間，提供舒適寬敞的睡眠與更衣環境。</li>
+<li><strong>床位：</strong>標準雙人床（180×200cm 或更大）。</li>
+<li><strong>梳妝台/書桌：</strong>靠窗位置，享受自然光。</li>
+<li><strong>⚠️ 四衣櫃配置：</strong>一整排 <strong>360cm</strong> 衣櫃（單櫃 90cm 寬 × 60cm 深 × 4 個）。</li>
+<li><strong>⚠️ 牆面需求：</strong>衣櫃牆需 <strong>≥ 4 米</strong>。</li>
+<li><strong>網路：</strong>CAT6 ×2（床頭 + 電視牆）。</li>
+<li><strong>智慧窗簾：</strong>預留控制線。</li>
+</div>
+<div class="spec-box">
+<div class="spec-title">👗 主臥衣櫃「四櫃」配置</div>
+<div class="spec-content">
+<li>單櫃規格：90cm 寬 × 60cm 深</li>
+<li>四櫃總長：360cm</li>
+<li>主臥牆面需 ≥ 4 米</li>
+<li>這是「飯店級主臥配置」，不是硬擠！</li>
+</div>
+</div>
+</div>
+<div class="room" data-h-mm="1300" data-target-cell="slot-3" data-w-mm="7333" data-x-mm="0" data-y-mm="2500" id="room-fitness3f">
+<div class="room-head">
+<div class="room-name">
+<div class="room-name-icon">🏃</div>
+                                運動空間
+                            </div>
+<div class="room-area">約 4.5 坪</div>
+</div>
+<div class="room-details">
+<li><strong>定位：</strong>居家健身專區，可放跑步機、瑜伽墊、簡易重訓器材。</li>
+<li><strong>設備建議：</strong>跑步機、瑜伽墊、啞鈴架、拉筋器材。</li>
+<li><strong>⚠️ 隔振作法（第一優先補強）：</strong>
+<ul style="margin-top:4px;padding-left:16px;">
+<li><strong>隔振層：</strong>全區施作連續隔振層或浮式地坪（橡膠墊/玻璃棉/彈性水泥），厚度 ≥15mm；薄墊只能改善高頻衝擊聲，低頻需靠結構隔振。</li>
+<li><strong>專用底座：</strong>跑步機加設隔振底座＋分散載重底板（鋼板或厚木板），避免集中載重。</li>
+<li><strong>擺位：</strong>跑步機靠樑柱/對樑放置，降低結構低頻傳導；<strong>就位前由結構技師確認樑柱承載力</strong>。</li>
+<li><strong>零高低差收邊：</strong>運動區完成面與相鄰空間（主臥/衣櫃區）齊平；如結構需要落差，過渡坡道坡度 ≤1:12，並以金屬/橡膠收邊條保護隔振層邊緣。</li>
+<li><strong>承載檢核：</strong>跑步機動態載重約 150–200kg（使用者重量 + 衝擊係數），需由結構技師確認樓板撓度與振動頻率符合住宅規範。</li>
+</ul>
+</li>
+<li><strong>通風：</strong>確保有窗戶或空調，運動時需良好換氣。</li>
+<li><strong>電力：</strong>跑步機需專用插座。</li>
+<li><strong>鏡子：</strong>可安裝全身鏡（瑜伽/重訓確認姿勢），牆面需做補強。</li>
+<li><strong>收納電源：</strong>衣櫃/收納櫃內預留插座（除濕棒/感應燈）。</li>
+</div>
+<div class="warning-box">
+<div class="warning-title">⚠️ 運動區施工重點（第一優先）</div>
+<div class="warning-content">
+<strong>低頻震動最惱人：</strong>請以「隔振連續層 + 專用底座 + 靠樑擺位 + 零高低差收邊」處理，避免傳到 2F 客廳。<strong>跑步機載重與樓板撓度需結構技師確認。</strong>
+</div>
+</div>
+</div>
+<div class="room" data-h-mm="1100" data-target-cell="slot-5" data-w-mm="11000" data-x-mm="0" data-y-mm="3800" id="room-bath3f">
+<div class="room-head">
+<div class="room-name">
+<div class="room-name-icon">🚿</div>
+                                廁所（乾濕分離）
+                            </div>
+<div class="room-area">約 2.8 坪</div>
+</div>
+<div class="room-details">
+<li><strong>配置：</strong>乾濕分離設計，馬桶＋洗手台（乾區）+ 淋浴間（濕區）。</li>
+<li><strong>定位：</strong>主臥專屬衛浴，方便夜間使用。</li>
+<li><strong>⚠️ 管道對齊（第一優先/設計凍結）：</strong>位置必須與 <strong>2F 廁所上下垂直對齊</strong>，避免管道轉彎造成堵塞。<strong>凍結條款：2F/3F 衛浴位置於結構體施工前鎖定，後期不得以房間或衣櫃功能為由移位；設計變更需經建築師/水電/結構三方簽核。</strong></li>
+<li><strong>免治馬桶：</strong>預留專用插座。</li>
+<li><strong>⚠️ 防水：</strong>牆地交界做 R 角；淋浴區防水高度 ≥180cm，其餘濕區 ≥30cm。</li>
+<li><strong>電力預留：</strong>鏡後除霧電源 + 馬桶對面 120cm 高插座（電熱毛巾架）。</li>
+</div>
+<div class="dimension-note">
+<strong>📏 關鍵尺寸：</strong>最小 <strong>150 × 180 cm</strong>
+</div>
+</div>
+<div class="room" data-h-mm="1200" data-target-cell="slot-1" data-w-mm="11000" data-x-mm="0" data-y-mm="0" id="room-terrace3f">
+<div class="room-head">
+<div class="room-name">
+<div class="room-name-icon">🌅</div>
+                                前露台
+                            </div>
+<div class="room-area">約 1.8 坪</div>
+</div>
+<div class="room-details">
+<li><strong>功能：</strong>通風、曬衣、休憩小空間。</li>
+<li><strong>設施：</strong>可安裝升降曬衣架。</li>
+<li><strong>安防：</strong>CCTV 1 支 PoE。</li>
+</div>
+</div>
+<div class="room" data-h-mm="1300" data-target-cell="slot-4" data-w-mm="3667" data-x-mm="7333" data-y-mm="2500" id="room-stair3f">
+<div class="room-head">
+<div class="room-name">
+<div class="room-name-icon">🪜</div>
+                                3F 樓梯間（⬇️2F ⬆️RF）
+                            </div>
+</div>
+<div class="room-details">
+<li><strong>RF 出口：</strong>樓梯通往 RF 的出口需設防水門或人孔蓋。</li>
+<li><strong>弱電立管：</strong>繼續延伸至 RF（預留未來擴充）。</li>
+<li><strong>感應燈 + 住警器：</strong>依規定設置。</li>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ==================== RF 設備層 ==================== -->
+<div class="floor-plan" data-floor-depth-mm="4100" data-floor-width-mm="11000" data-geometry-source="auto-grid-v1" data-north-deg="0" id="floor-4">
+<div class="floor-header">
+<div class="floor-title">
+<div class="floor-title-icon">RF</div>
+<div>
+<div>水塔 × 熱泵 × 預留擴充 × 樓梯出口</div>
+<div style="font-size:.8rem;color:#64748b;font-weight:400;">
+                            獨立給水系統｜排水坡度 1:50｜溢流可清通｜設備基座抬高 15cm
+                        </div>
+</div>
+</div>
+<div class="direction-badge">
+<div class="dir-item">💧 獨立水表</div>
+<div class="dir-item">❄️ VF800</div>
+<div class="dir-item">♨️ Haier</div>
+</div>
+</div><div class="final-floor-note" data-final-building-id="C" data-final-floor-id="floor-4">
+<p><strong>Candidate selection:</strong> baseline | total=61.2 | circulation=55.0 | daylight=60.0 | mep=68.3 | utilization=100.0</p>
+<p><strong>Canonical snapshot:</strong> visual room names, onclick targets, geometry, doors and windows are kept from the source HTML.</p>
+<p><strong>Candidate analysis:</strong> 3 matched / 0 rejected / 0 applied to visible cells.</p>
+<p>Expert weighting prefers `circulation`; this copy follows export selection `baseline`.</p>
+<ul class="final-candidate-mismatch"><li>No candidate/canonical room-slot mismatch was found for this floor.</li></ul>
+<ul><li>BR-TW-002: 每層建議維持單一主入口標記。 (C:floor-4 entry_count=0)</li></ul>
+</div>
+<div class="floor-content">
+<div class="visual-plan">
+<div class="plan-header">
+<div class="plan-title">📐 RF 設備配置圖</div>
+</div>
+<div class="plan-grid-visual">
+<div class="plan-row" data-row-h-mm="1300" style="grid-template-columns:1fr 1fr;">
+<div class="plan-cell stair" data-door-mm="900" data-h-mm="1300" data-material="concrete+paint" data-w-mm="5500" data-window-mm="600" data-x-mm="0" data-y-mm="0" onclick="highlightRoom('stair-rf', this)">
+<span class="cell-icon">🪜</span>
+<span class="cell-name">樓梯出口（⬇️3F）</span>
+<span class="cell-size">防水人孔蓋</span>
+</div>
+<div class="plan-cell typhoon" data-door-mm="900" data-h-mm="1300" data-material="paint+default" data-w-mm="5500" data-window-mm="1000" data-x-mm="5500" data-y-mm="0" onclick="highlightRoom('riser-rf', this)">
+<span class="cell-icon">🔌</span>
+<span class="cell-name">弱電預留人孔</span>
+<span class="cell-size">可掀式防水蓋</span>
+<div class="io-badges">
+<span class="badge net">預留擴充</span>
+</div>
+</div>
+</div>
+<div class="plan-row" data-row-h-mm="1100" style="grid-template-columns:1fr 1fr 1fr;">
+<div class="plan-cell wet" data-door-mm="800" data-h-mm="1100" data-material="tile+waterproof" data-w-mm="3667" data-window-mm="600" data-x-mm="0" data-y-mm="1300" onclick="highlightRoom('water-tank', this)">
+<span class="cell-icon">💧</span>
+<span class="cell-name">不鏽鋼水塔</span>
+<span class="cell-size">1000L｜基座+15cm</span>
+<div class="io-badges">
+<span class="badge water">C-T1</span>
+<span class="badge typhoon">溢流管 3"</span>
+</div>
+</div>
+<div class="plan-cell" data-door-mm="900" data-h-mm="1100" data-material="paint+default" data-w-mm="3667" data-window-mm="1000" data-x-mm="3667" data-y-mm="1300" onclick="highlightRoom('pump', this)">
+<span class="cell-icon">⚡</span>
+<span class="cell-name">加壓系統</span>
+<span class="cell-size">基座+15cm</span>
+<div class="io-badges">
+<span class="badge pwr">VF800</span>
+<span class="badge water">🔨 水錘吸收</span>
+</div>
+</div>
+<div class="plan-cell" data-door-mm="900" data-h-mm="1100" data-material="paint+default" data-w-mm="3667" data-window-mm="1000" data-x-mm="7333" data-y-mm="1300" onclick="highlightRoom('heatpump', this)">
+<span class="cell-icon">🔥</span>
+<span class="cell-name">熱泵熱水器</span>
+<span class="cell-size">基座+15cm</span>
+<div class="io-badges">
+<span class="badge pwr">Haier 200L</span>
+<span class="badge hot">♨️ 保溫≥15mm</span>
+</div>
+</div>
+</div>
+<div class="plan-row" data-row-h-mm="1700" style="grid-template-columns:1.5fr 1fr;">
+<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-w-mm="6600" data-window-mm="0" data-x-mm="0" data-y-mm="2400" onclick="highlightRoom('platform', this)">
+<span class="cell-icon">🏗️</span>
+<span class="cell-name">活動平台 / 曬衣棚架</span>
+<span class="cell-size">預留未來擴充</span>
+</div>
+<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-w-mm="4400" data-window-mm="0" data-x-mm="6600" data-y-mm="2400" onclick="highlightRoom('laundry-rf', this)">
+<span class="cell-icon">👕</span>
+<span class="cell-name">曬衣區</span>
+</div>
+</div>
+</div>
+<div class="compass"><span class="compass-arrow">⬆️</span> 北</div>
+</div>
+<div class="details-panel">
+<div class="room" data-h-mm="1100" data-target-cell="slot-4" data-w-mm="3667" data-x-mm="3667" data-y-mm="1300" id="room-pump">
+<div class="room-head">
+<div class="room-name">
+<div class="room-name-icon">⚡</div>
+                                加壓系統 (VF800)
+                            </div>
+<div class="room-area">冷水恆壓</div>
+</div>
+<div class="room-details">
+<li><strong>設備：</strong>VF800 變頻恆壓泵。</li>
+<li><strong>⚠️ 設備基座：</strong>抬高 <strong>15cm</strong>，防止淹水導致馬達短路。</li>
+<li><strong>⚠️ 水錘吸收器：</strong>VF800 出口端加裝水錘吸收器，防止關水震動。</li>
+<li><strong>⚠️ 重力旁通迴路：</strong>水塔與 VF800 間增設旁通管（含常閉閥 C-V2），停電時可開啟靠重力供水。</li>
+</div>
+</div>
+<div class="room" data-h-mm="1100" data-target-cell="slot-5" data-w-mm="3667" data-x-mm="7333" data-y-mm="1300" id="room-heatpump">
+<div class="room-head">
+<div class="room-name">
+<div class="room-name-icon">🔥</div>
+                                熱泵熱水器 (Haier)
+                            </div>
+<div class="room-area">熱水供應</div>
+</div>
+<div class="room-details">
+<li><strong>設備：</strong>Haier 空氣能熱泵 200L。</li>
+<li><strong>⚠️ 設備基座：</strong>抬高 <strong>15cm</strong>，防止淹水。</li>
+<li><strong>⚠️ 保溫優化：</strong>熱水管強制包覆 <strong>≥15mm</strong> 保溫棉。</li>
+<li><strong>止回閥：</strong>進水端必裝止回閥 (C-C2)。</li>
+</div>
+</div>
+<div class="room" data-h-mm="1100" data-target-cell="slot-3" data-w-mm="3667" data-x-mm="0" data-y-mm="1300" id="room-water-tank">
+<div class="room-head">
+<div class="room-name">
+<div class="room-name-icon">💧</div>
+                                不鏽鋼水塔
+                            </div>
+<div class="room-area">1000L</div>
+</div>
+<div class="room-details">
+<li><strong>水源：</strong>C 棟獨立水表 → TS400B 揚水 → 水塔。</li>
+<li><strong>⚠️ 設備基座：</strong>抬高 <strong>15cm</strong>。</li>
+<li><strong>⚠️ 溢流管：</strong>由 2" 增至 <strong>3"</strong>，並設緊急溢流口。</li>
+<li><strong>⚠️ 擺位：</strong>基座對樑/靠柱，設備就位前由結構/機電確認承載與錨定。</li>
+<li style="color:#ef4444;"><strong>⚠️ 需專業計算（第一優先）：</strong>RF 水塔（約 1 噸）、熱泵、VF800、太陽能設備、棚架等載重與錨定，需由結構技師正式計算並確認樑柱承載力；本 HTML 僅標示設備位置示意，不可替代結構計算書。</li>
+</div>
+</div>
+<div class="spec-box">
+<div class="spec-title">🌀 RF 颱風防護施工重點</div>
+<div class="spec-content">
+<li><strong>排水坡度：</strong>RF 地坪坡度 <strong>1:50</strong>（優於一般 1:100）。</li>
+<li><strong>溢流管：</strong>3" 管徑 + 緊急溢流口 + 溢流路徑。</li>
+<li><strong>落水頭可清理：</strong>落水頭/溢流口可拆洗清通，避免堵塞倒灌。</li>
+<li><strong>設備基座：</strong>所有設備抬高 15cm，防止淹水。</li>
+<li><strong>抗風耐震：</strong>設備基座需錨定，檢核抗風掀與耐震固定細節。</li>
+<li><strong>擺位承重：</strong>設備基座位置需與結構樑位對應，就位前由結構/機電確認。</li>
+<li><strong>閥件保護：</strong>關鍵閥加裝防風防撞保護箱。</li>
+<li><strong>弱電出口防水：</strong>PVC 鴨嘴彎頭（Drip Loop）出口朝下，避免雨水倒灌。</li>
+<li><strong>檢修友善：</strong>RF 預留檢修照明＋110V 插座、吊裝動線。</li>
+<li><strong>二次防水：</strong>所有穿屋面孔洞做二次防水收邊＋封堵。</li>
+<li><strong>交付保養：</strong>颱風後巡檢與清理清單納入交付文件。</li>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ==================== 系統總表 ==================== -->
+<div class="floor-plan" id="floor-5">
+<div class="floor-header">
+<div class="floor-title">
+<div class="floor-title-icon">💧</div>
+<div>
+<div>系統總表：給水流程 × 弱電點位 × 閥件編碼</div>
+<div style="font-size:.8rem;color:#64748b;font-weight:400;">
+                            C 棟獨立系統架構總覽｜v9.2 2F/3F 新配置 + 維護預留
+                        </div>
+</div>
+</div>
+</div>
+<div class="floor-content" style="grid-template-columns:1fr;">
+<div class="details-panel" style="max-width:100%;">
+<div class="system-box">
+<div class="system-title">💧 C 棟給水系統流程</div>
+<div class="flow-diagram">
+<div class="flow-item">🚰 自來水表<small>C 棟獨立</small></div>
+<div class="flow-arrow">→</div>
+<div class="flow-item">C-V1 總閥</div>
+<div class="flow-arrow">→</div>
+<div class="flow-item">TS400B<small>揚水泵</small></div>
+<div class="flow-arrow">→</div>
+<div class="flow-item">C-T1 水塔<small>1000L</small></div>
+</div>
+<div class="flow-diagram" style="margin-top:15px;">
+<div class="flow-item">C-T1 水塔</div>
+<div class="flow-arrow">→</div>
+<div class="flow-item">VF800<br/><small>+水錘吸收器</small></div>
+<div class="flow-arrow">→</div>
+<div class="flow-item">冷水幹管</div>
+<div class="flow-arrow">→</div>
+<div class="flow-item" style="border-color:#ef4444;background:rgba(239,68,68,.1);">Haier 熱泵
+                            </div>
+<div class="flow-arrow">→</div>
+<div class="flow-item" style="border-color:#ef4444;">熱水幹管</div>
+</div>
+</div>
+<div class="system-box">
+<div class="system-title">🌐 C 棟弱電點位總表（v9.2 更新）</div>
+<div class="io-table">
+<table>
+<tr>
+<th>樓層</th>
+<th>空間</th>
+<th>CAT6</th>
+<th>TV</th>
+<th>AP</th>
+<th>備註</th>
+</tr>
+<tr class="important">
+<td>1F</td>
+<td>IDF（樓梯下）</td>
+<td>匯集</td>
+<td>-</td>
+<td>-</td>
+<td>12U｜百葉門｜溫控風扇 35°C｜濾網/除濕預留</td>
+</tr>
+<tr>
+<td>1F</td>
+<td>客廳</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>天花 AP｜緊急警報連動</td>
+</tr>
+<tr>
+<td>1F</td>
+<td>孝親房</td>
+<td>2</td>
+<td>1</td>
+<td>-</td>
+<td>雙迴路緊急按鈕</td>
+</tr>
+<tr class="new">
+<td>2F</td>
+<td>客廳（主角）</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>🆕 L型沙發＋電視牆</td>
+</tr>
+<tr class="new">
+<td>2F</td>
+<td>客房/多功能房</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>🆕 可關門獨立空間</td>
+</tr>
+<tr class="new">
+<td>2F</td>
+<td>小廚房</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>🆕 IH爐 220V + 冰箱專迴</td>
+</tr>
+<tr class="new">
+<td>3F</td>
+<td>主臥（飯店級）</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>🆕 11.5坪｜衣櫃×4（360cm）</td>
+</tr>
+<tr class="new">
+<td>3F</td>
+<td>運動空間</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>🆕 隔振連續層＋專用底座</td>
+</tr>
+<tr>
+<td>3F</td>
+<td>前露台</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>CCTV ×1</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="system-box">
+<div class="system-title">🪜 樓梯標示統一規範</div>
+<div class="io-table">
+<table>
+<tr>
+<th>樓層</th>
+<th>標示內容</th>
+<th>設施</th>
+</tr>
+<tr>
+<td>1F</td>
+<td>🪜 樓梯間（⬆️2F）</td>
+<td>IDF 機櫃、感應燈、住警器</td>
+</tr>
+<tr>
+<td>2F</td>
+<td>🪜 樓梯間（⬇️1F ⬆️3F）</td>
+<td>感應燈、住警器</td>
+</tr>
+<tr>
+<td>3F</td>
+<td>🪜 樓梯間（⬇️2F ⬆️RF）</td>
+<td>感應燈、住警器</td>
+</tr>
+<tr class="important">
+<td>RF</td>
+<td>🪜 樓梯出口（⬇️3F）+ 防水人孔蓋</td>
+<td>防水門/人孔蓋</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+        function showFloor(n) {
+            document.querySelectorAll('.floor-plan').forEach(f => f.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+
+            const targetId = (n === 'overview') ? 'floor-overview' : 'floor-' + n;
+            document.getElementById(targetId).classList.add('active');
+
+            const tabs = document.querySelectorAll('.tab');
+            if (n === 'overview') {
+                tabs[0].classList.add('active');
+            } else {
+                tabs[n].classList.add('active');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function highlightRoom(roomId, cell) {
+            document.querySelectorAll('.plan-cell').forEach(c => c.classList.remove('active-cell'));
+            document.querySelectorAll('.room').forEach(r => r.classList.remove('room-active'));
+
+            if (cell) cell.classList.add('active-cell');
+            const room = document.getElementById('room-' + roomId);
+            if (room) {
+                room.classList.add('room-active');
+                room.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+    </script>
+<script id="house-design-final-sync" type="application/json">{
+  "schema_version": "final-html-sync-v2",
+  "sync_mode": "canonical_snapshot",
+  "generated_at": "2026-05-15T08:34:24.065204+00:00",
+  "building_id": "C",
+  "mode": "ifc",
+  "selection": "baseline",
+  "source_file": "CbuildingView.html",
+  "report_hash": "0b9cc78322334e605107bab62c262c587402b2914eb0082145e6f0adc633650e",
+  "report_generated_at": "2026-05-15T08:34:23.533596+00:00",
+  "updated_floor_count": 4,
+  "analyzed_floor_count": 4,
+  "candidate_assignment_count": 19,
+  "matched_assignment_count": 19,
+  "rejected_assignment_count": 0,
+  "applied_assignment_count": 0,
+  "floors": [
+    {
+      "building_id": "C",
+      "floor_id": "floor-1",
+      "selected_candidate_id": "baseline",
+      "scores": {
+        "circulation": 63.0,
+        "daylight": 47.58,
+        "mep": 70.0,
+        "utilization": 100.0,
+        "total": 60.82,
+        "penalty_unplaced_rooms": 0.0
+      },
+      "candidate_assignment_count": 5,
+      "matched_assignment_count": 5,
+      "rejected_assignment_count": 0,
+      "applied_assignment_count": 0,
+      "assignments": [
+        {
+          "slot_id": "slot-4",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "sideyard",
+          "canonical_slot_name": "側院",
+          "canonical_cell_size": "格柵導風 45°",
+          "candidate_room_uid": "C:floor-1:sideyard",
+          "candidate_room_local_id": "sideyard",
+          "candidate_room_name": "側院（邊間優勢｜通風關鍵）",
+          "dimension_fit": {
+            "circulation": 0.0,
+            "daylight": -0.1,
+            "mep": 0.0
+          }
+        },
+        {
+          "slot_id": "slot-7",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "stair1f",
+          "canonical_slot_name": "樓梯 + IDF",
+          "canonical_cell_size": "樓梯下弱電櫃",
+          "candidate_room_uid": "C:floor-1:stair1f",
+          "candidate_room_local_id": "stair1f",
+          "candidate_room_name": "1F 樓梯間（⬆️2F）+ IDF 弱電機櫃",
+          "dimension_fit": {
+            "circulation": 0.18,
+            "daylight": 0.2,
+            "mep": 1.0
+          }
+        },
+        {
+          "slot_id": "slot-8",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "elder",
+          "canonical_slot_name": "孝親房",
+          "canonical_cell_size": "約 5 坪｜長輩友善",
+          "candidate_room_uid": "C:floor-1:elder",
+          "candidate_room_local_id": "elder",
+          "candidate_room_name": "孝親房 / 長輩房",
+          "dimension_fit": {
+            "circulation": 0.48999999999999994,
+            "daylight": -0.1548,
+            "mep": 0.0
+          }
+        },
+        {
+          "slot_id": "slot-9",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "sliding-door",
+          "canonical_slot_name": "拉門阻隔",
+          "canonical_cell_size": "吊軌無地軌",
+          "candidate_room_uid": "C:floor-1:sliding-door",
+          "candidate_room_local_id": "sliding-door",
+          "candidate_room_name": "樓梯前拉門阻隔（1F↔2F）",
+          "dimension_fit": {
+            "circulation": 0.0,
+            "daylight": 0.2,
+            "mep": 0.0
+          }
+        },
+        {
+          "slot_id": "slot-10",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "elder-bath",
+          "canonical_slot_name": "孝親衛浴",
+          "canonical_cell_size": "",
+          "candidate_room_uid": "C:floor-1:elder-bath",
+          "candidate_room_local_id": "elder-bath",
+          "candidate_room_name": "孝親衛浴",
+          "dimension_fit": {
+            "circulation": 0.63,
+            "daylight": -0.3868,
+            "mep": 1.0
+          }
+        }
+      ],
+      "rejected_assignments": [],
+      "expert_best": "circulation",
+      "pipeline_best": "circulation",
+      "floor_issues": []
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-2",
+      "selected_candidate_id": "baseline",
+      "scores": {
+        "circulation": 56.33,
+        "daylight": 54.85,
+        "mep": 66.67,
+        "utilization": 100.0,
+        "total": 59.5,
+        "penalty_unplaced_rooms": 0.0
+      },
+      "candidate_assignment_count": 6,
+      "matched_assignment_count": 6,
+      "rejected_assignment_count": 0,
+      "applied_assignment_count": 0,
+      "assignments": [
+        {
+          "slot_id": "slot-1",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "balcony2f",
+          "canonical_slot_name": "前陽台（洗衣曬衣）",
+          "canonical_cell_size": "約 1.8 坪",
+          "candidate_room_uid": "C:floor-2:balcony2f",
+          "candidate_room_local_id": "balcony2f",
+          "candidate_room_name": "前陽台（洗衣曬衣區）",
+          "dimension_fit": {
+            "circulation": 0.0,
+            "daylight": -0.1,
+            "mep": 1.0
+          }
+        },
+        {
+          "slot_id": "slot-2",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "living2f",
+          "canonical_slot_name": "客廳（主角空間）",
+          "canonical_cell_size": "約 8.5 坪｜L型沙發＋電視牆＋茶几",
+          "candidate_room_uid": "C:floor-2:living2f",
+          "candidate_room_local_id": "living2f",
+          "candidate_room_name": "客廳（2F 主角空間）",
+          "dimension_fit": {
+            "circulation": 0.48,
+            "daylight": 0.0555,
+            "mep": 0.0
+          }
+        },
+        {
+          "slot_id": "slot-3",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "guestroom2f",
+          "canonical_slot_name": "客房 / 多功能房",
+          "canonical_cell_size": "約 3.5 坪｜可關門獨立空間",
+          "candidate_room_uid": "C:floor-2:guestroom2f",
+          "candidate_room_local_id": "guestroom2f",
+          "candidate_room_name": "客房 / 多功能房",
+          "dimension_fit": {
+            "circulation": 0.27999999999999997,
+            "daylight": 0.0265,
+            "mep": 0.0
+          }
+        },
+        {
+          "slot_id": "slot-4",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "stair2f",
+          "canonical_slot_name": "樓梯",
+          "canonical_cell_size": "",
+          "candidate_room_uid": "C:floor-2:stair2f",
+          "candidate_room_local_id": "stair2f",
+          "candidate_room_name": "2F 樓梯間（⬇️1F ⬆️3F）",
+          "dimension_fit": {
+            "circulation": 0.0,
+            "daylight": 0.2,
+            "mep": 0.0
+          }
+        },
+        {
+          "slot_id": "slot-5",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "kitchen2f",
+          "canonical_slot_name": "小型廚房",
+          "canonical_cell_size": "約 4.5 坪｜流理台 240cm + 冰箱 75cm",
+          "candidate_room_uid": "C:floor-2:kitchen2f",
+          "candidate_room_local_id": "kitchen2f",
+          "candidate_room_name": "小型廚房",
+          "dimension_fit": {
+            "circulation": 0.0,
+            "daylight": 0.2,
+            "mep": 1.0
+          }
+        },
+        {
+          "slot_id": "slot-6",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "bath2f",
+          "canonical_slot_name": "廁所（乾濕分離）",
+          "canonical_cell_size": "約 2.8 坪｜對齊 3F 管道",
+          "candidate_room_uid": "C:floor-2:bath2f",
+          "candidate_room_local_id": "bath2f",
+          "candidate_room_name": "廁所（乾濕分離）",
+          "dimension_fit": {
+            "circulation": 0.0,
+            "daylight": 0.2,
+            "mep": 0.0
+          }
+        }
+      ],
+      "rejected_assignments": [],
+      "expert_best": "circulation",
+      "pipeline_best": "mep",
+      "floor_issues": [
+        "BR-TW-002: 每層建議維持單一主入口標記。 (C:floor-2 entry_count=0)"
+      ]
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-3",
+      "selected_candidate_id": "baseline",
+      "scores": {
+        "circulation": 51.75,
+        "daylight": 47.23,
+        "mep": 50.0,
+        "utilization": 100.0,
+        "total": 49.78,
+        "penalty_unplaced_rooms": 0.0
+      },
+      "candidate_assignment_count": 5,
+      "matched_assignment_count": 5,
+      "rejected_assignment_count": 0,
+      "applied_assignment_count": 0,
+      "assignments": [
+        {
+          "slot_id": "slot-1",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "terrace3f",
+          "canonical_slot_name": "前露台（通風曬衣）",
+          "canonical_cell_size": "約 1.8 坪",
+          "candidate_room_uid": "C:floor-3:terrace3f",
+          "candidate_room_local_id": "terrace3f",
+          "candidate_room_name": "前露台",
+          "dimension_fit": {
+            "circulation": 0.0,
+            "daylight": -0.1,
+            "mep": 0.0
+          }
+        },
+        {
+          "slot_id": "slot-2",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "master3f",
+          "canonical_slot_name": "主臥室（飯店級配置）",
+          "canonical_cell_size": "約 11.5 坪｜雙人床＋梳妝台＋衣櫃×4",
+          "candidate_room_uid": "C:floor-3:master3f",
+          "candidate_room_local_id": "master3f",
+          "candidate_room_name": "主臥室（飯店級配置）",
+          "dimension_fit": {
+            "circulation": 0.175,
+            "daylight": -0.2273,
+            "mep": 0.0
+          }
+        },
+        {
+          "slot_id": "slot-3",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "fitness3f",
+          "canonical_slot_name": "運動空間",
+          "canonical_cell_size": "約 4.5 坪｜跑步機/瑜伽/重訓",
+          "candidate_room_uid": "C:floor-3:fitness3f",
+          "candidate_room_local_id": "fitness3f",
+          "candidate_room_name": "運動空間",
+          "dimension_fit": {
+            "circulation": 0.0,
+            "daylight": -0.35,
+            "mep": 0.0
+          }
+        },
+        {
+          "slot_id": "slot-4",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "stair3f",
+          "canonical_slot_name": "樓梯",
+          "canonical_cell_size": "",
+          "candidate_room_uid": "C:floor-3:stair3f",
+          "candidate_room_local_id": "stair3f",
+          "candidate_room_name": "3F 樓梯間（⬇️2F ⬆️RF）",
+          "dimension_fit": {
+            "circulation": 0.0,
+            "daylight": 0.2,
+            "mep": 0.0
+          }
+        },
+        {
+          "slot_id": "slot-5",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "bath3f",
+          "canonical_slot_name": "廁所（乾濕分離）",
+          "canonical_cell_size": "約 2.8 坪｜夜間方便使用",
+          "candidate_room_uid": "C:floor-3:bath3f",
+          "candidate_room_local_id": "bath3f",
+          "candidate_room_name": "廁所（乾濕分離）",
+          "dimension_fit": {
+            "circulation": 0.0,
+            "daylight": 0.2,
+            "mep": 0.0
+          }
+        }
+      ],
+      "rejected_assignments": [],
+      "expert_best": "circulation",
+      "pipeline_best": "circulation",
+      "floor_issues": [
+        "BR-TW-002: 每層建議維持單一主入口標記。 (C:floor-3 entry_count=0)"
+      ]
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-4",
+      "selected_candidate_id": "baseline",
+      "scores": {
+        "circulation": 55.0,
+        "daylight": 60.0,
+        "mep": 68.33,
+        "utilization": 100.0,
+        "total": 61.17,
+        "penalty_unplaced_rooms": 0.0
+      },
+      "candidate_assignment_count": 3,
+      "matched_assignment_count": 3,
+      "rejected_assignment_count": 0,
+      "applied_assignment_count": 0,
+      "assignments": [
+        {
+          "slot_id": "slot-3",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "water-tank",
+          "canonical_slot_name": "不鏽鋼水塔",
+          "canonical_cell_size": "1000L｜基座+15cm",
+          "candidate_room_uid": "C:floor-4:water-tank",
+          "candidate_room_local_id": "water-tank",
+          "candidate_room_name": "不鏽鋼水塔",
+          "dimension_fit": {
+            "circulation": 0.09999999999999998,
+            "daylight": 0.2,
+            "mep": 0.55
+          }
+        },
+        {
+          "slot_id": "slot-4",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "pump",
+          "canonical_slot_name": "加壓系統",
+          "canonical_cell_size": "基座+15cm",
+          "candidate_room_uid": "C:floor-4:pump",
+          "candidate_room_local_id": "pump",
+          "candidate_room_name": "加壓系統 (VF800)",
+          "dimension_fit": {
+            "circulation": 0.0,
+            "daylight": 0.2,
+            "mep": 0.0
+          }
+        },
+        {
+          "slot_id": "slot-5",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "heatpump",
+          "canonical_slot_name": "熱泵熱水器",
+          "canonical_cell_size": "基座+15cm",
+          "candidate_room_uid": "C:floor-4:heatpump",
+          "candidate_room_local_id": "heatpump",
+          "candidate_room_name": "熱泵熱水器 (Haier)",
+          "dimension_fit": {
+            "circulation": 0.19999999999999998,
+            "daylight": 0.2,
+            "mep": 0.55
+          }
+        }
+      ],
+      "rejected_assignments": [],
+      "expert_best": "circulation",
+      "pipeline_best": "circulation",
+      "floor_issues": [
+        "BR-TW-002: 每層建議維持單一主入口標記。 (C:floor-4 entry_count=0)"
+      ]
+    }
+  ]
+}</script></body>
+</html>

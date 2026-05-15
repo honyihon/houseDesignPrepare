@@ -1,7 +1,7 @@
 # Claude Code 指令使用教學
 
 適用 repo：`D:\I29786\workspace\houseDesignPrepare`  
-更新日期：2026-05-12
+更新日期：2026-05-15
 
 這份文件整理本專案的 Claude Code 設定、自訂 slash command、等效 PowerShell 指令，以及日常設計/出圖流程的建議用法。本專案主要用途是把 A/B/C 棟與儲藏空間的 HTML 平面配置轉成結構化 JSON，再產生建築計算輔助、候選配置、SVG 圖面、PDF bundle 與專家審查報告。
 
@@ -13,6 +13,7 @@
 |---|---|
 | `CLAUDE.md` | Claude Code 進入 repo 後的常駐專案規則與 pipeline 說明 |
 | `.claude/commands/workflow-house-all-in-one.md` | 自訂 slash command，對應 `/workflow-house-all-in-one` |
+| `.claude/commands/export-final-design-html.md` | 自訂 slash command，對應 `/export-final-design-html` |
 | `.claude/settings.local.json` | 本機啟用 MCP server 設定，目前啟用 `playwright`、`brave-search` |
 | `.mcp.json` | project-level MCP server 定義，包含 `playwright` 與 `brave-search` |
 | `.env.mcp.example` | Brave Search API key 的本機環境變數範本 |
@@ -21,6 +22,7 @@
 
 ```text
 /workflow-house-all-in-one
+/export-final-design-html
 ```
 
 其餘指令是該 slash command 背後呼叫的 PowerShell 或 Python 腳本，也可以手動在終端機執行。
@@ -76,11 +78,12 @@ claude
 ### `/workflow-house-all-in-one`
 
 用途：一次跑完整 A/B/C 住宅設計 workflow，包含需求標準化、專家 gate、HTML 一致性、出圖 pipeline、驗證、報告與 task board 更新。
+流程成功時也會輸出一份不覆蓋原檔的 final design HTML 討論版。
 
 Claude Code 內使用：
 
 ```text
-/workflow-house-all-in-one inputs/design_request.md --mode draft --buildings A,B,C --selection auto
+/workflow-house-all-in-one inputs/design_request.md --mode draft --buildings A,B,C --selection auto --drawing-style presentation
 ```
 
 等效 PowerShell：
@@ -90,10 +93,42 @@ powershell -ExecutionPolicy Bypass -File scripts/run_full_expert_workflow.ps1 `
   -Request inputs/design_request.md `
   -Mode draft `
   -Buildings A,B,C `
-  -Selection auto
+  -Selection auto `
+  -DrawingStyle presentation
 ```
 
 建議日常優先使用這個入口，因為它會把專家檢查、HTML 一致性與出圖驗證串在一起。
+
+### `/export-final-design-html`
+
+用途：從最近一次 pipeline 產物產生 canonical-first final design HTML 討論版副本。畫面保留原 HTML 的格位、房名、`onclick` 與幾何，最後 selection 只作候選分析摘要與 AI 可讀 JSON metadata。
+
+Claude Code 內使用：
+
+```text
+/export-final-design-html --mode draft --buildings A,B,C --selection auto
+```
+
+等效 PowerShell：
+
+```powershell
+python scripts/export_final_design_html.py `
+  --mode draft `
+  --selection auto `
+  --buildings A,B,C
+```
+
+輸出位置：
+
+```text
+structured/final_design_html/index.html
+structured/final_design_html/AbuildingView.final.html
+structured/final_design_html/BbuildingView.final.html
+structured/final_design_html/CbuildingView.final.html
+structured/final_design_html/manifest.json
+```
+
+這個指令只讀取 canonical HTML 與 `structured/` 產物，不會修改 `AbuildingView.html`、`BbuildingView.html`、`CbuildingView.html`，也不會把候選配置 assignment 套成可視房間搬位。
 
 ## 參數說明
 
@@ -103,6 +138,7 @@ powershell -ExecutionPolicy Bypass -File scripts/run_full_expert_workflow.ps1 `
 | `Mode` / `--mode` | `concept`、`draft`、`ifc` | 流程嚴謹度與輸出層級 |
 | `Buildings` / `--buildings` | `A`、`B`、`C`，可逗號分隔 | 要檢查的棟別，預設通常用 `A,B,C` |
 | `Selection` / `--selection` | `auto`、`baseline`、`best` | SVG/PDF 選用的候選配置 |
+| `DrawingStyle` / `--drawing-style` | `presentation`、`technical`、`debug` | SVG/PDF 圖面風格，預設 `presentation` |
 | `Paper` | `a3`、`a4` | PDF 紙張大小，預設 `a3` |
 | `Output` | PDF 路徑 | 預設 `structured/candidates/print_bundle.pdf` |
 | `PythonExe` | 例如 `python`、`py` | 指定 Python 可執行檔 |
@@ -111,6 +147,16 @@ powershell -ExecutionPolicy Bypass -File scripts/run_full_expert_workflow.ps1 `
 
 - `concept` 模式會自動使用 `best`，適合快速比較演算法評分最高的配置。
 - `draft` 與 `ifc` 模式會自動使用 `baseline`，較貼近原始圖面意圖。
+
+`DrawingStyle` 的實際用途：
+
+- `presentation`：預設交付圖，低飽和分類底色、少標籤、適合討論與列印。
+- `technical`：保留 DW/WIN/DIM/ELEV 等門窗、尺寸與立面索引標註。
+- `debug`：保留 strategy、fit、notes、右側 legend 等演算法檢查資訊。
+
+`presentation` 目前是 v2 版圖面樣式：白底圖紙、淡灰圖框、小型 title block、置中房名、淡 hatch 材質、低透明家具，以及底部極簡 legend。過長或過小的房名會改成 `R1`、`R2` 這類短碼，對照表寫在圖面底部與 `manifest.json` 的 `compact_label_count` / `compact_labels`。
+
+外部工具評估結論：OpenPlans、OpenPlan3D、Konva 可列為後續 renderer spike；BuildFloorPlan、Archilogic MCP、Blender MCP 偏外部服務、概念生成、資料查詢或 3D/BIM，不建議作為目前本地 SVG/PDF 主線。
 
 ## Mode 使用建議
 
@@ -128,27 +174,31 @@ powershell -ExecutionPolicy Bypass -File scripts/run_full_expert_workflow.ps1 `
   -Request inputs/design_request.md `
   -Mode concept `
   -Buildings A,B,C `
-  -Selection auto
+  -Selection auto `
+  -DrawingStyle presentation
 
 # 日常草圖交付，產生預設 A3 PDF
 powershell -ExecutionPolicy Bypass -File scripts/run_full_expert_workflow.ps1 `
   -Request inputs/design_request.md `
   -Mode draft `
   -Buildings A,B,C `
-  -Selection auto
+  -Selection auto `
+  -DrawingStyle presentation
 
 # 只檢查 A 棟
 powershell -ExecutionPolicy Bypass -File scripts/run_full_expert_workflow.ps1 `
   -Request inputs/design_request.md `
   -Mode draft `
   -Buildings A `
-  -Selection auto
+  -Selection auto `
+  -DrawingStyle presentation
 
 # 輸出 A4 PDF
 powershell -ExecutionPolicy Bypass -File scripts/run_full_expert_workflow.ps1 `
   -Request inputs/design_request.md `
   -Mode draft `
   -Buildings A,B,C `
+  -DrawingStyle presentation `
   -Paper a4 `
   -Output structured/candidates/print_bundle_a4.pdf
 ```
@@ -195,6 +245,9 @@ decision: approved
 6. `evaluate_expert_gates.py --stage report`  
    產出最終審查報告，並更新 `task-board.md` 的 last run 區塊。
 
+7. `export_final_design_html.py`  
+   產出 `structured/final_design_html/` 討論版 HTML 副本；畫面保留 canonical HTML，最後 selection 只進候選分析摘要與 metadata。
+
 ## 新增功能：建築計算輔助
 
 本專案已加入 `Architect Metrics` 計算輔助層，將 `Skills-Architects` 的 calculator 思路接進本地 pipeline。它會從 `structured/room_program.json` 讀取 A/B/C 棟樓層、房間、格位幾何、門窗尺寸，產生概念級檢核結果。
@@ -219,7 +272,7 @@ decision: approved
 一般使用者不需要單獨執行，因為 `run_full_pipeline.ps1` 已經會自動跑：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 -Mode concept -Selection best
+powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 -Mode concept -Selection best -DrawingStyle presentation
 ```
 
 若只想更新建築計算輔助，可手動執行：
@@ -322,7 +375,10 @@ structured/expert_review/report.md
 | `structured/candidates/summary.md` | 候選配置摘要 |
 | `structured/candidates/viewer.html` | 可切換樓層與候選配置的瀏覽器檢視 |
 | `structured/candidates/svg/index.html` | SVG 圖面索引 |
+| `structured/candidates/svg/manifest.json` | SVG 匯出摘要，包含 `candidate_selection`、`drawing_style`、`presentation_version` 與 `compact_label_count` |
 | `structured/candidates/print_bundle.pdf` | PDF 圖面 bundle，`concept` 模式不產生 |
+| `structured/final_design_html/*.final.html` | canonical-first HTML 討論版副本，不覆蓋 canonical HTML，也不搬動可視房間格位 |
+| `structured/final_design_html/manifest.json` | final HTML 匯出摘要，包含 `sync_mode`、selection、report hash、候選 assignment 與 rejected visual moves 統計 |
 | `task-board.md` | 自動更新 last run 摘要 |
 
 ## 手動 Pipeline 指令
@@ -348,6 +404,13 @@ powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 -Mode ifc
 # 強制選用最佳評分候選配置
 powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 -Selection best
 
+# 改用 technical 或 debug 圖面風格
+powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 -DrawingStyle technical
+powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 -DrawingStyle debug
+
+# 重建 presentation v2 SVG
+python scripts/export_top1_svgs.py --selection best --style presentation
+
 # 指定 Python launcher
 powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 -PythonExe py
 ```
@@ -360,12 +423,19 @@ python scripts/build_room_program.py
 python scripts/evaluate_architect_metrics.py
 python scripts/generate_layout_candidates.py
 python scripts/render_candidate_viewer.py
-python scripts/export_top1_svgs.py --selection baseline
+python scripts/export_top1_svgs.py --selection baseline --style presentation
 python scripts/export_print_bundle_pdf.py --paper a3 --output structured/candidates/print_bundle.pdf
 python scripts/validate_layout_bundle.py
+python scripts/export_final_design_html.py --mode draft --selection baseline --buildings A,B,C
 ```
 
 注意：部分 Python 腳本沒有 `--help` 模式，直接執行就會重新產生 `structured/` 產物。
+
+若只想用最近一次產物重建 final HTML 討論版：
+
+```powershell
+python scripts/export_final_design_html.py --mode concept --selection best --buildings A,B,C
+```
 
 ## 常用檢查指令
 
@@ -413,6 +483,8 @@ python scripts/validate_layout_bundle.py
 - `storage.html`
 
 不要把 `*_tmp.html` 當正式輸入；pipeline 也只讀非 `_tmp` 檔案。
+
+`structured/final_design_html/*.final.html` 是 canonical-first 討論版副本，會保留原 HTML 的可視格位、房名、`onclick` 與幾何；候選 selection 只會寫進摘要與 JSON metadata，方便人看與 AI 讀。它不是下一次 pipeline 的正式輸入，也不會覆蓋 canonical HTML。
 
 修改 HTML 時要保留 DOM 骨架：
 
@@ -520,23 +592,32 @@ date: 2026-04-28
 ```text
 1. 更新 inputs/design_request.md
 2. 請 Claude Code 修改 canonical HTML，不改 *_tmp.html
-3. 執行 /workflow-house-all-in-one inputs/design_request.md --mode concept --buildings A,B,C --selection auto
+3. 執行 /workflow-house-all-in-one inputs/design_request.md --mode concept --buildings A,B,C --selection auto --drawing-style presentation
 4. 修正 gate 或 consistency 問題
-5. 執行 draft 產出 PDF
+5. 打開 structured/final_design_html/index.html 討論最後配置重點
+6. 執行 draft 產出 PDF
 ```
 
 交付草圖：
 
 ```text
-/workflow-house-all-in-one inputs/design_request.md --mode draft --buildings A,B,C --selection auto
+/workflow-house-all-in-one inputs/design_request.md --mode draft --buildings A,B,C --selection auto --drawing-style presentation
 ```
+
+流程完成後可直接打開：
+
+```text
+structured/final_design_html/index.html
+```
+
+這裡的 `*.final.html` 會保留原設計視覺格位，並附上最後出圖 selection 的候選分析，適合拿來跟人討論或交給 AI 讀重點。
 
 最終放行：
 
 ```text
 1. 檢查 report.md 與 viewer.html
 2. 建立 structured/expert_review/signoff.yaml
-3. 執行 /workflow-house-all-in-one inputs/design_request.md --mode ifc --buildings A,B,C --selection auto
+3. 執行 /workflow-house-all-in-one inputs/design_request.md --mode ifc --buildings A,B,C --selection auto --drawing-style presentation
 ```
 
 ## 備援 Prompt
@@ -551,6 +632,7 @@ date: 2026-04-28
 - mode: draft
 - buildings: A,B,C
 - selection: auto
+- drawing_style: presentation
 
 限制：
 - 僅使用非 _tmp HTML。
