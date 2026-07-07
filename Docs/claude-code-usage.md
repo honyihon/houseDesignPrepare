@@ -1,7 +1,7 @@
 # Claude Code 指令使用教學
 
 適用 repo：`D:\I29786\workspace\houseDesignPrepare`  
-更新日期：2026-05-15
+更新日期：2026-07-07
 
 這份文件整理本專案的 Claude Code 設定、自訂 slash command、等效 PowerShell 指令，以及日常設計/出圖流程的建議用法。本專案主要用途是把 A/B/C 棟與儲藏空間的 HTML 平面配置轉成結構化 JSON，再產生建築計算輔助、候選配置、SVG 圖面、PDF bundle 與專家審查報告。
 
@@ -98,6 +98,29 @@ powershell -ExecutionPolicy Bypass -File scripts/run_full_expert_workflow.ps1 `
 ```
 
 建議日常優先使用這個入口，因為它會把專家檢查、HTML 一致性與出圖驗證串在一起。
+
+## Workflow Contracts
+
+Exit codes:
+
+| Exit code | Meaning |
+|---:|---|
+| `0` | Step completed successfully |
+| `1` | Unexpected runtime error |
+| `2` | Validation, consistency, or argument-level failure that is not an expert hard gate |
+| `10` | Expert hard gate failed with eligible critical failure |
+
+Validation ownership:
+
+- Direct `scripts/run_full_pipeline.ps1` execution defaults to `-ValidationOwner inner`.
+- `/workflow-house-all-in-one` passes `-ValidationOwner outer` and runs `validate_layout_bundle.py` exactly once after the pipeline.
+- `-ValidationOwner none` is for targeted developer/debug commands only.
+
+HTML consistency:
+
+- Critical issues stop the workflow with exit code `2`.
+- Warning-only and info-only reports exit `0`, but warning counts remain visible in `structured/expert_review/html_consistency.json`.
+- Outdoor-like cells with `data-outdoor-role` do not require `data-window-mm` unless configured as opening-required roles.
 
 ### `/export-final-design-html`
 
@@ -484,7 +507,9 @@ python scripts/validate_layout_bundle.py
 
 不要把 `*_tmp.html` 當正式輸入；pipeline 也只讀非 `_tmp` 檔案。
 
-`structured/final_design_html/*.final.html` 是 canonical-first 討論版副本，會保留原 HTML 的可視格位、房名、`onclick` 與幾何；候選 selection 只會寫進摘要與 JSON metadata，方便人看與 AI 讀。它不是下一次 pipeline 的正式輸入，也不會覆蓋 canonical HTML。
+`structured/final_design_html/*.final.html` 是 canonical-first 討論版副本，會保留原 HTML 的可視格位、房名、`onclick` 與幾何；候選 selection 只會寫進摘要與 JSON payload metadata，方便人看與 AI 讀。它不是下一次 pipeline 的正式輸入，也不會覆蓋 canonical HTML。
+
+`structured/final_design_html/manifest.json` 會記錄 final HTML payload metadata contract，例如 `sync_mode`、`selection`、`report_hash`、候選 assignment 摘要，以及 rejected visual moves 統計；這些 metadata 只描述分析結果，不會要求討論版 HTML 改動 canonical 視覺格位。
 
 修改 HTML 時要保留 DOM 骨架：
 

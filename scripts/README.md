@@ -106,6 +106,10 @@ python -m pip install --user beautifulsoup4
 python -m pip install --user reportlab svglib
 ```
 
+Workflow docs in this repo assume these script dependencies plus the project-scoped MCP pins in `.mcp.json`:
+- `@playwright/mcp@0.0.77`
+- `@modelcontextprotocol/server-brave-search@0.6.2`
+
 ## Output for Step 2
 
 After running `build_room_program.py`, you'll get:
@@ -203,6 +207,17 @@ Checks include:
 - `room_program.json` metadata / notes coverage
 - exported SVG file existence
 - required drawing markers (`ENT`, `DW:`, `WIN:`, `DIM:`, `LEGEND:`, `ELEV:`)
+
+## Spatial Metadata Contract
+
+Directional metadata is optional and backward-compatible:
+
+- `.floor-plan`: `data-front-side`, `data-rear-side`, `data-site-orientation-note`
+- `.plan-cell`: `data-zone`, `data-facing`, `data-outdoor-role`
+
+`top/right/bottom/left` refer to the HTML visual grid, not geographic north. `data-north-deg` remains the geographic orientation input.
+
+Extraction emits `house-design-structured-v3` when spatial metadata support is active. Downstream scripts accept both `house-design-structured-v2` and `house-design-structured-v3` during migration.
 
 ## Shared Defaults Config
 
