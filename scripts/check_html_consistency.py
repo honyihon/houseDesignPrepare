@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -14,6 +15,18 @@ from bs4 import BeautifulSoup, Tag
 
 
 ROOT = Path(__file__).resolve().parents[1]
+SCRIPT_DIR = Path(__file__).resolve().parent
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
+
+from lib.spatial_metadata import (  # noqa: E402
+    nearest_declared_side,
+    parse_cell_spatial,
+    parse_floor_orientation,
+    window_issue_level,
+)
+from lib.standards import load_residential_defaults  # noqa: E402
+
 OUTPUT_PATH = ROOT / "structured" / "expert_review" / "html_consistency.json"
 HTML_FILE_MAP: dict[str, str] = {
     "A": "AbuildingView.html",
@@ -123,10 +136,31 @@ def check_floor_geometry(
     door_max_mm: int,
     window_min_mm: int,
     window_max_mm: int,
+    mode: str = "draft",
+    spatial_config: dict[str, Any] | None = None,
 ) -> None:
     floor_id = normalize_whitespace(floor.get("id", "")) or "<no-id>"
     floor_w = to_float(floor.get("data-floor-width-mm"))
     floor_d = to_float(floor.get("data-floor-depth-mm"))
+    spatial_config = spatial_config or {}
+    orientation = parse_floor_orientation(floor.attrs)
+    direction_config = spatial_config.get("direction", {})
+    if (
+        orientation["front_side"] != "unknown"
+        and orientation["rear_side"] != "unknown"
+        and orientation["front_side"] == orientation["rear_side"]
+    ):
+        issue(
+            issues,
+            "warning",
+            building_id,
+            file_name,
+            floor_id,
+            "ORIENTATION_CONFLICT",
+            "data-front-side and data-rear-side must not be the same",
+            evidence=f"front={orientation['front_side']}; rear={orientation['rear_side']}",
+            fix_hint="調整 data-front-side / data-rear-side，使前後方向可區分。",
+        )
 
     rooms = {
         normalize_whitespace((room.get("id", "") or "").replace("room-", "", 1))
@@ -145,6 +179,8 @@ def check_floor_geometry(
         w = to_float(cell.get("data-w-mm"))
         h = to_float(cell.get("data-h-mm"))
         label = text_of(cell.select_one(".cell-name")) or f"cell-{idx}"
+        classes = [str(cls) for cls in (cell.get("class") or []) if str(cls) != "plan-cell"]
+        spatial = parse_cell_spatial(cell.attrs, classes)
 
         if None in {x, y, w, h}:
             issue(
@@ -181,6 +217,29 @@ def check_floor_geometry(
                     "h_mm": float(h),
                 }
             )
+            if spatial.get("facing") in {"front", "rear"}:
+                nearest = nearest_declared_side(
+                    floor_w,
+                    floor_d,
+                    {"x_mm": float(x), "y_mm": float(y), "w_mm": float(w), "h_mm": float(h)},
+                    orientation["front_side"],
+                    orientation["rear_side"],
+                    float(direction_config.get("ambiguous_center_tolerance_ratio", 0.10)),
+                    float(direction_config.get("span_ambiguity_ratio", 0.70)),
+                )
+                if not nearest.get("ambiguous") and nearest.get("nearest_role") != spatial.get("facing"):
+                    level = "warning" if mode == "ifc" else "info"
+                    issue(
+                        issues,
+                        level,
+                        building_id,
+                        file_name,
+                        floor_id,
+                        "FACING_GEOMETRY_MISMATCH",
+                        f"{label} data-facing={spatial.get('facing')} but geometry is nearest {nearest.get('nearest_role')}",
+                        evidence=f"cell-{idx}; nearest_side={nearest.get('nearest_side')}",
+                        fix_hint="確認 data-facing 是否表示開口方向，或調整 floor front/rear side metadata。",
+                    )
             if floor_w is not None and floor_d is not None:
                 if x + w > floor_w or y + h > floor_d:
                     issue(
@@ -197,6 +256,7 @@ def check_floor_geometry(
 
         door_mm = to_int(cell.get("data-door-mm"))
         window_mm = to_int(cell.get("data-window-mm"))
+        has_window_attr = cell.has_attr("data-window-mm")
         if door_mm is not None and not (door_min_mm <= door_mm <= door_max_mm):
             issue(
                 issues,
@@ -209,7 +269,16 @@ def check_floor_geometry(
                 evidence=f"cell-{idx}",
                 fix_hint="依常見住宅尺度調整門寬。",
             )
-        if window_mm is not None and not (window_min_mm <= window_mm <= window_max_mm):
+        window_level = window_issue_level(
+            spatial,
+            classes,
+            has_window_attr,
+            window_mm,
+            window_min_mm,
+            window_max_mm,
+            spatial_config.get("opening_required_roles", []),
+        )
+        if window_level == "warning" and has_window_attr:
             issue(
                 issues,
                 "warning",
@@ -219,7 +288,31 @@ def check_floor_geometry(
                 "WINDOW_RANGE",
                 f"{label} data-window-mm={window_mm} out of range [{window_min_mm}, {window_max_mm}]",
                 evidence=f"cell-{idx}",
-                fix_hint="依採光與法規調整窗寬。",
+                fix_hint="依採光與法規調整窗寬，戶外空間請標 data-outdoor-role。",
+            )
+        elif window_level == "warning":
+            issue(
+                issues,
+                "warning",
+                building_id,
+                file_name,
+                floor_id,
+                "WINDOW_MISSING",
+                f"{label} missing data-window-mm for an indoor-like cell",
+                evidence=f"cell-{idx}",
+                fix_hint="室內格位補上 data-window-mm；戶外空間請標 data-outdoor-role。",
+            )
+        elif window_level == "info":
+            issue(
+                issues,
+                "info",
+                building_id,
+                file_name,
+                floor_id,
+                "WINDOW_MISSING_OPTIONAL",
+                f"{label} missing optional data-window-mm for role {spatial.get('outdoor_role')}",
+                evidence=f"cell-{idx}",
+                fix_hint="若此戶外角色需要開口資料，補上 data-window-mm。",
             )
 
         if truthy_attr(cell.get("data-entry")):
@@ -296,6 +389,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--door-max-mm", type=int, default=1400)
     parser.add_argument("--window-min-mm", type=int, default=300)
     parser.add_argument("--window-max-mm", type=int, default=3600)
+    parser.add_argument("--mode", type=str, default="draft", choices=["concept", "draft", "ifc"])
     parser.add_argument("--allow-critical", action="store_true")
     return parser.parse_args()
 
@@ -303,6 +397,8 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     selected = parse_buildings(args.buildings)
+    defaults = load_residential_defaults()
+    spatial_config = defaults.get("spatial_metadata", {})
     issues: list[dict[str, Any]] = []
     scanned_files: list[str] = []
     floor_count = 0
@@ -339,6 +435,8 @@ def main() -> None:
                 door_max_mm=args.door_max_mm,
                 window_min_mm=args.window_min_mm,
                 window_max_mm=args.window_max_mm,
+                mode=args.mode,
+                spatial_config=spatial_config,
             )
 
     summary = {
