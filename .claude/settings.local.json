@@ -1,18 +1,22 @@
 {
   "permissions": {
     "allow": [
-      "Bash(powershell *)",
-      "Bash(pip3 list *)",
-      "Bash(python3 scripts/extract_layout_data.py)",
-      "Bash(python3 scripts/build_room_program.py)",
-      "Bash(python3 scripts/generate_layout_candidates.py)",
-      "Bash(python3 scripts/render_candidate_viewer.py)",
-      "Bash(python3 scripts/export_top1_svgs.py --selection auto)",
-      "Bash(python3 scripts/export_top1_svgs.py --selection best)",
-      "Bash(python3 scripts/validate_layout_bundle.py)",
-      "Bash(python3 scripts/evaluate_expert_gates.py --stage normalize)",
-      "Bash(python3 scripts/evaluate_expert_gates.py --request inputs/design_request.md --buildings A --mode concept --selection best --stage full)",
-      "Bash(python3 *)"
+      "Bash(powershell -ExecutionPolicy Bypass -File scripts/run_full_expert_workflow.ps1 *)",
+      "Bash(powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 *)",
+      "Bash(python scripts/extract_layout_data.py)",
+      "Bash(python scripts/build_room_program.py)",
+      "Bash(python scripts/evaluate_architect_metrics.py)",
+      "Bash(python scripts/generate_layout_candidates.py)",
+      "Bash(python scripts/render_candidate_viewer.py)",
+      "Bash(python scripts/export_top1_svgs.py *)",
+      "Bash(python scripts/export_print_bundle_pdf.py *)",
+      "Bash(python scripts/validate_layout_bundle.py)",
+      "Bash(python scripts/check_html_consistency.py *)",
+      "Bash(python scripts/evaluate_expert_gates.py *)",
+      "Bash(python scripts/export_final_design_html.py *)",
+      "Bash(python -m pytest *)",
+      "Bash(npm view @playwright/mcp version)",
+      "Bash(npm view @modelcontextprotocol/server-brave-search version)"
     ]
   },
   "enabledMcpjsonServers": [

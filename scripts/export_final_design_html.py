@@ -481,6 +481,7 @@ def export_building_html(
             continue
 
         candidate_id = normalize(selected.get("id", ""))
+        floor_program = program_floor.get("floor", program_floor)
         pair_by_slot = {normalize(pair.get("slot_id", "")): pair for pair in selected.get("pair_details", [])}
         rooms_by_uid = program_floor.get("rooms_by_uid", {})
         cells = floor_node.select(".plan-grid-visual .plan-cell")
@@ -508,6 +509,18 @@ def export_building_html(
                 insert_after(header, note_html)
             else:
                 append_fragment(floor_node, note_html, position=0)
+            spatial_summary = {
+                "orientation": floor_program.get("orientation", {}),
+                "cell_spatial": [
+                    {
+                        "order": cell.get("order"),
+                        "name": normalize(cell.get("name", "")),
+                        "target_room_uid": normalize(cell.get("target_room_uid", "")),
+                        "spatial": cell.get("spatial", {}),
+                    }
+                    for cell in floor_program.get("plan_cells", [])
+                ],
+            }
             updated_floors.append(
                 {
                     "building_id": building_id,
@@ -522,6 +535,8 @@ def export_building_html(
                     "rejected_assignments": candidate_summary["rejected_assignments"],
                     "expert_best": normalize((expert_rec or {}).get("expert_best", "")),
                     "pipeline_best": normalize((expert_rec or {}).get("pipeline_best", "")),
+                    "orientation": spatial_summary["orientation"],
+                    "spatial_summary": spatial_summary,
                     "floor_issues": issues[:10],
                 }
             )
