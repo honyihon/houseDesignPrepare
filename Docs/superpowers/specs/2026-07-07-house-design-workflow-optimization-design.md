@@ -88,6 +88,14 @@ All scripts and wrappers that participate in the workflow must preserve these ex
 
 `run_full_expert_workflow.ps1` must not convert exit code `10` into a generic exception. It should surface it as an expected hard-gate stop so Claude Code and manual PowerShell users see the same meaning.
 
+`check_html_consistency.py` must keep the current threshold semantics unless the implementation plan explicitly changes them:
+
+- `critical > 0` returns exit code `2`.
+- `warning > 0` with `critical = 0` returns exit code `0`.
+- `info > 0` with `critical = 0` returns exit code `0`.
+
+This keeps concept/draft workflows usable while still allowing warning counts to be reported and reduced over time.
+
 #### Validation Ownership
 
 Use an explicit validation ownership contract:
@@ -95,6 +103,7 @@ Use an explicit validation ownership contract:
 - `run_full_pipeline.ps1` receives `-ValidationOwner inner|outer|none`.
 - Default for direct pipeline execution: `inner`.
 - Default when called from `run_full_expert_workflow.ps1`: `outer`.
+- `run_full_expert_workflow.ps1` must pass `-ValidationOwner outer` explicitly when invoking `run_full_pipeline.ps1`; the inner script must not infer ownership from its caller.
 - `inner`: the pipeline runs `validate_layout_bundle.py` when `Mode=ifc`.
 - `outer`: the pipeline does not run validation; the expert workflow runs validation exactly once after the pipeline.
 - `none`: validation is skipped only for targeted developer/debug commands, not for documented release workflows.
@@ -127,6 +136,7 @@ Coordinate-system contract:
 - `data-north-deg` remains the geographic orientation input.
 - Geographic conversion is computed by the pipeline from visual-grid side plus `north_deg`; humans should not encode the same relationship twice in free text.
 - `data-site-orientation-note` is explanatory text only and must not be used as the source of truth for validation.
+- Side detection for consistency checks uses the visual-grid geometry. For a cell, compute the centroid `(x_mm + w_mm / 2, y_mm + h_mm / 2)` and compare distance to the declared front/rear side. If the nearest-side difference is less than 10% of the relevant floor dimension, or if the cell spans more than 70% of that dimension, the cell is considered ambiguous and no direction-conflict warning is emitted.
 
 Supported new attributes:
 
@@ -146,6 +156,8 @@ Schema meaning:
 - `data-outdoor-role` describes whether the cell is outdoor-like and what kind of outdoor space it is.
 - `data-zone` and `data-facing` may differ. Example: a cell can be in the `core` zone but face `front` through an opening.
 - `data-outdoor-role="none"` means the cell is treated as indoor for window validation unless another explicit class or rule says otherwise.
+- Prefer `left` or `right` over `side` when the side can be determined from the visual-grid coordinate system. Use `side` only when the design intentionally says "side-facing" but the left/right side is unknown, not relevant, or not yet confirmed.
+- `data-zone="side"` has the same convention: use it only when a cell is side-zone but left/right attribution is not yet known or not worth modeling.
 
 Propagation:
 
@@ -161,6 +173,12 @@ Warning policy updates:
 - `ENTRY_COUNT` should distinguish ground-floor main entries from upper-floor stair/landing entries. Missing upper-floor `data-entry` should be warning or info depending on the floor role, not a generic warning with the same wording as 1F.
 - `CELL_OVERLAP` should remain warning in concept/draft, but IFC mode should be able to treat selected overlap categories as critical.
 - `ROOM_TARGET_MISMATCH` should remain a warning in concept/draft and should be promoted for IFC if it affects exported canonical discussion HTML.
+
+The role-to-opening and severity policy should live in `scripts/config/residential_defaults_tw.json`, not as hard-coded scattered lists. At minimum, the config should define:
+
+- outdoor-like roles for window validation,
+- roles that normally require openings,
+- IFC promotion categories for overlap and room-target issues.
 
 Window warning matrix:
 
@@ -180,12 +198,28 @@ Directional consistency checks:
 - If `data-zone` and `data-facing` differ, do not warn by default. Only warn when the geometry contradicts both values or when the pair is explicitly impossible under configured rules.
 - If `data-site-orientation-note` contradicts structured attributes, structured attributes win and the note receives an info-level consistency issue.
 
+IFC promotion policy:
+
+- Promotion from warning to critical must be deterministic and category-based.
+- The default promotion set must be empty or limited to categories verified to produce zero critical issues on the current checked-in A/B/C baseline, unless the same implementation also fixes the affected source data.
+- Before enabling a promotion category, run the consistency check against A/B/C and record the resulting critical count in the implementation summary.
+- IFC smoke success remains `summary.critical=0`; do not redefine success as "current known critical baseline" inside this workflow optimization.
+- Example promotion categories may include geometry overlaps between two indoor rooms and room-target mismatches that affect exported canonical discussion HTML. Outdoor overlap or decorative/service annotation overlap should stay warning or info unless configured otherwise.
+
 Structured output regeneration policy:
 
 - The schema changes are backward compatible. Missing directional/outdoor metadata must default to `unknown` or `none` without breaking existing artifacts.
+- When extraction starts emitting the new metadata fields, bump the structured extraction schema from `house-design-structured-v2` to `house-design-structured-v3` and update downstream `source_schema_version` handling. Downstream scripts must read both v2 and v3 during migration.
 - Phase B implementation should not regenerate all tracked `structured/` artifacts in the same commit as parser/checker changes.
 - After parser/checker behavior is reviewed, run a separate regeneration commit if the team wants checked-in outputs to include the new metadata.
 - The regeneration commit must include a short summary of expected churn: files changed, warning-count change, and whether SVG/PDF visual output changed.
+
+Storage scope:
+
+- `storage.html` remains a canonical extraction input.
+- Because current `storage.html` produces `storage_zones` and no `plan_cells`, Phase B directional cell metadata does not apply to it by default.
+- If storage later gains a plan-cell layout, it should use the same metadata contract.
+- Storage-zone metadata can be added later as a separate, narrower enhancement; do not block Phase B on storage-zone direction modeling.
 
 ## A Building 2F Directional Handling
 
@@ -219,8 +253,8 @@ canonical HTML
   -> generate_layout_candidates.py
   -> render_candidate_viewer.py
   -> export_top1_svgs.py
-  -> export_print_bundle_pdf.py
-  -> validate_layout_bundle.py
+  -> export_print_bundle_pdf.py       [draft/ifc only]
+  -> validate_layout_bundle.py        [owner-controlled; required for ifc]
   -> evaluate_expert_gates.py --stage report
   -> export_final_design_html.py
 ```
@@ -265,6 +299,7 @@ Optional later annotation pass:
 - `AbuildingView.html`
 - `BbuildingView.html`
 - `CbuildingView.html`
+- `storage.html` only if it later gets plan-cell layout metadata or a separate storage-zone metadata contract
 
 ## Testing Strategy
 
@@ -280,6 +315,9 @@ Add focused tests before changing behavior:
 - Gate-stage tests proving `--stage gate` does not update `task-board.md`.
 - Exit-code tests or smoke checks proving hard-gate failure preserves exit code `10` through PowerShell.
 - Validation ownership tests proving IFC mode runs `validate_layout_bundle.py` exactly once in the documented workflow.
+- Validation ownership tests proving `-ValidationOwner none` skips validation only when explicitly requested.
+- Negative validation ownership tests proving the non-owner does not rerun validation after an owner failure.
+- Consistency exit-code tests proving warning-only reports exit `0` and critical reports exit `2`.
 - Workflow smoke check:
 
 ```powershell
