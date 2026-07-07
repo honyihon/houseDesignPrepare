@@ -97,14 +97,29 @@ def test_nearest_declared_side_detects_front_and_rear() -> None:
     assert rear["ambiguous"] is False
 
 
-def test_nearest_declared_side_marks_large_spanning_cells_ambiguous() -> None:
+def test_nearest_declared_side_marks_wide_top_bottom_span_ambiguous() -> None:
     result = nearest_declared_side(
         11000,
         5200,
-        {"x_mm": 0, "y_mm": 1000, "w_mm": 11000, "h_mm": 3600},
+        {"x_mm": 1000, "y_mm": 200, "w_mm": 9000, "h_mm": 500},
         "top",
         "bottom",
     )
 
     assert result["nearest_role"] == "unknown"
+    assert result["nearest_side"] == "unknown"
+    assert result["ambiguous"] is True
+
+
+def test_nearest_declared_side_marks_tall_left_right_span_ambiguous() -> None:
+    result = nearest_declared_side(
+        11000,
+        5200,
+        {"x_mm": 200, "y_mm": 500, "w_mm": 500, "h_mm": 4000},
+        "left",
+        "right",
+    )
+
+    assert result["nearest_role"] == "unknown"
+    assert result["nearest_side"] == "unknown"
     assert result["ambiguous"] is True

@@ -130,8 +130,12 @@ def nearest_declared_side(
 
     front_distance = _distance_to_side(floor_width_mm, floor_depth_mm, center_x, center_y, front_side)
     rear_distance = _distance_to_side(floor_width_mm, floor_depth_mm, center_x, center_y, rear_side)
-    relevant_dimension = floor_depth_mm if front_side in {"top", "bottom"} else floor_width_mm
-    span = max(_span_for_side(rect, front_side), _span_for_side(rect, rear_side))
+    if front_side in {"top", "bottom"}:
+        relevant_dimension = floor_width_mm
+        span = w
+    else:
+        relevant_dimension = floor_depth_mm
+        span = h
 
     if abs(front_distance - rear_distance) < relevant_dimension * tolerance_ratio:
         return {"nearest_role": "unknown", "nearest_side": "unknown", "ambiguous": True}
