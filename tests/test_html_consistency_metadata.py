@@ -78,6 +78,42 @@ def test_indoor_missing_window_warns() -> None:
     assert any(i["code"] == "WINDOW_MISSING" and i["level"] == "warning" for i in issues)
 
 
+def test_invalid_window_value_emits_dedicated_issue() -> None:
+    html = """
+    <div class="floor-plan" id="floor-1" data-floor-width-mm="1000" data-floor-depth-mm="1000">
+      <div class="plan-grid-visual"><div class="plan-row">
+        <div class="plan-cell" data-x-mm="0" data-y-mm="0" data-w-mm="500" data-h-mm="500"
+             data-window-mm="abc"><span class="cell-name">臥室</span></div>
+      </div></div>
+    </div>
+    """
+
+    issues = _run(html)
+
+    assert any(i["code"] == "WINDOW_INVALID" and i["level"] == "warning" for i in issues)
+    assert not any(
+        i["code"] == "WINDOW_RANGE" and "None" in i["message"]
+        for i in issues
+    )
+
+
+def test_invalid_geometry_does_not_emit_facing_mismatch() -> None:
+    html = """
+    <div class="floor-plan" id="floor-1" data-floor-width-mm="1000" data-floor-depth-mm="1000"
+         data-front-side="top" data-rear-side="bottom">
+      <div class="plan-grid-visual"><div class="plan-row">
+        <div class="plan-cell" data-x-mm="-10" data-y-mm="0" data-w-mm="200" data-h-mm="200"
+             data-window-mm="800" data-facing="rear"><span class="cell-name">陽台</span></div>
+      </div></div>
+    </div>
+    """
+
+    issues = _run(html)
+
+    assert any(i["code"] == "INVALID_CELL_GEOMETRY" for i in issues)
+    assert not any(i["code"] == "FACING_GEOMETRY_MISMATCH" for i in issues)
+
+
 def test_same_front_and_rear_side_warns() -> None:
     html = """
     <div class="floor-plan" id="floor-1" data-floor-width-mm="1000" data-floor-depth-mm="1000"

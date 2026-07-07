@@ -195,7 +195,8 @@ def check_floor_geometry(
                 fix_hint="補齊 plan-cell 的 x/y/w/h mm 幾何欄位。",
             )
         else:
-            if x < 0 or y < 0 or w <= 0 or h <= 0:
+            geometry_valid = x >= 0 and y >= 0 and w > 0 and h > 0
+            if not geometry_valid:
                 issue(
                     issues,
                     "critical",
@@ -207,55 +208,57 @@ def check_floor_geometry(
                     evidence=f"cell-{idx}",
                     fix_hint="修正為非負座標且寬高大於 0。",
                 )
-            geometry_cells.append(
-                {
-                    "idx": idx,
-                    "label": label,
-                    "x_mm": float(x),
-                    "y_mm": float(y),
-                    "w_mm": float(w),
-                    "h_mm": float(h),
-                }
-            )
-            if spatial.get("facing") in {"front", "rear"}:
-                nearest = nearest_declared_side(
-                    floor_w,
-                    floor_d,
-                    {"x_mm": float(x), "y_mm": float(y), "w_mm": float(w), "h_mm": float(h)},
-                    orientation["front_side"],
-                    orientation["rear_side"],
-                    float(direction_config.get("ambiguous_center_tolerance_ratio", 0.10)),
-                    float(direction_config.get("span_ambiguity_ratio", 0.70)),
+            else:
+                geometry_cells.append(
+                    {
+                        "idx": idx,
+                        "label": label,
+                        "x_mm": float(x),
+                        "y_mm": float(y),
+                        "w_mm": float(w),
+                        "h_mm": float(h),
+                    }
                 )
-                if not nearest.get("ambiguous") and nearest.get("nearest_role") != spatial.get("facing"):
-                    level = "warning" if mode == "ifc" else "info"
-                    issue(
-                        issues,
-                        level,
-                        building_id,
-                        file_name,
-                        floor_id,
-                        "FACING_GEOMETRY_MISMATCH",
-                        f"{label} data-facing={spatial.get('facing')} but geometry is nearest {nearest.get('nearest_role')}",
-                        evidence=f"cell-{idx}; nearest_side={nearest.get('nearest_side')}",
-                        fix_hint="確認 data-facing 是否表示開口方向，或調整 floor front/rear side metadata。",
+                if spatial.get("facing") in {"front", "rear"}:
+                    nearest = nearest_declared_side(
+                        floor_w,
+                        floor_d,
+                        {"x_mm": float(x), "y_mm": float(y), "w_mm": float(w), "h_mm": float(h)},
+                        orientation["front_side"],
+                        orientation["rear_side"],
+                        float(direction_config.get("ambiguous_center_tolerance_ratio", 0.10)),
+                        float(direction_config.get("span_ambiguity_ratio", 0.70)),
                     )
-            if floor_w is not None and floor_d is not None:
-                if x + w > floor_w or y + h > floor_d:
-                    issue(
-                        issues,
-                        "warning",
-                        building_id,
-                        file_name,
-                        floor_id,
-                        "CELL_OUT_OF_BOUND",
-                        f"{label} exceeds floor envelope",
-                        evidence=f"cell-{idx}: x+w={x+w}, y+h={y+h}, floor={floor_w}x{floor_d}",
-                        fix_hint="調整 cell 幾何或樓層外框尺寸。",
-                    )
+                    if not nearest.get("ambiguous") and nearest.get("nearest_role") != spatial.get("facing"):
+                        level = "warning" if mode == "ifc" else "info"
+                        issue(
+                            issues,
+                            level,
+                            building_id,
+                            file_name,
+                            floor_id,
+                            "FACING_GEOMETRY_MISMATCH",
+                            f"{label} data-facing={spatial.get('facing')} but geometry is nearest {nearest.get('nearest_role')}",
+                            evidence=f"cell-{idx}; nearest_side={nearest.get('nearest_side')}",
+                            fix_hint="確認 data-facing 是否表示開口方向，或調整 floor front/rear side metadata。",
+                        )
+                if floor_w is not None and floor_d is not None:
+                    if x + w > floor_w or y + h > floor_d:
+                        issue(
+                            issues,
+                            "warning",
+                            building_id,
+                            file_name,
+                            floor_id,
+                            "CELL_OUT_OF_BOUND",
+                            f"{label} exceeds floor envelope",
+                            evidence=f"cell-{idx}: x+w={x+w}, y+h={y+h}, floor={floor_w}x{floor_d}",
+                            fix_hint="調整 cell 幾何或樓層外框尺寸。",
+                        )
 
         door_mm = to_int(cell.get("data-door-mm"))
-        window_mm = to_int(cell.get("data-window-mm"))
+        raw_window_mm = cell.get("data-window-mm")
+        window_mm = to_int(raw_window_mm)
         has_window_attr = cell.has_attr("data-window-mm")
         if door_mm is not None and not (door_min_mm <= door_mm <= door_max_mm):
             issue(
@@ -269,51 +272,64 @@ def check_floor_geometry(
                 evidence=f"cell-{idx}",
                 fix_hint="依常見住宅尺度調整門寬。",
             )
-        window_level = window_issue_level(
-            spatial,
-            classes,
-            has_window_attr,
-            window_mm,
-            window_min_mm,
-            window_max_mm,
-            spatial_config.get("opening_required_roles", []),
-        )
-        if window_level == "warning" and has_window_attr:
+        if has_window_attr and window_mm is None:
             issue(
                 issues,
                 "warning",
                 building_id,
                 file_name,
                 floor_id,
-                "WINDOW_RANGE",
-                f"{label} data-window-mm={window_mm} out of range [{window_min_mm}, {window_max_mm}]",
+                "WINDOW_INVALID",
+                f"{label} data-window-mm={raw_window_mm!r} is not a valid mm value",
                 evidence=f"cell-{idx}",
-                fix_hint="依採光與法規調整窗寬，戶外空間請標 data-outdoor-role。",
+                fix_hint="提供可解析為數值的 data-window-mm。",
             )
-        elif window_level == "warning":
-            issue(
-                issues,
-                "warning",
-                building_id,
-                file_name,
-                floor_id,
-                "WINDOW_MISSING",
-                f"{label} missing data-window-mm for an indoor-like cell",
-                evidence=f"cell-{idx}",
-                fix_hint="室內格位補上 data-window-mm；戶外空間請標 data-outdoor-role。",
+        else:
+            window_level = window_issue_level(
+                spatial,
+                classes,
+                has_window_attr,
+                window_mm,
+                window_min_mm,
+                window_max_mm,
+                spatial_config.get("opening_required_roles", []),
             )
-        elif window_level == "info":
-            issue(
-                issues,
-                "info",
-                building_id,
-                file_name,
-                floor_id,
-                "WINDOW_MISSING_OPTIONAL",
-                f"{label} missing optional data-window-mm for role {spatial.get('outdoor_role')}",
-                evidence=f"cell-{idx}",
-                fix_hint="若此戶外角色需要開口資料，補上 data-window-mm。",
-            )
+            if window_level == "warning" and has_window_attr:
+                issue(
+                    issues,
+                    "warning",
+                    building_id,
+                    file_name,
+                    floor_id,
+                    "WINDOW_RANGE",
+                    f"{label} data-window-mm={window_mm} out of range [{window_min_mm}, {window_max_mm}]",
+                    evidence=f"cell-{idx}",
+                    fix_hint="依採光與法規調整窗寬，戶外空間請標 data-outdoor-role。",
+                )
+            elif window_level == "warning":
+                issue(
+                    issues,
+                    "warning",
+                    building_id,
+                    file_name,
+                    floor_id,
+                    "WINDOW_MISSING",
+                    f"{label} missing data-window-mm for an indoor-like cell",
+                    evidence=f"cell-{idx}",
+                    fix_hint="室內格位補上 data-window-mm；戶外空間請標 data-outdoor-role。",
+                )
+            elif window_level == "info":
+                issue(
+                    issues,
+                    "info",
+                    building_id,
+                    file_name,
+                    floor_id,
+                    "WINDOW_MISSING_OPTIONAL",
+                    f"{label} missing optional data-window-mm for role {spatial.get('outdoor_role')}",
+                    evidence=f"cell-{idx}",
+                    fix_hint="若此戶外角色需要開口資料，補上 data-window-mm。",
+                )
 
         if truthy_attr(cell.get("data-entry")):
             entry_count += 1
