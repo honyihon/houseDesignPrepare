@@ -99,14 +99,6 @@ def _distance_to_side(
     return float("inf")
 
 
-def _span_for_side(rect: Mapping[str, float], side: str) -> float:
-    if side in {"top", "bottom"}:
-        return float(rect.get("h_mm", 0))
-    if side in {"left", "right"}:
-        return float(rect.get("w_mm", 0))
-    return 0.0
-
-
 def nearest_declared_side(
     floor_width_mm: float | None,
     floor_depth_mm: float | None,
@@ -131,15 +123,17 @@ def nearest_declared_side(
     front_distance = _distance_to_side(floor_width_mm, floor_depth_mm, center_x, center_y, front_side)
     rear_distance = _distance_to_side(floor_width_mm, floor_depth_mm, center_x, center_y, rear_side)
     if front_side in {"top", "bottom"}:
-        relevant_dimension = floor_width_mm
+        tolerance_dimension = floor_depth_mm
+        span_dimension = floor_width_mm
         span = w
     else:
-        relevant_dimension = floor_depth_mm
+        tolerance_dimension = floor_width_mm
+        span_dimension = floor_depth_mm
         span = h
 
-    if abs(front_distance - rear_distance) < relevant_dimension * tolerance_ratio:
+    if abs(front_distance - rear_distance) < tolerance_dimension * tolerance_ratio:
         return {"nearest_role": "unknown", "nearest_side": "unknown", "ambiguous": True}
-    if span > relevant_dimension * span_ratio:
+    if span > span_dimension * span_ratio:
         return {"nearest_role": "unknown", "nearest_side": "unknown", "ambiguous": True}
 
     if front_distance < rear_distance:

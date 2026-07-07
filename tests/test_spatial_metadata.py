@@ -123,3 +123,31 @@ def test_nearest_declared_side_marks_tall_left_right_span_ambiguous() -> None:
     assert result["nearest_role"] == "unknown"
     assert result["nearest_side"] == "unknown"
     assert result["ambiguous"] is True
+
+
+def test_nearest_declared_side_uses_depth_for_top_bottom_tolerance() -> None:
+    result = nearest_declared_side(
+        11000,
+        5200,
+        {"x_mm": 1000, "y_mm": 2450, "w_mm": 1000, "h_mm": 1000},
+        "top",
+        "bottom",
+    )
+
+    assert result["nearest_role"] == "rear"
+    assert result["nearest_side"] == "bottom"
+    assert result["ambiguous"] is False
+
+
+def test_nearest_declared_side_uses_width_for_left_right_tolerance() -> None:
+    result = nearest_declared_side(
+        5200,
+        11000,
+        {"x_mm": 2450, "y_mm": 1000, "w_mm": 1000, "h_mm": 1000},
+        "left",
+        "right",
+    )
+
+    assert result["nearest_role"] == "rear"
+    assert result["nearest_side"] == "right"
+    assert result["ambiguous"] is False
