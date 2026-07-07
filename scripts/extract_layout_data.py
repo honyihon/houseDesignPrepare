@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 import re
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -14,13 +15,19 @@ from bs4 import BeautifulSoup, NavigableString, Tag
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = ROOT / "structured"
+SCRIPT_DIR = Path(__file__).resolve().parent
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
+
+from lib.spatial_metadata import parse_cell_spatial, parse_floor_orientation  # noqa: E402
+
 INPUT_FILES = [
     "AbuildingView.html",
     "BbuildingView.html",
     "CbuildingView.html",
     "storage.html",
 ]
-SCHEMA_VERSION = "house-design-structured-v2"
+SCHEMA_VERSION = "house-design-structured-v3"
 
 
 def now_iso() -> str:
@@ -218,6 +225,7 @@ def extract_plan_cell(
         "openings_mm": openings_mm,
         "is_entry": _attr_bool(cell, ["data-entry", "data-is-entry"]),
         "material": _attr_text(cell, ["data-material"]),
+        "spatial": parse_cell_spatial(cell.attrs, classes_of(cell, remove={"plan-cell"})),
     }
 
 
@@ -440,6 +448,7 @@ def extract_floor(scope: Tag, order: int) -> dict[str, Any]:
         "title": title,
         "subtitle": subtitle,
         "direction_badges": direction_badges,
+        "orientation": parse_floor_orientation(scope.attrs),
         "geometry_mm": geometry_mm,
         "geometry_source": _attr_text(scope, ["data-geometry-source"]),
         "plan_rows": plan_rows,

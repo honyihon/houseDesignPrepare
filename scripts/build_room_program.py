@@ -201,6 +201,14 @@ def transform_floor(
 ) -> dict[str, Any]:
     floor_id = floor.get("id") or f"floor-{floor.get('order', 0)}"
     tab_label = map_tab_label(tabs, floor_id)
+    orientation = floor.get("orientation", {})
+    if not isinstance(orientation, dict):
+        orientation = {}
+    normalized_orientation = {
+        "front_side": normalize_whitespace(str(orientation.get("front_side", "unknown") or "unknown")),
+        "rear_side": normalize_whitespace(str(orientation.get("rear_side", "unknown") or "unknown")),
+        "site_orientation_note": normalize_whitespace(str(orientation.get("site_orientation_note", ""))),
+    }
     floor_geometry_mm = normalize_mm_map(
         floor.get("geometry_mm", {}),
         ["width_mm", "depth_mm", "north_deg"],
@@ -289,6 +297,15 @@ def transform_floor(
                 "openings_mm": openings_mm,
                 "is_entry": to_bool(cell.get("is_entry"), False),
                 "material": normalize_whitespace(cell.get("material", "")),
+                "spatial": cell.get(
+                    "spatial",
+                    {
+                        "zone": "unknown",
+                        "facing": "unknown",
+                        "outdoor_role": "none",
+                        "is_outdoor_like": "outdoor" in cell.get("classes", []),
+                    },
+                ),
             }
         )
 
@@ -359,6 +376,7 @@ def transform_floor(
         "subtitle": normalize_whitespace(floor.get("subtitle", "")),
         "tab_label": tab_label,
         "direction_badges": floor.get("direction_badges", []),
+        "orientation": normalized_orientation,
         "geometry_mm": floor_geometry_mm,
         "geometry_source": normalize_whitespace(floor.get("geometry_source", "")),
         "plan_rows": normalized_plan_rows,
@@ -507,7 +525,8 @@ def build_program(docs: list[dict[str, Any]]) -> dict[str, Any]:
     return {
         "schema_version": SCHEMA_VERSION,
         "generated_at": now_iso(),
-        "source_schema_version": "house-design-structured-v2",
+        "source_schema_version": "house-design-structured-v3",
+        "compatible_source_schema_versions": ["house-design-structured-v2", "house-design-structured-v3"],
         "source_files": source_files,
         "default_standards": {
             "schema_version": RESIDENTIAL_DEFAULTS.get("schema_version", ""),
