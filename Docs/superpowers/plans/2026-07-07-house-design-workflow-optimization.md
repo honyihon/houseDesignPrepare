@@ -1047,7 +1047,8 @@ def test_expert_gate_stage_does_not_update_task_board() -> None:
     script = (ROOT / "scripts" / "evaluate_expert_gates.py").read_text(encoding="utf-8")
 
     assert 'if args.stage in {"report", "full"}:' in script
-    assert 'print("Task board:  skipped for stage gate")' in script
+    assert 'task_board_status = "skipped for stage gate"' in script
+    assert 'print(f"Task board:  {task_board_status}")' in script
 
 
 def test_expert_workflow_allows_gate_exit_10_before_explicit_exit() -> None:
