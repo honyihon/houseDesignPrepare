@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from bs4 import BeautifulSoup
 
-from build_room_program import transform_floor
+from build_room_program import build_program, transform_floor
 from extract_layout_data import SCHEMA_VERSION, extract_floor
 
 
@@ -87,3 +87,72 @@ def test_build_room_program_preserves_orientation_and_cell_spatial() -> None:
 
     assert program_floor["orientation"]["front_side"] == "top"
     assert program_floor["plan_cells"][0]["spatial"]["outdoor_role"] == "kaohsiung-house-balcony"
+
+
+def test_build_program_emits_v3_source_schema_metadata() -> None:
+    program = build_program(
+        [
+            {
+                "source_file": "abuilding.html",
+                "meta": {"title": "Example"},
+                "tabs": [],
+                "floors": [],
+            }
+        ]
+    )
+
+    assert program["source_schema_version"] == "house-design-structured-v3"
+    assert program["compatible_source_schema_versions"] == [
+        "house-design-structured-v2",
+        "house-design-structured-v3",
+    ]
+
+
+def test_transform_floor_backfills_v2_shape_metadata_defaults() -> None:
+    floor = {
+        "id": "floor-1",
+        "order": 1,
+        "title": "1F",
+        "subtitle": "",
+        "direction_badges": [],
+        "geometry_mm": {"width_mm": 11000, "depth_mm": 5200, "north_deg": 0},
+        "geometry_source": "test",
+        "rooms": [{"order": 1, "id": "room-1", "name": "Living Room", "area": "", "details": [], "tags": []}],
+        "plan_cells": [
+            {
+                "order": 1,
+                "target_room_id": "room-1",
+                "name": "Living Room",
+                "icon": "",
+                "size": "",
+                "badges": [],
+                "classes": [],
+                "row_order": 1,
+                "col_order": 1,
+                "col_weight": 1,
+                "row_template_columns": [1],
+                "geometry_mm": {"x_mm": 0, "y_mm": 0, "w_mm": 3000, "h_mm": 3000},
+                "openings_mm": {},
+                "is_entry": False,
+                "material": "",
+            }
+        ],
+        "plan_rows": [],
+        "tables": [],
+        "checklists": [],
+        "section_blocks": [],
+    }
+
+    transformed = transform_floor("A", floor, [])
+
+    assert transformed["orientation"] == {
+        "front_side": "unknown",
+        "rear_side": "unknown",
+        "site_orientation_note": "",
+    }
+    assert transformed["plan_cells"][0]["spatial"] == {
+        "zone": "unknown",
+        "facing": "unknown",
+        "outdoor_role": "none",
+        "is_outdoor_like": False,
+    }
