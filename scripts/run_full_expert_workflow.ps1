@@ -57,20 +57,6 @@ function Invoke-PythonStep {
     return $code
 }
 
-function Get-HardGateStatus {
-    param([string]$ReportPath = "structured/expert_review/report.json")
-    if (-not (Test-Path -LiteralPath $ReportPath)) {
-        return ""
-    }
-    try {
-        $raw = Get-Content -Raw -LiteralPath $ReportPath | ConvertFrom-Json
-        return [string]$raw.hard_gate
-    }
-    catch {
-        return ""
-    }
-}
-
 function Assert-IfCSignoff {
     param([string]$Path)
     if (-not (Test-Path -LiteralPath $Path)) {
@@ -94,17 +80,16 @@ Invoke-PythonStep -Name "Step 1/7 normalize requirement" -Arguments @(
     "--selection", $resolvedSelection
 )
 
-Invoke-PythonStep -Name "Step 2/7 expert rules preflight gate" -Arguments @(
+$gateExit = Invoke-PythonStep -Name "Step 2/7 expert rules preflight gate" -Arguments @(
     "scripts/evaluate_expert_gates.py",
     "--stage", "gate",
     "--request", $resolvedRequestPath,
     "--buildings", $buildingsArg,
     "--mode", $Mode,
     "--selection", $resolvedSelection
-) | Out-Null
+) -AllowedExitCodes @(0, 10)
 
-$preflightGate = Get-HardGateStatus
-if ($preflightGate -eq "fail") {
+if ($gateExit -eq 10) {
     Write-Host "`nHard gate failed. Please resolve critical issues and rerun." -ForegroundColor Red
     exit 10
 }
@@ -124,6 +109,7 @@ powershell -ExecutionPolicy Bypass -File "scripts/run_full_pipeline.ps1" `
     -Paper $Paper `
     -Selection $resolvedSelection `
     -DrawingStyle $DrawingStyle `
+    -ValidationOwner outer `
     -Output $Output `
     -PythonExe $PythonExe
 if ($LASTEXITCODE -ne 0) {
@@ -134,7 +120,7 @@ Invoke-PythonStep -Name "Step 5/7 validate layout bundle" -Arguments @(
     "scripts/validate_layout_bundle.py"
 )
 
-Invoke-PythonStep -Name "Step 6/7 summarize expert report" -Arguments @(
+$reportExit = Invoke-PythonStep -Name "Step 6/7 summarize expert report" -Arguments @(
     "scripts/evaluate_expert_gates.py",
     "--stage", "report",
     "--request", $resolvedRequestPath,
@@ -142,10 +128,9 @@ Invoke-PythonStep -Name "Step 6/7 summarize expert report" -Arguments @(
     "--mode", $Mode,
     "--selection", $resolvedSelection,
     "--signoff", $Signoff
-) | Out-Null
+) -AllowedExitCodes @(0, 10)
 
-$finalGate = Get-HardGateStatus
-if ($finalGate -eq "fail") {
+if ($reportExit -eq 10) {
     Write-Host "`nHard gate failed in final report. Check structured/expert_review/report.md." -ForegroundColor Red
     exit 10
 }

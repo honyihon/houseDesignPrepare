@@ -7,6 +7,8 @@ param(
     [string]$Selection = "auto",
     [ValidateSet("presentation", "technical", "debug")]
     [string]$DrawingStyle = "presentation",
+    [ValidateSet("inner", "outer", "none")]
+    [string]$ValidationOwner = "inner",
     [string]$Output = "structured/candidates/print_bundle.pdf",
     [string]$PythonExe = "python"
 )
@@ -42,7 +44,7 @@ function Invoke-Step {
     }
 }
 
-Write-Host ("Running mode: {0} | selection: {1} | drawing style: {2}" -f $Mode, $resolvedSelection, $DrawingStyle) -ForegroundColor DarkCyan
+Write-Host ("Running mode: {0} | selection: {1} | drawing style: {2} | validation owner: {3}" -f $Mode, $resolvedSelection, $DrawingStyle, $ValidationOwner) -ForegroundColor DarkCyan
 
 Invoke-Step -Name "Step 1/7 extract_layout_data" -Arguments @("scripts/extract_layout_data.py")
 Invoke-Step -Name "Step 2/7 build_room_program" -Arguments @("scripts/build_room_program.py")
@@ -74,8 +76,14 @@ else {
     Write-Host "`nMode concept: skip PDF export for faster iteration." -ForegroundColor Yellow
 }
 
-if ($Mode -eq "ifc") {
+if ($Mode -eq "ifc" -and $ValidationOwner -eq "inner") {
     Invoke-Step -Name "Step IFC gate validate_layout_bundle" -Arguments @("scripts/validate_layout_bundle.py")
+}
+elseif ($Mode -eq "ifc" -and $ValidationOwner -eq "outer") {
+    Write-Host "`nMode ifc: validation owned by outer workflow." -ForegroundColor Yellow
+}
+elseif ($Mode -eq "ifc" -and $ValidationOwner -eq "none") {
+    Write-Host "`nMode ifc: validation skipped by explicit request." -ForegroundColor Yellow
 }
 
 if ($Mode -eq "concept") {

@@ -942,11 +942,15 @@ def main() -> None:
     )
     args.output_json.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     args.output_md.write_text(generate_report_md(report), encoding="utf-8")
-    update_task_board(args.task_board.resolve(), report)
+    if args.stage in {"report", "full"}:
+        update_task_board(args.task_board.resolve(), report)
+        task_board_status = str(args.task_board.resolve())
+    else:
+        task_board_status = "skipped for stage gate"
 
     print(f"Report JSON: {args.output_json.resolve()}")
     print(f"Report MD:   {args.output_md.resolve()}")
-    print(f"Task board:  {args.task_board.resolve()}")
+    print(f"Task board:  {task_board_status}")
     print(f"Hard gate:   {report['hard_gate']}")
     print(f"Critical:    {len(report['critical_failures'])}")
     print(f"Warnings:    {len(report['warnings'])}")
