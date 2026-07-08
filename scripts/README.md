@@ -291,7 +291,7 @@ Fix:
 - Create `structured/expert_review/signoff.yaml` from `structured/expert_review/signoff.template.yaml`
 - Set:
   - `decision: approved`
-  - reviewer metadata and the related report reference
+  - reviewer metadata and `related_report_hash`
 
 ### 3) HTML mapping mismatch (`highlightRoom` / `room-id`)
 

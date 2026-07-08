@@ -1,7 +1,7 @@
 # Claude Code 指令使用教學
 
 適用 repo：`D:\I29786\workspace\houseDesignPrepare`  
-更新日期：2026-07-07
+更新日期：2026-05-15
 
 這份文件整理本專案的 Claude Code 設定、自訂 slash command、等效 PowerShell 指令，以及日常設計/出圖流程的建議用法。本專案主要用途是把 A/B/C 棟與儲藏空間的 HTML 平面配置轉成結構化 JSON，再產生建築計算輔助、候選配置、SVG 圖面、PDF bundle 與專家審查報告。
 
@@ -401,7 +401,7 @@ structured/expert_review/report.md
 | `structured/candidates/svg/manifest.json` | SVG 匯出摘要，包含 `candidate_selection`、`drawing_style`、`presentation_version` 與 `compact_label_count` |
 | `structured/candidates/print_bundle.pdf` | PDF 圖面 bundle，`concept` 模式不產生 |
 | `structured/final_design_html/*.final.html` | canonical-first HTML 討論版副本，不覆蓋 canonical HTML，也不搬動可視房間格位 |
-| `structured/final_design_html/manifest.json` | final HTML 匯出摘要 |
+| `structured/final_design_html/manifest.json` | final HTML 匯出摘要，包含 `sync_mode`、selection、report hash、候選 assignment 與 rejected visual moves 統計 |
 | `task-board.md` | 自動更新 last run 摘要 |
 
 ## 手動 Pipeline 指令
@@ -507,9 +507,7 @@ python scripts/validate_layout_bundle.py
 
 不要把 `*_tmp.html` 當正式輸入；pipeline 也只讀非 `_tmp` 檔案。
 
-`structured/final_design_html/*.final.html` 是 canonical-first 討論版副本，會保留原 HTML 的可視格位、房名、`onclick` 與幾何；候選 selection 只會寫進摘要與 JSON payload metadata，方便人看與 AI 讀。它不是下一次 pipeline 的正式輸入，也不會覆蓋 canonical HTML。
-
-`structured/final_design_html/manifest.json` 會記錄 final HTML 輸出的摘要 metadata；這些內容只描述分析與輸出結果，不會要求討論版 HTML 改動 canonical 視覺格位。
+`structured/final_design_html/*.final.html` 是 canonical-first 討論版副本，會保留原 HTML 的可視格位、房名、`onclick` 與幾何；候選 selection 只會寫進摘要與 JSON metadata，方便人看與 AI 讀。它不是下一次 pipeline 的正式輸入，也不會覆蓋 canonical HTML。
 
 修改 HTML 時要保留 DOM 骨架：
 
