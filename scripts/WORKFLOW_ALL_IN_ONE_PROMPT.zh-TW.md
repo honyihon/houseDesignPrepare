@@ -26,7 +26,7 @@
    - 若有 critical：停止，列出檔案、樓層、證據與最小修正建議。
 
 4) 主管線輸出
-   - powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 -Mode <mode> -Selection <selection> -DrawingStyle <drawing_style>
+   - powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 -Mode <mode> -Selection <selection> -DrawingStyle <drawing_style> -ValidationOwner outer
 
 5) Bundle 驗證
    - python scripts/validate_layout_bundle.py

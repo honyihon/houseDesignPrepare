@@ -37,6 +37,8 @@ def test_manual_workflow_docs_include_mode_for_html_consistency() -> None:
 
     assert "python scripts/check_html_consistency.py --buildings <buildings> --mode <mode>" in all_in_one
     assert "python scripts/check_html_consistency.py --buildings <buildings> --mode <mode>" in web_to_plan
+    assert "-ValidationOwner outer" in all_in_one
+    assert "-ValidationOwner outer" in web_to_plan
 
 
 def test_expert_gate_stage_does_not_update_task_board() -> None:

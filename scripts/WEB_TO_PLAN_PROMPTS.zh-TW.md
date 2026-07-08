@@ -42,7 +42,7 @@ powershell -ExecutionPolicy Bypass -File scripts/run_full_expert_workflow.ps1 `
 3. HTML 一致性檢查
    - python scripts/check_html_consistency.py --buildings <buildings> --mode <mode>
 4. 主管線輸出
-   - powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 -Mode <mode> -Selection <selection>
+   - powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 -Mode <mode> -Selection <selection> -ValidationOwner outer
 5. 品質驗證
    - python scripts/validate_layout_bundle.py
 6. 匯總報告 + task-board 更新

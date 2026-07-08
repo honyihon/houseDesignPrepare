@@ -465,7 +465,7 @@ python scripts/export_final_design_html.py --mode concept --selection best --bui
 只做 HTML 一致性檢查：
 
 ```powershell
-python scripts/check_html_consistency.py --buildings A,B,C
+python scripts/check_html_consistency.py --buildings A,B,C --mode draft
 ```
 
 只做專家 gate：
