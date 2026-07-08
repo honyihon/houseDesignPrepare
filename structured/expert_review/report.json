@@ -1,16 +1,16 @@
 {
   "schema_version": "expert-review-v1",
-  "generated_at": "2026-05-15T08:34:23.533596+00:00",
+  "generated_at": "2026-07-08T01:18:06.140261+00:00",
   "input": {
     "request_file": "design_request.md",
-    "mode": "ifc",
-    "selection": "baseline",
+    "mode": "concept",
+    "selection": "best",
     "buildings": [
       "A",
       "B",
       "C"
     ],
-    "rule_dir": "scripts/rules"
+    "rule_dir": "scripts\\rules"
   },
   "hard_gate": "pass",
   "critical_failures": [],
@@ -81,7 +81,7 @@
       "fail_message": "Some rooms need better daylight, door, geometry, or metadata before design review.",
       "fix_hint": "Review structured/architect_metrics/report.md and update HTML geometry/openings or request professional calculation.",
       "evidence": [
-        "generated_at=2026-05-15T08:34:21.152325+00:00",
+        "generated_at=2026-07-08T01:18:02.730194+00:00",
         "advisory=27",
         "missing_data=31",
         "A:floor-1::egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
@@ -109,7 +109,7 @@
       "fail_message": "Formal daylight, ventilation, egress, or structural review is still required.",
       "fix_hint": "Keep these items as architect/engineer confirmation tasks; do not treat concept metrics as signoff.",
       "evidence": [
-        "generated_at=2026-05-15T08:34:21.152325+00:00",
+        "generated_at=2026-07-08T01:18:02.730194+00:00",
         "professional_required=20"
       ],
       "source_doc": "Skills-Architects calculator adaptation",
@@ -939,10 +939,10 @@
     "date": ""
   },
   "artifacts": {
-    "normalized_request": "structured/expert_review/request_normalized.json",
-    "room_program": "structured/room_program.json",
-    "candidates": "structured/candidates/layout_candidates.json",
-    "architect_metrics": "structured/architect_metrics/metrics.json",
+    "normalized_request": "structured\\expert_review\\request_normalized.json",
+    "room_program": "structured\\room_program.json",
+    "candidates": "structured\\candidates\\layout_candidates.json",
+    "architect_metrics": "structured\\architect_metrics\\metrics.json",
     "viewer": "structured/candidates/viewer.html",
     "pdf": "structured/candidates/print_bundle.pdf"
   },
@@ -1015,7 +1015,7 @@
       "fail_message": "Some rooms need better daylight, door, geometry, or metadata before design review.",
       "fix_hint": "Review structured/architect_metrics/report.md and update HTML geometry/openings or request professional calculation.",
       "evidence": [
-        "generated_at=2026-05-15T08:34:21.152325+00:00",
+        "generated_at=2026-07-08T01:18:02.730194+00:00",
         "advisory=27",
         "missing_data=31",
         "A:floor-1::egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
@@ -1137,7 +1137,7 @@
       "fail_message": "Formal daylight, ventilation, egress, or structural review is still required.",
       "fix_hint": "Keep these items as architect/engineer confirmation tasks; do not treat concept metrics as signoff.",
       "evidence": [
-        "generated_at=2026-05-15T08:34:21.152325+00:00",
+        "generated_at=2026-07-08T01:18:02.730194+00:00",
         "professional_required=20"
       ],
       "source_doc": "Skills-Architects calculator adaptation",
@@ -1160,5 +1160,5 @@
       "hard_gate_eligible": false
     }
   ],
-  "report_hash": "0b9cc78322334e605107bab62c262c587402b2914eb0082145e6f0adc633650e"
+  "report_hash": "d6a5ab5b9a0a174cf81241ee196ab0ff85ba1665360bd7168f1b706c2e513e9a"
 }

@@ -1,6 +1,6 @@
 {
   "schema_version": "html-consistency-v1",
-  "generated_at": "2026-05-15T08:34:20.167974+00:00",
+  "generated_at": "2026-07-08T01:17:59.099898+00:00",
   "selected_buildings": [
     "A",
     "B",
@@ -13,43 +13,13 @@
   ],
   "summary": {
     "critical": 0,
-    "warning": 33,
+    "warning": 16,
     "info": 0,
     "scanned_file_count": 3,
     "floor_count": 12,
     "cell_count": 84
   },
   "issues": [
-    {
-      "level": "warning",
-      "building_id": "A",
-      "file": "AbuildingView.html",
-      "floor_id": "floor-1",
-      "code": "WINDOW_RANGE",
-      "message": "前院車庫 data-window-mm=0 out of range [300, 3600]",
-      "evidence": "cell-1",
-      "fix_hint": "依採光與法規調整窗寬。"
-    },
-    {
-      "level": "warning",
-      "building_id": "A",
-      "file": "AbuildingView.html",
-      "floor_id": "floor-1",
-      "code": "WINDOW_RANGE",
-      "message": "後工作陽台 data-window-mm=0 out of range [300, 3600]",
-      "evidence": "cell-10",
-      "fix_hint": "依採光與法規調整窗寬。"
-    },
-    {
-      "level": "warning",
-      "building_id": "A",
-      "file": "AbuildingView.html",
-      "floor_id": "floor-2",
-      "code": "WINDOW_RANGE",
-      "message": "高雄厝陽台 data-window-mm=0 out of range [300, 3600]",
-      "evidence": "cell-8",
-      "fix_hint": "依採光與法規調整窗寬。"
-    },
     {
       "level": "warning",
       "building_id": "A",
@@ -68,17 +38,7 @@
       "code": "WINDOW_RANGE",
       "message": "娛樂室/家庭劇院 data-window-mm=0 out of range [300, 3600]",
       "evidence": "cell-1",
-      "fix_hint": "依採光與法規調整窗寬。"
-    },
-    {
-      "level": "warning",
-      "building_id": "A",
-      "file": "AbuildingView.html",
-      "floor_id": "floor-3",
-      "code": "WINDOW_RANGE",
-      "message": "露台 data-window-mm=0 out of range [300, 3600]",
-      "evidence": "cell-6",
-      "fix_hint": "依採光與法規調整窗寬。"
+      "fix_hint": "依採光與法規調整窗寬，戶外空間請標 data-outdoor-role。"
     },
     {
       "level": "warning",
@@ -89,16 +49,6 @@
       "message": "Expected exactly 1 main entry cell, got 0",
       "evidence": "entry_count=0",
       "fix_hint": "每層僅保留一個 data-entry=\"true\"。"
-    },
-    {
-      "level": "warning",
-      "building_id": "A",
-      "file": "AbuildingView.html",
-      "floor_id": "floor-4",
-      "code": "WINDOW_RANGE",
-      "message": "曬衣區/露台 data-window-mm=0 out of range [300, 3600]",
-      "evidence": "cell-6",
-      "fix_hint": "依採光與法規調整窗寬。"
     },
     {
       "level": "warning",
@@ -125,40 +75,10 @@
       "building_id": "B",
       "file": "BbuildingView.html",
       "floor_id": "floor-1",
-      "code": "WINDOW_RANGE",
-      "message": "前院車庫 data-window-mm=0 out of range [300, 3600]",
-      "evidence": "cell-1",
-      "fix_hint": "依採光與法規調整窗寬。"
-    },
-    {
-      "level": "warning",
-      "building_id": "B",
-      "file": "BbuildingView.html",
-      "floor_id": "floor-1",
-      "code": "WINDOW_RANGE",
-      "message": "後工作陽台 data-window-mm=0 out of range [300, 3600]",
-      "evidence": "cell-7",
-      "fix_hint": "依採光與法規調整窗寬。"
-    },
-    {
-      "level": "warning",
-      "building_id": "B",
-      "file": "BbuildingView.html",
-      "floor_id": "floor-1",
       "code": "CELL_OVERLAP",
       "message": "IDF-B 機櫃 overlaps 無障礙衛浴",
       "evidence": "cell-4 vs cell-5",
       "fix_hint": "調整 x/y/w/h 避免重疊。"
-    },
-    {
-      "level": "warning",
-      "building_id": "B",
-      "file": "BbuildingView.html",
-      "floor_id": "floor-2",
-      "code": "WINDOW_RANGE",
-      "message": "後陽台/立管 data-window-mm=0 out of range [300, 3600]",
-      "evidence": "cell-6",
-      "fix_hint": "依採光與法規調整窗寬。"
     },
     {
       "level": "warning",
@@ -185,16 +105,6 @@
       "building_id": "B",
       "file": "BbuildingView.html",
       "floor_id": "floor-3",
-      "code": "WINDOW_RANGE",
-      "message": "前院大露台 data-window-mm=0 out of range [300, 3600]",
-      "evidence": "cell-1",
-      "fix_hint": "依採光與法規調整窗寬。"
-    },
-    {
-      "level": "warning",
-      "building_id": "B",
-      "file": "BbuildingView.html",
-      "floor_id": "floor-3",
       "code": "ENTRY_COUNT",
       "message": "Expected exactly 1 main entry cell, got 0",
       "evidence": "entry_count=0",
@@ -205,50 +115,10 @@
       "building_id": "B",
       "file": "BbuildingView.html",
       "floor_id": "floor-4",
-      "code": "WINDOW_RANGE",
-      "message": "活動平台 / 曬衣棚架 data-window-mm=0 out of range [300, 3600]",
-      "evidence": "cell-5",
-      "fix_hint": "依採光與法規調整窗寬。"
-    },
-    {
-      "level": "warning",
-      "building_id": "B",
-      "file": "BbuildingView.html",
-      "floor_id": "floor-4",
       "code": "ENTRY_COUNT",
       "message": "Expected exactly 1 main entry cell, got 0",
       "evidence": "entry_count=0",
       "fix_hint": "每層僅保留一個 data-entry=\"true\"。"
-    },
-    {
-      "level": "warning",
-      "building_id": "C",
-      "file": "CbuildingView.html",
-      "floor_id": "floor-1",
-      "code": "WINDOW_RANGE",
-      "message": "前院車庫 data-window-mm=0 out of range [300, 3600]",
-      "evidence": "cell-1",
-      "fix_hint": "依採光與法規調整窗寬。"
-    },
-    {
-      "level": "warning",
-      "building_id": "C",
-      "file": "CbuildingView.html",
-      "floor_id": "floor-1",
-      "code": "WINDOW_RANGE",
-      "message": "側院 data-window-mm=0 out of range [300, 3600]",
-      "evidence": "cell-4",
-      "fix_hint": "依採光與法規調整窗寬。"
-    },
-    {
-      "level": "warning",
-      "building_id": "C",
-      "file": "CbuildingView.html",
-      "floor_id": "floor-1",
-      "code": "WINDOW_RANGE",
-      "message": "後工作陽台 data-window-mm=0 out of range [300, 3600]",
-      "evidence": "cell-11",
-      "fix_hint": "依採光與法規調整窗寬。"
     },
     {
       "level": "warning",
@@ -265,16 +135,6 @@
       "building_id": "C",
       "file": "CbuildingView.html",
       "floor_id": "floor-2",
-      "code": "WINDOW_RANGE",
-      "message": "前陽台（洗衣曬衣） data-window-mm=0 out of range [300, 3600]",
-      "evidence": "cell-1",
-      "fix_hint": "依採光與法規調整窗寬。"
-    },
-    {
-      "level": "warning",
-      "building_id": "C",
-      "file": "CbuildingView.html",
-      "floor_id": "floor-2",
       "code": "ENTRY_COUNT",
       "message": "Expected exactly 1 main entry cell, got 0",
       "evidence": "entry_count=0",
@@ -285,40 +145,10 @@
       "building_id": "C",
       "file": "CbuildingView.html",
       "floor_id": "floor-3",
-      "code": "WINDOW_RANGE",
-      "message": "前露台（通風曬衣） data-window-mm=0 out of range [300, 3600]",
-      "evidence": "cell-1",
-      "fix_hint": "依採光與法規調整窗寬。"
-    },
-    {
-      "level": "warning",
-      "building_id": "C",
-      "file": "CbuildingView.html",
-      "floor_id": "floor-3",
       "code": "ENTRY_COUNT",
       "message": "Expected exactly 1 main entry cell, got 0",
       "evidence": "entry_count=0",
       "fix_hint": "每層僅保留一個 data-entry=\"true\"。"
-    },
-    {
-      "level": "warning",
-      "building_id": "C",
-      "file": "CbuildingView.html",
-      "floor_id": "floor-4",
-      "code": "WINDOW_RANGE",
-      "message": "活動平台 / 曬衣棚架 data-window-mm=0 out of range [300, 3600]",
-      "evidence": "cell-6",
-      "fix_hint": "依採光與法規調整窗寬。"
-    },
-    {
-      "level": "warning",
-      "building_id": "C",
-      "file": "CbuildingView.html",
-      "floor_id": "floor-4",
-      "code": "WINDOW_RANGE",
-      "message": "曬衣區 data-window-mm=0 out of range [300, 3600]",
-      "evidence": "cell-7",
-      "fix_hint": "依採光與法規調整窗寬。"
     },
     {
       "level": "warning",
