@@ -96,7 +96,8 @@ if ($gateExit -eq 10) {
 
 Invoke-PythonStep -Name "Step 3/7 HTML consistency check" -Arguments @(
     "scripts/check_html_consistency.py",
-    "--buildings", $buildingsArg
+    "--buildings", $buildingsArg,
+    "--mode", $Mode
 )
 
 if ($Mode -eq "ifc") {

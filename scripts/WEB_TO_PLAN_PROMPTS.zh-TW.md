@@ -40,7 +40,7 @@ powershell -ExecutionPolicy Bypass -File scripts/run_full_expert_workflow.ps1 `
 2. 專家規則檢核（法規/無障礙硬阻擋）
    - python scripts/evaluate_expert_gates.py --stage gate --request <request_file> --buildings <buildings> --mode <mode> --selection <selection>
 3. HTML 一致性檢查
-   - python scripts/check_html_consistency.py --buildings <buildings>
+   - python scripts/check_html_consistency.py --buildings <buildings> --mode <mode>
 4. 主管線輸出
    - powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 -Mode <mode> -Selection <selection>
 5. 品質驗證

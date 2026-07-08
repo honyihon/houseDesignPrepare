@@ -94,6 +94,34 @@ def parse_buildings(raw: str) -> list[str]:
     return values or ["A", "B", "C"]
 
 
+def normalized_promotion_categories(spatial_config: dict[str, Any]) -> dict[str, set[str]]:
+    raw = spatial_config.get("ifc_promotion", {})
+    if not isinstance(raw, dict):
+        return {}
+    normalized: dict[str, set[str]] = {}
+    for key, values in raw.items():
+        if isinstance(values, list):
+            normalized[str(key).strip().lower()] = {
+                normalize_whitespace(value).lower() for value in values if normalize_whitespace(str(value))
+            }
+    return normalized
+
+
+def promoted_level(mode: str, promotions: dict[str, set[str]], category: str, default: str = "warning") -> str:
+    if mode == "ifc" and category in promotions.get(category, set()):
+        return "critical"
+    return default
+
+
+def floor_label(floor: Tag, floor_id: str) -> str:
+    title = text_of(floor.select_one(".floor-title")) or floor_id
+    return title.upper()
+
+
+def is_ground_floor_label(label: str) -> bool:
+    return label in {"1F", "GF", "G/F", "GROUND FLOOR"}
+
+
 def overlap(a: dict[str, float], b: dict[str, float]) -> bool:
     ax1, ay1 = a["x_mm"], a["y_mm"]
     ax2, ay2 = ax1 + a["w_mm"], ay1 + a["h_mm"]
@@ -143,8 +171,11 @@ def check_floor_geometry(
     floor_w = to_float(floor.get("data-floor-width-mm"))
     floor_d = to_float(floor.get("data-floor-depth-mm"))
     spatial_config = spatial_config or {}
+    promotions = normalized_promotion_categories(spatial_config)
     orientation = parse_floor_orientation(floor.attrs)
     direction_config = spatial_config.get("direction", {})
+    floor_name = floor_label(floor, floor_id)
+    is_ground_floor = is_ground_floor_label(floor_name)
     if (
         orientation["front_side"] != "unknown"
         and orientation["rear_side"] != "unknown"
@@ -346,7 +377,7 @@ def check_floor_geometry(
             if overlap(geometry_cells[i], geometry_cells[j]):
                 issue(
                     issues,
-                    "warning",
+                    promoted_level(mode, promotions, "cell_overlap"),
                     building_id,
                     file_name,
                     floor_id,
@@ -357,22 +388,35 @@ def check_floor_geometry(
                 )
 
     if entry_count != 1:
-        issue(
-            issues,
-            "warning",
-            building_id,
-            file_name,
-            floor_id,
-            "ENTRY_COUNT",
-            f"Expected exactly 1 main entry cell, got {entry_count}",
-            evidence=f"entry_count={entry_count}",
-            fix_hint="每層僅保留一個 data-entry=\"true\"。",
-        )
+        if is_ground_floor:
+            issue(
+                issues,
+                "warning",
+                building_id,
+                file_name,
+                floor_id,
+                "ENTRY_COUNT",
+                f"Expected exactly 1 main entry cell on {floor_name}, got {entry_count}",
+                evidence=f"entry_count={entry_count}",
+                fix_hint="首層應保留一個主要出入口 data-entry=\"true\"。",
+            )
+        else:
+            issue(
+                issues,
+                "info",
+                building_id,
+                file_name,
+                floor_id,
+                "ENTRY_COUNT_UPPER_FLOOR",
+                f"Expected exactly 1 stair or landing entry cell on {floor_name}, got {entry_count}",
+                evidence=f"entry_count={entry_count}",
+                fix_hint="上層若有樓梯或平台銜接格位，標示單一 data-entry=\"true\"。",
+            )
 
     if unresolved_targets:
         issue(
             issues,
-            "warning",
+            promoted_level(mode, promotions, "room_target_mismatch"),
             building_id,
             file_name,
             floor_id,

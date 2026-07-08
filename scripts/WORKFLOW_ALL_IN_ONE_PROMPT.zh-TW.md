@@ -22,7 +22,7 @@
    - 若 exit code=10 或 hard_gate=fail：停止，列出 critical_failures 與修正建議。
 
 3) HTML 一致性檢查
-   - python scripts/check_html_consistency.py --buildings <buildings>
+   - python scripts/check_html_consistency.py --buildings <buildings> --mode <mode>
    - 若有 critical：停止，列出檔案、樓層、證據與最小修正建議。
 
 4) 主管線輸出
