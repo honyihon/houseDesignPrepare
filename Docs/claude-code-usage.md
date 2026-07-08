@@ -401,7 +401,7 @@ structured/expert_review/report.md
 | `structured/candidates/svg/manifest.json` | SVG 匯出摘要，包含 `candidate_selection`、`drawing_style`、`presentation_version` 與 `compact_label_count` |
 | `structured/candidates/print_bundle.pdf` | PDF 圖面 bundle，`concept` 模式不產生 |
 | `structured/final_design_html/*.final.html` | canonical-first HTML 討論版副本，不覆蓋 canonical HTML，也不搬動可視房間格位 |
-| `structured/final_design_html/manifest.json` | final HTML 匯出摘要，包含 `sync_mode`、selection、report hash、候選 assignment 與 rejected visual moves 統計 |
+| `structured/final_design_html/manifest.json` | final HTML 匯出摘要 |
 | `task-board.md` | 自動更新 last run 摘要 |
 
 ## 手動 Pipeline 指令
@@ -509,7 +509,7 @@ python scripts/validate_layout_bundle.py
 
 `structured/final_design_html/*.final.html` 是 canonical-first 討論版副本，會保留原 HTML 的可視格位、房名、`onclick` 與幾何；候選 selection 只會寫進摘要與 JSON payload metadata，方便人看與 AI 讀。它不是下一次 pipeline 的正式輸入，也不會覆蓋 canonical HTML。
 
-`structured/final_design_html/manifest.json` 會記錄 final HTML payload metadata contract，例如 `sync_mode`、`selection`、`report_hash`、候選 assignment 摘要，以及 rejected visual moves 統計；這些 metadata 只描述分析結果，不會要求討論版 HTML 改動 canonical 視覺格位。
+`structured/final_design_html/manifest.json` 會記錄 final HTML 輸出的摘要 metadata；這些內容只描述分析與輸出結果，不會要求討論版 HTML 改動 canonical 視覺格位。
 
 修改 HTML 時要保留 DOM 骨架：
 

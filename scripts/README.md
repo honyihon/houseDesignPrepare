@@ -106,10 +106,6 @@ python -m pip install --user beautifulsoup4
 python -m pip install --user reportlab svglib
 ```
 
-Workflow docs in this repo assume these script dependencies plus the project-scoped MCP pins in `.mcp.json`:
-- `@playwright/mcp@0.0.77`
-- `@modelcontextprotocol/server-brave-search@0.6.2`
-
 ## Output for Step 2
 
 After running `build_room_program.py`, you'll get:
@@ -295,7 +291,7 @@ Fix:
 - Create `structured/expert_review/signoff.yaml` from `structured/expert_review/signoff.template.yaml`
 - Set:
   - `decision: approved`
-  - reviewer metadata and `related_report_hash`
+  - reviewer metadata and the related report reference
 
 ### 3) HTML mapping mismatch (`highlightRoom` / `room-id`)
 
