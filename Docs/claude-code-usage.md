@@ -554,6 +554,15 @@ powershell -ExecutionPolicy Bypass -File scripts/run_full_expert_workflow.ps1 `
 
 ## 失敗處理
 
+### 規則引用層級
+
+`scripts/rules/*.yaml` 的引用分成兩類：
+
+- 台灣建築與無障礙規則使用內政部國土管理署的具體法規頁，作為法規追溯入口。
+- 室內配置、風水偏好與需求完整性屬專案 heuristic，引用 `Docs/ABC_design_revision_checklist.md`；這些引用是專案治理依據，不是法規通過證明。
+
+新增規則時不得使用 `example.com`、搜尋首頁或法規網站首頁作為 `source_url`。
+
 ### Hard gate fail
 
 症狀：`run_full_expert_workflow.ps1` 顯示 hard gate failed，或 exit code 為 `10`。
