@@ -33,6 +33,28 @@ def test_ground_floor_entry_policy_reports_missing_main_entry() -> None:
     assert evidence == ["A:floor-1 entry_count=0"]
 
 
+def test_ground_floor_entry_policy_uses_floor_icon_not_full_title_text() -> None:
+    ctx = _context(
+        """
+        <div class="floor-plan" id="floor-1">
+          <div class="floor-title">
+            <div class="floor-title-icon">1F</div>
+            <div>
+              <div>公共空間 × 孝親房</div>
+              <div>主入口與無障礙動線</div>
+            </div>
+          </div>
+          <div class="plan-cell"><span class="cell-name">客廳</span></div>
+        </div>
+        """
+    )
+
+    passed, evidence = gates.evaluate_entry_ground_floor({}, ctx)
+
+    assert passed is False
+    assert evidence == ["A:floor-1 entry_count=0"]
+
+
 def test_ground_floor_entry_policy_ignores_upper_floor() -> None:
     ctx = _context(
         """

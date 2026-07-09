@@ -307,6 +307,27 @@ def test_ground_floor_entry_count_uses_main_entry_wording() -> None:
     assert "main entry" in entry_issue["message"]
 
 
+def test_ground_floor_entry_count_uses_floor_icon_with_full_title() -> None:
+    html = """
+    <div class="floor-plan" id="floor-1" data-floor-width-mm="1000" data-floor-depth-mm="1000">
+      <div class="floor-title">
+        <div class="floor-title-icon">1F</div>
+        <div><div>公共空間 × 孝親房</div><div>主入口與無障礙動線</div></div>
+      </div>
+      <div class="plan-grid-visual"><div class="plan-row">
+        <div class="plan-cell" data-x-mm="0" data-y-mm="0" data-w-mm="500" data-h-mm="500"
+             data-window-mm="800"><span class="cell-name">客廳</span></div>
+      </div></div>
+    </div>
+    """
+
+    issues = _run(html)
+    entry_issue = next(i for i in issues if i["code"] in {"ENTRY_COUNT", "ENTRY_COUNT_UPPER_FLOOR"})
+
+    assert entry_issue["code"] == "ENTRY_COUNT"
+    assert "main entry" in entry_issue["message"]
+
+
 def test_upper_floor_entry_count_uses_stair_or_landing_wording() -> None:
     html = """
     <div class="floor-plan" id="floor-2" data-floor-width-mm="1000" data-floor-depth-mm="1000">

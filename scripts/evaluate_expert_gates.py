@@ -233,6 +233,16 @@ def floor_nodes_with_cells(soup: BeautifulSoup) -> list[Tag]:
     return nodes
 
 
+def floor_level_label(floor: Tag) -> str:
+    icon = text_of(floor.select_one(".floor-title-icon"))
+    if icon:
+        return icon.upper()
+    floor_id = normalize_whitespace(str(floor.get("id", ""))).upper()
+    if floor_id in {"FLOOR-1", "FLOOR_1"}:
+        return "1F"
+    return (text_of(floor.select_one(".floor-title")) or floor_id).upper()
+
+
 def evaluate_floor_attr_required(rule: dict[str, Any], ctx: RuleEvalContext) -> tuple[bool, list[str]]:
     attrs = [str(v) for v in rule.get("attrs", [])]
     missing: list[str] = []
@@ -277,8 +287,7 @@ def evaluate_entry_ground_floor(rule: dict[str, Any], ctx: RuleEvalContext) -> t
             continue
         for floor in floor_nodes_with_cells(soup):
             floor_id = floor.get("id", "<no-id>")
-            title = text_of(floor.select_one(".floor-title")) or str(floor_id)
-            if title.upper() not in ground_labels:
+            if floor_level_label(floor) not in ground_labels:
                 continue
             count = sum(
                 1

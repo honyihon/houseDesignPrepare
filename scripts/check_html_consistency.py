@@ -114,6 +114,12 @@ def promoted_level(mode: str, promotions: dict[str, set[str]], category: str, de
 
 
 def floor_label(floor: Tag, floor_id: str) -> str:
+    icon = text_of(floor.select_one(".floor-title-icon"))
+    if icon:
+        return icon.upper()
+    floor_token = normalize_whitespace(floor_id).upper()
+    if floor_token in {"FLOOR-1", "FLOOR_1"}:
+        return "1F"
     title = text_of(floor.select_one(".floor-title")) or floor_id
     return title.upper()
 
