@@ -23,6 +23,7 @@ def _run(html: str, mode: str = "draft") -> list[dict]:
         mode=mode,
         spatial_config={
             "opening_required_roles": [],
+            "geometry_overlap_tolerance_mm": 1.0,
             "ifc_promotion": {"cell_overlap": [], "room_target_mismatch": []},
             "direction": {
                 "ambiguous_center_tolerance_ratio": 0.10,
@@ -161,6 +162,40 @@ def test_cell_overlap_stays_warning_without_ifc_promotion() -> None:
     issues = _run(html, mode="ifc")
 
     assert any(i["code"] == "CELL_OVERLAP" and i["level"] == "warning" for i in issues)
+
+
+def test_one_mm_rounding_overlap_is_ignored() -> None:
+    html = """
+    <div class="floor-plan" id="floor-1" data-floor-width-mm="11000" data-floor-depth-mm="1100">
+      <div class="plan-grid-visual"><div class="plan-row">
+        <div class="plan-cell" data-x-mm="3667" data-y-mm="0" data-w-mm="3667" data-h-mm="1100"
+             data-window-mm="800"><span class="cell-name">設備 A</span></div>
+        <div class="plan-cell" data-x-mm="7333" data-y-mm="0" data-w-mm="3667" data-h-mm="1100"
+             data-window-mm="800"><span class="cell-name">設備 B</span></div>
+      </div></div>
+    </div>
+    """
+
+    issues = _run(html)
+
+    assert not any(i["code"] == "CELL_OVERLAP" for i in issues)
+
+
+def test_overlap_above_tolerance_is_reported() -> None:
+    html = """
+    <div class="floor-plan" id="floor-1" data-floor-width-mm="11000" data-floor-depth-mm="1100">
+      <div class="plan-grid-visual"><div class="plan-row">
+        <div class="plan-cell" data-x-mm="3667" data-y-mm="0" data-w-mm="3668" data-h-mm="1100"
+             data-window-mm="800"><span class="cell-name">設備 A</span></div>
+        <div class="plan-cell" data-x-mm="7333" data-y-mm="0" data-w-mm="3667" data-h-mm="1100"
+             data-window-mm="800"><span class="cell-name">設備 B</span></div>
+      </div></div>
+    </div>
+    """
+
+    issues = _run(html)
+
+    assert any(i["code"] == "CELL_OVERLAP" for i in issues)
 
 
 def test_cell_overlap_promotes_to_critical_in_ifc_when_configured() -> None:

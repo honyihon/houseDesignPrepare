@@ -17,10 +17,10 @@
     {
       "rule_id": "BR-TW-002",
       "severity": "warning",
-      "check_type": "entry_per_floor",
-      "message": "每層建議維持單一主入口標記。",
-      "fail_message": "入口標記數量異常。",
-      "fix_hint": "每層僅保留一個 data-entry=\"true\"。",
+      "check_type": "entry_ground_floor",
+      "message": "地面層應維持單一主入口標記。",
+      "fail_message": "地面層主入口標記數量異常。",
+      "fix_hint": "1F/GF 僅保留一個 data-entry=\"true\"；上層樓梯平台由 consistency info 提醒。",
       "source_doc": "住宅設計實務",
       "source_article": "動線與出入口一致性",
       "source_url": "https://law.moj.gov.tw/"

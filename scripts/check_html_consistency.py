@@ -122,12 +122,18 @@ def is_ground_floor_label(label: str) -> bool:
     return label in {"1F", "GF", "G/F", "GROUND FLOOR"}
 
 
-def overlap(a: dict[str, float], b: dict[str, float]) -> bool:
+def overlap(
+    a: dict[str, float],
+    b: dict[str, float],
+    tolerance_mm: float = 1.0,
+) -> bool:
     ax1, ay1 = a["x_mm"], a["y_mm"]
     ax2, ay2 = ax1 + a["w_mm"], ay1 + a["h_mm"]
     bx1, by1 = b["x_mm"], b["y_mm"]
     bx2, by2 = bx1 + b["w_mm"], by1 + b["h_mm"]
-    return (ax1 < bx2) and (ax2 > bx1) and (ay1 < by2) and (ay2 > by1)
+    overlap_w = min(ax2, bx2) - max(ax1, bx1)
+    overlap_h = min(ay2, by2) - max(ay1, by1)
+    return overlap_w > tolerance_mm and overlap_h > tolerance_mm
 
 
 def issue(
@@ -172,6 +178,9 @@ def check_floor_geometry(
     floor_d = to_float(floor.get("data-floor-depth-mm"))
     spatial_config = spatial_config or {}
     promotions = normalized_promotion_categories(spatial_config)
+    overlap_tolerance_mm = to_float(spatial_config.get("geometry_overlap_tolerance_mm"))
+    if overlap_tolerance_mm is None or overlap_tolerance_mm < 0:
+        overlap_tolerance_mm = 1.0
     orientation = parse_floor_orientation(floor.attrs)
     direction_config = spatial_config.get("direction", {})
     floor_name = floor_label(floor, floor_id)
@@ -374,7 +383,11 @@ def check_floor_geometry(
 
     for i in range(len(geometry_cells)):
         for j in range(i + 1, len(geometry_cells)):
-            if overlap(geometry_cells[i], geometry_cells[j]):
+            if overlap(
+                geometry_cells[i],
+                geometry_cells[j],
+                tolerance_mm=overlap_tolerance_mm,
+            ):
                 issue(
                     issues,
                     promoted_level(mode, promotions, "cell_overlap"),

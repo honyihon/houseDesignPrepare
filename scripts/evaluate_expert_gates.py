@@ -267,6 +267,29 @@ def evaluate_entry_per_floor(rule: dict[str, Any], ctx: RuleEvalContext) -> tupl
     return (len(problems) == 0, problems)
 
 
+def evaluate_entry_ground_floor(rule: dict[str, Any], ctx: RuleEvalContext) -> tuple[bool, list[str]]:
+    problems: list[str] = []
+    ground_labels = {"1F", "GF", "G/F", "GROUND FLOOR"}
+    for building in ctx.selected_buildings:
+        soup = ctx.soups.get(building)
+        if not soup:
+            problems.append(f"{building}: html missing")
+            continue
+        for floor in floor_nodes_with_cells(soup):
+            floor_id = floor.get("id", "<no-id>")
+            title = text_of(floor.select_one(".floor-title")) or str(floor_id)
+            if title.upper() not in ground_labels:
+                continue
+            count = sum(
+                1
+                for cell in floor.select(".plan-cell")
+                if truthy_attr(cell.get("data-entry"))
+            )
+            if count != 1:
+                problems.append(f"{building}:{floor_id} entry_count={count}")
+    return (len(problems) == 0, problems)
+
+
 def evaluate_door_width_min(rule: dict[str, Any], ctx: RuleEvalContext) -> tuple[bool, list[str]]:
     minimum = to_int(rule.get("min_mm"), 800)
     problems: list[str] = []
@@ -301,7 +324,14 @@ def evaluate_building_keyword_required(rule: dict[str, Any], ctx: RuleEvalContex
 
 
 def evaluate_accessible_door_min(rule: dict[str, Any], ctx: RuleEvalContext) -> tuple[bool, list[str]]:
-    keyword = normalize_whitespace(str(rule.get("keyword", "無障礙")))
+    raw_keywords = rule.get("keywords")
+    if not isinstance(raw_keywords, list):
+        raw_keywords = [rule.get("keyword", "無障礙")]
+    keywords = [
+        normalize_whitespace(str(keyword))
+        for keyword in raw_keywords
+        if normalize_whitespace(str(keyword))
+    ]
     minimum = to_int(rule.get("min_mm"), 800)
     problems: list[str] = []
     for building in ctx.selected_buildings:
@@ -313,12 +343,13 @@ def evaluate_accessible_door_min(rule: dict[str, Any], ctx: RuleEvalContext) -> 
             cell_name = text_of(cell.select_one(".cell-name"))
             raw_text = " ".join(
                 [
-                    cell_name,
+                    text_of(cell),
                     normalize_whitespace(cell.get("onclick", "")),
                     normalize_whitespace(" ".join(cell.get("class", []))),
                 ]
             )
-            if keyword not in raw_text:
+            is_accessible = truthy_attr(cell.get("data-accessible"))
+            if not is_accessible and not any(keyword in raw_text for keyword in keywords):
                 continue
             matched = True
             door_mm = to_int(cell.get("data-door-mm"), -1)
@@ -326,7 +357,9 @@ def evaluate_accessible_door_min(rule: dict[str, Any], ctx: RuleEvalContext) -> 
                 label = cell_name or f"cell-{idx}"
                 problems.append(f"{building}:{label} accessible_door_mm={door_mm}<{minimum}")
         if not matched:
-            problems.append(f"{building}: no cell matched accessible keyword '{keyword}'")
+            problems.append(
+                f"{building}: no cell matched accessible keywords {keywords}"
+            )
     return (len(problems) == 0, problems)
 
 
@@ -375,6 +408,8 @@ def evaluate_rule(rule: dict[str, Any], ctx: RuleEvalContext) -> tuple[bool, lis
         return evaluate_floor_attr_required(rule, ctx)
     if check_type == "entry_per_floor":
         return evaluate_entry_per_floor(rule, ctx)
+    if check_type == "entry_ground_floor":
+        return evaluate_entry_ground_floor(rule, ctx)
     if check_type == "door_width_min":
         return evaluate_door_width_min(rule, ctx)
     if check_type == "building_keyword_required":
