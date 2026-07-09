@@ -27,7 +27,6 @@ PRIVATE_ROOM_KEYWORDS = ["主臥", "臥", "客房", "孝親", "房"]
 WET_ROOM_KEYWORDS = ["衛", "浴", "廁", "廚", "洗", "陽台"]
 SERVICE_ROOM_KEYWORDS = ["mdf", "idf", "機櫃", "設備", "機房", "儲藏", "配電", "弱電"]
 STRUCTURE_REVIEW_KEYWORDS = [
-    "rf",
     "水塔",
     "熱泵",
     "vf800",
@@ -36,9 +35,9 @@ STRUCTURE_REVIEW_KEYWORDS = [
     "棚架",
     "跑步機",
     "運動",
-    "設備",
 ]
 STRUCTURE_EVIDENCE_KEYWORDS = ["結構", "技師", "載重", "承載", "錨定", "基座", "防水", "維修"]
+STRUCTURE_REVIEW_MARKERS = {"1", "true", "yes", "required", "professional_required"}
 
 
 def now_iso() -> str:
@@ -188,6 +187,30 @@ def room_text(room: dict[str, Any], cell: dict[str, Any] | None = None) -> str:
         parts.extend(str(v) for v in cell.get("badges", []))
         parts.extend(str(v) for v in cell.get("classes", []))
     return " ".join(parts)
+
+
+def structure_trigger_text(
+    room: dict[str, Any],
+    cell: dict[str, Any] | None = None,
+) -> str:
+    parts = [str(room.get("name", ""))]
+    if cell:
+        parts.append(str(cell.get("name", "")))
+    return " ".join(parts)
+
+
+def has_structure_review_marker(
+    room: dict[str, Any],
+    cell: dict[str, Any] | None = None,
+) -> bool:
+    values = [room.get("structural_review")]
+    if cell:
+        values.append(cell.get("structural_review"))
+    return any(
+        normalize_whitespace(str(value)).lower() in STRUCTURE_REVIEW_MARKERS
+        for value in values
+        if value is not None
+    )
 
 
 def needs_daylight(room: dict[str, Any]) -> bool:
@@ -510,11 +533,18 @@ def build_structure_review_metric(
     room: dict[str, Any],
     cell: dict[str, Any],
 ) -> dict[str, Any] | None:
-    text = room_text(room, cell)
-    normalized = normalize_match_text(text)
-    if not has_any_keyword(normalized, STRUCTURE_REVIEW_KEYWORDS):
+    trigger_text = normalize_match_text(structure_trigger_text(room, cell))
+    explicit_marker = has_structure_review_marker(room, cell)
+    matched_keywords = [
+        keyword
+        for keyword in STRUCTURE_REVIEW_KEYWORDS
+        if normalize_match_text(keyword) in trigger_text
+    ]
+    if not matched_keywords and not explicit_marker:
         return None
 
+    text = room_text(room, cell)
+    normalized = normalize_match_text(text)
     matched_evidence = [keyword for keyword in STRUCTURE_EVIDENCE_KEYWORDS if normalize_match_text(keyword) in normalized]
     essential = {"結構", "技師", "載重", "承載"}
     has_essential = bool(set(matched_evidence) & essential)
@@ -529,9 +559,8 @@ def build_structure_review_metric(
         str(room.get("uid", "")),
         "structure_load_review",
         {
-            "matched_keywords": [
-                keyword for keyword in STRUCTURE_REVIEW_KEYWORDS if normalize_match_text(keyword) in normalized
-            ],
+            "matched_keywords": matched_keywords,
+            "explicit_marker": explicit_marker,
             "review_terms_found": matched_evidence,
         },
         {
@@ -610,7 +639,7 @@ def summarize_metrics_payload(payload: dict[str, Any]) -> dict[str, Any]:
     status_counts: dict[str, int] = {}
     type_counts: dict[str, int] = {}
     building_counts: dict[str, int] = {}
-    issue_evidence: list[str] = []
+    issue_evidence_by_building: dict[str, list[str]] = {}
     daylight_values: list[float] = []
     daylight_below_target = 0
     door_below_min = 0
@@ -635,15 +664,27 @@ def summarize_metrics_payload(payload: dict[str, Any]) -> dict[str, Any]:
             door_below_min += 1
 
         if metric.get("issues") and metric.get("status") != STATUS_OK:
-            label = ":".join(
-                [
-                    str(metric.get("building_id", "")),
-                    str(metric.get("floor_id", "")),
-                    str(metric.get("room_uid", "")),
-                    metric_type,
-                ]
+            room_uid = normalize_whitespace(str(metric.get("room_uid", "")))
+            if room_uid:
+                label = f"{room_uid}:{metric_type}"
+            else:
+                floor_id = normalize_whitespace(str(metric.get("floor_id", "")))
+                label = ":".join(
+                    value for value in (building_id, floor_id, metric_type) if value
+                )
+            issue_evidence_by_building.setdefault(building_id, []).append(
+                f"{label} - {metric['issues'][0]}"
             )
-            issue_evidence.append(f"{label} - {metric['issues'][0]}")
+
+    issue_evidence: list[str] = []
+    building_queues = {
+        building_id: list(items)
+        for building_id, items in sorted(issue_evidence_by_building.items())
+    }
+    while len(issue_evidence) < 20 and any(building_queues.values()):
+        for building_id in building_queues:
+            if building_queues[building_id] and len(issue_evidence) < 20:
+                issue_evidence.append(building_queues[building_id].pop(0))
 
     daylight_avg = round(sum(daylight_values) / len(daylight_values), 2) if daylight_values else 0.0
     return {
