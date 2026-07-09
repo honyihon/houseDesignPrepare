@@ -194,12 +194,68 @@ def style_color(profile: dict[str, Any], key: str, default: str) -> str:
 
 
 def room_fill_color(profile: dict[str, Any], kind: str, drawing_style: str = "") -> str:
-    if is_presentation_v2(profile, drawing_style) and kind in {"bath", "service", "outdoor"}:
-        return f"url(#p2-{kind}-hatch)"
     fills = profile.get("room_fills", {})
     if isinstance(fills, dict):
         return str(fills.get(kind) or fills.get("other") or "#ffffff")
     return "#ffffff"
+
+
+def room_hatch_paths(
+    x: float,
+    y: float,
+    width: float,
+    height: float,
+    kind: str,
+    profile: dict[str, Any],
+    drawing_style: str,
+) -> str:
+    if (
+        not is_presentation_v2(profile, drawing_style)
+        or kind not in {"bath", "service", "outdoor"}
+        or width <= 0
+        or height <= 0
+    ):
+        return ""
+
+    spacing = {"bath": 9.0, "service": 10.0, "outdoor": 12.0}[kind]
+    opacity = {"bath": 0.28, "service": 0.20, "outdoor": 0.18}[kind]
+    stroke_width = {"bath": 0.55, "service": 0.50, "outdoor": 0.45}[kind]
+    commands: list[str] = []
+
+    if kind == "outdoor":
+        offset = spacing / 2
+        while offset < width:
+            commands.append(
+                f"M {x + offset:.1f} {y:.1f} V {y + height:.1f}"
+            )
+            offset += spacing
+        offset = spacing / 2
+        while offset < height:
+            commands.append(
+                f"M {x:.1f} {y + offset:.1f} H {x + width:.1f}"
+            )
+            offset += spacing
+    else:
+        offset = -height
+        while offset < width:
+            start_x = max(0.0, offset)
+            start_y = max(0.0, -offset)
+            length = min(width - start_x, height - start_y)
+            if length > 0:
+                commands.append(
+                    f"M {x + start_x:.1f} {y + start_y:.1f} "
+                    f"L {x + start_x + length:.1f} {y + start_y + length:.1f}"
+                )
+            offset += spacing
+
+    if not commands:
+        return ""
+    hatch = style_color(profile, "hatch", "#94a3b8")
+    return (
+        f'<path data-hatch-kind="{kind}" d="{" ".join(commands)}" '
+        f'fill="none" stroke="{hatch}" stroke-width="{stroke_width:.2f}" '
+        f'opacity="{opacity:.2f}" pointer-events="none"/>'
+    )
 
 
 def room_area_text(slot: dict[str, Any], pair_map: dict[str, dict[str, Any]], room_index: dict[str, dict[str, Any]]) -> str:
@@ -451,29 +507,7 @@ def svg_text_centered(
 
 
 def presentation_defs(profile: dict[str, Any], drawing_style: str) -> str:
-    if not is_presentation_v2(profile, drawing_style):
-        return ""
-    fills = profile.get("room_fills", {}) if isinstance(profile.get("room_fills"), dict) else {}
-    hatch = style_color(profile, "hatch", "#94a3b8")
-    wet_fill = str(fills.get("bath", "#ecfeff"))
-    service_fill = str(fills.get("service", "#f1f5f9"))
-    outdoor_fill = str(fills.get("outdoor", "#ecfdf5"))
-    return f"""
-<defs>
-  <pattern id="p2-bath-hatch" patternUnits="userSpaceOnUse" width="9" height="9" patternTransform="rotate(45)">
-    <rect width="9" height="9" fill="{wet_fill}"/>
-    <line x1="0" y1="0" x2="0" y2="9" stroke="{hatch}" stroke-width="0.55" opacity="0.28"/>
-  </pattern>
-  <pattern id="p2-service-hatch" patternUnits="userSpaceOnUse" width="10" height="10">
-    <rect width="10" height="10" fill="{service_fill}"/>
-    <path d="M 0 10 L 10 0" stroke="{hatch}" stroke-width="0.5" opacity="0.20"/>
-  </pattern>
-  <pattern id="p2-outdoor-hatch" patternUnits="userSpaceOnUse" width="12" height="12">
-    <rect width="12" height="12" fill="{outdoor_fill}"/>
-    <path d="M 0 6 H 12 M 6 0 V 12" stroke="{hatch}" stroke-width="0.45" opacity="0.18"/>
-  </pattern>
-</defs>
-"""
+    return ""
 
 
 def render_slot_card(
@@ -1295,19 +1329,29 @@ def draw_bottom_legend(
     inner_color = style_color(profile, "wall_inner", "#334155")
     door_color = style_color(profile, "door", "#475569")
     window_color = style_color(profile, "window", "#2563eb")
-    fills = profile.get("room_fills", {}) if isinstance(profile.get("room_fills"), dict) else {}
-
     parts.append(svg_text(x, y, "LEGEND:", size=9, weight=700, color=text_color))
     cursor = x + 58
     samples = [
-        ("公共", fills.get("living", "#fff7ed")),
-        ("臥室", fills.get("bedroom", "#eef2ff")),
-        ("濕區", "url(#p2-bath-hatch)" if is_presentation_v2(profile, drawing_style) else fills.get("bath", "#ecfeff")),
-        ("設備", "url(#p2-service-hatch)" if is_presentation_v2(profile, drawing_style) else fills.get("service", "#f1f5f9")),
-        ("戶外", "url(#p2-outdoor-hatch)" if is_presentation_v2(profile, drawing_style) else fills.get("outdoor", "#ecfdf5")),
+        ("公共", "living"),
+        ("臥室", "bedroom"),
+        ("濕區", "bath"),
+        ("設備", "service"),
+        ("戶外", "outdoor"),
     ]
-    for label, fill in samples:
+    for label, kind in samples:
+        fill = room_fill_color(profile, kind, drawing_style)
         parts.append(f'<rect x="{cursor:.1f}" y="{y - 10:.1f}" width="18" height="10" fill="{fill}" stroke="#cbd5e1" stroke-width="0.8"/>')
+        hatch_paths = room_hatch_paths(
+            x=cursor,
+            y=y - 10,
+            width=18,
+            height=10,
+            kind=kind,
+            profile=profile,
+            drawing_style=drawing_style,
+        )
+        if hatch_paths:
+            parts.append(hatch_paths)
         parts.append(svg_text(cursor + 23, y, label, size=9, weight=500, color=muted_color))
         cursor += 62
 
@@ -1610,6 +1654,17 @@ def render_floor_svg(
         kind = kind_map.get(slot_id, "other")
         fill = room_fill_color(profile, kind, drawing_style)
         parts.append(f'<rect x="{x:.1f}" y="{y:.1f}" width="{w:.1f}" height="{h:.1f}" fill="{fill}" stroke="{wall_inner_color}" stroke-width="{interior_wall_px:.1f}"/>')
+        hatch_paths = room_hatch_paths(
+            x=x,
+            y=y,
+            width=w,
+            height=h,
+            kind=kind,
+            profile=profile,
+            drawing_style=drawing_style,
+        )
+        if hatch_paths:
+            parts.append(hatch_paths)
 
         if style_bool(profile, "show_furniture", True) and is_presentation_v2(profile, drawing_style):
             draw_furniture(parts, rect, kind, profile)
