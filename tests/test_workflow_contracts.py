@@ -71,3 +71,21 @@ def test_expert_workflow_generates_domain_checklist_before_final_html() -> None:
     assert 'Step 7/8 generate domain checklist' in script
     assert '"scripts/generate_domain_checklist.py"' in script
     assert 'Step 8/8 export final design HTML' in script
+
+
+def test_docs_describe_signoff_hash_and_domain_checklist() -> None:
+    usage = (ROOT / "Docs" / "claude-code-usage.md").read_text(encoding="utf-8")
+    readme = (ROOT / "scripts" / "README.md").read_text(encoding="utf-8")
+
+    assert "related_report_hash" in usage
+    assert "domain_checklist.md" in usage
+    assert "related_report_hash" in readme
+    assert "domain_checklist.md" in readme
+
+
+def test_prompts_do_not_describe_decision_only_ifc_signoff() -> None:
+    all_in_one = (ROOT / "scripts" / "WORKFLOW_ALL_IN_ONE_PROMPT.zh-TW.md").read_text(encoding="utf-8")
+    web_to_plan = (ROOT / "scripts" / "WEB_TO_PLAN_PROMPTS.zh-TW.md").read_text(encoding="utf-8")
+
+    assert "related_report_hash" in all_in_one
+    assert "related_report_hash" in web_to_plan

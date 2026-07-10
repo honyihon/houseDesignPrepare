@@ -238,10 +238,24 @@ structured/expert_review/signoff.yaml
 Copy-Item structured\expert_review\signoff.template.yaml structured\expert_review\signoff.yaml
 ```
 
-至少需設定有效 decision：
+`ifc` 模式不再只看 `decision: approved`。流程會先產生最新 `structured/expert_review/report.json` 與 `report_hash`，`structured/expert_review/signoff.yaml` 必須填入相同的 `related_report_hash` 才能通過。
+
+建議流程：
+
+1. 先跑一次 `-Mode ifc` 產生最新 report。
+2. 若 signoff missing/stale，流程會以 exit code `2` 停止並保留 report。
+3. Reviewer 檢查 `report.md` 後，把 `report_hash` 填入 `signoff.yaml` 的 `related_report_hash`。
+4. 重跑 `-Mode ifc`。
+
+至少需設定：
 
 ```yaml
 decision: approved
+reviewer_role: owner
+reviewer_name: <name>
+reviewer_date: 2026-07-10
+related_report_hash: <copy report.report_hash>
+related_report_generated_at: <copy report.generated_at>
 ```
 
 也可使用 `pass` 或 `approved_with_conditions`。
@@ -268,7 +282,10 @@ decision: approved
 6. `evaluate_expert_gates.py --stage report`  
    產出最終審查報告，並更新 `task-board.md` 的 last run 區塊。
 
-7. `export_final_design_html.py`  
+7. `generate_domain_checklist.py`  
+   產出 `structured/expert_review/domain_checklist.json` 與 `structured/expert_review/domain_checklist.md`，供屋主、建築師、結構與機電討論，不作為合規證明。
+
+8. `export_final_design_html.py`  
    產出 `structured/final_design_html/` 討論版 HTML 副本；畫面保留 canonical HTML，最後 selection 只進候選分析摘要與 metadata。
 
 ## 新增功能：建築計算輔助
@@ -391,6 +408,8 @@ structured/expert_review/report.md
 | `structured/expert_review/html_consistency.json` | HTML 一致性檢查結果 |
 | `structured/expert_review/report.json` | 機器可讀專家審查報告 |
 | `structured/expert_review/report.md` | 人可讀專家審查報告 |
+| `structured/expert_review/domain_checklist.json` | 屋主/建築師/結構/機電討論清單 JSON |
+| `structured/expert_review/domain_checklist.md` | 屋主/建築師/結構/機電討論清單 Markdown |
 | `structured/room_program.json` | 整合後的棟別/樓層/房間資料 |
 | `structured/architect_metrics/metrics.json` | 建築計算輔助 JSON，供候選配置採光分數與專家報告引用 |
 | `structured/architect_metrics/report.md` | 建築計算輔助摘要報告 |
@@ -398,7 +417,7 @@ structured/expert_review/report.md
 | `structured/candidates/summary.md` | 候選配置摘要 |
 | `structured/candidates/viewer.html` | 可切換樓層與候選配置的瀏覽器檢視 |
 | `structured/candidates/svg/index.html` | SVG 圖面索引 |
-| `structured/candidates/svg/manifest.json` | SVG 匯出摘要，包含 `candidate_selection`、`drawing_style`、`presentation_version` 與 `compact_label_count` |
+| `structured/candidates/svg/manifest.json` | SVG 匯出摘要，包含 `candidate_selection`、`requested_selection`、`resolved_selection`、`selected_candidate_id`、`selected_strategy`、`drawing_style`、`presentation_version` 與 `compact_label_count`；SVG 檔名固定為 `<building>_<floor>.svg` |
 | `structured/candidates/print_bundle.pdf` | PDF 圖面 bundle，`concept` 模式不產生 |
 | `structured/final_design_html/*.final.html` | canonical-first HTML 討論版副本，不覆蓋 canonical HTML，也不搬動可視房間格位 |
 | `structured/final_design_html/manifest.json` | final HTML 匯出摘要，包含 `sync_mode`、selection、report hash、候選 assignment 與 rejected visual moves 統計 |
@@ -584,9 +603,9 @@ powershell -ExecutionPolicy Bypass -File scripts/run_full_expert_workflow.ps1 `
 2. 依 `code`、`file`、`floor_id`、`evidence` 定位問題。
 3. 常見修正是補齊 `data-x-mm/y-mm/w-mm/h-mm`，或修正 `highlightRoom` 與 `room-xxx` 對應。
 
-### IFC signoff missing
+### IFC signoff missing or stale
 
-症狀：`-Mode ifc` 失敗並提示缺少 signoff。
+症狀：`-Mode ifc` 失敗並提示缺少 signoff，或 `related_report_hash` 與最新 report 不一致。
 
 處理：
 
@@ -600,7 +619,9 @@ Copy-Item structured\expert_review\signoff.template.yaml structured\expert_revie
 decision: approved
 reviewer_role: owner
 reviewer_name: <name>
-date: 2026-04-28
+reviewer_date: 2026-07-10
+related_report_hash: <copy structured/expert_review/report.json report_hash>
+related_report_generated_at: <copy structured/expert_review/report.json generated_at>
 ```
 
 ### MCP 無法啟動
