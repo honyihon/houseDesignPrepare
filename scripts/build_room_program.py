@@ -22,6 +22,14 @@ STRUCTURED_DIR = ROOT / "structured"
 OUTPUT_FILE = STRUCTURED_DIR / "room_program.json"
 SCHEMA_VERSION = "room-program-v2"
 RESIDENTIAL_DEFAULTS = load_residential_defaults()
+DEFAULT_SEMANTICS = {"room_role": "unknown", "is_accessible": False, "daylight_required": None}
+DEFAULT_SPATIAL = {
+    "zone": "unknown",
+    "facing": "unknown",
+    "outdoor_role": "none",
+    "is_outdoor_like": False,
+    **DEFAULT_SEMANTICS,
+}
 
 
 def now_iso() -> str:
@@ -157,6 +165,40 @@ def to_bool(value: Any, default: bool = False) -> bool:
     return default
 
 
+def to_optional_bool(value: Any) -> bool | None:
+    if isinstance(value, bool):
+        return value
+    if value is None:
+        return None
+    text = normalize_whitespace(str(value)).lower()
+    if text in {"1", "true", "yes", "y", "on"}:
+        return True
+    if text in {"0", "false", "no", "n", "off"}:
+        return False
+    return None
+
+
+def normalize_semantics(raw: Any) -> dict[str, Any]:
+    if not isinstance(raw, dict):
+        return DEFAULT_SEMANTICS.copy()
+    return {
+        "room_role": normalize_whitespace(str(raw.get("room_role", "unknown") or "unknown")).lower(),
+        "is_accessible": to_bool(raw.get("is_accessible"), False),
+        "daylight_required": to_optional_bool(raw.get("daylight_required")),
+    }
+
+
+def normalize_spatial(raw: Any, classes: list[str]) -> dict[str, Any]:
+    if not isinstance(raw, dict):
+        spatial = DEFAULT_SPATIAL.copy()
+        spatial["is_outdoor_like"] = "outdoor" in classes
+        return spatial
+    spatial = DEFAULT_SPATIAL.copy()
+    spatial.update(raw)
+    spatial.update(normalize_semantics(raw))
+    return spatial
+
+
 def normalize_mm_map(raw: Any, keys: list[str]) -> dict[str, float]:
     if not isinstance(raw, dict):
         return {}
@@ -256,6 +298,7 @@ def transform_floor(
             "classes": room.get("classes", []),
             "geometry_mm": room_geometry_mm,
             "target_cell_id": normalize_whitespace(room.get("target_cell_id", "")),
+            "semantics": normalize_semantics(room.get("semantics")),
         }
         normalized_rooms.append(normalized)
         room_map[local_id] = normalized
@@ -297,15 +340,7 @@ def transform_floor(
                 "openings_mm": openings_mm,
                 "is_entry": to_bool(cell.get("is_entry"), False),
                 "material": normalize_whitespace(cell.get("material", "")),
-                "spatial": cell.get(
-                    "spatial",
-                    {
-                        "zone": "unknown",
-                        "facing": "unknown",
-                        "outdoor_role": "none",
-                        "is_outdoor_like": "outdoor" in cell.get("classes", []),
-                    },
-                ),
+                "spatial": normalize_spatial(cell.get("spatial"), cell.get("classes", [])),
             }
         )
 

@@ -48,7 +48,42 @@ def test_parse_cell_spatial_prefers_explicit_values_and_outdoor_role() -> None:
         "facing": "side",
         "outdoor_role": "kaohsiung-house-balcony",
         "is_outdoor_like": True,
+        "room_role": "unknown",
+        "is_accessible": False,
+        "daylight_required": None,
     }
+
+
+def test_parse_cell_spatial_preserves_semantic_roles() -> None:
+    spatial = parse_cell_spatial(
+        {
+            "data-zone": "rear",
+            "data-facing": "internal",
+            "data-outdoor-role": "laundry-yard",
+            "data-room-role": "accessible-bath",
+            "data-accessible": "true",
+            "data-daylight-required": "false",
+        },
+        ["outdoor"],
+    )
+
+    assert spatial == {
+        "zone": "rear",
+        "facing": "internal",
+        "outdoor_role": "laundry-yard",
+        "is_outdoor_like": True,
+        "room_role": "accessible-bath",
+        "is_accessible": True,
+        "daylight_required": False,
+    }
+
+
+def test_parse_cell_spatial_defaults_semantics() -> None:
+    spatial = parse_cell_spatial({}, [])
+
+    assert spatial["room_role"] == "unknown"
+    assert spatial["is_accessible"] is False
+    assert spatial["daylight_required"] is None
 
 
 def test_outdoor_window_zero_is_not_a_warning() -> None:
