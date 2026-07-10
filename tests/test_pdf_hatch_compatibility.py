@@ -83,3 +83,13 @@ def test_bottom_legend_uses_pdf_compatible_hatch_samples() -> None:
 
     assert "url(#p2-" not in markup
     assert markup.count("data-hatch-kind=") == 3
+
+
+def test_manifest_records_selection_fields_without_strategy_filename() -> None:
+    name = svg_export.stable_svg_filename("A", "floor-1")
+
+    assert name == "a_floor-1.svg"
+    assert "_baseline" not in name
+    assert "_mep" not in name
+    assert "_circulation" not in name
+    assert "_daylight" not in name
