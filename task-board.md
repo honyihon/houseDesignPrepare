@@ -19,7 +19,7 @@
 - Next focus: B/C rule alignment
 
 <!-- AUTO:LAST_RUN_START -->
-- Last Run: 2026-07-10T02:29:19.483115+00:00
+- Last Run: 2026-07-10T06:12:34.875459+00:00
 - Mode: ifc
 - Buildings: A,B,C
 - Hard Gate: PASS
