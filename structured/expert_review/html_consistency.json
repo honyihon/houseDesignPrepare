@@ -1,6 +1,6 @@
 {
   "schema_version": "html-consistency-v1",
-  "generated_at": "2026-07-08T01:40:12.955480+00:00",
+  "generated_at": "2026-07-10T02:28:44.575246+00:00",
   "selected_buildings": [
     "A",
     "B",
@@ -13,8 +13,8 @@
   ],
   "summary": {
     "critical": 0,
-    "warning": 7,
-    "info": 9,
+    "warning": 0,
+    "info": 22,
     "scanned_file_count": 3,
     "floor_count": 12,
     "cell_count": 84
@@ -24,21 +24,51 @@
       "level": "info",
       "building_id": "A",
       "file": "AbuildingView.html",
+      "floor_id": "floor-1",
+      "code": "ORIENTATION_UNRESOLVED",
+      "message": "Floor front/rear orientation metadata is not fully confirmed",
+      "evidence": "front=unknown; rear=unknown",
+      "fix_hint": "若方位已確認，補 data-front-side 與 data-rear-side；未確認則保留 unknown。"
+    },
+    {
+      "level": "info",
+      "building_id": "A",
+      "file": "AbuildingView.html",
+      "floor_id": "floor-2",
+      "code": "ORIENTATION_UNRESOLVED",
+      "message": "Floor front/rear orientation metadata is not fully confirmed",
+      "evidence": "front=unknown; rear=unknown",
+      "fix_hint": "若方位已確認，補 data-front-side 與 data-rear-side；未確認則保留 unknown。"
+    },
+    {
+      "level": "info",
+      "building_id": "A",
+      "file": "AbuildingView.html",
       "floor_id": "floor-2",
       "code": "ENTRY_COUNT_UPPER_FLOOR",
-      "message": "Expected exactly 1 stair or landing entry cell on 2F 主臥套房 × 次臥 × 書房（高頻寬）× 高雄厝陽台 私領域核心｜書房 CAT6A 直回 MDF｜2F 高雄厝可預留澆灌, got 0",
+      "message": "Expected exactly 1 stair or landing entry cell on 2F, got 0",
       "evidence": "entry_count=0",
       "fix_hint": "上層若有樓梯或平台銜接格位，標示單一 data-entry=\"true\"。"
     },
     {
-      "level": "warning",
+      "level": "info",
       "building_id": "A",
       "file": "AbuildingView.html",
       "floor_id": "floor-3",
-      "code": "WINDOW_RANGE",
-      "message": "娛樂室/家庭劇院 data-window-mm=0 out of range [300, 3600]",
-      "evidence": "cell-1",
-      "fix_hint": "依採光與法規調整窗寬，戶外空間請標 data-outdoor-role。"
+      "code": "ORIENTATION_UNRESOLVED",
+      "message": "Floor front/rear orientation metadata is not fully confirmed",
+      "evidence": "front=unknown; rear=unknown",
+      "fix_hint": "若方位已確認，補 data-front-side 與 data-rear-side；未確認則保留 unknown。"
+    },
+    {
+      "level": "info",
+      "building_id": "A",
+      "file": "AbuildingView.html",
+      "floor_id": "floor-3",
+      "code": "DAYLIGHT_EXEMPTION",
+      "message": "娛樂室/家庭劇院 is explicitly marked as not daylight-required",
+      "evidence": "cell-1; data-window-mm=0",
+      "fix_hint": "確認此空間仍有符合設計需求的通風、空調與消防排煙策略。"
     },
     {
       "level": "info",
@@ -46,19 +76,19 @@
       "file": "AbuildingView.html",
       "floor_id": "floor-3",
       "code": "ENTRY_COUNT_UPPER_FLOOR",
-      "message": "Expected exactly 1 stair or landing entry cell on 3F 娛樂室 × 客房 × 多功能/健身 家庭劇院/遊戲高頻寬｜3F AP 覆蓋｜通往 RF 梯間, got 0",
+      "message": "Expected exactly 1 stair or landing entry cell on 3F, got 0",
       "evidence": "entry_count=0",
       "fix_hint": "上層若有樓梯或平台銜接格位，標示單一 data-entry=\"true\"。"
     },
     {
-      "level": "warning",
+      "level": "info",
       "building_id": "A",
       "file": "AbuildingView.html",
       "floor_id": "floor-4",
-      "code": "CELL_OVERLAP",
-      "message": "VF800 overlaps Haier 熱泵",
-      "evidence": "cell-3 vs cell-4",
-      "fix_hint": "調整 x/y/w/h 避免重疊。"
+      "code": "ORIENTATION_UNRESOLVED",
+      "message": "Floor front/rear orientation metadata is not fully confirmed",
+      "evidence": "front=unknown; rear=unknown",
+      "fix_hint": "若方位已確認，補 data-front-side 與 data-rear-side；未確認則保留 unknown。"
     },
     {
       "level": "info",
@@ -66,29 +96,29 @@
       "file": "AbuildingView.html",
       "floor_id": "floor-4",
       "code": "ENTRY_COUNT_UPPER_FLOOR",
-      "message": "Expected exactly 1 stair or landing entry cell on RF 水塔 × VF800 × HAIER 熱泵 × 設備核心 給水核心設備層｜太陽能｜液位控制｜防水/噪音/檢修規劃｜重力旁通, got 0",
+      "message": "Expected exactly 1 stair or landing entry cell on RF, got 0",
       "evidence": "entry_count=0",
       "fix_hint": "上層若有樓梯或平台銜接格位，標示單一 data-entry=\"true\"。"
     },
     {
-      "level": "warning",
+      "level": "info",
       "building_id": "B",
       "file": "BbuildingView.html",
       "floor_id": "floor-1",
-      "code": "CELL_OVERLAP",
-      "message": "IDF-B 機櫃 overlaps 無障礙衛浴",
-      "evidence": "cell-4 vs cell-5",
-      "fix_hint": "調整 x/y/w/h 避免重疊。"
+      "code": "ORIENTATION_UNRESOLVED",
+      "message": "Floor front/rear orientation metadata is not fully confirmed",
+      "evidence": "front=unknown; rear=unknown",
+      "fix_hint": "若方位已確認，補 data-front-side 與 data-rear-side；未確認則保留 unknown。"
     },
     {
-      "level": "warning",
+      "level": "info",
       "building_id": "B",
       "file": "BbuildingView.html",
       "floor_id": "floor-2",
-      "code": "CELL_OVERLAP",
-      "message": "茶水吧 overlaps 客用衛浴",
-      "evidence": "cell-3 vs cell-4",
-      "fix_hint": "調整 x/y/w/h 避免重疊。"
+      "code": "ORIENTATION_UNRESOLVED",
+      "message": "Floor front/rear orientation metadata is not fully confirmed",
+      "evidence": "front=unknown; rear=unknown",
+      "fix_hint": "若方位已確認，補 data-front-side 與 data-rear-side；未確認則保留 unknown。"
     },
     {
       "level": "info",
@@ -96,7 +126,7 @@
       "file": "BbuildingView.html",
       "floor_id": "floor-2",
       "code": "ENTRY_COUNT_UPPER_FLOOR",
-      "message": "Expected exactly 1 stair or landing entry cell on 2F 大客廳 × 主臥 × 茶水吧 尊榮起居層｜影音高頻寬需求｜主臥舒適配置, got 0",
+      "message": "Expected exactly 1 stair or landing entry cell on 2F, got 0",
       "evidence": "entry_count=0",
       "fix_hint": "上層若有樓梯或平台銜接格位，標示單一 data-entry=\"true\"。"
     },
@@ -105,8 +135,18 @@
       "building_id": "B",
       "file": "BbuildingView.html",
       "floor_id": "floor-3",
+      "code": "ORIENTATION_UNRESOLVED",
+      "message": "Floor front/rear orientation metadata is not fully confirmed",
+      "evidence": "front=unknown; rear=unknown",
+      "fix_hint": "若方位已確認，補 data-front-side 與 data-rear-side；未確認則保留 unknown。"
+    },
+    {
+      "level": "info",
+      "building_id": "B",
+      "file": "BbuildingView.html",
+      "floor_id": "floor-3",
       "code": "ENTRY_COUNT_UPPER_FLOOR",
-      "message": "Expected exactly 1 stair or landing entry cell on 3F 娛樂室 × 後客房 × 大露台 KTV/影音專區｜彈性空間｜戶外機能｜ 熱水保溫 ≥15MM, got 0",
+      "message": "Expected exactly 1 stair or landing entry cell on 3F, got 0",
       "evidence": "entry_count=0",
       "fix_hint": "上層若有樓梯或平台銜接格位，標示單一 data-entry=\"true\"。"
     },
@@ -115,20 +155,40 @@
       "building_id": "B",
       "file": "BbuildingView.html",
       "floor_id": "floor-4",
+      "code": "ORIENTATION_UNRESOLVED",
+      "message": "Floor front/rear orientation metadata is not fully confirmed",
+      "evidence": "front=unknown; rear=unknown",
+      "fix_hint": "若方位已確認，補 data-front-side 與 data-rear-side；未確認則保留 unknown。"
+    },
+    {
+      "level": "info",
+      "building_id": "B",
+      "file": "BbuildingView.html",
+      "floor_id": "floor-4",
       "code": "ENTRY_COUNT_UPPER_FLOOR",
-      "message": "Expected exactly 1 stair or landing entry cell on RF B 棟設備核心層（獨立系統） 水塔｜VF800 恆壓｜HAIER 熱泵｜ 水錘吸收器｜重力旁通｜15MM 保溫｜壓力表｜颱風防護, got 0",
+      "message": "Expected exactly 1 stair or landing entry cell on RF, got 0",
       "evidence": "entry_count=0",
       "fix_hint": "上層若有樓梯或平台銜接格位，標示單一 data-entry=\"true\"。"
     },
     {
-      "level": "warning",
+      "level": "info",
       "building_id": "C",
       "file": "CbuildingView.html",
       "floor_id": "floor-1",
-      "code": "ROOM_TARGET_MISMATCH",
-      "message": "highlightRoom target is missing in room id list",
-      "evidence": "前院車庫->garage; 玄關->entrance; 客廳->living; 餐廳->dining; 廚房->kitchen",
-      "fix_hint": "同步修正 highlightRoom('id') 與 room-id 對應。"
+      "code": "ORIENTATION_UNRESOLVED",
+      "message": "Floor front/rear orientation metadata is not fully confirmed",
+      "evidence": "front=unknown; rear=unknown",
+      "fix_hint": "若方位已確認，補 data-front-side 與 data-rear-side；未確認則保留 unknown。"
+    },
+    {
+      "level": "info",
+      "building_id": "C",
+      "file": "CbuildingView.html",
+      "floor_id": "floor-2",
+      "code": "ORIENTATION_UNRESOLVED",
+      "message": "Floor front/rear orientation metadata is not fully confirmed",
+      "evidence": "front=unknown; rear=unknown",
+      "fix_hint": "若方位已確認，補 data-front-side 與 data-rear-side；未確認則保留 unknown。"
     },
     {
       "level": "info",
@@ -136,7 +196,7 @@
       "file": "CbuildingView.html",
       "floor_id": "floor-2",
       "code": "ENTRY_COUNT_UPPER_FLOOR",
-      "message": "Expected exactly 1 stair or landing entry cell on 2F 🆕 公共層：客廳（主角）× 客房 × 小廚房 客廳 8.5 坪為核心｜可關門客房 3.5 坪｜小廚房含冰箱｜洗衣曬衣前陽台, got 0",
+      "message": "Expected exactly 1 stair or landing entry cell on 2F, got 0",
       "evidence": "entry_count=0",
       "fix_hint": "上層若有樓梯或平台銜接格位，標示單一 data-entry=\"true\"。"
     },
@@ -145,20 +205,30 @@
       "building_id": "C",
       "file": "CbuildingView.html",
       "floor_id": "floor-3",
+      "code": "ORIENTATION_UNRESOLVED",
+      "message": "Floor front/rear orientation metadata is not fully confirmed",
+      "evidence": "front=unknown; rear=unknown",
+      "fix_hint": "若方位已確認，補 data-front-side 與 data-rear-side；未確認則保留 unknown。"
+    },
+    {
+      "level": "info",
+      "building_id": "C",
+      "file": "CbuildingView.html",
+      "floor_id": "floor-3",
       "code": "ENTRY_COUNT_UPPER_FLOOR",
-      "message": "Expected exactly 1 stair or landing entry cell on 3F 🆕 主臥層：大主臥（四衣櫃）× 運動空間 飯店級主臥 11.5 坪｜衣櫃 ×4 一整排 360CM｜運動區需隔振分散, got 0",
+      "message": "Expected exactly 1 stair or landing entry cell on 3F, got 0",
       "evidence": "entry_count=0",
       "fix_hint": "上層若有樓梯或平台銜接格位，標示單一 data-entry=\"true\"。"
     },
     {
-      "level": "warning",
+      "level": "info",
       "building_id": "C",
       "file": "CbuildingView.html",
       "floor_id": "floor-4",
-      "code": "CELL_OVERLAP",
-      "message": "加壓系統 overlaps 熱泵熱水器",
-      "evidence": "cell-4 vs cell-5",
-      "fix_hint": "調整 x/y/w/h 避免重疊。"
+      "code": "ORIENTATION_UNRESOLVED",
+      "message": "Floor front/rear orientation metadata is not fully confirmed",
+      "evidence": "front=unknown; rear=unknown",
+      "fix_hint": "若方位已確認，補 data-front-side 與 data-rear-side；未確認則保留 unknown。"
     },
     {
       "level": "info",
@@ -166,19 +236,9 @@
       "file": "CbuildingView.html",
       "floor_id": "floor-4",
       "code": "ENTRY_COUNT_UPPER_FLOOR",
-      "message": "Expected exactly 1 stair or landing entry cell on RF 水塔 × 熱泵 × 預留擴充 × 樓梯出口 獨立給水系統｜排水坡度 1:50｜溢流可清通｜設備基座抬高 15CM, got 0",
+      "message": "Expected exactly 1 stair or landing entry cell on RF, got 0",
       "evidence": "entry_count=0",
       "fix_hint": "上層若有樓梯或平台銜接格位，標示單一 data-entry=\"true\"。"
-    },
-    {
-      "level": "warning",
-      "building_id": "C",
-      "file": "CbuildingView.html",
-      "floor_id": "floor-4",
-      "code": "ROOM_TARGET_MISMATCH",
-      "message": "highlightRoom target is missing in room id list",
-      "evidence": "樓梯出口（⬇️3F）->stair-rf; 弱電預留人孔->riser-rf; 活動平台 / 曬衣棚架->platform; 曬衣區->laundry-rf",
-      "fix_hint": "同步修正 highlightRoom('id') 與 room-id 對應。"
     }
   ]
 }

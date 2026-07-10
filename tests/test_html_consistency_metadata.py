@@ -98,6 +98,43 @@ def test_invalid_window_value_emits_dedicated_issue() -> None:
     )
 
 
+def test_explicit_daylight_exemption_replaces_window_range_warning() -> None:
+    html = """
+    <div class="floor-plan" id="floor-3" data-floor-width-mm="11000" data-floor-depth-mm="5200">
+      <div class="floor-title"><div>3F</div></div>
+      <div class="plan-grid-visual"><div class="plan-row">
+        <div class="plan-cell" data-x-mm="0" data-y-mm="0" data-w-mm="11000" data-h-mm="1100"
+             data-window-mm="0" data-room-role="theater" data-daylight-required="false">
+          <span class="cell-name">娛樂室/家庭劇院</span>
+        </div>
+      </div></div>
+    </div>
+    """
+
+    issues = _run(html)
+
+    assert not any(i["code"] == "WINDOW_RANGE" for i in issues)
+    assert any(i["code"] == "DAYLIGHT_EXEMPTION" and i["level"] == "info" for i in issues)
+
+
+def test_floor_unknown_orientation_reports_info() -> None:
+    html = """
+    <div class="floor-plan" id="floor-2" data-floor-width-mm="11000" data-floor-depth-mm="5200">
+      <div class="floor-title"><div>2F</div></div>
+      <div class="plan-grid-visual"><div class="plan-row">
+        <div class="plan-cell outdoor" data-x-mm="5500" data-y-mm="3500" data-w-mm="5500" data-h-mm="1700"
+             data-window-mm="0" data-outdoor-role="kaohsiung-house-balcony">
+          <span class="cell-name">高雄厝陽台</span>
+        </div>
+      </div></div>
+    </div>
+    """
+
+    issues = _run(html)
+
+    assert any(i["code"] == "ORIENTATION_UNRESOLVED" and i["level"] == "info" for i in issues)
+
+
 def test_invalid_geometry_does_not_emit_facing_mismatch() -> None:
     html = """
     <div class="floor-plan" id="floor-1" data-floor-width-mm="1000" data-floor-depth-mm="1000"

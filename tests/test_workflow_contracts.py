@@ -25,7 +25,7 @@ def test_expert_workflow_passes_mode_to_html_consistency_check() -> None:
     script = (ROOT / "scripts" / "run_full_expert_workflow.ps1").read_text(encoding="utf-8")
 
     assert re.search(
-        r'Invoke-PythonStep -Name "Step 3/7 HTML consistency check" -Arguments @\(\s*"scripts/check_html_consistency.py",\s*"--buildings", \$buildingsArg,\s*"--mode", \$Mode\s*\)',
+        r'Invoke-PythonStep -Name "Step 3/8 HTML consistency check" -Arguments @\(\s*"scripts/check_html_consistency.py",\s*"--buildings", \$buildingsArg,\s*"--mode", \$Mode\s*\)',
         script,
         re.DOTALL,
     )
@@ -54,3 +54,38 @@ def test_expert_workflow_allows_gate_exit_10_before_explicit_exit() -> None:
 
     assert 'AllowedExitCodes @(0, 10)' in script
     assert "exit 10" in script
+
+
+def test_ifc_signoff_hash_is_enforced_at_report_stage() -> None:
+    script = (ROOT / "scripts" / "run_full_expert_workflow.ps1").read_text(encoding="utf-8")
+
+    assert "Assert-IfCSignoff" not in script
+    assert "--enforce-signoff-hash" in script
+    assert "AllowedExitCodes @(0, 2, 10)" in script
+    assert "exit 2" in script
+
+
+def test_expert_workflow_generates_domain_checklist_before_final_html() -> None:
+    script = (ROOT / "scripts" / "run_full_expert_workflow.ps1").read_text(encoding="utf-8")
+
+    assert 'Step 7/8 generate domain checklist' in script
+    assert '"scripts/generate_domain_checklist.py"' in script
+    assert 'Step 8/8 export final design HTML' in script
+
+
+def test_docs_describe_signoff_hash_and_domain_checklist() -> None:
+    usage = (ROOT / "Docs" / "claude-code-usage.md").read_text(encoding="utf-8")
+    readme = (ROOT / "scripts" / "README.md").read_text(encoding="utf-8")
+
+    assert "related_report_hash" in usage
+    assert "domain_checklist.md" in usage
+    assert "related_report_hash" in readme
+    assert "domain_checklist.md" in readme
+
+
+def test_prompts_do_not_describe_decision_only_ifc_signoff() -> None:
+    all_in_one = (ROOT / "scripts" / "WORKFLOW_ALL_IN_ONE_PROMPT.zh-TW.md").read_text(encoding="utf-8")
+    web_to_plan = (ROOT / "scripts" / "WEB_TO_PLAN_PROMPTS.zh-TW.md").read_text(encoding="utf-8")
+
+    assert "related_report_hash" in all_in_one
+    assert "related_report_hash" in web_to_plan

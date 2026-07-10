@@ -47,11 +47,17 @@ powershell -ExecutionPolicy Bypass -File scripts/run_full_expert_workflow.ps1 `
    - python scripts/validate_layout_bundle.py
 6. 匯總報告 + task-board 更新
    - python scripts/evaluate_expert_gates.py --stage report --request <request_file> --buildings <buildings> --mode <mode> --selection <selection>
+   - 若 mode=ifc，需加上 --enforce-signoff-hash；`structured/expert_review/signoff.yaml` 必須有有效 decision 與 matching related_report_hash。
+7. Domain review checklist
+   - python scripts/generate_domain_checklist.py
+   - 輸出 structured/expert_review/domain_checklist.json 與 structured/expert_review/domain_checklist.md。
+8. Final HTML 討論版輸出
+   - python scripts/export_final_design_html.py --mode <mode> --selection <selection> --buildings <buildings>
 
 硬性限制：
 - 僅允許使用非 `_tmp` HTML 作為正式輸入。
 - 法規/無障礙 `critical` 且有條文引用時，必須停止流程。
-- `ifc` 模式必須檢查 `structured/expert_review/signoff.yaml` 且 `decision: approved`。
+- `ifc` 模式必須檢查 `structured/expert_review/signoff.yaml`，且 `decision: approved/pass/approved_with_conditions` 與 `related_report_hash` 必須對應最新 `report.json`。
 
 回報格式（固定）：
 1) Hard gate: PASS/FAIL
@@ -59,7 +65,7 @@ powershell -ExecutionPolicy Bypass -File scripts/run_full_expert_workflow.ps1 `
 3) 5 專家結論（每位 2-3 行）
 4) score_breakdown：circulation/daylight/mep/fengshui/composite
 5) pipeline_best 與 expert_best 差異樓層數
-6) 輸出路徑：report.json / report.md / viewer.html / print_bundle.pdf
+6) 輸出路徑：report.json / report.md / domain_checklist.md / viewer.html / final_design_html/index.html / print_bundle.pdf
 ```
 
 ---

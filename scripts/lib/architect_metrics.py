@@ -101,6 +101,52 @@ def metric_item(
     }
 
 
+def metric_issue_label(metric: dict[str, Any]) -> str:
+    metric_type = normalize_whitespace(str(metric.get("metric_type", "")))
+    room_uid = normalize_whitespace(str(metric.get("room_uid", "")))
+    if room_uid:
+        label = f"{room_uid}:{metric_type}"
+    else:
+        label = ":".join(
+            value
+            for value in (
+                normalize_whitespace(str(metric.get("building_id", ""))),
+                normalize_whitespace(str(metric.get("floor_id", ""))),
+                metric_type,
+            )
+            if value
+        )
+    issues = metric.get("issues", [])
+    first_issue = normalize_whitespace(str(issues[0])) if issues else normalize_whitespace(str(metric.get("status", "")))
+    return f"{label} - {first_issue}" if first_issue else label
+
+
+def action_group_for_metric(metric: dict[str, Any]) -> str:
+    metric_type = normalize_whitespace(str(metric.get("metric_type", "")))
+    room_uid = normalize_whitespace(str(metric.get("room_uid", "")))
+    text = " ".join(str(issue) for issue in metric.get("issues", []))
+    combined = normalize_match_text(f"{room_uid} {text}")
+    if metric_type == "daylight_factor":
+        return "architect_daylight_ventilation"
+    if metric_type == "door_width":
+        return "accessibility_door_width"
+    if metric_type == "structure_load_review":
+        return "structural_rf_equipment"
+    if any(token in combined for token in ["heatpump", "pump", "vf800", "熱泵", "加壓"]):
+        return "mep_rf_equipment"
+    return "owner_design_decision"
+
+
+def build_action_groups(metrics: list[dict[str, Any]]) -> dict[str, list[str]]:
+    groups: dict[str, list[str]] = {}
+    for metric in metrics:
+        if metric.get("status") == STATUS_OK:
+            continue
+        group = action_group_for_metric(metric)
+        groups.setdefault(group, []).append(metric_issue_label(metric))
+    return {key: values[:20] for key, values in groups.items() if values}
+
+
 def architect_metric_defaults(defaults: dict[str, Any]) -> dict[str, Any]:
     raw = defaults.get("architect_metrics", {})
     return {
@@ -697,6 +743,7 @@ def summarize_metrics_payload(payload: dict[str, Any]) -> dict[str, Any]:
         "daylight_rooms_below_target": daylight_below_target,
         "door_width_advisory_count": door_below_min,
         "top_issues": issue_evidence[:20],
+        "action_groups": build_action_groups(metrics),
     }
 
 

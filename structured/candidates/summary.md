@@ -1,6 +1,6 @@
 # Layout Candidate Summary
 
-- Generated at: `2026-07-08T01:40:16.504887+00:00`
+- Generated at: `2026-07-10T02:28:49.434806+00:00`
 - Evaluated floors: **12**
 
 ## Best Candidate by Floor
@@ -15,10 +15,10 @@
 | B | floor-2 2F | circulation | 61.55 | 63.83 | 58.74 | 61.67 |
 | B | floor-3 3F | circulation | 58.19 | 60.83 | 60.79 | 53.33 |
 | B | floor-4 RF | daylight | 59.89 | 52.25 | 57.0 | 70.0 |
-| C | floor-1 1F | circulation | 62.46 | 65.1 | 50.58 | 70.0 |
+| C | floor-1 1F | mep | 64.36 | 63.64 | 60.74 | 68.18 |
 | C | floor-2 2F | mep | 61.01 | 58.5 | 57.35 | 66.67 |
 | C | floor-3 3F | circulation | 56.57 | 57.0 | 63.73 | 50.0 |
-| C | floor-4 RF | circulation | 63.5 | 54.17 | 60.0 | 75.83 |
+| C | floor-4 RF | circulation | 57.96 | 52.86 | 55.71 | 65.0 |
 
 ## Notes
 

@@ -1,10 +1,10 @@
 {
   "schema_version": "expert-review-v1",
-  "generated_at": "2026-07-08T01:40:19.245913+00:00",
+  "generated_at": "2026-07-10T02:29:19.483115+00:00",
   "input": {
     "request_file": "design_request.md",
-    "mode": "concept",
-    "selection": "best",
+    "mode": "ifc",
+    "selection": "baseline",
     "buildings": [
       "A",
       "B",
@@ -16,47 +16,6 @@
   "critical_failures": [],
   "warnings": [
     {
-      "rule_id": "BR-TW-002",
-      "domain": "building_regulation",
-      "severity": "warning",
-      "passed": false,
-      "message": "每層建議維持單一主入口標記。",
-      "fail_message": "入口標記數量異常。",
-      "fix_hint": "每層僅保留一個 data-entry=\"true\"。",
-      "evidence": [
-        "A:floor-2 entry_count=0",
-        "A:floor-3 entry_count=0",
-        "A:floor-4 entry_count=0",
-        "B:floor-2 entry_count=0",
-        "B:floor-3 entry_count=0",
-        "B:floor-4 entry_count=0",
-        "C:floor-2 entry_count=0",
-        "C:floor-3 entry_count=0",
-        "C:floor-4 entry_count=0"
-      ],
-      "source_doc": "住宅設計實務",
-      "source_article": "動線與出入口一致性",
-      "source_url": "https://law.moj.gov.tw/",
-      "hard_gate_eligible": false
-    },
-    {
-      "rule_id": "ACC-TW-002",
-      "domain": "accessibility",
-      "severity": "warning",
-      "passed": false,
-      "message": "無障礙空間門寬建議達到 800mm 以上。",
-      "fail_message": "無障礙關聯格位門寬不足。",
-      "fix_hint": "調整無障礙格位的 data-door-mm。",
-      "evidence": [
-        "A: no cell matched accessible keyword '無障礙'",
-        "C: no cell matched accessible keyword '無障礙'"
-      ],
-      "source_doc": "建築物無障礙設施設計規範",
-      "source_article": "出入口與門扇尺度",
-      "source_url": "https://law.moj.gov.tw/",
-      "hard_gate_eligible": false
-    },
-    {
       "rule_id": "INT-003",
       "domain": "interior_design",
       "severity": "warning",
@@ -67,9 +26,9 @@
       "evidence": [
         "request missing section like '偏好'"
       ],
-      "source_doc": "專案需求規範",
-      "source_article": "需求完備度",
-      "source_url": "https://example.com/interior-guideline",
+      "source_doc": "ABC Design Revision Checklist",
+      "source_article": "設計偏好與取捨紀錄",
+      "source_url": "https://github.com/honyihon/houseDesignPrepare/blob/main/Docs/ABC_design_revision_checklist.md",
       "hard_gate_eligible": false
     },
     {
@@ -81,17 +40,17 @@
       "fail_message": "Some rooms need better daylight, door, geometry, or metadata before design review.",
       "fix_hint": "Review structured/architect_metrics/report.md and update HTML geometry/openings or request professional calculation.",
       "evidence": [
-        "generated_at=2026-07-08T01:40:16.146321+00:00",
-        "advisory=27",
-        "missing_data=31",
-        "A:floor-1::egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
-        "A:floor-1:A:floor-1:entry:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-        "A:floor-1:A:floor-1:living:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-        "A:floor-1:A:floor-1:living:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
-        "A:floor-1:A:floor-1:mdf:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
-        "A:floor-1:A:floor-1:stair-door:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
-        "A:floor-1:A:floor-1:bath1:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
-        "A:floor-1:A:floor-1:kitchen:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required"
+        "generated_at=2026-07-10T02:28:49.052932+00:00",
+        "advisory=30",
+        "missing_data=8",
+        "A:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+        "B:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+        "C:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+        "A:floor-1:entry:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "B:floor-1:shrine:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "C:floor-1:entrance:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "A:floor-1:living:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "B:floor-2:egress_distance_proxy - formal egress route and travel distance calculation remains professional work"
       ],
       "source_doc": "Skills-Architects calculator adaptation",
       "source_article": "Daylight/door/geometry advisory screening",
@@ -109,8 +68,8 @@
       "fail_message": "Formal daylight, ventilation, egress, or structural review is still required.",
       "fix_hint": "Keep these items as architect/engineer confirmation tasks; do not treat concept metrics as signoff.",
       "evidence": [
-        "generated_at=2026-07-08T01:40:16.146321+00:00",
-        "professional_required=20"
+        "generated_at=2026-07-10T02:28:49.052932+00:00",
+        "professional_required=18"
       ],
       "source_doc": "Skills-Architects calculator adaptation",
       "source_article": "Professional review advisory screening",
@@ -121,22 +80,10 @@
   "citation_issues": [],
   "citations": [
     {
-      "rule_id": "BR-TW-002",
-      "source_doc": "住宅設計實務",
-      "source_article": "動線與出入口一致性",
-      "source_url": "https://law.moj.gov.tw/"
-    },
-    {
-      "rule_id": "ACC-TW-002",
-      "source_doc": "建築物無障礙設施設計規範",
-      "source_article": "出入口與門扇尺度",
-      "source_url": "https://law.moj.gov.tw/"
-    },
-    {
       "rule_id": "INT-003",
-      "source_doc": "專案需求規範",
-      "source_article": "需求完備度",
-      "source_url": "https://example.com/interior-guideline"
+      "source_doc": "ABC Design Revision Checklist",
+      "source_article": "設計偏好與取捨紀錄",
+      "source_url": "https://github.com/honyihon/houseDesignPrepare/blob/main/Docs/ABC_design_revision_checklist.md"
     }
   ],
   "score_breakdown": {
@@ -148,66 +95,127 @@
     },
     "evaluated_floor_count": 12,
     "averages": {
-      "circulation": 59.21,
-      "daylight": 58.65,
-      "mep": 65.1,
-      "fengshui": 75.34,
-      "composite": 63.47
+      "circulation": 58.98,
+      "daylight": 59.14,
+      "mep": 64.04,
+      "fengshui": 74.96,
+      "composite": 63.23
     },
     "recommended_strategy_distribution": {
       "daylight": 2,
-      "mep": 3,
+      "mep": 4,
       "baseline": 1,
-      "circulation": 6
+      "circulation": 5
     },
     "pipeline_changed_floor_count": 3
   },
   "architect_metrics_summary": {
     "status_counts": {
-      "ok": 81,
-      "professional_required": 20,
-      "advisory": 27,
-      "missing_data": 31
+      "ok": 92,
+      "professional_required": 18,
+      "advisory": 30,
+      "missing_data": 8
     },
     "metric_type_counts": {
       "floor_area": 12,
       "egress_distance_proxy": 12,
-      "door_width": 74,
-      "daylight_factor": 23,
-      "structure_load_review": 38
+      "door_width": 84,
+      "daylight_factor": 27,
+      "structure_load_review": 13
     },
     "building_counts": {
-      "A": 67,
-      "B": 54,
-      "C": 38
+      "A": 54,
+      "B": 42,
+      "C": 52
     },
     "evaluated_floor_count": 12,
     "skipped_floor_count": 10,
-    "daylight_factor_avg_pct": 1.17,
-    "daylight_rooms_below_target": 22,
+    "daylight_factor_avg_pct": 1.26,
+    "daylight_rooms_below_target": 25,
     "door_width_advisory_count": 6,
     "top_issues": [
-      "A:floor-1::egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
-      "A:floor-1:A:floor-1:entry:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-      "A:floor-1:A:floor-1:living:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-      "A:floor-1:A:floor-1:living:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
-      "A:floor-1:A:floor-1:mdf:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
-      "A:floor-1:A:floor-1:stair-door:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
-      "A:floor-1:A:floor-1:bath1:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
-      "A:floor-1:A:floor-1:kitchen:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-      "A:floor-1:A:floor-1:flex1:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-      "A:floor-1:A:floor-1:balcony1:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
-      "A:floor-1:A:floor-1:water-inlet:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
-      "A:floor-2::egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
-      "A:floor-2:A:floor-2:master:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-      "A:floor-2:A:floor-2:master-bath:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-      "A:floor-2:A:floor-2:master-bath:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
-      "A:floor-2:A:floor-2:study:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-      "A:floor-2:A:floor-2:study:door_width - door width 800mm is below advisory minimum 900mm",
-      "A:floor-2:A:floor-2:study:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
-      "A:floor-2:A:floor-2:bedroom2:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-      "A:floor-3::egress_distance_proxy - egress proxy requires one entry marker or stair/landing cell"
-    ]
+      "A:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+      "B:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+      "C:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+      "A:floor-1:entry:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "B:floor-1:shrine:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "C:floor-1:entrance:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "A:floor-1:living:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "B:floor-2:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+      "C:floor-1:living:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "A:floor-1:kitchen:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "B:floor-2:living2:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "C:floor-1:kitchen:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "A:floor-1:flex1:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "B:floor-2:bar2:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "C:floor-1:elder:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "A:floor-2:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+      "B:floor-2:master2:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "C:floor-1:elder-bath:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "A:floor-2:master:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "B:floor-3:egress_distance_proxy - formal egress route and travel distance calculation remains professional work"
+    ],
+    "action_groups": {
+      "owner_design_decision": [
+        "A:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+        "A:floor-2:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+        "A:floor-3:egress_distance_proxy - egress proxy requires one entry marker or stair/landing cell",
+        "A:floor-4:egress_distance_proxy - egress proxy requires one entry marker or stair/landing cell",
+        "B:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+        "B:floor-2:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+        "B:floor-3:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+        "B:floor-4:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+        "C:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+        "C:floor-2:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+        "C:floor-3:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+        "C:floor-4:egress_distance_proxy - formal egress route and travel distance calculation remains professional work"
+      ],
+      "architect_daylight_ventilation": [
+        "A:floor-1:entry:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "A:floor-1:living:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "A:floor-1:kitchen:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "A:floor-1:flex1:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "A:floor-2:master:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "A:floor-2:master-bath:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "A:floor-2:study:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "A:floor-2:bedroom2:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "A:floor-3:entertainment:daylight_factor - missing window width for daylight-sensitive room",
+        "A:floor-3:guest:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "B:floor-1:shrine:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "B:floor-2:living2:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "B:floor-2:bar2:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "B:floor-2:master2:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "B:floor-3:ktv3:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "B:floor-3:guest3:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "C:floor-1:entrance:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "C:floor-1:living:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "C:floor-1:kitchen:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "C:floor-1:elder:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required"
+      ],
+      "accessibility_door_width": [
+        "A:floor-2:study:door_width - door width 800mm is below advisory minimum 900mm",
+        "A:floor-4:water-tank:door_width - door width 800mm is below advisory minimum 900mm",
+        "A:floor-4:vf800:door_width - door width 800mm is below advisory minimum 900mm",
+        "B:floor-4:tank-rf:door_width - door width 800mm is below advisory minimum 900mm",
+        "B:floor-4:pump-rf:door_width - door width 800mm is below advisory minimum 900mm",
+        "C:floor-4:water-tank:door_width - door width 800mm is below advisory minimum 900mm"
+      ],
+      "structural_rf_equipment": [
+        "A:floor-4:water-tank:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "A:floor-4:vf800:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "A:floor-4:haier:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "A:floor-4:solar:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "B:floor-4:tank-rf:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "B:floor-4:pump-rf:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "B:floor-4:hotwater-rf:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "B:floor-4:platform-rf:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "C:floor-3:fitness3f:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "C:floor-4:platform:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "C:floor-4:pump:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "C:floor-4:heatpump:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
+        "C:floor-4:water-tank:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path"
+      ]
+    }
   },
   "expert_recommendations": [
     {
@@ -693,59 +701,59 @@
     {
       "building_id": "C",
       "floor_id": "floor-1",
-      "pipeline_best": "circulation",
-      "expert_best": "circulation",
+      "pipeline_best": "mep",
+      "expert_best": "mep",
       "changed_from_pipeline": false,
       "top_scores": {
-        "circulation": 65.1,
-        "daylight": 50.58,
-        "mep": 70.0,
-        "fengshui": 73.57,
-        "composite": 64.14
+        "circulation": 63.64,
+        "daylight": 60.74,
+        "mep": 68.18,
+        "fengshui": 69.09,
+        "composite": 64.91
       },
       "ranked": [
+        {
+          "id": "mep",
+          "strategy": "mep",
+          "scores": {
+            "circulation": 63.64,
+            "daylight": 60.74,
+            "mep": 68.18,
+            "fengshui": 69.09,
+            "composite": 64.91
+          }
+        },
         {
           "id": "circulation",
           "strategy": "circulation",
           "scores": {
-            "circulation": 65.1,
-            "daylight": 50.58,
-            "mep": 70.0,
-            "fengshui": 73.57,
-            "composite": 64.14
+            "circulation": 64.23,
+            "daylight": 59.38,
+            "mep": 60.91,
+            "fengshui": 76.97,
+            "composite": 64.9
           }
         },
         {
           "id": "daylight",
           "strategy": "daylight",
           "scores": {
-            "circulation": 65.1,
-            "daylight": 50.58,
-            "mep": 70.0,
-            "fengshui": 73.57,
-            "composite": 64.14
-          }
-        },
-        {
-          "id": "mep",
-          "strategy": "mep",
-          "scores": {
-            "circulation": 65.1,
-            "daylight": 50.58,
-            "mep": 70.0,
-            "fengshui": 67.86,
-            "composite": 63.0
+            "circulation": 64.23,
+            "daylight": 59.38,
+            "mep": 60.91,
+            "fengshui": 76.97,
+            "composite": 64.9
           }
         },
         {
           "id": "baseline",
           "strategy": "baseline",
           "scores": {
-            "circulation": 63.0,
-            "daylight": 47.58,
-            "mep": 70.0,
-            "fengshui": 62.86,
-            "composite": 60.52
+            "circulation": 62.18,
+            "daylight": 56.65,
+            "mep": 68.18,
+            "fengshui": 73.64,
+            "composite": 64.29
           }
         }
       ]
@@ -877,55 +885,55 @@
       "expert_best": "circulation",
       "changed_from_pipeline": false,
       "top_scores": {
-        "circulation": 54.17,
-        "daylight": 60.0,
-        "mep": 75.83,
+        "circulation": 52.86,
+        "daylight": 55.71,
+        "mep": 65.0,
         "fengshui": 50.0,
-        "composite": 59.13
+        "composite": 55.43
       },
       "ranked": [
         {
           "id": "circulation",
           "strategy": "circulation",
           "scores": {
-            "circulation": 54.17,
-            "daylight": 60.0,
-            "mep": 75.83,
+            "circulation": 52.86,
+            "daylight": 55.71,
+            "mep": 65.0,
             "fengshui": 50.0,
-            "composite": 59.13
+            "composite": 55.43
           }
         },
         {
           "id": "daylight",
           "strategy": "daylight",
           "scores": {
-            "circulation": 54.17,
-            "daylight": 60.0,
-            "mep": 75.83,
+            "circulation": 52.86,
+            "daylight": 55.71,
+            "mep": 65.0,
             "fengshui": 50.0,
-            "composite": 59.13
+            "composite": 55.43
           }
         },
         {
           "id": "mep",
           "strategy": "mep",
           "scores": {
-            "circulation": 54.17,
-            "daylight": 60.0,
-            "mep": 75.83,
+            "circulation": 52.86,
+            "daylight": 55.71,
+            "mep": 65.0,
             "fengshui": 50.0,
-            "composite": 59.13
+            "composite": 55.43
           }
         },
         {
           "id": "baseline",
           "strategy": "baseline",
           "scores": {
-            "circulation": 55.0,
-            "daylight": 60.0,
-            "mep": 68.33,
+            "circulation": 52.5,
+            "daylight": 55.71,
+            "mep": 65.0,
             "fengshui": 50.0,
-            "composite": 57.92
+            "composite": 55.3
           }
         }
       ]
@@ -934,9 +942,17 @@
   "signoff": {
     "exists": true,
     "decision": "approved",
+    "decision_valid": true,
     "reviewer_role": "design-lead",
     "reviewer_name": "Claude Code",
-    "date": ""
+    "reviewer_date": "2026-07-10",
+    "related_report_hash": "fb13bfaf0718ea0a1a2776e386f0148698a170f58d188547520dd795e45daff1",
+    "related_report_generated_at": "2026-07-10T02:28:17.768793+00:00",
+    "expected_report_hash": "fb13bfaf0718ea0a1a2776e386f0148698a170f58d188547520dd795e45daff1",
+    "hash_match": true,
+    "stale_allowed": false,
+    "valid": true,
+    "reason": "ok"
   },
   "artifacts": {
     "normalized_request": "structured\\expert_review\\request_normalized.json",
@@ -958,7 +974,7 @@
       "evidence": [],
       "source_doc": "建築物無障礙設施設計規範",
       "source_article": "總則與適用範圍",
-      "source_url": "https://law.moj.gov.tw/",
+      "source_url": "https://www.nlma.gov.tw/ch/legislation/regsearch/927",
       "hard_gate_eligible": true
     },
     {
@@ -972,24 +988,21 @@
       "evidence": [],
       "source_doc": "建築技術規則",
       "source_article": "建築設計施工編（通則）",
-      "source_url": "https://law.moj.gov.tw/",
+      "source_url": "https://www.nlma.gov.tw/ch/legislation/law%26regusw/6175",
       "hard_gate_eligible": true
     },
     {
       "rule_id": "ACC-TW-002",
       "domain": "accessibility",
       "severity": "warning",
-      "passed": false,
+      "passed": true,
       "message": "無障礙空間門寬建議達到 800mm 以上。",
       "fail_message": "無障礙關聯格位門寬不足。",
       "fix_hint": "調整無障礙格位的 data-door-mm。",
-      "evidence": [
-        "A: no cell matched accessible keyword '無障礙'",
-        "C: no cell matched accessible keyword '無障礙'"
-      ],
+      "evidence": [],
       "source_doc": "建築物無障礙設施設計規範",
       "source_article": "出入口與門扇尺度",
-      "source_url": "https://law.moj.gov.tw/",
+      "source_url": "https://www.nlma.gov.tw/ch/legislation/regsearch/927",
       "hard_gate_eligible": false
     },
     {
@@ -1001,9 +1014,9 @@
       "fail_message": "需求文件缺少無障礙相關敘述。",
       "fix_hint": "在需求檔加入無障礙與長期居住條件。",
       "evidence": [],
-      "source_doc": "專案治理規範",
-      "source_article": "需求完整性檢核",
-      "source_url": "https://law.moj.gov.tw/",
+      "source_doc": "ABC Design Revision Checklist",
+      "source_article": "高齡與長期居住需求完整性",
+      "source_url": "https://github.com/honyihon/houseDesignPrepare/blob/main/Docs/ABC_design_revision_checklist.md",
       "hard_gate_eligible": false
     },
     {
@@ -1015,17 +1028,17 @@
       "fail_message": "Some rooms need better daylight, door, geometry, or metadata before design review.",
       "fix_hint": "Review structured/architect_metrics/report.md and update HTML geometry/openings or request professional calculation.",
       "evidence": [
-        "generated_at=2026-07-08T01:40:16.146321+00:00",
-        "advisory=27",
-        "missing_data=31",
-        "A:floor-1::egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
-        "A:floor-1:A:floor-1:entry:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-        "A:floor-1:A:floor-1:living:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-        "A:floor-1:A:floor-1:living:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
-        "A:floor-1:A:floor-1:mdf:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
-        "A:floor-1:A:floor-1:stair-door:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
-        "A:floor-1:A:floor-1:bath1:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
-        "A:floor-1:A:floor-1:kitchen:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required"
+        "generated_at=2026-07-10T02:28:49.052932+00:00",
+        "advisory=30",
+        "missing_data=8",
+        "A:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+        "B:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+        "C:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+        "A:floor-1:entry:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "B:floor-1:shrine:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "C:floor-1:entrance:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "A:floor-1:living:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "B:floor-2:egress_distance_proxy - formal egress route and travel distance calculation remains professional work"
       ],
       "source_doc": "Skills-Architects calculator adaptation",
       "source_article": "Daylight/door/geometry advisory screening",
@@ -1036,24 +1049,14 @@
       "rule_id": "BR-TW-002",
       "domain": "building_regulation",
       "severity": "warning",
-      "passed": false,
-      "message": "每層建議維持單一主入口標記。",
-      "fail_message": "入口標記數量異常。",
-      "fix_hint": "每層僅保留一個 data-entry=\"true\"。",
-      "evidence": [
-        "A:floor-2 entry_count=0",
-        "A:floor-3 entry_count=0",
-        "A:floor-4 entry_count=0",
-        "B:floor-2 entry_count=0",
-        "B:floor-3 entry_count=0",
-        "B:floor-4 entry_count=0",
-        "C:floor-2 entry_count=0",
-        "C:floor-3 entry_count=0",
-        "C:floor-4 entry_count=0"
-      ],
-      "source_doc": "住宅設計實務",
-      "source_article": "動線與出入口一致性",
-      "source_url": "https://law.moj.gov.tw/",
+      "passed": true,
+      "message": "地面層應維持單一主入口標記。",
+      "fail_message": "地面層主入口標記數量異常。",
+      "fix_hint": "1F/GF 僅保留一個 data-entry=\"true\"；上層樓梯平台由 consistency info 提醒。",
+      "evidence": [],
+      "source_doc": "ABC Design Revision Checklist",
+      "source_article": "地面層主入口與動線一致性",
+      "source_url": "https://github.com/honyihon/houseDesignPrepare/blob/main/Docs/ABC_design_revision_checklist.md",
       "hard_gate_eligible": false
     },
     {
@@ -1067,7 +1070,7 @@
       "evidence": [],
       "source_doc": "建築技術規則",
       "source_article": "門廊與開口尺度",
-      "source_url": "https://law.moj.gov.tw/",
+      "source_url": "https://www.nlma.gov.tw/ch/legislation/law%26regusw/6175",
       "hard_gate_eligible": false
     },
     {
@@ -1079,9 +1082,9 @@
       "fail_message": "需求文件未包含風水偏好資訊。",
       "fix_hint": "在需求檔增加風水偏好與不可違反清單。",
       "evidence": [],
-      "source_doc": "傳統空間配置實務",
-      "source_article": "風水條件收斂",
-      "source_url": "https://example.com/fengshui-guideline",
+      "source_doc": "ABC Design Revision Checklist",
+      "source_article": "風水條件與不可違反清單",
+      "source_url": "https://github.com/honyihon/houseDesignPrepare/blob/main/Docs/ABC_design_revision_checklist.md",
       "hard_gate_eligible": false
     },
     {
@@ -1093,9 +1096,9 @@
       "fail_message": "候選方案動線分數偏低。",
       "fix_hint": "調整公共空間與入口鄰近關係。",
       "evidence": [],
-      "source_doc": "室內設計實務",
-      "source_article": "動線配置原則",
-      "source_url": "https://example.com/interior-guideline",
+      "source_doc": "ABC Design Revision Checklist",
+      "source_article": "動線與空間配置檢核",
+      "source_url": "https://github.com/honyihon/houseDesignPrepare/blob/main/Docs/ABC_design_revision_checklist.md",
       "hard_gate_eligible": false
     },
     {
@@ -1107,9 +1110,9 @@
       "fail_message": "候選方案機電分數偏低。",
       "fix_hint": "提升濕區與設備區集中度。",
       "evidence": [],
-      "source_doc": "室內設計實務",
-      "source_article": "機電與維護可達性",
-      "source_url": "https://example.com/interior-guideline",
+      "source_doc": "ABC Design Revision Checklist",
+      "source_article": "機電與維護可達性檢核",
+      "source_url": "https://github.com/honyihon/houseDesignPrepare/blob/main/Docs/ABC_design_revision_checklist.md",
       "hard_gate_eligible": false
     },
     {
@@ -1123,9 +1126,9 @@
       "evidence": [
         "request missing section like '偏好'"
       ],
-      "source_doc": "專案需求規範",
-      "source_article": "需求完備度",
-      "source_url": "https://example.com/interior-guideline",
+      "source_doc": "ABC Design Revision Checklist",
+      "source_article": "設計偏好與取捨紀錄",
+      "source_url": "https://github.com/honyihon/houseDesignPrepare/blob/main/Docs/ABC_design_revision_checklist.md",
       "hard_gate_eligible": false
     },
     {
@@ -1137,8 +1140,8 @@
       "fail_message": "Formal daylight, ventilation, egress, or structural review is still required.",
       "fix_hint": "Keep these items as architect/engineer confirmation tasks; do not treat concept metrics as signoff.",
       "evidence": [
-        "generated_at=2026-07-08T01:40:16.146321+00:00",
-        "professional_required=20"
+        "generated_at=2026-07-10T02:28:49.052932+00:00",
+        "professional_required=18"
       ],
       "source_doc": "Skills-Architects calculator adaptation",
       "source_article": "Professional review advisory screening",
@@ -1154,11 +1157,11 @@
       "fail_message": "候選方案採光分數偏低。",
       "fix_hint": "提高主要生活空間的外窗或對外側配置。",
       "evidence": [],
-      "source_doc": "住宅配置參考",
+      "source_doc": "ABC Design Revision Checklist",
       "source_article": "採光與格局平衡",
-      "source_url": "https://example.com/fengshui-guideline",
+      "source_url": "https://github.com/honyihon/houseDesignPrepare/blob/main/Docs/ABC_design_revision_checklist.md",
       "hard_gate_eligible": false
     }
   ],
-  "report_hash": "7b0e7edba70042bf9385de2cd49a946ae80d930d511e833a33a6e271258957f7"
+  "report_hash": "fb13bfaf0718ea0a1a2776e386f0148698a170f58d188547520dd795e45daff1"
 }

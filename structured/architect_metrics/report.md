@@ -1,6 +1,6 @@
 # Architect Metrics Report
 
-- Generated: `2026-07-08T01:40:16.146321+00:00`
+- Generated: `2026-07-10T02:28:49.052932+00:00`
 - Schema: `architect-metrics-v1`
 - Buildings: `A,B,C,STORAGE`
 - Evaluated floors: **12**
@@ -10,49 +10,49 @@
 
 | Status | Count |
 |---|---:|
-| `ok` | 81 |
-| `advisory` | 27 |
-| `missing_data` | 31 |
-| `professional_required` | 20 |
+| `ok` | 92 |
+| `advisory` | 30 |
+| `missing_data` | 8 |
+| `professional_required` | 18 |
 
 ## Metric Types
 
 | Metric | Count |
 |---|---:|
-| `daylight_factor` | 23 |
-| `door_width` | 74 |
+| `daylight_factor` | 27 |
+| `door_width` | 84 |
 | `egress_distance_proxy` | 12 |
 | `floor_area` | 12 |
-| `structure_load_review` | 38 |
+| `structure_load_review` | 13 |
 
 ## Key Advisory Results
 
-- Average concept daylight factor: `1.17%`
-- Daylight-sensitive rooms below target: `22`
+- Average concept daylight factor: `1.26%`
+- Daylight-sensitive rooms below target: `25`
 - Door width advisory count: `6`
 
 ## Top Issues
 
-- A:floor-1::egress_distance_proxy - formal egress route and travel distance calculation remains professional work
-- A:floor-1:A:floor-1:entry:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required
-- A:floor-1:A:floor-1:living:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required
-- A:floor-1:A:floor-1:living:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path
-- A:floor-1:A:floor-1:mdf:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path
-- A:floor-1:A:floor-1:stair-door:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path
-- A:floor-1:A:floor-1:bath1:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path
-- A:floor-1:A:floor-1:kitchen:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required
-- A:floor-1:A:floor-1:flex1:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required
-- A:floor-1:A:floor-1:balcony1:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path
-- A:floor-1:A:floor-1:water-inlet:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path
-- A:floor-2::egress_distance_proxy - formal egress route and travel distance calculation remains professional work
-- A:floor-2:A:floor-2:master:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required
-- A:floor-2:A:floor-2:master-bath:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required
-- A:floor-2:A:floor-2:master-bath:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path
-- A:floor-2:A:floor-2:study:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required
-- A:floor-2:A:floor-2:study:door_width - door width 800mm is below advisory minimum 900mm
-- A:floor-2:A:floor-2:study:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path
-- A:floor-2:A:floor-2:bedroom2:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required
-- A:floor-3::egress_distance_proxy - egress proxy requires one entry marker or stair/landing cell
+- A:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work
+- B:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work
+- C:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work
+- A:floor-1:entry:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required
+- B:floor-1:shrine:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required
+- C:floor-1:entrance:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required
+- A:floor-1:living:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required
+- B:floor-2:egress_distance_proxy - formal egress route and travel distance calculation remains professional work
+- C:floor-1:living:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required
+- A:floor-1:kitchen:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required
+- B:floor-2:living2:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required
+- C:floor-1:kitchen:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required
+- A:floor-1:flex1:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required
+- B:floor-2:bar2:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required
+- C:floor-1:elder:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required
+- A:floor-2:egress_distance_proxy - formal egress route and travel distance calculation remains professional work
+- B:floor-2:master2:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required
+- C:floor-1:elder-bath:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required
+- A:floor-2:master:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required
+- B:floor-3:egress_distance_proxy - formal egress route and travel distance calculation remains professional work
 
 ## Notes
 

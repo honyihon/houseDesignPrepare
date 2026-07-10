@@ -38,6 +38,9 @@ def test_extract_floor_emits_v3_orientation_and_cell_spatial() -> None:
         "facing": "rear",
         "outdoor_role": "kaohsiung-house-balcony",
         "is_outdoor_like": True,
+        "room_role": "unknown",
+        "is_accessible": False,
+        "daylight_required": None,
     }
 
 
@@ -74,6 +77,9 @@ def test_build_room_program_preserves_orientation_and_cell_spatial() -> None:
                     "facing": "rear",
                     "outdoor_role": "kaohsiung-house-balcony",
                     "is_outdoor_like": True,
+                    "room_role": "unknown",
+                    "is_accessible": False,
+                    "daylight_required": None,
                 },
             }
         ],
@@ -87,6 +93,36 @@ def test_build_room_program_preserves_orientation_and_cell_spatial() -> None:
 
     assert program_floor["orientation"]["front_side"] == "top"
     assert program_floor["plan_cells"][0]["spatial"]["outdoor_role"] == "kaohsiung-house-balcony"
+
+
+def test_room_semantics_are_extracted_and_preserved() -> None:
+    html = """
+    <div class="floor-plan" id="floor-1" data-floor-width-mm="1000" data-floor-depth-mm="1000">
+      <div class="floor-title"><div>1F</div></div>
+      <div class="plan-grid-visual">
+        <div class="plan-row">
+          <div class="plan-cell" data-x-mm="0" data-y-mm="0" data-w-mm="500" data-h-mm="500"
+               data-window-mm="800" data-room-role="elder" data-accessible="true"
+               onclick="highlightRoom('elder', this)">
+            <span class="cell-name">孝親房</span>
+          </div>
+        </div>
+      </div>
+      <div class="room" id="room-elder" data-target-cell="slot-1"
+           data-room-role="elder" data-accessible="true">
+        <div class="room-name">孝親房</div>
+        <div class="room-details"><li>輪椅友善</li></div>
+      </div>
+    </div>
+    """
+    soup = BeautifulSoup(html, "html.parser")
+    floor = extract_floor(soup.select_one(".floor-plan"), 1)
+    program_floor = transform_floor("C", floor, [])
+
+    assert floor["plan_cells"][0]["spatial"]["room_role"] == "elder"
+    assert floor["rooms"][0]["semantics"]["room_role"] == "elder"
+    assert program_floor["plan_cells"][0]["spatial"]["is_accessible"] is True
+    assert program_floor["rooms"][0]["semantics"]["is_accessible"] is True
 
 
 def test_build_program_emits_v3_source_schema_metadata() -> None:
@@ -155,4 +191,7 @@ def test_transform_floor_backfills_v2_shape_metadata_defaults() -> None:
         "facing": "unknown",
         "outdoor_role": "none",
         "is_outdoor_like": False,
+        "room_role": "unknown",
+        "is_accessible": False,
+        "daylight_required": None,
     }

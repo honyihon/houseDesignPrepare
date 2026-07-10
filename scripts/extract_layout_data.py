@@ -19,7 +19,7 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
-from lib.spatial_metadata import parse_cell_spatial, parse_floor_orientation  # noqa: E402
+from lib.spatial_metadata import parse_cell_spatial, parse_floor_orientation, parse_semantics  # noqa: E402
 
 INPUT_FILES = [
     "AbuildingView.html",
@@ -332,6 +332,7 @@ def extract_rooms(scope: Tag) -> list[dict[str, Any]]:
                 "classes": classes_of(room, remove={"room"}),
                 "geometry_mm": geometry_mm,
                 "target_cell_id": _attr_text(room, ["data-target-cell", "data-slot-id"]),
+                "semantics": parse_semantics(room.attrs),
             }
         )
     return rooms

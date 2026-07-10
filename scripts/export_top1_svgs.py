@@ -316,6 +316,10 @@ def safe_slug(value: str) -> str:
     return value or "unknown"
 
 
+def stable_svg_filename(building_id: str, floor_id: str) -> str:
+    return f"{safe_slug(building_id)}_{safe_slug(floor_id)}.svg"
+
+
 def truncate_text(value: str, limit: int) -> str:
     text = normalize(value)
     if len(text) <= limit:
@@ -1876,13 +1880,14 @@ def main() -> None:
             skipped.append({"building_id": b_id, "floor_id": f_id, "reason": "no slots"})
             continue
 
-        slug = f"{safe_slug(b_id)}_{safe_slug(f_id)}_{safe_slug(selected.get('id', args.selection))}"
-        out_file = OUT_DIR / f"{slug}.svg"
+        out_file = OUT_DIR / stable_svg_filename(b_id, f_id)
         rendered = render_floor_svg(floor, slots, selected, room_index, out_file, args.style, profile)
         record = {
             "building_id": b_id,
             "floor_id": f_id,
             "title": f"[{b_id}] {f_id} {normalize(floor.get('floor_title', ''))}".strip(),
+            "selected_candidate_id": selected.get("id", ""),
+            "selected_strategy": selected.get("strategy", ""),
             "strategy": rendered["strategy"],
             "score_total": rendered["score_total"],
             "slot_count": rendered["slot_count"],
@@ -1909,6 +1914,8 @@ def main() -> None:
             "config_loaded": RESIDENTIAL_DEFAULTS.get("_meta", {}).get("config_loaded", False),
         },
         "candidate_selection": args.selection,
+        "requested_selection": args.selection,
+        "resolved_selection": args.selection,
         "drawing_style": args.style,
         "presentation_version": presentation_version(profile, args.style),
         "compact_label_count": compact_label_count,

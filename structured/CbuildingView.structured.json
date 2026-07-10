@@ -1,6 +1,6 @@
 {
   "schema_version": "house-design-structured-v3",
-  "generated_at": "2026-07-08T01:40:15.497416+00:00",
+  "generated_at": "2026-07-10T02:28:48.213229+00:00",
   "source_file": "CbuildingView.html",
   "meta": {
     "title": "C棟 - 邊間綠意 × IDF 1F 核心 × 獨立給水（整合版 v9.2）",
@@ -202,8 +202,11 @@
           "spatial": {
             "zone": "unknown",
             "facing": "unknown",
-            "outdoor_role": "none",
-            "is_outdoor_like": true
+            "outdoor_role": "garage",
+            "is_outdoor_like": true,
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
           }
         },
         {
@@ -240,7 +243,10 @@
             "zone": "unknown",
             "facing": "unknown",
             "outdoor_role": "none",
-            "is_outdoor_like": false
+            "is_outdoor_like": false,
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
           }
         },
         {
@@ -279,7 +285,10 @@
             "zone": "unknown",
             "facing": "unknown",
             "outdoor_role": "none",
-            "is_outdoor_like": false
+            "is_outdoor_like": false,
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
           }
         },
         {
@@ -319,8 +328,11 @@
           "spatial": {
             "zone": "unknown",
             "facing": "unknown",
-            "outdoor_role": "none",
-            "is_outdoor_like": true
+            "outdoor_role": "side-yard",
+            "is_outdoor_like": true,
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
           }
         },
         {
@@ -357,7 +369,10 @@
             "zone": "unknown",
             "facing": "unknown",
             "outdoor_role": "none",
-            "is_outdoor_like": false
+            "is_outdoor_like": false,
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
           }
         },
         {
@@ -397,7 +412,10 @@
             "zone": "unknown",
             "facing": "unknown",
             "outdoor_role": "none",
-            "is_outdoor_like": false
+            "is_outdoor_like": false,
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
           }
         },
         {
@@ -438,7 +456,10 @@
             "zone": "unknown",
             "facing": "unknown",
             "outdoor_role": "none",
-            "is_outdoor_like": false
+            "is_outdoor_like": false,
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
           }
         },
         {
@@ -477,7 +498,10 @@
             "zone": "unknown",
             "facing": "unknown",
             "outdoor_role": "none",
-            "is_outdoor_like": false
+            "is_outdoor_like": false,
+            "room_role": "elder",
+            "is_accessible": true,
+            "daylight_required": null
           }
         },
         {
@@ -515,7 +539,10 @@
             "zone": "unknown",
             "facing": "unknown",
             "outdoor_role": "none",
-            "is_outdoor_like": false
+            "is_outdoor_like": false,
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
           }
         },
         {
@@ -555,7 +582,10 @@
             "zone": "unknown",
             "facing": "unknown",
             "outdoor_role": "none",
-            "is_outdoor_like": false
+            "is_outdoor_like": false,
+            "room_role": "accessible-bath",
+            "is_accessible": true,
+            "daylight_required": null
           }
         },
         {
@@ -593,14 +623,165 @@
           "spatial": {
             "zone": "unknown",
             "facing": "unknown",
-            "outdoor_role": "none",
-            "is_outdoor_like": true
+            "outdoor_role": "service-yard",
+            "is_outdoor_like": true,
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
           }
         }
       ],
       "rooms": [
         {
           "order": 1,
+          "id": "garage",
+          "name": "🚗 前院車庫",
+          "area": "約 2 車位 + 機車",
+          "details": [
+            "用途： 車輛停放、EV 充電與颱風軌道預留。",
+            "施工重點： 排水坡度、防滑鋪面與車庫到玄關高低差需由建築師確認。"
+          ],
+          "tags": [],
+          "classes": [
+            "special-outdoor"
+          ],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 0.0,
+            "w_mm": 11000.0,
+            "h_mm": 1200.0
+          },
+          "target_cell_id": "slot-1",
+          "semantics": {
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
+          }
+        },
+        {
+          "order": 2,
+          "id": "entrance",
+          "name": "🚪 玄關",
+          "area": "",
+          "details": [
+            "無障礙： 車庫進門至客廳、孝親房與衛浴需維持連續平整動線。",
+            "收納： 鞋櫃深度不可壓縮輪椅迴轉與轉向空間。"
+          ],
+          "tags": [],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 1200.0,
+            "w_mm": 2750.0,
+            "h_mm": 1700.0
+          },
+          "target_cell_id": "slot-2",
+          "semantics": {
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
+          }
+        },
+        {
+          "order": 3,
+          "id": "living",
+          "name": "🛋️ 客廳",
+          "area": "約 8 坪",
+          "details": [
+            "定位： 1F 家庭公共空間，需保留輪椅與家具之間的通行寬度。",
+            "設備： TV、AP、弱電點位依現有圖面預留。"
+          ],
+          "tags": [],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 2750.0,
+            "y_mm": 1200.0,
+            "w_mm": 5500.0,
+            "h_mm": 1700.0
+          },
+          "target_cell_id": "slot-3",
+          "semantics": {
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
+          }
+        },
+        {
+          "order": 4,
+          "id": "dining",
+          "name": "🍽️ 餐廳",
+          "area": "",
+          "details": [
+            "動線： 餐桌配置不得阻擋玄關、客廳、廚房與孝親房的主要通道。",
+            "電力： 餐邊插座與弱電點位依家具配置確認。"
+          ],
+          "tags": [],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 2900.0,
+            "w_mm": 3771.0,
+            "h_mm": 1100.0
+          },
+          "target_cell_id": "slot-5",
+          "semantics": {
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
+          }
+        },
+        {
+          "order": 5,
+          "id": "kitchen",
+          "name": "🍳 廚房",
+          "area": "",
+          "details": [
+            "設備： 冷熱水、IH/烤箱專迴與排煙路徑需與機電施工圖核對。",
+            "通風： 排風、補氣與側院導風策略需由建築師/機電確認。"
+          ],
+          "tags": [],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 3771.0,
+            "y_mm": 2900.0,
+            "w_mm": 4086.0,
+            "h_mm": 1100.0
+          },
+          "target_cell_id": "slot-6",
+          "semantics": {
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
+          }
+        },
+        {
+          "order": 6,
+          "id": "service",
+          "name": "🧺 後工作陽台",
+          "area": "",
+          "details": [
+            "用途： 洗衣、曬衣、A→C 進線與後場維修動線。",
+            "施工重點： 排水坡度、防水收邊、落水頭可清通與外部門檻需確認。"
+          ],
+          "tags": [],
+          "classes": [
+            "special-outdoor"
+          ],
+          "geometry_mm": {
+            "x_mm": 5500.0,
+            "y_mm": 5300.0,
+            "w_mm": 5500.0,
+            "h_mm": 1700.0
+          },
+          "target_cell_id": "slot-11",
+          "semantics": {
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
+          }
+        },
+        {
+          "order": 7,
           "id": "stair1f",
           "name": "🪜 1F 樓梯間（⬆️2F）+ IDF 弱電機櫃",
           "area": "核心節點",
@@ -631,10 +812,15 @@
             "w_mm": 3143.0,
             "h_mm": 1100.0
           },
-          "target_cell_id": "slot-7"
+          "target_cell_id": "slot-7",
+          "semantics": {
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
+          }
         },
         {
-          "order": 2,
+          "order": 8,
           "id": "sliding-door",
           "name": "🚪 樓梯前拉門阻隔（1F↔2F）",
           "area": "公私區隔",
@@ -652,10 +838,15 @@
             "w_mm": 3143.0,
             "h_mm": 1300.0
           },
-          "target_cell_id": "slot-9"
+          "target_cell_id": "slot-9",
+          "semantics": {
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
+          }
         },
         {
-          "order": 3,
+          "order": 9,
           "id": "sideyard",
           "name": "🌿 側院（邊間優勢｜通風關鍵）",
           "area": "風道核心",
@@ -680,10 +871,15 @@
             "w_mm": 2750.0,
             "h_mm": 1700.0
           },
-          "target_cell_id": "slot-4"
+          "target_cell_id": "slot-4",
+          "semantics": {
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
+          }
         },
         {
-          "order": 4,
+          "order": 10,
           "id": "elder",
           "name": "🛏️ 孝親房 / 長輩房",
           "area": "",
@@ -704,10 +900,15 @@
             "w_mm": 7857.0,
             "h_mm": 1300.0
           },
-          "target_cell_id": "slot-8"
+          "target_cell_id": "slot-8",
+          "semantics": {
+            "room_role": "elder",
+            "is_accessible": true,
+            "daylight_required": null
+          }
         },
         {
-          "order": 5,
+          "order": 11,
           "id": "elder-bath",
           "name": "🚿 孝親衛浴",
           "area": "",
@@ -730,7 +931,12 @@
             "w_mm": 5500.0,
             "h_mm": 1700.0
           },
-          "target_cell_id": "slot-10"
+          "target_cell_id": "slot-10",
+          "semantics": {
+            "room_role": "accessible-bath",
+            "is_accessible": true,
+            "daylight_required": null
+          }
         }
       ],
       "tables": [],
@@ -868,7 +1074,10 @@
             "zone": "unknown",
             "facing": "unknown",
             "outdoor_role": "none",
-            "is_outdoor_like": true
+            "is_outdoor_like": true,
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
           }
         },
         {
@@ -906,7 +1115,10 @@
             "zone": "unknown",
             "facing": "unknown",
             "outdoor_role": "none",
-            "is_outdoor_like": false
+            "is_outdoor_like": false,
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
           }
         },
         {
@@ -944,7 +1156,10 @@
             "zone": "unknown",
             "facing": "unknown",
             "outdoor_role": "none",
-            "is_outdoor_like": false
+            "is_outdoor_like": false,
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
           }
         },
         {
@@ -982,7 +1197,10 @@
             "zone": "unknown",
             "facing": "unknown",
             "outdoor_role": "none",
-            "is_outdoor_like": false
+            "is_outdoor_like": false,
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
           }
         },
         {
@@ -1021,7 +1239,10 @@
             "zone": "unknown",
             "facing": "unknown",
             "outdoor_role": "none",
-            "is_outdoor_like": false
+            "is_outdoor_like": false,
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
           }
         },
         {
@@ -1060,7 +1281,10 @@
             "zone": "unknown",
             "facing": "unknown",
             "outdoor_role": "none",
-            "is_outdoor_like": false
+            "is_outdoor_like": false,
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
           }
         }
       ],
@@ -1085,7 +1309,12 @@
             "w_mm": 11000.0,
             "h_mm": 1300.0
           },
-          "target_cell_id": "slot-2"
+          "target_cell_id": "slot-2",
+          "semantics": {
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
+          }
         },
         {
           "order": 2,
@@ -1106,7 +1335,12 @@
             "w_mm": 7333.0,
             "h_mm": 1300.0
           },
-          "target_cell_id": "slot-3"
+          "target_cell_id": "slot-3",
+          "semantics": {
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
+          }
         },
         {
           "order": 3,
@@ -1130,7 +1364,12 @@
             "w_mm": 11000.0,
             "h_mm": 1300.0
           },
-          "target_cell_id": "slot-5"
+          "target_cell_id": "slot-5",
+          "semantics": {
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
+          }
         },
         {
           "order": 4,
@@ -1152,7 +1391,12 @@
             "w_mm": 11000.0,
             "h_mm": 1100.0
           },
-          "target_cell_id": "slot-6"
+          "target_cell_id": "slot-6",
+          "semantics": {
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
+          }
         },
         {
           "order": 5,
@@ -1179,7 +1423,12 @@
             "w_mm": 11000.0,
             "h_mm": 1200.0
           },
-          "target_cell_id": "slot-1"
+          "target_cell_id": "slot-1",
+          "semantics": {
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
+          }
         },
         {
           "order": 6,
@@ -1199,7 +1448,12 @@
             "w_mm": 3667.0,
             "h_mm": 1300.0
           },
-          "target_cell_id": "slot-4"
+          "target_cell_id": "slot-4",
+          "semantics": {
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
+          }
         }
       ],
       "tables": [],
@@ -1324,7 +1578,10 @@
             "zone": "unknown",
             "facing": "unknown",
             "outdoor_role": "none",
-            "is_outdoor_like": true
+            "is_outdoor_like": true,
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
           }
         },
         {
@@ -1364,7 +1621,10 @@
             "zone": "unknown",
             "facing": "unknown",
             "outdoor_role": "none",
-            "is_outdoor_like": false
+            "is_outdoor_like": false,
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
           }
         },
         {
@@ -1404,7 +1664,10 @@
             "zone": "unknown",
             "facing": "unknown",
             "outdoor_role": "none",
-            "is_outdoor_like": false
+            "is_outdoor_like": false,
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
           }
         },
         {
@@ -1442,7 +1705,10 @@
             "zone": "unknown",
             "facing": "unknown",
             "outdoor_role": "none",
-            "is_outdoor_like": false
+            "is_outdoor_like": false,
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
           }
         },
         {
@@ -1481,7 +1747,10 @@
             "zone": "unknown",
             "facing": "unknown",
             "outdoor_role": "none",
-            "is_outdoor_like": false
+            "is_outdoor_like": false,
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
           }
         }
       ],
@@ -1508,7 +1777,12 @@
             "w_mm": 11000.0,
             "h_mm": 1300.0
           },
-          "target_cell_id": "slot-2"
+          "target_cell_id": "slot-2",
+          "semantics": {
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
+          }
         },
         {
           "order": 2,
@@ -1537,7 +1811,12 @@
             "w_mm": 7333.0,
             "h_mm": 1300.0
           },
-          "target_cell_id": "slot-3"
+          "target_cell_id": "slot-3",
+          "semantics": {
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
+          }
         },
         {
           "order": 3,
@@ -1560,7 +1839,12 @@
             "w_mm": 11000.0,
             "h_mm": 1100.0
           },
-          "target_cell_id": "slot-5"
+          "target_cell_id": "slot-5",
+          "semantics": {
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
+          }
         },
         {
           "order": 4,
@@ -1580,7 +1864,12 @@
             "w_mm": 11000.0,
             "h_mm": 1200.0
           },
-          "target_cell_id": "slot-1"
+          "target_cell_id": "slot-1",
+          "semantics": {
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
+          }
         },
         {
           "order": 5,
@@ -1600,7 +1889,12 @@
             "w_mm": 3667.0,
             "h_mm": 1300.0
           },
-          "target_cell_id": "slot-4"
+          "target_cell_id": "slot-4",
+          "semantics": {
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
+          }
         }
       ],
       "tables": [],
@@ -1730,7 +2024,10 @@
             "zone": "unknown",
             "facing": "unknown",
             "outdoor_role": "none",
-            "is_outdoor_like": false
+            "is_outdoor_like": false,
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
           }
         },
         {
@@ -1768,7 +2065,10 @@
             "zone": "unknown",
             "facing": "unknown",
             "outdoor_role": "none",
-            "is_outdoor_like": false
+            "is_outdoor_like": false,
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
           }
         },
         {
@@ -1808,7 +2108,10 @@
             "zone": "unknown",
             "facing": "unknown",
             "outdoor_role": "none",
-            "is_outdoor_like": false
+            "is_outdoor_like": false,
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
           }
         },
         {
@@ -1846,7 +2149,10 @@
             "zone": "unknown",
             "facing": "unknown",
             "outdoor_role": "none",
-            "is_outdoor_like": false
+            "is_outdoor_like": false,
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
           }
         },
         {
@@ -1884,7 +2190,10 @@
             "zone": "unknown",
             "facing": "unknown",
             "outdoor_role": "none",
-            "is_outdoor_like": false
+            "is_outdoor_like": false,
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
           }
         },
         {
@@ -1919,8 +2228,11 @@
           "spatial": {
             "zone": "unknown",
             "facing": "unknown",
-            "outdoor_role": "none",
-            "is_outdoor_like": true
+            "outdoor_role": "roof-platform",
+            "is_outdoor_like": true,
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
           }
         },
         {
@@ -1955,14 +2267,117 @@
           "spatial": {
             "zone": "unknown",
             "facing": "unknown",
-            "outdoor_role": "none",
-            "is_outdoor_like": true
+            "outdoor_role": "laundry-yard",
+            "is_outdoor_like": true,
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
           }
         }
       ],
       "rooms": [
         {
           "order": 1,
+          "id": "stair-rf",
+          "name": "🪜 樓梯出口（RF）",
+          "area": "⬇️3F",
+          "details": [
+            "防水： 樓梯出口門檻、泛水、排水坡度與止滑需納入施工圖。",
+            "安全： RF 檢修照明、扶手與防墜邊界需由建築師確認。"
+          ],
+          "tags": [],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 0.0,
+            "w_mm": 5500.0,
+            "h_mm": 1300.0
+          },
+          "target_cell_id": "slot-1",
+          "semantics": {
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
+          }
+        },
+        {
+          "order": 2,
+          "id": "riser-rf",
+          "name": "🔌 弱電預留人孔",
+          "area": "可掀式防水蓋",
+          "details": [
+            "防水： 人孔蓋、滴水彎與二次防水收邊需於施工圖標註。",
+            "擴充： 弱電出口需保留拉線、檢修空間與防蟲防雨措施。"
+          ],
+          "tags": [],
+          "classes": [],
+          "geometry_mm": {
+            "x_mm": 5500.0,
+            "y_mm": 0.0,
+            "w_mm": 5500.0,
+            "h_mm": 1300.0
+          },
+          "target_cell_id": "slot-2",
+          "semantics": {
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
+          }
+        },
+        {
+          "order": 3,
+          "id": "platform",
+          "name": "🏗️ 活動平台 / 曬衣棚架",
+          "area": "預留未來擴充",
+          "details": [
+            "結構： 棚架、太陽能與活動平台載重不可用示意圖替代結構計算。",
+            "防颱： 錨定、排水、維修動線與防墜邊界需由結構/建築確認。"
+          ],
+          "tags": [],
+          "classes": [
+            "special-outdoor"
+          ],
+          "geometry_mm": {
+            "x_mm": 0.0,
+            "y_mm": 2400.0,
+            "w_mm": 6600.0,
+            "h_mm": 1700.0
+          },
+          "target_cell_id": "slot-6",
+          "semantics": {
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
+          }
+        },
+        {
+          "order": 4,
+          "id": "laundry-rf",
+          "name": "👕 曬衣區",
+          "area": "",
+          "details": [
+            "使用： 曬衣、臨時收納與 RF 巡檢動線需避免和設備檢修衝突。",
+            "排水： 地坪坡度、落水頭、防滑與颱風後清理動線需確認。"
+          ],
+          "tags": [],
+          "classes": [
+            "special-outdoor"
+          ],
+          "geometry_mm": {
+            "x_mm": 6600.0,
+            "y_mm": 2400.0,
+            "w_mm": 4400.0,
+            "h_mm": 1700.0
+          },
+          "target_cell_id": "slot-7",
+          "semantics": {
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
+          }
+        },
+        {
+          "order": 5,
           "id": "pump",
           "name": "⚡ 加壓系統 (VF800)",
           "area": "冷水恆壓",
@@ -1980,10 +2395,15 @@
             "w_mm": 3667.0,
             "h_mm": 1100.0
           },
-          "target_cell_id": "slot-4"
+          "target_cell_id": "slot-4",
+          "semantics": {
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
+          }
         },
         {
-          "order": 2,
+          "order": 6,
           "id": "heatpump",
           "name": "🔥 熱泵熱水器 (Haier)",
           "area": "熱水供應",
@@ -2001,10 +2421,15 @@
             "w_mm": 3667.0,
             "h_mm": 1100.0
           },
-          "target_cell_id": "slot-5"
+          "target_cell_id": "slot-5",
+          "semantics": {
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
+          }
         },
         {
-          "order": 3,
+          "order": 7,
           "id": "water-tank",
           "name": "💧 不鏽鋼水塔",
           "area": "1000L",
@@ -2023,7 +2448,12 @@
             "w_mm": 3667.0,
             "h_mm": 1100.0
           },
-          "target_cell_id": "slot-3"
+          "target_cell_id": "slot-3",
+          "semantics": {
+            "room_role": "unknown",
+            "is_accessible": false,
+            "daylight_required": null
+          }
         }
       ],
       "tables": [],
@@ -2221,7 +2651,7 @@
     "floor_count": 6,
     "plan_cell_count": 29,
     "precise_plan_cell_count": 29,
-    "room_count": 19,
+    "room_count": 29,
     "table_count": 2,
     "checklist_count": 0,
     "storage_zone_count": 0

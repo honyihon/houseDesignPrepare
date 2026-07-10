@@ -97,6 +97,8 @@ Key outputs:
 - `structured/expert_review/report.md`
 - `structured/expert_review/request_normalized.json`
 - `structured/expert_review/html_consistency.json`
+- `structured/expert_review/domain_checklist.json`
+- `structured/expert_review/domain_checklist.md`
 - `task-board.md`
 
 ## Dependency
@@ -161,6 +163,7 @@ After running `export_top1_svgs.py`, you'll get:
 - `structured/candidates/svg/index.html`
 
 This is suitable for sharing with designers/contractors as static deliverables.
+SVG filenames are stable: `<building>_<floor>.svg`. The manifest records `candidate_selection`, `requested_selection`, `resolved_selection`, and each export's `selected_candidate_id` / `selected_strategy`, so candidate strategy changes should not churn filenames.
 Round-2 annotations are included by default:
 - window symbols (`WIN:`)
 - dimension chains (`DIM:`)
@@ -285,13 +288,21 @@ Fix:
 ### 2) IFC signoff missing
 
 Symptom:
-- `run_full_expert_workflow.ps1 -Mode ifc` fails before/after pipeline
+- `run_full_expert_workflow.ps1 -Mode ifc` exits `2` because signoff is missing or stale
 
 Fix:
 - Create `structured/expert_review/signoff.yaml` from `structured/expert_review/signoff.template.yaml`
 - Set:
   - `decision: approved`
-  - reviewer metadata and `related_report_hash`
+  - reviewer metadata
+  - `related_report_hash` copied from the latest `structured/expert_review/report.json`
+  - `related_report_generated_at` copied from the same report
+
+Two-pass IFC flow:
+1. Run `-Mode ifc` once to generate the latest report.
+2. Review `structured/expert_review/report.md`.
+3. Copy `report_hash` into `signoff.yaml` as `related_report_hash`.
+4. Rerun `-Mode ifc`.
 
 ### 3) HTML mapping mismatch (`highlightRoom` / `room-id`)
 

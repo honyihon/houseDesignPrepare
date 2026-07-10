@@ -5,7 +5,7 @@ from collections.abc import Iterable, Mapping
 from typing import Any
 
 FLOOR_SIDES = {"top", "right", "bottom", "left"}
-CELL_ZONES = {"front", "rear", "side", "core", "service", "roof", "unknown"}
+CELL_ZONES = {"front", "rear", "left", "right", "side", "core", "service", "roof", "unknown"}
 CELL_FACING = {"front", "rear", "left", "right", "side", "roof", "internal", "unknown"}
 OUTDOOR_ROLES = {
     "balcony",
@@ -15,10 +15,23 @@ OUTDOOR_ROLES = {
     "garage",
     "service-yard",
     "roof-platform",
+    "laundry-yard",
+    "equipment-yard",
     "planting",
     "utility",
 }
 OUTDOOR_CLASSES = {"outdoor", "garage", "terrace", "balcony", "side-yard"}
+ROOM_ROLES = {
+    "elder",
+    "accessible-bath",
+    "shrine",
+    "equipment",
+    "mechanical",
+    "service",
+    "circulation",
+    "theater",
+    "unknown",
+}
 
 
 def normalize_text(value: Any) -> str:
@@ -28,6 +41,32 @@ def normalize_text(value: Any) -> str:
 def normalize_token(value: Any, allowed: set[str], default: str = "unknown") -> str:
     token = normalize_text(value).lower()
     return token if token in allowed else default
+
+
+def truthy_attr(value: Any) -> bool:
+    token = normalize_text(value).lower()
+    if token in {"", "1", "true", "yes", "y", "on"}:
+        return True
+    return token not in {"0", "false", "no", "n", "off"}
+
+
+def optional_bool_attr(value: Any) -> bool | None:
+    token = normalize_text(value).lower()
+    if not token:
+        return None
+    if token in {"1", "true", "yes", "y", "on"}:
+        return True
+    if token in {"0", "false", "no", "n", "off"}:
+        return False
+    return None
+
+
+def parse_semantics(attrs: Mapping[str, Any]) -> dict[str, Any]:
+    return {
+        "room_role": normalize_token(attrs.get("data-room-role"), ROOM_ROLES),
+        "is_accessible": truthy_attr(attrs.get("data-accessible")) if "data-accessible" in attrs else False,
+        "daylight_required": optional_bool_attr(attrs.get("data-daylight-required")),
+    }
 
 
 def parse_floor_orientation(attrs: Mapping[str, Any]) -> dict[str, str]:
@@ -46,6 +85,7 @@ def parse_cell_spatial(attrs: Mapping[str, Any], classes: Iterable[str]) -> dict
         "outdoor_role": outdoor_role,
     }
     spatial["is_outdoor_like"] = is_outdoor_like(spatial, classes)
+    spatial.update(parse_semantics(attrs))
     return spatial
 
 
@@ -55,6 +95,12 @@ def is_outdoor_like(spatial: Mapping[str, Any], classes: Iterable[str]) -> bool:
         return True
     class_set = {normalize_text(cls).lower() for cls in classes}
     return bool(class_set & OUTDOOR_CLASSES)
+
+
+def is_daylight_exempt(spatial: Mapping[str, Any]) -> bool:
+    if spatial.get("daylight_required") is False:
+        return True
+    return normalize_text(spatial.get("room_role")).lower() == "theater"
 
 
 def window_issue_level(

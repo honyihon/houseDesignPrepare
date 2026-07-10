@@ -20,6 +20,7 @@ if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
 from lib.spatial_metadata import (  # noqa: E402
+    is_daylight_exempt,
     nearest_declared_side,
     parse_cell_spatial,
     parse_floor_orientation,
@@ -202,10 +203,22 @@ def check_floor_geometry(
             building_id,
             file_name,
             floor_id,
-            "ORIENTATION_CONFLICT",
-            "data-front-side and data-rear-side must not be the same",
+        "ORIENTATION_CONFLICT",
+        "data-front-side and data-rear-side must not be the same",
+        evidence=f"front={orientation['front_side']}; rear={orientation['rear_side']}",
+        fix_hint="調整 data-front-side / data-rear-side，使前後方向可區分。",
+    )
+    if orientation["front_side"] == "unknown" or orientation["rear_side"] == "unknown":
+        issue(
+            issues,
+            "info",
+            building_id,
+            file_name,
+            floor_id,
+            "ORIENTATION_UNRESOLVED",
+            "Floor front/rear orientation metadata is not fully confirmed",
             evidence=f"front={orientation['front_side']}; rear={orientation['rear_side']}",
-            fix_hint="調整 data-front-side / data-rear-side，使前後方向可區分。",
+            fix_hint="若方位已確認，補 data-front-side 與 data-rear-side；未確認則保留 unknown。",
         )
 
     rooms = {
@@ -306,6 +319,7 @@ def check_floor_geometry(
         raw_window_mm = cell.get("data-window-mm")
         window_mm = to_int(raw_window_mm)
         has_window_attr = cell.has_attr("data-window-mm")
+        is_window_outside_range = window_mm is None or not (window_min_mm <= window_mm <= window_max_mm)
         if door_mm is not None and not (door_min_mm <= door_mm <= door_max_mm):
             issue(
                 issues,
@@ -318,7 +332,19 @@ def check_floor_geometry(
                 evidence=f"cell-{idx}",
                 fix_hint="依常見住宅尺度調整門寬。",
             )
-        if has_window_attr and window_mm is None:
+        if has_window_attr and is_daylight_exempt(spatial) and is_window_outside_range:
+            issue(
+                issues,
+                "info",
+                building_id,
+                file_name,
+                floor_id,
+                "DAYLIGHT_EXEMPTION",
+                f"{label} is explicitly marked as not daylight-required",
+                evidence=f"cell-{idx}; data-window-mm={raw_window_mm}",
+                fix_hint="確認此空間仍有符合設計需求的通風、空調與消防排煙策略。",
+            )
+        elif has_window_attr and window_mm is None:
             issue(
                 issues,
                 "warning",
