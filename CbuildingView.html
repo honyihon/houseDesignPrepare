@@ -1211,7 +1211,7 @@
 </div>
 <div class="plan-grid-visual">
 <div class="plan-row" data-row-h-mm="1200" style="grid-template-columns:1fr;">
-<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1200" data-material="concrete+drain" data-w-mm="11000" data-window-mm="0" data-x-mm="0" data-y-mm="0" onclick="highlightRoom('garage', this)">
+<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1200" data-material="concrete+drain" data-outdoor-role="garage" data-w-mm="11000" data-window-mm="0" data-x-mm="0" data-y-mm="0" onclick="highlightRoom('garage', this)">
 <span class="cell-icon">🚗</span>
 <span class="cell-name">前院車庫</span>
 <span class="cell-size">約 2 車位 + 機車</span>
@@ -1240,7 +1240,7 @@
 <span class="badge ap">📶 AP</span>
 </div>
 </div>
-<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-w-mm="2750" data-window-mm="0" data-x-mm="8250" data-y-mm="1200" onclick="highlightRoom('sideyard', this)">
+<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-outdoor-role="side-yard" data-w-mm="2750" data-window-mm="0" data-x-mm="8250" data-y-mm="1200" onclick="highlightRoom('sideyard', this)">
 <span class="cell-icon">🌿</span>
 <span class="cell-name">側院</span>
 <span class="cell-size">格柵導風 45°</span>
@@ -1279,7 +1279,7 @@
 </div>
 </div>
 <div class="plan-row" data-row-h-mm="1300" style="grid-template-columns:2.5fr 1fr;">
-<div class="plan-cell" data-door-mm="900" data-h-mm="1300" data-material="paint+default" data-w-mm="7857" data-window-mm="1000" data-x-mm="0" data-y-mm="4000" onclick="highlightRoom('elder', this)">
+<div class="plan-cell" data-accessible="true" data-door-mm="900" data-h-mm="1300" data-material="paint+default" data-room-role="elder" data-w-mm="7857" data-window-mm="1000" data-x-mm="0" data-y-mm="4000" onclick="highlightRoom('elder', this)">
 <span class="cell-icon">🛏️</span>
 <span class="cell-name">孝親房</span>
 <span class="cell-size">約 5 坪｜長輩友善</span>
@@ -1300,7 +1300,7 @@
 </div>
 </div>
 <div class="plan-row" data-row-h-mm="1700" style="grid-template-columns:1.5fr 1.5fr;">
-<div class="plan-cell wet" data-door-mm="800" data-h-mm="1700" data-material="tile+waterproof" data-w-mm="5500" data-window-mm="600" data-x-mm="0" data-y-mm="5300" onclick="highlightRoom('elder-bath', this)">
+<div class="plan-cell wet" data-accessible="true" data-door-mm="800" data-h-mm="1700" data-material="tile+waterproof" data-room-role="accessible-bath" data-w-mm="5500" data-window-mm="600" data-x-mm="0" data-y-mm="5300" onclick="highlightRoom('elder-bath', this)">
 <span class="cell-icon">🚿</span>
 <span class="cell-name">孝親衛浴</span>
 <div class="io-badges">
@@ -1309,7 +1309,7 @@
 <span class="badge hot">🆘 求救鈴</span>
 </div>
 </div>
-<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-w-mm="5500" data-window-mm="0" data-x-mm="5500" data-y-mm="5300" onclick="highlightRoom('service', this)">
+<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-outdoor-role="service-yard" data-w-mm="5500" data-window-mm="0" data-x-mm="5500" data-y-mm="5300" onclick="highlightRoom('service', this)">
 <span class="cell-icon">🧺</span>
 <span class="cell-name">後工作陽台</span>
 <div class="io-badges">
@@ -1324,6 +1324,62 @@
                     </div>
 </div>
 <div class="details-panel">
+<div class="room special-outdoor" data-h-mm="1200" data-target-cell="slot-1" data-w-mm="11000" data-x-mm="0" data-y-mm="0" id="room-garage">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🚗</div> 前院車庫</div>
+<div class="room-area">約 2 車位 + 機車</div>
+</div>
+<div class="room-details">
+<li><strong>用途：</strong>車輛停放、EV 充電與颱風軌道預留。</li>
+<li><strong>施工重點：</strong>排水坡度、防滑鋪面與車庫到玄關高低差需由建築師確認。</li>
+</div>
+</div>
+<div class="room" data-h-mm="1700" data-target-cell="slot-2" data-w-mm="2750" data-x-mm="0" data-y-mm="1200" id="room-entrance">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🚪</div> 玄關</div>
+</div>
+<div class="room-details">
+<li><strong>無障礙：</strong>車庫進門至客廳、孝親房與衛浴需維持連續平整動線。</li>
+<li><strong>收納：</strong>鞋櫃深度不可壓縮輪椅迴轉與轉向空間。</li>
+</div>
+</div>
+<div class="room" data-h-mm="1700" data-target-cell="slot-3" data-w-mm="5500" data-x-mm="2750" data-y-mm="1200" id="room-living">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🛋️</div> 客廳</div>
+<div class="room-area">約 8 坪</div>
+</div>
+<div class="room-details">
+<li><strong>定位：</strong>1F 家庭公共空間，需保留輪椅與家具之間的通行寬度。</li>
+<li><strong>設備：</strong>TV、AP、弱電點位依現有圖面預留。</li>
+</div>
+</div>
+<div class="room" data-h-mm="1100" data-target-cell="slot-5" data-w-mm="3771" data-x-mm="0" data-y-mm="2900" id="room-dining">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🍽️</div> 餐廳</div>
+</div>
+<div class="room-details">
+<li><strong>動線：</strong>餐桌配置不得阻擋玄關、客廳、廚房與孝親房的主要通道。</li>
+<li><strong>電力：</strong>餐邊插座與弱電點位依家具配置確認。</li>
+</div>
+</div>
+<div class="room" data-h-mm="1100" data-target-cell="slot-6" data-w-mm="4086" data-x-mm="3771" data-y-mm="2900" id="room-kitchen">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🍳</div> 廚房</div>
+</div>
+<div class="room-details">
+<li><strong>設備：</strong>冷熱水、IH/烤箱專迴與排煙路徑需與機電施工圖核對。</li>
+<li><strong>通風：</strong>排風、補氣與側院導風策略需由建築師/機電確認。</li>
+</div>
+</div>
+<div class="room special-outdoor" data-h-mm="1700" data-target-cell="slot-11" data-w-mm="5500" data-x-mm="5500" data-y-mm="5300" id="room-service">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🧺</div> 後工作陽台</div>
+</div>
+<div class="room-details">
+<li><strong>用途：</strong>洗衣、曬衣、A→C 進線與後場維修動線。</li>
+<li><strong>施工重點：</strong>排水坡度、防水收邊、落水頭可清通與外部門檻需確認。</li>
+</div>
+</div>
 <div class="room" data-h-mm="1100" data-target-cell="slot-7" data-w-mm="3143" data-x-mm="7857" data-y-mm="2900" id="room-stair1f">
 <div class="room-head">
 <div class="room-name">
@@ -1396,7 +1452,7 @@
 <strong>⚠️ 採光、通風、逃生距離正式檢核（需專業計算）：</strong>本文件 HTML 示意圖中的窗戶位置、開口大小與動線標註僅供設計參考，<strong>不可替代</strong>建築師進行的居室採光面積計算、通風開口面積計算、避難步行距離檢核與無障礙動線審查。上述項目需於設計會議後由建築師出具正式計算書，並依《建築技術規則》檢核通過。
 </div>
 </div>
-<div class="room" data-h-mm="1300" data-target-cell="slot-8" data-w-mm="7857" data-x-mm="0" data-y-mm="4000" id="room-elder">
+<div class="room" data-accessible="true" data-h-mm="1300" data-room-role="elder" data-target-cell="slot-8" data-w-mm="7857" data-x-mm="0" data-y-mm="4000" id="room-elder">
 <div class="room-head">
 <div class="room-name">
 <div class="room-name-icon">🛏️</div>
@@ -1417,7 +1473,7 @@
 <li><strong>網路：</strong>CAT6 ×2（床頭 + 電視牆）。</li>
 </div>
 </div>
-<div class="room" data-h-mm="1700" data-target-cell="slot-10" data-w-mm="5500" data-x-mm="0" data-y-mm="5300" id="room-elder-bath">
+<div class="room" data-accessible="true" data-h-mm="1700" data-room-role="accessible-bath" data-target-cell="slot-10" data-w-mm="5500" data-x-mm="0" data-y-mm="5300" id="room-elder-bath">
 <div class="room-head">
 <div class="room-name">
 <div class="room-name-icon">🚿</div>
@@ -1930,12 +1986,12 @@
 </div>
 </div>
 <div class="plan-row" data-row-h-mm="1700" style="grid-template-columns:1.5fr 1fr;">
-<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-w-mm="6600" data-window-mm="0" data-x-mm="0" data-y-mm="2400" onclick="highlightRoom('platform', this)">
+<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-outdoor-role="roof-platform" data-w-mm="6600" data-window-mm="0" data-x-mm="0" data-y-mm="2400" onclick="highlightRoom('platform', this)">
 <span class="cell-icon">🏗️</span>
 <span class="cell-name">活動平台 / 曬衣棚架</span>
 <span class="cell-size">預留未來擴充</span>
 </div>
-<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-w-mm="4400" data-window-mm="0" data-x-mm="6600" data-y-mm="2400" onclick="highlightRoom('laundry-rf', this)">
+<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-outdoor-role="laundry-yard" data-w-mm="4400" data-window-mm="0" data-x-mm="6600" data-y-mm="2400" onclick="highlightRoom('laundry-rf', this)">
 <span class="cell-icon">👕</span>
 <span class="cell-name">曬衣區</span>
 </div>
@@ -1944,6 +2000,45 @@
 <div class="compass"><span class="compass-arrow">⬆️</span> 北</div>
 </div>
 <div class="details-panel">
+<div class="room" data-h-mm="1300" data-target-cell="slot-1" data-w-mm="5500" data-x-mm="0" data-y-mm="0" id="room-stair-rf">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🪜</div> 樓梯出口（RF）</div>
+<div class="room-area">⬇️3F</div>
+</div>
+<div class="room-details">
+<li><strong>防水：</strong>樓梯出口門檻、泛水、排水坡度與止滑需納入施工圖。</li>
+<li><strong>安全：</strong>RF 檢修照明、扶手與防墜邊界需由建築師確認。</li>
+</div>
+</div>
+<div class="room" data-h-mm="1300" data-target-cell="slot-2" data-w-mm="5500" data-x-mm="5500" data-y-mm="0" id="room-riser-rf">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🔌</div> 弱電預留人孔</div>
+<div class="room-area">可掀式防水蓋</div>
+</div>
+<div class="room-details">
+<li><strong>防水：</strong>人孔蓋、滴水彎與二次防水收邊需於施工圖標註。</li>
+<li><strong>擴充：</strong>弱電出口需保留拉線、檢修空間與防蟲防雨措施。</li>
+</div>
+</div>
+<div class="room special-outdoor" data-h-mm="1700" data-target-cell="slot-6" data-w-mm="6600" data-x-mm="0" data-y-mm="2400" id="room-platform">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🏗️</div> 活動平台 / 曬衣棚架</div>
+<div class="room-area">預留未來擴充</div>
+</div>
+<div class="room-details">
+<li><strong>結構：</strong>棚架、太陽能與活動平台載重不可用示意圖替代結構計算。</li>
+<li><strong>防颱：</strong>錨定、排水、維修動線與防墜邊界需由結構/建築確認。</li>
+</div>
+</div>
+<div class="room special-outdoor" data-h-mm="1700" data-target-cell="slot-7" data-w-mm="4400" data-x-mm="6600" data-y-mm="2400" id="room-laundry-rf">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">👕</div> 曬衣區</div>
+</div>
+<div class="room-details">
+<li><strong>使用：</strong>曬衣、臨時收納與 RF 巡檢動線需避免和設備檢修衝突。</li>
+<li><strong>排水：</strong>地坪坡度、落水頭、防滑與颱風後清理動線需確認。</li>
+</div>
+</div>
 <div class="room" data-h-mm="1100" data-target-cell="slot-4" data-w-mm="3667" data-x-mm="3667" data-y-mm="1300" id="room-pump">
 <div class="room-head">
 <div class="room-name">
