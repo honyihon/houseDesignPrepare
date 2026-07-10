@@ -25,7 +25,7 @@ def test_expert_workflow_passes_mode_to_html_consistency_check() -> None:
     script = (ROOT / "scripts" / "run_full_expert_workflow.ps1").read_text(encoding="utf-8")
 
     assert re.search(
-        r'Invoke-PythonStep -Name "Step 3/7 HTML consistency check" -Arguments @\(\s*"scripts/check_html_consistency.py",\s*"--buildings", \$buildingsArg,\s*"--mode", \$Mode\s*\)',
+        r'Invoke-PythonStep -Name "Step 3/8 HTML consistency check" -Arguments @\(\s*"scripts/check_html_consistency.py",\s*"--buildings", \$buildingsArg,\s*"--mode", \$Mode\s*\)',
         script,
         re.DOTALL,
     )
@@ -63,3 +63,11 @@ def test_ifc_signoff_hash_is_enforced_at_report_stage() -> None:
     assert "--enforce-signoff-hash" in script
     assert "AllowedExitCodes @(0, 2, 10)" in script
     assert "exit 2" in script
+
+
+def test_expert_workflow_generates_domain_checklist_before_final_html() -> None:
+    script = (ROOT / "scripts" / "run_full_expert_workflow.ps1").read_text(encoding="utf-8")
+
+    assert 'Step 7/8 generate domain checklist' in script
+    assert '"scripts/generate_domain_checklist.py"' in script
+    assert 'Step 8/8 export final design HTML' in script

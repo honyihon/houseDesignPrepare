@@ -60,7 +60,7 @@ function Invoke-PythonStep {
 Write-Host ("Running expert workflow | mode={0} | selection={1} | buildings={2} | drawing style={3}" -f $Mode, $resolvedSelection, $buildingsArg, $DrawingStyle) -ForegroundColor DarkCyan
 Write-Host ("Request file: {0}" -f $resolvedRequestPath) -ForegroundColor DarkCyan
 
-Invoke-PythonStep -Name "Step 1/7 normalize requirement" -Arguments @(
+Invoke-PythonStep -Name "Step 1/8 normalize requirement" -Arguments @(
     "scripts/evaluate_expert_gates.py",
     "--stage", "normalize",
     "--request", $resolvedRequestPath,
@@ -69,7 +69,7 @@ Invoke-PythonStep -Name "Step 1/7 normalize requirement" -Arguments @(
     "--selection", $resolvedSelection
 )
 
-$gateExit = Invoke-PythonStep -Name "Step 2/7 expert rules preflight gate" -Arguments @(
+$gateExit = Invoke-PythonStep -Name "Step 2/8 expert rules preflight gate" -Arguments @(
     "scripts/evaluate_expert_gates.py",
     "--stage", "gate",
     "--request", $resolvedRequestPath,
@@ -83,13 +83,13 @@ if ($gateExit -eq 10) {
     exit 10
 }
 
-Invoke-PythonStep -Name "Step 3/7 HTML consistency check" -Arguments @(
+Invoke-PythonStep -Name "Step 3/8 HTML consistency check" -Arguments @(
     "scripts/check_html_consistency.py",
     "--buildings", $buildingsArg,
     "--mode", $Mode
 )
 
-Write-Host ("`n==> Step 4/7 run_full_pipeline ({0})" -f $Mode) -ForegroundColor Cyan
+Write-Host ("`n==> Step 4/8 run_full_pipeline ({0})" -f $Mode) -ForegroundColor Cyan
 powershell -ExecutionPolicy Bypass -File "scripts/run_full_pipeline.ps1" `
     -Mode $Mode `
     -Paper $Paper `
@@ -102,7 +102,7 @@ if ($LASTEXITCODE -ne 0) {
     throw ("Step failed: run_full_pipeline (exit code {0})" -f $LASTEXITCODE)
 }
 
-Invoke-PythonStep -Name "Step 5/7 validate layout bundle" -Arguments @(
+Invoke-PythonStep -Name "Step 5/8 validate layout bundle" -Arguments @(
     "scripts/validate_layout_bundle.py"
 )
 
@@ -119,7 +119,7 @@ if ($Mode -eq "ifc") {
     $reportArgs += "--enforce-signoff-hash"
 }
 
-$reportExit = Invoke-PythonStep -Name "Step 6/7 summarize expert report" -Arguments $reportArgs -AllowedExitCodes @(0, 2, 10)
+$reportExit = Invoke-PythonStep -Name "Step 6/8 summarize expert report" -Arguments $reportArgs -AllowedExitCodes @(0, 2, 10)
 
 if ($reportExit -eq 10) {
     Write-Host "`nHard gate failed in final report. Check structured/expert_review/report.md." -ForegroundColor Red
@@ -130,7 +130,11 @@ if ($reportExit -eq 2) {
     exit 2
 }
 
-Invoke-PythonStep -Name "Step 7/7 export final design HTML" -Arguments @(
+Invoke-PythonStep -Name "Step 7/8 generate domain checklist" -Arguments @(
+    "scripts/generate_domain_checklist.py"
+)
+
+Invoke-PythonStep -Name "Step 8/8 export final design HTML" -Arguments @(
     "scripts/export_final_design_html.py",
     "--mode", $Mode,
     "--selection", $resolvedSelection,
