@@ -54,3 +54,12 @@ def test_expert_workflow_allows_gate_exit_10_before_explicit_exit() -> None:
 
     assert 'AllowedExitCodes @(0, 10)' in script
     assert "exit 10" in script
+
+
+def test_ifc_signoff_hash_is_enforced_at_report_stage() -> None:
+    script = (ROOT / "scripts" / "run_full_expert_workflow.ps1").read_text(encoding="utf-8")
+
+    assert "Assert-IfCSignoff" not in script
+    assert "--enforce-signoff-hash" in script
+    assert "AllowedExitCodes @(0, 2, 10)" in script
+    assert "exit 2" in script

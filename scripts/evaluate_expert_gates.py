@@ -342,6 +342,7 @@ def evaluate_accessible_door_min(rule: dict[str, Any], ctx: RuleEvalContext) -> 
         if normalize_whitespace(str(keyword))
     ]
     minimum = to_int(rule.get("min_mm"), 800)
+    accessible_roles = {"elder", "accessible-bath"}
     problems: list[str] = []
     for building in ctx.selected_buildings:
         soup = ctx.soups.get(building)
@@ -358,7 +359,9 @@ def evaluate_accessible_door_min(rule: dict[str, Any], ctx: RuleEvalContext) -> 
                 ]
             )
             is_accessible = truthy_attr(cell.get("data-accessible"))
-            if not is_accessible and not any(keyword in raw_text for keyword in keywords):
+            room_role = normalize_whitespace(cell.get("data-room-role", "")).lower()
+            has_accessible_role = room_role in accessible_roles
+            if not is_accessible and not has_accessible_role and not any(keyword in raw_text for keyword in keywords):
                 continue
             matched = True
             door_mm = to_int(cell.get("data-door-mm"), -1)
@@ -819,9 +822,74 @@ def architect_metric_rule_results(metrics_payload: dict[str, Any]) -> list[dict[
     return results
 
 
-def stable_report_hash(report: dict[str, Any]) -> str:
-    payload = json.dumps(report, ensure_ascii=False, sort_keys=True).encode("utf-8")
+VOLATILE_REPORT_HASH_KEYS = {"generated_at", "report_hash", "signoff"}
+VALID_SIGNOFF_DECISIONS = {"approved", "pass", "approved_with_conditions"}
+
+
+def clean_yaml_scalar(value: Any) -> str:
+    text = normalize_whitespace(str(value or ""))
+    if len(text) >= 2 and text[0] == text[-1] and text[0] in {'"', "'"}:
+        return text[1:-1]
+    return text
+
+
+def report_hash_payload(report: dict[str, Any]) -> dict[str, Any]:
+    return {
+        key: value
+        for key, value in report.items()
+        if key not in VOLATILE_REPORT_HASH_KEYS
+    }
+
+
+def report_content_hash(report: dict[str, Any]) -> str:
+    payload = json.dumps(
+        report_hash_payload(report),
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    ).encode("utf-8")
     return hashlib.sha256(payload).hexdigest()
+
+
+def stable_report_hash(report: dict[str, Any]) -> str:
+    return report_content_hash(report)
+
+
+def validate_signoff_for_report(
+    signoff_data: dict[str, str],
+    report: dict[str, Any],
+    allow_stale: bool = False,
+) -> dict[str, Any]:
+    decision = clean_yaml_scalar(signoff_data.get("decision", "")).lower()
+    expected_hash = normalize_whitespace(str(report.get("report_hash") or report_content_hash(report)))
+    related_hash = clean_yaml_scalar(signoff_data.get("related_report_hash", ""))
+    hash_match = bool(related_hash) and related_hash == expected_hash
+    decision_valid = decision in VALID_SIGNOFF_DECISIONS
+    valid = decision_valid and (hash_match or allow_stale)
+    if valid:
+        reason = "ok" if hash_match else "stale_allowed"
+    elif not decision_valid:
+        reason = "decision_missing_or_invalid"
+    elif not related_hash:
+        reason = "related_report_hash_missing"
+    else:
+        reason = "related_report_hash_mismatch"
+
+    return {
+        "exists": bool(signoff_data),
+        "decision": decision,
+        "decision_valid": decision_valid,
+        "reviewer_role": clean_yaml_scalar(signoff_data.get("reviewer_role", "")),
+        "reviewer_name": clean_yaml_scalar(signoff_data.get("reviewer_name", "")),
+        "reviewer_date": clean_yaml_scalar(signoff_data.get("reviewer_date", signoff_data.get("date", ""))),
+        "related_report_hash": related_hash,
+        "related_report_generated_at": clean_yaml_scalar(signoff_data.get("related_report_generated_at", "")),
+        "expected_report_hash": expected_hash,
+        "hash_match": hash_match,
+        "stale_allowed": allow_stale,
+        "valid": valid,
+        "reason": reason,
+    }
 
 
 def build_report(
@@ -832,6 +900,7 @@ def build_report(
     weights: dict[str, float],
     rule_dir: Path,
     signoff_file: Path,
+    allow_stale_signoff: bool = False,
 ) -> dict[str, Any]:
     normalized_request = build_normalized_request(request_path)
     request_text = request_path.read_text(encoding="utf-8")
@@ -886,10 +955,12 @@ def build_report(
     signoff_data = parse_signoff_yaml(signoff_file)
     signoff_status = {
         "exists": signoff_file.exists(),
-        "decision": normalize_whitespace(signoff_data.get("decision", "")).lower(),
-        "reviewer_role": normalize_whitespace(signoff_data.get("reviewer_role", "")),
-        "reviewer_name": normalize_whitespace(signoff_data.get("reviewer_name", "")),
-        "date": normalize_whitespace(signoff_data.get("date", "")),
+        "decision": clean_yaml_scalar(signoff_data.get("decision", "")).lower(),
+        "reviewer_role": clean_yaml_scalar(signoff_data.get("reviewer_role", "")),
+        "reviewer_name": clean_yaml_scalar(signoff_data.get("reviewer_name", "")),
+        "reviewer_date": clean_yaml_scalar(signoff_data.get("reviewer_date", signoff_data.get("date", ""))),
+        "related_report_hash": clean_yaml_scalar(signoff_data.get("related_report_hash", "")),
+        "related_report_generated_at": clean_yaml_scalar(signoff_data.get("related_report_generated_at", "")),
     }
 
     artifacts = {
@@ -932,7 +1003,12 @@ def build_report(
             ),
         ),
     }
-    report["report_hash"] = stable_report_hash(report)
+    report["report_hash"] = report_content_hash(report)
+    report["signoff"] = validate_signoff_for_report(
+        signoff_data,
+        report,
+        allow_stale=allow_stale_signoff,
+    )
     return report
 
 
@@ -949,6 +1025,16 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output-md", type=Path, default=DEFAULT_REPORT_MD)
     parser.add_argument("--task-board", type=Path, default=DEFAULT_TASK_BOARD)
     parser.add_argument("--signoff", type=Path, default=DEFAULT_SIGNOFF_FILE)
+    parser.add_argument(
+        "--enforce-signoff-hash",
+        action="store_true",
+        help="Return exit code 2 unless signoff related_report_hash matches this report.",
+    )
+    parser.add_argument(
+        "--allow-stale-signoff",
+        action="store_true",
+        help="Record stale signoff as allowed instead of failing hash enforcement.",
+    )
     parser.add_argument(
         "--allow-hard-gate-failure",
         action="store_true",
@@ -983,6 +1069,7 @@ def main() -> None:
         weights=weights,
         rule_dir=args.rule_dir.resolve(),
         signoff_file=args.signoff.resolve(),
+        allow_stale_signoff=args.allow_stale_signoff,
     )
     args.output_json.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     args.output_md.write_text(generate_report_md(report), encoding="utf-8")
@@ -999,6 +1086,13 @@ def main() -> None:
     print(f"Critical:    {len(report['critical_failures'])}")
     print(f"Warnings:    {len(report['warnings'])}")
     print(f"Info:        {len(report['infos'])}")
+
+    if args.enforce_signoff_hash and not report.get("signoff", {}).get("valid"):
+        signoff = report.get("signoff", {})
+        print(f"IFC signoff: {signoff.get('reason', 'invalid')}")
+        print(f"Expected related_report_hash: {signoff.get('expected_report_hash', '')}")
+        print(f"Actual related_report_hash:   {signoff.get('related_report_hash', '')}")
+        raise SystemExit(2)
 
     if report["hard_gate"] == "fail" and not args.allow_hard_gate_failure:
         raise SystemExit(10)

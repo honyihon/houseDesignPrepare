@@ -57,17 +57,6 @@ function Invoke-PythonStep {
     return $code
 }
 
-function Assert-IfCSignoff {
-    param([string]$Path)
-    if (-not (Test-Path -LiteralPath $Path)) {
-        throw "IFC mode requires signoff file: $Path"
-    }
-    $content = Get-Content -Raw -LiteralPath $Path
-    if ($content -notmatch "(?im)^\s*decision\s*:\s*(approved|pass|approved_with_conditions)\s*$") {
-        throw "IFC signoff missing valid decision (approved/pass/approved_with_conditions): $Path"
-    }
-}
-
 Write-Host ("Running expert workflow | mode={0} | selection={1} | buildings={2} | drawing style={3}" -f $Mode, $resolvedSelection, $buildingsArg, $DrawingStyle) -ForegroundColor DarkCyan
 Write-Host ("Request file: {0}" -f $resolvedRequestPath) -ForegroundColor DarkCyan
 
@@ -100,10 +89,6 @@ Invoke-PythonStep -Name "Step 3/7 HTML consistency check" -Arguments @(
     "--mode", $Mode
 )
 
-if ($Mode -eq "ifc") {
-    Assert-IfCSignoff -Path $Signoff
-}
-
 Write-Host ("`n==> Step 4/7 run_full_pipeline ({0})" -f $Mode) -ForegroundColor Cyan
 powershell -ExecutionPolicy Bypass -File "scripts/run_full_pipeline.ps1" `
     -Mode $Mode `
@@ -121,7 +106,7 @@ Invoke-PythonStep -Name "Step 5/7 validate layout bundle" -Arguments @(
     "scripts/validate_layout_bundle.py"
 )
 
-$reportExit = Invoke-PythonStep -Name "Step 6/7 summarize expert report" -Arguments @(
+$reportArgs = @(
     "scripts/evaluate_expert_gates.py",
     "--stage", "report",
     "--request", $resolvedRequestPath,
@@ -129,11 +114,20 @@ $reportExit = Invoke-PythonStep -Name "Step 6/7 summarize expert report" -Argume
     "--mode", $Mode,
     "--selection", $resolvedSelection,
     "--signoff", $Signoff
-) -AllowedExitCodes @(0, 10)
+)
+if ($Mode -eq "ifc") {
+    $reportArgs += "--enforce-signoff-hash"
+}
+
+$reportExit = Invoke-PythonStep -Name "Step 6/7 summarize expert report" -Arguments $reportArgs -AllowedExitCodes @(0, 2, 10)
 
 if ($reportExit -eq 10) {
     Write-Host "`nHard gate failed in final report. Check structured/expert_review/report.md." -ForegroundColor Red
     exit 10
+}
+if ($reportExit -eq 2) {
+    Write-Host "`nIFC signoff is missing or stale. Check structured/expert_review/report.json and update related_report_hash in signoff.yaml." -ForegroundColor Red
+    exit 2
 }
 
 Invoke-PythonStep -Name "Step 7/7 export final design HTML" -Arguments @(

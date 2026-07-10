@@ -90,3 +90,23 @@ def test_accessible_door_policy_supports_aliases_and_full_cell_text() -> None:
 
     assert passed is True
     assert evidence == []
+
+
+def test_accessible_door_policy_supports_room_role_elder() -> None:
+    ctx = _context(
+        """
+        <div class="floor-plan" id="floor-1">
+          <div class="plan-cell" data-door-mm="760" data-room-role="elder">
+            <span class="cell-name">Guest Room</span>
+          </div>
+        </div>
+        """
+    )
+
+    passed, evidence = gates.evaluate_accessible_door_min(
+        {"keywords": ["無障礙"], "min_mm": 800},
+        ctx,
+    )
+
+    assert passed is False
+    assert evidence == ["A:Guest Room accessible_door_mm=760<800"]
