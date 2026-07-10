@@ -36,6 +36,26 @@ def test_report_content_hash_ignores_volatile_report_fields() -> None:
     assert gates.report_content_hash(first) == gates.report_content_hash(second)
 
 
+def test_report_content_hash_ignores_nested_generated_at_evidence() -> None:
+    first = _report("2026-07-10T01:00:00+00:00")
+    second = _report("2026-07-10T02:00:00+00:00")
+    first["warnings"] = [
+        {
+            "rule_id": "ARCH-MET-001",
+            "evidence": ["generated_at=2026-07-10T01:00:00+00:00", "advisory=30"],
+        }
+    ]
+    second["warnings"] = [
+        {
+            "rule_id": "ARCH-MET-001",
+            "evidence": ["generated_at=2026-07-10T02:00:00+00:00", "advisory=30"],
+        }
+    ]
+
+    assert gates.report_hash_payload(first) == gates.report_hash_payload(second)
+    assert gates.report_content_hash(first) == gates.report_content_hash(second)
+
+
 def test_validate_signoff_for_report_requires_matching_hash() -> None:
     report = _report("2026-07-10T01:00:00+00:00")
     report["report_hash"] = gates.report_content_hash(report)

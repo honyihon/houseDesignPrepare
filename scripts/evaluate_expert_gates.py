@@ -838,12 +838,22 @@ def clean_yaml_scalar(value: Any) -> str:
     return text
 
 
+def stable_report_value(value: Any) -> Any:
+    if isinstance(value, dict):
+        return {
+            key: stable_report_value(item)
+            for key, item in value.items()
+            if key not in VOLATILE_REPORT_HASH_KEYS
+        }
+    if isinstance(value, list):
+        return [stable_report_value(item) for item in value]
+    if isinstance(value, str):
+        return re.sub(r"generated_at=[^,\];\s]+", "generated_at=<volatile>", value)
+    return value
+
+
 def report_hash_payload(report: dict[str, Any]) -> dict[str, Any]:
-    return {
-        key: value
-        for key, value in report.items()
-        if key not in VOLATILE_REPORT_HASH_KEYS
-    }
+    return stable_report_value(report)
 
 
 def report_content_hash(report: dict[str, Any]) -> str:
