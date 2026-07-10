@@ -97,6 +97,12 @@ def is_outdoor_like(spatial: Mapping[str, Any], classes: Iterable[str]) -> bool:
     return bool(class_set & OUTDOOR_CLASSES)
 
 
+def is_daylight_exempt(spatial: Mapping[str, Any]) -> bool:
+    if spatial.get("daylight_required") is False:
+        return True
+    return normalize_text(spatial.get("room_role")).lower() == "theater"
+
+
 def window_issue_level(
     spatial: Mapping[str, Any],
     classes: Iterable[str],
