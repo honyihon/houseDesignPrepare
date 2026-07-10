@@ -145,6 +145,13 @@ def load_json(path: Path) -> dict[str, Any]:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def artifact_path(path: Path) -> str:
+    try:
+        return path.relative_to(ROOT).as_posix()
+    except ValueError:
+        return path.as_posix()
+
+
 def load_rule_file(path: Path) -> dict[str, Any]:
     text = path.read_text(encoding="utf-8")
     try:
@@ -595,10 +602,11 @@ def generate_report_md(report: dict[str, Any]) -> str:
         lines.append("- None")
     else:
         for item in critical_failures:
-            lines.append(
-                f"- `{item.get('rule_id')}` {item.get('message')} | evidence: {item.get('evidence')}"
-            )
+            lines.append(format_review_item(item))
     lines.append("")
+
+    append_review_section(lines, "Warnings", report.get("warnings", []))
+    append_review_section(lines, "Info Items", report.get("infos", []))
 
     lines.append("## Score Breakdown")
     lines.append("")
@@ -648,6 +656,17 @@ def generate_report_md(report: dict[str, Any]) -> str:
                 lines.append(f"  - {group}: {len(items)} item(s)")
     lines.append("")
 
+    lines.append("## Review Artifacts")
+    lines.append("")
+    artifacts = report.get("artifacts", {})
+    artifact_items = [(key, value) for key, value in artifacts.items() if value]
+    if not artifact_items:
+        lines.append("- None")
+    else:
+        for key, value in artifact_items:
+            lines.append(f"- `{key}`: `{value}`")
+    lines.append("")
+
     lines.append("## Citations")
     lines.append("")
     citations = report.get("citations", [])
@@ -660,6 +679,28 @@ def generate_report_md(report: dict[str, Any]) -> str:
             )
     lines.append("")
     return "\n".join(lines)
+
+
+def format_review_item(item: dict[str, Any]) -> str:
+    parts = [f"- `{item.get('rule_id', '')}` {item.get('message', '')}"]
+    evidence = item.get("evidence", [])
+    if evidence:
+        parts.append(f"evidence: {'; '.join(str(v) for v in evidence[:3])}")
+    fix_hint = normalize_whitespace(str(item.get("fix_hint", "")))
+    if fix_hint:
+        parts.append(f"fix: {fix_hint}")
+    return " | ".join(parts)
+
+
+def append_review_section(lines: list[str], title: str, items: list[dict[str, Any]]) -> None:
+    lines.append(f"## {title}")
+    lines.append("")
+    if not items:
+        lines.append("- None")
+    else:
+        for item in items:
+            lines.append(format_review_item(item))
+    lines.append("")
 
 
 def ensure_task_board(path: Path) -> None:
@@ -979,12 +1020,21 @@ def build_report(
     }
 
     artifacts = {
-        "normalized_request": str(NORMALIZED_REQUEST_FILE.relative_to(ROOT)) if NORMALIZED_REQUEST_FILE.exists() else "",
-        "room_program": str(PROGRAM_FILE.relative_to(ROOT)) if PROGRAM_FILE.exists() else "",
-        "candidates": str(CANDIDATE_FILE.relative_to(ROOT)) if CANDIDATE_FILE.exists() else "",
-        "architect_metrics": str(ARCHITECT_METRICS_FILE.relative_to(ROOT)) if ARCHITECT_METRICS_FILE.exists() else "",
-        "viewer": "structured/candidates/viewer.html" if (ROOT / "structured/candidates/viewer.html").exists() else "",
-        "pdf": "structured/candidates/print_bundle.pdf"
+        "normalized_request": artifact_path(NORMALIZED_REQUEST_FILE) if NORMALIZED_REQUEST_FILE.exists() else "",
+        "room_program": artifact_path(PROGRAM_FILE) if PROGRAM_FILE.exists() else "",
+        "candidates": artifact_path(CANDIDATE_FILE) if CANDIDATE_FILE.exists() else "",
+        "architect_metrics": artifact_path(ARCHITECT_METRICS_FILE) if ARCHITECT_METRICS_FILE.exists() else "",
+        "architect_metrics_report": artifact_path(ROOT / "structured/architect_metrics/report.md")
+        if (ROOT / "structured/architect_metrics/report.md").exists()
+        else "",
+        "html_consistency": artifact_path(ROOT / "structured/expert_review/html_consistency.json")
+        if (ROOT / "structured/expert_review/html_consistency.json").exists()
+        else "",
+        "domain_checklist": artifact_path(ROOT / "structured/expert_review/domain_checklist.md"),
+        "viewer": artifact_path(ROOT / "structured/candidates/viewer.html")
+        if (ROOT / "structured/candidates/viewer.html").exists()
+        else "",
+        "pdf": artifact_path(ROOT / "structured/candidates/print_bundle.pdf")
         if (ROOT / "structured/candidates/print_bundle.pdf").exists()
         else "",
     }
