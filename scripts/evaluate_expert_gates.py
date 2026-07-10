@@ -641,6 +641,11 @@ def generate_report_md(report: dict[str, Any]) -> str:
         top_issues = architect_summary.get("top_issues", [])
         if top_issues:
             lines.append(f"- First issue: {top_issues[0]}")
+        action_groups = architect_summary.get("action_groups", {})
+        if action_groups:
+            lines.append("- Action groups:")
+            for group, items in action_groups.items():
+                lines.append(f"  - {group}: {len(items)} item(s)")
     lines.append("")
 
     lines.append("## Citations")
