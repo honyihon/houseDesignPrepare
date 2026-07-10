@@ -965,17 +965,17 @@
 <h2>Final Design Notes - Building C</h2>
 <p>This is a generated discussion copy. It keeps the canonical source layout and stores candidate analysis as metadata only.</p>
 <div class="final-sync-grid">
-<div class="final-sync-kpi"><b>concept</b><span>Mode</span></div>
-<div class="final-sync-kpi"><b>best</b><span>Export selection</span></div>
+<div class="final-sync-kpi"><b>ifc</b><span>Mode</span></div>
+<div class="final-sync-kpi"><b>baseline</b><span>Export selection</span></div>
 <div class="final-sync-kpi"><b>PASS</b><span>Hard gate</span></div>
 <div class="final-sync-kpi"><b>4</b><span>Analyzed floors</span></div>
-<div class="final-sync-kpi"><b>19</b><span>Candidate assignments</span></div>
-<div class="final-sync-kpi"><b>16</b><span>Rejected visual moves</span></div>
+<div class="final-sync-kpi"><b>29</b><span>Candidate assignments</span></div>
+<div class="final-sync-kpi"><b>0</b><span>Rejected visual moves</span></div>
 <div class="final-sync-kpi"><b>0</b><span>Applied visual moves</span></div>
-<div class="final-sync-kpi"><b>4/1</b><span>Warnings / Info</span></div>
+<div class="final-sync-kpi"><b>2/1</b><span>Warnings / Info</span></div>
 </div>
-<p>Report generated: 2026-07-08T01:40:19.245913+00:00 | hash: 7b0e7edba700</p>
-<ul><li>BR-TW-002: 每層建議維持單一主入口標記。 (C:floor-2 entry_count=0)</li><li>BR-TW-002: 每層建議維持單一主入口標記。 (C:floor-3 entry_count=0)</li><li>BR-TW-002: 每層建議維持單一主入口標記。 (C:floor-4 entry_count=0)</li><li>ACC-TW-002: 無障礙空間門寬建議達到 800mm 以上。 (C: no cell matched accessible keyword '無障礙')</li></ul>
+<p>Report generated: 2026-07-10T02:29:19.483115+00:00 | hash: fb13bfaf0718</p>
+<ul><li>ARCH-MET-001: Concept architect metrics found advisory or missing-data items. (C:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work)</li><li>ARCH-MET-001: Concept architect metrics found advisory or missing-data items. (C:floor-1:entrance:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required)</li></ul>
 </section>
 <div class="header">
 <div class="building-badge">🏡 C棟 Building C（邊間 Edge）</div>
@@ -1283,12 +1283,12 @@
 <div class="dir-item">🖥️ IDF 弱電櫃</div>
 </div>
 </div><div class="final-floor-note" data-final-building-id="C" data-final-floor-id="floor-1">
-<p><strong>Candidate selection:</strong> circulation | total=62.5 | circulation=65.1 | daylight=50.6 | mep=70.0 | utilization=100.0</p>
+<p><strong>Candidate selection:</strong> baseline | total=62.6 | circulation=62.2 | daylight=56.6 | mep=68.2 | utilization=100.0</p>
 <p><strong>Canonical snapshot:</strong> visual room names, onclick targets, geometry, doors and windows are kept from the source HTML.</p>
-<p><strong>Candidate analysis:</strong> 2 matched / 3 rejected / 0 applied to visible cells.</p>
-<p>Expert weighting agrees with selected `circulation`.</p>
-<ul class="final-candidate-mismatch"><li>slot-2: canonical entrance kept; candidate suggested sliding-door</li><li>slot-3: canonical living kept; candidate suggested sideyard</li><li>slot-11: canonical service kept; candidate suggested elder</li></ul>
-<ul><li>No floor-specific warning was found in the latest report.</li></ul>
+<p><strong>Candidate analysis:</strong> 11 matched / 0 rejected / 0 applied to visible cells.</p>
+<p>Expert weighting prefers `mep`; this copy follows export selection `baseline`.</p>
+<ul class="final-candidate-mismatch"><li>No candidate/canonical room-slot mismatch was found for this floor.</li></ul>
+<ul><li>ARCH-MET-001: Concept architect metrics found advisory or missing-data items. (C:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work)</li><li>ARCH-MET-001: Concept architect metrics found advisory or missing-data items. (C:floor-1:entrance:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required)</li><li>ARCH: C:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work</li></ul>
 </div>
 <div class="floor-content">
 <div class="visual-plan">
@@ -1298,7 +1298,7 @@
 </div>
 <div class="plan-grid-visual">
 <div class="plan-row" data-row-h-mm="1200" style="grid-template-columns:1fr;">
-<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1200" data-material="concrete+drain" data-w-mm="11000" data-window-mm="0" data-x-mm="0" data-y-mm="0" onclick="highlightRoom('garage', this)">
+<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1200" data-material="concrete+drain" data-outdoor-role="garage" data-w-mm="11000" data-window-mm="0" data-x-mm="0" data-y-mm="0" onclick="highlightRoom('garage', this)">
 <span class="cell-icon">🚗</span>
 <span class="cell-name">前院車庫</span>
 <span class="cell-size">約 2 車位 + 機車</span>
@@ -1327,7 +1327,7 @@
 <span class="badge ap">📶 AP</span>
 </div>
 </div>
-<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-w-mm="2750" data-window-mm="0" data-x-mm="8250" data-y-mm="1200" onclick="highlightRoom('sideyard', this)">
+<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-outdoor-role="side-yard" data-w-mm="2750" data-window-mm="0" data-x-mm="8250" data-y-mm="1200" onclick="highlightRoom('sideyard', this)">
 <span class="cell-icon">🌿</span>
 <span class="cell-name">側院</span>
 <span class="cell-size">格柵導風 45°</span>
@@ -1366,7 +1366,7 @@
 </div>
 </div>
 <div class="plan-row" data-row-h-mm="1300" style="grid-template-columns:2.5fr 1fr;">
-<div class="plan-cell" data-door-mm="900" data-h-mm="1300" data-material="paint+default" data-w-mm="7857" data-window-mm="1000" data-x-mm="0" data-y-mm="4000" onclick="highlightRoom('elder', this)">
+<div class="plan-cell" data-accessible="true" data-door-mm="900" data-h-mm="1300" data-material="paint+default" data-room-role="elder" data-w-mm="7857" data-window-mm="1000" data-x-mm="0" data-y-mm="4000" onclick="highlightRoom('elder', this)">
 <span class="cell-icon">🛏️</span>
 <span class="cell-name">孝親房</span>
 <span class="cell-size">約 5 坪｜長輩友善</span>
@@ -1387,7 +1387,7 @@
 </div>
 </div>
 <div class="plan-row" data-row-h-mm="1700" style="grid-template-columns:1.5fr 1.5fr;">
-<div class="plan-cell wet" data-door-mm="800" data-h-mm="1700" data-material="tile+waterproof" data-w-mm="5500" data-window-mm="600" data-x-mm="0" data-y-mm="5300" onclick="highlightRoom('elder-bath', this)">
+<div class="plan-cell wet" data-accessible="true" data-door-mm="800" data-h-mm="1700" data-material="tile+waterproof" data-room-role="accessible-bath" data-w-mm="5500" data-window-mm="600" data-x-mm="0" data-y-mm="5300" onclick="highlightRoom('elder-bath', this)">
 <span class="cell-icon">🚿</span>
 <span class="cell-name">孝親衛浴</span>
 <div class="io-badges">
@@ -1396,7 +1396,7 @@
 <span class="badge hot">🆘 求救鈴</span>
 </div>
 </div>
-<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-w-mm="5500" data-window-mm="0" data-x-mm="5500" data-y-mm="5300" onclick="highlightRoom('service', this)">
+<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-outdoor-role="service-yard" data-w-mm="5500" data-window-mm="0" data-x-mm="5500" data-y-mm="5300" onclick="highlightRoom('service', this)">
 <span class="cell-icon">🧺</span>
 <span class="cell-name">後工作陽台</span>
 <div class="io-badges">
@@ -1411,6 +1411,62 @@
                     </div>
 </div>
 <div class="details-panel">
+<div class="room special-outdoor" data-h-mm="1200" data-target-cell="slot-1" data-w-mm="11000" data-x-mm="0" data-y-mm="0" id="room-garage">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🚗</div> 前院車庫</div>
+<div class="room-area">約 2 車位 + 機車</div>
+</div>
+<div class="room-details">
+<li><strong>用途：</strong>車輛停放、EV 充電與颱風軌道預留。</li>
+<li><strong>施工重點：</strong>排水坡度、防滑鋪面與車庫到玄關高低差需由建築師確認。</li>
+</div>
+</div>
+<div class="room" data-h-mm="1700" data-target-cell="slot-2" data-w-mm="2750" data-x-mm="0" data-y-mm="1200" id="room-entrance">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🚪</div> 玄關</div>
+</div>
+<div class="room-details">
+<li><strong>無障礙：</strong>車庫進門至客廳、孝親房與衛浴需維持連續平整動線。</li>
+<li><strong>收納：</strong>鞋櫃深度不可壓縮輪椅迴轉與轉向空間。</li>
+</div>
+</div>
+<div class="room" data-h-mm="1700" data-target-cell="slot-3" data-w-mm="5500" data-x-mm="2750" data-y-mm="1200" id="room-living">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🛋️</div> 客廳</div>
+<div class="room-area">約 8 坪</div>
+</div>
+<div class="room-details">
+<li><strong>定位：</strong>1F 家庭公共空間，需保留輪椅與家具之間的通行寬度。</li>
+<li><strong>設備：</strong>TV、AP、弱電點位依現有圖面預留。</li>
+</div>
+</div>
+<div class="room" data-h-mm="1100" data-target-cell="slot-5" data-w-mm="3771" data-x-mm="0" data-y-mm="2900" id="room-dining">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🍽️</div> 餐廳</div>
+</div>
+<div class="room-details">
+<li><strong>動線：</strong>餐桌配置不得阻擋玄關、客廳、廚房與孝親房的主要通道。</li>
+<li><strong>電力：</strong>餐邊插座與弱電點位依家具配置確認。</li>
+</div>
+</div>
+<div class="room" data-h-mm="1100" data-target-cell="slot-6" data-w-mm="4086" data-x-mm="3771" data-y-mm="2900" id="room-kitchen">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🍳</div> 廚房</div>
+</div>
+<div class="room-details">
+<li><strong>設備：</strong>冷熱水、IH/烤箱專迴與排煙路徑需與機電施工圖核對。</li>
+<li><strong>通風：</strong>排風、補氣與側院導風策略需由建築師/機電確認。</li>
+</div>
+</div>
+<div class="room special-outdoor" data-h-mm="1700" data-target-cell="slot-11" data-w-mm="5500" data-x-mm="5500" data-y-mm="5300" id="room-service">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🧺</div> 後工作陽台</div>
+</div>
+<div class="room-details">
+<li><strong>用途：</strong>洗衣、曬衣、A→C 進線與後場維修動線。</li>
+<li><strong>施工重點：</strong>排水坡度、防水收邊、落水頭可清通與外部門檻需確認。</li>
+</div>
+</div>
 <div class="room" data-h-mm="1100" data-target-cell="slot-7" data-w-mm="3143" data-x-mm="7857" data-y-mm="2900" id="room-stair1f">
 <div class="room-head">
 <div class="room-name">
@@ -1483,7 +1539,7 @@
 <strong>⚠️ 採光、通風、逃生距離正式檢核（需專業計算）：</strong>本文件 HTML 示意圖中的窗戶位置、開口大小與動線標註僅供設計參考，<strong>不可替代</strong>建築師進行的居室採光面積計算、通風開口面積計算、避難步行距離檢核與無障礙動線審查。上述項目需於設計會議後由建築師出具正式計算書，並依《建築技術規則》檢核通過。
 </div>
 </div>
-<div class="room" data-h-mm="1300" data-target-cell="slot-8" data-w-mm="7857" data-x-mm="0" data-y-mm="4000" id="room-elder">
+<div class="room" data-accessible="true" data-h-mm="1300" data-room-role="elder" data-target-cell="slot-8" data-w-mm="7857" data-x-mm="0" data-y-mm="4000" id="room-elder">
 <div class="room-head">
 <div class="room-name">
 <div class="room-name-icon">🛏️</div>
@@ -1504,7 +1560,7 @@
 <li><strong>網路：</strong>CAT6 ×2（床頭 + 電視牆）。</li>
 </div>
 </div>
-<div class="room" data-h-mm="1700" data-target-cell="slot-10" data-w-mm="5500" data-x-mm="0" data-y-mm="5300" id="room-elder-bath">
+<div class="room" data-accessible="true" data-h-mm="1700" data-room-role="accessible-bath" data-target-cell="slot-10" data-w-mm="5500" data-x-mm="0" data-y-mm="5300" id="room-elder-bath">
 <div class="room-head">
 <div class="room-name">
 <div class="room-name-icon">🚿</div>
@@ -1547,12 +1603,12 @@
 <div class="dir-item">🆕 v9.2 重新規劃</div>
 </div>
 </div><div class="final-floor-note" data-final-building-id="C" data-final-floor-id="floor-2">
-<p><strong>Candidate selection:</strong> mep | total=61.0 | circulation=58.5 | daylight=57.4 | mep=66.7 | utilization=100.0</p>
+<p><strong>Candidate selection:</strong> baseline | total=59.5 | circulation=56.3 | daylight=54.9 | mep=66.7 | utilization=100.0</p>
 <p><strong>Canonical snapshot:</strong> visual room names, onclick targets, geometry, doors and windows are kept from the source HTML.</p>
-<p><strong>Candidate analysis:</strong> 0 matched / 6 rejected / 0 applied to visible cells.</p>
-<p>Expert weighting prefers `circulation`; this copy follows export selection `mep`.</p>
-<ul class="final-candidate-mismatch"><li>slot-1: canonical balcony2f kept; candidate suggested living2f</li><li>slot-2: canonical living2f kept; candidate suggested stair2f</li><li>slot-3: canonical guestroom2f kept; candidate suggested bath2f</li></ul>
-<ul><li>BR-TW-002: 每層建議維持單一主入口標記。 (C:floor-2 entry_count=0)</li></ul>
+<p><strong>Candidate analysis:</strong> 6 matched / 0 rejected / 0 applied to visible cells.</p>
+<p>Expert weighting prefers `circulation`; this copy follows export selection `baseline`.</p>
+<ul class="final-candidate-mismatch"><li>No candidate/canonical room-slot mismatch was found for this floor.</li></ul>
+<ul><li>No floor-specific warning was found in the latest report.</li></ul>
 </div>
 <div class="floor-content">
 <div class="visual-plan">
@@ -1776,12 +1832,12 @@
 <div class="dir-item">👗 4 衣櫃 360cm</div>
 </div>
 </div><div class="final-floor-note" data-final-building-id="C" data-final-floor-id="floor-3">
-<p><strong>Candidate selection:</strong> circulation | total=56.6 | circulation=57.0 | daylight=63.7 | mep=50.0 | utilization=100.0</p>
+<p><strong>Candidate selection:</strong> baseline | total=49.8 | circulation=51.8 | daylight=47.2 | mep=50.0 | utilization=100.0</p>
 <p><strong>Canonical snapshot:</strong> visual room names, onclick targets, geometry, doors and windows are kept from the source HTML.</p>
-<p><strong>Candidate analysis:</strong> 0 matched / 5 rejected / 0 applied to visible cells.</p>
-<p>Expert weighting agrees with selected `circulation`.</p>
-<ul class="final-candidate-mismatch"><li>slot-1: canonical terrace3f kept; candidate suggested fitness3f</li><li>slot-2: canonical master3f kept; candidate suggested stair3f</li><li>slot-3: canonical fitness3f kept; candidate suggested bath3f</li></ul>
-<ul><li>BR-TW-002: 每層建議維持單一主入口標記。 (C:floor-3 entry_count=0)</li></ul>
+<p><strong>Candidate analysis:</strong> 5 matched / 0 rejected / 0 applied to visible cells.</p>
+<p>Expert weighting prefers `circulation`; this copy follows export selection `baseline`.</p>
+<ul class="final-candidate-mismatch"><li>No candidate/canonical room-slot mismatch was found for this floor.</li></ul>
+<ul><li>No floor-specific warning was found in the latest report.</li></ul>
 </div>
 <div class="floor-content">
 <div class="visual-plan">
@@ -1980,12 +2036,12 @@
 <div class="dir-item">♨️ Haier</div>
 </div>
 </div><div class="final-floor-note" data-final-building-id="C" data-final-floor-id="floor-4">
-<p><strong>Candidate selection:</strong> circulation | total=63.5 | circulation=54.2 | daylight=60.0 | mep=75.8 | utilization=100.0</p>
+<p><strong>Candidate selection:</strong> baseline | total=57.8 | circulation=52.5 | daylight=55.7 | mep=65.0 | utilization=100.0</p>
 <p><strong>Canonical snapshot:</strong> visual room names, onclick targets, geometry, doors and windows are kept from the source HTML.</p>
-<p><strong>Candidate analysis:</strong> 1 matched / 2 rejected / 0 applied to visible cells.</p>
-<p>Expert weighting agrees with selected `circulation`.</p>
-<ul class="final-candidate-mismatch"><li>slot-1: canonical stair-rf kept; candidate suggested pump</li><li>slot-2: canonical riser-rf kept; candidate suggested water-tank</li></ul>
-<ul><li>BR-TW-002: 每層建議維持單一主入口標記。 (C:floor-4 entry_count=0)</li></ul>
+<p><strong>Candidate analysis:</strong> 7 matched / 0 rejected / 0 applied to visible cells.</p>
+<p>Expert weighting prefers `circulation`; this copy follows export selection `baseline`.</p>
+<ul class="final-candidate-mismatch"><li>No candidate/canonical room-slot mismatch was found for this floor.</li></ul>
+<ul><li>No floor-specific warning was found in the latest report.</li></ul>
 </div>
 <div class="floor-content">
 <div class="visual-plan">
@@ -2038,12 +2094,12 @@
 </div>
 </div>
 <div class="plan-row" data-row-h-mm="1700" style="grid-template-columns:1.5fr 1fr;">
-<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-w-mm="6600" data-window-mm="0" data-x-mm="0" data-y-mm="2400" onclick="highlightRoom('platform', this)">
+<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-outdoor-role="roof-platform" data-w-mm="6600" data-window-mm="0" data-x-mm="0" data-y-mm="2400" onclick="highlightRoom('platform', this)">
 <span class="cell-icon">🏗️</span>
 <span class="cell-name">活動平台 / 曬衣棚架</span>
 <span class="cell-size">預留未來擴充</span>
 </div>
-<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-w-mm="4400" data-window-mm="0" data-x-mm="6600" data-y-mm="2400" onclick="highlightRoom('laundry-rf', this)">
+<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-outdoor-role="laundry-yard" data-w-mm="4400" data-window-mm="0" data-x-mm="6600" data-y-mm="2400" onclick="highlightRoom('laundry-rf', this)">
 <span class="cell-icon">👕</span>
 <span class="cell-name">曬衣區</span>
 </div>
@@ -2052,6 +2108,45 @@
 <div class="compass"><span class="compass-arrow">⬆️</span> 北</div>
 </div>
 <div class="details-panel">
+<div class="room" data-h-mm="1300" data-target-cell="slot-1" data-w-mm="5500" data-x-mm="0" data-y-mm="0" id="room-stair-rf">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🪜</div> 樓梯出口（RF）</div>
+<div class="room-area">⬇️3F</div>
+</div>
+<div class="room-details">
+<li><strong>防水：</strong>樓梯出口門檻、泛水、排水坡度與止滑需納入施工圖。</li>
+<li><strong>安全：</strong>RF 檢修照明、扶手與防墜邊界需由建築師確認。</li>
+</div>
+</div>
+<div class="room" data-h-mm="1300" data-target-cell="slot-2" data-w-mm="5500" data-x-mm="5500" data-y-mm="0" id="room-riser-rf">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🔌</div> 弱電預留人孔</div>
+<div class="room-area">可掀式防水蓋</div>
+</div>
+<div class="room-details">
+<li><strong>防水：</strong>人孔蓋、滴水彎與二次防水收邊需於施工圖標註。</li>
+<li><strong>擴充：</strong>弱電出口需保留拉線、檢修空間與防蟲防雨措施。</li>
+</div>
+</div>
+<div class="room special-outdoor" data-h-mm="1700" data-target-cell="slot-6" data-w-mm="6600" data-x-mm="0" data-y-mm="2400" id="room-platform">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">🏗️</div> 活動平台 / 曬衣棚架</div>
+<div class="room-area">預留未來擴充</div>
+</div>
+<div class="room-details">
+<li><strong>結構：</strong>棚架、太陽能與活動平台載重不可用示意圖替代結構計算。</li>
+<li><strong>防颱：</strong>錨定、排水、維修動線與防墜邊界需由結構/建築確認。</li>
+</div>
+</div>
+<div class="room special-outdoor" data-h-mm="1700" data-target-cell="slot-7" data-w-mm="4400" data-x-mm="6600" data-y-mm="2400" id="room-laundry-rf">
+<div class="room-head">
+<div class="room-name"><div class="room-name-icon">👕</div> 曬衣區</div>
+</div>
+<div class="room-details">
+<li><strong>使用：</strong>曬衣、臨時收納與 RF 巡檢動線需避免和設備檢修衝突。</li>
+<li><strong>排水：</strong>地坪坡度、落水頭、防滑與颱風後清理動線需確認。</li>
+</div>
+</div>
 <div class="room" data-h-mm="1100" data-target-cell="slot-4" data-w-mm="3667" data-x-mm="3667" data-y-mm="1300" id="room-pump">
 <div class="room-head">
 <div class="room-name">
@@ -2311,67 +2406,131 @@
 <script id="house-design-final-sync" type="application/json">{
   "schema_version": "final-html-sync-v2",
   "sync_mode": "canonical_snapshot",
-  "generated_at": "2026-07-08T01:40:20.754519+00:00",
+  "generated_at": "2026-07-10T02:29:21.759495+00:00",
   "building_id": "C",
-  "mode": "concept",
-  "selection": "best",
+  "mode": "ifc",
+  "selection": "baseline",
   "source_file": "CbuildingView.html",
-  "report_hash": "7b0e7edba70042bf9385de2cd49a946ae80d930d511e833a33a6e271258957f7",
-  "report_generated_at": "2026-07-08T01:40:19.245913+00:00",
+  "report_hash": "fb13bfaf0718ea0a1a2776e386f0148698a170f58d188547520dd795e45daff1",
+  "report_generated_at": "2026-07-10T02:29:19.483115+00:00",
   "updated_floor_count": 4,
   "analyzed_floor_count": 4,
-  "candidate_assignment_count": 19,
-  "matched_assignment_count": 3,
-  "rejected_assignment_count": 16,
+  "candidate_assignment_count": 29,
+  "matched_assignment_count": 29,
+  "rejected_assignment_count": 0,
   "applied_assignment_count": 0,
   "floors": [
     {
       "building_id": "C",
       "floor_id": "floor-1",
-      "selected_candidate_id": "circulation",
+      "selected_candidate_id": "baseline",
       "scores": {
-        "circulation": 65.1,
-        "daylight": 50.58,
-        "mep": 70.0,
+        "circulation": 62.18,
+        "daylight": 56.65,
+        "mep": 68.18,
         "utilization": 100.0,
-        "total": 62.46,
+        "total": 62.62,
         "penalty_unplaced_rooms": 0.0
       },
-      "candidate_assignment_count": 5,
-      "matched_assignment_count": 2,
-      "rejected_assignment_count": 3,
+      "candidate_assignment_count": 11,
+      "matched_assignment_count": 11,
+      "rejected_assignment_count": 0,
       "applied_assignment_count": 0,
       "assignments": [
         {
+          "slot_id": "slot-1",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "garage",
+          "canonical_slot_name": "前院車庫",
+          "canonical_cell_size": "約 2 車位 + 機車",
+          "candidate_room_uid": "C:floor-1:garage",
+          "candidate_room_local_id": "garage",
+          "candidate_room_name": "前院車庫",
+          "dimension_fit": {
+            "circulation": 0.0,
+            "daylight": -0.1,
+            "mep": 0.0
+          }
+        },
+        {
           "slot_id": "slot-2",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
+          "status": "matched",
+          "reason": "same_room_target",
           "canonical_room_target": "entrance",
           "canonical_slot_name": "玄關",
           "canonical_cell_size": "",
-          "candidate_room_uid": "C:floor-1:sliding-door",
-          "candidate_room_local_id": "sliding-door",
-          "candidate_room_name": "樓梯前拉門阻隔（1F↔2F）",
+          "candidate_room_uid": "C:floor-1:entrance",
+          "candidate_room_local_id": "entrance",
+          "candidate_room_name": "玄關",
           "dimension_fit": {
-            "circulation": 0.0,
-            "daylight": 0.2,
+            "circulation": 0.54,
+            "daylight": 0.2657,
             "mep": 0.0
           }
         },
         {
           "slot_id": "slot-3",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
+          "status": "matched",
+          "reason": "same_room_target",
           "canonical_room_target": "living",
           "canonical_slot_name": "客廳",
           "canonical_cell_size": "約 8 坪",
+          "candidate_room_uid": "C:floor-1:living",
+          "candidate_room_local_id": "living",
+          "candidate_room_name": "客廳",
+          "dimension_fit": {
+            "circulation": 0.48,
+            "daylight": 0.4397,
+            "mep": 0.0
+          }
+        },
+        {
+          "slot_id": "slot-4",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "sideyard",
+          "canonical_slot_name": "側院",
+          "canonical_cell_size": "格柵導風 45°",
           "candidate_room_uid": "C:floor-1:sideyard",
           "candidate_room_local_id": "sideyard",
           "candidate_room_name": "側院（邊間優勢｜通風關鍵）",
           "dimension_fit": {
             "circulation": 0.0,
-            "daylight": 0.2,
+            "daylight": -0.1,
             "mep": 0.0
+          }
+        },
+        {
+          "slot_id": "slot-5",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "dining",
+          "canonical_slot_name": "餐廳",
+          "canonical_cell_size": "",
+          "candidate_room_uid": "C:floor-1:dining",
+          "candidate_room_local_id": "dining",
+          "candidate_room_name": "餐廳",
+          "dimension_fit": {
+            "circulation": 0.36,
+            "daylight": 1.0,
+            "mep": 0.0
+          }
+        },
+        {
+          "slot_id": "slot-6",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "kitchen",
+          "canonical_slot_name": "廚房",
+          "canonical_cell_size": "",
+          "candidate_room_uid": "C:floor-1:kitchen",
+          "candidate_room_local_id": "kitchen",
+          "candidate_room_name": "廚房",
+          "dimension_fit": {
+            "circulation": 0.0,
+            "daylight": 0.2,
+            "mep": 1.0
           }
         },
         {
@@ -2388,6 +2547,38 @@
             "circulation": 0.18,
             "daylight": 0.2,
             "mep": 1.0
+          }
+        },
+        {
+          "slot_id": "slot-8",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "elder",
+          "canonical_slot_name": "孝親房",
+          "canonical_cell_size": "約 5 坪｜長輩友善",
+          "candidate_room_uid": "C:floor-1:elder",
+          "candidate_room_local_id": "elder",
+          "candidate_room_name": "孝親房 / 長輩房",
+          "dimension_fit": {
+            "circulation": 0.48999999999999994,
+            "daylight": -0.1548,
+            "mep": 0.0
+          }
+        },
+        {
+          "slot_id": "slot-9",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "sliding-door",
+          "canonical_slot_name": "拉門阻隔",
+          "canonical_cell_size": "吊軌無地軌",
+          "candidate_room_uid": "C:floor-1:sliding-door",
+          "candidate_room_local_id": "sliding-door",
+          "candidate_room_name": "樓梯前拉門阻隔（1F↔2F）",
+          "dimension_fit": {
+            "circulation": 0.0,
+            "daylight": 0.2,
+            "mep": 0.0
           }
         },
         {
@@ -2408,73 +2599,24 @@
         },
         {
           "slot_id": "slot-11",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
+          "status": "matched",
+          "reason": "same_room_target",
           "canonical_room_target": "service",
           "canonical_slot_name": "後工作陽台",
           "canonical_cell_size": "",
-          "candidate_room_uid": "C:floor-1:elder",
-          "candidate_room_local_id": "elder",
-          "candidate_room_name": "孝親房 / 長輩房",
+          "candidate_room_uid": "C:floor-1:service",
+          "candidate_room_local_id": "service",
+          "candidate_room_name": "後工作陽台",
           "dimension_fit": {
-            "circulation": 0.7,
-            "daylight": -0.1548,
-            "mep": 0.0
+            "circulation": 0.0,
+            "daylight": -0.1,
+            "mep": 1.0
           }
         }
       ],
-      "rejected_assignments": [
-        {
-          "slot_id": "slot-2",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
-          "canonical_room_target": "entrance",
-          "canonical_slot_name": "玄關",
-          "canonical_cell_size": "",
-          "candidate_room_uid": "C:floor-1:sliding-door",
-          "candidate_room_local_id": "sliding-door",
-          "candidate_room_name": "樓梯前拉門阻隔（1F↔2F）",
-          "dimension_fit": {
-            "circulation": 0.0,
-            "daylight": 0.2,
-            "mep": 0.0
-          }
-        },
-        {
-          "slot_id": "slot-3",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
-          "canonical_room_target": "living",
-          "canonical_slot_name": "客廳",
-          "canonical_cell_size": "約 8 坪",
-          "candidate_room_uid": "C:floor-1:sideyard",
-          "candidate_room_local_id": "sideyard",
-          "candidate_room_name": "側院（邊間優勢｜通風關鍵）",
-          "dimension_fit": {
-            "circulation": 0.0,
-            "daylight": 0.2,
-            "mep": 0.0
-          }
-        },
-        {
-          "slot_id": "slot-11",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
-          "canonical_room_target": "service",
-          "canonical_slot_name": "後工作陽台",
-          "canonical_cell_size": "",
-          "candidate_room_uid": "C:floor-1:elder",
-          "candidate_room_local_id": "elder",
-          "candidate_room_name": "孝親房 / 長輩房",
-          "dimension_fit": {
-            "circulation": 0.7,
-            "daylight": -0.1548,
-            "mep": 0.0
-          }
-        }
-      ],
-      "expert_best": "circulation",
-      "pipeline_best": "circulation",
+      "rejected_assignments": [],
+      "expert_best": "mep",
+      "pipeline_best": "mep",
       "orientation": {
         "front_side": "unknown",
         "rear_side": "unknown",
@@ -2490,34 +2632,43 @@
           {
             "order": 1,
             "name": "前院車庫",
-            "target_room_uid": "",
+            "target_room_uid": "C:floor-1:garage",
             "spatial": {
               "zone": "unknown",
               "facing": "unknown",
-              "outdoor_role": "none",
-              "is_outdoor_like": true
+              "outdoor_role": "garage",
+              "is_outdoor_like": true,
+              "room_role": "unknown",
+              "is_accessible": false,
+              "daylight_required": null
             }
           },
           {
             "order": 2,
             "name": "玄關",
-            "target_room_uid": "",
+            "target_room_uid": "C:floor-1:entrance",
             "spatial": {
               "zone": "unknown",
               "facing": "unknown",
               "outdoor_role": "none",
-              "is_outdoor_like": false
+              "is_outdoor_like": false,
+              "room_role": "unknown",
+              "is_accessible": false,
+              "daylight_required": null
             }
           },
           {
             "order": 3,
             "name": "客廳",
-            "target_room_uid": "",
+            "target_room_uid": "C:floor-1:living",
             "spatial": {
               "zone": "unknown",
               "facing": "unknown",
               "outdoor_role": "none",
-              "is_outdoor_like": false
+              "is_outdoor_like": false,
+              "room_role": "unknown",
+              "is_accessible": false,
+              "daylight_required": null
             }
           },
           {
@@ -2527,30 +2678,39 @@
             "spatial": {
               "zone": "unknown",
               "facing": "unknown",
-              "outdoor_role": "none",
-              "is_outdoor_like": true
+              "outdoor_role": "side-yard",
+              "is_outdoor_like": true,
+              "room_role": "unknown",
+              "is_accessible": false,
+              "daylight_required": null
             }
           },
           {
             "order": 5,
             "name": "餐廳",
-            "target_room_uid": "",
+            "target_room_uid": "C:floor-1:dining",
             "spatial": {
               "zone": "unknown",
               "facing": "unknown",
               "outdoor_role": "none",
-              "is_outdoor_like": false
+              "is_outdoor_like": false,
+              "room_role": "unknown",
+              "is_accessible": false,
+              "daylight_required": null
             }
           },
           {
             "order": 6,
             "name": "廚房",
-            "target_room_uid": "",
+            "target_room_uid": "C:floor-1:kitchen",
             "spatial": {
               "zone": "unknown",
               "facing": "unknown",
               "outdoor_role": "none",
-              "is_outdoor_like": false
+              "is_outdoor_like": false,
+              "room_role": "unknown",
+              "is_accessible": false,
+              "daylight_required": null
             }
           },
           {
@@ -2561,7 +2721,10 @@
               "zone": "unknown",
               "facing": "unknown",
               "outdoor_role": "none",
-              "is_outdoor_like": false
+              "is_outdoor_like": false,
+              "room_role": "unknown",
+              "is_accessible": false,
+              "daylight_required": null
             }
           },
           {
@@ -2572,7 +2735,10 @@
               "zone": "unknown",
               "facing": "unknown",
               "outdoor_role": "none",
-              "is_outdoor_like": false
+              "is_outdoor_like": false,
+              "room_role": "elder",
+              "is_accessible": true,
+              "daylight_required": null
             }
           },
           {
@@ -2583,7 +2749,10 @@
               "zone": "unknown",
               "facing": "unknown",
               "outdoor_role": "none",
-              "is_outdoor_like": false
+              "is_outdoor_like": false,
+              "room_role": "unknown",
+              "is_accessible": false,
+              "daylight_required": null
             }
           },
           {
@@ -2594,64 +2763,111 @@
               "zone": "unknown",
               "facing": "unknown",
               "outdoor_role": "none",
-              "is_outdoor_like": false
+              "is_outdoor_like": false,
+              "room_role": "accessible-bath",
+              "is_accessible": true,
+              "daylight_required": null
             }
           },
           {
             "order": 11,
             "name": "後工作陽台",
-            "target_room_uid": "",
+            "target_room_uid": "C:floor-1:service",
             "spatial": {
               "zone": "unknown",
               "facing": "unknown",
-              "outdoor_role": "none",
-              "is_outdoor_like": true
+              "outdoor_role": "service-yard",
+              "is_outdoor_like": true,
+              "room_role": "unknown",
+              "is_accessible": false,
+              "daylight_required": null
             }
           }
         ]
       },
-      "floor_issues": []
+      "floor_issues": [
+        "ARCH-MET-001: Concept architect metrics found advisory or missing-data items. (C:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work)",
+        "ARCH-MET-001: Concept architect metrics found advisory or missing-data items. (C:floor-1:entrance:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required)",
+        "ARCH: C:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+        "ARCH: C:floor-1:entrance:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "ARCH: C:floor-1:living:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "ARCH: C:floor-1:kitchen:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "ARCH: C:floor-1:elder:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+        "ARCH: C:floor-1:elder-bath:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required"
+      ]
     },
     {
       "building_id": "C",
       "floor_id": "floor-2",
-      "selected_candidate_id": "mep",
+      "selected_candidate_id": "baseline",
       "scores": {
-        "circulation": 58.5,
-        "daylight": 57.35,
+        "circulation": 56.33,
+        "daylight": 54.85,
         "mep": 66.67,
         "utilization": 100.0,
-        "total": 61.01,
+        "total": 59.5,
         "penalty_unplaced_rooms": 0.0
       },
       "candidate_assignment_count": 6,
-      "matched_assignment_count": 0,
-      "rejected_assignment_count": 6,
+      "matched_assignment_count": 6,
+      "rejected_assignment_count": 0,
       "applied_assignment_count": 0,
       "assignments": [
         {
           "slot_id": "slot-1",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
+          "status": "matched",
+          "reason": "same_room_target",
           "canonical_room_target": "balcony2f",
           "canonical_slot_name": "前陽台（洗衣曬衣）",
           "canonical_cell_size": "約 1.8 坪",
+          "candidate_room_uid": "C:floor-2:balcony2f",
+          "candidate_room_local_id": "balcony2f",
+          "candidate_room_name": "前陽台（洗衣曬衣區）",
+          "dimension_fit": {
+            "circulation": 0.0,
+            "daylight": -0.1,
+            "mep": 1.0
+          }
+        },
+        {
+          "slot_id": "slot-2",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "living2f",
+          "canonical_slot_name": "客廳（主角空間）",
+          "canonical_cell_size": "約 8.5 坪｜L型沙發＋電視牆＋茶几",
           "candidate_room_uid": "C:floor-2:living2f",
           "candidate_room_local_id": "living2f",
           "candidate_room_name": "客廳（2F 主角空間）",
           "dimension_fit": {
-            "circulation": 0.6,
+            "circulation": 0.48,
             "daylight": 0.0555,
             "mep": 0.0
           }
         },
         {
-          "slot_id": "slot-2",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
-          "canonical_room_target": "living2f",
-          "canonical_slot_name": "客廳（主角空間）",
-          "canonical_cell_size": "約 8.5 坪｜L型沙發＋電視牆＋茶几",
+          "slot_id": "slot-3",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "guestroom2f",
+          "canonical_slot_name": "客房 / 多功能房",
+          "canonical_cell_size": "約 3.5 坪｜可關門獨立空間",
+          "candidate_room_uid": "C:floor-2:guestroom2f",
+          "candidate_room_local_id": "guestroom2f",
+          "candidate_room_name": "客房 / 多功能房",
+          "dimension_fit": {
+            "circulation": 0.27999999999999997,
+            "daylight": 0.0265,
+            "mep": 0.0
+          }
+        },
+        {
+          "slot_id": "slot-4",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "stair2f",
+          "canonical_slot_name": "樓梯",
+          "canonical_cell_size": "",
           "candidate_room_uid": "C:floor-2:stair2f",
           "candidate_room_local_id": "stair2f",
           "candidate_room_name": "2F 樓梯間（⬇️1F ⬆️3F）",
@@ -2662,60 +2878,12 @@
           }
         },
         {
-          "slot_id": "slot-3",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
-          "canonical_room_target": "guestroom2f",
-          "canonical_slot_name": "客房 / 多功能房",
-          "canonical_cell_size": "約 3.5 坪｜可關門獨立空間",
-          "candidate_room_uid": "C:floor-2:bath2f",
-          "candidate_room_local_id": "bath2f",
-          "candidate_room_name": "廁所（乾濕分離）",
-          "dimension_fit": {
-            "circulation": 0.0,
-            "daylight": 0.2,
-            "mep": 0.0
-          }
-        },
-        {
-          "slot_id": "slot-4",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
-          "canonical_room_target": "stair2f",
-          "canonical_slot_name": "樓梯",
-          "canonical_cell_size": "",
-          "candidate_room_uid": "C:floor-2:guestroom2f",
-          "candidate_room_local_id": "guestroom2f",
-          "candidate_room_name": "客房 / 多功能房",
-          "dimension_fit": {
-            "circulation": 0.42,
-            "daylight": 0.0265,
-            "mep": 0.0
-          }
-        },
-        {
           "slot_id": "slot-5",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
+          "status": "matched",
+          "reason": "same_room_target",
           "canonical_room_target": "kitchen2f",
           "canonical_slot_name": "小型廚房",
           "canonical_cell_size": "約 4.5 坪｜流理台 240cm + 冰箱 75cm",
-          "candidate_room_uid": "C:floor-2:balcony2f",
-          "candidate_room_local_id": "balcony2f",
-          "candidate_room_name": "前陽台（洗衣曬衣區）",
-          "dimension_fit": {
-            "circulation": 0.0,
-            "daylight": 0.2,
-            "mep": 1.0
-          }
-        },
-        {
-          "slot_id": "slot-6",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
-          "canonical_room_target": "bath2f",
-          "canonical_slot_name": "廁所（乾濕分離）",
-          "canonical_cell_size": "約 2.8 坪｜對齊 3F 管道",
           "candidate_room_uid": "C:floor-2:kitchen2f",
           "candidate_room_local_id": "kitchen2f",
           "candidate_room_name": "小型廚房",
@@ -2724,48 +2892,14 @@
             "daylight": 0.2,
             "mep": 1.0
           }
-        }
-      ],
-      "rejected_assignments": [
-        {
-          "slot_id": "slot-1",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
-          "canonical_room_target": "balcony2f",
-          "canonical_slot_name": "前陽台（洗衣曬衣）",
-          "canonical_cell_size": "約 1.8 坪",
-          "candidate_room_uid": "C:floor-2:living2f",
-          "candidate_room_local_id": "living2f",
-          "candidate_room_name": "客廳（2F 主角空間）",
-          "dimension_fit": {
-            "circulation": 0.6,
-            "daylight": 0.0555,
-            "mep": 0.0
-          }
         },
         {
-          "slot_id": "slot-2",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
-          "canonical_room_target": "living2f",
-          "canonical_slot_name": "客廳（主角空間）",
-          "canonical_cell_size": "約 8.5 坪｜L型沙發＋電視牆＋茶几",
-          "candidate_room_uid": "C:floor-2:stair2f",
-          "candidate_room_local_id": "stair2f",
-          "candidate_room_name": "2F 樓梯間（⬇️1F ⬆️3F）",
-          "dimension_fit": {
-            "circulation": 0.0,
-            "daylight": 0.2,
-            "mep": 0.0
-          }
-        },
-        {
-          "slot_id": "slot-3",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
-          "canonical_room_target": "guestroom2f",
-          "canonical_slot_name": "客房 / 多功能房",
-          "canonical_cell_size": "約 3.5 坪｜可關門獨立空間",
+          "slot_id": "slot-6",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "bath2f",
+          "canonical_slot_name": "廁所（乾濕分離）",
+          "canonical_cell_size": "約 2.8 坪｜對齊 3F 管道",
           "candidate_room_uid": "C:floor-2:bath2f",
           "candidate_room_local_id": "bath2f",
           "candidate_room_name": "廁所（乾濕分離）",
@@ -2774,56 +2908,9 @@
             "daylight": 0.2,
             "mep": 0.0
           }
-        },
-        {
-          "slot_id": "slot-4",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
-          "canonical_room_target": "stair2f",
-          "canonical_slot_name": "樓梯",
-          "canonical_cell_size": "",
-          "candidate_room_uid": "C:floor-2:guestroom2f",
-          "candidate_room_local_id": "guestroom2f",
-          "candidate_room_name": "客房 / 多功能房",
-          "dimension_fit": {
-            "circulation": 0.42,
-            "daylight": 0.0265,
-            "mep": 0.0
-          }
-        },
-        {
-          "slot_id": "slot-5",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
-          "canonical_room_target": "kitchen2f",
-          "canonical_slot_name": "小型廚房",
-          "canonical_cell_size": "約 4.5 坪｜流理台 240cm + 冰箱 75cm",
-          "candidate_room_uid": "C:floor-2:balcony2f",
-          "candidate_room_local_id": "balcony2f",
-          "candidate_room_name": "前陽台（洗衣曬衣區）",
-          "dimension_fit": {
-            "circulation": 0.0,
-            "daylight": 0.2,
-            "mep": 1.0
-          }
-        },
-        {
-          "slot_id": "slot-6",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
-          "canonical_room_target": "bath2f",
-          "canonical_slot_name": "廁所（乾濕分離）",
-          "canonical_cell_size": "約 2.8 坪｜對齊 3F 管道",
-          "candidate_room_uid": "C:floor-2:kitchen2f",
-          "candidate_room_local_id": "kitchen2f",
-          "candidate_room_name": "小型廚房",
-          "dimension_fit": {
-            "circulation": 0.0,
-            "daylight": 0.2,
-            "mep": 1.0
-          }
         }
       ],
+      "rejected_assignments": [],
       "expert_best": "circulation",
       "pipeline_best": "mep",
       "orientation": {
@@ -2846,7 +2933,10 @@
               "zone": "unknown",
               "facing": "unknown",
               "outdoor_role": "none",
-              "is_outdoor_like": true
+              "is_outdoor_like": true,
+              "room_role": "unknown",
+              "is_accessible": false,
+              "daylight_required": null
             }
           },
           {
@@ -2857,7 +2947,10 @@
               "zone": "unknown",
               "facing": "unknown",
               "outdoor_role": "none",
-              "is_outdoor_like": false
+              "is_outdoor_like": false,
+              "room_role": "unknown",
+              "is_accessible": false,
+              "daylight_required": null
             }
           },
           {
@@ -2868,7 +2961,10 @@
               "zone": "unknown",
               "facing": "unknown",
               "outdoor_role": "none",
-              "is_outdoor_like": false
+              "is_outdoor_like": false,
+              "room_role": "unknown",
+              "is_accessible": false,
+              "daylight_required": null
             }
           },
           {
@@ -2879,7 +2975,10 @@
               "zone": "unknown",
               "facing": "unknown",
               "outdoor_role": "none",
-              "is_outdoor_like": false
+              "is_outdoor_like": false,
+              "room_role": "unknown",
+              "is_accessible": false,
+              "daylight_required": null
             }
           },
           {
@@ -2890,7 +2989,10 @@
               "zone": "unknown",
               "facing": "unknown",
               "outdoor_role": "none",
-              "is_outdoor_like": false
+              "is_outdoor_like": false,
+              "room_role": "unknown",
+              "is_accessible": false,
+              "daylight_required": null
             }
           },
           {
@@ -2901,55 +3003,88 @@
               "zone": "unknown",
               "facing": "unknown",
               "outdoor_role": "none",
-              "is_outdoor_like": false
+              "is_outdoor_like": false,
+              "room_role": "unknown",
+              "is_accessible": false,
+              "daylight_required": null
             }
           }
         ]
       },
-      "floor_issues": [
-        "BR-TW-002: 每層建議維持單一主入口標記。 (C:floor-2 entry_count=0)"
-      ]
+      "floor_issues": []
     },
     {
       "building_id": "C",
       "floor_id": "floor-3",
-      "selected_candidate_id": "circulation",
+      "selected_candidate_id": "baseline",
       "scores": {
-        "circulation": 57.0,
-        "daylight": 63.73,
+        "circulation": 51.75,
+        "daylight": 47.23,
         "mep": 50.0,
         "utilization": 100.0,
-        "total": 56.57,
+        "total": 49.78,
         "penalty_unplaced_rooms": 0.0
       },
       "candidate_assignment_count": 5,
-      "matched_assignment_count": 0,
-      "rejected_assignment_count": 5,
+      "matched_assignment_count": 5,
+      "rejected_assignment_count": 0,
       "applied_assignment_count": 0,
       "assignments": [
         {
           "slot_id": "slot-1",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
+          "status": "matched",
+          "reason": "same_room_target",
           "canonical_room_target": "terrace3f",
           "canonical_slot_name": "前露台（通風曬衣）",
           "canonical_cell_size": "約 1.8 坪",
-          "candidate_room_uid": "C:floor-3:fitness3f",
-          "candidate_room_local_id": "fitness3f",
-          "candidate_room_name": "運動空間",
+          "candidate_room_uid": "C:floor-3:terrace3f",
+          "candidate_room_local_id": "terrace3f",
+          "candidate_room_name": "前露台",
           "dimension_fit": {
             "circulation": 0.0,
-            "daylight": 1.0,
+            "daylight": -0.1,
             "mep": 0.0
           }
         },
         {
           "slot_id": "slot-2",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
+          "status": "matched",
+          "reason": "same_room_target",
           "canonical_room_target": "master3f",
           "canonical_slot_name": "主臥室（飯店級配置）",
           "canonical_cell_size": "約 11.5 坪｜雙人床＋梳妝台＋衣櫃×4",
+          "candidate_room_uid": "C:floor-3:master3f",
+          "candidate_room_local_id": "master3f",
+          "candidate_room_name": "主臥室（飯店級配置）",
+          "dimension_fit": {
+            "circulation": 0.175,
+            "daylight": -0.2273,
+            "mep": 0.0
+          }
+        },
+        {
+          "slot_id": "slot-3",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "fitness3f",
+          "canonical_slot_name": "運動空間",
+          "canonical_cell_size": "約 4.5 坪｜跑步機/瑜伽/重訓",
+          "candidate_room_uid": "C:floor-3:fitness3f",
+          "candidate_room_local_id": "fitness3f",
+          "candidate_room_name": "運動空間",
+          "dimension_fit": {
+            "circulation": 0.0,
+            "daylight": -0.35,
+            "mep": 0.0
+          }
+        },
+        {
+          "slot_id": "slot-4",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "stair3f",
+          "canonical_slot_name": "樓梯",
+          "canonical_cell_size": "",
           "candidate_room_uid": "C:floor-3:stair3f",
           "candidate_room_local_id": "stair3f",
           "candidate_room_name": "3F 樓梯間（⬇️2F ⬆️RF）",
@@ -2960,12 +3095,12 @@
           }
         },
         {
-          "slot_id": "slot-3",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
-          "canonical_room_target": "fitness3f",
-          "canonical_slot_name": "運動空間",
-          "canonical_cell_size": "約 4.5 坪｜跑步機/瑜伽/重訓",
+          "slot_id": "slot-5",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "bath3f",
+          "canonical_slot_name": "廁所（乾濕分離）",
+          "canonical_cell_size": "約 2.8 坪｜夜間方便使用",
           "candidate_room_uid": "C:floor-3:bath3f",
           "candidate_room_local_id": "bath3f",
           "candidate_room_name": "廁所（乾濕分離）",
@@ -2974,122 +3109,9 @@
             "daylight": 0.2,
             "mep": 0.0
           }
-        },
-        {
-          "slot_id": "slot-4",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
-          "canonical_room_target": "stair3f",
-          "canonical_slot_name": "樓梯",
-          "canonical_cell_size": "",
-          "candidate_room_uid": "C:floor-3:terrace3f",
-          "candidate_room_local_id": "terrace3f",
-          "candidate_room_name": "前露台",
-          "dimension_fit": {
-            "circulation": 0.0,
-            "daylight": 0.2,
-            "mep": 0.0
-          }
-        },
-        {
-          "slot_id": "slot-5",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
-          "canonical_room_target": "bath3f",
-          "canonical_slot_name": "廁所（乾濕分離）",
-          "canonical_cell_size": "約 2.8 坪｜夜間方便使用",
-          "candidate_room_uid": "C:floor-3:master3f",
-          "candidate_room_local_id": "master3f",
-          "candidate_room_name": "主臥室（飯店級配置）",
-          "dimension_fit": {
-            "circulation": 0.7,
-            "daylight": -0.2273,
-            "mep": 0.0
-          }
         }
       ],
-      "rejected_assignments": [
-        {
-          "slot_id": "slot-1",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
-          "canonical_room_target": "terrace3f",
-          "canonical_slot_name": "前露台（通風曬衣）",
-          "canonical_cell_size": "約 1.8 坪",
-          "candidate_room_uid": "C:floor-3:fitness3f",
-          "candidate_room_local_id": "fitness3f",
-          "candidate_room_name": "運動空間",
-          "dimension_fit": {
-            "circulation": 0.0,
-            "daylight": 1.0,
-            "mep": 0.0
-          }
-        },
-        {
-          "slot_id": "slot-2",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
-          "canonical_room_target": "master3f",
-          "canonical_slot_name": "主臥室（飯店級配置）",
-          "canonical_cell_size": "約 11.5 坪｜雙人床＋梳妝台＋衣櫃×4",
-          "candidate_room_uid": "C:floor-3:stair3f",
-          "candidate_room_local_id": "stair3f",
-          "candidate_room_name": "3F 樓梯間（⬇️2F ⬆️RF）",
-          "dimension_fit": {
-            "circulation": 0.0,
-            "daylight": 0.2,
-            "mep": 0.0
-          }
-        },
-        {
-          "slot_id": "slot-3",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
-          "canonical_room_target": "fitness3f",
-          "canonical_slot_name": "運動空間",
-          "canonical_cell_size": "約 4.5 坪｜跑步機/瑜伽/重訓",
-          "candidate_room_uid": "C:floor-3:bath3f",
-          "candidate_room_local_id": "bath3f",
-          "candidate_room_name": "廁所（乾濕分離）",
-          "dimension_fit": {
-            "circulation": 0.0,
-            "daylight": 0.2,
-            "mep": 0.0
-          }
-        },
-        {
-          "slot_id": "slot-4",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
-          "canonical_room_target": "stair3f",
-          "canonical_slot_name": "樓梯",
-          "canonical_cell_size": "",
-          "candidate_room_uid": "C:floor-3:terrace3f",
-          "candidate_room_local_id": "terrace3f",
-          "candidate_room_name": "前露台",
-          "dimension_fit": {
-            "circulation": 0.0,
-            "daylight": 0.2,
-            "mep": 0.0
-          }
-        },
-        {
-          "slot_id": "slot-5",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
-          "canonical_room_target": "bath3f",
-          "canonical_slot_name": "廁所（乾濕分離）",
-          "canonical_cell_size": "約 2.8 坪｜夜間方便使用",
-          "candidate_room_uid": "C:floor-3:master3f",
-          "candidate_room_local_id": "master3f",
-          "candidate_room_name": "主臥室（飯店級配置）",
-          "dimension_fit": {
-            "circulation": 0.7,
-            "daylight": -0.2273,
-            "mep": 0.0
-          }
-        }
-      ],
+      "rejected_assignments": [],
       "expert_best": "circulation",
       "pipeline_best": "circulation",
       "orientation": {
@@ -3112,7 +3134,10 @@
               "zone": "unknown",
               "facing": "unknown",
               "outdoor_role": "none",
-              "is_outdoor_like": true
+              "is_outdoor_like": true,
+              "room_role": "unknown",
+              "is_accessible": false,
+              "daylight_required": null
             }
           },
           {
@@ -3123,7 +3148,10 @@
               "zone": "unknown",
               "facing": "unknown",
               "outdoor_role": "none",
-              "is_outdoor_like": false
+              "is_outdoor_like": false,
+              "room_role": "unknown",
+              "is_accessible": false,
+              "daylight_required": null
             }
           },
           {
@@ -3134,7 +3162,10 @@
               "zone": "unknown",
               "facing": "unknown",
               "outdoor_role": "none",
-              "is_outdoor_like": false
+              "is_outdoor_like": false,
+              "room_role": "unknown",
+              "is_accessible": false,
+              "daylight_required": null
             }
           },
           {
@@ -3145,7 +3176,10 @@
               "zone": "unknown",
               "facing": "unknown",
               "outdoor_role": "none",
-              "is_outdoor_like": false
+              "is_outdoor_like": false,
+              "room_role": "unknown",
+              "is_accessible": false,
+              "daylight_required": null
             }
           },
           {
@@ -3156,42 +3190,43 @@
               "zone": "unknown",
               "facing": "unknown",
               "outdoor_role": "none",
-              "is_outdoor_like": false
+              "is_outdoor_like": false,
+              "room_role": "unknown",
+              "is_accessible": false,
+              "daylight_required": null
             }
           }
         ]
       },
-      "floor_issues": [
-        "BR-TW-002: 每層建議維持單一主入口標記。 (C:floor-3 entry_count=0)"
-      ]
+      "floor_issues": []
     },
     {
       "building_id": "C",
       "floor_id": "floor-4",
-      "selected_candidate_id": "circulation",
+      "selected_candidate_id": "baseline",
       "scores": {
-        "circulation": 54.17,
-        "daylight": 60.0,
-        "mep": 75.83,
+        "circulation": 52.5,
+        "daylight": 55.71,
+        "mep": 65.0,
         "utilization": 100.0,
-        "total": 63.5,
+        "total": 57.84,
         "penalty_unplaced_rooms": 0.0
       },
-      "candidate_assignment_count": 3,
-      "matched_assignment_count": 1,
-      "rejected_assignment_count": 2,
+      "candidate_assignment_count": 7,
+      "matched_assignment_count": 7,
+      "rejected_assignment_count": 0,
       "applied_assignment_count": 0,
       "assignments": [
         {
           "slot_id": "slot-1",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
+          "status": "matched",
+          "reason": "same_room_target",
           "canonical_room_target": "stair-rf",
           "canonical_slot_name": "樓梯出口（⬇️3F）",
           "canonical_cell_size": "防水人孔蓋",
-          "candidate_room_uid": "C:floor-4:pump",
-          "candidate_room_local_id": "pump",
-          "candidate_room_name": "加壓系統 (VF800)",
+          "candidate_room_uid": "C:floor-4:stair-rf",
+          "candidate_room_local_id": "stair-rf",
+          "candidate_room_name": "樓梯出口（RF）",
           "dimension_fit": {
             "circulation": 0.0,
             "daylight": 0.2,
@@ -3200,18 +3235,50 @@
         },
         {
           "slot_id": "slot-2",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
+          "status": "matched",
+          "reason": "same_room_target",
           "canonical_room_target": "riser-rf",
           "canonical_slot_name": "弱電預留人孔",
           "canonical_cell_size": "可掀式防水蓋",
-          "candidate_room_uid": "C:floor-4:water-tank",
-          "candidate_room_local_id": "water-tank",
-          "candidate_room_name": "不鏽鋼水塔",
+          "candidate_room_uid": "C:floor-4:riser-rf",
+          "candidate_room_local_id": "riser-rf",
+          "candidate_room_name": "弱電預留人孔",
           "dimension_fit": {
             "circulation": 0.04999999999999999,
             "daylight": 0.2,
             "mep": 1.0
+          }
+        },
+        {
+          "slot_id": "slot-3",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "water-tank",
+          "canonical_slot_name": "不鏽鋼水塔",
+          "canonical_cell_size": "1000L｜基座+15cm",
+          "candidate_room_uid": "C:floor-4:water-tank",
+          "candidate_room_local_id": "water-tank",
+          "candidate_room_name": "不鏽鋼水塔",
+          "dimension_fit": {
+            "circulation": 0.09999999999999998,
+            "daylight": 0.2,
+            "mep": 0.55
+          }
+        },
+        {
+          "slot_id": "slot-4",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "pump",
+          "canonical_slot_name": "加壓系統",
+          "canonical_cell_size": "基座+15cm",
+          "candidate_room_uid": "C:floor-4:pump",
+          "candidate_room_local_id": "pump",
+          "candidate_room_name": "加壓系統 (VF800)",
+          "dimension_fit": {
+            "circulation": 0.0,
+            "daylight": 0.2,
+            "mep": 0.0
           }
         },
         {
@@ -3229,42 +3296,41 @@
             "daylight": 0.2,
             "mep": 0.55
           }
-        }
-      ],
-      "rejected_assignments": [
+        },
         {
-          "slot_id": "slot-1",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
-          "canonical_room_target": "stair-rf",
-          "canonical_slot_name": "樓梯出口（⬇️3F）",
-          "canonical_cell_size": "防水人孔蓋",
-          "candidate_room_uid": "C:floor-4:pump",
-          "candidate_room_local_id": "pump",
-          "candidate_room_name": "加壓系統 (VF800)",
+          "slot_id": "slot-6",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "platform",
+          "canonical_slot_name": "活動平台 / 曬衣棚架",
+          "canonical_cell_size": "預留未來擴充",
+          "candidate_room_uid": "C:floor-4:platform",
+          "candidate_room_local_id": "platform",
+          "candidate_room_name": "活動平台 / 曬衣棚架",
           "dimension_fit": {
             "circulation": 0.0,
-            "daylight": 0.2,
+            "daylight": -0.1,
             "mep": 0.0
           }
         },
         {
-          "slot_id": "slot-2",
-          "status": "rejected",
-          "reason": "candidate_would_move_room_from_canonical_cell",
-          "canonical_room_target": "riser-rf",
-          "canonical_slot_name": "弱電預留人孔",
-          "canonical_cell_size": "可掀式防水蓋",
-          "candidate_room_uid": "C:floor-4:water-tank",
-          "candidate_room_local_id": "water-tank",
-          "candidate_room_name": "不鏽鋼水塔",
+          "slot_id": "slot-7",
+          "status": "matched",
+          "reason": "same_room_target",
+          "canonical_room_target": "laundry-rf",
+          "canonical_slot_name": "曬衣區",
+          "canonical_cell_size": "",
+          "candidate_room_uid": "C:floor-4:laundry-rf",
+          "candidate_room_local_id": "laundry-rf",
+          "candidate_room_name": "曬衣區",
           "dimension_fit": {
-            "circulation": 0.04999999999999999,
-            "daylight": 0.2,
-            "mep": 1.0
+            "circulation": 0.0,
+            "daylight": -0.1,
+            "mep": 0.0
           }
         }
       ],
+      "rejected_assignments": [],
       "expert_best": "circulation",
       "pipeline_best": "circulation",
       "orientation": {
@@ -3282,23 +3348,29 @@
           {
             "order": 1,
             "name": "樓梯出口（⬇️3F）",
-            "target_room_uid": "",
+            "target_room_uid": "C:floor-4:stair-rf",
             "spatial": {
               "zone": "unknown",
               "facing": "unknown",
               "outdoor_role": "none",
-              "is_outdoor_like": false
+              "is_outdoor_like": false,
+              "room_role": "unknown",
+              "is_accessible": false,
+              "daylight_required": null
             }
           },
           {
             "order": 2,
             "name": "弱電預留人孔",
-            "target_room_uid": "",
+            "target_room_uid": "C:floor-4:riser-rf",
             "spatial": {
               "zone": "unknown",
               "facing": "unknown",
               "outdoor_role": "none",
-              "is_outdoor_like": false
+              "is_outdoor_like": false,
+              "room_role": "unknown",
+              "is_accessible": false,
+              "daylight_required": null
             }
           },
           {
@@ -3309,7 +3381,10 @@
               "zone": "unknown",
               "facing": "unknown",
               "outdoor_role": "none",
-              "is_outdoor_like": false
+              "is_outdoor_like": false,
+              "room_role": "unknown",
+              "is_accessible": false,
+              "daylight_required": null
             }
           },
           {
@@ -3320,7 +3395,10 @@
               "zone": "unknown",
               "facing": "unknown",
               "outdoor_role": "none",
-              "is_outdoor_like": false
+              "is_outdoor_like": false,
+              "room_role": "unknown",
+              "is_accessible": false,
+              "daylight_required": null
             }
           },
           {
@@ -3331,36 +3409,43 @@
               "zone": "unknown",
               "facing": "unknown",
               "outdoor_role": "none",
-              "is_outdoor_like": false
+              "is_outdoor_like": false,
+              "room_role": "unknown",
+              "is_accessible": false,
+              "daylight_required": null
             }
           },
           {
             "order": 6,
             "name": "活動平台 / 曬衣棚架",
-            "target_room_uid": "",
+            "target_room_uid": "C:floor-4:platform",
             "spatial": {
               "zone": "unknown",
               "facing": "unknown",
-              "outdoor_role": "none",
-              "is_outdoor_like": true
+              "outdoor_role": "roof-platform",
+              "is_outdoor_like": true,
+              "room_role": "unknown",
+              "is_accessible": false,
+              "daylight_required": null
             }
           },
           {
             "order": 7,
             "name": "曬衣區",
-            "target_room_uid": "",
+            "target_room_uid": "C:floor-4:laundry-rf",
             "spatial": {
               "zone": "unknown",
               "facing": "unknown",
-              "outdoor_role": "none",
-              "is_outdoor_like": true
+              "outdoor_role": "laundry-yard",
+              "is_outdoor_like": true,
+              "room_role": "unknown",
+              "is_accessible": false,
+              "daylight_required": null
             }
           }
         ]
       },
-      "floor_issues": [
-        "BR-TW-002: 每層建議維持單一主入口標記。 (C:floor-4 entry_count=0)"
-      ]
+      "floor_issues": []
     }
   ]
 }</script></body>

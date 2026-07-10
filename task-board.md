@@ -19,12 +19,12 @@
 - Next focus: B/C rule alignment
 
 <!-- AUTO:LAST_RUN_START -->
-- Last Run: 2026-07-08T01:40:19.245913+00:00
-- Mode: concept
+- Last Run: 2026-07-10T02:29:19.483115+00:00
+- Mode: ifc
 - Buildings: A,B,C
 - Hard Gate: PASS
 - Critical Failures: 0
-- Warning Count: 4
-- Expert Composite Avg: 63.47
-- Architect Metrics Advisory: 27
+- Warning Count: 2
+- Expert Composite Avg: 63.23
+- Architect Metrics Advisory: 30
 <!-- AUTO:LAST_RUN_END -->
