@@ -51,7 +51,17 @@ powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1
 # Options: -Mode concept|draft|ifc  -Paper a3|a4  -Selection auto|baseline|best
 ```
 
-- **concept**: fast, skips PDF, auto-selects "best" candidate
+**Incremental package CLI:**
+```bash
+python -m house_design pipeline --mode concept
+python -m house_design pipeline --mode draft --from-step candidates --to-step svg
+python -m house_design pipeline --mode ifc --force
+```
+
+This entrypoint uses `.house-design-cache.json` to skip steps whose commands,
+inputs, and expected outputs are unchanged.
+
+- **concept**: fast, skips PDF, auto-selects the source-preserving `baseline` candidate
 - **draft**: default, baseline selection, generates PDF
 - **ifc**: full export + validation gate
 

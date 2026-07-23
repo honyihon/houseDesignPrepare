@@ -13,12 +13,14 @@ def test_run_full_pipeline_defines_validation_owner() -> None:
     assert '[ValidateSet("inner", "outer", "none")]' in script
     assert '[string]$ValidationOwner = "inner"' in script
     assert '$ValidationOwner -eq "inner"' in script
+    assert '@("scripts/validate_layout_bundle.py", "--strict")' in script
 
 
 def test_expert_workflow_passes_outer_validation_owner() -> None:
     script = (ROOT / "scripts" / "run_full_expert_workflow.ps1").read_text(encoding="utf-8")
 
     assert "-ValidationOwner outer" in script
+    assert '$validationArgs += "--strict"' in script
 
 
 def test_expert_workflow_passes_mode_to_html_consistency_check() -> None:

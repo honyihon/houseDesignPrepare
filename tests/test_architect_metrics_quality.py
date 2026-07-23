@@ -4,9 +4,61 @@ from scripts.lib.architect_metrics import (
     STATUS_ADVISORY,
     STATUS_MISSING,
     STATUS_OK,
+    build_floor_area_metric,
     build_structure_review_metric,
+    build_egress_proxy_metric,
+    needs_daylight,
     summarize_metrics_payload,
 )
+
+
+def test_auto_grid_floor_area_is_advisory_low_confidence() -> None:
+    metric = build_floor_area_metric(
+        "A",
+        {
+            "id": "floor-1",
+            "geometry_source": "auto-grid-v1",
+            "geometry_mm": {"width_mm": 11000, "depth_mm": 7000},
+        },
+    )
+
+    assert metric["status"] == STATUS_ADVISORY
+    assert metric["confidence"] == "low"
+    assert metric["inputs"]["geometry_source"] == "auto-grid-v1"
+    assert "auto-derived" in metric["issues"][0]
+
+
+def test_declared_floor_area_keeps_high_confidence() -> None:
+    metric = build_floor_area_metric(
+        "A",
+        {
+            "id": "floor-1",
+            "geometry_source": "architect-cad-v1",
+            "geometry_mm": {"width_mm": 11000, "depth_mm": 7000},
+        },
+    )
+
+    assert metric["status"] == STATUS_OK
+    assert metric["confidence"] == "high"
+
+
+def test_declared_daylight_false_overrides_room_name_heuristic() -> None:
+    room = {"name": "娛樂室/家庭劇院", "semantics": {"daylight_required": False}}
+
+    assert needs_daylight(room) is False
+
+
+def test_unmodeled_roof_access_requires_professional_review_not_missing_data() -> None:
+    floor = {
+        "id": "floor-4",
+        "tab_label": "RF",
+        "plan_cells": [{"name": "水塔", "geometry_mm": {"x_mm": 0, "y_mm": 0, "w_mm": 1000, "h_mm": 1000}}],
+    }
+
+    metric = build_egress_proxy_metric("A", floor, {"architect_metrics": {}})
+
+    assert metric["status"] == "professional_required"
+    assert metric["confidence"] == "low"
 
 
 def test_note_only_rf_reference_does_not_trigger_structure_review() -> None:

@@ -226,6 +226,7 @@ def extract_plan_cell(
         "is_entry": _attr_bool(cell, ["data-entry", "data-is-entry"]),
         "material": _attr_text(cell, ["data-material"]),
         "spatial": parse_cell_spatial(cell.attrs, classes_of(cell, remove={"plan-cell"})),
+        "structural_review": _attr_text(cell, ["data-structural-review"]),
     }
 
 
@@ -333,6 +334,7 @@ def extract_rooms(scope: Tag) -> list[dict[str, Any]]:
                 "geometry_mm": geometry_mm,
                 "target_cell_id": _attr_text(room, ["data-target-cell", "data-slot-id"]),
                 "semantics": parse_semantics(room.attrs),
+                "structural_review": _attr_text(room, ["data-structural-review"]),
             }
         )
     return rooms

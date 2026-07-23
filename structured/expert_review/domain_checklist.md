@@ -2,7 +2,7 @@
 
 本清單供屋主、建築師、結構技師與機電討論，不作為法規、結構、消防、採光、通風或無障礙合規證明。
 
-- Report hash: `1e56d0fb967889be87f00593d2d5c05add8285f7407cd5175563eee92e7001ae`
+- Report hash: `ca8615c2fa2af5056e91e5603cc0fadbfa1c8e57dedb6979349016b37d250113`
 
 - [open] **A 2F 高雄厝陽台方向確認** (owner_architect) - area=9.35m2; share=16.3%; visual_grid=bottom-right
 - [open] **A 棟低成本冷氣擴散策略** (architect_mep) - research low-cost whole-house air distribution before equipment purchase

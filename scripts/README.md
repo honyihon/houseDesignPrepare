@@ -39,13 +39,35 @@ python scripts/export_print_bundle_pdf.py
 powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1
 ```
 
+## Incremental CLI
+
+The package entrypoint hashes each step's command and inputs. Unchanged steps
+with existing outputs are skipped automatically:
+
+```bash
+python -m house_design pipeline --mode concept
+python -m house_design pipeline --mode draft --from-step candidates --to-step svg
+python -m house_design pipeline --mode ifc --force
+```
+
+Options:
+
+- `--force`: ignore the local cache and rerun the selected range.
+- `--from-step` / `--to-step`: run only part of the pipeline.
+- `--selection`, `--style`, `--paper`, `--output`: control generated artifacts.
+
+The local cache is stored in `.house-design-cache.json` and is not committed.
+Cache records include output hashes; SVG files listed by the manifest are
+checked individually, and PDF fingerprints include SVG contents.
+The PowerShell entrypoint remains available for compatibility and expert workflows.
+
 Common options:
 
 ```powershell
 # Export A4 bundle
 powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 -Paper a4 -Output structured/candidates/print_bundle_a4.pdf
 
-# Fast concept iteration (no PDF, auto selection=best)
+# Fast concept iteration (no PDF, safe auto selection=baseline)
 powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 -Mode concept
 
 # Draft bundle (default mode, auto selection=baseline)
@@ -217,6 +239,14 @@ Directional metadata is optional and backward-compatible:
 `top/right/bottom/left` refer to the HTML visual grid, not geographic north. `data-north-deg` remains the geographic orientation input.
 
 Extraction emits `house-design-structured-v3` when spatial metadata support is active. Downstream scripts accept both `house-design-structured-v2` and `house-design-structured-v3` during migration.
+
+Room-program records expose `record_type=floor|section`. Metrics and candidate
+generation report non-floor sections separately instead of treating overview
+or specification content as skipped floors.
+
+SVG validation parses XML and checks rendered `data-marker` groups for
+entrances, doors, windows, and optional elevation indices. Marker strings in
+`<metadata>` do not satisfy drawing validation.
 
 ## Shared Defaults Config
 

@@ -20,12 +20,7 @@ $repoRoot = Split-Path -Parent $PSScriptRoot
 Set-Location -LiteralPath $repoRoot
 
 if ($Selection -eq "auto") {
-    if ($Mode -eq "concept") {
-        $resolvedSelection = "best"
-    }
-    else {
-        $resolvedSelection = "baseline"
-    }
+    $resolvedSelection = "baseline"
 }
 else {
     $resolvedSelection = $Selection
@@ -77,7 +72,7 @@ else {
 }
 
 if ($Mode -eq "ifc" -and $ValidationOwner -eq "inner") {
-    Invoke-Step -Name "Step IFC gate validate_layout_bundle" -Arguments @("scripts/validate_layout_bundle.py")
+    Invoke-Step -Name "Step IFC gate validate_layout_bundle" -Arguments @("scripts/validate_layout_bundle.py", "--strict")
 }
 elseif ($Mode -eq "ifc" -and $ValidationOwner -eq "outer") {
     Write-Host "`nMode ifc: validation owned by outer workflow." -ForegroundColor Yellow

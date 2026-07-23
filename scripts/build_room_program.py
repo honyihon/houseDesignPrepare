@@ -299,6 +299,7 @@ def transform_floor(
             "geometry_mm": room_geometry_mm,
             "target_cell_id": normalize_whitespace(room.get("target_cell_id", "")),
             "semantics": normalize_semantics(room.get("semantics")),
+            "structural_review": normalize_whitespace(str(room.get("structural_review", ""))),
         }
         normalized_rooms.append(normalized)
         room_map[local_id] = normalized
@@ -341,6 +342,7 @@ def transform_floor(
                 "is_entry": to_bool(cell.get("is_entry"), False),
                 "material": normalize_whitespace(cell.get("material", "")),
                 "spatial": normalize_spatial(cell.get("spatial"), cell.get("classes", [])),
+                "structural_review": normalize_whitespace(str(cell.get("structural_review", ""))),
             }
         )
 
@@ -405,6 +407,7 @@ def transform_floor(
 
     return {
         "id": floor_id,
+        "record_type": "floor" if normalized_cells else "section",
         "order": floor.get("order"),
         "title": strip_leading_emoji(floor.get("title", "")),
         "raw_title": normalize_whitespace(floor.get("title", "")),

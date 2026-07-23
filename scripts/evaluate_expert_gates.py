@@ -870,6 +870,7 @@ def architect_metric_rule_results(metrics_payload: dict[str, Any]) -> list[dict[
 
 VOLATILE_REPORT_HASH_KEYS = {"generated_at", "report_hash", "signoff"}
 VALID_SIGNOFF_DECISIONS = {"approved", "pass", "approved_with_conditions"}
+VALID_REVIEWER_KINDS = {"human", "professional"}
 
 
 def clean_yaml_scalar(value: Any) -> str:
@@ -877,6 +878,16 @@ def clean_yaml_scalar(value: Any) -> str:
     if len(text) >= 2 and text[0] == text[-1] and text[0] in {'"', "'"}:
         return text[1:-1]
     return text
+
+
+def valid_reviewer_field(value: str) -> bool:
+    normalized = normalize_match_text(value)
+    return bool(value) and not (value.startswith("<") and value.endswith(">")) and normalized not in {
+        "claudecode",
+        "codex",
+        "ai",
+        "assistant",
+    }
 
 
 def stable_report_value(value: Any) -> Any:
@@ -917,15 +928,27 @@ def validate_signoff_for_report(
     allow_stale: bool = False,
 ) -> dict[str, Any]:
     decision = clean_yaml_scalar(signoff_data.get("decision", "")).lower()
+    reviewer_kind = clean_yaml_scalar(signoff_data.get("reviewer_kind", "")).lower()
+    reviewer_role = clean_yaml_scalar(signoff_data.get("reviewer_role", ""))
+    reviewer_name = clean_yaml_scalar(signoff_data.get("reviewer_name", ""))
+    reviewer_date = clean_yaml_scalar(signoff_data.get("reviewer_date", signoff_data.get("date", "")))
     expected_hash = normalize_whitespace(str(report.get("report_hash") or report_content_hash(report)))
     related_hash = clean_yaml_scalar(signoff_data.get("related_report_hash", ""))
     hash_match = bool(related_hash) and related_hash == expected_hash
     decision_valid = decision in VALID_SIGNOFF_DECISIONS
-    valid = decision_valid and (hash_match or allow_stale)
+    reviewer_valid = (
+        reviewer_kind in VALID_REVIEWER_KINDS
+        and valid_reviewer_field(reviewer_role)
+        and valid_reviewer_field(reviewer_name)
+        and valid_reviewer_field(reviewer_date)
+    )
+    valid = decision_valid and reviewer_valid and (hash_match or allow_stale)
     if valid:
         reason = "ok" if hash_match else "stale_allowed"
     elif not decision_valid:
         reason = "decision_missing_or_invalid"
+    elif not reviewer_valid:
+        reason = "reviewer_kind_or_identity_missing_or_invalid"
     elif not related_hash:
         reason = "related_report_hash_missing"
     else:
@@ -935,9 +958,11 @@ def validate_signoff_for_report(
         "exists": bool(signoff_data),
         "decision": decision,
         "decision_valid": decision_valid,
-        "reviewer_role": clean_yaml_scalar(signoff_data.get("reviewer_role", "")),
-        "reviewer_name": clean_yaml_scalar(signoff_data.get("reviewer_name", "")),
-        "reviewer_date": clean_yaml_scalar(signoff_data.get("reviewer_date", signoff_data.get("date", ""))),
+        "reviewer_kind": reviewer_kind,
+        "reviewer_valid": reviewer_valid,
+        "reviewer_role": reviewer_role,
+        "reviewer_name": reviewer_name,
+        "reviewer_date": reviewer_date,
         "related_report_hash": related_hash,
         "related_report_generated_at": clean_yaml_scalar(signoff_data.get("related_report_generated_at", "")),
         "expected_report_hash": expected_hash,
@@ -1012,6 +1037,7 @@ def build_report(
     signoff_status = {
         "exists": signoff_file.exists(),
         "decision": clean_yaml_scalar(signoff_data.get("decision", "")).lower(),
+        "reviewer_kind": clean_yaml_scalar(signoff_data.get("reviewer_kind", "")).lower(),
         "reviewer_role": clean_yaml_scalar(signoff_data.get("reviewer_role", "")),
         "reviewer_name": clean_yaml_scalar(signoff_data.get("reviewer_name", "")),
         "reviewer_date": clean_yaml_scalar(signoff_data.get("reviewer_date", signoff_data.get("date", ""))),

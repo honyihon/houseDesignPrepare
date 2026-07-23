@@ -4,12 +4,17 @@
 from __future__ import annotations
 
 import json
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from house_design.rendering import encode_html_json  # noqa: E402
+
 PROGRAM_FILE = ROOT / "structured" / "room_program.json"
 CANDIDATES_FILE = ROOT / "structured" / "candidates" / "layout_candidates.json"
 OUTPUT_HTML = ROOT / "structured" / "candidates" / "viewer.html"
@@ -133,7 +138,7 @@ def build_view_payload(program: dict[str, Any], candidates: dict[str, Any]) -> d
 
 
 def render_html(payload: dict[str, Any]) -> str:
-    data_json = json.dumps(payload, ensure_ascii=False).replace("</", "<\\/")
+    data_json = encode_html_json(payload)
     return f"""<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -169,6 +174,7 @@ def render_html(payload: dict[str, Any]) -> str:
       display: grid;
       grid-template-columns: 320px minmax(0, 1fr);
       min-height: 100vh;
+      min-width: 0;
     }}
     .sidebar {{
       border-right: 1px solid var(--line);
@@ -253,6 +259,7 @@ def render_html(payload: dict[str, Any]) -> str:
       display: grid;
       grid-template-rows: auto auto minmax(0, 1fr);
       gap: 12px;
+      min-width: 0;
     }}
     .panel {{
       border: 1px solid var(--line);
@@ -319,6 +326,7 @@ def render_html(payload: dict[str, Any]) -> str:
       grid-template-columns: minmax(0, 2.2fr) minmax(300px, 1fr);
       gap: 12px;
       min-height: 0;
+      min-width: 0;
     }}
     .grid-panel {{
       padding: 10px;
@@ -327,6 +335,7 @@ def render_html(payload: dict[str, Any]) -> str:
     .slot-grid {{
       display: grid;
       gap: 8px;
+      grid-template-columns: repeat(var(--slot-columns, 4), minmax(0, 1fr));
     }}
     .slot-card {{
       border: 1px solid #3d567c;
@@ -337,6 +346,7 @@ def render_html(payload: dict[str, Any]) -> str:
       display: grid;
       grid-template-rows: auto auto minmax(0, 1fr) auto;
       gap: 4px;
+      min-width: 0;
     }}
     .slot-top {{
       display: flex;
@@ -436,6 +446,21 @@ def render_html(payload: dict[str, Any]) -> str:
       .sidebar {{ border-right: 0; border-bottom: 1px solid var(--line); }}
       .floor-list {{ max-height: 260px; }}
       .stage {{ grid-template-columns: 1fr; }}
+    }}
+    @media (max-width: 640px) {{
+      body {{ overflow-x: hidden; }}
+      .app {{ display: block; }}
+      .sidebar {{ padding: 8px; }}
+      .floor-list {{ max-height: 220px; }}
+      .content {{ padding: 8px; }}
+      .title {{ font-size: 1rem; overflow-wrap: anywhere; }}
+      .sub {{ overflow-wrap: anywhere; }}
+      .candidate-tabs {{ padding: 8px; }}
+      .cand-btn {{ flex: 1 1 calc(50% - 8px); min-width: 0; }}
+      .stage {{ display: block; }}
+      .grid-panel, .score-panel {{ margin-top: 8px; }}
+      .slot-grid {{ grid-template-columns: 1fr !important; }}
+      .bar {{ grid-template-columns: 72px minmax(0, 1fr) 40px; }}
     }}
   </style>
 </head>
@@ -538,7 +563,7 @@ def render_html(payload: dict[str, Any]) -> str:
     function renderGrid(floor, candidate) {{
       const slotGrid = document.getElementById('slotGrid');
       const cols = columnsForSlots(floor.slots.length);
-      slotGrid.style.gridTemplateColumns = `repeat(${{cols}}, minmax(170px, 1fr))`;
+      slotGrid.style.setProperty('--slot-columns', cols);
 
       slotGrid.innerHTML = floor.slots.map(slot => {{
         const p = candidate.pair_map[slot.slot_id];

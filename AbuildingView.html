@@ -510,6 +510,18 @@
             color: #e9d5ff;
         }
 
+        .badge.ac {            /* 冷氣室內機 */
+            background: rgba(45, 212, 191, .16);
+            border-color: rgba(45, 212, 191, .35);
+            color: #99f6e4;
+        }
+
+        .badge.ac-out {        /* 冷氣室外機 */
+            background: rgba(251, 146, 60, .16);
+            border-color: rgba(251, 146, 60, .35);
+            color: #fed7aa;
+        }
+
         .compass {
             display: flex;
             justify-content: center;
@@ -1127,6 +1139,20 @@
         }
 
         /* 列印樣式 */
+        @media(max-width:640px) {
+            body { padding: 8px; overflow-x: hidden; }
+            .header { padding: 20px 12px; border-radius: 16px; margin-bottom: 16px; }
+            h1 { font-size: clamp(1.35rem, 8vw, 2rem); letter-spacing: 0; overflow-wrap: anywhere; }
+            .subtitle { font-size: .82rem; overflow-wrap: anywhere; }
+            .stats-bar { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; padding: 8px; }
+            .stat-item { min-width: 0; padding: 10px 4px; }
+            .floor-tabs { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 4px; }
+            .tab { flex: 0 0 auto; min-width: 112px; }
+            .floor-content { grid-template-columns: 1fr !important; min-width: 0; }
+            .plan-grid-visual { max-width: 100%; overflow-x: auto; }
+            .details-panel, .spec-grid, .overview-grid { min-width: 0; }
+        }
+
         @media print {
             body {
                 background: white;
@@ -2067,7 +2093,7 @@
 </div>
 </div>
 <!-- ==================== 1F ==================== -->
-<div class="floor-plan" data-floor-depth-mm="7700" data-floor-width-mm="11000" data-geometry-source="auto-grid-v1" data-north-deg="0" id="floor-1">
+<div class="floor-plan" data-floor-depth-mm="7700" data-floor-width-mm="11000" data-front-side="top" data-geometry-source="auto-grid-v1" data-north-deg="0" data-rear-side="bottom" id="floor-1">
 <div class="floor-header">
 <div class="floor-title">
 <div class="floor-title-icon">1F</div>
@@ -2109,7 +2135,7 @@
 </div>
 <!-- 玄關 + 客廳 -->
 <div class="plan-row" data-row-h-mm="1300" style="grid-template-columns:1fr 2fr;">
-<div class="plan-cell" data-door-mm="1000" data-entry="true" data-h-mm="1300" data-material="tile" data-w-mm="3667" data-window-mm="900" data-x-mm="0" data-y-mm="1200" onclick="highlightRoom('entry', this)">
+<div class="plan-cell" data-door-mm="1000" data-entry="true" data-h-mm="1300" data-material="tile" data-w-mm="3667" data-window-mm="1200" data-x-mm="0" data-y-mm="1200" onclick="highlightRoom('entry', this)">
 <span class="cell-icon">🚪</span>
 <span class="cell-name">玄關</span>
 <div class="io-badges">
@@ -2117,7 +2143,7 @@
 <span class="badge sec">🔐 智慧門鎖</span>
 </div>
 </div>
-<div class="plan-cell" data-door-mm="900" data-h-mm="1300" data-material="wood+paint" data-w-mm="7333" data-window-mm="1800" data-x-mm="3667" data-y-mm="1200" onclick="highlightRoom('living', this)">
+<div class="plan-cell" data-door-mm="900" data-h-mm="1300" data-material="wood+paint" data-w-mm="7333" data-window-mm="2200" data-x-mm="3667" data-y-mm="1200" onclick="highlightRoom('living', this)">
 <span class="cell-icon">🛋️</span>
 <span class="cell-name">客廳</span>
 <span class="cell-size">約 5 坪（示意）</span>
@@ -2125,6 +2151,7 @@
 <span class="badge tv">📺 TV</span>
 <span class="badge net">🌐 LAN×4</span>
 <span class="badge ap">📡 AP</span>
+<span class="badge ac">🌬️ 室內機 1.6噸・順長軸吹</span>
 </div>
 </div>
 </div>
@@ -2159,7 +2186,7 @@
 <span class="badge pwr">🔌 餐邊插座</span>
 </div>
 </div>
-<div class="plan-cell wet" data-accessible="true" data-door-direction="side" data-door-mm="800" data-exhaust-duct="independent" data-h-mm="1100" data-material="tile+waterproof" data-room-role="accessible-bath" data-w-mm="5500" data-window-mm="600" data-x-mm="5500" data-y-mm="3600" onclick="highlightRoom('bath1', this)">
+<div class="plan-cell wet" data-accessible="true" data-door-direction="side" data-door-mm="900" data-exhaust-duct="independent" data-h-mm="1100" data-material="tile+waterproof" data-room-role="accessible-bath" data-w-mm="5500" data-window-mm="600" data-x-mm="5500" data-y-mm="3600" onclick="highlightRoom('bath1', this)">
 <span class="cell-icon">🚿</span>
 <span class="cell-name">1F 公用衛浴</span>
 <div class="io-badges">
@@ -2172,7 +2199,7 @@
 </div>
 <!-- 廚房 + 多功能房 -->
 <div class="plan-row" data-row-h-mm="1300" style="grid-template-columns:1.2fr 1fr;">
-<div class="plan-cell" data-back-balcony-door="true" data-back-balcony-door-mm="800" data-erv-sleeve="true" data-erv-sleeve-mm="100-150" data-door-mm="900" data-exhaust-duct="independent" data-h-mm="1300" data-material="tile+stainless" data-w-mm="6000" data-window-mm="900" data-x-mm="0" data-y-mm="4700" onclick="highlightRoom('kitchen', this)">
+<div class="plan-cell" data-back-balcony-door="true" data-back-balcony-door-mm="800" data-erv-sleeve="true" data-erv-sleeve-mm="100-150" data-door-mm="900" data-exhaust-duct="independent" data-h-mm="1300" data-material="tile+stainless" data-w-mm="6000" data-window-mm="1800" data-x-mm="0" data-y-mm="4700" onclick="highlightRoom('kitchen', this)">
 <span class="cell-icon">🍳</span>
 <span class="cell-name">廚房</span>
 <span class="cell-size">約 3 坪（示意）</span>
@@ -2184,13 +2211,14 @@
 <span class="badge escape">🚪 直達後陽台</span>
 </div>
 </div>
-<div class="plan-cell" data-accessible="true" data-door-mm="900" data-h-mm="1300" data-material="wood+paint" data-room-role="elder" data-w-mm="5000" data-window-mm="1200" data-x-mm="6000" data-y-mm="4700" onclick="highlightRoom('flex1', this)">
+<div class="plan-cell" data-accessible="true" data-door-mm="900" data-h-mm="1300" data-material="wood+paint" data-room-role="elder" data-w-mm="5000" data-window-mm="1600" data-x-mm="6000" data-y-mm="4700" onclick="highlightRoom('flex1', this)">
 <span class="cell-icon">🛏️</span>
 <span class="cell-name">多功能房/客房</span>
 <span class="cell-size">約 3.5–4 坪</span>
 <div class="io-badges">
 <span class="badge net">🌐 LAN×2</span>
 <span class="badge pwr">🔌 床頭×2</span>
+<span class="badge ac">🌬️ 室內機 0.9噸・床頭不直吹</span>
 </div>
 </div>
 </div>
@@ -2202,6 +2230,7 @@
 <div class="io-badges">
 <span class="badge pwr">🔌 洗/烘</span>
 <span class="badge fiber">🟡 ISP進線</span>
+<span class="badge ac-out">🌀 室外機（北陰面・1F短管）</span>
 </div>
 </div>
 <div class="plan-cell water highlight" data-door-mm="800" data-h-mm="1700" data-material="service+utility" data-w-mm="5500" data-window-mm="600" data-x-mm="5500" data-y-mm="6000" onclick="highlightRoom('water-inlet', this)">
@@ -2678,7 +2707,7 @@
 </div>
 </div>
 <!-- ==================== 2F ==================== -->
-<div class="floor-plan" data-floor-depth-mm="5200" data-floor-width-mm="11000" data-geometry-source="auto-grid-v1" data-north-deg="0" id="floor-2">
+<div class="floor-plan" data-floor-depth-mm="5200" data-floor-width-mm="11000" data-front-side="top" data-geometry-source="auto-grid-v1" data-north-deg="0" data-rear-side="bottom" id="floor-2">
 <div class="floor-header">
 <div class="floor-title">
 <div class="floor-title-icon">2F</div>
@@ -2703,16 +2732,17 @@
 </div>
 <div class="plan-grid-visual">
 <div class="plan-row" data-row-h-mm="1100" style="grid-template-columns:2fr 1fr;">
-<div class="plan-cell" data-door-mm="900" data-h-mm="1100" data-material="wood+paint" data-w-mm="7333" data-window-mm="1200" data-x-mm="0" data-y-mm="0" onclick="highlightRoom('master', this)">
+<div class="plan-cell" data-door-mm="900" data-h-mm="1100" data-material="wood+paint" data-w-mm="7333" data-window-mm="1900" data-x-mm="0" data-y-mm="0" onclick="highlightRoom('master', this)">
 <span class="cell-icon">🛏️</span>
 <span class="cell-name">主臥室</span>
 <span class="cell-size">約 6 坪</span>
 <div class="io-badges">
 <span class="badge net">🌐 LAN×2</span>
 <span class="badge tv">📺 TV</span>
+<span class="badge ac">🌬️ 室內機 1.8噸・床頭不直吹</span>
 </div>
 </div>
-<div class="plan-cell wet" data-door-mm="800" data-h-mm="1100" data-material="tile+waterproof" data-w-mm="3667" data-window-mm="600" data-x-mm="7333" data-y-mm="0" onclick="highlightRoom('master-bath', this)">
+<div class="plan-cell wet" data-daylight-required="false" data-door-mm="800" data-h-mm="1100" data-material="tile+waterproof" data-w-mm="3667" data-window-mm="600" data-x-mm="7333" data-y-mm="0" onclick="highlightRoom('master-bath', this)">
 <span class="cell-icon">🚿</span>
 <span class="cell-name">主臥衛浴</span>
 <div class="io-badges">
@@ -2735,24 +2765,26 @@
 </div>
 </div>
 <div class="plan-row" data-row-h-mm="1100" style="grid-template-columns:1fr 1fr;">
-<div class="plan-cell core" data-door-mm="800" data-h-mm="1100" data-material="service+utility" data-w-mm="5500" data-window-mm="600" data-x-mm="0" data-y-mm="2400" onclick="highlightRoom('study', this)">
+<div class="plan-cell core" data-door-mm="900" data-h-mm="800" data-material="service+utility" data-w-mm="5500" data-window-mm="1500" data-x-mm="0" data-y-mm="2400" onclick="highlightRoom('study', this)">
 <span class="cell-icon">💻</span>
 <span class="cell-name">書房/工作室</span>
 <div class="io-badges">
 <span class="badge net">🌐 LAN×4</span>
 <span class="badge pwr">🔌 UPS迴路</span>
+<span class="badge ac">🌬️ 室內機 0.9噸</span>
 </div>
 </div>
-<div class="plan-cell" data-door-mm="900" data-h-mm="1100" data-material="wood+paint" data-w-mm="5500" data-window-mm="1200" data-x-mm="5500" data-y-mm="2400" onclick="highlightRoom('bedroom2', this)">
+<div class="plan-cell" data-door-mm="900" data-h-mm="800" data-material="wood+paint" data-w-mm="5500" data-window-mm="1200" data-x-mm="5500" data-y-mm="2400" onclick="highlightRoom('bedroom2', this)">
 <span class="cell-icon">🛏️</span>
 <span class="cell-name">次臥</span>
 <div class="io-badges">
 <span class="badge net">🌐 LAN×2</span>
+<span class="badge ac">🌬️ 室內機 0.9噸・床頭不直吹</span>
 </div>
 </div>
 </div>
 <div class="plan-row" data-row-h-mm="1700" style="grid-template-columns:1fr 1fr;">
-<div class="plan-cell wet" data-door-mm="800" data-h-mm="1700" data-material="tile+waterproof" data-w-mm="5500" data-window-mm="600" data-x-mm="0" data-y-mm="3500" onclick="highlightRoom('bath2', this)">
+<div class="plan-cell wet" data-door-mm="800" data-h-mm="2000" data-material="tile+waterproof" data-w-mm="6000" data-window-mm="600" data-x-mm="0" data-y-mm="3200" onclick="highlightRoom('bath2', this)">
 <span class="cell-icon">🚿</span>
 <span class="cell-name">2F 公用衛浴</span>
 <div class="io-badges">
@@ -2760,7 +2792,7 @@
 <span class="badge hot">♨️ 熱水</span>
 </div>
 </div>
-<div class="plan-cell outdoor" data-door-mm="900" data-facing="unknown" data-h-mm="1700" data-material="concrete+drain" data-outdoor-role="kaohsiung-house-balcony" data-w-mm="5500" data-window-mm="0" data-x-mm="5500" data-y-mm="3500" data-zone="unknown" onclick="highlightRoom('balcony2', this)">
+<div class="plan-cell outdoor" data-compliance-status="architect-review-required" data-door-mm="900" data-facing="unknown" data-h-mm="2000" data-landscape-balcony="true" data-lowered-slab="true" data-material="concrete+drain+soil" data-outdoor-role="kaohsiung-house-balcony" data-planting-ratio="0.34" data-w-mm="5000" data-window-mm="0" data-x-mm="6000" data-y-mm="3200" data-zone="unknown" onclick="highlightRoom('balcony2', this)">
 <span class="cell-icon">🌿</span>
 <span class="cell-name">高雄厝陽台</span>
 <div class="io-badges">
@@ -2788,7 +2820,7 @@
 <li><strong>衛浴門對床：</strong>可調整床頭朝向，或改隱藏滑門並強化門扇氣密度以隔絕濕氣與噪音。</li>
 </div>
 </div>
-<div class="room" data-h-mm="1100" data-target-cell="slot-2" data-w-mm="3667" data-x-mm="7333" data-y-mm="0" id="room-master-bath">
+<div class="room" data-daylight-required="false" data-h-mm="1100" data-target-cell="slot-2" data-w-mm="3667" data-x-mm="7333" data-y-mm="0" id="room-master-bath">
 <div class="room-head">
 <div class="room-name">
 <div class="room-name-icon">🚿</div>
@@ -2855,7 +2887,7 @@
                             書房是「遠端工作核心」：所有設備走有線 Cat6A，直回 MDF。
                         </div>
 </div>
-<div class="room" data-h-mm="1100" data-target-cell="slot-6" data-w-mm="5500" data-x-mm="5500" data-y-mm="2400" id="room-bedroom2">
+<div class="room" data-h-mm="800" data-target-cell="slot-6" data-w-mm="5500" data-x-mm="5500" data-y-mm="2400" id="room-bedroom2">
 <div class="room-head">
 <div class="room-name">
 <div class="room-name-icon">🛏️</div>
@@ -2869,7 +2901,7 @@
 <li><strong>成長彈性：</strong>預留雙迴路/雙插座/雙網路點與雙冷氣機位，未來分房免鑿牆。</li>
 </div>
 </div>
-<div class="room" data-h-mm="1700" data-target-cell="slot-7" data-w-mm="5500" data-x-mm="0" data-y-mm="3500" id="room-bath2">
+<div class="room" data-h-mm="2000" data-target-cell="slot-7" data-w-mm="6000" data-x-mm="0" data-y-mm="3200" id="room-bath2">
 <div class="room-head">
 <div class="room-name">
 <div class="room-name-icon">🚿</div>
@@ -2885,7 +2917,7 @@
 <li><strong>扶手預留：</strong>淋浴區/馬桶旁牆面預埋木芯或鋼襯</li>
 </div>
 </div>
-<div class="room special-outdoor" data-h-mm="1700" data-target-cell="slot-8" data-w-mm="5500" data-x-mm="5500" data-y-mm="3500" id="room-balcony2">
+<div class="room special-outdoor" data-h-mm="2000" data-target-cell="slot-8" data-w-mm="5000" data-x-mm="6000" data-y-mm="3200" id="room-balcony2">
 <div class="room-head">
 <div class="room-name">
 <div class="room-name-icon">🌿</div>
@@ -2958,7 +2990,7 @@
 </div>
 </div>
 <!-- ==================== 3F ==================== -->
-<div class="floor-plan" data-floor-depth-mm="5200" data-floor-width-mm="11000" data-geometry-source="auto-grid-v1" data-north-deg="0" id="floor-3">
+<div class="floor-plan" data-floor-depth-mm="5200" data-floor-width-mm="11000" data-front-side="top" data-geometry-source="auto-grid-v1" data-north-deg="0" data-rear-side="bottom" id="floor-3">
 <div class="floor-header">
 <div class="floor-title">
 <div class="floor-title-icon">3F</div>
@@ -2985,15 +3017,17 @@
 <span class="badge net">🌐 LAN×4</span>
 <span class="badge tv">📺 TV/投影</span>
 <span class="badge ap">📡 AP</span>
+<span class="badge ac">🌬️ 室內機 1.6噸・無窗需強化循環</span>
 </div>
 </div>
 </div>
 <div class="plan-row" data-row-h-mm="1100" style="grid-template-columns:1.5fr 1fr;">
-<div class="plan-cell" data-door-mm="900" data-h-mm="1100" data-material="wood+paint" data-w-mm="6600" data-window-mm="1200" data-x-mm="0" data-y-mm="1100" onclick="highlightRoom('guest', this)">
+<div class="plan-cell" data-door-mm="900" data-h-mm="1100" data-material="wood+paint" data-w-mm="6600" data-window-mm="1700" data-x-mm="0" data-y-mm="1100" onclick="highlightRoom('guest', this)">
 <span class="cell-icon">🛏️</span>
 <span class="cell-name">客房</span>
 <div class="io-badges">
 <span class="badge net">🌐 LAN×2</span>
+<span class="badge ac">🌬️ 室內機 0.9噸・床頭不直吹</span>
 </div>
 </div>
 <div class="plan-cell wet" data-door-mm="800" data-h-mm="1100" data-material="tile+waterproof" data-w-mm="4400" data-window-mm="600" data-x-mm="6600" data-y-mm="1100" onclick="highlightRoom('bath3', this)">
@@ -3006,14 +3040,14 @@
 </div>
 </div>
 <div class="plan-row" data-row-h-mm="1300" style="grid-template-columns:1fr 1fr;">
-<div class="plan-cell" data-door-mm="900" data-h-mm="1300" data-material="paint+default" data-w-mm="5500" data-window-mm="1000" data-x-mm="0" data-y-mm="2200" onclick="highlightRoom('multi', this)">
+<div class="plan-cell" data-door-mm="900" data-h-mm="3000" data-material="paint+default" data-w-mm="5500" data-window-mm="1000" data-x-mm="0" data-y-mm="2200" onclick="highlightRoom('multi', this)">
 <span class="cell-icon">🧘</span>
 <span class="cell-name">多功能室</span>
 <div class="io-badges">
 <span class="badge net">🌐 LAN×2</span>
 </div>
 </div>
-<div class="plan-cell highlight" data-door-mm="900" data-h-mm="1300" data-material="concrete+paint" data-w-mm="5500" data-window-mm="600" data-x-mm="5500" data-y-mm="2200" onclick="highlightRoom('stair3', this)">
+<div class="plan-cell highlight" data-door-mm="900" data-h-mm="2000" data-material="concrete+paint" data-w-mm="5500" data-window-mm="600" data-x-mm="5500" data-y-mm="2200" onclick="highlightRoom('stair3', this)">
 <span class="cell-icon">🪜</span>
 <span class="cell-name">梯間（通 RF）</span>
 <div class="io-badges">
@@ -3023,9 +3057,9 @@
 </div>
 </div>
 <div class="plan-row" data-row-h-mm="1700" style="grid-template-columns:1fr;">
-<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-w-mm="11000" data-window-mm="0" data-x-mm="0" data-y-mm="3500" onclick="highlightRoom('terrace3', this)">
+<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1000" data-material="concrete+drain" data-outdoor-role="balcony" data-w-mm="5500" data-window-mm="0" data-x-mm="5500" data-y-mm="4200" onclick="highlightRoom('terrace3', this)">
 <span class="cell-icon">☀️</span>
-<span class="cell-name">露台</span>
+<span class="cell-name">3F 多功能小陽台</span>
 <div class="io-badges">
 <span class="badge cam">📹 CCTV</span>
 </div>
@@ -3089,7 +3123,7 @@
 <li><strong>扶手預留：</strong>淋浴區/馬桶旁牆面預埋木芯或鋼襯</li>
 </div>
 </div>
-<div class="room" data-h-mm="1300" data-target-cell="slot-4" data-w-mm="5500" data-x-mm="0" data-y-mm="2200" id="room-multi">
+<div class="room" data-h-mm="3000" data-target-cell="slot-4" data-w-mm="5500" data-x-mm="0" data-y-mm="2200" id="room-multi">
 <div class="room-head">
 <div class="room-name">
 <div class="room-name-icon">🧘</div>
@@ -3103,7 +3137,7 @@
 <li><strong>成長彈性：</strong>若未來改成兒童/青少年房，預留插座/網路點位雙側與獨立照明迴路。</li>
 </div>
 </div>
-<div class="room" data-h-mm="1300" data-target-cell="slot-5" data-w-mm="5500" data-x-mm="5500" data-y-mm="2200" id="room-stair3">
+<div class="room" data-h-mm="2000" data-target-cell="slot-5" data-w-mm="5500" data-x-mm="5500" data-y-mm="2200" id="room-stair3">
 <div class="room-head">
 <div class="room-name">
 <div class="room-name-icon">🪜</div>
@@ -3118,11 +3152,11 @@
 <li style="color:#ef4444;"><strong>⚠️ 需專業計算（第一優先）：</strong>樓梯級高、級深、2R+T、平台淨深、扶手高度、踏步止滑、緊急照明與避難步行距離，需由建築師/結構技師依《建築技術規則》正式計算與檢核；本 HTML 僅為示意，不可替代法規審查。</li>
 </div>
 </div>
-<div class="room special-outdoor" data-h-mm="1700" data-target-cell="slot-6" data-w-mm="11000" data-x-mm="0" data-y-mm="3500" id="room-terrace3">
+<div class="room special-outdoor" data-h-mm="1000" data-target-cell="slot-6" data-w-mm="5500" data-x-mm="5500" data-y-mm="4200" id="room-terrace3">
 <div class="room-head">
 <div class="room-name">
 <div class="room-name-icon">☀️</div>
-                                露台
+                                3F 多功能小陽台
                             </div>
 </div>
 <div class="room-details">
@@ -3169,7 +3203,7 @@
 </div>
 </div>
 <!-- ==================== RF ==================== -->
-<div class="floor-plan" data-floor-depth-mm="3900" data-floor-width-mm="11000" data-geometry-source="auto-grid-v1" data-north-deg="0" id="floor-4">
+<div class="floor-plan" data-floor-depth-mm="3900" data-floor-width-mm="11000" data-front-side="top" data-geometry-source="auto-grid-v1" data-north-deg="0" data-rear-side="bottom" id="floor-4">
 <div class="floor-header">
 <div class="floor-title">
 <div class="floor-title-icon">RF</div>
@@ -3213,7 +3247,7 @@
 <span class="badge water">💨 溢流管</span>
 </div>
 </div>
-<div class="plan-cell water highlight" data-door-mm="800" data-h-mm="1100" data-material="service+utility" data-w-mm="3667" data-window-mm="600" data-x-mm="3667" data-y-mm="1100" onclick="highlightRoom('vf800', this)">
+<div class="plan-cell water highlight" data-structural-review="required" data-door-mm="800" data-h-mm="1100" data-material="service+utility" data-w-mm="3667" data-window-mm="600" data-x-mm="3667" data-y-mm="1100" onclick="highlightRoom('vf800', this)">
 <span class="cell-icon">❄️</span>
 <span class="cell-name">VF800</span>
 <span class="cell-size">變頻恆壓+旁通</span>
@@ -3222,7 +3256,7 @@
 <span class="badge pwr">⚡ 專迴</span>
 </div>
 </div>
-<div class="plan-cell" data-door-mm="900" data-h-mm="1100" data-material="paint+default" data-w-mm="3667" data-window-mm="1000" data-x-mm="7333" data-y-mm="1100" onclick="highlightRoom('haier', this)" style="background:linear-gradient(135deg,rgba(239,68,68,.12),rgba(220,38,38,.06));border-color:rgba(239,68,68,.35);">
+<div class="plan-cell" data-structural-review="required" data-door-mm="900" data-h-mm="1100" data-material="paint+default" data-w-mm="3667" data-window-mm="1000" data-x-mm="7333" data-y-mm="1100" onclick="highlightRoom('haier', this)" style="background:linear-gradient(135deg,rgba(239,68,68,.12),rgba(220,38,38,.06));border-color:rgba(239,68,68,.35);">
 <span class="cell-icon">♨️</span>
 <span class="cell-name">Haier 熱泵</span>
 <span class="cell-size">HPSE23W/256T</span>
@@ -3233,7 +3267,7 @@
 </div>
 </div>
 <div class="plan-row" data-row-h-mm="1700" style="grid-template-columns:1fr 1fr;">
-<div class="plan-cell" data-door-mm="800" data-h-mm="1700" data-material="service+utility" data-w-mm="5500" data-window-mm="600" data-x-mm="0" data-y-mm="2200" onclick="highlightRoom('solar', this)">
+<div class="plan-cell" data-structural-review="required" data-door-mm="800" data-h-mm="1700" data-material="service+utility" data-w-mm="5500" data-window-mm="600" data-x-mm="0" data-y-mm="2200" onclick="highlightRoom('solar', this)">
 <span class="cell-icon">☀️</span>
 <span class="cell-name">太陽能設備區</span>
 <div class="io-badges">
@@ -3243,9 +3277,11 @@
 </div>
 <div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-w-mm="5500" data-window-mm="0" data-x-mm="5500" data-y-mm="2200" onclick="highlightRoom('laundry-rf', this)">
 <span class="cell-icon">👕</span>
-<span class="cell-name">曬衣區/露台</span>
+<span class="cell-name">RF 曬衣／設備維修平台</span>
 <div class="io-badges">
 <span class="badge cam">📹 CCTV</span>
+<span class="badge ac-out">🌀 室外機集中區×3（北陰面・留散熱間距・避熱回流）</span>
+<span class="badge water">💧 冷氣排水 3/4"</span>
 </div>
 </div>
 </div>
@@ -3391,7 +3427,7 @@
 <div class="room-head">
 <div class="room-name">
 <div class="room-name-icon">👕</div>
-                                曬衣區/露台
+                                RF 曬衣／設備維修平台
                             </div>
 </div>
 <div class="room-details">

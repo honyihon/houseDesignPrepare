@@ -67,6 +67,7 @@ def test_validate_signoff_for_report_requires_matching_hash() -> None:
     fresh = gates.validate_signoff_for_report(
         {
             "decision": "approved",
+            "reviewer_kind": "human",
             "reviewer_role": "owner",
             "reviewer_name": "I29786",
             "reviewer_date": "2026-07-10",
@@ -80,4 +81,25 @@ def test_validate_signoff_for_report_requires_matching_hash() -> None:
     assert stale["hash_match"] is False
     assert fresh["valid"] is True
     assert fresh["hash_match"] is True
+    assert fresh["reviewer_valid"] is True
     assert fresh["related_report_hash"] == report["report_hash"]
+
+
+def test_ai_or_placeholder_reviewer_cannot_provide_ifc_signoff() -> None:
+    report = _report("2026-07-10T01:00:00+00:00")
+    report["report_hash"] = gates.report_content_hash(report)
+
+    result = gates.validate_signoff_for_report(
+        {
+            "decision": "approved",
+            "reviewer_kind": "human",
+            "reviewer_role": "design-lead",
+            "reviewer_name": "Claude Code",
+            "reviewer_date": "2026-07-10",
+            "related_report_hash": report["report_hash"],
+        },
+        report,
+    )
+
+    assert result["valid"] is False
+    assert result["reason"] == "reviewer_kind_or_identity_missing_or_invalid"

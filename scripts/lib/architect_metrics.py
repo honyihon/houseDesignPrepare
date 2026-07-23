@@ -21,11 +21,15 @@ STATUS_ADVISORY = "advisory"
 STATUS_MISSING = "missing_data"
 STATUS_PROFESSIONAL = "professional_required"
 ALLOWED_STATUSES = {STATUS_OK, STATUS_ADVISORY, STATUS_MISSING, STATUS_PROFESSIONAL}
+AUTO_GEOMETRY_SOURCES = {"auto-grid-v1", "heuristic", "estimated"}
 
 PUBLIC_ROOM_KEYWORDS = ["客廳", "玄關", "餐廳", "神明廳", "娛樂", "書房", "茶水"]
 PRIVATE_ROOM_KEYWORDS = ["主臥", "臥", "客房", "孝親", "房"]
 WET_ROOM_KEYWORDS = ["衛", "浴", "廁", "廚", "洗", "陽台"]
-SERVICE_ROOM_KEYWORDS = ["mdf", "idf", "機櫃", "設備", "機房", "儲藏", "配電", "弱電"]
+SERVICE_ROOM_KEYWORDS = [
+    "mdf", "idf", "機櫃", "設備", "機房", "儲藏", "配電", "弱電",
+    "水塔", "泵", "熱泵", "vf800", "太陽能",
+]
 STRUCTURE_REVIEW_KEYWORDS = [
     "水塔",
     "熱泵",
@@ -62,6 +66,20 @@ def to_float(value: Any, default: float = 0.0) -> float:
 
 def mm_to_m(value: Any) -> float:
     return to_float(value, 0.0) / 1000.0
+
+
+def geometry_provenance(floor: dict[str, Any]) -> tuple[str, str]:
+    source = str(floor.get("geometry_source", "") or "").strip().lower()
+    if source in AUTO_GEOMETRY_SOURCES or source.startswith("auto-"):
+        return source or "auto-derived", "auto-derived"
+    if not source:
+        return "unknown", "unknown"
+    return source, "declared"
+
+
+def provenance_confidence(floor: dict[str, Any], default: str) -> tuple[str, str]:
+    source, provenance = geometry_provenance(floor)
+    return ("low" if provenance == "auto-derived" else default), source
 
 
 def has_any_keyword(text: str, keywords: list[str]) -> bool:
@@ -260,11 +278,17 @@ def has_structure_review_marker(
 
 
 def needs_daylight(room: dict[str, Any]) -> bool:
+    declared = (room.get("semantics") or {}).get("daylight_required")
+    if declared is not None:
+        return bool(declared)
     text = normalize_match_text(str(room.get("name", "")))
     return has_any_keyword(text, PUBLIC_ROOM_KEYWORDS) or has_any_keyword(text, PRIVATE_ROOM_KEYWORDS)
 
 
 def is_service_room(room: dict[str, Any]) -> bool:
+    role = str((room.get("semantics") or {}).get("room_role", ""))
+    if role in {"equipment", "mechanical", "service"}:
+        return True
     text = normalize_match_text(str(room.get("name", "")))
     return has_any_keyword(text, SERVICE_ROOM_KEYWORDS)
 
@@ -312,13 +336,14 @@ def daylight_factor(
 def build_floor_area_metric(building_id: str, floor: dict[str, Any]) -> dict[str, Any]:
     area = floor_area_sqm(floor)
     geometry = floor.get("geometry_mm") or {}
+    confidence, geometry_source = provenance_confidence(floor, "high")
     if area <= 0:
         return metric_item(
             building_id,
             str(floor.get("id", "")),
             "",
             "floor_area",
-            {"geometry_mm": geometry},
+            {"geometry_mm": geometry, "geometry_source": geometry_source},
             {"floor_area_sqm": 0.0},
             STATUS_MISSING,
             "low",
@@ -329,10 +354,13 @@ def build_floor_area_metric(building_id: str, floor: dict[str, Any]) -> dict[str
         str(floor.get("id", "")),
         "",
         "floor_area",
-        {"geometry_mm": geometry},
+        {"geometry_mm": geometry, "geometry_source": geometry_source},
         {"floor_area_sqm": round(area, 2)},
-        STATUS_OK,
-        "high",
+        STATUS_ADVISORY if confidence == "low" else STATUS_OK,
+        confidence,
+        ["floor dimensions are auto-derived; replace with surveyed/CAD geometry"]
+        if confidence == "low"
+        else [],
     )
 
 
@@ -350,6 +378,7 @@ def build_daylight_metric(
         room_width_m, room_depth_m = geometry_dimensions_m(cell)
 
     metric_defaults = architect_metric_defaults(defaults)
+    confidence, geometry_source = provenance_confidence(floor, "medium")
     room_height_m = mm_to_m(metric_defaults["room_height_mm"])
     window_height_m = mm_to_m(metric_defaults["window_height_mm"])
     window_sill_m = mm_to_m(metric_defaults["window_sill_height_mm"])
@@ -381,11 +410,12 @@ def build_daylight_metric(
                 "room_width_m": round(room_width_m, 2),
                 "room_depth_m": round(room_depth_m, 2),
                 "window_width_m": 0.0,
+                "geometry_source": geometry_source,
                 "method": "BRE simplified daylight factor adapted from Skills-Architects",
             },
             {"daylight_factor_pct": 0.0, "target_daylight_factor_pct": target},
             STATUS_MISSING,
-            "medium",
+            confidence,
             ["missing window width for daylight-sensitive room"],
         )
 
@@ -408,6 +438,9 @@ def build_daylight_metric(
     status = STATUS_OK if result["daylight_factor_pct"] >= target else STATUS_ADVISORY
     if status == STATUS_ADVISORY:
         issues.append("concept daylight factor is below target; formal daylight/ventilation calculation still required")
+    if confidence == "low":
+        status = STATUS_ADVISORY
+        issues.append("daylight estimate uses auto-derived geometry/openings")
 
     return metric_item(
         building_id,
@@ -420,6 +453,7 @@ def build_daylight_metric(
             "room_height_m": round(room_height_m, 2),
             "window_width_m": round(window_width_m, 2),
             "raw_window_width_m": round(raw_window_width_m, 2),
+            "geometry_source": geometry_source,
             "window_height_m": round(window_height_m, 2),
             "window_sill_height_m": round(window_sill_m, 2),
             "glazing_transmittance": metric_defaults["glazing_transmittance"],
@@ -428,7 +462,7 @@ def build_daylight_metric(
         },
         result,
         status,
-        "medium",
+        confidence,
         issues,
     )
 
@@ -444,16 +478,20 @@ def build_door_width_metric(
     uid = str(room.get("uid", ""))
     openings = cell.get("openings_mm") or {}
     door_mm = to_float(openings.get("door_mm"), 0.0)
+    confidence, geometry_source = provenance_confidence(floor, "high")
     door_defaults = (defaults.get("geometry") or {}).get("door_width_mm") or {}
+    semantics = room.get("semantics") or {}
     if bool(cell.get("is_entry")):
         category = "entry"
+    elif bool(semantics.get("is_accessible")):
+        category = "accessible"
     elif is_bath_or_wet_room(room):
         category = "bathroom"
     elif is_service_room(room):
         category = "service"
     else:
         category = "interior"
-    minimum = int(to_float(door_defaults.get(category), 800))
+    minimum = int(to_float(door_defaults.get(category), 900 if category == "accessible" else 800))
 
     if door_mm <= 0:
         return metric_item(
@@ -461,10 +499,10 @@ def build_door_width_metric(
             floor_id,
             uid,
             "door_width",
-            {"category": category, "minimum_mm": minimum},
+            {"category": category, "minimum_mm": minimum, "geometry_source": geometry_source},
             {"door_width_mm": 0},
             STATUS_MISSING,
-            "medium",
+            confidence,
             ["missing door width metadata"],
         )
 
@@ -475,10 +513,10 @@ def build_door_width_metric(
         floor_id,
         uid,
         "door_width",
-        {"category": category, "minimum_mm": minimum},
+        {"category": category, "minimum_mm": minimum, "geometry_source": geometry_source},
         {"door_width_mm": round(door_mm, 1)},
         status,
-        "high",
+        confidence,
         issues,
     )
 
@@ -500,7 +538,7 @@ def build_egress_proxy_metric(building_id: str, floor: dict[str, Any], defaults:
                     ]
                 )
             ),
-            ["樓梯", "梯廳", "走廊", "玄關", "stair", "corridor"],
+            ["樓梯", "梯廳", "梯間", "走廊", "玄關", "stair", "corridor"],
         )
     ]
     warning_m = architect_metric_defaults(defaults)["egress_proxy_warning_m"]
@@ -519,6 +557,10 @@ def build_egress_proxy_metric(building_id: str, floor: dict[str, Any], defaults:
 
     anchor_cells = entry_cells if len(entry_cells) == 1 else stair_cells[:1]
     if not anchor_cells:
+        floor_label = normalize_match_text(
+            " ".join(str(floor.get(key, "")) for key in ("id", "title", "tab_label"))
+        )
+        is_roof = "rf" in floor_label or "屋頂" in floor_label
         return metric_item(
             building_id,
             floor_id,
@@ -526,9 +568,13 @@ def build_egress_proxy_metric(building_id: str, floor: dict[str, Any], defaults:
             "egress_distance_proxy",
             {"method": "cell-center direct distance proxy", "entry_count": len(entry_cells)},
             {"max_proxy_direct_distance_m": 0.0},
-            STATUS_MISSING,
-            "medium",
-            ["egress proxy requires one entry marker or stair/landing cell"],
+            STATUS_PROFESSIONAL if is_roof else STATUS_MISSING,
+            "low" if is_roof else "medium",
+            [
+                "roof access route is not modeled; confirm stair/hatch and maintenance egress professionally"
+                if is_roof
+                else "egress proxy requires one entry marker or stair/landing cell"
+            ],
         )
 
     anchor = anchor_cells[0]
@@ -593,7 +639,7 @@ def build_structure_review_metric(
     normalized = normalize_match_text(text)
     matched_evidence = [keyword for keyword in STRUCTURE_EVIDENCE_KEYWORDS if normalize_match_text(keyword) in normalized]
     essential = {"結構", "技師", "載重", "承載"}
-    has_essential = bool(set(matched_evidence) & essential)
+    has_essential = explicit_marker or bool(set(matched_evidence) & essential)
     status = STATUS_PROFESSIONAL if has_essential else STATUS_MISSING
     issues = ["formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path"]
     if not has_essential:
@@ -627,6 +673,7 @@ def evaluate_program(
     selected = {value.upper() for value in (selected_buildings or ["A", "B", "C", "STORAGE"])}
     metrics: list[dict[str, Any]] = []
     skipped_floors: list[dict[str, str]] = []
+    non_floor_sections: list[dict[str, str]] = []
     evaluated_floor_count = 0
 
     for building in program.get("buildings", []):
@@ -637,11 +684,11 @@ def evaluate_program(
             floor_id = str(floor.get("id", ""))
             cells = floor.get("plan_cells", [])
             if not cells:
-                skipped_floors.append(
+                non_floor_sections.append(
                     {
                         "building_id": building_id,
                         "floor_id": floor_id,
-                        "reason": "missing plan_cells",
+                        "record_type": str(floor.get("record_type", "section")),
                     }
                 )
                 continue
@@ -667,9 +714,11 @@ def evaluate_program(
         "selected_buildings": sorted(selected),
         "evaluated_floor_count": evaluated_floor_count,
         "skipped_floor_count": len(skipped_floors),
+        "non_floor_section_count": len(non_floor_sections),
         "metrics_count": len(metrics),
         "metrics": metrics,
         "skipped_floors": skipped_floors,
+        "non_floor_sections": non_floor_sections,
         "method_notes": [
             "Metrics are concept-level advisory screening only.",
             "Taiwan code, daylight, ventilation, egress, and structural compliance require professional calculation.",
@@ -739,6 +788,7 @@ def summarize_metrics_payload(payload: dict[str, Any]) -> dict[str, Any]:
         "building_counts": building_counts,
         "evaluated_floor_count": payload.get("evaluated_floor_count", 0),
         "skipped_floor_count": payload.get("skipped_floor_count", 0),
+        "non_floor_section_count": payload.get("non_floor_section_count", 0),
         "daylight_factor_avg_pct": daylight_avg,
         "daylight_rooms_below_target": daylight_below_target,
         "door_width_advisory_count": door_below_min,
@@ -767,6 +817,7 @@ def build_daylight_score_index(payload: dict[str, Any]) -> dict[str, dict[str, A
         ratio = value / target
         index[uid] = {
             "fit_score": daylight_fit_from_ratio(ratio),
+            "confidence": metric.get("confidence", "low"),
             "daylight_factor_pct": round(value, 2),
             "target_daylight_factor_pct": round(target, 2),
             "status": metric.get("status", ""),
@@ -787,6 +838,7 @@ def generate_metrics_report_md(payload: dict[str, Any]) -> str:
     lines.append(f"- Buildings: `{','.join(payload.get('selected_buildings', []))}`")
     lines.append(f"- Evaluated floors: **{payload.get('evaluated_floor_count', 0)}**")
     lines.append(f"- Skipped floors: **{payload.get('skipped_floor_count', 0)}**")
+    lines.append(f"- Non-floor sections: **{payload.get('non_floor_section_count', 0)}**")
     lines.append("")
     lines.append("## Status Summary")
     lines.append("")

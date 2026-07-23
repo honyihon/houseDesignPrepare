@@ -1,0 +1,20 @@
+[project]
+name = "house-design-prepare"
+version = "0.1.0"
+requires-python = ">=3.10"
+
+[project.scripts]
+house-design = "house_design.cli:main"
+
+[tool.ruff]
+target-version = "py310"
+line-length = 120
+extend-exclude = [".worktrees", "structured"]
+
+[tool.ruff.lint]
+# Start with correctness rules. Formatting/import modernization can be enabled
+# incrementally without forcing a repository-wide rewrite in this phase.
+select = ["F"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -72,6 +72,7 @@ class RoomTraits:
     daylight_metric_score: float | None
     daylight_metric_status: str
     daylight_metric_source: str
+    daylight_metric_confidence: float
 
 
 @dataclass
@@ -101,6 +102,8 @@ def room_traits(room: dict[str, Any], daylight_index: dict[str, dict[str, Any]] 
     daylight_index = daylight_index or {}
     daylight_metric = daylight_index.get(str(room.get("uid", "")), {})
     daylight_metric_score = None
+    confidence_label = str(daylight_metric.get("confidence", "low"))
+    daylight_metric_confidence = {"high": 0.75, "medium": 0.5, "low": 0.25}.get(confidence_label, 0.25)
     if "fit_score" in daylight_metric:
         try:
             daylight_metric_score = float(daylight_metric.get("fit_score"))
@@ -114,7 +117,12 @@ def room_traits(room: dict[str, Any], daylight_index: dict[str, dict[str, Any]] 
         text,
         ["mdf", "idf", "機櫃", "設備", "水塔", "熱泵", "儲藏", "工具", "配電", "機房", "弱電"],
     )
-    needs_daylight = is_public or is_private or has_any_keyword(text, ["書房", "運動", "客房"])
+    declared_daylight = (room.get("semantics") or {}).get("daylight_required")
+    needs_daylight = (
+        bool(declared_daylight)
+        if declared_daylight is not None
+        else is_public or is_private or has_any_keyword(text, ["書房", "運動", "客房"])
+    )
     mep_heavy = is_wet or is_service
 
     return RoomTraits(
@@ -129,6 +137,7 @@ def room_traits(room: dict[str, Any], daylight_index: dict[str, dict[str, Any]] 
         daylight_metric_score=daylight_metric_score,
         daylight_metric_status=str(daylight_metric.get("status", "")),
         daylight_metric_source=str(daylight_metric.get("source", "")),
+        daylight_metric_confidence=daylight_metric_confidence,
     )
 
 
@@ -173,7 +182,9 @@ def base_dimension_scores(room: RoomTraits, slot: SlotTraits) -> dict[str, float
     daylight = 0.0
     if room.needs_daylight:
         if room.daylight_metric_score is not None:
-            daylight += room.daylight_metric_score
+            slot_score = 1.0 if slot.is_outdoor else -0.35
+            confidence = room.daylight_metric_confidence
+            daylight += room.daylight_metric_score * confidence + slot_score * (1.0 - confidence)
         else:
             daylight += 1.0 if slot.is_outdoor else -0.35
     else:
@@ -202,7 +213,10 @@ def base_dimension_scores(room: RoomTraits, slot: SlotTraits) -> dict[str, float
 
 def dimension_fit_sources(room: RoomTraits) -> dict[str, str]:
     if room.needs_daylight and room.daylight_metric_score is not None:
-        daylight = room.daylight_metric_source or "architect_metrics:daylight_factor"
+        daylight = (
+            f"{room.daylight_metric_source or 'architect_metrics:daylight_factor'}"
+            f";confidence={room.daylight_metric_confidence:.2f};blended_with_slot"
+        )
     elif room.needs_daylight:
         daylight = "fallback:outdoor_slot_heuristic"
     else:
@@ -238,10 +252,22 @@ def generate_weighted_assignment(
     slots: list[SlotTraits],
     weights: dict[str, float],
     strategy: str,
+    locked_assignment: dict[str, str] | None = None,
 ) -> tuple[dict[str, str], list[str]]:
-    available_slots = {s.slot_id: s for s in slots}
-    room_to_slot: dict[str, str] = {}
-    ordered_rooms = sorted(rooms, key=lambda r: room_priority(r, strategy), reverse=True)
+    room_uids = {room.uid for room in rooms}
+    slot_ids = {slot.slot_id for slot in slots}
+    room_to_slot = {
+        room_uid: slot_id
+        for room_uid, slot_id in (locked_assignment or {}).items()
+        if room_uid in room_uids and slot_id in slot_ids
+    }
+    used_slots = set(room_to_slot.values())
+    available_slots = {s.slot_id: s for s in slots if s.slot_id not in used_slots}
+    ordered_rooms = sorted(
+        (room for room in rooms if room.uid not in room_to_slot),
+        key=lambda r: room_priority(r, strategy),
+        reverse=True,
+    )
 
     for room in ordered_rooms:
         if not available_slots:
@@ -257,39 +283,38 @@ def generate_weighted_assignment(
     return room_to_slot, unplaced
 
 
+def build_locked_assignment(
+    floor: dict[str, Any],
+    rooms: list[RoomTraits],
+) -> dict[str, str]:
+    """Preserve explicit source bindings as hard layout constraints."""
+    room_map = {room.uid: room for room in rooms}
+    local_to_uid = {room["local_id"]: room["uid"] for room in floor["rooms"]}
+    room_to_slot: dict[str, str] = {}
+    used_slots: set[str] = set()
+
+    for slot in floor["plan_cells"]:
+        slot_id = f"slot-{slot['order']}"
+        uid = str(slot.get("target_room_uid", ""))
+        if not uid:
+            uid = local_to_uid.get(str(slot.get("target_room_local_id", "")), "")
+        if uid and uid in room_map and uid not in room_to_slot and slot_id not in used_slots:
+            room_to_slot[uid] = slot_id
+            used_slots.add(slot_id)
+
+    return room_to_slot
+
+
 def build_baseline_assignment(
     floor: dict[str, Any],
     rooms: list[RoomTraits],
     slots: list[SlotTraits],
 ) -> tuple[dict[str, str], list[str]]:
-    room_map = {r.uid: r for r in rooms}
-    local_to_uid = {r["local_id"]: r["uid"] for r in floor["rooms"]}
-    room_to_slot: dict[str, str] = {}
-    used_rooms: set[str] = set()
-    slot_lookup = {s.slot_id: s for s in slots}
+    room_to_slot = build_locked_assignment(floor, rooms)
+    used_rooms = set(room_to_slot)
 
-    # 1) direct link from target_room_uid
-    for slot in floor["plan_cells"]:
-        order = slot["order"]
-        sid = f"slot-{order}"
-        uid = slot.get("target_room_uid", "")
-        if uid and uid in room_map and uid not in used_rooms:
-            room_to_slot[uid] = sid
-            used_rooms.add(uid)
-
-    # 2) fallback by local id link
-    for slot in floor["plan_cells"]:
-        order = slot["order"]
-        sid = f"slot-{order}"
-        if sid in room_to_slot.values():
-            continue
-        local_id = slot.get("target_room_local_id", "")
-        uid = local_to_uid.get(local_id, "")
-        if uid and uid in room_map and uid not in used_rooms:
-            room_to_slot[uid] = sid
-            used_rooms.add(uid)
-
-    # 3) fuzzy name match for remaining slots/rooms
+    # Fuzzy matching is only a baseline fallback for source cells without an
+    # explicit target binding. Weighted strategies never move locked pairs.
     remaining_rooms = [r for r in rooms if r.uid not in used_rooms]
     used_slots = set(room_to_slot.values())
     for slot in floor["plan_cells"]:
@@ -326,7 +351,6 @@ def score_candidate(
     slots: list[SlotTraits],
 ) -> dict[str, Any]:
     room_map = {r.uid: r for r in rooms}
-    slot_map = {s.slot_id: s for s in slots}
     slot_to_room = invert_assignment(room_to_slot)
 
     dim_values = {"circulation": [], "daylight": [], "mep": []}
@@ -408,6 +432,7 @@ def build_floor_candidates(
     slot_traits_list = [slot_traits(s, max_order=len(slot_items)) for s in slot_items]
 
     baseline_map, baseline_unplaced = build_baseline_assignment(floor, room_traits_list, slot_traits_list)
+    locked_map = build_locked_assignment(floor, room_traits_list)
 
     strategies = [
         ("baseline", {"circulation": 0.34, "daylight": 0.33, "mep": 0.33}, baseline_map, baseline_unplaced),
@@ -422,7 +447,13 @@ def build_floor_candidates(
             room_to_slot = predefined
             unplaced = predefined_unplaced or []
         else:
-            room_to_slot, unplaced = generate_weighted_assignment(room_traits_list, slot_traits_list, weights, strategy)
+            room_to_slot, unplaced = generate_weighted_assignment(
+                room_traits_list,
+                slot_traits_list,
+                weights,
+                strategy,
+                locked_map,
+            )
 
         scored = score_candidate(room_to_slot, room_traits_list, slot_traits_list)
         candidates.append(
@@ -432,6 +463,8 @@ def build_floor_candidates(
                 "weights": weights,
                 "rationale": candidate_rationale(strategy),
                 "room_to_slot": room_to_slot,
+                "locked_room_to_slot": locked_map,
+                "locked_room_count": len(locked_map),
                 "unplaced_room_uids": unplaced,
                 "unassigned_slots": scored["unassigned_slots"],
                 "scores": scored["scores"],
@@ -464,22 +497,33 @@ def generate_summary_md(floor_results: list[dict[str, Any]]) -> str:
     lines.append("")
     lines.append("## Best Candidate by Floor")
     lines.append("")
-    lines.append("| Building | Floor | Best Strategy | Total | Circulation | Daylight | MEP |")
-    lines.append("|---|---|---:|---:|---:|---:|---:|")
+    lines.append("| Building | Floor | Best Strategy | Grade | Total | vs Baseline | Circulation | Daylight | MEP |")
+    lines.append("|---|---|---:|---:|---:|---:|---:|---:|---:|")
+    low_score_reviews: list[tuple[str, str, float]] = []
     for fr in floor_results:
         if not fr["candidates"]:
             continue
         best = fr["candidates"][0]
+        baseline = next((item for item in fr["candidates"] if item["id"] == "baseline"), best)
         s = best["scores"]
+        delta = round(s["total"] - baseline["scores"]["total"], 2)
+        grade = "good" if s["total"] >= 80 else "review" if s["total"] >= 65 else "weak"
         lines.append(
-            f"| {fr['building_id']} | {fr['floor_id']} {fr['floor_title']} | {best['id']} | "
-            f"{s['total']} | {s['circulation']} | {s['daylight']} | {s['mep']} |"
+            f"| {fr['building_id']} | {fr['floor_id']} {fr['floor_title']} | {best['id']} | {grade} | "
+            f"{s['total']} | {delta:+.2f} | {s['circulation']} | {s['daylight']} | {s['mep']} |"
         )
+        if s["total"] < 65:
+            weakest = min(("circulation", "daylight", "mep"), key=lambda key: s[key])
+            low_score_reviews.append((f"{fr['building_id']}:{fr['floor_id']}", weakest, s[weakest]))
+    if low_score_reviews:
+        lines.extend(["", "## Low-score Review", "", "| Floor | Weakest Dimension | Score |", "|---|---|---:|"])
+        for floor_label, weakest, score in low_score_reviews:
+            lines.append(f"| {floor_label} | {weakest} | {score} |")
     lines.append("")
     lines.append("## Notes")
     lines.append("")
     lines.append("- `baseline` uses original mapping (+ fuzzy fallback).")
-    lines.append("- `circulation/daylight/mep` are greedy strategy candidates based on weighted heuristics.")
+    lines.append("- `circulation/daylight/mep` move only rooms without explicit source bindings; locked room-slot pairs are preserved.")
     lines.append("- Daylight score uses `structured/architect_metrics/metrics.json` when available, then falls back to the original outdoor-slot heuristic.")
     lines.append("- Use this as a fast screening layer before manual architectural refinement.")
     lines.append("")
@@ -494,15 +538,16 @@ def main() -> None:
     daylight_index, architect_metrics_status = load_daylight_score_index()
     floor_results: list[dict[str, Any]] = []
     skipped_floors = []
+    non_floor_sections = []
 
     for building in data.get("buildings", []):
         for floor in building.get("floors", []):
             if not floor.get("rooms") or not floor.get("plan_cells"):
-                skipped_floors.append(
+                non_floor_sections.append(
                     {
                         "building_id": building.get("id", ""),
                         "floor_id": floor.get("id", ""),
-                        "reason": "missing rooms or plan_cells",
+                        "record_type": floor.get("record_type", "section"),
                     }
                 )
                 continue
@@ -518,15 +563,20 @@ def main() -> None:
         "architect_daylight_metric_count": len(daylight_index),
         "evaluated_floor_count": len(floor_results),
         "skipped_floor_count": len(skipped_floors),
+        "non_floor_section_count": len(non_floor_sections),
         "floors": floor_results,
         "skipped_floors": skipped_floors,
+        "non_floor_sections": non_floor_sections,
     }
     OUTPUT_FILE.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     SUMMARY_MD.write_text(generate_summary_md(floor_results), encoding="utf-8")
 
     print(f"Wrote candidates: {OUTPUT_FILE}")
     print(f"Wrote summary:    {SUMMARY_MD}")
-    print(f"Evaluated floors: {len(floor_results)}; skipped: {len(skipped_floors)}")
+    print(
+        f"Evaluated floors: {len(floor_results)}; skipped: {len(skipped_floors)}; "
+        f"non-floor sections: {len(non_floor_sections)}"
+    )
 
 
 if __name__ == "__main__":

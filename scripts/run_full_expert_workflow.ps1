@@ -30,12 +30,7 @@ if (-not $buildingsArg) {
 }
 
 if ($Selection -eq "auto") {
-    if ($Mode -eq "concept") {
-        $resolvedSelection = "best"
-    }
-    else {
-        $resolvedSelection = "baseline"
-    }
+    $resolvedSelection = "baseline"
 }
 else {
     $resolvedSelection = $Selection
@@ -102,9 +97,11 @@ if ($LASTEXITCODE -ne 0) {
     throw ("Step failed: run_full_pipeline (exit code {0})" -f $LASTEXITCODE)
 }
 
-Invoke-PythonStep -Name "Step 5/8 validate layout bundle" -Arguments @(
-    "scripts/validate_layout_bundle.py"
-)
+$validationArgs = @("scripts/validate_layout_bundle.py")
+if ($Mode -eq "ifc") {
+    $validationArgs += "--strict"
+}
+Invoke-PythonStep -Name "Step 5/8 validate layout bundle" -Arguments $validationArgs
 
 $reportArgs = @(
     "scripts/evaluate_expert_gates.py",

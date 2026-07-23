@@ -1,6 +1,6 @@
 {
   "schema_version": "html-consistency-v1",
-  "generated_at": "2026-07-10T02:28:44.575246+00:00",
+  "generated_at": "2026-07-23T07:13:59.221642+00:00",
   "selected_buildings": [
     "A",
     "B",
@@ -14,7 +14,7 @@
   "summary": {
     "critical": 0,
     "warning": 0,
-    "info": 22,
+    "info": 11,
     "scanned_file_count": 3,
     "floor_count": 12,
     "cell_count": 84
@@ -24,41 +24,11 @@
       "level": "info",
       "building_id": "A",
       "file": "AbuildingView.html",
-      "floor_id": "floor-1",
-      "code": "ORIENTATION_UNRESOLVED",
-      "message": "Floor front/rear orientation metadata is not fully confirmed",
-      "evidence": "front=unknown; rear=unknown",
-      "fix_hint": "若方位已確認，補 data-front-side 與 data-rear-side；未確認則保留 unknown。"
-    },
-    {
-      "level": "info",
-      "building_id": "A",
-      "file": "AbuildingView.html",
-      "floor_id": "floor-2",
-      "code": "ORIENTATION_UNRESOLVED",
-      "message": "Floor front/rear orientation metadata is not fully confirmed",
-      "evidence": "front=unknown; rear=unknown",
-      "fix_hint": "若方位已確認，補 data-front-side 與 data-rear-side；未確認則保留 unknown。"
-    },
-    {
-      "level": "info",
-      "building_id": "A",
-      "file": "AbuildingView.html",
       "floor_id": "floor-2",
       "code": "ENTRY_COUNT_UPPER_FLOOR",
       "message": "Expected exactly 1 stair or landing entry cell on 2F, got 0",
       "evidence": "entry_count=0",
       "fix_hint": "上層若有樓梯或平台銜接格位，標示單一 data-entry=\"true\"。"
-    },
-    {
-      "level": "info",
-      "building_id": "A",
-      "file": "AbuildingView.html",
-      "floor_id": "floor-3",
-      "code": "ORIENTATION_UNRESOLVED",
-      "message": "Floor front/rear orientation metadata is not fully confirmed",
-      "evidence": "front=unknown; rear=unknown",
-      "fix_hint": "若方位已確認，補 data-front-side 與 data-rear-side；未確認則保留 unknown。"
     },
     {
       "level": "info",
@@ -85,40 +55,10 @@
       "building_id": "A",
       "file": "AbuildingView.html",
       "floor_id": "floor-4",
-      "code": "ORIENTATION_UNRESOLVED",
-      "message": "Floor front/rear orientation metadata is not fully confirmed",
-      "evidence": "front=unknown; rear=unknown",
-      "fix_hint": "若方位已確認，補 data-front-side 與 data-rear-side；未確認則保留 unknown。"
-    },
-    {
-      "level": "info",
-      "building_id": "A",
-      "file": "AbuildingView.html",
-      "floor_id": "floor-4",
       "code": "ENTRY_COUNT_UPPER_FLOOR",
       "message": "Expected exactly 1 stair or landing entry cell on RF, got 0",
       "evidence": "entry_count=0",
       "fix_hint": "上層若有樓梯或平台銜接格位，標示單一 data-entry=\"true\"。"
-    },
-    {
-      "level": "info",
-      "building_id": "B",
-      "file": "BbuildingView.html",
-      "floor_id": "floor-1",
-      "code": "ORIENTATION_UNRESOLVED",
-      "message": "Floor front/rear orientation metadata is not fully confirmed",
-      "evidence": "front=unknown; rear=unknown",
-      "fix_hint": "若方位已確認，補 data-front-side 與 data-rear-side；未確認則保留 unknown。"
-    },
-    {
-      "level": "info",
-      "building_id": "B",
-      "file": "BbuildingView.html",
-      "floor_id": "floor-2",
-      "code": "ORIENTATION_UNRESOLVED",
-      "message": "Floor front/rear orientation metadata is not fully confirmed",
-      "evidence": "front=unknown; rear=unknown",
-      "fix_hint": "若方位已確認，補 data-front-side 與 data-rear-side；未確認則保留 unknown。"
     },
     {
       "level": "info",
@@ -135,16 +75,6 @@
       "building_id": "B",
       "file": "BbuildingView.html",
       "floor_id": "floor-3",
-      "code": "ORIENTATION_UNRESOLVED",
-      "message": "Floor front/rear orientation metadata is not fully confirmed",
-      "evidence": "front=unknown; rear=unknown",
-      "fix_hint": "若方位已確認，補 data-front-side 與 data-rear-side；未確認則保留 unknown。"
-    },
-    {
-      "level": "info",
-      "building_id": "B",
-      "file": "BbuildingView.html",
-      "floor_id": "floor-3",
       "code": "ENTRY_COUNT_UPPER_FLOOR",
       "message": "Expected exactly 1 stair or landing entry cell on 3F, got 0",
       "evidence": "entry_count=0",
@@ -155,40 +85,10 @@
       "building_id": "B",
       "file": "BbuildingView.html",
       "floor_id": "floor-4",
-      "code": "ORIENTATION_UNRESOLVED",
-      "message": "Floor front/rear orientation metadata is not fully confirmed",
-      "evidence": "front=unknown; rear=unknown",
-      "fix_hint": "若方位已確認，補 data-front-side 與 data-rear-side；未確認則保留 unknown。"
-    },
-    {
-      "level": "info",
-      "building_id": "B",
-      "file": "BbuildingView.html",
-      "floor_id": "floor-4",
       "code": "ENTRY_COUNT_UPPER_FLOOR",
       "message": "Expected exactly 1 stair or landing entry cell on RF, got 0",
       "evidence": "entry_count=0",
       "fix_hint": "上層若有樓梯或平台銜接格位，標示單一 data-entry=\"true\"。"
-    },
-    {
-      "level": "info",
-      "building_id": "C",
-      "file": "CbuildingView.html",
-      "floor_id": "floor-1",
-      "code": "ORIENTATION_UNRESOLVED",
-      "message": "Floor front/rear orientation metadata is not fully confirmed",
-      "evidence": "front=unknown; rear=unknown",
-      "fix_hint": "若方位已確認，補 data-front-side 與 data-rear-side；未確認則保留 unknown。"
-    },
-    {
-      "level": "info",
-      "building_id": "C",
-      "file": "CbuildingView.html",
-      "floor_id": "floor-2",
-      "code": "ORIENTATION_UNRESOLVED",
-      "message": "Floor front/rear orientation metadata is not fully confirmed",
-      "evidence": "front=unknown; rear=unknown",
-      "fix_hint": "若方位已確認，補 data-front-side 與 data-rear-side；未確認則保留 unknown。"
     },
     {
       "level": "info",
@@ -205,10 +105,10 @@
       "building_id": "C",
       "file": "CbuildingView.html",
       "floor_id": "floor-3",
-      "code": "ORIENTATION_UNRESOLVED",
-      "message": "Floor front/rear orientation metadata is not fully confirmed",
-      "evidence": "front=unknown; rear=unknown",
-      "fix_hint": "若方位已確認，補 data-front-side 與 data-rear-side；未確認則保留 unknown。"
+      "code": "DAYLIGHT_EXEMPTION",
+      "message": "3F 主臥通風小陽台 is explicitly marked as not daylight-required",
+      "evidence": "cell-1; data-window-mm=0",
+      "fix_hint": "確認此空間仍有符合設計需求的通風、空調與消防排煙策略。"
     },
     {
       "level": "info",
@@ -219,16 +119,6 @@
       "message": "Expected exactly 1 stair or landing entry cell on 3F, got 0",
       "evidence": "entry_count=0",
       "fix_hint": "上層若有樓梯或平台銜接格位，標示單一 data-entry=\"true\"。"
-    },
-    {
-      "level": "info",
-      "building_id": "C",
-      "file": "CbuildingView.html",
-      "floor_id": "floor-4",
-      "code": "ORIENTATION_UNRESOLVED",
-      "message": "Floor front/rear orientation metadata is not fully confirmed",
-      "evidence": "front=unknown; rear=unknown",
-      "fix_hint": "若方位已確認，補 data-front-side 與 data-rear-side；未確認則保留 unknown。"
     },
     {
       "level": "info",

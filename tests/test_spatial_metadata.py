@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from lib.spatial_metadata import (
-    is_outdoor_like,
     nearest_declared_side,
     parse_cell_spatial,
     parse_floor_orientation,

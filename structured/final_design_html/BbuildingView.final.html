@@ -212,6 +212,8 @@ color:#cbd5e1; display:inline-flex; align-items:center; gap:3px; border:1px soli
 .badge.valve{ background:rgba(16,185,129,.15); border-color:rgba(16,185,129,.35); color:#a7f3d0; }
 .badge.stair{ background:rgba(16,185,129,.15); border-color:rgba(16,185,129,.35); color:#a7f3d0; }
 .badge.typhoon{ background:rgba(56,189,248,.15); border-color:rgba(56,189,248,.35); color:#7dd3fc; }
+.badge.ac{ background:rgba(45,212,191,.16); border-color:rgba(45,212,191,.35); color:#99f6e4; }        /* 冷氣室內機 */
+.badge.ac-out{ background:rgba(251,146,60,.16); border-color:rgba(251,146,60,.35); color:#fed7aa; }     /* 冷氣室外機 */
 .compass{
 display:flex; justify-content:center; align-items:center; gap:8px;
 margin-top:15px; padding:12px; background:rgba(0,0,0,.2); border-radius:10px;
@@ -302,6 +304,19 @@ border:1px solid rgba(255,255,255,.05);
 .strong-red{
 color:#ef4444; font-weight:900; font-size:1.1rem;
 }
+@media(max-width:640px){
+body{ padding:8px; overflow-x:hidden; }
+.header{ padding:20px 12px; border-radius:16px; margin-bottom:16px; }
+h1{ font-size:clamp(1.35rem,8vw,2rem); letter-spacing:0; overflow-wrap:anywhere; }
+.subtitle{ font-size:.82rem; overflow-wrap:anywhere; }
+.stats-bar{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; padding:8px; }
+.stat-item{ min-width:0; padding:10px 4px; }
+.floor-tabs{ justify-content:flex-start; overflow-x:auto; flex-wrap:nowrap; padding-bottom:4px; }
+.tab{ flex:0 0 auto; min-width:112px; }
+.floor-content{ grid-template-columns:1fr !important; min-width:0; }
+.plan-grid-visual{ max-width:100%; overflow-x:auto; }
+.details-panel,.spec-grid{ min-width:0; }
+}
 @media print{ body{ background:white; color:black; } .tab{ display:none; } .floor-plan{ display:block !important; } }
 </style>
 <style id="final-design-sync-style">
@@ -375,17 +390,17 @@ color:#ef4444; font-weight:900; font-size:1.1rem;
 <h2>Final Design Notes - Building B</h2>
 <p>This is a generated discussion copy. It keeps the canonical source layout and stores candidate analysis as metadata only.</p>
 <div class="final-sync-grid">
-<div class="final-sync-kpi"><b>ifc</b><span>Mode</span></div>
+<div class="final-sync-kpi"><b>draft</b><span>Mode</span></div>
 <div class="final-sync-kpi"><b>baseline</b><span>Export selection</span></div>
 <div class="final-sync-kpi"><b>PASS</b><span>Hard gate</span></div>
 <div class="final-sync-kpi"><b>4</b><span>Analyzed floors</span></div>
 <div class="final-sync-kpi"><b>24</b><span>Candidate assignments</span></div>
 <div class="final-sync-kpi"><b>0</b><span>Rejected visual moves</span></div>
 <div class="final-sync-kpi"><b>0</b><span>Applied visual moves</span></div>
-<div class="final-sync-kpi"><b>2/1</b><span>Warnings / Info</span></div>
+<div class="final-sync-kpi"><b>3/1</b><span>Warnings / Info</span></div>
 </div>
-<p>Report generated: 2026-07-10T02:29:19.483115+00:00 | hash: fb13bfaf0718</p>
-<ul><li>ARCH-MET-001: Concept architect metrics found advisory or missing-data items. (B:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work)</li><li>ARCH-MET-001: Concept architect metrics found advisory or missing-data items. (B:floor-1:shrine:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required)</li><li>ARCH-MET-001: Concept architect metrics found advisory or missing-data items. (B:floor-2:egress_distance_proxy - formal egress route and travel distance calculation remains professional work)</li></ul>
+<p>Report generated: 2026-07-23T07:14:25.175178+00:00 | hash: ca8615c2fa2a</p>
+<ul><li>ARCH-MET-001: Concept architect metrics found advisory or missing-data items. (B:floor-1:floor_area - floor dimensions are auto-derived; replace with surveyed/CAD geometry)</li><li>ARCH-MET-001: Concept architect metrics found advisory or missing-data items. (B:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work)</li><li>ARCH-MET-001: Concept architect metrics found advisory or missing-data items. (B:floor-1:shrine:daylight_factor - daylight estimate uses auto-derived geometry/openings)</li></ul>
 </section>
 <div class="header">
 <div class="building-badge">🛕 B棟 Building B（傳承宅）</div>
@@ -564,7 +579,7 @@ color:#ef4444; font-weight:900; font-size:1.1rem;
 </div>
 </div>
 <!-- 1F -->
-<div class="floor-plan active" data-floor-depth-mm="5300" data-floor-width-mm="11000" data-geometry-source="auto-grid-v1" data-north-deg="0" id="floor-1">
+<div class="floor-plan active" data-floor-depth-mm="5300" data-floor-width-mm="11000" data-front-side="top" data-geometry-source="auto-grid-v1" data-north-deg="0" data-rear-side="bottom" id="floor-1">
 <div class="floor-header">
 <div class="floor-title">
 <div class="floor-title-icon">1F</div>
@@ -581,12 +596,12 @@ color:#ef4444; font-weight:900; font-size:1.1rem;
 <div class="dir-item">🔒 後：儲藏+水路</div>
 </div>
 </div><div class="final-floor-note" data-final-building-id="B" data-final-floor-id="floor-1">
-<p><strong>Candidate selection:</strong> baseline | total=62.7 | circulation=56.4 | daylight=51.6 | mep=78.6 | utilization=100.0</p>
+<p><strong>Candidate selection:</strong> baseline | total=63.3 | circulation=56.4 | daylight=53.6 | mep=78.6 | utilization=100.0</p>
 <p><strong>Canonical snapshot:</strong> visual room names, onclick targets, geometry, doors and windows are kept from the source HTML.</p>
 <p><strong>Candidate analysis:</strong> 7 matched / 0 rejected / 0 applied to visible cells.</p>
 <p>Expert weighting agrees with selected `baseline`.</p>
 <ul class="final-candidate-mismatch"><li>No candidate/canonical room-slot mismatch was found for this floor.</li></ul>
-<ul><li>ARCH-MET-001: Concept architect metrics found advisory or missing-data items. (B:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work)</li><li>ARCH-MET-001: Concept architect metrics found advisory or missing-data items. (B:floor-1:shrine:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required)</li><li>ARCH: B:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work</li></ul>
+<ul><li>ARCH-MET-001: Concept architect metrics found advisory or missing-data items. (B:floor-1:floor_area - floor dimensions are auto-derived; replace with surveyed/CAD geometry)</li><li>ARCH-MET-001: Concept architect metrics found advisory or missing-data items. (B:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work)</li><li>ARCH-MET-001: Concept architect metrics found advisory or missing-data items. (B:floor-1:shrine:daylight_factor - daylight estimate uses auto-derived geometry/openings)</li></ul>
 </div>
 <div class="floor-content">
 <div class="visual-plan">
@@ -608,7 +623,7 @@ color:#ef4444; font-weight:900; font-size:1.1rem;
 </div>
 </div>
 <div class="plan-row" data-row-h-mm="1300" style="grid-template-columns:1fr;">
-<div class="plan-cell shrine" data-door-mm="1000" data-entry="true" data-h-mm="1300" data-material="tile" data-room-role="shrine" data-w-mm="11000" data-window-mm="900" data-x-mm="0" data-y-mm="1200" onclick="highlightRoom('shrine', this)">
+<div class="plan-cell shrine" data-door-mm="1000" data-entry="true" data-h-mm="1300" data-material="tile" data-room-role="shrine" data-w-mm="11000" data-window-mm="3100" data-x-mm="0" data-y-mm="1200" onclick="highlightRoom('shrine', this)">
 <span class="cell-icon">🛕</span>
 <span class="cell-name">神明廳 + 玄關</span>
 <span class="cell-size">核心傳承空間</span>
@@ -664,6 +679,7 @@ color:#ef4444; font-weight:900; font-size:1.1rem;
 <span class="badge valve">B-V1 總閥</span>
 <span class="badge water">B-F1 濾水</span>
 <span class="badge water">B-T1 抽水</span>
+<span class="badge ac-out">🌀 室外機（北陰面・低樓層短管）</span>
 </div>
 </div>
 </div>
@@ -899,7 +915,7 @@ B 棟擁有獨立水表/水塔/加壓系統，與 A、C 棟水路互不連通，
 </div>
 </div>
 <!-- 2F -->
-<div class="floor-plan" data-floor-depth-mm="5400" data-floor-width-mm="11000" data-geometry-source="auto-grid-v1" data-north-deg="0" id="floor-2">
+<div class="floor-plan" data-floor-depth-mm="5400" data-floor-width-mm="11000" data-front-side="top" data-geometry-source="auto-grid-v1" data-north-deg="0" data-rear-side="bottom" id="floor-2">
 <div class="floor-header">
 <div class="floor-title">
 <div class="floor-title-icon">2F</div>
@@ -915,25 +931,26 @@ B 棟擁有獨立水表/水塔/加壓系統，與 A、C 棟水路互不連通，
 <div class="dir-item">🌐 LAN×6</div>
 </div>
 </div><div class="final-floor-note" data-final-building-id="B" data-final-floor-id="floor-2">
-<p><strong>Candidate selection:</strong> baseline | total=60.4 | circulation=62.7 | daylight=56.2 | mep=61.7 | utilization=100.0</p>
+<p><strong>Candidate selection:</strong> baseline | total=62.9 | circulation=62.7 | daylight=58.8 | mep=66.7 | utilization=100.0</p>
 <p><strong>Canonical snapshot:</strong> visual room names, onclick targets, geometry, doors and windows are kept from the source HTML.</p>
 <p><strong>Candidate analysis:</strong> 6 matched / 0 rejected / 0 applied to visible cells.</p>
-<p>Expert weighting prefers `circulation`; this copy follows export selection `baseline`.</p>
+<p>Expert weighting agrees with selected `baseline`.</p>
 <ul class="final-candidate-mismatch"><li>No candidate/canonical room-slot mismatch was found for this floor.</li></ul>
-<ul><li>ARCH-MET-001: Concept architect metrics found advisory or missing-data items. (B:floor-2:egress_distance_proxy - formal egress route and travel distance calculation remains professional work)</li><li>ARCH: B:floor-2:egress_distance_proxy - formal egress route and travel distance calculation remains professional work</li><li>ARCH: B:floor-2:living2:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required</li></ul>
+<ul><li>ARCH: B:floor-2:floor_area - floor dimensions are auto-derived; replace with surveyed/CAD geometry</li><li>ARCH: B:floor-2:egress_distance_proxy - formal egress route and travel distance calculation remains professional work</li><li>ARCH: B:floor-2:living2:daylight_factor - daylight estimate uses auto-derived geometry/openings</li></ul>
 </div>
 <div class="floor-content">
 <div class="visual-plan">
 <div class="plan-header"><div class="plan-title">📐 2F 空間配置圖</div></div>
 <div class="plan-grid-visual">
 <div class="plan-row" data-row-h-mm="1300" style="grid-template-columns:1fr;">
-<div class="plan-cell" data-door-mm="900" data-h-mm="1300" data-material="wood+paint" data-w-mm="11000" data-window-mm="1800" data-x-mm="0" data-y-mm="0" onclick="highlightRoom('living2', this)" style="padding:20px;">
+<div class="plan-cell" data-door-mm="900" data-h-mm="1300" data-material="wood+paint" data-w-mm="11000" data-window-mm="3100" data-x-mm="0" data-y-mm="0" onclick="highlightRoom('living2', this)" style="padding:20px;">
 <span class="cell-icon">🛋️</span>
 <span class="cell-name">家庭大客廳</span>
 <div class="io-badges">
 <span class="badge tv">📺 TV/NAS</span>
 <span class="badge ap">📡 AP×1</span>
 <span class="badge net">🌐 LAN×3</span>
+<span class="badge ac">🌬️ 室內機 1.8噸・順長軸吹</span>
 </div>
 </div>
 </div>
@@ -943,7 +960,7 @@ B 棟擁有獨立水表/水塔/加壓系統，與 A、C 棟水路互不連通，
 <span class="cell-name">樓梯間</span>
 <span class="cell-size">⬇️1F ⬆️3F</span>
 </div>
-<div class="plan-cell" data-door-mm="900" data-h-mm="1100" data-material="paint+default" data-w-mm="3667" data-window-mm="1000" data-x-mm="3667" data-y-mm="1300" onclick="highlightRoom('bar2', this)">
+<div class="plan-cell" data-door-mm="900" data-h-mm="1100" data-material="paint+default" data-w-mm="3667" data-window-mm="1100" data-x-mm="3667" data-y-mm="1300" onclick="highlightRoom('bar2', this)">
 <span class="cell-icon">☕</span>
 <span class="cell-name">茶水吧</span>
 <div class="io-badges">
@@ -959,20 +976,20 @@ B 棟擁有獨立水表/水塔/加壓系統，與 A、C 棟水路互不連通，
 </div>
 </div>
 <div class="plan-row" data-row-h-mm="1300" style="grid-template-columns:1fr;">
-<div class="plan-cell" data-door-mm="900" data-h-mm="1300" data-material="wood+paint" data-w-mm="11000" data-window-mm="1200" data-x-mm="0" data-y-mm="2400" onclick="highlightRoom('master2', this)" style="padding:20px;">
+<div class="plan-cell" data-door-mm="900" data-h-mm="1000" data-material="wood+paint" data-w-mm="11000" data-window-mm="2600" data-x-mm="0" data-y-mm="2400" onclick="highlightRoom('master2', this)" style="padding:20px;">
 <span class="cell-icon">👑</span>
 <span class="cell-name">主臥套房</span>
 <div class="io-badges">
 <span class="badge net">🌐 LAN×2</span>
 <span class="badge pwr">🔌 床頭雙切</span>
-<span class="badge pwr">❄️ AC 1.8噸</span>
+<span class="badge ac">🌬️ 室內機 1.8噸・床頭不直吹</span>
 </div>
 </div>
 </div>
 <div class="plan-row" data-row-h-mm="1700" style="grid-template-columns:1fr;">
-<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-w-mm="11000" data-window-mm="0" data-x-mm="0" data-y-mm="3700" onclick="highlightRoom('balcony2', this)">
+<div class="plan-cell outdoor" data-compliance-status="architect-review-required" data-door-mm="900" data-facing="unknown" data-h-mm="2000" data-landscape-balcony="true" data-lowered-slab="true" data-material="concrete+drain+soil" data-outdoor-role="kaohsiung-house-balcony" data-planting-ratio="0.34" data-w-mm="5000" data-window-mm="0" data-x-mm="6000" data-y-mm="3400" data-zone="unknown" onclick="highlightRoom('balcony2', this)">
 <span class="cell-icon">🌿</span>
-<span class="cell-name">後陽台/立管</span>
+<span class="cell-name">2F 高雄厝景觀陽臺（位置待道路側確認）</span>
 </div>
 </div>
 </div>
@@ -999,7 +1016,7 @@ B 棟擁有獨立水表/水塔/加壓系統，與 A、C 棟水路互不連通，
 <li><strong>電視牆：</strong>LAN×2（TV/串流盒）+ 1.25" 空管（HDMI/光纖音訊）</li>
 <li><strong>沙發側：</strong>LAN×1（筆電/遊戲機備用）+ 雙插座×2 組</li>
 <li><strong>AP 位置：</strong>天花板中央吸頂 AP（PoE），覆蓋 2F 全層</li>
-<li><strong>空調：</strong>分離式 1.8~2.0 噸，室外機預留 RF 或側牆位置</li>
+<li><strong>空調：</strong>分離式 1.8~2.0 噸；室外機集中 RF 北側陰面、避西曬、留散熱間距防熱回流、冷媒管就近縮短；冷氣排水 3/4"</li>
 <li><strong>無障礙衛浴求救鈴聯動：</strong>聲光警報器安裝於客廳明顯處</li>
 </div>
 <div class="tag tag-net">
@@ -1033,7 +1050,7 @@ TV 牆建議預埋 1.25" 空管方便日後升級 HDMI 2.1。
 <li><strong>熱水保溫：</strong>熱水管全程 ≥15mm 保溫</li>
 </div>
 </div>
-<div class="room" data-h-mm="1300" data-target-cell="slot-5" data-w-mm="11000" data-x-mm="0" data-y-mm="2400" id="room-master2">
+<div class="room" data-h-mm="1000" data-target-cell="slot-5" data-w-mm="11000" data-x-mm="0" data-y-mm="2400" id="room-master2">
 <div class="room-head">
 <div class="room-name"><div class="room-name-icon">👑</div> 主臥套房</div>
 <div class="room-area">含更衣+主衛</div>
@@ -1046,9 +1063,9 @@ TV 牆建議預埋 1.25" 空管方便日後升級 HDMI 2.1。
 <li><strong>熱水管路：</strong>全程 ≥15mm 保溫，回水循環完工即啟用（回水管/循環泵電源列驗收）</li>
 </div>
 </div>
-<div class="room" data-h-mm="1700" data-target-cell="slot-6" data-w-mm="11000" data-x-mm="0" data-y-mm="3700" id="room-balcony2">
+<div class="room" data-h-mm="2000" data-target-cell="slot-6" data-w-mm="5000" data-x-mm="6000" data-y-mm="3400" id="room-balcony2">
 <div class="room-head">
-<div class="room-name"><div class="room-name-icon">🌿</div> 後陽台/立管區</div>
+<div class="room-name"><div class="room-name-icon">🌿</div> 2F 高雄厝景觀陽臺（位置待道路側確認）</div>
 </div>
 <div class="room-details">
 <li><strong>立管通過：</strong>弱電立管（1F→RF）+ 給排水立管</li>
@@ -1059,7 +1076,7 @@ TV 牆建議預埋 1.25" 空管方便日後升級 HDMI 2.1。
 </div>
 </div>
 <!-- 3F -->
-<div class="floor-plan" data-floor-depth-mm="5300" data-floor-width-mm="11000" data-geometry-source="auto-grid-v1" data-north-deg="0" id="floor-3">
+<div class="floor-plan" data-floor-depth-mm="5300" data-floor-width-mm="11000" data-front-side="top" data-geometry-source="auto-grid-v1" data-north-deg="0" data-rear-side="bottom" id="floor-3">
 <div class="floor-header">
 <div class="floor-title">
 <div class="floor-title-icon">3F</div>
@@ -1072,24 +1089,24 @@ KTV/影音專區｜彈性空間｜戶外機能｜<strong>熱水保溫 ≥15mm</s
 </div>
 <div class="direction-badge">
 <div class="dir-item">🎤 KTV 專區</div>
-<div class="dir-item">☀️ 前院大露台</div>
+<div class="dir-item">🛋️ 3F 前側彈性室內區</div>
 </div>
 </div><div class="final-floor-note" data-final-building-id="B" data-final-floor-id="floor-3">
-<p><strong>Candidate selection:</strong> baseline | total=55.6 | circulation=57.7 | daylight=55.8 | mep=53.3 | utilization=100.0</p>
+<p><strong>Candidate selection:</strong> baseline | total=53.9 | circulation=57.7 | daylight=50.2 | mep=53.3 | utilization=100.0</p>
 <p><strong>Canonical snapshot:</strong> visual room names, onclick targets, geometry, doors and windows are kept from the source HTML.</p>
 <p><strong>Candidate analysis:</strong> 6 matched / 0 rejected / 0 applied to visible cells.</p>
-<p>Expert weighting prefers `circulation`; this copy follows export selection `baseline`.</p>
+<p>Expert weighting agrees with selected `baseline`.</p>
 <ul class="final-candidate-mismatch"><li>No candidate/canonical room-slot mismatch was found for this floor.</li></ul>
-<ul><li>ARCH: B:floor-3:egress_distance_proxy - formal egress route and travel distance calculation remains professional work</li></ul>
+<ul><li>No floor-specific warning was found in the latest report.</li></ul>
 </div>
 <div class="floor-content">
 <div class="visual-plan">
 <div class="plan-header"><div class="plan-title">📐 3F 空間配置圖</div></div>
 <div class="plan-grid-visual">
 <div class="plan-row" data-row-h-mm="1200" style="grid-template-columns:1fr;">
-<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1200" data-material="concrete+drain" data-w-mm="11000" data-window-mm="0" data-x-mm="0" data-y-mm="0" onclick="highlightRoom('terrace3', this)">
+<div class="plan-cell" data-door-mm="900" data-h-mm="1200" data-material="wood+paint" data-w-mm="11000" data-window-mm="1800" data-x-mm="0" data-y-mm="0" onclick="highlightRoom('terrace3', this)">
 <span class="cell-icon">☀️</span>
-<span class="cell-name">前院大露台</span>
+<span class="cell-name">3F 前側彈性室內區</span>
 <div class="io-badges">
 <span class="badge water">🚿 戶外龍頭</span>
 <span class="badge pwr">⚡ 防雨插座</span>
@@ -1102,18 +1119,19 @@ KTV/影音專區｜彈性空間｜戶外機能｜<strong>熱水保溫 ≥15mm</s
 <span class="cell-name">樓梯間</span>
 <span class="cell-size">⬇️2F ⬆️RF</span>
 </div>
-<div class="plan-cell" data-door-mm="900" data-h-mm="1300" data-material="paint+default" data-w-mm="5500" data-window-mm="1000" data-x-mm="5500" data-y-mm="1200" onclick="highlightRoom('ktv3', this)" style="border-color:#fbbf24; background:rgba(251,191,36,.1);">
+<div class="plan-cell" data-door-mm="900" data-h-mm="1300" data-material="paint+default" data-w-mm="5500" data-window-mm="1700" data-x-mm="5500" data-y-mm="1200" onclick="highlightRoom('ktv3', this)" style="border-color:#fbbf24; background:rgba(251,191,36,.1);">
 <span class="cell-icon">🎤</span>
 <span class="cell-name">多功能娛樂室</span>
 <div class="io-badges">
 <span class="badge pwr">⚡ 器材專迴</span>
 <span class="badge net">🌐 LAN×4</span>
 <span class="badge ap">📡 AP×1</span>
+<span class="badge ac">🌬️ 室內機 1.2噸</span>
 </div>
 </div>
 </div>
 <div class="plan-row" data-row-h-mm="1100" style="grid-template-columns:1fr 1fr;">
-<div class="plan-cell wet" data-door-mm="800" data-h-mm="1100" data-material="tile+waterproof" data-w-mm="5500" data-window-mm="600" data-x-mm="0" data-y-mm="2500" onclick="highlightRoom('bath3', this)">
+<div class="plan-cell wet" data-door-mm="800" data-h-mm="2800" data-material="tile+waterproof" data-w-mm="6600" data-window-mm="600" data-x-mm="0" data-y-mm="2500" onclick="highlightRoom('bath3', this)">
 <span class="cell-icon">🚿</span>
 <span class="cell-name">3F 衛浴</span>
 <div class="io-badges">
@@ -1121,19 +1139,19 @@ KTV/影音專區｜彈性空間｜戶外機能｜<strong>熱水保溫 ≥15mm</s
 <span class="badge hot">保溫15mm</span>
 </div>
 </div>
-<div class="plan-cell" data-door-mm="900" data-h-mm="1100" data-material="wood+paint" data-w-mm="5500" data-window-mm="1200" data-x-mm="5500" data-y-mm="2500" onclick="highlightRoom('guest3', this)">
+<div class="plan-cell" data-door-mm="900" data-h-mm="1800" data-material="wood+paint" data-w-mm="4400" data-window-mm="1900" data-x-mm="6600" data-y-mm="2500" onclick="highlightRoom('guest3', this)">
 <span class="cell-icon">🛏️</span>
 <span class="cell-name">後客房</span>
 <div class="io-badges">
 <span class="badge net">🌐 LAN×1</span>
-<span class="badge pwr">❄️ AC</span>
+<span class="badge ac">🌬️ 室內機 0.9噸・床頭不直吹</span>
 </div>
 </div>
 </div>
 <div class="plan-row" data-row-h-mm="1700" style="grid-template-columns:1fr;">
-<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1700" data-material="concrete+paint" data-w-mm="11000" data-window-mm="600" data-x-mm="0" data-y-mm="3600" onclick="highlightRoom('ladder3', this)">
+<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1000" data-material="concrete+paint" data-outdoor-role="service-yard" data-w-mm="4400" data-window-mm="600" data-x-mm="6600" data-y-mm="4300" onclick="highlightRoom('ladder3', this)">
 <span class="cell-icon">🪜</span>
-<span class="cell-name">後陽台 + 爬梯（通RF）</span>
+<span class="cell-name">3F 後側工作小陽台＋爬梯（通RF）</span>
 </div>
 </div>
 </div>
@@ -1153,7 +1171,7 @@ KTV/影音專區｜彈性空間｜戶外機能｜<strong>熱水保溫 ≥15mm</s
 </div>
 <div class="room" data-h-mm="1200" data-target-cell="slot-1" data-w-mm="11000" data-x-mm="0" data-y-mm="0" id="room-terrace3">
 <div class="room-head">
-<div class="room-name"><div class="room-name-icon">☀️</div> 前院大露台</div>
+<div class="room-name"><div class="room-name-icon">🛋️</div> 3F 前側彈性室內區</div>
 <div class="room-area">戶外空間</div>
 </div>
 <div class="room-details">
@@ -1185,7 +1203,7 @@ KTV/影音專區｜彈性空間｜戶外機能｜<strong>熱水保溫 ≥15mm</s
 投影幕電動升降需預留電源與控制線。
 </div>
 </div>
-<div class="room" data-h-mm="1100" data-target-cell="slot-4" data-w-mm="5500" data-x-mm="0" data-y-mm="2500" id="room-bath3">
+<div class="room" data-h-mm="2800" data-target-cell="slot-4" data-w-mm="6600" data-x-mm="0" data-y-mm="2500" id="room-bath3">
 <div class="room-head">
 <div class="room-name"><div class="room-name-icon">🚿</div> 3F 衛浴</div>
 </div>
@@ -1199,7 +1217,7 @@ KTV/影音專區｜彈性空間｜戶外機能｜<strong>熱水保溫 ≥15mm</s
 <li><strong>回水循環：</strong>完工即啟用循環泵，3F 出水時間目標 &lt;10 秒；若超時評估熱水幹管升級 1"</li>
 </div>
 </div>
-<div class="room" data-h-mm="1100" data-target-cell="slot-5" data-w-mm="5500" data-x-mm="5500" data-y-mm="2500" id="room-guest3">
+<div class="room" data-h-mm="1800" data-target-cell="slot-5" data-w-mm="4400" data-x-mm="6600" data-y-mm="2500" id="room-guest3">
 <div class="room-head">
 <div class="room-name"><div class="room-name-icon">🛏️</div> 後客房</div>
 </div>
@@ -1209,9 +1227,9 @@ KTV/影音專區｜彈性空間｜戶外機能｜<strong>熱水保溫 ≥15mm</s
 <li><strong>空調：</strong>分離式 0.8~1.0 噸</li>
 </div>
 </div>
-<div class="room" data-h-mm="1700" data-target-cell="slot-6" data-w-mm="11000" data-x-mm="0" data-y-mm="3600" id="room-ladder3">
+<div class="room" data-h-mm="1000" data-target-cell="slot-6" data-w-mm="4400" data-x-mm="6600" data-y-mm="4300" id="room-ladder3">
 <div class="room-head">
-<div class="room-name"><div class="room-name-icon">🪜</div> 後陽台與爬梯</div>
+<div class="room-name"><div class="room-name-icon">🪜</div> 3F 後側工作小陽台與爬梯</div>
 </div>
 <div class="room-details">
 <li><strong>立管：</strong>B 棟弱電立管（1F→RF）經此處通往屋頂</li>
@@ -1223,7 +1241,7 @@ KTV/影音專區｜彈性空間｜戶外機能｜<strong>熱水保溫 ≥15mm</s
 </div>
 </div>
 <!-- RF -->
-<div class="floor-plan" data-floor-depth-mm="5400" data-floor-width-mm="11000" data-geometry-source="auto-grid-v1" data-north-deg="0" id="floor-4">
+<div class="floor-plan" data-floor-depth-mm="5400" data-floor-width-mm="11000" data-front-side="top" data-geometry-source="auto-grid-v1" data-north-deg="0" data-rear-side="bottom" id="floor-4">
 <div class="floor-header">
 <div class="floor-title">
 <div class="floor-title-icon">RF</div>
@@ -1243,7 +1261,7 @@ KTV/影音專區｜彈性空間｜戶外機能｜<strong>熱水保溫 ≥15mm</s
 <p><strong>Candidate selection:</strong> baseline | total=58.6 | circulation=53.0 | daylight=57.0 | mep=65.5 | utilization=100.0</p>
 <p><strong>Canonical snapshot:</strong> visual room names, onclick targets, geometry, doors and windows are kept from the source HTML.</p>
 <p><strong>Candidate analysis:</strong> 5 matched / 0 rejected / 0 applied to visible cells.</p>
-<p>Expert weighting prefers `daylight`; this copy follows export selection `baseline`.</p>
+<p>Expert weighting agrees with selected `baseline`.</p>
 <ul class="final-candidate-mismatch"><li>No candidate/canonical room-slot mismatch was found for this floor.</li></ul>
 <ul><li>No floor-specific warning was found in the latest report.</li></ul>
 </div>
@@ -1299,6 +1317,8 @@ KTV/影音專區｜彈性空間｜戶外機能｜<strong>熱水保溫 ≥15mm</s
 <span class="cell-size">預留孔：未來太陽能擴充</span>
 <div class="io-badges">
 <span class="badge pwr">預留管路→1F電表</span>
+<span class="badge ac-out">🌀 室外機集中區×3（北陰面・留散熱間距・避熱回流）</span>
+<span class="badge water">💧 冷氣排水 3/4"</span>
 </div>
 </div>
 </div>
@@ -1952,13 +1972,13 @@ function highlightRoom(roomId, el) {
 <script id="house-design-final-sync" type="application/json">{
   "schema_version": "final-html-sync-v2",
   "sync_mode": "canonical_snapshot",
-  "generated_at": "2026-07-10T02:29:21.612193+00:00",
+  "generated_at": "2026-07-23T07:14:27.234585+00:00",
   "building_id": "B",
-  "mode": "ifc",
+  "mode": "draft",
   "selection": "baseline",
   "source_file": "BbuildingView.html",
-  "report_hash": "fb13bfaf0718ea0a1a2776e386f0148698a170f58d188547520dd795e45daff1",
-  "report_generated_at": "2026-07-10T02:29:19.483115+00:00",
+  "report_hash": "ca8615c2fa2af5056e91e5603cc0fadbfa1c8e57dedb6979349016b37d250113",
+  "report_generated_at": "2026-07-23T07:14:25.175178+00:00",
   "updated_floor_count": 4,
   "analyzed_floor_count": 4,
   "candidate_assignment_count": 24,
@@ -1972,10 +1992,10 @@ function highlightRoom(roomId, el) {
       "selected_candidate_id": "baseline",
       "scores": {
         "circulation": 56.43,
-        "daylight": 51.63,
+        "daylight": 53.62,
         "mep": 78.57,
         "utilization": 100.0,
-        "total": 62.74,
+        "total": 63.34,
         "penalty_unplaced_rooms": 0.0
       },
       "candidate_assignment_count": 7,
@@ -2011,7 +2031,7 @@ function highlightRoom(roomId, el) {
           "candidate_room_name": "神 神明廳 (核心)",
           "dimension_fit": {
             "circulation": 0.5,
-            "daylight": -0.3723,
+            "daylight": -0.09274999999999994,
             "mep": 0.0
           }
         },
@@ -2098,16 +2118,16 @@ function highlightRoom(roomId, el) {
       ],
       "rejected_assignments": [],
       "expert_best": "baseline",
-      "pipeline_best": "circulation",
+      "pipeline_best": "baseline",
       "orientation": {
-        "front_side": "unknown",
-        "rear_side": "unknown",
+        "front_side": "top",
+        "rear_side": "bottom",
         "site_orientation_note": ""
       },
       "spatial_summary": {
         "orientation": {
-          "front_side": "unknown",
-          "rear_side": "unknown",
+          "front_side": "top",
+          "rear_side": "bottom",
           "site_orientation_note": ""
         },
         "cell_spatial": [
@@ -2212,10 +2232,12 @@ function highlightRoom(roomId, el) {
         ]
       },
       "floor_issues": [
+        "ARCH-MET-001: Concept architect metrics found advisory or missing-data items. (B:floor-1:floor_area - floor dimensions are auto-derived; replace with surveyed/CAD geometry)",
         "ARCH-MET-001: Concept architect metrics found advisory or missing-data items. (B:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work)",
-        "ARCH-MET-001: Concept architect metrics found advisory or missing-data items. (B:floor-1:shrine:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required)",
+        "ARCH-MET-001: Concept architect metrics found advisory or missing-data items. (B:floor-1:shrine:daylight_factor - daylight estimate uses auto-derived geometry/openings)",
+        "ARCH: B:floor-1:floor_area - floor dimensions are auto-derived; replace with surveyed/CAD geometry",
         "ARCH: B:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
-        "ARCH: B:floor-1:shrine:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required"
+        "ARCH: B:floor-1:shrine:daylight_factor - daylight estimate uses auto-derived geometry/openings"
       ]
     },
     {
@@ -2224,10 +2246,10 @@ function highlightRoom(roomId, el) {
       "selected_candidate_id": "baseline",
       "scores": {
         "circulation": 62.67,
-        "daylight": 56.24,
-        "mep": 61.67,
+        "daylight": 58.83,
+        "mep": 66.67,
         "utilization": 100.0,
-        "total": 60.39,
+        "total": 62.92,
         "penalty_unplaced_rooms": 0.0
       },
       "candidate_assignment_count": 6,
@@ -2247,7 +2269,7 @@ function highlightRoom(roomId, el) {
           "candidate_room_name": "家庭大客廳",
           "dimension_fit": {
             "circulation": 0.6,
-            "daylight": 0.0555,
+            "daylight": 0.9197500000000001,
             "mep": 0.0
           }
         },
@@ -2279,7 +2301,7 @@ function highlightRoom(roomId, el) {
           "candidate_room_name": "茶水吧/梯廳",
           "dimension_fit": {
             "circulation": 0.36,
-            "daylight": 0.621,
+            "daylight": -0.07099999999999995,
             "mep": 1.0
           }
         },
@@ -2311,7 +2333,7 @@ function highlightRoom(roomId, el) {
           "candidate_room_name": "主臥套房",
           "dimension_fit": {
             "circulation": 0.5599999999999999,
-            "daylight": -0.2273,
+            "daylight": -0.08912499999999995,
             "mep": 0.0
           }
         },
@@ -2320,30 +2342,30 @@ function highlightRoom(roomId, el) {
           "status": "matched",
           "reason": "same_room_target",
           "canonical_room_target": "balcony2",
-          "canonical_slot_name": "後陽台/立管",
+          "canonical_slot_name": "2F 高雄厝景觀陽臺（位置待道路側確認）",
           "canonical_cell_size": "",
           "candidate_room_uid": "B:floor-2:balcony2",
           "candidate_room_local_id": "balcony2",
-          "candidate_room_name": "後陽台/立管區",
+          "candidate_room_name": "2F 高雄厝景觀陽臺（位置待道路側確認）",
           "dimension_fit": {
             "circulation": 0.0,
             "daylight": -0.1,
-            "mep": -0.6
+            "mep": 0.0
           }
         }
       ],
       "rejected_assignments": [],
-      "expert_best": "circulation",
-      "pipeline_best": "circulation",
+      "expert_best": "baseline",
+      "pipeline_best": "baseline",
       "orientation": {
-        "front_side": "unknown",
-        "rear_side": "unknown",
+        "front_side": "top",
+        "rear_side": "bottom",
         "site_orientation_note": ""
       },
       "spatial_summary": {
         "orientation": {
-          "front_side": "unknown",
-          "rear_side": "unknown",
+          "front_side": "top",
+          "rear_side": "bottom",
           "site_orientation_note": ""
         },
         "cell_spatial": [
@@ -2419,12 +2441,12 @@ function highlightRoom(roomId, el) {
           },
           {
             "order": 6,
-            "name": "後陽台/立管",
+            "name": "2F 高雄厝景觀陽臺（位置待道路側確認）",
             "target_room_uid": "B:floor-2:balcony2",
             "spatial": {
               "zone": "unknown",
               "facing": "unknown",
-              "outdoor_role": "none",
+              "outdoor_role": "kaohsiung-house-balcony",
               "is_outdoor_like": true,
               "room_role": "unknown",
               "is_accessible": false,
@@ -2434,11 +2456,10 @@ function highlightRoom(roomId, el) {
         ]
       },
       "floor_issues": [
-        "ARCH-MET-001: Concept architect metrics found advisory or missing-data items. (B:floor-2:egress_distance_proxy - formal egress route and travel distance calculation remains professional work)",
+        "ARCH: B:floor-2:floor_area - floor dimensions are auto-derived; replace with surveyed/CAD geometry",
         "ARCH: B:floor-2:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
-        "ARCH: B:floor-2:living2:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-        "ARCH: B:floor-2:bar2:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-        "ARCH: B:floor-2:master2:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required"
+        "ARCH: B:floor-2:living2:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+        "ARCH: B:floor-2:bar2:daylight_factor - daylight estimate uses auto-derived geometry/openings"
       ]
     },
     {
@@ -2447,10 +2468,10 @@ function highlightRoom(roomId, el) {
       "selected_candidate_id": "baseline",
       "scores": {
         "circulation": 57.67,
-        "daylight": 55.79,
+        "daylight": 50.18,
         "mep": 53.33,
         "utilization": 100.0,
-        "total": 55.59,
+        "total": 53.9,
         "penalty_unplaced_rooms": 0.0
       },
       "candidate_assignment_count": 6,
@@ -2463,11 +2484,11 @@ function highlightRoom(roomId, el) {
           "status": "matched",
           "reason": "same_room_target",
           "canonical_room_target": "terrace3",
-          "canonical_slot_name": "前院大露台",
+          "canonical_slot_name": "3F 前側彈性室內區",
           "canonical_cell_size": "",
           "candidate_room_uid": "B:floor-3:terrace3",
           "candidate_room_local_id": "terrace3",
-          "candidate_room_name": "前院大露台",
+          "candidate_room_name": "3F 前側彈性室內區",
           "dimension_fit": {
             "circulation": 0.0,
             "daylight": -0.1,
@@ -2502,7 +2523,7 @@ function highlightRoom(roomId, el) {
           "candidate_room_name": "多功能娛樂室（KTV/劇院）",
           "dimension_fit": {
             "circulation": 0.36,
-            "daylight": 0.0845,
+            "daylight": -0.08549999999999996,
             "mep": 0.0
           }
         },
@@ -2534,7 +2555,7 @@ function highlightRoom(roomId, el) {
           "candidate_room_name": "後客房",
           "dimension_fit": {
             "circulation": 0.5599999999999999,
-            "daylight": 0.4107,
+            "daylight": -0.09274999999999994,
             "mep": 0.0
           }
         },
@@ -2543,11 +2564,11 @@ function highlightRoom(roomId, el) {
           "status": "matched",
           "reason": "same_room_target",
           "canonical_room_target": "ladder3",
-          "canonical_slot_name": "後陽台 + 爬梯（通RF）",
+          "canonical_slot_name": "3F 後側工作小陽台＋爬梯（通RF）",
           "canonical_cell_size": "",
           "candidate_room_uid": "B:floor-3:ladder3",
           "candidate_room_local_id": "ladder3",
-          "candidate_room_name": "後陽台與爬梯",
+          "candidate_room_name": "3F 後側工作小陽台與爬梯",
           "dimension_fit": {
             "circulation": 0.0,
             "daylight": -0.1,
@@ -2556,29 +2577,29 @@ function highlightRoom(roomId, el) {
         }
       ],
       "rejected_assignments": [],
-      "expert_best": "circulation",
-      "pipeline_best": "circulation",
+      "expert_best": "baseline",
+      "pipeline_best": "baseline",
       "orientation": {
-        "front_side": "unknown",
-        "rear_side": "unknown",
+        "front_side": "top",
+        "rear_side": "bottom",
         "site_orientation_note": ""
       },
       "spatial_summary": {
         "orientation": {
-          "front_side": "unknown",
-          "rear_side": "unknown",
+          "front_side": "top",
+          "rear_side": "bottom",
           "site_orientation_note": ""
         },
         "cell_spatial": [
           {
             "order": 1,
-            "name": "前院大露台",
+            "name": "3F 前側彈性室內區",
             "target_room_uid": "B:floor-3:terrace3",
             "spatial": {
               "zone": "unknown",
               "facing": "unknown",
               "outdoor_role": "none",
-              "is_outdoor_like": true,
+              "is_outdoor_like": false,
               "room_role": "unknown",
               "is_accessible": false,
               "daylight_required": null
@@ -2642,12 +2663,12 @@ function highlightRoom(roomId, el) {
           },
           {
             "order": 6,
-            "name": "後陽台 + 爬梯（通RF）",
+            "name": "3F 後側工作小陽台＋爬梯（通RF）",
             "target_room_uid": "B:floor-3:ladder3",
             "spatial": {
               "zone": "unknown",
               "facing": "unknown",
-              "outdoor_role": "none",
+              "outdoor_role": "service-yard",
               "is_outdoor_like": true,
               "room_role": "unknown",
               "is_accessible": false,
@@ -2656,9 +2677,7 @@ function highlightRoom(roomId, el) {
           }
         ]
       },
-      "floor_issues": [
-        "ARCH: B:floor-3:egress_distance_proxy - formal egress route and travel distance calculation remains professional work"
-      ]
+      "floor_issues": []
     },
     {
       "building_id": "B",
@@ -2759,17 +2778,17 @@ function highlightRoom(roomId, el) {
         }
       ],
       "rejected_assignments": [],
-      "expert_best": "daylight",
-      "pipeline_best": "daylight",
+      "expert_best": "baseline",
+      "pipeline_best": "baseline",
       "orientation": {
-        "front_side": "unknown",
-        "rear_side": "unknown",
+        "front_side": "top",
+        "rear_side": "bottom",
         "site_orientation_note": ""
       },
       "spatial_summary": {
         "orientation": {
-          "front_side": "unknown",
-          "rear_side": "unknown",
+          "front_side": "top",
+          "rear_side": "bottom",
           "site_orientation_note": ""
         },
         "cell_spatial": [

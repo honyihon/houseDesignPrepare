@@ -1,6 +1,6 @@
 {
   "schema_version": "architect-metrics-v1",
-  "generated_at": "2026-07-10T02:28:49.052932+00:00",
+  "generated_at": "2026-07-23T07:14:03.594897+00:00",
   "source_program_schema": "room-program-v2",
   "selected_buildings": [
     "A",
@@ -9,8 +9,9 @@
     "STORAGE"
   ],
   "evaluated_floor_count": 12,
-  "skipped_floor_count": 10,
-  "metrics_count": 148,
+  "skipped_floor_count": 0,
+  "non_floor_section_count": 10,
+  "metrics_count": 145,
   "metrics": [
     {
       "building_id": "A",
@@ -22,14 +23,17 @@
           "width_mm": 11000.0,
           "depth_mm": 7700.0,
           "north_deg": 0.0
-        }
+        },
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "floor_area_sqm": 84.7
       },
-      "status": "ok",
-      "confidence": "high",
-      "issues": []
+      "status": "advisory",
+      "confidence": "low",
+      "issues": [
+        "floor dimensions are auto-derived; replace with surveyed/CAD geometry"
+      ]
     },
     {
       "building_id": "A",
@@ -60,13 +64,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -78,8 +83,9 @@
         "room_width_m": 3.67,
         "room_depth_m": 1.3,
         "room_height_m": 3.0,
-        "window_width_m": 0.9,
-        "raw_window_width_m": 0.9,
+        "window_width_m": 1.2,
+        "raw_window_width_m": 1.2,
+        "geometry_source": "auto-grid-v1",
         "window_height_m": 1.2,
         "window_sill_height_m": 0.9,
         "glazing_transmittance": 0.65,
@@ -87,19 +93,19 @@
         "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
       },
       "result": {
-        "window_area_m2": 1.08,
+        "window_area_m2": 1.44,
         "floor_area_m2": 4.767,
         "total_surface_area_m2": 39.336,
-        "window_to_floor_ratio_pct": 22.66,
+        "window_to_floor_ratio_pct": 30.21,
         "visible_sky_angle_deg": 58.2,
         "sky_angle_factor": 0.6471,
-        "daylight_factor_pct": 1.54,
+        "daylight_factor_pct": 2.05,
         "target_daylight_factor_pct": 2.0
       },
       "status": "advisory",
-      "confidence": "medium",
+      "confidence": "low",
       "issues": [
-        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+        "daylight estimate uses auto-derived geometry/openings"
       ]
     },
     {
@@ -109,13 +115,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "entry",
-        "minimum_mm": 1000
+        "minimum_mm": 1000,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 1000.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -127,8 +134,9 @@
         "room_width_m": 7.33,
         "room_depth_m": 1.3,
         "room_height_m": 3.0,
-        "window_width_m": 1.8,
-        "raw_window_width_m": 1.8,
+        "window_width_m": 2.2,
+        "raw_window_width_m": 2.2,
+        "geometry_source": "auto-grid-v1",
         "window_height_m": 1.2,
         "window_sill_height_m": 0.9,
         "glazing_transmittance": 0.65,
@@ -136,19 +144,19 @@
         "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
       },
       "result": {
-        "window_area_m2": 2.16,
+        "window_area_m2": 2.64,
         "floor_area_m2": 9.533,
         "total_surface_area_m2": 70.864,
-        "window_to_floor_ratio_pct": 22.66,
+        "window_to_floor_ratio_pct": 27.69,
         "visible_sky_angle_deg": 58.2,
         "sky_angle_factor": 0.6471,
-        "daylight_factor_pct": 1.71,
+        "daylight_factor_pct": 2.09,
         "target_daylight_factor_pct": 2.0
       },
       "status": "advisory",
-      "confidence": "medium",
+      "confidence": "low",
       "issues": [
-        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+        "daylight estimate uses auto-derived geometry/openings"
       ]
     },
     {
@@ -158,13 +166,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -174,13 +183,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "service",
-        "minimum_mm": 800
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 800.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -190,13 +200,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -210,6 +221,7 @@
         "room_height_m": 3.0,
         "window_width_m": 1.5,
         "raw_window_width_m": 1.5,
+        "geometry_source": "auto-grid-v1",
         "window_height_m": 1.2,
         "window_sill_height_m": 0.9,
         "glazing_transmittance": 0.65,
@@ -226,9 +238,11 @@
         "daylight_factor_pct": 2.09,
         "target_daylight_factor_pct": 2.0
       },
-      "status": "ok",
-      "confidence": "medium",
-      "issues": []
+      "status": "advisory",
+      "confidence": "low",
+      "issues": [
+        "daylight estimate uses auto-derived geometry/openings"
+      ]
     },
     {
       "building_id": "A",
@@ -237,13 +251,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -252,14 +267,15 @@
       "room_uid": "A:floor-1:bath1",
       "metric_type": "door_width",
       "inputs": {
-        "category": "bathroom",
-        "minimum_mm": 800
+        "category": "accessible",
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
-        "door_width_mm": 800.0
+        "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -271,8 +287,9 @@
         "room_width_m": 6.0,
         "room_depth_m": 1.3,
         "room_height_m": 3.0,
-        "window_width_m": 0.9,
-        "raw_window_width_m": 0.9,
+        "window_width_m": 1.8,
+        "raw_window_width_m": 1.8,
+        "geometry_source": "auto-grid-v1",
         "window_height_m": 1.2,
         "window_sill_height_m": 0.9,
         "glazing_transmittance": 0.65,
@@ -280,19 +297,19 @@
         "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
       },
       "result": {
-        "window_area_m2": 1.08,
+        "window_area_m2": 2.16,
         "floor_area_m2": 7.8,
         "total_surface_area_m2": 59.4,
-        "window_to_floor_ratio_pct": 13.85,
+        "window_to_floor_ratio_pct": 27.69,
         "visible_sky_angle_deg": 58.2,
         "sky_angle_factor": 0.6471,
-        "daylight_factor_pct": 1.02,
+        "daylight_factor_pct": 2.04,
         "target_daylight_factor_pct": 2.0
       },
       "status": "advisory",
-      "confidence": "medium",
+      "confidence": "low",
       "issues": [
-        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+        "daylight estimate uses auto-derived geometry/openings"
       ]
     },
     {
@@ -302,13 +319,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "bathroom",
-        "minimum_mm": 800
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -320,8 +338,9 @@
         "room_width_m": 5.0,
         "room_depth_m": 1.3,
         "room_height_m": 3.0,
-        "window_width_m": 1.2,
-        "raw_window_width_m": 1.2,
+        "window_width_m": 1.6,
+        "raw_window_width_m": 1.6,
+        "geometry_source": "auto-grid-v1",
         "window_height_m": 1.2,
         "window_sill_height_m": 0.9,
         "glazing_transmittance": 0.65,
@@ -329,19 +348,19 @@
         "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
       },
       "result": {
-        "window_area_m2": 1.44,
+        "window_area_m2": 1.92,
         "floor_area_m2": 6.5,
         "total_surface_area_m2": 50.8,
-        "window_to_floor_ratio_pct": 22.15,
+        "window_to_floor_ratio_pct": 29.54,
         "visible_sky_angle_deg": 58.2,
         "sky_angle_factor": 0.6471,
-        "daylight_factor_pct": 1.59,
+        "daylight_factor_pct": 2.12,
         "target_daylight_factor_pct": 2.0
       },
       "status": "advisory",
-      "confidence": "medium",
+      "confidence": "low",
       "issues": [
-        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+        "daylight estimate uses auto-derived geometry/openings"
       ]
     },
     {
@@ -350,14 +369,15 @@
       "room_uid": "A:floor-1:flex1",
       "metric_type": "door_width",
       "inputs": {
-        "category": "interior",
-        "minimum_mm": 900
+        "category": "accessible",
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -367,13 +387,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "bathroom",
-        "minimum_mm": 800
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -383,13 +404,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "bathroom",
-        "minimum_mm": 800
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 800.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -402,14 +424,17 @@
           "width_mm": 11000.0,
           "depth_mm": 5200.0,
           "north_deg": 0.0
-        }
+        },
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "floor_area_sqm": 57.2
       },
-      "status": "ok",
-      "confidence": "high",
-      "issues": []
+      "status": "advisory",
+      "confidence": "low",
+      "issues": [
+        "floor dimensions are auto-derived; replace with surveyed/CAD geometry"
+      ]
     },
     {
       "building_id": "A",
@@ -423,8 +448,8 @@
         "warning_threshold_m": 30.0
       },
       "result": {
-        "max_proxy_direct_distance_m": 6.08,
-        "avg_proxy_direct_distance_m": 3.41,
+        "max_proxy_direct_distance_m": 5.79,
+        "avg_proxy_direct_distance_m": 3.33,
         "farthest_cell": "2F 公用衛浴"
       },
       "status": "professional_required",
@@ -442,8 +467,9 @@
         "room_width_m": 7.33,
         "room_depth_m": 1.1,
         "room_height_m": 3.0,
-        "window_width_m": 1.2,
-        "raw_window_width_m": 1.2,
+        "window_width_m": 1.9,
+        "raw_window_width_m": 1.9,
+        "geometry_source": "auto-grid-v1",
         "window_height_m": 1.2,
         "window_sill_height_m": 0.9,
         "glazing_transmittance": 0.65,
@@ -451,19 +477,19 @@
         "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
       },
       "result": {
-        "window_area_m2": 1.44,
+        "window_area_m2": 2.28,
         "floor_area_m2": 8.066,
         "total_surface_area_m2": 66.731,
-        "window_to_floor_ratio_pct": 17.85,
+        "window_to_floor_ratio_pct": 28.27,
         "visible_sky_angle_deg": 62.4,
         "sky_angle_factor": 0.6928,
-        "daylight_factor_pct": 1.3,
+        "daylight_factor_pct": 2.05,
         "target_daylight_factor_pct": 2.0
       },
       "status": "advisory",
-      "confidence": "medium",
+      "confidence": "low",
       "issues": [
-        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+        "daylight estimate uses auto-derived geometry/openings"
       ]
     },
     {
@@ -473,47 +499,15 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
-    },
-    {
-      "building_id": "A",
-      "floor_id": "floor-2",
-      "room_uid": "A:floor-2:master-bath",
-      "metric_type": "daylight_factor",
-      "inputs": {
-        "room_width_m": 3.67,
-        "room_depth_m": 1.1,
-        "room_height_m": 3.0,
-        "window_width_m": 0.6,
-        "raw_window_width_m": 0.6,
-        "window_height_m": 1.2,
-        "window_sill_height_m": 0.9,
-        "glazing_transmittance": 0.65,
-        "average_reflectance": 0.5,
-        "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
-      },
-      "result": {
-        "window_area_m2": 0.72,
-        "floor_area_m2": 4.034,
-        "total_surface_area_m2": 36.669,
-        "window_to_floor_ratio_pct": 17.85,
-        "visible_sky_angle_deg": 62.4,
-        "sky_angle_factor": 0.6928,
-        "daylight_factor_pct": 1.18,
-        "target_daylight_factor_pct": 2.0
-      },
-      "status": "advisory",
-      "confidence": "medium",
-      "issues": [
-        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
-      ]
     },
     {
       "building_id": "A",
@@ -522,13 +516,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "bathroom",
-        "minimum_mm": 800
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 800.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -538,13 +533,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -554,13 +550,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -572,8 +569,9 @@
         "room_width_m": 5.5,
         "room_depth_m": 1.1,
         "room_height_m": 3.0,
-        "window_width_m": 0.6,
-        "raw_window_width_m": 0.6,
+        "window_width_m": 1.5,
+        "raw_window_width_m": 1.5,
+        "geometry_source": "auto-grid-v1",
         "window_height_m": 1.2,
         "window_sill_height_m": 0.9,
         "glazing_transmittance": 0.65,
@@ -581,19 +579,19 @@
         "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
       },
       "result": {
-        "window_area_m2": 0.72,
+        "window_area_m2": 1.8,
         "floor_area_m2": 6.05,
         "total_surface_area_m2": 51.7,
-        "window_to_floor_ratio_pct": 11.9,
+        "window_to_floor_ratio_pct": 29.75,
         "visible_sky_angle_deg": 62.4,
         "sky_angle_factor": 0.6928,
-        "daylight_factor_pct": 0.84,
+        "daylight_factor_pct": 2.09,
         "target_daylight_factor_pct": 2.0
       },
       "status": "advisory",
-      "confidence": "medium",
+      "confidence": "low",
       "issues": [
-        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+        "daylight estimate uses auto-derived geometry/openings"
       ]
     },
     {
@@ -603,16 +601,15 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
-        "door_width_mm": 800.0
+        "door_width_mm": 900.0
       },
-      "status": "advisory",
-      "confidence": "high",
-      "issues": [
-        "door width 800mm is below advisory minimum 900mm"
-      ]
+      "status": "ok",
+      "confidence": "low",
+      "issues": []
     },
     {
       "building_id": "A",
@@ -621,10 +618,11 @@
       "metric_type": "daylight_factor",
       "inputs": {
         "room_width_m": 5.5,
-        "room_depth_m": 1.1,
+        "room_depth_m": 0.8,
         "room_height_m": 3.0,
         "window_width_m": 1.2,
         "raw_window_width_m": 1.2,
+        "geometry_source": "auto-grid-v1",
         "window_height_m": 1.2,
         "window_sill_height_m": 0.9,
         "glazing_transmittance": 0.65,
@@ -633,18 +631,18 @@
       },
       "result": {
         "window_area_m2": 1.44,
-        "floor_area_m2": 6.05,
-        "total_surface_area_m2": 51.7,
-        "window_to_floor_ratio_pct": 23.8,
-        "visible_sky_angle_deg": 62.4,
-        "sky_angle_factor": 0.6928,
-        "daylight_factor_pct": 1.67,
+        "floor_area_m2": 4.4,
+        "total_surface_area_m2": 46.6,
+        "window_to_floor_ratio_pct": 32.73,
+        "visible_sky_angle_deg": 69.1,
+        "sky_angle_factor": 0.7683,
+        "daylight_factor_pct": 2.06,
         "target_daylight_factor_pct": 2.0
       },
       "status": "advisory",
-      "confidence": "medium",
+      "confidence": "low",
       "issues": [
-        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+        "daylight estimate uses auto-derived geometry/openings"
       ]
     },
     {
@@ -654,13 +652,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -670,13 +669,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "bathroom",
-        "minimum_mm": 800
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 800.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -686,13 +686,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "bathroom",
-        "minimum_mm": 800
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -705,14 +706,17 @@
           "width_mm": 11000.0,
           "depth_mm": 5200.0,
           "north_deg": 0.0
-        }
+        },
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "floor_area_sqm": 57.2
       },
-      "status": "ok",
-      "confidence": "high",
-      "issues": []
+      "status": "advisory",
+      "confidence": "low",
+      "issues": [
+        "floor dimensions are auto-derived; replace with surveyed/CAD geometry"
+      ]
     },
     {
       "building_id": "A",
@@ -720,37 +724,20 @@
       "room_uid": "",
       "metric_type": "egress_distance_proxy",
       "inputs": {
-        "method": "cell-center direct distance proxy",
-        "entry_count": 0
+        "method": "cell-center direct distance proxy; not code travel path",
+        "anchor_cell": "梯間（通 RF）",
+        "anchor_type": "stair",
+        "warning_threshold_m": 30.0
       },
       "result": {
-        "max_proxy_direct_distance_m": 0.0
+        "max_proxy_direct_distance_m": 5.52,
+        "avg_proxy_direct_distance_m": 2.95,
+        "farthest_cell": "多功能室"
       },
-      "status": "missing_data",
+      "status": "professional_required",
       "confidence": "medium",
       "issues": [
-        "egress proxy requires one entry marker or stair/landing cell"
-      ]
-    },
-    {
-      "building_id": "A",
-      "floor_id": "floor-3",
-      "room_uid": "A:floor-3:entertainment",
-      "metric_type": "daylight_factor",
-      "inputs": {
-        "room_width_m": 11.0,
-        "room_depth_m": 1.1,
-        "window_width_m": 0.0,
-        "method": "BRE simplified daylight factor adapted from Skills-Architects"
-      },
-      "result": {
-        "daylight_factor_pct": 0.0,
-        "target_daylight_factor_pct": 2.0
-      },
-      "status": "missing_data",
-      "confidence": "medium",
-      "issues": [
-        "missing window width for daylight-sensitive room"
+        "formal egress route and travel distance calculation remains professional work"
       ]
     },
     {
@@ -760,13 +747,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -778,8 +766,9 @@
         "room_width_m": 6.6,
         "room_depth_m": 1.1,
         "room_height_m": 3.0,
-        "window_width_m": 1.2,
-        "raw_window_width_m": 1.2,
+        "window_width_m": 1.7,
+        "raw_window_width_m": 1.7,
+        "geometry_source": "auto-grid-v1",
         "window_height_m": 1.2,
         "window_sill_height_m": 0.9,
         "glazing_transmittance": 0.65,
@@ -787,19 +776,19 @@
         "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
       },
       "result": {
-        "window_area_m2": 1.44,
+        "window_area_m2": 2.04,
         "floor_area_m2": 7.26,
         "total_surface_area_m2": 60.72,
-        "window_to_floor_ratio_pct": 19.83,
+        "window_to_floor_ratio_pct": 28.1,
         "visible_sky_angle_deg": 62.4,
         "sky_angle_factor": 0.6928,
-        "daylight_factor_pct": 1.42,
+        "daylight_factor_pct": 2.02,
         "target_daylight_factor_pct": 2.0
       },
       "status": "advisory",
-      "confidence": "medium",
+      "confidence": "low",
       "issues": [
-        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+        "daylight estimate uses auto-derived geometry/openings"
       ]
     },
     {
@@ -809,13 +798,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -825,13 +815,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "bathroom",
-        "minimum_mm": 800
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 800.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -841,13 +832,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -857,13 +849,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -872,14 +865,15 @@
       "room_uid": "A:floor-3:terrace3",
       "metric_type": "door_width",
       "inputs": {
-        "category": "interior",
-        "minimum_mm": 900
+        "category": "bathroom",
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -892,14 +886,17 @@
           "width_mm": 11000.0,
           "depth_mm": 3900.0,
           "north_deg": 0.0
-        }
+        },
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "floor_area_sqm": 42.9
       },
-      "status": "ok",
-      "confidence": "high",
-      "issues": []
+      "status": "advisory",
+      "confidence": "low",
+      "issues": [
+        "floor dimensions are auto-derived; replace with surveyed/CAD geometry"
+      ]
     },
     {
       "building_id": "A",
@@ -913,10 +910,10 @@
       "result": {
         "max_proxy_direct_distance_m": 0.0
       },
-      "status": "missing_data",
-      "confidence": "medium",
+      "status": "professional_required",
+      "confidence": "low",
       "issues": [
-        "egress proxy requires one entry marker or stair/landing cell"
+        "roof access route is not modeled; confirm stair/hatch and maintenance egress professionally"
       ]
     },
     {
@@ -926,13 +923,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "service",
-        "minimum_mm": 800
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 800.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -941,17 +939,16 @@
       "room_uid": "A:floor-4:water-tank",
       "metric_type": "door_width",
       "inputs": {
-        "category": "interior",
-        "minimum_mm": 900
+        "category": "service",
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 800.0
       },
-      "status": "advisory",
-      "confidence": "high",
-      "issues": [
-        "door width 800mm is below advisory minimum 900mm"
-      ]
+      "status": "ok",
+      "confidence": "low",
+      "issues": []
     },
     {
       "building_id": "A",
@@ -988,17 +985,16 @@
       "room_uid": "A:floor-4:vf800",
       "metric_type": "door_width",
       "inputs": {
-        "category": "interior",
-        "minimum_mm": 900
+        "category": "service",
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 800.0
       },
-      "status": "advisory",
-      "confidence": "high",
-      "issues": [
-        "door width 800mm is below advisory minimum 900mm"
-      ]
+      "status": "ok",
+      "confidence": "low",
+      "issues": []
     },
     {
       "building_id": "A",
@@ -1009,18 +1005,17 @@
         "matched_keywords": [
           "vf800"
         ],
-        "explicit_marker": false,
+        "explicit_marker": true,
         "review_terms_found": []
       },
       "result": {
         "requires_professional_review": true,
-        "has_load_or_structural_note": false
+        "has_load_or_structural_note": true
       },
-      "status": "missing_data",
+      "status": "professional_required",
       "confidence": "medium",
       "issues": [
-        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
-        "missing explicit structural/load review wording in room notes"
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path"
       ]
     },
     {
@@ -1029,14 +1024,15 @@
       "room_uid": "A:floor-4:haier",
       "metric_type": "door_width",
       "inputs": {
-        "category": "interior",
-        "minimum_mm": 900
+        "category": "service",
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -1049,20 +1045,19 @@
           "熱泵",
           "太陽能"
         ],
-        "explicit_marker": false,
+        "explicit_marker": true,
         "review_terms_found": [
           "基座"
         ]
       },
       "result": {
         "requires_professional_review": true,
-        "has_load_or_structural_note": false
+        "has_load_or_structural_note": true
       },
-      "status": "missing_data",
+      "status": "professional_required",
       "confidence": "medium",
       "issues": [
-        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
-        "missing explicit structural/load review wording in room notes"
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path"
       ]
     },
     {
@@ -1072,13 +1067,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "service",
-        "minimum_mm": 800
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 800.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -1090,18 +1086,17 @@
         "matched_keywords": [
           "太陽能"
         ],
-        "explicit_marker": false,
+        "explicit_marker": true,
         "review_terms_found": []
       },
       "result": {
         "requires_professional_review": true,
-        "has_load_or_structural_note": false
+        "has_load_or_structural_note": true
       },
-      "status": "missing_data",
+      "status": "professional_required",
       "confidence": "medium",
       "issues": [
-        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
-        "missing explicit structural/load review wording in room notes"
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path"
       ]
     },
     {
@@ -1110,14 +1105,15 @@
       "room_uid": "A:floor-4:laundry-rf",
       "metric_type": "door_width",
       "inputs": {
-        "category": "interior",
-        "minimum_mm": 900
+        "category": "service",
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -1130,14 +1126,17 @@
           "width_mm": 11000.0,
           "depth_mm": 5300.0,
           "north_deg": 0.0
-        }
+        },
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "floor_area_sqm": 58.3
       },
-      "status": "ok",
-      "confidence": "high",
-      "issues": []
+      "status": "advisory",
+      "confidence": "low",
+      "issues": [
+        "floor dimensions are auto-derived; replace with surveyed/CAD geometry"
+      ]
     },
     {
       "building_id": "B",
@@ -1168,13 +1167,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -1186,8 +1186,9 @@
         "room_width_m": 11.0,
         "room_depth_m": 1.3,
         "room_height_m": 3.0,
-        "window_width_m": 0.9,
-        "raw_window_width_m": 0.9,
+        "window_width_m": 3.1,
+        "raw_window_width_m": 3.1,
+        "geometry_source": "auto-grid-v1",
         "window_height_m": 1.2,
         "window_sill_height_m": 0.9,
         "glazing_transmittance": 0.65,
@@ -1195,19 +1196,19 @@
         "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
       },
       "result": {
-        "window_area_m2": 1.08,
+        "window_area_m2": 3.72,
         "floor_area_m2": 14.3,
         "total_surface_area_m2": 102.4,
-        "window_to_floor_ratio_pct": 7.55,
+        "window_to_floor_ratio_pct": 26.01,
         "visible_sky_angle_deg": 58.2,
         "sky_angle_factor": 0.6471,
-        "daylight_factor_pct": 0.59,
+        "daylight_factor_pct": 2.04,
         "target_daylight_factor_pct": 2.0
       },
       "status": "advisory",
-      "confidence": "medium",
+      "confidence": "low",
       "issues": [
-        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+        "daylight estimate uses auto-derived geometry/openings"
       ]
     },
     {
@@ -1217,13 +1218,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "entry",
-        "minimum_mm": 1000
+        "minimum_mm": 1000,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 1000.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -1233,13 +1235,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -1249,13 +1252,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "service",
-        "minimum_mm": 800
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 800.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -1265,13 +1269,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "bathroom",
-        "minimum_mm": 800
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 800.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -1281,13 +1286,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "service",
-        "minimum_mm": 800
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 800.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -1297,13 +1303,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "bathroom",
-        "minimum_mm": 800
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -1316,14 +1323,17 @@
           "width_mm": 11000.0,
           "depth_mm": 5400.0,
           "north_deg": 0.0
-        }
+        },
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "floor_area_sqm": 59.4
       },
-      "status": "ok",
-      "confidence": "high",
-      "issues": []
+      "status": "advisory",
+      "confidence": "low",
+      "issues": [
+        "floor dimensions are auto-derived; replace with surveyed/CAD geometry"
+      ]
     },
     {
       "building_id": "B",
@@ -1338,7 +1348,7 @@
       },
       "result": {
         "max_proxy_direct_distance_m": 7.33,
-        "avg_proxy_direct_distance_m": 3.88,
+        "avg_proxy_direct_distance_m": 4.3,
         "farthest_cell": "客用衛浴"
       },
       "status": "professional_required",
@@ -1354,13 +1364,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -1372,8 +1383,9 @@
         "room_width_m": 11.0,
         "room_depth_m": 1.3,
         "room_height_m": 3.0,
-        "window_width_m": 1.8,
-        "raw_window_width_m": 1.8,
+        "window_width_m": 3.1,
+        "raw_window_width_m": 3.1,
+        "geometry_source": "auto-grid-v1",
         "window_height_m": 1.2,
         "window_sill_height_m": 0.9,
         "glazing_transmittance": 0.65,
@@ -1381,19 +1393,19 @@
         "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
       },
       "result": {
-        "window_area_m2": 2.16,
+        "window_area_m2": 3.72,
         "floor_area_m2": 14.3,
         "total_surface_area_m2": 102.4,
-        "window_to_floor_ratio_pct": 15.1,
+        "window_to_floor_ratio_pct": 26.01,
         "visible_sky_angle_deg": 58.2,
         "sky_angle_factor": 0.6471,
-        "daylight_factor_pct": 1.18,
+        "daylight_factor_pct": 2.04,
         "target_daylight_factor_pct": 2.0
       },
       "status": "advisory",
-      "confidence": "medium",
+      "confidence": "low",
       "issues": [
-        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+        "daylight estimate uses auto-derived geometry/openings"
       ]
     },
     {
@@ -1403,13 +1415,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -1421,8 +1434,9 @@
         "room_width_m": 3.67,
         "room_depth_m": 1.1,
         "room_height_m": 3.0,
-        "window_width_m": 1.0,
-        "raw_window_width_m": 1.0,
+        "window_width_m": 1.1,
+        "raw_window_width_m": 1.1,
+        "geometry_source": "auto-grid-v1",
         "window_height_m": 1.2,
         "window_sill_height_m": 0.9,
         "glazing_transmittance": 0.65,
@@ -1430,19 +1444,19 @@
         "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
       },
       "result": {
-        "window_area_m2": 1.2,
+        "window_area_m2": 1.32,
         "floor_area_m2": 4.034,
         "total_surface_area_m2": 36.669,
-        "window_to_floor_ratio_pct": 29.75,
+        "window_to_floor_ratio_pct": 32.72,
         "visible_sky_angle_deg": 62.4,
         "sky_angle_factor": 0.6928,
-        "daylight_factor_pct": 1.96,
+        "daylight_factor_pct": 2.16,
         "target_daylight_factor_pct": 2.0
       },
       "status": "advisory",
-      "confidence": "medium",
+      "confidence": "low",
       "issues": [
-        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+        "daylight estimate uses auto-derived geometry/openings"
       ]
     },
     {
@@ -1452,13 +1466,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -1468,13 +1483,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "bathroom",
-        "minimum_mm": 800
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 800.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -1484,10 +1500,11 @@
       "metric_type": "daylight_factor",
       "inputs": {
         "room_width_m": 11.0,
-        "room_depth_m": 1.3,
+        "room_depth_m": 1.0,
         "room_height_m": 3.0,
-        "window_width_m": 1.2,
-        "raw_window_width_m": 1.2,
+        "window_width_m": 2.6,
+        "raw_window_width_m": 2.6,
+        "geometry_source": "auto-grid-v1",
         "window_height_m": 1.2,
         "window_sill_height_m": 0.9,
         "glazing_transmittance": 0.65,
@@ -1495,19 +1512,19 @@
         "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
       },
       "result": {
-        "window_area_m2": 1.44,
-        "floor_area_m2": 14.3,
-        "total_surface_area_m2": 102.4,
-        "window_to_floor_ratio_pct": 10.07,
-        "visible_sky_angle_deg": 58.2,
-        "sky_angle_factor": 0.6471,
-        "daylight_factor_pct": 0.79,
+        "window_area_m2": 3.12,
+        "floor_area_m2": 11.0,
+        "total_surface_area_m2": 94.0,
+        "window_to_floor_ratio_pct": 28.36,
+        "visible_sky_angle_deg": 64.5,
+        "sky_angle_factor": 0.7171,
+        "daylight_factor_pct": 2.06,
         "target_daylight_factor_pct": 2.0
       },
       "status": "advisory",
-      "confidence": "medium",
+      "confidence": "low",
       "issues": [
-        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+        "daylight estimate uses auto-derived geometry/openings"
       ]
     },
     {
@@ -1517,13 +1534,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -1532,14 +1550,15 @@
       "room_uid": "B:floor-2:balcony2",
       "metric_type": "door_width",
       "inputs": {
-        "category": "bathroom",
-        "minimum_mm": 800
+        "category": "interior",
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -1552,14 +1571,17 @@
           "width_mm": 11000.0,
           "depth_mm": 5300.0,
           "north_deg": 0.0
-        }
+        },
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "floor_area_sqm": 58.3
       },
-      "status": "ok",
-      "confidence": "high",
-      "issues": []
+      "status": "advisory",
+      "confidence": "low",
+      "issues": [
+        "floor dimensions are auto-derived; replace with surveyed/CAD geometry"
+      ]
     },
     {
       "building_id": "B",
@@ -1573,9 +1595,9 @@
         "warning_threshold_m": 30.0
       },
       "result": {
-        "max_proxy_direct_distance_m": 5.63,
-        "avg_proxy_direct_distance_m": 3.19,
-        "farthest_cell": "後客房"
+        "max_proxy_direct_distance_m": 6.73,
+        "avg_proxy_direct_distance_m": 3.94,
+        "farthest_cell": "3F 後側工作小陽台＋爬梯（通RF）"
       },
       "status": "professional_required",
       "confidence": "medium",
@@ -1590,13 +1612,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -1606,13 +1629,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -1624,8 +1648,9 @@
         "room_width_m": 5.5,
         "room_depth_m": 1.3,
         "room_height_m": 3.0,
-        "window_width_m": 1.0,
-        "raw_window_width_m": 1.0,
+        "window_width_m": 1.7,
+        "raw_window_width_m": 1.7,
+        "geometry_source": "auto-grid-v1",
         "window_height_m": 1.2,
         "window_sill_height_m": 0.9,
         "glazing_transmittance": 0.65,
@@ -1633,19 +1658,19 @@
         "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
       },
       "result": {
-        "window_area_m2": 1.2,
+        "window_area_m2": 2.04,
         "floor_area_m2": 7.15,
         "total_surface_area_m2": 55.1,
-        "window_to_floor_ratio_pct": 16.78,
+        "window_to_floor_ratio_pct": 28.53,
         "visible_sky_angle_deg": 58.2,
         "sky_angle_factor": 0.6471,
-        "daylight_factor_pct": 1.22,
+        "daylight_factor_pct": 2.08,
         "target_daylight_factor_pct": 2.0
       },
       "status": "advisory",
-      "confidence": "medium",
+      "confidence": "low",
       "issues": [
-        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+        "daylight estimate uses auto-derived geometry/openings"
       ]
     },
     {
@@ -1655,13 +1680,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -1671,13 +1697,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "bathroom",
-        "minimum_mm": 800
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 800.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -1686,11 +1713,12 @@
       "room_uid": "B:floor-3:guest3",
       "metric_type": "daylight_factor",
       "inputs": {
-        "room_width_m": 5.5,
-        "room_depth_m": 1.1,
+        "room_width_m": 4.4,
+        "room_depth_m": 1.8,
         "room_height_m": 3.0,
-        "window_width_m": 1.2,
-        "raw_window_width_m": 1.2,
+        "window_width_m": 1.9,
+        "raw_window_width_m": 1.9,
+        "geometry_source": "auto-grid-v1",
         "window_height_m": 1.2,
         "window_sill_height_m": 0.9,
         "glazing_transmittance": 0.65,
@@ -1698,19 +1726,19 @@
         "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
       },
       "result": {
-        "window_area_m2": 1.44,
-        "floor_area_m2": 6.05,
-        "total_surface_area_m2": 51.7,
-        "window_to_floor_ratio_pct": 23.8,
-        "visible_sky_angle_deg": 62.4,
-        "sky_angle_factor": 0.6928,
-        "daylight_factor_pct": 1.67,
+        "window_area_m2": 2.28,
+        "floor_area_m2": 7.92,
+        "total_surface_area_m2": 53.04,
+        "window_to_floor_ratio_pct": 28.79,
+        "visible_sky_angle_deg": 49.4,
+        "sky_angle_factor": 0.5489,
+        "daylight_factor_pct": 2.04,
         "target_daylight_factor_pct": 2.0
       },
       "status": "advisory",
-      "confidence": "medium",
+      "confidence": "low",
       "issues": [
-        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+        "daylight estimate uses auto-derived geometry/openings"
       ]
     },
     {
@@ -1720,13 +1748,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -1736,13 +1765,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "bathroom",
-        "minimum_mm": 800
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -1755,14 +1785,17 @@
           "width_mm": 11000.0,
           "depth_mm": 5400.0,
           "north_deg": 0.0
-        }
+        },
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "floor_area_sqm": 59.4
       },
-      "status": "ok",
-      "confidence": "high",
-      "issues": []
+      "status": "advisory",
+      "confidence": "low",
+      "issues": [
+        "floor dimensions are auto-derived; replace with surveyed/CAD geometry"
+      ]
     },
     {
       "building_id": "B",
@@ -1793,13 +1826,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -1808,17 +1842,16 @@
       "room_uid": "B:floor-4:tank-rf",
       "metric_type": "door_width",
       "inputs": {
-        "category": "interior",
-        "minimum_mm": 900
+        "category": "service",
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 800.0
       },
-      "status": "advisory",
-      "confidence": "high",
-      "issues": [
-        "door width 800mm is below advisory minimum 900mm"
-      ]
+      "status": "ok",
+      "confidence": "low",
+      "issues": []
     },
     {
       "building_id": "B",
@@ -1855,17 +1888,16 @@
       "room_uid": "B:floor-4:pump-rf",
       "metric_type": "door_width",
       "inputs": {
-        "category": "interior",
-        "minimum_mm": 900
+        "category": "service",
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 800.0
       },
-      "status": "advisory",
-      "confidence": "high",
-      "issues": [
-        "door width 800mm is below advisory minimum 900mm"
-      ]
+      "status": "ok",
+      "confidence": "low",
+      "issues": []
     },
     {
       "building_id": "B",
@@ -1899,14 +1931,15 @@
       "room_uid": "B:floor-4:hotwater-rf",
       "metric_type": "door_width",
       "inputs": {
-        "category": "interior",
-        "minimum_mm": 900
+        "category": "service",
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -1942,13 +1975,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -1989,14 +2023,17 @@
           "width_mm": 11000.0,
           "depth_mm": 7000.0,
           "north_deg": 0.0
-        }
+        },
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "floor_area_sqm": 77.0
       },
-      "status": "ok",
-      "confidence": "high",
-      "issues": []
+      "status": "advisory",
+      "confidence": "low",
+      "issues": [
+        "floor dimensions are auto-derived; replace with surveyed/CAD geometry"
+      ]
     },
     {
       "building_id": "C",
@@ -2027,13 +2064,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -2045,8 +2083,9 @@
         "room_width_m": 2.75,
         "room_depth_m": 1.7,
         "room_height_m": 3.0,
-        "window_width_m": 0.9,
-        "raw_window_width_m": 0.9,
+        "window_width_m": 1.3,
+        "raw_window_width_m": 1.3,
+        "geometry_source": "auto-grid-v1",
         "window_height_m": 1.2,
         "window_sill_height_m": 0.9,
         "glazing_transmittance": 0.65,
@@ -2054,19 +2093,19 @@
         "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
       },
       "result": {
-        "window_area_m2": 1.08,
+        "window_area_m2": 1.56,
         "floor_area_m2": 4.675,
         "total_surface_area_m2": 36.05,
-        "window_to_floor_ratio_pct": 23.1,
+        "window_to_floor_ratio_pct": 33.37,
         "visible_sky_angle_deg": 51.0,
         "sky_angle_factor": 0.5668,
-        "daylight_factor_pct": 1.47,
+        "daylight_factor_pct": 2.13,
         "target_daylight_factor_pct": 2.0
       },
       "status": "advisory",
-      "confidence": "medium",
+      "confidence": "low",
       "issues": [
-        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+        "daylight estimate uses auto-derived geometry/openings"
       ]
     },
     {
@@ -2076,13 +2115,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "entry",
-        "minimum_mm": 1000
+        "minimum_mm": 1000,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 1000.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -2094,8 +2134,9 @@
         "room_width_m": 5.5,
         "room_depth_m": 1.7,
         "room_height_m": 3.0,
-        "window_width_m": 1.8,
-        "raw_window_width_m": 1.8,
+        "window_width_m": 2.2,
+        "raw_window_width_m": 2.2,
+        "geometry_source": "auto-grid-v1",
         "window_height_m": 1.2,
         "window_sill_height_m": 0.9,
         "glazing_transmittance": 0.65,
@@ -2103,19 +2144,19 @@
         "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
       },
       "result": {
-        "window_area_m2": 2.16,
+        "window_area_m2": 2.64,
         "floor_area_m2": 9.35,
         "total_surface_area_m2": 61.9,
-        "window_to_floor_ratio_pct": 23.1,
+        "window_to_floor_ratio_pct": 28.24,
         "visible_sky_angle_deg": 51.0,
         "sky_angle_factor": 0.5668,
-        "daylight_factor_pct": 1.71,
+        "daylight_factor_pct": 2.09,
         "target_daylight_factor_pct": 2.0
       },
       "status": "advisory",
-      "confidence": "medium",
+      "confidence": "low",
       "issues": [
-        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+        "daylight estimate uses auto-derived geometry/openings"
       ]
     },
     {
@@ -2125,13 +2166,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -2145,6 +2187,7 @@
         "room_height_m": 3.0,
         "window_width_m": 1.5,
         "raw_window_width_m": 1.5,
+        "geometry_source": "auto-grid-v1",
         "window_height_m": 1.2,
         "window_sill_height_m": 0.9,
         "glazing_transmittance": 0.65,
@@ -2161,9 +2204,11 @@
         "daylight_factor_pct": 2.88,
         "target_daylight_factor_pct": 2.0
       },
-      "status": "ok",
-      "confidence": "medium",
-      "issues": []
+      "status": "advisory",
+      "confidence": "low",
+      "issues": [
+        "daylight estimate uses auto-derived geometry/openings"
+      ]
     },
     {
       "building_id": "C",
@@ -2172,13 +2217,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -2190,8 +2236,9 @@
         "room_width_m": 4.09,
         "room_depth_m": 1.1,
         "room_height_m": 3.0,
-        "window_width_m": 0.6,
-        "raw_window_width_m": 0.6,
+        "window_width_m": 1.2,
+        "raw_window_width_m": 1.2,
+        "geometry_source": "auto-grid-v1",
         "window_height_m": 1.2,
         "window_sill_height_m": 0.9,
         "glazing_transmittance": 0.65,
@@ -2199,19 +2246,19 @@
         "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
       },
       "result": {
-        "window_area_m2": 0.72,
+        "window_area_m2": 1.44,
         "floor_area_m2": 4.495,
         "total_surface_area_m2": 40.105,
-        "window_to_floor_ratio_pct": 16.02,
+        "window_to_floor_ratio_pct": 32.04,
         "visible_sky_angle_deg": 62.4,
         "sky_angle_factor": 0.6928,
-        "daylight_factor_pct": 1.08,
+        "daylight_factor_pct": 2.16,
         "target_daylight_factor_pct": 2.0
       },
       "status": "advisory",
-      "confidence": "medium",
+      "confidence": "low",
       "issues": [
-        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+        "daylight estimate uses auto-derived geometry/openings"
       ]
     },
     {
@@ -2221,13 +2268,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "bathroom",
-        "minimum_mm": 800
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 800.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -2237,13 +2285,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "bathroom",
-        "minimum_mm": 800
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -2253,13 +2302,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "service",
-        "minimum_mm": 800
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -2269,13 +2319,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -2285,13 +2336,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -2303,8 +2355,9 @@
         "room_width_m": 7.86,
         "room_depth_m": 1.3,
         "room_height_m": 3.0,
-        "window_width_m": 1.0,
-        "raw_window_width_m": 1.0,
+        "window_width_m": 2.3,
+        "raw_window_width_m": 2.3,
+        "geometry_source": "auto-grid-v1",
         "window_height_m": 1.2,
         "window_sill_height_m": 0.9,
         "glazing_transmittance": 0.65,
@@ -2312,19 +2365,19 @@
         "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
       },
       "result": {
-        "window_area_m2": 1.2,
+        "window_area_m2": 2.76,
         "floor_area_m2": 10.214,
         "total_surface_area_m2": 75.37,
-        "window_to_floor_ratio_pct": 11.75,
+        "window_to_floor_ratio_pct": 27.02,
         "visible_sky_angle_deg": 58.2,
         "sky_angle_factor": 0.6471,
-        "daylight_factor_pct": 0.89,
+        "daylight_factor_pct": 2.05,
         "target_daylight_factor_pct": 2.0
       },
       "status": "advisory",
-      "confidence": "medium",
+      "confidence": "low",
       "issues": [
-        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+        "daylight estimate uses auto-derived geometry/openings"
       ]
     },
     {
@@ -2333,48 +2386,16 @@
       "room_uid": "C:floor-1:elder",
       "metric_type": "door_width",
       "inputs": {
-        "category": "interior",
-        "minimum_mm": 900
+        "category": "accessible",
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
-    },
-    {
-      "building_id": "C",
-      "floor_id": "floor-1",
-      "room_uid": "C:floor-1:elder-bath",
-      "metric_type": "daylight_factor",
-      "inputs": {
-        "room_width_m": 5.5,
-        "room_depth_m": 1.7,
-        "room_height_m": 3.0,
-        "window_width_m": 0.6,
-        "raw_window_width_m": 0.6,
-        "window_height_m": 1.2,
-        "window_sill_height_m": 0.9,
-        "glazing_transmittance": 0.65,
-        "average_reflectance": 0.5,
-        "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
-      },
-      "result": {
-        "window_area_m2": 0.72,
-        "floor_area_m2": 9.35,
-        "total_surface_area_m2": 61.9,
-        "window_to_floor_ratio_pct": 7.7,
-        "visible_sky_angle_deg": 51.0,
-        "sky_angle_factor": 0.5668,
-        "daylight_factor_pct": 0.57,
-        "target_daylight_factor_pct": 2.0
-      },
-      "status": "advisory",
-      "confidence": "medium",
-      "issues": [
-        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
-      ]
     },
     {
       "building_id": "C",
@@ -2382,14 +2403,15 @@
       "room_uid": "C:floor-1:elder-bath",
       "metric_type": "door_width",
       "inputs": {
-        "category": "bathroom",
-        "minimum_mm": 800
+        "category": "accessible",
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
-        "door_width_mm": 800.0
+        "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -2400,12 +2422,13 @@
       "inputs": {
         "geometry_mm": {
           "width_mm": 11000.0,
-          "depth_mm": 6200.0,
+          "depth_mm": 7000.0,
           "north_deg": 0.0
-        }
+        },
+        "geometry_source": "kaohsiung-house-balcony-v1"
       },
       "result": {
-        "floor_area_sqm": 68.2
+        "floor_area_sqm": 77.0
       },
       "status": "ok",
       "confidence": "high",
@@ -2423,9 +2446,9 @@
         "warning_threshold_m": 30.0
       },
       "result": {
-        "max_proxy_direct_distance_m": 5.5,
-        "avg_proxy_direct_distance_m": 3.7,
-        "farthest_cell": "客房 / 多功能房"
+        "max_proxy_direct_distance_m": 7.29,
+        "avg_proxy_direct_distance_m": 4.17,
+        "farthest_cell": "2F 高雄厝景觀陽臺"
       },
       "status": "professional_required",
       "confidence": "medium",
@@ -2442,8 +2465,9 @@
         "room_width_m": 11.0,
         "room_depth_m": 1.3,
         "room_height_m": 3.0,
-        "window_width_m": 1.8,
-        "raw_window_width_m": 1.8,
+        "window_width_m": 3.1,
+        "raw_window_width_m": 3.1,
+        "geometry_source": "kaohsiung-house-balcony-v1",
         "window_height_m": 1.2,
         "window_sill_height_m": 0.9,
         "glazing_transmittance": 0.65,
@@ -2451,20 +2475,18 @@
         "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
       },
       "result": {
-        "window_area_m2": 2.16,
+        "window_area_m2": 3.72,
         "floor_area_m2": 14.3,
         "total_surface_area_m2": 102.4,
-        "window_to_floor_ratio_pct": 15.1,
+        "window_to_floor_ratio_pct": 26.01,
         "visible_sky_angle_deg": 58.2,
         "sky_angle_factor": 0.6471,
-        "daylight_factor_pct": 1.18,
+        "daylight_factor_pct": 2.04,
         "target_daylight_factor_pct": 2.0
       },
-      "status": "advisory",
+      "status": "ok",
       "confidence": "medium",
-      "issues": [
-        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
-      ]
+      "issues": []
     },
     {
       "building_id": "C",
@@ -2473,7 +2495,8 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "kaohsiung-house-balcony-v1"
       },
       "result": {
         "door_width_mm": 900.0
@@ -2491,8 +2514,9 @@
         "room_width_m": 7.33,
         "room_depth_m": 1.3,
         "room_height_m": 3.0,
-        "window_width_m": 1.2,
-        "raw_window_width_m": 1.2,
+        "window_width_m": 2.2,
+        "raw_window_width_m": 2.2,
+        "geometry_source": "kaohsiung-house-balcony-v1",
         "window_height_m": 1.2,
         "window_sill_height_m": 0.9,
         "glazing_transmittance": 0.65,
@@ -2500,20 +2524,18 @@
         "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
       },
       "result": {
-        "window_area_m2": 1.44,
+        "window_area_m2": 2.64,
         "floor_area_m2": 9.533,
         "total_surface_area_m2": 70.864,
-        "window_to_floor_ratio_pct": 15.11,
+        "window_to_floor_ratio_pct": 27.69,
         "visible_sky_angle_deg": 58.2,
         "sky_angle_factor": 0.6471,
-        "daylight_factor_pct": 1.14,
+        "daylight_factor_pct": 2.09,
         "target_daylight_factor_pct": 2.0
       },
-      "status": "advisory",
+      "status": "ok",
       "confidence": "medium",
-      "issues": [
-        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
-      ]
+      "issues": []
     },
     {
       "building_id": "C",
@@ -2522,7 +2544,8 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "kaohsiung-house-balcony-v1"
       },
       "result": {
         "door_width_mm": 900.0
@@ -2540,8 +2563,9 @@
         "room_width_m": 11.0,
         "room_depth_m": 1.3,
         "room_height_m": 3.0,
-        "window_width_m": 0.9,
-        "raw_window_width_m": 0.9,
+        "window_width_m": 3.1,
+        "raw_window_width_m": 3.1,
+        "geometry_source": "kaohsiung-house-balcony-v1",
         "window_height_m": 1.2,
         "window_sill_height_m": 0.9,
         "glazing_transmittance": 0.65,
@@ -2549,20 +2573,18 @@
         "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
       },
       "result": {
-        "window_area_m2": 1.08,
+        "window_area_m2": 3.72,
         "floor_area_m2": 14.3,
         "total_surface_area_m2": 102.4,
-        "window_to_floor_ratio_pct": 7.55,
+        "window_to_floor_ratio_pct": 26.01,
         "visible_sky_angle_deg": 58.2,
         "sky_angle_factor": 0.6471,
-        "daylight_factor_pct": 0.59,
+        "daylight_factor_pct": 2.04,
         "target_daylight_factor_pct": 2.0
       },
-      "status": "advisory",
+      "status": "ok",
       "confidence": "medium",
-      "issues": [
-        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
-      ]
+      "issues": []
     },
     {
       "building_id": "C",
@@ -2571,7 +2593,8 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "bathroom",
-        "minimum_mm": 800
+        "minimum_mm": 800,
+        "geometry_source": "kaohsiung-house-balcony-v1"
       },
       "result": {
         "door_width_mm": 900.0
@@ -2587,7 +2610,8 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "bathroom",
-        "minimum_mm": 800
+        "minimum_mm": 800,
+        "geometry_source": "kaohsiung-house-balcony-v1"
       },
       "result": {
         "door_width_mm": 800.0
@@ -2602,8 +2626,9 @@
       "room_uid": "C:floor-2:balcony2f",
       "metric_type": "door_width",
       "inputs": {
-        "category": "bathroom",
-        "minimum_mm": 800
+        "category": "interior",
+        "minimum_mm": 900,
+        "geometry_source": "kaohsiung-house-balcony-v1"
       },
       "result": {
         "door_width_mm": 900.0
@@ -2619,7 +2644,8 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "kaohsiung-house-balcony-v1"
       },
       "result": {
         "door_width_mm": 900.0
@@ -2638,14 +2664,17 @@
           "width_mm": 11000.0,
           "depth_mm": 4900.0,
           "north_deg": 0.0
-        }
+        },
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "floor_area_sqm": 53.9
       },
-      "status": "ok",
-      "confidence": "high",
-      "issues": []
+      "status": "advisory",
+      "confidence": "low",
+      "issues": [
+        "floor dimensions are auto-derived; replace with surveyed/CAD geometry"
+      ]
     },
     {
       "building_id": "C",
@@ -2659,9 +2688,9 @@
         "warning_threshold_m": 30.0
       },
       "result": {
-        "max_proxy_direct_distance_m": 5.5,
-        "avg_proxy_direct_distance_m": 3.54,
-        "farthest_cell": "運動空間"
+        "max_proxy_direct_distance_m": 7.17,
+        "avg_proxy_direct_distance_m": 4.08,
+        "farthest_cell": "3F 主臥通風小陽台"
       },
       "status": "professional_required",
       "confidence": "medium",
@@ -2678,8 +2707,9 @@
         "room_width_m": 11.0,
         "room_depth_m": 1.3,
         "room_height_m": 3.0,
-        "window_width_m": 1.2,
-        "raw_window_width_m": 1.2,
+        "window_width_m": 3.1,
+        "raw_window_width_m": 3.1,
+        "geometry_source": "auto-grid-v1",
         "window_height_m": 1.2,
         "window_sill_height_m": 0.9,
         "glazing_transmittance": 0.65,
@@ -2687,19 +2717,19 @@
         "method": "BRE simplified daylight factor adapted from Skills-Architects; advisory only"
       },
       "result": {
-        "window_area_m2": 1.44,
+        "window_area_m2": 3.72,
         "floor_area_m2": 14.3,
         "total_surface_area_m2": 102.4,
-        "window_to_floor_ratio_pct": 10.07,
+        "window_to_floor_ratio_pct": 26.01,
         "visible_sky_angle_deg": 58.2,
         "sky_angle_factor": 0.6471,
-        "daylight_factor_pct": 0.79,
+        "daylight_factor_pct": 2.04,
         "target_daylight_factor_pct": 2.0
       },
       "status": "advisory",
-      "confidence": "medium",
+      "confidence": "low",
       "issues": [
-        "concept daylight factor is below target; formal daylight/ventilation calculation still required"
+        "daylight estimate uses auto-derived geometry/openings"
       ]
     },
     {
@@ -2709,13 +2739,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -2725,13 +2756,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -2768,13 +2800,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "bathroom",
-        "minimum_mm": 800
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 800.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -2783,14 +2816,15 @@
       "room_uid": "C:floor-3:terrace3f",
       "metric_type": "door_width",
       "inputs": {
-        "category": "interior",
-        "minimum_mm": 900
+        "category": "bathroom",
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -2800,13 +2834,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -2819,14 +2854,17 @@
           "width_mm": 11000.0,
           "depth_mm": 4100.0,
           "north_deg": 0.0
-        }
+        },
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "floor_area_sqm": 45.1
       },
-      "status": "ok",
-      "confidence": "high",
-      "issues": []
+      "status": "advisory",
+      "confidence": "low",
+      "issues": [
+        "floor dimensions are auto-derived; replace with surveyed/CAD geometry"
+      ]
     },
     {
       "building_id": "C",
@@ -2857,13 +2895,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -2873,13 +2912,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "service",
-        "minimum_mm": 800
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -2889,13 +2929,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -2932,13 +2973,14 @@
       "metric_type": "door_width",
       "inputs": {
         "category": "interior",
-        "minimum_mm": 900
+        "minimum_mm": 900,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -2947,14 +2989,15 @@
       "room_uid": "C:floor-4:pump",
       "metric_type": "door_width",
       "inputs": {
-        "category": "interior",
-        "minimum_mm": 900
+        "category": "service",
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -2966,20 +3009,19 @@
         "matched_keywords": [
           "vf800"
         ],
-        "explicit_marker": false,
+        "explicit_marker": true,
         "review_terms_found": [
           "基座"
         ]
       },
       "result": {
         "requires_professional_review": true,
-        "has_load_or_structural_note": false
+        "has_load_or_structural_note": true
       },
-      "status": "missing_data",
+      "status": "professional_required",
       "confidence": "medium",
       "issues": [
-        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
-        "missing explicit structural/load review wording in room notes"
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path"
       ]
     },
     {
@@ -2988,14 +3030,15 @@
       "room_uid": "C:floor-4:heatpump",
       "metric_type": "door_width",
       "inputs": {
-        "category": "interior",
-        "minimum_mm": 900
+        "category": "service",
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 900.0
       },
       "status": "ok",
-      "confidence": "high",
+      "confidence": "low",
       "issues": []
     },
     {
@@ -3007,20 +3050,19 @@
         "matched_keywords": [
           "熱泵"
         ],
-        "explicit_marker": false,
+        "explicit_marker": true,
         "review_terms_found": [
           "基座"
         ]
       },
       "result": {
         "requires_professional_review": true,
-        "has_load_or_structural_note": false
+        "has_load_or_structural_note": true
       },
-      "status": "missing_data",
+      "status": "professional_required",
       "confidence": "medium",
       "issues": [
-        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
-        "missing explicit structural/load review wording in room notes"
+        "formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path"
       ]
     },
     {
@@ -3029,17 +3071,16 @@
       "room_uid": "C:floor-4:water-tank",
       "metric_type": "door_width",
       "inputs": {
-        "category": "interior",
-        "minimum_mm": 900
+        "category": "service",
+        "minimum_mm": 800,
+        "geometry_source": "auto-grid-v1"
       },
       "result": {
         "door_width_mm": 800.0
       },
-      "status": "advisory",
-      "confidence": "high",
-      "issues": [
-        "door width 800mm is below advisory minimum 900mm"
-      ]
+      "status": "ok",
+      "confidence": "low",
+      "issues": []
     },
     {
       "building_id": "C",
@@ -3071,56 +3112,57 @@
       ]
     }
   ],
-  "skipped_floors": [
+  "skipped_floors": [],
+  "non_floor_sections": [
     {
       "building_id": "A",
       "floor_id": "floor-0",
-      "reason": "missing plan_cells"
+      "record_type": "section"
     },
     {
       "building_id": "A",
       "floor_id": "floor-5",
-      "reason": "missing plan_cells"
+      "record_type": "section"
     },
     {
       "building_id": "A",
       "floor_id": "floor-6",
-      "reason": "missing plan_cells"
+      "record_type": "section"
     },
     {
       "building_id": "A",
       "floor_id": "floor-7",
-      "reason": "missing plan_cells"
+      "record_type": "section"
     },
     {
       "building_id": "A",
       "floor_id": "floor-8",
-      "reason": "missing plan_cells"
+      "record_type": "section"
     },
     {
       "building_id": "B",
       "floor_id": "floor-0",
-      "reason": "missing plan_cells"
+      "record_type": "section"
     },
     {
       "building_id": "B",
       "floor_id": "floor-5",
-      "reason": "missing plan_cells"
+      "record_type": "section"
     },
     {
       "building_id": "C",
       "floor_id": "floor-overview",
-      "reason": "missing plan_cells"
+      "record_type": "section"
     },
     {
       "building_id": "C",
       "floor_id": "floor-5",
-      "reason": "missing plan_cells"
+      "record_type": "section"
     },
     {
       "building_id": "STORAGE",
       "floor_id": "floor-0",
-      "reason": "missing plan_cells"
+      "record_type": "section"
     }
   ],
   "method_notes": [
@@ -3130,94 +3172,94 @@
   ],
   "summary": {
     "status_counts": {
-      "ok": 92,
-      "professional_required": 18,
-      "advisory": 30,
-      "missing_data": 8
+      "advisory": 32,
+      "professional_required": 25,
+      "ok": 88
     },
     "metric_type_counts": {
       "floor_area": 12,
       "egress_distance_proxy": 12,
       "door_width": 84,
-      "daylight_factor": 27,
+      "daylight_factor": 24,
       "structure_load_review": 13
     },
     "building_counts": {
-      "A": 54,
+      "A": 52,
       "B": 42,
-      "C": 52
+      "C": 51
     },
     "evaluated_floor_count": 12,
-    "skipped_floor_count": 10,
-    "daylight_factor_avg_pct": 1.26,
-    "daylight_rooms_below_target": 25,
-    "door_width_advisory_count": 6,
+    "skipped_floor_count": 0,
+    "non_floor_section_count": 10,
+    "daylight_factor_avg_pct": 2.11,
+    "daylight_rooms_below_target": 0,
+    "door_width_advisory_count": 0,
     "top_issues": [
+      "A:floor-1:floor_area - floor dimensions are auto-derived; replace with surveyed/CAD geometry",
+      "B:floor-1:floor_area - floor dimensions are auto-derived; replace with surveyed/CAD geometry",
+      "C:floor-1:floor_area - floor dimensions are auto-derived; replace with surveyed/CAD geometry",
       "A:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
       "B:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
       "C:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
-      "A:floor-1:entry:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-      "B:floor-1:shrine:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-      "C:floor-1:entrance:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-      "A:floor-1:living:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
+      "A:floor-1:entry:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+      "B:floor-1:shrine:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+      "C:floor-1:entrance:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+      "A:floor-1:living:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+      "B:floor-2:floor_area - floor dimensions are auto-derived; replace with surveyed/CAD geometry",
+      "C:floor-1:living:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+      "A:floor-1:dining:daylight_factor - daylight estimate uses auto-derived geometry/openings",
       "B:floor-2:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
-      "C:floor-1:living:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-      "A:floor-1:kitchen:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-      "B:floor-2:living2:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-      "C:floor-1:kitchen:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-      "A:floor-1:flex1:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-      "B:floor-2:bar2:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-      "C:floor-1:elder:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-      "A:floor-2:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
-      "B:floor-2:master2:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-      "C:floor-1:elder-bath:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-      "A:floor-2:master:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-      "B:floor-3:egress_distance_proxy - formal egress route and travel distance calculation remains professional work"
+      "C:floor-1:dining:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+      "A:floor-1:kitchen:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+      "B:floor-2:living2:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+      "C:floor-1:kitchen:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+      "A:floor-1:flex1:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+      "B:floor-2:bar2:daylight_factor - daylight estimate uses auto-derived geometry/openings"
     ],
     "action_groups": {
       "owner_design_decision": [
+        "A:floor-1:floor_area - floor dimensions are auto-derived; replace with surveyed/CAD geometry",
         "A:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+        "A:floor-2:floor_area - floor dimensions are auto-derived; replace with surveyed/CAD geometry",
         "A:floor-2:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
-        "A:floor-3:egress_distance_proxy - egress proxy requires one entry marker or stair/landing cell",
-        "A:floor-4:egress_distance_proxy - egress proxy requires one entry marker or stair/landing cell",
+        "A:floor-3:floor_area - floor dimensions are auto-derived; replace with surveyed/CAD geometry",
+        "A:floor-3:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+        "A:floor-4:floor_area - floor dimensions are auto-derived; replace with surveyed/CAD geometry",
+        "A:floor-4:egress_distance_proxy - roof access route is not modeled; confirm stair/hatch and maintenance egress professionally",
+        "B:floor-1:floor_area - floor dimensions are auto-derived; replace with surveyed/CAD geometry",
         "B:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+        "B:floor-2:floor_area - floor dimensions are auto-derived; replace with surveyed/CAD geometry",
         "B:floor-2:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+        "B:floor-3:floor_area - floor dimensions are auto-derived; replace with surveyed/CAD geometry",
         "B:floor-3:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+        "B:floor-4:floor_area - floor dimensions are auto-derived; replace with surveyed/CAD geometry",
         "B:floor-4:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
+        "C:floor-1:floor_area - floor dimensions are auto-derived; replace with surveyed/CAD geometry",
         "C:floor-1:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
         "C:floor-2:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
-        "C:floor-3:egress_distance_proxy - formal egress route and travel distance calculation remains professional work",
-        "C:floor-4:egress_distance_proxy - formal egress route and travel distance calculation remains professional work"
+        "C:floor-3:floor_area - floor dimensions are auto-derived; replace with surveyed/CAD geometry"
       ],
       "architect_daylight_ventilation": [
-        "A:floor-1:entry:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-        "A:floor-1:living:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-        "A:floor-1:kitchen:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-        "A:floor-1:flex1:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-        "A:floor-2:master:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-        "A:floor-2:master-bath:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-        "A:floor-2:study:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-        "A:floor-2:bedroom2:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-        "A:floor-3:entertainment:daylight_factor - missing window width for daylight-sensitive room",
-        "A:floor-3:guest:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-        "B:floor-1:shrine:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-        "B:floor-2:living2:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-        "B:floor-2:bar2:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-        "B:floor-2:master2:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-        "B:floor-3:ktv3:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-        "B:floor-3:guest3:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-        "C:floor-1:entrance:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-        "C:floor-1:living:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-        "C:floor-1:kitchen:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required",
-        "C:floor-1:elder:daylight_factor - concept daylight factor is below target; formal daylight/ventilation calculation still required"
-      ],
-      "accessibility_door_width": [
-        "A:floor-2:study:door_width - door width 800mm is below advisory minimum 900mm",
-        "A:floor-4:water-tank:door_width - door width 800mm is below advisory minimum 900mm",
-        "A:floor-4:vf800:door_width - door width 800mm is below advisory minimum 900mm",
-        "B:floor-4:tank-rf:door_width - door width 800mm is below advisory minimum 900mm",
-        "B:floor-4:pump-rf:door_width - door width 800mm is below advisory minimum 900mm",
-        "C:floor-4:water-tank:door_width - door width 800mm is below advisory minimum 900mm"
+        "A:floor-1:entry:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+        "A:floor-1:living:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+        "A:floor-1:dining:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+        "A:floor-1:kitchen:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+        "A:floor-1:flex1:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+        "A:floor-2:master:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+        "A:floor-2:study:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+        "A:floor-2:bedroom2:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+        "A:floor-3:guest:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+        "B:floor-1:shrine:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+        "B:floor-2:living2:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+        "B:floor-2:bar2:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+        "B:floor-2:master2:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+        "B:floor-3:ktv3:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+        "B:floor-3:guest3:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+        "C:floor-1:entrance:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+        "C:floor-1:living:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+        "C:floor-1:dining:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+        "C:floor-1:kitchen:daylight_factor - daylight estimate uses auto-derived geometry/openings",
+        "C:floor-1:elder:daylight_factor - daylight estimate uses auto-derived geometry/openings"
       ],
       "structural_rf_equipment": [
         "A:floor-4:water-tank:structure_load_review - formal structural review/signoff is required for load, anchoring, waterproofing, and maintenance path",
@@ -3236,5 +3278,5 @@
       ]
     }
   },
-  "source_program_file": "D:\\I29786\\workspace\\houseDesignPrepare\\.worktrees\\house-data-governance\\structured\\room_program.json"
+  "source_program_file": "D:\\I29786\\workspace\\houseDesignPrepare\\structured\\room_program.json"
 }

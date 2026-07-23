@@ -24,7 +24,7 @@ FALLBACK_DEFAULTS: dict[str, Any] = {
     "geometry": {
         "px_per_mm": 0.06,
         "wall_thickness_mm": {"interior": 115, "exterior": 200},
-        "door_width_mm": {"entry": 1000, "interior": 900, "bathroom": 800, "service": 800},
+        "door_width_mm": {"entry": 1000, "accessible": 900, "interior": 900, "bathroom": 800, "service": 800},
         "door_height_mm": 2100,
         "window_width_mm": {
             "living": 1800,
@@ -224,11 +224,12 @@ def load_residential_defaults(config_path: Path | None = None) -> dict[str, Any]
     if path.exists():
         try:
             payload = json.loads(path.read_text(encoding="utf-8"))
-            if isinstance(payload, dict):
-                _deep_merge(merged, payload)
-                meta["config_loaded"] = True
-        except json.JSONDecodeError:
-            meta["config_loaded"] = False
+        except json.JSONDecodeError as exc:
+            raise ValueError(f"Invalid residential defaults JSON: {path}: {exc}") from exc
+        if not isinstance(payload, dict):
+            raise ValueError(f"Residential defaults must be a JSON object: {path}")
+        _deep_merge(merged, payload)
+        meta["config_loaded"] = True
 
     merged["_meta"] = meta
     return merged

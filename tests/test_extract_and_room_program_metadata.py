@@ -103,12 +103,13 @@ def test_room_semantics_are_extracted_and_preserved() -> None:
         <div class="plan-row">
           <div class="plan-cell" data-x-mm="0" data-y-mm="0" data-w-mm="500" data-h-mm="500"
                data-window-mm="800" data-room-role="elder" data-accessible="true"
+               data-structural-review="required"
                onclick="highlightRoom('elder', this)">
             <span class="cell-name">孝親房</span>
           </div>
         </div>
       </div>
-      <div class="room" id="room-elder" data-target-cell="slot-1"
+      <div class="room" id="room-elder" data-target-cell="slot-1" data-structural-review="required"
            data-room-role="elder" data-accessible="true">
         <div class="room-name">孝親房</div>
         <div class="room-details"><li>輪椅友善</li></div>
@@ -123,6 +124,9 @@ def test_room_semantics_are_extracted_and_preserved() -> None:
     assert floor["rooms"][0]["semantics"]["room_role"] == "elder"
     assert program_floor["plan_cells"][0]["spatial"]["is_accessible"] is True
     assert program_floor["rooms"][0]["semantics"]["is_accessible"] is True
+    assert program_floor["rooms"][0]["structural_review"] == "required"
+    assert program_floor["plan_cells"][0]["structural_review"] == "required"
+    assert program_floor["record_type"] == "floor"
 
 
 def test_build_program_emits_v3_source_schema_metadata() -> None:

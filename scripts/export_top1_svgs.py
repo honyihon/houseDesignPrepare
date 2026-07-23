@@ -4,9 +4,9 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import html
 import json
-import math
 import re
 import sys
 from datetime import datetime, timezone
@@ -18,7 +18,10 @@ ROOT = Path(__file__).resolve().parents[1]
 SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
+from house_design.rendering import stable_svg_filename  # noqa: E402
 from lib.standards import (  # noqa: E402
     defaults_summary_line,
     door_width_mm,
@@ -58,8 +61,6 @@ EXTERIOR_WALL_EXTRA_PX = float(DRAWING_DEFAULTS.get("exterior_wall_extra_px", 1.
 WINDOW_LINE_WIDTH_PX = float(DRAWING_DEFAULTS.get("window_line_width_px", 2.2) or 2.2)
 DIMENSION_LINE_COLOR = str(DRAWING_DEFAULTS.get("dimension_line_color", "#777"))
 VALID_DRAWING_STYLES = ("presentation", "technical", "debug")
-VALIDATION_MARKERS = ["ENT", "DW:", "WIN:", "DIM:", "LEGEND:", "ELEV:"]
-
 BASE_STYLE_PROFILE: dict[str, Any] = {
     "show_debug_header": False,
     "show_room_notes": False,
@@ -111,6 +112,10 @@ BASE_STYLE_PROFILE: dict[str, Any] = {
 
 def now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
+
+
+def sha256_file(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 def parse_args() -> argparse.Namespace:
@@ -314,10 +319,6 @@ def safe_slug(value: str) -> str:
     value = re.sub(r"[^a-z0-9_-]+", "-", value)
     value = re.sub(r"-{2,}", "-", value).strip("-")
     return value or "unknown"
-
-
-def stable_svg_filename(building_id: str, floor_id: str) -> str:
-    return f"{safe_slug(building_id)}_{safe_slug(floor_id)}.svg"
 
 
 def truncate_text(value: str, limit: int) -> str:
@@ -893,6 +894,7 @@ def draw_internal_door(
     span = door_span_px(door_mm, float(edge.get("length", 0)))
     if span < 24:
         return
+    parts.append('<g data-marker="door">')
 
     a = rects[edge["a"]]
     b = rects[edge["b"]]
@@ -942,9 +944,11 @@ def draw_internal_door(
         )
         if show_labels:
             parts.append(svg_text(x0 + span + 4, y + 10, f"DW:{int(round(door_mm / 10.0))}", size=8, weight=500, color=door_color))
+    parts.append("</g>")
 
 
 def draw_entrance_marker(parts: list[str], rect: dict[str, Any], side: str, profile: dict[str, Any]) -> None:
+    parts.append('<g data-marker="entrance">')
     x = float(rect["x"])
     y = float(rect["y"])
     w = float(rect["w"])
@@ -986,6 +990,7 @@ def draw_entrance_marker(parts: list[str], rect: dict[str, Any], side: str, prof
         if show_labels:
             parts.append(svg_text(tri_x - 10, text_y, "ENT", size=10, weight=700, color=style_color(profile, "text", "#333")))
             parts.append(svg_text(tri_x - 12, text_y + 12, f"DW:{int(round(entry_mm / 10.0))}", size=8, weight=500, color=door_color))
+    parts.append("</g>")
 
 
 def pick_entrance_side(
@@ -1145,6 +1150,7 @@ def draw_window_symbol(
     exterior_wall_px: float,
     profile: dict[str, Any],
 ) -> None:
+    parts.append('<g data-marker="window">')
     x = float(rect["x"])
     y = float(rect["y"])
     w = float(rect["w"])
@@ -1178,6 +1184,7 @@ def draw_window_symbol(
         label_y = wall_y - 6 if side == "top" else wall_y + 14
         if show_labels:
             parts.append(svg_text(x0, label_y, f"WIN:{width_mm}", size=8, weight=500, color=window_color))
+    parts.append("</g>")
 
 
 def draw_dimension_horizontal(parts: list[str], x1: float, x2: float, y: float, label: str, color: str = DIMENSION_LINE_COLOR) -> None:
@@ -1383,6 +1390,7 @@ def draw_elevation_indices(
     plan_right: float,
     plan_bottom: float,
 ) -> None:
+    parts.append('<g data-marker="elevation">')
     mid_x = (plan_left + plan_right) / 2
     mid_y = (plan_top + plan_bottom) / 2
 
@@ -1405,6 +1413,7 @@ def draw_elevation_indices(
     parts.append(svg_text(mid_x - 4, plan_top - 6, "B", size=9, weight=700, color="#333"))
     parts.append(svg_text(mid_x - 4, plan_bottom + 14, "B", size=9, weight=700, color="#333"))
     parts.append(svg_text(mid_x + 14, plan_top - 14, "ELEV:B-B", size=8, weight=600, color="#666"))
+    parts.append("</g>")
 
 
 def render_floor_svg(
@@ -1579,7 +1588,6 @@ def render_floor_svg(
         "building_id": floor.get("building_id", ""),
         "floor_id": floor.get("floor_id", ""),
         "candidate_id": best_candidate.get("id", ""),
-        "validation_markers": VALIDATION_MARKERS,
     }
     parts.append(f"<metadata>{html.escape(json.dumps(metadata, ensure_ascii=False))}</metadata>")
     defs = presentation_defs(profile, drawing_style)
@@ -1907,6 +1915,12 @@ def main() -> None:
         "schema_version": SCHEMA_VERSION,
         "generated_at": now_iso(),
         "source_files": {"program": PROGRAM_FILE.name, "candidates": CANDIDATES_FILE.name},
+        "source_integrity": {
+            "program_sha256": sha256_file(PROGRAM_FILE),
+            "program_generated_at": program.get("generated_at", ""),
+            "candidates_sha256": sha256_file(CANDIDATES_FILE),
+            "candidates_generated_at": candidates.get("generated_at", ""),
+        },
         "defaults_profile": {
             "schema_version": RESIDENTIAL_DEFAULTS.get("schema_version", ""),
             "profile": RESIDENTIAL_DEFAULTS.get("profile", ""),
