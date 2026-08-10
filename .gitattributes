@@ -1,0 +1,19 @@
+# The pipeline runs from both Windows PowerShell and WSL. Python writes CRLF on
+# one and LF on the other, so without this every generated artifact under
+# structured/ flips wholesale depending on who ran it last — which buries the
+# real geometry changes the diff is supposed to show. Normalise on commit.
+*.json   text eol=lf
+*.svg    text eol=lf
+*.md     text eol=lf
+*.py     text eol=lf
+*.html   text eol=lf
+*.txt    text eol=lf
+*.yaml   text eol=lf
+*.yml    text eol=lf
+
+# PowerShell is happier with CRLF on Windows and nothing else reads these.
+*.ps1    text eol=crlf
+
+# Vendored and binary payloads: never touch.
+assets/vendor/** -text
+*.pdf    binary

@@ -1,0 +1,35 @@
+three.js — vendored copy
+========================
+
+version   r160 (npm: three@0.160.0)
+file      build/three.min.js  (UMD / classic script)
+source    https://unpkg.com/three@0.160.0/build/three.min.js
+size      669884 bytes
+sha256    170c6789f43217c96b3170f4b42fafe135de7f7cd48497a4218f9757ee1d49fa
+license   MIT — see LICENSE in this directory
+vendored  2026-08-06
+
+Why this exact build
+--------------------
+`scripts/export_model_3d.py` inlines this file into
+`structured/candidates/model3d.html` so the viewer is a single file that opens
+by double-clicking, with no web server and no network.
+
+That rules out the ES-module builds (`build/three.module.js`): Chrome blocks
+module scripts loaded over `file://` as a cross-origin request, so a module
+build would leave the viewer blank for exactly the audience it is meant for
+(family members opening the file from a shared folder).
+
+r160 is the last release that still publishes `build/three.min.js`; r170 and
+later return 404 for that path. Loading it prints one deprecation warning to
+the console — that line is expected, not a fault.
+
+OrbitControls is deliberately NOT vendored: it ships only as an ES module under
+`examples/jsm/`, which has the same `file://` problem. The viewer hand-rolls
+orbit/pan/zoom instead.
+
+Upgrading
+---------
+Any newer three.js means giving up the single-file `file://` guarantee. If that
+guarantee is ever dropped, switch to the module build plus an import map and
+serve the viewer over HTTP; otherwise stay on r160.
