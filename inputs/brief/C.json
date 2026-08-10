@@ -1,0 +1,128 @@
+{
+  "schema": "house-area-brief-v1",
+  "building_id": "C",
+  "name": "C 棟",
+  "positioning": "長輩友善上最成熟的一棟（design_request 第四節：A 棟要向 C 棟看齊）。邊間，側院是通風關鍵。",
+  "_readme": [
+    "面積需求表，手寫自 inputs/design_request.md 的 C 棟章節與現有房間清單。",
+    "C 棟 1F 同時要孝親房＋孝親衛浴＋客廳＋餐廳＋廚房，車庫進入建築體之後放不下 —— 這是要讓建築師看到的事。"
+  ],
+  "floors": [
+    {
+      "floor_id": "floor-1",
+      "label": "1F",
+      "fill": "expand",
+      "has_garage": true,
+      "_capacity_note": [
+        "2026-08-10：定案採 6.0 m 開間 × 1 車位，車庫在建築體內。",
+        "固定成本（車庫＋走道＋樓梯核心）33.7 m²，1F 房間可分 57.6 m²。",
+        "限制不只是總面積，而是形狀：淨寬 5.6 m 扣掉車庫 3.17 m，",
+        "  前帶（車庫旁）2.43 m 寬 × 6.2 m 深 = 15.1 m²；後帶（走道之後）約 40.4 m²。兩者互相借不到。",
+        "C 棟比 A 棟更緊，因為它的孝親衛浴原本必須貼著孝親房、和客餐廳一起擠後帶：",
+        "  後帶就算把客餐廳 18.0＋廚房 6.0＋孝親房 10.0＋孝親衛浴 4.5＋後陽台 4.0 全部壓到 min，",
+        "  仍是 42.5 m² > 40.4 m²。也就是說『孝親衛浴留在後帶』在 6m 開間下無解。",
+        "因此做了一個要明講的取捨：",
+        "  · 孝親衛浴 6.0→8.0 移到前帶，與孝親房隔著 1.2 m 走道正對面。",
+        "    它不再是套房內衛浴，但仍然零高差、夜間路徑是一條 1.2 m 的直線（兩扇門要正對，不要轉折）。",
+        "    附帶好處：照服員可從走道直接進出，不必穿越長輩臥室。A 棟 1F 公衛同樣落在前帶，兩棟因此一致。",
+        "  · 客廳 20 + 餐廳 11 合併為開放式客餐廳 18.5，放後帶取得 5.6 m 全寬。",
+        "  · 玄關 4.0→6.5（前帶剩下的就是它）、廚房 7.0→6.5、孝親房 11.0→11.5、後陽台 5.0→4.0、IDF 1.3→1.5。",
+        "  · 側院移出 1F 房間清單：它是戶外，本來就不該被切在樓板裡。",
+        "    先前 counts_in_footprint:false 只讓它不計入需求帳，產生器仍把它排進樓層，實際吃掉 5.5 m² 室內 ——",
+        "    這是 C 棟每間房都比目標小的隱藏原因。側院現在由 site.json 的 6 m 棟距代表（C 在最左端）。",
+        "配額：前帶 14.5、後帶 40.5、核心 1.5，合計 56.5（≤ 57.6）。"
+      ],
+      "rooms": [
+        {
+          "id": "entry", "name": "玄關（含車庫進屋緩衝）", "kind": "entry",
+          "target_sqm": 6.5, "min_sqm": 3.0,
+          "band": "front", "light": "preferred", "private": false,
+          "wheelchair_turn": true,
+          "note": "前帶 2.43m 寬，玄關與孝親衛浴分掉這一條。鞋櫃做完仍要留得下 150cm 迴轉圈。"
+        },
+        {
+          "id": "living", "name": "客餐廳（開放式）", "kind": "living",
+          "target_sqm": 18.0, "min_sqm": 18.0,
+          "band": "rear", "light": "required", "private": false,
+          "wheelchair_turn": true,
+          "note": "原客廳 20 + 餐廳 11 合併。放後帶取得 5.6m 全寬（車庫旁的前帶只有 2.43m，會變成保齡球道）。"
+        },
+        {
+          "id": "kitchen", "name": "廚房", "kind": "kitchen",
+          "target_sqm": 6.5, "min_sqm": 6.0,
+          "band": "rear", "light": "preferred", "private": false,
+          "note": "要能直通後陽台，不穿越孝親房。"
+        },
+        {
+          "id": "elder", "name": "孝親房／長輩房", "kind": "bedroom",
+          "target_sqm": 11.5, "min_sqm": 10.0,
+          "band": "rear", "light": "required", "private": true,
+          "door_clear_mm": 900, "wheelchair_turn": true,
+          "note": "門寬 ≥90cm。到浴室零高差 —— 6m 開間下浴室在走道正對面，房門與浴室門要對齊，夜間路徑是 1.2m 直線不轉折。這是 A 棟要抄的樣板。"
+        },
+        {
+          "id": "elder_bath", "name": "孝親衛浴", "kind": "bath",
+          "target_sqm": 8.0, "min_sqm": 4.5,
+          "band": "front", "light": "none", "private": true,
+          "door_clear_mm": 900, "door_swing": "sliding", "wheelchair_turn": true,
+          "access_from": ["corridor"],
+          "note": "6m 開間下無法維持套房內衛浴（後帶全部取 min 仍超出 2.1 m²），改放走道對面的前帶。門要與孝親房門正對。好處是照服員可從走道直接進出，不必穿越長輩臥室。150×180cm 迴轉。牆面預埋補強、緊急按鈕連動聲光＋手機推播。"
+        },
+        {
+          "id": "idf_c", "name": "IDF-C 弱電機櫃", "kind": "service",
+          "target_sqm": 1.5, "min_sqm": 1.0,
+          "band": "core", "light": "none", "private": false,
+          "note": "與 1F 樓梯間同區。"
+        },
+        {
+          "id": "balcony", "name": "後工作陽台", "kind": "outdoor",
+          "target_sqm": 4.8, "min_sqm": 4.0,
+          "band": "rear", "light": "required", "private": false,
+          "counts_in_footprint": true,
+          "note": "4.0 會被切成 2900×1554（淨深不足 1500），提到 4.8 換取深度。洗衣機 0.65 ＋ 通行 0.9 是實際下限。"
+        }
+      ],
+      "_sideyard_note": [
+        "側院（原 id: sideyard, 6.0 m²）已從 1F 房間清單移除，不是取消，是搬到正確的地方。",
+        "它是戶外空間，counts_in_footprint:false 只讓它不計入需求帳，但產生器仍會把它切在樓板裡 ——",
+        "實測前一版有 5.48 m² 的室內被畫成『側院』，這是 C 棟每間房都縮水的隱藏原因。",
+        "C 棟在最左端（站在前院面對三棟時 C 在左手邊），側院就是 site.json 的 gap_mm=6000 那一段，",
+        "由 3D 的棟距滑桿呈現。要留設固定寬度的側院，應該加在 site.json 而不是樓層房間清單。"
+      ]
+    },
+    {
+      "floor_id": "floor-2",
+      "label": "2F",
+      "fill": "expand",
+      "rooms": [
+        { "id": "living2", "name": "客廳（2F 主角空間）", "kind": "living", "target_sqm": 22.0, "min_sqm": 16.0, "band": "front", "light": "required", "private": false },
+        { "id": "guest2", "name": "客房／多功能房", "kind": "bedroom", "target_sqm": 12.0, "min_sqm": 9.0, "band": "rear", "light": "required", "private": true },
+        { "id": "kitchenette", "name": "小型廚房", "kind": "kitchen", "target_sqm": 6.0, "min_sqm": 4.0, "band": "rear", "light": "preferred", "private": false, "wet": true },
+        { "id": "bath_c2", "name": "廁所（乾濕分離）", "kind": "bath", "target_sqm": 5.0, "min_sqm": 3.6, "band": "auto", "light": "none", "private": true, "wet": true },
+        { "id": "balcony_c2", "name": "2F 高雄厝景觀陽臺", "kind": "outdoor", "target_sqm": 7.0, "min_sqm": 4.0, "band": "rear", "light": "required", "private": false, "counts_in_footprint": true }
+      ]
+    },
+    {
+      "floor_id": "floor-3",
+      "label": "3F",
+      "fill": "expand",
+      "rooms": [
+        { "id": "master_c", "name": "主臥室（飯店級配置）", "kind": "bedroom", "target_sqm": 20.0, "min_sqm": 14.0, "band": "front", "light": "required", "private": true },
+        { "id": "gym", "name": "運動空間", "kind": "other", "target_sqm": 14.0, "min_sqm": 9.0, "band": "auto", "light": "preferred", "private": false },
+        { "id": "bath_c3", "name": "廁所（乾濕分離）", "kind": "bath", "target_sqm": 5.0, "min_sqm": 3.6, "band": "auto", "light": "none", "private": true, "wet": true },
+        { "id": "balcony_c3", "name": "3F 主臥通風小陽台", "kind": "outdoor", "target_sqm": 4.0, "min_sqm": 2.5, "band": "rear", "light": "required", "private": false, "counts_in_footprint": true }
+      ]
+    },
+    {
+      "floor_id": "floor-rf",
+      "label": "RF（頂樓）",
+      "fill": "fixed",
+      "rooms": [
+        { "id": "rf_stair", "name": "梯間屋突", "kind": "stair", "target_sqm": 6.0, "min_sqm": 4.5, "band": "core", "light": "none", "private": false, "penthouse": true },
+        { "id": "rf_tank", "name": "不鏽鋼水塔／加壓 VF800", "kind": "service", "target_sqm": 3.0, "min_sqm": 2.4, "band": "rear", "light": "none", "private": false, "penthouse": true },
+        { "id": "rf_hp", "name": "熱泵熱水器（Haier）", "kind": "service", "target_sqm": 2.5, "min_sqm": 2.0, "band": "rear", "light": "none", "private": false, "penthouse": true },
+        { "id": "rf_dry", "name": "曬衣區／活動平台", "kind": "outdoor", "target_sqm": 24.0, "min_sqm": 10.0, "band": "auto", "light": "required", "private": false, "counts_in_footprint": false, "penthouse": false }
+      ]
+    }
+  ]
+}

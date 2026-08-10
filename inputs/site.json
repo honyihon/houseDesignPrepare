@@ -1,0 +1,66 @@
+{
+  "schema": "house-site-massing-v1",
+  "_readme": [
+    "設計前期的量體參數。這裡沒有一個數字是實測的 —— 建築師還沒開始畫，地也還沒定。",
+    "唯一的硬條件是『每棟建築面積 32 坪』，其餘都是為了讓人先看到、走進去而做的假設。",
+    "改這個檔 → 重跑 scripts/generate_parametric_plan.py → 重開 walkthrough.html。"
+  ],
+  "footprint_ping": 32.0,
+  "ping_to_sqm": 3.305785,
+
+  "storeys": 3,
+  "_storeys_note": "台灣講法的『3 層樓 + 頂樓』。RF 不是第四層，只有女兒牆與屋突。",
+  "storey_height_mm": 3000,
+  "slab_thickness_mm": 150,
+  "parapet_height_mm": 1100,
+
+  "roof": {
+    "penthouse_max_ratio": 0.125,
+    "_penthouse_note": "屋頂突出物免計容積上限為建築面積 1/8 = 4.0 坪 (13.2 m²)。梯間＋水塔＋熱泵要塞進這個數字裡。"
+  },
+
+  "frontage_variants_mm": [6000, 7000, 8000, 9000, 10000],
+  "_frontage_note": "進深由面積反推：depth = 32坪 / 開間。面積因此永遠鎖在 32 坪，滑桿只改變形狀。",
+
+  "garage_variants": [
+    { "bays": 1, "w_mm": 3000, "d_mm": 6100, "label": "1 車位" },
+    { "bays": 2, "w_mm": 5500, "d_mm": 6100, "label": "2 車位" }
+  ],
+  "_garage_note": [
+    "車庫在建築體內，計入 32 坪建築面積（使用者確認）。",
+    "這裡的 w_mm/d_mm 是淨尺寸（車子實際用的空間，不含牆），產生器會自己加牆厚。",
+    "下限不寫在這裡，由 scripts/config/residential_defaults_tw.json 的 vehicle 區推導：",
+    "  1 車位淨 3000 × 6100（= 車寬 1950 + 駕駛側 700 + 乘客側 350；車長 4900 + 車頭 700 + 車尾 500）",
+    "  2 車位淨 5250 × 6100。上面的 5500 比下限寬 250，是刻意留的餘裕。",
+    "車頭 700 是充電樁（壁掛 400 深）＋ 站人插槍 300，與走動空間共用同一段深度。",
+    "產生器不會把車庫轉 90° 橫停：三棟並排、只有正面臨路，側向車庫門會開向 6m 棟距而後面沒有車道。",
+    "放不下就標記 GARAGE_TOO_SHALLOW / GARAGE_NOT_PARKABLE，不會靜靜縮小成一個停不進車的『車庫』。"
+  ],
+
+  "row": {
+    "order_left_to_right": ["C", "B", "A"],
+    "_order_note": "站在前院面對三棟房子時：右手邊 A、中間 B、左手邊 C。平面圖由上往下看、正面朝下時，左到右就是 C、B、A。",
+    "gap_mm": 6000,
+    "gap_min_mm": 3000,
+    "gap_max_mm": 12000,
+    "_gap_note": "棟距是 3D 裡的滑桿，不影響任何平面幾何，所以不預烘變體。"
+  },
+
+  "corridor": {
+    "width_mm": 1200,
+    "wheelchair_turn_mm": 1500,
+    "_note": "走道淨寬 1200 是常規值；1500 是輪椅迴轉圈，列為檢查項而不是硬性淨寬 —— 全屋走道都做 1500 會吃掉太多面積，該做的是在關鍵節點留得下迴轉圈。"
+  },
+
+  "core": {
+    "stair_run_width_mm": 1000,
+    "stair_riser_mm": 175,
+    "stair_tread_mm": 260,
+    "landing_depth_mm": 1100,
+    "shaft_w_mm": 600,
+    "shaft_d_mm": 600,
+    "_note": "樓梯核心在每一層都放同一個座標 —— 這由構造直接保證樓梯逐層對齊、管道間上下貫通，不必事後檢查。"
+  },
+
+  "_provenance": "assumed"
+}

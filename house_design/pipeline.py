@@ -42,7 +42,18 @@ def build_steps(selection: str, style: str, paper: str, output: str, mode: str) 
         Step(
             "program",
             ("scripts/build_room_program.py",),
-            (*structured_sources, *_paths("scripts/build_room_program.py", "scripts/config/residential_defaults_tw.json")),
+            (
+                *structured_sources,
+                # inputs/dimensions.json is where real measurements land, so a
+                # measuring session must invalidate this step even though the
+                # HTML has not changed. _hash_paths tolerates it being absent.
+                *_paths(
+                    "scripts/build_room_program.py",
+                    "scripts/config/residential_defaults_tw.json",
+                    "scripts/lib/dimension_overrides.py",
+                    "inputs/dimensions.json",
+                ),
+            ),
             _paths("structured/room_program.json"),
         ),
         Step(
@@ -64,6 +75,49 @@ def build_steps(selection: str, style: str, paper: str, output: str, mode: str) 
             _paths("structured/candidates/viewer.html"),
         ),
         Step(
+            "model3d",
+            ("scripts/export_model_3d.py",),
+            _paths(
+                "structured/room_program.json",
+                "inputs/dimensions.json",
+                "scripts/export_model_3d.py",
+                "scripts/export_top1_svgs.py",
+                "scripts/config/residential_defaults_tw.json",
+                "assets/vendor/three/three.min.js",
+            ),
+            _paths("structured/candidates/model3d.html"),
+        ),
+        # The parametric branch does not read the HTML at all: it derives a plan
+        # from the area brief, so it neither depends on nor invalidates anything
+        # above it. It sits here only because the run order has to be some order.
+        Step(
+            "parametric",
+            ("scripts/generate_parametric_plan.py",),
+            _paths(
+                "inputs/site.json",
+                "inputs/brief/A.json",
+                "inputs/brief/B.json",
+                "inputs/brief/C.json",
+                "scripts/generate_parametric_plan.py",
+                "scripts/lib/plan_geometry.py",
+                "scripts/lib/plan_rules.py",
+                "scripts/config/residential_defaults_tw.json",
+            ),
+            _paths("structured/parametric/plan.json", "structured/parametric/capacity.md"),
+        ),
+        Step(
+            "walkthrough",
+            ("scripts/export_walkthrough_3d.py",),
+            _paths(
+                "structured/parametric/plan.json",
+                "scripts/export_walkthrough_3d.py",
+                "scripts/lib/viewer_shell.py",
+                "scripts/config/residential_defaults_tw.json",
+                "assets/vendor/three/three.min.js",
+            ),
+            _paths("structured/parametric/walkthrough.html"),
+        ),
+        Step(
             "svg",
             ("scripts/export_top1_svgs.py", "--selection", selection, "--style", style),
             _paths(
@@ -71,6 +125,7 @@ def build_steps(selection: str, style: str, paper: str, output: str, mode: str) 
                 "structured/candidates/layout_candidates.json",
                 "scripts/export_top1_svgs.py",
                 "scripts/config/residential_defaults_tw.json",
+                "scripts/lib/dimension_overrides.py",
             ),
             _paths("structured/candidates/svg/manifest.json", "structured/candidates/svg/index.html"),
         ),

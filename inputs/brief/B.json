@@ -1,0 +1,111 @@
+{
+  "schema": "house-area-brief-v1",
+  "building_id": "B",
+  "name": "B 棟",
+  "positioning": "傳承宅：神明廳＋武轎儲藏＋無障礙衛浴＋IDF，1F 不是一般居住層。design_request 明確不建議在 1F 硬塞長輩房。",
+  "_readme": [
+    "面積需求表，手寫自 inputs/design_request.md 的 B 棟章節與現有房間清單。",
+    "B 棟 1F 是三棟裡唯一在車庫進入建築體之後仍然放得下的一層 —— 因為它沒有客廳與餐廳。"
+  ],
+  "floors": [
+    {
+      "floor_id": "floor-1",
+      "label": "1F",
+      "fill": "expand",
+      "has_garage": true,
+      "_capacity_note": [
+        "2026-08-10：定案採 6.0 m 開間 × 1 車位，車庫在建築體內。",
+        "面積上 B 棟只超出 0.29 坪，所以後陽台 6.0→5.0 就夠了。真正要處理的是形狀：",
+        "  淨寬 5.6 m 扣掉車庫 3.17 m，前帶（車庫旁）只剩 2.43 m 寬 × 6.2 m 深 = 15.1 m²。",
+        "  神明廳 min 22 m² 放不進 15.1 的前帶，硬放會被壓成 13 m² 的細長條。",
+        "因此 1F 前後帶重新分配：",
+        "  · 神明廳 30.0 面積不動，但改放後帶 —— 後帶淨寬 5.6 m 全寬可用，30 m² 約 5.6 × 5.4 m，",
+        "    神桌背牆可以是完整的一面 RC 實牆，比擠在 2.43 m 寬的前帶好得多。",
+        "    代價：動線變成 大門→玄關→走道→神明廳，不再是一進門就見神桌。",
+        "    風水上這反而更安全（大門不直沖神桌自動成立），但『神明廳臨前採光』要靠側面開窗補回來。",
+        "  · 武轎儲藏室 12.0→10.5（min 9.0）並移到前帶：它是 B 棟裡唯一 2.43 m 寬也能用的大空間，",
+        "    而且緊鄰大門，武轎抬出去不必穿越整層 —— carry_path 檢查會變好而不是變差。",
+        "  · 無障礙衛浴 6.0→7.0 移到後帶，接在神明廳與後陽台之間。",
+        "配額：前帶 14.5、後帶 42.0、核心 1.5，合計 58.0（≤ 58.55）。",
+        "B 棟房間數少（6 間 vs A 棟 8 間），隔間牆少 0.94 m²，這就是它比 A、C 兩棟寬裕的原因。"
+      ],
+      "rooms": [
+        {
+          "id": "entry_b", "name": "玄關", "kind": "entry",
+          "target_sqm": 4.0, "min_sqm": 3.0,
+          "band": "front", "light": "preferred", "private": false,
+          "note": "與神明廳同一進，但大門不可直沖神桌。"
+        },
+        {
+          "id": "shrine", "name": "神明廳（核心）", "kind": "living",
+          "target_sqm": 30.0, "min_sqm": 22.0,
+          "band": "rear", "light": "required", "private": false,
+          "no_wet_above": true,
+          "note": "面積 30.0 不動，但 6m 開間下必須放在走道之後的後帶 —— 車庫旁的前帶只有 2.43m 寬，放不下 22 m² 的下限。改放後帶可得 5.6m 全寬，神桌背牆是完整一面 RC 實牆。神桌背牆要 RC 實牆、上方避樑、排風獨立不與浴廁共管、補氣口不可直吹神桌。2F 衛浴與排水管不得壓到神桌 —— 這是 B 棟風水最大紅線。採光改由側面外牆取得（三棟四面皆外牆，棟距 6m）。"
+        },
+        {
+          "id": "palanquin", "name": "武轎儲藏室", "kind": "service",
+          "target_sqm": 10.5, "min_sqm": 9.0,
+          "band": "front", "light": "none", "private": false,
+          "door_clear_mm": 1200, "carry_path": true,
+          "note": "移到車庫旁的前帶：這是 B 棟唯一在 2.43m 淨寬下仍可用的大空間，且緊鄰大門，武轎抬出去不必穿越整層。武轎不是一般櫃子：門寬與轉向半徑都要實測，2.43m 淨寬能否轉向是這個配置的第一個要實測的數字。搬運路徑淨寬列入檢查。design_request 不建議改成長輩房，那會失去 B 棟定位。"
+        },
+        {
+          "id": "bath_acc", "name": "1F 無障礙衛浴", "kind": "bath",
+          "target_sqm": 7.0, "min_sqm": 4.5,
+          "band": "rear", "light": "none", "private": true,
+          "door_clear_mm": 900, "door_swing": "sliding", "wheelchair_turn": true,
+          "note": "已在原圖上，但只停留在文字。必須補輪椅迴轉圖。放後帶，接在神明廳與後陽台之間；排水立管不得經過神桌背牆。"
+        },
+        {
+          "id": "idf_b", "name": "IDF-B 機櫃", "kind": "service",
+          "target_sqm": 1.5, "min_sqm": 1.0,
+          "band": "core", "light": "none", "private": false,
+          "note": "接 A 棟 MDF。散熱與除濕同 A 棟原則。"
+        },
+        {
+          "id": "balcony_b", "name": "後工作陽台（水路進線點）", "kind": "outdoor",
+          "target_sqm": 5.0, "min_sqm": 4.0,
+          "band": "rear", "light": "required", "private": false,
+          "counts_in_footprint": true,
+          "note": "大門到後陽台要避免穿堂，用屏風、拉門或半高櫃處理。"
+        }
+      ]
+    },
+    {
+      "floor_id": "floor-2",
+      "label": "2F",
+      "fill": "expand",
+      "rooms": [
+        { "id": "living_b", "name": "家庭大客廳", "kind": "living", "target_sqm": 28.0, "min_sqm": 20.0, "band": "front", "light": "required", "private": false },
+        { "id": "tea", "name": "茶水吧／梯廳", "kind": "kitchen", "target_sqm": 5.0, "min_sqm": 3.0, "band": "core", "light": "preferred", "private": false, "wet": true },
+        { "id": "bath_g", "name": "客用衛浴", "kind": "bath", "target_sqm": 5.0, "min_sqm": 3.6, "band": "auto", "light": "none", "private": true, "wet": true, "note": "不得落在 1F 神桌正上方。" },
+        { "id": "master_b", "name": "主臥套房", "kind": "bedroom", "target_sqm": 20.0, "min_sqm": 14.0, "band": "rear", "light": "required", "private": true },
+        { "id": "balcony_b2", "name": "2F 高雄厝景觀陽臺", "kind": "outdoor", "target_sqm": 7.0, "min_sqm": 4.0, "band": "rear", "light": "required", "private": false, "counts_in_footprint": true, "note": "位置待道路側確認。" }
+      ]
+    },
+    {
+      "floor_id": "floor-3",
+      "label": "3F",
+      "fill": "expand",
+      "rooms": [
+        { "id": "flex_b", "name": "前側彈性室內區", "kind": "other", "target_sqm": 14.0, "min_sqm": 10.0, "band": "front", "light": "required", "private": false },
+        { "id": "ktv", "name": "多功能娛樂室（KTV／劇院）", "kind": "other", "target_sqm": 20.0, "min_sqm": 14.0, "band": "auto", "light": "preferred", "private": false },
+        { "id": "bath_b3", "name": "3F 衛浴", "kind": "bath", "target_sqm": 5.0, "min_sqm": 3.2, "band": "auto", "light": "none", "private": true, "wet": true },
+        { "id": "guest_b", "name": "後客房", "kind": "bedroom", "target_sqm": 12.0, "min_sqm": 9.0, "band": "rear", "light": "required", "private": true },
+        { "id": "balcony_b3", "name": "後側工作小陽台", "kind": "outdoor", "target_sqm": 4.0, "min_sqm": 2.5, "band": "rear", "light": "required", "private": false, "counts_in_footprint": true, "note": "含通往 RF 的爬梯。" }
+      ]
+    },
+    {
+      "floor_id": "floor-rf",
+      "label": "RF（頂樓）",
+      "fill": "fixed",
+      "rooms": [
+        { "id": "rf_stair", "name": "梯間屋突", "kind": "stair", "target_sqm": 6.0, "min_sqm": 4.5, "band": "core", "light": "none", "private": false, "penthouse": true },
+        { "id": "rf_tank", "name": "B 棟水塔／VF800", "kind": "service", "target_sqm": 3.0, "min_sqm": 2.4, "band": "rear", "light": "none", "private": false, "penthouse": true, "note": "水塔、熱泵、VF800 的載重與防颱錨定是結構問題，要有正式圖說。" },
+        { "id": "rf_hp", "name": "熱泵熱水器區", "kind": "service", "target_sqm": 2.5, "min_sqm": 2.0, "band": "rear", "light": "none", "private": false, "penthouse": true },
+        { "id": "rf_deck", "name": "活動平台／曬衣棚架", "kind": "outdoor", "target_sqm": 24.0, "min_sqm": 10.0, "band": "auto", "light": "required", "private": false, "counts_in_footprint": false, "penthouse": false }
+      ]
+    }
+  ]
+}

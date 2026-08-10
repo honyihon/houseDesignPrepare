@@ -21,10 +21,70 @@ HTML source files (AbuildingView.html, BbuildingView.html, CbuildingView.html, s
   │
   ├─ [Step 4] render_candidate_viewer.py → structured/candidates/viewer.html
   │
-  ├─ [Step 5] export_top1_svgs.py → structured/candidates/svg/*.svg + manifest.json + index.html
+  ├─ [Step 5] export_model_3d.py → structured/candidates/model3d.html (offline 3D massing viewer)
   │
-  └─ [Step 6] export_print_bundle_pdf.py → structured/candidates/print_bundle.pdf
+  ├─ [Step 6] export_top1_svgs.py → structured/candidates/svg/*.svg + manifest.json + index.html
+  │
+  └─ [Step 7] export_print_bundle_pdf.py → structured/candidates/print_bundle.pdf
 ```
+
+`inputs/dimensions.json` (schema `house-dimensions-override-v1`) feeds Step 2 and
+overrides the auto-derived grid geometry. Every cell carries a
+`geometry_provenance` of `measured` | `declared` | `auto`; most are still `auto`,
+i.e. guessed from CSS classes. See "Geometry provenance" below.
+
+**Storeys.** Each building is **3 habitable storeys plus RF**. RF is a roof — a
+parapet with the stair penthouse, water tank, heat pump and solar — not a fourth
+floor. `floor-4` does not exist; the ids are `floor-1|floor-2|floor-3|floor-rf`
+in the parametric branch, and the HTML branch's fourth SVG (`*_floor-4.svg`) is
+the roof level under an older name.
+
+**Row order.** Standing in the front yard facing the buildings, right → left is
+**A, B, C**. In every viewer, world X = plan x and larger x is to the right, so
+`site` placement in `inputs/dimensions.json` puts C at x=0 and A at the largest
+x. Both 3D viewers depend on this; do not "tidy" it back to alphabetical.
+
+### Parametric branch (design-before-drawing)
+
+A second, independent branch answers a different question: not "what does the
+drawn plan measure" but "what actually fits in 32 坪". It reads an area brief,
+not the HTML, and shares nothing with the pipeline above except
+`scripts/config/residential_defaults_tw.json`.
+
+```
+inputs/site.json          massing parameters (frontage variants, garage bays, row order, gap)
+inputs/brief/{A,B,C}.json per-room area brief (target/min area, band, light, access, notes)
+  │
+  ├─ generate_parametric_plan.py → structured/parametric/plan.json    (walls, doors, windows, stairs)
+  │      via lib/plan_geometry.py    → structured/parametric/capacity.md (capacity ledger + rule findings)
+  │      and  lib/plan_rules.py
+  │
+  └─ export_walkthrough_3d.py   → structured/parametric/walkthrough.html (single-file offline, walk-in)
+```
+
+Depth is derived, never entered: `depth = 32坪 × 3.305785 × 1e6 / frontage_mm`,
+so floor area is pinned at 32 坪 and the frontage slider trades width for depth.
+Ten variants (5 frontages × 2 garage sizes) are pre-baked into `plan.json`; the
+building-gap slider is applied live in the viewer because it only moves the three
+buildings relative to each other.
+
+The generator **produces a plan even when the brief does not fit** — over-capacity
+floors are compressed and flagged rather than aborting the run. Seeing 玄關 squeezed
+to 1.8 m² is the point; a clean failure would hide it.
+
+**The garage is the one exception to "compress quietly".** The car parks inside the
+building, so the garage has a hard minimum derived from the `vehicle` block in
+`residential_defaults_tw.json` (one SUV plus a wall-mounted EV charger): clear
+**3000 × 6100 mm** for one bay, **5250 × 6100** for two. `garage_min_bay_mm()` in
+`lib/plan_geometry.py` is the single source of that number — both the generator and
+the rule checker call it. A garage that comes out smaller is clamped to the space
+that exists and flagged `GARAGE_TOO_SHALLOW` / `GARAGE_TOO_NARROW` on the skeleton
+and `GARAGE_NOT_PARKABLE` (error) / `GARAGE_FEWER_BAYS` (warning) in the findings.
+The generator does **not** rotate the garage 90° to fit a shallow footprint: the
+three houses sit in a row with their only street frontage at the front, so a
+side-facing garage door would open onto the 6 m gap with no driveway behind it.
+Consequence, as of 2026-08-10: an indoor SUV garage only works at **6 m and 7 m
+frontage (all three) and 8 m (A and C)**; two indoor bays fit at no frontage.
 
 ## Running the Pipeline
 
@@ -40,9 +100,14 @@ python scripts/extract_layout_data.py
 python scripts/build_room_program.py
 python scripts/generate_layout_candidates.py
 python scripts/render_candidate_viewer.py
+python scripts/export_model_3d.py
 python scripts/export_top1_svgs.py --selection baseline|best
 python scripts/export_print_bundle_pdf.py --paper a3|a4 --output structured/candidates/print_bundle.pdf
 python scripts/validate_layout_bundle.py  # standalone validation gate
+python scripts/check_html_consistency.py --mode concept|draft|ifc  # geometry/HTML findings
+python scripts/seed_dimension_overrides.py --dry-run  # what can be back-filled vs measured
+python scripts/generate_parametric_plan.py   # parametric branch: plan.json + capacity.md
+python scripts/export_walkthrough_3d.py      # parametric branch: walk-in 3D
 ```
 
 **One-click (PowerShell):**
@@ -68,18 +133,51 @@ inputs, and expected outputs are unchanged.
 ## Critical Conventions
 
 - **Two-file pattern**: Each building has canonical HTML (`XbuildingView.html`) and a `_tmp` working copy. Pipeline reads only canonical (non-`_tmp`) files. Never modify `*_tmp` files.
-- **Millimeter geometry**: All `data-*-mm` attributes on `.plan-cell` and `.floor-plan` elements are the source of truth. When all cells provide x/y/w/h in mm, the pipeline enters `blueprint-precise-mm` mode; otherwise it falls back to estimation.
+- **Millimeter geometry**: The `data-*-mm` attributes on `.plan-cell` and `.floor-plan` carry the geometry the pipeline reads, but most of them were *generated* by `annotate_html_geometry.py` from CSS classes, not measured. Real numbers belong in `inputs/dimensions.json`, which wins over the HTML. `blueprint-precise-mm` is only claimed when no cell is left at `auto`; otherwise the mode is `mixed-provenance`.
 - **DOM skeleton must be preserved**: `.floor-plan > .plan-grid-visual > .plan-row > .plan-cell` structure is parsed by BeautifulSoup. Do not restructure this hierarchy.
 - **Room-cell binding**: `onclick="highlightRoom('xxx', this)"` must correspond to `id="room-xxx"`. Keep these in sync.
 - **Main entrance**: Only one `.plan-cell` per floor should have `data-entry="true"`.
 - **After editing HTML**: Always run the pipeline (at minimum `-Mode concept`) to verify changes. For release, run `-Mode ifc`.
 
+## Geometry provenance
+
+Every cell and floor carries `geometry_provenance`:
+
+| Value | Meaning |
+|-------|---------|
+| `measured` | Someone put a tape measure on it and recorded the number in `inputs/dimensions.json`. |
+| `declared` | Back-filled from the `.cell-size` text in the HTML (a stated ping figure or W×H), so it reflects intent but not survey. |
+| `auto` | Derived by `annotate_html_geometry.py` from CSS classes — a heuristic guess. |
+
+As of 2026-08-06: 0 measured, 15 declared, 69 auto (82.1% guessed). Floor areas,
+daylight factors, egress proxies, and every candidate score inherit that
+uncertainty, so treat absolute numbers as indicative until the count moves.
+
+`structured/dimension_todo.md` lists what still needs measuring, grouped by
+building and floor. `structured/candidates/model3d.html` shows the same thing
+spatially: its "尺寸來源" mode draws `auto` cells as wireframe.
+
+Three-building site placement (`site` in `inputs/dimensions.json`) is entirely
+assumed — a 12 m east-west row. Nothing in the source data records it.
+
 ## Key Files
 
 | File | Purpose |
 |------|---------|
-| `scripts/config/residential_defaults_tw.json` | Centralized Taiwan residential defaults (wall thickness, door/window widths, furniture dims) |
+| `scripts/config/residential_defaults_tw.json` | Centralized Taiwan residential defaults (wall thickness, door/window widths, furniture dims, `vehicle` = SUV + EV-charger clearances the garage minimum is derived from) |
 | `scripts/lib/standards.py` | Typed access to the defaults config |
+| `inputs/dimensions.json` | Measured/declared geometry overrides; wins over the HTML `data-*-mm` values |
+| `scripts/lib/dimension_overrides.py` | Loads the overrides and stamps `geometry_provenance` onto the room program |
+| `scripts/seed_dimension_overrides.py` | Back-fills overrides from `.cell-size` text; writes `structured/dimension_todo.md` |
+| `scripts/export_model_3d.py` | Builds the offline 3D massing viewer (`structured/candidates/model3d.html`) |
+| `assets/vendor/three/` | Vendored three.js r160 UMD build; must stay UMD so `file://` double-click works |
+| `scripts/lib/viewer_shell.py` | Shared CSS / orbit controller / render loop for the offline three.js viewers |
+| `inputs/site.json` | Parametric massing parameters (schema `house-site-massing-v1`) |
+| `inputs/brief/{A,B,C}.json` | Per-room area brief (schema `house-area-brief-v1`); hand-written from `inputs/design_request.md` |
+| `scripts/lib/plan_geometry.py` | Derives walls/doors/windows/stairs from the brief (fixed core + corridor spine + guillotine split) |
+| `scripts/lib/plan_rules.py` | Circulation-graph rule checks (wheelchair turn, door clear width, 穿堂煞, 武轎 path …) |
+| `scripts/generate_parametric_plan.py` | Bakes the 10 variants into `structured/parametric/plan.json` + `capacity.md` |
+| `scripts/export_walkthrough_3d.py` | Builds the walk-in 3D viewer (`structured/parametric/walkthrough.html`) |
 | `scripts/WEB_TO_PLAN_PROMPTS.zh-TW.md` | Prompt templates for HTML→plan conversion workflow |
 | `scripts/run_full_pipeline.ps1` | Pipeline orchestrator (concept/draft/ifc modes) |
 | `.mcp.json` | Project-level MCP servers (playwright + brave-search) for web lookup tasks |
