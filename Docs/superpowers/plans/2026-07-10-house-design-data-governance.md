@@ -22,6 +22,25 @@
 - C detail completion must not move cells, resize cells, or change visible room placement.
 - IFC workflow requires a matching fresh signoff hash.
 
+### Amendment 2026-08-06 — read-only massing viewer
+
+`scripts/export_model_3d.py` produces `structured/candidates/model3d.html`, a
+three.js massing viewer. This does **not** relax the "no BIM, CAD, 3D, HVAC
+simulation, or solar structural calculation tools" constraint above:
+
+- It is read-only and derivative. Geometry comes from
+  `structured/room_program.json`, which stays the single source of truth; there
+  is no authoring or write-back path, and no other pipeline step reads its output.
+- It performs no simulation of any kind — no daylight, thermal, HVAC, or
+  structural analysis. Volumes are extruded plan cells; openings are painted face
+  patches, not modelled elements.
+- three.js is vendored under `assets/vendor/three/` and inlined into one offline
+  HTML file. No new runtime dependency or build tooling enters the workflow.
+
+It serves this plan's traceability goal directly: the "尺寸來源" mode colours each
+volume by `geometry_provenance`, so `measured` / `declared` / `auto` cells are
+distinguishable on sight rather than only in a report.
+
 ---
 
 ## File Structure

@@ -12,6 +12,23 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_CONFIG_PATH = ROOT / "scripts" / "config" / "residential_defaults_tw.json"
 
+
+def repo_relative(path: Any) -> str:
+    """Render a path relative to the repo root, with forward slashes.
+
+    Generated artefacts under ``structured/`` are committed and read on other
+    machines; an absolute path like ``D:\\I29786\\...`` baked in on one checkout
+    is meaningless everywhere else. Paths outside the repo are returned as-is
+    with slashes normalised, since there is nothing better to say about them.
+    """
+
+    if not path:
+        return ""
+    try:
+        return Path(path).resolve().relative_to(ROOT).as_posix()
+    except (ValueError, OSError):
+        return str(path).replace("\\", "/")
+
 # Fallback values keep the pipeline usable even when config file is missing.
 FALLBACK_DEFAULTS: dict[str, Any] = {
     "schema_version": "residential-defaults-tw-v1",
@@ -50,6 +67,18 @@ FALLBACK_DEFAULTS: dict[str, Any] = {
         "sofa_3": {"width": 2100, "depth": 900},
         "dining_table_6": {"width": 1600, "depth": 800},
         "kitchen_counter_depth": 650,
+    },
+    # Clear (car-side) dimensions; the generator adds wall thickness itself.
+    "vehicle": {
+        "suv_mm": {"length": 4900, "width": 1950, "height": 1800},
+        "clearance_mm": {
+            "driver_side": 700,
+            "passenger_side": 350,
+            "between_bays": 300,
+            "front": 600,
+            "rear": 500,
+        },
+        "ev_charger_mm": {"depth": 400, "width": 600, "clear": 300, "mount": "front_wall"},
     },
     "drawing": {
         "font_family": "Segoe UI, Microsoft JhengHei, sans-serif",

@@ -3,6 +3,22 @@
 
 This script updates all root-level HTML files (including *_tmp) that contain
 .floor-plan/.plan-grid-visual structures. Existing data-* values are preserved.
+
+IMPORTANT — these numbers are heuristics, not measurements
+----------------------------------------------------------
+Nothing in the HTML records a real dimension.  Every ``data-*-mm`` value this
+script writes is inferred from CSS: row depth from a class lookup table (see
+``row_height_mm``), column widths from the ``grid-template-columns`` ``fr``
+weights, floor width from the constant ``DEFAULT_FLOOR_WIDTH_MM``, and north
+from ``DEFAULT_NORTH_DEG`` (always 0).  They are a plausible-looking scaffold
+so the drawings render, and that is all.
+
+Real dimensions belong in ``inputs/dimensions.json``, which
+``scripts/lib/dimension_overrides.py`` layers on top of the room program.
+Values from there win over anything written here, and every cell carries a
+``geometry_provenance`` marker so downstream consumers can tell a survey from a
+guess.  Run ``scripts/seed_dimension_overrides.py`` to see what still needs
+measuring (``structured/dimension_todo.md``).
 """
 
 from __future__ import annotations
@@ -176,6 +192,13 @@ def set_or_keep_number(node: Tag, attr: str, value: float) -> bool:
 
 
 def row_height_mm(row_idx: int, row_cells: list[Tag]) -> int:
+    """Guess a row's depth from the CSS classes on its cells.
+
+    This is a lookup table, not a measurement: a bathroom comes out 1100mm deep
+    because it is tagged ``wet``, not because anyone measured it.  Override real
+    depths in ``inputs/dimensions.json`` rather than tuning these constants.
+    """
+
     if not row_cells:
         return 1300
     classes: set[str] = set()

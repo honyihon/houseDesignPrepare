@@ -712,20 +712,8 @@
             color: #22d3ee;
         }
 
-        .tag-safety {
-            background: linear-gradient(135deg, rgba(248, 113, 113, .09), rgba(239, 68, 68, .06));
-            border: 1px solid rgba(248, 113, 113, .22);
-            color: #fecaca;
-        }
-
         .tag-safety .tag-title {
             color: #f87171;
-        }
-
-        .tag-green {
-            background: linear-gradient(135deg, rgba(34, 197, 94, .08), rgba(22, 163, 74, .05));
-            border: 1px solid rgba(34, 197, 94, .2);
-            color: #bbf7d0;
         }
 
         .tag-green .tag-title {
@@ -740,12 +728,6 @@
 
         .tag-water .tag-title {
             color: #3b82f6;
-        }
-
-        .tag-spec {
-            background: linear-gradient(135deg, rgba(139, 92, 246, .10), rgba(168, 85, 247, .06));
-            border: 1px solid rgba(139, 92, 246, .25);
-            color: #ddd6fe;
         }
 
         .tag-spec .tag-title {
@@ -1169,221 +1151,18 @@
             }
         }
 
-        /* ============ 插座視覺化系統 ============ */
-        .plan-wrap {
-            position: relative;
-            max-width: 1100px;
-            margin: 20px auto;
-            background: rgba(15, 23, 42, .85);
-            border: 1px solid rgba(251, 191, 36, .22);
-            border-radius: 20px;
-            padding: 20px;
-        }
-
-        .plan-img {
-            width: 100%;
-            display: block;
-            border-radius: 14px;
-            min-height: 400px;
-            background: rgba(30, 41, 59, .7);
-        }
-
-        .plan-img-placeholder {
-            width: 100%;
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(30, 41, 59, .7);
-            border: 2px dashed rgba(255, 255, 255, .2);
-            border-radius: 14px;
-            color: #64748b;
-            font-size: 1rem;
-            text-align: center;
-        }
-
-        .outlet-layer {
-            position: absolute;
-            inset: 20px;
-            pointer-events: none;
-        }
-
-        .outlet {
-            position: absolute;
-            transform: translate(-50%, -50%);
-            pointer-events: auto;
-            width: 20px;
-            height: 20px;
-            border-radius: 4px;
-            border: 2px solid #fbbf24;
-            background: rgba(251, 191, 36, .2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            line-height: 1;
-            color: #fbbf24;
-            cursor: pointer;
-            transition: all .2s ease;
-        }
-
-        .outlet:hover {
-            transform: translate(-50%, -50%) scale(1.3);
-            background: rgba(251, 191, 36, .4);
-            z-index: 10;
-        }
-
-        .outlet[data-type="RCD"] {
-            border-style: dashed;
-            border-color: #22d3ee;
-            background: rgba(34, 211, 238, .2);
-            color: #22d3ee;
-        }
-
-        .outlet[data-type="OUTDOOR"] {
-            border-radius: 999px;
-            border-color: #22c55e;
-            background: rgba(34, 197, 94, .2);
-            color: #22c55e;
-        }
-
-        .outlet[data-type="DEDICATED"] {
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, .3);
-            border-color: #a855f7;
-            background: rgba(139, 92, 246, .2);
-            color: #a855f7;
-        }
-
-        .outlet[data-type="DATA"] {
-            background: rgba(100, 116, 139, .3);
-            border-color: #64748b;
-            color: #94a3b8;
-        }
-
-        .outlet-tooltip {
-            position: absolute;
-            left: 26px;
-            top: -6px;
-            background: #111;
-            color: #fff;
-            padding: 8px 10px;
-            border-radius: 8px;
-            font-size: 11px;
-            white-space: nowrap;
-            display: none;
-            z-index: 20;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, .5);
-        }
-
-        .outlet:focus .outlet-tooltip,
-        .outlet:hover .outlet-tooltip {
-            display: block;
-        }
-
-        .outlet-controls {
-            position: absolute;
-            right: 30px;
-            bottom: 30px;
-            display: flex;
-            gap: 8px;
-            background: rgba(15, 23, 42, .95);
-            border: 1px solid rgba(255, 255, 255, .15);
-            border-radius: 10px;
-            padding: 10px;
-            z-index: 5;
-        }
-
-        .outlet-controls button,
-        .outlet-controls select {
-            padding: 8px 12px;
-            border: 1px solid rgba(255, 255, 255, .2);
-            background: rgba(30, 41, 59, .8);
-            color: #e2e8f0;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: .85rem;
-            transition: all .2s ease;
-        }
-
-        .outlet-controls button:hover,
-        .outlet-controls select:hover {
-            background: rgba(251, 191, 36, .15);
-            border-color: rgba(251, 191, 36, .4);
-        }
-
-        .outlet-legend {
-            position: absolute;
-            left: 30px;
-            bottom: 30px;
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            background: rgba(15, 23, 42, .95);
-            border: 1px solid rgba(255, 255, 255, .15);
-            border-radius: 10px;
-            padding: 10px 14px;
-            font-size: .75rem;
-            color: #94a3b8;
-            z-index: 5;
-        }
-
-        .outlet-legend-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .outlet-legend-dot {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border: 2px solid;
-            border-radius: 3px;
-        }
-
-        .outlet-legend-dot.normal {
-            border-color: #fbbf24;
-            background: rgba(251, 191, 36, .2);
-        }
-
-        .outlet-legend-dot.rcd {
-            border-color: #22d3ee;
-            border-style: dashed;
-            background: rgba(34, 211, 238, .2);
-        }
-
         .outlet-legend-dot.outdoor {
             border-color: #22c55e;
             border-radius: 999px;
             background: rgba(34, 197, 94, .2);
         }
-
-        .outlet-legend-dot.dedicated {
-            border-color: #a855f7;
-            background: rgba(139, 92, 246, .2);
+    
+        .plan-cell:focus-visible,
+        .tab:focus-visible {
+            outline: 3px solid #2563eb;
+            outline-offset: 2px;
         }
-
-        .outlet-legend-dot.data {
-            border-color: #64748b;
-            background: rgba(100, 116, 139, .3);
-        }
-
-        .plan-wrap-title {
-            font-size: 1.1rem;
-            font-weight: 900;
-            color: #fbbf24;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .plan-wrap-subtitle {
-            font-size: .8rem;
-            color: #64748b;
-            font-weight: 400;
-        }
-    </style>
+</style>
 </head>
 <body>
 <div class="container">
@@ -1441,37 +1220,37 @@
 </div>
 </div>
 <!-- 樓層標籤 -->
-<div class="floor-tabs">
-<div class="tab active" onclick="showFloor(0)">
+<div class="floor-tabs" role="tablist">
+<div class="tab active" data-floor="0" role="tab" tabindex="0" aria-selected="true" aria-controls="floor-0" onclick="showFloor(0)">
 <span class="tab-icon">🚨</span> 總覽×緊急
             </div>
-<div class="tab" onclick="showFloor(1)">
+<div class="tab" data-floor="1" role="tab" tabindex="0" aria-selected="false" aria-controls="floor-1" onclick="showFloor(1)">
 <span class="tab-icon">🏠</span> 1F 公共×MDF
             </div>
-<div class="tab" onclick="showFloor(2)">
+<div class="tab" data-floor="2" role="tab" tabindex="0" aria-selected="false" aria-controls="floor-2" onclick="showFloor(2)">
 <span class="tab-icon">🛏️</span> 2F 私領域
             </div>
-<div class="tab" onclick="showFloor(3)">
+<div class="tab" data-floor="3" role="tab" tabindex="0" aria-selected="false" aria-controls="floor-3" onclick="showFloor(3)">
 <span class="tab-icon">🎮</span> 3F 娛樂
             </div>
-<div class="tab" onclick="showFloor(4)">
+<div class="tab" data-floor="4" role="tab" tabindex="0" aria-selected="false" aria-controls="floor-4" onclick="showFloor(4)">
 <span class="tab-icon">⚙️</span> RF 設備層
             </div>
-<div class="tab" onclick="showFloor(5)">
+<div class="tab" data-floor="5" role="tab" tabindex="0" aria-selected="false" aria-controls="floor-5" onclick="showFloor(5)">
 <span class="tab-icon">💧</span> 給水總覽
             </div>
-<div class="tab" onclick="showFloor(6)">
+<div class="tab" data-floor="6" role="tab" tabindex="0" aria-selected="false" aria-controls="floor-6" onclick="showFloor(6)">
 <span class="tab-icon">🌐</span> 弱電總表
             </div>
-<div class="tab" onclick="showFloor(7)">
+<div class="tab" data-floor="7" role="tab" tabindex="0" aria-selected="false" aria-controls="floor-7" onclick="showFloor(7)">
 <span class="tab-icon">✅</span> 驗收清單
             </div>
-<div class="tab" onclick="showFloor(8)">
+<div class="tab" data-floor="8" role="tab" tabindex="0" aria-selected="false" aria-controls="floor-8" onclick="showFloor(8)">
 <span class="tab-icon">🏷️</span> 貼紙規範
             </div>
 </div>
 <!-- ==================== 總覽頁（新增！）==================== -->
-<div class="floor-plan active" id="floor-0">
+<div class="floor-plan active" id="floor-0" role="tabpanel">
 <div class="floor-header">
 <div class="floor-title">
 <div class="floor-title-icon">🚨</div>
@@ -2093,7 +1872,7 @@
 </div>
 </div>
 <!-- ==================== 1F ==================== -->
-<div class="floor-plan" data-floor-depth-mm="7700" data-floor-width-mm="11000" data-front-side="top" data-geometry-source="auto-grid-v1" data-north-deg="0" data-rear-side="bottom" id="floor-1">
+<div class="floor-plan" data-floor-depth-mm="7700" data-floor-width-mm="11000" data-front-side="top" data-geometry-source="auto-grid-v1" data-north-deg="0" data-rear-side="bottom" id="floor-1" role="tabpanel">
 <div class="floor-header">
 <div class="floor-title">
 <div class="floor-title-icon">1F</div>
@@ -2121,7 +1900,7 @@
 <div class="plan-grid-visual">
 <!-- 車庫 -->
 <div class="plan-row" data-row-h-mm="1200" style="grid-template-columns:1fr;">
-<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1200" data-material="concrete+drain" data-w-mm="11000" data-window-mm="0" data-x-mm="0" data-y-mm="0" onclick="highlightRoom('garage', this)">
+<div class="plan-cell outdoor"  data-door-mm="900" data-h-mm="1200" data-material="concrete+drain" data-w-mm="11000" data-window-mm="0" data-x-mm="0" data-y-mm="0" role="button" tabindex="0" aria-pressed="false" aria-label="前院車庫" onclick="highlightRoom('garage', this)">
 <span class="cell-icon">🚗</span>
 <span class="cell-name">前院車庫</span>
 <span class="cell-size">約 5.5m × 6.0m（示意）</span>
@@ -2135,7 +1914,7 @@
 </div>
 <!-- 玄關 + 客廳 -->
 <div class="plan-row" data-row-h-mm="1300" style="grid-template-columns:1fr 2fr;">
-<div class="plan-cell" data-door-mm="1000" data-entry="true" data-h-mm="1300" data-material="tile" data-w-mm="3667" data-window-mm="1200" data-x-mm="0" data-y-mm="1200" onclick="highlightRoom('entry', this)">
+<div class="plan-cell"  data-door-mm="1000" data-entry="true" data-h-mm="1300" data-material="tile" data-w-mm="3667" data-window-mm="1200" data-x-mm="0" data-y-mm="1200" role="button" tabindex="0" aria-pressed="false" aria-label="玄關" onclick="highlightRoom('entry', this)">
 <span class="cell-icon">🚪</span>
 <span class="cell-name">玄關</span>
 <div class="io-badges">
@@ -2143,7 +1922,7 @@
 <span class="badge sec">🔐 智慧門鎖</span>
 </div>
 </div>
-<div class="plan-cell" data-door-mm="900" data-h-mm="1300" data-material="wood+paint" data-w-mm="7333" data-window-mm="2200" data-x-mm="3667" data-y-mm="1200" onclick="highlightRoom('living', this)">
+<div class="plan-cell"  data-door-mm="900" data-h-mm="1300" data-material="wood+paint" data-w-mm="7333" data-window-mm="2200" data-x-mm="3667" data-y-mm="1200" role="button" tabindex="0" aria-pressed="false" aria-label="客廳" onclick="highlightRoom('living', this)">
 <span class="cell-icon">🛋️</span>
 <span class="cell-name">客廳</span>
 <span class="cell-size">約 5 坪（示意）</span>
@@ -2157,7 +1936,7 @@
 </div>
 <!-- MDF + 梯間門 -->
 <div class="plan-row" data-row-h-mm="1100" style="grid-template-columns:1.2fr 1fr;">
-<div class="plan-cell mdf highlight" data-door-mm="800" data-h-mm="1100" data-material="service+utility" data-w-mm="6000" data-window-mm="600" data-x-mm="0" data-y-mm="2500" onclick="highlightRoom('mdf', this)">
+<div class="plan-cell mdf highlight"  data-door-mm="800" data-h-mm="1100" data-material="service+utility" data-w-mm="6000" data-window-mm="600" data-x-mm="0" data-y-mm="2500" role="button" tabindex="0" aria-pressed="false" aria-label="A-MDF 主機櫃" onclick="highlightRoom('mdf', this)">
 <span class="cell-icon">🖥️</span>
 <span class="cell-name">A-MDF 主機櫃</span>
 <span class="cell-size">19吋 18U（落地）</span>
@@ -2169,7 +1948,7 @@
 <span class="badge ground">⏚ 接地</span>
 </div>
 </div>
-<div class="plan-cell highlight" data-door-mm="900" data-h-mm="1100" data-material="concrete+paint" data-w-mm="5000" data-window-mm="600" data-x-mm="6000" data-y-mm="2500" onclick="highlightRoom('stair-door', this)" style="padding:10px;">
+<div class="plan-cell highlight" role="button" tabindex="0" aria-pressed="false" aria-label="🚪✨ 梯間隔斷門" data-door-mm="900" data-h-mm="1100" data-material="concrete+paint" data-w-mm="5000" data-window-mm="600" data-x-mm="6000" data-y-mm="2500" onclick="highlightRoom('stair-door', this)" style="padding:10px;">
 <span class="cell-name">🚪✨ 梯間隔斷門</span>
 <div class="io-badges">
 <span class="badge pwr">💡 感應燈</span>
@@ -2179,14 +1958,14 @@
 </div>
 <!-- 餐廳 + 1F 公衛 -->
 <div class="plan-row" data-row-h-mm="1100" style="grid-template-columns:1fr 1fr;">
-<div class="plan-cell" data-door-mm="900" data-h-mm="1100" data-material="tile+paint" data-w-mm="5500" data-window-mm="1500" data-x-mm="0" data-y-mm="3600" onclick="highlightRoom('dining', this)">
+<div class="plan-cell"  data-door-mm="900" data-h-mm="1100" data-material="tile+paint" data-w-mm="5500" data-window-mm="1500" data-x-mm="0" data-y-mm="3600" role="button" tabindex="0" aria-pressed="false" aria-label="餐廳" onclick="highlightRoom('dining', this)">
 <span class="cell-icon">🍽️</span>
 <span class="cell-name">餐廳</span>
 <div class="io-badges">
 <span class="badge pwr">🔌 餐邊插座</span>
 </div>
 </div>
-<div class="plan-cell wet" data-accessible="true" data-door-direction="side" data-door-mm="900" data-exhaust-duct="independent" data-h-mm="1100" data-material="tile+waterproof" data-room-role="accessible-bath" data-w-mm="5500" data-window-mm="600" data-x-mm="5500" data-y-mm="3600" onclick="highlightRoom('bath1', this)">
+<div class="plan-cell wet"  data-accessible="true" data-door-direction="side" data-door-mm="900" data-exhaust-duct="independent" data-h-mm="1100" data-material="tile+waterproof" data-room-role="accessible-bath" data-w-mm="5500" data-window-mm="600" data-x-mm="5500" data-y-mm="3600" role="button" tabindex="0" aria-pressed="false" aria-label="1F 公用衛浴" onclick="highlightRoom('bath1', this)">
 <span class="cell-icon">🚿</span>
 <span class="cell-name">1F 公用衛浴</span>
 <div class="io-badges">
@@ -2199,7 +1978,7 @@
 </div>
 <!-- 廚房 + 多功能房 -->
 <div class="plan-row" data-row-h-mm="1300" style="grid-template-columns:1.2fr 1fr;">
-<div class="plan-cell" data-back-balcony-door="true" data-back-balcony-door-mm="800" data-erv-sleeve="true" data-erv-sleeve-mm="100-150" data-door-mm="900" data-exhaust-duct="independent" data-h-mm="1300" data-material="tile+stainless" data-w-mm="6000" data-window-mm="1800" data-x-mm="0" data-y-mm="4700" onclick="highlightRoom('kitchen', this)">
+<div class="plan-cell"  data-back-balcony-door="true" data-back-balcony-door-mm="800" data-erv-sleeve="true" data-erv-sleeve-mm="100-150" data-door-mm="900" data-exhaust-duct="independent" data-h-mm="1300" data-material="tile+stainless" data-w-mm="6000" data-window-mm="1800" data-x-mm="0" data-y-mm="4700" role="button" tabindex="0" aria-pressed="false" aria-label="廚房" onclick="highlightRoom('kitchen', this)">
 <span class="cell-icon">🍳</span>
 <span class="cell-name">廚房</span>
 <span class="cell-size">約 3 坪（示意）</span>
@@ -2211,7 +1990,7 @@
 <span class="badge escape">🚪 直達後陽台</span>
 </div>
 </div>
-<div class="plan-cell" data-accessible="true" data-door-mm="900" data-h-mm="1300" data-material="wood+paint" data-room-role="elder" data-w-mm="5000" data-window-mm="1600" data-x-mm="6000" data-y-mm="4700" onclick="highlightRoom('flex1', this)">
+<div class="plan-cell"  data-accessible="true" data-door-mm="900" data-h-mm="1300" data-material="wood+paint" data-room-role="elder" data-w-mm="5000" data-window-mm="1600" data-x-mm="6000" data-y-mm="4700" role="button" tabindex="0" aria-pressed="false" aria-label="多功能房/客房" onclick="highlightRoom('flex1', this)">
 <span class="cell-icon">🛏️</span>
 <span class="cell-name">多功能房/客房</span>
 <span class="cell-size">約 3.5–4 坪</span>
@@ -2224,7 +2003,7 @@
 </div>
 <!-- 後工作陽台 + 給水區 -->
 <div class="plan-row" data-row-h-mm="1700" style="grid-template-columns:1fr 1fr;">
-<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-w-mm="5500" data-window-mm="0" data-x-mm="0" data-y-mm="6000" onclick="highlightRoom('balcony1', this)">
+<div class="plan-cell outdoor"  data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-w-mm="5500" data-window-mm="0" data-x-mm="0" data-y-mm="6000" role="button" tabindex="0" aria-pressed="false" aria-label="後工作陽台" onclick="highlightRoom('balcony1', this)">
 <span class="cell-icon">🧺</span>
 <span class="cell-name">後工作陽台</span>
 <div class="io-badges">
@@ -2233,7 +2012,7 @@
 <span class="badge ac-out">🌀 室外機（北陰面・1F短管）</span>
 </div>
 </div>
-<div class="plan-cell water highlight" data-door-mm="800" data-h-mm="1700" data-material="service+utility" data-w-mm="5500" data-window-mm="600" data-x-mm="5500" data-y-mm="6000" onclick="highlightRoom('water-inlet', this)">
+<div class="plan-cell water highlight"  data-door-mm="800" data-h-mm="1700" data-material="service+utility" data-w-mm="5500" data-window-mm="600" data-x-mm="5500" data-y-mm="6000" role="button" tabindex="0" aria-pressed="false" aria-label="給水進線區" onclick="highlightRoom('water-inlet', this)">
 <span class="cell-icon">💧</span>
 <span class="cell-name">給水進線區</span>
 <div class="io-badges">
@@ -2707,7 +2486,7 @@
 </div>
 </div>
 <!-- ==================== 2F ==================== -->
-<div class="floor-plan" data-floor-depth-mm="5200" data-floor-width-mm="11000" data-front-side="top" data-geometry-source="auto-grid-v1" data-north-deg="0" data-rear-side="bottom" id="floor-2">
+<div class="floor-plan" data-floor-depth-mm="5200" data-floor-width-mm="11000" data-front-side="top" data-geometry-source="auto-grid-v1" data-north-deg="0" data-rear-side="bottom" id="floor-2" role="tabpanel">
 <div class="floor-header">
 <div class="floor-title">
 <div class="floor-title-icon">2F</div>
@@ -2732,7 +2511,7 @@
 </div>
 <div class="plan-grid-visual">
 <div class="plan-row" data-row-h-mm="1100" style="grid-template-columns:2fr 1fr;">
-<div class="plan-cell" data-door-mm="900" data-h-mm="1100" data-material="wood+paint" data-w-mm="7333" data-window-mm="1900" data-x-mm="0" data-y-mm="0" onclick="highlightRoom('master', this)">
+<div class="plan-cell"  data-door-mm="900" data-h-mm="1100" data-material="wood+paint" data-w-mm="7333" data-window-mm="1900" data-x-mm="0" data-y-mm="0" role="button" tabindex="0" aria-pressed="false" aria-label="主臥室" onclick="highlightRoom('master', this)">
 <span class="cell-icon">🛏️</span>
 <span class="cell-name">主臥室</span>
 <span class="cell-size">約 6 坪</span>
@@ -2742,7 +2521,7 @@
 <span class="badge ac">🌬️ 室內機 1.8噸・床頭不直吹</span>
 </div>
 </div>
-<div class="plan-cell wet" data-daylight-required="false" data-door-mm="800" data-h-mm="1100" data-material="tile+waterproof" data-w-mm="3667" data-window-mm="600" data-x-mm="7333" data-y-mm="0" onclick="highlightRoom('master-bath', this)">
+<div class="plan-cell wet"  data-daylight-required="false" data-door-mm="800" data-h-mm="1100" data-material="tile+waterproof" data-w-mm="3667" data-window-mm="600" data-x-mm="7333" data-y-mm="0" role="button" tabindex="0" aria-pressed="false" aria-label="主臥衛浴" onclick="highlightRoom('master-bath', this)">
 <span class="cell-icon">🚿</span>
 <span class="cell-name">主臥衛浴</span>
 <div class="io-badges">
@@ -2752,11 +2531,11 @@
 </div>
 </div>
 <div class="plan-row" data-row-h-mm="1300" style="grid-template-columns:1fr 1fr;">
-<div class="plan-cell" data-door-mm="900" data-h-mm="1300" data-material="paint+default" data-w-mm="5500" data-window-mm="1000" data-x-mm="0" data-y-mm="1100" onclick="highlightRoom('walkin', this)">
+<div class="plan-cell"  data-door-mm="900" data-h-mm="1300" data-material="paint+default" data-w-mm="5500" data-window-mm="1000" data-x-mm="0" data-y-mm="1100" role="button" tabindex="0" aria-pressed="false" aria-label="更衣/收納" onclick="highlightRoom('walkin', this)">
 <span class="cell-icon">👔</span>
 <span class="cell-name">更衣/收納</span>
 </div>
-<div class="plan-cell highlight" data-door-mm="900" data-h-mm="1300" data-material="paint+default" data-w-mm="5500" data-window-mm="1000" data-x-mm="5500" data-y-mm="1100" onclick="highlightRoom('hall2', this)">
+<div class="plan-cell highlight"  data-door-mm="900" data-h-mm="1300" data-material="paint+default" data-w-mm="5500" data-window-mm="1000" data-x-mm="5500" data-y-mm="1100" role="button" tabindex="0" aria-pressed="false" aria-label="🚶 走廊" onclick="highlightRoom('hall2', this)">
 <span class="cell-name">🚶 走廊</span>
 <div class="io-badges">
 <span class="badge ap">📡 AP</span>
@@ -2765,7 +2544,7 @@
 </div>
 </div>
 <div class="plan-row" data-row-h-mm="1100" style="grid-template-columns:1fr 1fr;">
-<div class="plan-cell core" data-door-mm="900" data-h-mm="800" data-material="service+utility" data-w-mm="5500" data-window-mm="1500" data-x-mm="0" data-y-mm="2400" onclick="highlightRoom('study', this)">
+<div class="plan-cell core"  data-door-mm="900" data-h-mm="800" data-material="service+utility" data-w-mm="5500" data-window-mm="1500" data-x-mm="0" data-y-mm="2400" role="button" tabindex="0" aria-pressed="false" aria-label="書房/工作室" onclick="highlightRoom('study', this)">
 <span class="cell-icon">💻</span>
 <span class="cell-name">書房/工作室</span>
 <div class="io-badges">
@@ -2774,7 +2553,7 @@
 <span class="badge ac">🌬️ 室內機 0.9噸</span>
 </div>
 </div>
-<div class="plan-cell" data-door-mm="900" data-h-mm="800" data-material="wood+paint" data-w-mm="5500" data-window-mm="1200" data-x-mm="5500" data-y-mm="2400" onclick="highlightRoom('bedroom2', this)">
+<div class="plan-cell"  data-door-mm="900" data-h-mm="800" data-material="wood+paint" data-w-mm="5500" data-window-mm="1200" data-x-mm="5500" data-y-mm="2400" role="button" tabindex="0" aria-pressed="false" aria-label="次臥" onclick="highlightRoom('bedroom2', this)">
 <span class="cell-icon">🛏️</span>
 <span class="cell-name">次臥</span>
 <div class="io-badges">
@@ -2784,7 +2563,7 @@
 </div>
 </div>
 <div class="plan-row" data-row-h-mm="1700" style="grid-template-columns:1fr 1fr;">
-<div class="plan-cell wet" data-door-mm="800" data-h-mm="2000" data-material="tile+waterproof" data-w-mm="6000" data-window-mm="600" data-x-mm="0" data-y-mm="3200" onclick="highlightRoom('bath2', this)">
+<div class="plan-cell wet"  data-door-mm="800" data-h-mm="2000" data-material="tile+waterproof" data-w-mm="6000" data-window-mm="600" data-x-mm="0" data-y-mm="3200" role="button" tabindex="0" aria-pressed="false" aria-label="2F 公用衛浴" onclick="highlightRoom('bath2', this)">
 <span class="cell-icon">🚿</span>
 <span class="cell-name">2F 公用衛浴</span>
 <div class="io-badges">
@@ -2792,7 +2571,7 @@
 <span class="badge hot">♨️ 熱水</span>
 </div>
 </div>
-<div class="plan-cell outdoor" data-compliance-status="architect-review-required" data-door-mm="900" data-facing="unknown" data-h-mm="2000" data-landscape-balcony="true" data-lowered-slab="true" data-material="concrete+drain+soil" data-outdoor-role="kaohsiung-house-balcony" data-planting-ratio="0.34" data-w-mm="5000" data-window-mm="0" data-x-mm="6000" data-y-mm="3200" data-zone="unknown" onclick="highlightRoom('balcony2', this)">
+<div class="plan-cell outdoor"  data-compliance-status="architect-review-required" data-door-mm="900" data-facing="unknown" data-h-mm="2000" data-landscape-balcony="true" data-lowered-slab="true" data-material="concrete+drain+soil" data-outdoor-role="kaohsiung-house-balcony" data-planting-ratio="0.34" data-w-mm="5000" data-window-mm="0" data-x-mm="6000" data-y-mm="3200" data-zone="unknown" role="button" tabindex="0" aria-pressed="false" aria-label="高雄厝陽台" onclick="highlightRoom('balcony2', this)">
 <span class="cell-icon">🌿</span>
 <span class="cell-name">高雄厝陽台</span>
 <div class="io-badges">
@@ -2990,7 +2769,7 @@
 </div>
 </div>
 <!-- ==================== 3F ==================== -->
-<div class="floor-plan" data-floor-depth-mm="5200" data-floor-width-mm="11000" data-front-side="top" data-geometry-source="auto-grid-v1" data-north-deg="0" data-rear-side="bottom" id="floor-3">
+<div class="floor-plan" data-floor-depth-mm="5200" data-floor-width-mm="11000" data-front-side="top" data-geometry-source="auto-grid-v1" data-north-deg="0" data-rear-side="bottom" id="floor-3" role="tabpanel">
 <div class="floor-header">
 <div class="floor-title">
 <div class="floor-title-icon">3F</div>
@@ -3009,7 +2788,7 @@
 </div>
 <div class="plan-grid-visual">
 <div class="plan-row" data-row-h-mm="1100" style="grid-template-columns:1fr;">
-<div class="plan-cell core" data-daylight-required="false" data-door-mm="900" data-h-mm="1100" data-material="concrete+drain" data-room-role="theater" data-w-mm="11000" data-window-mm="0" data-x-mm="0" data-y-mm="0" onclick="highlightRoom('entertainment', this)">
+<div class="plan-cell core"  data-daylight-required="false" data-door-mm="900" data-h-mm="1100" data-material="concrete+drain" data-room-role="theater" data-w-mm="11000" data-window-mm="0" data-x-mm="0" data-y-mm="0" role="button" tabindex="0" aria-pressed="false" aria-label="娛樂室/家庭劇院" onclick="highlightRoom('entertainment', this)">
 <span class="cell-icon">🎮</span>
 <span class="cell-name">娛樂室/家庭劇院</span>
 <span class="cell-size">約 6–8 坪</span>
@@ -3022,7 +2801,7 @@
 </div>
 </div>
 <div class="plan-row" data-row-h-mm="1100" style="grid-template-columns:1.5fr 1fr;">
-<div class="plan-cell" data-door-mm="900" data-h-mm="1100" data-material="wood+paint" data-w-mm="6600" data-window-mm="1700" data-x-mm="0" data-y-mm="1100" onclick="highlightRoom('guest', this)">
+<div class="plan-cell"  data-door-mm="900" data-h-mm="1100" data-material="wood+paint" data-w-mm="6600" data-window-mm="1700" data-x-mm="0" data-y-mm="1100" role="button" tabindex="0" aria-pressed="false" aria-label="客房" onclick="highlightRoom('guest', this)">
 <span class="cell-icon">🛏️</span>
 <span class="cell-name">客房</span>
 <div class="io-badges">
@@ -3030,7 +2809,7 @@
 <span class="badge ac">🌬️ 室內機 0.9噸・床頭不直吹</span>
 </div>
 </div>
-<div class="plan-cell wet" data-door-mm="800" data-h-mm="1100" data-material="tile+waterproof" data-w-mm="4400" data-window-mm="600" data-x-mm="6600" data-y-mm="1100" onclick="highlightRoom('bath3', this)">
+<div class="plan-cell wet"  data-door-mm="800" data-h-mm="1100" data-material="tile+waterproof" data-w-mm="4400" data-window-mm="600" data-x-mm="6600" data-y-mm="1100" role="button" tabindex="0" aria-pressed="false" aria-label="3F 衛浴" onclick="highlightRoom('bath3', this)">
 <span class="cell-icon">🚿</span>
 <span class="cell-name">3F 衛浴</span>
 <div class="io-badges">
@@ -3040,14 +2819,14 @@
 </div>
 </div>
 <div class="plan-row" data-row-h-mm="1300" style="grid-template-columns:1fr 1fr;">
-<div class="plan-cell" data-door-mm="900" data-h-mm="3000" data-material="paint+default" data-w-mm="5500" data-window-mm="1000" data-x-mm="0" data-y-mm="2200" onclick="highlightRoom('multi', this)">
+<div class="plan-cell"  data-door-mm="900" data-h-mm="3000" data-material="paint+default" data-w-mm="5500" data-window-mm="1000" data-x-mm="0" data-y-mm="2200" role="button" tabindex="0" aria-pressed="false" aria-label="多功能室" onclick="highlightRoom('multi', this)">
 <span class="cell-icon">🧘</span>
 <span class="cell-name">多功能室</span>
 <div class="io-badges">
 <span class="badge net">🌐 LAN×2</span>
 </div>
 </div>
-<div class="plan-cell highlight" data-door-mm="900" data-h-mm="2000" data-material="concrete+paint" data-w-mm="5500" data-window-mm="600" data-x-mm="5500" data-y-mm="2200" onclick="highlightRoom('stair3', this)">
+<div class="plan-cell highlight"  data-door-mm="900" data-h-mm="2000" data-material="concrete+paint" data-w-mm="5500" data-window-mm="600" data-x-mm="5500" data-y-mm="2200" role="button" tabindex="0" aria-pressed="false" aria-label="梯間（通 RF）" onclick="highlightRoom('stair3', this)">
 <span class="cell-icon">🪜</span>
 <span class="cell-name">梯間（通 RF）</span>
 <div class="io-badges">
@@ -3057,7 +2836,7 @@
 </div>
 </div>
 <div class="plan-row" data-row-h-mm="1700" style="grid-template-columns:1fr;">
-<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1000" data-material="concrete+drain" data-outdoor-role="balcony" data-w-mm="5500" data-window-mm="0" data-x-mm="5500" data-y-mm="4200" onclick="highlightRoom('terrace3', this)">
+<div class="plan-cell outdoor"  data-door-mm="900" data-h-mm="1000" data-material="concrete+drain" data-outdoor-role="balcony" data-w-mm="5500" data-window-mm="0" data-x-mm="5500" data-y-mm="4200" role="button" tabindex="0" aria-pressed="false" aria-label="3F 多功能小陽台" onclick="highlightRoom('terrace3', this)">
 <span class="cell-icon">☀️</span>
 <span class="cell-name">3F 多功能小陽台</span>
 <div class="io-badges">
@@ -3203,7 +2982,7 @@
 </div>
 </div>
 <!-- ==================== RF ==================== -->
-<div class="floor-plan" data-floor-depth-mm="3900" data-floor-width-mm="11000" data-front-side="top" data-geometry-source="auto-grid-v1" data-north-deg="0" data-rear-side="bottom" id="floor-4">
+<div class="floor-plan" data-floor-depth-mm="3900" data-floor-width-mm="11000" data-front-side="top" data-geometry-source="auto-grid-v1" data-north-deg="0" data-rear-side="bottom" id="floor-4" role="tabpanel">
 <div class="floor-header">
 <div class="floor-title">
 <div class="floor-title-icon">RF</div>
@@ -3228,7 +3007,7 @@
 </div>
 <div class="plan-grid-visual">
 <div class="plan-row" data-row-h-mm="1100" style="grid-template-columns:1fr;">
-<div class="plan-cell core highlight" data-door-mm="800" data-h-mm="1100" data-material="service+utility" data-w-mm="11000" data-window-mm="600" data-x-mm="0" data-y-mm="0" onclick="highlightRoom('riser', this)">
+<div class="plan-cell core highlight"  data-door-mm="800" data-h-mm="1100" data-material="service+utility" data-w-mm="11000" data-window-mm="600" data-x-mm="0" data-y-mm="0" role="button" tabindex="0" aria-pressed="false" aria-label="弱電立管終點/維修孔" onclick="highlightRoom('riser', this)">
 <span class="cell-icon">🟡</span>
 <span class="cell-name">弱電立管終點/維修孔</span>
 <div class="io-badges">
@@ -3238,7 +3017,7 @@
 </div>
 </div>
 <div class="plan-row" data-row-h-mm="1100" style="grid-template-columns:1fr 1fr 1fr;">
-<div class="plan-cell water highlight" data-door-mm="800" data-h-mm="1100" data-material="service+utility" data-w-mm="3667" data-window-mm="600" data-x-mm="0" data-y-mm="1100" onclick="highlightRoom('water-tank', this)">
+<div class="plan-cell water highlight"  data-door-mm="800" data-h-mm="1100" data-material="service+utility" data-w-mm="3667" data-window-mm="600" data-x-mm="0" data-y-mm="1100" role="button" tabindex="0" aria-pressed="false" aria-label="水塔" onclick="highlightRoom('water-tank', this)">
 <span class="cell-icon">💧</span>
 <span class="cell-name">水塔</span>
 <span class="cell-size">WT-L-1000B #304</span>
@@ -3247,7 +3026,7 @@
 <span class="badge water">💨 溢流管</span>
 </div>
 </div>
-<div class="plan-cell water highlight" data-structural-review="required" data-door-mm="800" data-h-mm="1100" data-material="service+utility" data-w-mm="3667" data-window-mm="600" data-x-mm="3667" data-y-mm="1100" onclick="highlightRoom('vf800', this)">
+<div class="plan-cell water highlight"  data-structural-review="required" data-door-mm="800" data-h-mm="1100" data-material="service+utility" data-w-mm="3667" data-window-mm="600" data-x-mm="3667" data-y-mm="1100" role="button" tabindex="0" aria-pressed="false" aria-label="VF800" onclick="highlightRoom('vf800', this)">
 <span class="cell-icon">❄️</span>
 <span class="cell-name">VF800</span>
 <span class="cell-size">變頻恆壓+旁通</span>
@@ -3256,7 +3035,7 @@
 <span class="badge pwr">⚡ 專迴</span>
 </div>
 </div>
-<div class="plan-cell" data-structural-review="required" data-door-mm="900" data-h-mm="1100" data-material="paint+default" data-w-mm="3667" data-window-mm="1000" data-x-mm="7333" data-y-mm="1100" onclick="highlightRoom('haier', this)" style="background:linear-gradient(135deg,rgba(239,68,68,.12),rgba(220,38,38,.06));border-color:rgba(239,68,68,.35);">
+<div class="plan-cell" role="button" tabindex="0" aria-pressed="false" aria-label="Haier 熱泵" data-structural-review="required" data-door-mm="900" data-h-mm="1100" data-material="paint+default" data-w-mm="3667" data-window-mm="1000" data-x-mm="7333" data-y-mm="1100" onclick="highlightRoom('haier', this)" style="background:linear-gradient(135deg,rgba(239,68,68,.12),rgba(220,38,38,.06));border-color:rgba(239,68,68,.35);">
 <span class="cell-icon">♨️</span>
 <span class="cell-name">Haier 熱泵</span>
 <span class="cell-size">HPSE23W/256T</span>
@@ -3267,7 +3046,7 @@
 </div>
 </div>
 <div class="plan-row" data-row-h-mm="1700" style="grid-template-columns:1fr 1fr;">
-<div class="plan-cell" data-structural-review="required" data-door-mm="800" data-h-mm="1700" data-material="service+utility" data-w-mm="5500" data-window-mm="600" data-x-mm="0" data-y-mm="2200" onclick="highlightRoom('solar', this)">
+<div class="plan-cell"  data-structural-review="required" data-door-mm="800" data-h-mm="1700" data-material="service+utility" data-w-mm="5500" data-window-mm="600" data-x-mm="0" data-y-mm="2200" role="button" tabindex="0" aria-pressed="false" aria-label="太陽能設備區" onclick="highlightRoom('solar', this)">
 <span class="cell-icon">☀️</span>
 <span class="cell-name">太陽能設備區</span>
 <div class="io-badges">
@@ -3275,7 +3054,7 @@
 <span class="badge net">🌐 監控</span>
 </div>
 </div>
-<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-w-mm="5500" data-window-mm="0" data-x-mm="5500" data-y-mm="2200" onclick="highlightRoom('laundry-rf', this)">
+<div class="plan-cell outdoor"  data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-w-mm="5500" data-window-mm="0" data-x-mm="5500" data-y-mm="2200" role="button" tabindex="0" aria-pressed="false" aria-label="RF 曬衣／設備維修平台" onclick="highlightRoom('laundry-rf', this)">
 <span class="cell-icon">👕</span>
 <span class="cell-name">RF 曬衣／設備維修平台</span>
 <div class="io-badges">
@@ -3650,7 +3429,7 @@
 </div>
 </div>
 <!-- ==================== 給水系統總覽 ==================== -->
-<div class="floor-plan" id="floor-5">
+<div class="floor-plan" id="floor-5" role="tabpanel">
 <div class="floor-header">
 <div class="floor-title">
 <div class="floor-title-icon">💧</div>
@@ -4063,7 +3842,7 @@
 </div>
 </div>
 <!-- ==================== 弱電總表 ==================== -->
-<div class="floor-plan" id="floor-6">
+<div class="floor-plan" id="floor-6" role="tabpanel">
 <div class="floor-header">
 <div class="floor-title">
 <div class="floor-title-icon">🌐</div>
@@ -4413,7 +4192,7 @@
 </div>
 </div>
 <!-- ==================== 驗收清單（新增！）==================== -->
-<div class="floor-plan" id="floor-7">
+<div class="floor-plan" id="floor-7" role="tabpanel">
 <div class="floor-header">
 <div class="floor-title">
 <div class="floor-title-icon">✅</div>
@@ -4591,7 +4370,7 @@
 </div>
 </div>
 <!-- ==================== 貼紙規範 ==================== -->
-<div class="floor-plan" id="floor-8">
+<div class="floor-plan" id="floor-8" role="tabpanel">
 <div class="floor-header">
 <div class="floor-title">
 <div class="floor-title-icon">🏷️</div>
@@ -4655,25 +4434,63 @@
 </div>
 </div>
 <script>
-        function showFloor(floor) {
-            document.querySelectorAll('.floor-plan').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            document.getElementById('floor-' + floor).classList.add('active');
-            document.querySelectorAll('.tab')[floor].classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+function showFloor(floor) {
+    document.querySelectorAll('.floor-plan').forEach(p => p.classList.remove('active'));
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(t => {
+        t.classList.remove('active');
+        if (t.hasAttribute('aria-selected')) t.setAttribute('aria-selected', 'false');
+    });
+    const targetFloor = document.getElementById('floor-' + floor);
+    if (targetFloor) targetFloor.classList.add('active');
+    const targetTab = document.querySelector('.tab[data-floor="' + floor + '"]') || tabs[floor];
+    if (targetTab) {
+        targetTab.classList.add('active');
+        if (targetTab.hasAttribute('aria-selected')) targetTab.setAttribute('aria-selected', 'true');
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
-        function highlightRoom(roomId, el) {
-            document.querySelectorAll('.room').forEach(r => r.classList.remove('room-active'));
-            document.querySelectorAll('.plan-cell').forEach(c => c.classList.remove('active-cell'));
+function highlightRoom(roomId, el) {
+    document.querySelectorAll('.room').forEach(r => r.classList.remove('room-active'));
+    document.querySelectorAll('.plan-cell').forEach(c => {
+        c.classList.remove('active-cell');
+        if (c.hasAttribute('aria-pressed')) c.setAttribute('aria-pressed', 'false');
+    });
+    const roomEl = document.getElementById('room-' + roomId);
+    if (roomEl) {
+        roomEl.classList.add('room-active');
+        roomEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    if (el) {
+        el.classList.add('active-cell');
+        if (el.hasAttribute('aria-pressed')) el.setAttribute('aria-pressed', 'true');
+    }
+}
 
-            const roomEl = document.getElementById('room-' + roomId);
-            if (roomEl) {
-                roomEl.classList.add('room-active');
-                roomEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
-            if (el) el.classList.add('active-cell');
-        }
-    </script>
+// Keyboard support for the click-only .plan-cell / .tab widgets.
+// One delegated listener instead of an inline handler on every element.
+document.addEventListener('keydown', function (ev) {
+    const target = ev.target;
+    if (!target || !target.classList) return;
+    const isCell = target.classList.contains('plan-cell');
+    const isTab = target.classList.contains('tab');
+    if (!isCell && !isTab) return;
+    if (ev.key === 'Enter' || ev.key === ' ' || ev.key === 'Spacebar') {
+        ev.preventDefault();
+        target.click();
+        return;
+    }
+    if (isTab && (ev.key === 'ArrowRight' || ev.key === 'ArrowLeft')) {
+        ev.preventDefault();
+        const tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+        const idx = tabs.indexOf(target);
+        if (idx < 0) return;
+        const step = ev.key === 'ArrowRight' ? 1 : tabs.length - 1;
+        const next = tabs[(idx + step) % tabs.length];
+        if (next) { next.focus(); next.click(); }
+    }
+});
+</script>
 </body>
 </html>

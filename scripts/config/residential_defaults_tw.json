@@ -54,6 +54,35 @@
     },
     "kitchen_counter_depth": 650
   },
+  "vehicle": {
+    "_note": [
+      "車庫尺寸的推導基準。使用者要求：車停在建築體內，車庫至少要放得下一台休旅車＋充電樁。",
+      "這裡的數字是『淨尺寸』——車子實際停進去的空間，不含牆體。產生器會自己加牆厚。",
+      "下限由此推導，不是另外寫死：淨深 = 車長 + 車頭服務區 + 車尾淨空；",
+      "淨寬 = 車寬 × 車位數 + 駕駛側 + 乘客側 + 車位間距 ×(車位數-1)。"
+    ],
+    "suv_mm": {
+      "length": 4900,
+      "width": 1950,
+      "height": 1800,
+      "_note": "台灣常見中大型休旅的上緣（Highlander 4966×1930、CR-V 4703×1866），取 4900×1950 為下限基準。"
+    },
+    "clearance_mm": {
+      "driver_side": 700,
+      "passenger_side": 350,
+      "between_bays": 300,
+      "front": 600,
+      "rear": 500,
+      "_note": "駕駛側 700 是開門下車的最小值；車尾 500 只夠側身通過，不含尾門全開。"
+    },
+    "ev_charger_mm": {
+      "depth": 400,
+      "width": 600,
+      "clear": 300,
+      "mount": "front_wall",
+      "_note": "壁掛式充電樁裝在車頭端牆面。車頭服務區取 max(clearance.front, depth + clear)，兩者共用同一段深度而不重複計算。"
+    }
+  },
   "drawing": {
     "font_family": "Segoe UI, Microsoft JhengHei, sans-serif",
     "default_style": "presentation",
@@ -61,6 +90,19 @@
     "exterior_wall_extra_px": 1.2,
     "window_line_width_px": 2.2,
     "dimension_line_color": "#777",
+    "model3d_room_colors": {
+      "_note": "Screen palette for the 3D massing viewer. The style_profiles room_fills are near-white pastels tuned for ink on paper; on a shaded 3D volume they all collapse to the same grey. Same room-kind keys, same hue family, saturated for screen.",
+      "entry": "#e0913a",
+      "living": "#f2b705",
+      "dining": "#e8783c",
+      "bedroom": "#7c9df0",
+      "bath": "#3fb6c8",
+      "kitchen": "#4fbf7a",
+      "service": "#8a94a8",
+      "stair": "#a98fd6",
+      "outdoor": "#5fae74",
+      "other": "#c3ccd9"
+    },
     "style_profiles": {
       "presentation": {
         "presentation_version": 2,
@@ -199,7 +241,7 @@
   },
   "spatial_metadata": {
     "opening_required_roles": [],
-    "geometry_overlap_tolerance_mm": 1.0,
+    "geometry_overlap_tolerance_mm": 0.5,
     "ifc_promotion": {
       "cell_overlap": [],
       "room_target_mismatch": []

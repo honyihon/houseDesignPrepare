@@ -15,7 +15,7 @@ if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
 from lib.architect_metrics import evaluate_program, generate_metrics_report_md
-from lib.standards import load_residential_defaults
+from lib.standards import load_residential_defaults, repo_relative
 
 
 PROGRAM_FILE = ROOT / "structured" / "room_program.json"
@@ -54,7 +54,7 @@ def main() -> None:
     program = json.loads(program_path.read_text(encoding="utf-8"))
     selected_buildings = parse_buildings(args.buildings)
     payload = evaluate_program(program, defaults, selected_buildings)
-    payload["source_program_file"] = str(program_path)
+    payload["source_program_file"] = repo_relative(program_path)
 
     args.output_json.parent.mkdir(parents=True, exist_ok=True)
     args.output_md.parent.mkdir(parents=True, exist_ok=True)

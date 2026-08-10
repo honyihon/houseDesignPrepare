@@ -26,6 +26,26 @@
 - The documented expert workflow runs `validate_layout_bundle.py` exactly once.
 - Do not stage generated `structured/` artifact churn in code-change commits. Use the final artifact regeneration task for generated outputs.
 
+### Amendment 2026-08-06 — read-only massing viewer
+
+`scripts/export_model_3d.py` produces `structured/candidates/model3d.html`, a
+three.js massing viewer. This does **not** relax the "no BIM, CAD, or 3D modeling
+stack" constraint above:
+
+- It is read-only. Geometry is derived from `structured/room_program.json`, which
+  remains the single source of truth; the viewer has no authoring, editing, or
+  export-back path, and nothing downstream consumes it.
+- It draws extruded plan cells, not building elements. There is no IFC entity
+  model, no parametric objects, no boolean openings — door/window positions are
+  painted as face patches for orientation only.
+- three.js is vendored as a static asset under `assets/vendor/three/` and inlined
+  into a single offline HTML file. No build step, no runtime dependency, no
+  toolchain enters the pipeline.
+
+Its purpose is spatial comprehension and, equally, provenance disclosure: the
+"尺寸來源" mode renders auto-derived cells as wireframe so the ~82% of geometry
+that is still a CSS-class guess is visible at a glance.
+
 ---
 
 ## File Structure

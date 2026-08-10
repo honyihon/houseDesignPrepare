@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import sys
 from collections import Counter
 from datetime import datetime
 from io import BytesIO
@@ -32,24 +33,38 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_MANIFEST = ROOT / "structured" / "candidates" / "svg" / "manifest.json"
 DEFAULT_OUTPUT = ROOT / "structured" / "candidates" / "print_bundle.pdf"
 SCHEMA_VERSION = "layout-print-bundle-v1"
+# Every room label in this project is Traditional Chinese, and Helvetica cannot
+# draw a single one of those glyphs — so the fallback at the end of this list is
+# not a graceful degradation, it is an unreadable PDF. The pipeline runs from
+# both Windows PowerShell and WSL, hence the mounted /mnt/c paths and the native
+# Linux entries: a WSL run used to find nothing here and silently produce a
+# bundle with blank labels.
 CJK_FONT_CANDIDATES = [
     {
         "regular_name": "MSJH",
-        "regular_path": Path(r"C:\Windows\Fonts\msjh.ttc"),
+        "regular_path": [Path(r"C:\Windows\Fonts\msjh.ttc"), Path("/mnt/c/Windows/Fonts/msjh.ttc")],
         "bold_name": "MSJH-Bold",
-        "bold_path": Path(r"C:\Windows\Fonts\msjhbd.ttc"),
+        "bold_path": [Path(r"C:\Windows\Fonts\msjhbd.ttc"), Path("/mnt/c/Windows/Fonts/msjhbd.ttc")],
     },
     {
         "regular_name": "NotoSansTC",
-        "regular_path": Path(r"C:\Windows\Fonts\NotoSansTC-VF.ttf"),
+        "regular_path": [
+            Path(r"C:\Windows\Fonts\NotoSansTC-VF.ttf"),
+            Path("/mnt/c/Windows/Fonts/NotoSansTC-VF.ttf"),
+            Path("/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc"),
+            Path("/usr/share/fonts/truetype/noto/NotoSansCJK-Regular.ttc"),
+        ],
         "bold_name": "NotoSansTC-Bold",
-        "bold_path": None,
+        "bold_path": [
+            Path("/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc"),
+            Path("/usr/share/fonts/truetype/noto/NotoSansCJK-Bold.ttc"),
+        ],
     },
     {
         "regular_name": "MingLiu",
-        "regular_path": Path(r"C:\Windows\Fonts\mingliu.ttc"),
+        "regular_path": [Path(r"C:\Windows\Fonts\mingliu.ttc"), Path("/mnt/c/Windows/Fonts/mingliu.ttc")],
         "bold_name": "MingLiu-Bold",
-        "bold_path": Path(r"C:\Windows\Fonts\mingliub.ttc"),
+        "bold_path": [Path(r"C:\Windows\Fonts\mingliub.ttc"), Path("/mnt/c/Windows/Fonts/mingliub.ttc")],
     },
 ]
 
@@ -110,28 +125,53 @@ def page_size(paper: str) -> tuple[float, float]:
     return landscape(base)
 
 
-def register_font_if_needed(font_name: str, font_path: Path | None) -> bool:
-    if not font_path or not font_path.exists():
+def register_font_if_needed(font_name: str, font_paths: Any) -> bool:
+    """Register the first of ``font_paths`` that exists on this machine."""
+
+    if not font_paths:
         return False
     if font_name in pdfmetrics.getRegisteredFontNames():
         return True
-    pdfmetrics.registerFont(TTFont(font_name, str(font_path)))
-    return True
+    if isinstance(font_paths, Path):
+        font_paths = [font_paths]
+    for font_path in font_paths:
+        if not font_path or not font_path.exists():
+            continue
+        try:
+            pdfmetrics.registerFont(TTFont(font_name, str(font_path)))
+        except Exception:
+            # A .ttc collection reportlab cannot open is not fatal; try the next
+            # location rather than losing CJK for the whole bundle.
+            continue
+        return True
+    return False
 
 
 def resolve_pdf_fonts() -> tuple[str, str]:
     for candidate in CJK_FONT_CANDIDATES:
         regular_name = candidate["regular_name"]
-        regular_path = candidate["regular_path"]
-        if not register_font_if_needed(regular_name, regular_path):
+        if not register_font_if_needed(regular_name, candidate["regular_path"]):
             continue
 
         bold_name = candidate["bold_name"]
-        bold_path = candidate["bold_path"]
-        if register_font_if_needed(bold_name, bold_path):
+        if register_font_if_needed(bold_name, candidate["bold_path"]):
             return regular_name, bold_name
         return regular_name, regular_name
 
+    # Say so loudly. Every label in this bundle is Traditional Chinese and
+    # Helvetica has none of those glyphs, so the PDF is about to come out with
+    # blank room names — a defect that is invisible in the exit code.
+    print(
+        "WARNING: no CJK font found; falling back to Helvetica. "
+        "Chinese labels in the PDF will be blank or boxed.\n"
+        "         Searched: "
+        + ", ".join(
+            str(p)
+            for c in CJK_FONT_CANDIDATES
+            for p in (c["regular_path"] if isinstance(c["regular_path"], list) else [c["regular_path"]])
+        ),
+        file=sys.stderr,
+    )
     return "Helvetica", "Helvetica-Bold"
 
 

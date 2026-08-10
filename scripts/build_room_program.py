@@ -16,7 +16,8 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
-from lib.standards import defaults_summary_line, load_residential_defaults  # noqa: E402
+from lib.dimension_overrides import apply_to_room_program, load_overrides  # noqa: E402
+from lib.standards import defaults_summary_line, load_residential_defaults, repo_relative  # noqa: E402
 
 STRUCTURED_DIR = ROOT / "structured"
 OUTPUT_FILE = STRUCTURED_DIR / "room_program.json"
@@ -570,7 +571,7 @@ def build_program(docs: list[dict[str, Any]]) -> dict[str, Any]:
             "schema_version": RESIDENTIAL_DEFAULTS.get("schema_version", ""),
             "profile": RESIDENTIAL_DEFAULTS.get("profile", ""),
             "summary_line": defaults_summary_line(RESIDENTIAL_DEFAULTS),
-            "config_path": RESIDENTIAL_DEFAULTS.get("_meta", {}).get("config_path", ""),
+            "config_path": repo_relative(RESIDENTIAL_DEFAULTS.get("_meta", {}).get("config_path", "")),
             "config_loaded": RESIDENTIAL_DEFAULTS.get("_meta", {}).get("config_loaded", False),
         },
         "buildings": buildings,
@@ -584,9 +585,30 @@ def main() -> None:
         raise SystemExit("No *.structured.json found. Run scripts/extract_layout_data.py first.")
 
     program = build_program(docs)
+
+    # Layer measured dimensions over the auto-derived HTML geometry.  This is the
+    # single integration point: every downstream step reads room_program.json, so
+    # metrics, candidates, SVG, PDF and the 3D model all inherit the result.
+    overrides = load_overrides()
+    override_summary = apply_to_room_program(
+        program,
+        overrides,
+        default_storey_height_mm=float(
+            RESIDENTIAL_DEFAULTS.get("architect_metrics", {}).get("room_height_mm", 3000)
+        ),
+    )
+
     OUTPUT_FILE.write_text(json.dumps(program, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"Wrote room program: {OUTPUT_FILE}")
     print(f"Summary: {program['summary']}")
+    cells = override_summary["cells"]
+    print(
+        "Geometry provenance: "
+        f"measured={cells['measured']} declared={cells['declared']} auto={cells['auto']} "
+        f"({cells['auto_pct']}% still auto-derived guesses)"
+    )
+    if not overrides.loaded:
+        print(f"  No override file at {overrides.path} - run scripts/seed_dimension_overrides.py to create one.")
 
 
 if __name__ == "__main__":

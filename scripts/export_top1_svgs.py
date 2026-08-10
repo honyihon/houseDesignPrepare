@@ -22,12 +22,17 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from house_design.rendering import stable_svg_filename  # noqa: E402
+from lib.dimension_overrides import (  # noqa: E402
+    PROVENANCE_AUTO,
+    PROVENANCE_LEVELS,
+)
 from lib.standards import (  # noqa: E402
     defaults_summary_line,
     door_width_mm,
     drawing_font_family,
     load_residential_defaults,
     px_per_mm,
+    repo_relative,
     wall_thickness_mm,
     window_width_mm,
 )
@@ -354,6 +359,7 @@ def build_slot_index(program: dict[str, Any]) -> dict[tuple[str, str], list[dict
                         "col_weight": float(layout.get("col_weight", 1.0) or 1.0),
                         "geometry_mm": cell.get("geometry_mm", {}) if isinstance(cell.get("geometry_mm", {}), dict) else {},
                         "openings_mm": cell.get("openings_mm", {}) if isinstance(cell.get("openings_mm", {}), dict) else {},
+                        "geometry_provenance": normalize(str(cell.get("geometry_provenance", "") or PROVENANCE_AUTO)),
                         "is_entry": bool(cell.get("is_entry", False)),
                         "material": normalize(str(cell.get("material", ""))),
                     }
@@ -423,6 +429,13 @@ def has_source_row_layout(slots: list[dict[str, Any]]) -> bool:
 
 
 def has_precise_slot_geometry(slots: list[dict[str, Any]]) -> bool:
+    """Whether every slot carries usable mm coordinates.
+
+    This governs *layout* only — with x/y/w/h present the drawing can be laid
+    out to scale instead of on a fallback grid.  It says nothing about whether
+    those millimetres are real; see :func:`slot_provenance_counts` for that.
+    """
+
     if not slots:
         return False
     for slot in slots:
@@ -432,6 +445,48 @@ def has_precise_slot_geometry(slots: list[dict[str, Any]]) -> bool:
         if any(geom.get(key) is None for key in ("x_mm", "y_mm", "w_mm", "h_mm")):
             return False
     return True
+
+
+def slot_provenance_counts(slots: list[dict[str, Any]]) -> dict[str, int]:
+    """Count how many slots are measured / declared / auto-guessed."""
+
+    counts = {level: 0 for level in PROVENANCE_LEVELS}
+    for slot in slots:
+        level = str(slot.get("geometry_provenance") or PROVENANCE_AUTO).strip().lower()
+        counts[level if level in counts else PROVENANCE_AUTO] += 1
+    return counts
+
+
+def merge_provenance_counts(records: list[dict[str, Any]]) -> dict[str, Any]:
+    total = {level: 0 for level in PROVENANCE_LEVELS}
+    for rec in records:
+        for level, n in (rec.get("svg", {}).get("geometry_provenance") or {}).items():
+            if level in total:
+                total[level] += int(n or 0)
+    count = sum(total.values())
+    return {
+        **total,
+        "total": count,
+        "auto_pct": round(100.0 * total[PROVENANCE_AUTO] / count, 1) if count else 0.0,
+    }
+
+
+def provenance_caption(use_precise_geometry: bool, counts: dict[str, int]) -> str:
+    """The line printed on the drawing itself about where its sizes came from.
+
+    Anyone holding a printout should be able to see at a glance that most of
+    these dimensions have never been measured.
+    """
+
+    if not use_precise_geometry:
+        return "Layout source: heuristic row/column (no mm geometry)"
+    auto = counts.get(PROVENANCE_AUTO, 0)
+    total = sum(counts.values())
+    if total and auto == 0:
+        return "Layout source: measured/declared mm geometry"
+    parts = [f"{level}={counts.get(level, 0)}" for level in PROVENANCE_LEVELS]
+    pct = round(100.0 * auto / total, 0) if total else 0
+    return f"Layout source: MIXED — {', '.join(parts)} ({pct:.0f}% auto-derived, NOT measured)"
 
 
 def _f(value: Any, default: float = 0.0) -> float:
@@ -1432,6 +1487,7 @@ def render_floor_svg(
         cols = choose_columns(slot_count)
         grouped_rows = [slots[i : i + cols] for i in range(0, len(slots), cols)] or [slots]
     use_precise_geometry = has_precise_slot_geometry(slots)
+    provenance = slot_provenance_counts(slots)
 
     row_count = len(grouped_rows)
     row_h = 148.0
@@ -1638,7 +1694,7 @@ def render_floor_svg(
             svg_text(
                 plan_left,
                 110,
-                "Layout source: precise-mm geometry" if use_precise_geometry else "Layout source: heuristic row/column",
+                provenance_caption(use_precise_geometry, provenance),
                 size=9,
                 weight=500,
                 color=muted_color,
@@ -1766,17 +1822,31 @@ def render_floor_svg(
     parts.append("</svg>")
 
     out_path.write_text("\n".join(parts), encoding="utf-8")
+    provenance = slot_provenance_counts(slots)
+    # "blueprint-precise-mm" is a claim that the drawing is to real scale, so it
+    # is only earned when nothing on the floor is still an auto-grid guess.
+    # Anything else says so plainly rather than overstating the source.
+    if use_precise_geometry:
+        layout_mode = (
+            "blueprint-precise-mm" if provenance[PROVENANCE_AUTO] == 0 else "mixed-provenance"
+        )
+    elif use_source_rows:
+        layout_mode = "blueprint-source-row"
+    else:
+        layout_mode = "blueprint-grid"
+
     return {
         "file": out_path.name,
-        "path": str(out_path),
+        "path": repo_relative(out_path),
         "width": width,
         "height": height,
         "drawing_style": drawing_style,
         "slot_count": len(slots),
         "strategy": strategy,
         "score_total": scores.get("total", 0),
-        "layout_mode": "blueprint-precise-mm" if use_precise_geometry else ("blueprint-source-row" if use_source_rows else "blueprint-grid"),
-        "precise_geometry": use_precise_geometry,
+        "layout_mode": layout_mode,
+        "geometry_provenance": provenance,
+        "scaled_layout": use_precise_geometry,
         "window_count": len(window_specs),
         "has_dimensions": style_bool(profile, "show_dimensions", True),
         "has_legend": style_bool(profile, "show_right_legend", False) or style_bool(profile, "show_bottom_legend", False),
@@ -1903,13 +1973,14 @@ def main() -> None:
             "presentation_version": rendered.get("presentation_version", 0),
             "compact_label_count": rendered.get("compact_label_count", 0),
             "file": out_file.name,
-            "path": str(out_file),
+            "path": repo_relative(out_file),
             "svg": rendered,
         }
         records.append(record)
 
     records.sort(key=lambda r: (r["building_id"], r["floor_id"]))
     compact_label_count = sum(int(r.get("compact_label_count", 0) or 0) for r in records)
+    geometry_provenance = merge_provenance_counts(records)
 
     manifest = {
         "schema_version": SCHEMA_VERSION,
@@ -1924,9 +1995,15 @@ def main() -> None:
         "defaults_profile": {
             "schema_version": RESIDENTIAL_DEFAULTS.get("schema_version", ""),
             "profile": RESIDENTIAL_DEFAULTS.get("profile", ""),
-            "config_path": RESIDENTIAL_DEFAULTS.get("_meta", {}).get("config_path", ""),
+            "config_path": repo_relative(RESIDENTIAL_DEFAULTS.get("_meta", {}).get("config_path", "")),
             "config_loaded": RESIDENTIAL_DEFAULTS.get("_meta", {}).get("config_loaded", False),
         },
+        "geometry_provenance": geometry_provenance,
+        "geometry_provenance_note": (
+            "measured = surveyed, declared = derived from size text in the HTML, "
+            "auto = guessed by scripts/annotate_html_geometry.py from CSS classes. "
+            "See structured/dimension_todo.md and inputs/dimensions.json."
+        ),
         "candidate_selection": args.selection,
         "requested_selection": args.selection,
         "resolved_selection": args.selection,
@@ -1945,6 +2022,13 @@ def main() -> None:
     print(f"Skipped floors:      {len(skipped)}")
     print(f"Selection mode:      {args.selection}")
     print(f"Drawing style:       {args.style}")
+    print(
+        "Geometry provenance: "
+        f"measured={geometry_provenance['measured']} "
+        f"declared={geometry_provenance['declared']} "
+        f"auto={geometry_provenance['auto']} "
+        f"({geometry_provenance['auto_pct']}% auto-derived guesses)"
+    )
     print(f"Manifest: {MANIFEST_FILE}")
     print(f"Index:    {INDEX_FILE}")
 

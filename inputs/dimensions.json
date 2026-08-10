@@ -1,0 +1,288 @@
+{
+  "schema": "house-dimensions-override-v1",
+  "generated_at": "2026-08-06T04:07:03.582120+00:00",
+  "_readme": "尺寸覆寫檔。pipeline 讀這裡的值優先於 HTML 的 auto-grid 推導值。量到真實尺寸後填入 w_mm/h_mm（必要時連 x_mm/y_mm），並把該格的 _provenance 改成 \"measured\"；標成 measured 的項目不會被本腳本覆蓋。",
+  "default_storey_height_mm": 3000.0,
+  "site": {
+    "_provenance": "assumed",
+    "_note": "無實測基地配置。以下為暫定值：三棟一列。站在前院面對房子時，右→左為 A、B、C（x 越大越靠右），這是使用者確認過的順序。棟距的可調範圍已移交 inputs/site.json 的 row.gap_mm；此處只保留現有 HTML 資料的相對位置。量測後請改 _provenance 為 measured。",
+    "C": {
+      "x_mm": 0,
+      "y_mm": 0,
+      "rotation_deg": 0
+    },
+    "B": {
+      "x_mm": 12000,
+      "y_mm": 0,
+      "rotation_deg": 0
+    },
+    "A": {
+      "x_mm": 24000,
+      "y_mm": 0,
+      "rotation_deg": 0
+    }
+  },
+  "buildings": {
+    "A": {
+      "floors": {
+        "floor-1": {
+          "width_mm": 11000.0,
+          "depth_mm": 7700.0,
+          "north_deg": 0.0,
+          "storey_height_mm": 3000.0,
+          "_provenance": "auto",
+          "_title": "1F",
+          "cells": {
+            "garage": {
+              "x_mm": 0.0,
+              "y_mm": 0.0,
+              "w_mm": 5500.0,
+              "h_mm": 6000.0,
+              "_provenance": "declared",
+              "_name": "前院車庫",
+              "_note": "declared 5.5m × 6.0m"
+            },
+            "living": {
+              "x_mm": 3667.0,
+              "y_mm": 1200.0,
+              "w_mm": 7333.0,
+              "h_mm": 2254.0,
+              "_provenance": "declared",
+              "_name": "客廳",
+              "_note": "declared 5.0 坪 = 16.5 m²; width kept from grid (7333mm), depth solved"
+            },
+            "kitchen": {
+              "x_mm": 0.0,
+              "y_mm": 4700.0,
+              "w_mm": 6000.0,
+              "h_mm": 1652.9,
+              "_provenance": "declared",
+              "_name": "廚房",
+              "_note": "declared 3.0 坪 = 9.9 m²; width kept from grid (6000mm), depth solved"
+            },
+            "flex1": {
+              "x_mm": 6000.0,
+              "y_mm": 4700.0,
+              "w_mm": 5000.0,
+              "h_mm": 2644.6,
+              "_provenance": "declared",
+              "_name": "多功能房/客房",
+              "_note": "declared 4.0 坪 = 13.2 m²; width kept from grid (5000mm), depth solved"
+            }
+          }
+        },
+        "floor-2": {
+          "width_mm": 11000.0,
+          "depth_mm": 5200.0,
+          "north_deg": 0.0,
+          "storey_height_mm": 3000.0,
+          "_provenance": "auto",
+          "_title": "2F",
+          "cells": {
+            "master": {
+              "x_mm": 0.0,
+              "y_mm": 0.0,
+              "w_mm": 7333.0,
+              "h_mm": 2704.9,
+              "_provenance": "declared",
+              "_name": "主臥室",
+              "_note": "declared 6.0 坪 = 19.8 m²; width kept from grid (7333mm), depth solved"
+            }
+          }
+        },
+        "floor-3": {
+          "width_mm": 11000.0,
+          "depth_mm": 5200.0,
+          "north_deg": 0.0,
+          "storey_height_mm": 3000.0,
+          "_provenance": "auto",
+          "_title": "3F",
+          "cells": {
+            "entertainment": {
+              "x_mm": 0.0,
+              "y_mm": 0.0,
+              "w_mm": 11000.0,
+              "h_mm": 2404.2,
+              "_provenance": "declared",
+              "_name": "娛樂室/家庭劇院",
+              "_note": "declared 8.0 坪 = 26.4 m²; width kept from grid (11000mm), depth solved"
+            }
+          }
+        },
+        "floor-4": {
+          "width_mm": 11000.0,
+          "depth_mm": 3900.0,
+          "north_deg": 0.0,
+          "storey_height_mm": 3000.0,
+          "_provenance": "auto",
+          "_title": "RF",
+          "cells": {}
+        }
+      }
+    },
+    "B": {
+      "floors": {
+        "floor-1": {
+          "width_mm": 11000.0,
+          "depth_mm": 5300.0,
+          "north_deg": 0.0,
+          "storey_height_mm": 3000.0,
+          "_provenance": "auto",
+          "_title": "1F",
+          "cells": {}
+        },
+        "floor-2": {
+          "width_mm": 11000.0,
+          "depth_mm": 5400.0,
+          "north_deg": 0.0,
+          "storey_height_mm": 3000.0,
+          "_provenance": "auto",
+          "_title": "2F",
+          "cells": {}
+        },
+        "floor-3": {
+          "width_mm": 11000.0,
+          "depth_mm": 5300.0,
+          "north_deg": 0.0,
+          "storey_height_mm": 3000.0,
+          "_provenance": "auto",
+          "_title": "3F",
+          "cells": {}
+        },
+        "floor-4": {
+          "width_mm": 11000.0,
+          "depth_mm": 5400.0,
+          "north_deg": 0.0,
+          "storey_height_mm": 3000.0,
+          "_provenance": "auto",
+          "_title": "RF",
+          "cells": {}
+        }
+      }
+    },
+    "C": {
+      "floors": {
+        "floor-1": {
+          "width_mm": 11000.0,
+          "depth_mm": 7000.0,
+          "north_deg": 0.0,
+          "storey_height_mm": 3000.0,
+          "_provenance": "auto",
+          "_title": "1F",
+          "cells": {
+            "living": {
+              "x_mm": 2750.0,
+              "y_mm": 1200.0,
+              "w_mm": 5500.0,
+              "h_mm": 4808.4,
+              "_provenance": "declared",
+              "_name": "客廳",
+              "_note": "declared 8.0 坪 = 26.4 m²; width kept from grid (5500mm), depth solved"
+            },
+            "elder": {
+              "x_mm": 0.0,
+              "y_mm": 4000.0,
+              "w_mm": 7857.0,
+              "h_mm": 2103.7,
+              "_provenance": "declared",
+              "_name": "孝親房",
+              "_note": "declared 5.0 坪 = 16.5 m²; width kept from grid (7857mm), depth solved"
+            }
+          }
+        },
+        "floor-2": {
+          "width_mm": 11000.0,
+          "depth_mm": 7000.0,
+          "north_deg": 0.0,
+          "storey_height_mm": 3000.0,
+          "_provenance": "auto",
+          "_title": "2F",
+          "cells": {
+            "living2f": {
+              "x_mm": 0.0,
+              "y_mm": 2000.0,
+              "w_mm": 11000.0,
+              "h_mm": 2554.5,
+              "_provenance": "declared",
+              "_name": "客廳（主角空間）",
+              "_note": "declared 8.5 坪 = 28.1 m²; width kept from grid (11000mm), depth solved"
+            },
+            "guestroom2f": {
+              "x_mm": 0.0,
+              "y_mm": 3300.0,
+              "w_mm": 7333.0,
+              "h_mm": 1577.8,
+              "_provenance": "declared",
+              "_name": "客房 / 多功能房",
+              "_note": "declared 3.5 坪 = 11.6 m²; width kept from grid (7333mm), depth solved"
+            },
+            "kitchen2f": {
+              "x_mm": 0.0,
+              "y_mm": 4600.0,
+              "w_mm": 11000.0,
+              "h_mm": 1352.4,
+              "_provenance": "declared",
+              "_name": "小型廚房",
+              "_note": "declared 4.5 坪 = 14.9 m²; width kept from grid (11000mm), depth solved"
+            },
+            "bath2f": {
+              "x_mm": 0.0,
+              "y_mm": 5900.0,
+              "w_mm": 11000.0,
+              "h_mm": 841.5,
+              "_provenance": "declared",
+              "_name": "廁所（乾濕分離）",
+              "_note": "declared 2.8 坪 = 9.3 m²; width kept from grid (11000mm), depth solved"
+            }
+          }
+        },
+        "floor-3": {
+          "width_mm": 11000.0,
+          "depth_mm": 4900.0,
+          "north_deg": 0.0,
+          "storey_height_mm": 3000.0,
+          "_provenance": "auto",
+          "_title": "3F",
+          "cells": {
+            "master3f": {
+              "x_mm": 0.0,
+              "y_mm": 1200.0,
+              "w_mm": 11000.0,
+              "h_mm": 3456.0,
+              "_provenance": "declared",
+              "_name": "主臥室（飯店級配置）",
+              "_note": "declared 11.5 坪 = 38.0 m²; width kept from grid (11000mm), depth solved"
+            },
+            "fitness3f": {
+              "x_mm": 0.0,
+              "y_mm": 2500.0,
+              "w_mm": 7333.0,
+              "h_mm": 2028.6,
+              "_provenance": "declared",
+              "_name": "運動空間",
+              "_note": "declared 4.5 坪 = 14.9 m²; width kept from grid (7333mm), depth solved"
+            },
+            "bath3f": {
+              "x_mm": 0.0,
+              "y_mm": 3800.0,
+              "w_mm": 11000.0,
+              "h_mm": 841.5,
+              "_provenance": "declared",
+              "_name": "廁所（乾濕分離）",
+              "_note": "declared 2.8 坪 = 9.3 m²; width kept from grid (11000mm), depth solved"
+            }
+          }
+        },
+        "floor-4": {
+          "width_mm": 11000.0,
+          "depth_mm": 4100.0,
+          "north_deg": 0.0,
+          "storey_height_mm": 3000.0,
+          "_provenance": "auto",
+          "_title": "RF",
+          "cells": {}
+        }
+      }
+    }
+  }
+}

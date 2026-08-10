@@ -26,9 +26,30 @@ from lib.spatial_metadata import (  # noqa: E402
     parse_floor_orientation,
     window_issue_level,
 )
+from lib.dimension_overrides import (  # noqa: E402
+    PING_TO_SQM,
+    PROVENANCE_AUTO,
+    load_overrides,
+)
 from lib.standards import load_residential_defaults  # noqa: E402
 
 OUTPUT_PATH = ROOT / "structured" / "expert_review" / "html_consistency.json"
+
+# A floor whose cells leave this much of the envelope unaccounted for is either
+# missing a cell or has the wrong outer dimensions.  Both matter: floor_area,
+# daylight factor and the egress proxy are all computed off this envelope.
+COVERAGE_VOID_MIN_SQM = 2.0
+COVERAGE_VOID_MIN_RATIO = 0.05
+
+# Ratio of (area written in the HTML) to (area implied by the mm geometry).
+# Outside this band the two disagree by more than rounding or wall thickness
+# can explain, so one of them is wrong.
+AREA_MATCH_MIN_RATIO = 0.80
+AREA_MATCH_MAX_RATIO = 1.25
+
+# Floors of the same building should sit on the same footprint.  Roof levels are
+# legitimately smaller, so they are excluded.
+FOOTPRINT_TOLERANCE_MM = 100.0
 HTML_FILE_MAP: dict[str, str] = {
     "A": "AbuildingView.html",
     "B": "BbuildingView.html",
@@ -129,6 +150,13 @@ def is_ground_floor_label(label: str) -> bool:
     return label in {"1F", "GF", "G/F", "GROUND FLOOR"}
 
 
+def is_roof_label(label: str) -> bool:
+    """Roof levels legitimately sit on a smaller footprint than the floors below."""
+
+    token = normalize_whitespace(label).upper()
+    return token in {"RF", "R/F", "ROOF", "屋頂", "頂樓"} or token.startswith("RF")
+
+
 def overlap(
     a: dict[str, float],
     b: dict[str, float],
@@ -168,6 +196,108 @@ def issue(
     )
 
 
+def declared_area_sqm(cell: Tag) -> tuple[float | None, str]:
+    """Area written on the cell in the HTML, in m², plus the text it came from.
+
+    Recognises both forms used in these pages: ``約 8 坪`` and ``約 5.5m × 6.0m``.
+    """
+
+    raw = text_of(cell.select_one(".cell-size"))
+    if not raw:
+        return None, ""
+
+    dim = re.search(r"(\d+(?:\.\d+)?)\s*m\s*[x×]\s*(\d+(?:\.\d+)?)\s*m", raw, re.IGNORECASE)
+    if dim:
+        return float(dim.group(1)) * float(dim.group(2)), raw
+
+    ping = re.search(r"(\d+(?:\.\d+)?)\s*坪", raw)
+    if ping:
+        return float(ping.group(1)) * PING_TO_SQM, raw
+
+    return None, raw
+
+
+def covered_area_sqmm(cells: list[dict[str, Any]]) -> float:
+    """Union area of the cell rectangles, in mm².
+
+    Sweeps the distinct x edges so overlapping cells are not counted twice —
+    summing w*h would hide a void behind an overlap of the same size.
+    """
+
+    if not cells:
+        return 0.0
+    xs = sorted({c["x_mm"] for c in cells} | {c["x_mm"] + c["w_mm"] for c in cells})
+    total = 0.0
+    for left, right in zip(xs, xs[1:]):
+        strip_w = right - left
+        if strip_w <= 0:
+            continue
+        spans = sorted(
+            (c["y_mm"], c["y_mm"] + c["h_mm"])
+            for c in cells
+            if c["x_mm"] < right and c["x_mm"] + c["w_mm"] > left
+        )
+        merged_h = 0.0
+        cur_lo = cur_hi = None
+        for lo, hi in spans:
+            if cur_hi is None or lo > cur_hi:
+                if cur_hi is not None:
+                    merged_h += cur_hi - cur_lo
+                cur_lo, cur_hi = lo, hi
+            else:
+                cur_hi = max(cur_hi, hi)
+        if cur_hi is not None:
+            merged_h += cur_hi - cur_lo
+        total += strip_w * merged_h
+    return total
+
+
+def check_building_footprint(
+    building_id: str,
+    file_name: str,
+    envelopes: list[dict[str, Any]],
+    issues: list[dict[str, Any]],
+) -> None:
+    """Floors of one building should stack on a consistent footprint.
+
+    Differing width/depth per floor means the envelope numbers are placeholders,
+    not a real building: everything derived from floor area inherits the error.
+    Roof levels are excluded because a smaller roof deck is legitimate.
+    """
+
+    candidates = [e for e in envelopes if not is_roof_label(e["floor_name"])]
+    if len(candidates) < 2:
+        return
+
+    widths = [e["width_mm"] for e in candidates]
+    depths = [e["depth_mm"] for e in candidates]
+    width_spread = max(widths) - min(widths)
+    depth_spread = max(depths) - min(depths)
+    if width_spread <= FOOTPRINT_TOLERANCE_MM and depth_spread <= FOOTPRINT_TOLERANCE_MM:
+        return
+
+    detail = "; ".join(
+        f"{e['floor_id']}={e['width_mm']:.0f}x{e['depth_mm']:.0f}mm" for e in candidates
+    )
+    issue(
+        issues,
+        "warning",
+        building_id,
+        file_name,
+        "<building>",
+        "FOOTPRINT_INCONSISTENT",
+        (
+            f"Floor envelopes differ across {len(candidates)} floors "
+            f"(width spread {width_spread:.0f}mm, depth spread {depth_spread:.0f}mm)"
+        ),
+        evidence=detail,
+        fix_hint=(
+            "同一棟各層應共用同一外框。實測後在 inputs/dimensions.json 逐層填入 "
+            "width_mm / depth_mm。"
+        ),
+    )
+
+
 def check_floor_geometry(
     building_id: str,
     file_name: str,
@@ -179,7 +309,10 @@ def check_floor_geometry(
     window_max_mm: int,
     mode: str = "draft",
     spatial_config: dict[str, Any] | None = None,
-) -> None:
+    overrides: Any = None,
+) -> dict[str, Any] | None:
+    """Check one floor.  Returns its envelope for the building-level footprint check."""
+
     floor_id = normalize_whitespace(floor.get("id", "")) or "<no-id>"
     floor_w = to_float(floor.get("data-floor-width-mm"))
     floor_d = to_float(floor.get("data-floor-depth-mm"))
@@ -240,6 +373,11 @@ def check_floor_geometry(
         label = text_of(cell.select_one(".cell-name")) or f"cell-{idx}"
         classes = [str(cls) for cls in (cell.get("class") or []) if str(cls) != "plan-cell"]
         spatial = parse_cell_spatial(cell.attrs, classes)
+        # Same key the override file uses: the highlightRoom target, else the
+        # cell order.  Mirrors lib.dimension_overrides.cell_key, which reads the
+        # room program's target_room_local_id — that field is exactly this
+        # onclick argument, so the two agree.
+        override_key = parse_highlight_room(normalize_whitespace(cell.get("onclick", ""))) or f"cell-{idx}"
 
         if None in {x, y, w, h}:
             issue(
@@ -272,6 +410,7 @@ def check_floor_geometry(
                     {
                         "idx": idx,
                         "label": label,
+                        "override_key": override_key,
                         "x_mm": float(x),
                         "y_mm": float(y),
                         "w_mm": float(w),
@@ -301,6 +440,29 @@ def check_floor_geometry(
                             evidence=f"cell-{idx}; nearest_side={nearest.get('nearest_side')}",
                             fix_hint="確認 data-facing 是否表示開口方向，或調整 floor front/rear side metadata。",
                         )
+                stated_sqm, stated_text = declared_area_sqm(cell)
+                if stated_sqm and stated_sqm > 0:
+                    geometry_sqm = (w * h) / 1_000_000.0
+                    ratio = geometry_sqm / stated_sqm if stated_sqm else 0.0
+                    if not (AREA_MATCH_MIN_RATIO <= ratio <= AREA_MATCH_MAX_RATIO):
+                        issue(
+                            issues,
+                            "warning",
+                            building_id,
+                            file_name,
+                            floor_id,
+                            "AREA_TEXT_MISMATCH",
+                            f"{label} states {stated_sqm:.1f} m² but its geometry is {geometry_sqm:.1f} m²",
+                            evidence=(
+                                f"cell-{idx}: text={stated_text!r}; "
+                                f"{w:.0f}x{h:.0f}mm; ratio={ratio:.2f}"
+                            ),
+                            fix_hint=(
+                                "文字標示與 mm 幾何其中之一有誤。實測後填入 inputs/dimensions.json "
+                                "並將 _provenance 設為 measured。"
+                            ),
+                        )
+
                 if floor_w is not None and floor_d is not None:
                     if x + w > floor_w or y + h > floor_d:
                         issue(
@@ -432,6 +594,46 @@ def check_floor_geometry(
                     fix_hint="調整 x/y/w/h 避免重疊。",
                 )
 
+    if geometry_cells and floor_w and floor_d:
+        envelope_sqm = (floor_w * floor_d) / 1_000_000.0
+        void_sqm = envelope_sqm - covered_area_sqmm(geometry_cells) / 1_000_000.0
+        void_ratio = void_sqm / envelope_sqm if envelope_sqm else 0.0
+        if void_sqm > COVERAGE_VOID_MIN_SQM and void_ratio > COVERAGE_VOID_MIN_RATIO:
+            issue(
+                issues,
+                "warning",
+                building_id,
+                file_name,
+                floor_id,
+                "FLOOR_COVERAGE_VOID",
+                f"{void_sqm:.1f} m² of the floor envelope is not covered by any cell",
+                evidence=(
+                    f"envelope={envelope_sqm:.1f} m² ({floor_w:.0f}x{floor_d:.0f}mm); "
+                    f"void={void_ratio * 100:.0f}%"
+                ),
+                fix_hint="補上缺少的 plan-cell，或修正樓層外框 data-floor-width-mm / data-floor-depth-mm。",
+            )
+
+    if overrides is not None and geometry_cells:
+        auto_cells = [
+            c
+            for c in geometry_cells
+            if not overrides.cell(building_id, floor_id, c["override_key"])
+        ]
+        if auto_cells:
+            issue(
+                issues,
+                "info",
+                building_id,
+                file_name,
+                floor_id,
+                "GEOMETRY_PROVENANCE_AUTO",
+                f"{len(auto_cells)}/{len(geometry_cells)} cells still use auto-derived (guessed) geometry",
+                evidence="; ".join(c["label"] for c in auto_cells[:6])
+                + ("; …" if len(auto_cells) > 6 else ""),
+                fix_hint="見 structured/dimension_todo.md；實測後填入 inputs/dimensions.json。",
+            )
+
     if entry_count != 1:
         if is_ground_floor:
             issue(
@@ -485,6 +687,15 @@ def check_floor_geometry(
             fix_hint="確認是否為純描述房間，或補齊對應格位。",
         )
 
+    if floor_w and floor_d:
+        return {
+            "floor_id": floor_id,
+            "floor_name": floor_name,
+            "width_mm": float(floor_w),
+            "depth_mm": float(floor_d),
+        }
+    return None
+
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Check static consistency for building HTML.")
@@ -504,6 +715,7 @@ def main() -> None:
     selected = parse_buildings(args.buildings)
     defaults = load_residential_defaults()
     spatial_config = defaults.get("spatial_metadata", {})
+    overrides = load_overrides()
     issues: list[dict[str, Any]] = []
     scanned_files: list[str] = []
     floor_count = 0
@@ -526,12 +738,13 @@ def main() -> None:
             continue
         scanned_files.append(file_name)
         soup = BeautifulSoup(path.read_text(encoding="utf-8"), "html.parser")
+        envelopes: list[dict[str, Any]] = []
         for floor in soup.select(".floor-plan"):
             if not floor.select(".plan-cell"):
                 continue
             floor_count += 1
             cell_count += len(floor.select(".plan-cell"))
-            check_floor_geometry(
+            envelope = check_floor_geometry(
                 building_id=building_id,
                 file_name=file_name,
                 floor=floor,
@@ -542,7 +755,11 @@ def main() -> None:
                 window_max_mm=args.window_max_mm,
                 mode=args.mode,
                 spatial_config=spatial_config,
+                overrides=overrides,
             )
+            if envelope:
+                envelopes.append(envelope)
+        check_building_footprint(building_id, file_name, envelopes, issues)
 
     summary = {
         "critical": sum(1 for i in issues if i["level"] == "critical"),

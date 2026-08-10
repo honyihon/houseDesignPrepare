@@ -1,6 +1,6 @@
 # Layout Candidate Summary
 
-- Generated at: `2026-07-23T07:14:03.971369+00:00`
+- Generated at: `2026-08-07T07:49:08.217497+00:00`
 - Evaluated floors: **12**
 
 ## Best Candidate by Floor

@@ -1,6 +1,6 @@
 {
   "schema_version": "html-consistency-v1",
-  "generated_at": "2026-07-23T07:13:59.221642+00:00",
+  "generated_at": "2026-08-07T07:48:12.092293+00:00",
   "selected_buildings": [
     "A",
     "B",
@@ -13,13 +13,83 @@
   ],
   "summary": {
     "critical": 0,
-    "warning": 0,
-    "info": 11,
+    "warning": 23,
+    "info": 23,
     "scanned_file_count": 3,
     "floor_count": 12,
     "cell_count": 84
   },
   "issues": [
+    {
+      "level": "warning",
+      "building_id": "A",
+      "file": "AbuildingView.html",
+      "floor_id": "floor-1",
+      "code": "AREA_TEXT_MISMATCH",
+      "message": "前院車庫 states 33.0 m² but its geometry is 13.2 m²",
+      "evidence": "cell-1: text='約 5.5m × 6.0m（示意）'; 11000x1200mm; ratio=0.40",
+      "fix_hint": "文字標示與 mm 幾何其中之一有誤。實測後填入 inputs/dimensions.json 並將 _provenance 設為 measured。"
+    },
+    {
+      "level": "warning",
+      "building_id": "A",
+      "file": "AbuildingView.html",
+      "floor_id": "floor-1",
+      "code": "AREA_TEXT_MISMATCH",
+      "message": "客廳 states 16.5 m² but its geometry is 9.5 m²",
+      "evidence": "cell-3: text='約 5 坪（示意）'; 7333x1300mm; ratio=0.58",
+      "fix_hint": "文字標示與 mm 幾何其中之一有誤。實測後填入 inputs/dimensions.json 並將 _provenance 設為 measured。"
+    },
+    {
+      "level": "warning",
+      "building_id": "A",
+      "file": "AbuildingView.html",
+      "floor_id": "floor-1",
+      "code": "AREA_TEXT_MISMATCH",
+      "message": "廚房 states 9.9 m² but its geometry is 7.8 m²",
+      "evidence": "cell-8: text='約 3 坪（示意）'; 6000x1300mm; ratio=0.79",
+      "fix_hint": "文字標示與 mm 幾何其中之一有誤。實測後填入 inputs/dimensions.json 並將 _provenance 設為 measured。"
+    },
+    {
+      "level": "warning",
+      "building_id": "A",
+      "file": "AbuildingView.html",
+      "floor_id": "floor-1",
+      "code": "AREA_TEXT_MISMATCH",
+      "message": "多功能房/客房 states 13.2 m² but its geometry is 6.5 m²",
+      "evidence": "cell-9: text='約 3.5–4 坪'; 5000x1300mm; ratio=0.49",
+      "fix_hint": "文字標示與 mm 幾何其中之一有誤。實測後填入 inputs/dimensions.json 並將 _provenance 設為 measured。"
+    },
+    {
+      "level": "info",
+      "building_id": "A",
+      "file": "AbuildingView.html",
+      "floor_id": "floor-1",
+      "code": "GEOMETRY_PROVENANCE_AUTO",
+      "message": "7/11 cells still use auto-derived (guessed) geometry",
+      "evidence": "玄關; A-MDF 主機櫃; 🚪✨ 梯間隔斷門; 餐廳; 1F 公用衛浴; 後工作陽台; …",
+      "fix_hint": "見 structured/dimension_todo.md；實測後填入 inputs/dimensions.json。"
+    },
+    {
+      "level": "warning",
+      "building_id": "A",
+      "file": "AbuildingView.html",
+      "floor_id": "floor-2",
+      "code": "AREA_TEXT_MISMATCH",
+      "message": "主臥室 states 19.8 m² but its geometry is 8.1 m²",
+      "evidence": "cell-1: text='約 6 坪'; 7333x1100mm; ratio=0.41",
+      "fix_hint": "文字標示與 mm 幾何其中之一有誤。實測後填入 inputs/dimensions.json 並將 _provenance 設為 measured。"
+    },
+    {
+      "level": "info",
+      "building_id": "A",
+      "file": "AbuildingView.html",
+      "floor_id": "floor-2",
+      "code": "GEOMETRY_PROVENANCE_AUTO",
+      "message": "7/8 cells still use auto-derived (guessed) geometry",
+      "evidence": "主臥衛浴; 更衣/收納; 🚶 走廊; 書房/工作室; 次臥; 2F 公用衛浴; …",
+      "fix_hint": "見 structured/dimension_todo.md；實測後填入 inputs/dimensions.json。"
+    },
     {
       "level": "info",
       "building_id": "A",
@@ -29,6 +99,16 @@
       "message": "Expected exactly 1 stair or landing entry cell on 2F, got 0",
       "evidence": "entry_count=0",
       "fix_hint": "上層若有樓梯或平台銜接格位，標示單一 data-entry=\"true\"。"
+    },
+    {
+      "level": "warning",
+      "building_id": "A",
+      "file": "AbuildingView.html",
+      "floor_id": "floor-3",
+      "code": "AREA_TEXT_MISMATCH",
+      "message": "娛樂室/家庭劇院 states 26.4 m² but its geometry is 12.1 m²",
+      "evidence": "cell-1: text='約 6–8 坪'; 11000x1100mm; ratio=0.46",
+      "fix_hint": "文字標示與 mm 幾何其中之一有誤。實測後填入 inputs/dimensions.json 並將 _provenance 設為 measured。"
     },
     {
       "level": "info",
@@ -45,10 +125,40 @@
       "building_id": "A",
       "file": "AbuildingView.html",
       "floor_id": "floor-3",
+      "code": "GEOMETRY_PROVENANCE_AUTO",
+      "message": "5/6 cells still use auto-derived (guessed) geometry",
+      "evidence": "客房; 3F 衛浴; 多功能室; 梯間（通 RF）; 3F 多功能小陽台",
+      "fix_hint": "見 structured/dimension_todo.md；實測後填入 inputs/dimensions.json。"
+    },
+    {
+      "level": "info",
+      "building_id": "A",
+      "file": "AbuildingView.html",
+      "floor_id": "floor-3",
       "code": "ENTRY_COUNT_UPPER_FLOOR",
       "message": "Expected exactly 1 stair or landing entry cell on 3F, got 0",
       "evidence": "entry_count=0",
       "fix_hint": "上層若有樓梯或平台銜接格位，標示單一 data-entry=\"true\"。"
+    },
+    {
+      "level": "warning",
+      "building_id": "A",
+      "file": "AbuildingView.html",
+      "floor_id": "floor-4",
+      "code": "CELL_OVERLAP",
+      "message": "VF800 overlaps Haier 熱泵",
+      "evidence": "cell-3 vs cell-4",
+      "fix_hint": "調整 x/y/w/h 避免重疊。"
+    },
+    {
+      "level": "info",
+      "building_id": "A",
+      "file": "AbuildingView.html",
+      "floor_id": "floor-4",
+      "code": "GEOMETRY_PROVENANCE_AUTO",
+      "message": "6/6 cells still use auto-derived (guessed) geometry",
+      "evidence": "弱電立管終點/維修孔; 水塔; VF800; Haier 熱泵; 太陽能設備區; RF 曬衣／設備維修平台",
+      "fix_hint": "見 structured/dimension_todo.md；實測後填入 inputs/dimensions.json。"
     },
     {
       "level": "info",
@@ -59,6 +169,76 @@
       "message": "Expected exactly 1 stair or landing entry cell on RF, got 0",
       "evidence": "entry_count=0",
       "fix_hint": "上層若有樓梯或平台銜接格位，標示單一 data-entry=\"true\"。"
+    },
+    {
+      "level": "warning",
+      "building_id": "A",
+      "file": "AbuildingView.html",
+      "floor_id": "<building>",
+      "code": "FOOTPRINT_INCONSISTENT",
+      "message": "Floor envelopes differ across 3 floors (width spread 0mm, depth spread 2500mm)",
+      "evidence": "floor-1=11000x7700mm; floor-2=11000x5200mm; floor-3=11000x5200mm",
+      "fix_hint": "同一棟各層應共用同一外框。實測後在 inputs/dimensions.json 逐層填入 width_mm / depth_mm。"
+    },
+    {
+      "level": "warning",
+      "building_id": "B",
+      "file": "BbuildingView.html",
+      "floor_id": "floor-1",
+      "code": "AREA_TEXT_MISMATCH",
+      "message": "前院車庫 states 33.0 m² but its geometry is 13.2 m²",
+      "evidence": "cell-1: text='約 5.5m × 6.0m'; 11000x1200mm; ratio=0.40",
+      "fix_hint": "文字標示與 mm 幾何其中之一有誤。實測後填入 inputs/dimensions.json 並將 _provenance 設為 measured。"
+    },
+    {
+      "level": "warning",
+      "building_id": "B",
+      "file": "BbuildingView.html",
+      "floor_id": "floor-1",
+      "code": "CELL_OVERLAP",
+      "message": "IDF-B 機櫃 overlaps 無障礙衛浴",
+      "evidence": "cell-4 vs cell-5",
+      "fix_hint": "調整 x/y/w/h 避免重疊。"
+    },
+    {
+      "level": "info",
+      "building_id": "B",
+      "file": "BbuildingView.html",
+      "floor_id": "floor-1",
+      "code": "GEOMETRY_PROVENANCE_AUTO",
+      "message": "7/7 cells still use auto-derived (guessed) geometry",
+      "evidence": "前院車庫; 神明廳 + 玄關; 樓梯間; IDF-B 機櫃; 無障礙衛浴; 武轎儲藏室; …",
+      "fix_hint": "見 structured/dimension_todo.md；實測後填入 inputs/dimensions.json。"
+    },
+    {
+      "level": "warning",
+      "building_id": "B",
+      "file": "BbuildingView.html",
+      "floor_id": "floor-2",
+      "code": "CELL_OVERLAP",
+      "message": "茶水吧 overlaps 客用衛浴",
+      "evidence": "cell-3 vs cell-4",
+      "fix_hint": "調整 x/y/w/h 避免重疊。"
+    },
+    {
+      "level": "warning",
+      "building_id": "B",
+      "file": "BbuildingView.html",
+      "floor_id": "floor-2",
+      "code": "FLOOR_COVERAGE_VOID",
+      "message": "12.0 m² of the floor envelope is not covered by any cell",
+      "evidence": "envelope=59.4 m² (11000x5400mm); void=20%",
+      "fix_hint": "補上缺少的 plan-cell，或修正樓層外框 data-floor-width-mm / data-floor-depth-mm。"
+    },
+    {
+      "level": "info",
+      "building_id": "B",
+      "file": "BbuildingView.html",
+      "floor_id": "floor-2",
+      "code": "GEOMETRY_PROVENANCE_AUTO",
+      "message": "6/6 cells still use auto-derived (guessed) geometry",
+      "evidence": "家庭大客廳; 樓梯間; 茶水吧; 客用衛浴; 主臥套房; 2F 高雄厝景觀陽臺（位置待道路側確認）",
+      "fix_hint": "見 structured/dimension_todo.md；實測後填入 inputs/dimensions.json。"
     },
     {
       "level": "info",
@@ -75,6 +255,16 @@
       "building_id": "B",
       "file": "BbuildingView.html",
       "floor_id": "floor-3",
+      "code": "GEOMETRY_PROVENANCE_AUTO",
+      "message": "6/6 cells still use auto-derived (guessed) geometry",
+      "evidence": "3F 前側彈性室內區; 樓梯間; 多功能娛樂室; 3F 衛浴; 後客房; 3F 後側工作小陽台＋爬梯（通RF）",
+      "fix_hint": "見 structured/dimension_todo.md；實測後填入 inputs/dimensions.json。"
+    },
+    {
+      "level": "info",
+      "building_id": "B",
+      "file": "BbuildingView.html",
+      "floor_id": "floor-3",
       "code": "ENTRY_COUNT_UPPER_FLOOR",
       "message": "Expected exactly 1 stair or landing entry cell on 3F, got 0",
       "evidence": "entry_count=0",
@@ -85,10 +275,90 @@
       "building_id": "B",
       "file": "BbuildingView.html",
       "floor_id": "floor-4",
+      "code": "GEOMETRY_PROVENANCE_AUTO",
+      "message": "5/5 cells still use auto-derived (guessed) geometry",
+      "evidence": "樓梯出口; B 棟水塔; VF800 恆壓; Haier 熱泵熱水器; 活動平台 / 曬衣棚架",
+      "fix_hint": "見 structured/dimension_todo.md；實測後填入 inputs/dimensions.json。"
+    },
+    {
+      "level": "info",
+      "building_id": "B",
+      "file": "BbuildingView.html",
+      "floor_id": "floor-4",
       "code": "ENTRY_COUNT_UPPER_FLOOR",
       "message": "Expected exactly 1 stair or landing entry cell on RF, got 0",
       "evidence": "entry_count=0",
       "fix_hint": "上層若有樓梯或平台銜接格位，標示單一 data-entry=\"true\"。"
+    },
+    {
+      "level": "warning",
+      "building_id": "C",
+      "file": "CbuildingView.html",
+      "floor_id": "floor-1",
+      "code": "AREA_TEXT_MISMATCH",
+      "message": "客廳 states 26.4 m² but its geometry is 9.3 m²",
+      "evidence": "cell-3: text='約 8 坪'; 5500x1700mm; ratio=0.35",
+      "fix_hint": "文字標示與 mm 幾何其中之一有誤。實測後填入 inputs/dimensions.json 並將 _provenance 設為 measured。"
+    },
+    {
+      "level": "warning",
+      "building_id": "C",
+      "file": "CbuildingView.html",
+      "floor_id": "floor-1",
+      "code": "AREA_TEXT_MISMATCH",
+      "message": "孝親房 states 16.5 m² but its geometry is 10.2 m²",
+      "evidence": "cell-8: text='約 5 坪｜長輩友善'; 7857x1300mm; ratio=0.62",
+      "fix_hint": "文字標示與 mm 幾何其中之一有誤。實測後填入 inputs/dimensions.json 並將 _provenance 設為 measured。"
+    },
+    {
+      "level": "info",
+      "building_id": "C",
+      "file": "CbuildingView.html",
+      "floor_id": "floor-1",
+      "code": "GEOMETRY_PROVENANCE_AUTO",
+      "message": "9/11 cells still use auto-derived (guessed) geometry",
+      "evidence": "前院車庫; 玄關; 側院; 餐廳; 廚房; 樓梯 + IDF; …",
+      "fix_hint": "見 structured/dimension_todo.md；實測後填入 inputs/dimensions.json。"
+    },
+    {
+      "level": "warning",
+      "building_id": "C",
+      "file": "CbuildingView.html",
+      "floor_id": "floor-2",
+      "code": "AREA_TEXT_MISMATCH",
+      "message": "客廳（主角空間） states 28.1 m² but its geometry is 14.3 m²",
+      "evidence": "cell-2: text='約 8.5 坪｜L型沙發＋電視牆＋茶几'; 11000x1300mm; ratio=0.51",
+      "fix_hint": "文字標示與 mm 幾何其中之一有誤。實測後填入 inputs/dimensions.json 並將 _provenance 設為 measured。"
+    },
+    {
+      "level": "warning",
+      "building_id": "C",
+      "file": "CbuildingView.html",
+      "floor_id": "floor-2",
+      "code": "AREA_TEXT_MISMATCH",
+      "message": "廁所（乾濕分離） states 9.3 m² but its geometry is 12.1 m²",
+      "evidence": "cell-6: text='約 2.8 坪｜對齊 3F 管道'; 11000x1100mm; ratio=1.31",
+      "fix_hint": "文字標示與 mm 幾何其中之一有誤。實測後填入 inputs/dimensions.json 並將 _provenance 設為 measured。"
+    },
+    {
+      "level": "warning",
+      "building_id": "C",
+      "file": "CbuildingView.html",
+      "floor_id": "floor-2",
+      "code": "FLOOR_COVERAGE_VOID",
+      "message": "12.0 m² of the floor envelope is not covered by any cell",
+      "evidence": "envelope=77.0 m² (11000x7000mm); void=16%",
+      "fix_hint": "補上缺少的 plan-cell，或修正樓層外框 data-floor-width-mm / data-floor-depth-mm。"
+    },
+    {
+      "level": "info",
+      "building_id": "C",
+      "file": "CbuildingView.html",
+      "floor_id": "floor-2",
+      "code": "GEOMETRY_PROVENANCE_AUTO",
+      "message": "2/6 cells still use auto-derived (guessed) geometry",
+      "evidence": "2F 高雄厝景觀陽臺; 樓梯",
+      "fix_hint": "見 structured/dimension_todo.md；實測後填入 inputs/dimensions.json。"
     },
     {
       "level": "info",
@@ -111,6 +381,56 @@
       "fix_hint": "確認此空間仍有符合設計需求的通風、空調與消防排煙策略。"
     },
     {
+      "level": "warning",
+      "building_id": "C",
+      "file": "CbuildingView.html",
+      "floor_id": "floor-3",
+      "code": "AREA_TEXT_MISMATCH",
+      "message": "主臥室（飯店級配置） states 38.0 m² but its geometry is 14.3 m²",
+      "evidence": "cell-2: text='約 11.5 坪｜雙人床＋梳妝台＋衣櫃×4'; 11000x1300mm; ratio=0.38",
+      "fix_hint": "文字標示與 mm 幾何其中之一有誤。實測後填入 inputs/dimensions.json 並將 _provenance 設為 measured。"
+    },
+    {
+      "level": "warning",
+      "building_id": "C",
+      "file": "CbuildingView.html",
+      "floor_id": "floor-3",
+      "code": "AREA_TEXT_MISMATCH",
+      "message": "運動空間 states 14.9 m² but its geometry is 9.5 m²",
+      "evidence": "cell-3: text='約 4.5 坪｜跑步機/瑜伽/重訓'; 7333x1300mm; ratio=0.64",
+      "fix_hint": "文字標示與 mm 幾何其中之一有誤。實測後填入 inputs/dimensions.json 並將 _provenance 設為 measured。"
+    },
+    {
+      "level": "warning",
+      "building_id": "C",
+      "file": "CbuildingView.html",
+      "floor_id": "floor-3",
+      "code": "AREA_TEXT_MISMATCH",
+      "message": "廁所（乾濕分離） states 9.3 m² but its geometry is 12.1 m²",
+      "evidence": "cell-5: text='約 2.8 坪｜夜間方便使用'; 11000x1100mm; ratio=1.31",
+      "fix_hint": "文字標示與 mm 幾何其中之一有誤。實測後填入 inputs/dimensions.json 並將 _provenance 設為 measured。"
+    },
+    {
+      "level": "warning",
+      "building_id": "C",
+      "file": "CbuildingView.html",
+      "floor_id": "floor-3",
+      "code": "FLOOR_COVERAGE_VOID",
+      "message": "8.2 m² of the floor envelope is not covered by any cell",
+      "evidence": "envelope=53.9 m² (11000x4900mm); void=15%",
+      "fix_hint": "補上缺少的 plan-cell，或修正樓層外框 data-floor-width-mm / data-floor-depth-mm。"
+    },
+    {
+      "level": "info",
+      "building_id": "C",
+      "file": "CbuildingView.html",
+      "floor_id": "floor-3",
+      "code": "GEOMETRY_PROVENANCE_AUTO",
+      "message": "2/5 cells still use auto-derived (guessed) geometry",
+      "evidence": "3F 主臥通風小陽台; 樓梯",
+      "fix_hint": "見 structured/dimension_todo.md；實測後填入 inputs/dimensions.json。"
+    },
+    {
       "level": "info",
       "building_id": "C",
       "file": "CbuildingView.html",
@@ -121,6 +441,26 @@
       "fix_hint": "上層若有樓梯或平台銜接格位，標示單一 data-entry=\"true\"。"
     },
     {
+      "level": "warning",
+      "building_id": "C",
+      "file": "CbuildingView.html",
+      "floor_id": "floor-4",
+      "code": "CELL_OVERLAP",
+      "message": "加壓系統 overlaps 熱泵熱水器",
+      "evidence": "cell-4 vs cell-5",
+      "fix_hint": "調整 x/y/w/h 避免重疊。"
+    },
+    {
+      "level": "info",
+      "building_id": "C",
+      "file": "CbuildingView.html",
+      "floor_id": "floor-4",
+      "code": "GEOMETRY_PROVENANCE_AUTO",
+      "message": "7/7 cells still use auto-derived (guessed) geometry",
+      "evidence": "樓梯出口（⬇️3F）; 弱電預留人孔; 不鏽鋼水塔; 加壓系統; 熱泵熱水器; 活動平台 / 曬衣棚架; …",
+      "fix_hint": "見 structured/dimension_todo.md；實測後填入 inputs/dimensions.json。"
+    },
+    {
       "level": "info",
       "building_id": "C",
       "file": "CbuildingView.html",
@@ -129,6 +469,16 @@
       "message": "Expected exactly 1 stair or landing entry cell on RF, got 0",
       "evidence": "entry_count=0",
       "fix_hint": "上層若有樓梯或平台銜接格位，標示單一 data-entry=\"true\"。"
+    },
+    {
+      "level": "warning",
+      "building_id": "C",
+      "file": "CbuildingView.html",
+      "floor_id": "<building>",
+      "code": "FOOTPRINT_INCONSISTENT",
+      "message": "Floor envelopes differ across 3 floors (width spread 0mm, depth spread 2100mm)",
+      "evidence": "floor-1=11000x7000mm; floor-2=11000x7000mm; floor-3=11000x4900mm",
+      "fix_hint": "同一棟各層應共用同一外框。實測後在 inputs/dimensions.json 逐層填入 width_mm / depth_mm。"
     }
   ]
 }
