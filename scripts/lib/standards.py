@@ -80,6 +80,23 @@ FALLBACK_DEFAULTS: dict[str, Any] = {
         },
         "ev_charger_mm": {"depth": 400, "width": 600, "clear": 300, "mount": "front_wall"},
     },
+    "roof_penthouse": {
+        "ratio": 0.125,
+        "ratio_highrise": 0.15,
+        "floor_sqm": 25.0,
+        "height_limit_mm": 6000,
+        "classes": {
+            "enclosed": {"label": "第一目 圍蔽屋突", "counts_in_projection": True,
+                         "volume_exempt": True, "habitable_min_dim": True},
+            "tank": {"label": "第二目 水塔水箱", "counts_in_projection": True,
+                     "volume_exempt": False, "habitable_min_dim": False},
+            "open_mep": {"label": "第三目 露天機電", "counts_in_projection": True,
+                         "volume_exempt": False, "habitable_min_dim": False},
+            "energy": {"label": "第四目 節能設施", "counts_in_projection": True,
+                       "volume_exempt": False, "habitable_min_dim": False},
+        },
+        "equipment_access_mm": 900,
+    },
     "drawing": {
         "font_family": "Segoe UI, Microsoft JhengHei, sans-serif",
         "default_style": "presentation",
@@ -282,6 +299,34 @@ def door_width_mm(defaults: dict[str, Any]) -> dict[str, int]:
         "bathroom": int(doors.get("bathroom", 800)),
         "service": int(doors.get("service", 800)),
     }
+
+
+def roof_penthouse(defaults: dict[str, Any]) -> dict[str, Any]:
+    """Statutory parameters for 屋頂突出物 (建築技術規則建築設計施工編 第 1、162 條).
+
+    ``floor_sqm`` is the 但書 that trips up every "1/8 of the footprint"
+    shortcut: when the ratio yields less than 25 m², 25 m² is allowed instead.
+    A 32 坪 footprint lands well inside that, so the ratio never binds here.
+    """
+
+    block = defaults.get("roof_penthouse", {})
+    return {
+        "ratio": float(block.get("ratio", 0.125)),
+        "ratio_highrise": float(block.get("ratio_highrise", 0.15)),
+        "floor_sqm": float(block.get("floor_sqm", 25.0)),
+        "height_limit_mm": int(block.get("height_limit_mm", 6000)),
+        "classes": dict(block.get("classes", {})),
+        "equipment_access_mm": int(block.get("equipment_access_mm", 900)),
+    }
+
+
+def penthouse_limit_sqm(defaults: dict[str, Any], footprint_sqm: float,
+                        highrise: bool = False) -> float:
+    """Cap on 屋頂突出物水平投影面積之和 for one building."""
+
+    cfg = roof_penthouse(defaults)
+    ratio = cfg["ratio_highrise"] if highrise else cfg["ratio"]
+    return max(footprint_sqm * ratio, cfg["floor_sqm"])
 
 
 def window_width_mm(defaults: dict[str, Any]) -> dict[str, int]:

@@ -29,10 +29,21 @@ CODES = {
     "KITCHEN_TO_BALCONY": "廚房到後陽台必須穿越臥室",
     "FRONT_REAR_ALIGNED": "大門與後陽台對穿（穿堂煞）",
     "PALANQUIN_PATH": "武轎搬運路徑淨寬不足",
-    "PENTHOUSE_OVER_LIMIT": "屋突面積超過建築面積 1/8",
+    "PENTHOUSE_OVER_LIMIT": "屋頂突出物水平投影面積之和超過上限（12.5%，未達 25 m² 者為 25 m²）",
     "NO_DAYLIGHT": "需採光的房間沒有外牆",
     "GARAGE_NOT_PARKABLE": "車庫放不下一台休旅車＋充電樁",
     "GARAGE_FEWER_BAYS": "車庫寬度放不下要求的車位數",
+    "GARAGE_DOOR_NARROW": "臨路面寬做不出足夠的車庫門",
+    "ACCESS_UNREALISABLE": "需求指定的出入關係在這個配置下做不到",
+    "NESTED_ACCESS": "唯一入口要穿越私密空間",
+    "NO_ACCESS": "沒有任何可開門的共用牆",
+}
+
+ROOF_CLASS_LABEL = {
+    "enclosed": "梯間／機械房",
+    "tank": "水塔",
+    "open_mep": "露天機電",
+    "energy": "節能設施",
 }
 
 SEVERITY = {
@@ -41,10 +52,19 @@ SEVERITY = {
     "DOOR_CLEAR_WIDTH": "error",
     "PENTHOUSE_OVER_LIMIT": "error",
     "GARAGE_NOT_PARKABLE": "error",
+    "NO_ACCESS": "error",
+    # Raised from warning: 武轎 is the reason B has a dedicated store room at
+    # all. A route it cannot pass through is not a note, it is the room failing
+    # to do its one job.
+    "PALANQUIN_PATH": "error",
+    "ACCESS_UNREALISABLE": "error",
     "KITCHEN_TO_BALCONY": "warning",
-    "PALANQUIN_PATH": "warning",
+    "GARAGE_DOOR_NARROW": "warning",
+    "NESTED_ACCESS": "warning",
     "NO_DAYLIGHT": "warning",
     "GARAGE_FEWER_BAYS": "warning",
+    "EQUIP_ACCESS_TIGHT": "warning",
+    "PENTHOUSE_UNCLASSIFIED": "warning",
     "BATH_FACES_DINING": "note",
     "FRONT_REAR_ALIGNED": "note",
 }
@@ -121,12 +141,25 @@ def _inscribed_mm(cell: dict[str, Any]) -> int:
 
 
 class Circulation:
+    """Rooms as nodes, doors as edges.
+
+    Two kinds of edge are deliberately left out. A hatch is the door on an
+    MDF/IDF cabinet - a leaf, but not a way through to anywhere, and counting
+    it made equipment niches look like corridors. And ``outside`` is kept out
+    of ``adj`` on purpose: walking out of the front door and round the house is
+    not how you get from the kitchen to the rear balcony, so the indoor checks
+    must not be able to route through it. Checks that genuinely start at the
+    street use :meth:`widest_from_outside` instead.
+    """
+
     def __init__(self, floor: dict[str, Any]):
         self.cells = {c["id"]: c for c in floor["cells"]}
         self.doors = floor["doors"]
         self.adj: dict[str, list[tuple[str, dict[str, Any]]]] = collections.defaultdict(list)
         self.outside: list[tuple[str, dict[str, Any]]] = []
         for d in self.doors:
+            if d.get("role") == "hatch":
+                continue
             if d["from"] == "outside":
                 self.outside.append((d["to"], d))
                 continue
@@ -168,6 +201,24 @@ class Circulation:
                     trail[nxt] = trail[node] + [nxt]
                     pool.add(nxt)
         return None
+
+    def widest_from_outside(self, goal: str) -> tuple[int, list[str]] | None:
+        """Same, but starting at the street rather than at whichever room the
+        caller guessed. The bottleneck on a carry route is very often the front
+        door itself, and a path that begins inside the entry hall can never
+        see it."""
+
+        best: tuple[int, list[str]] | None = None
+        for first, door in self.outside:
+            if door.get("role") == "vehicle_door":
+                continue          # the sofa does not come in through the garage
+            found = self.widest_path(first, goal)
+            if found is None:
+                continue
+            width = min(found[0], int(door["clear_mm"]))
+            if best is None or width > best[0]:
+                best = (width, found[1])
+        return best
 
 
 # --------------------------------------------------------------------------
@@ -249,30 +300,62 @@ def _check_floor(floor: dict[str, Any], cap: dict[str, Any], building_id: str,
                 f"走道淨寬 {min(r.w, r.d)} mm < {want_corridor} mm", [c["id"]])
 
     # --- door clear width (Q3) -----------------------------------------
+    # Only the designated entrance is tested. Under the old every-shared-edge
+    # door policy this rule fired on incidental openings - a WC that happened to
+    # touch the garage produced a finding about a door nobody would build - and
+    # the one door that matters got the same weight as the accidents.
     for door in circ.doors:
-        for side in (door.get("from"), door.get("to")):
-            cell = cells.get(side or "")
-            if not cell:
-                continue
-            need = 0
-            if cell.get("wheelchair_turn") or cell.get("kind") == "bath":
-                need = int(defaults["geometry"]["door_width_mm"].get("accessible", 900))
-            if cell.get("kind") == "bath" and not cell.get("wheelchair_turn"):
-                need = 0  # only the accessible bathrooms carry the 90 cm rule
-            other_id = door.get("to") if side == door.get("from") else door.get("from")
-            if cells.get(other_id or "", {}).get("niche"):
-                # The far side is an equipment niche (MDF/IDF rack). Q3 is about
-                # getting a wheelchair through a doorway, and nobody wheels into
-                # a 90 cm deep cabinet - flagging it buries the real findings.
-                need = 0
-            if need and int(door["clear_mm"]) < need:
-                # Name the other side too: a room with two narrow doors otherwise
-                # produces two rows that look like the same finding twice.
-                where = cells.get(other_id or "", {}).get("name") or "室外"
-                add("DOOR_CLEAR_WIDTH",
-                    f"{cell['name']} 對 {where} 的門淨寬 {door['clear_mm']} mm < {need} mm",
-                    [cell["id"]])
-                break
+        if door.get("role") not in ("entrance", "main_entrance"):
+            continue
+        cell = cells.get(door.get("to") or "")
+        if not cell or cell.get("niche"):
+            continue
+        if cell.get("role") == "garage":
+            # The garage's declared clear width is the vehicle opening, and that
+            # is on the facade with its own check. Testing the pedestrian door
+            # from the hallway against it produced 30 findings demanding a
+            # 2400 mm internal door.
+            continue
+        need = 0
+        if cell.get("wheelchair_turn"):
+            need = int(defaults["geometry"]["door_width_mm"].get("accessible", 900))
+        if cell.get("min_door_mm"):
+            need = max(need, int(cell["min_door_mm"]))
+        if need and int(door["clear_mm"]) < need:
+            where = cells.get(door.get("from") or "", {}).get("name") or "室外"
+            add("DOOR_CLEAR_WIDTH",
+                f"{cell['name']} 由 {where} 進入的門淨寬 {door['clear_mm']} mm < {need} mm",
+                [cell["id"]])
+
+    # --- access the brief asked for and the layout could not give ---------
+    # Name the space on the other side of the door. "唯一入口穿越私密空間" on its
+    # own is a category, not a finding; "要穿過主臥" is something you can move.
+    host_of = {d["to"]: d.get("from") for d in circ.doors
+               if d.get("role") in ("entrance", "opening")}
+    for cell in cells.values():
+        flags = cell.get("flags") or []
+        via = cells.get(host_of.get(cell["id"]) or "", {}).get("name") or "室外"
+        if "ACCESS_UNREALISABLE" in flags:
+            # The brief writes ids ("master"); the report is read by people who
+            # know the room as 主臥室. Roles and kinds stay as written - they are
+            # already words ("corridor" reads as a category, not a room).
+            wanted = "、".join(cells.get(w, {}).get("name") or w
+                              for w in (cell.get("access_from") or []))
+            add("ACCESS_UNREALISABLE",
+                f"{cell['name']} 要求由 {wanted} 進入，"
+                f"但這一版配置裡兩者沒有共用牆，改由 {via} 進入",
+                [cell["id"]])
+        if "NESTED_ACCESS" in flags:
+            add("NESTED_ACCESS",
+                f"{cell['name']} 唯一的通路要穿過 {via}（臥室／衛浴等私密空間）",
+                [cell["id"]])
+        if "NO_ACCESS" in flags:
+            add("NO_ACCESS", f"{cell['name']} 沒有任何可開門的共用牆 —— 進不去",
+                [cell["id"]])
+        if "GARAGE_DOOR_NARROW" in flags:
+            add("GARAGE_DOOR_NARROW",
+                f"{cell['name']} 臨路面寬只做得出 {Rect(*cell['rect']).w - 300} mm 車庫門，"
+                f"休旅車進出需要 2200 mm 以上", [cell["id"]])
 
     # --- bathroom door facing the dining table (Q7) ---------------------
     dining = _find(cells, kind="dining")
@@ -319,24 +402,22 @@ def _check_floor(floor: dict[str, Any], cap: dict[str, Any], building_id: str,
                     [b["id"]])
 
     # --- palanquin carry route (B building) -----------------------------
+    # Measured from the street. The old version started at the entry hall, so
+    # the front door - 1000 mm by default, and the narrowest thing on the whole
+    # route - was never part of the answer.
     for cell in cells.values():
-        if not cell.get("id"):
+        if not cell.get("carry_path") and cell.get("id") != "palanquin" \
+                and "武轎" not in cell["name"]:
             continue
-        brief_note = cell.get("note") or ""
-        if cell["id"] != "palanquin" and "武轎" not in cell["name"]:
-            continue
-        entries = [c for c in cells.values() if c.get("kind") == "entry"]
-        start = entries[0]["id"] if entries else (circ.outside[0][0] if circ.outside else None)
-        if start is None:
-            continue
-        found = circ.widest_path(start, cell["id"])
         need = int(cell.get("min_door_mm") or 1200)
+        found = circ.widest_from_outside(cell["id"])
         if found is None:
-            add("PALANQUIN_PATH", f"{cell['name']} 與玄關之間沒有連通路徑", [cell["id"]])
+            add("PALANQUIN_PATH", f"{cell['name']} 與大門之間沒有連通路徑", [cell["id"]])
         elif found[0] < need:
             add("PALANQUIN_PATH",
-                f"玄關到 {cell['name']} 的最寬路徑瓶頸只有 {found[0]} mm < {need} mm"
-                f"（路徑：{' → '.join(cells[n]['name'] for n in found[1])}）",
+                f"大門到 {cell['name']} 的最寬路徑瓶頸只有 {found[0]} mm < {need} mm"
+                f"（路徑：大門 → {' → '.join(cells[n]['name'] for n in found[1])}）—— "
+                f"抬轎進不去",
                 [cell["id"]])
 
     # --- daylight -------------------------------------------------------
@@ -348,15 +429,45 @@ def _check_floor(floor: dict[str, Any], cap: dict[str, Any], building_id: str,
 
 
 def _check_roof(floor: dict[str, Any], cap: dict[str, Any]) -> list[dict[str, Any]]:
+    out: list[dict[str, Any]] = []
     if cap and cap.get("over"):
-        return [{
+        # Name the biggest contributor. "over by 3.55" is not actionable; "the
+        # solar array is 15.68 of it" points straight at the thing to change.
+        parts = sorted(cap.get("penthouse_by_class", {}).items(),
+                       key=lambda kv: -kv[1])
+        driver = (f"，最大宗是 {ROOF_CLASS_LABEL.get(parts[0][0], parts[0][0])} "
+                  f"{parts[0][1]:.2f} m²" if parts else "")
+        out.append({
             "code": "PENTHOUSE_OVER_LIMIT",
             "severity": SEVERITY["PENTHOUSE_OVER_LIMIT"],
-            "message": (f"屋突 {cap['penthouse_sqm']:.2f} m² 超過建築面積 1/8 上限 "
-                        f"{cap['limit_sqm']:.2f} m²（{cap['limit_ping']:.2f} 坪）"),
-            "refs": [c["id"] for c in floor["cells"] if c.get("penthouse")],
-        }]
-    return []
+            "message": (f"屋頂突出物水平投影 {cap['penthouse_sqm']:.2f} m² 超過上限 "
+                        f"{cap['limit_sqm']:.2f} m²（{cap['limit_ping']:.2f} 坪，"
+                        f"依 {cap.get('limit_basis', '建築技術規則第 1 條')}）{driver}"),
+            "refs": [c["id"] for c in floor["cells"] if c.get("penthouse_class")],
+        })
+    # An unclassified penthouse box is counted as 第一目 so the total stays
+    # honest, but which 目 it lands in changes whether it eats 容積 - that is a
+    # gap in the brief, not something the generator should decide silently.
+    for cid in (cap or {}).get("unclassified", []):
+        out.append({
+            "code": "PENTHOUSE_UNCLASSIFIED",
+            "severity": SEVERITY.get("PENTHOUSE_UNCLASSIFIED", "warning"),
+            "message": (f"{cid} 標為屋突但沒有指定法規目別（penthouse_class），"
+                        f"暫以第一目計入投影面積；是否計入容積要看實際做法"),
+            "refs": [cid],
+        })
+    for cell in floor["cells"]:
+        if "EQUIP_ACCESS_TIGHT" in cell.get("flags", []):
+            clear = cell["clear_rect"]
+            short = min(clear[2] - clear[0], clear[3] - clear[1])
+            out.append({
+                "code": "EQUIP_ACCESS_TIGHT",
+                "severity": SEVERITY.get("EQUIP_ACCESS_TIGHT", "warning"),
+                "message": (f"{cell['name']} 短邊 {short} mm，不足維修通道 900 mm —— "
+                            f"設備擺得下不代表人進得去維修"),
+                "refs": [cell["id"]],
+            })
+    return out
 
 
 # --------------------------------------------------------------------------

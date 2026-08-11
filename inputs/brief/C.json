@@ -118,9 +118,9 @@
       "label": "RF（頂樓）",
       "fill": "fixed",
       "rooms": [
-        { "id": "rf_stair", "name": "梯間屋突", "kind": "stair", "target_sqm": 6.0, "min_sqm": 4.5, "band": "core", "light": "none", "private": false, "penthouse": true },
-        { "id": "rf_tank", "name": "不鏽鋼水塔／加壓 VF800", "kind": "service", "target_sqm": 3.0, "min_sqm": 2.4, "band": "rear", "light": "none", "private": false, "penthouse": true },
-        { "id": "rf_hp", "name": "熱泵熱水器（Haier）", "kind": "service", "target_sqm": 2.5, "min_sqm": 2.0, "band": "rear", "light": "none", "private": false, "penthouse": true },
+        { "id": "rf_stair", "penthouse_class": "enclosed", "name": "梯間屋突", "kind": "stair", "target_sqm": 6.0, "min_sqm": 4.5, "band": "core", "light": "none", "private": false, "penthouse": true },
+        { "id": "rf_tank", "penthouse_class": "tank", "name": "不鏽鋼水塔／加壓 VF800", "kind": "service", "target_sqm": 3.0, "min_sqm": 2.4, "band": "rear", "light": "none", "private": false, "penthouse": true },
+        { "id": "rf_hp", "penthouse_class": "open_mep", "name": "熱泵熱水器（Haier）", "kind": "service", "target_sqm": 2.5, "min_sqm": 2.0, "band": "rear", "light": "none", "private": false, "penthouse": true },
         { "id": "rf_dry", "name": "曬衣區／活動平台", "kind": "outdoor", "target_sqm": 24.0, "min_sqm": 10.0, "band": "auto", "light": "required", "private": false, "counts_in_footprint": false, "penthouse": false }
       ]
     }

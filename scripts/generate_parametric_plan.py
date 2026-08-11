@@ -29,7 +29,8 @@ from typing import Any
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from lib import plan_geometry as pg  # noqa: E402
-from lib.standards import ROOT, load_residential_defaults, repo_relative  # noqa: E402
+from lib.standards import (ROOT, load_residential_defaults,  # noqa: E402
+                           penthouse_limit_sqm, repo_relative, roof_penthouse)
 
 try:  # optional: rules land in a later step, geometry must not depend on them
     from lib import plan_rules  # type: ignore
@@ -151,14 +152,70 @@ def floor_capacity(floor_payload: dict[str, Any], brief_floor: dict[str, Any],
 
 
 def penthouse_check(floor_payload: dict[str, Any], footprint_sqm: float,
-                    ratio: float) -> dict[str, Any]:
-    total = sum(c["area_sqm"] for c in floor_payload["cells"] if c.get("penthouse"))
-    limit = footprint_sqm * ratio
+                    defaults: dict[str, Any]) -> dict[str, Any]:
+    """屋頂突出物 against 建築技術規則建築設計施工編 第 1 條 / 第 162 條.
+
+    Two different numbers get conflated by the "1/8 of the footprint" shorthand,
+    and this project sat on the wrong side of both:
+
+    * The cap in 第 1 條 applies to 屋頂突出物**水平投影面積之和** - every 目
+      together, not just the stair hall - but it carries a 但書: when 12.5% of
+      the building area comes to less than 25 m², 25 m² is allowed anyway. At a
+      105.79 m² footprint that is 13.22 m² < 25, so **25 m² is the cap here**.
+      The old code used 13.22 and reported a roof that was nearly full; it is
+      barely half full.
+    * 第 162 條 excludes only 第一目 (樓梯間、昇降機間、無線電塔、機械房) from
+      容積總樓地板面積. A water tank or an open heat-pump pad is still a 屋頂
+      突出物, it just is not floor area - so it is counted in the projection sum
+      and reported separately from the volume-exempt subtotal.
+
+    Neither number is an approval. Whether the three houses are one 幢 or three
+    decides how 建築面積 is read in the first place; that is an architect's
+    written pre-check, which is why the report says so next to the table.
+    """
+
+    cfg = roof_penthouse(defaults)
+    limit = penthouse_limit_sqm(defaults, footprint_sqm)
+
+    by_class: dict[str, float] = {}
+    unclassified: list[str] = []
+    excluded: list[dict[str, Any]] = []
+    for cell in floor_payload["cells"]:
+        pclass = cell.get("penthouse_class")
+        # A brief may declare a projection out of the sum - a flush deck-mounted
+        # solar array is the case this exists for - but only explicitly, and it
+        # is reported so the exclusion is visible rather than assumed.
+        if pclass and cell.get("counts_in_projection") is False:
+            excluded.append({"id": cell["id"], "name": cell["name"],
+                             "class": pclass, "area_sqm": cell["area_sqm"]})
+            continue
+        if pclass:
+            by_class[pclass] = by_class.get(pclass, 0.0) + cell["area_sqm"]
+        elif cell.get("penthouse"):
+            # Flagged as a penthouse box but with no 目 stated - it still takes
+            # up projection area, so count it and name it rather than drop it.
+            by_class["enclosed"] = by_class.get("enclosed", 0.0) + cell["area_sqm"]
+            unclassified.append(cell["id"])
+
+    projection = sum(by_class.values())
+    volume_exempt = sum(
+        area for cls, area in by_class.items()
+        if cfg["classes"].get(cls, {}).get("volume_exempt")
+    )
     return {
-        "penthouse_sqm": round(total, 2),
+        "penthouse_sqm": round(projection, 2),
+        "penthouse_ping": round(projection / pg.PING_TO_SQM, 2),
+        "penthouse_by_class": {k: round(v, 2) for k, v in sorted(by_class.items())},
+        "volume_exempt_sqm": round(volume_exempt, 2),
         "limit_sqm": round(limit, 2),
         "limit_ping": round(limit / pg.PING_TO_SQM, 2),
-        "over": total > limit + 0.05,
+        "limit_basis": ("25 m² 但書" if footprint_sqm * cfg["ratio"] < cfg["floor_sqm"]
+                        else f"建築面積 × {cfg['ratio']}"),
+        "ratio_sqm": round(footprint_sqm * cfg["ratio"], 2),
+        "headroom_sqm": round(limit - projection, 2),
+        "unclassified": unclassified,
+        "excluded": excluded,
+        "over": projection > limit + 0.05,
     }
 
 
@@ -183,8 +240,7 @@ def build_building(brief: dict[str, Any], frontage_mm: int, depth_mm: int,
                 "floor_id": payload["floor_id"],
                 "label": payload["label"],
                 "roof": True,
-                **penthouse_check(payload, footprint_sqm,
-                                  float(site.get("roof", {}).get("penthouse_max_ratio", 0.125))),
+                **penthouse_check(payload, footprint_sqm, defaults),
             })
         else:
             ledger.append(floor_capacity(payload, brief_floor, footprint_sqm))
@@ -240,11 +296,20 @@ def build_variant(site: dict[str, Any], briefs: dict[str, dict[str, Any]],
 # --------------------------------------------------------------------------
 
 
+ROOF_CLASS_LABEL = {
+    "enclosed": "梯間／機械房",
+    "tank": "水塔",
+    "open_mep": "露天機電",
+    "energy": "節能設施",
+}
+
+
 def _ping(v: float) -> str:
     return f"{v / pg.PING_TO_SQM:.2f}"
 
 
-def write_capacity_report(doc: dict[str, Any], path: Path) -> None:
+def write_capacity_report(doc: dict[str, Any], path: Path,
+                          defaults: dict[str, Any]) -> None:
     site = doc["site"]
     lines: list[str] = []
     lines.append("# 參數化平面 · 容量帳與規則檢查")
@@ -258,8 +323,15 @@ def write_capacity_report(doc: dict[str, Any], path: Path) -> None:
     lines.append(f"- 每棟每層建築面積：**{site['footprint_ping']} 坪 "
                  f"= {site['footprint_ping'] * site['ping_to_sqm']:.2f} m²**")
     lines.append(f"- 樓層：**{site['storeys']} 層 + RF**（RF 不是第四層，只有女兒牆與屋突）")
-    lines.append(f"- 屋突免計容積上限：建築面積 × {site['roof']['penthouse_max_ratio']} "
-                 f"= {site['footprint_ping'] * site['roof']['penthouse_max_ratio']:.2f} 坪")
+    roof_cfg = roof_penthouse(defaults)
+    fp_sqm = site["footprint_ping"] * site["ping_to_sqm"]
+    roof_limit = penthouse_limit_sqm(defaults, fp_sqm)
+    lines.append(
+        f"- 屋頂突出物水平投影面積上限：**{roof_limit:.2f} m²"
+        f"（{roof_limit / site['ping_to_sqm']:.2f} 坪）**"
+        f"　—— 建築面積 × {roof_cfg['ratio']} = {fp_sqm * roof_cfg['ratio']:.2f} m² 未達 25 m²，"
+        f"依建築技術規則建築設計施工編第 1 條但書「其未達二十五平方公尺者，得建築二十五平方公尺」，"
+        f"以 25 m² 計")
     lines.append(f"- 三棟由左至右（平面圖上）：{' → '.join(doc['row']['order_left_to_right'])}"
                  f"　＝ 站在前院面對房子時，右手邊 A、中間 B、左手邊 C")
     lines.append("")
@@ -314,6 +386,48 @@ def write_capacity_report(doc: dict[str, Any], path: Path) -> None:
                  "這正是要拿去跟建築師談的那張表。")
     lines.append("")
 
+    lines.append("### 1b. 屋頂突出物（2026-08-11 更正）")
+    lines.append("")
+    lines.append(
+        f"先前這份報告寫「屋突免計容積上限 = 建築面積 1/8 = 4.0 坪」，**這是錯的**，"
+        f"漏掉了條文但書。建築技術規則建築設計施工編第 1 條：屋頂突出物水平投影面積之和"
+        f"以建築面積 12.5% 為限，「**其未達二十五平方公尺者，得建築二十五平方公尺**」。"
+        f"本案建築面積 {fp_sqm:.2f} m²，12.5% = {fp_sqm * roof_cfg['ratio']:.2f} m² 未達 25，"
+        f"因此上限是 **{roof_limit:.2f} m²（{roof_limit / site['ping_to_sqm']:.2f} 坪）**，"
+        f"不是 4 坪。實際數字：梯間 8.10 ＋ 水塔 2.62 ＋ 熱泵 2.15 = 12.87 m²，"
+        f"B、C 兩棟只用掉一半；A 棟再加上太陽能設備區才接近上限。"
+        f"換句話說「屋突已經滿了、樓梯要縮成爬梯」這個結論不成立。")
+    lines.append("")
+    lines.append(
+        "另外，「屋突」不是一個桶子。第 1 條把它分目，第 162 條只讓**第一目**"
+        "（樓梯間、昇降機間、無線電塔、機械房）不計入容積總樓地板面積：")
+    lines.append("")
+    lines.append("| 目 | 內容 | 本案 | 計入投影面積 | 計入容積 |")
+    lines.append("|---|---|---|---|---|")
+    lines.append("| 第一目 | 樓梯間、昇降機間、無線電塔、機械房 | 梯間屋突 | ✅ | 免計 |")
+    lines.append("| 第二目 | 水塔、水箱、女兒牆、防火牆 | 水塔／VF800 | ✅ | 非樓地板 |")
+    lines.append("| 第三目 | 露天機電設備、淨水設備、煙囪等 | 熱泵 | ✅ | 非樓地板 |")
+    lines.append("| 第四目 | 突出屋面之管道間、採光換氣或再生能源等節能設施 | 太陽能設備區 | ✅ | 非樓地板 |")
+    lines.append("")
+    lines.append(
+        "水塔與熱泵仍然**是**屋頂突出物 —— 露天不等於不算 —— 只是它們不形成樓地板面積。"
+        "反過來說，如果之後決定幫熱泵加牆加頂做成設備室，它就可能落回第一目的機械房，"
+        "那時候才會開始吃容積。這個決定要在建築師畫圖前講清楚。")
+    lines.append("")
+    lines.append(
+        "> ⚠ **這裡算的是條文字面，不是核准結論。** 三棟在建照上算一幢、連棟還是三幢，"
+        "會直接改變「建築面積」怎麼認定，25 m² 但書也就跟著變。屋頂設備的高度、載重、"
+        "防颱錨定另有規定。**請建築師做一次書面法規預檢**，不要拿這份報告當依據。")
+    lines.append("")
+    lines.append(
+        "露天設備區不再套用居室 1500 mm 短邊規則 —— 那條規則量的是人住不住得下，"
+        "對一台熱泵沒有意義。改量維修通道：短邊低於 "
+        f"{roof_cfg['equipment_access_mm']} mm 時標 `EQUIP_ACCESS_TIGHT`，"
+        "意思是設備擺得下但人擠不進去維修。散熱間距與拆裝空間仍要看機電圖說。"
+        "水塔與熱泵旁的剩料也不再當成露臺，改名為「設備維修淨空」—— 那條 1.1 m 的走道"
+        "本來就是要留給人繞到機器後面的，叫它露臺會讓人以為那裡可以曬衣服。")
+    lines.append("")
+
     lines.append("## 2. 逐變體逐層明細")
     lines.append("")
     lines.append(
@@ -348,10 +462,15 @@ def write_capacity_report(doc: dict[str, Any], path: Path) -> None:
             lines.append("|---|---|---|---|---|---|---|---|---|")
             for cap in b["capacity"]:
                 if cap.get("roof"):
-                    mark = "❌ 超過" if cap["over"] else "✅"
-                    lines.append(f"| {cap['label']} | — | — | — | 屋突 "
-                                 f"{cap['penthouse_sqm']:.2f} m² | 上限 "
-                                 f"{cap['limit_sqm']:.2f} m² | — | — | {mark} |")
+                    mark = ("❌ 超過" if cap["over"]
+                            else f"✅ 尚餘 {cap['headroom_sqm']:.2f} m²")
+                    breakdown = "＋".join(
+                        f"{ROOF_CLASS_LABEL.get(k, k)} {v:.2f}"
+                        for k, v in cap.get("penthouse_by_class", {}).items()) or "—"
+                    lines.append(f"| {cap['label']} | — | — | — | 屋突投影 "
+                                 f"{cap['penthouse_sqm']:.2f} m²（{breakdown}） | 上限 "
+                                 f"{cap['limit_sqm']:.2f} m² | — | 免計容積 "
+                                 f"{cap['volume_exempt_sqm']:.2f} m² | {mark} |")
                     continue
                 gap = cap["gap_sqm"]
                 mark = f"**+{gap:.2f}**" if gap > 0.5 else f"{gap:.2f}"
@@ -384,6 +503,42 @@ def write_capacity_report(doc: dict[str, Any], path: Path) -> None:
     if findings is not None:
         lines.append("## 3. 規則檢查")
         lines.append("")
+        # The reader is about to be told 「唯一的通路要穿過主臥」. That sentence only
+        # means something if they know the plan has one designated way into each
+        # room by policy - under the earlier every-shared-edge door rule there was
+        # no "唯一", and the same finding would have been noise.
+        roles: dict[str, int] = {}
+        for _v in doc["variants"]:
+            for _b in _v["buildings"].values():
+                for _f in _b["floors"]:
+                    for _d in _f.get("doors", []):
+                        roles[_d.get("role", "?")] = roles.get(_d.get("role", "?"), 0) + 1
+        lines.append("### 3.1 動線與出入口原則（先讀這段，下面的檢查才讀得懂）")
+        lines.append("")
+        lines.append("門不是「兩間房碰到就開一扇」，而是**每個空間指定一個入口**：")
+        lines.append("")
+        lines.append("| 門的種類 | 意思 | 數量 |")
+        lines.append("|---|---|---|")
+        for key, label in (
+            ("main_entrance", "大門"),
+            ("vehicle_door", "車庫捲門（臨路面）"),
+            ("entrance", "該空間**指定的**唯一入口"),
+            ("opening", "無門扇的開口（走道↔樓梯、玄關↔走道、宣告開放的區域）"),
+            ("hatch", "設備櫃檢修門（MDF/IDF）—— **不算通路**，動線檢查會跳過"),
+        ):
+            if roles.get(key):
+                lines.append(f"| `{key}` | {label} | {roles[key]} |")
+        lines.append("")
+        lines.append("入口的來源有兩種：需求表寫了 `access_from`（例如「主臥衛浴由主臥進」）就照寫的做，"
+                     "沒寫就由產生器從走道／樓梯往外長，優先順序是 "
+                     "**走道 → 樓梯 → 玄關 → 一般房間 → 私密空間**。"
+                     "落到最後一級會標 `NESTED_ACCESS`；需求指定的關係在該版配置下做不到（兩者根本沒有共用牆），"
+                     "標 `ACCESS_UNREALISABLE` 而不是靜靜改走別條路。")
+        lines.append("")
+        lines.append("**開放式格局要明講。** 需求表沒宣告 `open_plan` 的相鄰空間之間不會自動打通 —— "
+                     "客餐廳與廚房要連成一個大空間，是要寫下來的決定，"
+                     "不然「穿堂煞要用屏風擋」這類要求會被自動打通的開口默默抵銷。")
+        lines.append("")
         if not findings:
             lines.append("所有變體都沒有觸發規則檢查 —— 這通常代表檢查沒跑到，值得懷疑。")
         else:
@@ -392,7 +547,7 @@ def write_capacity_report(doc: dict[str, Any], path: Path) -> None:
             variant_ids = [v["id"] for v in doc["variants"]]
             matrix = plan_rules.summarise(findings) if plan_rules else {}
             if matrix:
-                lines.append("### 3.1 代碼 × 變體對照")
+                lines.append("### 3.2 代碼 × 變體對照")
                 lines.append("")
                 lines.append("| 代碼 | 嚴重度 | " + " | ".join(variant_ids) + " |")
                 lines.append("|---" * (len(variant_ids) + 2) + "|")
@@ -411,7 +566,7 @@ def write_capacity_report(doc: dict[str, Any], path: Path) -> None:
                              "這只是計數，不是評分 —— `CAPACITY_OVERFLOW` "
                              "一項的份量遠大於一項 `BATH_FACES_DINING`。")
                 lines.append("")
-                lines.append("### 3.2 逐項明細")
+                lines.append("### 3.3 逐項明細")
                 lines.append("")
             lines.append("| 變體 | 棟 | 樓層 | 代碼 | 內容 |")
             lines.append("|---|---|---|---|---|")
@@ -487,7 +642,7 @@ def main(argv: list[str] | None = None) -> int:
         fh.write("\n")
 
     report_path = args.out_dir / "capacity.md"
-    write_capacity_report(doc, report_path)
+    write_capacity_report(doc, report_path, defaults)
 
     over = sum(1 for v in variants for b in v["buildings"].values()
                for c in b["capacity"] if c.get("over_capacity"))

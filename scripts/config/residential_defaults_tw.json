@@ -83,6 +83,54 @@
       "_note": "壁掛式充電樁裝在車頭端牆面。車頭服務區取 max(clearance.front, depth + clear)，兩者共用同一段深度而不重複計算。"
     }
   },
+  "roof_penthouse": {
+    "_note": [
+      "屋頂突出物的法規參數，依建築技術規則建築設計施工編第 1 條與第 162 條。",
+      "第 1 條：屋頂突出物高度在 6 m 以內（有昇降機通達者 9 m 以內），且『水平投影面積之和』",
+      "以不超過建築面積 12.5%（高層建築物 15%）為限，【其未達二十五平方公尺者，得建築二十五平方公尺】。",
+      "最後這句但書是關鍵：建築面積小的房子不會因為比例而被壓到極小的屋突，一律至少有 25 m² 可用。",
+      "第 162 條：符合第 1 條第 1 目（樓梯間、昇降機間、無線電塔、機械房）之屋頂突出物，得不計入容積總樓地板面積；",
+      "機電設備空間另有基地容積 15% 的上限。",
+      "本專案建築面積 105.79 m²，12.5% = 13.22 m² < 25 m²，因此適用 25 m² 但書。",
+      "這些是條文字面值，不是核准結論。三棟在執照上算一幢還是三幢、地方審查實務如何認定，要建築師書面法規預檢。"
+    ],
+    "ratio": 0.125,
+    "ratio_highrise": 0.15,
+    "floor_sqm": 25.0,
+    "height_limit_mm": 6000,
+    "classes": {
+      "enclosed": {
+        "label": "第一目 圍蔽屋突",
+        "statute": "第 1 條第 1 目：樓梯間、昇降機間、無線電塔及機械房",
+        "counts_in_projection": true,
+        "volume_exempt": true,
+        "habitable_min_dim": true
+      },
+      "tank": {
+        "label": "第二目 水塔水箱",
+        "statute": "第 1 條第 2 目：水塔、水箱、女兒牆、防火牆",
+        "counts_in_projection": true,
+        "volume_exempt": false,
+        "habitable_min_dim": false
+      },
+      "open_mep": {
+        "label": "第三目 露天機電",
+        "statute": "第 1 條第 3 目：雨水貯留利用系統設備、淨水設備、露天機電設備、煙囪等",
+        "counts_in_projection": true,
+        "volume_exempt": false,
+        "habitable_min_dim": false
+      },
+      "energy": {
+        "label": "第四目 節能設施",
+        "statute": "第 1 條第 4 目：突出屋面之管道間、採光換氣或再生能源使用等節能設施",
+        "counts_in_projection": true,
+        "volume_exempt": false,
+        "habitable_min_dim": false
+      }
+    },
+    "equipment_access_mm": 900,
+    "_equipment_access_note": "露天設備區不套用居室 1500 mm 短邊規則。這裡量的是『人帶著工具走到機器旁邊』，取 900 mm 維修通道為下限；實際還要看散熱間距與拆裝空間，由機電圖說決定。"
+  },
   "drawing": {
     "font_family": "Segoe UI, Microsoft JhengHei, sans-serif",
     "default_style": "presentation",

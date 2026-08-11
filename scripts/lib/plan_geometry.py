@@ -60,7 +60,21 @@ PING_TO_SQM = 3.305785
 # A door needs the wall segment it sits in to be wider than the door itself,
 # or the opening eats the corner and there is nothing left to hang it on.
 DOOR_EDGE_MARGIN_MM = 150
+# Below this a shared edge cannot hold a door leaf at all. It used to be the
+# gate that decided *whether* two rooms were connected, which is how a 1083 mm
+# party wall ended up with a 783 mm door in it; now it only rules out edges too
+# short to build in, and the connection itself is a stated decision.
+DOOR_MIN_CLEAR_MM = 700
 MIN_ROOM_DIM_MM = 1500
+
+# Roof equipment is not a room. A water tank stand or a heat-pump pad is sized
+# by the machine plus the space a technician needs to reach it, so the 1500 mm
+# habitable minimum says nothing useful about it - it would condemn a perfectly
+# ordinary 1.2 m wide plant strip while ignoring a 2 m square with no way in.
+# The classes here are the statutory 目 from 建築技術規則建築設計施工編 第 1 條;
+# only 第一目 (enclosed stair hall / machine room) is a space people occupy.
+EQUIPMENT_PENTHOUSE_CLASSES = ("tank", "open_mep", "energy")
+EQUIP_ACCESS_MM = 900
 
 # The garage cannot take the whole frontage: the front door has to be beside it,
 # and an entry narrower than this is not an entry.
@@ -893,9 +907,9 @@ def build_floor(floor_brief: dict[str, Any], sk: Skeleton, site: dict[str, Any],
 
 
 def _place_roof(rooms: list[dict[str, Any]], sk: Skeleton, cells: list[Cell]) -> None:
-    """RF is not a storey. Penthouse boxes keep their stated size (they are
-    capped at 1/8 of the building area by law, so inflating them to fill the
-    roof would be exactly the wrong answer); everything else is open deck."""
+    """RF is not a storey. Penthouse boxes keep their stated size - the law caps
+    the *sum* of roof projections, so inflating them to fill the roof would be
+    exactly the wrong answer; everything else is open deck."""
 
     net = sk.net
     stair_brief = next((r for r in rooms if r.get("kind") == "stair"), None)
@@ -912,8 +926,9 @@ def _place_roof(rooms: list[dict[str, Any]], sk: Skeleton, cells: list[Cell]) ->
     reserved: list[Rect] = [sk.stair]
 
     if penthouse:
+        span = sk.stair.x0 - net.x0
         want = sum(float(r.get("target_sqm", 3.0)) for r in penthouse) * 1_000_000
-        pw = int(min(max(want / max(sk.stair.d, 1), 1200), sk.stair.x0 - net.x0))
+        pw = int(min(max(want / max(sk.stair.d, 1), 1200), span))
         if pw >= 1200:
             strip = Rect(sk.stair.x0 - pw, sk.stair.y0, sk.stair.x0, sk.stair.y1)
             reserved.append(strip)
@@ -925,17 +940,63 @@ def _place_roof(rooms: list[dict[str, Any]], sk: Skeleton, cells: list[Cell]) ->
                     cells.append(Cell(r["id"], r["name"], r.get("kind", "service"),
                                       "room", rect, brief=r))
 
+            # Whatever is left between the plant strip and the outer wall is the
+            # aisle somebody stands in to service the tank and the heat pump.
+            # Unnamed, it surfaced as a 1.1 m "露臺" on all three roofs - dead
+            # space in the report and a TOO_NARROW that meant nothing. It is not
+            # 屋頂突出物 either: clearance is not a box, so it stays out of the
+            # projection sum.
+            # Capped: an aisle is a place to stand, and past ~1.8 m the rest is
+            # just roof. At a 10 m frontage the uncapped version swallowed
+            # 15.7 m² and called it clearance.
+            aisle = min(span - pw, 1800)
+            rest = Rect(strip.x0 - aisle, sk.stair.y0, strip.x0, sk.stair.y1)
+            if rest.valid and rest.w >= 600:
+                reserved.append(rest)
+                cells.append(Cell(
+                    "rf_service_aisle", "設備維修淨空", "outdoor", "room", rest,
+                    brief={"counts_in_footprint": False, "light": "none",
+                           "penthouse": False, "service_clearance": True,
+                           "note": "水塔與熱泵旁的維修動線。不是露臺，也不計入屋突水平投影面積。"}))
+
     zones = make_zones(sk, reserved)
     assign_zones(deck, zones)
+    # Zones the brief left empty become open deck. Two of them on one roof used
+    # to come out both called 露臺, which reads as a duplicate in every table and
+    # in the 3D picker; name them by where they actually are.
+    band_label = {"front": "前側露臺", "rear": "後側露臺"}
+    empty_bands = [z.band for z in zones if not z.rooms]
+    seq: dict[str, int] = {}
     for zone in zones:
         picks = zone.rooms
         if not picks:
-            cells.append(Cell(f"deck_{zone.id}", "露臺", "outdoor", "room", zone.rect,
+            base = band_label.get(zone.band, "露臺")
+            seq[zone.band] = seq.get(zone.band, 0) + 1
+            name = base if empty_bands.count(zone.band) == 1 else f"{base} {seq[zone.band]}"
+            cells.append(Cell(f"deck_{zone.id}", name, "outdoor", "room", zone.rect,
                               brief={"counts_in_footprint": False, "light": "required",
                                      "penthouse": False}))
             continue
-        placed = guillotine(zone.rect, [(r["id"], float(r.get("target_sqm", 8.0)))
-                                        for r in picks])
+        items = [(r["id"], float(r.get("target_sqm", 8.0))) for r in picks]
+        # Deck rooms expand to fill their zone, which is right for a drying yard
+        # and wrong for equipment: a solar array is as big as the array, not as
+        # big as the roof it stands on. Left to inflate, A's 12 m² of panels came
+        # out at 36 m² and pushed the building over the 屋頂突出物 cap - a limit
+        # breached by the fill policy rather than by the design. Anything with a
+        # statutory class keeps its stated size; the surplus becomes named deck.
+        want = sum(w for _, w in items)
+        spare = zone.rect.area_sqm - want
+        filler = None
+        if (any(r.get("penthouse_class") for r in picks)
+                and spare > max(FLEX_MIN_SQM, want * FLEX_TOLERANCE)):
+            filler = f"deck_{zone.id}"
+            items.append((filler, spare))
+        placed = guillotine(zone.rect, items)
+        if filler and placed.get(filler):
+            cells.append(Cell(filler, band_label.get(zone.band, "露臺"), "outdoor",
+                              "room", placed[filler],
+                              brief={"counts_in_footprint": False,
+                                     "light": "required", "penthouse": False}))
         for r in picks:
             rect = placed.get(r["id"])
             if rect:
@@ -962,12 +1023,22 @@ def _cell_payload(cell: Cell, net: Rect) -> dict[str, Any]:
     # rack, water manifold), not a room anybody stands in. Its depth is set by
     # the core annex, not by the guillotine, so the habitable-room minimum
     # dimension says nothing actionable about it.
-    niche = brief.get("band") == "core" and cell.kind == "service"
+    niche = _is_niche(cell)
+    pclass = brief.get("penthouse_class")
+    equipment = pclass in EQUIPMENT_PENTHOUSE_CLASSES
+    clearance = bool(brief.get("service_clearance"))
     if cell.role == "room" and min_sqm and clear.area_sqm < min_sqm:
         flags.append("BELOW_MIN_AREA")
+    if clearance:
+        pass          # an aisle is as wide as what is left; nothing to assert
+    elif equipment:
+        # Machines, not people: what matters is whether a technician can get to
+        # the thing, so the test is an access aisle rather than a room width.
+        if min(clear.w, clear.d) < EQUIP_ACCESS_MM:
+            flags.append("EQUIP_ACCESS_TIGHT")
     # Flex is checked too: leftover area shaped like a 1 m corridor is not
     # usable by anybody, and that is exactly the thing worth seeing.
-    if (min(clear.w, clear.d) < MIN_ROOM_DIM_MM
+    elif (min(clear.w, clear.d) < MIN_ROOM_DIM_MM
             and cell.role in ("room", "flex") and not niche):
         flags.append("TOO_NARROW")
     return {
@@ -986,7 +1057,17 @@ def _cell_payload(cell: Cell, net: Rect) -> dict[str, Any]:
         "private": bool(brief.get("private")),
         "counts_in_footprint": brief.get("counts_in_footprint", cell.kind != "outdoor"),
         "penthouse": bool(brief.get("penthouse")),
+        "penthouse_class": pclass,
+        "counts_in_projection": brief.get("counts_in_projection"),
+        "service_clearance": clearance,
         "wheelchair_turn": bool(brief.get("wheelchair_turn")),
+        # The rule layer asks for these by name; without them the palanquin
+        # check silently fell back to a 1200 default and the declared 900 mm
+        # accessible-WC width was never actually the number being tested.
+        "min_door_mm": brief.get("door_clear_mm"),
+        "access_from": brief.get("access_from") or [],
+        "open_plan": bool(brief.get("open_plan")),
+        "carry_path": bool(brief.get("carry_path")),
         "niche": niche,
         "note": brief.get("note"),
         "flags": flags,
@@ -1111,13 +1192,140 @@ def _door_width(cell: Cell, defaults: dict[str, Any]) -> int:
     return int(doors.get("interior", 900))
 
 
+def _is_niche(cell: Cell) -> bool:
+    """An equipment cabinet beside the riser (MDF/IDF rack, water manifold).
+    It has a door leaf in reality, but it is a hatch you reach into, not a way
+    through to anywhere."""
+
+    return (cell.brief or {}).get("band") == "core" and cell.kind == "service"
+
+
+def _access_tier(host: Cell) -> int | None:
+    """How willing we are to walk through ``host`` to reach somewhere else.
+
+    Tier 0-1 is what circulation exists for. Tier 2 is the entry hall. Tier 3
+    is a shared room - acceptable, and worth saying out loud. Tier 4 means the
+    only way through is somebody's bedroom, which is a finding, not a plan.
+    ``None`` means never: a riser has no door, and you do not walk through a
+    rack cabinet to get somewhere - left in the running it won on width alone
+    and 神明廳 came out entered via the IDF cupboard.
+    """
+
+    if host.role == "shaft" or _is_niche(host):
+        return None
+    if host.role == "corridor":
+        return 0
+    if host.role == "stair":
+        return 1
+    if host.kind == "entry":
+        return 2
+    if host.role in ("room", "garage", "flex"):
+        return 4 if (host.brief or {}).get("private") else 3
+    return None
+
+
+def _widest_route(doors: list[dict[str, Any]], start: str,
+                  goal: str) -> list[dict[str, Any]] | None:
+    """The route whose narrowest opening is as wide as possible, returned as
+    the doors on it. Same question the palanquin check asks; asked here so the
+    generator can widen those doors instead of only reporting them.
+
+    The two must be asked over the same graph or the widening lands on doors
+    nobody checks: left to itself this walked the 武轎 in through the 2815 mm
+    garage roller door, widened that route, and the front door - which is what
+    the rule actually measures - stayed at 1000. Hatches are out for the same
+    reason they are out of :class:`Circulation`: a rack cabinet is not a way
+    through.
+    """
+
+    adj: dict[str, list[tuple[str, dict[str, Any]]]] = {}
+    for d in doors:
+        if d.get("role") in ("hatch", "vehicle_door"):
+            continue
+        adj.setdefault(d["from"], []).append((d["to"], d))
+        adj.setdefault(d["to"], []).append((d["from"], d))
+    best = {start: 10 ** 9}
+    trail: dict[str, list[dict[str, Any]]] = {start: []}
+    pool = {start}
+    while pool:
+        node = max(pool, key=lambda n: best[n])
+        pool.discard(node)
+        if node == goal:
+            return trail[node]
+        for nxt, door in adj.get(node, []):
+            width = min(best[node], int(door["clear_mm"]))
+            if width > best.get(nxt, -1):
+                best[nxt] = width
+                trail[nxt] = trail[node] + [door]
+                pool.add(nxt)
+    return None
+
+
 def _build_doors(cells: list[Cell], net: Rect, site: dict[str, Any],
                  defaults: dict[str, Any]) -> list[dict[str, Any]]:
+    """One designated way into every space, plus whatever the brief declares open.
+
+    The earlier version put a door on every shared edge where either side was a
+    room or circulation. That is not a plan, it is a graph: a 1F came out with
+    fifteen doors, the accessible WC opened onto the corridor *and* the entry
+    hall *and* the garage, and a 1083 mm party wall produced a 783 mm door
+    nobody had asked for. Worse, the rule checks then ran on that graph - the
+    kitchen reached the balcony because of an accidental opening, and the
+    palanquin route measured a bottleneck that was never designed.
+
+    So access is now stated rather than discovered. Each space gets exactly one
+    entrance, from the brief's ``access_from`` when it says, otherwise from the
+    nearest thing that is meant to be walked through. Extra openings exist only
+    where the brief declares ``open_plan`` - which also keeps 穿堂煞 an explicit
+    decision instead of a side effect of two rooms happening to touch.
+    """
+
     doors: list[dict[str, Any]] = []
     by_id = {c.id: c for c in cells}
-    circulation = {c.id for c in cells if c.role in ("corridor", "stair")}
+    index: dict[frozenset[str], dict[str, Any]] = {}
 
-    # Front door: on the front facade, into the entry (or whatever is at the front).
+    # --- adjacency: every shared edge long enough to hold a leaf ------------
+    edges: dict[str, dict[str, tuple[str, int, int, int, int]]] = {c.id: {} for c in cells}
+    for i, a in enumerate(cells):
+        for b in cells[i + 1:]:
+            edge = _shared_edge(a.rect, b.rect)
+            if edge is None:
+                continue
+            orient, line, lo, hi = edge
+            usable = hi - lo - 2 * DOOR_EDGE_MARGIN_MM
+            if usable < DOOR_MIN_CLEAR_MM:
+                continue
+            info = (orient, line, lo, hi, usable)
+            edges[a.id][b.id] = info
+            edges[b.id][a.id] = info
+
+    def connect(host: Cell, served: Cell, role: str,
+                want: int | None = None) -> dict[str, Any] | None:
+        key = frozenset((host.id, served.id))
+        if key in index:
+            return index[key]
+        orient, line, lo, hi, usable = edges[host.id][served.id]
+        width = min(want or _door_width(served, defaults), usable)
+        swing = ((served.brief or {}).get("door_swing")
+                 or (host.brief or {}).get("door_swing")
+                 or ("open" if role == "opening" else "hinged"))
+        door = {
+            "id": f"door_{host.id}_{served.id}",
+            "from": host.id,
+            "to": served.id,
+            "orientation": orient,
+            "line": line,
+            "center": int((lo + hi) / 2),
+            "clear_mm": int(width),
+            "usable_mm": int(usable),
+            "swing": "open" if role == "opening" else swing,
+            "role": role,
+        }
+        doors.append(door)
+        index[key] = door
+        return door
+
+    # --- front door --------------------------------------------------------
     entry = next((c for c in cells if c.kind == "entry"), None)
     if entry is None:
         entry = next((c for c in cells if c.role == "room" and c.rect.y0 <= net.y0), None)
@@ -1132,57 +1340,155 @@ def _build_doors(cells: list[Cell], net: Rect, site: dict[str, Any],
             "line": net.y0,
             "center": int(entry.rect.cx),
             "clear_mm": w,
+            "usable_mm": int(entry.rect.w - 2 * DOOR_EDGE_MARGIN_MM),
             "swing": "outward",
             "role": "main_entrance",
         })
 
-    seen: set[tuple[str, str]] = set()
+    # --- the car's own way in ---------------------------------------------
+    # The garage was reachable only from inside the house, which is the one
+    # thing a garage cannot be. It fronts the street, so the vehicle door goes
+    # on the front facade at the width of the bay.
+    for g in (c for c in cells if c.role == "garage"):
+        if g.rect.y0 > net.y0:
+            continue
+        leaf = min(g.rect.w - 2 * DOOR_EDGE_MARGIN_MM, 3000)
+        if leaf < 2200:
+            g.flags.append("GARAGE_DOOR_NARROW")
+        doors.append({
+            "id": f"door_{g.id}_street", "from": "outside", "to": g.id,
+            "orientation": "h", "line": net.y0, "center": int(g.rect.cx),
+            "clear_mm": int(max(leaf, 0)),
+            "usable_mm": int(g.rect.w - 2 * DOOR_EDGE_MARGIN_MM),
+            "swing": "roller", "role": "vehicle_door",
+        })
+
+    # --- circulation is continuous by construction, not by door ------------
+    circulation = [c for c in cells if c.role in ("corridor", "stair")]
+    for i, a in enumerate(circulation):
+        for b in circulation[i + 1:]:
+            if b.id in edges[a.id]:
+                connect(a, b, "opening", want=edges[a.id][b.id][4])
+
+    # --- one designated entrance per space ---------------------------------
+    # Grown outwards from the circulation rather than chosen room by room. The
+    # per-room version looked equivalent and was not: two rooms whose best
+    # neighbour was each other picked each other, sharing a single door and
+    # forming an island with no way to the stairs. The plan looked plausible
+    # and A's master bedroom was unreachable.
+    parent: dict[str, str] = {c.id: c.id for c in cells}
+
+    def find(x: str) -> str:
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    def union(a: str, b: str) -> None:
+        ra, rb = find(a), find(b)
+        if ra != rb:
+            parent[ra] = rb
+
+    # Seeded with the circulation alone. Having a front door is not the same as
+    # being connected to the house: B's entry hall opens only onto the palanquin
+    # store, and seeding it as reached declared the problem solved and left the
+    # hall a dead end.
+    reached = circulation[0].id if circulation else None
+    if reached is None:
+        return doors
+    for c in circulation:
+        union(c.id, reached)
+
+    def link(host: Cell, served: Cell) -> None:
+        role = "hatch" if _is_niche(served) else "entrance"
+        width = None
+        if served.kind == "entry" and host.role in ("corridor", "stair"):
+            # A 玄關 opens onto the hallway; nobody hangs a leaf between them.
+            role, width = "opening", edges[served.id][host.id][4]
+        elif served.role == "garage":
+            # The 2400 in _door_width is the vehicle opening, already on the
+            # facade; the way through from the house is an ordinary door.
+            width = int(defaults["geometry"]["door_width_mm"].get("interior", 900))
+        connect(host, served, role, want=width)
+        union(served.id, host.id)
+
+    needs = [c for c in cells if c.role not in ("corridor", "stair", "shaft")]
+
+    # Declared relations first, and unconditionally: "衛浴由主臥進" is a decision
+    # about this pair, not about how the pair reaches the stairs. Wiring it up
+    # front lets the ensuite and the master arrive as one component.
+    for cell in needs:
+        declared = (cell.brief or {}).get("access_from") or []
+        if not declared:
+            continue
+        pick = next((nid for want in declared for nid in edges[cell.id]
+                     if want in (nid, by_id[nid].role, by_id[nid].kind)), None)
+        if pick is None:
+            # "從主臥進" cannot be honoured when the master bedroom ended up on
+            # the other side of the plan. Falling back silently would turn a
+            # brief the layout failed to satisfy into a layout that looks fine.
+            cell.flags.append("ACCESS_UNREALISABLE")
+            continue
+        link(by_id[pick], cell)
+
+    # Then pull the remaining components in, best edge first.
+    while True:
+        best: tuple[int, int, str, str] | None = None
+        for cell in needs:
+            if find(cell.id) == find(reached):
+                continue
+            for nid, edge in edges[cell.id].items():
+                if find(nid) != find(reached):
+                    continue
+                tier = _access_tier(by_id[nid])
+                if tier is None:
+                    continue
+                cand = (tier, -edge[4], cell.id, nid)
+                if best is None or cand < best:
+                    best = cand
+        if best is None:
+            break
+        tier, _, cid, hid = best
+        if tier == 4 and not (by_id[cid].brief or {}).get("access_from"):
+            by_id[cid].flags.append("NESTED_ACCESS")
+        link(by_id[hid], by_id[cid])
+
+    facade = {d["to"] for d in doors if d["from"] == "outside"}
+    for cell in needs:
+        if find(cell.id) != find(reached) and cell.id not in facade:
+            cell.flags.append("NO_ACCESS")
+
+    # --- declared open plan ------------------------------------------------
     for i, a in enumerate(cells):
+        if not (a.brief or {}).get("open_plan"):
+            continue
         for b in cells[i + 1:]:
-            key = tuple(sorted((a.id, b.id)))
-            if key in seen:
+            if not (b.brief or {}).get("open_plan"):
                 continue
-            edge = _shared_edge(a.rect, b.rect)
-            if edge is None:
+            if b.id not in edges[a.id]:
                 continue
-            orient, line, lo, hi = edge
+            connect(a, b, "opening", want=edges[a.id][b.id][4])
 
-            # Which of the pair drives the door width? The more private one.
-            target = b if (b.brief or {}).get("private") else a
-            width = _door_width(target, defaults)
-            usable = hi - lo - 2 * DOOR_EDGE_MARGIN_MM
-            if usable < 700:
+    # --- carry routes ------------------------------------------------------
+    # 武轎: the object is rigid and the crew carries it shoulder-high, so every
+    # opening on the way has to take it - including the front door, which the
+    # 1000 mm entry default does not. Widening here rather than only reporting
+    # it means the walkthrough shows the doorway the carry actually needs.
+    for cell in cells:
+        if not (cell.brief or {}).get("carry_path"):
+            continue
+        need = int((cell.brief or {}).get("door_clear_mm") or 1200)
+        route = _widest_route(doors, "outside", cell.id)
+        if route is None:
+            cell.flags.append("NO_CARRY_ROUTE")
+            continue
+        for door in route:
+            if door["clear_mm"] >= need:
                 continue
-            width = min(width, usable)
-
-            pair_roles = {a.role, b.role}
-            wants_door = bool(circulation & {a.id, b.id}) or pair_roles & {"room", "garage"}
-            if not wants_door:
-                continue
-            # Outdoor-to-outdoor (deck to deck) needs no door leaf.
-            if a.kind == "outdoor" and b.kind == "outdoor":
-                continue
-
-            open_plan = (
-                a.role == "room" and b.role == "room"
-                and not (a.brief or {}).get("private") and not (b.brief or {}).get("private")
-                and a.kind in ("living", "dining", "entry", "kitchen", "other")
-                and b.kind in ("living", "dining", "entry", "kitchen", "other")
-            )
-
-            seen.add(key)
-            doors.append({
-                "id": f"door_{a.id}_{b.id}",
-                "from": a.id,
-                "to": b.id,
-                "orientation": orient,
-                "line": line,
-                "center": int((lo + hi) / 2),
-                "clear_mm": int(width),
-                "swing": (b.brief or {}).get("door_swing") or (a.brief or {}).get("door_swing")
-                          or ("open" if open_plan else "hinged"),
-                "role": "opening" if open_plan else "door",
-            })
+            door["clear_mm"] = min(need, door["usable_mm"])
+            door["carry_route"] = True
+            if door["clear_mm"] < need:
+                cell.flags.append("CARRY_ROUTE_TIGHT")
 
     return doors
 
