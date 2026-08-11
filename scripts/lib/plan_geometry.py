@@ -170,6 +170,12 @@ class Cell:
     brief: dict[str, Any] = field(default_factory=dict)
     flags: list[str] = field(default_factory=list)
     clear: Rect | None = None
+    # Which band the room actually landed in, filled once the rects are final.
+    # ``assign_zones`` honours the brief's ``band`` "where stated", and where it
+    # could not the room simply moved - silently, because nothing compared the
+    # two afterwards. A 後工作陽台 ended up on the street facade in four variants
+    # and no report said so.
+    band_actual: str = ""
 
 
 # --------------------------------------------------------------------------
@@ -880,11 +886,16 @@ def build_floor(floor_brief: dict[str, Any], sk: Skeleton, site: dict[str, Any],
 
     # --- clear rects, walls, openings -----------------------------------
     ti = int(defaults["geometry"]["wall_thickness_mm"]["interior"])
+    # Same line make_zones splits on, applied to where the room finally sits
+    # rather than to the zone it was handed. Guillotine cuts and daylight swaps
+    # both move rooms after assignment, so the zone's band is not the answer.
+    corridor_y0 = sk.net.y0 + sk.front_depth
     for cell in cells:
         cell.clear = _clear_rect(cell.rect, net, ti)
+        cell.band_actual = "front" if cell.rect.cy < corridor_y0 else "rear"
 
     walls = _build_walls(cells, net, defaults)
-    doors = _build_doors(cells, net, site, defaults)
+    doors = _build_doors(cells, net, site, defaults, floor_brief.get("floor_id"))
     windows = _build_windows(cells, net, defaults, doors)
     _cut_openings(walls, doors, windows, defaults)
 
@@ -1053,6 +1064,8 @@ def _cell_payload(cell: Cell, net: Rect) -> dict[str, Any]:
         "target_sqm": brief.get("target_sqm"),
         "min_sqm": brief.get("min_sqm"),
         "exterior_sides": _touches_exterior(cell.rect, net),
+        "band": brief.get("band", "auto"),
+        "band_actual": cell.band_actual,
         "light": brief.get("light", "preferred"),
         "private": bool(brief.get("private")),
         "counts_in_footprint": brief.get("counts_in_footprint", cell.kind != "outdoor"),
@@ -1262,7 +1275,8 @@ def _widest_route(doors: list[dict[str, Any]], start: str,
 
 
 def _build_doors(cells: list[Cell], net: Rect, site: dict[str, Any],
-                 defaults: dict[str, Any]) -> list[dict[str, Any]]:
+                 defaults: dict[str, Any],
+                 floor_id: str | None = None) -> list[dict[str, Any]]:
     """One designated way into every space, plus whatever the brief declares open.
 
     The earlier version put a door on every shared edge where either side was a
@@ -1326,9 +1340,18 @@ def _build_doors(cells: list[Cell], net: Rect, site: dict[str, Any],
         return door
 
     # --- front door --------------------------------------------------------
-    entry = next((c for c in cells if c.kind == "entry"), None)
-    if entry is None:
-        entry = next((c for c in cells if c.role == "room" and c.rect.y0 <= net.y0), None)
+    # 1F only. This block ran on every floor, and above 1F there is no 玄關, so
+    # the fallback below picked whichever room happened to sit on the front
+    # edge and cut a 1000 mm door from it to "outside" - a hole in the 3F
+    # facade opening onto nothing. It also handed ``FRONT_REAR_ALIGNED`` a fake
+    # 大門 on three floors out of four, so the 穿堂煞 result on those floors was
+    # measured against a door that does not exist.
+    entry = None
+    if floor_id == "floor-1":
+        entry = next((c for c in cells if c.kind == "entry"), None)
+        if entry is None:
+            entry = next((c for c in cells
+                          if c.role == "room" and c.rect.y0 <= net.y0), None)
     if entry is not None:
         w = int(defaults["geometry"]["door_width_mm"].get("entry", 1000))
         w = min(w, max(800, entry.rect.w - 2 * DOOR_EDGE_MARGIN_MM))
@@ -1364,10 +1387,28 @@ def _build_doors(cells: list[Cell], net: Rect, site: dict[str, Any],
         })
 
     # --- circulation is continuous by construction, not by door ------------
+    # With one exception, and it is the one the brief spells out twice: the
+    # stair mouth on 1F. design_request.md asks for 樓梯口氣密門 as B's stair line
+    # (「避開神桌正沖，加氣密防煙」) and again as Q8 (「樓梯口氣密門是否能防止香火味
+    # 往上跑？」), and the HTML sketches carry it as a named cell on A 1F
+    # (樓梯口隔斷門) and C 1F (樓梯前拉門阻隔). Left to the general rule it came out
+    # as a 2400 mm hole with no leaf - the exact condition Q8 was asking about,
+    # built into the model that was supposed to answer it.
+    #
+    # 1F only: nothing in either source asks for one upstairs, and the smoke it
+    # exists to stop starts at the 神明廳 on 1F.
+    seal_stair = floor_id == "floor-1"
     circulation = [c for c in cells if c.role in ("corridor", "stair")]
     for i, a in enumerate(circulation):
         for b in circulation[i + 1:]:
-            if b.id in edges[a.id]:
+            if b.id not in edges[a.id]:
+                continue
+            if seal_stair and {a.role, b.role} == {"corridor", "stair"}:
+                host, served = (a, b) if a.role == "corridor" else (b, a)
+                connect(host, served, "smoke_door",
+                        want=int(defaults["geometry"]["door_width_mm"]
+                                 .get("interior", 900)))
+            else:
                 connect(a, b, "opening", want=edges[a.id][b.id][4])
 
     # --- one designated entrance per space ---------------------------------

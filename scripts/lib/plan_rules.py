@@ -37,6 +37,10 @@ CODES = {
     "ACCESS_UNREALISABLE": "需求指定的出入關係在這個配置下做不到",
     "NESTED_ACCESS": "唯一入口要穿越私密空間",
     "NO_ACCESS": "沒有任何可開門的共用牆",
+    "BAND_UNREALISABLE": "需求指定的前後分帶沒有做到",
+    "BALCONY_NOT_ON_FACADE": "後陽台沒有貼到後外牆",
+    "OUTDOOR_LANDLOCKED": "戶外空間四面都是室內，沒有任何外牆",
+    "SHRINE_STACK": "神明廳正上方是衛浴或廚房",
 }
 
 ROOF_CLASS_LABEL = {
@@ -58,7 +62,18 @@ SEVERITY = {
     # to do its one job.
     "PALANQUIN_PATH": "error",
     "ACCESS_UNREALISABLE": "error",
+    # A balcony with no exterior wall has no drying, no drainage to outside and
+    # no air. It is a windowless interior room that the report was still calling
+    # 後工作陽台, which is the kind of thing this model exists to stop.
+    "OUTDOOR_LANDLOCKED": "error",
+    # design_request.md 第 340 行 lists 「2F 衛浴／排水管不要壓到神桌」 as 必做 and
+    # calls it 「B 棟風水最大紅線之一」. The plan assumed the fixed stacked core made
+    # this structurally impossible; it does not - only core wet areas stack, and
+    # 3F 衛浴 / 2F 客用衛浴 are placed by the guillotine split like any other room.
+    "SHRINE_STACK": "error",
     "KITCHEN_TO_BALCONY": "warning",
+    "BAND_UNREALISABLE": "warning",
+    "BALCONY_NOT_ON_FACADE": "warning",
     "GARAGE_DOOR_NARROW": "warning",
     "NESTED_ACCESS": "warning",
     "NO_DAYLIGHT": "warning",
@@ -358,7 +373,14 @@ def _check_floor(floor: dict[str, Any], cap: dict[str, Any], building_id: str,
                 f"休旅車進出需要 2200 mm 以上", [cell["id"]])
 
     # --- bathroom door facing the dining table (Q7) ---------------------
-    dining = _find(cells, kind="dining")
+    # ``kind="dining"`` alone matched nothing: A and C merged 客廳 and 餐廳 into
+    # one 客餐廳（開放式） carrying ``kind: living``, and B has no dining room at
+    # all. So this check ran zero times in 120 floors while reading as a pass -
+    # the same failure mode as the 穿堂煞 skip. The dining table is wherever the
+    # brief says 餐, so that is what to look for.
+    dining = [c for c in cells.values()
+              if c.get("kind") == "dining"
+              or (c.get("kind") == "living" and "餐" in c["name"])]
     baths = {c["id"] for c in cells.values() if c.get("kind") == "bath"}
     for room in dining:
         rr = Rect(*room["clear_rect"])
@@ -385,13 +407,55 @@ def _check_floor(floor: dict[str, Any], cap: dict[str, Any], building_id: str,
                     f"{k['name']} 到 {b['name']} 的唯一路徑會穿越臥室或衛浴",
                     [k["id"], b["id"]])
 
+    # --- the brief said front or rear and the layout said otherwise -------
+    # ``assign_zones`` honours ``band`` "where stated" and quietly overrides it
+    # when the band it wants is full. Nothing compared the two afterwards, so a
+    # 後工作陽台 sat on the street facade in four variants without a word.
+    BAND_ZH = {"front": "前段", "rear": "後段"}
+    for cell in cells.values():
+        want, got = cell.get("band"), cell.get("band_actual")
+        if want in BAND_ZH and got in BAND_ZH and want != got:
+            add("BAND_UNREALISABLE",
+                f"{cell['name']} 需求指定在{BAND_ZH[want]}，實際落在{BAND_ZH[got]}",
+                [cell["id"]])
+
+    # --- an outdoor space has to reach the outside ------------------------
+    # Two checks, because they fail differently. A balcony surrounded by rooms
+    # is not a balcony at all; one that reaches only a side wall is usable but
+    # is not the 後工作陽台 the brief asked for - the water risers, the drain and
+    # the drying line are all on the rear service wall, and the rear yard is the
+    # only side with room to work.
+    for b in (c for c in cells.values()
+              if c.get("kind") == "outdoor" and "陽台" in c["name"]):
+        sides = b.get("exterior_sides") or []
+        if not sides:
+            add("OUTDOOR_LANDLOCKED",
+                f"{b['name']} 四周都是室內，沒有任何外牆 —— 無法排水、曬衣、通風，"
+                "這不是陽台", [b["id"]])
+        elif "rear" not in sides:
+            where = "、".join({"left": "左", "right": "右", "front": "前（臨路）"}.get(s, s)
+                             for s in sides)
+            # The 穿堂煞 clause only belongs on the floor that has the front
+            # door. Said on 3F it reads as a rule misfiring, which costs the
+            # finding the credibility the other 30 need.
+            why = ("給水進線與排水立管在後側，且穿堂煞檢查因此無法評估這個空間"
+                   if floor.get("floor_id") == "floor-1"
+                   else "排水立管要上下對齊，與樓下的後陽台不同側就接不起來")
+            add("BALCONY_NOT_ON_FACADE",
+                f"{b['name']} 只貼到{where}外牆，沒有貼到後外牆 —— {why}",
+                [b["id"]])
+
     # --- front door lined up with the rear balcony (Q11) ----------------
     main = next((d for d in circ.doors if d.get("role") == "main_entrance"), None)
     if main is not None:
         for b in balconies:
             br = Rect(*b["clear_rect"])
             if br.y1 < net.y1 - 100:
-                continue  # not on the rear facade, no through-draught to worry about
+                # Not on the rear facade, so there is no front-to-rear view to
+                # measure. The skip used to be the whole story and read as a
+                # pass; BALCONY_NOT_ON_FACADE above now says out loud that this
+                # floor's 穿堂煞 was never actually tested.
+                continue
             if abs(br.cx - main["center"]) > 600:
                 continue
             p = (float(main["center"]), float(net.y0) + 100.0)
@@ -473,6 +537,59 @@ def _check_roof(floor: dict[str, Any], cap: dict[str, Any]) -> list[dict[str, An
 # --------------------------------------------------------------------------
 
 
+def _check_stacking(building: dict[str, Any]) -> list[dict[str, Any]]:
+    """Cross-floor check: nothing that drains may sit over the 神明廳.
+
+    ``design_request.md`` line 340 lists 「2F 衛浴／排水管不要壓到神桌」 as 必做 and
+    「B 棟風水最大紅線之一」, and §2 spells out 馬桶、淋浴區、排水立管、天花排水.
+    The original plan claimed the fixed stacked core made this structurally
+    impossible. It does not: only the core's own wet areas stack, and 客用衛浴 /
+    3F 衛浴 are placed by the guillotine split like any other room. Eight
+    layouts put one directly over the shrine and nothing said a word.
+
+    Whole-footprint, not 神桌-only: the model does not carry the altar's
+    position, and the altar is the least movable thing in the room. Flagging
+    the room is the honest resolution of what we actually know.
+    """
+    out: list[dict[str, Any]] = []
+    floors = building["floors"]
+    ground = next((f for f in floors if f["floor_id"] == "floor-1"), None)
+    if ground is None:
+        return out
+    shrine = next((c for c in ground["cells"] if "神明廳" in c["name"]), None)
+    if shrine is None:
+        return out
+    s = Rect(*shrine["rect"])
+    WET = {"bath": "衛浴排水", "kitchen": "廚房排水"}
+    for floor in floors:
+        if floor["floor_id"] == "floor-1":
+            continue
+        for cell in floor["cells"]:
+            what = WET.get(cell.get("kind"))
+            if what is None and cell.get("kind") == "outdoor" and "陽台" in cell["name"]:
+                what = "陽台落水頭"
+            if what is None:
+                continue
+            r = Rect(*cell["rect"])
+            ox = max(0, min(s.x1, r.x1) - max(s.x0, r.x0))
+            oy = max(0, min(s.y1, r.y1) - max(s.y0, r.y0))
+            area = ox * oy / 1e6
+            if area < 0.05:
+                continue
+            out.append({
+                "code": "SHRINE_STACK",
+                "severity": SEVERITY["SHRINE_STACK"],
+                "message": (f"{cell['name']} 壓在 {shrine['name']} 正上方 "
+                            f"{area:.2f} m²（{what}在神桌上方）—— "
+                            f"design_request 第 340 行列為必做紅線；"
+                            f"神桌確切位置與排水立管走向仍須建築師確認"),
+                "refs": [cell["id"], shrine["id"]],
+                "floor": floor["label"],
+                "floor_id": floor["floor_id"],
+            })
+    return out
+
+
 def evaluate(doc: dict[str, Any], site: dict[str, Any],
              defaults: dict[str, Any]) -> list[dict[str, Any]]:
     """Run every check over every variant. Returns a flat list so the report and
@@ -500,6 +617,16 @@ def evaluate(doc: dict[str, Any], site: dict[str, Any],
                         "floor_id": floor["floor_id"],
                     })
                 findings.extend(got)
+            # Cross-floor, so it cannot live in _check_floor: it needs 1F and
+            # the floor above in the same frame.
+            for f in _check_stacking(building):
+                f.update({
+                    "variant": variant["id"],
+                    "frontage_mm": variant["frontage_mm"],
+                    "garage": variant["garage"].get("label", ""),
+                    "building": bid,
+                })
+                findings.append(f)
     return findings
 
 

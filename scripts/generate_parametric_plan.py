@@ -527,7 +527,8 @@ def write_capacity_report(doc: dict[str, Any], path: Path,
             ("main_entrance", "大門"),
             ("vehicle_door", "車庫捲門（臨路面）"),
             ("entrance", "該空間**指定的**唯一入口"),
-            ("opening", "無門扇的開口（走道↔樓梯、玄關↔走道、宣告開放的區域）"),
+            ("opening", "無門扇的開口（玄關↔走道、走道↔走道、宣告開放的區域）"),
+            ("smoke_door", "1F 樓梯口氣密／防煙門（擋香火味上樓、樓梯間不與冷氣區直通）"),
             ("hatch", "設備櫃檢修門（MDF/IDF）—— **不算通路**，動線檢查會跳過"),
         ):
             if roles.get(key):
