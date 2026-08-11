@@ -1,6 +1,10 @@
 # Layout Candidate Summary
 
-- Generated at: `2026-08-07T07:49:08.217497+00:00`
+> **早期草圖存檔（HTML 分支）** —— 非現行設計基準。
+> 這裡的分數建立在 HTML 推測出來的幾何上（約 8 成為 `auto`），
+> 保留作存檔與需求追溯。現行基準見 `structured/parametric/capacity.md`。
+
+- Generated at: `2026-08-11T05:20:15.434835+00:00`
 - Evaluated floors: **12**
 
 ## Best Candidate by Floor

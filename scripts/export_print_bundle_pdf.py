@@ -201,6 +201,24 @@ def draw_cover(
     pdf.setFont(regular_font, 14)
     pdf.drawString(margin_x, y, "Top-1 layout package for on-site printing")
 
+    # This is the one artefact that gets printed and handed to somebody, so the
+    # branch status goes on the cover rather than in a footnote. English first:
+    # when no CJK font is found the rest of this bundle comes out boxed, and the
+    # sentence that must survive that is this one.
+    y -= 13 * mm
+    pdf.setFont(bold_font, 12)
+    pdf.drawString(margin_x, y, "ARCHIVE - NOT THE CURRENT DESIGN BASELINE")
+    y -= 6 * mm
+    pdf.setFont(regular_font, 10)
+    pdf.drawString(margin_x, y,
+                   "Built from the early HTML sketches; ~80% of dimensions are "
+                   "inferred, none measured.")
+    y -= 5.5 * mm
+    pdf.drawString(margin_x, y,
+                   "Current baseline: structured/parametric/  (predesign baseline)")
+    y -= 5.5 * mm
+    pdf.drawString(margin_x, y, "早期草圖存檔，非現行設計基準，不可作為施工依據。")
+
     y -= 16 * mm
     pdf.setFont(regular_font, 11)
     pdf.drawString(margin_x, y, f"Generated: {now_iso()}")

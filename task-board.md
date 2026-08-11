@@ -1,5 +1,8 @@
 # House Design Task Board
 
+> 範圍：**HTML 分支（早期草圖存檔）** 的驗證閘門。
+> 現行設計基準是參數化分支 `structured/parametric/`，不由這張板子追蹤。
+
 ## Rollout
 
 - Pilot: A Building

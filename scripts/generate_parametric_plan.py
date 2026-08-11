@@ -29,8 +29,9 @@ from typing import Any
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from lib import plan_geometry as pg  # noqa: E402
-from lib.standards import (ROOT, load_residential_defaults,  # noqa: E402
-                           penthouse_limit_sqm, repo_relative, roof_penthouse)
+from lib.standards import (BASELINE_LABEL, BASELINE_NOTE, ROOT,  # noqa: E402
+                           load_residential_defaults, penthouse_limit_sqm,
+                           repo_relative, roof_penthouse)
 
 try:  # optional: rules land in a later step, geometry must not depend on them
     from lib import plan_rules  # type: ignore
@@ -314,7 +315,10 @@ def write_capacity_report(doc: dict[str, Any], path: Path,
     lines: list[str] = []
     lines.append("# 參數化平面 · 容量帳與規則檢查")
     lines.append("")
-    lines.append(f"產生時間：{doc['generated_at']}")
+    lines.append(f"**{BASELINE_LABEL}**　·　產生時間：{doc['generated_at']}")
+    lines.append("")
+    lines.append(f"> {BASELINE_NOTE}")
+    lines.append("> 與最早的 HTML 草圖（`structured/candidates/`）不一致時，以這份為準。")
     lines.append("")
     lines.append("> 這份報告的前提：**建築師還沒開始設計，地的長寬還沒決定。**")
     lines.append("> 唯一的硬條件是每棟建築面積 32 坪。開間是滑桿，進深由面積反推，")

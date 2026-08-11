@@ -165,6 +165,11 @@ __BASE_CSS__
   <aside id="panel">
     <h1>走入式 3D · 設計前期</h1>
     <p class="sub" id="subtitle"></p>
+    <div class="banner ok">
+      <b>設計前期基準</b>　本專案目前以這個模型為準。
+      早期的 HTML 草圖檢視器（<code>structured/candidates/model3d.html</code>）
+      是存檔，兩邊不一致時看這裡。
+    </div>
     <div class="banner warn">
       這不是建築師的圖。所有尺寸都是<b>從面積需求反推</b>的，用來感受空間大小與動線，
       不能拿去申請建照。地的長寬尚未決定，棟距與三棟位置都是假設。

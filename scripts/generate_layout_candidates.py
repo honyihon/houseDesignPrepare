@@ -492,6 +492,10 @@ def generate_summary_md(floor_results: list[dict[str, Any]]) -> str:
     lines = []
     lines.append("# Layout Candidate Summary")
     lines.append("")
+    lines.append("> **早期草圖存檔（HTML 分支）** —— 非現行設計基準。")
+    lines.append("> 這裡的分數建立在 HTML 推測出來的幾何上（約 8 成為 `auto`），")
+    lines.append("> 保留作存檔與需求追溯。現行基準見 `structured/parametric/capacity.md`。")
+    lines.append("")
     lines.append(f"- Generated at: `{now_iso()}`")
     lines.append(f"- Evaluated floors: **{len(floor_results)}**")
     lines.append("")

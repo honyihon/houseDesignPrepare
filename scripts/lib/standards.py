@@ -363,3 +363,26 @@ def defaults_summary_line(defaults: dict[str, Any]) -> str:
         f"Default dims(mm): wall int/ext {wall['interior']}/{wall['exterior']} | "
         f"door entry/int/bath {door['entry']}/{door['interior']}/{door['bathroom']}"
     )
+
+
+# --------------------------------------------------------------------------
+# Which model is authoritative
+# --------------------------------------------------------------------------
+# Two branches in this repo disagree about the buildings, and the disagreement
+# is legitimate - they answer different questions. But an artefact that does not
+# say which branch it came from gets read as "the design", and the HTML sketches
+# have been mistaken for measurements before. So both branches stamp themselves.
+# See the "Which model is authoritative" section of CLAUDE.md.
+
+BASELINE_LABEL = "設計前期基準（predesign baseline）"
+BASELINE_NOTE = (
+    "本專案目前的設計基準。不是施工圖、不是建照圖，"
+    "所有尺寸都還是假設 —— 地未定、建築師未進場。"
+)
+
+ARCHIVE_LABEL = "早期草圖存檔（HTML 分支）"
+ARCHIVE_NOTE = (
+    "這份產物來自最早的 HTML 草圖，保留作為存檔與需求追溯，"
+    "**不是**現行設計基準；尺寸有 8 成是從 CSS class 推測的。"
+    "現行基準見 structured/parametric/。"
+)

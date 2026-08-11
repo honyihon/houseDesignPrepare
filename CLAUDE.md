@@ -6,7 +6,42 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Residential building design preparation toolchain for a three-building compound (A, B, C buildings + storage) in Taiwan. Converts interactive HTML floor-plan pages into structured JSON, then runs a Python pipeline that generates scored layout candidates, SVG floor-plan drawings, and print-ready PDF bundles. Domain language is Traditional Chinese (zh-TW); dimensions in mm and "ping" (tsubo) area units.
 
-## Architecture & Data Flow
+## Which model is authoritative
+
+There are two independent branches in this repo, and they disagree about the
+buildings. That is not a bug to reconcile — they answer different questions —
+but it does mean one of them has to be the one you design against:
+
+> **The parametric branch is the predesign baseline (設計前期基準).**
+> `inputs/site.json` + `inputs/brief/{A,B,C}.json` → `structured/parametric/`.
+
+Everything in the numbered pipeline below is the **HTML historical branch**: the
+early sketches, kept as an archive. When a room's size, position, or access
+differs between the two, the parametric answer is the current one.
+
+What "predesign baseline" does **and does not** claim:
+
+| It is | It is not |
+|---|---|
+| The current shared assumption about what fits in 32 坪 | Construction drawings |
+| A thing you can walk through and react to before an architect starts | Drawings anyone would submit for 建照 |
+| Explicit about every constraint it fails (`capacity.md` findings) | Measured — no dimension in it came off a tape measure, and the lot is not chosen |
+
+The HTML branch is kept for three reasons, all of them real: it is the **archive
+of the original sketches** (where the room list came from), it carries the
+**traceability** from `inputs/design_request.md` prose to named rooms, and it is
+the **regression sample** that keeps the older pipeline honest. It is not a
+design input any more. Its own "canonical" rule (below) still holds *within that
+branch* — `XbuildingView.html` remains the source of truth for the HTML branch's
+own outputs — it just no longer means "source of truth for the project".
+
+Practical consequence: **do not "fix" the parametric plan to match the HTML**, and
+do not port dimensions from `room_program.json` into `inputs/brief/`. 82% of the
+HTML geometry is `auto`, i.e. guessed from CSS classes (see "Geometry
+provenance"); the brief is a statement of intent, which is a better input than a
+guess dressed as a measurement.
+
+## Architecture & Data Flow (HTML historical branch)
 
 ```
 HTML source files (AbuildingView.html, BbuildingView.html, CbuildingView.html, storage.html)
@@ -44,11 +79,12 @@ the roof level under an older name.
 `site` placement in `inputs/dimensions.json` puts C at x=0 and A at the largest
 x. Both 3D viewers depend on this; do not "tidy" it back to alphabetical.
 
-### Parametric branch (design-before-drawing)
+### Parametric branch — the predesign baseline (design-before-drawing)
 
-A second, independent branch answers a different question: not "what does the
-drawn plan measure" but "what actually fits in 32 坪". It reads an area brief,
-not the HTML, and shares nothing with the pipeline above except
+This is the authoritative model (see "Which model is authoritative"). It answers
+a different question from the pipeline above: not "what does the drawn plan
+measure" but "what actually fits in 32 坪". It reads an area brief, not the HTML,
+and shares nothing with that pipeline except
 `scripts/config/residential_defaults_tw.json`.
 
 ```
@@ -132,7 +168,7 @@ inputs, and expected outputs are unchanged.
 
 ## Critical Conventions
 
-- **Two-file pattern**: Each building has canonical HTML (`XbuildingView.html`) and a `_tmp` working copy. Pipeline reads only canonical (non-`_tmp`) files. Never modify `*_tmp` files.
+- **Two-file pattern** (HTML branch): Each building has canonical HTML (`XbuildingView.html`) and a `_tmp` working copy. The HTML pipeline reads only canonical (non-`_tmp`) files, and within that branch the canonical file is the source of truth. Never modify `*_tmp` files. This says nothing about the project as a whole — for that, the parametric branch is the baseline.
 - **Millimeter geometry**: The `data-*-mm` attributes on `.plan-cell` and `.floor-plan` carry the geometry the pipeline reads, but most of them were *generated* by `annotate_html_geometry.py` from CSS classes, not measured. Real numbers belong in `inputs/dimensions.json`, which wins over the HTML. `blueprint-precise-mm` is only claimed when no cell is left at `auto`; otherwise the mode is `mixed-provenance`.
 - **DOM skeleton must be preserved**: `.floor-plan > .plan-grid-visual > .plan-row > .plan-cell` structure is parsed by BeautifulSoup. Do not restructure this hierarchy.
 - **Room-cell binding**: `onclick="highlightRoom('xxx', this)"` must correspond to `id="room-xxx"`. Keep these in sync.

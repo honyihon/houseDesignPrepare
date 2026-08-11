@@ -200,6 +200,15 @@ def render_html(payload: dict[str, Any]) -> str:
       font-size: .78rem;
       color: var(--muted);
     }}
+    /* This viewer and the parametric walkthrough look equally finished; only
+       one of them is the current design. Say which on the page itself. */
+    .brand p.archive-note {{
+      margin-top: 8px;
+      padding: 6px 8px;
+      border: 1px solid rgba(150, 160, 180, .40);
+      border-radius: 8px;
+      line-height: 1.5;
+    }}
     .floor-list {{
       display: flex;
       flex-direction: column;
@@ -470,6 +479,10 @@ def render_html(payload: dict[str, Any]) -> str:
       <div class="brand">
         <h1>住宅配置候選檢視器</h1>
         <p>Top1/Top3 候選切換 · 動線/採光/機電維修評分</p>
+        <p class="archive-note">
+          <b>早期草圖存檔</b> —— 非現行設計基準。<br>
+          現行基準：<code>structured/parametric/</code>
+        </p>
       </div>
       <div class="floor-list" id="floorList"></div>
     </aside>

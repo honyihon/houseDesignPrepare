@@ -369,6 +369,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   .sub { margin: 0; font-size: 12px; color: var(--muted); }
   .banner { margin-top: 12px; padding: 9px 11px; border-radius: 8px; font-size: 12px; line-height: 1.55; }
   .banner.warn { background: rgba(248, 184, 78, .12); border: 1px solid rgba(248, 184, 78, .42); color: #ffdda1; }
+  /* Kept in step with viewer_shell.py: this file still carries its own copy of
+     the panel CSS, so a rule added there does not reach this viewer. */
+  .banner.note { background: rgba(150, 160, 180, .12); border: 1px solid rgba(150, 160, 180, .40); color: #ccd4e2; }
   .seg { display: flex; gap: 6px; }
   .seg button {
     flex: 1; padding: 7px 6px; font-size: 12px; cursor: pointer; color: var(--muted);
@@ -429,6 +432,11 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   <aside id="panel">
     <h1>三棟量體 3D 檢視器</h1>
     <p class="sub" id="subtitle"></p>
+    <div class="banner note">
+      <b>早期草圖存檔</b>　這是最初 HTML 草圖的量體，保留作存檔與需求追溯，
+      <b>不是</b>現行設計基準。要看現行的走入式模型請開
+      <code>structured/parametric/walkthrough.html</code>。
+    </div>
     <div class="banner warn" id="honesty"></div>
 
     <h2>顯示模式</h2>
