@@ -32,11 +32,21 @@ it on their front edge or on the spine. The core sits at the same coordinates
 on every floor, so stairs align and the pipe shaft runs straight up without
 anyone having to check afterwards.
 
-Within each zone, rooms are placed by recursive binary (guillotine) division
-weighted by target area. Guillotine is chosen over free packing for one
-concrete reason: it tiles the zone exactly, so the generated plan can never
-grow the 1 mm slivers and floor-sized holes that the CSS-derived geometry in
+Within each zone, rooms are placed by recursive division weighted by target
+area. Guillotine is chosen over free packing for one concrete reason: it tiles
+the zone exactly, so the generated plan can never grow the 1 mm slivers and
+floor-sized holes that the CSS-derived geometry in
 ``structured/room_program.json`` is full of.
+
+Pure guillotine has one failure mode worth naming, because the whole point of
+this tool is to make bad fits visible rather than to hide them: with two items
+every partition gives each a full-length strip, so a 5 m2 bathroom sharing a
+5.6 x 6.2 m zone can only be 0.9 m wide or 0.8 m deep. Neither is a room. The
+partitioner therefore also carves a corner - the move a human draughtsman makes
+- and pays for it with a leftover rectangle, which becomes named slack instead
+of being smeared into the neighbours. When no arrangement keeps every room over
+``MIN_ROOM_DIM_MM``, the partition is reported infeasible rather than silently
+returning the least-bad strip.
 """
 
 from __future__ import annotations
@@ -55,6 +65,18 @@ MIN_ROOM_DIM_MM = 1500
 # The garage cannot take the whole frontage: the front door has to be beside it,
 # and an entry narrower than this is not an entry.
 GARAGE_SIDE_STRIP_MM = 2400
+
+# Tiling a zone completely is a generator policy, not something the brief owes
+# us. When a zone holds more area than its rooms asked for, the surplus used to
+# be smeared across those rooms in proportion to target_sqm - which is how a
+# 20 m2 media room came out at 34.5 and a 5 m2 toilet at 20. Rooms may grow by
+# FLEX_TOLERANCE (real rooms need slack for furniture and wall build-up); the
+# rest becomes one named cell so the leftover has to be looked at instead of
+# quietly inflating a bedroom.
+FLEX_TOLERANCE = 0.15
+# Below this a flex cell is a sliver nobody can use, and the rooms are better
+# off absorbing it.
+FLEX_MIN_SQM = 4.0
 
 
 # --------------------------------------------------------------------------
@@ -147,51 +169,169 @@ def _aspect(rect: Rect) -> float:
     return max(rect.w, rect.d) / min(rect.w, rect.d)
 
 
-def guillotine(rect: Rect, items: Sequence[tuple[str, float]]) -> dict[str, Rect]:
-    """Tile ``rect`` among ``items`` (id, weight) by recursive binary division.
+@dataclass
+class Partition:
+    """A tiling of one rectangle.
 
-    The split axis is always the longer one, which keeps rooms from degenerating
-    into corridors. The split *index* is chosen to minimise the worse of the two
-    children's aspect ratios, so a large room and a tiny one end up side by side
-    rather than the tiny one being smeared across the full width.
+    ``placed`` maps item id to rect. ``residual`` holds rectangles a corner
+    carve left over - real floor area belonging to nobody, which the caller
+    turns into named slack so it stays visible. ``feasible`` is False when any
+    rect in the tiling is under the usable minimum; the caller decides whether
+    to fall back to another arrangement or to place it anyway and flag it.
     """
 
-    if not items:
-        return {}
-    if len(items) == 1:
-        return {items[0][0]: rect}
+    placed: dict[str, Rect] = field(default_factory=dict)
+    residual: list[Rect] = field(default_factory=list)
+    feasible: bool = True
 
-    total = sum(max(w, 0.01) for _, w in items)
-    best: tuple[float, int] | None = None
-    for k in range(1, len(items)):
-        left_w = sum(max(w, 0.01) for _, w in items[:k])
-        frac = left_w / total
-        if rect.w >= rect.d:
-            cut = rect.x0 + int(round(rect.w * frac))
-            a, b = _split_x(rect, cut)
-        else:
-            cut = rect.y0 + int(round(rect.d * frac))
-            a, b = _split_y(rect, cut)
-        if not a.valid or not b.valid:
+
+def _fits_any(rect: Rect) -> bool:
+    return rect.valid
+
+
+def _merge(a: Partition, b: Partition) -> Partition:
+    placed = dict(a.placed)
+    placed.update(b.placed)
+    return Partition(placed, a.residual + b.residual, a.feasible and b.feasible)
+
+
+def _score(part: Partition, items: Sequence[tuple[str, float]]) -> tuple:
+    """Rank candidate tilings. Feasibility first - a partition that leaves a
+    bedroom 0.9 m wide is not merely a worse score, it is not a plan. Then
+    leftover area (a corner carve should not be used to dodge a fine split),
+    then how far each room lands from its requested share, then squareness.
+    """
+    total = sum(max(w, 0.01) for _, w in items) or 1.0
+    assigned = sum(r.area_sqm for r in part.placed.values())
+    leftover = sum(r.area_sqm for r in part.residual)
+    pool = assigned + leftover
+    err = 0.0
+    for iid, weight in items:
+        rect = part.placed.get(iid)
+        if rect is None:
             continue
-        score = max(_aspect(a) / max(len(items[:k]), 1), _aspect(b) / max(len(items[k:]), 1))
-        if best is None or score < best[0]:
-            best = (score, k)
+        want = pool * max(weight, 0.01) / total
+        err += ((rect.area_sqm - want) / max(want, 0.01)) ** 2
+    worst = max((_aspect(r) for r in part.placed.values()), default=99.0)
+    return (0 if part.feasible else 1, round(leftover, 2), round(err, 4), round(worst, 3))
 
-    k = best[1] if best else len(items) // 2 or 1
-    left_w = sum(max(w, 0.01) for _, w in items[:k])
-    frac = left_w / total
+
+def _split_candidates(rect: Rect, items: Sequence[tuple[str, float]],
+                      fits) -> Iterable[Partition]:
+    """Every binary cut: both axes, every contiguous grouping of the items.
+
+    The old version only ever cut the longer side, which is a reasonable
+    anti-corridor heuristic and also the reason a 14 m2 room and a 5 m2 bathroom
+    in a 5.6 m wide zone could never come out as anything but two bands.
+    """
+    total = sum(max(w, 0.01) for _, w in items)
+    for k in range(1, len(items)):
+        frac = sum(max(w, 0.01) for _, w in items[:k]) / total
+        for horizontal in (True, False):
+            if horizontal:
+                a, b = _split_x(rect, rect.x0 + int(round(rect.w * frac)))
+            else:
+                a, b = _split_y(rect, rect.y0 + int(round(rect.d * frac)))
+            if not a.valid or not b.valid:
+                continue
+            yield _merge(_partition(a, items[:k], fits),
+                         _partition(b, items[k:], fits))
+
+
+def _carve_candidates(rect: Rect, items: Sequence[tuple[str, float]],
+                      fits) -> Iterable[Partition]:
+    """Take the smallest item out of a corner and split the L-shaped remainder.
+
+    The remainder of a corner cut is an L, and an L is not a rect, so it is
+    decomposed into two rectangles - two ways round, four corners, a few aspect
+    ratios for the carved room. Whatever the remaining items do not use becomes
+    residual. Candidates whose residual is itself unusable are dropped: leftover
+    area is acceptable, leftover slivers are not, and dropping them is also what
+    keeps the zone exactly tiled.
+    """
+    idx = min(range(len(items)), key=lambda i: max(items[i][1], 0.01))
+    cid, weight = items[idx]
+    rest = [it for i, it in enumerate(items) if i != idx]
+    total = sum(max(w, 0.01) for _, w in items)
+    want_mm2 = rect.w * rect.d * max(weight, 0.01) / total
+
+    widths = {int(math.sqrt(want_mm2)), MIN_ROOM_DIM_MM,
+              int(want_mm2 // MIN_ROOM_DIM_MM), rect.w // 2}
+    for cw in sorted(widths):
+        if not (MIN_ROOM_DIM_MM <= cw <= rect.w - MIN_ROOM_DIM_MM):
+            continue
+        cd = int(round(want_mm2 / cw))
+        if not (MIN_ROOM_DIM_MM <= cd <= rect.d - MIN_ROOM_DIM_MM):
+            continue
+        for right in (False, True):
+            for rear in (False, True):
+                cx0 = rect.x1 - cw if right else rect.x0
+                cy0 = rect.y1 - cd if rear else rect.y0
+                carve = Rect(cx0, cy0, cx0 + cw, cy0 + cd)
+                side_x = Rect(rect.x0, cy0, cx0, cy0 + cd) if right \
+                    else Rect(cx0 + cw, cy0, rect.x1, cy0 + cd)
+                band_y = Rect(rect.x0, rect.y0, rect.x1, cy0) if rear \
+                    else Rect(rect.x0, cy0 + cd, rect.x1, rect.y1)
+                side_y = Rect(cx0, rect.y0, cx0 + cw, cy0) if rear \
+                    else Rect(cx0, cy0 + cd, cx0 + cw, rect.y1)
+                band_x = Rect(rect.x0, rect.y0, cx0, rect.y1) if right \
+                    else Rect(cx0 + cw, rect.y0, rect.x1, rect.y1)
+                for first, second in ((side_x, band_y), (side_y, band_x)):
+                    if not (first.valid and second.valid):
+                        continue
+                    for k in range(0, len(rest) + 1):
+                        pa = _partition(first, rest[:k], fits)
+                        pb = _partition(second, rest[k:], fits)
+                        cand = _merge(pa, pb)
+                        cand.placed[cid] = carve
+                        cand.feasible = cand.feasible and fits(carve)
+                        yield cand
+
+
+def _partition(rect: Rect, items: Sequence[tuple[str, float]], fits) -> Partition:
+    """Tile ``rect`` among ``items`` (id, weight), best arrangement first."""
+    if not items:
+        return Partition({}, [rect] if rect.valid else [], rect.valid and fits(rect))
+    if len(items) == 1:
+        return Partition({items[0][0]: rect}, [], rect.valid and fits(rect))
+
+    best: Partition | None = None
+    best_score: tuple | None = None
+    for cand in _split_candidates(rect, items, fits):
+        score = _score(cand, items)
+        if best_score is None or score < best_score:
+            best, best_score = cand, score
+    # A corner carve costs floor area, so it is only worth trying when no clean
+    # cut exists. Reaching for it earlier would trade real rooms for slack.
+    if best is None or not best.feasible:
+        for cand in _carve_candidates(rect, items, fits):
+            score = _score(cand, items)
+            if best_score is None or score < best_score:
+                best, best_score = cand, score
+
+    if best is not None:
+        return best
+    # Nothing valid at all (degenerate rect): fall back to a proportional cut so
+    # the zone still tiles, and let the caller see it as infeasible.
+    total = sum(max(w, 0.01) for _, w in items)
+    k = max(1, len(items) // 2)
+    frac = sum(max(w, 0.01) for _, w in items[:k]) / total
     if rect.w >= rect.d:
-        cut = rect.x0 + int(round(rect.w * frac))
-        a, b = _split_x(rect, cut)
+        a, b = _split_x(rect, rect.x0 + int(round(rect.w * frac)))
     else:
-        cut = rect.y0 + int(round(rect.d * frac))
-        a, b = _split_y(rect, cut)
-
-    out: dict[str, Rect] = {}
-    out.update(guillotine(a, items[:k]))
-    out.update(guillotine(b, items[k:]))
+        a, b = _split_y(rect, rect.y0 + int(round(rect.d * frac)))
+    out = _merge(_partition(a, items[:k], fits), _partition(b, items[k:], fits))
+    out.feasible = False
     return out
+
+
+def guillotine(rect: Rect, items: Sequence[tuple[str, float]]) -> dict[str, Rect]:
+    """Tile ``rect`` among ``items`` with no minimum-dimension constraint.
+
+    Used where the caller has already fixed the geometry (core annex niches,
+    roof strips) and only wants the weighted division.
+    """
+    return _partition(rect, items, _fits_any).placed
 
 
 # --------------------------------------------------------------------------
@@ -540,9 +680,30 @@ def assign_zones(rooms: list[dict[str, Any]], zones: list[Zone]) -> None:
                     key=lambda z: z.load / max(z.rect.area_sqm, 0.01), default=None)
         if donor is None:
             continue
-        room = max(donor.rooms, key=lambda r: float(r.get("target_sqm", 4.0)))
+        fits = [r for r in donor.rooms
+                if float(r.get("target_sqm", 4.0)) <= zone.rect.area_sqm] or donor.rooms
+        room = min(fits, key=lambda r: float(r.get("target_sqm", 4.0)))
         donor.rooms.remove(room)
         zone.rooms.append(room)
+
+
+def _narrow_ids(placed: dict[str, Rect], rooms: list[dict],
+                net: Rect, ti: int) -> set:
+    """Ids of `rooms` whose *clear* rectangle is under the minimum dimension.
+
+    Measured after wall build-up, the same way `_cell_payload` decides
+    TOO_NARROW - a margin guessed on the gross rect is either too slack to
+    catch anything or strict enough to veto placements that are actually fine.
+    """
+    out = set()
+    for r in rooms:
+        rect = placed.get(r["id"])
+        if rect is None:
+            continue
+        clear = _clear_rect(rect, net, ti)
+        if min(clear.w, clear.d) < MIN_ROOM_DIM_MM:
+            out.add(r["id"])
+    return out
 
 
 # --------------------------------------------------------------------------
@@ -578,9 +739,12 @@ def _swap_for_daylight(cells: list[Cell], net: Rect) -> None:
     dark = [c for c in cells
             if c.role == "room" and c.brief.get("light") == "required"
             and not _touches_exterior(c.rect, net)]
+    # Flex cells are donors too: unassigned area sitting on the facade while a
+    # bedroom looks at an internal wall is the worst trade on the floor.
     lit = [c for c in cells
-           if c.role == "room" and c.brief.get("light") == "none"
-           and _touches_exterior(c.rect, net)]
+           if _touches_exterior(c.rect, net)
+           and ((c.role == "room" and c.brief.get("light") == "none")
+                or c.role == "flex")]
 
     for d in dark:
         for l in lit:
@@ -643,6 +807,7 @@ def build_floor(floor_brief: dict[str, Any], sk: Skeleton, site: dict[str, Any],
 
         zones = make_zones(sk, reserved)
         assign_zones(other_rooms, zones)
+        ti_clear = int(defaults["geometry"]["wall_thickness_mm"]["interior"])
         for zone in zones:
             picks = sorted(zone.rooms, key=_room_order_key)
             if not picks:
@@ -650,13 +815,52 @@ def build_floor(floor_brief: dict[str, Any], sk: Skeleton, site: dict[str, Any],
                                   brief={"light": "preferred", "private": False},
                                   flags=["UNASSIGNED_ZONE"]))
                 continue
-            placed = guillotine(zone.rect,
-                                [(r["id"], float(r.get("target_sqm", 4.0))) for r in picks])
+            items = [(r["id"], float(r.get("target_sqm", 4.0))) for r in picks]
+            # The minimum is on the *clear* rect, after wall build-up - the
+            # dimension somebody actually stands in, and the same one
+            # `_cell_payload` flags on. Checking the gross rect instead would
+            # pass rooms that finish 1.44 m wide.
+            def fits(rect: Rect, _net=net, _ti=ti_clear) -> bool:
+                clear = _clear_rect(rect, _net, _ti)
+                return min(clear.w, clear.d) >= MIN_ROOM_DIM_MM
+            # Surplus beyond what the rooms asked for (plus tolerance) becomes a
+            # named cell rather than being shared out. It goes last in the item
+            # list so the daylight-ordered rooms get the outer slices first.
+            flex_id = f"flex_{zone.id}"
+            flex_sqm = zone.rect.area_sqm - zone.load * (1.0 + FLEX_TOLERANCE)
+            part = _partition(zone.rect, items, fits)
+            if flex_sqm >= FLEX_MIN_SQM:
+                with_flex = _partition(zone.rect, items + [(flex_id, flex_sqm)], fits)
+                # Withholding area from the rooms is only an improvement while
+                # they stay usable. A cut that leaves a bedroom 1.36 m deep so
+                # the leftover can be 1.59 m has made the plan worse, and the
+                # honest reading is that this zone's surplus really is the rooms'
+                # breathing room. Only keep the flex cell when it does not push a
+                # room under the minimum it was already clearing.
+                if not (_narrow_ids(with_flex.placed, picks, net, ti_clear)
+                        - _narrow_ids(part.placed, picks, net, ti_clear)):
+                    part = with_flex
+            placed = part.placed
+            # No arrangement of this zone keeps every room usable. That is a
+            # statement about the brief, not about this particular cut, so it is
+            # flagged separately from the per-cell TOO_NARROW it also produces.
+            zone_flags = [] if part.feasible else ["ZONE_NO_FIT"]
             for r in picks:
                 rect = placed.get(r["id"])
                 if rect:
                     cells.append(Cell(r["id"], r["name"], r.get("kind", "other"),
-                                      "room", rect, brief=r))
+                                      "room", rect, brief=r,
+                                      flags=list(zone_flags)))
+            slack = [placed[flex_id]] if flex_id in placed else []
+            # Corner carves buy a usable room shape by leaving a rectangle over.
+            # It is floor area somebody is paying for, so it gets drawn and named
+            # like any other slack rather than quietly disappearing.
+            slack.extend(part.residual)
+            for n, rect in enumerate(slack):
+                cells.append(Cell(f"{flex_id}_{n}" if n else flex_id,
+                                  "彈性餘裕（未指定用途）", "other", "flex", rect,
+                                  brief={"light": "preferred", "private": False},
+                                  flags=["UNPROGRAMMED"] + zone_flags))
 
         _swap_for_daylight(cells, net)
 
@@ -761,7 +965,10 @@ def _cell_payload(cell: Cell, net: Rect) -> dict[str, Any]:
     niche = brief.get("band") == "core" and cell.kind == "service"
     if cell.role == "room" and min_sqm and clear.area_sqm < min_sqm:
         flags.append("BELOW_MIN_AREA")
-    if min(clear.w, clear.d) < MIN_ROOM_DIM_MM and cell.role == "room" and not niche:
+    # Flex is checked too: leftover area shaped like a 1 m corridor is not
+    # usable by anybody, and that is exactly the thing worth seeing.
+    if (min(clear.w, clear.d) < MIN_ROOM_DIM_MM
+            and cell.role in ("room", "flex") and not niche):
         flags.append("TOO_NARROW")
     return {
         "id": cell.id,

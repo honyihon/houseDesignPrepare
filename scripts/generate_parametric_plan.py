@@ -102,6 +102,11 @@ def floor_capacity(floor_payload: dict[str, Any], brief_floor: dict[str, Any],
         if cell["role"] in ("corridor", "stair", "garage"):
             fixed += cell["area_sqm"]
 
+    # Area the brief never asked for. It is neither demand nor fixed cost, so
+    # it belongs in its own column - a floor with 15 m2 of it is a floor whose
+    # programme is incomplete, which is a different problem from being short.
+    flex = sum(c["area_sqm"] for c in cells if c["role"] == "flex")
+
     usable = round(net_sqm - wall_sqm, 2)
     required = round(demand + fixed, 2)
     gap = round(required - usable, 2)
@@ -114,6 +119,14 @@ def floor_capacity(floor_payload: dict[str, Any], brief_floor: dict[str, Any],
         {"id": c["id"], "name": c["name"], "rect": c["clear_rect"]}
         for c in cells if "TOO_NARROW" in c.get("flags", [])
     ]
+    # Rooms sharing a zone the partitioner could not tile with everybody over
+    # 1.5 m. Distinct from TOO_NARROW: that says "this room came out thin", this
+    # says "no arrangement of these rooms in this pocket works", which is a
+    # statement about the brief rather than about the cut that was chosen.
+    no_fit = [
+        {"id": c["id"], "name": c["name"]}
+        for c in cells if "ZONE_NO_FIT" in c.get("flags", [])
+    ]
 
     return {
         "floor_id": floor_payload["floor_id"],
@@ -125,12 +138,15 @@ def floor_capacity(floor_payload: dict[str, Any], brief_floor: dict[str, Any],
         "usable_sqm": usable,
         "rooms_demand_sqm": round(demand, 2),
         "fixed_sqm": round(fixed, 2),
+        "flex_sqm": round(flex, 2),
+        "flex_ping": round(flex / pg.PING_TO_SQM, 2),
         "required_sqm": required,
         "gap_sqm": gap,
         "gap_ping": round(gap / pg.PING_TO_SQM, 2),
         "over_capacity": gap > 0.5,
         "below_min": shortfalls,
         "too_narrow": narrow,
+        "no_fit": no_fit,
     }
 
 
@@ -300,6 +316,22 @@ def write_capacity_report(doc: dict[str, Any], path: Path) -> None:
 
     lines.append("## 2. 逐變體逐層明細")
     lines.append("")
+    lines.append(
+        "「彈性餘裕」是需求表沒有安排、也不是走道車庫樓梯的那塊面積。它會在平面上"
+        "畫成一格具名空間（標記 `UNPROGRAMMED`），而不是按比例灌進各房間 —— "
+        "灌進去的話，20 m² 的娛樂室會變 34.5、5 m² 的廁所會變 20，而且看不出來是誰"
+        "多給的。這一欄有數字，代表那層的需求表還沒寫完，該補的是儲藏、更衣、露臺"
+        "或直接把房間目標調大，由使用者決定而不是由產生器代決。"
+        "但餘裕不會切到讓房間短邊低於 1500 mm —— 會的話就退回讓房間吸收，"
+        "所以有些樓層仍看得到房間明顯大於目標。")
+    lines.append("")
+    lines.append(
+        "分割器除了直切，也會**從角落挖一塊**，剩下的 L 形拆成兩個矩形 —— 這是製圖員"
+        "會做、純 guillotine 做不到的動作。少了它，兩間房共用一區時只能各切一條通長"
+        "條狀，5 m² 的廁所在 5.6 m 寬的區裡就只能是 0.9 m 寬。角落挖出來的剩料不會偷偷"
+        "灌給鄰居，一樣列為彈性餘裕。若**所有**切法都會讓某間房短邊低於 1500 mm，該區"
+        "標記 `ZONE_NO_FIT`：那是需求表在這個開間下放不下的意思，改切法沒有用。")
+    lines.append("")
     for var in doc["variants"]:
         lines.append(f"### 開間 {var['frontage_mm'] / 1000:.1f} m × 進深 "
                      f"{var['depth_mm'] / 1000:.1f} m　·　{var['garage'].get('label', '')}"
@@ -312,21 +344,23 @@ def write_capacity_report(doc: dict[str, Any], path: Path) -> None:
                 for note in b["skeleton"]["notes"]:
                     lines.append(f"> ⚠ {note}")
             lines.append("")
-            lines.append("| 樓層 | 樓層淨面積 | 牆體 | 可用 | 需求(房間) | 固定(車庫/走道/梯) | 合計需求 | 差額 |")
-            lines.append("|---|---|---|---|---|---|---|---|")
+            lines.append("| 樓層 | 樓層淨面積 | 牆體 | 可用 | 需求(房間) | 固定(車庫/走道/梯) | 彈性餘裕 | 合計需求 | 差額 |")
+            lines.append("|---|---|---|---|---|---|---|---|---|")
             for cap in b["capacity"]:
                 if cap.get("roof"):
                     mark = "❌ 超過" if cap["over"] else "✅"
                     lines.append(f"| {cap['label']} | — | — | — | 屋突 "
                                  f"{cap['penthouse_sqm']:.2f} m² | 上限 "
-                                 f"{cap['limit_sqm']:.2f} m² | — | {mark} |")
+                                 f"{cap['limit_sqm']:.2f} m² | — | — | {mark} |")
                     continue
                 gap = cap["gap_sqm"]
                 mark = f"**+{gap:.2f}**" if gap > 0.5 else f"{gap:.2f}"
+                flex = cap.get("flex_sqm", 0.0)
+                flex_txt = f"{flex:.2f}（{cap.get('flex_ping', 0.0):.2f} 坪）" if flex else "—"
                 lines.append(
                     f"| {cap['label']} | {cap['net_sqm']:.2f} | {cap['wall_sqm']:.2f} | "
                     f"{cap['usable_sqm']:.2f} | {cap['rooms_demand_sqm']:.2f} | "
-                    f"{cap['fixed_sqm']:.2f} | {cap['required_sqm']:.2f} | {mark} |"
+                    f"{cap['fixed_sqm']:.2f} | {flex_txt} | {cap['required_sqm']:.2f} | {mark} |"
                 )
             lines.append("")
             issues = []
@@ -336,6 +370,10 @@ def write_capacity_report(doc: dict[str, Any], path: Path) -> None:
                                   f"< 下限 {s['min_sqm']} m²")
                 for s in cap.get("too_narrow", []):
                     issues.append(f"{cap['label']} {s['name']}：短邊不足 1.5 m")
+                names = "、".join(s["name"] for s in cap.get("no_fit", []))
+                if names:
+                    issues.append(f"{cap['label']} 這一區怎麼切都放不下（`ZONE_NO_FIT`）："
+                                  f"{names} —— 要減項目或換開間，不是調切法")
             if issues:
                 lines.append("面積／比例不合格：")
                 for i in issues:

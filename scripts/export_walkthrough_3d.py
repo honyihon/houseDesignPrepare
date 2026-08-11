@@ -500,7 +500,12 @@ __BASE_CSS__
       var w = (r[2] - r[0]) * MM, d = (r[3] - r[1]) * MM;
       if (w <= 0 || d <= 0) { return; }
       var color = DATA.kind_colors[cell.kind] || DATA.kind_colors.other;
-      var patch = new THREE.Mesh(planeGeom, mat(color, 0.85, false));
+      // Unprogrammed slack reads as a hole in the palette on purpose: it is
+      // floor area the brief never asked for, and it should look unfinished
+      // rather than blend in as one more room.
+      var alpha = 0.85;
+      if (cell.role === "flex") { color = 0xC94F7C; alpha = 0.38; }
+      var patch = new THREE.Mesh(planeGeom, mat(color, alpha, false));
       patch.rotation.x = -Math.PI / 2;
       patch.scale.set(w, d, 1);
       patch.position.set((r[0] + r[2]) / 2 * MM, (base + 6) * MM, wz((r[1] + r[3]) / 2));
