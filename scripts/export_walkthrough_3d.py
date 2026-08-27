@@ -51,9 +51,11 @@ for _p in (str(SCRIPT_DIR), str(ROOT)):
 
 from house_design.rendering import encode_html_json  # noqa: E402
 from lib import viewer_shell  # noqa: E402
+from lib.html_parametric_compare import build_compare, format_compare_panel  # noqa: E402
 from lib.standards import load_residential_defaults, repo_relative  # noqa: E402
 
 PLAN_FILE = ROOT / "structured" / "parametric" / "plan.json"
+PROGRAM_FILE = ROOT / "structured" / "room_program.json"
 OUTPUT_HTML = ROOT / "structured" / "parametric" / "walkthrough.html"
 
 SCHEMA_VERSION = "house-walkthrough-v1"
@@ -79,9 +81,14 @@ def now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
-def build_payload(plan: dict[str, Any], defaults: dict[str, Any]) -> dict[str, Any]:
+def build_payload(
+    plan: dict[str, Any],
+    defaults: dict[str, Any],
+    program: dict[str, Any] | None = None,
+) -> dict[str, Any]:
     geometry = defaults.get("geometry", {})
     site = plan.get("site", {})
+    compare = build_compare(program or {}, plan)
     return {
         "schema": SCHEMA_VERSION,
         "generated_at": now_iso(),
@@ -104,6 +111,7 @@ def build_payload(plan: dict[str, Any], defaults: dict[str, Any]) -> dict[str, A
         "variants": plan.get("variants", []),
         "findings": plan.get("findings", []),
         "provenance": plan.get("provenance", {}),
+        "compare": compare,
     }
 
 
@@ -158,6 +166,15 @@ __BASE_CSS__
   #stage.wheels #turnbadge { display: block; }
   #turnbadge.bad { border-color: var(--bad); color: #ffb3c3; }
   #turnbadge.ok { border-color: var(--ok); color: #a7f0d4; }
+  a.inline { color: var(--accent); }
+  #compare { font-size: 12px; }
+  #compare details { margin: 4px 0; }
+  #compare summary { cursor: pointer; color: var(--muted); }
+  .compare-list { margin: 6px 0 0 18px; padding: 0; line-height: 1.55; }
+  .grp { margin-bottom: 10px; }
+  .grp-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 4px; }
+  .grp-head strong { font-size: 13px; }
+  .grp-head .tag { font-size: 10px; color: var(--muted); }
 </style>
 </head>
 <body>
@@ -167,13 +184,16 @@ __BASE_CSS__
     <p class="sub" id="subtitle"></p>
     <div class="banner ok">
       <b>設計前期基準</b>　本專案目前以這個模型為準。
-      早期的 HTML 草圖檢視器（<code>structured/candidates/model3d.html</code>）
+      早期的 HTML 草圖檢視器（<a class="inline" href="../candidates/model3d.html">structured/candidates/model3d.html</a>）
       是存檔，兩邊不一致時看這裡。
     </div>
     <div class="banner warn">
       這不是建築師的圖。所有尺寸都是<b>從面積需求反推</b>的，用來感受空間大小與動線，
       不能拿去申請建照。地的長寬尚未決定，棟距與三棟位置都是假設。
     </div>
+
+    <h2>與 HTML 草圖對照</h2>
+    <div id="compare">__COMPARE_HTML__</div>
 
     <h2>檢視模式</h2>
     <div class="seg" role="group" aria-label="檢視模式">
@@ -1063,6 +1083,7 @@ __LOOP_JS__
 
 
 def render_html(payload: dict[str, Any], three_js: str) -> str:
+    compare_html = format_compare_panel(payload.get("compare") or {})
     return (
         HTML_TEMPLATE
         .replace("__BASE_CSS__", viewer_shell.BASE_CSS)
@@ -1070,12 +1091,14 @@ def render_html(payload: dict[str, Any], three_js: str) -> str:
         .replace("__LOOP_JS__", viewer_shell.LOOP_JS)
         .replace("__THREE_JS__", three_js)
         .replace("__MODEL_DATA__", encode_html_json(payload))
+        .replace("__COMPARE_HTML__", compare_html)
     )
 
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description="Export the walk-in 3D viewer.")
     ap.add_argument("--plan", type=Path, default=PLAN_FILE)
+    ap.add_argument("--program", type=Path, default=PROGRAM_FILE)
     ap.add_argument("--output", type=Path, default=OUTPUT_HTML)
     args = ap.parse_args(argv)
 
@@ -1086,8 +1109,11 @@ def main(argv: list[str] | None = None) -> int:
         )
 
     plan = json.loads(args.plan.read_text(encoding="utf-8"))
+    program = None
+    if args.program.exists():
+        program = json.loads(args.program.read_text(encoding="utf-8"))
     defaults = load_residential_defaults()
-    payload = build_payload(plan, defaults)
+    payload = build_payload(plan, defaults, program)
     three_js, three_meta = three_source_checked()
     html = render_html(payload, three_js)
 

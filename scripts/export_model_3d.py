@@ -60,9 +60,15 @@ from lib.dimension_overrides import (  # noqa: E402
     load_overrides,
     summarize_provenance,
 )
+from lib.html_parametric_compare import (  # noqa: E402
+    build_compare,
+    find_cell_overlaps,
+    format_compare_panel,
+)
 from lib.standards import load_residential_defaults, repo_relative  # noqa: E402
 
 PROGRAM_FILE = ROOT / "structured" / "room_program.json"
+PLAN_FILE = ROOT / "structured" / "parametric" / "plan.json"
 THREE_FILE = ROOT / "assets" / "vendor" / "three" / "three.min.js"
 THREE_VERSION_FILE = ROOT / "assets" / "vendor" / "three" / "VERSION.txt"
 OUTPUT_HTML = ROOT / "structured" / "candidates" / "model3d.html"
@@ -114,6 +120,15 @@ def as_float(value: Any, default: float = 0.0) -> float:
         return default
 
 
+def _box_mm(geo: dict[str, Any]) -> dict[str, float]:
+    return {k: round(as_float(geo.get(k)), 1) for k in ("x_mm", "y_mm", "w_mm", "h_mm")}
+
+
+def _is_roof_floor(floor_id: str, label: str) -> bool:
+    token = f"{floor_id} {label}".upper()
+    return "FLOOR-4" in token or "FLOOR-RF" in token or "RF" in token or "屋頂" in label
+
+
 def declared_area_sqm(cell: dict[str, Any]) -> float | None:
     """Area as written on the HTML label, in m², if it states one."""
 
@@ -159,8 +174,12 @@ def build_cell(
 
     name = normalize(cell.get("name", "")) or "未命名"
     kind = room_kind(name)
-    w_mm = as_float(geo.get("w_mm"))
-    h_mm = as_float(geo.get("h_mm"))
+    declared = _box_mm(geo)
+    auto_box = _box_mm(auto)
+    if auto_box["w_mm"] <= 0 and auto_box["h_mm"] <= 0:
+        auto_box = dict(declared)
+    w_mm = declared["w_mm"]
+    h_mm = declared["h_mm"]
     area_sqm = round(w_mm * h_mm / 1_000_000.0, 2)
     key = str(cell.get("override_key") or f"cell-{cell.get('order', 0)}")
     face, face_source = opening_face(cell, front_side)
@@ -174,11 +193,12 @@ def build_cell(
         "kind": kind,
         "color": fills.get(kind) or fills.get("other") or "#ffffff",
         "size_text": normalize(cell.get("size_text", "")),
-        "x_mm": round(as_float(geo.get("x_mm")), 1),
-        "y_mm": round(as_float(geo.get("y_mm")), 1),
+        "x_mm": declared["x_mm"],
+        "y_mm": declared["y_mm"],
         "w_mm": round(w_mm, 1),
         "h_mm": round(h_mm, 1),
-        "auto_mm": {k: round(as_float(auto.get(k)), 1) for k in ("x_mm", "y_mm", "w_mm", "h_mm")},
+        "declared_mm": declared,
+        "auto_mm": auto_box,
         "provenance": str(cell.get("geometry_provenance") or PROVENANCE_AUTO),
         "is_outdoor": bool(spatial.get("is_outdoor_like")),
         "is_entry": bool(cell.get("is_entry")),
@@ -202,9 +222,11 @@ def build_buildings(
     overrides: Any,
     fills: dict[str, str],
     default_storey_mm: float,
-) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
     buildings: list[dict[str, Any]] = []
     skipped: list[dict[str, Any]] = []
+    overlaps_auto: list[dict[str, Any]] = []
+    overlaps_declared: list[dict[str, Any]] = []
 
     for building in program.get("buildings", []):
         building_id = str(building.get("id", ""))
@@ -217,22 +239,33 @@ def build_buildings(
         for index, floor in enumerate(floor_records):
             floor_id = str(floor.get("id", ""))
             geo = floor.get("geometry_mm") or {}
+            auto_geo = floor.get("geometry_auto_mm") or geo
             height_mm = as_float(floor.get("storey_height_mm"), default_storey_mm) or default_storey_mm
             front_side = str((floor.get("orientation") or {}).get("front_side", "") or "unknown")
+            raw_label = normalize(floor.get("tab_label", "")) or normalize(floor.get("title", "")) or floor_id
+            is_roof = _is_roof_floor(floor_id, raw_label)
+            label = raw_label
+            if is_roof and "RF" not in raw_label.upper() and "屋頂" not in raw_label:
+                label = f"{raw_label}（屋頂／RF，非 4F）"
             cells = [
                 build_cell(building_id, floor_id, cell, fills, front_side)
                 for cell in floor.get("plan_cells", [])
             ]
+            overlaps_auto.extend(find_cell_overlaps(cells, "auto_mm", building_id, floor_id))
+            overlaps_declared.extend(find_cell_overlaps(cells, "declared_mm", building_id, floor_id))
             floors_out.append(
                 {
                     "id": floor_id,
                     "index": index,
-                    "label": normalize(floor.get("tab_label", "")) or normalize(floor.get("title", "")) or floor_id,
+                    "label": label,
                     "title": normalize(floor.get("title", "")),
+                    "is_roof": is_roof,
                     "base_mm": round(base_mm, 1),
                     "height_mm": round(height_mm, 1),
                     "width_mm": round(as_float(geo.get("width_mm")), 1),
                     "depth_mm": round(as_float(geo.get("depth_mm")), 1),
+                    "auto_width_mm": round(as_float(auto_geo.get("width_mm"), as_float(geo.get("width_mm"))), 1),
+                    "auto_depth_mm": round(as_float(auto_geo.get("depth_mm"), as_float(geo.get("depth_mm"))), 1),
                     "north_deg": round(as_float(geo.get("north_deg")), 1),
                     "front_side": front_side,
                     "provenance": str(floor.get("geometry_provenance") or PROVENANCE_AUTO),
@@ -267,10 +300,15 @@ def build_buildings(
             }
         )
 
-    return buildings, skipped
+    return buildings, skipped, overlaps_auto, overlaps_declared
 
 
-def build_payload(program: dict[str, Any], overrides: Any, style: str) -> dict[str, Any]:
+def build_payload(
+    program: dict[str, Any],
+    overrides: Any,
+    style: str,
+    plan: dict[str, Any] | None = None,
+) -> dict[str, Any]:
     defaults = load_residential_defaults()
     metrics = defaults.get("architect_metrics", {}) if isinstance(defaults.get("architect_metrics"), dict) else {}
     geometry = defaults.get("geometry", {}) if isinstance(defaults.get("geometry"), dict) else {}
@@ -285,11 +323,14 @@ def build_payload(program: dict[str, Any], overrides: Any, style: str) -> dict[s
         fills.update({str(k): str(v) for k, v in screen.items() if not str(k).startswith("_")})
 
     default_storey_mm = as_float(metrics.get("room_height_mm"), FALLBACK_STOREY_MM) or FALLBACK_STOREY_MM
-    buildings, skipped = build_buildings(program, overrides, fills, default_storey_mm)
+    buildings, skipped, overlaps_auto, overlaps_declared = build_buildings(
+        program, overrides, fills, default_storey_mm
+    )
 
     site = overrides.site()
     provenance = summarize_provenance(program)
     cells_summary = provenance.get("cells", {}) if isinstance(provenance.get("cells"), dict) else {}
+    compare = build_compare(program, plan)
 
     return {
         "schema": SCHEMA_VERSION,
@@ -321,6 +362,9 @@ def build_payload(program: dict[str, Any], overrides: Any, style: str) -> dict[s
         "kind_labels": KIND_LABELS,
         "buildings": buildings,
         "skipped": skipped,
+        "overlaps": {"auto": overlaps_auto, "declared": overlaps_declared},
+        "compare": compare,
+        "geom_source_default": "auto",
     }
 
 
@@ -406,7 +450,15 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   .pill.measured { background: #16a34a; color: #04140a; }
   .pill.declared { background: #f59e0b; color: #23150b; }
   .pill.auto { background: #64748b; color: #0b1020; }
+  .pill.overlap { background: #f2637e; color: #1a0408; }
   .muted { color: var(--muted); }
+  a.inline { color: var(--accent); }
+  #compare { font-size: 12px; }
+  #compare details { margin: 4px 0; }
+  #compare summary { cursor: pointer; color: var(--muted); }
+  .compare-list { margin: 6px 0 0 18px; padding: 0; line-height: 1.55; }
+  #overlap-list { font-size: 12px; line-height: 1.5; color: #ffb3c3; margin-top: 6px; }
+  .grp-head .tag { font-size: 10px; color: var(--muted); font-weight: 400; }
   #stage { position: relative; }
   canvas { display: block; width: 100%; height: 100%; touch-action: none; cursor: grab; }
   canvas:active { cursor: grabbing; }
@@ -435,25 +487,43 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     <div class="banner note">
       <b>早期草圖存檔</b>　這是最初 HTML 草圖的量體，保留作存檔與需求追溯，
       <b>不是</b>現行設計基準。要看現行的走入式模型請開
-      <code>structured/parametric/walkthrough.html</code>。
+      <a class="inline" href="../parametric/walkthrough.html">structured/parametric/walkthrough.html</a>。
     </div>
     <div class="banner warn" id="honesty"></div>
 
+    <h2>幾何來源</h2>
+    <div class="seg" id="geom-source" role="group" aria-label="幾何來源">
+      <button type="button" data-geom="auto" class="on">示意格子</button>
+      <button type="button" data-geom="declared">標示覆寫</button>
+    </div>
+    <div class="hint">預設用 HTML 的列／欄 packing（與平面圖格子一致）。標示覆寫會套用坪數／尺寸文字，可能互相穿插。</div>
+    <div id="overlap-list"></div>
+
     <h2>顯示模式</h2>
-    <div class="seg" role="group" aria-label="顯示模式">
+    <div class="seg" id="color-mode" role="group" aria-label="顯示模式">
       <button type="button" data-mode="kind" class="on">用途配色</button>
       <button type="button" data-mode="provenance">尺寸來源</button>
     </div>
     <div id="legend"></div>
 
+    <h2>與參數化基準對照</h2>
+    <label class="row"><input type="checkbox" id="ghost" checked /> 顯示 32 坪基準外框</label>
+    <div id="compare">__COMPARE_HTML__</div>
+
     <h2>樓層</h2>
     <div id="floors"></div>
 
-    <h2>剖切與圖層</h2>
+    <h2>剖切與展開</h2>
+    <div class="hint" id="explode-label"></div>
+    <input type="range" id="explode" min="0" max="4000" step="100" value="1800" aria-label="樓層展開" />
     <input type="range" id="cut" min="0" max="1000" value="1000" aria-label="剖切高度" />
     <div class="hint" id="cut-label"></div>
     <label class="row"><input type="checkbox" id="openings" /> 顯示門窗示意</label>
     <label class="row"><input type="checkbox" id="grid" checked /> 顯示基地格線</label>
+    <div class="seg" id="view-presets" role="group" aria-label="視角" style="margin-top:8px">
+      <button type="button" id="view-front" class="on">正面</button>
+      <button type="button" id="view-plan">俯視（對 HTML）</button>
+    </div>
     <button type="button" class="grp-toggle" id="reset-view" style="margin-top:10px">重設視角</button>
 
     <h2>選取</h2>
@@ -462,7 +532,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   <main id="stage">
     <canvas id="canvas"></canvas>
     <div id="hud">拖曳旋轉 · 滾輪縮放 · 右鍵/Shift 拖曳平移 · 點選看資訊</div>
-    <div id="compass"><span><b>N</b><br />方位為推定</span></div>
+    <div id="compass"><span><b>正面</b><br />朝相機；北向推定</span></div>
   </main>
 </div>
 
@@ -537,22 +607,45 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     return materials[key];
   }
 
+  // Coordinate convention matches the walkthrough viewer:
+  //   worldX = planX, worldY = height, worldZ = -planY
+  // so the front row (HTML first row / garage) faces +Z, toward the camera.
+  function wz(planY) { return -planY * MM; }
+
+  var geomSource = (DATA.geom_source_default === "declared") ? "declared" : "auto";
+  var overlappingKeys = {};
+
+  function geomOf(cell) {
+    if (geomSource === "declared") { return cell.declared_mm || cell; }
+    return cell.auto_mm || cell;
+  }
+
+  function layoutCell(cell) {
+    var g = geomOf(cell);
+    var w = (g.w_mm || 0) * MM;
+    var d = (g.h_mm || 0) * MM;
+    return {
+      w: w,
+      d: d,
+      cx: ((g.x_mm || 0) * MM) + w / 2,
+      cz: wz((g.y_mm || 0) + (g.h_mm || 0) / 2)
+    };
+  }
+
   // ---------- build ----------
   var root = new THREE.Group();
   scene.add(root);
 
   var floorGroups = [];   // one per building x floor, for the toggles
   var pickables = [];     // meshes the raycaster may hit
-  // Opening patches stay parented to their building group so they inherit its
-  // placement transform; the toggle flips visibility over this flat list
-  // instead, since re-parenting them into one group would drop that transform.
   var openingMeshes = [];
+  var ghostMeshes = [];
   var bounds = new THREE.Box3();
 
   DATA.buildings.forEach(function (building) {
     var bGroup = new THREE.Group();
     var place = building.placement || {};
-    bGroup.position.set((place.x_mm || 0) * MM, 0, (place.y_mm || 0) * MM);
+    bGroup.position.set((place.x_mm || 0) * MM, 0, wz(place.y_mm || 0));
     bGroup.rotation.y = -(place.rotation_deg || 0) * Math.PI / 180;
     root.add(bGroup);
 
@@ -562,34 +655,38 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       floorGroups.push({ building: building, floor: floor, group: fGroup });
 
       floor.cells.forEach(function (cell) {
-        var w = cell.w_mm * MM;
-        var d = cell.h_mm * MM;
-        if (w <= 0 || d <= 0) { return; }
-        var h = (cell.is_outdoor ? DATA.standards.outdoor_slab_mm : floor.height_mm) * MM;
-        var cx = (cell.x_mm * MM) + w / 2;
-        var cz = (cell.y_mm * MM) + d / 2;
-        var cy = (floor.base_mm * MM) + h / 2;
-
         var mesh = new THREE.Mesh(boxGeom, solidMaterial(0xffffff, 1));
-        mesh.scale.set(w, h, d);
-        mesh.position.set(cx, cy, cz);
         mesh.userData = { cell: cell, floor: floor, building: building };
         fGroup.add(mesh);
         pickables.push(mesh);
 
         var edges = new THREE.LineSegments(edgeGeom, lineMaterial(0xffffff, 1));
-        edges.scale.copy(mesh.scale);
-        edges.position.copy(mesh.position);
         fGroup.add(edges);
         mesh.userData.edges = edges;
 
-        addOpenings(cell, floor, bGroup, w, d, cx, cz);
+        addOpenings(cell, floor, fGroup);
       });
     });
+
+    var ghost = (DATA.compare && DATA.compare.ghost) || null;
+    if (ghost && ghost.frontage_mm && ghost.depth_mm) {
+      var gw = ghost.frontage_mm * MM;
+      var gd = ghost.depth_mm * MM;
+      var gh = ghost.height_mm * MM;
+      var gMesh = new THREE.Mesh(boxGeom, solidMaterial(0x19c3c5, 0.08));
+      gMesh.scale.set(gw, gh, gd);
+      gMesh.position.set(gw / 2, gh / 2, wz(ghost.depth_mm / 2));
+      gMesh.renderOrder = -1;
+      bGroup.add(gMesh);
+      var gEdge = new THREE.LineSegments(edgeGeom, lineMaterial(0x19c3c5, 0.85));
+      gEdge.scale.copy(gMesh.scale);
+      gEdge.position.copy(gMesh.position);
+      bGroup.add(gEdge);
+      ghostMeshes.push(gMesh, gEdge);
+    }
   });
 
-  function addOpenings(cell, floor, bGroup, w, d, cx, cz) {
-    var base = floor.base_mm * MM;
+  function addOpenings(cell, floor, parent) {
     var specs = [];
     if (cell.door_mm > 0) {
       specs.push({
@@ -609,34 +706,122 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     }
     specs.forEach(function (spec, i) {
       var patch = new THREE.Mesh(planeGeom, solidMaterial(spec.color, 0.92));
-      patch.scale.set(Math.min(spec.width, w * 0.9), spec.height, 1);
-      var offset = (i === 0 ? -1 : 1) * Math.min(spec.width, w * 0.9) * 0.55;
-      var eps = 0.02;
-      // Nudge the patch just outside the wall plane so it does not z-fight.
-      if (cell.opening_face === "north") {
-        patch.position.set(cx + offset, base + spec.sill + spec.height / 2, cz - d / 2 - eps);
-        patch.rotation.y = Math.PI;
-      } else if (cell.opening_face === "south") {
-        patch.position.set(cx + offset, base + spec.sill + spec.height / 2, cz + d / 2 + eps);
-      } else if (cell.opening_face === "west") {
-        patch.position.set(cx - w / 2 - eps, base + spec.sill + spec.height / 2, cz + offset);
-        patch.rotation.y = -Math.PI / 2;
-      } else {
-        patch.position.set(cx + w / 2 + eps, base + spec.sill + spec.height / 2, cz + offset);
-        patch.rotation.y = Math.PI / 2;
-      }
       patch.visible = false;
-      bGroup.add(patch);
+      patch.userData = { cell: cell, floor: floor, spec: spec, index: i };
+      parent.add(patch);
       openingMeshes.push(patch);
     });
   }
 
-  // Centre the compound on the origin so orbiting feels natural.
-  bounds.setFromObject(root);
-  var centre = bounds.getCenter(new THREE.Vector3());
-  var size = bounds.getSize(new THREE.Vector3());
-  root.position.x -= centre.x;
-  root.position.z -= centre.z;
+  function placeOpening(patch) {
+    var cell = patch.userData.cell;
+    var floor = patch.userData.floor;
+    var spec = patch.userData.spec;
+    var i = patch.userData.index;
+    var L = layoutCell(cell);
+    var w = L.w, d = L.d, cx = L.cx, cz = L.cz;
+    var h = (cell.is_outdoor ? DATA.standards.outdoor_slab_mm : floor.height_mm) * MM;
+    var base = floor.base_mm * MM;
+    if (w <= 0 || d <= 0) { patch.visible = false; return; }
+    patch.scale.set(Math.min(spec.width, w * 0.9), spec.height, 1);
+    var offset = (i === 0 ? -1 : 1) * Math.min(spec.width, w * 0.9) * 0.55;
+    var eps = 0.02;
+    var y = base + spec.sill + spec.height / 2;
+    // Front (small plan-y) is the +Z face after wz().
+    if (cell.opening_face === "north") {
+      patch.position.set(cx + offset, y, cz - d / 2 - eps);
+      patch.rotation.y = Math.PI;
+    } else if (cell.opening_face === "south") {
+      patch.position.set(cx + offset, y, cz + d / 2 + eps);
+      patch.rotation.y = 0;
+    } else if (cell.opening_face === "west") {
+      patch.position.set(cx - w / 2 - eps, y, cz + offset);
+      patch.rotation.y = -Math.PI / 2;
+    } else {
+      patch.position.set(cx + w / 2 + eps, y, cz + offset);
+      patch.rotation.y = Math.PI / 2;
+    }
+  }
+
+  function applyExplode() {
+    var extra = Number((document.getElementById("explode") || {}).value || 0);
+    floorGroups.forEach(function (entry) {
+      entry.group.position.y = extra * entry.floor.index * MM;
+    });
+    var explodeLabel = document.getElementById("explode-label");
+    if (explodeLabel) {
+      explodeLabel.textContent = extra <= 0
+        ? "樓層依真實層高疊放"
+        : "層間多留 " + Math.round(extra) + " mm（方便對 HTML 分頁）";
+    }
+    return extra;
+  }
+
+  function applyLayout() {
+    overlappingKeys = {};
+    var hits = ((DATA.overlaps || {})[geomSource]) || [];
+    hits.forEach(function (hit) {
+      overlappingKeys[hit.building + ":" + hit.floor + ":" + hit.a] = true;
+      overlappingKeys[hit.building + ":" + hit.floor + ":" + hit.b] = true;
+    });
+    pickables.forEach(function (mesh) {
+      var cell = mesh.userData.cell;
+      var floor = mesh.userData.floor;
+      var L = layoutCell(cell);
+      var h = (cell.is_outdoor ? DATA.standards.outdoor_slab_mm : floor.height_mm) * MM;
+      if (L.w <= 0 || L.d <= 0) {
+        mesh.visible = false;
+        mesh.userData.edges.visible = false;
+        return;
+      }
+      mesh.visible = true;
+      mesh.userData.edges.visible = true;
+      mesh.scale.set(L.w, h, L.d);
+      mesh.position.set(L.cx, (floor.base_mm * MM) + h / 2, L.cz);
+      mesh.userData.edges.scale.copy(mesh.scale);
+      mesh.userData.edges.position.copy(mesh.position);
+    });
+    openingMeshes.forEach(function (patch) {
+      placeOpening(patch);
+      var L = layoutCell(patch.userData.cell);
+      var want = document.getElementById("openings") && document.getElementById("openings").checked;
+      patch.visible = !!(want && L.w > 0 && L.d > 0);
+    });
+    applyExplode();
+    applyMode();
+    renderOverlapList();
+  }
+
+  function renderOverlapList() {
+    var el = document.getElementById("overlap-list");
+    if (!el) { return; }
+    var hits = ((DATA.overlaps || {})[geomSource]) || [];
+    if (!hits.length) {
+      el.textContent = geomSource === "declared" ? "這一組覆寫沒有量體重疊。" : "";
+      el.style.color = "";
+      return;
+    }
+    el.style.color = "#ffb3c3";
+    el.innerHTML = "⚠ " + hits.length + " 處量體重疊（標示尺寸與格子位置衝突）：<br />" +
+      hits.map(function (h) {
+        return escapeHtml(h.building + " " + h.floor + "　" + h.a_name + " × " + h.b_name);
+      }).join("<br />");
+  }
+
+  // Centre X so orbiting the row feels natural. Leave Z alone: front stays at
+  // world Z ≈ 0 and faces the default camera.
+  var minX = Infinity, maxX = -Infinity;
+  DATA.buildings.forEach(function (building) {
+    var x0 = (building.placement && building.placement.x_mm) || 0;
+    building.floors.forEach(function (floor) {
+      var w = Math.max(floor.auto_width_mm || 0, floor.width_mm || 0);
+      minX = Math.min(minX, x0);
+      maxX = Math.max(maxX, x0 + w);
+    });
+  });
+  if (isFinite(minX) && isFinite(maxX)) {
+    root.position.x = -((minX + maxX) / 2) * MM;
+  }
   bounds.setFromObject(root);
 
   // ---------- colour modes ----------
@@ -644,14 +829,21 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   function applyMode() {
     pickables.forEach(function (mesh) {
       var cell = mesh.userData.cell;
+      var floor = mesh.userData.floor;
+      var building = mesh.userData.building;
+      var overlapKey = building.id + ":" + floor.id + ":" + cell.key;
+      var isOverlap = !!overlappingKeys[overlapKey];
       if (mode === "provenance") {
         var style = PROV_STYLE[cell.provenance] || PROV_STYLE.auto;
         mesh.material = solidMaterial(style.color, style.opacity);
-        mesh.userData.edges.material = lineMaterial(style.edge, cell.provenance === "auto" ? 0.85 : 0.5);
+        mesh.userData.edges.material = lineMaterial(
+          isOverlap ? 0xf2637e : style.edge,
+          isOverlap ? 1 : (cell.provenance === "auto" ? 0.85 : 0.5)
+        );
       } else {
         var hex = parseInt(String(cell.color).replace("#", ""), 16);
         mesh.material = solidMaterial(isNaN(hex) ? 0xffffff : hex, cell.is_outdoor ? 0.95 : 0.86);
-        mesh.userData.edges.material = lineMaterial(0x22324d, 0.7);
+        mesh.userData.edges.material = lineMaterial(isOverlap ? 0xf2637e : 0x22324d, isOverlap ? 1 : 0.7);
       }
     });
     renderLegend();
@@ -708,12 +900,20 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     selection.scale.copy(mesh.scale).multiplyScalar(1.005);
     mesh.getWorldPosition(selection.position);
 
+    var g = geomOf(cell);
+    var area = (g.w_mm * g.h_mm) / 1e6;
+    var ping = area / 3.305785;
+    var heightMm = cell.is_outdoor ? DATA.standards.outdoor_slab_mm : floor.height_mm;
     var rows = "";
     function row(k, v) { rows += "<dt>" + escapeHtml(k) + "</dt><dd>" + v + "</dd>"; }
     row("位置", escapeHtml(building.id + " 棟 · " + floor.label));
-    row("幾何面積", escapeHtml(cell.area_sqm.toFixed(2) + " m² / " + cell.area_ping.toFixed(2) + " 坪"));
-    row("量體尺寸", escapeHtml(Math.round(cell.w_mm) + " × " + Math.round(cell.h_mm) + " × " + Math.round(cell.is_outdoor ? DATA.standards.outdoor_slab_mm : floor.height_mm) + " mm"));
+    row("幾何來源", geomSource === "auto" ? "示意格子（CSS 列／欄）" : "標示覆寫");
+    row("幾何面積", escapeHtml(area.toFixed(2) + " m² / " + ping.toFixed(2) + " 坪"));
+    row("量體尺寸", escapeHtml(Math.round(g.w_mm) + " × " + Math.round(g.h_mm) + " × " + Math.round(heightMm) + " mm"));
     row("尺寸來源", '<span class="pill ' + escapeHtml(cell.provenance) + '">' + escapeHtml(PROV_LABEL[cell.provenance] || cell.provenance) + "</span>");
+    if (overlappingKeys[building.id + ":" + floor.id + ":" + cell.key]) {
+      row("重疊", '<span class="pill overlap">與同層其他量體穿插</span>');
+    }
     if (cell.size_text) { row("圖面標示", escapeHtml(cell.size_text)); }
     if (cell.declared_sqm) {
       var ratio = cell.area_sqm > 0 ? (cell.declared_sqm / cell.area_sqm) : 0;
@@ -734,22 +934,47 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
   // ---------- controls (hand-rolled: OrbitControls ships ESM only, which
   // Chrome blocks over file://) ----------
-  var target = new THREE.Vector3(0, size.y * 0.35, 0);
-  var spherical = { radius: Math.max(size.x, size.z, 20) * 1.35, theta: Math.PI * 0.28, phi: Math.PI * 0.34 };
-  var HOME = { target: target.clone(), radius: spherical.radius, theta: spherical.theta, phi: spherical.phi };
+  var target = new THREE.Vector3(0, 4, wz(4000));
+  var spherical = { radius: 40, theta: 0, phi: Math.PI * 0.38 };
+  var HOME = { target: target.clone(), radius: 40, theta: 0, phi: Math.PI * 0.38 };
+  var PLAN = { target: new THREE.Vector3(0, 0, wz(4000)), radius: 45, theta: Math.PI, phi: 0.16 };
+
+  function fitCameras() {
+    bounds.setFromObject(root);
+    var size = bounds.getSize(new THREE.Vector3());
+    var midZ = bounds.min.z + size.z * 0.45;
+    HOME.target.set(0, Math.max(size.y * 0.32, 3), midZ);
+    HOME.radius = Math.max(size.x, size.z, 16) * 1.45;
+    HOME.theta = 0;
+    HOME.phi = Math.PI * 0.38;
+    PLAN.target.set(0, 0, midZ);
+    PLAN.radius = Math.max(size.x, size.z, 16) * 1.65;
+    PLAN.theta = Math.PI;
+    PLAN.phi = 0.16;
+  }
 
   function updateCamera() {
     spherical.phi = Math.max(0.06, Math.min(Math.PI / 2 - 0.02, spherical.phi));
     spherical.radius = Math.max(3, Math.min(400, spherical.radius));
+    camera.up.set(0, 1, 0);
     camera.position.set(
       target.x + spherical.radius * Math.sin(spherical.phi) * Math.sin(spherical.theta),
       target.y + spherical.radius * Math.cos(spherical.phi),
       target.z + spherical.radius * Math.sin(spherical.phi) * Math.cos(spherical.theta)
     );
     camera.lookAt(target);
-    // Panning reads the camera's own basis vectors, so keep the matrix current
-    // rather than trailing the render loop by a frame.
     camera.updateMatrixWorld();
+  }
+
+  function applyViewPreset(kind) {
+    var src = kind === "plan" ? PLAN : HOME;
+    target.copy(src.target);
+    spherical.radius = src.radius;
+    spherical.theta = src.theta;
+    spherical.phi = src.phi;
+    document.getElementById("view-front").classList.toggle("on", kind !== "plan");
+    document.getElementById("view-plan").classList.toggle("on", kind === "plan");
+    updateCamera();
   }
 
   var pointers = {};
@@ -856,7 +1081,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   var lines = [];
   lines.push("⚠️ <strong>" + DATA.provenance.total + " 格中 " + DATA.provenance.cells.auto +
              " 格（" + DATA.provenance.auto_pct + "%）的尺寸是由 CSS class 推導的猜測值，非實測。</strong>" +
-             "切到「尺寸來源」模式即可看出哪些量體不可信；待實測清單見 structured/dimension_todo.md。");
+             "預設「示意格子」與 HTML 列／欄一致；「標示覆寫」才套用坪數文字，可能互相穿插。");
   if (DATA.site.provenance !== "measured") {
     lines.push("三棟的相對位置為<strong>假設值</strong>" + (DATA.site.note ? "：" + DATA.site.note : "。"));
   }
@@ -915,41 +1140,65 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   });
 
   var topMm = 0;
+  var maxFloorIndex = 0;
   DATA.buildings.forEach(function (b) {
-    b.floors.forEach(function (f) { topMm = Math.max(topMm, f.base_mm + f.height_mm); });
+    b.floors.forEach(function (f) {
+      topMm = Math.max(topMm, f.base_mm + f.height_mm);
+      maxFloorIndex = Math.max(maxFloorIndex, f.index);
+    });
   });
   var cut = document.getElementById("cut");
   var cutLabel = document.getElementById("cut-label");
   function applyCut() {
+    var extra = Number(document.getElementById("explode").value || 0);
+    var top = topMm + extra * maxFloorIndex;
     var ratio = Number(cut.value) / Number(cut.max);
-    clipPlane.constant = (topMm * MM) * ratio + 0.001;
+    clipPlane.constant = (top * MM) * ratio + 0.001;
     cutLabel.textContent = ratio >= 1
-      ? "未剖切（完整高度 " + Math.round(topMm) + " mm）"
-      : "剖至 " + Math.round(topMm * ratio) + " mm（約 " + (topMm * ratio / 1000).toFixed(2) + " m）";
+      ? "未剖切（含展開約 " + Math.round(top) + " mm）"
+      : "剖至 " + Math.round(top * ratio) + " mm（約 " + (top * ratio / 1000).toFixed(2) + " m）";
   }
   cut.addEventListener("input", applyCut);
+  document.getElementById("explode").addEventListener("input", function () {
+    applyExplode();
+    applyCut();
+  });
 
   document.getElementById("openings").addEventListener("change", function (e) {
-    openingMeshes.forEach(function (m) { m.visible = e.target.checked; });
+    openingMeshes.forEach(function (m) {
+      var L = layoutCell(m.userData.cell);
+      m.visible = e.target.checked && L.w > 0 && L.d > 0;
+    });
   });
   document.getElementById("grid").addEventListener("change", function (e) {
     grid.visible = e.target.checked;
   });
-  document.getElementById("reset-view").addEventListener("click", function () {
-    target.copy(HOME.target);
-    spherical.radius = HOME.radius;
-    spherical.theta = HOME.theta;
-    spherical.phi = HOME.phi;
-    updateCamera();
+  document.getElementById("ghost").addEventListener("change", function (e) {
+    ghostMeshes.forEach(function (m) { m.visible = e.target.checked; });
   });
+  document.getElementById("reset-view").addEventListener("click", function () {
+    applyViewPreset("front");
+  });
+  document.getElementById("view-front").addEventListener("click", function () { applyViewPreset("front"); });
+  document.getElementById("view-plan").addEventListener("click", function () { applyViewPreset("plan"); });
 
-  Array.prototype.forEach.call(document.querySelectorAll(".seg button"), function (button) {
+  Array.prototype.forEach.call(document.querySelectorAll("#color-mode button"), function (button) {
     button.addEventListener("click", function () {
-      Array.prototype.forEach.call(document.querySelectorAll(".seg button"), function (b) {
+      Array.prototype.forEach.call(document.querySelectorAll("#color-mode button"), function (b) {
         b.classList.toggle("on", b === button);
       });
       mode = button.getAttribute("data-mode");
       applyMode();
+    });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll("#geom-source button"), function (button) {
+    button.addEventListener("click", function () {
+      Array.prototype.forEach.call(document.querySelectorAll("#geom-source button"), function (b) {
+        b.classList.toggle("on", b === button);
+      });
+      geomSource = button.getAttribute("data-geom") === "declared" ? "declared" : "auto";
+      applyLayout();
+      showInfo(null);
     });
   });
 
@@ -963,10 +1212,11 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   }
   window.addEventListener("resize", resize);
 
-  applyMode();
+  applyLayout();
+  fitCameras();
   applyCut();
   resize();
-  updateCamera();
+  applyViewPreset("front");
 
   (function loop() {
     requestAnimationFrame(loop);
@@ -980,14 +1230,18 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
 
 def render_html(payload: dict[str, Any], three_js: str) -> str:
-    return HTML_TEMPLATE.replace("__THREE_JS__", three_js).replace(
-        "__MODEL_DATA__", encode_html_json(payload)
+    compare_html = format_compare_panel(payload.get("compare") or {})
+    return (
+        HTML_TEMPLATE.replace("__THREE_JS__", three_js)
+        .replace("__MODEL_DATA__", encode_html_json(payload))
+        .replace("__COMPARE_HTML__", compare_html)
     )
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--program", type=Path, default=PROGRAM_FILE)
+    parser.add_argument("--plan", type=Path, default=PLAN_FILE)
     parser.add_argument("--output", type=Path, default=OUTPUT_HTML)
     parser.add_argument("--style", type=str, default="", help="drawing style whose room_fills the 3D reuses")
     args = parser.parse_args()
@@ -996,11 +1250,16 @@ def main() -> None:
         raise SystemExit(f"Missing room program: {args.program}. Run scripts/build_room_program.py first.")
 
     program = json.loads(args.program.read_text(encoding="utf-8"))
+    plan = None
+    if args.plan.exists():
+        plan = json.loads(args.plan.read_text(encoding="utf-8"))
     overrides = load_overrides()
     style = args.style or default_drawing_style()
-    payload = build_payload(program, overrides, style)
+    payload = build_payload(program, overrides, style, plan)
     three_js, three_meta = three_source()
     payload["source"]["three_bytes"] = three_meta["bytes"]
+    if plan:
+        payload["source"]["plan"] = repo_relative(args.plan)
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(render_html(payload, three_js), encoding="utf-8")
@@ -1016,6 +1275,10 @@ def main() -> None:
     )
     if payload["site"]["provenance"] != "measured":
         print("  site placement is assumed, not surveyed — banner shown in the viewer")
+    n_overlap = len(payload.get("overlaps", {}).get("declared") or [])
+    print(f"  declared-geometry overlaps: {n_overlap}")
+    if payload.get("compare", {}).get("available"):
+        print(f"  parametric compare: {payload['compare']['variant']['label']}")
     for item in payload["skipped"]:
         print(f"  skipped {item['building']}: {item['reason']}")
 

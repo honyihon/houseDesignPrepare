@@ -51,10 +51,13 @@ TOLERANCE_MM = 1.0
 # so the viewer can say so out loud.
 DEFAULT_SITE = {
     "_provenance": "assumed",
-    "_note": "無實測基地配置。以下為暫定值：三棟東西向一列、間距 12m。量測後請改 _provenance 為 measured。",
-    "A": {"x_mm": 0, "y_mm": 0, "rotation_deg": 0},
+    "_note": (
+        "無實測基地配置。以下為暫定值：三棟一列。站在前院面對房子時，"
+        "右→左為 A、B、C（x 越大越靠右）。量測後請改 _provenance 為 measured。"
+    ),
+    "C": {"x_mm": 0, "y_mm": 0, "rotation_deg": 0},
     "B": {"x_mm": 12000, "y_mm": 0, "rotation_deg": 0},
-    "C": {"x_mm": 24000, "y_mm": 0, "rotation_deg": 0},
+    "A": {"x_mm": 24000, "y_mm": 0, "rotation_deg": 0},
 }
 
 
