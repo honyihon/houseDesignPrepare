@@ -481,7 +481,7 @@ def render_html(payload: dict[str, Any]) -> str:
         <p>Top1/Top3 候選切換 · 動線/採光/機電維修評分</p>
         <p class="archive-note">
           <b>早期草圖存檔</b> —— 非現行設計基準。<br>
-          現行基準：<code>structured/parametric/</code>
+          現行圖面檢核：<code>structured/reviews/</code>
         </p>
       </div>
       <div class="floor-list" id="floorList"></div>

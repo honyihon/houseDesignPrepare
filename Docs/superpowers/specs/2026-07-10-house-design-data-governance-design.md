@@ -1,5 +1,7 @@
 # House Design Data Governance Design
 
+> **歷史規格（2026-08-27 已被新版圖面檢核架構取代）。** 本文的 Current Baseline 只代表 2026-07-10 當時的 HTML pipeline 狀態；現行資料權威請見 `CLAUDE.md`、`inputs/project.json` 與 `structured/reviews/`。
+
 ## Goal
 
 把目前已能通過 `concept`、`draft`、`ifc` 的三棟住宅設計 workflow，往下一層資料治理收斂：補齊 canonical HTML 與 structured outputs 之間的房間對應、方向語意、長輩/無障礙標記、signoff 可追溯性，以及出圖產物版本控管。

@@ -1,0 +1,1930 @@
+{
+  "schema": "house-requirements-v2",
+  "generated_at": "2026-08-27T07:47:51.303374+00:00",
+  "policy": {
+    "default_status": "candidate",
+    "hard_gate_status": "confirmed",
+    "note": "舊版 AI 建議與 area brief 一律先視為待確認想法。"
+  },
+  "requirements": [
+    {
+      "id": "A.floor-1.entry",
+      "title": "玄關（含車庫進屋緩衝）",
+      "category": "entry",
+      "applies_to": {
+        "building_id": "A",
+        "floor_id": "floor-1"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "6m 開間下前帶只有 2.43m 寬，玄關拿到的是車庫旁整條剩餘空間：鞋櫃＋輪椅停放位＋從車庫進屋的緩衝。Q10：鞋櫃做完之後還要留得下 150cm 迴轉圈，所以不要做滿牆大鞋櫃。",
+      "constraints": {
+        "target_sqm": 8.0,
+        "min_sqm": 3.6,
+        "band": "front",
+        "light": "preferred",
+        "private": false,
+        "wheelchair_turn": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/A.json",
+        "pointer": "/floors/0/rooms/0"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "A.floor-1.living",
+      "title": "客餐廳（開放式）",
+      "category": "living",
+      "applies_to": {
+        "building_id": "A",
+        "floor_id": "floor-1"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "原客廳 20 + 餐廳 11 合併。5.6m 寬的房子分兩間會變成兩條細長條，合併後在後帶是 5.6 × 3.2m 的完整方形。放在後帶而非車庫旁 —— 車庫旁只有 2.43m 寬。Q7：餐桌不正對公衛門（公衛已移到前帶最遠端）。Q9：玄關→客餐廳→孝親房不可有高低差。",
+      "constraints": {
+        "target_sqm": 18.0,
+        "min_sqm": 18.0,
+        "band": "rear",
+        "light": "required",
+        "private": false,
+        "wheelchair_turn": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/A.json",
+        "pointer": "/floors/0/rooms/1"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "A.floor-1.kitchen",
+      "title": "廚房",
+      "category": "kitchen",
+      "applies_to": {
+        "building_id": "A",
+        "floor_id": "floor-1"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "主廚房。Q8：要能直通後陽台，不穿越孝親房。",
+      "constraints": {
+        "target_sqm": 6.5,
+        "min_sqm": 6.0,
+        "band": "rear",
+        "light": "preferred",
+        "private": false
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/A.json",
+        "pointer": "/floors/0/rooms/2"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "A.floor-1.elder",
+      "title": "孝親房（原多功能房）",
+      "category": "bedroom",
+      "applies_to": {
+        "building_id": "A",
+        "floor_id": "floor-1"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "Q1：多功能房正式改孝親房。Q2：要放得下床＋衣櫃＋150cm 迴轉圈。",
+      "constraints": {
+        "target_sqm": 11.0,
+        "min_sqm": 10.0,
+        "band": "rear",
+        "light": "required",
+        "private": true,
+        "door_clear_mm": 900,
+        "wheelchair_turn": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/A.json",
+        "pointer": "/floors/0/rooms/3"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "A.floor-1.bath1",
+      "title": "1F 無障礙公衛",
+      "category": "bath",
+      "applies_to": {
+        "building_id": "A",
+        "floor_id": "floor-1"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "移到前帶（車庫旁）：2.43m 淨寬放得下 150×180 迴轉圈，而且離餐桌最遠，順帶滿足 Q7 不正對餐廳。Q3 門淨寬 90cm；Q4 橫拉或外開，不要內開。比照 C 棟孝親衛浴。",
+      "constraints": {
+        "target_sqm": 6.5,
+        "min_sqm": 4.5,
+        "band": "front",
+        "light": "none",
+        "private": true,
+        "door_clear_mm": 900,
+        "door_swing": "sliding",
+        "wheelchair_turn": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/A.json",
+        "pointer": "/floors/0/rooms/4"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "A.floor-1.mdf",
+      "title": "樓梯下 MDF 主機櫃",
+      "category": "service",
+      "applies_to": {
+        "building_id": "A",
+        "floor_id": "floor-1"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "三棟中樞弱電核心，19吋機櫃落地。要散熱與除濕，不能做成密閉櫃。",
+      "constraints": {
+        "target_sqm": 1.5,
+        "min_sqm": 1.2,
+        "band": "core",
+        "light": "none",
+        "private": false
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/A.json",
+        "pointer": "/floors/0/rooms/5"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "A.floor-1.balcony",
+      "title": "後工作陽台（含給水進線）",
+      "category": "outdoor",
+      "applies_to": {
+        "building_id": "A",
+        "floor_id": "floor-1"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "原獨立的『給水進線區』1.0 m² 併入 —— 6m 開間下它被切成 467 mm 寬的細縫，而且只能從孝親房進出。總開關／減壓閥／過濾本來就是掛在後陽台牆上的壁掛設備，不需要獨立房間。洗衣、清潔、設備維修。深度要 ≥1.8 m（洗衣機 0.65 ＋ 通行 0.9 ＋ 設備牆）。Q11：大門不可直通後陽台（穿堂煞）。",
+      "constraints": {
+        "target_sqm": 5.0,
+        "min_sqm": 4.0,
+        "band": "rear",
+        "light": "required",
+        "private": false,
+        "counts_in_footprint": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/A.json",
+        "pointer": "/floors/0/rooms/6"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "A.floor-2.master",
+      "title": "主臥室",
+      "category": "bedroom",
+      "applies_to": {
+        "building_id": "A",
+        "floor_id": "floor-2"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 16.0,
+        "min_sqm": 12.0,
+        "band": "front",
+        "light": "required",
+        "private": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/A.json",
+        "pointer": "/floors/1/rooms/0"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "A.floor-2.master_bath",
+      "title": "主臥衛浴",
+      "category": "bath",
+      "applies_to": {
+        "building_id": "A",
+        "floor_id": "floor-2"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 5.0,
+        "min_sqm": 3.6,
+        "band": "auto",
+        "light": "none",
+        "private": true,
+        "access_from": [
+          "master"
+        ]
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/A.json",
+        "pointer": "/floors/1/rooms/1"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "A.floor-2.closet",
+      "title": "更衣／收納",
+      "category": "service",
+      "applies_to": {
+        "building_id": "A",
+        "floor_id": "floor-2"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 4.0,
+        "min_sqm": 2.5,
+        "band": "auto",
+        "light": "none",
+        "private": true,
+        "access_from": [
+          "master"
+        ]
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/A.json",
+        "pointer": "/floors/1/rooms/2"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "A.floor-2.study",
+      "title": "書房／工作室",
+      "category": "other",
+      "applies_to": {
+        "building_id": "A",
+        "floor_id": "floor-2"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 9.0,
+        "min_sqm": 7.0,
+        "band": "auto",
+        "light": "required",
+        "private": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/A.json",
+        "pointer": "/floors/1/rooms/3"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "A.floor-2.bed2",
+      "title": "次臥",
+      "category": "bedroom",
+      "applies_to": {
+        "building_id": "A",
+        "floor_id": "floor-2"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 11.0,
+        "min_sqm": 9.0,
+        "band": "rear",
+        "light": "required",
+        "private": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/A.json",
+        "pointer": "/floors/1/rooms/4"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "A.floor-2.bath2",
+      "title": "2F 公用衛浴",
+      "category": "bath",
+      "applies_to": {
+        "building_id": "A",
+        "floor_id": "floor-2"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 4.5,
+        "min_sqm": 3.2,
+        "band": "auto",
+        "light": "none",
+        "private": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/A.json",
+        "pointer": "/floors/1/rooms/5"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "A.floor-2.balcony2",
+      "title": "高雄厝陽台（植栽區）",
+      "category": "outdoor",
+      "applies_to": {
+        "building_id": "A",
+        "floor_id": "floor-2"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 5.0,
+        "min_sqm": 3.0,
+        "band": "rear",
+        "light": "required",
+        "private": false,
+        "counts_in_footprint": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/A.json",
+        "pointer": "/floors/1/rooms/6"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "A.floor-3.media",
+      "title": "娛樂室／家庭劇院",
+      "category": "other",
+      "applies_to": {
+        "building_id": "A",
+        "floor_id": "floor-3"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "design_request 第五節：長輩房與無障礙定案前，不建議先花大錢做高級影音室。",
+      "constraints": {
+        "target_sqm": 20.0,
+        "min_sqm": 14.0,
+        "band": "front",
+        "light": "preferred",
+        "private": false
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/A.json",
+        "pointer": "/floors/2/rooms/0"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "A.floor-3.guest",
+      "title": "客房",
+      "category": "bedroom",
+      "applies_to": {
+        "building_id": "A",
+        "floor_id": "floor-3"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 12.0,
+        "min_sqm": 9.0,
+        "band": "rear",
+        "light": "required",
+        "private": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/A.json",
+        "pointer": "/floors/2/rooms/1"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "A.floor-3.bath3",
+      "title": "3F 衛浴",
+      "category": "bath",
+      "applies_to": {
+        "building_id": "A",
+        "floor_id": "floor-3"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "加水錘吸收器。",
+      "constraints": {
+        "target_sqm": 4.5,
+        "min_sqm": 3.2,
+        "band": "auto",
+        "light": "none",
+        "private": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/A.json",
+        "pointer": "/floors/2/rooms/2"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "A.floor-3.multi",
+      "title": "多功能室",
+      "category": "other",
+      "applies_to": {
+        "building_id": "A",
+        "floor_id": "floor-3"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 10.0,
+        "min_sqm": 7.0,
+        "band": "auto",
+        "light": "preferred",
+        "private": false
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/A.json",
+        "pointer": "/floors/2/rooms/3"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "A.floor-3.balcony3",
+      "title": "3F 多功能小陽台",
+      "category": "outdoor",
+      "applies_to": {
+        "building_id": "A",
+        "floor_id": "floor-3"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 4.0,
+        "min_sqm": 2.5,
+        "band": "rear",
+        "light": "required",
+        "private": false,
+        "counts_in_footprint": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/A.json",
+        "pointer": "/floors/2/rooms/4"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "A.floor-rf.rf_stair",
+      "title": "梯間屋突",
+      "category": "stair",
+      "applies_to": {
+        "building_id": "A",
+        "floor_id": "floor-rf"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 6.0,
+        "min_sqm": 4.5,
+        "band": "core",
+        "light": "none",
+        "private": false,
+        "penthouse": true,
+        "penthouse_class": "enclosed"
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/A.json",
+        "pointer": "/floors/3/rooms/0"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "A.floor-rf.rf_tank",
+      "title": "水塔／VF800 加壓區",
+      "category": "service",
+      "applies_to": {
+        "building_id": "A",
+        "floor_id": "floor-rf"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "WT-L-1000B #304 水塔＋變頻恆壓泵含旁通。載重與防颱錨定要有結構圖說（Q12）。",
+      "constraints": {
+        "target_sqm": 3.0,
+        "min_sqm": 2.4,
+        "band": "rear",
+        "light": "none",
+        "private": false,
+        "penthouse": true,
+        "penthouse_class": "tank"
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/A.json",
+        "pointer": "/floors/3/rooms/1"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "A.floor-rf.rf_hp",
+      "title": "熱泵熱水器區",
+      "category": "service",
+      "applies_to": {
+        "building_id": "A",
+        "floor_id": "floor-rf"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "Haier 太陽能熱泵。排風不可回吸。",
+      "constraints": {
+        "target_sqm": 2.5,
+        "min_sqm": 2.0,
+        "band": "rear",
+        "light": "none",
+        "private": false,
+        "penthouse": true,
+        "penthouse_class": "open_mep"
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/A.json",
+        "pointer": "/floors/3/rooms/2"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "A.floor-rf.rf_solar",
+      "title": "太陽能設備區",
+      "category": "outdoor",
+      "applies_to": {
+        "building_id": "A",
+        "floor_id": "floor-rf"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 12.0,
+        "min_sqm": 6.0,
+        "band": "front",
+        "light": "required",
+        "private": false,
+        "counts_in_footprint": false,
+        "penthouse": false,
+        "penthouse_class": "energy"
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/A.json",
+        "pointer": "/floors/3/rooms/3"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "A.floor-rf.rf_deck",
+      "title": "曬衣／設備維修平台",
+      "category": "outdoor",
+      "applies_to": {
+        "building_id": "A",
+        "floor_id": "floor-rf"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "design_request 第五節：RF 不建議當主要曬衣區，對照護家庭不實際。",
+      "constraints": {
+        "target_sqm": 16.0,
+        "min_sqm": 8.0,
+        "band": "auto",
+        "light": "required",
+        "private": false,
+        "counts_in_footprint": false,
+        "penthouse": false
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/A.json",
+        "pointer": "/floors/3/rooms/4"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "B.floor-1.entry_b",
+      "title": "玄關",
+      "category": "entry",
+      "applies_to": {
+        "building_id": "B",
+        "floor_id": "floor-1"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "與神明廳同一進，但大門不可直沖神桌。",
+      "constraints": {
+        "target_sqm": 4.0,
+        "min_sqm": 3.0,
+        "band": "front",
+        "light": "preferred",
+        "private": false
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/B.json",
+        "pointer": "/floors/0/rooms/0"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "B.floor-1.shrine",
+      "title": "神明廳（核心）",
+      "category": "living",
+      "applies_to": {
+        "building_id": "B",
+        "floor_id": "floor-1"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "面積 30.0 不動，但 6m 開間下必須放在走道之後的後帶 —— 車庫旁的前帶只有 2.43m 寬，放不下 22 m² 的下限。改放後帶可得 5.6m 全寬，神桌背牆是完整一面 RC 實牆。神桌背牆要 RC 實牆、上方避樑、排風獨立不與浴廁共管、補氣口不可直吹神桌。2F 衛浴與排水管不得壓到神桌 —— 這是 B 棟風水最大紅線。採光改由側面外牆取得（三棟四面皆外牆，棟距 6m）。",
+      "constraints": {
+        "target_sqm": 30.0,
+        "min_sqm": 22.0,
+        "band": "rear",
+        "light": "required",
+        "private": false
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/B.json",
+        "pointer": "/floors/0/rooms/1"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "B.floor-1.palanquin",
+      "title": "武轎儲藏室",
+      "category": "service",
+      "applies_to": {
+        "building_id": "B",
+        "floor_id": "floor-1"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "移到車庫旁的前帶：這是 B 棟唯一在 2.43m 淨寬下仍可用的大空間，且緊鄰大門，武轎抬出去不必穿越整層。武轎不是一般櫃子：門寬與轉向半徑都要實測，2.43m 淨寬能否轉向是這個配置的第一個要實測的數字。搬運路徑淨寬列入檢查。design_request 不建議改成長輩房，那會失去 B 棟定位。",
+      "constraints": {
+        "target_sqm": 10.5,
+        "min_sqm": 9.0,
+        "band": "front",
+        "light": "none",
+        "private": false,
+        "door_clear_mm": 1200
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/B.json",
+        "pointer": "/floors/0/rooms/2"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "B.floor-1.bath_acc",
+      "title": "1F 無障礙衛浴",
+      "category": "bath",
+      "applies_to": {
+        "building_id": "B",
+        "floor_id": "floor-1"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "已在原圖上，但只停留在文字。必須補輪椅迴轉圖。放後帶，接在神明廳與後陽台之間；排水立管不得經過神桌背牆。",
+      "constraints": {
+        "target_sqm": 7.0,
+        "min_sqm": 4.5,
+        "band": "rear",
+        "light": "none",
+        "private": true,
+        "door_clear_mm": 900,
+        "door_swing": "sliding",
+        "wheelchair_turn": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/B.json",
+        "pointer": "/floors/0/rooms/3"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "B.floor-1.idf_b",
+      "title": "IDF-B 機櫃",
+      "category": "service",
+      "applies_to": {
+        "building_id": "B",
+        "floor_id": "floor-1"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "接 A 棟 MDF。散熱與除濕同 A 棟原則。",
+      "constraints": {
+        "target_sqm": 1.5,
+        "min_sqm": 1.0,
+        "band": "core",
+        "light": "none",
+        "private": false
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/B.json",
+        "pointer": "/floors/0/rooms/4"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "B.floor-1.balcony_b",
+      "title": "後工作陽台（水路進線點）",
+      "category": "outdoor",
+      "applies_to": {
+        "building_id": "B",
+        "floor_id": "floor-1"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "大門到後陽台要避免穿堂，用屏風、拉門或半高櫃處理。",
+      "constraints": {
+        "target_sqm": 5.0,
+        "min_sqm": 4.0,
+        "band": "rear",
+        "light": "required",
+        "private": false,
+        "counts_in_footprint": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/B.json",
+        "pointer": "/floors/0/rooms/5"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "B.floor-2.living_b",
+      "title": "家庭大客廳",
+      "category": "living",
+      "applies_to": {
+        "building_id": "B",
+        "floor_id": "floor-2"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 28.0,
+        "min_sqm": 20.0,
+        "band": "front",
+        "light": "required",
+        "private": false
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/B.json",
+        "pointer": "/floors/1/rooms/0"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "B.floor-2.tea",
+      "title": "茶水吧／梯廳",
+      "category": "kitchen",
+      "applies_to": {
+        "building_id": "B",
+        "floor_id": "floor-2"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 5.0,
+        "min_sqm": 3.0,
+        "band": "core",
+        "light": "preferred",
+        "private": false
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/B.json",
+        "pointer": "/floors/1/rooms/1"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "B.floor-2.bath_g",
+      "title": "客用衛浴",
+      "category": "bath",
+      "applies_to": {
+        "building_id": "B",
+        "floor_id": "floor-2"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "不得落在 1F 神桌正上方。",
+      "constraints": {
+        "target_sqm": 5.0,
+        "min_sqm": 3.6,
+        "band": "auto",
+        "light": "none",
+        "private": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/B.json",
+        "pointer": "/floors/1/rooms/2"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "B.floor-2.master_b",
+      "title": "主臥套房",
+      "category": "bedroom",
+      "applies_to": {
+        "building_id": "B",
+        "floor_id": "floor-2"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 20.0,
+        "min_sqm": 14.0,
+        "band": "rear",
+        "light": "required",
+        "private": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/B.json",
+        "pointer": "/floors/1/rooms/3"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "B.floor-2.balcony_b2",
+      "title": "2F 高雄厝景觀陽臺",
+      "category": "outdoor",
+      "applies_to": {
+        "building_id": "B",
+        "floor_id": "floor-2"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "位置待道路側確認。",
+      "constraints": {
+        "target_sqm": 7.0,
+        "min_sqm": 4.0,
+        "band": "rear",
+        "light": "required",
+        "private": false,
+        "counts_in_footprint": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/B.json",
+        "pointer": "/floors/1/rooms/4"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "B.floor-3.flex_b",
+      "title": "前側彈性室內區",
+      "category": "other",
+      "applies_to": {
+        "building_id": "B",
+        "floor_id": "floor-3"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 14.0,
+        "min_sqm": 10.0,
+        "band": "front",
+        "light": "required",
+        "private": false
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/B.json",
+        "pointer": "/floors/2/rooms/0"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "B.floor-3.ktv",
+      "title": "多功能娛樂室（KTV／劇院）",
+      "category": "other",
+      "applies_to": {
+        "building_id": "B",
+        "floor_id": "floor-3"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 20.0,
+        "min_sqm": 14.0,
+        "band": "auto",
+        "light": "preferred",
+        "private": false
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/B.json",
+        "pointer": "/floors/2/rooms/1"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "B.floor-3.bath_b3",
+      "title": "3F 衛浴",
+      "category": "bath",
+      "applies_to": {
+        "building_id": "B",
+        "floor_id": "floor-3"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 5.0,
+        "min_sqm": 3.2,
+        "band": "auto",
+        "light": "none",
+        "private": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/B.json",
+        "pointer": "/floors/2/rooms/2"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "B.floor-3.guest_b",
+      "title": "後客房",
+      "category": "bedroom",
+      "applies_to": {
+        "building_id": "B",
+        "floor_id": "floor-3"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 12.0,
+        "min_sqm": 9.0,
+        "band": "rear",
+        "light": "required",
+        "private": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/B.json",
+        "pointer": "/floors/2/rooms/3"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "B.floor-3.balcony_b3",
+      "title": "後側工作小陽台",
+      "category": "outdoor",
+      "applies_to": {
+        "building_id": "B",
+        "floor_id": "floor-3"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "含通往 RF 的爬梯。",
+      "constraints": {
+        "target_sqm": 4.0,
+        "min_sqm": 2.5,
+        "band": "rear",
+        "light": "required",
+        "private": false,
+        "counts_in_footprint": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/B.json",
+        "pointer": "/floors/2/rooms/4"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "B.floor-rf.rf_stair",
+      "title": "梯間屋突",
+      "category": "stair",
+      "applies_to": {
+        "building_id": "B",
+        "floor_id": "floor-rf"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 6.0,
+        "min_sqm": 4.5,
+        "band": "core",
+        "light": "none",
+        "private": false,
+        "penthouse": true,
+        "penthouse_class": "enclosed"
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/B.json",
+        "pointer": "/floors/3/rooms/0"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "B.floor-rf.rf_tank",
+      "title": "B 棟水塔／VF800",
+      "category": "service",
+      "applies_to": {
+        "building_id": "B",
+        "floor_id": "floor-rf"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "水塔、熱泵、VF800 的載重與防颱錨定是結構問題，要有正式圖說。",
+      "constraints": {
+        "target_sqm": 3.0,
+        "min_sqm": 2.4,
+        "band": "rear",
+        "light": "none",
+        "private": false,
+        "penthouse": true,
+        "penthouse_class": "tank"
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/B.json",
+        "pointer": "/floors/3/rooms/1"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "B.floor-rf.rf_hp",
+      "title": "熱泵熱水器區",
+      "category": "service",
+      "applies_to": {
+        "building_id": "B",
+        "floor_id": "floor-rf"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 2.5,
+        "min_sqm": 2.0,
+        "band": "rear",
+        "light": "none",
+        "private": false,
+        "penthouse": true,
+        "penthouse_class": "open_mep"
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/B.json",
+        "pointer": "/floors/3/rooms/2"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "B.floor-rf.rf_deck",
+      "title": "活動平台／曬衣棚架",
+      "category": "outdoor",
+      "applies_to": {
+        "building_id": "B",
+        "floor_id": "floor-rf"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 24.0,
+        "min_sqm": 10.0,
+        "band": "auto",
+        "light": "required",
+        "private": false,
+        "counts_in_footprint": false,
+        "penthouse": false
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/B.json",
+        "pointer": "/floors/3/rooms/3"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "C.floor-1.entry",
+      "title": "玄關（含車庫進屋緩衝）",
+      "category": "entry",
+      "applies_to": {
+        "building_id": "C",
+        "floor_id": "floor-1"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "前帶 2.43m 寬，玄關與孝親衛浴分掉這一條。鞋櫃做完仍要留得下 150cm 迴轉圈。",
+      "constraints": {
+        "target_sqm": 6.5,
+        "min_sqm": 3.0,
+        "band": "front",
+        "light": "preferred",
+        "private": false,
+        "wheelchair_turn": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/C.json",
+        "pointer": "/floors/0/rooms/0"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "C.floor-1.living",
+      "title": "客餐廳（開放式）",
+      "category": "living",
+      "applies_to": {
+        "building_id": "C",
+        "floor_id": "floor-1"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "原客廳 20 + 餐廳 11 合併。放後帶取得 5.6m 全寬（車庫旁的前帶只有 2.43m，會變成保齡球道）。",
+      "constraints": {
+        "target_sqm": 18.0,
+        "min_sqm": 18.0,
+        "band": "rear",
+        "light": "required",
+        "private": false,
+        "wheelchair_turn": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/C.json",
+        "pointer": "/floors/0/rooms/1"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "C.floor-1.kitchen",
+      "title": "廚房",
+      "category": "kitchen",
+      "applies_to": {
+        "building_id": "C",
+        "floor_id": "floor-1"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "要能直通後陽台，不穿越孝親房。",
+      "constraints": {
+        "target_sqm": 6.5,
+        "min_sqm": 6.0,
+        "band": "rear",
+        "light": "preferred",
+        "private": false
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/C.json",
+        "pointer": "/floors/0/rooms/2"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "C.floor-1.elder",
+      "title": "孝親房／長輩房",
+      "category": "bedroom",
+      "applies_to": {
+        "building_id": "C",
+        "floor_id": "floor-1"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "門寬 ≥90cm。到浴室零高差 —— 6m 開間下浴室在走道正對面，房門與浴室門要對齊，夜間路徑是 1.2m 直線不轉折。這是 A 棟要抄的樣板。",
+      "constraints": {
+        "target_sqm": 11.5,
+        "min_sqm": 10.0,
+        "band": "rear",
+        "light": "required",
+        "private": true,
+        "door_clear_mm": 900,
+        "wheelchair_turn": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/C.json",
+        "pointer": "/floors/0/rooms/3"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "C.floor-1.elder_bath",
+      "title": "孝親衛浴",
+      "category": "bath",
+      "applies_to": {
+        "building_id": "C",
+        "floor_id": "floor-1"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "6m 開間下無法維持套房內衛浴（後帶全部取 min 仍超出 2.1 m²），改放走道對面的前帶。門要與孝親房門正對。好處是照服員可從走道直接進出，不必穿越長輩臥室。150×180cm 迴轉。牆面預埋補強、緊急按鈕連動聲光＋手機推播。",
+      "constraints": {
+        "target_sqm": 8.0,
+        "min_sqm": 4.5,
+        "band": "front",
+        "light": "none",
+        "private": true,
+        "door_clear_mm": 900,
+        "door_swing": "sliding",
+        "wheelchair_turn": true,
+        "access_from": [
+          "corridor"
+        ]
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/C.json",
+        "pointer": "/floors/0/rooms/4"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "C.floor-1.idf_c",
+      "title": "IDF-C 弱電機櫃",
+      "category": "service",
+      "applies_to": {
+        "building_id": "C",
+        "floor_id": "floor-1"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "與 1F 樓梯間同區。",
+      "constraints": {
+        "target_sqm": 1.5,
+        "min_sqm": 1.0,
+        "band": "core",
+        "light": "none",
+        "private": false
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/C.json",
+        "pointer": "/floors/0/rooms/5"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "C.floor-1.balcony",
+      "title": "後工作陽台",
+      "category": "outdoor",
+      "applies_to": {
+        "building_id": "C",
+        "floor_id": "floor-1"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "4.0 會被切成 2900×1554（淨深不足 1500），提到 4.8 換取深度。洗衣機 0.65 ＋ 通行 0.9 是實際下限。",
+      "constraints": {
+        "target_sqm": 4.8,
+        "min_sqm": 4.0,
+        "band": "rear",
+        "light": "required",
+        "private": false,
+        "counts_in_footprint": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/C.json",
+        "pointer": "/floors/0/rooms/6"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "C.floor-2.living2",
+      "title": "客廳（2F 主角空間）",
+      "category": "living",
+      "applies_to": {
+        "building_id": "C",
+        "floor_id": "floor-2"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 22.0,
+        "min_sqm": 16.0,
+        "band": "front",
+        "light": "required",
+        "private": false
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/C.json",
+        "pointer": "/floors/1/rooms/0"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "C.floor-2.guest2",
+      "title": "客房／多功能房",
+      "category": "bedroom",
+      "applies_to": {
+        "building_id": "C",
+        "floor_id": "floor-2"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 12.0,
+        "min_sqm": 9.0,
+        "band": "rear",
+        "light": "required",
+        "private": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/C.json",
+        "pointer": "/floors/1/rooms/1"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "C.floor-2.kitchenette",
+      "title": "小型廚房",
+      "category": "kitchen",
+      "applies_to": {
+        "building_id": "C",
+        "floor_id": "floor-2"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 6.0,
+        "min_sqm": 4.0,
+        "band": "rear",
+        "light": "preferred",
+        "private": false
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/C.json",
+        "pointer": "/floors/1/rooms/2"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "C.floor-2.bath_c2",
+      "title": "廁所（乾濕分離）",
+      "category": "bath",
+      "applies_to": {
+        "building_id": "C",
+        "floor_id": "floor-2"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 5.0,
+        "min_sqm": 3.6,
+        "band": "auto",
+        "light": "none",
+        "private": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/C.json",
+        "pointer": "/floors/1/rooms/3"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "C.floor-2.balcony_c2",
+      "title": "2F 高雄厝景觀陽臺",
+      "category": "outdoor",
+      "applies_to": {
+        "building_id": "C",
+        "floor_id": "floor-2"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 7.0,
+        "min_sqm": 4.0,
+        "band": "rear",
+        "light": "required",
+        "private": false,
+        "counts_in_footprint": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/C.json",
+        "pointer": "/floors/1/rooms/4"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "C.floor-3.master_c",
+      "title": "主臥室（飯店級配置）",
+      "category": "bedroom",
+      "applies_to": {
+        "building_id": "C",
+        "floor_id": "floor-3"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 20.0,
+        "min_sqm": 14.0,
+        "band": "front",
+        "light": "required",
+        "private": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/C.json",
+        "pointer": "/floors/2/rooms/0"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "C.floor-3.gym",
+      "title": "運動空間",
+      "category": "other",
+      "applies_to": {
+        "building_id": "C",
+        "floor_id": "floor-3"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 14.0,
+        "min_sqm": 9.0,
+        "band": "auto",
+        "light": "preferred",
+        "private": false
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/C.json",
+        "pointer": "/floors/2/rooms/1"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "C.floor-3.bath_c3",
+      "title": "廁所（乾濕分離）",
+      "category": "bath",
+      "applies_to": {
+        "building_id": "C",
+        "floor_id": "floor-3"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 5.0,
+        "min_sqm": 3.6,
+        "band": "auto",
+        "light": "none",
+        "private": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/C.json",
+        "pointer": "/floors/2/rooms/2"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "C.floor-3.balcony_c3",
+      "title": "3F 主臥通風小陽台",
+      "category": "outdoor",
+      "applies_to": {
+        "building_id": "C",
+        "floor_id": "floor-3"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 4.0,
+        "min_sqm": 2.5,
+        "band": "rear",
+        "light": "required",
+        "private": false,
+        "counts_in_footprint": true
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/C.json",
+        "pointer": "/floors/2/rooms/3"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "C.floor-rf.rf_stair",
+      "title": "梯間屋突",
+      "category": "stair",
+      "applies_to": {
+        "building_id": "C",
+        "floor_id": "floor-rf"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 6.0,
+        "min_sqm": 4.5,
+        "band": "core",
+        "light": "none",
+        "private": false,
+        "penthouse": true,
+        "penthouse_class": "enclosed"
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/C.json",
+        "pointer": "/floors/3/rooms/0"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "C.floor-rf.rf_tank",
+      "title": "不鏽鋼水塔／加壓 VF800",
+      "category": "service",
+      "applies_to": {
+        "building_id": "C",
+        "floor_id": "floor-rf"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 3.0,
+        "min_sqm": 2.4,
+        "band": "rear",
+        "light": "none",
+        "private": false,
+        "penthouse": true,
+        "penthouse_class": "tank"
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/C.json",
+        "pointer": "/floors/3/rooms/1"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "C.floor-rf.rf_hp",
+      "title": "熱泵熱水器（Haier）",
+      "category": "service",
+      "applies_to": {
+        "building_id": "C",
+        "floor_id": "floor-rf"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 2.5,
+        "min_sqm": 2.0,
+        "band": "rear",
+        "light": "none",
+        "private": false,
+        "penthouse": true,
+        "penthouse_class": "open_mep"
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/C.json",
+        "pointer": "/floors/3/rooms/2"
+      },
+      "decision_log": []
+    },
+    {
+      "id": "C.floor-rf.rf_dry",
+      "title": "曬衣區／活動平台",
+      "category": "outdoor",
+      "applies_to": {
+        "building_id": "C",
+        "floor_id": "floor-rf"
+      },
+      "status": "candidate",
+      "priority": "should",
+      "rationale": "由舊版面積 brief 匯入，尚未經屋主逐項確認。",
+      "constraints": {
+        "target_sqm": 24.0,
+        "min_sqm": 10.0,
+        "band": "auto",
+        "light": "required",
+        "private": false,
+        "counts_in_footprint": false,
+        "penthouse": false
+      },
+      "verification": {
+        "method": "owner_confirmation_then_drawing_evidence",
+        "state": "pending_owner_confirmation"
+      },
+      "source": {
+        "type": "legacy_brief",
+        "path": "inputs/brief/C.json",
+        "pointer": "/floors/3/rooms/3"
+      },
+      "decision_log": []
+    }
+  ]
+}

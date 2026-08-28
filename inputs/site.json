@@ -1,8 +1,10 @@
 {
   "schema": "house-site-massing-v1",
+  "authority": "legacy_assumption",
+  "superseded_by": "inputs/project.json",
   "_readme": [
-    "設計前期的量體參數。這裡沒有一個數字是實測的 —— 建築師還沒開始畫，地也還沒定。",
-    "唯一的硬條件是『每棟建築面積 32 坪』，其餘都是為了讓人先看到、走進去而做的假設。",
+    "歷史參數化量體情境。這裡把 32 坪當成每層建築面積，已不符合 2026-08-27 確認的『每筆基地 32 坪』語意。",
+    "現行基地事實只讀 inputs/project.json；本檔僅保留舊模型重現與回歸測試，不得用來宣稱可建量體或合規。",
     "改這個檔 → 重跑 scripts/generate_parametric_plan.py → 重開 walkthrough.html。"
   ],
   "footprint_ping": 32.0,

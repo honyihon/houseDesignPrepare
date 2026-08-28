@@ -1911,7 +1911,7 @@ def render_index_html(records: list[dict[str, Any]], drawing_style: str) -> str:
 </head>
 <body>
   <h1>Top1 SVG Export Index</h1>
-  <div class="sub">早期草圖存檔（HTML 分支）· 非現行設計基準 —— 現行基準見 structured/parametric/</div>
+  <div class="sub">早期草圖存檔（HTML 分支）· 非現行設計基準 —— 現行圖面檢核見 structured/reviews/</div>
   <div class="sub">Generated: {html.escape(now_iso())} · Drawing style: {html.escape(drawing_style)} · Total: {len(records)} floors</div>
   <section class="grid">
     {''.join(cards)}

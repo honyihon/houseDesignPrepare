@@ -1,0 +1,115 @@
+{
+  "schema": "house-rule-pack-v2",
+  "rule_pack": "kaohsiung-house-review-v1",
+  "jurisdiction": {
+    "country_code": "TW",
+    "county_code": "KHH",
+    "label": "臺灣／高雄市"
+  },
+  "policy": {
+    "statuses": ["pass", "fail", "warning", "unknown", "not_applicable", "professional_review"],
+    "unknown_is_not_pass": true,
+    "professional_signoff_required": true,
+    "priority": ["law_and_life_safety", "confirmed_owner_requirements", "usability_and_maintenance", "common_fengshui"]
+  },
+  "rules": [
+    {
+      "rule_id": "BR-TW-ROOF-PENTHOUSE",
+      "title": "屋頂突出物投影與容積認定",
+      "domain": "building_regulation",
+      "execution": "professional_review",
+      "release_eligible": false,
+      "verification_owner": "建築師",
+      "source": {
+        "title": "建築技術規則建築設計施工編",
+        "article": "第 1 條、第 162 條",
+        "url": "https://www.nlma.gov.tw/ch/legislation/law%26regusw/6175",
+        "effective_from": null,
+        "verified_at": "2026-08-11",
+        "verified_by": "repository_source_review",
+        "note": "條文字面已整理；三棟在執照上的幢棟認定與地方審查實務仍須建築師確認。"
+      }
+    },
+    {
+      "rule_id": "ACC-TW-APPLICABILITY",
+      "title": "無障礙規範適用性與住宅自訂標準",
+      "domain": "accessibility",
+      "execution": "professional_review",
+      "release_eligible": false,
+      "verification_owner": "建築師／無障礙顧問",
+      "source": {
+        "title": "建築物無障礙設施設計規範",
+        "article": "適用範圍及各設施設計章節待依實際申照用途確認",
+        "url": "https://www.nlma.gov.tw/ch/legislation/regsearch/927",
+        "effective_from": null,
+        "verified_at": null,
+        "verified_by": null
+      }
+    },
+    {
+      "rule_id": "KH-ZONING-LOCAL",
+      "title": "高雄市土地使用分區與地方審查條件",
+      "domain": "building_regulation",
+      "execution": "professional_review",
+      "release_eligible": false,
+      "verification_owner": "高雄市執業建築師",
+      "source": {
+        "title": "高雄市都市發展局／土地使用分區相關法令",
+        "article": null,
+        "url": "https://urban-web.kcg.gov.tw/",
+        "effective_from": null,
+        "verified_at": null,
+        "verified_by": null,
+        "note": "未取得地號與分區前不選用數值條文。"
+      }
+    },
+    {
+      "rule_id": "STRUCTURAL-RF-EQUIPMENT",
+      "title": "屋頂水塔、熱泵、太陽能設備載重與防颱錨定",
+      "domain": "structural",
+      "execution": "professional_review",
+      "release_eligible": false,
+      "verification_owner": "結構技師",
+      "source": {
+        "title": "專案結構設計與設備荷重資料",
+        "article": "待結構計算書與設備型錄建立",
+        "url": null,
+        "effective_from": null,
+        "verified_at": null,
+        "verified_by": null
+      }
+    },
+    {
+      "rule_id": "MEP-CROSS-BUILDING",
+      "title": "跨棟給排水、電力、弱電與計量介面",
+      "domain": "mep",
+      "execution": "professional_review",
+      "release_eligible": false,
+      "verification_owner": "機電技師／建築師",
+      "source": {
+        "title": "專案機電系統圖與台電、自來水申請條件",
+        "article": "待正式系統圖與申請方案建立",
+        "url": null,
+        "effective_from": null,
+        "verified_at": null,
+        "verified_by": null
+      }
+    },
+    {
+      "rule_id": "FENG-COMMON-LAYOUT",
+      "title": "常見格局風水衝突",
+      "domain": "fengshui",
+      "execution": "advisory",
+      "release_eligible": true,
+      "verification_owner": "屋主",
+      "source": {
+        "title": "ABC Design Revision Checklist",
+        "article": "穿堂、門沖、廁所、灶位、床位與神桌上下檢核",
+        "url": "https://github.com/honyihon/houseDesignPrepare/blob/main/Docs/ABC_design_revision_checklist.md",
+        "effective_from": "2026-07-01",
+        "verified_at": "2026-08-27",
+        "verified_by": "owner_selected_project_policy"
+      }
+    }
+  ]
+}

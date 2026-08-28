@@ -6,26 +6,30 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Residential building design preparation toolchain for a three-building compound (A, B, C buildings + storage) in Taiwan. Converts interactive HTML floor-plan pages into structured JSON, then runs a Python pipeline that generates scored layout candidates, SVG floor-plan drawings, and print-ready PDF bundles. Domain language is Traditional Chinese (zh-TW); dimensions in mm and "ping" (tsubo) area units.
 
-## Which model is authoritative
+## Which data is authoritative
 
-There are two independent branches in this repo, and they disagree about the
-buildings. That is not a bug to reconcile — they answer different questions —
-but it does mean one of them has to be the one you design against:
+The current confirmed condition is **three adjacent, separately reviewed
+parcels in Kaohsiung, each approximately 32 ping of land**. Thirty-two ping is
+parcel area, not a permitted floor footprint.
 
-> **The parametric branch is the predesign baseline (設計前期基準).**
-> `inputs/site.json` + `inputs/brief/{A,B,C}.json` → `structured/parametric/`.
+Authority is split by data type:
 
-Everything in the numbered pipeline below is the **HTML historical branch**: the
-early sketches, kept as an archive. When a room's size, position, or access
-differs between the two, the parametric answer is the current one.
-
-What "predesign baseline" does **and does not** claim:
-
-| It is | It is not |
+| Data | Current authority |
 |---|---|
-| The current shared assumption about what fits in 32 坪 | Construction drawings |
-| A thing you can walk through and react to before an architect starts | Drawings anyone would submit for 建照 |
-| Explicit about every constraint it fails (`capacity.md` findings) | Measured — no dimension in it came off a tape measure, and the lot is not chosen |
+| Parcel facts and unknown legal inputs | `inputs/project.json` |
+| Owner decisions and unconfirmed ideas | `inputs/requirements.json` |
+| Architect drawing versions and normalized evidence | `inputs/revisions/<revision>/` |
+| Current findings and offline dashboard | `structured/reviews/<revision>/` |
+
+`inputs/site.json` + `inputs/brief/{A,B,C}.json` → `structured/parametric/`
+is now a **legacy parametric scenario**. It treats 32 ping as each storey's
+building area, so it remains useful only for historical discussion and
+regression tests. It must never be called the current baseline, a buildable
+envelope, or a regulatory result.
+
+The numbered HTML pipeline below is also historical. Its 82% auto-derived
+geometry is useful as an archive and parser regression sample, not drawing
+evidence.
 
 The HTML branch is kept for three reasons, all of them real: it is the **archive
 of the original sketches** (where the room list came from), it carries the
@@ -35,11 +39,10 @@ design input any more. Its own "canonical" rule (below) still holds *within that
 branch* — `XbuildingView.html` remains the source of truth for the HTML branch's
 own outputs — it just no longer means "source of truth for the project".
 
-Practical consequence: **do not "fix" the parametric plan to match the HTML**, and
-do not port dimensions from `room_program.json` into `inputs/brief/`. 82% of the
-HTML geometry is `auto`, i.e. guessed from CSS classes (see "Geometry
-provenance"); the brief is a statement of intent, which is a better input than a
-guess dressed as a measurement.
+Practical consequence: do not port dimensions from either historical branch
+into the current project model. New facts go to `inputs/project.json`; owner
+decisions go to the requirement register; real geometry arrives through an
+immutable PDF + IFC/DXF revision.
 
 ## Architecture & Data Flow (HTML historical branch)
 
@@ -79,13 +82,11 @@ the roof level under an older name.
 `site` placement in `inputs/dimensions.json` puts C at x=0 and A at the largest
 x. Both 3D viewers depend on this; do not "tidy" it back to alphabetical.
 
-### Parametric branch — the predesign baseline (design-before-drawing)
+### Parametric branch — legacy 32-ping-footprint scenario
 
-This is the authoritative model (see "Which model is authoritative"). It answers
-a different question from the pipeline above: not "what does the drawn plan
-measure" but "what actually fits in 32 坪". It reads an area brief, not the HTML,
-and shares nothing with that pipeline except
-`scripts/config/residential_defaults_tw.json`.
+This branch answers the historical question "what fits if every storey itself
+is 32 ping?" It does not answer what fits on a 32-ping parcel after coverage,
+setbacks and legal open space. Its outputs must retain a legacy warning.
 
 ```
 inputs/site.json          massing parameters (frontage variants, garage bays, row order, gap)
@@ -152,11 +153,19 @@ powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1
 # Options: -Mode concept|draft|ifc  -Paper a3|a4  -Selection auto|baseline|best
 ```
 
-**Incremental package CLI:**
+**Current review CLI:**
 ```bash
-python -m house_design pipeline --mode concept
-python -m house_design pipeline --mode draft --from-step candidates --to-step svg
-python -m house_design pipeline --mode ifc --force
+python -m house_design intake validate
+python -m house_design drawings import --revision R001 --label "初步設計" --pdf drawings.pdf --ifc model.ifc
+python -m house_design review run --revision R001 --previous R000
+```
+
+The historical rendering pipeline remains available with `pipeline`. Its final
+validation mode is named `release`; `ifc` is a deprecated compatibility alias
+and does not mean the pipeline reads IFC:
+
+```bash
+python -m house_design pipeline --mode release --force
 ```
 
 This entrypoint uses `.house-design-cache.json` to skip steps whose commands,
@@ -164,16 +173,16 @@ inputs, and expected outputs are unchanged.
 
 - **concept**: fast, skips PDF, auto-selects the source-preserving `baseline` candidate
 - **draft**: default, baseline selection, generates PDF
-- **ifc**: full export + validation gate
+- **release**: full historical export + validation gate; still not professional approval
 
 ## Critical Conventions
 
-- **Two-file pattern** (HTML branch): Each building has canonical HTML (`XbuildingView.html`) and a `_tmp` working copy. The HTML pipeline reads only canonical (non-`_tmp`) files, and within that branch the canonical file is the source of truth. Never modify `*_tmp` files. This says nothing about the project as a whole — for that, the parametric branch is the baseline.
+- **Two-file pattern** (HTML branch): Each building has canonical HTML (`XbuildingView.html`) and a `_tmp` working copy. The HTML pipeline reads only canonical (non-`_tmp`) files, and within that historical branch the canonical file is its own source of truth. Never modify `*_tmp` files.
 - **Millimeter geometry**: The `data-*-mm` attributes on `.plan-cell` and `.floor-plan` carry the geometry the pipeline reads, but most of them were *generated* by `annotate_html_geometry.py` from CSS classes, not measured. Real numbers belong in `inputs/dimensions.json`, which wins over the HTML. `blueprint-precise-mm` is only claimed when no cell is left at `auto`; otherwise the mode is `mixed-provenance`.
 - **DOM skeleton must be preserved**: `.floor-plan > .plan-grid-visual > .plan-row > .plan-cell` structure is parsed by BeautifulSoup. Do not restructure this hierarchy.
 - **Room-cell binding**: `onclick="highlightRoom('xxx', this)"` must correspond to `id="room-xxx"`. Keep these in sync.
 - **Main entrance**: Only one `.plan-cell` per floor should have `data-entry="true"`.
-- **After editing HTML**: Always run the pipeline (at minimum `-Mode concept`) to verify changes. For release, run `-Mode ifc`.
+- **After editing HTML**: Always run the historical pipeline (at minimum `-Mode concept`) to verify changes. Its release gate does not update or approve the current parcel/drawing review.
 
 ## Geometry provenance
 

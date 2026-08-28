@@ -1,7 +1,9 @@
 # House Design Task Board
 
+> **歷史 HTML 分支狀態，不代表現行專案合規。** 現行檢核以 `structured/reviews/<revision>/` 為準；未知基地資料與專業確認事項不得被此處的 PASS 覆蓋。
+
 > 範圍：**HTML 分支（早期草圖存檔）** 的驗證閘門。
-> 現行設計基準是參數化分支 `structured/parametric/`，不由這張板子追蹤。
+> `structured/parametric/` 同樣是歷史假設；現行資料權威與版次入口見 `inputs/project.json`、`inputs/requirements.json`、`inputs/revisions/` 與 `structured/reviews/`。
 
 ## Rollout
 

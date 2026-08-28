@@ -5,7 +5,7 @@
 
 本專案目前的核心用途，是在收到建築師圖面後，以不可變版次保存 PDF／IFC／DXF，並根據基地事實、屋主已確認需求、法源與圖面證據產生可追溯的檢核報告。
 
-已確認的前提是：高雄有 A／B／C 三筆相鄰、分開檢核的基地，每筆約 32 坪。32 坪是「基地面積」，不是每層可蓋面積。地號、使用分區、道路、建蔽率、容積率與退縮未知時，系統必須顯示 `unknown`，不能推定為通過。
+目前土地尚未確定。目標是在高雄尋找 A／B／C 三筆相鄰、未來分開檢核的土地，每筆約 32 坪。32 坪是「選地目標」，不是實際基地面積或每層可蓋面積。土地、地號、使用分區、道路、建蔽率、容積率與退縮未知時，系統必須顯示 `unknown`，不能推定為通過。
 
 專案仍保留兩套歷史工具：
 
@@ -19,6 +19,8 @@
 | 目的 | 指令 | 主要輸出 |
 |---|---|---|
 | 檢查基地與需求資料格式 | `python -m house_design intake validate` | 終端機 JSON |
+| 驗證前期階段閘門 | `python -m house_design predesign validate` | 終端機 JSON，不輸出私有金額 |
+| 產生前期準備報告 | `python -m house_design predesign report` | `structured/predesign/` |
 | 匯入建築師 PDF＋IFC | `python -m house_design drawings import ...` | `inputs/revisions/<revision>/` |
 | 匯入 PDF＋DXF | `python -m house_design drawings import ... --dxf ... --mapping ...` | 不可變來源、mapping 與標準化模型 |
 | 查看所有圖面版次 | `python -m house_design drawings list` | 終端機 JSON |
@@ -37,9 +39,12 @@
 | 資料 | 現行權威位置 | 說明 |
 |---|---|---|
 | 基地事實 | `inputs/project.json` | 地號、分區、道路、建蔽率、容積率、退縮及資料來源 |
+| 前期階段狀態 | `inputs/predesign.json` | 家庭、財務、選地、設計、發包、施工與交屋閘門 |
+| 精確預算 | `inputs/private/budget.json` | 已排除版控；只使用 `inputs/budget.private.template.json` 建立 |
 | 屋主需求 | `inputs/requirements.json` | `candidate`／`confirmed`／`rejected`、優先度與 decision log |
 | 建築師圖面版次 | `inputs/revisions/<revision>/` | 不可變 PDF／IFC／DXF、mapping、雜湊與 normalized model |
 | 現行檢核結果 | `structured/reviews/<revision>/` | 報告、會議 PDF、比較結果與離線儀表板 |
+| 前期準備結果 | `structured/predesign/` | 前期 report、目前行動與分層研究來源 |
 | 高雄檢核規則 | `rules/kaohsiung_review_rules.json` | 法源、適用狀態、查證人與專業責任人 |
 | 歷史 HTML 草圖 | `AbuildingView.html` 等 | 只在 HTML 歷史分支內是來源，不是現行專案圖面 |
 | 歷史參數化情境 | `inputs/site.json`、`inputs/brief/` | 舊 32 坪 footprint 假設，只供重現與比較 |
@@ -79,6 +84,30 @@ python3 -m venv .venv
 以下範例統一使用 `python -m house_design`。若 WSL／Linux／macOS 沒有 `python` 別名，請改用 `.venv/bin/python -m house_design`；Windows 也可使用 `.\.venv\Scripts\python.exe -m house_design`。安裝 editable package 後，還可將整段改寫成 `house-design`。
 
 ## 4. 現行工作流：基地、需求與圖面版次
+
+### 4.0 土地未定時先跑前期閘門
+
+```bash
+python -m house_design predesign validate
+python -m house_design predesign report
+```
+
+主要輸出：
+
+- `structured/predesign/report.json`：機器可讀階段、阻擋、證據與負責角色。
+- `structured/predesign/report.md`：現在要處理與後續階段預留。
+- `structured/predesign/sources.md`：官方、專業、經驗與屋主政策的分層來源。
+
+精確預算從範本複製到私有位置：
+
+```bash
+mkdir -p inputs/private
+cp inputs/budget.private.template.json inputs/private/budget.json
+```
+
+`inputs/private/` 已由 `.gitignore` 排除。報告只會顯示私有預算表是否存在、有效及完成幾個欄位，不會帶出金額。
+
+候選土地請從 `inputs/site-candidate.template.json` 建立。三筆相鄰、每筆約 32 坪目前只記在 `site_search.target_scenario`；只有選定並通過查核後，才能把正式 parcel 寫入 `site_search.selected_site`。
 
 ### 4.1 驗證基地與需求資料
 
@@ -260,6 +289,9 @@ python -m house_design review run --revision R002 --previous R001
 | `--project` | `inputs/project.json` | 指定基地資料 |
 | `--requirements` | `inputs/requirements.json` | 指定需求登錄 |
 | `--rules` | `rules/kaohsiung_review_rules.json` | 指定規則包 |
+| `--predesign` | `inputs/predesign.json` | 指定前期階段狀態 |
+| `--predesign-rules` | `rules/predesign_readiness_rules.json` | 指定前期規則與分層來源 |
+| `--budget-private` | `inputs/private/budget.json` | 讀取私有預算完整狀態；報告不輸出金額 |
 | `--revision-root` | `inputs/revisions` | 指定不可變版次根目錄 |
 | `--output-root` | `structured/reviews` | 指定報告根目錄 |
 | `--previous` | 無 | 將前後版比較嵌入報告 |
@@ -769,6 +801,13 @@ python -m pytest -q
 python -m ruff check house_design scripts tests
 ```
 
+檢查前期閘門：
+
+```bash
+python -m house_design predesign validate
+python -m house_design predesign report
+```
+
 檢查現行資料契約：
 
 ```bash
@@ -816,6 +855,7 @@ MCP 無法啟動時確認：
 
 - `README.md`：現行專案快速開始與資料權威摘要。
 - `Docs/review-workflow.md`：現行圖面版次檢核的精簡操作流程。
+- `Docs/predesign-owner-readiness.md`：選地、設計、發包、施工與交屋的不後悔指南。
 - `structured/CURRENT_STATUS.md`：目前資料完成度與 R000 驗收狀態。
 - `CLAUDE.md`：專案架構、限制與歷史分支細節。
 - `scripts/README.md`：各歷史 pipeline 腳本詳細說明。

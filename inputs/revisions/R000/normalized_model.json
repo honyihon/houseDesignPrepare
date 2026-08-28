@@ -1,0 +1,2954 @@
+{
+  "schema": "house-normalized-model-v1",
+  "revision_id": "R000",
+  "generated_at": "2026-08-27T07:48:12.677986+00:00",
+  "units": {
+    "length": "mm",
+    "area": "sqm"
+  },
+  "coordinate_system": {
+    "status": "local_assumed",
+    "axis": "legacy_parametric"
+  },
+  "provenance": [
+    {
+      "source": "structured/parametric/plan.json",
+      "sha256": "44dca801266f1f76d403b010765fcc3377073e22532ce08344e1c4c651b014a8",
+      "authority": "legacy_assumption",
+      "warning": "32 坪在此模型中是每層建築面積，不是現行每筆基地 32 坪條件。"
+    }
+  ],
+  "entities": {
+    "buildings": [
+      {
+        "id": "LEGACY:A",
+        "building_id": "A",
+        "name": "A棟",
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B",
+        "building_id": "B",
+        "name": "B棟",
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C",
+        "building_id": "C",
+        "name": "C棟",
+        "geometry_provenance": "legacy_assumption"
+      }
+    ],
+    "storeys": [
+      {
+        "id": "LEGACY:A:floor-1",
+        "building_id": "A",
+        "floor_id": "floor-1",
+        "name": "1F",
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-2",
+        "building_id": "A",
+        "floor_id": "floor-2",
+        "name": "2F",
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-3",
+        "building_id": "A",
+        "floor_id": "floor-3",
+        "name": "3F",
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-rf",
+        "building_id": "A",
+        "floor_id": "floor-rf",
+        "name": "RF（頂樓）",
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-1",
+        "building_id": "B",
+        "floor_id": "floor-1",
+        "name": "1F",
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-2",
+        "building_id": "B",
+        "floor_id": "floor-2",
+        "name": "2F",
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-3",
+        "building_id": "B",
+        "floor_id": "floor-3",
+        "name": "3F",
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-rf",
+        "building_id": "B",
+        "floor_id": "floor-rf",
+        "name": "RF（頂樓）",
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-1",
+        "building_id": "C",
+        "floor_id": "floor-1",
+        "name": "1F",
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-2",
+        "building_id": "C",
+        "floor_id": "floor-2",
+        "name": "2F",
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-3",
+        "building_id": "C",
+        "floor_id": "floor-3",
+        "name": "3F",
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-rf",
+        "building_id": "C",
+        "floor_id": "floor-rf",
+        "name": "RF（頂樓）",
+        "geometry_provenance": "legacy_assumption"
+      }
+    ],
+    "spaces": [
+      {
+        "id": "LEGACY:A:floor-1:corridor",
+        "source_id": "corridor",
+        "requirement_id": "A.floor-1.corridor",
+        "building_id": "A",
+        "floor_id": "floor-1",
+        "name": "走道",
+        "category": "other",
+        "bbox_mm": [
+          200.0,
+          6472.0,
+          5800.0,
+          7673.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 1201.0,
+        "area_sqm": 6.73,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-1:stair",
+        "source_id": "stair",
+        "requirement_id": "A.floor-1.stair",
+        "building_id": "A",
+        "floor_id": "floor-1",
+        "name": "樓梯間",
+        "category": "stair",
+        "bbox_mm": [
+          3157.0,
+          7787.0,
+          5800.0,
+          10853.0
+        ],
+        "width_mm": 2643.0,
+        "depth_mm": 3066.0,
+        "area_sqm": 8.1,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-1:garage",
+        "source_id": "garage",
+        "requirement_id": "A.floor-1.garage",
+        "building_id": "A",
+        "floor_id": "floor-1",
+        "name": "車庫",
+        "category": "service",
+        "bbox_mm": [
+          2742.0,
+          200.0,
+          5800.0,
+          6358.0
+        ],
+        "width_mm": 3058.0,
+        "depth_mm": 6158.0,
+        "area_sqm": 18.83,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-1:mdf",
+        "source_id": "mdf",
+        "requirement_id": "A.floor-1.mdf",
+        "building_id": "A",
+        "floor_id": "floor-1",
+        "name": "樓梯下 MDF 主機櫃",
+        "category": "service",
+        "bbox_mm": [
+          3157.0,
+          10967.0,
+          5800.0,
+          11753.0
+        ],
+        "width_mm": 2643.0,
+        "depth_mm": 786.0,
+        "area_sqm": 2.08,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-1:entry",
+        "source_id": "entry",
+        "requirement_id": "A.floor-1.entry",
+        "building_id": "A",
+        "floor_id": "floor-1",
+        "name": "玄關（含車庫進屋緩衝）",
+        "category": "entry",
+        "bbox_mm": [
+          200.0,
+          200.0,
+          2628.0,
+          3572.0
+        ],
+        "width_mm": 2428.0,
+        "depth_mm": 3372.0,
+        "area_sqm": 8.19,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-1:bath1",
+        "source_id": "bath1",
+        "requirement_id": "A.floor-1.bath1",
+        "building_id": "A",
+        "floor_id": "floor-1",
+        "name": "1F 無障礙公衛",
+        "category": "bath",
+        "bbox_mm": [
+          200.0,
+          3686.0,
+          2628.0,
+          6358.0
+        ],
+        "width_mm": 2428.0,
+        "depth_mm": 2672.0,
+        "area_sqm": 6.49,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-1:balcony",
+        "source_id": "balcony",
+        "requirement_id": "A.floor-1.balcony",
+        "building_id": "A",
+        "floor_id": "floor-1",
+        "name": "後工作陽台（含給水進線）",
+        "category": "outdoor",
+        "bbox_mm": [
+          200.0,
+          7787.0,
+          3043.0,
+          9447.0
+        ],
+        "width_mm": 2843.0,
+        "depth_mm": 1660.0,
+        "area_sqm": 4.72,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-1:kitchen",
+        "source_id": "kitchen",
+        "requirement_id": "A.floor-1.kitchen",
+        "building_id": "A",
+        "floor_id": "floor-1",
+        "name": "廚房",
+        "category": "kitchen",
+        "bbox_mm": [
+          200.0,
+          9561.0,
+          3043.0,
+          11753.0
+        ],
+        "width_mm": 2843.0,
+        "depth_mm": 2192.0,
+        "area_sqm": 6.23,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-1:living",
+        "source_id": "living",
+        "requirement_id": "A.floor-1.living",
+        "building_id": "A",
+        "floor_id": "floor-1",
+        "name": "客餐廳（開放式）",
+        "category": "living",
+        "bbox_mm": [
+          200.0,
+          11867.0,
+          5800.0,
+          15241.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 3374.0,
+        "area_sqm": 18.89,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-1:elder",
+        "source_id": "elder",
+        "requirement_id": "A.floor-1.elder",
+        "building_id": "A",
+        "floor_id": "floor-1",
+        "name": "孝親房（原多功能房）",
+        "category": "bedroom",
+        "bbox_mm": [
+          200.0,
+          15355.0,
+          5800.0,
+          17430.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 2075.0,
+        "area_sqm": 11.62,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-2:corridor",
+        "source_id": "corridor",
+        "requirement_id": "A.floor-2.corridor",
+        "building_id": "A",
+        "floor_id": "floor-2",
+        "name": "走道",
+        "category": "other",
+        "bbox_mm": [
+          200.0,
+          6472.0,
+          5800.0,
+          7673.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 1201.0,
+        "area_sqm": 6.73,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-2:stair",
+        "source_id": "stair",
+        "requirement_id": "A.floor-2.stair",
+        "building_id": "A",
+        "floor_id": "floor-2",
+        "name": "樓梯間",
+        "category": "stair",
+        "bbox_mm": [
+          3157.0,
+          7787.0,
+          5800.0,
+          10853.0
+        ],
+        "width_mm": 2643.0,
+        "depth_mm": 3066.0,
+        "area_sqm": 8.1,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-2:master",
+        "source_id": "master",
+        "requirement_id": "A.floor-2.master",
+        "building_id": "A",
+        "floor_id": "floor-2",
+        "name": "主臥室",
+        "category": "bedroom",
+        "bbox_mm": [
+          200.0,
+          200.0,
+          5800.0,
+          3277.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 3077.0,
+        "area_sqm": 17.23,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-2:bath2",
+        "source_id": "bath2",
+        "requirement_id": "A.floor-2.bath2",
+        "building_id": "A",
+        "floor_id": "floor-2",
+        "name": "2F 公用衛浴",
+        "category": "bath",
+        "bbox_mm": [
+          200.0,
+          3391.0,
+          1745.0,
+          6358.0
+        ],
+        "width_mm": 1545.0,
+        "depth_mm": 2967.0,
+        "area_sqm": 4.58,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-2:flex_front0",
+        "source_id": "flex_front0",
+        "requirement_id": "A.floor-2.flex_front0",
+        "building_id": "A",
+        "floor_id": "floor-2",
+        "name": "彈性餘裕（未指定用途）",
+        "category": "other",
+        "bbox_mm": [
+          1859.0,
+          3391.0,
+          5800.0,
+          6358.0
+        ],
+        "width_mm": 3941.0,
+        "depth_mm": 2967.0,
+        "area_sqm": 11.69,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-2:closet",
+        "source_id": "closet",
+        "requirement_id": "A.floor-2.closet",
+        "building_id": "A",
+        "floor_id": "floor-2",
+        "name": "更衣／收納",
+        "category": "service",
+        "bbox_mm": [
+          200.0,
+          7787.0,
+          3043.0,
+          10853.0
+        ],
+        "width_mm": 2843.0,
+        "depth_mm": 3066.0,
+        "area_sqm": 8.72,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-2:bed2",
+        "source_id": "bed2",
+        "requirement_id": "A.floor-2.bed2",
+        "building_id": "A",
+        "floor_id": "floor-2",
+        "name": "次臥",
+        "category": "bedroom",
+        "bbox_mm": [
+          200.0,
+          10967.0,
+          3223.0,
+          15200.0
+        ],
+        "width_mm": 3023.0,
+        "depth_mm": 4233.0,
+        "area_sqm": 12.8,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-2:study",
+        "source_id": "study",
+        "requirement_id": "A.floor-2.study",
+        "building_id": "A",
+        "floor_id": "floor-2",
+        "name": "書房／工作室",
+        "category": "other",
+        "bbox_mm": [
+          3337.0,
+          10967.0,
+          5800.0,
+          15200.0
+        ],
+        "width_mm": 2463.0,
+        "depth_mm": 4233.0,
+        "area_sqm": 10.43,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-2:balcony2",
+        "source_id": "balcony2",
+        "requirement_id": "A.floor-2.balcony2",
+        "building_id": "A",
+        "floor_id": "floor-2",
+        "name": "高雄厝陽台（植栽區）",
+        "category": "outdoor",
+        "bbox_mm": [
+          200.0,
+          15314.0,
+          2943.0,
+          17430.0
+        ],
+        "width_mm": 2743.0,
+        "depth_mm": 2116.0,
+        "area_sqm": 5.8,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-2:master_bath",
+        "source_id": "master_bath",
+        "requirement_id": "A.floor-2.master_bath",
+        "building_id": "A",
+        "floor_id": "floor-2",
+        "name": "主臥衛浴",
+        "category": "bath",
+        "bbox_mm": [
+          3057.0,
+          15314.0,
+          5800.0,
+          17430.0
+        ],
+        "width_mm": 2743.0,
+        "depth_mm": 2116.0,
+        "area_sqm": 5.8,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-3:corridor",
+        "source_id": "corridor",
+        "requirement_id": "A.floor-3.corridor",
+        "building_id": "A",
+        "floor_id": "floor-3",
+        "name": "走道",
+        "category": "other",
+        "bbox_mm": [
+          200.0,
+          6472.0,
+          5800.0,
+          7673.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 1201.0,
+        "area_sqm": 6.73,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-3:stair",
+        "source_id": "stair",
+        "requirement_id": "A.floor-3.stair",
+        "building_id": "A",
+        "floor_id": "floor-3",
+        "name": "樓梯間",
+        "category": "stair",
+        "bbox_mm": [
+          3157.0,
+          7787.0,
+          5800.0,
+          10853.0
+        ],
+        "width_mm": 2643.0,
+        "depth_mm": 3066.0,
+        "area_sqm": 8.1,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-3:media",
+        "source_id": "media",
+        "requirement_id": "A.floor-3.media",
+        "building_id": "A",
+        "floor_id": "floor-3",
+        "name": "娛樂室／家庭劇院",
+        "category": "other",
+        "bbox_mm": [
+          200.0,
+          200.0,
+          5800.0,
+          4051.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 3851.0,
+        "area_sqm": 21.57,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-3:flex_front0",
+        "source_id": "flex_front0",
+        "requirement_id": "A.floor-3.flex_front0",
+        "building_id": "A",
+        "floor_id": "floor-3",
+        "name": "彈性餘裕（未指定用途）",
+        "category": "other",
+        "bbox_mm": [
+          200.0,
+          4165.0,
+          5800.0,
+          6358.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 2193.0,
+        "area_sqm": 12.28,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-3:balcony3",
+        "source_id": "balcony3",
+        "requirement_id": "A.floor-3.balcony3",
+        "building_id": "A",
+        "floor_id": "floor-3",
+        "name": "3F 多功能小陽台",
+        "category": "outdoor",
+        "bbox_mm": [
+          200.0,
+          7787.0,
+          3043.0,
+          10853.0
+        ],
+        "width_mm": 2843.0,
+        "depth_mm": 3066.0,
+        "area_sqm": 8.72,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-3:guest",
+        "source_id": "guest",
+        "requirement_id": "A.floor-3.guest",
+        "building_id": "A",
+        "floor_id": "floor-3",
+        "name": "客房",
+        "category": "bedroom",
+        "bbox_mm": [
+          200.0,
+          10967.0,
+          3198.0,
+          15262.0
+        ],
+        "width_mm": 2998.0,
+        "depth_mm": 4295.0,
+        "area_sqm": 12.88,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-3:multi",
+        "source_id": "multi",
+        "requirement_id": "A.floor-3.multi",
+        "building_id": "A",
+        "floor_id": "floor-3",
+        "name": "多功能室",
+        "category": "other",
+        "bbox_mm": [
+          3312.0,
+          10967.0,
+          5800.0,
+          15262.0
+        ],
+        "width_mm": 2488.0,
+        "depth_mm": 4295.0,
+        "area_sqm": 10.69,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-3:bath3",
+        "source_id": "bath3",
+        "requirement_id": "A.floor-3.bath3",
+        "building_id": "A",
+        "floor_id": "floor-3",
+        "name": "3F 衛浴",
+        "category": "bath",
+        "bbox_mm": [
+          200.0,
+          15376.0,
+          2535.0,
+          17430.0
+        ],
+        "width_mm": 2335.0,
+        "depth_mm": 2054.0,
+        "area_sqm": 4.8,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-3:flex_rear2",
+        "source_id": "flex_rear2",
+        "requirement_id": "A.floor-3.flex_rear2",
+        "building_id": "A",
+        "floor_id": "floor-3",
+        "name": "彈性餘裕（未指定用途）",
+        "category": "other",
+        "bbox_mm": [
+          2649.0,
+          15376.0,
+          5800.0,
+          17430.0
+        ],
+        "width_mm": 3151.0,
+        "depth_mm": 2054.0,
+        "area_sqm": 6.47,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-rf:rf_stair",
+        "source_id": "rf_stair",
+        "requirement_id": "A.floor-rf.rf_stair",
+        "building_id": "A",
+        "floor_id": "floor-rf",
+        "name": "梯間屋突",
+        "category": "stair",
+        "bbox_mm": [
+          3157.0,
+          7787.0,
+          5800.0,
+          10853.0
+        ],
+        "width_mm": 2643.0,
+        "depth_mm": 3066.0,
+        "area_sqm": 8.1,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-rf:rf_tank",
+        "source_id": "rf_tank",
+        "requirement_id": "A.floor-rf.rf_tank",
+        "building_id": "A",
+        "floor_id": "floor-rf",
+        "name": "水塔／VF800 加壓區",
+        "category": "service",
+        "bbox_mm": [
+          1428.0,
+          7787.0,
+          3043.0,
+          9408.0
+        ],
+        "width_mm": 1615.0,
+        "depth_mm": 1621.0,
+        "area_sqm": 2.62,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-rf:rf_hp",
+        "source_id": "rf_hp",
+        "requirement_id": "A.floor-rf.rf_hp",
+        "building_id": "A",
+        "floor_id": "floor-rf",
+        "name": "熱泵熱水器區",
+        "category": "service",
+        "bbox_mm": [
+          1428.0,
+          9522.0,
+          3043.0,
+          10853.0
+        ],
+        "width_mm": 1615.0,
+        "depth_mm": 1331.0,
+        "area_sqm": 2.15,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-rf:rf_service_aisle",
+        "source_id": "rf_service_aisle",
+        "requirement_id": "A.floor-rf.rf_service_aisle",
+        "building_id": "A",
+        "floor_id": "floor-rf",
+        "name": "設備維修淨空",
+        "category": "outdoor",
+        "bbox_mm": [
+          200.0,
+          7787.0,
+          1314.0,
+          10853.0
+        ],
+        "width_mm": 1114.0,
+        "depth_mm": 3066.0,
+        "area_sqm": 3.42,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-rf:rf_deck",
+        "source_id": "rf_deck",
+        "requirement_id": "A.floor-rf.rf_deck",
+        "building_id": "A",
+        "floor_id": "floor-rf",
+        "name": "曬衣／設備維修平台",
+        "category": "outdoor",
+        "bbox_mm": [
+          200.0,
+          200.0,
+          5800.0,
+          7673.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 7473.0,
+        "area_sqm": 41.85,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-rf:deck_rear1",
+        "source_id": "deck_rear1",
+        "requirement_id": "A.floor-rf.deck_rear1",
+        "building_id": "A",
+        "floor_id": "floor-rf",
+        "name": "後側露臺",
+        "category": "outdoor",
+        "bbox_mm": [
+          200.0,
+          13110.0,
+          5800.0,
+          17430.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 4320.0,
+        "area_sqm": 24.19,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-rf:rf_solar",
+        "source_id": "rf_solar",
+        "requirement_id": "A.floor-rf.rf_solar",
+        "building_id": "A",
+        "floor_id": "floor-rf",
+        "name": "太陽能設備區",
+        "category": "outdoor",
+        "bbox_mm": [
+          200.0,
+          10967.0,
+          5800.0,
+          12996.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 2029.0,
+        "area_sqm": 11.36,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-1:corridor",
+        "source_id": "corridor",
+        "requirement_id": "B.floor-1.corridor",
+        "building_id": "B",
+        "floor_id": "floor-1",
+        "name": "走道",
+        "category": "other",
+        "bbox_mm": [
+          200.0,
+          6472.0,
+          5800.0,
+          7673.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 1201.0,
+        "area_sqm": 6.73,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-1:stair",
+        "source_id": "stair",
+        "requirement_id": "B.floor-1.stair",
+        "building_id": "B",
+        "floor_id": "floor-1",
+        "name": "樓梯間",
+        "category": "stair",
+        "bbox_mm": [
+          3157.0,
+          7787.0,
+          5800.0,
+          10853.0
+        ],
+        "width_mm": 2643.0,
+        "depth_mm": 3066.0,
+        "area_sqm": 8.1,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-1:garage",
+        "source_id": "garage",
+        "requirement_id": "B.floor-1.garage",
+        "building_id": "B",
+        "floor_id": "floor-1",
+        "name": "車庫",
+        "category": "service",
+        "bbox_mm": [
+          2742.0,
+          200.0,
+          5800.0,
+          6358.0
+        ],
+        "width_mm": 3058.0,
+        "depth_mm": 6158.0,
+        "area_sqm": 18.83,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-1:idf_b",
+        "source_id": "idf_b",
+        "requirement_id": "B.floor-1.idf_b",
+        "building_id": "B",
+        "floor_id": "floor-1",
+        "name": "IDF-B 機櫃",
+        "category": "service",
+        "bbox_mm": [
+          3157.0,
+          10967.0,
+          5800.0,
+          12705.0
+        ],
+        "width_mm": 2643.0,
+        "depth_mm": 1738.0,
+        "area_sqm": 4.59,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-1:entry_b",
+        "source_id": "entry_b",
+        "requirement_id": "B.floor-1.entry_b",
+        "building_id": "B",
+        "floor_id": "floor-1",
+        "name": "玄關",
+        "category": "entry",
+        "bbox_mm": [
+          200.0,
+          200.0,
+          2628.0,
+          1857.0
+        ],
+        "width_mm": 2428.0,
+        "depth_mm": 1657.0,
+        "area_sqm": 4.02,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-1:palanquin",
+        "source_id": "palanquin",
+        "requirement_id": "B.floor-1.palanquin",
+        "building_id": "B",
+        "floor_id": "floor-1",
+        "name": "武轎儲藏室",
+        "category": "service",
+        "bbox_mm": [
+          200.0,
+          1971.0,
+          2628.0,
+          6358.0
+        ],
+        "width_mm": 2428.0,
+        "depth_mm": 4387.0,
+        "area_sqm": 10.65,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-1:balcony_b",
+        "source_id": "balcony_b",
+        "requirement_id": "B.floor-1.balcony_b",
+        "building_id": "B",
+        "floor_id": "floor-1",
+        "name": "後工作陽台（水路進線點）",
+        "category": "outdoor",
+        "bbox_mm": [
+          200.0,
+          7787.0,
+          3043.0,
+          9770.0
+        ],
+        "width_mm": 2843.0,
+        "depth_mm": 1983.0,
+        "area_sqm": 5.64,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-1:bath_acc",
+        "source_id": "bath_acc",
+        "requirement_id": "B.floor-1.bath_acc",
+        "building_id": "B",
+        "floor_id": "floor-1",
+        "name": "1F 無障礙衛浴",
+        "category": "bath",
+        "bbox_mm": [
+          200.0,
+          9884.0,
+          3043.0,
+          12705.0
+        ],
+        "width_mm": 2843.0,
+        "depth_mm": 2821.0,
+        "area_sqm": 8.02,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-1:shrine",
+        "source_id": "shrine",
+        "requirement_id": "B.floor-1.shrine",
+        "building_id": "B",
+        "floor_id": "floor-1",
+        "name": "神明廳（核心）",
+        "category": "living",
+        "bbox_mm": [
+          200.0,
+          12819.0,
+          5800.0,
+          17430.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 4611.0,
+        "area_sqm": 25.82,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-2:corridor",
+        "source_id": "corridor",
+        "requirement_id": "B.floor-2.corridor",
+        "building_id": "B",
+        "floor_id": "floor-2",
+        "name": "走道",
+        "category": "other",
+        "bbox_mm": [
+          200.0,
+          6472.0,
+          5800.0,
+          7673.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 1201.0,
+        "area_sqm": 6.73,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-2:stair",
+        "source_id": "stair",
+        "requirement_id": "B.floor-2.stair",
+        "building_id": "B",
+        "floor_id": "floor-2",
+        "name": "樓梯間",
+        "category": "stair",
+        "bbox_mm": [
+          3157.0,
+          7787.0,
+          5800.0,
+          10853.0
+        ],
+        "width_mm": 2643.0,
+        "depth_mm": 3066.0,
+        "area_sqm": 8.1,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-2:tea",
+        "source_id": "tea",
+        "requirement_id": "B.floor-2.tea",
+        "building_id": "B",
+        "floor_id": "floor-2",
+        "name": "茶水吧／梯廳",
+        "category": "kitchen",
+        "bbox_mm": [
+          3157.0,
+          10967.0,
+          5800.0,
+          12705.0
+        ],
+        "width_mm": 2643.0,
+        "depth_mm": 1738.0,
+        "area_sqm": 4.59,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-2:living_b",
+        "source_id": "living_b",
+        "requirement_id": "B.floor-2.living_b",
+        "building_id": "B",
+        "floor_id": "floor-2",
+        "name": "家庭大客廳",
+        "category": "living",
+        "bbox_mm": [
+          200.0,
+          200.0,
+          5800.0,
+          6358.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 6158.0,
+        "area_sqm": 34.48,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-2:balcony_b2",
+        "source_id": "balcony_b2",
+        "requirement_id": "B.floor-2.balcony_b2",
+        "building_id": "B",
+        "floor_id": "floor-2",
+        "name": "2F 高雄厝景觀陽臺",
+        "category": "outdoor",
+        "bbox_mm": [
+          200.0,
+          7787.0,
+          3043.0,
+          10608.0
+        ],
+        "width_mm": 2843.0,
+        "depth_mm": 2821.0,
+        "area_sqm": 8.02,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-2:bath_g",
+        "source_id": "bath_g",
+        "requirement_id": "B.floor-2.bath_g",
+        "building_id": "B",
+        "floor_id": "floor-2",
+        "name": "客用衛浴",
+        "category": "bath",
+        "bbox_mm": [
+          200.0,
+          10722.0,
+          3043.0,
+          12705.0
+        ],
+        "width_mm": 2843.0,
+        "depth_mm": 1983.0,
+        "area_sqm": 5.64,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-2:master_b",
+        "source_id": "master_b",
+        "requirement_id": "B.floor-2.master_b",
+        "building_id": "B",
+        "floor_id": "floor-2",
+        "name": "主臥套房",
+        "category": "bedroom",
+        "bbox_mm": [
+          200.0,
+          12819.0,
+          5800.0,
+          17430.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 4611.0,
+        "area_sqm": 25.82,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-3:corridor",
+        "source_id": "corridor",
+        "requirement_id": "B.floor-3.corridor",
+        "building_id": "B",
+        "floor_id": "floor-3",
+        "name": "走道",
+        "category": "other",
+        "bbox_mm": [
+          200.0,
+          6472.0,
+          5800.0,
+          7673.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 1201.0,
+        "area_sqm": 6.73,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-3:stair",
+        "source_id": "stair",
+        "requirement_id": "B.floor-3.stair",
+        "building_id": "B",
+        "floor_id": "floor-3",
+        "name": "樓梯間",
+        "category": "stair",
+        "bbox_mm": [
+          3157.0,
+          7787.0,
+          5800.0,
+          10853.0
+        ],
+        "width_mm": 2643.0,
+        "depth_mm": 3066.0,
+        "area_sqm": 8.1,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-3:flex_b",
+        "source_id": "flex_b",
+        "requirement_id": "B.floor-3.flex_b",
+        "building_id": "B",
+        "floor_id": "floor-3",
+        "name": "前側彈性室內區",
+        "category": "other",
+        "bbox_mm": [
+          200.0,
+          200.0,
+          5800.0,
+          2866.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 2666.0,
+        "area_sqm": 14.93,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-3:bath_b3",
+        "source_id": "bath_b3",
+        "requirement_id": "B.floor-3.bath_b3",
+        "building_id": "B",
+        "floor_id": "floor-3",
+        "name": "3F 衛浴",
+        "category": "bath",
+        "bbox_mm": [
+          200.0,
+          2980.0,
+          1703.0,
+          6358.0
+        ],
+        "width_mm": 1503.0,
+        "depth_mm": 3378.0,
+        "area_sqm": 5.08,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-3:flex_front0",
+        "source_id": "flex_front0",
+        "requirement_id": "B.floor-3.flex_front0",
+        "building_id": "B",
+        "floor_id": "floor-3",
+        "name": "彈性餘裕（未指定用途）",
+        "category": "other",
+        "bbox_mm": [
+          1817.0,
+          2980.0,
+          5800.0,
+          6358.0
+        ],
+        "width_mm": 3983.0,
+        "depth_mm": 3378.0,
+        "area_sqm": 13.45,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-3:balcony_b3",
+        "source_id": "balcony_b3",
+        "requirement_id": "B.floor-3.balcony_b3",
+        "building_id": "B",
+        "floor_id": "floor-3",
+        "name": "後側工作小陽台",
+        "category": "outdoor",
+        "bbox_mm": [
+          200.0,
+          7787.0,
+          3043.0,
+          10853.0
+        ],
+        "width_mm": 2843.0,
+        "depth_mm": 3066.0,
+        "area_sqm": 8.72,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-3:guest_b",
+        "source_id": "guest_b",
+        "requirement_id": "B.floor-3.guest_b",
+        "building_id": "B",
+        "floor_id": "floor-3",
+        "name": "後客房",
+        "category": "bedroom",
+        "bbox_mm": [
+          200.0,
+          10967.0,
+          5800.0,
+          13298.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 2331.0,
+        "area_sqm": 13.05,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-3:ktv",
+        "source_id": "ktv",
+        "requirement_id": "B.floor-3.ktv",
+        "building_id": "B",
+        "floor_id": "floor-3",
+        "name": "多功能娛樂室（KTV／劇院）",
+        "category": "other",
+        "bbox_mm": [
+          200.0,
+          13412.0,
+          5800.0,
+          17430.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 4018.0,
+        "area_sqm": 22.5,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-rf:rf_stair",
+        "source_id": "rf_stair",
+        "requirement_id": "B.floor-rf.rf_stair",
+        "building_id": "B",
+        "floor_id": "floor-rf",
+        "name": "梯間屋突",
+        "category": "stair",
+        "bbox_mm": [
+          3157.0,
+          7787.0,
+          5800.0,
+          10853.0
+        ],
+        "width_mm": 2643.0,
+        "depth_mm": 3066.0,
+        "area_sqm": 8.1,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-rf:rf_tank",
+        "source_id": "rf_tank",
+        "requirement_id": "B.floor-rf.rf_tank",
+        "building_id": "B",
+        "floor_id": "floor-rf",
+        "name": "B 棟水塔／VF800",
+        "category": "service",
+        "bbox_mm": [
+          1428.0,
+          7787.0,
+          3043.0,
+          9408.0
+        ],
+        "width_mm": 1615.0,
+        "depth_mm": 1621.0,
+        "area_sqm": 2.62,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-rf:rf_hp",
+        "source_id": "rf_hp",
+        "requirement_id": "B.floor-rf.rf_hp",
+        "building_id": "B",
+        "floor_id": "floor-rf",
+        "name": "熱泵熱水器區",
+        "category": "service",
+        "bbox_mm": [
+          1428.0,
+          9522.0,
+          3043.0,
+          10853.0
+        ],
+        "width_mm": 1615.0,
+        "depth_mm": 1331.0,
+        "area_sqm": 2.15,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-rf:rf_service_aisle",
+        "source_id": "rf_service_aisle",
+        "requirement_id": "B.floor-rf.rf_service_aisle",
+        "building_id": "B",
+        "floor_id": "floor-rf",
+        "name": "設備維修淨空",
+        "category": "outdoor",
+        "bbox_mm": [
+          200.0,
+          7787.0,
+          1314.0,
+          10853.0
+        ],
+        "width_mm": 1114.0,
+        "depth_mm": 3066.0,
+        "area_sqm": 3.42,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-rf:rf_deck",
+        "source_id": "rf_deck",
+        "requirement_id": "B.floor-rf.rf_deck",
+        "building_id": "B",
+        "floor_id": "floor-rf",
+        "name": "活動平台／曬衣棚架",
+        "category": "outdoor",
+        "bbox_mm": [
+          200.0,
+          200.0,
+          5800.0,
+          7673.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 7473.0,
+        "area_sqm": 41.85,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-rf:deck_rear1",
+        "source_id": "deck_rear1",
+        "requirement_id": "B.floor-rf.deck_rear1",
+        "building_id": "B",
+        "floor_id": "floor-rf",
+        "name": "後側露臺",
+        "category": "outdoor",
+        "bbox_mm": [
+          200.0,
+          10967.0,
+          5800.0,
+          17430.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 6463.0,
+        "area_sqm": 36.19,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-1:corridor",
+        "source_id": "corridor",
+        "requirement_id": "C.floor-1.corridor",
+        "building_id": "C",
+        "floor_id": "floor-1",
+        "name": "走道",
+        "category": "other",
+        "bbox_mm": [
+          200.0,
+          6472.0,
+          5800.0,
+          7673.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 1201.0,
+        "area_sqm": 6.73,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-1:stair",
+        "source_id": "stair",
+        "requirement_id": "C.floor-1.stair",
+        "building_id": "C",
+        "floor_id": "floor-1",
+        "name": "樓梯間",
+        "category": "stair",
+        "bbox_mm": [
+          3157.0,
+          7787.0,
+          5800.0,
+          10853.0
+        ],
+        "width_mm": 2643.0,
+        "depth_mm": 3066.0,
+        "area_sqm": 8.1,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-1:garage",
+        "source_id": "garage",
+        "requirement_id": "C.floor-1.garage",
+        "building_id": "C",
+        "floor_id": "floor-1",
+        "name": "車庫",
+        "category": "service",
+        "bbox_mm": [
+          2742.0,
+          200.0,
+          5800.0,
+          6358.0
+        ],
+        "width_mm": 3058.0,
+        "depth_mm": 6158.0,
+        "area_sqm": 18.83,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-1:idf_c",
+        "source_id": "idf_c",
+        "requirement_id": "C.floor-1.idf_c",
+        "building_id": "C",
+        "floor_id": "floor-1",
+        "name": "IDF-C 弱電機櫃",
+        "category": "service",
+        "bbox_mm": [
+          3157.0,
+          10967.0,
+          5800.0,
+          11753.0
+        ],
+        "width_mm": 2643.0,
+        "depth_mm": 786.0,
+        "area_sqm": 2.08,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-1:entry",
+        "source_id": "entry",
+        "requirement_id": "C.floor-1.entry",
+        "building_id": "C",
+        "floor_id": "floor-1",
+        "name": "玄關（含車庫進屋緩衝）",
+        "category": "entry",
+        "bbox_mm": [
+          200.0,
+          200.0,
+          2628.0,
+          2929.0
+        ],
+        "width_mm": 2428.0,
+        "depth_mm": 2729.0,
+        "area_sqm": 6.63,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-1:elder_bath",
+        "source_id": "elder_bath",
+        "requirement_id": "C.floor-1.elder_bath",
+        "building_id": "C",
+        "floor_id": "floor-1",
+        "name": "孝親衛浴",
+        "category": "bath",
+        "bbox_mm": [
+          200.0,
+          3043.0,
+          2628.0,
+          6358.0
+        ],
+        "width_mm": 2428.0,
+        "depth_mm": 3315.0,
+        "area_sqm": 8.05,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-1:balcony",
+        "source_id": "balcony",
+        "requirement_id": "C.floor-1.balcony",
+        "building_id": "C",
+        "floor_id": "floor-1",
+        "name": "後工作陽台",
+        "category": "outdoor",
+        "bbox_mm": [
+          200.0,
+          7787.0,
+          3043.0,
+          9406.0
+        ],
+        "width_mm": 2843.0,
+        "depth_mm": 1619.0,
+        "area_sqm": 4.6,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-1:kitchen",
+        "source_id": "kitchen",
+        "requirement_id": "C.floor-1.kitchen",
+        "building_id": "C",
+        "floor_id": "floor-1",
+        "name": "廚房",
+        "category": "kitchen",
+        "bbox_mm": [
+          200.0,
+          9520.0,
+          3043.0,
+          11753.0
+        ],
+        "width_mm": 2843.0,
+        "depth_mm": 2233.0,
+        "area_sqm": 6.35,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-1:living",
+        "source_id": "living",
+        "requirement_id": "C.floor-1.living",
+        "building_id": "C",
+        "floor_id": "floor-1",
+        "name": "客餐廳（開放式）",
+        "category": "living",
+        "bbox_mm": [
+          200.0,
+          11867.0,
+          5800.0,
+          15182.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 3315.0,
+        "area_sqm": 18.56,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-1:elder",
+        "source_id": "elder",
+        "requirement_id": "C.floor-1.elder",
+        "building_id": "C",
+        "floor_id": "floor-1",
+        "name": "孝親房／長輩房",
+        "category": "bedroom",
+        "bbox_mm": [
+          200.0,
+          15296.0,
+          5800.0,
+          17430.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 2134.0,
+        "area_sqm": 11.95,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-2:corridor",
+        "source_id": "corridor",
+        "requirement_id": "C.floor-2.corridor",
+        "building_id": "C",
+        "floor_id": "floor-2",
+        "name": "走道",
+        "category": "other",
+        "bbox_mm": [
+          200.0,
+          6472.0,
+          5800.0,
+          7673.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 1201.0,
+        "area_sqm": 6.73,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-2:stair",
+        "source_id": "stair",
+        "requirement_id": "C.floor-2.stair",
+        "building_id": "C",
+        "floor_id": "floor-2",
+        "name": "樓梯間",
+        "category": "stair",
+        "bbox_mm": [
+          3157.0,
+          7787.0,
+          5800.0,
+          10853.0
+        ],
+        "width_mm": 2643.0,
+        "depth_mm": 3066.0,
+        "area_sqm": 8.1,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-2:living2",
+        "source_id": "living2",
+        "requirement_id": "C.floor-2.living2",
+        "building_id": "C",
+        "floor_id": "floor-2",
+        "name": "客廳（2F 主角空間）",
+        "category": "living",
+        "bbox_mm": [
+          200.0,
+          200.0,
+          5800.0,
+          4483.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 4283.0,
+        "area_sqm": 23.98,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-2:flex_front0",
+        "source_id": "flex_front0",
+        "requirement_id": "C.floor-2.flex_front0",
+        "building_id": "C",
+        "floor_id": "floor-2",
+        "name": "彈性餘裕（未指定用途）",
+        "category": "other",
+        "bbox_mm": [
+          200.0,
+          4597.0,
+          5800.0,
+          6358.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 1761.0,
+        "area_sqm": 9.86,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-2:bath_c2",
+        "source_id": "bath_c2",
+        "requirement_id": "C.floor-2.bath_c2",
+        "building_id": "C",
+        "floor_id": "floor-2",
+        "name": "廁所（乾濕分離）",
+        "category": "bath",
+        "bbox_mm": [
+          200.0,
+          7787.0,
+          3043.0,
+          10853.0
+        ],
+        "width_mm": 2843.0,
+        "depth_mm": 3066.0,
+        "area_sqm": 8.72,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-2:guest2",
+        "source_id": "guest2",
+        "requirement_id": "C.floor-2.guest2",
+        "building_id": "C",
+        "floor_id": "floor-2",
+        "name": "客房／多功能房",
+        "category": "bedroom",
+        "bbox_mm": [
+          200.0,
+          10967.0,
+          3391.0,
+          14971.0
+        ],
+        "width_mm": 3191.0,
+        "depth_mm": 4004.0,
+        "area_sqm": 12.78,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-2:balcony_c2",
+        "source_id": "balcony_c2",
+        "requirement_id": "C.floor-2.balcony_c2",
+        "building_id": "C",
+        "floor_id": "floor-2",
+        "name": "2F 高雄厝景觀陽臺",
+        "category": "outdoor",
+        "bbox_mm": [
+          200.0,
+          15085.0,
+          3391.0,
+          17430.0
+        ],
+        "width_mm": 3191.0,
+        "depth_mm": 2345.0,
+        "area_sqm": 7.48,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-2:kitchenette",
+        "source_id": "kitchenette",
+        "requirement_id": "C.floor-2.kitchenette",
+        "building_id": "C",
+        "floor_id": "floor-2",
+        "name": "小型廚房",
+        "category": "kitchen",
+        "bbox_mm": [
+          3505.0,
+          10967.0,
+          5800.0,
+          13696.0
+        ],
+        "width_mm": 2295.0,
+        "depth_mm": 2729.0,
+        "area_sqm": 6.26,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-2:flex_rear2",
+        "source_id": "flex_rear2",
+        "requirement_id": "C.floor-2.flex_rear2",
+        "building_id": "C",
+        "floor_id": "floor-2",
+        "name": "彈性餘裕（未指定用途）",
+        "category": "other",
+        "bbox_mm": [
+          3505.0,
+          13810.0,
+          5800.0,
+          17430.0
+        ],
+        "width_mm": 2295.0,
+        "depth_mm": 3620.0,
+        "area_sqm": 8.31,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-3:corridor",
+        "source_id": "corridor",
+        "requirement_id": "C.floor-3.corridor",
+        "building_id": "C",
+        "floor_id": "floor-3",
+        "name": "走道",
+        "category": "other",
+        "bbox_mm": [
+          200.0,
+          6472.0,
+          5800.0,
+          7673.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 1201.0,
+        "area_sqm": 6.73,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-3:stair",
+        "source_id": "stair",
+        "requirement_id": "C.floor-3.stair",
+        "building_id": "C",
+        "floor_id": "floor-3",
+        "name": "樓梯間",
+        "category": "stair",
+        "bbox_mm": [
+          3157.0,
+          7787.0,
+          5800.0,
+          10853.0
+        ],
+        "width_mm": 2643.0,
+        "depth_mm": 3066.0,
+        "area_sqm": 8.1,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-3:master_c",
+        "source_id": "master_c",
+        "requirement_id": "C.floor-3.master_c",
+        "building_id": "C",
+        "floor_id": "floor-3",
+        "name": "主臥室（飯店級配置）",
+        "category": "bedroom",
+        "bbox_mm": [
+          200.0,
+          200.0,
+          5800.0,
+          4051.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 3851.0,
+        "area_sqm": 21.57,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-3:flex_front0",
+        "source_id": "flex_front0",
+        "requirement_id": "C.floor-3.flex_front0",
+        "building_id": "C",
+        "floor_id": "floor-3",
+        "name": "彈性餘裕（未指定用途）",
+        "category": "other",
+        "bbox_mm": [
+          200.0,
+          4165.0,
+          5800.0,
+          6358.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 2193.0,
+        "area_sqm": 12.28,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-3:balcony_c3",
+        "source_id": "balcony_c3",
+        "requirement_id": "C.floor-3.balcony_c3",
+        "building_id": "C",
+        "floor_id": "floor-3",
+        "name": "3F 主臥通風小陽台",
+        "category": "outdoor",
+        "bbox_mm": [
+          200.0,
+          7787.0,
+          3043.0,
+          10853.0
+        ],
+        "width_mm": 2843.0,
+        "depth_mm": 3066.0,
+        "area_sqm": 8.72,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-3:gym",
+        "source_id": "gym",
+        "requirement_id": "C.floor-3.gym",
+        "building_id": "C",
+        "floor_id": "floor-3",
+        "name": "運動空間",
+        "category": "other",
+        "bbox_mm": [
+          200.0,
+          10967.0,
+          3304.0,
+          15657.0
+        ],
+        "width_mm": 3104.0,
+        "depth_mm": 4690.0,
+        "area_sqm": 14.56,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-3:bath_c3",
+        "source_id": "bath_c3",
+        "requirement_id": "C.floor-3.bath_c3",
+        "building_id": "C",
+        "floor_id": "floor-3",
+        "name": "廁所（乾濕分離）",
+        "category": "bath",
+        "bbox_mm": [
+          200.0,
+          15771.0,
+          3304.0,
+          17430.0
+        ],
+        "width_mm": 3104.0,
+        "depth_mm": 1659.0,
+        "area_sqm": 5.15,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-3:flex_rear2",
+        "source_id": "flex_rear2",
+        "requirement_id": "C.floor-3.flex_rear2",
+        "building_id": "C",
+        "floor_id": "floor-3",
+        "name": "彈性餘裕（未指定用途）",
+        "category": "other",
+        "bbox_mm": [
+          3418.0,
+          10967.0,
+          5800.0,
+          17430.0
+        ],
+        "width_mm": 2382.0,
+        "depth_mm": 6463.0,
+        "area_sqm": 15.39,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-rf:rf_stair",
+        "source_id": "rf_stair",
+        "requirement_id": "C.floor-rf.rf_stair",
+        "building_id": "C",
+        "floor_id": "floor-rf",
+        "name": "梯間屋突",
+        "category": "stair",
+        "bbox_mm": [
+          3157.0,
+          7787.0,
+          5800.0,
+          10853.0
+        ],
+        "width_mm": 2643.0,
+        "depth_mm": 3066.0,
+        "area_sqm": 8.1,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-rf:rf_tank",
+        "source_id": "rf_tank",
+        "requirement_id": "C.floor-rf.rf_tank",
+        "building_id": "C",
+        "floor_id": "floor-rf",
+        "name": "不鏽鋼水塔／加壓 VF800",
+        "category": "service",
+        "bbox_mm": [
+          1428.0,
+          7787.0,
+          3043.0,
+          9408.0
+        ],
+        "width_mm": 1615.0,
+        "depth_mm": 1621.0,
+        "area_sqm": 2.62,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-rf:rf_hp",
+        "source_id": "rf_hp",
+        "requirement_id": "C.floor-rf.rf_hp",
+        "building_id": "C",
+        "floor_id": "floor-rf",
+        "name": "熱泵熱水器（Haier）",
+        "category": "service",
+        "bbox_mm": [
+          1428.0,
+          9522.0,
+          3043.0,
+          10853.0
+        ],
+        "width_mm": 1615.0,
+        "depth_mm": 1331.0,
+        "area_sqm": 2.15,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-rf:rf_service_aisle",
+        "source_id": "rf_service_aisle",
+        "requirement_id": "C.floor-rf.rf_service_aisle",
+        "building_id": "C",
+        "floor_id": "floor-rf",
+        "name": "設備維修淨空",
+        "category": "outdoor",
+        "bbox_mm": [
+          200.0,
+          7787.0,
+          1314.0,
+          10853.0
+        ],
+        "width_mm": 1114.0,
+        "depth_mm": 3066.0,
+        "area_sqm": 3.42,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-rf:rf_dry",
+        "source_id": "rf_dry",
+        "requirement_id": "C.floor-rf.rf_dry",
+        "building_id": "C",
+        "floor_id": "floor-rf",
+        "name": "曬衣區／活動平台",
+        "category": "outdoor",
+        "bbox_mm": [
+          200.0,
+          200.0,
+          5800.0,
+          7673.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 7473.0,
+        "area_sqm": 41.85,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-rf:deck_rear1",
+        "source_id": "deck_rear1",
+        "requirement_id": "C.floor-rf.deck_rear1",
+        "building_id": "C",
+        "floor_id": "floor-rf",
+        "name": "後側露臺",
+        "category": "outdoor",
+        "bbox_mm": [
+          200.0,
+          10967.0,
+          5800.0,
+          17430.0
+        ],
+        "width_mm": 5600.0,
+        "depth_mm": 6463.0,
+        "area_sqm": 36.19,
+        "geometry_provenance": "legacy_assumption"
+      }
+    ],
+    "doors": [
+      {
+        "id": "LEGACY:A:floor-1:door_main",
+        "source_id": "door_main",
+        "building_id": "A",
+        "floor_id": "floor-1",
+        "from": "outside",
+        "to": "entry",
+        "clear_width_mm": 1000,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-1:door_garage_street",
+        "source_id": "door_garage_street",
+        "building_id": "A",
+        "floor_id": "floor-1",
+        "from": "outside",
+        "to": "garage",
+        "clear_width_mm": 2815,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-1:door_corridor_stair",
+        "source_id": "door_corridor_stair",
+        "building_id": "A",
+        "floor_id": "floor-1",
+        "from": "corridor",
+        "to": "stair",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-1:door_corridor_garage",
+        "source_id": "door_corridor_garage",
+        "building_id": "A",
+        "floor_id": "floor-1",
+        "from": "corridor",
+        "to": "garage",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-1:door_corridor_balcony",
+        "source_id": "door_corridor_balcony",
+        "building_id": "A",
+        "floor_id": "floor-1",
+        "from": "corridor",
+        "to": "balcony",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-1:door_corridor_bath1",
+        "source_id": "door_corridor_bath1",
+        "building_id": "A",
+        "floor_id": "floor-1",
+        "from": "corridor",
+        "to": "bath1",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-1:door_stair_mdf",
+        "source_id": "door_stair_mdf",
+        "building_id": "A",
+        "floor_id": "floor-1",
+        "from": "stair",
+        "to": "mdf",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-1:door_stair_kitchen",
+        "source_id": "door_stair_kitchen",
+        "building_id": "A",
+        "floor_id": "floor-1",
+        "from": "stair",
+        "to": "kitchen",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-1:door_garage_entry",
+        "source_id": "door_garage_entry",
+        "building_id": "A",
+        "floor_id": "floor-1",
+        "from": "garage",
+        "to": "entry",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-1:door_kitchen_living",
+        "source_id": "door_kitchen_living",
+        "building_id": "A",
+        "floor_id": "floor-1",
+        "from": "kitchen",
+        "to": "living",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-1:door_living_elder",
+        "source_id": "door_living_elder",
+        "building_id": "A",
+        "floor_id": "floor-1",
+        "from": "living",
+        "to": "elder",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-2:door_corridor_stair",
+        "source_id": "door_corridor_stair",
+        "building_id": "A",
+        "floor_id": "floor-2",
+        "from": "corridor",
+        "to": "stair",
+        "clear_width_mm": 2400,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-2:door_corridor_flex_front0",
+        "source_id": "door_corridor_flex_front0",
+        "building_id": "A",
+        "floor_id": "floor-2",
+        "from": "corridor",
+        "to": "flex_front0",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-2:door_corridor_closet",
+        "source_id": "door_corridor_closet",
+        "building_id": "A",
+        "floor_id": "floor-2",
+        "from": "corridor",
+        "to": "closet",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-2:door_corridor_bath2",
+        "source_id": "door_corridor_bath2",
+        "building_id": "A",
+        "floor_id": "floor-2",
+        "from": "corridor",
+        "to": "bath2",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-2:door_stair_study",
+        "source_id": "door_stair_study",
+        "building_id": "A",
+        "floor_id": "floor-2",
+        "from": "stair",
+        "to": "study",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-2:door_flex_front0_master",
+        "source_id": "door_flex_front0_master",
+        "building_id": "A",
+        "floor_id": "floor-2",
+        "from": "flex_front0",
+        "to": "master",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-2:door_study_bed2",
+        "source_id": "door_study_bed2",
+        "building_id": "A",
+        "floor_id": "floor-2",
+        "from": "study",
+        "to": "bed2",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-2:door_bed2_balcony2",
+        "source_id": "door_bed2_balcony2",
+        "building_id": "A",
+        "floor_id": "floor-2",
+        "from": "bed2",
+        "to": "balcony2",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-2:door_balcony2_master_bath",
+        "source_id": "door_balcony2_master_bath",
+        "building_id": "A",
+        "floor_id": "floor-2",
+        "from": "balcony2",
+        "to": "master_bath",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-3:door_corridor_stair",
+        "source_id": "door_corridor_stair",
+        "building_id": "A",
+        "floor_id": "floor-3",
+        "from": "corridor",
+        "to": "stair",
+        "clear_width_mm": 2400,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-3:door_corridor_flex_front0",
+        "source_id": "door_corridor_flex_front0",
+        "building_id": "A",
+        "floor_id": "floor-3",
+        "from": "corridor",
+        "to": "flex_front0",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-3:door_corridor_balcony3",
+        "source_id": "door_corridor_balcony3",
+        "building_id": "A",
+        "floor_id": "floor-3",
+        "from": "corridor",
+        "to": "balcony3",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-3:door_stair_multi",
+        "source_id": "door_stair_multi",
+        "building_id": "A",
+        "floor_id": "floor-3",
+        "from": "stair",
+        "to": "multi",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-3:door_flex_front0_media",
+        "source_id": "door_flex_front0_media",
+        "building_id": "A",
+        "floor_id": "floor-3",
+        "from": "flex_front0",
+        "to": "media",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-3:door_multi_guest",
+        "source_id": "door_multi_guest",
+        "building_id": "A",
+        "floor_id": "floor-3",
+        "from": "multi",
+        "to": "guest",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-3:door_multi_flex_rear2",
+        "source_id": "door_multi_flex_rear2",
+        "building_id": "A",
+        "floor_id": "floor-3",
+        "from": "multi",
+        "to": "flex_rear2",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-3:door_flex_rear2_bath3",
+        "source_id": "door_flex_rear2_bath3",
+        "building_id": "A",
+        "floor_id": "floor-3",
+        "from": "flex_rear2",
+        "to": "bath3",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-rf:door_rf_stair_rf_deck",
+        "source_id": "door_rf_stair_rf_deck",
+        "building_id": "A",
+        "floor_id": "floor-rf",
+        "from": "rf_stair",
+        "to": "rf_deck",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-rf:door_rf_stair_rf_solar",
+        "source_id": "door_rf_stair_rf_solar",
+        "building_id": "A",
+        "floor_id": "floor-rf",
+        "from": "rf_stair",
+        "to": "rf_solar",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-rf:door_rf_stair_rf_tank",
+        "source_id": "door_rf_stair_rf_tank",
+        "building_id": "A",
+        "floor_id": "floor-rf",
+        "from": "rf_stair",
+        "to": "rf_tank",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-rf:door_rf_stair_rf_hp",
+        "source_id": "door_rf_stair_rf_hp",
+        "building_id": "A",
+        "floor_id": "floor-rf",
+        "from": "rf_stair",
+        "to": "rf_hp",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-rf:door_rf_solar_deck_rear1",
+        "source_id": "door_rf_solar_deck_rear1",
+        "building_id": "A",
+        "floor_id": "floor-rf",
+        "from": "rf_solar",
+        "to": "deck_rear1",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:A:floor-rf:door_rf_tank_rf_service_aisle",
+        "source_id": "door_rf_tank_rf_service_aisle",
+        "building_id": "A",
+        "floor_id": "floor-rf",
+        "from": "rf_tank",
+        "to": "rf_service_aisle",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-1:door_main",
+        "source_id": "door_main",
+        "building_id": "B",
+        "floor_id": "floor-1",
+        "from": "outside",
+        "to": "entry_b",
+        "clear_width_mm": 1200,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-1:door_garage_street",
+        "source_id": "door_garage_street",
+        "building_id": "B",
+        "floor_id": "floor-1",
+        "from": "outside",
+        "to": "garage",
+        "clear_width_mm": 2815,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-1:door_corridor_stair",
+        "source_id": "door_corridor_stair",
+        "building_id": "B",
+        "floor_id": "floor-1",
+        "from": "corridor",
+        "to": "stair",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-1:door_corridor_garage",
+        "source_id": "door_corridor_garage",
+        "building_id": "B",
+        "floor_id": "floor-1",
+        "from": "corridor",
+        "to": "garage",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-1:door_corridor_balcony_b",
+        "source_id": "door_corridor_balcony_b",
+        "building_id": "B",
+        "floor_id": "floor-1",
+        "from": "corridor",
+        "to": "balcony_b",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-1:door_corridor_palanquin",
+        "source_id": "door_corridor_palanquin",
+        "building_id": "B",
+        "floor_id": "floor-1",
+        "from": "corridor",
+        "to": "palanquin",
+        "clear_width_mm": 1200,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-1:door_stair_idf_b",
+        "source_id": "door_stair_idf_b",
+        "building_id": "B",
+        "floor_id": "floor-1",
+        "from": "stair",
+        "to": "idf_b",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-1:door_stair_bath_acc",
+        "source_id": "door_stair_bath_acc",
+        "building_id": "B",
+        "floor_id": "floor-1",
+        "from": "stair",
+        "to": "bath_acc",
+        "clear_width_mm": 783,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-1:door_palanquin_entry_b",
+        "source_id": "door_palanquin_entry_b",
+        "building_id": "B",
+        "floor_id": "floor-1",
+        "from": "palanquin",
+        "to": "entry_b",
+        "clear_width_mm": 1200,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-1:door_bath_acc_shrine",
+        "source_id": "door_bath_acc_shrine",
+        "building_id": "B",
+        "floor_id": "floor-1",
+        "from": "bath_acc",
+        "to": "shrine",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-2:door_corridor_stair",
+        "source_id": "door_corridor_stair",
+        "building_id": "B",
+        "floor_id": "floor-2",
+        "from": "corridor",
+        "to": "stair",
+        "clear_width_mm": 2400,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-2:door_corridor_living_b",
+        "source_id": "door_corridor_living_b",
+        "building_id": "B",
+        "floor_id": "floor-2",
+        "from": "corridor",
+        "to": "living_b",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-2:door_corridor_balcony_b2",
+        "source_id": "door_corridor_balcony_b2",
+        "building_id": "B",
+        "floor_id": "floor-2",
+        "from": "corridor",
+        "to": "balcony_b2",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-2:door_stair_tea",
+        "source_id": "door_stair_tea",
+        "building_id": "B",
+        "floor_id": "floor-2",
+        "from": "stair",
+        "to": "tea",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-2:door_balcony_b2_bath_g",
+        "source_id": "door_balcony_b2_bath_g",
+        "building_id": "B",
+        "floor_id": "floor-2",
+        "from": "balcony_b2",
+        "to": "bath_g",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-2:door_tea_master_b",
+        "source_id": "door_tea_master_b",
+        "building_id": "B",
+        "floor_id": "floor-2",
+        "from": "tea",
+        "to": "master_b",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-3:door_corridor_stair",
+        "source_id": "door_corridor_stair",
+        "building_id": "B",
+        "floor_id": "floor-3",
+        "from": "corridor",
+        "to": "stair",
+        "clear_width_mm": 2400,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-3:door_corridor_flex_front0",
+        "source_id": "door_corridor_flex_front0",
+        "building_id": "B",
+        "floor_id": "floor-3",
+        "from": "corridor",
+        "to": "flex_front0",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-3:door_corridor_balcony_b3",
+        "source_id": "door_corridor_balcony_b3",
+        "building_id": "B",
+        "floor_id": "floor-3",
+        "from": "corridor",
+        "to": "balcony_b3",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-3:door_corridor_bath_b3",
+        "source_id": "door_corridor_bath_b3",
+        "building_id": "B",
+        "floor_id": "floor-3",
+        "from": "corridor",
+        "to": "bath_b3",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-3:door_stair_guest_b",
+        "source_id": "door_stair_guest_b",
+        "building_id": "B",
+        "floor_id": "floor-3",
+        "from": "stair",
+        "to": "guest_b",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-3:door_flex_front0_flex_b",
+        "source_id": "door_flex_front0_flex_b",
+        "building_id": "B",
+        "floor_id": "floor-3",
+        "from": "flex_front0",
+        "to": "flex_b",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-3:door_guest_b_ktv",
+        "source_id": "door_guest_b_ktv",
+        "building_id": "B",
+        "floor_id": "floor-3",
+        "from": "guest_b",
+        "to": "ktv",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-rf:door_rf_stair_deck_rear1",
+        "source_id": "door_rf_stair_deck_rear1",
+        "building_id": "B",
+        "floor_id": "floor-rf",
+        "from": "rf_stair",
+        "to": "deck_rear1",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-rf:door_rf_stair_rf_deck",
+        "source_id": "door_rf_stair_rf_deck",
+        "building_id": "B",
+        "floor_id": "floor-rf",
+        "from": "rf_stair",
+        "to": "rf_deck",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-rf:door_rf_stair_rf_tank",
+        "source_id": "door_rf_stair_rf_tank",
+        "building_id": "B",
+        "floor_id": "floor-rf",
+        "from": "rf_stair",
+        "to": "rf_tank",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-rf:door_rf_stair_rf_hp",
+        "source_id": "door_rf_stair_rf_hp",
+        "building_id": "B",
+        "floor_id": "floor-rf",
+        "from": "rf_stair",
+        "to": "rf_hp",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:B:floor-rf:door_rf_tank_rf_service_aisle",
+        "source_id": "door_rf_tank_rf_service_aisle",
+        "building_id": "B",
+        "floor_id": "floor-rf",
+        "from": "rf_tank",
+        "to": "rf_service_aisle",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-1:door_main",
+        "source_id": "door_main",
+        "building_id": "C",
+        "floor_id": "floor-1",
+        "from": "outside",
+        "to": "entry",
+        "clear_width_mm": 1000,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-1:door_garage_street",
+        "source_id": "door_garage_street",
+        "building_id": "C",
+        "floor_id": "floor-1",
+        "from": "outside",
+        "to": "garage",
+        "clear_width_mm": 2815,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-1:door_corridor_stair",
+        "source_id": "door_corridor_stair",
+        "building_id": "C",
+        "floor_id": "floor-1",
+        "from": "corridor",
+        "to": "stair",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-1:door_corridor_elder_bath",
+        "source_id": "door_corridor_elder_bath",
+        "building_id": "C",
+        "floor_id": "floor-1",
+        "from": "corridor",
+        "to": "elder_bath",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-1:door_corridor_garage",
+        "source_id": "door_corridor_garage",
+        "building_id": "C",
+        "floor_id": "floor-1",
+        "from": "corridor",
+        "to": "garage",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-1:door_corridor_balcony",
+        "source_id": "door_corridor_balcony",
+        "building_id": "C",
+        "floor_id": "floor-1",
+        "from": "corridor",
+        "to": "balcony",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-1:door_stair_idf_c",
+        "source_id": "door_stair_idf_c",
+        "building_id": "C",
+        "floor_id": "floor-1",
+        "from": "stair",
+        "to": "idf_c",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-1:door_stair_kitchen",
+        "source_id": "door_stair_kitchen",
+        "building_id": "C",
+        "floor_id": "floor-1",
+        "from": "stair",
+        "to": "kitchen",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-1:door_kitchen_living",
+        "source_id": "door_kitchen_living",
+        "building_id": "C",
+        "floor_id": "floor-1",
+        "from": "kitchen",
+        "to": "living",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-1:door_living_elder",
+        "source_id": "door_living_elder",
+        "building_id": "C",
+        "floor_id": "floor-1",
+        "from": "living",
+        "to": "elder",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-1:door_garage_entry",
+        "source_id": "door_garage_entry",
+        "building_id": "C",
+        "floor_id": "floor-1",
+        "from": "garage",
+        "to": "entry",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-2:door_corridor_stair",
+        "source_id": "door_corridor_stair",
+        "building_id": "C",
+        "floor_id": "floor-2",
+        "from": "corridor",
+        "to": "stair",
+        "clear_width_mm": 2400,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-2:door_corridor_flex_front0",
+        "source_id": "door_corridor_flex_front0",
+        "building_id": "C",
+        "floor_id": "floor-2",
+        "from": "corridor",
+        "to": "flex_front0",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-2:door_corridor_bath_c2",
+        "source_id": "door_corridor_bath_c2",
+        "building_id": "C",
+        "floor_id": "floor-2",
+        "from": "corridor",
+        "to": "bath_c2",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-2:door_stair_kitchenette",
+        "source_id": "door_stair_kitchenette",
+        "building_id": "C",
+        "floor_id": "floor-2",
+        "from": "stair",
+        "to": "kitchenette",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-2:door_flex_front0_living2",
+        "source_id": "door_flex_front0_living2",
+        "building_id": "C",
+        "floor_id": "floor-2",
+        "from": "flex_front0",
+        "to": "living2",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-2:door_kitchenette_guest2",
+        "source_id": "door_kitchenette_guest2",
+        "building_id": "C",
+        "floor_id": "floor-2",
+        "from": "kitchenette",
+        "to": "guest2",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-2:door_kitchenette_flex_rear2",
+        "source_id": "door_kitchenette_flex_rear2",
+        "building_id": "C",
+        "floor_id": "floor-2",
+        "from": "kitchenette",
+        "to": "flex_rear2",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-2:door_flex_rear2_balcony_c2",
+        "source_id": "door_flex_rear2_balcony_c2",
+        "building_id": "C",
+        "floor_id": "floor-2",
+        "from": "flex_rear2",
+        "to": "balcony_c2",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-3:door_corridor_stair",
+        "source_id": "door_corridor_stair",
+        "building_id": "C",
+        "floor_id": "floor-3",
+        "from": "corridor",
+        "to": "stair",
+        "clear_width_mm": 2400,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-3:door_corridor_flex_front0",
+        "source_id": "door_corridor_flex_front0",
+        "building_id": "C",
+        "floor_id": "floor-3",
+        "from": "corridor",
+        "to": "flex_front0",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-3:door_corridor_balcony_c3",
+        "source_id": "door_corridor_balcony_c3",
+        "building_id": "C",
+        "floor_id": "floor-3",
+        "from": "corridor",
+        "to": "balcony_c3",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-3:door_stair_flex_rear2",
+        "source_id": "door_stair_flex_rear2",
+        "building_id": "C",
+        "floor_id": "floor-3",
+        "from": "stair",
+        "to": "flex_rear2",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-3:door_flex_front0_master_c",
+        "source_id": "door_flex_front0_master_c",
+        "building_id": "C",
+        "floor_id": "floor-3",
+        "from": "flex_front0",
+        "to": "master_c",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-3:door_flex_rear2_gym",
+        "source_id": "door_flex_rear2_gym",
+        "building_id": "C",
+        "floor_id": "floor-3",
+        "from": "flex_rear2",
+        "to": "gym",
+        "clear_width_mm": 900,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-3:door_gym_bath_c3",
+        "source_id": "door_gym_bath_c3",
+        "building_id": "C",
+        "floor_id": "floor-3",
+        "from": "gym",
+        "to": "bath_c3",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-rf:door_rf_stair_deck_rear1",
+        "source_id": "door_rf_stair_deck_rear1",
+        "building_id": "C",
+        "floor_id": "floor-rf",
+        "from": "rf_stair",
+        "to": "deck_rear1",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-rf:door_rf_stair_rf_dry",
+        "source_id": "door_rf_stair_rf_dry",
+        "building_id": "C",
+        "floor_id": "floor-rf",
+        "from": "rf_stair",
+        "to": "rf_dry",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-rf:door_rf_stair_rf_tank",
+        "source_id": "door_rf_stair_rf_tank",
+        "building_id": "C",
+        "floor_id": "floor-rf",
+        "from": "rf_stair",
+        "to": "rf_tank",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-rf:door_rf_stair_rf_hp",
+        "source_id": "door_rf_stair_rf_hp",
+        "building_id": "C",
+        "floor_id": "floor-rf",
+        "from": "rf_stair",
+        "to": "rf_hp",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      },
+      {
+        "id": "LEGACY:C:floor-rf:door_rf_tank_rf_service_aisle",
+        "source_id": "door_rf_tank_rf_service_aisle",
+        "building_id": "C",
+        "floor_id": "floor-rf",
+        "from": "rf_tank",
+        "to": "rf_service_aisle",
+        "clear_width_mm": 800,
+        "geometry_provenance": "legacy_assumption"
+      }
+    ],
+    "windows": [],
+    "equipment": [],
+    "drawing_geometry": []
+  },
+  "import_issues": [
+    {
+      "code": "LEGACY_FOOTPRINT_ASSUMPTION",
+      "severity": "blocking",
+      "message": "Historical scenario treats 32 ping as floor footprint and cannot prove the current parcel-based design."
+    }
+  ]
+}

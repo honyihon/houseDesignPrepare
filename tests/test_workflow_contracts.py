@@ -14,6 +14,8 @@ def test_run_full_pipeline_defines_validation_owner() -> None:
     assert '[string]$ValidationOwner = "inner"' in script
     assert '$ValidationOwner -eq "inner"' in script
     assert '@("scripts/validate_layout_bundle.py", "--strict")' in script
+    assert '[ValidateSet("concept", "draft", "release", "ifc")]' in script
+    assert 'if ($Mode -eq "release")' in script
 
 
 def test_expert_workflow_passes_outer_validation_owner() -> None:

@@ -1,4 +1,27 @@
-# Layout Data Extraction
+# House Design Workflows
+
+## Current parcel and drawing review
+
+The confirmed 32 ping is **each parcel's land area**, not each floor's building
+area. The current workflow keeps missing zoning, road, coverage, FAR and setback
+facts as `unknown`; unknown is never rendered as a pass.
+
+```bash
+python3 -m house_design intake validate
+python3 -m house_design drawings import --revision R001 --label "初步設計" \
+  --pdf path/to/drawings.pdf --ifc path/to/model.ifc
+python3 -m house_design review run --revision R001 --previous R000
+```
+
+Use `--dxf model.dxf --mapping mapping.json` when IFC is unavailable. DWG must
+be exported to DXF. Outputs are written to `structured/reviews/<revision>/` as
+JSON, Markdown, a printable PDF and a self-contained offline dashboard.
+
+All rooms and equipment imported from the old briefs are `candidate` until the
+owner explicitly changes them to `confirmed` or `rejected` in
+`inputs/requirements.json`.
+
+## Historical HTML layout extraction
 
 ## Purpose
 
@@ -47,7 +70,7 @@ with existing outputs are skipped automatically:
 ```bash
 python -m house_design pipeline --mode concept
 python -m house_design pipeline --mode draft --from-step candidates --to-step svg
-python -m house_design pipeline --mode ifc --force
+python -m house_design pipeline --mode release --force
 ```
 
 Options:
@@ -73,7 +96,7 @@ powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 -Mode con
 # Draft bundle (default mode, auto selection=baseline)
 powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 -Mode draft
 
-# IFC-like gate (full export + validation)
+# Historical release gate (full export + validation; not IFC import or professional approval)
 powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 -Mode ifc
 
 # Force specific candidate selection

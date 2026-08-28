@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-"""Pre-bake parametric floor plans for the three buildings.
+"""Pre-bake the legacy 32-ping-footprint scenario for regression use.
 
-Nobody has drawn a plan yet and the lot dimensions are not decided. The only
-hard number is 32 ping of building area per building. So instead of asking for
-dimensions we do not have, this script sweeps the frontage (6-10 m, with the
-depth back-solved to keep the area locked at 32 ping) and the garage size, and
-writes every resulting plan out at once. The 3D viewer then just switches
-between them as the user drags a slider.
+This historical branch predates confirmation that 32 ping is each parcel's
+land area, not each storey's building footprint. It still sweeps frontage
+(6-10 m), back-solves depth to keep the assumed footprint at 32 ping, and
+writes every resulting plan for archive discussion and regression tests. Its
+outputs are not a buildable envelope or the current project baseline.
 
 Outputs:
     structured/parametric/plan.json    geometry for every variant
@@ -318,13 +317,13 @@ def write_capacity_report(doc: dict[str, Any], path: Path,
     lines.append(f"**{BASELINE_LABEL}**　·　產生時間：{doc['generated_at']}")
     lines.append("")
     lines.append(f"> {BASELINE_NOTE}")
-    lines.append("> 與最早的 HTML 草圖（`structured/candidates/`）不一致時，以這份為準。")
+    lines.append("> 僅供與最早的 HTML 草圖互相比較；現行入口是 `structured/reviews/`。")
     lines.append("")
-    lines.append("> 這份報告的前提：**建築師還沒開始設計，地的長寬還沒決定。**")
-    lines.append("> 唯一的硬條件是每棟建築面積 32 坪。開間是滑桿，進深由面積反推，")
+    lines.append("> 這份歷史報告的前提是：**把每層建築面積假設為 32 坪。**")
+    lines.append("> 這不是現行基地條件。此處開間是滑桿，進深由假設面積反推，")
     lines.append("> 所以每個變體的建築面積都一樣，只有形狀不同。")
     lines.append("")
-    lines.append(f"- 每棟每層建築面積：**{site['footprint_ping']} 坪 "
+    lines.append(f"- 歷史假設的每棟每層建築面積：**{site['footprint_ping']} 坪 "
                  f"= {site['footprint_ping'] * site['ping_to_sqm']:.2f} m²**")
     lines.append(f"- 樓層：**{site['storeys']} 層 + RF**（RF 不是第四層，只有女兒牆與屋突）")
     roof_cfg = roof_penthouse(defaults)

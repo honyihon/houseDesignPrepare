@@ -1,4 +1,4 @@
-"""Compare HTML-sketch rooms against the parametric predesign baseline.
+"""Compare two historical sketch branches for regression and archive use.
 
 The two models answer different questions and must not be forced to agree.
 This module only *names* the differences so both 3D viewers can show them.
@@ -361,7 +361,7 @@ def build_compare(
         "storey_height_mm": storey,
         "parapet_height_mm": parapet,
         "label": (
-            f"現行 32 坪基準（{frontage / 1000:g} m × "
+            f"舊版 32 坪建築面積情境（{frontage / 1000:g} m × "
             f"{int(garage.get('bays') or bays)} 車位）"
         ),
     }
@@ -411,7 +411,7 @@ def build_compare(
         "ghost": ghost,
         "buildings": buildings_out,
         "note": (
-            "HTML 是早期示意格子；參數化是現行 32 坪基準。"
+            "HTML 與參數化都是歷史示意；現行 32 坪是基地面積，不是這裡的建築面積。"
             "兩邊房間清單與開間都不同，這是刻意的，不是繪圖錯誤。"
         ),
     }

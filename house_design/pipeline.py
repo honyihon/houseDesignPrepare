@@ -65,7 +65,12 @@ def build_steps(selection: str, style: str, paper: str, output: str, mode: str) 
         Step(
             "candidates",
             ("scripts/generate_layout_candidates.py",),
-            _paths("structured/room_program.json", "structured/architect_metrics/metrics.json", "scripts/generate_layout_candidates.py"),
+            _paths(
+                "structured/room_program.json",
+                "structured/architect_metrics/metrics.json",
+                "scripts/generate_layout_candidates.py",
+                "scripts/lib/standards.py",
+            ),
             _paths("structured/candidates/layout_candidates.json", "structured/candidates/summary.md"),
         ),
         Step(
@@ -83,6 +88,8 @@ def build_steps(selection: str, style: str, paper: str, output: str, mode: str) 
                 "scripts/export_model_3d.py",
                 "scripts/export_top1_svgs.py",
                 "scripts/config/residential_defaults_tw.json",
+                "scripts/lib/html_parametric_compare.py",
+                "scripts/lib/standards.py",
                 "assets/vendor/three/three.min.js",
             ),
             _paths("structured/candidates/model3d.html"),
@@ -101,6 +108,7 @@ def build_steps(selection: str, style: str, paper: str, output: str, mode: str) 
                 "scripts/generate_parametric_plan.py",
                 "scripts/lib/plan_geometry.py",
                 "scripts/lib/plan_rules.py",
+                "scripts/lib/standards.py",
                 "scripts/config/residential_defaults_tw.json",
             ),
             _paths("structured/parametric/plan.json", "structured/parametric/capacity.md"),
@@ -111,6 +119,8 @@ def build_steps(selection: str, style: str, paper: str, output: str, mode: str) 
             _paths(
                 "structured/parametric/plan.json",
                 "scripts/export_walkthrough_3d.py",
+                "scripts/lib/html_parametric_compare.py",
+                "scripts/lib/standards.py",
                 "scripts/lib/viewer_shell.py",
                 "scripts/config/residential_defaults_tw.json",
                 "assets/vendor/three/three.min.js",
@@ -139,7 +149,7 @@ def build_steps(selection: str, style: str, paper: str, output: str, mode: str) 
                 (ROOT / output,),
             )
         )
-    if mode == "ifc":
+    if mode in {"ifc", "release"}:
         steps.append(
             Step(
                 "validate",

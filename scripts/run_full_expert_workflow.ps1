@@ -1,7 +1,7 @@
 param(
     [Parameter(Mandatory = $true)]
     [string]$Request,
-    [ValidateSet("concept", "draft", "ifc")]
+    [ValidateSet("concept", "draft", "release", "ifc")]
     [string]$Mode = "draft",
     [ValidateSet("auto", "baseline", "best")]
     [string]$Selection = "auto",
@@ -20,6 +20,13 @@ $ErrorActionPreference = "Stop"
 
 $repoRoot = Split-Path -Parent $PSScriptRoot
 Set-Location -LiteralPath $repoRoot
+
+if ($Mode -eq "release") {
+    $Mode = "ifc"
+}
+elseif ($Mode -eq "ifc") {
+    Write-Host "Mode 'ifc' is deprecated; use 'release'. IFC now names imported drawing files." -ForegroundColor Yellow
+}
 
 $resolvedRequest = Resolve-Path -LiteralPath $Request -ErrorAction Stop
 $resolvedRequestPath = $resolvedRequest.Path

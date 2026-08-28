@@ -1,0 +1,88 @@
+{
+  "schema": "house-predesign-v1",
+  "project_id": "kaohsiung-three-house-compound",
+  "current_phase": "site_search",
+  "policy": {
+    "household_baseline": "all_age_accessible",
+    "cost_strategy": "whole_life_cycle",
+    "timeline_strategy": "phase_gates",
+    "gate_policy": "blocking",
+    "source_policy": "tiered_evidence",
+    "budget_storage": "bands_in_git_exact_private"
+  },
+  "building_roles": {
+    "A": "主要設備與全齡生活棟",
+    "B": "祭祀傳承棟",
+    "C": "長輩友善自住棟"
+  },
+  "budget_policy": {
+    "exact_amounts": "private_gitignored_file",
+    "private_file": "inputs/private/budget.json",
+    "ceiling_status": "unknown",
+    "scope_status": "in_progress",
+    "contingency_status": "unknown",
+    "public_band": "not_set"
+  },
+  "states": [
+    {
+      "rule_id": "PD-OWNER-ALL-AGE",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "owner_decision",
+          "decision": "all_age_accessible",
+          "confirmed_at": "2026-08-28"
+        }
+      ],
+      "note": "全齡無障礙是不可妥協的家庭設計基準。"
+    },
+    {
+      "rule_id": "PD-OWNER-BUILDING-ROLES",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "owner_decision",
+          "decision": "keep_existing_A_B_C_roles",
+          "confirmed_at": "2026-08-28"
+        }
+      ],
+      "note": "A、B、C 三棟定位保留；實際量體須等土地確定後重算。"
+    },
+    {
+      "rule_id": "PD-OWNER-WHOLE-LIFE-COST",
+      "status": "verified",
+      "evidence": [
+        {
+          "kind": "owner_decision",
+          "decision": "whole_life_cycle",
+          "confirmed_at": "2026-08-28"
+        }
+      ],
+      "note": "防漏、耐久、節能與可維修優先於裝飾和非必要設備。"
+    },
+    {
+      "rule_id": "PD-BUDGET-SCOPE-CONTINGENCY",
+      "status": "in_progress",
+      "evidence": [],
+      "note": "已決定採全生命週期成本，但尚未完成分項與備用金。"
+    },
+    {
+      "rule_id": "PD-SITE-TARGET-CRITERIA",
+      "status": "in_progress",
+      "evidence": [
+        {
+          "kind": "project_target",
+          "path": "inputs/project.json",
+          "field": "site_search.target_scenario"
+        }
+      ],
+      "note": "已定三筆相鄰、每筆約 32 坪，但臨路、面寬、深度與施工條件淘汰線尚待補齊。"
+    },
+    {
+      "rule_id": "PD-SITE-SELECTED",
+      "status": "unknown",
+      "evidence": [],
+      "note": "土地尚未確定。"
+    }
+  ]
+}

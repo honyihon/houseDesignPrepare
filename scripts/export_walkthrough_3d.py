@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Export the walk-in 3D viewer for the parametric plans.
+"""Export the walk-in 3D viewer for the legacy parametric scenario.
 
 Reads ``structured/parametric/plan.json`` and writes a single self-contained
 ``structured/parametric/walkthrough.html`` that opens by double-clicking — no
@@ -7,12 +7,10 @@ web server, no network, no build step.
 
 What this is for
 ----------------
-The architect has not drawn anything yet and the site dimensions are not fixed.
-This viewer exists so the family and the architect can *stand inside* each
-candidate before any of that is decided: walk in the front door, down the
-corridor, into the 孝親房, and find out whether a wheelchair can turn around.
-That question is not answerable from a table of areas, which is why the effort
-goes here rather than into more numbers.
+This viewer preserves an earlier thought experiment so the family and architect
+can discuss how the old room brief behaved when every storey was assumed to be
+32 ping. The confirmed 32 ping is now parcel area, so this is regression and
+archive evidence, not a proposed or buildable design.
 
 Walls with real holes, without CSG
 ----------------------------------
@@ -27,11 +25,10 @@ can walk through. There is no separate navmesh that can disagree with the walls.
 
 Honesty
 -------
-Every dimension here is derived from a stated *area requirement*, not from a
-survey or an architect's drawing. The banner in the viewer says so. What is real
-is the arithmetic: 32 坪 with a garage inside it does not fit the 1F brief for
-A 棟 or C 棟 at any frontage, and walking through the squeezed result is the
-most direct way to feel why.
+Every dimension here is derived from an old *area assumption*, not from a survey
+or an architect's drawing. The banner in the viewer says so. The model may still
+help explain why the former brief became squeezed, but it cannot establish what
+fits on any of the three parcels.
 """
 
 from __future__ import annotations
@@ -182,10 +179,9 @@ __BASE_CSS__
   <aside id="panel">
     <h1>走入式 3D · 設計前期</h1>
     <p class="sub" id="subtitle"></p>
-    <div class="banner ok">
-      <b>設計前期基準</b>　本專案目前以這個模型為準。
-      早期的 HTML 草圖檢視器（<a class="inline" href="../candidates/model3d.html">structured/candidates/model3d.html</a>）
-      是存檔，兩邊不一致時看這裡。
+    <div class="banner warn">
+      <b>舊版參數化情境</b>　這個模型把 32 坪當成每層建築面積，已不是現行專案基準。
+      現行條件是每筆基地 32 坪；請改看 <a class="inline" href="../reviews/R000/index.html">structured/reviews/</a> 的資料就緒度與圖面版次。
     </div>
     <div class="banner warn">
       這不是建築師的圖。所有尺寸都是<b>從面積需求反推</b>的，用來感受空間大小與動線，

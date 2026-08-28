@@ -486,8 +486,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     <p class="sub" id="subtitle"></p>
     <div class="banner note">
       <b>早期草圖存檔</b>　這是最初 HTML 草圖的量體，保留作存檔與需求追溯，
-      <b>不是</b>現行設計基準。要看現行的走入式模型請開
-      <a class="inline" href="../parametric/walkthrough.html">structured/parametric/walkthrough.html</a>。
+      <b>不是</b>現行設計基準。現行資料就緒度與圖面版次請開
+      <a class="inline" href="../reviews/R000/index.html">structured/reviews/</a>。
     </div>
     <div class="banner warn" id="honesty"></div>
 
@@ -506,8 +506,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     </div>
     <div id="legend"></div>
 
-    <h2>與參數化基準對照</h2>
-    <label class="row"><input type="checkbox" id="ghost" checked /> 顯示 32 坪基準外框</label>
+    <h2>與舊版參數化情境對照</h2>
+    <label class="row"><input type="checkbox" id="ghost" checked /> 顯示舊版 32 坪建築面積外框</label>
     <div id="compare">__COMPARE_HTML__</div>
 
     <h2>樓層</h2>

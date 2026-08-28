@@ -1,0 +1,26 @@
+{
+  "schema": "house-drawing-revision-v1",
+  "revision_id": "R000",
+  "label": "舊版概念配置（32坪建築面積假設）",
+  "received_at": "2026-08-27T07:48:12.797275+00:00",
+  "status": "legacy_assumption",
+  "immutable": true,
+  "sources": [
+    {
+      "kind": "legacy_parametric_json",
+      "file": "structured/parametric/plan.json",
+      "sha256": "44dca801266f1f76d403b010765fcc3377073e22532ce08344e1c4c651b014a8",
+      "variant_id": "f6000_g1"
+    }
+  ],
+  "normalized_model": "inputs/revisions/R000/normalized_model.json",
+  "normalized_entity_count": 207,
+  "issues": [
+    {
+      "code": "LEGACY_FOOTPRINT_ASSUMPTION",
+      "severity": "blocking",
+      "message": "Historical scenario treats 32 ping as floor footprint and cannot prove the current parcel-based design."
+    }
+  ],
+  "content_hash": "1f5d0fdbd07a8c9c04bbe12f94ff686dc2e75f702bfb97a7784c8c20ce8d4768"
+}

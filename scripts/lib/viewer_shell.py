@@ -78,9 +78,8 @@ BASE_CSS = """
   .sub { margin: 0; font-size: 12px; color: var(--muted); }
   .banner { margin-top: 12px; padding: 9px 11px; border-radius: 8px; font-size: 12px; line-height: 1.55; }
   .banner.warn { background: rgba(248, 184, 78, .12); border: 1px solid rgba(248, 184, 78, .42); color: #ffdda1; }
-  /* Which branch this viewer belongs to: ok = the predesign baseline, note =
-     the archived HTML sketches. Both viewers look equally finished, so the
-     status has to be on the page rather than only in CLAUDE.md. */
+  /* Legacy viewers remain visually complete, so authority warnings must stay
+     on the page rather than only in repository documentation. */
   .banner.ok { background: rgba(88, 214, 165, .12); border: 1px solid rgba(88, 214, 165, .42); color: #a7f0d4; }
   .banner.note { background: rgba(150, 160, 180, .12); border: 1px solid rgba(150, 160, 180, .40); color: #ccd4e2; }
   .seg { display: flex; gap: 6px; }

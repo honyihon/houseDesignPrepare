@@ -1,5 +1,5 @@
 param(
-    [ValidateSet("concept", "draft", "ifc")]
+    [ValidateSet("concept", "draft", "release", "ifc")]
     [string]$Mode = "draft",
     [ValidateSet("a3", "a4")]
     [string]$Paper = "a3",
@@ -18,6 +18,16 @@ $ErrorActionPreference = "Stop"
 
 $repoRoot = Split-Path -Parent $PSScriptRoot
 Set-Location -LiteralPath $repoRoot
+
+if ($Mode -eq "release") {
+    # Historical scripts still call their strict validation level "ifc".
+    # Translate at the boundary so IFC remains available as a drawing format
+    # in the current workflow without breaking old script interfaces.
+    $Mode = "ifc"
+}
+elseif ($Mode -eq "ifc") {
+    Write-Host "Mode 'ifc' is deprecated; use 'release'. IFC now names imported drawing files." -ForegroundColor Yellow
+}
 
 if ($Selection -eq "auto") {
     $resolvedSelection = "baseline"
@@ -75,9 +85,8 @@ Invoke-Step -Name "render_candidate_viewer" -Arguments @("scripts/render_candida
 # Runs in every mode, concept included: the 3D massing viewer is the fastest way
 # to get a spatial read on a change, which is exactly what concept mode is for.
 Invoke-Step -Name "export_model_3d" -Arguments @("scripts/export_model_3d.py")
-# The parametric branch answers a different question from everything else here:
-# not "what does the drawn plan measure" but "what fits in 32 ping at all". It
-# reads inputs/brief instead of the HTML, so it runs in every mode.
+# This legacy branch asks what fits when 32 ping is incorrectly treated as each
+# storey's footprint. It remains in every mode only for archive regression.
 Invoke-Step -Name "generate_parametric_plan" -Arguments @("scripts/generate_parametric_plan.py")
 Invoke-Step -Name "export_walkthrough_3d" -Arguments @("scripts/export_walkthrough_3d.py")
 Invoke-Step -Name "export_top1_svgs" -Arguments @(

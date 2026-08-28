@@ -374,15 +374,15 @@ def defaults_summary_line(defaults: dict[str, Any]) -> str:
 # have been mistaken for measurements before. So both branches stamp themselves.
 # See the "Which model is authoritative" section of CLAUDE.md.
 
-BASELINE_LABEL = "設計前期基準（predesign baseline）"
+BASELINE_LABEL = "舊版參數化情境（歷史假設）"
 BASELINE_NOTE = (
-    "本專案目前的設計基準。不是施工圖、不是建照圖，"
-    "所有尺寸都還是假設 —— 地未定、建築師未進場。"
+    "這份情境把 32 坪當成每層建築面積，已不是現行專案基準。"
+    "現行條件為每筆基地 32 坪；可建量體必須待地號、分區、道路、建蔽率與退縮確認。"
 )
 
 ARCHIVE_LABEL = "早期草圖存檔（HTML 分支）"
 ARCHIVE_NOTE = (
     "這份產物來自最早的 HTML 草圖，保留作為存檔與需求追溯，"
     "**不是**現行設計基準；尺寸有 8 成是從 CSS class 推測的。"
-    "現行基準見 structured/parametric/。"
+    "現行檢核入口見 structured/reviews/。"
 )

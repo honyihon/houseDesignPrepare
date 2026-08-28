@@ -1,0 +1,57 @@
+{
+  "schema": "house-project-v3",
+  "project_id": "kaohsiung-three-house-compound",
+  "name": "高雄三棟住宅前期規劃",
+  "stage": "site_search",
+  "jurisdiction": {
+    "country_code": "TW",
+    "county_code": "KHH",
+    "label": "臺灣／高雄市",
+    "confirmed_by": "owner",
+    "confirmed_at": "2026-08-27"
+  },
+  "site_search": {
+    "selection_status": "searching",
+    "target_scenario": {
+      "parcel_relationship": "adjacent_separate_parcels",
+      "target_parcel_count": 3,
+      "target_area_ping_each": 32.0,
+      "area_tolerance": "to_be_decided_after_feasibility_review",
+      "order_left_to_right": ["C", "B", "A"],
+      "provenance": "owner_selected_search_target",
+      "note": "三筆相鄰、每筆約 32 坪是選地目標，不是已取得的基地事實。"
+    },
+    "candidate_sites": [],
+    "selected_site": null
+  },
+  "buildings": [
+    {
+      "id": "A",
+      "role": "主要設備與全齡生活棟",
+      "role_status": "owner_confirmed_predesign_policy"
+    },
+    {
+      "id": "B",
+      "role": "祭祀傳承棟",
+      "role_status": "owner_confirmed_predesign_policy"
+    },
+    {
+      "id": "C",
+      "role": "長輩友善自住棟",
+      "role_status": "owner_confirmed_predesign_policy"
+    }
+  ],
+  "compound": {
+    "shared_items_to_confirm": [
+      "共同車道與車輛迴轉",
+      "跨棟給排水、電力與弱電路徑",
+      "棟距、開口與防火間隔",
+      "共用設備的產權、維修與計量"
+    ]
+  },
+  "authority": {
+    "canonical_for_site_facts": true,
+    "legacy_parametric_site": "inputs/site.json",
+    "note": "目前沒有已選定基地。32 坪為每筆選地目標，不是實際面積或每層建築面積；可建量體必須在選地後由正式法定條件推導。"
+  }
+}

@@ -41,6 +41,12 @@ def test_pipeline_exposes_ifc_validation_and_concept_skips_pdf() -> None:
     assert "--strict" in ifc[-1].command
 
 
+def test_release_mode_is_the_named_alias_for_the_old_ifc_gate() -> None:
+    release = build_steps("baseline", "technical", "a4", "bundle.pdf", "release")
+
+    assert [step.name for step in release][-2:] == ["pdf", "validate"]
+
+
 def test_svg_effective_outputs_include_manifest_exports(tmp_path: Path, monkeypatch) -> None:
     import house_design.pipeline as pipeline
 
@@ -58,3 +64,17 @@ def test_concept_step_range_does_not_offer_ifc_only_validation() -> None:
 
     assert "pdf" not in names
     assert "validate" not in names
+
+
+def test_legacy_render_steps_track_authority_warning_sources() -> None:
+    steps = {
+        step.name: step
+        for step in build_steps("baseline", "presentation", "a3", "bundle.pdf", "concept")
+    }
+
+    standards = Path("scripts/lib/standards.py")
+    compare = Path("scripts/lib/html_parametric_compare.py")
+    assert any(path.as_posix().endswith(standards.as_posix()) for path in steps["parametric"].inputs)
+    assert any(path.as_posix().endswith(standards.as_posix()) for path in steps["walkthrough"].inputs)
+    assert any(path.as_posix().endswith(compare.as_posix()) for path in steps["walkthrough"].inputs)
+    assert any(path.as_posix().endswith(compare.as_posix()) for path in steps["model3d"].inputs)

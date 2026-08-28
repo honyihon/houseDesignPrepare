@@ -215,7 +215,7 @@ def draw_cover(
                    "inferred, none measured.")
     y -= 5.5 * mm
     pdf.drawString(margin_x, y,
-                   "Current baseline: structured/parametric/  (predesign baseline)")
+                   "Current review entry: structured/reviews/  (parcel facts + drawing revisions)")
     y -= 5.5 * mm
     pdf.drawString(margin_x, y, "早期草圖存檔，非現行設計基準，不可作為施工依據。")
 

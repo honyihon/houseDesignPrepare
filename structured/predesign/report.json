@@ -1,0 +1,1507 @@
+{
+  "schema": "house-predesign-report-v1",
+  "generated_at": "2026-08-28T01:56:05.162106+00:00",
+  "project_id": "kaohsiung-three-house-compound",
+  "current_phase": "site_search",
+  "policy": {
+    "household_baseline": "all_age_accessible",
+    "cost_strategy": "whole_life_cycle",
+    "timeline_strategy": "phase_gates",
+    "gate_policy": "blocking",
+    "source_policy": "tiered_evidence",
+    "budget_storage": "bands_in_git_exact_private"
+  },
+  "readiness": {
+    "completed": 3,
+    "total": 10,
+    "percent": 30,
+    "by_phase": {
+      "owner_brief": {
+        "completed": 3,
+        "total": 4
+      },
+      "finance": {
+        "completed": 0,
+        "total": 2
+      },
+      "site_search": {
+        "completed": 0,
+        "total": 4
+      },
+      "site_due_diligence": {
+        "completed": 0,
+        "total": 6
+      },
+      "design": {
+        "completed": 0,
+        "total": 8
+      },
+      "tender": {
+        "completed": 0,
+        "total": 4
+      },
+      "construction": {
+        "completed": 0,
+        "total": 4
+      },
+      "handover": {
+        "completed": 0,
+        "total": 3
+      }
+    }
+  },
+  "status_counts": {
+    "pass": 3,
+    "fail": 0,
+    "warning": 27,
+    "unknown": 4,
+    "not_applicable": 0,
+    "professional_review": 1
+  },
+  "gate": {
+    "eligible_for_next_phase": false,
+    "active_blockers": 5,
+    "policy": "目前及先前階段的 blocking 項目必須 verified 或有理由地 not_applicable。"
+  },
+  "private_budget": {
+    "present": false,
+    "valid": false,
+    "populated_fields": 0,
+    "total_fields": 9
+  },
+  "findings": [
+    {
+      "finding_id": "PD-OWNER-HOUSEHOLD-PROFILE-e1d692bb",
+      "rule_id": "PD-OWNER-HOUSEHOLD-PROFILE",
+      "status": "unknown",
+      "status_label": "未知",
+      "severity": "blocking",
+      "domain": "household",
+      "title": "家庭成員與 20 年情境訪談",
+      "message": "尚缺各棟常住者、年齡、輪椅／照護、祭祀、車輛、寵物、工作與訪客頻率。",
+      "phase": "owner_brief",
+      "gate_active": true,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-OWNER-20260828",
+          "tier": "owner_policy",
+          "title": "2026-08-28 屋主前期策略決策",
+          "url": null
+        }
+      ],
+      "source": {
+        "source_id": "SRC-OWNER-20260828",
+        "tier": "owner_policy",
+        "title": "2026-08-28 屋主前期策略決策",
+        "organization": "屋主",
+        "url": null,
+        "verified_at": "2026-08-28",
+        "scope_limit": "只代表本案屋主政策，不是法規或專業計算。"
+      },
+      "responsible_role": "屋主家庭",
+      "next_action": "完成現在、5 年、10 年、20 年四個情境，區分 must／should／could。"
+    },
+    {
+      "finding_id": "PD-BUDGET-CEILING-5aa7323f",
+      "rule_id": "PD-BUDGET-CEILING",
+      "status": "unknown",
+      "status_label": "未知",
+      "severity": "blocking",
+      "domain": "budget",
+      "title": "總預算上限與資金時程",
+      "message": "預算政策或私有預算表尚未完整；報告只顯示完成狀態，不會輸出精確金額。",
+      "phase": "finance",
+      "gate_active": true,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-OWNER-20260828",
+          "tier": "owner_policy",
+          "title": "2026-08-28 屋主前期策略決策",
+          "url": null
+        }
+      ],
+      "source": {
+        "source_id": "SRC-OWNER-20260828",
+        "tier": "owner_policy",
+        "title": "2026-08-28 屋主前期策略決策",
+        "organization": "屋主",
+        "url": null,
+        "verified_at": "2026-08-28",
+        "scope_limit": "只代表本案屋主政策，不是法規或專業計算。"
+      },
+      "responsible_role": "屋主／財務顧問",
+      "next_action": "在 gitignored 私有預算表填入精確金額，版控只保留完成狀態與級距。"
+    },
+    {
+      "finding_id": "PD-BUDGET-SCOPE-CONTINGENCY-b20a40a5",
+      "rule_id": "PD-BUDGET-SCOPE-CONTINGENCY",
+      "status": "unknown",
+      "status_label": "未知",
+      "severity": "blocking",
+      "domain": "budget",
+      "title": "預算範圍與備用金",
+      "message": "預算政策或私有預算表尚未完整；報告只顯示完成狀態，不會輸出精確金額。",
+      "phase": "finance",
+      "gate_active": true,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-OWNER-20260828",
+          "tier": "owner_policy",
+          "title": "2026-08-28 屋主前期策略決策",
+          "url": null
+        }
+      ],
+      "source": {
+        "source_id": "SRC-OWNER-20260828",
+        "tier": "owner_policy",
+        "title": "2026-08-28 屋主前期策略決策",
+        "organization": "屋主",
+        "url": null,
+        "verified_at": "2026-08-28",
+        "scope_limit": "只代表本案屋主政策，不是法規或專業計算。"
+      },
+      "responsible_role": "屋主／建築師",
+      "next_action": "確認每一類是否含稅、運送、安裝、測試與介面工程，並由屋主確認備用金。"
+    },
+    {
+      "finding_id": "PD-SITE-TARGET-CRITERIA-70ab77e8",
+      "rule_id": "PD-SITE-TARGET-CRITERIA",
+      "status": "unknown",
+      "status_label": "未知",
+      "severity": "blocking",
+      "domain": "site",
+      "title": "選地硬條件與淘汰條件",
+      "message": "目前只有三筆相鄰、每筆約 32 坪目標，尚未定義臨路、面寬、深度、朝向與施工進出淘汰線。",
+      "phase": "site_search",
+      "gate_active": true,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "project_target",
+          "path": "inputs/project.json",
+          "field": "site_search.target_scenario"
+        },
+        {
+          "kind": "research_source",
+          "source_id": "SRC-OWNER-20260828",
+          "tier": "owner_policy",
+          "title": "2026-08-28 屋主前期策略決策",
+          "url": null
+        },
+        {
+          "kind": "research_source",
+          "source_id": "SRC-NLSC-MAPS",
+          "tier": "official",
+          "title": "國土測繪圖資服務雲",
+          "url": "https://maps.nlsc.gov.tw/"
+        }
+      ],
+      "source": {
+        "source_id": "SRC-OWNER-20260828",
+        "tier": "owner_policy",
+        "title": "2026-08-28 屋主前期策略決策",
+        "organization": "屋主",
+        "url": null,
+        "verified_at": "2026-08-28",
+        "scope_limit": "只代表本案屋主政策，不是法規或專業計算。"
+      },
+      "responsible_role": "屋主／建築師",
+      "next_action": "建立候選土地評分表，先用硬淘汰條件篩掉無法容納三棟定位的基地。"
+    },
+    {
+      "finding_id": "PD-SITE-SELECTED-417ed5bb",
+      "rule_id": "PD-SITE-SELECTED",
+      "status": "professional_review",
+      "status_label": "專業確認",
+      "severity": "blocking",
+      "domain": "site",
+      "title": "候選土地尚未選定",
+      "message": "土地尚未選定，任何格局、樓層數與每層面積都只能是概念。",
+      "phase": "site_search",
+      "gate_active": true,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-KCG-LAND",
+          "tier": "official",
+          "title": "高雄市政府地政局",
+          "url": "https://landp.kcg.gov.tw/"
+        },
+        {
+          "kind": "research_source",
+          "source_id": "SRC-NLSC-MAPS",
+          "tier": "official",
+          "title": "國土測繪圖資服務雲",
+          "url": "https://maps.nlsc.gov.tw/"
+        }
+      ],
+      "source": {
+        "source_id": "SRC-KCG-LAND",
+        "tier": "official",
+        "title": "高雄市政府地政局",
+        "organization": "高雄市政府地政局",
+        "url": "https://landp.kcg.gov.tw/",
+        "verified_at": "2026-08-28",
+        "scope_limit": "交易與權利查核應由地政士、測量及相關專業人員依正式文件完成。"
+      },
+      "responsible_role": "屋主／建築師／地政士",
+      "next_action": "至少取得候選地號、地籍圖與謄本，再由建築師進行書面初篩。"
+    },
+    {
+      "finding_id": "PD-SITE-ENVIRONMENT-SCREEN-e8f2a9e2",
+      "rule_id": "PD-SITE-ENVIRONMENT-SCREEN",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "advisory",
+      "domain": "site_risk",
+      "title": "淹水、液化、噪音、日照與周邊現勘",
+      "message": "尚未對候選區域做災害圖資與平日／雨天／夜間現勘。",
+      "phase": "site_search",
+      "gate_active": true,
+      "blocking": false,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-WRA-FLOOD",
+          "tier": "official",
+          "title": "水利署防災資訊服務網",
+          "url": "https://fhy.wra.gov.tw/fhyv2/"
+        },
+        {
+          "kind": "research_source",
+          "source_id": "SRC-CGS-LIQUEFACTION",
+          "tier": "official",
+          "title": "土壤液化潛勢查詢系統",
+          "url": "https://www.liquid.net.tw/cgs/public/"
+        },
+        {
+          "kind": "research_source",
+          "source_id": "SRC-NLSC-MAPS",
+          "tier": "official",
+          "title": "國土測繪圖資服務雲",
+          "url": "https://maps.nlsc.gov.tw/"
+        }
+      ],
+      "source": {
+        "source_id": "SRC-WRA-FLOOD",
+        "tier": "official",
+        "title": "水利署防災資訊服務網",
+        "organization": "經濟部水利署",
+        "url": "https://fhy.wra.gov.tw/fhyv2/",
+        "verified_at": "2026-08-28",
+        "scope_limit": "淹水圖資供風險初篩，仍須現勘基地標高、道路排水及歷史積淹水。"
+      },
+      "responsible_role": "屋主／建築師",
+      "next_action": "候選地至少在白天、夜間與雨後各看一次，記錄標高、排水、噪音、異味、遮蔭與鄰房開口。"
+    },
+    {
+      "finding_id": "PD-SITE-UTILITY-SCREEN-d83f4722",
+      "rule_id": "PD-SITE-UTILITY-SCREEN",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "advisory",
+      "domain": "utilities",
+      "title": "供水、供電、污排水與通訊初篩",
+      "message": "尚未知道三棟的接水、供電、污排水、表位與通訊進線條件。",
+      "phase": "site_search",
+      "gate_active": true,
+      "blocking": false,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-TAIPOWER",
+          "tier": "official",
+          "title": "台灣電力公司用電服務",
+          "url": "https://www.taipower.com.tw/"
+        },
+        {
+          "kind": "research_source",
+          "source_id": "SRC-TW-WATER",
+          "tier": "official",
+          "title": "台灣自來水公司用水服務",
+          "url": "https://www.water.gov.tw/"
+        }
+      ],
+      "source": {
+        "source_id": "SRC-TAIPOWER",
+        "tier": "official",
+        "title": "台灣電力公司用電服務",
+        "organization": "台灣電力公司",
+        "url": "https://www.taipower.com.tw/",
+        "verified_at": "2026-08-28",
+        "scope_limit": "實際供電容量、進線與計量方案須以個案申請回覆為準。"
+      },
+      "responsible_role": "建築師／水電／公用事業單位",
+      "next_action": "選地時先確認道路側既有管線與可能的增設成本，不把跨棟共管當成當然可行。"
+    },
+    {
+      "finding_id": "PD-OWNER-ALL-AGE-3067b71f",
+      "rule_id": "PD-OWNER-ALL-AGE",
+      "status": "pass",
+      "status_label": "通過",
+      "severity": "advisory",
+      "domain": "household",
+      "title": "全齡無障礙家庭基準",
+      "message": "全齡無障礙是不可妥協的家庭設計基準。",
+      "phase": "owner_brief",
+      "gate_active": true,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "owner_decision",
+          "decision": "all_age_accessible",
+          "confirmed_at": "2026-08-28"
+        },
+        {
+          "kind": "research_source",
+          "source_id": "SRC-OWNER-20260828",
+          "tier": "owner_policy",
+          "title": "2026-08-28 屋主前期策略決策",
+          "url": null
+        },
+        {
+          "kind": "research_source",
+          "source_id": "SRC-NLMA-ACCESSIBILITY",
+          "tier": "official",
+          "title": "建築物無障礙設施設計規範",
+          "url": "https://www.nlma.gov.tw/ch/legislation/regsearch/927"
+        }
+      ],
+      "source": {
+        "source_id": "SRC-OWNER-20260828",
+        "tier": "owner_policy",
+        "title": "2026-08-28 屋主前期策略決策",
+        "organization": "屋主",
+        "url": null,
+        "verified_at": "2026-08-28",
+        "scope_limit": "只代表本案屋主政策，不是法規或專業計算。"
+      },
+      "responsible_role": "屋主／建築師／無障礙顧問",
+      "next_action": "把主要入口、公共生活區、1F 臥室與衛浴的連續無障礙路徑寫入設計任務書。"
+    },
+    {
+      "finding_id": "PD-OWNER-BUILDING-ROLES-40a3f7bc",
+      "rule_id": "PD-OWNER-BUILDING-ROLES",
+      "status": "pass",
+      "status_label": "通過",
+      "severity": "advisory",
+      "domain": "household",
+      "title": "A／B／C 三棟功能定位",
+      "message": "A、B、C 三棟定位保留；實際量體須等土地確定後重算。",
+      "phase": "owner_brief",
+      "gate_active": true,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "owner_decision",
+          "decision": "keep_existing_A_B_C_roles",
+          "confirmed_at": "2026-08-28"
+        },
+        {
+          "kind": "research_source",
+          "source_id": "SRC-OWNER-20260828",
+          "tier": "owner_policy",
+          "title": "2026-08-28 屋主前期策略決策",
+          "url": null
+        }
+      ],
+      "source": {
+        "source_id": "SRC-OWNER-20260828",
+        "tier": "owner_policy",
+        "title": "2026-08-28 屋主前期策略決策",
+        "organization": "屋主",
+        "url": null,
+        "verified_at": "2026-08-28",
+        "scope_limit": "只代表本案屋主政策，不是法規或專業計算。"
+      },
+      "responsible_role": "屋主",
+      "next_action": "維持 A 全齡設備棟、B 祭祀傳承棟、C 長輩自住棟，土地確定後再驗證是否容納得下。"
+    },
+    {
+      "finding_id": "PD-OWNER-WHOLE-LIFE-COST-db5e2762",
+      "rule_id": "PD-OWNER-WHOLE-LIFE-COST",
+      "status": "pass",
+      "status_label": "通過",
+      "severity": "advisory",
+      "domain": "cost",
+      "title": "全生命週期成本原則",
+      "message": "防漏、耐久、節能與可維修優先於裝飾和非必要設備。",
+      "phase": "owner_brief",
+      "gate_active": true,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "owner_decision",
+          "decision": "whole_life_cycle",
+          "confirmed_at": "2026-08-28"
+        },
+        {
+          "kind": "research_source",
+          "source_id": "SRC-OWNER-20260828",
+          "tier": "owner_policy",
+          "title": "2026-08-28 屋主前期策略決策",
+          "url": null
+        }
+      ],
+      "source": {
+        "source_id": "SRC-OWNER-20260828",
+        "tier": "owner_policy",
+        "title": "2026-08-28 屋主前期策略決策",
+        "organization": "屋主",
+        "url": null,
+        "verified_at": "2026-08-28",
+        "scope_limit": "只代表本案屋主政策，不是法規或專業計算。"
+      },
+      "responsible_role": "屋主／建築師",
+      "next_action": "先保住防水、外殼、結構、管線與維修性；裝飾、影音及智慧設備可分期。"
+    },
+    {
+      "finding_id": "PD-DUE-BOUNDARY-SURVEY-63c705ab",
+      "rule_id": "PD-DUE-BOUNDARY-SURVEY",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "survey",
+      "title": "界址與現況測量",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "site_due_diligence",
+      "gate_active": false,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-KCG-LAND",
+          "tier": "official",
+          "title": "高雄市政府地政局",
+          "url": "https://landp.kcg.gov.tw/"
+        },
+        {
+          "kind": "research_source",
+          "source_id": "SRC-NLSC-MAPS",
+          "tier": "official",
+          "title": "國土測繪圖資服務雲",
+          "url": "https://maps.nlsc.gov.tw/"
+        }
+      ],
+      "source": {
+        "source_id": "SRC-KCG-LAND",
+        "tier": "official",
+        "title": "高雄市政府地政局",
+        "organization": "高雄市政府地政局",
+        "url": "https://landp.kcg.gov.tw/",
+        "verified_at": "2026-08-28",
+        "scope_limit": "交易與權利查核應由地政士、測量及相關專業人員依正式文件完成。"
+      },
+      "responsible_role": "測量專業人員／建築師",
+      "next_action": "購地或設計定案前完成界址及現況測量，將道路、鄰房、電桿、排水與高程納入。"
+    },
+    {
+      "finding_id": "PD-DUE-CONSTRUCTION-ACCESS-b063f002",
+      "rule_id": "PD-DUE-CONSTRUCTION-ACCESS",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "constructability",
+      "title": "施工車輛、吊裝與鄰損風險",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "site_due_diligence",
+      "gate_active": false,
+      "blocking": false,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-PCC-CONTRACT",
+          "tier": "official",
+          "title": "工程採購契約與品質管理參考資料",
+          "url": "https://www.pcc.gov.tw/"
+        }
+      ],
+      "source": {
+        "source_id": "SRC-PCC-CONTRACT",
+        "tier": "official",
+        "title": "工程採購契約與品質管理參考資料",
+        "organization": "行政院公共工程委員會",
+        "url": "https://www.pcc.gov.tw/",
+        "verified_at": "2026-08-28",
+        "scope_limit": "政府採購資料只能作為條款與品質管理參考，私人住宅契約應由專業人員依個案調整。"
+      },
+      "responsible_role": "建築師／營造廠",
+      "next_action": "估價前讓營造端現勘，將狹路、小搬運、鄰損保護與臨時水電列入成本。"
+    },
+    {
+      "finding_id": "PD-DUE-GEOTECH-FLOOD-1f0cb7cb",
+      "rule_id": "PD-DUE-GEOTECH-FLOOD",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "site_risk",
+      "title": "地質、液化與基地排水風險",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "site_due_diligence",
+      "gate_active": false,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-CGS-LIQUEFACTION",
+          "tier": "official",
+          "title": "土壤液化潛勢查詢系統",
+          "url": "https://www.liquid.net.tw/cgs/public/"
+        },
+        {
+          "kind": "research_source",
+          "source_id": "SRC-WRA-FLOOD",
+          "tier": "official",
+          "title": "水利署防災資訊服務網",
+          "url": "https://fhy.wra.gov.tw/fhyv2/"
+        }
+      ],
+      "source": {
+        "source_id": "SRC-CGS-LIQUEFACTION",
+        "tier": "official",
+        "title": "土壤液化潛勢查詢系統",
+        "organization": "經濟部地質調查及礦業管理中心",
+        "url": "https://www.liquid.net.tw/cgs/public/",
+        "verified_at": "2026-08-28",
+        "scope_limit": "區域潛勢圖不能取代個案地質鑽探與結構基礎設計。"
+      },
+      "responsible_role": "大地／結構技師／建築師",
+      "next_action": "由專業人員依建築規模和基地條件決定鑽探需求，並確認防淹、排水與基礎成本。"
+    },
+    {
+      "finding_id": "PD-DUE-LAND-RIGHTS-64c7cc54",
+      "rule_id": "PD-DUE-LAND-RIGHTS",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "land_rights",
+      "title": "地籍、權利與交易文件查核",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "site_due_diligence",
+      "gate_active": false,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-KCG-LAND",
+          "tier": "official",
+          "title": "高雄市政府地政局",
+          "url": "https://landp.kcg.gov.tw/"
+        }
+      ],
+      "source": {
+        "source_id": "SRC-KCG-LAND",
+        "tier": "official",
+        "title": "高雄市政府地政局",
+        "organization": "高雄市政府地政局",
+        "url": "https://landp.kcg.gov.tw/",
+        "verified_at": "2026-08-28",
+        "scope_limit": "交易與權利查核應由地政士、測量及相關專業人員依正式文件完成。"
+      },
+      "responsible_role": "地政士／屋主",
+      "next_action": "在承諾購買前取得最新謄本、地籍圖及必要權利文件，由地政士書面說明。"
+    },
+    {
+      "finding_id": "PD-DUE-UTILITIES-3ac28b81",
+      "rule_id": "PD-DUE-UTILITIES",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "utilities",
+      "title": "公用管線個案可接性",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "site_due_diligence",
+      "gate_active": false,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-TAIPOWER",
+          "tier": "official",
+          "title": "台灣電力公司用電服務",
+          "url": "https://www.taipower.com.tw/"
+        },
+        {
+          "kind": "research_source",
+          "source_id": "SRC-TW-WATER",
+          "tier": "official",
+          "title": "台灣自來水公司用水服務",
+          "url": "https://www.water.gov.tw/"
+        }
+      ],
+      "source": {
+        "source_id": "SRC-TAIPOWER",
+        "tier": "official",
+        "title": "台灣電力公司用電服務",
+        "organization": "台灣電力公司",
+        "url": "https://www.taipower.com.tw/",
+        "verified_at": "2026-08-28",
+        "scope_limit": "實際供電容量、進線與計量方案須以個案申請回覆為準。"
+      },
+      "responsible_role": "公用事業單位／水電技師／建築師",
+      "next_action": "確認三棟獨立或共用申請方案、表位、管徑容量、責任分界與未來維修權。"
+    },
+    {
+      "finding_id": "PD-DUE-ZONING-ROAD-BUILDABLE-1a194f36",
+      "rule_id": "PD-DUE-ZONING-ROAD-BUILDABLE",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "building_regulation",
+      "title": "分區、道路與可建量體書面預檢",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "site_due_diligence",
+      "gate_active": false,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-KCG-URBAN",
+          "tier": "official",
+          "title": "高雄市政府都市發展局",
+          "url": "https://urban-web.kcg.gov.tw/"
+        },
+        {
+          "kind": "research_source",
+          "source_id": "SRC-NLMA-BUILDING-RULES",
+          "tier": "official",
+          "title": "建築技術規則",
+          "url": "https://www.nlma.gov.tw/ch/legislation/law%26regusw/6175"
+        }
+      ],
+      "source": {
+        "source_id": "SRC-KCG-URBAN",
+        "tier": "official",
+        "title": "高雄市政府都市發展局",
+        "organization": "高雄市政府都市發展局",
+        "url": "https://urban-web.kcg.gov.tw/",
+        "verified_at": "2026-08-28",
+        "scope_limit": "未取得地號前不能選用個別分區、建蔽率或容積率數值。"
+      },
+      "responsible_role": "高雄市執業建築師",
+      "next_action": "要求建築師以正式資料提出三筆分開檢核及整體配置的法規預檢表。"
+    },
+    {
+      "finding_id": "PD-DESIGN-ACCESSIBLE-ROUTE-1fe2c4f3",
+      "rule_id": "PD-DESIGN-ACCESSIBLE-ROUTE",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "accessibility",
+      "title": "家具與設備完成後的全齡動線",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "design",
+      "gate_active": false,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-NLMA-ACCESSIBILITY",
+          "tier": "official",
+          "title": "建築物無障礙設施設計規範",
+          "url": "https://www.nlma.gov.tw/ch/legislation/regsearch/927"
+        },
+        {
+          "kind": "research_source",
+          "source_id": "SRC-PROJECT-ABC-CHECKLIST",
+          "tier": "experience",
+          "title": "A/B/C 棟設計修正需求檢核包",
+          "url": null
+        }
+      ],
+      "source": {
+        "source_id": "SRC-NLMA-ACCESSIBILITY",
+        "tier": "official",
+        "title": "建築物無障礙設施設計規範",
+        "organization": "內政部國土管理署",
+        "url": "https://www.nlma.gov.tw/ch/legislation/regsearch/927",
+        "verified_at": "2026-08-28",
+        "scope_limit": "私人住宅的法定適用性與本案自訂全齡標準必須分開標示。"
+      },
+      "responsible_role": "建築師／無障礙顧問／室內設計",
+      "next_action": "在 A 主要公共區與 C 長輩生活圈畫出連續零高差路徑、門淨寬、轉移空間與迴轉圈。"
+    },
+    {
+      "finding_id": "PD-DESIGN-ACOUSTICS-PRIVACY-a3c4c442",
+      "rule_id": "PD-DESIGN-ACOUSTICS-PRIVACY",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "acoustics",
+      "title": "機房、祭祀、KTV 與臥室聲學介面",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "design",
+      "gate_active": false,
+      "blocking": false,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-PROJECT-ABC-CHECKLIST",
+          "tier": "experience",
+          "title": "A/B/C 棟設計修正需求檢核包",
+          "url": null
+        }
+      ],
+      "source": {
+        "source_id": "SRC-PROJECT-ABC-CHECKLIST",
+        "tier": "experience",
+        "title": "A/B/C 棟設計修正需求檢核包",
+        "organization": "houseDesignPrepare 專案",
+        "url": null,
+        "verified_at": "2026-08-28",
+        "scope_limit": "用來發現生活、施工與維修風險；不構成法規、結構或機電通過。"
+      },
+      "responsible_role": "建築師／空調／室內設計",
+      "next_action": "在格局階段分開噪音源與睡眠區，隔音構造必須連續並同時處理通風。"
+    },
+    {
+      "finding_id": "PD-DESIGN-ELECTRICAL-FUTURE-08c901eb",
+      "rule_id": "PD-DESIGN-ELECTRICAL-FUTURE",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "mep",
+      "title": "電力、弱電與未來預留",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "design",
+      "gate_active": false,
+      "blocking": false,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-PROJECT-ABC-CHECKLIST",
+          "tier": "experience",
+          "title": "A/B/C 棟設計修正需求檢核包",
+          "url": null
+        },
+        {
+          "kind": "research_source",
+          "source_id": "SRC-TAIPOWER",
+          "tier": "official",
+          "title": "台灣電力公司用電服務",
+          "url": "https://www.taipower.com.tw/"
+        }
+      ],
+      "source": {
+        "source_id": "SRC-PROJECT-ABC-CHECKLIST",
+        "tier": "experience",
+        "title": "A/B/C 棟設計修正需求檢核包",
+        "organization": "houseDesignPrepare 專案",
+        "url": null,
+        "verified_at": "2026-08-28",
+        "scope_limit": "用來發現生活、施工與維修風險；不構成法規、結構或機電通過。"
+      },
+      "responsible_role": "電機／弱電／屋主",
+      "next_action": "先留容量、空管、拉線繩、接地、N 線、深盒與可手動操作備援，設備可日後購買。"
+    },
+    {
+      "finding_id": "PD-DESIGN-ENVELOPE-COMFORT-b96f6e1e",
+      "rule_id": "PD-DESIGN-ENVELOPE-COMFORT",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "building_envelope",
+      "title": "高雄氣候下的隔熱、遮陽與通風",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "design",
+      "gate_active": false,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-NLMA-BUILDING-RULES",
+          "tier": "official",
+          "title": "建築技術規則",
+          "url": "https://www.nlma.gov.tw/ch/legislation/law%26regusw/6175"
+        },
+        {
+          "kind": "research_source",
+          "source_id": "SRC-PROJECT-ABC-CHECKLIST",
+          "tier": "experience",
+          "title": "A/B/C 棟設計修正需求檢核包",
+          "url": null
+        }
+      ],
+      "source": {
+        "source_id": "SRC-NLMA-BUILDING-RULES",
+        "tier": "official",
+        "title": "建築技術規則",
+        "organization": "內政部國土管理署",
+        "url": "https://www.nlma.gov.tw/ch/legislation/law%26regusw/6175",
+        "verified_at": "2026-08-28",
+        "scope_limit": "實際適用條文、用途與地方審查仍須由執業建築師依基地確認。"
+      },
+      "responsible_role": "建築師／空調顧問",
+      "next_action": "先降低熱與濕負荷，再選冷氣設備；避免只靠加大冷氣補救外殼。"
+    },
+    {
+      "finding_id": "PD-DESIGN-EQUIPMENT-MAINTENANCE-a0c6d8e3",
+      "rule_id": "PD-DESIGN-EQUIPMENT-MAINTENANCE",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "maintenance",
+      "title": "設備尺寸、拆換與維修路徑",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "design",
+      "gate_active": false,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-PROJECT-ABC-CHECKLIST",
+          "tier": "experience",
+          "title": "A/B/C 棟設計修正需求檢核包",
+          "url": null
+        }
+      ],
+      "source": {
+        "source_id": "SRC-PROJECT-ABC-CHECKLIST",
+        "tier": "experience",
+        "title": "A/B/C 棟設計修正需求檢核包",
+        "organization": "houseDesignPrepare 專案",
+        "url": null,
+        "verified_at": "2026-08-28",
+        "scope_limit": "用來發現生活、施工與維修風險；不構成法規、結構或機電通過。"
+      },
+      "responsible_role": "機電／空調／弱電／屋主",
+      "next_action": "以實際型錄畫進水塔、熱泵、泵浦、室外機、MDF／IDF、濾網和清潔口，保留搬運與拆換淨空。"
+    },
+    {
+      "finding_id": "PD-DESIGN-FLEXIBILITY-STORAGE-2f4b0457",
+      "rule_id": "PD-DESIGN-FLEXIBILITY-STORAGE",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "usability",
+      "title": "彈性房、收納、家務與垃圾動線",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "design",
+      "gate_active": false,
+      "blocking": false,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-PROJECT-ABC-CHECKLIST",
+          "tier": "experience",
+          "title": "A/B/C 棟設計修正需求檢核包",
+          "url": null
+        }
+      ],
+      "source": {
+        "source_id": "SRC-PROJECT-ABC-CHECKLIST",
+        "tier": "experience",
+        "title": "A/B/C 棟設計修正需求檢核包",
+        "organization": "houseDesignPrepare 專案",
+        "url": null,
+        "verified_at": "2026-08-28",
+        "scope_limit": "用來發現生活、施工與維修風險；不構成法規、結構或機電通過。"
+      },
+      "responsible_role": "屋主／建築師／室內設計",
+      "next_action": "用實際物品與家具盤點收納；垃圾、洗衣、曬衣、清潔與補貨不可穿越臥室。"
+    },
+    {
+      "finding_id": "PD-DESIGN-VERTICAL-SYSTEMS-aa157f5d",
+      "rule_id": "PD-DESIGN-VERTICAL-SYSTEMS",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "mep",
+      "title": "樓梯、管道間與濕區垂直整合",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "design",
+      "gate_active": false,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-NLMA-BUILDING-RULES",
+          "tier": "official",
+          "title": "建築技術規則",
+          "url": "https://www.nlma.gov.tw/ch/legislation/law%26regusw/6175"
+        },
+        {
+          "kind": "research_source",
+          "source_id": "SRC-PROJECT-ABC-CHECKLIST",
+          "tier": "experience",
+          "title": "A/B/C 棟設計修正需求檢核包",
+          "url": null
+        }
+      ],
+      "source": {
+        "source_id": "SRC-NLMA-BUILDING-RULES",
+        "tier": "official",
+        "title": "建築技術規則",
+        "organization": "內政部國土管理署",
+        "url": "https://www.nlma.gov.tw/ch/legislation/law%26regusw/6175",
+        "verified_at": "2026-08-28",
+        "scope_limit": "實際適用條文、用途與地方審查仍須由執業建築師依基地確認。"
+      },
+      "responsible_role": "建築師／結構／機電",
+      "next_action": "平面定案前完成各層疊圖，鎖定不得任意移動的垂直核心、套管與清潔維修口。"
+    },
+    {
+      "finding_id": "PD-DESIGN-WATERPROOF-DRAINAGE-5d50c03a",
+      "rule_id": "PD-DESIGN-WATERPROOF-DRAINAGE",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "waterproofing",
+      "title": "防水、排水、溢流與穿孔詳圖",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "design",
+      "gate_active": false,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-PROJECT-ABC-CHECKLIST",
+          "tier": "experience",
+          "title": "A/B/C 棟設計修正需求檢核包",
+          "url": null
+        }
+      ],
+      "source": {
+        "source_id": "SRC-PROJECT-ABC-CHECKLIST",
+        "tier": "experience",
+        "title": "A/B/C 棟設計修正需求檢核包",
+        "organization": "houseDesignPrepare 專案",
+        "url": null,
+        "verified_at": "2026-08-28",
+        "scope_limit": "用來發現生活、施工與維修風險；不構成法規、結構或機電通過。"
+      },
+      "responsible_role": "建築師／水電／營造",
+      "next_action": "開工前完成剖面和排水方向，訂定閉水／灑水測試與封板前照片證據。"
+    },
+    {
+      "finding_id": "PD-TENDER-BID-COMPARISON-760c0611",
+      "rule_id": "PD-TENDER-BID-COMPARISON",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "procurement",
+      "title": "同範圍估價比較與異常單價釐清",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "tender",
+      "gate_active": false,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-PCC-CONTRACT",
+          "tier": "official",
+          "title": "工程採購契約與品質管理參考資料",
+          "url": "https://www.pcc.gov.tw/"
+        }
+      ],
+      "source": {
+        "source_id": "SRC-PCC-CONTRACT",
+        "tier": "official",
+        "title": "工程採購契約與品質管理參考資料",
+        "organization": "行政院公共工程委員會",
+        "url": "https://www.pcc.gov.tw/",
+        "verified_at": "2026-08-28",
+        "scope_limit": "政府採購資料只能作為條款與品質管理參考，私人住宅契約應由專業人員依個案調整。"
+      },
+      "responsible_role": "屋主／建築師／估價顧問",
+      "next_action": "使用同一份數量與規格回標，逐項標記包含、排除、暫估與替代方案。"
+    },
+    {
+      "finding_id": "PD-TENDER-COMPLETE-DOCUMENTS-5b42924f",
+      "rule_id": "PD-TENDER-COMPLETE-DOCUMENTS",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "procurement",
+      "title": "跨專業施工圖與界面表完成",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "tender",
+      "gate_active": false,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-PCC-CONTRACT",
+          "tier": "official",
+          "title": "工程採購契約與品質管理參考資料",
+          "url": "https://www.pcc.gov.tw/"
+        }
+      ],
+      "source": {
+        "source_id": "SRC-PCC-CONTRACT",
+        "tier": "official",
+        "title": "工程採購契約與品質管理參考資料",
+        "organization": "行政院公共工程委員會",
+        "url": "https://www.pcc.gov.tw/",
+        "verified_at": "2026-08-28",
+        "scope_limit": "政府採購資料只能作為條款與品質管理參考，私人住宅契約應由專業人員依個案調整。"
+      },
+      "responsible_role": "建築師／各技師",
+      "next_action": "發包前凍結建築、結構、機電、空調、弱電與室內界面，列清未包含項目。"
+    },
+    {
+      "finding_id": "PD-TENDER-CONTRACT-CHANGE-fc77aed0",
+      "rule_id": "PD-TENDER-CONTRACT-CHANGE",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "contract",
+      "title": "契約、付款、變更單與保固責任",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "tender",
+      "gate_active": false,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-PCC-CONTRACT",
+          "tier": "official",
+          "title": "工程採購契約與品質管理參考資料",
+          "url": "https://www.pcc.gov.tw/"
+        }
+      ],
+      "source": {
+        "source_id": "SRC-PCC-CONTRACT",
+        "tier": "official",
+        "title": "工程採購契約與品質管理參考資料",
+        "organization": "行政院公共工程委員會",
+        "url": "https://www.pcc.gov.tw/",
+        "verified_at": "2026-08-28",
+        "scope_limit": "政府採購資料只能作為條款與品質管理參考，私人住宅契約應由專業人員依個案調整。"
+      },
+      "responsible_role": "屋主／建築師／法律顧問",
+      "next_action": "任何追加減都要先有書面變更單、價格與工期影響，避免口頭施工後才結算。"
+    },
+    {
+      "finding_id": "PD-TENDER-SUPERVISION-HOLDPOINTS-414131b5",
+      "rule_id": "PD-TENDER-SUPERVISION-HOLDPOINTS",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "quality",
+      "title": "監造頻率與不得越過的查驗點",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "tender",
+      "gate_active": false,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-PCC-CONTRACT",
+          "tier": "official",
+          "title": "工程採購契約與品質管理參考資料",
+          "url": "https://www.pcc.gov.tw/"
+        }
+      ],
+      "source": {
+        "source_id": "SRC-PCC-CONTRACT",
+        "tier": "official",
+        "title": "工程採購契約與品質管理參考資料",
+        "organization": "行政院公共工程委員會",
+        "url": "https://www.pcc.gov.tw/",
+        "verified_at": "2026-08-28",
+        "scope_limit": "政府採購資料只能作為條款與品質管理參考，私人住宅契約應由專業人員依個案調整。"
+      },
+      "responsible_role": "建築師／監造／屋主",
+      "next_action": "契約列出鋼筋、澆置、管線試壓、防水、扶手補強、封板及設備試運轉停留點。"
+    },
+    {
+      "finding_id": "PD-CONSTRUCTION-CONCEALED-EVIDENCE-d1089ba3",
+      "rule_id": "PD-CONSTRUCTION-CONCEALED-EVIDENCE",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "quality",
+      "title": "隱蔽工程查驗與定位照片",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "construction",
+      "gate_active": false,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-PCC-CONTRACT",
+          "tier": "official",
+          "title": "工程採購契約與品質管理參考資料",
+          "url": "https://www.pcc.gov.tw/"
+        },
+        {
+          "kind": "research_source",
+          "source_id": "SRC-PROJECT-ABC-CHECKLIST",
+          "tier": "experience",
+          "title": "A/B/C 棟設計修正需求檢核包",
+          "url": null
+        }
+      ],
+      "source": {
+        "source_id": "SRC-PCC-CONTRACT",
+        "tier": "official",
+        "title": "工程採購契約與品質管理參考資料",
+        "organization": "行政院公共工程委員會",
+        "url": "https://www.pcc.gov.tw/",
+        "verified_at": "2026-08-28",
+        "scope_limit": "政府採購資料只能作為條款與品質管理參考，私人住宅契約應由專業人員依個案調整。"
+      },
+      "responsible_role": "監造／營造",
+      "next_action": "每個停留點以樓層、軸線、尺規與圖號拍照，通過後才准澆置或封板。"
+    },
+    {
+      "finding_id": "PD-CONSTRUCTION-SUBMITTALS-MOCKUPS-3331ce97",
+      "rule_id": "PD-CONSTRUCTION-SUBMITTALS-MOCKUPS",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "quality",
+      "title": "材料送審、樣品與關鍵做法樣板",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "construction",
+      "gate_active": false,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-PCC-CONTRACT",
+          "tier": "official",
+          "title": "工程採購契約與品質管理參考資料",
+          "url": "https://www.pcc.gov.tw/"
+        }
+      ],
+      "source": {
+        "source_id": "SRC-PCC-CONTRACT",
+        "tier": "official",
+        "title": "工程採購契約與品質管理參考資料",
+        "organization": "行政院公共工程委員會",
+        "url": "https://www.pcc.gov.tw/",
+        "verified_at": "2026-08-28",
+        "scope_limit": "政府採購資料只能作為條款與品質管理參考，私人住宅契約應由專業人員依個案調整。"
+      },
+      "responsible_role": "監造／營造／屋主",
+      "next_action": "先核定防水、門窗、外牆、磁磚、衛浴與重要收邊樣品，再大量施工。"
+    },
+    {
+      "finding_id": "PD-CONSTRUCTION-SYSTEM-COMMISSIONING-10a5616f",
+      "rule_id": "PD-CONSTRUCTION-SYSTEM-COMMISSIONING",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "commissioning",
+      "title": "電氣、空調、弱電與控制試運轉",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "construction",
+      "gate_active": false,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-TAIPOWER",
+          "tier": "official",
+          "title": "台灣電力公司用電服務",
+          "url": "https://www.taipower.com.tw/"
+        },
+        {
+          "kind": "research_source",
+          "source_id": "SRC-PROJECT-ABC-CHECKLIST",
+          "tier": "experience",
+          "title": "A/B/C 棟設計修正需求檢核包",
+          "url": null
+        }
+      ],
+      "source": {
+        "source_id": "SRC-TAIPOWER",
+        "tier": "official",
+        "title": "台灣電力公司用電服務",
+        "organization": "台灣電力公司",
+        "url": "https://www.taipower.com.tw/",
+        "verified_at": "2026-08-28",
+        "scope_limit": "實際供電容量、進線與計量方案須以個案申請回覆為準。"
+      },
+      "responsible_role": "機電／空調／弱電／監造",
+      "next_action": "按設備逐項測試正常、故障、停電與手動備援情境，保存量測值與設定備份。"
+    },
+    {
+      "finding_id": "PD-CONSTRUCTION-WATER-TESTS-badd0e9d",
+      "rule_id": "PD-CONSTRUCTION-WATER-TESTS",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "quality",
+      "title": "防水、排水與給水測試",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "construction",
+      "gate_active": false,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-PROJECT-ABC-CHECKLIST",
+          "tier": "experience",
+          "title": "A/B/C 棟設計修正需求檢核包",
+          "url": null
+        }
+      ],
+      "source": {
+        "source_id": "SRC-PROJECT-ABC-CHECKLIST",
+        "tier": "experience",
+        "title": "A/B/C 棟設計修正需求檢核包",
+        "organization": "houseDesignPrepare 專案",
+        "url": null,
+        "verified_at": "2026-08-28",
+        "scope_limit": "用來發現生活、施工與維修風險；不構成法規、結構或機電通過。"
+      },
+      "responsible_role": "監造／水電／防水廠商",
+      "next_action": "依圖說記錄閉水／灑水、排水通水、溢流與給水壓力測試結果及缺失複驗。"
+    },
+    {
+      "finding_id": "PD-HANDOVER-ASBUILT-0ee88687",
+      "rule_id": "PD-HANDOVER-ASBUILT",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "handover",
+      "title": "竣工圖、管線定位與設備清冊",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "handover",
+      "gate_active": false,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-PCC-CONTRACT",
+          "tier": "official",
+          "title": "工程採購契約與品質管理參考資料",
+          "url": "https://www.pcc.gov.tw/"
+        }
+      ],
+      "source": {
+        "source_id": "SRC-PCC-CONTRACT",
+        "tier": "official",
+        "title": "工程採購契約與品質管理參考資料",
+        "organization": "行政院公共工程委員會",
+        "url": "https://www.pcc.gov.tw/",
+        "verified_at": "2026-08-28",
+        "scope_limit": "政府採購資料只能作為條款與品質管理參考，私人住宅契約應由專業人員依個案調整。"
+      },
+      "responsible_role": "建築師／營造／各承包商",
+      "next_action": "交付可編輯與 PDF 竣工圖、閥件／電箱／端點標示、設備序號與實際管線照片索引。"
+    },
+    {
+      "finding_id": "PD-HANDOVER-SPARES-TRAINING-66458e8e",
+      "rule_id": "PD-HANDOVER-SPARES-TRAINING",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "handover",
+      "title": "備品、工具與屋主操作訓練",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "handover",
+      "gate_active": false,
+      "blocking": false,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-PROJECT-ABC-CHECKLIST",
+          "tier": "experience",
+          "title": "A/B/C 棟設計修正需求檢核包",
+          "url": null
+        }
+      ],
+      "source": {
+        "source_id": "SRC-PROJECT-ABC-CHECKLIST",
+        "tier": "experience",
+        "title": "A/B/C 棟設計修正需求檢核包",
+        "organization": "houseDesignPrepare 專案",
+        "url": null,
+        "verified_at": "2026-08-28",
+        "scope_limit": "用來發現生活、施工與維修風險；不構成法規、結構或機電通過。"
+      },
+      "responsible_role": "供應商／屋主",
+      "next_action": "保留同批材料與專用工具，錄製主要設備、總閥、泵浦、網路及緊急操作教學。"
+    },
+    {
+      "finding_id": "PD-HANDOVER-WARRANTY-MAINTENANCE-1102af90",
+      "rule_id": "PD-HANDOVER-WARRANTY-MAINTENANCE",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "handover",
+      "title": "保固、維護週期與責任窗口",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "handover",
+      "gate_active": false,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-PCC-CONTRACT",
+          "tier": "official",
+          "title": "工程採購契約與品質管理參考資料",
+          "url": "https://www.pcc.gov.tw/"
+        }
+      ],
+      "source": {
+        "source_id": "SRC-PCC-CONTRACT",
+        "tier": "official",
+        "title": "工程採購契約與品質管理參考資料",
+        "organization": "行政院公共工程委員會",
+        "url": "https://www.pcc.gov.tw/",
+        "verified_at": "2026-08-28",
+        "scope_limit": "政府採購資料只能作為條款與品質管理參考，私人住宅契約應由專業人員依個案調整。"
+      },
+      "responsible_role": "營造／供應商／屋主",
+      "next_action": "建立一頁式叫修表與年度維護日曆，安排保固到期前總檢。"
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "SRC-OWNER-20260828",
+      "tier": "owner_policy",
+      "title": "2026-08-28 屋主前期策略決策",
+      "organization": "屋主",
+      "url": null,
+      "verified_at": "2026-08-28",
+      "scope_limit": "只代表本案屋主政策，不是法規或專業計算。"
+    },
+    {
+      "source_id": "SRC-NLMA-BUILDING-RULES",
+      "tier": "official",
+      "title": "建築技術規則",
+      "organization": "內政部國土管理署",
+      "url": "https://www.nlma.gov.tw/ch/legislation/law%26regusw/6175",
+      "verified_at": "2026-08-28",
+      "scope_limit": "實際適用條文、用途與地方審查仍須由執業建築師依基地確認。"
+    },
+    {
+      "source_id": "SRC-NLMA-ACCESSIBILITY",
+      "tier": "official",
+      "title": "建築物無障礙設施設計規範",
+      "organization": "內政部國土管理署",
+      "url": "https://www.nlma.gov.tw/ch/legislation/regsearch/927",
+      "verified_at": "2026-08-28",
+      "scope_limit": "私人住宅的法定適用性與本案自訂全齡標準必須分開標示。"
+    },
+    {
+      "source_id": "SRC-KCG-URBAN",
+      "tier": "official",
+      "title": "高雄市政府都市發展局",
+      "organization": "高雄市政府都市發展局",
+      "url": "https://urban-web.kcg.gov.tw/",
+      "verified_at": "2026-08-28",
+      "scope_limit": "未取得地號前不能選用個別分區、建蔽率或容積率數值。"
+    },
+    {
+      "source_id": "SRC-KCG-LAND",
+      "tier": "official",
+      "title": "高雄市政府地政局",
+      "organization": "高雄市政府地政局",
+      "url": "https://landp.kcg.gov.tw/",
+      "verified_at": "2026-08-28",
+      "scope_limit": "交易與權利查核應由地政士、測量及相關專業人員依正式文件完成。"
+    },
+    {
+      "source_id": "SRC-NLSC-MAPS",
+      "tier": "official",
+      "title": "國土測繪圖資服務雲",
+      "organization": "內政部國土測繪中心",
+      "url": "https://maps.nlsc.gov.tw/",
+      "verified_at": "2026-08-28",
+      "scope_limit": "線上圖資供初篩；界址與實際尺寸仍以正式測量成果為準。"
+    },
+    {
+      "source_id": "SRC-CGS-LIQUEFACTION",
+      "tier": "official",
+      "title": "土壤液化潛勢查詢系統",
+      "organization": "經濟部地質調查及礦業管理中心",
+      "url": "https://www.liquid.net.tw/cgs/public/",
+      "verified_at": "2026-08-28",
+      "scope_limit": "區域潛勢圖不能取代個案地質鑽探與結構基礎設計。"
+    },
+    {
+      "source_id": "SRC-WRA-FLOOD",
+      "tier": "official",
+      "title": "水利署防災資訊服務網",
+      "organization": "經濟部水利署",
+      "url": "https://fhy.wra.gov.tw/fhyv2/",
+      "verified_at": "2026-08-28",
+      "scope_limit": "淹水圖資供風險初篩，仍須現勘基地標高、道路排水及歷史積淹水。"
+    },
+    {
+      "source_id": "SRC-TAIPOWER",
+      "tier": "official",
+      "title": "台灣電力公司用電服務",
+      "organization": "台灣電力公司",
+      "url": "https://www.taipower.com.tw/",
+      "verified_at": "2026-08-28",
+      "scope_limit": "實際供電容量、進線與計量方案須以個案申請回覆為準。"
+    },
+    {
+      "source_id": "SRC-TW-WATER",
+      "tier": "official",
+      "title": "台灣自來水公司用水服務",
+      "organization": "台灣自來水公司",
+      "url": "https://www.water.gov.tw/",
+      "verified_at": "2026-08-28",
+      "scope_limit": "實際接水、口徑、水壓與表位須由轄區單位確認。"
+    },
+    {
+      "source_id": "SRC-PCC-CONTRACT",
+      "tier": "official",
+      "title": "工程採購契約與品質管理參考資料",
+      "organization": "行政院公共工程委員會",
+      "url": "https://www.pcc.gov.tw/",
+      "verified_at": "2026-08-28",
+      "scope_limit": "政府採購資料只能作為條款與品質管理參考，私人住宅契約應由專業人員依個案調整。"
+    },
+    {
+      "source_id": "SRC-PROJECT-ABC-CHECKLIST",
+      "tier": "experience",
+      "title": "A/B/C 棟設計修正需求檢核包",
+      "organization": "houseDesignPrepare 專案",
+      "url": null,
+      "verified_at": "2026-08-28",
+      "scope_limit": "用來發現生活、施工與維修風險；不構成法規、結構或機電通過。"
+    }
+  ],
+  "report_hash": "ed1346e8d480cbda4d74cd805df2abc1ae3a9f76e8b1513dca7ab4ca96566db9"
+}
