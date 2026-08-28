@@ -28,7 +28,6 @@ from lib.spatial_metadata import (  # noqa: E402
 )
 from lib.dimension_overrides import (  # noqa: E402
     PING_TO_SQM,
-    PROVENANCE_AUTO,
     load_overrides,
 )
 from lib.standards import load_residential_defaults  # noqa: E402

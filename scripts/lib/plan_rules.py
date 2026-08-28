@@ -17,7 +17,7 @@ from __future__ import annotations
 import collections
 from typing import Any, Iterable
 
-from .plan_geometry import PING_TO_SQM, Rect, garage_min_bay_mm
+from .plan_geometry import Rect, garage_min_bay_mm
 
 EYE_MM = 1500  # sight-line height for the "does it face the dining table" test
 

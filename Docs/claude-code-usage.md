@@ -1,185 +1,496 @@
-# Claude Code 使用指南
+# House Design Prepare 使用指南
 
-適用專案：`D:\I29786\workspace\houseDesignPrepare`
-更新日期：2026-07-14
+- 適用專案：`houseDesignPrepare`
+- 更新日期：2026-08-28
 
-這個專案把 A、B、C 棟住宅 HTML 轉成結構化資料，再產生候選配置、SVG、PDF、建築指標與專家審查報告。
+本專案目前的核心用途，是在收到建築師圖面後，以不可變版次保存 PDF／IFC／DXF，並根據基地事實、屋主已確認需求、法源與圖面證據產生可追溯的檢核報告。
 
-如果只想知道該執行哪個指令：
+已確認的前提是：高雄有 A／B／C 三筆相鄰、分開檢核的基地，每筆約 32 坪。32 坪是「基地面積」，不是每層可蓋面積。地號、使用分區、道路、建蔽率、容積率與退縮未知時，系統必須顯示 `unknown`，不能推定為通過。
 
-- 日常設計檢查：使用 `/workflow-house-all-in-one ... --mode concept`
-- 要產生 PDF：改用 `--mode draft`
-- 最終審查：改用 `--mode ifc`，並完成兩次執行與人工簽核
-- 不需要專家報告，只想快速重建圖面：使用 `python -m house_design pipeline`
+專案仍保留兩套歷史工具：
 
-## 1. 第一次使用
+- HTML 分支：將早期 A／B／C 住宅 HTML 草圖轉成候選配置、SVG、PDF 與離線 3D 量體。
+- 參數化分支：重現舊的「每層建築面積 32 坪」假設，產生容量報告與 walk-in 3D。
 
-### 安裝套件
+這兩套歷史輸出可用於存檔、討論與回歸測試，但不是現行設計基準，也不能證明可建築量體或法規合規。
 
-在 PowerShell 執行：
+## 1. 我現在應該執行哪個指令
+
+| 目的 | 指令 | 主要輸出 |
+|---|---|---|
+| 檢查基地與需求資料格式 | `python -m house_design intake validate` | 終端機 JSON |
+| 匯入建築師 PDF＋IFC | `python -m house_design drawings import ...` | `inputs/revisions/<revision>/` |
+| 匯入 PDF＋DXF | `python -m house_design drawings import ... --dxf ... --mapping ...` | 不可變來源、mapping 與標準化模型 |
+| 查看所有圖面版次 | `python -m house_design drawings list` | 終端機 JSON |
+| 比較兩個圖面版次 | `python -m house_design drawings compare --from R001 --to R002` | 終端機 JSON，可另存檔 |
+| 產生現行檢核報告 | `python -m house_design review run --revision R001` | JSON、Markdown、PDF、離線儀表板 |
+| 比對前後版並檢核 | `python -m house_design review run --revision R002 --previous R001` | 報告內含 revision comparison |
+| 對現行報告做真人簽核 | `python -m house_design review run --revision R001 --signoff ...` | 更新該版檢核輸出與簽核狀態 |
+| 重建歷史 HTML 草圖輸出 | `python -m house_design pipeline --mode concept` | viewer、3D、SVG 等歷史輸出 |
+| 重建歷史 PDF | `python -m house_design pipeline --mode draft` | 歷史 SVG 與 PDF |
+| 嚴格驗證歷史圖包 | `python -m house_design pipeline --mode release` | 歷史圖包＋strict validation |
+
+`pipeline --mode release` 只代表歷史出圖分支通過程式驗證，不代表現行圖面審查通過，更不代表建築師或主管機關核准。
+
+## 2. 資料權威與目錄
+
+| 資料 | 現行權威位置 | 說明 |
+|---|---|---|
+| 基地事實 | `inputs/project.json` | 地號、分區、道路、建蔽率、容積率、退縮及資料來源 |
+| 屋主需求 | `inputs/requirements.json` | `candidate`／`confirmed`／`rejected`、優先度與 decision log |
+| 建築師圖面版次 | `inputs/revisions/<revision>/` | 不可變 PDF／IFC／DXF、mapping、雜湊與 normalized model |
+| 現行檢核結果 | `structured/reviews/<revision>/` | 報告、會議 PDF、比較結果與離線儀表板 |
+| 高雄檢核規則 | `rules/kaohsiung_review_rules.json` | 法源、適用狀態、查證人與專業責任人 |
+| 歷史 HTML 草圖 | `AbuildingView.html` 等 | 只在 HTML 歷史分支內是來源，不是現行專案圖面 |
+| 歷史參數化情境 | `inputs/site.json`、`inputs/brief/` | 舊 32 坪 footprint 假設，只供重現與比較 |
+| 歷史輸出 | `structured/candidates/`、`structured/parametric/` | 不得當成現行建築師圖面或合規結論 |
+
+任何法規、結構、消防、機電與無障礙結論都必須保留法源、證據與負責專業人員。程式與 AI 不能取代依法執業者簽證。
+
+## 3. 第一次安裝
+
+所有命令都應從專案根目錄執行。
+
+### Windows PowerShell
 
 ```powershell
 cd D:\I29786\workspace\houseDesignPrepare
-python -m pip install -r requirements.txt -r requirements-dev.txt
+py -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -e ".[dev,drawings]"
 ```
 
-### 啟動 Claude Code
+### WSL／Linux／macOS
 
-一定要從專案根目錄啟動，Claude Code 才能讀到 `CLAUDE.md`、slash commands 與 MCP 設定：
+```bash
+cd /path/to/houseDesignPrepare
+python3 -m venv .venv
+.venv/bin/python -m pip install -e ".[dev,drawings]"
+```
+
+可依用途只安裝需要的依賴：
+
+| 安裝方式 | 內容 |
+|---|---|
+| `python -m pip install -e .` | 核心 HTML、報告與 PDF 功能 |
+| `python -m pip install -e ".[dev]"` | 另加 pytest、Ruff |
+| `python -m pip install -e ".[drawings]"` | 另加 PyMuPDF、ezdxf、ifcopenshell |
+| `python -m pip install -r requirements-import.txt` | drawing extras 的相容安裝方式 |
+
+以下範例統一使用 `python -m house_design`。若 WSL／Linux／macOS 沒有 `python` 別名，請改用 `.venv/bin/python -m house_design`；Windows 也可使用 `.\.venv\Scripts\python.exe -m house_design`。安裝 editable package 後，還可將整段改寫成 `house-design`。
+
+## 4. 現行工作流：基地、需求與圖面版次
+
+### 4.1 驗證基地與需求資料
+
+```bash
+python -m house_design intake validate
+```
+
+自訂輸入位置：
+
+```bash
+python -m house_design intake validate \
+  --project path/to/project.json \
+  --requirements path/to/requirements.json
+```
+
+輸出中的 `valid: true` 只表示 JSON 契約有效，不表示資料已完整，也不表示合規。請同時查看：
+
+- `project_readiness.percent`：基地必要事實完成度。
+- `project_issues`：基地資料契約錯誤。
+- `requirement_issues`：需求資料契約錯誤。
+- `requirements.candidate`／`confirmed`：待確認與已確認數量。
+
+### 4.2 管理需求狀態
+
+`inputs/requirements.json` 中每個項目的 `status`：
+
+| Status | 意義 |
+|---|---|
+| `candidate` | 仍在討論；不會自動成為屋主硬需求 |
+| `confirmed` | 屋主已確認；才會與圖面證據正式比對 |
+| `rejected` | 已淘汰；應保留 decision log，不應直接刪除歷史 |
+
+每項另有 `priority`：`must`、`should` 或 `could`。`must` 不符合時可形成阻擋；其他等級通常保留為警告或設計取捨，但生命安全、無障礙或專業規則仍以實際 finding 狀態為準。
+
+將舊 A／B／C brief 轉成候選需求：
+
+```bash
+python -m house_design intake migrate-briefs \
+  --brief-dir inputs/brief \
+  --output inputs/requirements.json
+```
+
+這是初始化／維護工具，會重寫 `--output`。既有需求已有人工作決策時，不要直接覆蓋；應先保留原檔並人工合併。匯入項目一律是 `candidate`，不會自動升級為 `confirmed`。
+
+### 4.3 匯入不可變圖面版次
+
+推薦同時取得 PDF 與 IFC：
+
+```bash
+python -m house_design drawings import \
+  --revision R001 \
+  --label "初步設計" \
+  --pdf drawings/R001.pdf \
+  --ifc drawings/R001.ifc
+```
+
+若只有 2D CAD，請設計方將 DWG 匯出為 DXF。DWG 不能直接匯入。
+
+DXF 必須提供圖層語意 mapping，例如：
+
+```json
+{
+  "dxf_unit_scale_to_mm": 1.0,
+  "layers": {
+    "A-1F-ROOM-ELDER": {
+      "kind": "space",
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "name": "孝親房",
+      "requirement_id": "A.floor-1.elder"
+    },
+    "A-1F-DOOR-ELDER": {
+      "kind": "door",
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "name": "孝親房門",
+      "requirement_id": "A.floor-1.elder"
+    }
+  }
+}
+```
+
+```bash
+python -m house_design drawings import \
+  --revision R001 \
+  --label "初步設計" \
+  --pdf drawings/R001.pdf \
+  --dxf drawings/R001.dxf \
+  --mapping drawings/R001.mapping.json
+```
+
+匯入規則：
+
+- 至少要提供 `--pdf`、`--ifc` 或 `--dxf` 其中一個。
+- PDF 可單獨封存，但沒有 IFC／mapped DXF 時通常無法完成房間與門窗語意檢核。
+- 原始圖與 mapping 會複製進版次目錄並記錄 SHA-256。
+- `manifest.json` 一旦存在，同一 revision id 不能覆寫；收到新圖請使用 R002、R003 等新 id。
+- DXF 未設定單位時，mapping 必須提供 `dxf_unit_scale_to_mm`。
+- 未 mapping 的 DXF 圖層仍保留原始幾何，但不能證明房間或門窗需求。
+- `drawings import`、`list`、`seed-legacy`、`compare` 都可用 `--root` 指定非預設版次目錄。
+
+IFC 建議：
+
+- 棟名要有獨立 A／B／C token，例如 `A棟` 或 `Building A`。
+- 樓層名使用 `1F`、`2F`、`3F`、`RF`；地下層可使用 `B1F`。
+- 應提供 `IfcSpace`，否則房間層級檢核會維持未知。
+- `IfcDoor.OverallWidth` 是名目寬度，不會自動當成完工後門淨寬。
+- 沒有門窗表、可信 property 或 mapped DXF 開口證據時，門淨寬必須維持 `unknown`。
+
+常見 manifest status：
+
+| Status | 意義 |
+|---|---|
+| `ready` | 有可用的 machine-readable 圖面、標準化實體且無 blocking import issue |
+| `needs_mapping` | 原始檔已保存，但語意對應不足 |
+| `partial` | 已取得部分標準化實體，但仍有 blocking import issue |
+| `legacy_assumption` | R000 等舊參數化情境，不得作為現行基準 |
+
+### 4.4 列出版次
+
+```bash
+python -m house_design drawings list
+```
+
+自訂版次根目錄：
+
+```bash
+python -m house_design drawings list --root path/to/revisions
+```
+
+### 4.5 建立歷史 R000 示例
+
+一般 repository 已有 R000，不需重建。新環境要將舊參數化情境封存為明確不可放行的版次時才使用：
+
+```bash
+python -m house_design drawings seed-legacy \
+  --revision R000 \
+  --variant f6000_g1 \
+  --plan structured/parametric/plan.json
+```
+
+R000 會帶有 blocking 的 legacy assumption finding；它的用途是證明錯誤的 32 坪語意會被攔截，不是示範通過報告。
+
+### 4.6 比較兩個版次
+
+```bash
+python -m house_design drawings compare --from R001 --to R002
+```
+
+另存 JSON：
+
+```bash
+python -m house_design drawings compare \
+  --from R001 \
+  --to R002 \
+  --output structured/reviews/R002/comparison.json
+```
+
+比較內容包含空間、門、窗與設備的新增、刪除，以及面積、尺寸、位置、樓層和門寬等欄位變更。
+
+## 5. 現行工作流：產生檢核報告
+
+### 5.1 執行單一版次檢核
+
+```bash
+python -m house_design review run --revision R001
+```
+
+同時比較前一版：
+
+```bash
+python -m house_design review run --revision R002 --previous R001
+```
+
+主要選項：
+
+| 選項 | 預設 | 用途 |
+|---|---|---|
+| `--project` | `inputs/project.json` | 指定基地資料 |
+| `--requirements` | `inputs/requirements.json` | 指定需求登錄 |
+| `--rules` | `rules/kaohsiung_review_rules.json` | 指定規則包 |
+| `--revision-root` | `inputs/revisions` | 指定不可變版次根目錄 |
+| `--output-root` | `structured/reviews` | 指定報告根目錄 |
+| `--previous` | 無 | 將前後版比較嵌入報告 |
+| `--signoff` | 無 | 套用現行 JSON 真人簽核 |
+| `--skip-pdf` | false | 不產生 meeting-report.pdf |
+
+每次預設輸出到 `structured/reviews/<revision>/`：
+
+| 檔案 | 用途 |
+|---|---|
+| `report.json` | 機器可讀 finding、證據、責任角色、比較與 report hash |
+| `report.md` | 可讀的逐項會議清單 |
+| `meeting-report.pdf` | 可列印會議報告；`--skip-pdf` 時不產生 |
+| `index.html` | 完全離線的互動檢核儀表板 |
+
+離線儀表板不依賴外部 CDN，可直接以瀏覽器開啟。
+
+### 5.2 Finding 狀態
+
+| Status | 意義 | 是否阻擋 `release_eligible` |
+|---|---|---:|
+| `pass` | 有足夠證據且此檢核通過 | 否 |
+| `warning` | 設計提醒或非阻擋取捨 | 否 |
+| `unknown` | 缺資料或證據，不能判斷 | 是 |
+| `professional_review` | 必須由建築師／技師等專業人員確認 | 是 |
+| `fail` | 已有證據顯示不符合契約或規則 | 是 |
+| `not_applicable` | 經確認不適用 | 否 |
+
+`release_eligible` 只有在以下條件全部成立時才可能為 true：
+
+1. 沒有 `fail`。
+2. 沒有 `unknown`。
+3. 沒有 `professional_review`。
+4. 現行 JSON signoff 有效。
+
+命令以 exit code 0 完成，只表示報告成功產生；即使 `release_eligible: false`，命令仍可能成功。務必查看報告內容與輸出的 `release_eligible`。
+
+## 6. 現行 JSON 人工簽核
+
+現行簽核範本是 `inputs/signoff.template.json`，不是歷史 HTML 分支的 YAML signoff。
+
+### 第一次執行：取得 report hash
+
+```bash
+python -m house_design review run --revision R001
+```
+
+人工檢查 `structured/reviews/R001/report.md`、`meeting-report.pdf` 與 `index.html`，再從 `report.json` 複製 `report_hash`。
+
+### 建立簽核檔
+
+PowerShell：
 
 ```powershell
-cd D:\I29786\workspace\houseDesignPrepare
-claude
+Copy-Item inputs\signoff.template.json inputs\signoff.R001.json
 ```
 
-進入後可檢查 MCP：
+Bash：
 
-```text
-/mcp
+```bash
+cp inputs/signoff.template.json inputs/signoff.R001.json
 ```
 
-Brave Search 需要 API key；沒有設定時不影響一般出圖流程：
+範例：
+
+```json
+{
+  "schema": "house-review-signoff-v1",
+  "revision_id": "R001",
+  "decision": "approved_with_conditions",
+  "reviewer_kind": "human",
+  "reviewer_role": "architect",
+  "reviewer_name": "實際審查者姓名",
+  "reviewer_date": "2026-08-28",
+  "related_report_hash": "從最新 report.json 複製",
+  "conditions": []
+}
+```
+
+允許的 decision 是 `approved`、`pass`、`approved_with_conditions`。
+
+簽核無效的情況包括：
+
+- `reviewer_kind` 不是 `human`。
+- 審查者姓名空白或是 Claude、ChatGPT、Codex 等 AI 身分。
+- 缺少 reviewer role 或日期。
+- `revision_id` 與報告版次不同。
+- `related_report_hash` 不是最新報告 hash。
+
+### 第二次執行：套用簽核
+
+```bash
+python -m house_design review run \
+  --revision R001 \
+  --signoff inputs/signoff.R001.json
+```
+
+簽核只記錄該真人對該版報告的決定，不取代建照審查、結構計算、消防、機電、無障礙或其他依法簽證程序。即使 signoff 有效，只要仍有 fail、unknown 或 professional review，`release_eligible` 仍會是 false。
+
+## 7. 歷史 HTML 與參數化 Pipeline
+
+本章所有功能都屬歷史分支。它們適合重現早期草圖、測試 parser、比較候選方案與輸出討論圖，不會更新 `structured/reviews/<revision>/` 的現行檢核。
+
+### 7.1 Mode
+
+| Mode | 行為 | PDF | Validation |
+|---|---|---:|---|
+| `concept` | 快速重建歷史 viewer、3D 與 SVG | 不產生 | 無 strict gate |
+| `draft` | 產生歷史討論／列印圖包 | 產生 | 一般產出檢查 |
+| `release` | 完整歷史輸出與 strict bundle validation | 產生 | strict |
+| `ifc` | `release` 的 deprecated 相容別名 | 產生 | strict |
+
+IFC 現在應指建築圖面檔案格式。新指令請使用 `release`，不要再把 `ifc` 當成 mode 名稱。
+
+### 7.2 常用指令
+
+```bash
+# 快速重建，不產生 PDF
+python -m house_design pipeline --mode concept
+
+# 歷史 A3 PDF
+python -m house_design pipeline --mode draft
+
+# 歷史 A4 technical PDF
+python -m house_design pipeline \
+  --mode draft \
+  --style technical \
+  --paper a4 \
+  --output structured/candidates/print_bundle_a4.pdf
+
+# 完整重跑，不使用快取
+python -m house_design pipeline --mode release --force
+
+# 只重跑候選配置到 SVG
+python -m house_design pipeline \
+  --mode draft \
+  --from-step candidates \
+  --to-step svg
+```
+
+Windows PowerShell 也保留一個非增量的歷史 wrapper。它會先跑 HTML consistency，再依序重建歷史輸出；需要完整逐步輸出或由 expert workflow 呼叫時可使用：
 
 ```powershell
-$env:BRAVE_API_KEY = "your_key"
-claude
-```
-
-## 2. 最常用的一鍵流程
-
-Claude Code 內執行：
-
-```text
-/workflow-house-all-in-one inputs/design_request.md --mode concept --buildings A,B,C --selection auto --drawing-style presentation
-```
-
-這個指令會依序完成：
-
-1. 整理 `inputs/design_request.md` 的需求。
-2. 執行法規、無障礙與專家規則 gate。
-3. 檢查 HTML 幾何、房間綁定與入口資料。
-4. 產生 JSON、建築指標、候選配置、viewer、SVG；draft/ifc 也產生 PDF。
-5. 驗證輸出圖面。
-6. 產生專家報告與 domain checklist。
-7. 產生不覆蓋原檔的 final HTML 討論版。
-
-等效 PowerShell 指令：
-
-```powershell
-powershell -ExecutionPolicy Bypass -File scripts/run_full_expert_workflow.ps1 `
-  -Request inputs/design_request.md `
-  -Mode concept `
-  -Buildings A,B,C `
-  -Selection auto `
+powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 `
+  -Mode draft `
+  -Paper a3 `
+  -Selection baseline `
   -DrawingStyle presentation
 ```
 
-### Mode 怎麼選
+`run_full_pipeline.ps1` 支援 `-Mode`、`-Paper`、`-Selection`、`-DrawingStyle`、`-Output` 與 `-PythonExe`。`-ValidationOwner` 是巢狀 workflow 用來避免重複驗證的內部協調選項；一般直接執行時保留預設 `inner`。日常重跑仍建議使用 package CLI，才能利用 step cache 與 `--from-step`／`--to-step`。
 
-| Mode | 用途 | PDF | 驗證程度 |
-|---|---|---:|---|
-| `concept` | 修改 HTML 後快速檢查 | 不產生 | 基本流程 |
-| `draft` | 日常討論與草圖交付 | 產生 | 一般驗證 |
-| `ifc` | 最終人工審查與放行 | 產生 | strict 驗證＋signoff hash |
+其他 pipeline 選項：
 
-通常先跑 concept，確認無誤後再跑 draft。
+| 選項 | 用途 |
+|---|---|
+| `--selection auto|baseline|best` | 選擇候選策略 |
+| `--style presentation|technical|debug` | 選擇 SVG／PDF 樣式 |
+| `--paper a3|a4` | 選擇 PDF 紙張 |
+| `--output <path>` | 指定 PDF 輸出位置 |
+| `--from-step`／`--to-step` | 只執行一段步驟；所選 step 必須存在於該 mode |
+| `--force` | 忽略 `.house-design-cache.json` |
+| `--python-exe <path>` | 指定各 step 使用的 Python |
 
-### Selection 怎麼選
+### 7.3 Selection
 
 | Selection | 行為 |
 |---|---|
-| `auto` | 所有模式選擇保留來源綁定的 `baseline`；試驗方案需明確指定 `best` |
-| `baseline` | 保留最接近原始 HTML 的配置 |
-| `best` | 使用演算法評分最高的候選方案 |
+| `auto` | 解析為來源保留的 `baseline` |
+| `baseline` | 保留最接近原始 HTML 綁定的配置 |
+| `best` | 使用 heuristic 總分最高的候選方案 |
 
-正式討論或交付建議使用 `auto` 或 `baseline`。`best` 是設計比較工具，不代表已通過法規或專業審查。
+`best` 只供比較，不代表法規、專業或屋主需求已通過。
 
-### Drawing style 怎麼選
+### 7.4 Drawing style
 
 | Style | 適合情境 |
 |---|---|
-| `presentation` | 一般討論、簡報與列印，畫面最乾淨 |
-| `technical` | 需要門窗、尺寸、立面索引等技術標記 |
-| `debug` | 檢查演算法、score、notes 與格位對應 |
+| `presentation` | 一般討論、簡報與列印 |
+| `technical` | 顯示較完整的門窗、尺寸、legend 與立面索引 |
+| `debug` | 檢查候選分數、notes 與格位對應 |
 
-## 3. 日常工作範例
-
-### 快速檢查修改
+### 7.5 Pipeline 步驟
 
 ```text
-/workflow-house-all-in-one inputs/design_request.md --mode concept --buildings A,B,C --selection auto --drawing-style presentation
+extract
+  → program
+  → metrics
+  → candidates
+  → viewer
+  → model3d
+  → parametric
+  → walkthrough
+  → svg
+  → pdf        （concept 不執行）
+  → validate   （只有 release 執行）
 ```
 
-### 產生 A3 PDF
+`parametric` 分支不讀 HTML；它只是在同一個 orchestrator 中依序執行。它讀取 `inputs/site.json` 與 `inputs/brief/`，仍是舊的 32 坪 footprint 情境。
 
-```text
-/workflow-house-all-in-one inputs/design_request.md --mode draft --buildings A,B,C --selection auto --drawing-style presentation
-```
+`.house-design-cache.json` 會記錄命令、輸入與輸出 hash。未變更且輸出完整的 step 會跳過；SVG manifest 內的每張 SVG 與 PDF 依賴也會納入檢查。使用 `--force` 可忽略快取。
 
-### 只檢查 A 棟
+### 7.6 歷史輸出
 
-```text
-/workflow-house-all-in-one inputs/design_request.md --mode concept --buildings A --selection auto --drawing-style presentation
-```
+| 內容 | 檔案 |
+|---|---|
+| 結構化 HTML | `structured/*buildingView.structured.json`、`structured/index.json` |
+| 統一 room program | `structured/room_program.json` |
+| 建築指標 | `structured/architect_metrics/metrics.json`、`report.md` |
+| 候選方案 | `structured/candidates/layout_candidates.json`、`summary.md` |
+| 候選切換 viewer | `structured/candidates/viewer.html` |
+| HTML 量體 3D | `structured/candidates/model3d.html` |
+| SVG 索引 | `structured/candidates/svg/index.html` |
+| 列印 PDF | `structured/candidates/print_bundle.pdf` |
+| 舊參數化容量 | `structured/parametric/plan.json`、`capacity.md` |
+| 舊參數化 walk-in 3D | `structured/parametric/walkthrough.html` |
 
-### 產生 A4 技術圖
+兩個 3D viewer 都可離線開啟，但用途只是閱讀／比較，不能編輯後回寫模型。
 
-```powershell
-powershell -ExecutionPolicy Bypass -File scripts/run_full_expert_workflow.ps1 `
-  -Request inputs/design_request.md `
-  -Mode draft `
-  -Buildings A,B,C `
-  -Selection baseline `
-  -DrawingStyle technical `
-  -Paper a4 `
-  -Output structured/candidates/print_bundle_a4.pdf
-```
+## 8. 歷史 HTML 的幾何與資料可信度
 
-## 4. 快速增量 Pipeline
-
-如果不需要專家 gate、task board 與 final HTML，只想重建圖面，可使用新的 package CLI：
-
-```powershell
-python -m house_design pipeline --mode concept
-```
-
-它會根據輸入與輸出 hash 跳過沒有變化的步驟。快取存在 `.house-design-cache.json`，不會提交到 Git。
-
-常用指令：
-
-```powershell
-# 完整重跑，不使用快取
-python -m house_design pipeline --mode draft --force
-
-# 只重跑候選配置到 SVG
-python -m house_design pipeline --mode draft --from-step candidates --to-step svg
-
-# 產生 technical SVG/PDF
-python -m house_design pipeline --mode draft --style technical
-```
-
-可用 step：
-
-```text
-extract → program → metrics → candidates → viewer → svg → pdf → validate
-```
-
-其中 `pdf` 不會出現在 concept；`validate` 只會出現在 ifc。
-
-快取不只檢查 manifest 是否存在，也會檢查 manifest 列出的 SVG 與 output hash。若某張 SVG 遺失，SVG 與依賴它的 PDF 會自動重建。
-
-## 5. 修改 HTML 時要遵守的規則
-
-正式輸入只有：
+在 HTML 歷史分支內，輸入是：
 
 - `AbuildingView.html`
 - `BbuildingView.html`
 - `CbuildingView.html`
 - `storage.html`
 
-不要把 `*_tmp.html` 或 `structured/final_design_html/*.final.html` 當成下一次 pipeline 的輸入。
+不要把 `*_tmp.html` 或 `structured/final_design_html/*.final.html` 當成 pipeline 輸入。
 
-必須保留 DOM 結構：
+必須保留 DOM：
 
 ```text
 .floor-plan > .plan-grid-visual > .plan-row > .plan-cell
@@ -192,7 +503,7 @@ onclick="highlightRoom('living', this)"
 id="room-living"
 ```
 
-精確出圖使用 mm metadata：
+支援的幾何 metadata：
 
 ```html
 data-floor-width-mm="11000"
@@ -205,7 +516,7 @@ data-door-mm="900"
 data-window-mm="1800"
 ```
 
-常用語意 metadata：
+支援的語意 metadata：
 
 ```html
 data-entry="true"
@@ -215,128 +526,195 @@ data-daylight-required="false"
 data-structural-review="required"
 ```
 
-注意：
+注意：HTML 裡有 mm 不代表它是實測值。每個 cell 應查看 `geometry_provenance`：
 
-- 同一樓層原則上只能有一個 `data-entry="true"`。
-- 家庭劇院等不需要自然採光的空間可明確設定 `data-daylight-required="false"`。
-- 屋頂水塔、熱泵、太陽能等設備應標記 `data-structural-review="required"`，但這只代表需要技師確認，不代表已通過結構審查。
-
-## 6. 如何看執行結果
-
-優先查看這些檔案：
-
-| 想確認的內容 | 檔案 |
+| Provenance | 意義 |
 |---|---|
-| 整體專家結論 | `structured/expert_review/report.md` |
-| HTML 是否有錯 | `structured/expert_review/html_consistency.json` |
-| 建築指標與待確認事項 | `structured/architect_metrics/report.md` |
-| 候選分數與 baseline 差異 | `structured/candidates/summary.md` |
-| 切換候選配置 | `structured/candidates/viewer.html` |
-| SVG 圖面索引 | `structured/candidates/svg/index.html` |
-| PDF | `structured/candidates/print_bundle.pdf` |
-| 討論版 HTML | `structured/final_design_html/index.html` |
-| 專業討論清單 | `structured/expert_review/domain_checklist.md` |
+| `measured` | 已由量測或可信正式資料寫入 `inputs/dimensions.json` |
+| `declared` | 由 HTML 顯示文字，例如「約 5.5m × 6.0m」或坪數推回 |
+| `auto` | 從 CSS grid／class 自動推估，只能作為歷史草圖 |
 
-Architect Metrics 的 status：
+`inputs/dimensions.json` 的 override 優先於 HTML `data-*-mm`。只有所有 cell 都不再是 `auto` 時，才可聲稱 `blueprint-precise-mm`；否則應標示 `mixed-provenance`。
 
-| Status | 意義 |
-|---|---|
-| `ok` | 概念資料足夠，未發現明顯提醒 |
-| `advisory` | 有設計提醒，例如採光偏低或門寬不足 |
-| `missing_data` | 缺少必要的幾何或 metadata |
-| `professional_required` | 必須由建築師、機電或結構技師確認 |
+檢視哪些值可由現有文字回填：
 
-`professional_required` 不是程式錯誤，也不代表設計已通過；它表示這一項不能只靠本工具決定。
-
-Room program 會把內容分成：
-
-- `record_type=floor`：真正參與 metrics 與候選配置的樓層。
-- `record_type=section`：overview、規格表或 storage 說明，不會誤算成 skipped floor。
-
-候選 summary 的 grade：
-
-| Grade | 分數 | 解讀 |
-|---|---:|---|
-| `good` | 80 以上 | heuristic 表現較完整，仍需人工審查 |
-| `review` | 65–79.99 | 建議檢查弱項 |
-| `weak` | 低於 65 | 應查看 Low-score Review 與 baseline 差異 |
-
-這些是相對比較分數，不是法規分數。
-
-## 7. IFC 最終簽核
-
-IFC 必須跑兩次，因為第一次要先產生最新 report hash。
-
-### 第一次執行
-
-```text
-/workflow-house-all-in-one inputs/design_request.md --mode ifc --buildings A,B,C --selection auto --drawing-style technical
+```bash
+python scripts/seed_dimension_overrides.py --dry-run
 ```
 
-第一次通常會因 signoff 尚未更新而以 exit code `2` 停止，這是預期流程。
+建立 override 與待量測清單：
 
-### 人工檢查
+```bash
+python scripts/seed_dimension_overrides.py
+```
 
-1. 打開 `structured/expert_review/report.md`。
-2. 確認 critical、warning、professional required 與 domain checklist。
-3. 從 `structured/expert_review/report.json` 複製 `report_hash` 和 `generated_at`。
+輸出：
 
-建立或更新：
+- `inputs/dimensions.json`
+- `structured/dimension_todo.md`
+
+`--force` 會重新整理可推導項目並保留 measured entry，仍應先檢查現有人工量測資料。
+
+`scripts/annotate_html_geometry.py` 會直接修改 canonical HTML、補上推估 metadata。只有確定要更新歷史來源時才執行：
+
+```bash
+python scripts/annotate_html_geometry.py
+```
+
+預設不處理 `*_tmp.html`；`--include-tmp` 會把暫存檔也納入，通常不建議。
+
+## 9. 歷史一鍵專家流程與 Claude Code 指令
+
+以下流程只服務 HTML 歷史分支，輸出到 `structured/expert_review/`，不要和現行的 `structured/reviews/<revision>/` 混用。
+
+PowerShell：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_full_expert_workflow.ps1 `
+  -Request inputs/design_request.md `
+  -Mode concept `
+  -Buildings A,B,C `
+  -Selection auto `
+  -DrawingStyle presentation
+```
+
+歷史 PDF：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_full_expert_workflow.ps1 `
+  -Request inputs/design_request.md `
+  -Mode draft `
+  -Buildings A,B,C `
+  -Selection baseline `
+  -DrawingStyle presentation `
+  -Paper a3
+```
+
+歷史 strict gate：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_full_expert_workflow.ps1 `
+  -Request inputs/design_request.md `
+  -Mode release `
+  -Buildings A,B,C `
+  -Selection baseline `
+  -DrawingStyle technical
+```
+
+此流程會執行舊 requirement normalization、expert gate、HTML consistency、pipeline、SVG validation、舊 expert report、domain checklist 與 final discussion HTML。
+
+主要的 expert workflow 輸出：
+
+- `structured/expert_review/request_normalized.json`：正規化後的歷史設計要求。
+- `structured/expert_review/html_consistency.json`：HTML 幾何與房間綁定檢查。
+- `structured/expert_review/report.json`、`report.md`：舊 expert gate 報告。
+- `structured/expert_review/domain_checklist.json`、`domain_checklist.md`：屋主與各專業角色的待確認清單。
+- `structured/final_design_html/index.html`：不覆蓋 canonical HTML 的討論版入口。
+- `task-board.md`：歷史工作流更新的任務板。
+
+歷史流程的人工簽核使用：
 
 ```text
 structured/expert_review/signoff.yaml
 ```
 
-可以先複製範本：
+這個 YAML 只綁定 `structured/expert_review/report.json`，不能用來簽核現行 revision review。`release` 第一次執行通常會要求更新 report hash；人工檢查後更新 YAML，再以相同指令執行第二次。
 
-```powershell
-Copy-Item structured\expert_review\signoff.template.yaml structured\expert_review\signoff.yaml
-```
-
-填入：
-
-```yaml
-decision: approved
-reviewer_kind: human
-reviewer_role: owner
-reviewer_name: <實際審查者>
-reviewer_date: 2026-07-14
-related_report_hash: <report.json 的 report_hash>
-related_report_generated_at: <report.json 的 generated_at>
-```
-
-也可使用 `pass` 或 `approved_with_conditions`。
-
-### 第二次執行
-
-使用完全相同的 IFC 指令重跑。只有 signoff hash 對應最新 report，且 strict drawing validation 通過，流程才會成功。
-
-Strict SVG validation 會解析實際 SVG XML，檢查入口、門、窗與所選 style 需要的尺寸、legend、elevation 圖元。只把 marker 字串放在 `<metadata>` 裡不會通過。
-
-## 8. Exit code 怎麼看
-
-| Exit code | 意義 | 下一步 |
-|---:|---|---|
-| `0` | 成功 | 查看報告與輸出 |
-| `1` | 未預期程式錯誤 | 查看終端機 traceback |
-| `2` | 參數、資料、validation 或 IFC signoff 問題 | 查看錯誤訊息與 report |
-| `10` | 專家 hard gate 失敗 | 修正 critical failure 後重跑 |
-
-## 9. 常見失敗處理
-
-### Hard gate failed
-
-打開：
+Claude Code 仍提供歷史 slash commands：
 
 ```text
-structured/expert_review/report.md
+/workflow-house-all-in-one inputs/design_request.md --mode concept --buildings A,B,C --selection auto --drawing-style presentation
+/export-final-design-html --mode draft --buildings A,B,C --selection auto
 ```
 
-查看 `Critical Failures` 和 `fix_hint`。修正 HTML、需求或 rules 後重跑。不要為了讓 gate 通過而刪除法規引用欄位。
+`/workflow-house-all-in-one` 的舊介面仍可能顯示 `ifc`；直接呼叫 PowerShell 或 package CLI 時應改用 `release`。Slash command 不可用時，可把 `scripts/WORKFLOW_ALL_IN_ONE_PROMPT.zh-TW.md` 貼給 Claude Code，但必須在 prompt 中標明這是歷史 HTML 分支。
 
-### HTML consistency critical
+## 10. 個別腳本功能索引
 
-打開：
+一般使用者優先使用 `python -m house_design ...` 或 PowerShell orchestrator。以下腳本適合除錯、局部重建或維護：
+
+| 腳本 | 功能／輸出 |
+|---|---|
+| `scripts/annotate_html_geometry.py` | 直接替歷史 HTML 補推估幾何 metadata |
+| `scripts/seed_dimension_overrides.py` | 從 HTML 尺寸文字建立 override 與待量測清單 |
+| `scripts/extract_layout_data.py` | HTML → `structured/*.structured.json` |
+| `scripts/build_room_program.py` | 建立 `structured/room_program.json` |
+| `scripts/evaluate_architect_metrics.py` | 更新歷史概念級建築指標 |
+| `scripts/generate_layout_candidates.py` | 建立 baseline／circulation／daylight／MEP 候選 |
+| `scripts/render_candidate_viewer.py` | 建立候選切換 viewer |
+| `scripts/export_model_3d.py` | 建立 HTML 草圖的離線 3D 量體 viewer |
+| `scripts/generate_parametric_plan.py` | 建立舊 32 坪 footprint 變體與 capacity report |
+| `scripts/export_walkthrough_3d.py` | 建立舊參數化 walk-in 3D |
+| `scripts/export_top1_svgs.py` | 依 selection/style 匯出穩定檔名 SVG 與 manifest |
+| `scripts/export_print_bundle_pdf.py` | 依 SVG manifest 匯出 A3／A4 PDF |
+| `scripts/validate_layout_bundle.py` | 驗證 room program、manifest 與實際 SVG marker |
+| `scripts/check_html_consistency.py` | 檢查歷史 HTML 幾何、房間綁定、入口與門窗資料 |
+| `scripts/evaluate_expert_gates.py` | 舊 expert normalization／gate／report 實作 |
+| `scripts/generate_domain_checklist.py` | 產生舊 owner／architect domain checklist |
+| `scripts/export_final_design_html.py` | 產生不覆蓋 canonical HTML 的討論版快照 |
+
+手動重建完整歷史輸出時的順序：
+
+```bash
+python scripts/check_html_consistency.py --mode draft
+python scripts/extract_layout_data.py
+python scripts/build_room_program.py
+python scripts/evaluate_architect_metrics.py
+python scripts/generate_layout_candidates.py
+python scripts/render_candidate_viewer.py
+python scripts/export_model_3d.py
+python scripts/generate_parametric_plan.py
+python scripts/export_walkthrough_3d.py
+python scripts/export_top1_svgs.py --selection baseline --style presentation
+python scripts/export_print_bundle_pdf.py --paper a3 --output structured/candidates/print_bundle.pdf
+python scripts/validate_layout_bundle.py --strict
+```
+
+## 11. 常見失敗處理
+
+### Intake valid，但 readiness 是 0%
+
+這是可能且合理的狀態。`valid` 代表資料格式正確；readiness 代表地號、分區、道路、建蔽率、容積率等必要事實是否已取得。不要把 unknown 改成假數值只為提高完成度。
+
+### Revision already exists
+
+版次是不可變資料。不要刪除或覆蓋既有 R001；收到修正版請建立 R002，並用 `--previous R001` 產生比較。
+
+### PDF／IFC／DXF dependency missing
+
+```bash
+python -m pip install -e ".[drawings]"
+```
+
+或：
+
+```bash
+python -m pip install -r requirements-import.txt
+```
+
+安裝完成後應以新的 revision id 重新匯入，避免把已建立的不可變 manifest 原地改寫。
+
+### DXF status 是 needs_mapping
+
+確認：
+
+- 有傳入 `--mapping`。
+- mapping 的 layer 名稱與 DXF 完全一致。
+- 每個需要檢核的 layer 有 `kind`、`building_id`、`floor_id`。
+- 需求空間有正確 `requirement_id`。
+- DXF 未宣告單位時有 `dxf_unit_scale_to_mm`。
+
+### Review 產生成功，但 release_eligible 是 false
+
+這不是程式失敗。查看 `report.md` 或 dashboard 中的 `fail`、`unknown`、`professional_review`，依 `responsible_role` 與 `next_action` 補資料或交由專業人員確認。
+
+### 現行 signoff 無效
+
+確認 JSON 內的真人姓名、role、日期、revision id 與最新 `report_hash`。只要輸入、規則、圖面或 findings 改變，就應重新人工檢查並更新 hash。
+
+### 歷史 HTML consistency critical
+
+查看：
 
 ```text
 structured/expert_review/html_consistency.json
@@ -345,109 +723,101 @@ structured/expert_review/html_consistency.json
 常見原因：
 
 - `highlightRoom('xxx')` 與 `id="room-xxx"` 不一致。
-- 缺少 `data-x/y/w/h-mm`。
-- 同一層有多個入口。
+- 幾何 metadata 不完整或互相矛盾。
+- 同一樓層有多個入口。
 - 門窗尺寸超出合理範圍。
 
-### Strict bundle validation failed
+### 歷史 strict bundle validation failed
 
-手動執行：
-
-```powershell
+```bash
 python scripts/validate_layout_bundle.py --strict
 ```
 
-它會指出哪張 SVG 缺少實際圖元或 manifest 指向的檔案不存在。重新產生 SVG：
+它會檢查 manifest 內 SVG 是否存在，以及入口、門、窗、尺寸、legend、elevation 等實際 SVG XML marker。只把文字放進 `<metadata>` 不會通過。
 
-```powershell
+重新產生 SVG：
+
+```bash
 python -m house_design pipeline --mode draft --from-step svg --force
 ```
 
-### IFC signoff missing or stale
+### 歷史 pipeline 沒有重跑預期步驟
 
-表示 `signoff.yaml` 的 `related_report_hash` 不是最新 report hash。重新人工檢查最新報告並更新 hash，不要直接沿用舊簽核。
+先確認輸入是否真的改變；需要完整重建時使用：
 
-### MCP 無法啟動
+```bash
+python -m house_design pipeline --mode draft --force
+```
 
-確認：
+## 12. Exit code
 
-- 是從專案根目錄啟動 Claude Code。
-- Node/npm/npx 可以執行。
-- Brave Search 已設定 `BRAVE_API_KEY`。
-- 使用 `/mcp` 查看實際錯誤。
+| Exit code | 適用流程 | 意義 |
+|---:|---|---|
+| `0` | 所有流程 | 命令成功執行；不等於設計合規 |
+| `1` | package CLI／一般腳本 | 契約、參數、匯入、subprocess 或其他錯誤；`intake validate` 無效也回傳 1 |
+| `2` | argparse／歷史 expert workflow | CLI 參數格式錯誤；或舊 YAML signoff 缺少、report hash 過期 |
+| `10` | 歷史 expert workflow | 舊 expert hard gate 失敗 |
 
-## 10. 測試與品質檢查
+現行 `review run` 的 `release_eligible: false` 通常不會改變 exit code；請以報告欄位判讀。
 
-修改 Python 或 workflow 後執行：
+## 13. 測試與品質檢查
 
-```powershell
+修改 Python、CLI 或 workflow 後：
+
+```bash
 python -m pytest -q
 python -m ruff check house_design scripts tests
+```
+
+檢查現行資料契約：
+
+```bash
+python -m house_design intake validate
+```
+
+只有在歷史 SVG 已產生時，才執行歷史 strict bundle validation：
+
+```bash
 python scripts/validate_layout_bundle.py --strict
 ```
 
-若修改 HTML，至少再跑一次 concept：
+修改歷史 HTML 後，至少重跑：
 
-```powershell
+```bash
 python -m house_design pipeline --mode concept --force
 ```
 
-## 11. 其他可用指令
+## 14. Claude Code 與 MCP
 
-只重建 final HTML 討論版：
-
-```text
-/export-final-design-html --mode draft --buildings A,B,C --selection auto
-```
-
-只做 HTML consistency：
+從專案根目錄啟動 Claude Code，才能讀取 `CLAUDE.md`、`.claude/commands/` 與 `.mcp.json`：
 
 ```powershell
-python scripts/check_html_consistency.py --buildings A,B,C --mode draft
+cd D:\I29786\workspace\houseDesignPrepare
+claude
 ```
 
-只更新 Architect Metrics：
+進入後可用 `/mcp` 檢查 server。
+
+Brave Search 需要 `BRAVE_API_KEY`；沒有設定不影響本機 intake、drawing import、review 或歷史出圖。PowerShell 範例：
 
 ```powershell
-python scripts/evaluate_architect_metrics.py --buildings A,B,C
+$env:BRAVE_API_KEY = "your_key"
+claude
 ```
 
-逐步手動執行：
+MCP 無法啟動時確認：
 
-```powershell
-python scripts/extract_layout_data.py
-python scripts/build_room_program.py
-python scripts/evaluate_architect_metrics.py
-python scripts/generate_layout_candidates.py
-python scripts/render_candidate_viewer.py
-python scripts/export_top1_svgs.py --selection baseline --style presentation
-python scripts/export_print_bundle_pdf.py --paper a3 --output structured/candidates/print_bundle.pdf
-python scripts/validate_layout_bundle.py --strict
-```
+- 從專案根目錄啟動。
+- Node、npm、npx 可執行。
+- Brave Search 已取得 `BRAVE_API_KEY`。
+- 使用 `/mcp` 查看實際錯誤。
 
-## 12. Slash command 不可用時
+## 15. 相關文件
 
-把以下內容貼給 Claude Code：
-
-```text
-請依照 scripts/WORKFLOW_ALL_IN_ONE_PROMPT.zh-TW.md 執行 houseDesignPrepare 全流程。
-
-輸入：
-- request_file: inputs/design_request.md
-- mode: draft
-- buildings: A,B,C
-- selection: auto
-- drawing_style: presentation
-
-限制：
-- 只使用 canonical、非 _tmp HTML。
-- critical hard gate 失敗時停止。
-- 回報 report.md、domain_checklist.md、viewer.html、final HTML 與 PDF 路徑。
-```
-
-相關文件：
-
-- `CLAUDE.md`：專案固定規則與架構。
-- `scripts/README.md`：各 pipeline 腳本詳細說明。
-- `scripts/WORKFLOW_ALL_IN_ONE_PROMPT.zh-TW.md`：slash command 的備援 prompt。
-- `scripts/WEB_TO_PLAN_PROMPTS.zh-TW.md`：HTML 修改與出圖 prompt 範本。
+- `README.md`：現行專案快速開始與資料權威摘要。
+- `Docs/review-workflow.md`：現行圖面版次檢核的精簡操作流程。
+- `structured/CURRENT_STATUS.md`：目前資料完成度與 R000 驗收狀態。
+- `CLAUDE.md`：專案架構、限制與歷史分支細節。
+- `scripts/README.md`：各歷史 pipeline 腳本詳細說明。
+- `scripts/WORKFLOW_ALL_IN_ONE_PROMPT.zh-TW.md`：歷史 slash command 備援 prompt。
+- `scripts/WEB_TO_PLAN_PROMPTS.zh-TW.md`：歷史 HTML 修改與出圖 prompt 範本。

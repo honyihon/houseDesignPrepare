@@ -510,10 +510,12 @@ def build_skeleton(frontage_mm: int, depth_mm: int, site: dict[str, Any],
     net = Rect(ext, ext, frontage_mm - ext, depth_mm - ext)
 
     stair = stair_dims(site)
-    shaft_w = int(site.get("core", {}).get("shaft_w_mm", 600))
-    shaft_d = int(site.get("core", {}).get("shaft_d_mm", 600))
+    # The historical generator does not draw an independent pipe-shaft cell.
+    # This legacy setting only reserves extra width in the overall core; actual
+    # shaft geometry must come from an architect drawing revision.
+    core_service_w = int(site.get("core", {}).get("shaft_w_mm", 600))
 
-    core_w = min(stair["w_mm"] + shaft_w, max(2100, net.w // 2))
+    core_w = min(stair["w_mm"] + core_service_w, max(2100, net.w // 2))
     stair_d = stair["d_mm"]
     annex_d = 0
     if core_annex_sqm > 0:
