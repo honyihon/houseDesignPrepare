@@ -4,7 +4,7 @@ from pathlib import Path
 
 from house_design.contracts import write_json
 from house_design.dashboard import dashboard_html
-from house_design.review import build_review, validate_signoff
+from house_design.review import build_review, review_markdown, validate_signoff
 
 
 def _project() -> dict:
@@ -125,6 +125,8 @@ def test_confirmed_must_requirement_fails_area_turn_and_door_checks(tmp_path: Pa
     assert {"REQ-MIN-AREA", "ACC-WHEELCHAIR-TURN", "ACC-DOOR-CLEAR"} <= failed_rules
     assert report["release"]["eligible"] is False
     assert report["readiness"]["percent"] == 0
+    assert report["model3d_readiness"]["status"] == "blocked"
+    assert report["model3d_readiness"]["eligible"] is False
 
 
 def test_candidate_requirement_does_not_create_hard_geometry_failures(tmp_path: Path) -> None:
@@ -169,10 +171,20 @@ def test_ai_or_wrong_revision_signoff_is_invalid(tmp_path: Path) -> None:
 
 
 def test_dashboard_is_offline_and_exposes_unknown_as_separate_status(tmp_path: Path) -> None:
-    document = dashboard_html(_build(tmp_path))
+    report = _build(tmp_path)
+    document = dashboard_html(report)
 
     assert "住宅設計檢核中心" in document
     assert "未知" in document
     assert "專業確認" in document
+    assert 'id="model3dReadiness"' in document
+    assert "現行 revision 3D" in document
+    assert "SPACE_GEOMETRY_MISSING" not in document
+    assert "COORDINATE_SYSTEM_UNVERIFIED" in document
     assert "https://" not in document
     assert "reportData" in document
+
+    markdown = review_markdown(report)
+    assert "## 現行 revision 3D" in markdown
+    assert "**blocked**" in markdown
+    assert "COORDINATE_SYSTEM_UNVERIFIED" in markdown

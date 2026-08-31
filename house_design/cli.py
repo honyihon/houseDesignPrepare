@@ -12,6 +12,7 @@ from house_design.drawings import (
     compare_revisions,
     import_revision,
     list_revisions,
+    revision_model3d_readiness,
     seed_legacy_parametric_revision,
 )
 from house_design.intake import migrate_legacy_briefs, validate_intake
@@ -99,6 +100,11 @@ def build_parser() -> argparse.ArgumentParser:
     drawing_compare.add_argument("--to", dest="after_revision", required=True)
     drawing_compare.add_argument("--root", default="inputs/revisions")
     drawing_compare.add_argument("--output")
+    drawing_model3d = drawings_sub.add_parser(
+        "model3d-readiness", help="Check whether a revision has authoritative geometry for current 3D"
+    )
+    drawing_model3d.add_argument("--revision", required=True)
+    drawing_model3d.add_argument("--root", default="inputs/revisions")
 
     review = subparsers.add_parser("review", help="Run evidence-backed project and drawing review")
     review_sub = review.add_subparsers(dest="review_command", required=True)
@@ -210,6 +216,11 @@ def main() -> None:
             if args.output:
                 write_json(Path(args.output), result)
             _print_json(result)
+        elif args.command == "drawings" and args.drawings_command == "model3d-readiness":
+            result = revision_model3d_readiness(args.revision, Path(args.root))
+            _print_json(result)
+            if not result["eligible"]:
+                raise SystemExit(1)
         elif args.command == "review" and args.review_command == "run":
             report = build_review(
                 revision_id=args.revision,
@@ -233,6 +244,8 @@ def main() -> None:
                     "dashboard": str(dashboard),
                     "meeting_pdf": str(meeting_pdf) if meeting_pdf else None,
                     "release_eligible": report["release"]["eligible"],
+                    "model3d_status": report["model3d_readiness"]["status"],
+                    "model3d_eligible": report["model3d_readiness"]["eligible"],
                     "status_counts": report["status_counts"],
                 }
             )

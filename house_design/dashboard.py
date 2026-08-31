@@ -102,6 +102,27 @@ def dashboard_html(report: dict[str, Any]) -> str:
     .phase-card strong, .phase-card span { display: block; }
     .phase-card strong { font-size: 12px; }
     .phase-card span { font-size: 11px; color: var(--muted); margin-top: 4px; }
+    .model3d-readiness { border: 1px solid var(--line); border-radius: var(--radius); margin-top: 12px; padding: 16px 18px; background: #fbfcfd; scroll-margin-top: 80px; }
+    .model3d-readiness.blocked { border-color: #e7baba; background: #fffafa; }
+    .model3d-readiness.ready { border-color: #a8d3b9; background: #f8fdf9; }
+    .model3d-header { display: flex; align-items: center; gap: 12px; }
+    .model3d-header h2 { margin: 0 auto 0 0; font-size: 16px; }
+    .model3d-status { display: inline-flex; align-items: center; min-height: 28px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 800; color: white; background: var(--gray); }
+    .model3d-readiness.blocked .model3d-status { background: var(--red); }
+    .model3d-readiness.ready .model3d-status { background: var(--green); }
+    .model3d-summary { margin: 8px 0 13px; color: #435a6f; font-size: 13px; line-height: 1.55; }
+    .model3d-metrics { display: grid; grid-template-columns: repeat(4, minmax(115px, 1fr)); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: white; }
+    .model3d-metric { padding: 9px 11px; border-right: 1px solid var(--line); }
+    .model3d-metric:last-child { border-right: 0; }
+    .model3d-metric strong, .model3d-metric span { display: block; }
+    .model3d-metric strong { font-size: 16px; }
+    .model3d-metric span { margin-top: 3px; color: var(--muted); font-size: 11px; }
+    .model3d-blockers { display: grid; gap: 7px; margin: 13px 0 0; padding: 0; list-style: none; }
+    .model3d-blocker { display: grid; grid-template-columns: minmax(190px, .55fr) minmax(0, 1.45fr); gap: 12px; padding-top: 7px; border-top: 1px solid #eddada; font-size: 12px; line-height: 1.55; }
+    .model3d-blocker code { color: var(--red); font-weight: 800; overflow-wrap: anywhere; }
+    .model3d-blocker span { color: #435a6f; }
+    .model3d-blocker small { display: block; color: var(--muted); font-size: 11px; }
+    .model3d-note { margin: 11px 0 0; color: var(--muted); font-size: 11px; }
     .workspace { display: grid; grid-template-columns: minmax(480px, 1.55fr) minmax(310px, .9fr); margin-top: 12px; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; height: 390px; }
     .plan-panel { min-width: 0; min-height: 0; border-right: 1px solid var(--line); display: grid; grid-template-rows: 46px minmax(0, 1fr); }
     .panel-toolbar { display: flex; align-items: center; gap: 8px; padding: 0 12px; border-bottom: 1px solid var(--line); }
@@ -168,9 +189,13 @@ def dashboard_html(report: dict[str, Any]) -> str:
       .app-header { grid-template-columns: 1fr auto; height: auto; min-height: 68px; padding-block: 10px; }
       .revision-picker { grid-column: 1 / -1; grid-row: 2; justify-self: stretch; width: 100%; }
       .app-shell { grid-template-columns: 190px minmax(0, 1fr); }
+      .model3d-readiness { scroll-margin-top: 128px; }
       .readiness { grid-template-columns: 1fr; }
       .predesign-readiness { grid-template-columns: 1fr; }
       .phase-list { grid-template-columns: repeat(3, 1fr); }
+      .model3d-metrics { grid-template-columns: repeat(2, 1fr); }
+      .model3d-metric:nth-child(2) { border-right: 0; }
+      .model3d-metric:nth-child(n+3) { border-top: 1px solid var(--line); }
       .fact-list { grid-template-columns: repeat(3, 1fr); }
       .fact:nth-child(3) { border-right: 0; }
       .fact:nth-child(n+4) { border-top: 1px solid var(--line); }
@@ -183,10 +208,15 @@ def dashboard_html(report: dict[str, Any]) -> str:
       .brand { font-size: 19px; }
       .header-actions { grid-row: 3; }
       .app-shell { display: block; }
+      .model3d-readiness { scroll-margin-top: 164px; }
       .sidebar { border-right: 0; border-bottom: 1px solid var(--line); max-height: 280px; }
       main { padding: 10px; }
       .fact-list { grid-template-columns: 1fr; }
       .phase-list { grid-template-columns: repeat(2, 1fr); }
+      .model3d-metrics { grid-template-columns: 1fr; }
+      .model3d-metric, .model3d-metric:nth-child(2) { border-right: 0; border-top: 1px solid var(--line); }
+      .model3d-metric:first-child { border-top: 0; }
+      .model3d-blocker { grid-template-columns: 1fr; gap: 3px; }
       .fact, .fact:nth-child(3) { border-right: 0; border-top: 1px solid var(--line); }
       .fact:first-child { border-top: 0; }
       .workspace { display: block; }
@@ -221,6 +251,7 @@ def dashboard_html(report: dict[str, Any]) -> str:
         <button class="active" type="button"><span class="nav-icon">⌂</span>專案總覽</button>
         <button type="button" data-domain="requirements"><span class="nav-icon">≡</span>需求確認</button>
         <button type="button" data-domain="drawing_import"><span class="nav-icon">✓</span>圖面檢核</button>
+        <button type="button" data-jump="model3d"><span class="nav-icon">3D</span>現行 3D</button>
         <button type="button" data-jump="comparison"><span class="nav-icon">↔</span>版次比較</button>
         <button type="button" data-domain="rule_governance"><span class="nav-icon">▤</span>決策紀錄</button>
       </nav>
@@ -243,6 +274,17 @@ def dashboard_html(report: dict[str, Any]) -> str:
           <span id="predesignBlockers">尚未載入</span>
         </div>
         <div class="phase-list" id="phaseList"></div>
+      </section>
+
+      <section class="model3d-readiness" id="model3dReadiness" aria-labelledby="model3dHeading">
+        <div class="model3d-header">
+          <h2 id="model3dHeading">現行 revision 3D</h2>
+          <span class="model3d-status" id="model3dStatus">檢查中</span>
+        </div>
+        <p class="model3d-summary" id="model3dSummary"></p>
+        <div class="model3d-metrics" id="model3dMetrics"></div>
+        <ul class="model3d-blockers" id="model3dBlockers"></ul>
+        <p class="model3d-note" id="model3dNote"></p>
       </section>
 
       <section class="workspace" aria-label="圖面與檢核詳情">
@@ -351,6 +393,37 @@ def dashboard_html(report: dict[str, Any]) -> str:
           <strong>${escapeHtml(labels[phase] || phase)}</strong>
           <span>${value.completed}/${value.total}${phase === predesign.current_phase ? ' · 目前' : ''}</span>
         </div>`).join('');
+    }
+
+    function renderModel3dReadiness() {
+      const readiness = report.model3d_readiness;
+      const section = document.getElementById('model3dReadiness');
+      if (!readiness) { section.style.display = 'none'; return; }
+      const eligible = Boolean(readiness.eligible);
+      const counts = readiness.counts || {};
+      section.classList.add(eligible ? 'ready' : 'blocked');
+      document.getElementById('model3dStatus').textContent = eligible ? '可進入產圖' : '已阻擋';
+      document.getElementById('model3dSummary').textContent = eligible
+        ? '這個版次的輸入已具備可追溯 3D 幾何條件；仍須把產圖結果視為圖面閱讀工具，不等同合規放行。'
+        : `這個版次有 ${readiness.blockers?.length || 0} 項輸入阻擋，不會建立或連結為現行 3D。`;
+      const coordinateStatus = readiness.coordinate_system?.status || 'unknown';
+      const metrics = [
+        [`${counts.authoritative_renderable_spaces || 0}/${counts.total_spaces || 0}`, '權威且可渲染空間'],
+        [`${counts.spaces_with_geometry || 0}/${counts.total_spaces || 0}`, '具有平面幾何'],
+        [`${counts.elevated_storeys || 0}/${counts.total_storeys || 0}`, '具有樓層標高'],
+        [coordinateStatus, '座標系統狀態'],
+      ];
+      document.getElementById('model3dMetrics').innerHTML = metrics.map(([value,label]) => `
+        <div class="model3d-metric"><strong>${escapeHtml(value)}</strong><span>${escapeHtml(label)}</span></div>`).join('');
+      const blockers = readiness.blockers || [];
+      document.getElementById('model3dBlockers').innerHTML = blockers.map(blocker => `
+        <li class="model3d-blocker">
+          <code>${escapeHtml(blocker.code)}</code>
+          <span>${escapeHtml(blocker.message)}<small>下一步：${escapeHtml(blocker.next_action)}</small></span>
+        </li>`).join('');
+      document.getElementById('model3dNote').textContent = eligible
+        ? readiness.policy
+        : '歷史 walkthrough 仍可供概念回顧，但不會冒充這個 revision 的現行 3D。';
     }
 
     function allLocations() {
@@ -462,10 +535,10 @@ def dashboard_html(report: dict[str, Any]) -> str:
       }).join('') : '<div class="empty-row">兩版正規化模型沒有偵測到空間、門窗或設備變更。</div>';
     }
 
-    renderFacts(); renderPredesign(); renderTree(); renderPlan(); renderInspector(); renderFindings(); renderComparison();
+    renderFacts(); renderPredesign(); renderModel3dReadiness(); renderTree(); renderPlan(); renderInspector(); renderFindings(); renderComparison();
     document.getElementById('statusFilter').addEventListener('change',() => renderFindings());
     document.querySelectorAll('.nav button[data-domain]').forEach(button => button.addEventListener('click',() => { document.getElementById('statusFilter').value='all'; renderFindings(button.dataset.domain); document.querySelector('.table-panel').scrollIntoView({behavior:'smooth'}); }));
-    document.querySelector('[data-jump="comparison"]').addEventListener('click',() => document.getElementById('comparison').scrollIntoView({behavior:'smooth'}));
+    document.querySelectorAll('[data-jump]').forEach(button => button.addEventListener('click',() => document.getElementById(button.dataset.jump === 'model3d' ? 'model3dReadiness' : button.dataset.jump)?.scrollIntoView({behavior:'smooth'})));
     document.getElementById('printButton').addEventListener('click',() => window.print());
     const dialog = document.getElementById('importDialog');
     document.getElementById('importCommand').textContent = 'python -m house_design drawings import --revision R001 --label "初步設計" --pdf path/to/drawings.pdf --ifc path/to/model.ifc';

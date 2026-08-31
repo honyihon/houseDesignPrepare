@@ -13,6 +13,14 @@
 
 目前 `R000` 只用來證明舊的「每層建築面積 32 坪」假設已被攔截，不得放行。
 
+## 2026-08-31 現行 revision 3D 閘門
+
+- 新增 `drawings model3d-readiness`：版次被阻擋時仍輸出完整 JSON，並以 exit code 1 讓 CI／自動流程停止。
+- R000 的判定是 `blocked`：99 個空間都有歷史 bbox，但 0 個屬權威可渲染幾何；12 個樓層中 0 個有標高，座標是 `local_assumed`，另有舊 footprint blocking issue。
+- R000 report、Markdown、會議 PDF 與 dashboard 已重建；dashboard 不會把歷史 walkthrough 連結或冒充為現行 3D，並列出六項穩定 blocker code 與下一步。
+- 1440 × 900 桌面與 390 × 844 手機已用 Playwright 截圖檢視；修正側欄跳轉會被 sticky header 遮住的問題後，標題、狀態、指標與阻擋原因均可讀。
+- 自動驗證：142 pytest passed、Ruff passed、Playwright 10/10 passed、npm audit 0 vulnerabilities，既有歷史 3D 與 `file://` 離線流程未回歸。
+
 ## 2026-08-28 前期整合驗收
 
 - 前期到期項目完成度 30%，5 個硬阻擋：家庭 20 年情境、預算上限、預算範圍／備用金、選地淘汰條件、土地選定。

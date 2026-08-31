@@ -1,7 +1,7 @@
 # House Design Prepare 使用指南
 
 - 適用專案：`houseDesignPrepare`
-- 更新日期：2026-08-28
+- 更新日期：2026-08-31
 
 本專案目前的核心用途，是在收到建築師圖面後，以不可變版次保存 PDF／IFC／DXF，並根據基地事實、屋主已確認需求、法源與圖面證據產生可追溯的檢核報告。
 
@@ -24,6 +24,7 @@
 | 匯入建築師 PDF＋IFC | `python -m house_design drawings import ...` | `inputs/revisions/<revision>/` |
 | 匯入 PDF＋DXF | `python -m house_design drawings import ... --dxf ... --mapping ...` | 不可變來源、mapping 與標準化模型 |
 | 查看所有圖面版次 | `python -m house_design drawings list` | 終端機 JSON |
+| 檢查現行版次是否具備 3D 輸入 | `python -m house_design drawings model3d-readiness --revision R001` | readiness JSON；阻擋時 exit code 1 |
 | 比較兩個圖面版次 | `python -m house_design drawings compare --from R001 --to R002` | 終端機 JSON，可另存檔 |
 | 產生現行檢核報告 | `python -m house_design review run --revision R001` | JSON、Markdown、PDF、離線儀表板 |
 | 比對前後版並檢核 | `python -m house_design review run --revision R002 --previous R001` | 報告內含 revision comparison |
@@ -251,7 +252,35 @@ python -m house_design drawings seed-legacy \
 
 R000 會帶有 blocking 的 legacy assumption finding；它的用途是證明錯誤的 32 坪語意會被攔截，不是示範通過報告。
 
-### 4.6 比較兩個版次
+### 4.6 檢查現行 revision 的 3D 準備狀態
+
+```bash
+python -m house_design drawings model3d-readiness --revision R001
+```
+
+這個命令只判斷「這一版的輸入是否足以建立可追溯的現行 3D」，不會把
+`structured/parametric/walkthrough.html` 或 `structured/candidates/model3d.html` 等歷史輸出當成現行版次。
+阻擋時仍會先輸出完整 JSON，再以 exit code 1 結束，方便 CI 攔截。
+
+必須同時符合：
+
+1. manifest 是 `ready`，來源包含 IFC 或 DXF，且沒有 blocking import issue。
+2. 每個空間都有有效 `bbox_mm`、`building_id`、`floor_id` 與可追溯的專業幾何來源。
+3. 每個使用中的棟別／樓層都有數值 `elevation_mm`；1F 的 `0` 是有效標高。
+4. IFC／DXF 的原點、軸向、單位與樓層基準已核對，`coordinate_system.status` 是 `verified`。
+
+輸出的 `blockers` 會使用穩定代碼，例如 `SPACE_GEOMETRY_MISSING`、
+`STOREY_ELEVATION_MISSING`、`COORDINATE_SYSTEM_UNVERIFIED`，每一項都有 `next_action`。
+`ready` 只表示輸入具備產圖條件，不表示圖面合規、結構安全或已獲專業放行。
+
+自訂版次根目錄：
+
+```bash
+python -m house_design drawings model3d-readiness \
+  --revision R001 --root path/to/revisions
+```
+
+### 4.7 比較兩個版次
 
 ```bash
 python -m house_design drawings compare --from R001 --to R002
@@ -302,10 +331,10 @@ python -m house_design review run --revision R002 --previous R001
 
 | 檔案 | 用途 |
 |---|---|
-| `report.json` | 機器可讀 finding、證據、責任角色、比較與 report hash |
-| `report.md` | 可讀的逐項會議清單 |
-| `meeting-report.pdf` | 可列印會議報告；`--skip-pdf` 時不產生 |
-| `index.html` | 完全離線的互動檢核儀表板 |
+| `report.json` | 機器可讀 finding、證據、3D readiness、比較與 report hash |
+| `report.md` | 可讀的逐項會議清單與 3D 阻擋原因 |
+| `meeting-report.pdf` | 可列印會議報告，摘要包含 3D readiness；`--skip-pdf` 時不產生 |
+| `index.html` | 完全離線的互動檢核儀表板，顯示現行 revision 3D 狀態與下一步 |
 
 離線儀表板不依賴外部 CDN，可直接以瀏覽器開啟。
 
@@ -812,7 +841,7 @@ npm run test:e2e
 
 Playwright 會自行在 `127.0.0.1:8770` 啟動暫存靜態站台，依序檢查桌機、
 390×844 手機、棟層／房間／方案控制、HTML↔3D 對照、走入／輪椅模式、
-deep link、共享 `model3d.html` 與 `file://` 離線開啟。失敗截圖與 trace 只會寫入
+deep link、共享 `model3d.html`、R000 現行 3D 阻擋狀態與 `file://` 離線開啟。失敗截圖與 trace 只會寫入
 已忽略版控的 `test-results/playwright/`；CI 失敗時會保留七天供下載。
 
 檢查前期閘門：

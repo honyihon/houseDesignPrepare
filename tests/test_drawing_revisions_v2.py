@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import json
+import sys
 from pathlib import Path
 
 import pytest
@@ -9,6 +11,7 @@ from house_design.drawings import (
     _ifc_building_id,
     _ifc_floor_id,
     _ifc_spatial_location,
+    assess_model3d_readiness,
     compare_models,
     import_revision,
     load_revision,
@@ -210,3 +213,130 @@ def test_real_pdf_and_mapped_dxf_become_ready_revision(tmp_path: Path) -> None:
     _, model = load_revision("R001", tmp_path / "revisions")
     assert model["entities"]["spaces"][0]["area_sqm"] == 12.0
     assert model["entities"]["doors"][0]["clear_width_mm"] == 900.0
+
+
+def _model3d_ready_fixture() -> tuple[dict, dict]:
+    manifest = {
+        "schema": "house-drawing-revision-v1",
+        "revision_id": "R001",
+        "status": "ready",
+        "sources": [{"kind": "ifc"}, {"kind": "dxf"}],
+        "issues": [],
+    }
+    model = {
+        "schema": "house-normalized-model-v1",
+        "revision_id": "R001",
+        "coordinate_system": {"status": "verified", "unit": "mm", "axis": "architect_origin"},
+        "entities": {
+            "storeys": [
+                {
+                    "id": "storey-a-1f",
+                    "building_id": "A",
+                    "floor_id": "floor-1",
+                    "elevation_mm": 0,
+                    "geometry_provenance": "architect_ifc",
+                }
+            ],
+            "spaces": [
+                {
+                    "id": "space-a-1f-elder",
+                    "building_id": "A",
+                    "floor_id": "floor-1",
+                    "bbox_mm": [0, 0, 3000, 4000],
+                    "geometry_provenance": "architect_dxf",
+                }
+            ],
+        },
+        "import_issues": [],
+    }
+    return manifest, model
+
+
+def test_legacy_revision_is_blocked_from_current_model3d() -> None:
+    manifest, model = _model3d_ready_fixture()
+    manifest.update(
+        {
+            "status": "legacy_assumption",
+            "sources": [{"kind": "legacy_parametric_json"}],
+            "issues": [{"code": "LEGACY_FOOTPRINT_ASSUMPTION", "severity": "blocking", "message": "legacy"}],
+        }
+    )
+    model["coordinate_system"] = {"status": "local_assumed"}
+    model["entities"]["spaces"][0]["geometry_provenance"] = "legacy_assumption"
+    model["entities"]["storeys"][0].pop("elevation_mm")
+
+    readiness = assess_model3d_readiness(manifest, model)
+    codes = {item["code"] for item in readiness["blockers"]}
+
+    assert readiness["status"] == "blocked"
+    assert readiness["eligible"] is False
+    assert readiness["counts"]["renderable_spaces"] == 0
+    assert {
+        "REVISION_LEGACY_ASSUMPTION",
+        "REVISION_IMPORT_NOT_READY",
+        "NON_AUTHORITATIVE_GEOMETRY",
+        "STOREY_ELEVATION_MISSING",
+        "COORDINATE_SYSTEM_UNVERIFIED",
+        "IMPORT_BLOCKING_ISSUES",
+    } <= codes
+
+
+def test_model3d_readiness_reports_missing_bbox_and_storey_elevation() -> None:
+    manifest, model = _model3d_ready_fixture()
+    model["entities"]["spaces"][0].pop("bbox_mm")
+    model["entities"]["storeys"][0].pop("elevation_mm")
+
+    readiness = assess_model3d_readiness(manifest, model)
+    codes = {item["code"] for item in readiness["blockers"]}
+
+    assert readiness["eligible"] is False
+    assert readiness["counts"]["spaces_with_geometry"] == 0
+    assert readiness["counts"]["elevated_storeys"] == 0
+    assert {"SPACE_GEOMETRY_MISSING", "STOREY_ELEVATION_MISSING"} <= codes
+
+
+def test_authoritative_aligned_revision_is_ready_for_model3d() -> None:
+    manifest, model = _model3d_ready_fixture()
+
+    readiness = assess_model3d_readiness(manifest, model)
+
+    assert readiness["status"] == "ready"
+    assert readiness["eligible"] is True
+    assert readiness["blockers"] == []
+    assert readiness["counts"]["authoritative_renderable_spaces"] == 1
+    assert readiness["counts"]["elevated_storeys"] == 1
+
+
+def test_model3d_readiness_cli_returns_json_and_nonzero_when_blocked(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str]
+) -> None:
+    from house_design.cli import main
+
+    manifest, model = _model3d_ready_fixture()
+    manifest["status"] = "needs_mapping"
+    revision_dir = tmp_path / "revisions/R001"
+    model_path = revision_dir / "normalized_model.json"
+    write_json(model_path, model)
+    manifest["normalized_model"] = str(model_path)
+    write_json(revision_dir / "manifest.json", manifest)
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "house-design",
+            "drawings",
+            "model3d-readiness",
+            "--revision",
+            "R001",
+            "--root",
+            str(tmp_path / "revisions"),
+        ],
+    )
+
+    with pytest.raises(SystemExit) as exc_info:
+        main()
+
+    result = json.loads(capsys.readouterr().out)
+    assert exc_info.value.code == 1
+    assert result["status"] == "blocked"
+    assert result["blockers"][0]["code"] == "REVISION_IMPORT_NOT_READY"

@@ -84,6 +84,8 @@ def write_meeting_pdf(report: dict[str, Any], output: Path) -> Path:
     story: list[Any] = []
     revision = report["revision"]
     predesign = report.get("predesign") or {}
+    model3d = report.get("model3d_readiness") or {}
+    model3d_counts = model3d.get("counts") or {}
     story.append(Paragraph(f"住宅設計檢核報告 · {revision['revision_id']} {revision.get('label') or ''}", title_style))
     conclusion = "可進入專業放行" if report["release"]["eligible"] else "不可宣稱整體合規"
     summary_data = [
@@ -95,6 +97,12 @@ def write_meeting_pdf(report: dict[str, Any], output: Path) -> Path:
             str(predesign.get("gate", {}).get("active_blockers", 0)),
         ],
         ["已確認需求", str(report["requirements_summary"]["confirmed"]), "待確認需求", str(report["requirements_summary"]["candidate"])],
+        [
+            "現行 revision 3D",
+            "可進入產圖" if model3d.get("eligible") else "已阻擋",
+            "權威可渲染空間",
+            f"{model3d_counts.get('authoritative_renderable_spaces', 0)}/{model3d_counts.get('total_spaces', 0)}",
+        ],
         ["報告雜湊", Paragraph(report["report_hash"], small_style), "版次狀態", str(revision.get("status") or "")],
     ]
     summary = Table(summary_data, colWidths=[30 * mm, 55 * mm, 28 * mm, 67 * mm])

@@ -1,9 +1,10 @@
 # 住宅設計檢核報告 · R000 舊版概念配置（32坪建築面積假設）
 
-- Report hash: `0ea11d76c82b1531620bef3b846b37e1d2ed38a7d7ac425ac65e788977dfe64d`
+- Report hash: `cd855504e24b07ccf1f11c257c3f87bf891045871460c4b6bec266cd2b1265d3`
 - 基地資料完成度：**0%**
 - 前期到期項目完成度：**30%**
 - 前期硬阻擋：**5 項**
+- 現行 revision 3D：**已阻擋**（可渲染權威空間 0／99）
 - 需求：0 已確認／64 待確認
 - 結論：**不可宣稱整體合規**
 
@@ -15,6 +16,30 @@
 | 專業確認 | 10 |
 | 通過 | 3 |
 | 不適用 | 0 |
+
+## 現行 revision 3D
+
+- 狀態：**blocked**
+- 來源類型：legacy_parametric_json
+- 座標狀態：`local_assumed`
+- 空間：0 個具備權威且可渲染幾何／共 99 個
+- 樓層：0 個有標高／共 12 個
+- 判定原則：只有現行 ready 版次的全部空間具備權威幾何、棟層位置、樓層標高及已驗證座標時，才可產生現行 3D。
+
+### 阻擋原因與下一步
+
+- `REVISION_LEGACY_ASSUMPTION`：此版是封存的歷史假設，不是建築師現行圖面，不能作為現行 3D。
+  - 下一步：收到建築師 PDF 加 IFC，或 PDF 加已對應圖層的 DXF 後，以新 revision id 匯入。
+- `REVISION_IMPORT_NOT_READY`：版次匯入狀態是 legacy_assumption，machine-readable 來源是 legacy_parametric_json，尚未達到 3D 匯入條件。
+  - 下一步：修正來源檔、單位與語意 mapping 後，以新的不可變版次重新匯入。
+- `IMPORT_BLOCKING_ISSUES`：版次仍有 1 個 blocking import issue。
+  - 下一步：先處理列出的匯入問題，再建立新 revision；不要直接修改既有不可變版次。
+- `NON_AUTHORITATIVE_GEOMETRY`：99 個空間的幾何不是可追溯的建築師／測量來源。
+  - 下一步：以 architect_dxf、architect_ifc、professional_verified 或 surveyed 來源取代推估幾何。
+- `STOREY_ELEVATION_MISSING`：12 個使用中的棟別／樓層缺少數值標高。
+  - 下一步：由 IFC 樓層或經建築師確認的 mapping 提供 elevation_mm，包含 1F 的 0 mm。
+- `COORDINATE_SYSTEM_UNVERIFIED`：座標系統狀態是 local_assumed，尚未證明不同來源已正確對齊。
+  - 下一步：確認 IFC／DXF 的原點、軸向、單位與樓層基準，並將 coordinate_system.status 標記為 verified。
 
 ## 檢核事項
 

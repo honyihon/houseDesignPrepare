@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Any
 
 from house_design.contracts import ContractError, REVIEW_STATUSES, ROOT, read_json, stable_hash, utc_now, write_json
-from house_design.drawings import REVISION_ROOT, compare_revisions, load_revision
+from house_design.drawings import REVISION_ROOT, assess_model3d_readiness, compare_revisions, load_revision
 from house_design.intake import (
     PROJECT_PATH,
     REQUIREMENTS_PATH,
@@ -449,6 +449,7 @@ def build_review(
     requirements = read_json(requirements_path)
     rule_pack = read_json(rule_pack_path)
     manifest, model = load_revision(revision_id, revision_root)
+    model3d_readiness = assess_model3d_readiness(manifest, model)
     if predesign_path is None and project_path.resolve() == PROJECT_PATH.resolve():
         predesign_path = PREDESIGN_PATH
     if predesign_path is not None:
@@ -512,6 +513,7 @@ def build_review(
             "rejected": sum(1 for item in requirements.get("requirements", []) if item.get("status") == "rejected"),
         },
         "model_summary": {key: len(value) for key, value in model.get("entities", {}).items()},
+        "model3d_readiness": model3d_readiness,
         "status_counts": {status: counts.get(status, 0) for status in REVIEW_STATUSES},
         "release": {
             "eligible": counts.get("fail", 0) == 0 and counts.get("unknown", 0) == 0 and counts.get("professional_review", 0) == 0,
@@ -531,6 +533,8 @@ def build_review(
 def review_markdown(report: dict[str, Any]) -> str:
     revision = report["revision"]
     counts = report["status_counts"]
+    model3d = report.get("model3d_readiness") or {}
+    model3d_counts = model3d.get("counts") or {}
     lines = [
         f"# 住宅設計檢核報告 · {revision['revision_id']} {revision.get('label') or ''}",
         "",
@@ -538,6 +542,9 @@ def review_markdown(report: dict[str, Any]) -> str:
         f"- 基地資料完成度：**{report['readiness']['percent']}%**",
         f"- 前期到期項目完成度：**{(report.get('predesign') or {}).get('readiness', {}).get('percent', 0)}%**",
         f"- 前期硬阻擋：**{(report.get('predesign') or {}).get('gate', {}).get('active_blockers', 0)} 項**",
+        f"- 現行 revision 3D：**{'可進入產圖' if model3d.get('eligible') else '已阻擋'}**"
+        f"（可渲染權威空間 {model3d_counts.get('authoritative_renderable_spaces', 0)}"
+        f"／{model3d_counts.get('total_spaces', 0)}）",
         f"- 需求：{report['requirements_summary']['confirmed']} 已確認／{report['requirements_summary']['candidate']} 待確認",
         f"- 結論：**{'可進入專業放行' if report['release']['eligible'] else '不可宣稱整體合規'}**",
         "",
@@ -546,7 +553,36 @@ def review_markdown(report: dict[str, Any]) -> str:
     ]
     for status in ("fail", "warning", "unknown", "professional_review", "pass", "not_applicable"):
         lines.append(f"| {STATUS_LABELS[status]} | {counts.get(status, 0)} |")
-    lines.extend(["", "## 檢核事項", ""])
+    lines.extend(
+        [
+            "",
+            "## 現行 revision 3D",
+            "",
+            f"- 狀態：**{'ready' if model3d.get('eligible') else 'blocked'}**",
+            f"- 來源類型：{', '.join(model3d.get('source_kinds') or []) or '無'}",
+            f"- 座標狀態：`{(model3d.get('coordinate_system') or {}).get('status', 'unknown')}`",
+            f"- 空間：{model3d_counts.get('authoritative_renderable_spaces', 0)} 個具備權威且可渲染幾何"
+            f"／共 {model3d_counts.get('total_spaces', 0)} 個",
+            f"- 樓層：{model3d_counts.get('elevated_storeys', 0)} 個有標高"
+            f"／共 {model3d_counts.get('total_storeys', 0)} 個",
+            f"- 判定原則：{model3d.get('policy') or '未提供'}",
+            "",
+        ]
+    )
+    blockers = model3d.get("blockers") or []
+    if blockers:
+        lines.extend(["### 阻擋原因與下一步", ""])
+        for blocker in blockers:
+            lines.extend(
+                [
+                    f"- `{blocker.get('code', 'UNKNOWN')}`：{blocker.get('message', '')}",
+                    f"  - 下一步：{blocker.get('next_action', '')}",
+                ]
+            )
+        lines.append("")
+    else:
+        lines.extend(["目前沒有 3D readiness 阻擋；此判定只代表輸入可產圖，不等同設計合規。", ""])
+    lines.extend(["## 檢核事項", ""])
     for finding in report["findings"]:
         applies = finding.get("applies_to") or {}
         location = "/".join(

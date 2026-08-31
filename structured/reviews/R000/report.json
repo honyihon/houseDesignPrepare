@@ -1,6 +1,6 @@
 {
   "schema": "house-review-report-v1",
-  "generated_at": "2026-08-28T01:56:08.316251+00:00",
+  "generated_at": "2026-08-31T02:37:04.270024+00:00",
   "project": {
     "project_id": "kaohsiung-three-house-compound",
     "name": "高雄三棟住宅前期規劃",
@@ -254,12 +254,148 @@
     "equipment": 0,
     "drawing_geometry": 0
   },
+  "model3d_readiness": {
+    "schema": "house-model3d-readiness-v1",
+    "revision_id": "R000",
+    "status": "blocked",
+    "eligible": false,
+    "policy": "只有現行 ready 版次的全部空間具備權威幾何、棟層位置、樓層標高及已驗證座標時，才可產生現行 3D。",
+    "source_kinds": [
+      "legacy_parametric_json"
+    ],
+    "coordinate_system": {
+      "status": "local_assumed",
+      "axis": "legacy_parametric"
+    },
+    "counts": {
+      "total_spaces": 99,
+      "spaces_with_geometry": 99,
+      "spaces_with_location": 99,
+      "authoritative_spaces": 0,
+      "renderable_spaces": 0,
+      "authoritative_renderable_spaces": 0,
+      "total_storeys": 12,
+      "elevated_storeys": 0
+    },
+    "blockers": [
+      {
+        "code": "REVISION_LEGACY_ASSUMPTION",
+        "message": "此版是封存的歷史假設，不是建築師現行圖面，不能作為現行 3D。",
+        "next_action": "收到建築師 PDF 加 IFC，或 PDF 加已對應圖層的 DXF 後，以新 revision id 匯入。"
+      },
+      {
+        "code": "REVISION_IMPORT_NOT_READY",
+        "message": "版次匯入狀態是 legacy_assumption，machine-readable 來源是 legacy_parametric_json，尚未達到 3D 匯入條件。",
+        "next_action": "修正來源檔、單位與語意 mapping 後，以新的不可變版次重新匯入。",
+        "details": {
+          "revision_status": "legacy_assumption",
+          "source_kinds": [
+            "legacy_parametric_json"
+          ]
+        }
+      },
+      {
+        "code": "IMPORT_BLOCKING_ISSUES",
+        "message": "版次仍有 1 個 blocking import issue。",
+        "next_action": "先處理列出的匯入問題，再建立新 revision；不要直接修改既有不可變版次。",
+        "details": {
+          "issue_codes": [
+            "LEGACY_FOOTPRINT_ASSUMPTION"
+          ]
+        }
+      },
+      {
+        "code": "NON_AUTHORITATIVE_GEOMETRY",
+        "message": "99 個空間的幾何不是可追溯的建築師／測量來源。",
+        "next_action": "以 architect_dxf、architect_ifc、professional_verified 或 surveyed 來源取代推估幾何。",
+        "details": {
+          "non_authoritative_spaces": 99,
+          "provenance": [
+            "legacy_assumption"
+          ]
+        }
+      },
+      {
+        "code": "STOREY_ELEVATION_MISSING",
+        "message": "12 個使用中的棟別／樓層缺少數值標高。",
+        "next_action": "由 IFC 樓層或經建築師確認的 mapping 提供 elevation_mm，包含 1F 的 0 mm。",
+        "details": {
+          "locations": [
+            {
+              "building_id": "A",
+              "floor_id": "floor-1"
+            },
+            {
+              "building_id": "A",
+              "floor_id": "floor-2"
+            },
+            {
+              "building_id": "A",
+              "floor_id": "floor-3"
+            },
+            {
+              "building_id": "A",
+              "floor_id": "floor-rf"
+            },
+            {
+              "building_id": "B",
+              "floor_id": "floor-1"
+            },
+            {
+              "building_id": "B",
+              "floor_id": "floor-2"
+            },
+            {
+              "building_id": "B",
+              "floor_id": "floor-3"
+            },
+            {
+              "building_id": "B",
+              "floor_id": "floor-rf"
+            },
+            {
+              "building_id": "C",
+              "floor_id": "floor-1"
+            },
+            {
+              "building_id": "C",
+              "floor_id": "floor-2"
+            },
+            {
+              "building_id": "C",
+              "floor_id": "floor-3"
+            },
+            {
+              "building_id": "C",
+              "floor_id": "floor-rf"
+            }
+          ]
+        }
+      },
+      {
+        "code": "COORDINATE_SYSTEM_UNVERIFIED",
+        "message": "座標系統狀態是 local_assumed，尚未證明不同來源已正確對齊。",
+        "next_action": "確認 IFC／DXF 的原點、軸向、單位與樓層基準，並將 coordinate_system.status 標記為 verified。",
+        "details": {
+          "coordinate_status": "local_assumed"
+        }
+      }
+    ],
+    "next_actions": [
+      "收到建築師 PDF 加 IFC，或 PDF 加已對應圖層的 DXF 後，以新 revision id 匯入。",
+      "修正來源檔、單位與語意 mapping 後，以新的不可變版次重新匯入。",
+      "先處理列出的匯入問題，再建立新 revision；不要直接修改既有不可變版次。",
+      "以 architect_dxf、architect_ifc、professional_verified 或 surveyed 來源取代推估幾何。",
+      "由 IFC 樓層或經建築師確認的 mapping 提供 elevation_mm，包含 1F 的 0 mm。",
+      "確認 IFC／DXF 的原點、軸向、單位與樓層基準，並將 coordinate_system.status 標記為 verified。"
+    ]
+  },
   "status_counts": {
-    "warning": 2,
     "not_applicable": 0,
+    "pass": 3,
+    "warning": 2,
     "unknown": 12,
     "professional_review": 10,
-    "pass": 3,
     "fail": 1
   },
   "release": {
@@ -4096,7 +4232,7 @@
       }
     ]
   },
-  "report_hash": "0ea11d76c82b1531620bef3b846b37e1d2ed38a7d7ac425ac65e788977dfe64d",
+  "report_hash": "cd855504e24b07ccf1f11c257c3f87bf891045871460c4b6bec266cd2b1265d3",
   "signoff": {
     "valid": false,
     "reason": "missing",

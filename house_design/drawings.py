@@ -19,6 +19,13 @@ from house_design.contracts import (
 
 REVISION_ROOT = ROOT / "inputs/revisions"
 REVISION_ID_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$")
+AUTHORITATIVE_GEOMETRY_PROVENANCE = {
+    "architect_dxf",
+    "architect_ifc",
+    "professional_verified",
+    "surveyed",
+}
+VERIFIED_COORDINATE_STATUSES = {"verified", "verified_aligned", "georeferenced"}
 
 
 def revision_dir(revision_id: str, root: Path = REVISION_ROOT) -> Path:
@@ -386,7 +393,8 @@ def _parse_ifc(path: Path, model: dict[str, Any]) -> tuple[dict[str, Any], list[
         floor_id = _ifc_floor_id(name, identifier)
         container = _ifc_container(storey)
         building_id = building_by_id.get(container.id()) if container is not None else None
-        elevation = float(storey.Elevation or 0.0) * scale
+        raw_elevation = getattr(storey, "Elevation", None)
+        elevation = round(float(raw_elevation) * scale, 3) if raw_elevation is not None else None
         storey_by_id[storey.id()] = floor_id
         storey_building_by_id[storey.id()] = building_id
         model["entities"]["storeys"].append(
@@ -395,7 +403,7 @@ def _parse_ifc(path: Path, model: dict[str, Any]) -> tuple[dict[str, Any], list[
                 "building_id": building_id,
                 "floor_id": floor_id,
                 "name": name,
-                "elevation_mm": round(elevation, 3),
+                "elevation_mm": elevation,
                 "source_file": relative_to_root(path),
                 "geometry_provenance": "architect_ifc",
             }
@@ -686,6 +694,222 @@ def load_revision(revision_id: str, root: Path = REVISION_ROOT) -> tuple[dict[st
         raise ContractError(f"revision {revision_id} has no normalized model")
     model_path = ROOT / model_reference if not Path(str(model_reference)).is_absolute() else Path(str(model_reference))
     return manifest, read_json(model_path)
+
+
+def _valid_bbox(value: Any) -> bool:
+    if not isinstance(value, (list, tuple)) or len(value) != 4:
+        return False
+    if not all(isinstance(item, (int, float)) and not isinstance(item, bool) for item in value):
+        return False
+    x0, y0, x1, y1 = (float(item) for item in value)
+    return x1 > x0 and y1 > y0
+
+
+def _has_spatial_location(entity: dict[str, Any]) -> bool:
+    return bool(entity.get("building_id") and entity.get("floor_id"))
+
+
+def assess_model3d_readiness(manifest: dict[str, Any], model: dict[str, Any]) -> dict[str, Any]:
+    """Assess whether a drawing revision has enough authoritative geometry for a current 3D model.
+
+    This gate deliberately does not treat the historical parametric model as evidence. A renderable
+    space needs a positive 2D bounding box, an explicit building/floor location and a matching
+    storey elevation. Every space must also have professional drawing provenance, and the revision's
+    coordinate system must be explicitly verified before the revision is eligible for 3D generation.
+    """
+
+    entities = model.get("entities") if isinstance(model.get("entities"), dict) else {}
+    spaces = entities.get("spaces") if isinstance(entities.get("spaces"), list) else []
+    storeys = entities.get("storeys") if isinstance(entities.get("storeys"), list) else []
+    sources = manifest.get("sources") if isinstance(manifest.get("sources"), list) else []
+    source_kinds = sorted(
+        {
+            str(source.get("kind"))
+            for source in sources
+            if isinstance(source, dict) and source.get("kind")
+        }
+    )
+
+    spaces_with_geometry = [
+        space for space in spaces if isinstance(space, dict) and _valid_bbox(space.get("bbox_mm"))
+    ]
+    spaces_with_location = [space for space in spaces if isinstance(space, dict) and _has_spatial_location(space)]
+    authoritative_spaces = [
+        space
+        for space in spaces
+        if isinstance(space, dict)
+        and space.get("geometry_provenance") in AUTHORITATIVE_GEOMETRY_PROVENANCE
+    ]
+    elevated_storeys = [
+        storey
+        for storey in storeys
+        if isinstance(storey, dict)
+        and storey.get("building_id")
+        and storey.get("floor_id")
+        and isinstance(storey.get("elevation_mm"), (int, float))
+        and not isinstance(storey.get("elevation_mm"), bool)
+    ]
+    elevated_locations = {
+        (str(storey["building_id"]), str(storey["floor_id"])) for storey in elevated_storeys
+    }
+    renderable_spaces = [
+        space
+        for space in spaces
+        if isinstance(space, dict)
+        and _valid_bbox(space.get("bbox_mm"))
+        and _has_spatial_location(space)
+        and (str(space["building_id"]), str(space["floor_id"])) in elevated_locations
+    ]
+    authoritative_renderable_spaces = [
+        space
+        for space in renderable_spaces
+        if space.get("geometry_provenance") in AUTHORITATIVE_GEOMETRY_PROVENANCE
+    ]
+    located_space_keys = {
+        (str(space["building_id"]), str(space["floor_id"]))
+        for space in spaces_with_location
+    }
+    missing_elevation_locations = sorted(located_space_keys - elevated_locations)
+
+    coordinate_system = model.get("coordinate_system")
+    if not isinstance(coordinate_system, dict):
+        coordinate_system = {"status": "unknown"}
+    coordinate_status = str(coordinate_system.get("status") or "unknown")
+
+    import_issues: list[dict[str, Any]] = []
+    seen_issues: set[tuple[str, str]] = set()
+    manifest_issues = manifest.get("issues") if isinstance(manifest.get("issues"), list) else []
+    model_issues = model.get("import_issues") if isinstance(model.get("import_issues"), list) else []
+    for issue in [*manifest_issues, *model_issues]:
+        if not isinstance(issue, dict) or issue.get("severity") != "blocking":
+            continue
+        key = (str(issue.get("code") or "UNKNOWN"), str(issue.get("message") or ""))
+        if key in seen_issues:
+            continue
+        seen_issues.add(key)
+        import_issues.append(issue)
+
+    blockers: list[dict[str, Any]] = []
+
+    def block(code: str, message: str, next_action: str, **details: Any) -> None:
+        item: dict[str, Any] = {"code": code, "message": message, "next_action": next_action}
+        if details:
+            item["details"] = details
+        blockers.append(item)
+
+    provenance_values = {
+        str(space.get("geometry_provenance") or "missing")
+        for space in spaces
+        if isinstance(space, dict)
+    }
+    legacy_revision = (
+        manifest.get("status") == "legacy_assumption"
+        or "legacy_parametric_json" in source_kinds
+        or "legacy_assumption" in provenance_values
+    )
+    if legacy_revision:
+        block(
+            "REVISION_LEGACY_ASSUMPTION",
+            "此版是封存的歷史假設，不是建築師現行圖面，不能作為現行 3D。",
+            "收到建築師 PDF 加 IFC，或 PDF 加已對應圖層的 DXF 後，以新 revision id 匯入。",
+        )
+    machine_sources = {"ifc", "dxf"}.intersection(source_kinds)
+    if manifest.get("status") != "ready" or not machine_sources:
+        block(
+            "REVISION_IMPORT_NOT_READY",
+            (
+                f"版次匯入狀態是 {manifest.get('status') or 'unknown'}，"
+                f"machine-readable 來源是 {', '.join(source_kinds) or '無'}，尚未達到 3D 匯入條件。"
+            ),
+            "修正來源檔、單位與語意 mapping 後，以新的不可變版次重新匯入。",
+            revision_status=manifest.get("status") or "unknown",
+            source_kinds=source_kinds,
+        )
+    if import_issues:
+        block(
+            "IMPORT_BLOCKING_ISSUES",
+            f"版次仍有 {len(import_issues)} 個 blocking import issue。",
+            "先處理列出的匯入問題，再建立新 revision；不要直接修改既有不可變版次。",
+            issue_codes=[str(issue.get("code") or "UNKNOWN") for issue in import_issues],
+        )
+    if len(spaces_with_geometry) != len(spaces):
+        missing = len(spaces) - len(spaces_with_geometry)
+        block(
+            "SPACE_GEOMETRY_MISSING",
+            f"{missing} 個空間缺少有效的 bbox_mm 平面幾何。",
+            "由建築師 IFC 擷取空間邊界，或以 DXF 圖層 mapping 提供每個空間的可追溯幾何。",
+            missing_spaces=missing,
+        )
+    if not spaces:
+        block(
+            "SPACE_GEOMETRY_MISSING",
+            "版次沒有任何可供 3D 建模的空間實體。",
+            "請在 IFC 提供 IfcSpace，或以 DXF mapping 建立具名空間。",
+            missing_spaces=0,
+        )
+    if len(spaces_with_location) != len(spaces):
+        missing = len(spaces) - len(spaces_with_location)
+        block(
+            "SPACE_LOCATION_MISSING",
+            f"{missing} 個空間缺少 building_id 或 floor_id。",
+            "在 IFC 修正空間 containment，或在 DXF mapping 明確指定棟別與樓層。",
+            missing_spaces=missing,
+        )
+    if len(authoritative_spaces) != len(spaces):
+        missing = len(spaces) - len(authoritative_spaces)
+        block(
+            "NON_AUTHORITATIVE_GEOMETRY",
+            f"{missing} 個空間的幾何不是可追溯的建築師／測量來源。",
+            "以 architect_dxf、architect_ifc、professional_verified 或 surveyed 來源取代推估幾何。",
+            non_authoritative_spaces=missing,
+            provenance=sorted(provenance_values),
+        )
+    if missing_elevation_locations:
+        block(
+            "STOREY_ELEVATION_MISSING",
+            f"{len(missing_elevation_locations)} 個使用中的棟別／樓層缺少數值標高。",
+            "由 IFC 樓層或經建築師確認的 mapping 提供 elevation_mm，包含 1F 的 0 mm。",
+            locations=[
+                {"building_id": building, "floor_id": floor}
+                for building, floor in missing_elevation_locations
+            ],
+        )
+    if coordinate_status not in VERIFIED_COORDINATE_STATUSES:
+        block(
+            "COORDINATE_SYSTEM_UNVERIFIED",
+            f"座標系統狀態是 {coordinate_status}，尚未證明不同來源已正確對齊。",
+            "確認 IFC／DXF 的原點、軸向、單位與樓層基準，並將 coordinate_system.status 標記為 verified。",
+            coordinate_status=coordinate_status,
+        )
+
+    counts = {
+        "total_spaces": len(spaces),
+        "spaces_with_geometry": len(spaces_with_geometry),
+        "spaces_with_location": len(spaces_with_location),
+        "authoritative_spaces": len(authoritative_spaces),
+        "renderable_spaces": len(renderable_spaces),
+        "authoritative_renderable_spaces": len(authoritative_renderable_spaces),
+        "total_storeys": len(storeys),
+        "elevated_storeys": len(elevated_storeys),
+    }
+    eligible = not blockers
+    return {
+        "schema": "house-model3d-readiness-v1",
+        "revision_id": manifest.get("revision_id") or model.get("revision_id"),
+        "status": "ready" if eligible else "blocked",
+        "eligible": eligible,
+        "policy": "只有現行 ready 版次的全部空間具備權威幾何、棟層位置、樓層標高及已驗證座標時，才可產生現行 3D。",
+        "source_kinds": source_kinds,
+        "coordinate_system": coordinate_system,
+        "counts": counts,
+        "blockers": blockers,
+        "next_actions": [item["next_action"] for item in blockers],
+    }
+
+
+def revision_model3d_readiness(revision_id: str, root: Path = REVISION_ROOT) -> dict[str, Any]:
+    manifest, model = load_revision(revision_id, root)
+    return assess_model3d_readiness(manifest, model)
 
 
 def list_revisions(root: Path = REVISION_ROOT) -> list[dict[str, Any]]:

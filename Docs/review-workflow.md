@@ -78,16 +78,24 @@ IFC 的棟名必須有獨立的 A／B／C 標記（例如 `A棟` 或 `Building A
 
 ## 5. 檢核與比較
 
+先確認這一版能否作為現行 3D 的輸入：
+
+```bash
+python3 -m house_design drawings model3d-readiness --revision R001
+```
+
+若回傳 `blocked`／exit code 1，依 `blockers[].next_action` 補齊權威空間幾何、棟層位置、樓層標高與座標對齊，並以新 revision id 重新匯入。歷史 walkthrough 不會被當成現行版次的替代品。
+
 ```bash
 python3 -m house_design review run --revision R001 --previous R000
 ```
 
 輸出：
 
-- `report.json`：機器可讀 finding、證據、責任人與狀態。
-- `report.md`：逐項會議清單。
-- `meeting-report.pdf`：可列印會議報告。
-- `index.html`：完全離線的互動檢核儀表板。
+- `report.json`：機器可讀 finding、證據、責任人、狀態與 3D readiness。
+- `report.md`：逐項會議清單與 3D 阻擋原因。
+- `meeting-report.pdf`：可列印會議報告，摘要包含 3D readiness。
+- `index.html`：完全離線的互動檢核儀表板，明示現行 revision 3D 是 blocked 或 ready。
 
 結果狀態是 `pass`、`fail`、`warning`、`unknown`、`not_applicable`、`professional_review`。只要仍有 fail、unknown 或 professional_review，就不能宣稱整體合規。
 

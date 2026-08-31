@@ -24,11 +24,13 @@ python3 -m venv .venv
 .venv/bin/python -m house_design drawings import \
   --revision R001 --label "初步設計" \
   --pdf path/to/drawings.pdf --ifc path/to/model.ifc
+.venv/bin/python -m house_design drawings model3d-readiness --revision R001
 .venv/bin/python -m house_design review run --revision R001 --previous R000
 ```
 
 若只有 2D CAD，請建築師將 DWG 另存 DXF，並以 `--mapping` 提供圖層到棟別、樓層、空間／門窗／設備的對應。
 匯入時原始圖與 mapping 會一併複製、雜湊並鎖定在該版次；IFC 的名目門寬不會自動冒充完工淨寬。
+3D readiness 會要求權威空間幾何、棟層位置、樓層標高與已驗證的來源座標對齊；阻擋時不會把歷史 3D 冒充現行 revision。
 
 ## 資料權威順序
 
