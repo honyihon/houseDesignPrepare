@@ -1,14 +1,21 @@
 from __future__ import annotations
 
+import json
+from pathlib import Path
+
 from lib.html_parametric_compare import (
     aabbs_overlap,
     build_compare,
+    build_compare_variants,
     compare_floor,
     find_cell_overlaps,
     format_compare_panel,
     pick_variant,
     resolve_html_to_para,
 )
+
+
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_aabbs_overlap_detects_intersection() -> None:
@@ -40,6 +47,10 @@ def test_resolve_maps_merges_and_hyphens() -> None:
     assert resolve_html_to_para("A", "entry", para) == "entry"
     assert resolve_html_to_para("A", "sideyard", para) is None
     assert resolve_html_to_para("B", "bath1", {"bath_acc"}) == "bath_acc"
+    assert resolve_html_to_para("B", "stairRF", {"rf_stair"}) == "rf_stair"
+    assert resolve_html_to_para("B", "terrace3", {"flex_b"}) == "flex_b"
+    assert resolve_html_to_para("C", "platform", {"rf_dry"}) == "rf_dry"
+    assert resolve_html_to_para("C", "laundry-rf", {"rf_dry"}) == "rf_dry"
 
 
 def test_compare_floor_living_dining_merge() -> None:
@@ -49,7 +60,12 @@ def test_compare_floor_living_dining_merge() -> None:
         "plan_cells": [
             {"target_room_local_id": "living", "name": "客廳"},
             {"target_room_local_id": "dining", "name": "餐廳"},
-            {"target_room_local_id": "entry", "name": "玄關"},
+            {
+                "target_room_local_id": "entry",
+                "name": "玄關",
+                "geometry_mm": {"x_mm": 0, "y_mm": 0, "w_mm": 1800, "h_mm": 2200},
+                "geometry_provenance": "declared",
+            },
             {"target_room_local_id": "sideyard", "name": "側院"},
         ],
     }
@@ -61,13 +77,27 @@ def test_compare_floor_living_dining_merge() -> None:
             {"id": "corridor", "name": "走道", "role": "corridor"},
         ],
     }
-    result = compare_floor("A", html_floor, para_floor)
+    result = compare_floor("A", html_floor, para_floor, "AbuildingView.html")
     assert result["merged"][0]["para_id"] == "living"
     html_ids = {h["id"] for h in result["merged"][0]["html"]}
     assert html_ids == {"living", "dining"}
-    assert any(c["id"] == "sideyard" for c in result["html_only"])
-    assert any(c["html_id"] == "entry" for c in result["matched"])
-    assert any(c["id"] == "corridor" for c in result["para_only"])
+    assert any(c["id"] == "sideyard" for c in result["unmapped"])
+    entry = next(c for c in result["renamed"] if c["html_id"] == "entry")
+    assert entry["html"][0]["geometry_mm"]["w_mm"] == 1800
+    assert entry["html"][0]["provenance"] == "declared"
+    assert entry["html"][0]["href"] == "../../AbuildingView.html#room-entry"
+    corridor = next(c for c in result["para_only"] if c["id"] == "corridor")
+    assert corridor["para_id"] == "corridor"
+    assert corridor["para_name"] == "走道"
+    assert corridor in result["relationships"]
+    assert result["summary"] == {
+        "same": 0,
+        "renamed": 1,
+        "merged": 1,
+        "html_only": 0,
+        "parametric_only": 1,
+        "unmapped": 1,
+    }
 
 
 def test_floor_4_maps_to_rf_label() -> None:
@@ -132,3 +162,37 @@ def test_build_compare_and_panel_from_synthetic_plan() -> None:
     assert "客餐廳" in html
     assert "客廳" in html
     assert pick_variant(plan, 6000, 1)["id"] == "f6000-g1"
+    assert build_compare_variants(program, plan) == {"f6000-g1": compare}
+
+
+def test_repository_mapping_has_only_documented_sideyard_difference() -> None:
+    program = json.loads((ROOT / "structured/room_program.json").read_text(encoding="utf-8"))
+    plan = json.loads((ROOT / "structured/parametric/plan.json").read_text(encoding="utf-8"))
+
+    compare = build_compare(program, plan)
+    floors = [floor for building in compare["buildings"] for floor in building["floors"]]
+    mapped_html = sum(
+        len(floor["matched"])
+        + len(floor["renamed"])
+        + sum(len(item["html"]) for item in floor["merged"])
+        for floor in floors
+    )
+    html_only = [item for floor in floors for item in floor["html_only"]]
+    unmapped = [item for floor in floors for item in floor["unmapped"]]
+
+    assert mapped_html == 83
+    assert [(item["id"], item["relation"]) for item in html_only] == [("sideyard", "html_only")]
+    assert unmapped == []
+
+
+def test_repository_mapping_has_no_unresolved_rooms_in_any_variant() -> None:
+    program = json.loads((ROOT / "structured/room_program.json").read_text(encoding="utf-8"))
+    plan = json.loads((ROOT / "structured/parametric/plan.json").read_text(encoding="utf-8"))
+
+    comparisons = build_compare_variants(program, plan)
+
+    assert len(comparisons) == len(plan["variants"])
+    assert {
+        variant_id: comparison["summary"]["unmapped"]
+        for variant_id, comparison in comparisons.items()
+    } == {variant["id"]: 0 for variant in plan["variants"]}

@@ -21,6 +21,13 @@ PARA_TO_HTML_FLOOR = {v: k for k, v in HTML_TO_PARA_FLOOR.items()}
 # Generated leftovers that are not a "missing room" in the brief.
 PARA_INFRA_ROLES = {"corridor", "flex"}
 
+# HTML-only spaces that are intentional, documented differences rather than a
+# failed mapping. Any other source cell without a parametric target is reported
+# as ``unmapped`` so a misspelled alias cannot quietly disappear into the UI.
+HTML_ONLY_REASONS: dict[tuple[str, str], str] = {
+    ("C", "sideyard"): "原 HTML 保留側院；舊參數化 32 坪建築面積情境未建立基地側院。",
+}
+
 # HTML local_id → parametric cell id. Building-specific keys win.
 GENERIC_ALIASES: dict[str, str] = {
     "dining": "living",
@@ -87,7 +94,11 @@ BUILDING_ALIASES: dict[str, dict[str, str]] = {
         "bath1": "bath_acc",
         "balcony1": "balcony_b",
         "balcony2": "balcony_b2",
-        "terrace3": "flex_front0",
+        # The original HTML calls this a terrace, but its visible label and
+        # role are the stable front flexible room.  Mapping to a generated
+        # leftover (flex_front0) broke as soon as a wider variant named that
+        # leftover flex_rear1/2 instead.
+        "terrace3": "flex_b",
         "ladder3": "balcony_b3",
         "bath2": "bath_g",
         "bath3": "bath_b3",
@@ -96,6 +107,8 @@ BUILDING_ALIASES: dict[str, dict[str, str]] = {
     "C": {
         "balcony1": "balcony",
         "service": "balcony",
+        "platform": "rf_dry",
+        "laundry-rf": "rf_dry",
     },
 }
 
@@ -180,14 +193,14 @@ def resolve_html_to_para(building_id: str, html_id: str, para_ids: set[str]) -> 
     raw = str(html_id or "").strip()
     if not raw:
         return None
-    building_map = BUILDING_ALIASES.get(building_id) or {}
-    if raw in building_map:
-        return building_map[raw]
-    if raw in GENERIC_ALIASES:
-        return GENERIC_ALIASES[raw]
-
     by_norm = {norm_id(p): p for p in para_ids}
     n = norm_id(raw)
+    building_map = {norm_id(key): value for key, value in (BUILDING_ALIASES.get(building_id) or {}).items()}
+    generic_map = {norm_id(key): value for key, value in GENERIC_ALIASES.items()}
+    if n in building_map:
+        return building_map[n]
+    if n in generic_map:
+        return generic_map[n]
     if n in by_norm:
         return by_norm[n]
     if raw in para_ids:
@@ -216,6 +229,43 @@ def _cell_key(cell: dict[str, Any]) -> str:
     return str(cell.get("target_room_local_id") or cell.get("override_key") or "").strip()
 
 
+def _html_cell(cell: dict[str, Any], source_file: str) -> dict[str, Any]:
+    key = _cell_key(cell)
+    geometry = cell.get("geometry_mm") if isinstance(cell.get("geometry_mm"), dict) else {}
+    return {
+        "id": key,
+        "name": str(cell.get("name") or key),
+        "geometry_mm": {
+            field: float(geometry.get(field) or 0)
+            for field in ("x_mm", "y_mm", "w_mm", "h_mm")
+        },
+        "provenance": str(cell.get("geometry_provenance") or "auto"),
+        "source_file": source_file,
+        "href": f"../../{source_file}#room-{key}" if source_file and key else "",
+    }
+
+
+def _parametric_cell(cell: dict[str, Any]) -> dict[str, Any]:
+    role = str(cell.get("role") or "room")
+    reason = {
+        "corridor": "參數化配置為了連通房間產生的走道。",
+        "flex": "配置後剩餘、尚未指定用途的彈性面積。",
+        "stair": "參數化配置所需的垂直動線。",
+    }.get(role, "參數化方案新增或拆分的空間。")
+    return {
+        "id": str(cell.get("id") or ""),
+        "name": str(cell.get("name") or cell.get("id") or ""),
+        # Keep the generic id/name fields for the para_only convenience list,
+        # but also honour the relationship contract used by every selectable
+        # 3D row in the walkthrough.  Without these aliases, generated spaces
+        # such as corridors appear in the comparison yet cannot be focused.
+        "para_id": str(cell.get("id") or ""),
+        "para_name": str(cell.get("name") or cell.get("id") or ""),
+        "role": role,
+        "reason": reason,
+    }
+
+
 def _html_envelope(floors: list[dict[str, Any]]) -> tuple[float, float]:
     width = 0.0
     depth = 0.0
@@ -242,6 +292,7 @@ def compare_floor(
     building_id: str,
     html_floor: dict[str, Any] | None,
     para_floor: dict[str, Any] | None,
+    source_file: str = "",
 ) -> dict[str, Any]:
     html_id = str((html_floor or {}).get("id") or PARA_TO_HTML_FLOOR.get(
         str((para_floor or {}).get("floor_id") or ""), ""
@@ -254,7 +305,7 @@ def compare_floor(
             key = _cell_key(cell)
             if not key:
                 continue
-            html_cells.append({"id": key, "name": str(cell.get("name") or key)})
+            html_cells.append(_html_cell(cell, source_file))
 
     para_cells = []
     para_by_id: dict[str, dict[str, Any]] = {}
@@ -263,29 +314,33 @@ def compare_floor(
             cid = str(cell.get("id") or "")
             if not cid:
                 continue
-            item = {
-                "id": cid,
-                "name": str(cell.get("name") or cid),
-                "role": str(cell.get("role") or "room"),
-            }
+            item = _parametric_cell(cell)
             para_cells.append(item)
             para_by_id[cid] = item
 
     para_ids = set(para_by_id)
-    grouped: dict[str, list[dict[str, str]]] = {}
-    html_only: list[dict[str, str]] = []
+    grouped: dict[str, list[dict[str, Any]]] = {}
+    html_only: list[dict[str, Any]] = []
+    unmapped: list[dict[str, Any]] = []
     claimed: set[str] = set()
 
     for html_cell in html_cells:
         mapped = resolve_html_to_para(building_id, html_cell["id"], para_ids)
         if not mapped or mapped not in para_ids:
-            html_only.append(html_cell)
+            reason = HTML_ONLY_REASONS.get((building_id, html_cell["id"]))
+            item = {**html_cell, "relation": "html_only" if reason else "unmapped"}
+            if reason:
+                item["reason"] = reason
+                html_only.append(item)
+            else:
+                item["reason"] = "找不到可追溯的參數化空間；需補 alias 或確認這是刻意差異。"
+                unmapped.append(item)
             continue
         grouped.setdefault(mapped, []).append(html_cell)
         claimed.add(mapped)
 
-    matched: list[dict[str, str]] = []
-    renamed: list[dict[str, str]] = []
+    matched: list[dict[str, Any]] = []
+    renamed: list[dict[str, Any]] = []
     merged: list[dict[str, Any]] = []
     for para_id_key, html_group in grouped.items():
         para = para_by_id[para_id_key]
@@ -295,6 +350,8 @@ def compare_floor(
                     "para_id": para_id_key,
                     "para_name": para["name"],
                     "html": html_group,
+                    "relation": "merged",
+                    "reason": "多個原 HTML 區塊在參數化配置中合併為同一空間。",
                 }
             )
             continue
@@ -304,13 +361,23 @@ def compare_floor(
             "html_name": html_cell["name"],
             "para_id": para_id_key,
             "para_name": para["name"],
+            "html": [html_cell],
         }
-        if html_cell["id"] != para_id_key and html_cell["name"] != para["name"]:
+        if norm_id(html_cell["id"]) != norm_id(para_id_key) or html_cell["name"] != para["name"]:
+            row["relation"] = "renamed"
+            row["reason"] = "空間仍有對應，但識別碼或名稱在參數化配置中改變。"
             renamed.append(row)
         else:
+            row["relation"] = "same"
+            row["reason"] = "原 HTML 與參數化配置為一對一對應。"
             matched.append(row)
 
-    para_only = [c for c in para_cells if c["id"] not in claimed]
+    para_only = [{**c, "relation": "parametric_only"} for c in para_cells if c["id"] not in claimed]
+    relationships = [*matched, *renamed, *merged, *html_only, *para_only, *unmapped]
+    summary = {
+        relation: sum(1 for item in relationships if item.get("relation") == relation)
+        for relation in ("same", "renamed", "merged", "html_only", "parametric_only", "unmapped")
+    }
 
     return {
         "html_floor_id": html_id,
@@ -321,6 +388,9 @@ def compare_floor(
         "matched": matched,
         "renamed": renamed,
         "merged": merged,
+        "unmapped": unmapped,
+        "relationships": relationships,
+        "summary": summary,
     }
 
 
@@ -333,7 +403,7 @@ def build_compare(
     """Build the payload both 3D viewers embed."""
 
     empty = {
-        "schema": "house-html-parametric-compare-v1",
+        "schema": "house-html-parametric-compare-v2",
         "available": False,
         "variant": None,
         "ghost": None,
@@ -372,6 +442,7 @@ def build_compare(
     buildings_out: list[dict[str, Any]] = []
     for bid in ("A", "B", "C"):
         html_b = html_by_id.get(bid)
+        source_file = str((html_b or {}).get("source_file") or f"{bid}buildingView.html")
         para_b = para_buildings.get(bid) or {}
         html_floors = _html_floors(html_b) if html_b else []
         html_by_floor = {str(f.get("id")): f for f in html_floors}
@@ -391,14 +462,14 @@ def build_compare(
                 "para_frontage_mm": float(para_b.get("frontage_mm") or frontage),
                 "para_depth_mm": float(para_b.get("depth_mm") or depth),
                 "floors": [
-                    compare_floor(bid, html_by_floor.get(hid), para_floors.get(pid))
+                    compare_floor(bid, html_by_floor.get(hid), para_floors.get(pid), source_file)
                     for hid, pid in floor_ids
                 ],
             }
         )
 
     return {
-        "schema": "house-html-parametric-compare-v1",
+        "schema": "house-html-parametric-compare-v2",
         "available": True,
         "variant": {
             "id": variant.get("id"),
@@ -414,7 +485,36 @@ def build_compare(
             "HTML 與參數化都是歷史示意；現行 32 坪是基地面積，不是這裡的建築面積。"
             "兩邊房間清單與開間都不同，這是刻意的，不是繪圖錯誤。"
         ),
+        "summary": {
+            relation: sum(
+                int((floor.get("summary") or {}).get(relation, 0))
+                for building in buildings_out
+                for floor in building.get("floors") or []
+            )
+            for relation in ("same", "renamed", "merged", "html_only", "parametric_only", "unmapped")
+        },
     }
+
+
+def build_compare_variants(program: dict[str, Any], plan: dict[str, Any] | None) -> dict[str, dict[str, Any]]:
+    """Build one comparison per parametric variant for runtime synchronization."""
+
+    if not plan:
+        return {}
+    comparisons: dict[str, dict[str, Any]] = {}
+    for variant in plan.get("variants") or []:
+        variant_id = str(variant.get("id") or "")
+        garage = variant.get("garage") or {}
+        if not variant_id:
+            continue
+        comparison = build_compare(
+            program,
+            plan,
+            frontage_mm=int(variant.get("frontage_mm") or DEFAULT_FRONTAGE_MM),
+            bays=int(garage.get("bays") or DEFAULT_BAYS),
+        )
+        comparisons[variant_id] = comparison
+    return comparisons
 
 
 def format_compare_panel(compare: dict[str, Any]) -> str:
@@ -447,6 +547,8 @@ def format_compare_panel(compare: dict[str, Any]) -> str:
                 )
             for item in floor.get("html_only") or []:
                 bits.append(f"<li>只在 HTML：{escape(item['name'])}</li>")
+            for item in floor.get("unmapped") or []:
+                bits.append(f"<li>無法對應：{escape(item['name'])}</li>")
             extras = [
                 c for c in floor.get("para_only") or []
                 if c.get("role") not in PARA_INFRA_ROLES

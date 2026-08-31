@@ -974,6 +974,9 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     spherical.phi = src.phi;
     document.getElementById("view-front").classList.toggle("on", kind !== "plan");
     document.getElementById("view-plan").classList.toggle("on", kind === "plan");
+    document.getElementById("compass").innerHTML = kind === "plan"
+      ? "<span><b>俯視</b><br />對 HTML 格位</span>"
+      : "<span><b>正面</b><br />朝相機；北向推定</span>";
     updateCamera();
   }
 

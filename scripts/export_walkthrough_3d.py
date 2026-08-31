@@ -48,14 +48,14 @@ for _p in (str(SCRIPT_DIR), str(ROOT)):
 
 from house_design.rendering import encode_html_json  # noqa: E402
 from lib import viewer_shell  # noqa: E402
-from lib.html_parametric_compare import build_compare, format_compare_panel  # noqa: E402
+from lib.html_parametric_compare import build_compare, build_compare_variants  # noqa: E402
 from lib.standards import load_residential_defaults, repo_relative  # noqa: E402
 
 PLAN_FILE = ROOT / "structured" / "parametric" / "plan.json"
 PROGRAM_FILE = ROOT / "structured" / "room_program.json"
 OUTPUT_HTML = ROOT / "structured" / "parametric" / "walkthrough.html"
 
-SCHEMA_VERSION = "house-walkthrough-v1"
+SCHEMA_VERSION = "house-walkthrough-v2"
 
 # Saturated versions of the SVG room fills in export_top1_svgs.py. The paper
 # palette there is nearly white by design; reused verbatim on a dark 3D ground
@@ -85,7 +85,20 @@ def build_payload(
 ) -> dict[str, Any]:
     geometry = defaults.get("geometry", {})
     site = plan.get("site", {})
-    compare = build_compare(program or {}, plan)
+    if program is None:
+        compare = {
+            "schema": "house-html-parametric-compare-v2",
+            "available": False,
+            "variant": None,
+            "ghost": None,
+            "buildings": [],
+            "summary": {},
+            "note": "缺少 room_program.json；3D 可檢視，但原 HTML 對照不可用。",
+        }
+        compare_variants: dict[str, dict[str, Any]] = {}
+    else:
+        compare = build_compare(program, plan)
+        compare_variants = build_compare_variants(program, plan)
     return {
         "schema": SCHEMA_VERSION,
         "generated_at": now_iso(),
@@ -109,6 +122,7 @@ def build_payload(
         "findings": plan.get("findings", []),
         "provenance": plan.get("provenance", {}),
         "compare": compare,
+        "compare_variants": compare_variants,
     }
 
 
@@ -123,6 +137,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 <title>參數化平面 · 走入式 3D</title>
 <style>
 __BASE_CSS__
+  #app { grid-template-columns: 380px minmax(0, 1fr); }
   .val { margin-left: auto; font-variant-numeric: tabular-nums; color: var(--text); }
   .slider-head { display: flex; align-items: center; font-size: 12px; margin-bottom: 2px; }
   .slider-head b { font-weight: 600; }
@@ -138,10 +153,55 @@ __BASE_CSS__
   #rules .f.warning .code { color: var(--warn); }
   #rules .f.note .code { color: var(--muted); }
   #rules .f .where { color: var(--muted); }
-  #info dl { display: grid; grid-template-columns: auto 1fr; gap: 3px 10px; margin: 0; font-size: 12px; }
-  #info dt { color: var(--muted); }
-  #info dd { margin: 0; }
-  #info .name { font-size: 15px; font-weight: 700; display: block; margin-bottom: 6px; }
+  #rules .f[aria-pressed="true"], .room-button[aria-pressed="true"] {
+    border-color: var(--accent); box-shadow: inset 3px 0 var(--accent);
+  }
+  #inspector {
+    position: absolute; z-index: 4; right: 14px; top: 14px; width: min(360px, calc(100% - 28px));
+    max-height: calc(100% - 28px); overflow: auto; padding: 14px; border: 1px solid var(--line);
+    border-radius: 12px; background: rgba(9,14,26,.94); box-shadow: 0 18px 48px rgba(0,0,0,.36);
+  }
+  #inspector[hidden] { display: none; }
+  #inspector dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; margin: 0; font-size: 12px; }
+  #inspector dt { color: var(--muted); }
+  #inspector dd { margin: 0; }
+  #inspector .name { font-size: 17px; font-weight: 750; display: block; margin: 0 28px 8px 0; }
+  #inspector-close {
+    position: absolute; right: 8px; top: 8px; width: 30px; height: 30px; border-radius: 7px;
+    border: 1px solid var(--line); color: var(--text); background: var(--card); cursor: pointer;
+  }
+  .relation {
+    display: inline-block; margin: 8px 4px 5px 0; padding: 2px 8px; border-radius: 999px;
+    color: #bfeff0; background: rgba(25,195,197,.14); font-size: 10px; font-weight: 700;
+  }
+  .relation.unmapped { color: #ffb3c3; background: rgba(242,99,126,.16); }
+  .finding-inline { margin: 7px 0; padding: 7px 9px; border-left: 3px solid var(--warn); background: var(--card); font-size: 11px; }
+  .finding-inline.error { border-left-color: var(--bad); }
+  .mini-map { width: 100%; height: auto; margin-top: 8px; background: #0d1729; border: 1px solid var(--line); border-radius: 8px; }
+  .mini-map rect { fill: rgba(159,176,205,.11); stroke: #526989; vector-effect: non-scaling-stroke; }
+  .mini-map rect.selected { fill: rgba(25,195,197,.50); stroke: #52f0ec; stroke-width: 3; }
+  .mini-map text { fill: #dce8fa; font-size: 270px; text-anchor: middle; pointer-events: none; }
+  .mini-map .direction { fill: #84a3ce; font-size: 330px; font-weight: 700; }
+  .room-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 5px; }
+  .room-button, .compare-button {
+    min-width: 0; padding: 6px 7px; border: 1px solid var(--line); border-radius: 7px;
+    color: var(--text); background: var(--card); font: 11px/1.35 inherit; text-align: left; cursor: pointer;
+  }
+  .room-button:hover, .compare-button:hover { border-color: var(--accent); }
+  .compare-current { margin: 6px 0; padding: 8px; border-radius: 8px; background: rgba(19,31,54,.75); }
+  .compare-current strong { font-size: 12px; }
+  .compare-row { display: flex; gap: 6px; align-items: flex-start; margin-top: 5px; }
+  .compare-row .relation { flex: none; margin: 0; }
+  .status-strip { display: flex; flex-wrap: wrap; gap: 5px; margin: 7px 0; }
+  .status-strip span { padding: 2px 6px; border-radius: 5px; background: var(--card); color: var(--muted); font-size: 10px; }
+  #orientation {
+    position: absolute; left: 14px; bottom: 14px; z-index: 2; pointer-events: none;
+    padding: 7px 10px; border-radius: 8px; border: 1px solid var(--line);
+    background: rgba(9,14,26,.78); color: var(--muted); font-size: 11px;
+  }
+  .seg.compact button { padding: 6px 4px; }
+  details.controls > summary { cursor: pointer; color: var(--muted); font-size: 12px; margin-top: 12px; }
+  details.controls[open] > summary { margin-bottom: 9px; }
   .flag { display: inline-block; padding: 1px 7px; border-radius: 999px; font-size: 10px;
           font-weight: 700; background: rgba(242,99,126,.18); color: #ffb3c3; margin-right: 4px; }
   #crosshair {
@@ -160,7 +220,7 @@ __BASE_CSS__
     border-radius: 8px; border: 1px solid var(--line); background: rgba(9,14,26,.75);
     color: var(--muted); display: none; line-height: 1.5;
   }
-  #stage.wheels #turnbadge { display: block; }
+  #stage.walking.wheels #turnbadge { display: block; }
   #turnbadge.bad { border-color: var(--bad); color: #ffb3c3; }
   #turnbadge.ok { border-color: var(--ok); color: #a7f0d4; }
   a.inline { color: var(--accent); }
@@ -172,6 +232,14 @@ __BASE_CSS__
   .grp-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 4px; }
   .grp-head strong { font-size: 13px; }
   .grp-head .tag { font-size: 10px; color: var(--muted); }
+  @media (max-width: 860px) {
+    #app { grid-template-columns: 1fr; grid-template-rows: minmax(0, 48vh) minmax(0, 1fr); }
+    #panel { padding: 12px 14px; }
+    #panel .banner:nth-of-type(2), #panel details.controls { display: none; }
+    #inspector { top: auto; bottom: 10px; right: 10px; width: calc(100% - 20px); max-height: 48%; }
+    #orientation { bottom: 8px; left: 8px; max-width: 45%; }
+    #hud { max-width: 60%; }
+  }
 </style>
 </head>
 <body>
@@ -188,8 +256,18 @@ __BASE_CSS__
       不能拿去申請建照。地的長寬尚未決定，棟距與三棟位置都是假設。
     </div>
 
-    <h2>與 HTML 草圖對照</h2>
-    <div id="compare">__COMPARE_HTML__</div>
+    <h2>目前檢視範圍</h2>
+    <div class="seg compact" id="buildings" role="group" aria-label="棟別">
+      <button type="button" data-building="A" class="on">A 棟</button>
+      <button type="button" data-building="B">B 棟</button>
+      <button type="button" data-building="C">C 棟</button>
+      <button type="button" data-building="overview">三棟</button>
+    </div>
+    <div class="seg compact" id="floors" role="group" aria-label="樓層" style="margin-top:6px"></div>
+    <div class="hint" id="scope-hint"></div>
+
+    <h2>本層空間<span class="val" id="room-count"></span></h2>
+    <div id="room-list" class="room-grid"></div>
 
     <h2>檢視模式</h2>
     <div class="seg" role="group" aria-label="檢視模式">
@@ -198,40 +276,46 @@ __BASE_CSS__
     </div>
     <div class="hint" id="view-hint"></div>
 
-    <h2>參數</h2>
-    <div class="slider-head"><b>開間</b><span class="val" id="v-frontage"></span></div>
-    <input type="range" id="frontage" min="0" max="4" step="1" value="0" aria-label="開間" />
-    <div class="hint" id="h-frontage"></div>
+    <details class="controls">
+      <summary>參數與輔助模式</summary>
+      <div class="slider-head"><b>開間</b><span class="val" id="v-frontage"></span></div>
+      <input type="range" id="frontage" min="0" max="4" step="1" value="0" aria-label="開間" />
+      <div class="hint" id="h-frontage"></div>
 
-    <div class="slider-head"><b>車位</b><span class="val" id="v-bays"></span></div>
-    <input type="range" id="bays" min="0" max="1" step="1" value="0" aria-label="車位數" />
-    <div class="hint">車庫在建築體內，計入 32 坪建築面積。</div>
+      <div class="slider-head"><b>車位</b><span class="val" id="v-bays"></span></div>
+      <input type="range" id="bays" min="0" max="1" step="1" value="0" aria-label="車位數" />
+      <div class="hint">車庫在建築體內，計入 32 坪建築面積。</div>
 
-    <div class="slider-head"><b>棟距</b><span class="val" id="v-gap"></span></div>
-    <input type="range" id="gap" min="3000" max="12000" step="500" value="6000" aria-label="棟距" />
-    <div class="hint">棟距只影響三棟的相對位置，不改變任何平面幾何。</div>
+      <div class="slider-head"><b>棟距</b><span class="val" id="v-gap"></span></div>
+      <input type="range" id="gap" min="3000" max="12000" step="500" value="6000" aria-label="棟距" />
+      <div class="hint">棟距只影響三棟相對位置，不改變平面幾何。</div>
+      <label class="row"><input type="checkbox" id="allfloors" /> 環繞模式顯示全部樓層</label>
+      <label class="row"><input type="checkbox" id="wheels" /> 輪椅模式（迴轉圈 <span id="turnmm"></span> mm）</label>
+      <div class="hint" id="h-wheels"></div>
+    </details>
 
-    <h2>樓層</h2>
-    <div class="seg" id="floors" role="group" aria-label="樓層"></div>
-    <label class="row" style="margin-top:8px">
-      <input type="checkbox" id="allfloors" /> 環繞模式顯示全部樓層
-    </label>
-    <label class="row">
-      <input type="checkbox" id="wheels" /> 輪椅模式（迴轉圈 <span id="turnmm"></span> mm）
-    </label>
-    <div class="hint" id="h-wheels"></div>
+    <h2>HTML 設計對照</h2>
+    <div id="compare"></div>
 
-    <h2>規則檢查<span class="val" id="rule-count"></span></h2>
+    <h2>空間問題<span class="val" id="rule-count"></span></h2>
+    <div class="seg compact" id="rule-filters" role="group" aria-label="問題篩選">
+      <button type="button" data-filter="all" class="on">全部</button>
+      <button type="button" data-filter="error">錯誤</button>
+      <button type="button" data-filter="warning">警告</button>
+      <button type="button" data-filter="note">提醒</button>
+    </div>
     <div id="rules"></div>
-
-    <h2>選取</h2>
-    <div id="info" class="muted">環繞模式點選房間看資訊。</div>
   </aside>
   <main id="stage">
     <canvas id="canvas"></canvas>
     <div id="hud"></div>
     <div id="crosshair"></div>
     <div id="turnbadge"></div>
+    <div id="orientation">前側＝主要入口側 · 後側＝建築深處</div>
+    <section id="inspector" aria-live="polite" hidden>
+      <button type="button" id="inspector-close" aria-label="關閉空間資訊">×</button>
+      <div id="info"></div>
+    </section>
   </main>
 </div>
 
@@ -241,6 +325,22 @@ __BASE_CSS__
   "use strict";
   var DATA = __MODEL_DATA__;
   var MM = 0.001;
+
+  function esc(value) {
+    return String(value == null ? "" : value)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/\"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+  function floorLabel(floorId) {
+    return ({
+      "floor-1": "1F", "floor-2": "2F", "floor-3": "3F", "floor-rf": "RF"
+    })[floorId] || String(floorId || "").replace(/^floor-/, "").toUpperCase();
+  }
+  function readHash() {
+    try { return new URLSearchParams(window.location.hash.replace(/^#/, "")); }
+    catch (err) { return new URLSearchParams(); }
+  }
+  var initialHash = readHash();
 
   // Coordinate convention
   // ---------------------
@@ -324,9 +424,24 @@ __BASE_CSS__
   frontages.sort(function (a, b) { return a - b; });
   bayOptions.sort(function (a, b) { return a - b; });
 
+  var initialFrontage = Number(initialHash.get("frontage"));
+  var initialBays = Number(initialHash.get("bays"));
+  var initialBuilding = initialHash.get("building");
+  var initialFloor = initialHash.get("floor");
+  var initialView = initialHash.get("view") === "walk" ? "walk" : "orbit";
   var state = {
-    fIndex: 0, bIndex: 0, gap: DATA.row.gap_mm || 6000,
-    floor: "floor-1", allFloors: false, wheels: false, walking: false
+    fIndex: frontages.indexOf(initialFrontage) >= 0 ? frontages.indexOf(initialFrontage) : 0,
+    bIndex: bayOptions.indexOf(initialBays) >= 0 ? bayOptions.indexOf(initialBays) : 0,
+    gap: DATA.row.gap_mm || 6000,
+    building: ["A", "B", "C"].indexOf(initialBuilding) >= 0 ? initialBuilding : "A",
+    overview: initialBuilding === "overview",
+    floor: ["floor-1", "floor-2", "floor-3", "floor-rf"].indexOf(initialFloor) >= 0 ? initialFloor : "floor-1",
+    allFloors: initialHash.get("all") === "1",
+    wheels: initialHash.get("wheels") === "1",
+    walking: false,
+    selectedRoom: initialHash.get("room") || "",
+    ruleFilter: ["error", "warning", "note"].indexOf(initialHash.get("filter")) >= 0
+      ? initialHash.get("filter") : "all"
   };
 
   var root = new THREE.Group();
@@ -335,8 +450,26 @@ __BASE_CSS__
   var floorGroups = [];      // { buildingId, floorId, group }
   var pickables = [];
   var ceilings = [];
+  var roomLabels = [];
+  var buildingLabels = [];
   var blockers = [];         // { x0,z0,x1,z1 } world metres, current floor only
   var highlight = null;
+
+  function writeHash() {
+    var v = currentVariant();
+    var values = new URLSearchParams();
+    values.set("building", state.overview ? "overview" : state.building);
+    values.set("floor", state.floor);
+    values.set("frontage", String(v.frontage_mm));
+    values.set("bays", String(v.garage.bays));
+    values.set("view", state.walking ? "walk" : "orbit");
+    if (state.selectedRoom) { values.set("room", state.selectedRoom); }
+    if (state.ruleFilter !== "all") { values.set("filter", state.ruleFilter); }
+    if (state.allFloors) { values.set("all", "1"); }
+    if (state.wheels) { values.set("wheels", "1"); }
+    try { history.replaceState(null, "", "#" + values.toString()); }
+    catch (err) { window.location.hash = values.toString(); }
+  }
 
   function currentVariant() {
     var f = frontages[state.fIndex], g = bayOptions[state.bIndex];
@@ -453,17 +586,23 @@ __BASE_CSS__
   }
 
   // ---------- build ----------
-  function clearGroup(g) {
-    while (g.children.length) {
-      var c = g.children.pop();
-      if (c.geometry && c.geometry !== boxGeom && c.geometry !== planeGeom &&
-          c.geometry !== edgeGeom) { c.geometry.dispose(); }
+  function disposeNode(node) {
+    while (node.children && node.children.length) { disposeNode(node.children.pop()); }
+    if (node.geometry && node.geometry !== boxGeom && node.geometry !== planeGeom &&
+        node.geometry !== edgeGeom && node.geometry.dispose) { node.geometry.dispose(); }
+    if (node.userData && node.userData.ownedMaterial && node.material) {
+      if (node.material.map && node.material.map.dispose) { node.material.map.dispose(); }
+      if (node.material.dispose) { node.material.dispose(); }
     }
+  }
+  function clearGroup(g) {
+    while (g.children.length) { disposeNode(g.children.pop()); }
   }
 
   function rebuild() {
     clearGroup(root);
-    buildingGroups = []; floorGroups = []; pickables = []; ceilings = []; highlight = null;
+    buildingGroups = []; floorGroups = []; pickables = []; ceilings = [];
+    roomLabels = []; buildingLabels = []; highlight = null;
 
     var variant = currentVariant();
     // Plan x increases to the right on the plan, and DATA.row lists the order
@@ -487,9 +626,10 @@ __BASE_CSS__
         buildFloor(fg, floor, b, bid);
       });
 
-      var label = labelSprite(bid + " 棟");
+      var label = labelSprite(bid + " 棟", "building");
       label.position.set(b.frontage_mm * MM / 2, 3 * STOREY * MM + 1.6, wz(b.depth_mm / 2));
       g.add(label);
+      buildingLabels.push({ buildingId: bid, sprite: label });
     });
     // Re-centre so the row straddles the origin: the default camera sits on the
     // Z axis and should look at the middle building, not past the end of the row.
@@ -497,6 +637,8 @@ __BASE_CSS__
     root.position.x = -span * MM / 2;
     applyVisibility();
     refreshRules();
+    refreshRoomList();
+    refreshCompare();
     return variant;
   }
 
@@ -540,6 +682,25 @@ __BASE_CSS__
       edge.rotation.x = -Math.PI / 2;
       edge.position.copy(patch.position);
       fg.add(edge);
+
+      var shortName = String(cell.name || cell.id);
+      if (shortName.length > 14) { shortName = shortName.slice(0, 13) + "…"; }
+      var roomLabel = labelSprite(shortName, "room");
+      roomLabel.position.set(
+        (r[0] + r[2]) / 2 * MM,
+        (base + 280) * MM,
+        wz((r[1] + r[3]) / 2)
+      );
+      roomLabel.userData.roomId = cell.id;
+      fg.add(roomLabel);
+      roomLabels.push({ buildingId: bid, floorId: floor.floor_id, sprite: roomLabel });
+    });
+
+    [["前側／入口", net[1] - 750], ["後側", net[3] + 750]].forEach(function (item) {
+      var direction = labelSprite(item[0], "direction");
+      direction.position.set((net[0] + net[2]) / 2 * MM, (base + 180) * MM, wz(item[1]));
+      fg.add(direction);
+      roomLabels.push({ buildingId: bid, floorId: floor.floor_id, sprite: direction, direction: true });
     });
 
     (floor.walls || []).forEach(function (wall) {
@@ -568,27 +729,41 @@ __BASE_CSS__
   // Floating labels, because the whole point of the default front-yard camera is
   // that the user can confirm 右 A／中 B／左 C without taking my word for the
   // coordinate algebra.
-  function labelSprite(text) {
+  function labelSprite(text, kind) {
     var c = document.createElement("canvas");
-    c.width = 256; c.height = 128;
+    c.width = 512; c.height = 128;
     var g = c.getContext("2d");
     g.fillStyle = "rgba(11,16,32,.82)";
     g.strokeStyle = "#19c3c5"; g.lineWidth = 6;
-    g.beginPath(); g.roundRect(6, 22, 244, 84, 16); g.fill(); g.stroke();
+    if (kind === "direction") { g.strokeStyle = "#f8b84e"; }
+    g.beginPath(); g.roundRect(6, 22, 500, 84, 16); g.fill(); g.stroke();
     g.fillStyle = "#e8edf7";
-    g.font = "bold 58px 'Microsoft JhengHei', sans-serif";
+    var fontSize = kind === "building" ? 58 : (String(text).length > 10 ? 32 : 40);
+    g.font = "bold " + fontSize + "px 'Microsoft JhengHei', sans-serif";
     g.textAlign = "center"; g.textBaseline = "middle";
-    g.fillText(text, 128, 64);
+    g.fillText(text, 256, 64);
     var tex = new THREE.CanvasTexture(c);
     var sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, depthTest: false }));
-    sp.scale.set(3.2, 1.6, 1);
+    if (kind === "building") { sp.scale.set(3.8, 0.95, 1); }
+    else if (kind === "direction") { sp.scale.set(2.7, 0.68, 1); }
+    else { sp.scale.set(2.5, 0.63, 1); }
+    sp.userData.ownedMaterial = true;
     return sp;
   }
 
   // ---------- visibility & collision ----------
   function applyVisibility() {
+    buildingGroups.forEach(function (bg) {
+      bg.group.visible = state.overview || bg.id === state.building;
+    });
     floorGroups.forEach(function (fg) {
-      fg.group.visible = (state.allFloors && !state.walking) || fg.floorId === state.floor;
+      var buildingVisible = state.overview || fg.buildingId === state.building;
+      fg.group.visible = buildingVisible && ((state.allFloors && !state.walking) || fg.floorId === state.floor);
+    });
+    buildingLabels.forEach(function (item) { item.sprite.visible = state.overview; });
+    roomLabels.forEach(function (item) {
+      item.sprite.visible = !state.walking && !state.allFloors && !state.overview &&
+        item.buildingId === state.building && item.floorId === state.floor;
     });
     ceilings.forEach(function (c) { c.visible = state.walking; });
     rebuildBlockers();
@@ -601,6 +776,7 @@ __BASE_CSS__
     blockers = [];
     var variant = currentVariant();
     buildingGroups.forEach(function (bg) {
+      if (!state.overview && bg.id !== state.building) { return; }
       var b = variant.buildings[bg.id];
       if (!b) { return; }
       b.floors.forEach(function (floor) {
@@ -716,7 +892,8 @@ __ORBIT_JS__
     // out. Standing at the centre of the facade instead would mean the first
     // press of W walks into a wall, which teaches the user nothing.
     var variant = currentVariant();
-    var mid = buildingGroups[Math.floor(buildingGroups.length / 2)];
+    var mid = buildingGroups.filter(function (item) { return item.id === state.building; })[0] ||
+      buildingGroups[Math.floor(buildingGroups.length / 2)];
     if (!mid) { return; }
     var b = variant.buildings[mid.id];
     var ground = b.floors[0];
@@ -829,32 +1006,171 @@ __ORBIT_JS__
   };
 
   var infoEl = document.getElementById("info");
-  function showCell(mesh) {
+  var inspectorEl = document.getElementById("inspector");
+  var relationLabels = {
+    same: "一對一對應", renamed: "更名／識別調整", merged: "多格合併",
+    html_only: "只在原 HTML", parametric_only: "參數化新增", unmapped: "無法判讀"
+  };
+
+  function currentComparison() {
+    return (DATA.compare_variants || {})[currentVariant().id] || DATA.compare || {};
+  }
+
+  function comparisonContext(bid, floorId) {
+    var compare = currentComparison();
+    var building = (compare.buildings || []).filter(function (item) { return item.id === bid; })[0] || null;
+    var floor = building && (building.floors || []).filter(function (item) {
+      return item.para_floor_id === floorId;
+    })[0];
+    return { compare: compare, building: building, floor: floor || null };
+  }
+
+  function relationshipFor(bid, floorId, roomId) {
+    var floor = comparisonContext(bid, floorId).floor;
+    return floor && (floor.relationships || []).filter(function (item) {
+      return item.para_id === roomId;
+    })[0] || null;
+  }
+
+  function htmlCellsForFloor(floor) {
+    var values = [], seen = {};
+    (floor && floor.relationships || []).forEach(function (relation) {
+      var items = relation.html || (relation.geometry_mm ? [relation] : []);
+      items.forEach(function (item) {
+        if (!seen[item.id]) { seen[item.id] = true; values.push(item); }
+      });
+    });
+    return values;
+  }
+
+  function renderMiniMap(context, relation) {
+    if (!context.floor || !context.building) { return ""; }
+    var width = Math.max(1, context.building.html_width_mm || 1);
+    var depth = Math.max(1, context.building.html_depth_mm || 1);
+    var selected = {};
+    (relation && relation.html || []).forEach(function (item) { selected[item.id] = true; });
+    if (relation && relation.geometry_mm) { selected[relation.id] = true; }
+    var rects = htmlCellsForFloor(context.floor).map(function (item) {
+      var g = item.geometry_mm || {};
+      var x = Number(g.x_mm || 0), y = Number(g.y_mm || 0);
+      var w = Number(g.w_mm || 0), h = Number(g.h_mm || 0);
+      if (w <= 0 || h <= 0) { return ""; }
+      var cls = selected[item.id] ? ' class="selected"' : "";
+      var label = selected[item.id]
+        ? '<text x="' + (x + w / 2) + '" y="' + (y + h / 2) + '">' + esc(item.name) + "</text>"
+        : "";
+      return '<g><rect' + cls + ' x="' + x + '" y="' + y + '" width="' + w + '" height="' + h +
+        '"><title>' + esc(item.name) + "</title></rect>" + label + "</g>";
+    }).join("");
+    return '<svg class="mini-map" viewBox="0 0 ' + width + " " + depth +
+      '" role="img" aria-label="原 HTML 平面位置"><text class="direction" x="' + width / 2 +
+      '" y="360">前側／入口</text>' + rects + '<text class="direction" x="' + width / 2 +
+      '" y="' + (depth - 120) + '">後側</text></svg>';
+  }
+
+  function relativePosition(cell, building) {
+    var r = cell.clear_rect || cell.rect;
+    var x = (r[0] + r[2]) / 2 / Math.max(1, building.frontage_mm);
+    var y = (r[1] + r[3]) / 2 / Math.max(1, building.depth_mm);
+    var horizontal = x < 0.34 ? "左" : (x > 0.66 ? "右" : "中");
+    var depth = y < 0.34 ? "前" : (y > 0.66 ? "後" : "中");
+    return depth + "段／" + horizontal + "側";
+  }
+
+  function relatedFindings(bid, floorId, roomId) {
+    var v = currentVariant();
+    return DATA.findings.filter(function (finding) {
+      return finding.variant === v.id && finding.building === bid && finding.floor_id === floorId &&
+        (finding.refs || []).indexOf(roomId) >= 0;
+    });
+  }
+
+  function renderInspector(mesh, focusedFinding) {
+    var u = mesh.userData, c = u.cell;
+    var context = comparisonContext(u.bid, u.floor.floor_id);
+    var relation = relationshipFor(u.bid, u.floor.floor_id, c.id);
+    var r = c.clear_rect || c.rect;
+    var w = Math.round(r[2] - r[0]), d = Math.round(r[3] - r[1]);
+    var flags = (c.flags || []).map(function (flag) {
+      return '<span class="flag">' + esc(flag) + "</span>";
+    }).join("");
+    var relationHtml = relation
+      ? '<span class="relation ' + esc(relation.relation) + '">' +
+        esc(relationLabels[relation.relation] || relation.relation) + "</span>" +
+        '<p class="hint">' + esc(relation.reason || "") + "</p>"
+      : '<span class="relation unmapped">無對照資料</span>';
+    var htmlItems = relation && relation.html || [];
+    var htmlDetails = htmlItems.length
+      ? "<dl><dt>原 HTML</dt><dd>" + htmlItems.map(function (item) { return esc(item.name); }).join("＋") +
+        "</dd><dt>尺寸來源</dt><dd>" + htmlItems.map(function (item) {
+          return esc(item.provenance === "declared" ? "人工宣告" : "CSS 自動推估");
+        }).join("／") + "</dd></dl>"
+      : "";
+    var source = htmlItems[0];
+    var sourceLink = source && source.href
+      ? '<p><a class="inline" target="_blank" rel="noopener" href="' + esc(source.href) +
+        '">開啟原 HTML 的 ' + esc(source.name) + "</a></p>"
+      : "";
+    var findings = relatedFindings(u.bid, u.floor.floor_id, c.id);
+    if (focusedFinding && findings.indexOf(focusedFinding) < 0) { findings.unshift(focusedFinding); }
+    var findingHtml = findings.map(function (finding) {
+      return '<div class="finding-inline ' + esc(finding.severity) + '"><b>' + esc(finding.code) +
+        "</b><br>" + esc(finding.message) + "</div>";
+    }).join("");
+    infoEl.innerHTML = '<span class="name">' + esc(c.name) + "</span><dl>" +
+      "<dt>棟／層</dt><dd>" + esc(u.bid + " 棟 " + u.floor.label) + "</dd>" +
+      "<dt>相對位置</dt><dd>" + esc(relativePosition(c, u.building)) + "</dd>" +
+      "<dt>淨尺寸</dt><dd>" + w + " × " + d + " mm</dd>" +
+      "<dt>面積</dt><dd>" + esc(c.area_sqm) + " m²（" + esc(c.area_ping) + " 坪）</dd>" +
+      (c.target_sqm ? "<dt>需求</dt><dd>" + esc(c.target_sqm) + " m²</dd>" : "") +
+      "<dt>採光</dt><dd>" + ((c.exterior_sides || []).length ? c.exterior_sides.length + " 面外牆" : "無外牆") +
+      "</dd></dl>" + relationHtml + htmlDetails + sourceLink + renderMiniMap(context, relation) +
+      (flags ? "<div style='margin-top:8px'>" + flags + "</div>" : "") + findingHtml +
+      (c.note ? "<p class='hint'>" + esc(c.note) + "</p>" : "");
+    inspectorEl.hidden = false;
+  }
+
+  function showCell(mesh, focusedFinding) {
     if (highlight) { highlight.material = highlight.userData.baseMat; }
     var u = mesh.userData;
     var c = u.cell;
     mesh.userData.baseMat = mesh.userData.baseMat || mesh.material;
     highlight = mesh;
     mesh.material = mat(0x19c3c5, 0.92, false);
-
-    var r = c.clear_rect || c.rect;
-    var w = r[2] - r[0], d = r[3] - r[1];
-    var flags = (c.flags || []).map(function (f) {
-      return '<span class="flag">' + f + "</span>";
-    }).join("");
-    infoEl.className = "";
-    infoEl.innerHTML =
-      '<span class="name">' + c.name + "</span>" +
-      "<dl>" +
-      "<dt>棟／層</dt><dd>" + u.bid + " 棟 " + u.floor.label + "</dd>" +
-      "<dt>淨尺寸</dt><dd>" + w + " × " + d + " mm</dd>" +
-      "<dt>面積</dt><dd>" + c.area_sqm + " m²（" + c.area_ping + " 坪）</dd>" +
-      (c.target_sqm ? "<dt>需求</dt><dd>" + c.target_sqm + " m²</dd>" : "") +
-      "<dt>採光</dt><dd>" + (c.exterior_sides.length ? c.exterior_sides.length + " 面外牆" : "無外牆") + "</dd>" +
-      "</dl>" +
-      (flags ? "<div style='margin-top:8px'>" + flags + "</div>" : "") +
-      (c.note ? "<p class='hint' style='margin-top:8px'>" + c.note + "</p>" : "");
+    state.selectedRoom = c.id;
+    renderInspector(mesh, focusedFinding);
+    refreshRoomList();
+    refreshCompare();
+    writeHash();
   }
+
+  function focusRoom(bid, floorId, roomId, moveCamera, focusedFinding) {
+    if (bid) { state.building = bid; state.overview = false; }
+    if (floorId) { state.floor = floorId; }
+    syncScopeButtons();
+    applyVisibility();
+    if (moveCamera !== false && !state.walking) { homeCamera(); }
+    for (var i = 0; i < pickables.length; i++) {
+      var u = pickables[i].userData;
+      if (u.bid === state.building && u.floor.floor_id === state.floor && u.cell.id === roomId) {
+        showCell(pickables[i], focusedFinding);
+        if (moveCamera !== false && !state.walking) {
+          pickables[i].getWorldPosition(orbit.target);
+          orbit.update();
+        }
+        return true;
+      }
+    }
+    return false;
+  }
+
+  document.getElementById("inspector-close").addEventListener("click", function () {
+    inspectorEl.hidden = true;
+    state.selectedRoom = "";
+    if (highlight) { highlight.material = highlight.userData.baseMat; highlight = null; }
+    refreshRoomList();
+    writeHash();
+  });
 
   // ---------- panel ----------
   var el = {
@@ -865,11 +1181,17 @@ __ORBIT_JS__
     vBays: document.getElementById("v-bays"),
     vGap: document.getElementById("v-gap"),
     hFrontage: document.getElementById("h-frontage"),
+    buildings: document.getElementById("buildings"),
     floors: document.getElementById("floors"),
+    scopeHint: document.getElementById("scope-hint"),
+    roomList: document.getElementById("room-list"),
+    roomCount: document.getElementById("room-count"),
+    compare: document.getElementById("compare"),
     allFloors: document.getElementById("allfloors"),
     wheels: document.getElementById("wheels"),
     rules: document.getElementById("rules"),
     ruleCount: document.getElementById("rule-count"),
+    ruleFilters: document.getElementById("rule-filters"),
     hud: document.getElementById("hud"),
     viewHint: document.getElementById("view-hint"),
     subtitle: document.getElementById("subtitle")
@@ -877,13 +1199,64 @@ __ORBIT_JS__
 
   el.frontage.max = String(frontages.length - 1);
   el.bays.max = String(bayOptions.length - 1);
+  el.frontage.value = String(state.fIndex);
+  el.bays.value = String(state.bIndex);
   el.gap.min = String(DATA.row.gap_min_mm || 3000);
   el.gap.max = String(DATA.row.gap_max_mm || 12000);
   el.gap.value = String(state.gap);
+  el.allFloors.checked = state.allFloors;
+  el.wheels.checked = state.wheels;
+  stage.classList.toggle("wheels", state.wheels);
   document.getElementById("turnmm").textContent = TURN;
   document.getElementById("h-wheels").textContent =
     "眼高 " + EYE_CHAIR + " mm、車身半徑 " + RAD_CHAIR +
     " mm。走入模式下地上會畫出迴轉圈，放不下就變紅。";
+
+  function syncScopeButtons() {
+    Array.prototype.forEach.call(el.buildings.children, function (button) {
+      var active = state.overview ? button.dataset.building === "overview" : button.dataset.building === state.building;
+      button.className = active ? "on" : "";
+      button.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+    Array.prototype.forEach.call(el.floors.children, function (button) {
+      var active = button.dataset.floor === state.floor;
+      button.className = active ? "on" : "";
+      button.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+    Array.prototype.forEach.call(el.ruleFilters.children, function (button) {
+      var active = button.dataset.filter === state.ruleFilter;
+      button.className = active ? "on" : "";
+      button.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+  }
+
+  function clearSelection() {
+    state.selectedRoom = "";
+    inspectorEl.hidden = true;
+    if (highlight) { highlight.material = highlight.userData.baseMat; highlight = null; }
+  }
+
+  function selectScope(building, floorId) {
+    if (building) {
+      state.overview = building === "overview";
+      if (!state.overview) { state.building = building; }
+    }
+    if (floorId) { state.floor = floorId; }
+    clearSelection();
+    syncScopeButtons();
+    applyVisibility();
+    refreshRoomList();
+    refreshCompare();
+    refreshRules();
+    syncLabels();
+    if (!state.walking) { homeCamera(); }
+    else { spawnInFrontYard(); }
+    writeHash();
+  }
+
+  Array.prototype.forEach.call(el.buildings.children, function (button) {
+    button.addEventListener("click", function () { selectScope(button.dataset.building, null); });
+  });
 
   ["floor-1", "floor-2", "floor-3", "floor-rf"].forEach(function (fid, i) {
     var b = document.createElement("button");
@@ -892,16 +1265,125 @@ __ORBIT_JS__
     b.dataset.floor = fid;
     if (fid === state.floor) { b.className = "on"; }
     b.addEventListener("click", function () {
-      state.floor = fid;
-      Array.prototype.forEach.call(el.floors.children, function (x) {
-        x.className = x.dataset.floor === fid ? "on" : "";
-      });
-      applyVisibility();
-      if (state.walking) { spawnInFrontYard(); }
-      syncLabels();
+      selectScope(null, fid);
     });
     el.floors.appendChild(b);
   });
+
+  function floorFor(bid, floorId) {
+    var building = (currentVariant().buildings || {})[bid];
+    return building && (building.floors || []).filter(function (floor) {
+      return floor.floor_id === floorId;
+    })[0] || null;
+  }
+
+  function refreshRoomList() {
+    if (!el || !el.roomList) { return; }
+    if (state.overview) {
+      el.roomCount.textContent = "";
+      el.roomList.innerHTML = '<p class="hint" style="grid-column:1/-1">先選擇 A、B 或 C 棟，再查看本層空間。</p>';
+      return;
+    }
+    var floor = floorFor(state.building, state.floor);
+    var cells = floor && floor.cells || [];
+    el.roomCount.textContent = cells.length + " 間";
+    el.roomList.innerHTML = cells.map(function (cell) {
+      var active = cell.id === state.selectedRoom;
+      return '<button type="button" class="room-button" data-room="' + esc(cell.id) +
+        '" aria-pressed="' + (active ? "true" : "false") + '">' + esc(cell.name) + "</button>";
+    }).join("");
+    Array.prototype.forEach.call(el.roomList.querySelectorAll("[data-room]"), function (button) {
+      button.addEventListener("click", function () {
+        focusRoom(state.building, state.floor, button.dataset.room, true, null);
+      });
+    });
+  }
+
+  function relationDescription(relation) {
+    if (relation.relation === "merged") {
+      return (relation.html || []).map(function (item) { return item.name; }).join("＋") + " → " + relation.para_name;
+    }
+    if (relation.relation === "renamed") { return relation.html_name + " → " + relation.para_name; }
+    return relation.name || relation.para_name || relation.html_name || relation.id || "未命名";
+  }
+
+  function showSourceOnlyRelation(relation) {
+    clearSelection();
+    var context = comparisonContext(state.building, state.floor);
+    var htmlItems = relation.html || (relation.geometry_mm ? [relation] : []);
+    var source = htmlItems[0];
+    var sourceLink = source && source.href
+      ? '<p><a class="inline" target="_blank" rel="noopener" href="' + esc(source.href) +
+        '">開啟原 HTML 的 ' + esc(source.name) + "</a></p>"
+      : "";
+    var provenance = htmlItems.length
+      ? "<dl><dt>棟／層</dt><dd>" + esc(state.building + " 棟 " + (context.floor || {}).label) +
+        "</dd><dt>原 HTML</dt><dd>" + htmlItems.map(function (item) { return esc(item.name); }).join("＋") +
+        "</dd><dt>尺寸來源</dt><dd>" + htmlItems.map(function (item) {
+          return esc(item.provenance === "declared" ? "人工宣告" : "CSS 自動推估");
+        }).join("／") + "</dd></dl>"
+      : "";
+    var explanation = relation.relation === "html_only"
+      ? "這是已記錄的正常差異：原 HTML 有此空間，參數化 3D 刻意未建立，因此沒有可高亮的 3D 區塊。"
+      : "這個原 HTML 空間尚未找到可信的 3D 對應，因此不任意高亮其他房間代替。";
+    infoEl.innerHTML = '<span class="name">' + esc(relationDescription(relation)) + "</span>" +
+      provenance + '<span class="relation ' + esc(relation.relation) + '">' +
+      esc(relationLabels[relation.relation] || relation.relation) + "</span>" +
+      '<p class="hint">' + esc(relation.reason || "") + "</p>" + sourceLink +
+      renderMiniMap(context, relation) + '<p class="hint">' + esc(explanation) + "</p>";
+    inspectorEl.hidden = false;
+    refreshRoomList();
+    writeHash();
+  }
+
+  function refreshCompare() {
+    if (!el || !el.compare) { return; }
+    var compare = currentComparison();
+    if (!compare.available) {
+      el.compare.innerHTML = '<div class="banner warn">' + esc(compare.note || "HTML 對照不可用。") + "</div>";
+      return;
+    }
+    if (state.overview) {
+      var totals = compare.summary || {};
+      el.compare.innerHTML = '<p class="hint">目前變體：<b>' + esc((compare.variant || {}).label || "") +
+        '</b></p><div class="status-strip"><span>相同 ' + (totals.same || 0) +
+        "</span><span>更名 " + (totals.renamed || 0) + "</span><span>合併 " + (totals.merged || 0) +
+        "</span><span>HTML-only " + (totals.html_only || 0) + "</span><span>3D-only " +
+        (totals.parametric_only || 0) + "</span><span>無法判讀 " + (totals.unmapped || 0) + "</span></div>";
+      return;
+    }
+    var context = comparisonContext(state.building, state.floor);
+    if (!context.floor) {
+      el.compare.innerHTML = '<p class="hint">這個棟層沒有可用的 HTML 對照。</p>';
+      return;
+    }
+    var summary = context.floor.summary || {};
+    var differences = (context.floor.relationships || []).filter(function (item) {
+      return item.relation !== "same";
+    });
+    var rows = differences.map(function (relation, index) {
+      var room = relation.para_id || "";
+      return '<button type="button" class="compare-button compare-row" data-relation-index="' + index +
+        '" data-para="' + esc(room) + '"><span class="relation ' +
+        esc(relation.relation) + '">' + esc(relationLabels[relation.relation] || relation.relation) +
+        "</span><span>" + esc(relationDescription(relation)) + "</span></button>";
+    }).join("");
+    el.compare.innerHTML = '<div class="compare-current"><strong>' + esc(state.building + " 棟 · " + context.floor.label) +
+      '</strong><div class="status-strip"><span>相同 ' + (summary.same || 0) + "</span><span>正常差異 " +
+      ((summary.renamed || 0) + (summary.merged || 0) + (summary.html_only || 0) +
+       (summary.parametric_only || 0)) + "</span><span>無法判讀 " + (summary.unmapped || 0) +
+      "</span></div>" + (rows || '<p class="hint">本層空間皆為一對一對應。</p>') + "</div>";
+    Array.prototype.forEach.call(el.compare.querySelectorAll("[data-relation-index]"), function (button) {
+      button.addEventListener("click", function () {
+        var relation = differences[Number(button.dataset.relationIndex)];
+        if (button.dataset.para) {
+          focusRoom(state.building, state.floor, button.dataset.para, true, null);
+        } else if (relation) {
+          showSourceOnlyRelation(relation);
+        }
+      });
+    });
+  }
 
   function syncLabels() {
     var v = currentVariant();
@@ -913,7 +1395,13 @@ __ORBIT_JS__
       v.footprint_ping.toFixed(2) + " 坪，開間變寬進深就變淺）";
     el.subtitle.textContent =
       v.frontage_mm / 1000 + " × " + (v.depth_mm / 1000).toFixed(1) + " m　·　" +
-      v.garage.label + "　·　右 A／中 B／左 C";
+      v.garage.label + "　·　" + (state.overview ? "三棟總覽" : state.building + " 棟 " + floorLabel(state.floor));
+    el.scopeHint.textContent = state.overview
+      ? "三棟總覽 · 目前顯示 " + floorLabel(state.floor) + "；選一棟可看房名與 HTML 對照。"
+      : state.building + " 棟 · " + floorLabel(state.floor) + " · 單棟單層鳥瞰（前側為主要入口側）。";
+    document.getElementById("orientation").textContent = state.overview
+      ? "右 A／中 B／左 C · 前側朝畫面下方（初始視角）"
+      : state.building + " 棟 " + floorLabel(state.floor) + " · 前側＝主要入口 · 後側＝建築深處";
     el.hud.innerHTML = state.walking
       ? "W A S D 走動 · 滑鼠轉向 · Shift 加速 · Esc 離開走入模式"
       : "拖曳旋轉 · 滾輪縮放 · 右鍵／Shift 拖曳平移 · 點選房間看資訊";
@@ -924,11 +1412,17 @@ __ORBIT_JS__
 
   el.frontage.addEventListener("input", function () {
     state.fIndex = parseInt(this.value, 10);
-    rebuild(); syncLabels(); if (state.walking) { spawnInFrontYard(); }
+    rebuild(); syncLabels();
+    if (state.walking) { spawnInFrontYard(); } else { homeCamera(); }
+    if (state.selectedRoom) { focusRoom(state.building, state.floor, state.selectedRoom, false, null); }
+    writeHash();
   });
   el.bays.addEventListener("input", function () {
     state.bIndex = parseInt(this.value, 10);
-    rebuild(); syncLabels(); if (state.walking) { spawnInFrontYard(); }
+    rebuild(); syncLabels();
+    if (state.walking) { spawnInFrontYard(); } else { homeCamera(); }
+    if (state.selectedRoom) { focusRoom(state.building, state.floor, state.selectedRoom, false, null); }
+    writeHash();
   });
   el.gap.addEventListener("input", function () {
     // Gap only moves buildings, so shift the groups instead of rebuilding.
@@ -941,9 +1435,11 @@ __ORBIT_JS__
     root.position.x = -(cursor - state.gap) * MM / 2;
     rebuildBlockers();
     syncLabels();
+    if (!state.walking) { homeCamera(); }
+    writeHash();
   });
   el.allFloors.addEventListener("change", function () {
-    state.allFloors = this.checked; applyVisibility();
+    state.allFloors = this.checked; applyVisibility(); homeCamera(); writeHash();
   });
   el.wheels.addEventListener("change", function () {
     state.wheels = this.checked;
@@ -954,6 +1450,16 @@ __ORBIT_JS__
       var got = resolve(walker.x, walker.z, (state.wheels ? RAD_CHAIR : RAD_WALK) * MM);
       walker.x = got[0]; walker.z = got[1];
     }
+    writeHash();
+  });
+
+  Array.prototype.forEach.call(el.ruleFilters.children, function (button) {
+    button.addEventListener("click", function () {
+      state.ruleFilter = button.dataset.filter;
+      syncScopeButtons();
+      refreshRules();
+      writeHash();
+    });
   });
 
   Array.prototype.forEach.call(document.querySelectorAll("[data-view]"), function (b) {
@@ -961,6 +1467,11 @@ __ORBIT_JS__
   });
 
   function setView(view) {
+    if (view === "walk" && state.overview) {
+      state.overview = false;
+      state.building = "A";
+      syncScopeButtons();
+    }
     state.walking = view === "walk";
     Array.prototype.forEach.call(document.querySelectorAll("[data-view]"), function (x) {
       x.className = x.dataset.view === view ? "on" : "";
@@ -980,10 +1491,29 @@ __ORBIT_JS__
     }
     camera.updateProjectionMatrix();
     syncLabels();
+    refreshRoomList();
+    refreshCompare();
+    writeHash();
   }
 
   function homeCamera() {
     var variant = currentVariant();
+    if (!state.overview) {
+      var selected = buildingGroups.filter(function (item) { return item.id === state.building; })[0];
+      var building = variant.buildings[state.building];
+      if (selected && building) {
+        var base = floorBaseMm() * MM;
+        var target = new THREE.Vector3(
+          root.position.x + selected.group.position.x + building.frontage_mm * MM / 2,
+          base,
+          wz(building.depth_mm / 2)
+        );
+        var radius = Math.max(building.frontage_mm, building.depth_mm) * MM * 1.12;
+        if (state.allFloors) { target.y = 4.5; radius *= 1.25; }
+        orbit.setHome(target, Math.max(radius, 9), 0, Math.PI * 0.28);
+        return;
+      }
+    }
     var span = 0;
     buildingGroups.forEach(function (bg) { span += bg.width_mm + state.gap; });
     span = Math.max(span - state.gap, 12000) * MM;
@@ -996,8 +1526,14 @@ __ORBIT_JS__
   // ---------- rules ----------
   function refreshRules() {
     var v = currentVariant();
-    var list = DATA.findings.filter(function (f) { return f.variant === v.id; });
-    el.ruleCount.textContent = list.length + " 項";
+    var scoped = DATA.findings.filter(function (finding) {
+      if (finding.variant !== v.id || finding.floor_id !== state.floor) { return false; }
+      return state.overview || finding.building === state.building;
+    });
+    var list = scoped.filter(function (finding) {
+      return state.ruleFilter === "all" || finding.severity === state.ruleFilter;
+    });
+    el.ruleCount.textContent = list.length + "／" + scoped.length + " 項";
     if (!list.length) {
       el.rules.innerHTML = "<p class='hint'>這個變體沒有觸發任何規則。</p>";
       return;
@@ -1011,32 +1547,42 @@ __ORBIT_JS__
       var b = document.createElement("button");
       b.type = "button";
       b.className = "f " + f.severity;
-      b.innerHTML = '<span class="code">' + f.code + "</span> " +
-                    '<span class="where">' + f.building + " 棟 " + f.floor + "</span><br>" +
-                    f.message;
+      b.innerHTML = '<span class="code">' + esc(f.code) + "</span> " +
+                    '<span class="where">' + esc(f.building + " 棟 " + f.floor) + "</span><br>" +
+                    esc(f.message);
       b.addEventListener("click", function () { focusFinding(f); });
       el.rules.appendChild(b);
     });
   }
 
+  function showFindingOnly(finding) {
+    var context = comparisonContext(finding.building, finding.floor_id);
+    infoEl.innerHTML = '<span class="name">' + esc(finding.code) + "</span>" +
+      '<p class="hint">' + esc(finding.building + " 棟 " + finding.floor) + "</p>" +
+      '<div class="finding-inline ' + esc(finding.severity) + '">' + esc(finding.message) + "</div>" +
+      '<p class="hint">此 finding 沒有可定位的單一房間 reference，因此只聚焦棟層，不任意指定走道代替。</p>' +
+      renderMiniMap(context, null);
+    inspectorEl.hidden = false;
+    writeHash();
+  }
+
   function focusFinding(f) {
-    if (f.floor_id && f.floor_id !== state.floor) {
-      var btn = el.floors.querySelector('[data-floor="' + f.floor_id + '"]');
-      if (btn) { btn.click(); }
-    }
+    state.building = f.building;
+    state.overview = false;
+    state.floor = f.floor_id || state.floor;
+    clearSelection();
+    syncScopeButtons();
+    applyVisibility();
+    refreshRoomList();
+    refreshCompare();
+    refreshRules();
+    syncLabels();
+    if (!state.walking) { homeCamera(); }
     var refs = f.refs || [];
-    for (var i = 0; i < pickables.length; i++) {
-      var u = pickables[i].userData;
-      if (u.bid === f.building && u.floor.floor_id === f.floor_id &&
-          (refs.indexOf(u.cell.id) >= 0 || (!refs.length && u.cell.role === "corridor"))) {
-        showCell(pickables[i]);
-        if (!state.walking) {
-          pickables[i].getWorldPosition(orbit.target);
-          orbit.update();
-        }
-        return;
-      }
+    if (refs.length && focusRoom(f.building, f.floor_id, refs[0], true, f)) {
+      return;
     }
+    showFindingOnly(f);
   }
 
   // Everything above lives in a closure, which is right for a page that shares
@@ -1046,7 +1592,19 @@ __ORBIT_JS__
   window.__walkDebug = function () {
     return {
       variant: currentVariant().id,
-      state: { floor: state.floor, walking: state.walking, wheels: state.wheels, gap: state.gap },
+      state: {
+        building: state.building, overview: state.overview, floor: state.floor,
+        walking: state.walking, wheels: state.wheels, gap: state.gap,
+        room: state.selectedRoom, filter: state.ruleFilter
+      },
+      comparison: {
+        available: !!currentComparison().available,
+        unmapped: Number((currentComparison().summary || {}).unmapped || 0)
+      },
+      visibleRooms: pickables.filter(function (mesh) {
+        return mesh.parent && mesh.parent.visible;
+      }).map(function (mesh) { return mesh.userData.cell.id; }),
+      inspectorOpen: !inspectorEl.hidden,
       walker: { x: +walker.x.toFixed(3), z: +walker.z.toFixed(3), yaw: +walker.yaw.toFixed(3) },
       camera: [+camera.position.x.toFixed(2), +camera.position.y.toFixed(2), +camera.position.z.toFixed(2)],
       blockers: blockers.length,
@@ -1066,8 +1624,16 @@ __ORBIT_JS__
 __LOOP_JS__
 
   rebuild();
+  syncScopeButtons();
   syncLabels();
   homeCamera();
+  if (initialView === "walk") { setView("walk"); }
+  if (state.selectedRoom) {
+    if (!focusRoom(state.building, state.floor, state.selectedRoom, false, null)) {
+      state.selectedRoom = "";
+    }
+  }
+  writeHash();
   startLoop(function (dt) {
     if (state.walking) { updateWalker(dt); }
   });
@@ -1079,7 +1645,6 @@ __LOOP_JS__
 
 
 def render_html(payload: dict[str, Any], three_js: str) -> str:
-    compare_html = format_compare_panel(payload.get("compare") or {})
     return (
         HTML_TEMPLATE
         .replace("__BASE_CSS__", viewer_shell.BASE_CSS)
@@ -1087,7 +1652,6 @@ def render_html(payload: dict[str, Any], three_js: str) -> str:
         .replace("__LOOP_JS__", viewer_shell.LOOP_JS)
         .replace("__THREE_JS__", three_js)
         .replace("__MODEL_DATA__", encode_html_json(payload))
-        .replace("__COMPARE_HTML__", compare_html)
     )
 
 
@@ -1105,6 +1669,10 @@ def main(argv: list[str] | None = None) -> int:
         )
 
     plan = json.loads(args.plan.read_text(encoding="utf-8"))
+    if plan.get("schema") != "house-parametric-plan-v1":
+        raise SystemExit(f"Unsupported parametric plan schema: {plan.get('schema')!r}")
+    if not isinstance(plan.get("variants"), list) or not plan["variants"]:
+        raise SystemExit("Parametric plan has no variants; refusing to emit an empty viewer.")
     program = None
     if args.program.exists():
         program = json.loads(args.program.read_text(encoding="utf-8"))

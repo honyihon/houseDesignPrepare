@@ -74,7 +74,9 @@ def test_legacy_render_steps_track_authority_warning_sources() -> None:
 
     standards = Path("scripts/lib/standards.py")
     compare = Path("scripts/lib/html_parametric_compare.py")
+    program = Path("structured/room_program.json")
     assert any(path.as_posix().endswith(standards.as_posix()) for path in steps["parametric"].inputs)
     assert any(path.as_posix().endswith(standards.as_posix()) for path in steps["walkthrough"].inputs)
     assert any(path.as_posix().endswith(compare.as_posix()) for path in steps["walkthrough"].inputs)
+    assert any(path.as_posix().endswith(program.as_posix()) for path in steps["walkthrough"].inputs)
     assert any(path.as_posix().endswith(compare.as_posix()) for path in steps["model3d"].inputs)

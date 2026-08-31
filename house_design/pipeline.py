@@ -118,6 +118,10 @@ def build_steps(selection: str, style: str, paper: str, output: str, mode: str) 
             ("scripts/export_walkthrough_3d.py",),
             _paths(
                 "structured/parametric/plan.json",
+                # The geometry is parametric, but room_program supplies the
+                # traceable link back to the original HTML rooms. Any HTML or
+                # dimension change must therefore invalidate this viewer too.
+                "structured/room_program.json",
                 "scripts/export_walkthrough_3d.py",
                 "scripts/lib/html_parametric_compare.py",
                 "scripts/lib/standards.py",
