@@ -801,6 +801,20 @@ python -m pytest -q
 python -m ruff check house_design scripts tests
 ```
 
+修改 `structured/parametric/walkthrough.html`、`structured/candidates/model3d.html`
+或其產生器後，另跑正式瀏覽器回歸：
+
+```bash
+npm ci
+npx playwright install chromium
+npm run test:e2e
+```
+
+Playwright 會自行在 `127.0.0.1:8770` 啟動暫存靜態站台，依序檢查桌機、
+390×844 手機、棟層／房間／方案控制、HTML↔3D 對照、走入／輪椅模式、
+deep link、共享 `model3d.html` 與 `file://` 離線開啟。失敗截圖與 trace 只會寫入
+已忽略版控的 `test-results/playwright/`；CI 失敗時會保留七天供下載。
+
 檢查前期閘門：
 
 ```bash
