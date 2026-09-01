@@ -28,6 +28,17 @@ AUTHORITATIVE_GEOMETRY_PROVENANCE = {
 VERIFIED_COORDINATE_STATUSES = {"verified", "verified_aligned", "georeferenced"}
 
 
+def revision_manifest_content_hash(manifest: dict[str, Any]) -> str:
+    """Hash every persisted manifest field except the hash itself.
+
+    The normalized model digest is a required manifest field, so this seal
+    binds source files, mapping, normalized data and revision metadata in one
+    reproducible value.
+    """
+
+    return stable_hash({key: value for key, value in manifest.items() if key != "content_hash"})
+
+
 def revision_dir(revision_id: str, root: Path = REVISION_ROOT) -> Path:
     if not REVISION_ID_RE.fullmatch(revision_id):
         raise ContractError("revision id may contain only letters, digits, dot, underscore and dash")
@@ -69,8 +80,10 @@ def _empty_model(revision_id: str) -> dict[str, Any]:
             "buildings": [],
             "storeys": [],
             "spaces": [],
+            "walls": [],
             "doors": [],
             "windows": [],
+            "stairs": [],
             "equipment": [],
             "drawing_geometry": [],
         },
@@ -143,6 +156,323 @@ def _dxf_bbox(entity: Any, bbox_module: Any) -> list[float] | None:
         return None
 
 
+def _polygon_area_sqm(points: list[list[float]]) -> float:
+    if len(points) < 3:
+        return 0.0
+    twice_area = sum(
+        points[index][0] * points[(index + 1) % len(points)][1]
+        - points[(index + 1) % len(points)][0] * points[index][1]
+        for index in range(len(points))
+    )
+    return abs(twice_area) / 2_000_000
+
+
+def _convex_hull(points: list[list[float]]) -> list[list[float]]:
+    unique = sorted({(round(point[0], 3), round(point[1], 3)) for point in points})
+    if len(unique) <= 2:
+        return [[x, y] for x, y in unique]
+
+    def cross(origin: tuple[float, float], a: tuple[float, float], b: tuple[float, float]) -> float:
+        return (a[0] - origin[0]) * (b[1] - origin[1]) - (a[1] - origin[1]) * (b[0] - origin[0])
+
+    lower: list[tuple[float, float]] = []
+    for point in unique:
+        while len(lower) >= 2 and cross(lower[-2], lower[-1], point) <= 0:
+            lower.pop()
+        lower.append(point)
+    upper: list[tuple[float, float]] = []
+    for point in reversed(unique):
+        while len(upper) >= 2 and cross(upper[-2], upper[-1], point) <= 0:
+            upper.pop()
+        upper.append(point)
+    return [[x, y] for x, y in lower[:-1] + upper[:-1]]
+
+
+def _dxf_polygon(entity: Any, scale: float) -> list[list[float]] | None:
+    """Return a flattened closed DXF polyline in millimetres when available."""
+
+    entity_type = entity.dxftype()
+    closed = bool(getattr(entity, "closed", False) or getattr(entity, "is_closed", False))
+    if entity_type not in {"LWPOLYLINE", "POLYLINE"} or not closed:
+        return None
+    try:
+        from ezdxf.path import make_path  # type: ignore[import-not-found]
+
+        path = make_path(entity)
+        # 1 mm flattening tolerance in final coordinates, bounded for unusual scales.
+        tolerance = max(0.001, 1.0 / scale)
+        vertices = list(path.flattening(distance=tolerance, segments=8))
+        points = [[round(float(vertex.x) * scale, 3), round(float(vertex.y) * scale, 3)] for vertex in vertices]
+    except Exception:
+        try:
+            if entity_type == "LWPOLYLINE":
+                points = [
+                    [round(float(x) * scale, 3), round(float(y) * scale, 3)]
+                    for x, y, *_ in entity.get_points("xy")
+                ]
+            else:
+                points = [
+                    [round(float(vertex.dxf.location.x) * scale, 3), round(float(vertex.dxf.location.y) * scale, 3)]
+                    for vertex in entity.vertices
+                ]
+        except Exception:
+            return None
+    if len(points) > 1 and points[0] == points[-1]:
+        points.pop()
+    return points if len(points) >= 3 and _polygon_area_sqm(points) > 0 else None
+
+
+def _verification_value(value: Any) -> bool:
+    return isinstance(value, str) and bool(value.strip())
+
+
+def _mapping_context(
+    mapping: dict[str, Any], model: dict[str, Any]
+) -> list[dict[str, Any]]:
+    """Validate and apply mapping-v2 coordinate/storey evidence."""
+
+    if not mapping:
+        return []
+    issues: list[dict[str, Any]] = []
+    schema = mapping.get("schema")
+    if schema != "house-drawing-mapping-v2":
+        issues.append(
+            {
+                "code": "DRAWING_MAPPING_V2_REQUIRED",
+                "severity": "warning" if schema is None else "blocking",
+                "message": "Use schema house-drawing-mapping-v2 to carry coordinate, storey and measurement evidence.",
+            }
+        )
+
+    coordinate = mapping.get("coordinate_system")
+    if coordinate is not None and not isinstance(coordinate, dict):
+        issues.append(
+            {
+                "code": "COORDINATE_SYSTEM_MAPPING_INVALID",
+                "severity": "blocking",
+                "message": "coordinate_system must be an object.",
+            }
+        )
+    elif isinstance(coordinate, dict):
+        status = str(coordinate.get("status") or "unknown")
+        evidence_valid = (
+            status not in VERIFIED_COORDINATE_STATUSES
+            or (
+                bool(coordinate.get("axis"))
+                and _verification_value(coordinate.get("verified_by"))
+                and _verification_value(coordinate.get("verified_at"))
+                and _verification_value(coordinate.get("method"))
+                and isinstance(coordinate.get("reference_points"), list)
+                and len(coordinate["reference_points"]) >= 2
+            )
+        )
+        if evidence_valid:
+            model["coordinate_system"] = dict(coordinate)
+        else:
+            model["coordinate_system"] = {
+                **coordinate,
+                "declared_status": status,
+                "status": "verification_evidence_missing",
+            }
+            issues.append(
+                {
+                    "code": "COORDINATE_VERIFICATION_EVIDENCE_MISSING",
+                    "severity": "blocking",
+                    "message": (
+                        "A verified coordinate system requires axis, verified_by, verified_at, method "
+                        "and at least two reference_points."
+                    ),
+                }
+            )
+
+    walkthrough_scope = mapping.get("walkthrough_scope")
+    if walkthrough_scope is not None:
+        if isinstance(walkthrough_scope, dict):
+            model["walkthrough_scope"] = dict(walkthrough_scope)
+        else:
+            issues.append(
+                {
+                    "code": "WALKTHROUGH_SCOPE_INVALID",
+                    "severity": "blocking",
+                    "message": "walkthrough_scope must be an object when supplied.",
+                }
+            )
+
+    storey_mapping = mapping.get("storeys")
+    if storey_mapping is None:
+        storey_mapping = []
+    if not isinstance(storey_mapping, list):
+        issues.append(
+            {
+                "code": "STOREY_MAPPING_INVALID",
+                "severity": "blocking",
+                "message": "storeys must be an array.",
+            }
+        )
+        return issues
+    known_locations: set[tuple[str, str]] = set()
+    for index, storey in enumerate(storey_mapping):
+        if not isinstance(storey, dict):
+            issues.append(
+                {
+                    "code": "STOREY_MAPPING_INVALID",
+                    "severity": "blocking",
+                    "message": f"storeys[{index}] must be an object.",
+                }
+            )
+            continue
+        building_id = str(storey.get("building_id") or "")
+        floor_id = str(storey.get("floor_id") or "")
+        elevation = storey.get("elevation_mm")
+        evidence = storey.get("evidence")
+        complete = (
+            bool(building_id and floor_id)
+            and isinstance(elevation, (int, float))
+            and not isinstance(elevation, bool)
+            and _verification_value(storey.get("verified_by"))
+            and _verification_value(storey.get("verified_at"))
+            and (isinstance(evidence, dict) and bool(evidence.get("reference")))
+        )
+        location = (building_id, floor_id)
+        if not complete or location in known_locations:
+            issues.append(
+                {
+                    "code": "STOREY_VERIFICATION_EVIDENCE_MISSING",
+                    "severity": "blocking",
+                    "message": (
+                        f"storeys[{index}] needs a unique building_id/floor_id, numeric elevation_mm, "
+                        "verified_by, verified_at and evidence.reference."
+                    ),
+                }
+            )
+            continue
+        known_locations.add(location)
+        existing = next(
+            (
+                item
+                for item in model["entities"]["storeys"]
+                if item.get("building_id") == building_id and item.get("floor_id") == floor_id
+            ),
+            None,
+        )
+        values = {
+            "building_id": building_id,
+            "floor_id": floor_id,
+            "name": storey.get("name") or floor_id,
+            "elevation_mm": round(float(elevation), 3),
+            "height_mm": storey.get("height_mm"),
+            "verification": {
+                "verified_by": storey["verified_by"],
+                "verified_at": storey["verified_at"],
+                "evidence": evidence,
+            },
+        }
+        if existing is not None:
+            existing.update({key: value for key, value in values.items() if value is not None})
+            existing.setdefault("geometry_provenance", "professional_verified")
+        else:
+            model["entities"]["storeys"].append(
+                {
+                    "id": f"MAPPING:{building_id}:{floor_id}",
+                    **{key: value for key, value in values.items() if value is not None},
+                    "geometry_provenance": "professional_verified",
+                }
+            )
+        if not any(item.get("building_id") == building_id for item in model["entities"]["buildings"]):
+            model["entities"]["buildings"].append(
+                {
+                    "id": f"MAPPING:{building_id}",
+                    "building_id": building_id,
+                    "name": f"{building_id}棟",
+                    "geometry_provenance": "professional_verified",
+                }
+            )
+    return issues
+
+
+def _apply_ifc_entity_mapping(mapping: dict[str, Any], model: dict[str, Any]) -> list[dict[str, Any]]:
+    configs = mapping.get("ifc_entities")
+    if configs is None:
+        return []
+    if not isinstance(configs, dict):
+        return [
+            {
+                "code": "IFC_ENTITY_MAPPING_INVALID",
+                "severity": "blocking",
+                "message": "ifc_entities must be an object keyed by IFC GlobalId.",
+            }
+        ]
+    issues: list[dict[str, Any]] = []
+    collections = ("spaces", "walls", "doors", "windows", "stairs", "equipment")
+    for source_id, config in configs.items():
+        if not isinstance(config, dict):
+            issues.append(
+                {
+                    "code": "IFC_ENTITY_MAPPING_INVALID",
+                    "severity": "blocking",
+                    "message": f"ifc_entities.{source_id} must be an object.",
+                }
+            )
+            continue
+        match = next(
+            (
+                entity
+                for collection in collections
+                for entity in model["entities"][collection]
+                if str(entity.get("source_id") or entity.get("id")) == str(source_id)
+            ),
+            None,
+        )
+        if match is None:
+            issues.append(
+                {
+                    "code": "IFC_ENTITY_MAPPING_TARGET_MISSING",
+                    "severity": "blocking",
+                    "message": f"IFC mapping target {source_id} was not found in the imported model.",
+                }
+            )
+            continue
+        for key in ("building_id", "floor_id", "requirement_id", "name", "category"):
+            if config.get(key) is not None:
+                match[key] = config[key]
+    return issues
+
+
+def _opening_evidence(config: dict[str, Any], geometry_width: float) -> dict[str, Any]:
+    result: dict[str, Any] = {
+        "overall_width_mm": round(geometry_width, 3),
+        "clear_width_mm": None,
+        "width_note": "DXF symbol extent is nominal/overall; finished clear width requires explicit verified evidence.",
+    }
+    declaration = config.get("opening_width")
+    if not isinstance(declaration, dict):
+        return result
+    value = declaration.get("value_mm")
+    measurement = declaration.get("measurement")
+    evidence = declaration.get("evidence")
+    complete = (
+        isinstance(value, (int, float))
+        and not isinstance(value, bool)
+        and value > 0
+        and measurement in {"finished_clear", "overall", "nominal"}
+        and _verification_value(declaration.get("verified_by"))
+        and _verification_value(declaration.get("verified_at"))
+        and isinstance(evidence, dict)
+        and bool(evidence.get("reference"))
+    )
+    if not complete:
+        result["width_note"] = "opening_width declaration is incomplete and was not treated as verified clear width."
+        return result
+    result["width_evidence"] = dict(declaration)
+    if measurement == "finished_clear":
+        result["clear_width_mm"] = round(float(value), 3)
+        result["width_note"] = "Finished clear width supplied with explicit verification evidence."
+    else:
+        result["overall_width_mm"] = round(float(value), 3)
+        result["width_note"] = f"Verified {measurement} width; finished clear width remains unknown."
+    return result
+
+
 def _parse_dxf(
     path: Path, model: dict[str, Any], mapping: dict[str, Any]
 ) -> tuple[dict[str, Any], list[dict[str, Any]]]:
@@ -186,7 +516,9 @@ def _parse_dxf(
             scale = 1.0
 
     layer_mapping = mapping.get("layers") if isinstance(mapping.get("layers"), dict) else {}
+    entity_mapping = mapping.get("entities") if isinstance(mapping.get("entities"), dict) else {}
     layers_seen: set[str] = set()
+    layers_mapped_by_handle: set[str] = set()
     mapped_count = 0
     drawing_count = 0
     for entity in document.modelspace():
@@ -195,27 +527,59 @@ def _parse_dxf(
         raw_bbox = _dxf_bbox(entity, bbox)
         if raw_bbox is None:
             continue
-        box = [round(value * scale, 3) for value in raw_bbox]
         handle = str(entity.dxf.handle or drawing_count)
         entity_type = entity.dxftype()
+        polygon = _dxf_polygon(entity, scale)
+        if polygon:
+            xs = [point[0] for point in polygon]
+            ys = [point[1] for point in polygon]
+            box = [min(xs), min(ys), max(xs), max(ys)]
+        else:
+            box = [round(value * scale, 3) for value in raw_bbox]
+        geometry_record: dict[str, Any] = {
+            "id": f"DXF:{layer}:{handle}",
+            "source_id": handle,
+            "source_layer": layer,
+            "geometry_type": entity_type,
+            "bbox_mm": box,
+            "source_file": relative_to_root(path),
+        }
+        if polygon:
+            geometry_record["polygon_mm"] = polygon
         model["entities"]["drawing_geometry"].append(
-            {
-                "id": f"DXF:{layer}:{handle}",
-                "source_id": handle,
-                "source_layer": layer,
-                "geometry_type": entity_type,
-                "bbox_mm": box,
-                "source_file": relative_to_root(path),
-            }
+            geometry_record
         )
         drawing_count += 1
-        config = layer_mapping.get(layer)
-        if not isinstance(config, dict):
+        layer_config = layer_mapping.get(layer)
+        handle_config = entity_mapping.get(handle) or entity_mapping.get(handle.upper())
+        if handle_config is not None and not isinstance(handle_config, dict):
+            issues.append(
+                {
+                    "code": "DXF_ENTITY_MAPPING_INVALID",
+                    "severity": "blocking",
+                    "message": f"entities.{handle} must be an object.",
+                }
+            )
+            continue
+        if isinstance(handle_config, dict):
+            layers_mapped_by_handle.add(layer)
+        config = {
+            **(layer_config if isinstance(layer_config, dict) else {}),
+            **(handle_config if isinstance(handle_config, dict) else {}),
+        }
+        if not config or config.get("ignore") is True:
             continue
         kind = config.get("kind")
-        if kind not in {"space", "door", "window", "equipment"}:
+        if kind not in {"space", "wall", "door", "window", "stair", "equipment"}:
             continue
-        collection = {"space": "spaces", "door": "doors", "window": "windows", "equipment": "equipment"}[kind]
+        collection = {
+            "space": "spaces",
+            "wall": "walls",
+            "door": "doors",
+            "window": "windows",
+            "stair": "stairs",
+            "equipment": "equipment",
+        }[kind]
         x0, y0, x1, y1 = box
         width, depth = abs(x1 - x0), abs(y1 - y0)
         record: dict[str, Any] = {
@@ -231,21 +595,66 @@ def _parse_dxf(
             "source_file": relative_to_root(path),
             "geometry_provenance": "architect_dxf",
         }
+        if polygon:
+            record["polygon_mm"] = polygon
+            record["geometry_method"] = "closed_dxf_polyline"
         if config.get("requirement_id"):
             record["requirement_id"] = config["requirement_id"]
+        for key in ("height_mm", "sill_height_mm", "category", "from", "to"):
+            if config.get(key) is not None:
+                record[key] = config[key]
         if kind == "space":
-            record["area_sqm"] = round(width * depth / 1_000_000, 4)
+            record["area_sqm"] = round(
+                _polygon_area_sqm(polygon) if polygon else width * depth / 1_000_000,
+                4,
+            )
+            record["area_method"] = "polygon" if polygon else "bounding_box"
         elif kind in {"door", "window"}:
-            # Opening symbols are normally a long leaf/opening dimension plus
-            # a short wall-thickness dimension. The long extent is therefore
-            # the usable width; taking the short extent would report a 100 mm
-            # wall thickness as the door clear width.
-            record["clear_width_mm"] = round(max(width, depth), 3)
-        model["entities"][collection].append(record)
+            record.update(_opening_evidence(config, max(width, depth)))
+
+        ifc_guid = config.get("ifc_guid")
+        existing = None
+        if ifc_guid:
+            existing = next(
+                (
+                    item
+                    for item in model["entities"][collection]
+                    if str(item.get("source_id") or item.get("id")) == str(ifc_guid)
+                ),
+                None,
+            )
+            if existing is None:
+                issues.append(
+                    {
+                        "code": "IFC_DXF_RECONCILIATION_TARGET_MISSING",
+                        "severity": "blocking",
+                        "message": f"DXF handle {handle} refers to missing IFC GlobalId {ifc_guid}.",
+                    }
+                )
+        if existing is not None:
+            original_source = existing.get("source_file")
+            existing.update(
+                {
+                    key: value
+                    for key, value in record.items()
+                    if key not in {"id", "source_id", "source_file"} and value is not None
+                }
+            )
+            existing["geometry_provenance"] = "architect_dxf"
+            existing["reconciliation"] = {
+                "method": "explicit_ifc_guid",
+                "ifc_guid": str(ifc_guid),
+                "dxf_handle": handle,
+                "sources": [value for value in (original_source, record["source_file"]) if value],
+            }
+        else:
+            model["entities"][collection].append(record)
         mapped_count += 1
 
-    unmapped = sorted(layer for layer in layers_seen if layer not in layer_mapping)
-    if not layer_mapping:
+    unmapped = sorted(
+        layer for layer in layers_seen if layer not in layer_mapping and layer not in layers_mapped_by_handle
+    )
+    if not layer_mapping and not entity_mapping:
         issues.append(
             {
                 "code": "DXF_LAYER_MAPPING_REQUIRED",
@@ -289,6 +698,52 @@ def _ifc_quantity_area(element: Any) -> float | None:
             if isinstance(value, (int, float)) and value > 0:
                 return float(value)
     return None
+
+
+def _ifc_element_geometry(element: Any, element_kind: str = "IFC element") -> dict[str, Any] | None:
+    """Extract a world-coordinate 2D footprint envelope from an IFC mesh.
+
+    IfcOpenShell triangulation is expressed in metres; the normalized model is
+    always millimetres. The polygon is explicitly labelled as a convex mesh
+    hull so it is never mistaken for an exact concave room boundary.
+    """
+
+    try:
+        import ifcopenshell.geom as ifc_geom  # type: ignore[import-not-found]
+
+        settings = ifc_geom.settings()
+        settings.set(settings.USE_WORLD_COORDS, True)
+        shape = ifc_geom.create_shape(settings, element)
+        values = list(shape.geometry.verts)
+    except Exception:
+        return None
+    if len(values) < 9 or len(values) % 3:
+        return None
+    points = [
+        [round(float(values[index]) * 1000.0, 3), round(float(values[index + 1]) * 1000.0, 3)]
+        for index in range(0, len(values), 3)
+    ]
+    z_values = [round(float(values[index + 2]) * 1000.0, 3) for index in range(0, len(values), 3)]
+    hull = _convex_hull(points)
+    if len(hull) < 3:
+        return None
+    xs = [point[0] for point in hull]
+    ys = [point[1] for point in hull]
+    bbox = [min(xs), min(ys), max(xs), max(ys)]
+    result = {
+        "bbox_mm": bbox,
+        "polygon_mm": hull,
+        "width_mm": round(bbox[2] - bbox[0], 3),
+        "depth_mm": round(bbox[3] - bbox[1], 3),
+        "geometry_method": "ifc_mesh_convex_hull",
+        "geometry_note": (
+            f"Convex display footprint extracted from {element_kind} mesh; "
+            "use mapped DXF for exact concave boundaries."
+        ),
+    }
+    if max(z_values) > min(z_values):
+        result["height_mm"] = round(max(z_values) - min(z_values), 3)
+    return result
 
 
 def _ifc_container(element: Any) -> Any | None:
@@ -412,9 +867,9 @@ def _parse_ifc(path: Path, model: dict[str, Any]) -> tuple[dict[str, Any], list[
     for index, space in enumerate(document.by_type("IfcSpace")):
         identifier = str(space.GlobalId or f"space-{index + 1}")
         area = _ifc_quantity_area(space)
+        geometry = _ifc_element_geometry(space, "IfcSpace")
         storey_id, building_id = _ifc_spatial_location(space, storey_by_id, storey_building_by_id)
-        model["entities"]["spaces"].append(
-            {
+        record: dict[str, Any] = {
                 "id": identifier,
                 "source_id": identifier,
                 "building_id": building_id,
@@ -424,7 +879,14 @@ def _parse_ifc(path: Path, model: dict[str, Any]) -> tuple[dict[str, Any], list[
                 "source_file": relative_to_root(path),
                 "geometry_provenance": "architect_ifc",
             }
-        )
+        if geometry:
+            record.update(geometry)
+            if area is None:
+                record["area_sqm"] = round(_polygon_area_sqm(geometry["polygon_mm"]), 4)
+                record["area_method"] = "ifc_mesh_convex_hull"
+            else:
+                record["area_method"] = "ifc_quantity"
+        model["entities"]["spaces"].append(record)
     for ifc_type, collection, width_key in (
         ("IfcDoor", "doors", "OverallWidth"),
         ("IfcWindow", "windows", "OverallWidth"),
@@ -432,10 +894,10 @@ def _parse_ifc(path: Path, model: dict[str, Any]) -> tuple[dict[str, Any], list[
         for index, element in enumerate(document.by_type(ifc_type)):
             identifier = str(element.GlobalId or f"{collection[:-1]}-{index + 1}")
             raw_width = getattr(element, width_key, None)
+            geometry = _ifc_element_geometry(element, ifc_type)
             storey_id, building_id = _ifc_spatial_location(element, storey_by_id, storey_building_by_id)
             overall_width = round(float(raw_width) * scale, 3) if raw_width else None
-            model["entities"][collection].append(
-                {
+            record = {
                     "id": identifier,
                     "source_id": identifier,
                     "building_id": building_id,
@@ -447,23 +909,44 @@ def _parse_ifc(path: Path, model: dict[str, Any]) -> tuple[dict[str, Any], list[
                     "source_file": relative_to_root(path),
                     "geometry_provenance": "architect_ifc",
                 }
-            )
+            if geometry:
+                record.update(geometry)
+            model["entities"][collection].append(record)
+    for ifc_type, collection in (("IfcWall", "walls"), ("IfcStair", "stairs")):
+        for index, element in enumerate(document.by_type(ifc_type)):
+            identifier = str(element.GlobalId or f"{collection[:-1]}-{index + 1}")
+            storey_id, building_id = _ifc_spatial_location(element, storey_by_id, storey_building_by_id)
+            geometry = _ifc_element_geometry(element, ifc_type)
+            record = {
+                "id": identifier,
+                "source_id": identifier,
+                "building_id": building_id,
+                "floor_id": storey_id,
+                "name": str(element.Name or identifier),
+                "source_file": relative_to_root(path),
+                "geometry_provenance": "architect_ifc",
+            }
+            if geometry:
+                record.update(geometry)
+            model["entities"][collection].append(record)
     for ifc_type in ("IfcFlowTerminal", "IfcFlowController", "IfcEnergyConversionDevice"):
         for index, element in enumerate(document.by_type(ifc_type)):
             identifier = str(element.GlobalId or f"equipment-{ifc_type}-{index + 1}")
             storey_id, building_id = _ifc_spatial_location(element, storey_by_id, storey_building_by_id)
-            model["entities"]["equipment"].append(
-                {
-                    "id": identifier,
-                    "source_id": identifier,
-                    "ifc_type": ifc_type,
-                    "building_id": building_id,
-                    "floor_id": storey_id,
-                    "name": str(element.Name or identifier),
-                    "source_file": relative_to_root(path),
-                    "geometry_provenance": "architect_ifc",
-                }
-            )
+            geometry = _ifc_element_geometry(element, ifc_type)
+            record = {
+                "id": identifier,
+                "source_id": identifier,
+                "ifc_type": ifc_type,
+                "building_id": building_id,
+                "floor_id": storey_id,
+                "name": str(element.Name or identifier),
+                "source_file": relative_to_root(path),
+                "geometry_provenance": "architect_ifc",
+            }
+            if geometry:
+                record.update(geometry)
+            model["entities"]["equipment"].append(record)
     entity_count = sum(len(value) for value in model["entities"].values())
     issues: list[dict[str, Any]] = []
     if not model["entities"]["spaces"]:
@@ -532,6 +1015,8 @@ def import_revision(
         sources.append(record)
         parser_results["ifc"] = result
         issues.extend(found)
+    issues.extend(_mapping_context(mapping, model))
+    issues.extend(_apply_ifc_entity_mapping(mapping, model))
     if dxf:
         path = _copy_source(dxf, source_dir)
         record = _source_record(path, "dxf")
@@ -544,17 +1029,19 @@ def import_revision(
     model["provenance"] = [{"source": item["file"], "sha256": item["sha256"]} for item in sources]
     model["import_issues"] = issues
     normalized_count = sum(
-        len(model["entities"][key]) for key in ("buildings", "storeys", "spaces", "doors", "windows", "equipment")
+        len(model["entities"][key])
+        for key in ("buildings", "storeys", "spaces", "walls", "doors", "windows", "stairs", "equipment")
     )
+    normalized_space_count = len(model["entities"]["spaces"])
     blocking = [item for item in issues if item.get("severity") == "blocking"]
     machine_source = bool(ifc or dxf)
-    status = "ready" if machine_source and normalized_count and not blocking else "needs_mapping"
-    if machine_source and normalized_count and blocking:
+    status = "ready" if machine_source and normalized_space_count and not blocking else "needs_mapping"
+    if machine_source and normalized_space_count and blocking:
         status = "partial"
     model_path = target / "normalized_model.json"
     write_json(model_path, model)
     manifest = {
-        "schema": "house-drawing-revision-v1",
+        "schema": "house-drawing-revision-v2",
         "revision_id": revision_id,
         "label": label,
         "received_at": utc_now(),
@@ -563,10 +1050,12 @@ def import_revision(
         "sources": sources,
         "mapping": mapping_record,
         "normalized_model": relative_to_root(model_path),
+        "normalized_model_sha256": sha256_file(model_path),
         "normalized_entity_count": normalized_count,
+        "normalized_space_count": normalized_space_count,
         "issues": issues,
-        "content_hash": stable_hash({"sources": sources, "mapping": mapping, "mapping_record": mapping_record}),
     }
+    manifest["content_hash"] = revision_manifest_content_hash(manifest)
     write_json(manifest_path, manifest)
     return manifest
 
@@ -584,7 +1073,8 @@ def seed_legacy_parametric_revision(
     manifest_path = target / "manifest.json"
     if manifest_path.exists():
         raise ContractError(f"revision already exists: {manifest_path}")
-    plan = read_json(plan_path)
+    immutable_plan = _copy_source(plan_path, target / "source")
+    plan = read_json(immutable_plan)
     variant = next((item for item in plan.get("variants", []) if item.get("id") == variant_id), None)
     if variant is None:
         raise ContractError(f"legacy variant not found: {variant_id}")
@@ -648,7 +1138,7 @@ def seed_legacy_parametric_revision(
     model["provenance"] = [
         {
             "source": relative_to_root(plan_path),
-            "sha256": sha256_file(plan_path),
+            "sha256": sha256_file(immutable_plan),
             "authority": "legacy_assumption",
             "warning": "32 坪在此模型中是每層建築面積，不是現行每筆基地 32 坪條件。",
         }
@@ -663,7 +1153,7 @@ def seed_legacy_parametric_revision(
     model_path = target / "normalized_model.json"
     write_json(model_path, model)
     manifest = {
-        "schema": "house-drawing-revision-v1",
+        "schema": "house-drawing-revision-v2",
         "revision_id": revision_id,
         "label": "舊版概念配置（32坪建築面積假設）",
         "received_at": utc_now(),
@@ -672,27 +1162,156 @@ def seed_legacy_parametric_revision(
         "sources": [
             {
                 "kind": "legacy_parametric_json",
-                "file": relative_to_root(plan_path),
-                "sha256": sha256_file(plan_path),
+                "file": relative_to_root(immutable_plan),
+                "sha256": sha256_file(immutable_plan),
                 "variant_id": variant_id,
             }
         ],
         "normalized_model": relative_to_root(model_path),
+        "normalized_model_sha256": sha256_file(model_path),
         "normalized_entity_count": sum(len(values) for values in model["entities"].values()),
+        "normalized_space_count": len(model["entities"]["spaces"]),
         "issues": model["import_issues"],
-        "content_hash": stable_hash({"plan": sha256_file(plan_path), "variant": variant_id}),
     }
+    manifest["content_hash"] = revision_manifest_content_hash(manifest)
     write_json(manifest_path, manifest)
     return manifest
 
 
-def load_revision(revision_id: str, root: Path = REVISION_ROOT) -> tuple[dict[str, Any], dict[str, Any]]:
+def _reference_path(reference: Any) -> Path | None:
+    if not isinstance(reference, str) or not reference.strip():
+        return None
+    path = Path(reference)
+    return path if path.is_absolute() else ROOT / path
+
+
+def verify_revision_integrity(revision_id: str, root: Path = REVISION_ROOT) -> dict[str, Any]:
+    """Verify that an immutable revision still matches every stored digest."""
+
     directory = revision_dir(revision_id, root)
     manifest = read_json(directory / "manifest.json")
-    model_reference = manifest.get("normalized_model")
-    if not model_reference:
+    checks: list[dict[str, Any]] = []
+
+    def check(name: str, valid: bool, message: str, **details: Any) -> None:
+        item: dict[str, Any] = {"name": name, "valid": valid, "message": message}
+        if details:
+            item["details"] = details
+        checks.append(item)
+
+    manifest_revision = manifest.get("revision_id")
+    check(
+        "manifest_revision_id",
+        manifest_revision == revision_id,
+        "manifest revision_id matches the requested immutable directory"
+        if manifest_revision == revision_id
+        else f"manifest revision_id is {manifest_revision!r}; expected {revision_id!r}",
+    )
+
+    sources = manifest.get("sources")
+    if not isinstance(sources, list):
+        check("sources", False, "manifest sources must be an array")
+    else:
+        for index, source in enumerate(sources):
+            if not isinstance(source, dict):
+                check(f"source[{index}]", False, "source record must be an object")
+                continue
+            path = _reference_path(source.get("file"))
+            expected = source.get("sha256")
+            exists = path is not None and path.is_file()
+            actual = sha256_file(path) if exists and path is not None else None
+            valid = bool(exists and isinstance(expected, str) and expected == actual)
+            check(
+                f"source[{index}]",
+                valid,
+                "source digest matches" if valid else "source file is missing or its SHA-256 does not match",
+                file=source.get("file"),
+                expected_sha256=expected,
+                actual_sha256=actual,
+            )
+
+    mapping = manifest.get("mapping")
+    if mapping is not None:
+        if not isinstance(mapping, dict):
+            check("mapping", False, "mapping record must be an object or null")
+        else:
+            path = _reference_path(mapping.get("file"))
+            expected = mapping.get("sha256")
+            exists = path is not None and path.is_file()
+            actual = sha256_file(path) if exists and path is not None else None
+            valid = bool(exists and isinstance(expected, str) and expected == actual)
+            check(
+                "mapping",
+                valid,
+                "mapping digest matches" if valid else "mapping file is missing or its SHA-256 does not match",
+                file=mapping.get("file"),
+                expected_sha256=expected,
+                actual_sha256=actual,
+            )
+
+    model_path = _reference_path(manifest.get("normalized_model"))
+    expected_model_hash = manifest.get("normalized_model_sha256")
+    model_exists = model_path is not None and model_path.is_file()
+    actual_model_hash = sha256_file(model_path) if model_exists and model_path is not None else None
+    model_hash_valid = bool(
+        model_exists and isinstance(expected_model_hash, str) and expected_model_hash == actual_model_hash
+    )
+    check(
+        "normalized_model_sha256",
+        model_hash_valid,
+        "normalized model digest matches"
+        if model_hash_valid
+        else "normalized model is missing, unsealed or its SHA-256 does not match",
+        file=manifest.get("normalized_model"),
+        expected_sha256=expected_model_hash,
+        actual_sha256=actual_model_hash,
+    )
+    if model_exists and model_path is not None:
+        try:
+            model = read_json(model_path)
+            model_revision = model.get("revision_id")
+            check(
+                "model_revision_id",
+                model_revision == revision_id,
+                "normalized model revision_id matches"
+                if model_revision == revision_id
+                else f"normalized model revision_id is {model_revision!r}; expected {revision_id!r}",
+            )
+        except ContractError as exc:
+            check("model_revision_id", False, str(exc))
+    else:
+        check("model_revision_id", False, "normalized model is unavailable")
+
+    expected_content_hash = manifest.get("content_hash")
+    actual_content_hash = revision_manifest_content_hash(manifest)
+    content_hash_valid = isinstance(expected_content_hash, str) and expected_content_hash == actual_content_hash
+    check(
+        "content_hash",
+        content_hash_valid,
+        "manifest seal matches" if content_hash_valid else "manifest content hash is missing or does not match",
+        expected_sha256=expected_content_hash,
+        actual_sha256=actual_content_hash,
+    )
+    errors = [item for item in checks if not item["valid"]]
+    return {
+        "schema": "house-revision-integrity-v1",
+        "revision_id": revision_id,
+        "checked_at": utc_now(),
+        "valid": not errors,
+        "checks": checks,
+        "errors": errors,
+    }
+
+
+def load_revision(revision_id: str, root: Path = REVISION_ROOT) -> tuple[dict[str, Any], dict[str, Any]]:
+    integrity = verify_revision_integrity(revision_id, root)
+    if not integrity["valid"]:
+        names = ", ".join(str(item["name"]) for item in integrity["errors"])
+        raise ContractError(f"revision {revision_id} failed immutable integrity verification: {names}")
+    directory = revision_dir(revision_id, root)
+    manifest = read_json(directory / "manifest.json")
+    model_path = _reference_path(manifest.get("normalized_model"))
+    if model_path is None:
         raise ContractError(f"revision {revision_id} has no normalized model")
-    model_path = ROOT / model_reference if not Path(str(model_reference)).is_absolute() else Path(str(model_reference))
     return manifest, read_json(model_path)
 
 
@@ -705,11 +1324,28 @@ def _valid_bbox(value: Any) -> bool:
     return x1 > x0 and y1 > y0
 
 
+def _valid_polygon(value: Any) -> bool:
+    if not isinstance(value, list) or len(value) < 3:
+        return False
+    points: list[list[float]] = []
+    for point in value:
+        if (
+            not isinstance(point, (list, tuple))
+            or len(point) < 2
+            or not all(isinstance(item, (int, float)) and not isinstance(item, bool) for item in point[:2])
+        ):
+            return False
+        points.append([float(point[0]), float(point[1])])
+    return _polygon_area_sqm(points) > 0
+
+
 def _has_spatial_location(entity: dict[str, Any]) -> bool:
     return bool(entity.get("building_id") and entity.get("floor_id"))
 
 
-def assess_model3d_readiness(manifest: dict[str, Any], model: dict[str, Any]) -> dict[str, Any]:
+def assess_model3d_readiness(
+    manifest: dict[str, Any], model: dict[str, Any], level: str = "space_block"
+) -> dict[str, Any]:
     """Assess whether a drawing revision has enough authoritative geometry for a current 3D model.
 
     This gate deliberately does not treat the historical parametric model as evidence. A renderable
@@ -718,9 +1354,16 @@ def assess_model3d_readiness(manifest: dict[str, Any], model: dict[str, Any]) ->
     coordinate system must be explicitly verified before the revision is eligible for 3D generation.
     """
 
+    if level not in {"space_block", "walkthrough"}:
+        raise ContractError("model3d readiness level must be space_block or walkthrough")
     entities = model.get("entities") if isinstance(model.get("entities"), dict) else {}
     spaces = entities.get("spaces") if isinstance(entities.get("spaces"), list) else []
     storeys = entities.get("storeys") if isinstance(entities.get("storeys"), list) else []
+    walls = entities.get("walls") if isinstance(entities.get("walls"), list) else []
+    doors = entities.get("doors") if isinstance(entities.get("doors"), list) else []
+    windows = entities.get("windows") if isinstance(entities.get("windows"), list) else []
+    stairs = entities.get("stairs") if isinstance(entities.get("stairs"), list) else []
+    equipment = entities.get("equipment") if isinstance(entities.get("equipment"), list) else []
     sources = manifest.get("sources") if isinstance(manifest.get("sources"), list) else []
     source_kinds = sorted(
         {
@@ -874,14 +1517,136 @@ def assess_model3d_readiness(manifest: dict[str, Any], model: dict[str, Any]) ->
                 for building, floor in missing_elevation_locations
             ],
         )
-    if coordinate_status not in VERIFIED_COORDINATE_STATUSES:
+    coordinate_evidence_valid = (
+        coordinate_status in VERIFIED_COORDINATE_STATUSES
+        and bool(coordinate_system.get("axis"))
+        and _verification_value(coordinate_system.get("verified_by"))
+        and _verification_value(coordinate_system.get("verified_at"))
+        and _verification_value(coordinate_system.get("method"))
+        and isinstance(coordinate_system.get("reference_points"), list)
+        and len(coordinate_system["reference_points"]) >= 2
+    )
+    if not coordinate_evidence_valid:
         block(
             "COORDINATE_SYSTEM_UNVERIFIED",
-            f"座標系統狀態是 {coordinate_status}，尚未證明不同來源已正確對齊。",
-            "確認 IFC／DXF 的原點、軸向、單位與樓層基準，並將 coordinate_system.status 標記為 verified。",
+            f"座標系統狀態是 {coordinate_status}，或缺少人員、日期、方法與至少兩個基準點證據。",
+            "確認 IFC／DXF 的原點、軸向、單位與樓層基準，並記錄 verified_by、verified_at、method 及 reference_points。",
             coordinate_status=coordinate_status,
         )
 
+    space_blockers = list(blockers)
+    walkthrough_extra: list[dict[str, Any]] = []
+
+    def walk_block(code: str, message: str, next_action: str, **details: Any) -> None:
+        item: dict[str, Any] = {"code": code, "message": message, "next_action": next_action}
+        if details:
+            item["details"] = details
+        walkthrough_extra.append(item)
+
+    exact_geometry_methods = {"closed_dxf_polyline", "professional_verified_polygon", "surveyed_polygon"}
+    exact_spaces = [
+        space
+        for space in spaces
+        if isinstance(space, dict)
+        and _valid_polygon(space.get("polygon_mm"))
+        and space.get("geometry_method") in exact_geometry_methods
+    ]
+    if len(exact_spaces) != len(spaces):
+        walk_block(
+            "EXACT_SPACE_POLYGON_MISSING",
+            f"{len(spaces) - len(exact_spaces)} 個空間只有 bbox 或近似 hull，不能宣稱可走入的精確邊界。",
+            "由建築師提供閉合 DXF 空間 polyline，或經專業確認的精確 polygon。",
+        )
+    located_wall_keys = {
+        (str(item.get("building_id")), str(item.get("floor_id")))
+        for item in walls
+        if isinstance(item, dict) and _has_spatial_location(item) and _valid_bbox(item.get("bbox_mm"))
+    }
+    missing_wall_locations = sorted(located_space_keys - located_wall_keys)
+    if missing_wall_locations:
+        walk_block(
+            "WALL_GEOMETRY_MISSING",
+            f"{len(missing_wall_locations)} 個使用中的棟層沒有可追溯牆體幾何。",
+            "在 IFC 提供 IfcWall，或以 DXF entity/layer mapping 標記 wall。",
+            locations=[{"building_id": item[0], "floor_id": item[1]} for item in missing_wall_locations],
+        )
+    height_by_location = {
+        (str(item.get("building_id")), str(item.get("floor_id"))): item.get("height_mm")
+        for item in storeys
+        if isinstance(item, dict)
+    }
+    spaces_without_height = [
+        item
+        for item in spaces
+        if isinstance(item, dict)
+        and not (
+            isinstance(item.get("height_mm"), (int, float))
+            or isinstance(height_by_location.get((str(item.get("building_id")), str(item.get("floor_id")))), (int, float))
+        )
+    ]
+    if spaces_without_height:
+        walk_block(
+            "SPACE_HEIGHT_MISSING",
+            f"{len(spaces_without_height)} 個空間缺少經確認的樓層或空間高度。",
+            "在 storeys.height_mm 或 space.height_mm 記錄設計方確認的高度。",
+        )
+    incomplete_openings = [
+        item
+        for item in [*doors, *windows]
+        if not isinstance(item, dict)
+        or not _valid_bbox(item.get("bbox_mm"))
+        or not isinstance(item.get("height_mm"), (int, float))
+    ]
+    if not doors and not windows:
+        walk_block(
+            "OPENING_GEOMETRY_MISSING",
+            "模型沒有任何門窗開口；走入式模型不能驗證動線、採光或碰撞。",
+            "提供帶位置、寬度與高度的門窗 IFC／DXF 幾何。",
+        )
+    elif incomplete_openings:
+        walk_block(
+            "OPENING_GEOMETRY_INCOMPLETE",
+            f"{len(incomplete_openings)} 個門窗缺少位置或高度。",
+            "補齊每個門窗的 bbox/polygon 與 height_mm；完成面淨寬仍須獨立證據。",
+        )
+    storeys_by_building: dict[str, set[str]] = {}
+    for item in storeys:
+        if isinstance(item, dict) and item.get("building_id") and item.get("floor_id"):
+            storeys_by_building.setdefault(str(item["building_id"]), set()).add(str(item["floor_id"]))
+    multistorey_buildings = {building for building, values in storeys_by_building.items() if len(values) > 1}
+    stair_buildings = {
+        str(item.get("building_id"))
+        for item in stairs
+        if isinstance(item, dict) and item.get("building_id") and _valid_bbox(item.get("bbox_mm"))
+    }
+    if multistorey_buildings - stair_buildings:
+        walk_block(
+            "STAIR_GEOMETRY_MISSING",
+            "多樓層棟別缺少可追溯的樓梯幾何。",
+            "在 IFC 提供 IfcStair，或以 DXF mapping 明確標示各層樓梯範圍與連接。",
+            buildings=sorted(multistorey_buildings - stair_buildings),
+        )
+    scope = model.get("walkthrough_scope") if isinstance(model.get("walkthrough_scope"), dict) else {}
+    equipment_scope = scope.get("equipment") if isinstance(scope.get("equipment"), dict) else {}
+    equipment_declared = equipment_scope.get("status") in {"verified_complete", "verified_not_applicable"}
+    equipment_evidence = (
+        equipment_declared
+        and _verification_value(equipment_scope.get("verified_by"))
+        and _verification_value(equipment_scope.get("verified_at"))
+        and bool(equipment_scope.get("evidence"))
+    )
+    incomplete_equipment = [
+        item for item in equipment if not isinstance(item, dict) or not _valid_bbox(item.get("bbox_mm"))
+    ]
+    if not equipment_evidence or incomplete_equipment:
+        walk_block(
+            "EQUIPMENT_SCOPE_UNVERIFIED",
+            "固定設備範圍尚未以清單或不適用聲明完成查核。",
+            "提供設備位置幾何，並在 walkthrough_scope.equipment 留下查核人、日期與證據。",
+            incomplete_equipment=len(incomplete_equipment),
+        )
+
+    walkthrough_blockers = [*space_blockers, *walkthrough_extra]
     counts = {
         "total_spaces": len(spaces),
         "spaces_with_geometry": len(spaces_with_geometry),
@@ -891,25 +1656,48 @@ def assess_model3d_readiness(manifest: dict[str, Any], model: dict[str, Any]) ->
         "authoritative_renderable_spaces": len(authoritative_renderable_spaces),
         "total_storeys": len(storeys),
         "elevated_storeys": len(elevated_storeys),
+        "exact_polygon_spaces": len(exact_spaces),
+        "walls": len(walls),
+        "openings": len(doors) + len(windows),
+        "stairs": len(stairs),
+        "equipment": len(equipment),
     }
-    eligible = not blockers
+    selected_blockers = space_blockers if level == "space_block" else walkthrough_blockers
+    eligible = not selected_blockers
     return {
-        "schema": "house-model3d-readiness-v1",
+        "schema": "house-model3d-readiness-v2",
         "revision_id": manifest.get("revision_id") or model.get("revision_id"),
+        "level": level,
         "status": "ready" if eligible else "blocked",
         "eligible": eligible,
-        "policy": "只有現行 ready 版次的全部空間具備權威幾何、棟層位置、樓層標高及已驗證座標時，才可產生現行 3D。",
+        "policy": (
+            "space_block 只代表可追溯空間量體；walkthrough 還必須具備精確 polygon、牆、門窗高度、樓梯與設備證據。"
+        ),
+        "levels": {
+            "space_block": {
+                "status": "ready" if not space_blockers else "blocked",
+                "eligible": not space_blockers,
+                "blockers": space_blockers,
+            },
+            "walkthrough": {
+                "status": "ready" if not walkthrough_blockers else "blocked",
+                "eligible": not walkthrough_blockers,
+                "blockers": walkthrough_blockers,
+            },
+        },
         "source_kinds": source_kinds,
         "coordinate_system": coordinate_system,
         "counts": counts,
-        "blockers": blockers,
-        "next_actions": [item["next_action"] for item in blockers],
+        "blockers": selected_blockers,
+        "next_actions": [item["next_action"] for item in selected_blockers],
     }
 
 
-def revision_model3d_readiness(revision_id: str, root: Path = REVISION_ROOT) -> dict[str, Any]:
+def revision_model3d_readiness(
+    revision_id: str, root: Path = REVISION_ROOT, level: str = "space_block"
+) -> dict[str, Any]:
     manifest, model = load_revision(revision_id, root)
-    return assess_model3d_readiness(manifest, model)
+    return assess_model3d_readiness(manifest, model, level)
 
 
 def list_revisions(root: Path = REVISION_ROOT) -> list[dict[str, Any]]:

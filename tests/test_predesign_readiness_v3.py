@@ -32,6 +32,18 @@ def test_repository_predesign_is_valid_and_blocks_next_phase() -> None:
     }
 
 
+def test_in_progress_household_interview_surfaces_progress_without_passing_gate() -> None:
+    report = build_predesign_report(private_budget_path=None)
+    finding = next(item for item in report["findings"] if item["rule_id"] == "PD-OWNER-HOUSEHOLD-PROFILE")
+
+    assert finding["status"] == "unknown"
+    assert finding["severity"] == "blocking"
+    assert "已私下記錄" in finding["message"]
+    assert "must／should／could" in finding["message"]
+    assert report["readiness"]["percent"] == 30
+    assert report["gate"]["active_blockers"] == 5
+
+
 def test_future_phase_items_are_planned_warnings_not_active_blockers() -> None:
     report = build_predesign_report(private_budget_path=None)
     future = [item for item in report["findings"] if not item["gate_active"]]
@@ -39,6 +51,12 @@ def test_future_phase_items_are_planned_warnings_not_active_blockers() -> None:
     assert future
     assert {item["status"] for item in future} == {"warning"}
     assert all(item["severity"] == "planned" for item in future)
+    assert {
+        "PD-DESIGN-STRUCTURE-HAZARDS",
+        "PD-DESIGN-LIFE-SAFETY-SHRINE",
+        "PD-DESIGN-VERTICAL-MOBILITY",
+        "PD-DESIGN-HEALTHY-DURABLE-MATERIALS",
+    } <= {item["rule_id"] for item in future}
 
 
 def test_due_non_blocking_items_remain_warnings() -> None:

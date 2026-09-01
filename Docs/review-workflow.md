@@ -33,6 +33,14 @@ python3 -m house_design intake validate
 
 每項再設定 `must`、`should` 或 `could`。`must` 不符合會是失敗；`should`／`could` 會保留為警告或取捨。
 
+用指令追加不可改寫的決策鏈，不要手動刪除歷史：
+
+```bash
+python3 -m house_design intake requirements-decide \
+  --id A.floor-1.elder --status confirmed --priority must \
+  --reason "一樓完整照護生活" --decided-by "屋主家庭會議"
+```
+
 ## 4. 匯入不可變圖面版次
 
 推薦 PDF＋IFC：
@@ -47,7 +55,23 @@ DXF 需要 mapping JSON：
 
 ```json
 {
+  "schema": "house-drawing-mapping-v2",
   "dxf_unit_scale_to_mm": 1.0,
+  "coordinate_system": {
+    "status": "verified",
+    "axis": {"x": "drawing-east", "y": "drawing-north", "z": "up"},
+    "verified_by": "王建築師", "verified_at": "2026-08-31",
+    "method": "共同控制點核對",
+    "reference_points": [
+      {"id": "P1", "source_mm": [0, 0], "project_mm": [0, 0]},
+      {"id": "P2", "source_mm": [6000, 0], "project_mm": [6000, 0]}
+    ]
+  },
+  "storeys": [{
+    "building_id": "A", "floor_id": "floor-1", "elevation_mm": 0,
+    "verified_by": "王建築師", "verified_at": "2026-08-31",
+    "evidence": {"type": "drawing_level_note", "reference": "A-101 / EL±0"}
+  }],
   "layers": {
     "A-1F-ROOM-ELDER": {
       "kind": "space",
@@ -60,7 +84,12 @@ DXF 需要 mapping JSON：
       "kind": "door",
       "building_id": "A",
       "floor_id": "floor-1",
-      "name": "孝親房門"
+      "name": "孝親房門",
+      "opening_width": {
+        "value_mm": 900, "measurement": "finished_clear",
+        "verified_by": "王建築師", "verified_at": "2026-08-31",
+        "evidence": {"type": "door_schedule", "reference": "D01"}
+      }
     }
   }
 }
@@ -72,7 +101,7 @@ python3 -m house_design drawings import \
   --pdf drawings/R001.pdf --dxf drawings/R001.dxf --mapping drawings/R001.mapping.json
 ```
 
-版次一旦建立就不能覆寫；設計方更新圖面時使用 R002、R003 等新 id。PDF／IFC／DXF 與 mapping 都會複製進版次目錄並記錄 SHA-256，原始 mapping 之後被改動也不會改寫既有版次。
+版次一旦建立就不能覆寫；設計方更新圖面時使用 R002、R003 等新 id。PDF／IFC／DXF、mapping、normalized model 與 manifest seal 都會驗證。先執行 `python3 -m house_design drawings verify --revision R001`；compare、review 與 3D 也會自動先驗證。
 
 IFC 的棟名必須有獨立的 A／B／C 標記（例如 `A棟` 或 `Building A`），樓層名建議使用 `1F`、`2F`、`3F`、`RF`。系統會保留 IFC `OverallWidth`，但它是名目寬度，不會直接當成完工後門淨寬；沒有門窗表、可信 property 或明確 DXF 開口證據時，門淨寬必須維持 `unknown`。
 
@@ -81,10 +110,16 @@ IFC 的棟名必須有獨立的 A／B／C 標記（例如 `A棟` 或 `Building A
 先確認這一版能否作為現行 3D 的輸入：
 
 ```bash
-python3 -m house_design drawings model3d-readiness --revision R001
+python3 -m house_design drawings model3d-readiness --revision R001 --level space_block
 ```
 
-若回傳 `blocked`／exit code 1，依 `blockers[].next_action` 補齊權威空間幾何、棟層位置、樓層標高與座標對齊，並以新 revision id 重新匯入。歷史 walkthrough 不會被當成現行版次的替代品。
+若回傳 `blocked`／exit code 1，依 `blockers[].next_action` 補齊權威空間幾何、棟層位置、樓層標高與座標證據，並以新 revision id 重新匯入。`--level walkthrough` 還要求精確空間 polygon、牆、門窗高度、樓梯與設備；歷史 walkthrough 不會被當成現行版次的替代品。
+
+通過後產生清楚標示用途界線的現行空間量體：
+
+```bash
+python3 -m house_design drawings export-model3d --revision R001
+```
 
 ```bash
 python3 -m house_design review run --revision R001 --previous R000

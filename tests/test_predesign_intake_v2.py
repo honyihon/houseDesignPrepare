@@ -4,8 +4,12 @@ import json
 from copy import deepcopy
 from pathlib import Path
 
+import pytest
+
+from house_design.contracts import ContractError, write_json
 from house_design.intake import (
     actual_parcels,
+    decide_requirement,
     migrate_legacy_briefs,
     project_readiness,
     validate_project,
@@ -93,3 +97,95 @@ def test_repository_requirement_register_contains_only_unconfirmed_legacy_ideas(
     assert validate_requirements(payload) == []
     assert len(payload["requirements"]) == 64
     assert {item["status"] for item in payload["requirements"]} == {"candidate"}
+
+
+def test_requirement_decisions_append_a_hash_chained_log_atomically(tmp_path: Path) -> None:
+    path = tmp_path / "requirements.json"
+    payload = {
+        "schema": "house-requirements-v2",
+        "requirements": [
+            {
+                "id": "A.floor-1.elder",
+                "title": "孝親房",
+                "status": "candidate",
+                "priority": "should",
+                "source": {"type": "owner_interview", "path": "notes"},
+                "decision_log": [],
+            }
+        ],
+    }
+    write_json(path, payload)
+
+    first = decide_requirement(
+        requirement_id="A.floor-1.elder",
+        status="confirmed",
+        priority="must",
+        reason="一樓完整照護生活",
+        decided_by="屋主家庭會議",
+        decided_at="2026-08-31",
+        requirements_path=path,
+    )
+    second = decide_requirement(
+        requirement_id="A.floor-1.elder",
+        status="confirmed",
+        priority="should",
+        reason="預算會議後保留，但可調整面積",
+        decided_by="屋主家庭會議",
+        decided_at="2026-09-01",
+        requirements_path=path,
+    )
+    stored = json.loads(path.read_text(encoding="utf-8"))
+    requirement = stored["requirements"][0]
+
+    assert first["decision_sequence"] == 1
+    assert second["decision_sequence"] == 2
+    assert requirement["status"] == "confirmed"
+    assert requirement["priority"] == "should"
+    assert requirement["decision_log"][1]["previous_entry_hash"] == requirement["decision_log"][0]["entry_hash"]
+    assert validate_requirements(stored) == []
+
+
+def test_requirement_decision_rejects_a_tampered_log(tmp_path: Path) -> None:
+    path = tmp_path / "requirements.json"
+    payload = {
+        "schema": "house-requirements-v2",
+        "requirements": [
+            {
+                "id": "A.floor-1.elder",
+                "title": "孝親房",
+                "status": "candidate",
+                "priority": "should",
+                "source": {"type": "owner_interview", "path": "notes"},
+                "decision_log": [
+                    {
+                        "status": "confirmed",
+                        "priority": "must",
+                        "reason": "tampered",
+                        "decided_by": "owner",
+                        "decided_at": "2026-08-31",
+                        "previous_entry_hash": None,
+                        "entry_hash": "wrong",
+                    }
+                ],
+            }
+        ],
+    }
+    write_json(path, payload)
+
+    with pytest.raises(ContractError, match="invalid requirement register"):
+        decide_requirement(
+            requirement_id="A.floor-1.elder",
+            status="rejected",
+            priority="could",
+            reason="不再需要",
+            decided_by="owner",
+            requirements_path=path,
+        )
+
+
+def test_household_profile_template_keeps_sensitive_completion_private() -> None:
+    template = json.loads((ROOT / "inputs/household-profile.template.json").read_text(encoding="utf-8"))
+
+    assert template["schema"] == "house-household-profile-v1"
+    assert template["household"]["future_change_scenarios"]
+    assert "inputs/private/" in template["privacy_note"]

@@ -401,6 +401,54 @@
       "next_action": "用實際物品與家具盤點收納；垃圾、洗衣、曬衣、清潔與補貨不可穿越臥室。"
     },
     {
+      "rule_id": "PD-DESIGN-STRUCTURE-HAZARDS",
+      "phase": "design",
+      "domain": "structural",
+      "title": "三棟整體結構、耐震、強風與地工協調",
+      "blocking": true,
+      "source_tier": "professional",
+      "source_ids": ["SRC-NLMA-BUILDING-RULES", "SRC-CGS-LIQUEFACTION", "SRC-PROJECT-ABC-CHECKLIST"],
+      "responsible_role": "建築師／結構技師／大地技師",
+      "incomplete_message": "梁柱、基礎、耐震路徑、颱風風壓、屋頂設備、挑空與跨基地介面尚未以整棟模型協調。",
+      "next_action": "在格局凍結前完成各棟結構系統與地質條件的書面設計基準，疊合梁柱、開口、設備荷重及套管，保留計算與簽證責任。"
+    },
+    {
+      "rule_id": "PD-DESIGN-LIFE-SAFETY-SHRINE",
+      "phase": "design",
+      "domain": "fire",
+      "title": "避難、樓梯、火災偵測與祭祀用火安全",
+      "blocking": true,
+      "source_tier": "professional",
+      "source_ids": ["SRC-NLMA-BUILDING-RULES", "SRC-PROJECT-ABC-CHECKLIST"],
+      "responsible_role": "建築師／消防設備專業人員／機電／屋主",
+      "incomplete_message": "各層逃生路徑、樓梯尺度與扶手、夜間警報、停電照明，以及 B 棟香火的排煙、補氣、防火分隔與滅火措施尚未整合。",
+      "next_action": "以家具完成圖逐層走查兩方向避難與救援，建立互聯式偵煙／警報、緊急照明及神明廳明火、香灰、排風和可燃物管理方案。"
+    },
+    {
+      "rule_id": "PD-DESIGN-VERTICAL-MOBILITY",
+      "phase": "design",
+      "domain": "accessibility",
+      "title": "一樓完整生活與未來垂直移動策略",
+      "blocking": true,
+      "source_tier": "professional",
+      "source_ids": ["SRC-NLMA-ACCESSIBILITY", "SRC-PROJECT-ABC-CHECKLIST"],
+      "responsible_role": "屋主／建築師／結構技師／無障礙顧問",
+      "incomplete_message": "若長輩或家人暫時不能爬樓梯，目前沒有證明 1F 可完整生活，也沒有確認電梯、預留井或樓梯升降椅的結構與電力路徑。",
+      "next_action": "先證明至少一處 1F 睡眠、如廁、沐浴、用餐與出入口可連續使用，再比較現在設電梯、預留井道／基礎電力或樓梯升降椅的全生命週期方案。"
+    },
+    {
+      "rule_id": "PD-DESIGN-HEALTHY-DURABLE-MATERIALS",
+      "phase": "design",
+      "domain": "health_durability",
+      "title": "低逸散材料、室內空氣、濕黴蟲害與沿海腐蝕",
+      "blocking": true,
+      "source_tier": "professional",
+      "source_ids": ["SRC-NLMA-BUILDING-RULES", "SRC-PROJECT-ABC-CHECKLIST"],
+      "responsible_role": "建築師／室內設計／空調顧問／材料供應商",
+      "incomplete_message": "低逸散材料、施工後換氣、結露與黴菌控制、防蟲封堵，以及可能鹽害環境下金屬與室外設備耐蝕等級尚未形成規格。",
+      "next_action": "依實際基地暴露條件建立材料與 IAQ 規格，畫出防潮排水、可清潔節點與蟲害封堵，要求產品文件、施工養護及入住前通風／檢測證據。"
+    },
+    {
       "rule_id": "PD-TENDER-COMPLETE-DOCUMENTS",
       "phase": "tender",
       "domain": "procurement",

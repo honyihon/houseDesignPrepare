@@ -393,7 +393,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>三棟量體 3D 檢視器</title>
+<title>原設計 HTML · 三棟 3D 對照</title>
 <style>
   :root {
     --bg0: #0b1020; --bg1: #101c2f; --card: #131f36; --line: #2a3b5a;
@@ -406,7 +406,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     font-family: "Segoe UI", "Microsoft JhengHei", sans-serif;
     background: linear-gradient(145deg, var(--bg0), var(--bg1));
   }
-  #app { display: grid; grid-template-columns: 330px minmax(0, 1fr); height: 100vh; }
+  #app { display: grid; grid-template-columns: 360px minmax(0, 1fr); height: 100vh; }
   #panel { overflow-y: auto; padding: 16px; border-right: 1px solid var(--line); background: rgba(9, 14, 26, 0.72); }
   #panel h1 { font-size: 18px; margin: 0 0 2px; }
   #panel h2 { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 18px 0 8px; }
@@ -423,9 +423,28 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     font-family: inherit;
   }
   .seg button.on { color: #08131f; background: var(--accent); border-color: var(--accent); font-weight: 700; }
-  .seg button:focus-visible, #panel input:focus-visible, .grp-toggle:focus-visible {
+  .seg button:focus-visible, #panel input:focus-visible, .grp-toggle:focus-visible,
+  .scope-button:focus-visible, .room-button:focus-visible, #mobile-panel-toggle:focus-visible {
     outline: 3px solid var(--accent); outline-offset: 2px;
   }
+  .scope-buttons { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+  .scope-button, .room-button {
+    min-height: 36px; padding: 6px 7px; cursor: pointer; color: var(--muted);
+    background: var(--card); border: 1px solid var(--line); border-radius: 7px;
+    font: 600 12px/1.25 inherit;
+  }
+  .scope-button.on, .room-button.on {
+    color: #08131f; background: var(--accent); border-color: var(--accent);
+  }
+  .room-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+  .room-button { min-height: 42px; text-align: left; overflow-wrap: anywhere; }
+  .model-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .model-links a, #info .info-link {
+    display: inline-flex; align-items: center; min-height: 34px; padding: 5px 10px;
+    border: 1px solid var(--accent); border-radius: 999px; color: var(--accent);
+    font-size: 11px; font-weight: 700; text-decoration: none;
+  }
+  #info .info-actions { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 10px; }
   #legend { display: flex; flex-wrap: wrap; gap: 5px 10px; margin-top: 10px; font-size: 11px; color: var(--muted); }
   #legend span { display: inline-flex; align-items: center; gap: 5px; }
   #legend i { width: 11px; height: 11px; border-radius: 3px; border: 1px solid rgba(255,255,255,.28); }
@@ -473,23 +492,51 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     display: grid; place-items: center; font-size: 11px; text-align: center; line-height: 1.25;
   }
   #compass b { color: var(--text); font-size: 13px; }
+  #orientation {
+    position: absolute; left: 14px; bottom: 12px; max-width: min(420px, calc(100% - 28px));
+    padding: 7px 10px; border: 1px solid var(--line); border-radius: 8px;
+    background: rgba(9, 14, 26, .78); color: var(--text); font-size: 11px; line-height: 1.45;
+  }
+  #mobile-panel-toggle { display: none; }
   @media (max-width: 860px) {
     #app { grid-template-columns: 1fr; grid-template-rows: minmax(0, 44vh) minmax(0, 1fr); }
-    #panel { border-right: 0; border-bottom: 1px solid var(--line); }
+    #panel { border-right: 0; border-bottom: 1px solid var(--line); padding: 10px 14px 14px; }
+    #mobile-panel-toggle {
+      display: block; position: sticky; top: 0; z-index: 5; width: 100%; min-height: 42px;
+      margin-bottom: 9px; border: 1px solid var(--line); border-radius: 8px;
+      color: var(--text); background: #16233a; font: 600 13px/1 inherit; cursor: pointer;
+    }
+    #app.panel-collapsed { grid-template-rows: 54px minmax(0, 1fr); }
+    #app.panel-collapsed #panel { overflow: hidden; padding-block: 6px; }
+    #app.panel-collapsed #panel > :not(#mobile-panel-toggle) { display: none !important; }
+    #orientation { bottom: 8px; }
   }
 </style>
 </head>
 <body>
 <div id="app">
   <aside id="panel">
-    <h1>三棟量體 3D 檢視器</h1>
+    <button id="mobile-panel-toggle" type="button" aria-controls="panel" aria-expanded="true">收合控制，放大 3D</button>
+    <h1>原設計 HTML · 三棟 3D 對照</h1>
     <p class="sub" id="subtitle"></p>
     <div class="banner note">
-      <b>早期草圖存檔</b>　這是最初 HTML 草圖的量體，保留作存檔與需求追溯，
-      <b>不是</b>現行設計基準。現行資料就緒度與圖面版次請開
-      <a class="inline" href="../reviews/R000/index.html">structured/reviews/</a>。
+      <b>原設計討論主入口</b>　這份 3D 逐格讀取 A／B／C 原始 HTML 的位置；道路／前方是
+      HTML 平面上方（y=0）。它仍是<b>早期草圖，不是現行可建或施工設計</b>。
+      <div class="model-links">
+        <a href="../../AbuildingView.html">A 棟 HTML</a>
+        <a href="../../BbuildingView.html">B 棟 HTML</a>
+        <a href="../../CbuildingView.html">C 棟 HTML</a>
+        <a href="../parametric/walkthrough.html">不同的參數化情境</a>
+        <a href="../reviews/R000/index.html">現行資料就緒度</a>
+      </div>
     </div>
     <div class="banner warn" id="honesty"></div>
+
+    <h2>定位原設計</h2>
+    <div class="scope-buttons" id="scope-buildings" role="group" aria-label="棟別"></div>
+    <div class="scope-buttons" id="scope-floors" role="group" aria-label="樓層" style="margin-top:6px"></div>
+    <div class="hint" id="scope-hint">選擇棟別與樓層後，可逐房定位。</div>
+    <div class="room-grid" id="scope-rooms"></div>
 
     <h2>幾何來源</h2>
     <div class="seg" id="geom-source" role="group" aria-label="幾何來源">
@@ -510,8 +557,8 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     <label class="row"><input type="checkbox" id="ghost" checked /> 顯示舊版 32 坪建築面積外框</label>
     <div id="compare">__COMPARE_HTML__</div>
 
-    <h2>樓層</h2>
-    <div id="floors"></div>
+    <h2>顯示樓層</h2>
+    <div id="floor-visibility"></div>
 
     <h2>剖切與展開</h2>
     <div class="hint" id="explode-label"></div>
@@ -530,9 +577,10 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     <div id="info" class="muted">點選任一量體查看資訊。</div>
   </aside>
   <main id="stage">
-    <canvas id="canvas"></canvas>
+    <canvas id="canvas" role="img" tabindex="0" aria-label="A、B、C 三棟原始 HTML 草圖的三維量體對照"></canvas>
     <div id="hud">拖曳旋轉 · 滾輪縮放 · 右鍵/Shift 拖曳平移 · 點選看資訊</div>
-    <div id="compass"><span><b>正面</b><br />朝相機；北向推定</span></div>
+    <div id="compass"><span><b>正面</b><br />道路側 y=0</span></div>
+    <div id="orientation">道路／前方：HTML 平面上方（y=0）→ 3D 正面（+Z）</div>
   </main>
 </div>
 
@@ -614,6 +662,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
   var geomSource = (DATA.geom_source_default === "declared") ? "declared" : "auto";
   var overlappingKeys = {};
+  var viewState = { building: "", floor: "", room: "", view: "front" };
 
   function geomOf(cell) {
     if (geomSource === "declared") { return cell.declared_mm || cell; }
@@ -638,6 +687,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 
   var floorGroups = [];   // one per building x floor, for the toggles
   var pickables = [];     // meshes the raycaster may hit
+  var meshById = {};
   var openingMeshes = [];
   var ghostMeshes = [];
   var bounds = new THREE.Box3();
@@ -652,13 +702,14 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     building.floors.forEach(function (floor) {
       var fGroup = new THREE.Group();
       bGroup.add(fGroup);
-      floorGroups.push({ building: building, floor: floor, group: fGroup });
+      floorGroups.push({ building: building, floor: floor, group: fGroup, checkbox: null });
 
       floor.cells.forEach(function (cell) {
         var mesh = new THREE.Mesh(boxGeom, solidMaterial(0xffffff, 1));
         mesh.userData = { cell: cell, floor: floor, building: building };
         fGroup.add(mesh);
         pickables.push(mesh);
+        meshById[cell.id] = mesh;
 
         var edges = new THREE.LineSegments(edgeGeom, lineMaterial(0xffffff, 1));
         fGroup.add(edges);
@@ -904,9 +955,14 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     var area = (g.w_mm * g.h_mm) / 1e6;
     var ping = area / 3.305785;
     var heightMm = cell.is_outdoor ? DATA.standards.outdoor_slab_mm : floor.height_mm;
+    var centreY = Number(g.y_mm || 0) + Number(g.h_mm || 0) / 2;
+    var floorDepth = geomSource === "declared" ? floor.depth_mm : floor.auto_depth_mm;
+    var depthRatio = floorDepth > 0 ? centreY / floorDepth : 0.5;
+    var depthBand = depthRatio <= 0.34 ? "道路側／前段" : (depthRatio >= 0.67 ? "後側／後段" : "中段");
     var rows = "";
     function row(k, v) { rows += "<dt>" + escapeHtml(k) + "</dt><dd>" + v + "</dd>"; }
     row("位置", escapeHtml(building.id + " 棟 · " + floor.label));
+    row("前後區位", escapeHtml(depthBand + "（平面 y=" + Math.round(g.y_mm || 0) + " mm）"));
     row("幾何來源", geomSource === "auto" ? "示意格子（CSS 列／欄）" : "標示覆寫");
     row("幾何面積", escapeHtml(area.toFixed(2) + " m² / " + ping.toFixed(2) + " 坪"));
     row("量體尺寸", escapeHtml(Math.round(g.w_mm) + " × " + Math.round(g.h_mm) + " × " + Math.round(heightMm) + " mm"));
@@ -927,9 +983,14 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     if (cell.is_entry) { row("主要出入口", "是"); }
     if (cell.badges.length) { row("標註", escapeHtml(cell.badges.join(" · "))); }
 
+    var htmlHref = "../../" + encodeURI(building.source_file || "") + "#room-" + encodeURIComponent(cell.key);
+    var actions = '<div class="info-actions">' +
+      '<a class="info-link" href="' + escapeHtml(htmlHref) + '">回到原 HTML 房間說明</a>' +
+      '</div>';
+
     info.className = "";
     info.innerHTML = '<span class="name">' + escapeHtml((cell.icon ? cell.icon + " " : "") + cell.name) +
-                     "</span><dl>" + rows + "</dl>";
+                     "</span><dl>" + rows + "</dl>" + actions;
   }
 
   // ---------- controls (hand-rolled: OrbitControls ships ESM only, which
@@ -966,18 +1027,195 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     camera.updateMatrixWorld();
   }
 
-  function applyViewPreset(kind) {
+  function applyViewPreset(kind, write) {
+    kind = kind === "plan" ? "plan" : "front";
+    viewState.view = kind;
     var src = kind === "plan" ? PLAN : HOME;
-    target.copy(src.target);
-    spherical.radius = src.radius;
-    spherical.theta = src.theta;
-    spherical.phi = src.phi;
+    if (!focusScope(kind)) {
+      target.copy(src.target);
+      spherical.radius = src.radius;
+      spherical.theta = src.theta;
+      spherical.phi = src.phi;
+    }
     document.getElementById("view-front").classList.toggle("on", kind !== "plan");
     document.getElementById("view-plan").classList.toggle("on", kind === "plan");
     document.getElementById("compass").innerHTML = kind === "plan"
-      ? "<span><b>俯視</b><br />對 HTML 格位</span>"
-      : "<span><b>正面</b><br />朝相機；北向推定</span>";
+      ? "<span><b>俯視</b><br />上方是道路</span>"
+      : "<span><b>正面</b><br />道路側 y=0</span>";
     updateCamera();
+    if (write !== false) { writeHash(); }
+  }
+
+  function scopedMeshes() {
+    return pickables.filter(function (mesh) {
+      var data = mesh.userData;
+      if (viewState.room) { return data.cell.id === viewState.room; }
+      if (viewState.building && data.building.id !== viewState.building) { return false; }
+      if (viewState.floor && data.floor.id !== viewState.floor) { return false; }
+      return !viewState.building || data.building.id === viewState.building;
+    });
+  }
+
+  function focusScope(kind) {
+    if (!viewState.building && !viewState.floor && !viewState.room) { return false; }
+    var meshes = scopedMeshes().filter(function (mesh) { return mesh.visible; });
+    if (!meshes.length) { return false; }
+    var box = new THREE.Box3();
+    meshes.forEach(function (mesh) { box.expandByObject(mesh); });
+    if (box.isEmpty()) { return false; }
+    var centre = box.getCenter(new THREE.Vector3());
+    var size = box.getSize(new THREE.Vector3());
+    target.copy(centre);
+    spherical.radius = Math.max(size.x, size.z, size.y * 0.8, 3) * (kind === "plan" ? 2.0 : 2.25);
+    spherical.theta = kind === "plan" ? Math.PI : 0;
+    spherical.phi = kind === "plan" ? 0.13 : Math.PI * 0.34;
+    return true;
+  }
+
+  function floorLabel(floor) {
+    if (floor.is_roof) { return "RF"; }
+    return floor.title || floor.id.replace("floor-", "") + "F";
+  }
+
+  function buildingRecord(buildingId) {
+    return DATA.buildings.find(function (building) { return building.id === buildingId; }) || null;
+  }
+
+  function floorRecord(buildingId, floorId) {
+    var building = buildingRecord(buildingId);
+    if (!building) { return null; }
+    return building.floors.find(function (floor) { return floor.id === floorId; }) || null;
+  }
+
+  function writeHash() {
+    var values = new URLSearchParams();
+    if (viewState.building) { values.set("building", viewState.building); }
+    if (viewState.floor) { values.set("floor", viewState.floor); }
+    if (viewState.room) { values.set("room", viewState.room); }
+    values.set("view", viewState.view === "plan" ? "plan" : "front");
+    history.replaceState(null, "", "#" + values.toString());
+  }
+
+  function updateOrientation() {
+    var text = "道路／前方：HTML 平面上方（y=0）→ 3D 正面（+Z）";
+    if (viewState.building) { text += "　·　" + viewState.building + " 棟"; }
+    if (viewState.floor) {
+      var floor = floorRecord(viewState.building, viewState.floor);
+      text += " " + (floor ? floorLabel(floor) : viewState.floor);
+    }
+    document.getElementById("orientation").textContent = text;
+  }
+
+  function renderScopeControls() {
+    var buildingsEl = document.getElementById("scope-buildings");
+    buildingsEl.innerHTML = "";
+    DATA.buildings.forEach(function (building) {
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "scope-button" + (viewState.building === building.id ? " on" : "");
+      button.setAttribute("data-building", building.id);
+      button.setAttribute("aria-pressed", viewState.building === building.id ? "true" : "false");
+      button.textContent = building.id + " 棟";
+      button.addEventListener("click", function () {
+        var firstFloor = building.floors.find(function (floor) { return floor.id === "floor-1"; }) || building.floors[0];
+        setScope(building.id, firstFloor ? firstFloor.id : "", "", true, true);
+      });
+      buildingsEl.appendChild(button);
+    });
+    var allButton = document.createElement("button");
+    allButton.type = "button";
+    allButton.className = "scope-button" + (!viewState.building ? " on" : "");
+    allButton.setAttribute("data-building", "overview");
+    allButton.setAttribute("aria-pressed", !viewState.building ? "true" : "false");
+    allButton.textContent = "三棟";
+    allButton.addEventListener("click", function () { setScope("", "", "", true, true); });
+    buildingsEl.appendChild(allButton);
+
+    var floorsEl = document.getElementById("scope-floors");
+    floorsEl.innerHTML = "";
+    var building = buildingRecord(viewState.building);
+    if (building) {
+      building.floors.forEach(function (floor) {
+        var button = document.createElement("button");
+        button.type = "button";
+        button.className = "scope-button" + (viewState.floor === floor.id ? " on" : "");
+        button.setAttribute("data-floor", floor.id);
+        button.setAttribute("aria-pressed", viewState.floor === floor.id ? "true" : "false");
+        button.textContent = floorLabel(floor);
+        button.addEventListener("click", function () {
+          setScope(building.id, floor.id, "", true, true);
+        });
+        floorsEl.appendChild(button);
+      });
+    }
+
+    var roomsEl = document.getElementById("scope-rooms");
+    roomsEl.innerHTML = "";
+    var floor = floorRecord(viewState.building, viewState.floor);
+    if (floor) {
+      floor.cells.forEach(function (cell) {
+        var button = document.createElement("button");
+        button.type = "button";
+        button.className = "room-button" + (viewState.room === cell.id ? " on" : "");
+        button.setAttribute("data-room", cell.id);
+        button.setAttribute("aria-pressed", viewState.room === cell.id ? "true" : "false");
+        button.textContent = (cell.icon ? cell.icon + " " : "") + cell.name;
+        button.addEventListener("click", function () {
+          setScope(viewState.building, viewState.floor, cell.id, true, true);
+        });
+        roomsEl.appendChild(button);
+      });
+    }
+    document.getElementById("scope-hint").textContent = floor
+      ? viewState.building + " 棟 " + floorLabel(floor) + " · " + floor.cells.length + " 個 HTML 格位"
+      : "選擇棟別與樓層後，可逐房定位。";
+    updateOrientation();
+  }
+
+  function setScope(buildingId, floorId, roomId, write, focus) {
+    var mesh = roomId ? meshById[roomId] : null;
+    if (mesh) {
+      buildingId = mesh.userData.building.id;
+      floorId = mesh.userData.floor.id;
+      roomId = mesh.userData.cell.id;
+    } else {
+      roomId = "";
+    }
+    var building = buildingRecord(buildingId);
+    if (!building) { buildingId = ""; floorId = ""; }
+    if (buildingId && !floorRecord(buildingId, floorId)) { floorId = ""; }
+    viewState.building = buildingId;
+    viewState.floor = floorId;
+    viewState.room = roomId;
+
+    floorGroups.forEach(function (entry) {
+      var visible = (!buildingId || entry.building.id === buildingId) && (!floorId || entry.floor.id === floorId);
+      entry.group.visible = visible;
+      if (entry.checkbox) { entry.checkbox.checked = visible; }
+    });
+    renderScopeControls();
+    showInfo(mesh);
+    if (focus) { applyViewPreset(viewState.view, false); }
+    if (write) { writeHash(); }
+  }
+
+  function restoreHash() {
+    var values = new URLSearchParams(String(location.hash || "").replace(/^#/, ""));
+    var roomId = values.get("room") || "";
+    var mesh = meshById[roomId] || null;
+    var buildingId = mesh ? mesh.userData.building.id : (values.get("building") || "").toUpperCase();
+    var floorId = mesh ? mesh.userData.floor.id : (values.get("floor") || "");
+    viewState.view = values.get("view") === "plan" ? "plan" : "front";
+    setScope(buildingId, floorId, mesh ? roomId : "", false, false);
+    applyViewPreset(viewState.view, false);
+  }
+
+  function selectMesh(mesh, write, focus) {
+    if (!mesh) {
+      setScope(viewState.building, viewState.floor, "", write, focus);
+      return;
+    }
+    setScope(mesh.userData.building.id, mesh.userData.floor.id, mesh.userData.cell.id, write, focus);
   }
 
   var pointers = {};
@@ -1071,7 +1309,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       return m.parent && m.parent.visible && m.position.y - m.scale.y / 2 <= clipPlane.constant;
     });
     var hits = raycaster.intersectObjects(visible, false);
-    showInfo(hits.length ? hits[0].object : null);
+    selectMesh(hits.length ? hits[0].object : null, true, false);
   }
 
   // ---------- panel ----------
@@ -1093,7 +1331,7 @@ HTML_TEMPLATE = """<!DOCTYPE html>
   }
   honesty.innerHTML = lines.join("<br />");
 
-  var floorsEl = document.getElementById("floors");
+  var floorsEl = document.getElementById("floor-visibility");
   var byBuilding = {};
   floorGroups.forEach(function (entry) {
     (byBuilding[entry.building.id] = byBuilding[entry.building.id] || []).push(entry);
@@ -1118,9 +1356,15 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       var box = document.createElement("input");
       box.type = "checkbox";
       box.checked = true;
+      entry.checkbox = box;
       box.addEventListener("change", function () {
         entry.group.visible = box.checked;
-        if (!box.checked) { showInfo(null); }
+        viewState.building = "";
+        viewState.floor = "";
+        viewState.room = "";
+        showInfo(null);
+        renderScopeControls();
+        writeHash();
       });
       boxes.push(box);
       label.appendChild(box);
@@ -1201,8 +1445,17 @@ HTML_TEMPLATE = """<!DOCTYPE html>
       });
       geomSource = button.getAttribute("data-geom") === "declared" ? "declared" : "auto";
       applyLayout();
-      showInfo(null);
+      showInfo(viewState.room ? meshById[viewState.room] : null);
+      if (viewState.room) { applyViewPreset(viewState.view, false); }
     });
+  });
+
+  var mobilePanelToggle = document.getElementById("mobile-panel-toggle");
+  mobilePanelToggle.addEventListener("click", function () {
+    var collapsed = document.getElementById("app").classList.toggle("panel-collapsed");
+    mobilePanelToggle.setAttribute("aria-expanded", collapsed ? "false" : "true");
+    mobilePanelToggle.textContent = collapsed ? "展開控制" : "收合控制，放大 3D";
+    window.setTimeout(resize, 220);
   });
 
   // ---------- run ----------
@@ -1214,12 +1467,31 @@ HTML_TEMPLATE = """<!DOCTYPE html>
     camera.updateProjectionMatrix();
   }
   window.addEventListener("resize", resize);
+  window.addEventListener("hashchange", restoreHash);
 
   applyLayout();
   fitCameras();
   applyCut();
   resize();
-  applyViewPreset("front");
+  renderScopeControls();
+  restoreHash();
+
+  window.__htmlModel3dDebug = function () {
+    return {
+      state: {
+        building: viewState.building,
+        floor: viewState.floor,
+        room: viewState.room,
+        view: viewState.view
+      },
+      selected: viewState.room,
+      visibleRooms: pickables.filter(function (mesh) {
+        return mesh.parent && mesh.parent.visible && mesh.visible;
+      }).map(function (mesh) { return mesh.userData.cell.id; }),
+      panelCollapsed: document.getElementById("app").classList.contains("panel-collapsed"),
+      geomSource: geomSource
+    };
+  };
 
   (function loop() {
     requestAnimationFrame(loop);

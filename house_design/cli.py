@@ -14,9 +14,11 @@ from house_design.drawings import (
     list_revisions,
     revision_model3d_readiness,
     seed_legacy_parametric_revision,
+    verify_revision_integrity,
 )
-from house_design.intake import migrate_legacy_briefs, validate_intake
+from house_design.intake import decide_requirement, migrate_legacy_briefs, validate_intake
 from house_design.meeting_report import write_meeting_pdf
+from house_design.model3d import export_revision_model3d
 from house_design.pipeline import build_steps, run_pipeline
 from house_design.predesign import (
     build_predesign_report,
@@ -64,6 +66,16 @@ def build_parser() -> argparse.ArgumentParser:
     )
     intake_migrate.add_argument("--brief-dir", default="inputs/brief")
     intake_migrate.add_argument("--output", default="inputs/requirements.json")
+    intake_decide = intake_sub.add_parser(
+        "requirements-decide", help="Confirm or reject one requirement and append its decision log"
+    )
+    intake_decide.add_argument("--id", required=True)
+    intake_decide.add_argument("--status", choices=("confirmed", "rejected"), required=True)
+    intake_decide.add_argument("--priority", choices=("must", "should", "could"), required=True)
+    intake_decide.add_argument("--reason", required=True)
+    intake_decide.add_argument("--decided-by", required=True)
+    intake_decide.add_argument("--decided-at")
+    intake_decide.add_argument("--requirements", default="inputs/requirements.json")
 
     predesign = subparsers.add_parser("predesign", help="Validate phase gates before land purchase and construction")
     predesign_sub = predesign.add_subparsers(dest="predesign_command", required=True)
@@ -105,6 +117,17 @@ def build_parser() -> argparse.ArgumentParser:
     )
     drawing_model3d.add_argument("--revision", required=True)
     drawing_model3d.add_argument("--root", default="inputs/revisions")
+    drawing_model3d.add_argument("--level", choices=("space_block", "walkthrough"), default="space_block")
+    drawing_verify = drawings_sub.add_parser("verify", help="Verify immutable source, mapping and model hashes")
+    drawing_verify.add_argument("--revision", required=True)
+    drawing_verify.add_argument("--root", default="inputs/revisions")
+    drawing_export = drawings_sub.add_parser(
+        "export-model3d", help="Export a self-contained current-revision space-block viewer"
+    )
+    drawing_export.add_argument("--revision", required=True)
+    drawing_export.add_argument("--root", default="inputs/revisions")
+    drawing_export.add_argument("--output")
+    drawing_export.add_argument("--output-root", default="structured/reviews")
 
     review = subparsers.add_parser("review", help="Run evidence-backed project and drawing review")
     review_sub = review.add_subparsers(dest="review_command", required=True)
@@ -156,6 +179,17 @@ def main() -> None:
                     "status": "all imported items are candidate",
                 }
             )
+        elif args.command == "intake" and args.intake_command == "requirements-decide":
+            result = decide_requirement(
+                requirement_id=args.id,
+                status=args.status,
+                priority=args.priority,
+                reason=args.reason,
+                decided_by=args.decided_by,
+                decided_at=args.decided_at,
+                requirements_path=Path(args.requirements),
+            )
+            _print_json(result)
         elif args.command == "predesign" and args.predesign_command == "validate":
             private_path = Path(args.budget_private)
             result = validate_bundle(
@@ -217,10 +251,23 @@ def main() -> None:
                 write_json(Path(args.output), result)
             _print_json(result)
         elif args.command == "drawings" and args.drawings_command == "model3d-readiness":
-            result = revision_model3d_readiness(args.revision, Path(args.root))
+            result = revision_model3d_readiness(args.revision, Path(args.root), args.level)
             _print_json(result)
             if not result["eligible"]:
                 raise SystemExit(1)
+        elif args.command == "drawings" and args.drawings_command == "verify":
+            result = verify_revision_integrity(args.revision, Path(args.root))
+            _print_json(result)
+            if not result["valid"]:
+                raise SystemExit(1)
+        elif args.command == "drawings" and args.drawings_command == "export-model3d":
+            result = export_revision_model3d(
+                revision_id=args.revision,
+                root=Path(args.root),
+                output=Path(args.output) if args.output else None,
+                output_root=Path(args.output_root),
+            )
+            _print_json(result)
         elif args.command == "review" and args.review_command == "run":
             report = build_review(
                 revision_id=args.revision,

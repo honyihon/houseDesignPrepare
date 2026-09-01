@@ -289,6 +289,15 @@ def build_predesign_report(
             status = "not_applicable"
             message = str(state.get("note"))
             severity = "advisory"
+        elif state_status == "in_progress":
+            tier = str(rule.get("source_tier"))
+            status = (
+                "warning"
+                if not rule.get("blocking")
+                else "professional_review" if tier in {"official", "professional"} else "unknown"
+            )
+            message = str(state.get("note") or rule.get("incomplete_message") or "尚未完成或缺少可追溯證據。")
+            severity = "blocking" if rule.get("blocking") else "advisory"
         else:
             tier = str(rule.get("source_tier"))
             if not rule.get("blocking"):

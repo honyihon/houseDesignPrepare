@@ -6,15 +6,20 @@ from pathlib import Path
 
 import pytest
 
-from house_design.contracts import ContractError, write_json
+from house_design.contracts import ContractError, sha256_file, write_json
 from house_design.drawings import (
+    _empty_model,
     _ifc_building_id,
     _ifc_floor_id,
     _ifc_spatial_location,
+    _parse_ifc,
     assess_model3d_readiness,
     compare_models,
     import_revision,
     load_revision,
+    revision_manifest_content_hash,
+    revision_model3d_readiness,
+    verify_revision_integrity,
 )
 
 
@@ -63,16 +68,20 @@ def test_revision_manifest_can_reference_absolute_normalized_model(tmp_path: Pat
     revision_root = tmp_path / "revisions"
     directory = revision_root / "R001"
     model_path = directory / "normalized.json"
-    write_json(model_path, _model(10.0, 900))
-    write_json(
-        directory / "manifest.json",
-        {
+    model = _model(10.0, 900)
+    model["revision_id"] = "R001"
+    write_json(model_path, model)
+    manifest = {
             "schema": "house-drawing-revision-v1",
             "revision_id": "R001",
             "label": "初步設計",
             "normalized_model": str(model_path),
-        },
-    )
+            "normalized_model_sha256": sha256_file(model_path),
+            "sources": [],
+            "mapping": None,
+        }
+    manifest["content_hash"] = revision_manifest_content_hash(manifest)
+    write_json(directory / "manifest.json", manifest)
 
     manifest, model = load_revision("R001", revision_root)
 
@@ -151,6 +160,57 @@ def test_ifc_names_normalize_only_explicit_building_and_floor_tokens() -> None:
     assert _ifc_floor_id("屋頂層", "storey-guid") == "floor-rf"
 
 
+def test_ifc_equipment_keeps_extracted_geometry(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    ifcopenshell = pytest.importorskip("ifcopenshell")
+    ifc_unit = pytest.importorskip("ifcopenshell.util.unit")
+
+    class Element:
+        GlobalId = "equipment-guid"
+        Name = "固定設備"
+
+    class Document:
+        schema = "IFC4"
+
+        @staticmethod
+        def by_type(ifc_type: str) -> list[Element]:
+            return [Element()] if ifc_type == "IfcFlowTerminal" else []
+
+    monkeypatch.setattr(ifcopenshell, "open", lambda _path: Document())
+    monkeypatch.setattr(ifc_unit, "calculate_unit_scale", lambda _document: 1.0)
+    monkeypatch.setattr("house_design.drawings._ifc_spatial_location", lambda *_args: ("floor-1", "A"))
+    monkeypatch.setattr(
+        "house_design.drawings._ifc_element_geometry",
+        lambda _element, _kind: {
+            "bbox_mm": [100.0, 200.0, 700.0, 800.0],
+            "polygon_mm": [[100.0, 200.0], [700.0, 200.0], [700.0, 800.0]],
+            "height_mm": 900.0,
+            "geometry_method": "ifc_mesh_convex_hull",
+        },
+    )
+
+    model = _empty_model("R001")
+    result, issues = _parse_ifc(tmp_path / "fixture.ifc", model)
+
+    assert result["parser_status"] == "parsed"
+    assert issues[0]["code"] == "IFC_NO_SPACES"
+    assert model["entities"]["equipment"] == [
+        {
+            "id": "equipment-guid",
+            "source_id": "equipment-guid",
+            "ifc_type": "IfcFlowTerminal",
+            "building_id": "A",
+            "floor_id": "floor-1",
+            "name": "固定設備",
+            "source_file": str((tmp_path / "fixture.ifc").resolve()),
+            "geometry_provenance": "architect_ifc",
+            "bbox_mm": [100.0, 200.0, 700.0, 800.0],
+            "polygon_mm": [[100.0, 200.0], [700.0, 200.0], [700.0, 800.0]],
+            "height_mm": 900.0,
+            "geometry_method": "ifc_mesh_convex_hull",
+        }
+    ]
+
+
 def test_real_pdf_and_mapped_dxf_become_ready_revision(tmp_path: Path) -> None:
     ezdxf = pytest.importorskip("ezdxf")
     pytest.importorskip("pymupdf")
@@ -179,6 +239,29 @@ def test_real_pdf_and_mapped_dxf_become_ready_revision(tmp_path: Path) -> None:
     write_json(
         mapping,
         {
+            "schema": "house-drawing-mapping-v2",
+            "coordinate_system": {
+                "status": "verified",
+                "axis": {"x": "drawing-east", "y": "drawing-north", "z": "up"},
+                "verified_by": "王建築師",
+                "verified_at": "2026-08-31",
+                "method": "two control points",
+                "reference_points": [
+                    {"id": "P1", "source_mm": [0, 0], "project_mm": [0, 0]},
+                    {"id": "P2", "source_mm": [3000, 0], "project_mm": [3000, 0]},
+                ],
+            },
+            "storeys": [
+                {
+                    "building_id": "A",
+                    "floor_id": "floor-1",
+                    "elevation_mm": 0,
+                    "height_mm": 3200,
+                    "verified_by": "王建築師",
+                    "verified_at": "2026-08-31",
+                    "evidence": {"type": "level_note", "reference": "A-101 / EL±0"},
+                }
+            ],
             "layers": {
                 "A-1F-ROOM-ELDER": {
                     "kind": "space",
@@ -192,6 +275,13 @@ def test_real_pdf_and_mapped_dxf_become_ready_revision(tmp_path: Path) -> None:
                     "building_id": "A",
                     "floor_id": "floor-1",
                     "name": "孝親房門",
+                    "opening_width": {
+                        "value_mm": 900,
+                        "measurement": "finished_clear",
+                        "verified_by": "王建築師",
+                        "verified_at": "2026-08-31",
+                        "evidence": {"type": "door_schedule", "reference": "D01"},
+                    },
                 }
             }
         },
@@ -209,10 +299,14 @@ def test_real_pdf_and_mapped_dxf_become_ready_revision(tmp_path: Path) -> None:
     assert manifest["status"] == "ready"
     assert manifest["sources"][0]["page_count"] == 1
     assert manifest["mapping"]["sha256"]
-    assert manifest["normalized_entity_count"] == 2
+    assert manifest["normalized_entity_count"] == 4
     _, model = load_revision("R001", tmp_path / "revisions")
     assert model["entities"]["spaces"][0]["area_sqm"] == 12.0
+    assert model["entities"]["spaces"][0]["polygon_mm"]
     assert model["entities"]["doors"][0]["clear_width_mm"] == 900.0
+    readiness = revision_model3d_readiness("R001", tmp_path / "revisions")
+    assert readiness["status"] == "ready"
+    assert readiness["levels"]["walkthrough"]["status"] == "blocked"
 
 
 def _model3d_ready_fixture() -> tuple[dict, dict]:
@@ -226,7 +320,15 @@ def _model3d_ready_fixture() -> tuple[dict, dict]:
     model = {
         "schema": "house-normalized-model-v1",
         "revision_id": "R001",
-        "coordinate_system": {"status": "verified", "unit": "mm", "axis": "architect_origin"},
+        "coordinate_system": {
+            "status": "verified",
+            "unit": "mm",
+            "axis": "architect_origin",
+            "verified_by": "architect",
+            "verified_at": "2026-08-31",
+            "method": "two shared control points",
+            "reference_points": [{"id": "P1"}, {"id": "P2"}],
+        },
         "entities": {
             "storeys": [
                 {
@@ -317,7 +419,16 @@ def test_model3d_readiness_cli_returns_json_and_nonzero_when_blocked(
     revision_dir = tmp_path / "revisions/R001"
     model_path = revision_dir / "normalized_model.json"
     write_json(model_path, model)
+    source_records = []
+    for kind in ("ifc", "dxf"):
+        source_path = revision_dir / f"source.{kind}"
+        source_path.write_bytes(kind.encode("ascii"))
+        source_records.append({"kind": kind, "file": str(source_path), "sha256": sha256_file(source_path)})
+    manifest["sources"] = source_records
     manifest["normalized_model"] = str(model_path)
+    manifest["normalized_model_sha256"] = sha256_file(model_path)
+    manifest["mapping"] = None
+    manifest["content_hash"] = revision_manifest_content_hash(manifest)
     write_json(revision_dir / "manifest.json", manifest)
     monkeypatch.setattr(
         sys,
@@ -340,3 +451,65 @@ def test_model3d_readiness_cli_returns_json_and_nonzero_when_blocked(
     assert exc_info.value.code == 1
     assert result["status"] == "blocked"
     assert result["blockers"][0]["code"] == "REVISION_IMPORT_NOT_READY"
+
+
+def test_revision_integrity_detects_model_and_manifest_tampering(tmp_path: Path) -> None:
+    revision_root = tmp_path / "revisions"
+    source = tmp_path / "drawing.pdf"
+    source.write_bytes(b"%PDF-1.4\n% immutable fixture")
+    manifest = import_revision(revision_id="R001", label="初步設計", pdf=source, root=revision_root)
+
+    assert verify_revision_integrity("R001", revision_root)["valid"] is True
+    model_path = Path(manifest["normalized_model"])
+    model_path.write_text(model_path.read_text(encoding="utf-8") + " ", encoding="utf-8")
+    result = verify_revision_integrity("R001", revision_root)
+    assert result["valid"] is False
+    assert "normalized_model_sha256" in {item["name"] for item in result["errors"]}
+    with pytest.raises(ContractError, match="integrity verification"):
+        load_revision("R001", revision_root)
+
+
+def test_revision_integrity_detects_source_mapping_and_manifest_tampering(tmp_path: Path) -> None:
+    revision_root = tmp_path / "revisions"
+    source = tmp_path / "drawing.pdf"
+    source.write_bytes(b"%PDF-1.4\n% immutable fixture")
+    mapping = tmp_path / "mapping.json"
+    write_json(mapping, {"schema": "house-drawing-mapping-v2", "layers": {}})
+    manifest = import_revision(
+        revision_id="R001",
+        label="初步設計",
+        pdf=source,
+        mapping_path=mapping,
+        root=revision_root,
+    )
+    Path(manifest["sources"][0]["file"]).write_bytes(b"tampered")
+    Path(manifest["mapping"]["file"]).write_text("{}", encoding="utf-8")
+    manifest_path = revision_root / "R001/manifest.json"
+    stored_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    stored_manifest["label"] = "tampered label"
+    write_json(manifest_path, stored_manifest)
+
+    errors = {item["name"] for item in verify_revision_integrity("R001", revision_root)["errors"]}
+    assert {"source[0]", "mapping", "content_hash"} <= errors
+
+
+def test_dxf_opening_extent_is_not_automatically_clear_width(tmp_path: Path) -> None:
+    ezdxf = pytest.importorskip("ezdxf")
+    dxf = tmp_path / "door.dxf"
+    document = ezdxf.new("R2013")
+    document.units = ezdxf.units.MM
+    document.layers.add("DOOR")
+    document.modelspace().add_lwpolyline(
+        [(0, 0), (100, 0), (100, 900), (0, 900)], close=True, dxfattribs={"layer": "DOOR"}
+    )
+    document.saveas(dxf)
+    mapping = tmp_path / "mapping.json"
+    write_json(mapping, {"layers": {"DOOR": {"kind": "door", "building_id": "A", "floor_id": "floor-1"}}})
+
+    manifest = import_revision(
+        revision_id="R001", label="door", dxf=dxf, mapping_path=mapping, root=tmp_path / "revisions"
+    )
+    _, model = load_revision("R001", tmp_path / "revisions")
+    assert manifest["status"] == "needs_mapping"
+    assert model["entities"]["doors"][0]["overall_width_mm"] == 900
+    assert model["entities"]["doors"][0]["clear_width_mm"] is None

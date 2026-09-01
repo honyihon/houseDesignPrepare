@@ -19,12 +19,15 @@
 | 目的 | 指令 | 主要輸出 |
 |---|---|---|
 | 檢查基地與需求資料格式 | `python -m house_design intake validate` | 終端機 JSON |
+| 確認／淘汰一項屋主需求 | `python -m house_design intake requirements-decide ...` | 原子更新需求並追加 hash-chained decision log |
 | 驗證前期階段閘門 | `python -m house_design predesign validate` | 終端機 JSON，不輸出私有金額 |
 | 產生前期準備報告 | `python -m house_design predesign report` | `structured/predesign/` |
 | 匯入建築師 PDF＋IFC | `python -m house_design drawings import ...` | `inputs/revisions/<revision>/` |
 | 匯入 PDF＋DXF | `python -m house_design drawings import ... --dxf ... --mapping ...` | 不可變來源、mapping 與標準化模型 |
 | 查看所有圖面版次 | `python -m house_design drawings list` | 終端機 JSON |
+| 驗證不可變版次完整性 | `python -m house_design drawings verify --revision R001` | 來源、mapping、模型與 manifest seal 檢查 |
 | 檢查現行版次是否具備 3D 輸入 | `python -m house_design drawings model3d-readiness --revision R001` | readiness JSON；阻擋時 exit code 1 |
+| 產生現行空間量體模型 | `python -m house_design drawings export-model3d --revision R001` | `structured/reviews/R001/model3d.html` |
 | 比較兩個圖面版次 | `python -m house_design drawings compare --from R001 --to R002` | 終端機 JSON，可另存檔 |
 | 產生現行檢核報告 | `python -m house_design review run --revision R001` | JSON、Markdown、PDF、離線儀表板 |
 | 比對前後版並檢核 | `python -m house_design review run --revision R002 --previous R001` | 報告內含 revision comparison |
@@ -143,6 +146,20 @@ python -m house_design intake validate \
 
 每項另有 `priority`：`must`、`should` 或 `could`。`must` 不符合時可形成阻擋；其他等級通常保留為警告或設計取捨，但生命安全、無障礙或專業規則仍以實際 finding 狀態為準。
 
+逐項決策請用指令，不要直接刪除舊狀態或改寫 decision log：
+
+```bash
+python -m house_design intake requirements-decide \
+  --id A.floor-1.elder \
+  --status confirmed \
+  --priority must \
+  --reason "長輩需在一樓完成睡眠與沐浴" \
+  --decided-by "屋主家庭會議" \
+  --decided-at "2026-08-31"
+```
+
+每次執行會原子寫入目前狀態，並追加帶 `previous_entry_hash`／`entry_hash` 的紀錄；後續驗證會抓出被改寫或斷鏈的項目。家庭成員、照護與生活情境可從 `inputs/household-profile.template.json` 複製，但含個資的完成檔應放在 `inputs/private/`。
+
 將舊 A／B／C brief 轉成候選需求：
 
 ```bash
@@ -171,7 +188,26 @@ DXF 必須提供圖層語意 mapping，例如：
 
 ```json
 {
+  "schema": "house-drawing-mapping-v2",
   "dxf_unit_scale_to_mm": 1.0,
+  "coordinate_system": {
+    "status": "verified",
+    "axis": {"x": "drawing-east", "y": "drawing-north", "z": "up"},
+    "verified_by": "王建築師",
+    "verified_at": "2026-08-31",
+    "method": "PDF 與 DXF 共同控制點核對",
+    "reference_points": [
+      {"id": "GRID-A1", "source_mm": [0, 0], "project_mm": [0, 0]},
+      {"id": "GRID-A2", "source_mm": [6000, 0], "project_mm": [6000, 0]}
+    ]
+  },
+  "storeys": [
+    {
+      "building_id": "A", "floor_id": "floor-1", "elevation_mm": 0, "height_mm": 3200,
+      "verified_by": "王建築師", "verified_at": "2026-08-31",
+      "evidence": {"type": "drawing_level_note", "reference": "A-101 / EL±0"}
+    }
+  ],
   "layers": {
     "A-1F-ROOM-ELDER": {
       "kind": "space",
@@ -185,8 +221,16 @@ DXF 必須提供圖層語意 mapping，例如：
       "building_id": "A",
       "floor_id": "floor-1",
       "name": "孝親房門",
-      "requirement_id": "A.floor-1.elder"
+      "requirement_id": "A.floor-1.elder",
+      "opening_width": {
+        "value_mm": 900, "measurement": "finished_clear",
+        "verified_by": "王建築師", "verified_at": "2026-08-31",
+        "evidence": {"type": "door_schedule", "reference": "D01"}
+      }
     }
+  },
+  "entities": {
+    "8F": {"kind": "space", "name": "特定 handle 覆寫圖層設定", "requirement_id": "A.floor-1.elder"}
   }
 }
 ```
@@ -204,11 +248,14 @@ python -m house_design drawings import \
 
 - 至少要提供 `--pdf`、`--ifc` 或 `--dxf` 其中一個。
 - PDF 可單獨封存，但沒有 IFC／mapped DXF 時通常無法完成房間與門窗語意檢核。
-- 原始圖與 mapping 會複製進版次目錄並記錄 SHA-256。
+- 原始圖、mapping 與 normalized model 都會記錄 SHA-256；manifest 另有涵蓋整份 metadata 的 content seal。
 - `manifest.json` 一旦存在，同一 revision id 不能覆寫；收到新圖請使用 R002、R003 等新 id。
 - DXF 未設定單位時，mapping 必須提供 `dxf_unit_scale_to_mm`。
+- 閉合 DXF polyline 會保留 `polygon_mm` 並計算實際 polygon 面積，不再用 bbox 面積冒充凹形空間面積。
+- DXF 門窗符號 bbox 只會成為 `overall_width_mm`；只有具人員、日期與門窗表證據的 `finished_clear` 才會寫入 `clear_width_mm`。
+- `entities` 可用 DXF handle 覆寫 layer mapping；與 IFC 合併時必須明寫 `ifc_guid`，不做名稱猜測對帳。
 - 未 mapping 的 DXF 圖層仍保留原始幾何，但不能證明房間或門窗需求。
-- `drawings import`、`list`、`seed-legacy`、`compare` 都可用 `--root` 指定非預設版次目錄。
+- `drawings import`、`list`、`verify`、`seed-legacy`、`compare`、`model3d-readiness` 與 `export-model3d` 都可用 `--root` 指定非預設版次目錄。
 
 IFC 建議：
 
@@ -217,6 +264,12 @@ IFC 建議：
 - 應提供 `IfcSpace`，否則房間層級檢核會維持未知。
 - `IfcDoor.OverallWidth` 是名目寬度，不會自動當成完工後門淨寬。
 - 沒有門窗表、可信 property 或 mapped DXF 開口證據時，門淨寬必須維持 `unknown`。
+
+匯入後先驗證 seal；任何 source、mapping、normalized model 或 manifest 欄位被改動都會失敗，而且 compare、review、3D readiness 與 exporter 也會先做同一檢查：
+
+```bash
+python -m house_design drawings verify --revision R001
+```
 
 常見 manifest status：
 
@@ -258,7 +311,7 @@ R000 會帶有 blocking 的 legacy assumption finding；它的用途是證明錯
 python -m house_design drawings model3d-readiness --revision R001
 ```
 
-這個命令只判斷「這一版的輸入是否足以建立可追溯的現行 3D」，不會把
+預設 `--level space_block` 只判斷「這一版是否足以建立可追溯的現行空間量體」，不會把
 `structured/parametric/walkthrough.html` 或 `structured/candidates/model3d.html` 等歷史輸出當成現行版次。
 阻擋時仍會先輸出完整 JSON，再以 exit code 1 結束，方便 CI 攔截。
 
@@ -267,11 +320,19 @@ python -m house_design drawings model3d-readiness --revision R001
 1. manifest 是 `ready`，來源包含 IFC 或 DXF，且沒有 blocking import issue。
 2. 每個空間都有有效 `bbox_mm`、`building_id`、`floor_id` 與可追溯的專業幾何來源。
 3. 每個使用中的棟別／樓層都有數值 `elevation_mm`；1F 的 `0` 是有效標高。
-4. IFC／DXF 的原點、軸向、單位與樓層基準已核對，`coordinate_system.status` 是 `verified`。
+4. IFC／DXF 的原點、軸向、單位與樓層基準已核對；`coordinate_system` 除了 `verified`，還有查核人、日期、方法與至少兩個控制點。
 
 輸出的 `blockers` 會使用穩定代碼，例如 `SPACE_GEOMETRY_MISSING`、
 `STOREY_ELEVATION_MISSING`、`COORDINATE_SYSTEM_UNVERIFIED`，每一項都有 `next_action`。
-`ready` 只表示輸入具備產圖條件，不表示圖面合規、結構安全或已獲專業放行。
+`space_block ready` 只表示輸入具備「空間量體」產圖條件，不表示圖面合規、結構安全或已獲專業放行。`--level walkthrough` 會另外要求精確 polygon、牆體、空間高度、門窗、樓梯及設備範圍；bbox 量體不會被稱為施工精度走入模型。
+
+產生目前版次的離線空間量體：
+
+```bash
+python -m house_design drawings export-model3d --revision R001
+```
+
+預設輸出為 `structured/reviews/R001/model3d.html`。只有 readiness 通過且檔案確實存在時，同目錄 dashboard 才會顯示連結；頁面也會明確標示「空間量體模型」，不冒充施工精度 walkthrough。
 
 自訂版次根目錄：
 
@@ -538,6 +599,9 @@ extract
 | 舊參數化容量 | `structured/parametric/plan.json`、`capacity.md` |
 | 舊參數化 walk-in 3D | `structured/parametric/walkthrough.html` |
 
+`model3d.html` 是與 A／B／C 原始 HTML 逐格對照的主要討論入口；原 HTML 會為每層與每個已綁定房間建立雙向連結。它支援
+`#building=A&floor=floor-1&room=A:floor-1:living&view=plan` 深連結，且道路／前方固定為 HTML 平面上方 `y=0`。
+`walkthrough.html` 則會依 6–10 m 開間重新排房，只能作為另一個歷史容量情境，不能拿來判斷原 HTML 房間是否在前段或後段。
 兩個 3D viewer 都可離線開啟，但用途只是閱讀／比較，不能編輯後回寫模型。
 
 ## 8. 歷史 HTML 的幾何與資料可信度

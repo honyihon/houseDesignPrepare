@@ -15,7 +15,7 @@ def _safe_json(value: dict[str, Any]) -> str:
     return json.dumps(value, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
 
 
-def dashboard_html(report: dict[str, Any]) -> str:
+def dashboard_html(report: dict[str, Any], *, model3d_available: bool = False) -> str:
     payload = _safe_json(report)
     title = html.escape(
         f"住宅設計檢核中心 · {report.get('revision', {}).get('revision_id', '')}"
@@ -63,6 +63,7 @@ def dashboard_html(report: dict[str, Any]) -> str:
     .button:hover { background: #eefafa; }
     .button.primary { background: var(--teal); color: white; }
     .button.primary:hover { background: var(--teal-hover); }
+    a.button { text-decoration: none; }
     .app-shell { display: grid; grid-template-columns: 232px minmax(0, 1fr); min-height: calc(100vh - 68px); }
     .sidebar { border-right: 1px solid var(--line); padding: 14px 12px 24px; background: #fbfcfd; overflow: auto; }
     .nav { display: grid; gap: 4px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
@@ -71,6 +72,7 @@ def dashboard_html(report: dict[str, Any]) -> str:
     .nav button.active { box-shadow: inset 3px 0 var(--ink); font-weight: 800; }
     .nav-icon { width: 18px; height: 18px; display: inline-grid; place-items: center; font-size: 12px; border: 1.5px solid currentColor; border-radius: 4px; }
     .location-tree { padding: 16px 3px 0; }
+    .location-toggle { display: none; width: 100%; margin-top: 8px; border: 1px solid var(--line); border-radius: var(--radius-sm); background: white; }
     .building { margin-bottom: 13px; }
     .building-title { border: 0; background: transparent; width: 100%; display: flex; align-items: center; gap: 8px; min-height: 34px; padding: 0 7px; cursor: pointer; font-weight: 800; }
     .building-title::before { content: "⌄"; font-size: 14px; color: var(--muted); }
@@ -209,7 +211,14 @@ def dashboard_html(report: dict[str, Any]) -> str:
       .header-actions { grid-row: 3; }
       .app-shell { display: block; }
       .model3d-readiness { scroll-margin-top: 164px; }
-      .sidebar { border-right: 0; border-bottom: 1px solid var(--line); max-height: 280px; }
+      .sidebar { border-right: 0; border-bottom: 1px solid var(--line); padding: 8px 10px; overflow: visible; }
+      .nav { grid-template-columns: repeat(3, minmax(0,1fr)); gap: 5px; padding: 0; border: 0; }
+      .nav button { min-height: 44px; padding: 5px 7px; justify-content: center; text-align: center; font-size: 12px; }
+      .nav button.active { box-shadow: inset 0 -3px var(--ink); }
+      .nav-icon { display: none; }
+      .location-toggle { display: block; }
+      .location-tree { display: none; max-height: 240px; overflow: auto; padding-top: 8px; }
+      .location-tree.mobile-open { display: block; }
       main { padding: 10px; }
       .fact-list { grid-template-columns: 1fr; }
       .phase-list { grid-template-columns: repeat(2, 1fr); }
@@ -255,6 +264,7 @@ def dashboard_html(report: dict[str, Any]) -> str:
         <button type="button" data-jump="comparison"><span class="nav-icon">↔</span>版次比較</button>
         <button type="button" data-domain="rule_governance"><span class="nav-icon">▤</span>決策紀錄</button>
       </nav>
+      <button class="location-toggle" id="locationToggle" type="button" aria-controls="locationTree" aria-expanded="false">棟別／樓層篩選</button>
       <div class="location-tree" id="locationTree" aria-label="棟別與樓層"></div>
     </aside>
     <main>
@@ -278,7 +288,8 @@ def dashboard_html(report: dict[str, Any]) -> str:
 
       <section class="model3d-readiness" id="model3dReadiness" aria-labelledby="model3dHeading">
         <div class="model3d-header">
-          <h2 id="model3dHeading">現行 revision 3D</h2>
+          <h2 id="model3dHeading">現行空間量體模型</h2>
+__MODEL3D_LINK__
           <span class="model3d-status" id="model3dStatus">檢查中</span>
         </div>
         <p class="model3d-summary" id="model3dSummary"></p>
@@ -331,8 +342,8 @@ def dashboard_html(report: dict[str, Any]) -> str:
     </main>
   </div>
 
-  <div class="dialog-backdrop" id="importDialog" role="dialog" aria-modal="true" aria-labelledby="importHeading">
-    <div class="dialog">
+  <div class="dialog-backdrop" id="importDialog" role="dialog" aria-modal="true" aria-labelledby="importHeading" aria-hidden="true">
+    <div class="dialog" tabindex="-1">
       <h2 id="importHeading">匯入新版圖面</h2>
       <p>版次是不可變資料。請使用新的 revision id，並優先提供 PDF＋IFC；只有 2D CAD 時提供 DXF 與圖層 mapping。</p>
       <code id="importCommand"></code>
@@ -343,6 +354,7 @@ def dashboard_html(report: dict[str, Any]) -> str:
   <script id="reportData" type="application/json">__REPORT_JSON__</script>
   <script>
     const report = JSON.parse(document.getElementById('reportData').textContent);
+    const model3dArtifactAvailable = __MODEL3D_AVAILABLE__;
     const statusGlyph = {fail:'×', warning:'!', pass:'✓', unknown:'?', professional_review:'i', not_applicable:'–'};
     const statusColor = {fail:'#c93737', warning:'#c87912', pass:'#23834a', unknown:'#8795a1', professional_review:'#2d6cdf', not_applicable:'#8795a1'};
     const floorsOrder = {'floor-1':1,'1F':1,'floor-2':2,'2F':2,'floor-3':3,'3F':3,'floor-rf':4,'RF':4};
@@ -403,8 +415,10 @@ def dashboard_html(report: dict[str, Any]) -> str:
       const counts = readiness.counts || {};
       section.classList.add(eligible ? 'ready' : 'blocked');
       document.getElementById('model3dStatus').textContent = eligible ? '可進入產圖' : '已阻擋';
+      const model3dLink = document.getElementById('model3dLink');
+      if (model3dLink) model3dLink.hidden = !(eligible && model3dArtifactAvailable);
       document.getElementById('model3dSummary').textContent = eligible
-        ? '這個版次的輸入已具備可追溯 3D 幾何條件；仍須把產圖結果視為圖面閱讀工具，不等同合規放行。'
+        ? '這個版次已具備可追溯空間量體條件；不代表精確牆體、門窗、設備或施工 walkthrough 已完成。'
         : `這個版次有 ${readiness.blockers?.length || 0} 項輸入阻擋，不會建立或連結為現行 3D。`;
       const coordinateStatus = readiness.coordinate_system?.status || 'unknown';
       const metrics = [
@@ -540,18 +554,59 @@ def dashboard_html(report: dict[str, Any]) -> str:
     document.querySelectorAll('.nav button[data-domain]').forEach(button => button.addEventListener('click',() => { document.getElementById('statusFilter').value='all'; renderFindings(button.dataset.domain); document.querySelector('.table-panel').scrollIntoView({behavior:'smooth'}); }));
     document.querySelectorAll('[data-jump]').forEach(button => button.addEventListener('click',() => document.getElementById(button.dataset.jump === 'model3d' ? 'model3dReadiness' : button.dataset.jump)?.scrollIntoView({behavior:'smooth'})));
     document.getElementById('printButton').addEventListener('click',() => window.print());
+    const locationToggle = document.getElementById('locationToggle');
+    locationToggle.addEventListener('click',() => {
+      const tree = document.getElementById('locationTree');
+      const open = tree.classList.toggle('mobile-open');
+      locationToggle.setAttribute('aria-expanded', String(open));
+    });
     const dialog = document.getElementById('importDialog');
+    let dialogReturnFocus = null;
+    function closeImportDialog() {
+      if (!dialog.classList.contains('open')) return;
+      dialog.classList.remove('open'); dialog.setAttribute('aria-hidden','true');
+      (dialogReturnFocus || document.getElementById('importButton')).focus();
+    }
+    function openImportDialog() {
+      dialogReturnFocus = document.activeElement;
+      dialog.classList.add('open'); dialog.setAttribute('aria-hidden','false');
+      document.getElementById('closeDialog').focus();
+    }
     document.getElementById('importCommand').textContent = 'python -m house_design drawings import --revision R001 --label "初步設計" --pdf path/to/drawings.pdf --ifc path/to/model.ifc';
-    document.getElementById('importButton').addEventListener('click',() => { dialog.classList.add('open'); document.getElementById('closeDialog').focus(); });
-    document.getElementById('closeDialog').addEventListener('click',() => { dialog.classList.remove('open'); document.getElementById('importButton').focus(); });
-    dialog.addEventListener('click',event => { if(event.target === dialog) dialog.classList.remove('open'); });
+    document.getElementById('importButton').addEventListener('click',openImportDialog);
+    document.getElementById('closeDialog').addEventListener('click',closeImportDialog);
+    dialog.addEventListener('click',event => { if(event.target === dialog) closeImportDialog(); });
+    dialog.addEventListener('keydown',event => {
+      if (event.key === 'Escape') { event.preventDefault(); closeImportDialog(); return; }
+      if (event.key !== 'Tab') return;
+      const focusable = [...dialog.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])')].filter(item => !item.disabled && !item.hidden);
+      if (!focusable.length) { event.preventDefault(); dialog.querySelector('.dialog').focus(); return; }
+      const first = focusable[0], last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    });
   </script>
 </body>
 </html>'''
-    return document.replace("__TITLE__", title).replace("__REPORT_JSON__", payload)
+    return (
+        document.replace("__TITLE__", title)
+        .replace("__REPORT_JSON__", payload)
+        .replace("__MODEL3D_AVAILABLE__", "true" if model3d_available else "false")
+        .replace(
+            "__MODEL3D_LINK__",
+            '          <a class="button" id="model3dLink" href="model3d.html">開啟空間量體</a>'
+            if model3d_available
+            else "",
+        )
+    )
 
 
 def write_dashboard(report: dict[str, Any], directory: Path) -> Path:
     path = directory / "index.html"
-    path.write_text(dashboard_html(report), encoding="utf-8", newline="\n")
+    model3d_available = bool(report.get("model3d_readiness", {}).get("eligible")) and (directory / "model3d.html").is_file()
+    path.write_text(
+        dashboard_html(report, model3d_available=model3d_available),
+        encoding="utf-8",
+        newline="\n",
+    )
     return path

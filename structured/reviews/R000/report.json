@@ -1,6 +1,6 @@
 {
   "schema": "house-review-report-v1",
-  "generated_at": "2026-08-31T02:37:04.270024+00:00",
+  "generated_at": "2026-09-01T01:08:44.540809+00:00",
   "project": {
     "project_id": "kaohsiung-three-house-compound",
     "name": "高雄三棟住宅前期規劃",
@@ -18,7 +18,7 @@
     "revision_id": "R000",
     "label": "舊版概念配置（32坪建築面積假設）",
     "status": "legacy_assumption",
-    "content_hash": "1f5d0fdbd07a8c9c04bbe12f94ff686dc2e75f702bfb97a7784c8c20ce8d4768"
+    "content_hash": "64fd89a3fbc2e4c974db94152ac6853f08c78ba5457155e07242d8fc221a9bb3"
   },
   "readiness": {
     "completed": 0,
@@ -210,7 +210,7 @@
         },
         "design": {
           "completed": 0,
-          "total": 8
+          "total": 12
         },
         "tender": {
           "completed": 0,
@@ -237,7 +237,7 @@
       "populated_fields": 0,
       "total_fields": 9
     },
-    "report_hash": "ed1346e8d480cbda4d74cd805df2abc1ae3a9f76e8b1513dca7ab4ca96566db9"
+    "report_hash": "0f20a2352964afcf61633ba0e9e006bb8bc2f3e697aec761076f55ce49df8dfd"
   },
   "requirements_summary": {
     "total": 64,
@@ -255,11 +255,322 @@
     "drawing_geometry": 0
   },
   "model3d_readiness": {
-    "schema": "house-model3d-readiness-v1",
+    "schema": "house-model3d-readiness-v2",
     "revision_id": "R000",
+    "level": "space_block",
     "status": "blocked",
     "eligible": false,
-    "policy": "只有現行 ready 版次的全部空間具備權威幾何、棟層位置、樓層標高及已驗證座標時，才可產生現行 3D。",
+    "policy": "space_block 只代表可追溯空間量體；walkthrough 還必須具備精確 polygon、牆、門窗高度、樓梯與設備證據。",
+    "levels": {
+      "space_block": {
+        "status": "blocked",
+        "eligible": false,
+        "blockers": [
+          {
+            "code": "REVISION_LEGACY_ASSUMPTION",
+            "message": "此版是封存的歷史假設，不是建築師現行圖面，不能作為現行 3D。",
+            "next_action": "收到建築師 PDF 加 IFC，或 PDF 加已對應圖層的 DXF 後，以新 revision id 匯入。"
+          },
+          {
+            "code": "REVISION_IMPORT_NOT_READY",
+            "message": "版次匯入狀態是 legacy_assumption，machine-readable 來源是 legacy_parametric_json，尚未達到 3D 匯入條件。",
+            "next_action": "修正來源檔、單位與語意 mapping 後，以新的不可變版次重新匯入。",
+            "details": {
+              "revision_status": "legacy_assumption",
+              "source_kinds": [
+                "legacy_parametric_json"
+              ]
+            }
+          },
+          {
+            "code": "IMPORT_BLOCKING_ISSUES",
+            "message": "版次仍有 1 個 blocking import issue。",
+            "next_action": "先處理列出的匯入問題，再建立新 revision；不要直接修改既有不可變版次。",
+            "details": {
+              "issue_codes": [
+                "LEGACY_FOOTPRINT_ASSUMPTION"
+              ]
+            }
+          },
+          {
+            "code": "NON_AUTHORITATIVE_GEOMETRY",
+            "message": "99 個空間的幾何不是可追溯的建築師／測量來源。",
+            "next_action": "以 architect_dxf、architect_ifc、professional_verified 或 surveyed 來源取代推估幾何。",
+            "details": {
+              "non_authoritative_spaces": 99,
+              "provenance": [
+                "legacy_assumption"
+              ]
+            }
+          },
+          {
+            "code": "STOREY_ELEVATION_MISSING",
+            "message": "12 個使用中的棟別／樓層缺少數值標高。",
+            "next_action": "由 IFC 樓層或經建築師確認的 mapping 提供 elevation_mm，包含 1F 的 0 mm。",
+            "details": {
+              "locations": [
+                {
+                  "building_id": "A",
+                  "floor_id": "floor-1"
+                },
+                {
+                  "building_id": "A",
+                  "floor_id": "floor-2"
+                },
+                {
+                  "building_id": "A",
+                  "floor_id": "floor-3"
+                },
+                {
+                  "building_id": "A",
+                  "floor_id": "floor-rf"
+                },
+                {
+                  "building_id": "B",
+                  "floor_id": "floor-1"
+                },
+                {
+                  "building_id": "B",
+                  "floor_id": "floor-2"
+                },
+                {
+                  "building_id": "B",
+                  "floor_id": "floor-3"
+                },
+                {
+                  "building_id": "B",
+                  "floor_id": "floor-rf"
+                },
+                {
+                  "building_id": "C",
+                  "floor_id": "floor-1"
+                },
+                {
+                  "building_id": "C",
+                  "floor_id": "floor-2"
+                },
+                {
+                  "building_id": "C",
+                  "floor_id": "floor-3"
+                },
+                {
+                  "building_id": "C",
+                  "floor_id": "floor-rf"
+                }
+              ]
+            }
+          },
+          {
+            "code": "COORDINATE_SYSTEM_UNVERIFIED",
+            "message": "座標系統狀態是 local_assumed，或缺少人員、日期、方法與至少兩個基準點證據。",
+            "next_action": "確認 IFC／DXF 的原點、軸向、單位與樓層基準，並記錄 verified_by、verified_at、method 及 reference_points。",
+            "details": {
+              "coordinate_status": "local_assumed"
+            }
+          }
+        ]
+      },
+      "walkthrough": {
+        "status": "blocked",
+        "eligible": false,
+        "blockers": [
+          {
+            "code": "REVISION_LEGACY_ASSUMPTION",
+            "message": "此版是封存的歷史假設，不是建築師現行圖面，不能作為現行 3D。",
+            "next_action": "收到建築師 PDF 加 IFC，或 PDF 加已對應圖層的 DXF 後，以新 revision id 匯入。"
+          },
+          {
+            "code": "REVISION_IMPORT_NOT_READY",
+            "message": "版次匯入狀態是 legacy_assumption，machine-readable 來源是 legacy_parametric_json，尚未達到 3D 匯入條件。",
+            "next_action": "修正來源檔、單位與語意 mapping 後，以新的不可變版次重新匯入。",
+            "details": {
+              "revision_status": "legacy_assumption",
+              "source_kinds": [
+                "legacy_parametric_json"
+              ]
+            }
+          },
+          {
+            "code": "IMPORT_BLOCKING_ISSUES",
+            "message": "版次仍有 1 個 blocking import issue。",
+            "next_action": "先處理列出的匯入問題，再建立新 revision；不要直接修改既有不可變版次。",
+            "details": {
+              "issue_codes": [
+                "LEGACY_FOOTPRINT_ASSUMPTION"
+              ]
+            }
+          },
+          {
+            "code": "NON_AUTHORITATIVE_GEOMETRY",
+            "message": "99 個空間的幾何不是可追溯的建築師／測量來源。",
+            "next_action": "以 architect_dxf、architect_ifc、professional_verified 或 surveyed 來源取代推估幾何。",
+            "details": {
+              "non_authoritative_spaces": 99,
+              "provenance": [
+                "legacy_assumption"
+              ]
+            }
+          },
+          {
+            "code": "STOREY_ELEVATION_MISSING",
+            "message": "12 個使用中的棟別／樓層缺少數值標高。",
+            "next_action": "由 IFC 樓層或經建築師確認的 mapping 提供 elevation_mm，包含 1F 的 0 mm。",
+            "details": {
+              "locations": [
+                {
+                  "building_id": "A",
+                  "floor_id": "floor-1"
+                },
+                {
+                  "building_id": "A",
+                  "floor_id": "floor-2"
+                },
+                {
+                  "building_id": "A",
+                  "floor_id": "floor-3"
+                },
+                {
+                  "building_id": "A",
+                  "floor_id": "floor-rf"
+                },
+                {
+                  "building_id": "B",
+                  "floor_id": "floor-1"
+                },
+                {
+                  "building_id": "B",
+                  "floor_id": "floor-2"
+                },
+                {
+                  "building_id": "B",
+                  "floor_id": "floor-3"
+                },
+                {
+                  "building_id": "B",
+                  "floor_id": "floor-rf"
+                },
+                {
+                  "building_id": "C",
+                  "floor_id": "floor-1"
+                },
+                {
+                  "building_id": "C",
+                  "floor_id": "floor-2"
+                },
+                {
+                  "building_id": "C",
+                  "floor_id": "floor-3"
+                },
+                {
+                  "building_id": "C",
+                  "floor_id": "floor-rf"
+                }
+              ]
+            }
+          },
+          {
+            "code": "COORDINATE_SYSTEM_UNVERIFIED",
+            "message": "座標系統狀態是 local_assumed，或缺少人員、日期、方法與至少兩個基準點證據。",
+            "next_action": "確認 IFC／DXF 的原點、軸向、單位與樓層基準，並記錄 verified_by、verified_at、method 及 reference_points。",
+            "details": {
+              "coordinate_status": "local_assumed"
+            }
+          },
+          {
+            "code": "EXACT_SPACE_POLYGON_MISSING",
+            "message": "99 個空間只有 bbox 或近似 hull，不能宣稱可走入的精確邊界。",
+            "next_action": "由建築師提供閉合 DXF 空間 polyline，或經專業確認的精確 polygon。"
+          },
+          {
+            "code": "WALL_GEOMETRY_MISSING",
+            "message": "12 個使用中的棟層沒有可追溯牆體幾何。",
+            "next_action": "在 IFC 提供 IfcWall，或以 DXF entity/layer mapping 標記 wall。",
+            "details": {
+              "locations": [
+                {
+                  "building_id": "A",
+                  "floor_id": "floor-1"
+                },
+                {
+                  "building_id": "A",
+                  "floor_id": "floor-2"
+                },
+                {
+                  "building_id": "A",
+                  "floor_id": "floor-3"
+                },
+                {
+                  "building_id": "A",
+                  "floor_id": "floor-rf"
+                },
+                {
+                  "building_id": "B",
+                  "floor_id": "floor-1"
+                },
+                {
+                  "building_id": "B",
+                  "floor_id": "floor-2"
+                },
+                {
+                  "building_id": "B",
+                  "floor_id": "floor-3"
+                },
+                {
+                  "building_id": "B",
+                  "floor_id": "floor-rf"
+                },
+                {
+                  "building_id": "C",
+                  "floor_id": "floor-1"
+                },
+                {
+                  "building_id": "C",
+                  "floor_id": "floor-2"
+                },
+                {
+                  "building_id": "C",
+                  "floor_id": "floor-3"
+                },
+                {
+                  "building_id": "C",
+                  "floor_id": "floor-rf"
+                }
+              ]
+            }
+          },
+          {
+            "code": "SPACE_HEIGHT_MISSING",
+            "message": "99 個空間缺少經確認的樓層或空間高度。",
+            "next_action": "在 storeys.height_mm 或 space.height_mm 記錄設計方確認的高度。"
+          },
+          {
+            "code": "OPENING_GEOMETRY_INCOMPLETE",
+            "message": "93 個門窗缺少位置或高度。",
+            "next_action": "補齊每個門窗的 bbox/polygon 與 height_mm；完成面淨寬仍須獨立證據。"
+          },
+          {
+            "code": "STAIR_GEOMETRY_MISSING",
+            "message": "多樓層棟別缺少可追溯的樓梯幾何。",
+            "next_action": "在 IFC 提供 IfcStair，或以 DXF mapping 明確標示各層樓梯範圍與連接。",
+            "details": {
+              "buildings": [
+                "A",
+                "B",
+                "C"
+              ]
+            }
+          },
+          {
+            "code": "EQUIPMENT_SCOPE_UNVERIFIED",
+            "message": "固定設備範圍尚未以清單或不適用聲明完成查核。",
+            "next_action": "提供設備位置幾何，並在 walkthrough_scope.equipment 留下查核人、日期與證據。",
+            "details": {
+              "incomplete_equipment": 0
+            }
+          }
+        ]
+      }
+    },
     "source_kinds": [
       "legacy_parametric_json"
     ],
@@ -275,7 +586,12 @@
       "renderable_spaces": 0,
       "authoritative_renderable_spaces": 0,
       "total_storeys": 12,
-      "elevated_storeys": 0
+      "elevated_storeys": 0,
+      "exact_polygon_spaces": 0,
+      "walls": 0,
+      "openings": 93,
+      "stairs": 0,
+      "equipment": 0
     },
     "blockers": [
       {
@@ -374,8 +690,8 @@
       },
       {
         "code": "COORDINATE_SYSTEM_UNVERIFIED",
-        "message": "座標系統狀態是 local_assumed，尚未證明不同來源已正確對齊。",
-        "next_action": "確認 IFC／DXF 的原點、軸向、單位與樓層基準，並將 coordinate_system.status 標記為 verified。",
+        "message": "座標系統狀態是 local_assumed，或缺少人員、日期、方法與至少兩個基準點證據。",
+        "next_action": "確認 IFC／DXF 的原點、軸向、單位與樓層基準，並記錄 verified_by、verified_at、method 及 reference_points。",
         "details": {
           "coordinate_status": "local_assumed"
         }
@@ -387,16 +703,16 @@
       "先處理列出的匯入問題，再建立新 revision；不要直接修改既有不可變版次。",
       "以 architect_dxf、architect_ifc、professional_verified 或 surveyed 來源取代推估幾何。",
       "由 IFC 樓層或經建築師確認的 mapping 提供 elevation_mm，包含 1F 的 0 mm。",
-      "確認 IFC／DXF 的原點、軸向、單位與樓層基準，並將 coordinate_system.status 標記為 verified。"
+      "確認 IFC／DXF 的原點、軸向、單位與樓層基準，並記錄 verified_by、verified_at、method 及 reference_points。"
     ]
   },
   "status_counts": {
-    "not_applicable": 0,
     "pass": 3,
-    "warning": 2,
-    "unknown": 12,
+    "fail": 1,
     "professional_review": 10,
-    "fail": 1
+    "warning": 2,
+    "not_applicable": 0,
+    "unknown": 12
   },
   "release": {
     "eligible": false,
@@ -583,19 +899,32 @@
       "next_action": "確認每一類是否含稅、運送、安裝、測試與介面工程，並由屋主確認備用金。"
     },
     {
-      "finding_id": "PD-OWNER-HOUSEHOLD-PROFILE-e1d692bb",
+      "finding_id": "PD-OWNER-HOUSEHOLD-PROFILE-56ab22a0",
       "rule_id": "PD-OWNER-HOUSEHOLD-PROFILE",
       "status": "unknown",
       "status_label": "未知",
       "severity": "blocking",
       "domain": "household",
       "title": "家庭成員與 20 年情境訪談",
-      "message": "尚缺各棟常住者、年齡、輪椅／照護、祭祀、車輛、寵物、工作與訪客頻率。",
+      "message": "已私下記錄各棟家庭結構與 0／5／10／20 年情境，以及車輛、寵物、訪客、過夜、祭祀、1F 無障礙與彈性房方向；尚待屋主確認 must／should／could 分級及電梯或樓梯升降設備預留策略。",
       "phase": "owner_brief",
       "gate_active": true,
       "blocking": true,
       "applies_to": {},
       "evidence": [
+        {
+          "kind": "owner_interview_private",
+          "path": "inputs/private/household-profile.json",
+          "recorded_at": "2026-09-01",
+          "privacy": "gitignored_private_file",
+          "scope": [
+            "current_households",
+            "5_year_scenario",
+            "10_year_scenario",
+            "20_year_scenario",
+            "daily_life_and_accessibility"
+          ]
+        },
         {
           "kind": "research_source",
           "source_id": "SRC-OWNER-20260828",
@@ -638,14 +967,14 @@
       "next_action": "逐項標記 confirmed、rejected，並將 confirmed 項目設定 must／should／could。"
     },
     {
-      "finding_id": "PD-SITE-TARGET-CRITERIA-70ab77e8",
+      "finding_id": "PD-SITE-TARGET-CRITERIA-101c7dfc",
       "rule_id": "PD-SITE-TARGET-CRITERIA",
       "status": "unknown",
       "status_label": "未知",
       "severity": "blocking",
       "domain": "site",
       "title": "選地硬條件與淘汰條件",
-      "message": "目前只有三筆相鄰、每筆約 32 坪目標，尚未定義臨路、面寬、深度、朝向與施工進出淘汰線。",
+      "message": "已定三筆相鄰、每筆約 32 坪，但臨路、面寬、深度與施工條件淘汰線尚待補齊。",
       "phase": "site_search",
       "gate_active": true,
       "blocking": true,
@@ -4232,7 +4561,7 @@
       }
     ]
   },
-  "report_hash": "cd855504e24b07ccf1f11c257c3f87bf891045871460c4b6bec266cd2b1265d3",
+  "report_hash": "03da8865047fb64560f3221859f7e3128994cd7232296e8c1be085c9ac350163",
   "signoff": {
     "valid": false,
     "reason": "missing",

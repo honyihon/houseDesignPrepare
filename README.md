@@ -17,6 +17,15 @@ python3 -m venv .venv
 
 先閱讀 `structured/predesign/report.md` 與 `Docs/predesign-owner-readiness.md`。打開 `structured/reviews/R000/index.html` 可查看離線儀表板；R000 是舊「每層 32 坪」假設的封存示範，預期會被阻擋。
 
+## 舊草圖的設計討論入口
+
+- `AbuildingView.html`、`BbuildingView.html`、`CbuildingView.html`：原始房間格位與需求說明。
+- `structured/candidates/model3d.html`：逐格讀取上述 HTML 座標的主要 3D 對照，可從 HTML 樓層／房間雙向定位。
+- `structured/parametric/walkthrough.html`：會依 6–10 m 開間重新排房的另一個歷史容量情境，不代表原 HTML 格局。
+
+這三項都不是現行可建或施工設計。原設計 3D 的分享連結使用
+`#building=A&floor=floor-1&room=A:floor-1:living&view=plan`；道路／前方固定對應 HTML 平面上方 `y=0`。
+
 收到建築師圖面後：
 
 ```bash
@@ -24,8 +33,10 @@ python3 -m venv .venv
 .venv/bin/python -m house_design drawings import \
   --revision R001 --label "初步設計" \
   --pdf path/to/drawings.pdf --ifc path/to/model.ifc
+.venv/bin/python -m house_design drawings verify --revision R001
 .venv/bin/python -m house_design drawings model3d-readiness --revision R001
 .venv/bin/python -m house_design review run --revision R001 --previous R000
+.venv/bin/python -m house_design drawings export-model3d --revision R001
 ```
 
 若只有 2D CAD，請建築師將 DWG 另存 DXF，並以 `--mapping` 提供圖層到棟別、樓層、空間／門窗／設備的對應。

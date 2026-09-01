@@ -1,6 +1,6 @@
 {
   "schema": "house-predesign-report-v1",
-  "generated_at": "2026-08-28T01:56:05.162106+00:00",
+  "generated_at": "2026-09-01T01:08:43.999967+00:00",
   "project_id": "kaohsiung-three-house-compound",
   "current_phase": "site_search",
   "policy": {
@@ -34,7 +34,7 @@
       },
       "design": {
         "completed": 0,
-        "total": 8
+        "total": 12
       },
       "tender": {
         "completed": 0,
@@ -53,7 +53,7 @@
   "status_counts": {
     "pass": 3,
     "fail": 0,
-    "warning": 27,
+    "warning": 31,
     "unknown": 4,
     "not_applicable": 0,
     "professional_review": 1
@@ -71,19 +71,32 @@
   },
   "findings": [
     {
-      "finding_id": "PD-OWNER-HOUSEHOLD-PROFILE-e1d692bb",
+      "finding_id": "PD-OWNER-HOUSEHOLD-PROFILE-56ab22a0",
       "rule_id": "PD-OWNER-HOUSEHOLD-PROFILE",
       "status": "unknown",
       "status_label": "未知",
       "severity": "blocking",
       "domain": "household",
       "title": "家庭成員與 20 年情境訪談",
-      "message": "尚缺各棟常住者、年齡、輪椅／照護、祭祀、車輛、寵物、工作與訪客頻率。",
+      "message": "已私下記錄各棟家庭結構與 0／5／10／20 年情境，以及車輛、寵物、訪客、過夜、祭祀、1F 無障礙與彈性房方向；尚待屋主確認 must／should／could 分級及電梯或樓梯升降設備預留策略。",
       "phase": "owner_brief",
       "gate_active": true,
       "blocking": true,
       "applies_to": {},
       "evidence": [
+        {
+          "kind": "owner_interview_private",
+          "path": "inputs/private/household-profile.json",
+          "recorded_at": "2026-09-01",
+          "privacy": "gitignored_private_file",
+          "scope": [
+            "current_households",
+            "5_year_scenario",
+            "10_year_scenario",
+            "20_year_scenario",
+            "daily_life_and_accessibility"
+          ]
+        },
         {
           "kind": "research_source",
           "source_id": "SRC-OWNER-20260828",
@@ -173,14 +186,14 @@
       "next_action": "確認每一類是否含稅、運送、安裝、測試與介面工程，並由屋主確認備用金。"
     },
     {
-      "finding_id": "PD-SITE-TARGET-CRITERIA-70ab77e8",
+      "finding_id": "PD-SITE-TARGET-CRITERIA-101c7dfc",
       "rule_id": "PD-SITE-TARGET-CRITERIA",
       "status": "unknown",
       "status_label": "未知",
       "severity": "blocking",
       "domain": "site",
       "title": "選地硬條件與淘汰條件",
-      "message": "目前只有三筆相鄰、每筆約 32 坪目標，尚未定義臨路、面寬、深度、朝向與施工進出淘汰線。",
+      "message": "已定三筆相鄰、每筆約 32 坪，但臨路、面寬、深度與施工條件淘汰線尚待補齊。",
       "phase": "site_search",
       "gate_active": true,
       "blocking": true,
@@ -930,6 +943,177 @@
       "next_action": "用實際物品與家具盤點收納；垃圾、洗衣、曬衣、清潔與補貨不可穿越臥室。"
     },
     {
+      "finding_id": "PD-DESIGN-HEALTHY-DURABLE-MATERIALS-2bda601c",
+      "rule_id": "PD-DESIGN-HEALTHY-DURABLE-MATERIALS",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "health_durability",
+      "title": "低逸散材料、室內空氣、濕黴蟲害與沿海腐蝕",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "design",
+      "gate_active": false,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-NLMA-BUILDING-RULES",
+          "tier": "official",
+          "title": "建築技術規則",
+          "url": "https://www.nlma.gov.tw/ch/legislation/law%26regusw/6175"
+        },
+        {
+          "kind": "research_source",
+          "source_id": "SRC-PROJECT-ABC-CHECKLIST",
+          "tier": "experience",
+          "title": "A/B/C 棟設計修正需求檢核包",
+          "url": null
+        }
+      ],
+      "source": {
+        "source_id": "SRC-NLMA-BUILDING-RULES",
+        "tier": "official",
+        "title": "建築技術規則",
+        "organization": "內政部國土管理署",
+        "url": "https://www.nlma.gov.tw/ch/legislation/law%26regusw/6175",
+        "verified_at": "2026-08-28",
+        "scope_limit": "實際適用條文、用途與地方審查仍須由執業建築師依基地確認。"
+      },
+      "responsible_role": "建築師／室內設計／空調顧問／材料供應商",
+      "next_action": "依實際基地暴露條件建立材料與 IAQ 規格，畫出防潮排水、可清潔節點與蟲害封堵，要求產品文件、施工養護及入住前通風／檢測證據。"
+    },
+    {
+      "finding_id": "PD-DESIGN-LIFE-SAFETY-SHRINE-dcb8a852",
+      "rule_id": "PD-DESIGN-LIFE-SAFETY-SHRINE",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "fire",
+      "title": "避難、樓梯、火災偵測與祭祀用火安全",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "design",
+      "gate_active": false,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-NLMA-BUILDING-RULES",
+          "tier": "official",
+          "title": "建築技術規則",
+          "url": "https://www.nlma.gov.tw/ch/legislation/law%26regusw/6175"
+        },
+        {
+          "kind": "research_source",
+          "source_id": "SRC-PROJECT-ABC-CHECKLIST",
+          "tier": "experience",
+          "title": "A/B/C 棟設計修正需求檢核包",
+          "url": null
+        }
+      ],
+      "source": {
+        "source_id": "SRC-NLMA-BUILDING-RULES",
+        "tier": "official",
+        "title": "建築技術規則",
+        "organization": "內政部國土管理署",
+        "url": "https://www.nlma.gov.tw/ch/legislation/law%26regusw/6175",
+        "verified_at": "2026-08-28",
+        "scope_limit": "實際適用條文、用途與地方審查仍須由執業建築師依基地確認。"
+      },
+      "responsible_role": "建築師／消防設備專業人員／機電／屋主",
+      "next_action": "以家具完成圖逐層走查兩方向避難與救援，建立互聯式偵煙／警報、緊急照明及神明廳明火、香灰、排風和可燃物管理方案。"
+    },
+    {
+      "finding_id": "PD-DESIGN-STRUCTURE-HAZARDS-3a8dfd1f",
+      "rule_id": "PD-DESIGN-STRUCTURE-HAZARDS",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "structural",
+      "title": "三棟整體結構、耐震、強風與地工協調",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "design",
+      "gate_active": false,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-NLMA-BUILDING-RULES",
+          "tier": "official",
+          "title": "建築技術規則",
+          "url": "https://www.nlma.gov.tw/ch/legislation/law%26regusw/6175"
+        },
+        {
+          "kind": "research_source",
+          "source_id": "SRC-CGS-LIQUEFACTION",
+          "tier": "official",
+          "title": "土壤液化潛勢查詢系統",
+          "url": "https://www.liquid.net.tw/cgs/public/"
+        },
+        {
+          "kind": "research_source",
+          "source_id": "SRC-PROJECT-ABC-CHECKLIST",
+          "tier": "experience",
+          "title": "A/B/C 棟設計修正需求檢核包",
+          "url": null
+        }
+      ],
+      "source": {
+        "source_id": "SRC-NLMA-BUILDING-RULES",
+        "tier": "official",
+        "title": "建築技術規則",
+        "organization": "內政部國土管理署",
+        "url": "https://www.nlma.gov.tw/ch/legislation/law%26regusw/6175",
+        "verified_at": "2026-08-28",
+        "scope_limit": "實際適用條文、用途與地方審查仍須由執業建築師依基地確認。"
+      },
+      "responsible_role": "建築師／結構技師／大地技師",
+      "next_action": "在格局凍結前完成各棟結構系統與地質條件的書面設計基準，疊合梁柱、開口、設備荷重及套管，保留計算與簽證責任。"
+    },
+    {
+      "finding_id": "PD-DESIGN-VERTICAL-MOBILITY-b6c91a31",
+      "rule_id": "PD-DESIGN-VERTICAL-MOBILITY",
+      "status": "warning",
+      "status_label": "警告",
+      "severity": "planned",
+      "domain": "accessibility",
+      "title": "一樓完整生活與未來垂直移動策略",
+      "message": "尚未進入此階段；現在先保留需求、介面與未來查驗責任，避免前一步封死後續選項。",
+      "phase": "design",
+      "gate_active": false,
+      "blocking": true,
+      "applies_to": {},
+      "evidence": [
+        {
+          "kind": "research_source",
+          "source_id": "SRC-NLMA-ACCESSIBILITY",
+          "tier": "official",
+          "title": "建築物無障礙設施設計規範",
+          "url": "https://www.nlma.gov.tw/ch/legislation/regsearch/927"
+        },
+        {
+          "kind": "research_source",
+          "source_id": "SRC-PROJECT-ABC-CHECKLIST",
+          "tier": "experience",
+          "title": "A/B/C 棟設計修正需求檢核包",
+          "url": null
+        }
+      ],
+      "source": {
+        "source_id": "SRC-NLMA-ACCESSIBILITY",
+        "tier": "official",
+        "title": "建築物無障礙設施設計規範",
+        "organization": "內政部國土管理署",
+        "url": "https://www.nlma.gov.tw/ch/legislation/regsearch/927",
+        "verified_at": "2026-08-28",
+        "scope_limit": "私人住宅的法定適用性與本案自訂全齡標準必須分開標示。"
+      },
+      "responsible_role": "屋主／建築師／結構技師／無障礙顧問",
+      "next_action": "先證明至少一處 1F 睡眠、如廁、沐浴、用餐與出入口可連續使用，再比較現在設電梯、預留井道／基礎電力或樓梯升降椅的全生命週期方案。"
+    },
+    {
       "finding_id": "PD-DESIGN-VERTICAL-SYSTEMS-aa157f5d",
       "rule_id": "PD-DESIGN-VERTICAL-SYSTEMS",
       "status": "warning",
@@ -1503,5 +1687,5 @@
       "scope_limit": "用來發現生活、施工與維修風險；不構成法規、結構或機電通過。"
     }
   ],
-  "report_hash": "ed1346e8d480cbda4d74cd805df2abc1ae3a9f76e8b1513dca7ab4ca96566db9"
+  "report_hash": "0f20a2352964afcf61633ba0e9e006bb8bc2f3e697aec761076f55ce49df8dfd"
 }

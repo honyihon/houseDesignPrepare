@@ -1,6 +1,6 @@
 # 住宅設計檢核報告 · R000 舊版概念配置（32坪建築面積假設）
 
-- Report hash: `cd855504e24b07ccf1f11c257c3f87bf891045871460c4b6bec266cd2b1265d3`
+- Report hash: `03da8865047fb64560f3221859f7e3128994cd7232296e8c1be085c9ac350163`
 - 基地資料完成度：**0%**
 - 前期到期項目完成度：**30%**
 - 前期硬阻擋：**5 項**
@@ -24,7 +24,7 @@
 - 座標狀態：`local_assumed`
 - 空間：0 個具備權威且可渲染幾何／共 99 個
 - 樓層：0 個有標高／共 12 個
-- 判定原則：只有現行 ready 版次的全部空間具備權威幾何、棟層位置、樓層標高及已驗證座標時，才可產生現行 3D。
+- 判定原則：space_block 只代表可追溯空間量體；walkthrough 還必須具備精確 polygon、牆、門窗高度、樓梯與設備證據。
 
 ### 阻擋原因與下一步
 
@@ -38,8 +38,8 @@
   - 下一步：以 architect_dxf、architect_ifc、professional_verified 或 surveyed 來源取代推估幾何。
 - `STOREY_ELEVATION_MISSING`：12 個使用中的棟別／樓層缺少數值標高。
   - 下一步：由 IFC 樓層或經建築師確認的 mapping 提供 elevation_mm，包含 1F 的 0 mm。
-- `COORDINATE_SYSTEM_UNVERIFIED`：座標系統狀態是 local_assumed，尚未證明不同來源已正確對齊。
-  - 下一步：確認 IFC／DXF 的原點、軸向、單位與樓層基準，並將 coordinate_system.status 標記為 verified。
+- `COORDINATE_SYSTEM_UNVERIFIED`：座標系統狀態是 local_assumed，或缺少人員、日期、方法與至少兩個基準點證據。
+  - 下一步：確認 IFC／DXF 的原點、軸向、單位與樓層基準，並記錄 verified_by、verified_at、method 及 reference_points。
 
 ## 檢核事項
 
@@ -80,8 +80,8 @@
 
 ### [未知] 家庭成員與 20 年情境訪談
 
-- 編號：`PD-OWNER-HOUSEHOLD-PROFILE-e1d692bb`
-- 說明：尚缺各棟常住者、年齡、輪椅／照護、祭祀、車輛、寵物、工作與訪客頻率。
+- 編號：`PD-OWNER-HOUSEHOLD-PROFILE-56ab22a0`
+- 說明：已私下記錄各棟家庭結構與 0／5／10／20 年情境，以及車輛、寵物、訪客、過夜、祭祀、1F 無障礙與彈性房方向；尚待屋主確認 must／should／could 分級及電梯或樓梯升降設備預留策略。
 - 負責角色：屋主家庭
 - 下一步：完成現在、5 年、10 年、20 年四個情境，區分 must／should／could。
 
@@ -94,8 +94,8 @@
 
 ### [未知] 選地硬條件與淘汰條件
 
-- 編號：`PD-SITE-TARGET-CRITERIA-70ab77e8`
-- 說明：目前只有三筆相鄰、每筆約 32 坪目標，尚未定義臨路、面寬、深度、朝向與施工進出淘汰線。
+- 編號：`PD-SITE-TARGET-CRITERIA-101c7dfc`
+- 說明：已定三筆相鄰、每筆約 32 坪，但臨路、面寬、深度與施工條件淘汰線尚待補齊。
 - 負責角色：屋主／建築師
 - 下一步：建立候選土地評分表，先用硬淘汰條件篩掉無法容納三棟定位的基地。
 

@@ -232,10 +232,20 @@ __BASE_CSS__
   .grp-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 4px; }
   .grp-head strong { font-size: 13px; }
   .grp-head .tag { font-size: 10px; color: var(--muted); }
+  #mobile-panel-toggle { display: none; }
   @media (max-width: 860px) {
     #app { grid-template-columns: 1fr; grid-template-rows: minmax(0, 48vh) minmax(0, 1fr); }
-    #panel { padding: 12px 14px; }
+    #panel { padding: 10px 14px 14px; }
+    #mobile-panel-toggle {
+      display: block; position: sticky; top: 0; z-index: 5; width: 100%; min-height: 42px;
+      margin-bottom: 9px; border: 1px solid var(--line); border-radius: 8px;
+      color: var(--text); background: #16233a; font: 600 13px/1 inherit; cursor: pointer;
+    }
+    #app.panel-collapsed { grid-template-rows: 54px minmax(0, 1fr); }
+    #app.panel-collapsed #panel { overflow: hidden; padding-block: 6px; }
+    #app.panel-collapsed #panel > :not(#mobile-panel-toggle) { display: none !important; }
     #panel .banner:nth-of-type(2), #panel details.controls { display: none; }
+    .room-button, .compare-button { font-size: 12px; min-height: 36px; }
     #inspector { top: auto; bottom: 10px; right: 10px; width: calc(100% - 20px); max-height: 48%; }
     #orientation { bottom: 8px; left: 8px; max-width: 45%; }
     #hud { max-width: 60%; }
@@ -245,11 +255,14 @@ __BASE_CSS__
 <body>
 <div id="app">
   <aside id="panel">
-    <h1>走入式 3D · 設計前期</h1>
+    <button id="mobile-panel-toggle" type="button" aria-controls="panel" aria-expanded="true">收合控制，放大 3D</button>
+    <h1>參數化情境 · 走入式 3D</h1>
     <p class="sub" id="subtitle"></p>
     <div class="banner warn">
       <b>舊版參數化情境</b>　這個模型把 32 坪當成每層建築面積，已不是現行專案基準。
-      現行條件是每筆基地 32 坪；請改看 <a class="inline" href="../reviews/R000/index.html">structured/reviews/</a> 的資料就緒度與圖面版次。
+      它會依 6–10 m 開間重新排房，<b>不等於 A／B／C 原始 HTML 的格局</b>。
+      要逐房對照原草圖，請開 <a class="inline" href="../candidates/model3d.html">原設計 HTML 3D</a>；
+      現行條件則請看 <a class="inline" href="../reviews/R000/index.html">資料就緒度與圖面版次</a>。
     </div>
     <div class="banner warn">
       這不是建築師的圖。所有尺寸都是<b>從面積需求反推</b>的，用來感受空間大小與動線，
@@ -307,7 +320,7 @@ __BASE_CSS__
     <div id="rules"></div>
   </aside>
   <main id="stage">
-    <canvas id="canvas"></canvas>
+    <canvas id="canvas" role="img" tabindex="0" aria-label="A、B、C 三棟舊版參數化走入式三維模型；請用棟別、樓層與空間按鈕定位"></canvas>
     <div id="hud"></div>
     <div id="crosshair"></div>
     <div id="turnbadge"></div>
@@ -1172,6 +1185,14 @@ __ORBIT_JS__
     writeHash();
   });
 
+  var mobilePanelToggle = document.getElementById("mobile-panel-toggle");
+  mobilePanelToggle.addEventListener("click", function () {
+    var collapsed = document.getElementById("app").classList.toggle("panel-collapsed");
+    mobilePanelToggle.setAttribute("aria-expanded", collapsed ? "false" : "true");
+    mobilePanelToggle.textContent = collapsed ? "展開控制" : "收合控制，放大 3D";
+    window.setTimeout(resize, 220);
+  });
+
   // ---------- panel ----------
   var el = {
     frontage: document.getElementById("frontage"),
@@ -1608,6 +1629,7 @@ __ORBIT_JS__
       walker: { x: +walker.x.toFixed(3), z: +walker.z.toFixed(3), yaw: +walker.yaw.toFixed(3) },
       camera: [+camera.position.x.toFixed(2), +camera.position.y.toFixed(2), +camera.position.z.toFixed(2)],
       blockers: blockers.length,
+      panelCollapsed: document.getElementById("app").classList.contains("panel-collapsed"),
       clearance_mm: Math.round(clearanceAt(walker.x, walker.z) * 1000),
       // Screen-space x of each building, so 右 A／中 B／左 C is checkable by a
       // machine instead of by trusting my coordinate algebra.

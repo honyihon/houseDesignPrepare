@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "house-design-prepare"
 version = "0.2.0"
@@ -5,7 +9,9 @@ requires-python = ">=3.10"
 dependencies = [
   "beautifulsoup4==4.14.3",
   "reportlab==4.4.10",
-  "svglib==1.6.0",
+  # 1.6 pulls rlPyCairo/pycairo, which has no cross-platform wheel for every
+  # supported interpreter. 1.5.1 keeps SVG conversion pure Python in CI.
+  "svglib==1.5.1",
 ]
 
 [project.optional-dependencies]
@@ -34,3 +40,6 @@ select = ["F"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.setuptools.packages.find]
+include = ["house_design*"]

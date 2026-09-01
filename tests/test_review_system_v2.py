@@ -2,8 +2,9 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from house_design.contracts import write_json
+from house_design.contracts import sha256_file, write_json
 from house_design.dashboard import dashboard_html
+from house_design.drawings import revision_manifest_content_hash
 from house_design.review import build_review, review_markdown, validate_signoff
 
 
@@ -97,18 +98,20 @@ def _build(tmp_path: Path, requirement_status: str = "confirmed") -> dict:
     write_json(requirements_path, _requirements(requirement_status))
     write_json(rules_path, {"schema": "house-rule-pack-v2", "rules": []})
     write_json(model_path, _model())
-    write_json(
-        revision_dir / "manifest.json",
-        {
+    manifest = {
             "schema": "house-drawing-revision-v1",
             "revision_id": "R001",
             "label": "初步設計",
             "status": "ready",
             "content_hash": "drawing-hash",
             "normalized_model": str(model_path),
+            "normalized_model_sha256": sha256_file(model_path),
+            "sources": [],
+            "mapping": None,
             "issues": [],
-        },
-    )
+        }
+    manifest["content_hash"] = revision_manifest_content_hash(manifest)
+    write_json(revision_dir / "manifest.json", manifest)
     return build_review(
         revision_id="R001",
         project_path=project_path,
@@ -178,7 +181,7 @@ def test_dashboard_is_offline_and_exposes_unknown_as_separate_status(tmp_path: P
     assert "未知" in document
     assert "專業確認" in document
     assert 'id="model3dReadiness"' in document
-    assert "現行 revision 3D" in document
+    assert "現行空間量體模型" in document
     assert "SPACE_GEOMETRY_MISSING" not in document
     assert "COORDINATE_SYSTEM_UNVERIFIED" in document
     assert "https://" not in document

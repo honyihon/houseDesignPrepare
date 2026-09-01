@@ -11,6 +11,7 @@ from house_design.contracts import (
     read_json,
     relative_to_root,
     require_choice,
+    stable_hash,
     utc_now,
     write_json,
 )
@@ -300,7 +301,103 @@ def validate_requirements(payload: dict[str, Any]) -> list[dict[str, str]]:
             issues.append(
                 {"field": f"requirements[{index}].source", "message": "source type and path are required"}
             )
+        decision_log = item.get("decision_log")
+        if decision_log is not None:
+            if not isinstance(decision_log, list):
+                issues.append(
+                    {"field": f"requirements[{index}].decision_log", "message": "decision_log must be an array"}
+                )
+            else:
+                previous_hash = None
+                for decision_index, decision in enumerate(decision_log):
+                    field = f"requirements[{index}].decision_log[{decision_index}]"
+                    if not isinstance(decision, dict):
+                        issues.append({"field": field, "message": "decision entry must be an object"})
+                        continue
+                    stored_hash = decision.get("entry_hash")
+                    expected_hash = stable_hash({key: value for key, value in decision.items() if key != "entry_hash"})
+                    required = all(
+                        isinstance(decision.get(key), str) and bool(decision[key].strip())
+                        for key in ("status", "priority", "reason", "decided_by", "decided_at")
+                    )
+                    if not required:
+                        issues.append({"field": field, "message": "decision entry is missing required fields"})
+                    if decision.get("previous_entry_hash") != previous_hash:
+                        issues.append({"field": field, "message": "decision hash chain is broken"})
+                    if stored_hash != expected_hash:
+                        issues.append({"field": field, "message": "decision entry hash does not match"})
+                    previous_hash = stored_hash
     return issues
+
+
+def decide_requirement(
+    *,
+    requirement_id: str,
+    status: str,
+    priority: str,
+    reason: str,
+    decided_by: str,
+    decided_at: str | None = None,
+    requirements_path: Path = REQUIREMENTS_PATH,
+) -> dict[str, Any]:
+    """Apply an owner decision and append a hash-chained, never-rewritten log entry."""
+
+    require_choice(status, {"confirmed", "rejected"}, "status")
+    require_choice(priority, REQUIREMENT_PRIORITIES, "priority")
+    reason = reason.strip()
+    decided_by = decided_by.strip()
+    decided_at = (decided_at or utc_now()).strip()
+    if not requirement_id.strip() or not reason or not decided_by or not decided_at:
+        raise ContractError("id, reason, decided_by and decided_at must be non-empty")
+    payload = read_json(requirements_path)
+    existing_issues = validate_requirements(payload)
+    if existing_issues:
+        raise ContractError(f"Cannot decide an invalid requirement register: {existing_issues}")
+    requirement = next(
+        (item for item in payload.get("requirements", []) if item.get("id") == requirement_id),
+        None,
+    )
+    if requirement is None:
+        raise ContractError(f"Unknown requirement id: {requirement_id}")
+    decision_log = requirement.setdefault("decision_log", [])
+    if not isinstance(decision_log, list):
+        raise ContractError(f"requirement {requirement_id} has an invalid decision_log")
+    previous_hash = decision_log[-1].get("entry_hash") if decision_log else None
+    entry: dict[str, Any] = {
+        "sequence": len(decision_log) + 1,
+        "previous": {
+            "status": requirement.get("status"),
+            "priority": requirement.get("priority"),
+        },
+        "status": status,
+        "priority": priority,
+        "reason": reason,
+        "decided_by": decided_by,
+        "decided_at": decided_at,
+        "previous_entry_hash": previous_hash,
+    }
+    entry["entry_hash"] = stable_hash(entry)
+    decision_log.append(entry)
+    requirement["status"] = status
+    requirement["priority"] = priority
+    verification = requirement.setdefault("verification", {})
+    if isinstance(verification, dict):
+        verification["state"] = "owner_confirmed" if status == "confirmed" else "owner_rejected"
+        verification["last_decision_hash"] = entry["entry_hash"]
+    payload["updated_at"] = utc_now()
+    issues = validate_requirements(payload)
+    if issues:
+        raise ContractError(f"Decision would make requirement register invalid: {issues}")
+    write_json(requirements_path, payload)
+    return {
+        "schema": "house-requirement-decision-result-v1",
+        "requirement_id": requirement_id,
+        "status": status,
+        "priority": priority,
+        "decision_sequence": entry["sequence"],
+        "entry_hash": entry["entry_hash"],
+        "requirements_path": str(requirements_path),
+    }
 
 
 def _legacy_brief_files(brief_dir: Path) -> Iterable[Path]:

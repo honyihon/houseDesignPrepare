@@ -19,8 +19,10 @@ test('desktop default scene has the intended identity and initial scope', async 
 
   await expect(page).toHaveURL(/structured\/parametric\/walkthrough\.html#/);
   await expect(page).toHaveTitle('參數化平面 · 走入式 3D');
-  await expect(page.getByRole('heading', { name: '走入式 3D · 設計前期' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: '參數化情境 · 走入式 3D' })).toBeVisible();
   await expect(page.locator('#panel')).toContainText('舊版參數化情境');
+  await expect(page.locator('#panel')).toContainText('不等於 A／B／C 原始 HTML 的格局');
+  await expect(page.locator('a[href="../candidates/model3d.html"]')).toHaveText('原設計 HTML 3D');
   await assertNoFrameworkOverlay(page);
 
   const state = await walkDebug(page);
@@ -203,6 +205,7 @@ test('390x844 mobile layout stays readable and supports room selection', async (
 
   await expect(page.locator('#app')).toHaveCSS('grid-template-columns', '390px');
   await expect(page.locator('details.controls')).toBeHidden();
+  await expect(page.getByRole('img', { name: /舊版參數化走入式三維模型/ })).toBeVisible();
   const metrics = await page.evaluate(() => ({
     innerWidth: window.innerWidth,
     bodyWidth: document.body.scrollWidth,
@@ -220,6 +223,17 @@ test('390x844 mobile layout stays readable and supports room selection', async (
   expect(state.state).toMatchObject({ building: 'B', floor: 'floor-2' });
   expect(state.inspectorOpen).toBe(true);
   await expect(page.locator('#inspector')).toBeVisible();
+  const toggle = page.locator('#mobile-panel-toggle');
+  await toggle.click();
+  await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+  await expect(page.locator('#app')).toHaveClass(/panel-collapsed/);
+  expect((await walkDebug(page)).panelCollapsed).toBe(true);
+  const collapsed = await page.evaluate(() => ({
+    stageHeight: document.querySelector('#stage').getBoundingClientRect().height,
+    panelHeight: document.querySelector('#panel').getBoundingClientRect().height,
+  }));
+  expect(collapsed.stageHeight).toBeGreaterThan(760);
+  expect(collapsed.panelHeight).toBeLessThan(60);
   expectNoUnexpectedConsole(messages);
   await context.close();
 });
