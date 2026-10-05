@@ -15,7 +15,6 @@ from typing import Any
 
 from bs4 import BeautifulSoup, Tag
 
-
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
@@ -29,7 +28,7 @@ ARCHITECT_METRICS_FILE = ROOT / "structured" / "architect_metrics" / "metrics.js
 NORMALIZED_REQUEST_FILE = REPORT_DIR / "request_normalized.json"
 DEFAULT_REPORT_JSON = REPORT_DIR / "report.json"
 DEFAULT_REPORT_MD = REPORT_DIR / "report.md"
-DEFAULT_TASK_BOARD = ROOT / "task-board.md"
+DEFAULT_TASK_BOARD = ROOT / "structured" / "historical" / "html-workflow-task-board.md"
 DEFAULT_SIGNOFF_FILE = REPORT_DIR / "signoff.yaml"
 SCHEMA_VERSION = "expert-review-v1"
 TASK_BOARD_MARKER_START = "<!-- AUTO:LAST_RUN_START -->"
@@ -706,7 +705,10 @@ def append_review_section(lines: list[str], title: str, items: list[dict[str, An
 def ensure_task_board(path: Path) -> None:
     if path.exists():
         return
-    template = """# House Design Task Board
+    path.parent.mkdir(parents=True, exist_ok=True)
+    template = """# 歷史 HTML 工作流任務板
+
+> 只追蹤前身 HTML concept workflow；現行專案狀態以 `structured/CURRENT_STATUS.md` 與 `structured/reviews/<revision>/` 為準。
 
 ## Rollout Plan
 

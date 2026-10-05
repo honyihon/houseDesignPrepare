@@ -7,7 +7,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-
 ROOT = Path(__file__).resolve().parents[1]
 REPORT_JSON = ROOT / "structured" / "expert_review" / "report.json"
 HTML_CONSISTENCY_JSON = ROOT / "structured" / "expert_review" / "html_consistency.json"

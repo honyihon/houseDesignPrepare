@@ -38,6 +38,19 @@ jobs:
       - name: Exercise optional PDF, DXF and IFC ingestion paths
         run: python -m pytest -q tests/test_drawing_revisions_v2.py --no-header
 
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install -e ".[dev,drawings]"
+      - name: Enforce branch coverage baseline
+        run: python -m pytest -q --cov=house_design --cov-branch --cov-report=term-missing --cov-fail-under=68
+
   lint:
     runs-on: ubuntu-latest
     steps:

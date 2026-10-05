@@ -10,7 +10,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
@@ -217,7 +216,7 @@ def rows_to_table_objects(headers: list[str], rows: list[list[str]]) -> list[dic
     objects: list[dict[str, Any]] = []
     for row in rows:
         if len(row) == len(headers):
-            objects.append(dict(zip(headers, row)))
+            objects.append(dict(zip(headers, row, strict=True)))
         else:
             objects.append({"row": row})
     return objects

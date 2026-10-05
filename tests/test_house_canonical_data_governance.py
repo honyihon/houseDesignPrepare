@@ -3,9 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from bs4 import BeautifulSoup
-
 from check_html_consistency import check_floor_geometry
-
 
 ROOT = Path(__file__).resolve().parents[1]
 

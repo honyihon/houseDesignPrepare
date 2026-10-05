@@ -14,7 +14,6 @@ from house_design.predesign import (
 )
 from house_design.review import build_review
 
-
 ROOT = Path(__file__).resolve().parents[1]
 
 

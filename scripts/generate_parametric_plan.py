@@ -28,9 +28,15 @@ from typing import Any
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from lib import plan_geometry as pg  # noqa: E402
-from lib.standards import (BASELINE_LABEL, BASELINE_NOTE, ROOT,  # noqa: E402
-                           load_residential_defaults, penthouse_limit_sqm,
-                           repo_relative, roof_penthouse)
+from lib.standards import (  # noqa: E402
+    BASELINE_LABEL,
+    BASELINE_NOTE,
+    ROOT,
+    load_residential_defaults,
+    penthouse_limit_sqm,
+    repo_relative,
+    roof_penthouse,
+)
 
 try:  # optional: rules land in a later step, geometry must not depend on them
     from lib import plan_rules  # type: ignore
@@ -40,6 +46,7 @@ except ImportError:  # pragma: no cover
 SCHEMA = "house-parametric-plan-v1"
 SITE_PATH = ROOT / "inputs" / "site.json"
 BRIEF_DIR = ROOT / "inputs" / "brief"
+DIMENSIONS_PATH = ROOT / "inputs" / "dimensions.json"
 OUT_DIR = ROOT / "structured" / "parametric"
 
 
@@ -100,7 +107,8 @@ def floor_capacity(floor_payload: dict[str, Any], brief_floor: dict[str, Any],
 
     fixed = 0.0
     for cell in cells:
-        if cell["role"] in ("corridor", "stair", "garage"):
+        if (cell["role"] in ("corridor", "stair", "garage")
+                and cell.get("counts_as_fixed", True)):
             fixed += cell["area_sqm"]
 
     # Area the brief never asked for. It is neither demand nor fixed cost, so
@@ -222,18 +230,159 @@ def penthouse_check(floor_payload: dict[str, Any], footprint_sqm: float,
 # --------------------------------------------------------------------------
 
 
+def _concept_layout_applies(layout: dict[str, Any], frontage_mm: int, depth_mm: int,
+                            garage_variant: dict[str, Any]) -> bool:
+    applies = layout.get("applies_to") or {}
+    return (
+        int(applies.get("frontage_mm", -1)) == frontage_mm
+        and int(applies.get("depth_mm", -1)) == depth_mm
+        and int(applies.get("garage_bays", -1)) == int(garage_variant.get("bays", 0))
+    )
+
+
+def _layout_floor(
+    dimensions: dict[str, Any],
+    building_id: str,
+    floor_id: str,
+    layout: dict[str, Any],
+) -> dict[str, Any]:
+    source_id = (layout.get("floor_sources") or {}).get(floor_id, floor_id)
+    try:
+        return dimensions["buildings"][building_id]["floors"][source_id]
+    except KeyError as exc:
+        raise ValueError(
+            f"concept layout source is missing {building_id}.{source_id} for {floor_id}"
+        ) from exc
+
+
+def _anchored_skeleton(
+    brief: dict[str, Any],
+    layout: dict[str, Any],
+    dimensions: dict[str, Any],
+    frontage_mm: int,
+    depth_mm: int,
+    defaults: dict[str, Any],
+) -> pg.Skeleton:
+    """Derive skeleton metadata from the reviewed 1F grid.
+
+    Anchored floors do not use the generic skeleton to place rooms, but the 3D
+    viewer and capacity report still consume its stair/garage/core metadata.
+    Building it from the same cells keeps that metadata from describing the old
+    3.2 m front band while the floor itself shows the reviewed 6.2 m band.
+    """
+
+    ext = int(defaults["geometry"]["wall_thickness_mm"]["exterior"])
+    net = pg.Rect(ext, ext, frontage_mm - ext, depth_mm - ext)
+    floor_brief = next(
+        floor for floor in brief.get("floors", []) if floor.get("floor_id") == "floor-1"
+    )
+    cells = pg.anchored_cells(
+        floor_brief,
+        _layout_floor(dimensions, brief["building_id"], "floor-1", layout),
+        layout["cell_map"]["floor-1"],
+        net,
+        frontage_mm,
+        depth_mm,
+    )
+    corridor = next((cell for cell in cells if cell.role == "corridor"), None)
+    stair = next((cell for cell in cells if cell.role == "stair"), None)
+    garage = next((cell for cell in cells if cell.role == "garage"), None)
+    if corridor is None or stair is None:
+        raise ValueError("anchored 1F must contain one corridor and one stair cell")
+
+    annex_cells = [
+        cell
+        for cell in cells
+        if cell is not stair
+        and (cell.brief or {}).get("band") == "core"
+        and cell.rect.x0 >= stair.rect.x0
+    ]
+    annex = None
+    if annex_cells:
+        annex = pg.Rect(
+            min(cell.rect.x0 for cell in annex_cells),
+            min(cell.rect.y0 for cell in annex_cells),
+            max(cell.rect.x1 for cell in annex_cells),
+            max(cell.rect.y1 for cell in annex_cells),
+        )
+    core_parts = [stair.rect] + ([annex] if annex is not None else [])
+    core = pg.Rect(
+        min(rect.x0 for rect in core_parts),
+        min(rect.y0 for rect in core_parts),
+        max(rect.x1 for rect in core_parts),
+        max(rect.y1 for rect in core_parts),
+    )
+    return pg.Skeleton(
+        net=net,
+        front_depth=corridor.rect.y0 - net.y0,
+        corridor_w=corridor.rect.d,
+        core=core,
+        stair=stair.rect,
+        core_annex=annex,
+        garage=garage.rect if garage is not None else None,
+        spine=None,
+        notes=[
+            f"{layout.get('profile', 'reviewed-concept')}：B 棟主版本固定對齊 HTML／原設計 3D；",
+            "座標來源為 auto 概念值，基地、完成面、樑柱與法規條件仍待實測及建築師確認。",
+        ],
+    )
+
+
 def build_building(brief: dict[str, Any], frontage_mm: int, depth_mm: int,
                    site: dict[str, Any], defaults: dict[str, Any],
-                   garage_variant: dict[str, Any]) -> dict[str, Any]:
+                   garage_variant: dict[str, Any],
+                   dimensions: dict[str, Any] | None = None) -> dict[str, Any]:
     footprint_sqm = frontage_mm * depth_mm / 1_000_000.0
     annex = core_annex_demand(brief)
 
-    sk = pg.build_skeleton(frontage_mm, depth_mm, site, defaults, garage_variant, annex)
+    layout = brief.get("concept_layout") or {}
+    use_anchor = bool(
+        dimensions
+        and layout
+        and _concept_layout_applies(layout, frontage_mm, depth_mm, garage_variant)
+    )
+    if use_anchor:
+        sk = _anchored_skeleton(
+            brief, layout, dimensions or {}, frontage_mm, depth_mm, defaults
+        )
+    else:
+        sk = pg.build_skeleton(
+            frontage_mm, depth_mm, site, defaults, garage_variant, annex
+        )
 
     floors: list[dict[str, Any]] = []
     ledger: list[dict[str, Any]] = []
     for brief_floor in brief.get("floors", []):
-        payload = pg.build_floor(brief_floor, sk, site, defaults)
+        anchored_layout = None
+        if use_anchor:
+            floor_id = str(brief_floor.get("floor_id"))
+            cell_maps = layout.get("cell_map") or {}
+            if floor_id not in cell_maps:
+                raise ValueError(f"concept layout has no cell map for {floor_id}")
+            source_floor = _layout_floor(
+                dimensions or {}, brief["building_id"], floor_id, layout
+            )
+            if (
+                int(round(float(source_floor.get("width_mm", 0)))) != frontage_mm
+                or int(round(float(source_floor.get("depth_mm", 0)))) != depth_mm
+            ):
+                raise ValueError(
+                    f"concept layout frame mismatch on {brief['building_id']}.{floor_id}: "
+                    f"{source_floor.get('width_mm')}x{source_floor.get('depth_mm')} vs "
+                    f"{frontage_mm}x{depth_mm}"
+                )
+            anchored_layout = {
+                "floor": source_floor,
+                "cell_map": cell_maps[floor_id],
+                "frontage_mm": frontage_mm,
+                "depth_mm": depth_mm,
+                "profile": layout.get("profile"),
+                "source": layout.get("source", "inputs/dimensions.json"),
+                "provenance": source_floor.get("_provenance", "auto"),
+            }
+        payload = pg.build_floor(
+            brief_floor, sk, site, defaults, anchored_layout=anchored_layout
+        )
         floors.append(payload)
         if brief_floor.get("fill") == "fixed":
             ledger.append({
@@ -245,7 +394,7 @@ def build_building(brief: dict[str, Any], frontage_mm: int, depth_mm: int,
         else:
             ledger.append(floor_capacity(payload, brief_floor, footprint_sqm))
 
-    return {
+    payload = {
         "building_id": brief["building_id"],
         "name": brief.get("name"),
         "positioning": brief.get("positioning"),
@@ -267,18 +416,28 @@ def build_building(brief: dict[str, Any], frontage_mm: int, depth_mm: int,
         "floors": floors,
         "capacity": ledger,
     }
+    if use_anchor:
+        payload.update({
+            "geometry_profile": layout.get("profile"),
+            "geometry_source": layout.get("source", "inputs/dimensions.json"),
+            "geometry_provenance": "auto",
+            "protected_zone_start_mm": layout.get("protected_zone_start_mm"),
+        })
+    return payload
 
 
 def build_variant(site: dict[str, Any], briefs: dict[str, dict[str, Any]],
                   defaults: dict[str, Any], frontage_mm: int,
-                  garage_variant: dict[str, Any]) -> dict[str, Any]:
+                  garage_variant: dict[str, Any],
+                  dimensions: dict[str, Any] | None = None) -> dict[str, Any]:
     footprint_sqm = float(site["footprint_ping"]) * float(site["ping_to_sqm"])
     depth_mm = derive_depth_mm(footprint_sqm, frontage_mm)
 
     buildings = {}
     for bid in ("A", "B", "C"):
-        buildings[bid] = build_building(briefs[bid], frontage_mm, depth_mm,
-                                        site, defaults, garage_variant)
+        buildings[bid] = build_building(
+            briefs[bid], frontage_mm, depth_mm, site, defaults, garage_variant, dimensions
+        )
 
     return {
         "id": f"f{frontage_mm}_g{garage_variant.get('bays', 1)}",
@@ -583,7 +742,8 @@ def write_capacity_report(doc: dict[str, Any], path: Path,
     lines.append("---")
     lines.append("")
     lines.append("資料來源：`inputs/site.json`（量體參數，全部為假設值）＋ "
-                 "`inputs/brief/{A,B,C}.json`（面積需求，轉寫自 `inputs/design_request.md`）。")
+                 "`inputs/brief/{A,B,C}.json`（面積需求，轉寫自 `inputs/design_request.md`）＋ "
+                 "`inputs/dimensions.json`（B 棟 f6000_g1 的概念安全座標，仍非實測）。")
     lines.append("重跑：`python scripts/generate_parametric_plan.py`")
 
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
@@ -597,6 +757,7 @@ def main(argv: list[str] | None = None) -> int:
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--site", type=Path, default=SITE_PATH)
     ap.add_argument("--brief-dir", type=Path, default=BRIEF_DIR)
+    ap.add_argument("--dimensions", type=Path, default=DIMENSIONS_PATH)
     ap.add_argument("--out-dir", type=Path, default=OUT_DIR)
     ap.add_argument("--frontage", type=int, action="append",
                     help="只產生這些開間（可重複），預設用 site.json 的全部變體")
@@ -604,13 +765,14 @@ def main(argv: list[str] | None = None) -> int:
     args = ap.parse_args(argv)
 
     site = load_json(args.site)
+    dimensions = load_json(args.dimensions)
     defaults = load_residential_defaults()
     briefs = {bid: load_json(args.brief_dir / f"{bid}.json") for bid in ("A", "B", "C")}
 
     frontages = args.frontage or site["frontage_variants_mm"]
     garages = site["garage_variants"]
 
-    variants = [build_variant(site, briefs, defaults, f, g)
+    variants = [build_variant(site, briefs, defaults, f, g, dimensions)
                 for f in frontages for g in garages]
 
     doc: dict[str, Any] = {
@@ -619,6 +781,7 @@ def main(argv: list[str] | None = None) -> int:
         "source": {
             "site": repo_relative(args.site),
             "briefs": [repo_relative(args.brief_dir / f"{b}.json") for b in ("A", "B", "C")],
+            "dimensions": repo_relative(args.dimensions),
         },
         "site": {
             "footprint_ping": site["footprint_ping"],

@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from bs4 import BeautifulSoup
-
 from build_room_program import build_program, transform_floor
 from extract_layout_data import SCHEMA_VERSION, extract_floor
 
@@ -41,6 +40,39 @@ def test_extract_floor_emits_v3_orientation_and_cell_spatial() -> None:
         "room_role": "unknown",
         "is_accessible": False,
         "daylight_required": None,
+    }
+
+
+def test_extract_floor_retains_explicit_cells_inside_composite_row_wrappers() -> None:
+    html = """
+    <div class="floor-plan" id="floor-1" data-floor-width-mm="6000" data-floor-depth-mm="6200">
+      <div class="floor-title"><div>1F</div></div>
+      <div class="plan-grid-visual">
+        <div class="plan-row" data-row-h-mm="6200" style="grid-template-columns:2600fr 3400fr;">
+          <div>
+            <div class="plan-cell" data-x-mm="0" data-y-mm="0" data-w-mm="2600" data-h-mm="1600"
+                 data-window-mm="900" onclick="highlightRoom('entry', this)"><span class="cell-name">玄關</span></div>
+            <div class="plan-cell" data-x-mm="0" data-y-mm="1600" data-w-mm="2600" data-h-mm="4600"
+                 data-window-mm="600" onclick="highlightRoom('storage', this)"><span class="cell-name">武轎室</span></div>
+          </div>
+          <div class="plan-cell" data-x-mm="2600" data-y-mm="0" data-w-mm="3400" data-h-mm="6200"
+               data-window-mm="0" onclick="highlightRoom('garage', this)"><span class="cell-name">車庫</span></div>
+        </div>
+      </div>
+      <div class="room" id="room-entry"></div>
+      <div class="room" id="room-storage"></div>
+      <div class="room" id="room-garage"></div>
+    </div>
+    """
+
+    floor = extract_floor(BeautifulSoup(html, "html.parser").select_one(".floor-plan"), 1)
+
+    assert [cell["target_room_id"] for cell in floor["plan_cells"]] == ["entry", "storage", "garage"]
+    assert floor["plan_cells"][1]["geometry_mm"] == {
+        "x_mm": 0.0,
+        "y_mm": 1600.0,
+        "w_mm": 2600.0,
+        "h_mm": 4600.0,
     }
 
 

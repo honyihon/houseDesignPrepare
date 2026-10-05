@@ -6,7 +6,6 @@ from pathlib import Path
 import export_model_3d as model3d
 from lib.dimension_overrides import load_overrides
 
-
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -30,7 +29,7 @@ def test_repository_payload_preserves_all_html_cells_and_a_living_front_position
         for cell in floor["cells"]
     }
 
-    assert len(cells) == 84
+    assert len(cells) == 92
     assert cells["A:floor-1:living"]["auto_mm"]["y_mm"] == 1200
     assert cells["A:floor-1:living"]["name"] == "客廳"
     assert payload["buildings"][0]["floors"][0]["front_side"] == "top"

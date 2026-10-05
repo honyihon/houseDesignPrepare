@@ -3,9 +3,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-import pytest
-
 import export_walkthrough_3d as walkthrough
+import pytest
 
 
 def _plan() -> dict:

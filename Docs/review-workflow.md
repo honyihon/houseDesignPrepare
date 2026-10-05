@@ -25,7 +25,7 @@ python3 -m house_design intake validate
 
 ## 3. 確認需求
 
-`inputs/requirements.json` 目前有 64 項由舊 brief 匯入的想法，全部是 `candidate`。逐項改成：
+`inputs/requirements.json` 目前有 66 項由舊 brief 匯入的想法，全部是 `candidate`。逐項改成：
 
 - `confirmed`：屋主已決定，才參與圖面硬檢核。
 - `rejected`：明確淘汰並保留 decision log。
@@ -33,13 +33,38 @@ python3 -m house_design intake validate
 
 每項再設定 `must`、`should` 或 `could`。`must` 不符合會是失敗；`should`／`could` 會保留為警告或取捨。
 
-用指令追加不可改寫的決策鏈，不要手動刪除歷史：
+需求也可以帶「空間關係」欄位（`relationships`），例如相鄰、直接可達、不得正對、上下壓疊、搬運路徑與獨立排氣。關係本身沒有 status 欄位：它的狀態由最近一次決策紀錄的 `relationship_hashes` 推導，確認需求後才新增或修改的關係會保持 `candidate`，檢核只會記成待確認，不會產生硬失敗。
+
+### 3a. 會議用決策表（建議的批次流程）
+
+單項決策用指令追加不可改寫的決策鏈，不要手動刪除歷史：
 
 ```bash
 python3 -m house_design intake requirements-decide \
   --id A.floor-1.elder --status confirmed --priority must \
   --reason "一樓完整照護生活" --decided-by "屋主家庭會議"
 ```
+
+全家開會時建議改用決策表，一次套用整批：
+
+```bash
+python3 -m house_design intake requirements-sheet          # 匯出 JSON＋Markdown 決策表
+# 會中只填要決定的列：decision_status／decision_priority／reason
+python3 -m house_design intake requirements-decide \
+  --batch structured/predesign/requirements-sheet.json --decided-by "屋主家庭會議"
+```
+
+批次套用是全有或全無：任何一列填錯、需求內容在匯出後被改過（`requirement_hash` 不符）、或該列在匯出後已有新決策（`decision_count` 不符），整批都會被拒絕且不寫入任何決策。填 `confirmed` 的列會同時確認該列當下的空間關係。
+
+### 3b. 設計任務書
+
+確認（或淘汰）需求後，產生給建築師與設計師討論用的設計任務書：
+
+```bash
+python3 -m house_design predesign brief
+```
+
+輸出 `structured/predesign/design-brief.json／.md／.html`：依「已確認／待屋主決定／已淘汰」分段列出各棟需求、空間關係總表、大型實物與開會待問問題。家庭概況只輸出去識別化統計（人數、年齡級距、行動力類別），姓名、健康細節與自由文字不會出現。任務書帶 `brief_hash` 與各來源檔案的雜湊，內容或來源變更後須重新產生。
 
 ## 4. 匯入不可變圖面版次
 
@@ -101,7 +126,9 @@ python3 -m house_design drawings import \
   --pdf drawings/R001.pdf --dxf drawings/R001.dxf --mapping drawings/R001.mapping.json
 ```
 
-版次一旦建立就不能覆寫；設計方更新圖面時使用 R002、R003 等新 id。PDF／IFC／DXF、mapping、normalized model 與 manifest seal 都會驗證。先執行 `python3 -m house_design drawings verify --revision R001`；compare、review 與 3D 也會自動先驗證。
+正式匯入前，先以 `python3 -m house_design drawings preflight --package structured/architect_handoffs/R001` 在暫存目錄試匯入；詳細交付契約見 `Docs/architect-r001-handoff.md`。preflight 不會建立 R001。
+
+版次一旦建立就不能覆寫；設計方更新圖面時使用 R002、R003 等新 id。PDF／IFC／DXF、mapping、normalized model 與 manifest seal 都會驗證。正式匯入後先執行 `python3 -m house_design drawings verify --revision R001`；compare、review 與 3D 也會自動先驗證。
 
 IFC 的棟名必須有獨立的 A／B／C 標記（例如 `A棟` 或 `Building A`），樓層名建議使用 `1F`、`2F`、`3F`、`RF`。系統會保留 IFC `OverallWidth`，但它是名目寬度，不會直接當成完工後門淨寬；沒有門窗表、可信 property 或明確 DXF 開口證據時，門淨寬必須維持 `unknown`。
 
@@ -145,3 +172,7 @@ python3 -m house_design review run --revision R001 --signoff inputs/signoff.R001
 ```
 
 簽核只代表該人員對該版報告的決定，不取代建照審查、結構計算、消防、機電或其他依法簽證程序。
+
+## 歷史封存修復補充
+
+R000 活躍來源路徑的雜湊不一致已透過原始歷史副本與追加紀錄修復，詳見 [R000 歷史來源封存修復](r000-source-recovery.md)。未修改原清單或現行工作檔；R000 仍非現行可建設計。

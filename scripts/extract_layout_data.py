@@ -12,7 +12,6 @@ from typing import Any
 
 from bs4 import BeautifulSoup, NavigableString, Tag
 
-
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = ROOT / "structured"
 SCRIPT_DIR = Path(__file__).resolve().parent
@@ -242,7 +241,15 @@ def extract_plan_layout(scope: Tag) -> tuple[list[dict[str, Any]], list[dict[str
             if not isinstance(row, Tag):
                 continue
 
-            row_cells = [c for c in row.find_all(class_="plan-cell", recursive=False) if isinstance(c, Tag)]
+            # Composite concept plans use wrapper divs to express unequal vertical
+            # stacks inside one visual row.  Their cells still belong to this row
+            # and carry explicit millimetre geometry, so retain them while avoiding
+            # cells owned by a genuinely nested .plan-row.
+            row_cells = [
+                cell
+                for cell in row.find_all(class_="plan-cell")
+                if isinstance(cell, Tag) and cell.find_parent(class_="plan-row") is row
+            ]
             if not row_cells:
                 continue
 

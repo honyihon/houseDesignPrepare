@@ -7,6 +7,147 @@
     "面積需求表，手寫自 inputs/design_request.md 的 B 棟章節與現有房間清單。",
     "B 棟 1F 是三棟裡唯一在車庫進入建築體之後仍然放得下的一層 —— 因為它沒有客廳與餐廳。"
   ],
+  "concept_layout": {
+    "profile": "concept-safety-v1",
+    "source": "inputs/dimensions.json#buildings.B",
+    "_provenance": "auto",
+    "applies_to": {
+      "frontage_mm": 6000,
+      "depth_mm": 17630,
+      "garage_bays": 1
+    },
+    "front_zone_end_mm": 6400,
+    "protected_zone_start_mm": 12700,
+    "floor_sources": {
+      "floor-rf": "floor-4"
+    },
+    "_note": [
+      "只鎖定目前 HTML／原設計 3D 使用的 f6000_g1 主版本；其他開間與雙車位仍由歷史參數化演算法重排。",
+      "座標來源全部仍是 auto 概念值，不是基地、完成面、結構或法規核定尺寸。",
+      "cell_map 是嚴格橋接表：dimensions 新增或刪除格位時，產生器會中止，避免 HTML 與參數化 3D 靜默分岔。"
+    ],
+    "cell_map": {
+      "floor-1": {
+        "entry": "entry_b",
+        "storage": "palanquin",
+        "garage": {
+          "id": "garage",
+          "role": "garage",
+          "kind": "service",
+          "brief": {
+            "light": "none",
+            "counts_in_footprint": true,
+            "door_clear_mm": 2400,
+            "private": false
+          }
+        },
+        "corridor1": {
+          "id": "corridor",
+          "role": "corridor",
+          "kind": "other",
+          "brief": {"light": "none", "private": false}
+        },
+        "balcony1": "balcony_b",
+        "bath1": "bath_acc",
+        "stair1": {
+          "id": "stair",
+          "role": "stair",
+          "kind": "stair",
+          "brief": {"band": "core", "light": "none", "private": false}
+        },
+        "idf-cabinet": {
+          "id": "idf_b",
+          "brief_id": "idf_b",
+          "role": "corridor",
+          "kind": "other",
+          "brief": {
+            "counts_as_fixed": false,
+            "note": "後梯廳兼 IDF 壁櫃帶；機櫃只占牆側，不得阻斷通往神明廳的淨通路。"
+          }
+        },
+        "shrine": "shrine"
+      },
+      "floor-2": {
+        "living2": "living_b",
+        "corridor2": {
+          "id": "corridor",
+          "role": "corridor",
+          "kind": "other",
+          "brief": {"light": "none", "private": false}
+        },
+        "balcony2": "balcony_b2",
+        "bath2": "bath_g",
+        "master-bath2": "master_bath",
+        "stair2": {
+          "id": "stair",
+          "role": "stair",
+          "kind": "stair",
+          "brief": {"band": "core", "light": "none", "private": false}
+        },
+        "bar2": "tea",
+        "master2": "master_b"
+      },
+      "floor-3": {
+        "terrace3": "flex_b",
+        "ktv3": "ktv",
+        "corridor3": {
+          "id": "corridor",
+          "role": "corridor",
+          "kind": "other",
+          "brief": {"light": "none", "private": false}
+        },
+        "balcony3": "balcony_b3",
+        "bath3": "bath_b3",
+        "stair3": {
+          "id": "stair",
+          "role": "stair",
+          "kind": "stair",
+          "brief": {"band": "core", "light": "none", "private": false}
+        },
+        "buffer3": {
+          "id": "buffer_b3",
+          "role": "room",
+          "kind": "other",
+          "brief": {
+            "band": "core",
+            "light": "none",
+            "private": false,
+            "note": "KTV 與後帶客房間的隔音／設備緩衝；穿孔與機櫃不得跨入 y>=12700 保護帶。"
+          }
+        },
+        "guest3": "guest_b"
+      },
+      "floor-rf": {
+        "platform-rf": "rf_deck",
+        "tank-rf": "rf_tank",
+        "pump-rf": {
+          "id": "rf_pump",
+          "brief_id": "rf_tank"
+        },
+        "hotwater-rf": "rf_hp",
+        "stairRF": {
+          "id": "rf_stair",
+          "brief_id": "rf_stair",
+          "role": "stair",
+          "kind": "stair"
+        },
+        "service-rf": {
+          "id": "rf_service_aisle",
+          "role": "room",
+          "kind": "outdoor",
+          "brief": {
+            "counts_in_footprint": false,
+            "light": "none",
+            "private": false,
+            "penthouse": false,
+            "service_clearance": true,
+            "note": "設備旁維修動線，不是屋突，也不計入屋突水平投影面積。"
+          }
+        },
+        "shrine-buffer-rf": "rf_shrine_buffer"
+      }
+    }
+  },
   "floors": [
     {
       "floor_id": "floor-1",
@@ -16,46 +157,49 @@
       "_capacity_note": [
         "2026-08-10：定案採 6.0 m 開間 × 1 車位，車庫在建築體內。",
         "面積上 B 棟只超出 0.29 坪，所以後陽台 6.0→5.0 就夠了。真正要處理的是形狀：",
-        "  淨寬 5.6 m 扣掉車庫 3.17 m，前帶（車庫旁）只剩 2.43 m 寬 × 6.2 m 深 = 15.1 m²。",
-        "  神明廳 min 22 m² 放不進 15.1 的前帶，硬放會被壓成 13 m² 的細長條。",
+        "  概念外框前帶改採 2.6 m 武轎／玄關帶 + 3.4 m 車庫帶，深度 6.4 m；完成面淨尺寸仍須扣牆厚並實測。",
+        "  神明廳 min 22 m² 放不進左側概念 2.6 × 6.4 m（16.6 m²、尚未扣牆厚）的前帶。",
         "因此 1F 前後帶重新分配：",
         "  · 神明廳 30.0 面積不動，但改放後帶 —— 後帶淨寬 5.6 m 全寬可用，30 m² 約 5.6 × 5.4 m，",
-        "    神桌背牆可以是完整的一面 RC 實牆，比擠在 2.43 m 寬的前帶好得多。",
+        "    神桌背牆可以是完整的一面 RC 實牆，比擠在 2.6 m 概念分格（完成面更窄）的前帶好得多。",
         "    代價：動線變成 大門→玄關→走道→神明廳，不再是一進門就見神桌。",
         "    風水上這反而更安全（大門不直沖神桌自動成立），但『神明廳臨前採光』要靠側面開窗補回來。",
-        "  · 武轎儲藏室 12.0→10.5（min 9.0）並移到前帶：它是 B 棟裡唯一 2.43 m 寬也能用的大空間，",
+        "  · 武轎儲藏室 12.0→10.5（min 9.0）並移到 2.6 m 概念分格的前帶；完成面淨寬仍待實測，",
         "    而且緊鄰大門，武轎抬出去不必穿越整層 —— carry_path 檢查會變好而不是變差。",
         "  · 無障礙衛浴 6.0→7.0 移到後帶，接在神明廳與後陽台之間。",
         "配額：前帶 14.5、後帶 42.0、核心 1.5，合計 58.0（≤ 58.55）。",
-        "B 棟房間數少（6 間 vs A 棟 8 間），隔間牆少 0.94 m²，這就是它比 A、C 兩棟寬裕的原因。"
+        "B 棟房間數少（6 間 vs A 棟 8 間），隔間牆少 0.94 m²，這就是它比 A、C 兩棟寬裕的原因。",
+        "2026-09-09 風水／安全調整：基地未選定前採 6000 × 17630 mm 概念外框，前方固定 y=0；這是 f6000_g1 容量骨架的設計假設，不是基地實測或施工尺寸。",
+        "1F 分帶：玄關與武轎室在前帶且緊鄰車庫，y=6400..12700 為走道、正式樓梯、IDF、工作陽台與無障礙衛浴，完整神明廳固定在 y=12700..17630。",
+        "神桌放神明廳後牆並面向前方；神桌實際外廓投影及其上方不得配置樓梯、衛浴、排水立管、水塔、泵浦、熱泵或其他重設備。"
       ],
       "rooms": [
         {
           "id": "entry_b", "name": "玄關", "kind": "entry",
           "target_sqm": 4.0, "min_sqm": 3.0,
           "band": "front", "light": "preferred", "private": false,
-          "note": "與神明廳同一進，但大門不可直沖神桌。"
+          "note": "前帶獨立玄關，先轉入走道後再到後帶神明廳；大門不直沖神桌，亦不得形成大門到後側開口的直線穿堂。"
         },
         {
           "id": "shrine", "name": "神明廳（核心）", "kind": "living",
           "target_sqm": 30.0, "min_sqm": 22.0,
           "band": "rear", "light": "required", "private": false,
           "no_wet_above": true,
-          "note": "面積 30.0 不動，但 6m 開間下必須放在走道之後的後帶 —— 車庫旁的前帶只有 2.43m 寬，放不下 22 m² 的下限。改放後帶可得 5.6m 全寬，神桌背牆是完整一面 RC 實牆。神桌背牆要 RC 實牆、上方避樑、排風獨立不與浴廁共管、補氣口不可直吹神桌。2F 衛浴與排水管不得壓到神桌 —— 這是 B 棟風水最大紅線。採光改由側面外牆取得（三棟四面皆外牆，棟距 6m）。"
+          "note": "面積 30.0 不動，但 6m 開間下必須放在走道之後的後帶 —— 車庫旁只有 2.6m 概念分格，完成面還會更窄，放不下 22 m² 的下限。改放後帶可得 5.6m 淨骨架全寬，神桌背牆是完整一面 RC 實牆。神桌背牆要 RC 實牆、上方避樑、排風獨立不與浴廁共管、補氣口不可直吹神桌。2F 衛浴與排水管不得壓到神桌 —— 這是 B 棟風水最大紅線。採光改由側面外牆取得（三棟四面皆外牆，棟距 6m）。"
         },
         {
           "id": "palanquin", "name": "武轎儲藏室", "kind": "service",
           "target_sqm": 10.5, "min_sqm": 9.0,
           "band": "front", "light": "none", "private": false,
-          "door_clear_mm": 1200, "carry_path": true,
-          "note": "移到車庫旁的前帶：這是 B 棟唯一在 2.43m 淨寬下仍可用的大空間，且緊鄰大門，武轎抬出去不必穿越整層。武轎不是一般櫃子：門寬與轉向半徑都要實測，2.43m 淨寬能否轉向是這個配置的第一個要實測的數字。搬運路徑淨寬列入檢查。design_request 不建議改成長輩房，那會失去 B 棟定位。"
+          "door_clear_mm": 1500, "carry_path": true,
+          "note": "移到車庫旁的前帶：第一版概念淨寬 2.6m，緊鄰玄關與車庫。採 1500mm 完成面淨開口與連續直線搬運帶，武轎長向正對門洞，不在室內轉向。武轎收納外廓暫採 1200 × 1700 × 1800mm；本體、抬桿組裝外廓與操作餘量仍待實測，不能拿暫估值直接下單或施工。"
         },
         {
           "id": "bath_acc", "name": "1F 無障礙衛浴", "kind": "bath",
           "target_sqm": 7.0, "min_sqm": 4.5,
-          "band": "rear", "light": "none", "private": true,
+          "band": "core", "light": "none", "private": true,
           "door_clear_mm": 900, "door_swing": "sliding", "wheelchair_turn": true,
-          "note": "已在原圖上，但只停留在文字。必須補輪椅迴轉圖。放後帶，接在神明廳與後陽台之間；排水立管不得經過神桌背牆。"
+          "note": "置於 y=9500..12700 中段濕式核心，完成面門淨寬概念目標 900mm，須補輪椅迴轉圖。排水立管集中服務側，不能進入 y>=12700 的神桌與神明廳後帶投影。"
         },
         {
           "id": "idf_b", "name": "IDF-B 機櫃", "kind": "service",
@@ -64,11 +208,12 @@
           "note": "接 A 棟 MDF。散熱與除濕同 A 棟原則。"
         },
         {
-          "id": "balcony_b", "name": "後工作陽台（水路進線點）", "kind": "outdoor",
+          "id": "balcony_b", "name": "工作陽台（水路進線點）", "kind": "outdoor",
           "target_sqm": 5.0, "min_sqm": 4.0,
-          "band": "rear", "light": "required", "private": false,
+          "band": "core", "light": "required", "private": false,
+          "facade": "side",
           "counts_in_footprint": true,
-          "note": "大門到後陽台要避免穿堂，用屏風、拉門或半高櫃處理。"
+          "note": "置於中段服務核心並貼側外牆；玄關到神明廳以轉折走道處理。防火／隔煙門維持法定功能，裝飾拉門或屏風只能另設，不能取代。"
         }
       ]
     },
@@ -79,9 +224,10 @@
       "rooms": [
         { "id": "living_b", "name": "家庭大客廳", "kind": "living", "target_sqm": 28.0, "min_sqm": 20.0, "band": "front", "light": "required", "private": false },
         { "id": "tea", "name": "茶水吧／梯廳", "kind": "kitchen", "target_sqm": 5.0, "min_sqm": 3.0, "band": "core", "light": "preferred", "private": false, "wet": true },
-        { "id": "bath_g", "name": "客用衛浴", "kind": "bath", "target_sqm": 5.0, "min_sqm": 3.6, "band": "auto", "light": "none", "private": true, "wet": true, "note": "不得落在 1F 神桌正上方。" },
-        { "id": "master_b", "name": "主臥套房", "kind": "bedroom", "target_sqm": 20.0, "min_sqm": 14.0, "band": "rear", "light": "required", "private": true },
-        { "id": "balcony_b2", "name": "2F 高雄厝景觀陽臺", "kind": "outdoor", "target_sqm": 7.0, "min_sqm": 4.0, "band": "rear", "light": "required", "private": false, "counts_in_footprint": true, "note": "位置待道路側確認。" }
+        { "id": "bath_g", "name": "客用衛浴", "kind": "bath", "target_sqm": 5.0, "min_sqm": 3.6, "band": "core", "light": "none", "private": true, "wet": true, "note": "與主衛集中在 y<12700 的中段濕式核心，不得落在 1F 神桌或神明廳後帶正上方。" },
+        { "id": "master_bath", "name": "主臥衛浴", "kind": "bath", "target_sqm": 6.0, "min_sqm": 4.5, "band": "core", "light": "none", "private": true, "wet": true, "access_from": ["master_b"], "note": "獨立畫成中段濕區，從主臥乾區進入；任何排水、地漏或管道間不得跨入 y>=12700 的神桌上方保護帶。" },
+        { "id": "master_b", "name": "主臥乾區", "kind": "bedroom", "target_sqm": 20.0, "min_sqm": 14.0, "band": "rear", "light": "required", "private": true, "note": "後帶只配置床、衣櫃與梳妝等乾式機能；主衛另置中段服務核心，禁止在神桌投影上方設地漏、排水或浴廁。" },
+        { "id": "balcony_b2", "name": "2F 高雄厝景觀陽臺", "kind": "outdoor", "target_sqm": 7.0, "min_sqm": 4.0, "band": "core", "light": "required", "private": false, "facade": "side", "counts_in_footprint": true, "note": "概念版置於中段側外牆；最終面向與法規條件仍待道路側及基地坐向確認。" }
       ]
     },
     {
@@ -90,10 +236,10 @@
       "fill": "expand",
       "rooms": [
         { "id": "flex_b", "name": "前側彈性室內區", "kind": "other", "target_sqm": 14.0, "min_sqm": 10.0, "band": "front", "light": "required", "private": false },
-        { "id": "ktv", "name": "多功能娛樂室（KTV／劇院）", "kind": "other", "target_sqm": 20.0, "min_sqm": 14.0, "band": "auto", "light": "preferred", "private": false },
-        { "id": "bath_b3", "name": "3F 衛浴", "kind": "bath", "target_sqm": 5.0, "min_sqm": 3.2, "band": "auto", "light": "none", "private": true, "wet": true },
-        { "id": "guest_b", "name": "後客房", "kind": "bedroom", "target_sqm": 12.0, "min_sqm": 9.0, "band": "rear", "light": "required", "private": true },
-        { "id": "balcony_b3", "name": "後側工作小陽台", "kind": "outdoor", "target_sqm": 4.0, "min_sqm": 2.5, "band": "rear", "light": "required", "private": false, "counts_in_footprint": true, "note": "含通往 RF 的爬梯。" }
+        { "id": "ktv", "name": "多功能娛樂室（KTV／劇院）", "kind": "other", "target_sqm": 20.0, "min_sqm": 14.0, "band": "front", "light": "preferred", "private": false, "note": "固定於前帶，與後客房及 1F 神明廳投影分離；隔音門、浮式地坪與管線穿孔封堵需由聲學／建築專業確認。" },
+        { "id": "bath_b3", "name": "3F 衛浴", "kind": "bath", "target_sqm": 5.0, "min_sqm": 3.2, "band": "core", "light": "none", "private": true, "wet": true, "note": "集中 y=9500..12700 服務核心並和下層濕區疊合，不跨入後帶神桌投影。" },
+        { "id": "guest_b", "name": "後客房", "kind": "bedroom", "target_sqm": 12.0, "min_sqm": 9.0, "band": "rear", "light": "required", "private": true, "note": "後帶為安靜乾式客房；KTV 留在前帶，中間以走道、樓梯與設備緩衝帶隔開。" },
+        { "id": "balcony_b3", "name": "工作小陽台", "kind": "outdoor", "target_sqm": 4.0, "min_sqm": 2.5, "band": "core", "light": "required", "private": false, "facade": "side", "counts_in_footprint": true, "note": "只作工作陽台與立管檢修，不再承擔 RF 主要通行；3F 至 RF 改由符合正式設計的樓梯延續到屋突。" }
       ]
     },
     {
@@ -101,10 +247,11 @@
       "label": "RF（頂樓）",
       "fill": "fixed",
       "rooms": [
-        { "id": "rf_stair", "penthouse_class": "enclosed", "name": "梯間屋突", "kind": "stair", "target_sqm": 6.0, "min_sqm": 4.5, "band": "core", "light": "none", "private": false, "penthouse": true },
-        { "id": "rf_tank", "penthouse_class": "tank", "name": "B 棟水塔／VF800", "kind": "service", "target_sqm": 3.0, "min_sqm": 2.4, "band": "rear", "light": "none", "private": false, "penthouse": true, "note": "水塔、熱泵、VF800 的載重與防颱錨定是結構問題，要有正式圖說。" },
-        { "id": "rf_hp", "penthouse_class": "open_mep", "name": "熱泵熱水器區", "kind": "service", "target_sqm": 2.5, "min_sqm": 2.0, "band": "rear", "light": "none", "private": false, "penthouse": true },
-        { "id": "rf_deck", "name": "活動平台／曬衣棚架", "kind": "outdoor", "target_sqm": 24.0, "min_sqm": 10.0, "band": "auto", "light": "required", "private": false, "counts_in_footprint": false, "penthouse": false }
+        { "id": "rf_stair", "penthouse_class": "enclosed", "name": "梯間屋突", "kind": "stair", "target_sqm": 6.0, "min_sqm": 4.5, "band": "core", "light": "none", "private": false, "penthouse": true, "note": "3F 正式樓梯延續到 RF，不能以爬梯作日常或主要設備維修動線；樓梯尺寸、防火區劃與屋突面積待建築師確認。" },
+        { "id": "rf_tank", "penthouse_class": "tank", "name": "B 棟水塔／VF800", "kind": "service", "target_sqm": 3.0, "min_sqm": 2.4, "band": "core", "light": "none", "private": false, "penthouse": true, "note": "水塔與 VF800 集中 y=7715..10885 中段設備核心，不得進入 y>=12700 神桌上方保護帶；載重與防颱錨定須有結構正式圖說。" },
+        { "id": "rf_hp", "penthouse_class": "open_mep", "name": "熱泵熱水器區", "kind": "service", "target_sqm": 2.5, "min_sqm": 2.0, "band": "core", "light": "none", "private": false, "penthouse": true, "note": "集中 y=10885..12700 中段設備核心；冷凝水接獨立間接排水／地排，不可回接生活飲用水塔。" },
+        { "id": "rf_deck", "name": "活動平台／曬衣棚架", "kind": "outdoor", "target_sqm": 24.0, "min_sqm": 10.0, "band": "front", "light": "required", "private": false, "counts_in_footprint": false, "penthouse": false, "note": "日常活動集中前帶；設備維修動線與活動區分流。" },
+        { "id": "rf_shrine_buffer", "name": "神桌上方無設備保護區", "kind": "outdoor", "target_sqm": 29.5, "min_sqm": 20.0, "band": "rear", "light": "required", "private": false, "counts_in_footprint": false, "penthouse": false, "note": "固定 y=12700..17630。禁止水塔、泵浦、熱泵、冷氣室外機、太陽能逆變器、排水立管與其他重設備；採低活動、非日常使用，只保留必要巡檢。" }
       ]
     }
   ]

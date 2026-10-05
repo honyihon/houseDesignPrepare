@@ -21,6 +21,11 @@ All rooms and equipment imported from the old briefs are `candidate` until the
 owner explicitly changes them to `confirmed` or `rejected` in
 `inputs/requirements.json`.
 
+Large existing objects are recorded once in `inputs/physical-items.json`.
+`intake validate` checks the register, and `intake physical-item-measure`
+appends a complete measured width/depth/height set without discarding the
+planning estimate or earlier measurements.
+
 ## Historical HTML layout extraction
 
 ## Purpose
@@ -144,7 +149,7 @@ Key outputs:
 - `structured/expert_review/html_consistency.json`
 - `structured/expert_review/domain_checklist.json`
 - `structured/expert_review/domain_checklist.md`
-- `task-board.md`
+- `structured/historical/html-workflow-task-board.md`（只記錄前身 HTML workflow）
 
 ## Dependency
 

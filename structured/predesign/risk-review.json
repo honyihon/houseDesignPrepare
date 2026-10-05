@@ -1,0 +1,4937 @@
+{
+  "schema": "house-planning-review-v1",
+  "generated_at": "2026-10-05T01:53:06.519907+00:00",
+  "project": {
+    "project_id": "kaohsiung-three-house-compound",
+    "name": "高雄三棟住宅前期規劃",
+    "stage": "site_search",
+    "buildings": [
+      {
+        "id": "A",
+        "role": "主要設備與全齡生活棟",
+        "role_status": "owner_confirmed_predesign_policy"
+      },
+      {
+        "id": "B",
+        "role": "祭祀傳承棟",
+        "role_status": "owner_confirmed_predesign_policy"
+      },
+      {
+        "id": "C",
+        "role": "長輩友善自住棟",
+        "role_status": "owner_confirmed_predesign_policy"
+      }
+    ]
+  },
+  "warnings": [
+    "已追蹤不等於已驗證；未檢查不等於通過。本表不是法規簽證、施工授權或風水保證。",
+    "土地尚未選定：不推定實際尺寸、造價或可建量體。"
+  ],
+  "conflict_policy": [
+    "依法適用的法規／安全要求與已確認全齡基準先守住，適用性由專業確認。",
+    "土地、結構、樓梯／升降設備、管道、防水及跨棟介面先決定。",
+    "風水與配置衝突列替代、空間／成本／維護代價，屋主確認，不自動取捨。",
+    "可分期的裝飾及設備晚決定；容量、空管與結構預留提前討論。"
+  ],
+  "items": [
+    {
+      "id": "PLAN-ACCESSIBILITY-03",
+      "title": "升降策略與停電",
+      "topic": "accessibility",
+      "scenario": "未來輪椅上樓、升降設備故障、停電被困",
+      "question": "預留電梯、樓梯升降或只維持一樓生活？",
+      "recommendation": "選策略再確認井道／坑底／頂部、電力、維護及救援；升降設備不代替必要逃生",
+      "alternatives": [
+        "空間預留先不裝機：保留彈性但有結構及面積成本；不預留須接受未來限制"
+      ],
+      "building_ids": [
+        "A",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DESIGN-VERTICAL-MOBILITY"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "site_search",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "屋主策略、建築師與廠商介面圖、結構及停電救援方案",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P0",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "bf69da0c182b5a0e738821bac224426c60fadac24a73821e4d531b08cd22c62a",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": true,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-HOUSEHOLD-01",
+      "title": "家庭20年與分級",
+      "topic": "household",
+      "scenario": "入住、孩子長大、照護者留宿、客房轉長住及分戶",
+      "question": "哪些空間與使用需求不能刪？",
+      "recommendation": "先確認現在／5／10／20年情境及must／should／could，不公開健康細節",
+      "alternatives": [
+        "彈性客房代替固定專用房：節省面積但需確認收納與隔音"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-OWNER-HOUSEHOLD-PROFILE"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "site_search",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "屋主具名的去識別化需求決策及房間轉換表",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P0",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "d4918b31718a3c59996f9fa87dd94d2cb8b26d663dd6e5938cfce7f4bff09410",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": true,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-HOUSEHOLD-02",
+      "title": "共餐及尖峰人數",
+      "topic": "household",
+      "scenario": "平日共餐、節慶祭祀與訪客同時使用餐桌、廁所、入口",
+      "question": "日常與尖峰人數各是多少？",
+      "recommendation": "先記人數與發生頻率，再討論座位、廁所與出入",
+      "alternatives": [
+        "分批／跨棟接待：減少專用空間但增加管理與動線"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-OWNER-HOUSEHOLD-PROFILE"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "site_search",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "屋主人數與活動流程確認，設計師容量及動線說明",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P0",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "467052579b3ee9875973cbd214f9f754bbf6f091be2637cf7cfa67b2fe8a5c6c",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": true,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-HOUSEHOLD-03",
+      "title": "一樓完整生活",
+      "topic": "household",
+      "scenario": "術後恢復、臨時照護或不能上樓時睡眠衛浴用餐出入",
+      "question": "A與C各要保留哪些一樓完整生活能力？",
+      "recommendation": "依既有全齡基準先驗證生活圈，不以有輪椅圓代替照護操作",
+      "alternatives": [
+        "樓上房間改用途：需預留設備及照護儲物，不犧牲必要一樓能力"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-OWNER-HOUSEHOLD-PROFILE"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "site_search",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "全齡家具配置、照護操作與屋主情境確認",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P0",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "e0fb469c35aacca7319509d662aa4bafc3d61c6e4ec173ad8cd24011aa1fb999",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": true,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-RITUAL-01",
+      "title": "祭祀用火與煙氣",
+      "topic": "ritual",
+      "scenario": "平日香火、節慶人流與臥室同時使用",
+      "question": "香燭及金紙在哪裡用、頻率多少？",
+      "recommendation": "用火方式先確認；排風補氣、防火偵測、儲物與避難請專業設計",
+      "alternatives": [
+        "減少室內燃燒或另設合法合適場所：改變習慣但減少煙火負荷"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DESIGN-LIFE-SAFETY-SHRINE"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "site_search",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "屋主活動確認、建築／消防／空調圖說與功能測試",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P0",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "d4d76214ca10fb0e69443649b6582f6176c51b18f6e6678831fb26dc82c93014",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": true,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-RITUAL-03",
+      "title": "神桌風水與安全衝突",
+      "topic": "ritual",
+      "scenario": "神桌位置與門向、梁、上方濕區、背牆管線及排煙互相限制",
+      "question": "哪些風水禁忌是不可接受，哪些可調整？",
+      "recommendation": "列屋主禁忌、同層及跨層保護區；法規安全不為風水讓步",
+      "alternatives": [
+        "調整門向／神桌／管道或固定屏風：分列空間、維護與成本影響"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DESIGN-LIFE-SAFETY-SHRINE"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "site_search",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "屋主風水取捨、正式圖面套繪與負責專業確認；坐向待基地",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P0",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "953d3b6480c9d7c4cfc79211a39f6d5f25019c2b98afc4ee1f2568e0a2dbb236",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": true,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-SHARED-01",
+      "title": "三棟各自或共用",
+      "topic": "shared",
+      "scenario": "停水停電、設備保養、各戶計量與分戶",
+      "question": "水電網路和車道各自獨立到什麼程度？",
+      "recommendation": "先確認權利與合法可接性再選共用，明列維修與計費責任",
+      "alternatives": [
+        "各棟獨立：容量設備成本較高；共用：需隔離備援與權責約定"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DUE-UTILITIES"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "site_search",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "建築師公用事業與地政專業意見、系統及責任分界圖",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P0",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "724ddf4f4d2a760f4acc3c8a6b55ea8adbca4b208bbb8815709f5a0bcaa30a72",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": true,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-DELIVERY-01",
+      "title": "預算分期與同範圍估價",
+      "topic": "delivery",
+      "scenario": "土地工程設備裝潢超支、低價漏項與口頭追加",
+      "question": "總預算範圍備用金與分期順序如何確認？",
+      "recommendation": "精確金額留私有；按同圖規格數量比較，列排除暫估替代及介面",
+      "alternatives": [
+        "裝飾設備延後但必要預留先做：增加前期少量工項，降低返工"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-BUDGET-CEILING",
+        "PD-BUDGET-SCOPE-CONTINGENCY"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "finance",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "私有預算確認僅公開狀態、同範圍報價與變更責任表",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "012a1d4450e2d5d20fdbb60783cd86de5354646850ce3b838acef87338593e9a",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": true,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-SHARED-02",
+      "title": "跨基地設備隔離",
+      "topic": "shared",
+      "scenario": "A設備停機、漏水或斷網拖累B與C，維修須進私人房間",
+      "question": "一棟故障如何不影響全部，能否獨立關閉？",
+      "recommendation": "逐棟隔離閥／迴路／網路，維修路徑不假設永遠可借道",
+      "alternatives": [
+        "獨立系統或旁路：增加設備管線與維護，須專業設計"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DUE-UTILITIES"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "site_due_diligence",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "系統隔離圖、表位閥位、維修存取與故障演練",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P0",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "957322ac1e7e1f8be866450b210170b530339776b0669beccf23a898f961c036",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-SHARED-03",
+      "title": "未來產權與隱私",
+      "topic": "shared",
+      "scenario": "出售、繼承、分戶、共同車道與設備無法再共用",
+      "question": "設備、通行、費用與修繕權利如何長期保障？",
+      "recommendation": "地政與建築專業書面確認，不用家庭口頭同意代替權利安排",
+      "alternatives": [
+        "不跨基地配置：減少權責風險但可能增加面積與造價"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DUE-UTILITIES"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "site_due_diligence",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "權利文件與協議、設備拆分方案、獨立維修路徑",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P0",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "4e61b847e82bb584b3753583145853f3d8e3d046a83555388b45a645c64b8d75",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-ACCESSIBILITY-01",
+      "title": "夜間如廁與轉位",
+      "topic": "accessibility",
+      "scenario": "長輩夜間如廁、床側移位、照護者兩人協助",
+      "question": "床側、便器與淋浴各有哪些動作需要成立？",
+      "recommendation": "用輔具與家具完成面逐步演練，兼顧扶手補強、照明與止滑",
+      "alternatives": [
+        "調整床位與衛浴門向：影響收納／私密但避免後期拆牆"
+      ],
+      "building_ids": [
+        "A",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DESIGN-ACCESSIBLE-ROUTE"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "完成面配置圖、輔具外廓及轉位操作演練紀錄",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P0",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "d17c6cbcbcbcb73a807f0fab7b115db95c9036c2cf77a8811ec68553335c033a",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-ACCESSIBILITY-02",
+      "title": "跌倒救援及擔架",
+      "topic": "accessibility",
+      "scenario": "浴室倒地擋門、救護擔架進出、傷病者移出",
+      "question": "門鎖、開門方式及救護路徑如何不受家具阻擋？",
+      "recommendation": "請設計師與相關專業確認救援開啟、轉彎、門檻與高差",
+      "alternatives": [
+        "移動門位或配置：壓縮其他家具空間但保留救援可能"
+      ],
+      "building_ids": [
+        "A",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DESIGN-ACCESSIBLE-ROUTE"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "救援情境圖、完成面尺寸、專業意見與現場演練",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P0",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "25e7a32cb6c859938af338350bce4158e23531ad5fb696087d4207b65817e4b9",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-COMFORT-04",
+      "title": "健康材料、濕黴蟲害與耐久",
+      "topic": "comfort",
+      "scenario": "裝修後氣味、長期潮濕、白蟻、沿海腐蝕、兒童接觸材料及清潔耗材",
+      "question": "材料、通風乾燥與維護如何一起驗收，不只看顏色或品牌？",
+      "recommendation": "請專業依基地及用途確認材料逸散、濕黴蟲害、耐腐蝕與清潔性，發包時寫清送審與驗收依據。",
+      "alternatives": [
+        "較簡單的表面與材料：外觀選擇較少，但減少接縫、清潔與更換負擔；實際成本須詢價。"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DESIGN-HEALTHY-DURABLE-MATERIALS"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "材料送審證明、樣板、通風除濕測試、維護方法與適用的健康耐久驗收依據",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P0",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "a079e37505836868eaec316f1f106fa36abf6ec05a118c21d8d2c10b56cdf89e",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-OUTAGE-04",
+      "title": "燃氣、一氧化碳與電氣故障",
+      "topic": "outage",
+      "scenario": "燃氣洩漏、不完全燃燒、充電／電氣過熱、濕區觸電，以及沒有燃氣的替代情境",
+      "question": "是否採燃氣設備，關閉、通風、警示及電氣保護如何在故障時成立？",
+      "recommendation": "先確認燃料與設備型式，由機電及相關專業設計合法配置、保護與測試；不自行提供緊急事故處理步驟。",
+      "alternatives": [
+        "全電設備或不同熱水方式：電力容量、能源及備援需求改變；無燃氣項目仍需具名理由標示不適用。"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DESIGN-LIFE-SAFETY-SHRINE"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "設備及公用事業意見、電氣／燃氣配置與保護測試、警示及安全操作訓練",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P0",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "d53028888a7d1dbc8bfd8587803a1857945808bbc6a623c80a790d62e7b36cad",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-RITUAL-02",
+      "title": "供品與訪客服務",
+      "topic": "ritual",
+      "scenario": "尖峰祭祀備供品、清洗、垃圾、訪客如廁",
+      "question": "備供品到收拾的流程、訪客人數與廁所使用如何安排？",
+      "recommendation": "把供品桌、清洗與垃圾區及無障礙廁所放入操作圖",
+      "alternatives": [
+        "跨棟準備供品：省B面積但增加搬運、雨天及隱私問題"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DESIGN-LIFE-SAFETY-SHRINE"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "平面操作流程、設備與衛浴配置、尖峰情境確認",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P0",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "2f3d1228d164acdcb08af8d4da82e448097d17c10a039079ce532f25f6b3fb63",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-STRUCTURE-01",
+      "title": "核心與管道先協調",
+      "topic": "structure",
+      "scenario": "樓梯、梁柱、井道、濕區立管與神桌投影相撞",
+      "question": "哪些核心位置需先凍結，管線能否不穿保護區？",
+      "recommendation": "建築結構機電先疊圖，避免裝潢完成才降天花或改梁",
+      "alternatives": [
+        "調濕區或核心：影響房間配置但減少隱蔽工程返工"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DESIGN-VERTICAL-SYSTEMS"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "建築結構機電疊圖、剖面與具名介面確認",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P0",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "87f3aa670f644f386b639ae5efcf54b2a8160abaf49c9025cf623209b17dfdd8",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-STRUCTURE-02",
+      "title": "屋頂設備及運動荷重",
+      "topic": "structure",
+      "scenario": "水塔滿水、熱泵、太陽能、運動震動與強風",
+      "question": "設備重量、錨定、維修操作及震動如何傳遞？",
+      "recommendation": "由結構技師計算實際設備和使用荷重，不用示意尺寸代替",
+      "alternatives": [
+        "改設備位置／隔振／減量：影響水路和維修成本"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DESIGN-VERTICAL-SYSTEMS"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "結構計算、設備荷重型錄、基座錨定與隔振詳圖",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P0",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "eb43173837f782190310213aaa05396551dabae328ac20cfb42b002b5502a2b0",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-STRUCTURE-03",
+      "title": "連續淨高與穿孔",
+      "topic": "structure",
+      "scenario": "樓梯最低點、梁下天花、排水坡度及穿孔互相壓縮",
+      "question": "最低完成面淨高及合法可施工穿孔位置如何確認？",
+      "recommendation": "逐段剖面協調，結構期預留不得自行穿梁",
+      "alternatives": [
+        "降低管線數量／調路徑：可能增加設備和維修距離"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DESIGN-VERTICAL-SYSTEMS"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "完成面剖面、機電坡度與技師確認套管位置",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P0",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "2524b4397d896902ce0358956fe6229bcb7e8d9a0e959860f927d62f3effcf33",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-STRUCTURE-04",
+      "title": "全棟逃生、地震與防墜",
+      "topic": "structure",
+      "scenario": "火警／地震後逃離、煙阻樓梯、長輩移動慢、兒童攀爬與物件倒落",
+      "question": "各棟如何避難，樓梯、出口、鎖具、窗與防墜如何不互相妨礙？",
+      "recommendation": "建築師依個案確認避難與消防需求；結構技師確認耐震及固定，升降設備與雲端控制不是唯一逃生策略。",
+      "alternatives": [
+        "改動核心、出口或固定家具：影響配置與造價；不以加鎖防墜犧牲依法要求的救援能力。"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DESIGN-LIFE-SAFETY-SHRINE"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "正式避難／消防圖說、耐震及設備家具固定方案、防墜安全確認與屋主操作演練",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P0",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "8a817e8d5b82b93d614a4f5e3bd05b22dd3abd655844ded0f43eebcdd3060c80",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-WATERPROOF-01",
+      "title": "防水剖面及收邊",
+      "topic": "waterproof",
+      "scenario": "浴室陽台屋頂、設備基座、窗框及穿孔發生漏水",
+      "question": "哪些細節需施工前樣板、誰負責收邊？",
+      "recommendation": "畫排水坡度、門檻、防水層與收邊，不只指定材料",
+      "alternatives": [
+        "減少穿孔／改設備位置：影響配置但減少接點風險"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DESIGN-WATERPROOF-DRAINAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "剖面詳圖、介面責任表、送審樣板與防水試驗",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P0",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "407d9e6025c3041697c9c2abd3f4fb5137fcd3049fa442da8002f2f3c9311acf",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-WATERPROOF-02",
+      "title": "暴雨堵塞與溢流",
+      "topic": "waterproof",
+      "scenario": "地漏堵塞、屋頂排水不及、車道水倒灌",
+      "question": "主排水失效時水往哪裡走，會不會進機櫃與生活區？",
+      "recommendation": "按基地標高由專業計算主排水、溢流與防倒灌",
+      "alternatives": [
+        "抬高設備或調排水：影響無障礙高差，需一起協調"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DESIGN-WATERPROOF-DRAINAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "基地標高、排水計算、溢流剖面及情境測試",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P0",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "53a9d1781a7114f34b55e113ed9d5349044f8c7d8a070d36540cc357ac95c34c",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-WATERPROOF-03",
+      "title": "颱風停電與外部維修",
+      "topic": "waterproof",
+      "scenario": "強風雨、抽水停電、室外構件鬆動與維修人員進出",
+      "question": "屋頂與外部設備如何固定、排水及安全維修？",
+      "recommendation": "確認結構錨定、備援電力需求與可安全到達路徑",
+      "alternatives": [
+        "減少外部設備／被動排水：可能減少功能，但不依賴斷電設備"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DESIGN-WATERPROOF-DRAINAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "技師錨定方案、停電排水與屋頂維修安全說明",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P0",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "bdf1fdc7db1436ce88856a7b848c39c9c4dbc8176c13e35ae36150cd0c8aae9d",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-PARKING-01",
+      "title": "車位及有效面寬",
+      "topic": "parking",
+      "scenario": "現在及未來車輛同時停放、下車、行人通過",
+      "question": "車輛數量、型式與每棟分配如何影響選地？",
+      "recommendation": "按實車門開啟與柱位確認，選地面寬由建築師書面預檢",
+      "alternatives": [
+        "調整車位分配或換基地：涉及權利及使用便利，不猜面寬門檻"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-SITE-TARGET-CRITERIA"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "site_due_diligence",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "車型尺寸、人數分配、基地測量與建築師車庫可行性圖",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "3c1ad4bf6c8d1372bb3de481f2529a96d571e39a8ea52b62e85bbf9955df04b2",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-PARKING-02",
+      "title": "卸貨與武轎出入",
+      "topic": "parking",
+      "scenario": "雨天買菜卸貨、車庫開門與武轎活動同時發生",
+      "question": "人車及武轎路徑在哪裡交會？",
+      "recommendation": "標示完整入口到道路路徑、遮雨、高差及門片",
+      "alternatives": [
+        "分時使用：面積較少但依賴管理；分離入口：增加空間及造價"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-SITE-TARGET-CRITERIA"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "site_due_diligence",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "入口完成面圖、車門／武轎動線及雨天操作演練",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "168130e25de689ad87beac528db9247001c2ef9799be3612231ab82024d14866",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-PARKING-03",
+      "title": "充電尾氣與車庫排水",
+      "topic": "parking",
+      "scenario": "EV充電、車輛尾氣、暴雨沿車道入屋",
+      "question": "表容量、通風、隔離及防淹要如何協調？",
+      "recommendation": "請機電與建築師確認獨立需求、保護、通風及排水",
+      "alternatives": [
+        "充電設備分期但預留容量與空管：增加前期預留成本"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-SITE-TARGET-CRITERIA"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "site_due_diligence",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "電力評估、保護配置、通風與車庫排水剖面及測試",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "787602e3d63a7ad253450ee2d4a563d58ff37fa2a34c9e2203e8a6a22030a509",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-COMFORT-01",
+      "title": "熱濕與外殼整體",
+      "topic": "comfort",
+      "scenario": "西曬、屋頂熱、冷氣除濕、新風與結露同時發生",
+      "question": "外遮陽、外殼與設備如何共同達成舒適？",
+      "recommendation": "先處理外殼，再由專業計算負荷、通風與除濕",
+      "alternatives": [
+        "外遮陽或不同玻璃：影響採光造價與維護；加大冷氣不代替外殼"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DESIGN-ENVELOPE-COMFORT"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "基地日照、外殼規格、熱負荷與換氣除濕設計及試運轉",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "f470b1b19053d04fec0a2bb066a8e78303232c99be8e07346bf2adc503273f80",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-COMFORT-02",
+      "title": "聲音低頻與睡眠",
+      "topic": "comfort",
+      "scenario": "KTV、運動、泵浦與夜間睡眠跨棟相互影響",
+      "question": "運作時段、可接受影響與施工介面如何確認？",
+      "recommendation": "同時處理門窗、牆地、管路、風口與結構傳振",
+      "alternatives": [
+        "移動設備或限時使用：節省部分工程但改變習慣"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DESIGN-ENVELOPE-COMFORT"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "聲學／隔振設計、屋主目標與現場功能量測",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "461af08bedf36eb64c9db4fe77ae22e62fb6e614215c070120e9420b6109407b",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-COMFORT-03",
+      "title": "採光通風隱私",
+      "topic": "comfort",
+      "scenario": "鄰房開口、雨天開窗、眩光、私密與防蚊互相衝突",
+      "question": "每間日常使用時需要哪種光、風和遮擋？",
+      "recommendation": "依真實基地確認窗位、遮陽、通風及私密，不猜坐向",
+      "alternatives": [
+        "窗位／外遮陽／機械通風：有採光、能源與維護取捨"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DESIGN-ENVELOPE-COMFORT"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "採光通風計算、鄰房現況、窗型與私密視線確認",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "e07eddddeae557812f2a7c59ba9f2c6210b2821dfac13516bcdc1def05bc80f5",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-OUTAGE-01",
+      "title": "設備整機拆換",
+      "topic": "outage",
+      "scenario": "熱泵、水塔、室外機、機櫃需完整拆下搬出",
+      "question": "拆換是否須拆門、拆裝潢、吊車或借鄰地？",
+      "recommendation": "型錄外廓與抽換空間從使用點追到道路，並確認施工可達性",
+      "alternatives": [
+        "改設備位置／分體：增加管路或購置成本但減少未來拆除"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DESIGN-EQUIPMENT-MAINTENANCE"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "型錄、抽換區、全搬運路徑、吊裝與權利說明",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "d3b528c74c0754c3d31cf9546cf9a06ea3ce9c84d0da1e2dd3f0f03cd1622237",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-OUTAGE-02",
+      "title": "停電停水斷網備援",
+      "topic": "outage",
+      "scenario": "夜間停電、門禁失效、泵浦停機、照護設備無電",
+      "question": "哪些功能須持續，哪些能手動降級？",
+      "recommendation": "逐設備確認安全手動操作和必要備援，不預設所有設備都要UPS",
+      "alternatives": [
+        "分級備援：限制可用功能但控制成本，必要照護安全不犧牲"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DESIGN-EQUIPMENT-MAINTENANCE"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "設備操作與備援方案、電力計算、屋主操作訓練與試驗",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "51f35764d3ac3ad3f6416f46ebe4b7b7c2a78284f8fefb289f17230099210e6c",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-OUTAGE-03",
+      "title": "漏水火警與長期外出",
+      "topic": "outage",
+      "scenario": "熱水漏水、偵測警報、斷網沒通知、無人住發霉",
+      "question": "誰收到警報、如何關閉及恢復，離線時怎麼辦？",
+      "recommendation": "設手動關閉與在地警示，明列接警責任，不把雲端通知當唯一保護",
+      "alternatives": [
+        "簡化智能或增加在地控制：功能成本與可靠性需比較"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DESIGN-EQUIPMENT-MAINTENANCE"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "分區關閉與警報聯動圖、離線測試、使用者操作紀錄",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "7bea4a8829d8ca32069c50855aed24757e0de944c1be02e62406fb818a36c0aa",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-ROUTINES-01",
+      "title": "採買廚房垃圾",
+      "topic": "routines",
+      "scenario": "卸貨、分類冷藏、備餐、回收、垃圾暫存與清運",
+      "question": "各棟誰操作，垃圾是否穿越臥室或祭祀區？",
+      "recommendation": "按完整家務鏈排設備，不把私人房間當唯一通道",
+      "alternatives": [
+        "共用垃圾點：減少空間但須處理氣味、雨遮與權責"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "家務路徑、儲藏容量、垃圾點與清運情境",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "63ef224910a502b46f901e5c320d84793625d14d285e599adcf001c331da8390",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-ROUTINES-02",
+      "title": "洗衣晾曬清潔",
+      "topic": "routines",
+      "scenario": "濕衣搬運、晾曬、折衣、吸塵與清潔工具補水",
+      "question": "不在同層時誰搬運，雨天及臥室有人時能否操作？",
+      "recommendation": "保留不穿房的連續動線，檢查洗衣機門、工具與水槽",
+      "alternatives": [
+        "烘衣取代部分晾曬：增加能源與排熱需求；集中洗衣增加跨棟搬運"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "設備型錄、完成面操作圖、排水與雨天家務流程",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "ba0e6bb16d105734c900aec1a60eb3be644cfe8a9f57b958f195f1a890502909",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-ROUTINES-03",
+      "title": "寵物照護與訪客用品",
+      "topic": "routines",
+      "scenario": "貓砂、餵食、清潔、寵物隔離、掃地機與訪客留宿",
+      "question": "寵物設備與客用備品在哪，氣味和安全如何處理？",
+      "recommendation": "去識別化確認寵物使用需求，不用智慧設備代替實際照護",
+      "alternatives": [
+        "專用區或移動配置：空間／維護及通風需求不同"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "用品外廓、通風清潔配置、窗網及隔離操作確認",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "3207ebeed63441b459dec792f77335977b481e3959afd8fd3f553489973d4ab3",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-STORAGE-01",
+      "title": "武轎實測與搬運",
+      "topic": "storage",
+      "scenario": "收納、裝上抬桿、多人抬行、轉彎、出門到道路",
+      "question": "本體、組裝、搬運各狀態外廓與人員空間是多少？",
+      "recommendation": "保留現有暫估作排版；實測後另檢查搬運，不用收納尺寸證明可搬",
+      "alternatives": [
+        "可拆抬桿／改開口／改動線：涉及儀式、工時與造價，須屋主確認"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DESIGN-EQUIPMENT-MAINTENANCE"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "實測狀態外廓、抬桿拆裝、全路徑圖與轉彎實物演練",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": "B.palanquin.primary",
+      "requires_transport_measurement": true,
+      "evidence": [],
+      "context_hash": "b7a7144b41c04354c7add92ee6cc66f5c4b00fc97f8217fbc462370f2a88c7d6",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [
+        "武轎搬運外廓尚未完成具名實測；暫估收納尺寸不能證明搬運"
+      ],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-STORAGE-02",
+      "title": "祭祀物品與危險物分區",
+      "topic": "storage",
+      "scenario": "潮濕衣物、金紙、蠟燭、清潔劑與重物混放",
+      "question": "哪些物品及數量要永久留存、哪些須隔離？",
+      "recommendation": "擴充實物清單、固定重物、防潮與通風，火源／化學品由專業確認",
+      "alternatives": [
+        "減量或分開儲藏：增加清點管理但降低混放風險"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DESIGN-EQUIPMENT-MAINTENANCE"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "物品清冊、重量外廓、固定方式與分區安全確認",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "2059e5d477a43b2a1574d1e3aa04d5c45bd1fa212952b9dcf25c156f28f9252a",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-STORAGE-03",
+      "title": "清洗晾乾與取物",
+      "topic": "storage",
+      "scenario": "雨後器具入庫、日常取物、上層重物搬下",
+      "question": "清洗水路與晾乾區在哪，單人能否安全取物？",
+      "recommendation": "將濕器具晾乾路徑及操作區與淨空門片一起畫",
+      "alternatives": [
+        "移動式架：彈性較高但需要輪鎖與地面平整；固定架須荷重驗證"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-DESIGN-EQUIPMENT-MAINTENANCE"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "操作圖、防潮排水細節、架體承載與取物演練",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "702e3100d13e4a4ea9e60f8ad04c7388280aedfca472f8750f9d2ba11081f0d0",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "SPACE-A.floor-1.balcony",
+      "title": "後工作陽台（含給水進線）：使用與驗收",
+      "topic": "routines",
+      "scenario": "雨天家務、排水、設備維修、晾曬、遮陽與安全防護",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "A"
+      ],
+      "floor_id": "floor-1",
+      "requirement_ids": [
+        "A.floor-1.balcony"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "完成面路徑、防水溢流剖面、防護與維修操作",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "65e375a0706ab9bfcc2acd314085dc9fd9533ba6a2a60bff22c2e0712a7867f8",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "A.floor-1.balcony",
+          "title": "後工作陽台（含給水進線）",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-A.floor-1.bath1",
+      "title": "1F 無障礙公衛：使用與驗收",
+      "topic": "routines",
+      "scenario": "如廁、洗澡、轉位、倒地救援、清潔排水與補強",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "A"
+      ],
+      "floor_id": "floor-1",
+      "requirement_ids": [
+        "A.floor-1.bath1"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "衛浴配置、門片救援、止滑扶手補強與防水排水試驗",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "590189a03045253e51742209e400e93c967fca0664b59e5bfba8dda2ee24723d",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "A.floor-1.bath1",
+          "title": "1F 無障礙公衛",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-A.floor-1.elder",
+      "title": "孝親房（原多功能房）：使用與驗收",
+      "topic": "routines",
+      "scenario": "睡眠、床側取物、照護轉位、衣櫃開啟與緊急移出",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "A"
+      ],
+      "floor_id": "floor-1",
+      "requirement_ids": [
+        "A.floor-1.elder"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "床、櫃、門、輔具與照護者完成面操作圖及演練",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "6309a70adbfc0476432b5d1951b66bbff6fbf1e4ceb750c41d18ea8984a3e0d1",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "A.floor-1.elder",
+          "title": "孝親房（原多功能房）",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-A.floor-1.entry",
+      "title": "玄關（含車庫進屋緩衝）：使用與驗收",
+      "topic": "routines",
+      "scenario": "車輛、卸貨、訪客、雨天、輪椅與緊急出入交會",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "A"
+      ],
+      "floor_id": "floor-1",
+      "requirement_ids": [
+        "A.floor-1.entry"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "入口與車門開啟圖、門禁手動操作、完成面連續動線及雨天排水",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "b029ee3c20bdc6dc070b56568c62fe409aad1315afe60bedb1b1b0d0e6d3f2a9",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "A.floor-1.entry",
+          "title": "玄關（含車庫進屋緩衝）",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-A.floor-1.kitchen",
+      "title": "廚房：使用與驗收",
+      "topic": "routines",
+      "scenario": "備餐、洗滌、櫃門設備打開、垃圾回收、補貨及油煙",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "A"
+      ],
+      "floor_id": "floor-1",
+      "requirement_ids": [
+        "A.floor-1.kitchen"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "型錄尺寸、廚房操作配置、通風排水電力介面與試運行",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "8e89a27fcb6ccad150dd5bcd8d2db399c46593aab4695a26a131da13c8d704ab",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "A.floor-1.kitchen",
+          "title": "廚房",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-A.floor-1.living",
+      "title": "客餐廳（開放式）：使用與驗收",
+      "topic": "routines",
+      "scenario": "日常用餐、尖峰訪客、家具移動、視線隱私與逃離",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "A"
+      ],
+      "floor_id": "floor-1",
+      "requirement_ids": [
+        "A.floor-1.living"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "人數容量、家具完成面配置、通行與操作情境確認",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "d49043fa6f5f8f6bfba03cc211f6747854b80de65b5ba67946e6742e270fef04",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "A.floor-1.living",
+          "title": "客餐廳（開放式）",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-A.floor-1.mdf",
+      "title": "樓梯下 MDF 主機櫃：使用與驗收",
+      "topic": "routines",
+      "scenario": "設備開啟、散熱、清潔、隔離故障、維修與整機抽換",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "A"
+      ],
+      "floor_id": "floor-1",
+      "requirement_ids": [
+        "A.floor-1.mdf"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "型錄外廓、散熱防水隔振、操作與拆換路徑、結構機電介面",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "03d180a642afbd28f004f5d8fc15c4f3a4f1dd5c9a190bd34370cf84a963609c",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "A.floor-1.mdf",
+          "title": "樓梯下 MDF 主機櫃",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-A.floor-2.balcony2",
+      "title": "高雄厝陽台（植栽區）：使用與驗收",
+      "topic": "routines",
+      "scenario": "雨天家務、排水、設備維修、晾曬、遮陽與安全防護",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "A"
+      ],
+      "floor_id": "floor-2",
+      "requirement_ids": [
+        "A.floor-2.balcony2"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "完成面路徑、防水溢流剖面、防護與維修操作",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "2aa5f9769d3dd08336a1134f087501f8d95d791d6889a555b1f84a63e7a4de22",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "A.floor-2.balcony2",
+          "title": "高雄厝陽台（植栽區）",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-A.floor-2.bath2",
+      "title": "2F 公用衛浴：使用與驗收",
+      "topic": "routines",
+      "scenario": "如廁、洗澡、轉位、倒地救援、清潔排水與補強",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "A"
+      ],
+      "floor_id": "floor-2",
+      "requirement_ids": [
+        "A.floor-2.bath2"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "衛浴配置、門片救援、止滑扶手補強與防水排水試驗",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "73fa941b9073c9d0e41d03209d7cd10fe0e3c531147903fbb91f82171a2f2604",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "A.floor-2.bath2",
+          "title": "2F 公用衛浴",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-A.floor-2.bed2",
+      "title": "次臥：使用與驗收",
+      "topic": "routines",
+      "scenario": "睡眠、床側取物、照護轉位、衣櫃開啟與緊急移出",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "A"
+      ],
+      "floor_id": "floor-2",
+      "requirement_ids": [
+        "A.floor-2.bed2"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "床、櫃、門、輔具與照護者完成面操作圖及演練",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "634a969d64dcc94a8e6d02c448fdba49b9515a77b4dc736019d8da65ffaa5c46",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "A.floor-2.bed2",
+          "title": "次臥",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-A.floor-2.closet",
+      "title": "更衣／收納：使用與驗收",
+      "topic": "routines",
+      "scenario": "設備開啟、散熱、清潔、隔離故障、維修與整機抽換",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "A"
+      ],
+      "floor_id": "floor-2",
+      "requirement_ids": [
+        "A.floor-2.closet"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "型錄外廓、散熱防水隔振、操作與拆換路徑、結構機電介面",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "3a0b145c587a2ef7cb8476ae2d72eec6fa08c4396add0c346517153250f20f04",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "A.floor-2.closet",
+          "title": "更衣／收納",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-A.floor-2.master",
+      "title": "主臥室：使用與驗收",
+      "topic": "routines",
+      "scenario": "睡眠、床側取物、照護轉位、衣櫃開啟與緊急移出",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "A"
+      ],
+      "floor_id": "floor-2",
+      "requirement_ids": [
+        "A.floor-2.master"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "床、櫃、門、輔具與照護者完成面操作圖及演練",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "cc535fcb28398bbb83c60fcb5ae62e881768ff8106a2647de4d36b9b3a1c6fc0",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "A.floor-2.master",
+          "title": "主臥室",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-A.floor-2.master_bath",
+      "title": "主臥衛浴：使用與驗收",
+      "topic": "routines",
+      "scenario": "如廁、洗澡、轉位、倒地救援、清潔排水與補強",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "A"
+      ],
+      "floor_id": "floor-2",
+      "requirement_ids": [
+        "A.floor-2.master_bath"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "衛浴配置、門片救援、止滑扶手補強與防水排水試驗",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "a12ee2f5b1e092cb35ccc6242f91ad185d657535d48345c3feb6465891288417",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "A.floor-2.master_bath",
+          "title": "主臥衛浴",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-A.floor-2.study",
+      "title": "書房／工作室：使用與驗收",
+      "topic": "routines",
+      "scenario": "日常使用、家具設備開啟、清潔維修、未來改用途與緊急離開",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "A"
+      ],
+      "floor_id": "floor-2",
+      "requirement_ids": [
+        "A.floor-2.study"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "完成面家具設備配置、操作情境、專項圖說與具名確認",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "9a4807c3bb12f49d1ba8be293bcf3929b547e804b6623e69c540d058917cbb20",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "A.floor-2.study",
+          "title": "書房／工作室",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-A.floor-3.balcony3",
+      "title": "3F 多功能小陽台：使用與驗收",
+      "topic": "routines",
+      "scenario": "雨天家務、排水、設備維修、晾曬、遮陽與安全防護",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "A"
+      ],
+      "floor_id": "floor-3",
+      "requirement_ids": [
+        "A.floor-3.balcony3"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "完成面路徑、防水溢流剖面、防護與維修操作",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "5a004997f64ca9502424caacbb840233c856b8fee02dc920ba8cd462913303f6",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "A.floor-3.balcony3",
+          "title": "3F 多功能小陽台",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-A.floor-3.bath3",
+      "title": "3F 衛浴：使用與驗收",
+      "topic": "routines",
+      "scenario": "如廁、洗澡、轉位、倒地救援、清潔排水與補強",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "A"
+      ],
+      "floor_id": "floor-3",
+      "requirement_ids": [
+        "A.floor-3.bath3"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "衛浴配置、門片救援、止滑扶手補強與防水排水試驗",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "92da0a1b60c10a50ec0f0d9159b2c44d2212b221181fb297c13a73d1e43adcc6",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "A.floor-3.bath3",
+          "title": "3F 衛浴",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-A.floor-3.guest",
+      "title": "客房：使用與驗收",
+      "topic": "routines",
+      "scenario": "睡眠、床側取物、照護轉位、衣櫃開啟與緊急移出",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "A"
+      ],
+      "floor_id": "floor-3",
+      "requirement_ids": [
+        "A.floor-3.guest"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "床、櫃、門、輔具與照護者完成面操作圖及演練",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "8849346cdfe7170cbbc5181ae5ee58ad28bebf152c7d80f280d3650995cf11d2",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "A.floor-3.guest",
+          "title": "客房",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-A.floor-3.media",
+      "title": "娛樂室／家庭劇院：使用與驗收",
+      "topic": "routines",
+      "scenario": "日常使用、家具設備開啟、清潔維修、未來改用途與緊急離開",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "A"
+      ],
+      "floor_id": "floor-3",
+      "requirement_ids": [
+        "A.floor-3.media"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "完成面家具設備配置、操作情境、專項圖說與具名確認",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "66e3faf81ce2d7c7b29f9553492d4badd328d14f234d1e839233ef67e81a9ff9",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "A.floor-3.media",
+          "title": "娛樂室／家庭劇院",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-A.floor-3.multi",
+      "title": "多功能室：使用與驗收",
+      "topic": "routines",
+      "scenario": "日常使用、家具設備開啟、清潔維修、未來改用途與緊急離開",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "A"
+      ],
+      "floor_id": "floor-3",
+      "requirement_ids": [
+        "A.floor-3.multi"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "完成面家具設備配置、操作情境、專項圖說與具名確認",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "610ceb306915f8daeb2d9101bb33a4c4f8da4d8c2cd1988671a0a29cc1616308",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "A.floor-3.multi",
+          "title": "多功能室",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-A.floor-rf.rf_deck",
+      "title": "曬衣／設備維修平台：使用與驗收",
+      "topic": "routines",
+      "scenario": "雨天家務、排水、設備維修、晾曬、遮陽與安全防護",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "A"
+      ],
+      "floor_id": "floor-rf",
+      "requirement_ids": [
+        "A.floor-rf.rf_deck"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "完成面路徑、防水溢流剖面、防護與維修操作",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "b3abe678bb8fd176f5bd78c81a8254ba852b71519ba1c971da437da470f86d63",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "A.floor-rf.rf_deck",
+          "title": "曬衣／設備維修平台",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-A.floor-rf.rf_hp",
+      "title": "熱泵熱水器區：使用與驗收",
+      "topic": "routines",
+      "scenario": "設備開啟、散熱、清潔、隔離故障、維修與整機抽換",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "A"
+      ],
+      "floor_id": "floor-rf",
+      "requirement_ids": [
+        "A.floor-rf.rf_hp"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "型錄外廓、散熱防水隔振、操作與拆換路徑、結構機電介面",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "47639b8b2462ad9cdfcb92345a9bdb795936314b83efa8be2879e61cbd18db13",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "A.floor-rf.rf_hp",
+          "title": "熱泵熱水器區",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-A.floor-rf.rf_solar",
+      "title": "太陽能設備區：使用與驗收",
+      "topic": "routines",
+      "scenario": "雨天家務、排水、設備維修、晾曬、遮陽與安全防護",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "A"
+      ],
+      "floor_id": "floor-rf",
+      "requirement_ids": [
+        "A.floor-rf.rf_solar"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "完成面路徑、防水溢流剖面、防護與維修操作",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "30a314174dea4b610c66a9fd92934c6d554ea5a035059856cdb762b3e95595e3",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "A.floor-rf.rf_solar",
+          "title": "太陽能設備區",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-A.floor-rf.rf_stair",
+      "title": "梯間屋突：使用與驗收",
+      "topic": "routines",
+      "scenario": "日常上下樓、低點淨高、扶手防墜、照明與緊急逃離",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "A"
+      ],
+      "floor_id": "floor-rf",
+      "requirement_ids": [
+        "A.floor-rf.rf_stair"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "正式樓梯剖面及避難設計、完成面與護欄扶手驗收、照明操作",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "2869dd955afa2ce3a5ec8e96709e06bcca69b00feb6a062e756a0fe46eff3e27",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "A.floor-rf.rf_stair",
+          "title": "梯間屋突",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-A.floor-rf.rf_tank",
+      "title": "水塔／VF800 加壓區：使用與驗收",
+      "topic": "routines",
+      "scenario": "設備開啟、散熱、清潔、隔離故障、維修與整機抽換",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "A"
+      ],
+      "floor_id": "floor-rf",
+      "requirement_ids": [
+        "A.floor-rf.rf_tank"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "型錄外廓、散熱防水隔振、操作與拆換路徑、結構機電介面",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "fe080d7ccf9c2baf4dfbf8d546265f00a416f5ab847f4c921ed4e48cbc340a88",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "A.floor-rf.rf_tank",
+          "title": "水塔／VF800 加壓區",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-B.floor-1.balcony_b",
+      "title": "後工作陽台（水路進線點）：使用與驗收",
+      "topic": "routines",
+      "scenario": "雨天家務、排水、設備維修、晾曬、遮陽與安全防護",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": "floor-1",
+      "requirement_ids": [
+        "B.floor-1.balcony_b"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "完成面路徑、防水溢流剖面、防護與維修操作",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "cd94e490e1e1e2ab6e8e79501e620c0fa7410432169985bc697dfe46350d1226",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "B.floor-1.balcony_b",
+          "title": "後工作陽台（水路進線點）",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-B.floor-1.bath_acc",
+      "title": "1F 無障礙衛浴：使用與驗收",
+      "topic": "routines",
+      "scenario": "如廁、洗澡、轉位、倒地救援、清潔排水與補強",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": "floor-1",
+      "requirement_ids": [
+        "B.floor-1.bath_acc"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "衛浴配置、門片救援、止滑扶手補強與防水排水試驗",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "2f397688af8ebc3ededc16edefa94192b0888de5846d62aa451872f7580b6e73",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "B.floor-1.bath_acc",
+          "title": "1F 無障礙衛浴",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-B.floor-1.entry_b",
+      "title": "玄關：使用與驗收",
+      "topic": "routines",
+      "scenario": "車輛、卸貨、訪客、雨天、輪椅與緊急出入交會",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": "floor-1",
+      "requirement_ids": [
+        "B.floor-1.entry_b"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "入口與車門開啟圖、門禁手動操作、完成面連續動線及雨天排水",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "29d8ad195218622e58000340bc4a7d1d442ac9ed3d978e59566bc485c39c890a",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "B.floor-1.entry_b",
+          "title": "玄關",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-B.floor-1.idf_b",
+      "title": "IDF-B 機櫃：使用與驗收",
+      "topic": "routines",
+      "scenario": "設備開啟、散熱、清潔、隔離故障、維修與整機抽換",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": "floor-1",
+      "requirement_ids": [
+        "B.floor-1.idf_b"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "型錄外廓、散熱防水隔振、操作與拆換路徑、結構機電介面",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "547ac78ed9e2b374b26a3c7bb2998a29023b4352bc62484f100e38d57b722e04",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "B.floor-1.idf_b",
+          "title": "IDF-B 機櫃",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-B.floor-1.palanquin",
+      "title": "武轎儲藏室：使用與驗收",
+      "topic": "storage",
+      "scenario": "武轎本體收納、抬桿拆裝、組裝搬運、轉彎、出門到道路及器具晾乾",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": "floor-1",
+      "requirement_ids": [
+        "B.floor-1.palanquin"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "實測各狀態外廓、搬運人員操作與轉彎演練、完成面路徑及儲藏防潮",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "aa843b5c4c086bb7bbb472517538ac4ff60062589c43f9468a76cf270883c6af",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "B.floor-1.palanquin",
+          "title": "武轎儲藏室",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-B.floor-1.shrine",
+      "title": "神明廳（核心）：使用與驗收",
+      "topic": "ritual",
+      "scenario": "神桌／上方保護區、門向視線、祭祀操作、用火排風與上下濕區設備投影",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": "floor-1",
+      "requirement_ids": [
+        "B.floor-1.shrine"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "神桌同層及跨層套繪、屋主風水取捨、消防排風與專業圖說確認",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "4aebdf323c9e946a21ab0d729271b7dbd60718a7739b65e4de03ef77a5fb7b40",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "B.floor-1.shrine",
+          "title": "神明廳（核心）",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-B.floor-2.balcony_b2",
+      "title": "2F 高雄厝景觀陽臺：使用與驗收",
+      "topic": "routines",
+      "scenario": "雨天家務、排水、設備維修、晾曬、遮陽與安全防護",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": "floor-2",
+      "requirement_ids": [
+        "B.floor-2.balcony_b2"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "完成面路徑、防水溢流剖面、防護與維修操作",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "2efe49d6d0b754a6d36426d1cb65ec7f987797fc40166dad4fc70b9e9d2fc25a",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "B.floor-2.balcony_b2",
+          "title": "2F 高雄厝景觀陽臺",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-B.floor-2.bath_g",
+      "title": "客用衛浴：使用與驗收",
+      "topic": "routines",
+      "scenario": "如廁、洗澡、轉位、倒地救援、清潔排水與補強",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": "floor-2",
+      "requirement_ids": [
+        "B.floor-2.bath_g"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "衛浴配置、門片救援、止滑扶手補強與防水排水試驗",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "8fc79ace22fd484daebbebe594f2f2612cdbc84fb1f454c559af95c4f36be504",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "B.floor-2.bath_g",
+          "title": "客用衛浴",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-B.floor-2.living_b",
+      "title": "家庭大客廳：使用與驗收",
+      "topic": "routines",
+      "scenario": "日常用餐、尖峰訪客、家具移動、視線隱私與逃離",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": "floor-2",
+      "requirement_ids": [
+        "B.floor-2.living_b"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "人數容量、家具完成面配置、通行與操作情境確認",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "add33cf2769f91e00dff14506835381c99de3db3ff43f060a15d0facd4798b72",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "B.floor-2.living_b",
+          "title": "家庭大客廳",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-B.floor-2.master_b",
+      "title": "主臥乾區：使用與驗收",
+      "topic": "routines",
+      "scenario": "睡眠、床側取物、照護轉位、衣櫃開啟與緊急移出",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": "floor-2",
+      "requirement_ids": [
+        "B.floor-2.master_b"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "床、櫃、門、輔具與照護者完成面操作圖及演練",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "3e4cb3608d21a1002114624c4efef9fa6f3466a0d0bafc89fe9dde30b355fdaa",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "B.floor-2.master_b",
+          "title": "主臥乾區",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-B.floor-2.master_bath",
+      "title": "主臥衛浴：使用與驗收",
+      "topic": "routines",
+      "scenario": "如廁、洗澡、轉位、倒地救援、清潔排水與補強",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": "floor-2",
+      "requirement_ids": [
+        "B.floor-2.master_bath"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "衛浴配置、門片救援、止滑扶手補強與防水排水試驗",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "32190be58cea4f148fe97914957f8a96e6f44a7443bad40ba6b1aaa2ccb6c876",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "B.floor-2.master_bath",
+          "title": "主臥衛浴",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-B.floor-2.tea",
+      "title": "茶水吧／梯廳：使用與驗收",
+      "topic": "routines",
+      "scenario": "備餐、洗滌、櫃門設備打開、垃圾回收、補貨及油煙",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": "floor-2",
+      "requirement_ids": [
+        "B.floor-2.tea"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "型錄尺寸、廚房操作配置、通風排水電力介面與試運行",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "992328d95775511b0dbaf85959d986cfc97f9deaf54fad273feacecb2d2cd7b0",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "B.floor-2.tea",
+          "title": "茶水吧／梯廳",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-B.floor-3.balcony_b3",
+      "title": "工作小陽台：使用與驗收",
+      "topic": "routines",
+      "scenario": "雨天家務、排水、設備維修、晾曬、遮陽與安全防護",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": "floor-3",
+      "requirement_ids": [
+        "B.floor-3.balcony_b3"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "完成面路徑、防水溢流剖面、防護與維修操作",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "7bea6d8dc2e6db6b37b3aa435ac4c9a3c864982897961fa24608b6c789af702d",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "B.floor-3.balcony_b3",
+          "title": "工作小陽台",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-B.floor-3.bath_b3",
+      "title": "3F 衛浴：使用與驗收",
+      "topic": "routines",
+      "scenario": "如廁、洗澡、轉位、倒地救援、清潔排水與補強",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": "floor-3",
+      "requirement_ids": [
+        "B.floor-3.bath_b3"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "衛浴配置、門片救援、止滑扶手補強與防水排水試驗",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "e991e7e0b909d84d6ea3f19c75e7f0eb9d030fa9aff675fd76f69a65ec7a0dcc",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "B.floor-3.bath_b3",
+          "title": "3F 衛浴",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-B.floor-3.flex_b",
+      "title": "前側彈性室內區：使用與驗收",
+      "topic": "routines",
+      "scenario": "日常使用、家具設備開啟、清潔維修、未來改用途與緊急離開",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": "floor-3",
+      "requirement_ids": [
+        "B.floor-3.flex_b"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "完成面家具設備配置、操作情境、專項圖說與具名確認",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "78e3dd19ff154f942127a1b75f0bd3382a9ffe810a375703ec7f507036c22862",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "B.floor-3.flex_b",
+          "title": "前側彈性室內區",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-B.floor-3.guest_b",
+      "title": "後客房：使用與驗收",
+      "topic": "routines",
+      "scenario": "睡眠、床側取物、照護轉位、衣櫃開啟與緊急移出",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": "floor-3",
+      "requirement_ids": [
+        "B.floor-3.guest_b"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "床、櫃、門、輔具與照護者完成面操作圖及演練",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "398f5edfa40d790e49001818f1c034dcf39b70bcecc3adaeaaefe2a81a250c7a",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "B.floor-3.guest_b",
+          "title": "後客房",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-B.floor-3.ktv",
+      "title": "多功能娛樂室（KTV／劇院）：使用與驗收",
+      "topic": "routines",
+      "scenario": "日常使用、家具設備開啟、清潔維修、未來改用途與緊急離開",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": "floor-3",
+      "requirement_ids": [
+        "B.floor-3.ktv"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "完成面家具設備配置、操作情境、專項圖說與具名確認",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "41ebf74fec8b3e57d114deaabe5bbca5e13d09bb144003f424ab29ad88e628d5",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "B.floor-3.ktv",
+          "title": "多功能娛樂室（KTV／劇院）",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-B.floor-rf.rf_deck",
+      "title": "活動平台／曬衣棚架：使用與驗收",
+      "topic": "routines",
+      "scenario": "雨天家務、排水、設備維修、晾曬、遮陽與安全防護",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": "floor-rf",
+      "requirement_ids": [
+        "B.floor-rf.rf_deck"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "完成面路徑、防水溢流剖面、防護與維修操作",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "e6f126163a248ed135e1e4617f51fdc53f32231185bdfde15c321d8fbaf97dfe",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "B.floor-rf.rf_deck",
+          "title": "活動平台／曬衣棚架",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-B.floor-rf.rf_hp",
+      "title": "熱泵熱水器區：使用與驗收",
+      "topic": "routines",
+      "scenario": "設備開啟、散熱、清潔、隔離故障、維修與整機抽換",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": "floor-rf",
+      "requirement_ids": [
+        "B.floor-rf.rf_hp"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "型錄外廓、散熱防水隔振、操作與拆換路徑、結構機電介面",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "4b79e81194bb049e252094ec9828c50ebe77d2249109224ba03fad0957053513",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "B.floor-rf.rf_hp",
+          "title": "熱泵熱水器區",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-B.floor-rf.rf_shrine_buffer",
+      "title": "神桌上方無設備保護區：使用與驗收",
+      "topic": "ritual",
+      "scenario": "神桌／上方保護區、門向視線、祭祀操作、用火排風與上下濕區設備投影",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": "floor-rf",
+      "requirement_ids": [
+        "B.floor-rf.rf_shrine_buffer"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "神桌同層及跨層套繪、屋主風水取捨、消防排風與專業圖說確認",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "f2c5898739564aef09ddab111079b5c5ba46324bb577841c7297dd8ff6da1765",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "B.floor-rf.rf_shrine_buffer",
+          "title": "神桌上方無設備保護區",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-B.floor-rf.rf_stair",
+      "title": "梯間屋突：使用與驗收",
+      "topic": "routines",
+      "scenario": "日常上下樓、低點淨高、扶手防墜、照明與緊急逃離",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": "floor-rf",
+      "requirement_ids": [
+        "B.floor-rf.rf_stair"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "正式樓梯剖面及避難設計、完成面與護欄扶手驗收、照明操作",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "ef4c6a4ee5a278a07f98587766f058c8c6a310ae3384754c60168d3c70fcb2a1",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "B.floor-rf.rf_stair",
+          "title": "梯間屋突",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-B.floor-rf.rf_tank",
+      "title": "B 棟水塔／VF800：使用與驗收",
+      "topic": "routines",
+      "scenario": "設備開啟、散熱、清潔、隔離故障、維修與整機抽換",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "B"
+      ],
+      "floor_id": "floor-rf",
+      "requirement_ids": [
+        "B.floor-rf.rf_tank"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "型錄外廓、散熱防水隔振、操作與拆換路徑、結構機電介面",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "b23a31ec6dca3071a58e8e9b71ee7910bcd89bdf0a8ff6627d7ea2789025551d",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "B.floor-rf.rf_tank",
+          "title": "B 棟水塔／VF800",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-C.floor-1.balcony",
+      "title": "後工作陽台：使用與驗收",
+      "topic": "routines",
+      "scenario": "雨天家務、排水、設備維修、晾曬、遮陽與安全防護",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "C"
+      ],
+      "floor_id": "floor-1",
+      "requirement_ids": [
+        "C.floor-1.balcony"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "完成面路徑、防水溢流剖面、防護與維修操作",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "5cd8c1d92784255f98697073df33f8001fca0c1b76b6b9dc70d03632d6950b70",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "C.floor-1.balcony",
+          "title": "後工作陽台",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-C.floor-1.elder",
+      "title": "孝親房／長輩房：使用與驗收",
+      "topic": "routines",
+      "scenario": "睡眠、床側取物、照護轉位、衣櫃開啟與緊急移出",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "C"
+      ],
+      "floor_id": "floor-1",
+      "requirement_ids": [
+        "C.floor-1.elder"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "床、櫃、門、輔具與照護者完成面操作圖及演練",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "96fa7e84fae840d896a925e4906d868ee88d677e9b82fd6f89f4a5d1f6adee50",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "C.floor-1.elder",
+          "title": "孝親房／長輩房",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-C.floor-1.elder_bath",
+      "title": "孝親衛浴：使用與驗收",
+      "topic": "routines",
+      "scenario": "如廁、洗澡、轉位、倒地救援、清潔排水與補強",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "C"
+      ],
+      "floor_id": "floor-1",
+      "requirement_ids": [
+        "C.floor-1.elder_bath"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "衛浴配置、門片救援、止滑扶手補強與防水排水試驗",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "cf8927ff82882febcedf98b1a47c854eb26a75c070a0346e16466ed9192dae4e",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "C.floor-1.elder_bath",
+          "title": "孝親衛浴",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-C.floor-1.entry",
+      "title": "玄關（含車庫進屋緩衝）：使用與驗收",
+      "topic": "routines",
+      "scenario": "車輛、卸貨、訪客、雨天、輪椅與緊急出入交會",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "C"
+      ],
+      "floor_id": "floor-1",
+      "requirement_ids": [
+        "C.floor-1.entry"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "入口與車門開啟圖、門禁手動操作、完成面連續動線及雨天排水",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "a77c50b5528ec3cb26c9864b23edcf5b66cc77d71ceeb9f20deafd8a88189e12",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "C.floor-1.entry",
+          "title": "玄關（含車庫進屋緩衝）",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-C.floor-1.idf_c",
+      "title": "IDF-C 弱電機櫃：使用與驗收",
+      "topic": "routines",
+      "scenario": "設備開啟、散熱、清潔、隔離故障、維修與整機抽換",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "C"
+      ],
+      "floor_id": "floor-1",
+      "requirement_ids": [
+        "C.floor-1.idf_c"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "型錄外廓、散熱防水隔振、操作與拆換路徑、結構機電介面",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "c2afd5ead26f8ef5137e9cad2aea4a8cbfe02eea160c03cedcd5e31bc0613642",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "C.floor-1.idf_c",
+          "title": "IDF-C 弱電機櫃",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-C.floor-1.kitchen",
+      "title": "廚房：使用與驗收",
+      "topic": "routines",
+      "scenario": "備餐、洗滌、櫃門設備打開、垃圾回收、補貨及油煙",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "C"
+      ],
+      "floor_id": "floor-1",
+      "requirement_ids": [
+        "C.floor-1.kitchen"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "型錄尺寸、廚房操作配置、通風排水電力介面與試運行",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "b6babb2c5c565882e35c1c4075c34736f4f2acf578c8609459e49563bbdf22d2",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "C.floor-1.kitchen",
+          "title": "廚房",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-C.floor-1.living",
+      "title": "客餐廳（開放式）：使用與驗收",
+      "topic": "routines",
+      "scenario": "日常用餐、尖峰訪客、家具移動、視線隱私與逃離",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "C"
+      ],
+      "floor_id": "floor-1",
+      "requirement_ids": [
+        "C.floor-1.living"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "人數容量、家具完成面配置、通行與操作情境確認",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "ad4155f8fc681ea18585237557582602ce0d227eb2ea53bb93c45a3843721ee0",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "C.floor-1.living",
+          "title": "客餐廳（開放式）",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-C.floor-2.balcony_c2",
+      "title": "2F 高雄厝景觀陽臺：使用與驗收",
+      "topic": "routines",
+      "scenario": "雨天家務、排水、設備維修、晾曬、遮陽與安全防護",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "C"
+      ],
+      "floor_id": "floor-2",
+      "requirement_ids": [
+        "C.floor-2.balcony_c2"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "完成面路徑、防水溢流剖面、防護與維修操作",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "46a19a54dd796753d4f656b2753297a7868d52c1fe8f263fcf93548b44907f66",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "C.floor-2.balcony_c2",
+          "title": "2F 高雄厝景觀陽臺",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-C.floor-2.bath_c2",
+      "title": "廁所（乾濕分離）：使用與驗收",
+      "topic": "routines",
+      "scenario": "如廁、洗澡、轉位、倒地救援、清潔排水與補強",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "C"
+      ],
+      "floor_id": "floor-2",
+      "requirement_ids": [
+        "C.floor-2.bath_c2"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "衛浴配置、門片救援、止滑扶手補強與防水排水試驗",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "17cc67a9da0fe4b1f86e06b3e3e66fd7e7d287dd5d3b2147826a473a806a9bf6",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "C.floor-2.bath_c2",
+          "title": "廁所（乾濕分離）",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-C.floor-2.guest2",
+      "title": "客房／多功能房：使用與驗收",
+      "topic": "routines",
+      "scenario": "睡眠、床側取物、照護轉位、衣櫃開啟與緊急移出",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "C"
+      ],
+      "floor_id": "floor-2",
+      "requirement_ids": [
+        "C.floor-2.guest2"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "床、櫃、門、輔具與照護者完成面操作圖及演練",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "11d8ad32562fef83e1b7c4d6d2c09ada4559398bbc19b7d3d0d69a216d695e58",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "C.floor-2.guest2",
+          "title": "客房／多功能房",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-C.floor-2.kitchenette",
+      "title": "小型廚房：使用與驗收",
+      "topic": "routines",
+      "scenario": "備餐、洗滌、櫃門設備打開、垃圾回收、補貨及油煙",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "C"
+      ],
+      "floor_id": "floor-2",
+      "requirement_ids": [
+        "C.floor-2.kitchenette"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "型錄尺寸、廚房操作配置、通風排水電力介面與試運行",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "2fabcaf1b3bb87917280fa2a18ba02be26d3c030ed1bf10df63de89eede4c7d0",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "C.floor-2.kitchenette",
+          "title": "小型廚房",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-C.floor-2.living2",
+      "title": "客廳（2F 主角空間）：使用與驗收",
+      "topic": "routines",
+      "scenario": "日常用餐、尖峰訪客、家具移動、視線隱私與逃離",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "C"
+      ],
+      "floor_id": "floor-2",
+      "requirement_ids": [
+        "C.floor-2.living2"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "人數容量、家具完成面配置、通行與操作情境確認",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "c5d3ef8fd6a42159a6fb018258f8d6baa9743205b88290bbb22f9a4fc4ef4a37",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "C.floor-2.living2",
+          "title": "客廳（2F 主角空間）",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-C.floor-3.balcony_c3",
+      "title": "3F 主臥通風小陽台：使用與驗收",
+      "topic": "routines",
+      "scenario": "雨天家務、排水、設備維修、晾曬、遮陽與安全防護",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "C"
+      ],
+      "floor_id": "floor-3",
+      "requirement_ids": [
+        "C.floor-3.balcony_c3"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "完成面路徑、防水溢流剖面、防護與維修操作",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "e209c08feeb7133a7620657cbdbc8f5553226bb88f561aa30a0126f229d9fb20",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "C.floor-3.balcony_c3",
+          "title": "3F 主臥通風小陽台",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-C.floor-3.bath_c3",
+      "title": "廁所（乾濕分離）：使用與驗收",
+      "topic": "routines",
+      "scenario": "如廁、洗澡、轉位、倒地救援、清潔排水與補強",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "C"
+      ],
+      "floor_id": "floor-3",
+      "requirement_ids": [
+        "C.floor-3.bath_c3"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "衛浴配置、門片救援、止滑扶手補強與防水排水試驗",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "7587881c6edd2adf8f3ecbdbc5882334959aaf83e31004a234b37ae23ade9504",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "C.floor-3.bath_c3",
+          "title": "廁所（乾濕分離）",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-C.floor-3.gym",
+      "title": "運動空間：使用與驗收",
+      "topic": "routines",
+      "scenario": "日常使用、家具設備開啟、清潔維修、未來改用途與緊急離開",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "C"
+      ],
+      "floor_id": "floor-3",
+      "requirement_ids": [
+        "C.floor-3.gym"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "完成面家具設備配置、操作情境、專項圖說與具名確認",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "56b57d9d8dd995c96ef3cfb6a9434d0810c0b250c3f5bbcff058025bd1f6381a",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "C.floor-3.gym",
+          "title": "運動空間",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-C.floor-3.master_c",
+      "title": "主臥室（飯店級配置）：使用與驗收",
+      "topic": "routines",
+      "scenario": "睡眠、床側取物、照護轉位、衣櫃開啟與緊急移出",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "C"
+      ],
+      "floor_id": "floor-3",
+      "requirement_ids": [
+        "C.floor-3.master_c"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "床、櫃、門、輔具與照護者完成面操作圖及演練",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "4c8357039dd3329f4963d579e96e03a2f1e2719ca92f44bb8a0d3c8c3a6baa78",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "C.floor-3.master_c",
+          "title": "主臥室（飯店級配置）",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-C.floor-rf.rf_dry",
+      "title": "曬衣區／活動平台：使用與驗收",
+      "topic": "routines",
+      "scenario": "雨天家務、排水、設備維修、晾曬、遮陽與安全防護",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "C"
+      ],
+      "floor_id": "floor-rf",
+      "requirement_ids": [
+        "C.floor-rf.rf_dry"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "完成面路徑、防水溢流剖面、防護與維修操作",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "d966f00cf9a5c715c05f2da36d61afe7d09aa1568dbfe2a2550eb285bba97169",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "C.floor-rf.rf_dry",
+          "title": "曬衣區／活動平台",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-C.floor-rf.rf_hp",
+      "title": "熱泵熱水器（Haier）：使用與驗收",
+      "topic": "routines",
+      "scenario": "設備開啟、散熱、清潔、隔離故障、維修與整機抽換",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "C"
+      ],
+      "floor_id": "floor-rf",
+      "requirement_ids": [
+        "C.floor-rf.rf_hp"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "型錄外廓、散熱防水隔振、操作與拆換路徑、結構機電介面",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "1f3f4ca698e4aa29df0ad7edb119445d3db32b8ebf7a6f0d4362194483aff9d9",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "C.floor-rf.rf_hp",
+          "title": "熱泵熱水器（Haier）",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-C.floor-rf.rf_stair",
+      "title": "梯間屋突：使用與驗收",
+      "topic": "routines",
+      "scenario": "日常上下樓、低點淨高、扶手防墜、照明與緊急逃離",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "C"
+      ],
+      "floor_id": "floor-rf",
+      "requirement_ids": [
+        "C.floor-rf.rf_stair"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "正式樓梯剖面及避難設計、完成面與護欄扶手驗收、照明操作",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "e87f68aec19ef179050d1dde512616eaf3af7052da1987f23bb21f4271840c44",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "C.floor-rf.rf_stair",
+          "title": "梯間屋突",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "SPACE-C.floor-rf.rf_tank",
+      "title": "不鏽鋼水塔／加壓 VF800：使用與驗收",
+      "topic": "routines",
+      "scenario": "設備開啟、散熱、清潔、隔離故障、維修與整機抽換",
+      "question": "此候選空間是否保留、必要性與驗收動作為何？",
+      "recommendation": "由屋主先確認must／should／could，再用正式完成面圖及實物演練；概念面積不可當成定案。",
+      "alternatives": [
+        "與相容空間共用或調整用途：須確認隱私、時段、收納、動線與成本，不自動刪房。"
+      ],
+      "building_ids": [
+        "C"
+      ],
+      "floor_id": "floor-rf",
+      "requirement_ids": [
+        "C.floor-rf.rf_tank"
+      ],
+      "rule_ids": [
+        "PD-DESIGN-FLEXIBILITY-STORAGE"
+      ],
+      "check_ids": [],
+      "dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ],
+      "due_phase": "design",
+      "responsible_role": "屋主／建築師／裝潢設計師",
+      "evidence_required": "型錄外廓、散熱防水隔振、操作與拆換路徑、結構機電介面",
+      "status": "unknown",
+      "basis": "proposal",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "2439adbcf00a369efd938ae5a0d5acecc404342a6894a2eaef9c2cdd440f3b8e",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [
+        {
+          "id": "C.floor-rf.rf_tank",
+          "title": "不鏽鋼水塔／加壓 VF800",
+          "status": "candidate"
+        }
+      ],
+      "pending_dependencies": [
+        "PLAN-HOUSEHOLD-01"
+      ]
+    },
+    {
+      "id": "PLAN-DELIVERY-02",
+      "title": "隱蔽工程停留點",
+      "topic": "delivery",
+      "scenario": "鋼筋套管扶手補強防水電管未查就澆置封板",
+      "question": "哪些節點必須查驗通過才可繼續，誰負責？",
+      "recommendation": "發包前寫停留點、定位照片、監造頻率及不合格處理",
+      "alternatives": [
+        "更多樣板與檢測：增加前期時間費用但降低封閉後返工"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-TENDER-SUPERVISION-HOLDPOINTS",
+        "PD-CONSTRUCTION-CONCEALED-EVIDENCE"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "tender",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "契約查驗表、帶尺定位照片、監造與各工項測試紀錄",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "b20bf723bd7d5df4a300cfb7b17bbb9bd30114b5f99d8f96a1eba9c97f2ae58d",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    },
+    {
+      "id": "PLAN-DELIVERY-03",
+      "title": "交屋系統維護訓練",
+      "topic": "delivery",
+      "scenario": "漏水／故障後找不到管線、保固窗口或操作備份",
+      "question": "竣工圖、備品、標示與年度維護如何交接？",
+      "recommendation": "列系統試運轉、手動操作、設備序號保固、圖說與牆內照片",
+      "alternatives": [
+        "減少複雜設備：功能較少但維護負擔降低；外包維護需預算"
+      ],
+      "building_ids": [
+        "A",
+        "B",
+        "C"
+      ],
+      "floor_id": null,
+      "requirement_ids": [],
+      "rule_ids": [
+        "PD-HANDOVER-ASBUILT",
+        "PD-HANDOVER-WARRANTY-MAINTENANCE",
+        "PD-HANDOVER-SPARES-TRAINING"
+      ],
+      "check_ids": [],
+      "dependencies": [],
+      "due_phase": "handover",
+      "responsible_role": "屋主／建築師／相關專業",
+      "evidence_required": "竣工圖設備清冊、測試報告、備份、維護日曆與屋主訓練紀錄",
+      "status": "unknown",
+      "basis": "professional_required",
+      "urgency": "P1",
+      "reason": null,
+      "physical_item_id": null,
+      "requires_transport_measurement": null,
+      "evidence": [],
+      "context_hash": "481861a0d73b11d730d5bfc2e225aa9e89b78c41eb533c12c457f6d3d25ed516",
+      "check_results": [],
+      "status_label": "待確認",
+      "gaps": [],
+      "due": false,
+      "requirement_states": [],
+      "pending_dependencies": []
+    }
+  ],
+  "gaps": [
+    {
+      "code": "ITEM_GAP",
+      "id": "PLAN-STORAGE-01",
+      "message": "武轎搬運外廓尚未完成具名實測；暫估收納尺寸不能證明搬運"
+    }
+  ],
+  "summary": {
+    "total_items": 105,
+    "total_requirements": 66,
+    "tracked_requirements": 66,
+    "untracked_requirements": [],
+    "topic_count": 12,
+    "status_counts": {
+      "unknown": 105
+    },
+    "due_items": 8,
+    "due_completed": 0
+  },
+  "readiness": {
+    "eligible_for_decision_freeze": false,
+    "policy": "僅當期決策準備度；未到期項目提前提醒。不取代前期閘門或專業放行。",
+    "due_open_ids": [
+      "PLAN-ACCESSIBILITY-03",
+      "PLAN-HOUSEHOLD-01",
+      "PLAN-HOUSEHOLD-02",
+      "PLAN-HOUSEHOLD-03",
+      "PLAN-RITUAL-01",
+      "PLAN-RITUAL-03",
+      "PLAN-SHARED-01",
+      "PLAN-DELIVERY-01"
+    ]
+  },
+  "inputs": {
+    "project": "a6dc5c70aabe9c326a6619661809e031a86de96c10c6119450c0495728a518e9",
+    "requirements": "139803a817f297c5894053620aa111ad0815c288c62f8f4c8e7adc9d0f122960",
+    "register": "2313f1fa54106ef7df4fb731747cdc7838051242ea77a62f13bfd57363cec2c6",
+    "rules": "b5c5035380badf04a49fd6094f46e83bb4aea1f12d338529de9cdd2f48a7225e",
+    "physical_items": "fffcd12d764cb62d632b99c798a618af5393b4ed31735d9ac64165d1b36f795f",
+    "drawing_report": null
+  },
+  "changes": [],
+  "owner_records": {
+    "record_hash": "045649a2695d84a97ea5435b3e69e13401fba90a37180897d01fd2fbbd799121",
+    "entries": [],
+    "warning": "草稿與屋主回覆不是需求確認、法規簽證或專業驗收。禁止填姓名、健康細節、精確預算及電腦絕對路徑。"
+  },
+  "report_hash": "cb0714dde13fd258a90fc8339559227c929f6d02978e6c0be91c28127b2b3c08"
+}

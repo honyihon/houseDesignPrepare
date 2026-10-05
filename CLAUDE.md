@@ -18,6 +18,7 @@ Authority is split by data type:
 |---|---|
 | Parcel facts and unknown legal inputs | `inputs/project.json` |
 | Owner decisions and unconfirmed ideas | `inputs/requirements.json` |
+| Existing large objects and measured envelopes | `inputs/physical-items.json` |
 | Architect drawing versions and normalized evidence | `inputs/revisions/<revision>/` |
 | Current findings and offline dashboard | `structured/reviews/<revision>/` |
 
@@ -212,6 +213,7 @@ assumed — a 12 m east-west row. Nothing in the source data records it.
 | `scripts/config/residential_defaults_tw.json` | Centralized Taiwan residential defaults (wall thickness, door/window widths, furniture dims, `vehicle` = SUV + EV-charger clearances the garage minimum is derived from) |
 | `scripts/lib/standards.py` | Typed access to the defaults config |
 | `inputs/dimensions.json` | Measured/declared geometry overrides; wins over the HTML `data-*-mm` values |
+| `inputs/physical-items.json` | Central planning and measured envelopes for existing large objects; linked furniture reads this instead of duplicating dimensions |
 | `scripts/lib/dimension_overrides.py` | Loads the overrides and stamps `geometry_provenance` onto the room program |
 | `scripts/seed_dimension_overrides.py` | Back-fills overrides from `.cell-size` text; writes `structured/dimension_todo.md` |
 | `scripts/export_model_3d.py` | Builds the offline 3D massing viewer (`structured/candidates/model3d.html`) |

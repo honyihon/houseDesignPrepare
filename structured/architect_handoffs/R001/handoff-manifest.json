@@ -1,0 +1,188 @@
+{
+  "schema": "house-architect-handoff-v1",
+  "revision_id": "R001",
+  "label": "初步設計",
+  "generated_at": "2026-09-01T08:36:17.812610+00:00",
+  "package_path": "structured/architect_handoffs/R001",
+  "state": "request_template",
+  "immutable_revision_created": false,
+  "project_gate": {
+    "stage": "site_search",
+    "site_selected": false,
+    "note": "A technical delivery may be preflighted, but design release remains subject to project gates."
+  },
+  "predecessor": {
+    "source_root": "/mnt/d/Desktop/houseDesign",
+    "files": [
+      {
+        "file": "legacy-reference/index.html",
+        "source_path": "/mnt/d/Desktop/houseDesign/index.html",
+        "sha256": "6af15d63a27c1fbb8a764e5723e0ffb27d3ff1f90acc1f50a2de969e276c21ff",
+        "size_bytes": 524,
+        "authority": "historical_requirement_reference_only"
+      },
+      {
+        "file": "legacy-reference/AbuildingView.html",
+        "source_path": "/mnt/d/Desktop/houseDesign/AbuildingView.html",
+        "sha256": "a47e9c6bbc3f2d467e33cd6e947fb543618dcb48283512af43b2ad6e2d4e2367",
+        "size_bytes": 240741,
+        "authority": "historical_requirement_reference_only"
+      },
+      {
+        "file": "legacy-reference/BbuildingView.html",
+        "source_path": "/mnt/d/Desktop/houseDesign/BbuildingView.html",
+        "sha256": "e1379eba456377b17e89385ec5abfe61bc2423399826353a26fcf27a3cdad69e",
+        "size_bytes": 87507,
+        "authority": "historical_requirement_reference_only"
+      },
+      {
+        "file": "legacy-reference/CbuildingView.html",
+        "source_path": "/mnt/d/Desktop/houseDesign/CbuildingView.html",
+        "sha256": "ca94e19f2f10c543da565944d269dbdd786328b71982c5ce9388b4d49996269a",
+        "size_bytes": 110327,
+        "authority": "historical_requirement_reference_only"
+      }
+    ],
+    "policy": "Historical HTML is a room-discussion reference, never authoritative site or drawing geometry."
+  },
+  "expected_scope": {
+    "buildings": [
+      "A",
+      "B",
+      "C"
+    ],
+    "storeys": [
+      {
+        "building_id": "A",
+        "floor_id": "floor-1"
+      },
+      {
+        "building_id": "A",
+        "floor_id": "floor-2"
+      },
+      {
+        "building_id": "A",
+        "floor_id": "floor-3"
+      },
+      {
+        "building_id": "A",
+        "floor_id": "floor-rf"
+      },
+      {
+        "building_id": "B",
+        "floor_id": "floor-1"
+      },
+      {
+        "building_id": "B",
+        "floor_id": "floor-2"
+      },
+      {
+        "building_id": "B",
+        "floor_id": "floor-3"
+      },
+      {
+        "building_id": "B",
+        "floor_id": "floor-rf"
+      },
+      {
+        "building_id": "C",
+        "floor_id": "floor-1"
+      },
+      {
+        "building_id": "C",
+        "floor_id": "floor-2"
+      },
+      {
+        "building_id": "C",
+        "floor_id": "floor-3"
+      },
+      {
+        "building_id": "C",
+        "floor_id": "floor-rf"
+      }
+    ],
+    "requirement_ids": [
+      "A.floor-1.entry",
+      "A.floor-1.living",
+      "A.floor-1.kitchen",
+      "A.floor-1.elder",
+      "A.floor-1.bath1",
+      "A.floor-1.mdf",
+      "A.floor-1.balcony",
+      "A.floor-2.master",
+      "A.floor-2.master_bath",
+      "A.floor-2.closet",
+      "A.floor-2.study",
+      "A.floor-2.bed2",
+      "A.floor-2.bath2",
+      "A.floor-2.balcony2",
+      "A.floor-3.media",
+      "A.floor-3.guest",
+      "A.floor-3.bath3",
+      "A.floor-3.multi",
+      "A.floor-3.balcony3",
+      "A.floor-rf.rf_stair",
+      "A.floor-rf.rf_tank",
+      "A.floor-rf.rf_hp",
+      "A.floor-rf.rf_solar",
+      "A.floor-rf.rf_deck",
+      "B.floor-1.entry_b",
+      "B.floor-1.shrine",
+      "B.floor-1.palanquin",
+      "B.floor-1.bath_acc",
+      "B.floor-1.idf_b",
+      "B.floor-1.balcony_b",
+      "B.floor-2.living_b",
+      "B.floor-2.tea",
+      "B.floor-2.bath_g",
+      "B.floor-2.master_b",
+      "B.floor-2.balcony_b2",
+      "B.floor-3.flex_b",
+      "B.floor-3.ktv",
+      "B.floor-3.bath_b3",
+      "B.floor-3.guest_b",
+      "B.floor-3.balcony_b3",
+      "B.floor-rf.rf_stair",
+      "B.floor-rf.rf_tank",
+      "B.floor-rf.rf_hp",
+      "B.floor-rf.rf_deck",
+      "C.floor-1.entry",
+      "C.floor-1.living",
+      "C.floor-1.kitchen",
+      "C.floor-1.elder",
+      "C.floor-1.elder_bath",
+      "C.floor-1.idf_c",
+      "C.floor-1.balcony",
+      "C.floor-2.living2",
+      "C.floor-2.guest2",
+      "C.floor-2.kitchenette",
+      "C.floor-2.bath_c2",
+      "C.floor-2.balcony_c2",
+      "C.floor-3.master_c",
+      "C.floor-3.gym",
+      "C.floor-3.bath_c3",
+      "C.floor-3.balcony_c3",
+      "C.floor-rf.rf_stair",
+      "C.floor-rf.rf_tank",
+      "C.floor-rf.rf_hp",
+      "C.floor-rf.rf_dry"
+    ],
+    "confirmed_must_requirement_ids": [],
+    "requirement_status_counts": {
+      "candidate": 64
+    },
+    "requirement_priority_counts": {
+      "should": 64
+    }
+  },
+  "snapshots": {
+    "project": {
+      "file": "project.snapshot.json",
+      "sha256": "ac22b22db0f5f464e8b5ff2b5ccffa7a8c59fe32b92f6ad054fbb030947715c7"
+    },
+    "requirements": {
+      "file": "owner-requirements.snapshot.json",
+      "sha256": "ab2d92be75f545d4d1ae08cc04a0f78d3369d19c40a180ae505c2374625f9cb3"
+    }
+  }
+}

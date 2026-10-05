@@ -8,7 +8,6 @@ import json
 import sys
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
@@ -16,7 +15,6 @@ if str(SCRIPT_DIR) not in sys.path:
 
 from lib.architect_metrics import evaluate_program, generate_metrics_report_md
 from lib.standards import load_residential_defaults, repo_relative
-
 
 PROGRAM_FILE = ROOT / "structured" / "room_program.json"
 OUTPUT_DIR = ROOT / "structured" / "architect_metrics"

@@ -3,9 +3,8 @@ from __future__ import annotations
 from contextlib import redirect_stderr
 from io import StringIO
 
-from export_print_bundle_pdf import load_svg_drawing
 import export_top1_svgs as svg_export
-
+from export_print_bundle_pdf import load_svg_drawing
 
 PROFILE = {
     "presentation_version": 2,

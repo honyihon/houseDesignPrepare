@@ -4,9 +4,9 @@ from scripts.lib.architect_metrics import (
     STATUS_ADVISORY,
     STATUS_MISSING,
     STATUS_OK,
+    build_egress_proxy_metric,
     build_floor_area_metric,
     build_structure_review_metric,
-    build_egress_proxy_metric,
     needs_daylight,
     summarize_metrics_payload,
 )

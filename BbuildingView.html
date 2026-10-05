@@ -1,11 +1,11 @@
-<!-- B棟：神明廳傳承宅 × IDF 光纖分點 × 獨立給水 v8.3 全優化版（含補氣氣密/抗震錨定/回水啟用/排水防堵/颱風防護/風水/樓梯標示） -->
+<!-- B棟：概念安全版 v8.4；基地、坐向與完成面尚未實測，不得作施工定案 -->
 <!DOCTYPE html>
 
 <html lang="zh-TW">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
-<title>B棟 - 傳承核心 × IDF 分點 × 神明廳（v8.3 全優化版）</title>
+<title>B棟 - 傳承核心 × 神明廳上下層保護（概念安全版 v8.4）</title>
 <style>
 * { margin:0; padding:0; box-sizing:border-box; }
 body{
@@ -197,6 +197,40 @@ border-color:#fbbf24; background:rgba(245,158,11,.15); box-shadow:0 0 20px rgba(
 .plan-cell.core{ background:linear-gradient(135deg,rgba(139,92,246,.14),rgba(124,58,237,.08)); border-color:rgba(139,92,246,.45); }
 .plan-cell.stair{ background:linear-gradient(135deg,rgba(16,185,129,.14),rgba(5,150,105,.08)); border-color:rgba(16,185,129,.45); }
 .plan-cell.storage-wide{ background:linear-gradient(135deg,rgba(217,119,6,.14),rgba(180,83,9,.08)); border-color:rgba(217,119,6,.45); }
+.plan-cell.has-layout-overlay{ min-height:168px; }
+.layout-caption{
+margin-top:8px; color:#cbd5e1; font-size:.6rem; line-height:1.35;
+}
+.furniture-overlay{
+position:relative; width:100%; margin-top:6px; aspect-ratio:var(--room-aspect);
+background:
+linear-gradient(rgba(148,163,184,.1) 1px,transparent 1px),
+linear-gradient(90deg,rgba(148,163,184,.1) 1px,transparent 1px),
+rgba(2,6,23,.72);
+background-size:10% 10%; border:1px solid rgba(148,163,184,.35); border-radius:7px;
+box-shadow:inset 0 0 0 2px rgba(15,23,42,.8); overflow:visible;
+}
+.layout-item{
+position:absolute; left:var(--item-x); top:var(--item-y); width:var(--item-w); height:var(--item-d);
+transform:translate(-50%,-50%); display:flex; align-items:center; justify-content:center;
+border:1px solid color-mix(in srgb,var(--item-color),#fff 35%);
+border-radius:3px; background:color-mix(in srgb,var(--item-color),transparent 18%);
+box-shadow:0 1px 4px rgba(0,0,0,.45); color:#fff; font-size:.55rem; font-weight:900;
+line-height:1; text-shadow:0 1px 2px #000; z-index:1;
+}
+.layout-item[data-measurement-state="pending"]{
+border-style:dashed; box-shadow:0 0 0 2px rgba(251,191,36,.18),0 1px 4px rgba(0,0,0,.45);
+}
+.layout-item:focus-visible{ outline:2px solid #22d3ee; outline-offset:2px; z-index:5; }
+.layout-item-label{
+position:absolute; left:50%; top:calc(100% + 3px); transform:translateX(-50%);
+padding:2px 4px; border-radius:4px; background:rgba(2,6,23,.94); border:1px solid rgba(255,255,255,.18);
+font-size:.56rem; font-weight:700; line-height:1.2; white-space:nowrap; opacity:0; pointer-events:none;
+transition:opacity .15s ease;
+}
+.layout-item:hover,.layout-item:focus{ z-index:5; }
+.layout-item:hover .layout-item-label,.layout-item:focus .layout-item-label{ opacity:1; }
+.layout-key{ margin-top:6px; color:#94a3b8; font-size:.58rem; line-height:1.45; }
 .io-badges{ display:flex; flex-wrap:wrap; justify-content:center; gap:4px; margin-top:8px; }
 .badge{
 font-size:.65rem; padding:3px 7px; border-radius:6px; background:rgba(0,0,0,.3);
@@ -336,11 +370,13 @@ h1{ font-size:clamp(1.35rem,8vw,2rem); letter-spacing:0; overflow-wrap:anywhere;
 神明廳專屬規劃｜IDF 機櫃（10G 光纖來自 A 棟 MDF）｜獨立三表水電系統｜完整 B- 編碼<br/>
 <span class="strong-red">A/B/C 棟給水系統禁止任何互通管路；僅允許弱電光纖互聯。</span>
 </div>
-<div class="version-tag">📋 v8.3 全優化版 - 整合補氣氣密/抗震錨定/回水啟用/排水防堵/颱風防護/風水/樓梯標示/IDF分段溫控</div>
+<div class="version-tag">📋 v8.4 概念安全版｜6.0 × 17.63m 假設外框｜家具與 3D 同步｜待基地／實測／建築師確認</div>
 </div>
 <div class="important-notes">
-<h3>🚨 B 棟施工關鍵提醒（v8.3 整合優化）</h3>
+<h3>🚨 B 棟概念設計關鍵提醒（v8.4）</h3>
 <ul>
+<li><strong>圖面效力：</strong><span class="strong-red">目前尚未選定基地，6.0 × 17.63m、前方 y=0、坐向及所有門窗都是容量與疊圖假設；不可直接用於申照、採購或施工。</span></li>
+<li><strong>上下層紅線：</strong>1F 神明廳固定 y=12700..17630；2F／3F 同區只放乾式房間，RF 同區為無設備、低活動保護帶。</li>
 <li><strong>設備編碼：</strong>本棟所有閥件/設備使用 <code>B-</code> 前綴（B-V1、B-C1...），避免與 A/C 棟混淆</li>
 <li><strong>獨立水表：</strong>B 棟擁有獨立水表/水塔/加壓系統，與 A、C 棟水路互不連通</li>
 <li><strong>禁止跨棟借水：</strong><span class="strong-red">嚴格禁止任何形式的跨棟水路互通！</span></li>
@@ -355,7 +391,7 @@ h1{ font-size:clamp(1.35rem,8vw,2rem); letter-spacing:0; overflow-wrap:anywhere;
 <li><strong>IDF 散熱：</strong>風扇分段啟動 28–30/32/35°C + 溫濕度顯示/告警</li>
 <li><strong>RF 抗震錨定：</strong>水塔/熱泵/泵浦基座需錨定到結構（錨栓/支架），列入驗收；減震座另保留</li>
 <li><strong>武轎儲藏室防水：</strong>地坪洩水坡度/地漏排水能力列入灑水驗收；除濕排水孔加止逆/防蟲</li>
-<li><strong>樓梯位置：</strong>設於神明廳後方右側（避開神桌正沖），各層需標示方向箭頭</li>
+<li><strong>樓梯位置：</strong>各層固定在 y=7715..11015 中段服務核心，與 y≥12700 神明廳／神桌上方保護帶分離</li>
 </ul>
 </div>
 <div class="typhoon-section">
@@ -376,11 +412,11 @@ h1{ font-size:clamp(1.35rem,8vw,2rem); letter-spacing:0; overflow-wrap:anywhere;
 <div class="fengshui-section">
 <h3>☯️ 風水與空間格局（B棟重點）</h3>
 <ul>
-<li><strong>穿堂煞：</strong>神明廳設隔斷簾幕/拉門遮蔽，避免大門直通後陽台落地窗</li>
-<li><strong>樑壓關鍵區：</strong>神桌位置需避開結構樑，若無法避開則天花做階梯造型或局部降板化解</li>
+<li><strong>穿堂：</strong>玄關、搬運前室與神明廳採錯位門洞／短牆形成轉折；裝飾屏風不能妨礙避難，也不能取代法定防火門</li>
+<li><strong>樑壓關鍵區：</strong>神桌實際外廓須與結構樑套繪；若相交應先移位或調整結構配置，不以裝飾天花假裝消除結構關係</li>
 <li><strong>明堂開闊：</strong>前院車庫高度不得高於屋簷，保持視野通透，象徵氣流順暢、財路不阻</li>
-<li><strong>神桌背牆：</strong>實牆 RC ≥15cm、背後無廁所/浴室/樓梯/主要排水立管、龍邊（左）靠實牆、高度約 110cm（文公尺吉位）</li>
-<li><strong>背牆虛實：</strong>若管線/樑柱必經，RC 牆後加輕隔間假牆藏管，正面維持實牆</li>
+<li><strong>神桌背牆：</strong>概念採實牆 RC ≥15cm；本版模型總高 125cm。背後及上方投影無浴廁、樓梯、主要排水立管與重設備，龍邊仍待基地坐向確認</li>
+<li><strong>背牆管線：</strong>神桌正後方投影禁埋管與接線盒；必要電力由兩側可檢修服務帶進入。若結構或主幹管無法避開，應移動神桌／重新配置，不在背後加假牆掩蓋衝突</li>
 </ul>
 </div>
 <div class="stats-bar">
@@ -456,7 +492,7 @@ h1{ font-size:clamp(1.35rem,8vw,2rem); letter-spacing:0; overflow-wrap:anywhere;
 <div class="room-details">
 <li><strong>我家總電源在哪？</strong> 電錶箱（1F 車庫側）</li>
 <li><strong>我家總水閥（B-V1）在哪？</strong> 1F 後工作陽台（水表後第一道閥）</li>
-<li><strong>泵浦/熱泵電源開關在哪？</strong> RF 層設備箱（需爬梯）</li>
+<li><strong>泵浦/熱泵電源開關在哪？</strong> RF 中段設備箱（由正式樓梯到達）</li>
 <li><strong>緊急漏水/跳電第一步？</strong> <strong>先關 B-V1！</strong> 再聯繫管理員</li>
 <li><strong>緊急關閉卡：</strong>玄關張貼「水/電/瓦斯關閉步驟」卡，三棟格式統一</li>
 </div>
@@ -472,7 +508,7 @@ h1{ font-size:clamp(1.35rem,8vw,2rem); letter-spacing:0; overflow-wrap:anywhere;
 <div class="room-details">
 <li><strong>弱電手孔：</strong>檢查地下手孔是否進水，若有積水需立即抽排並檢查光纖</li>
 <li><strong>RF 閥件：</strong>檢查 B-V1、B-V2、旁通閥等是否損壞或位移</li>
-<li><strong>防水蓋板：</strong>檢查 RF 維修人孔蓋、設備保護箱是否位移或破損</li>
+<li><strong>屋突／設備箱：</strong>檢查 RF 正式樓梯出口門組、雨庇、設備保護箱是否位移或破損</li>
 <li><strong>排水系統：</strong>確認 RF 地排、溢流口、落水頭濾網/第二溢流是否暢通</li>
 <li><strong>設備基座：</strong>檢查水塔/熱泵/VF800 基座是否有積水痕跡</li>
 </div>
@@ -506,21 +542,21 @@ h1{ font-size:clamp(1.35rem,8vw,2rem); letter-spacing:0; overflow-wrap:anywhere;
 </div>
 </div>
 <!-- 1F -->
-<div class="floor-plan active" data-floor-depth-mm="5300" data-floor-width-mm="11000" data-front-side="top" data-geometry-source="auto-grid-v1" data-north-deg="0" data-rear-side="bottom" id="floor-1" role="tabpanel">
+<div class="floor-plan active" data-floor-depth-mm="17630" data-floor-width-mm="6000" data-front-side="top" data-geometry-source="concept-safety-v1" data-north-deg="0" data-rear-side="bottom" id="floor-1" role="tabpanel">
 <div class="floor-header">
 <div class="floor-title">
 <div class="floor-title-icon">1F</div>
 <div>
-<div>神明廳 × 車庫 × 武轎儲藏室 × IDF-B 機櫃</div>
+<div>前帶武轎 × 中段服務核心 × 後帶神明廳</div>
 <div style="font-size:.8rem;color:#64748b;font-weight:400;">
-傳承核心｜弱電：IDF-B（光纖來自 A 棟 MDF 地下管道）｜水路進線：B-V1
+概念外框 6.0 × 17.63m（未實測）｜前方固定 y=0｜家具與 3D 共用資料
 </div>
 </div>
 </div>
 <div class="direction-badge">
 <div class="dir-item">⬆️ 前：計畫道路</div>
-<div class="dir-item">🛕 內：神桌核心</div>
-<div class="dir-item">🔒 後：儲藏+水路</div>
+<div class="dir-item">🔒 前：玄關＋武轎直進直出</div>
+<div class="dir-item">🛕 後：完整神明廳</div>
 </div>
 </div>
 <div class="floor-content">
@@ -530,81 +566,77 @@ h1{ font-size:clamp(1.35rem,8vw,2rem); letter-spacing:0; overflow-wrap:anywhere;
 <div style="font-size:.75rem;color:#64748b;">點擊區域查看詳情</div>
 </div>
 <div class="plan-grid-visual">
-<div class="plan-row" data-row-h-mm="1200" style="grid-template-columns:1fr;">
-<div class="plan-cell outdoor"  data-door-mm="900" data-h-mm="1200" data-material="concrete+drain" data-w-mm="11000" data-window-mm="0" data-x-mm="0" data-y-mm="0" role="button" tabindex="0" aria-pressed="false" aria-label="前院車庫" onclick="highlightRoom('garage', this)">
-<span class="cell-icon">🚗</span>
-<span class="cell-name">前院車庫</span>
-<span class="cell-size">約 5.5m × 6.0m</span>
-<div class="io-badges">
-<span class="badge pwr">⚡ EV預留 32A</span>
-<span class="badge net">📷 CCTV×1</span>
-<span class="badge water">🚿 B-V14 戶外龍頭</span>
+<div class="plan-row" data-row-h-mm="6400" style="grid-template-columns:2600fr 3400fr;">
+<div style="display:grid;gap:6px;grid-template-rows:1800fr 4600fr;">
+<div class="plan-cell" data-door-mm="1000" data-entry="true" data-h-mm="1800" data-material="tile" data-w-mm="2600" data-window-mm="900" data-x-mm="0" data-y-mm="0" role="button" tabindex="0" aria-pressed="false" aria-label="玄關" onclick="highlightRoom('entry', this)">
+<span class="cell-icon">🚪</span><span class="cell-name">玄關</span><span class="cell-size">概念 2.6 × 1.8m</span>
+<div class="io-badges"><span class="badge shrine">轉折入神明廳</span></div>
+</div>
+<div class="plan-cell storage-wide has-layout-overlay" data-access-mode="straight-pull" data-carry-path-mm="1500" data-door-mm="1500" data-fire-detector="true" data-h-mm="4600" data-layout-profile="ceremonial-storage-v1" data-layout-source="inputs/furniture-layout.json" data-material="service+utility" data-model-room-id="B:floor-1:storage" data-w-mm="2600" data-window-mm="600" data-x-mm="0" data-y-mm="1800" role="button" tabindex="0" aria-pressed="false" aria-label="武轎室" onclick="highlightRoom('storage', this)">
+<span class="cell-icon">🔒</span><span class="cell-name">武轎室</span><span class="cell-size">武轎暫估 120 × 170 × 180cm</span>
+<div class="io-badges"><span class="badge shrine">暫定淨開口150cm</span><span class="badge shrine">直進直出</span></div>
+<div class="layout-caption">虛線武轎＝一般尺寸暫估／待實測；門在前側，長向對準門洞</div>
+<div class="furniture-overlay" style="--room-aspect:2600 / 4600;" aria-label="武轎室第一版配置">
+<div class="layout-item" data-furniture-id="B:floor-1:storage:furniture:ceremonial-storage" data-catalog-id="ceremonial-storage" data-physical-item-id="B.palanquin.primary" data-measurement-state="pending" data-x-ratio="0.5" data-y-ratio="0.3" data-width-mm="1200" data-depth-mm="1700" data-height-mm="1800" data-rotation-deg="0" style="--item-x:50%;--item-y:30%;--item-w:46.1538%;--item-d:36.9565%;--item-color:#b91c1c;" tabindex="0" title="武轎（收納狀態）120 × 170 × 180cm；待實測">1<span class="layout-item-label">武轎 120×170（待實測）</span></div>
+<div class="layout-item" data-furniture-id="B:floor-1:storage:furniture:ritual-cabinet" data-catalog-id="ritual-cabinet" data-x-ratio="0.25" data-y-ratio="0.93" data-width-mm="1200" data-depth-mm="450" data-height-mm="2100" data-rotation-deg="0" style="--item-x:25%;--item-y:93%;--item-w:46.1538%;--item-d:9.7826%;--item-color:#92400e;" tabindex="0" title="法器／旗幟櫃 120 × 45 × 210cm">2<span class="layout-item-label">法器／旗幟櫃</span></div>
+<div class="layout-item" data-furniture-id="B:floor-1:storage:furniture:fireproof-cabinet" data-catalog-id="fireproof-offering-cabinet" data-x-ratio="0.75" data-y-ratio="0.93" data-width-mm="900" data-depth-mm="500" data-height-mm="1800" data-rotation-deg="0" style="--item-x:75%;--item-y:93%;--item-w:34.6154%;--item-d:10.8696%;--item-color:#7f1d1d;" tabindex="0" title="香燭金紙耐燃櫃 90 × 50 × 180cm">3<span class="layout-item-label">香燭金紙耐燃櫃</span></div>
+<div class="layout-item" data-furniture-id="B:floor-1:storage:furniture:prep-table" data-catalog-id="fold-down-prep-table" data-x-ratio="0.25" data-y-ratio="0.78" data-width-mm="1200" data-depth-mm="450" data-height-mm="900" data-rotation-deg="0" style="--item-x:25%;--item-y:78%;--item-w:46.1538%;--item-d:9.7826%;--item-color:#b45309;" tabindex="0" title="折疊整備桌 120 × 45 × 90cm">4<span class="layout-item-label">折疊整備桌</span></div>
+<div class="layout-item" data-furniture-id="B:floor-1:storage:furniture:dehumidifier" data-catalog-id="dehumidifier" data-x-ratio="0.83" data-y-ratio="0.78" data-width-mm="350" data-depth-mm="300" data-height-mm="600" data-rotation-deg="0" style="--item-x:83%;--item-y:78%;--item-w:13.4615%;--item-d:6.5217%;--item-color:#475569;" tabindex="0" title="除濕機 35 × 30 × 60cm">5<span class="layout-item-label">除濕機</span></div>
+</div>
+<div class="layout-key">1 武轎 · 2 法器櫃 · 3 耐燃櫃 · 4 整備桌 · 5 除濕機</div>
+</div>
+</div>
+<div class="plan-cell outdoor" data-door-mm="1000" data-h-mm="6400" data-material="concrete+drain" data-w-mm="3400" data-window-mm="0" data-x-mm="2600" data-y-mm="0" role="button" tabindex="0" aria-pressed="false" aria-label="車庫" onclick="highlightRoom('garage', this)">
+<span class="cell-icon">🚗</span><span class="cell-name">車庫</span><span class="cell-size">概念 3.4 × 6.4m</span>
+<div class="io-badges"><span class="badge pwr">⚡ EV預留 32A</span><span class="badge net">📷 CCTV×1</span><span class="badge water">🚿 B-V14</span></div>
+</div>
+</div>
+<div class="plan-row" data-row-h-mm="1315" style="grid-template-columns:1fr;">
+<div class="plan-cell" data-access-mode="straight-pull" data-carry-path-mm="1500" data-door-mm="1500" data-h-mm="1315" data-material="tile" data-w-mm="6000" data-window-mm="600" data-x-mm="0" data-y-mm="6400" role="button" tabindex="0" aria-pressed="false" aria-label="轉折走道" onclick="highlightRoom('corridor1', this)">
+<span class="cell-icon">↪️</span><span class="cell-name">轉折走道／搬運前室</span><span class="cell-size">連續 150cm 武轎搬運帶；不直沖神桌</span>
+</div>
+</div>
+<div class="plan-row" data-row-h-mm="4985" style="grid-template-columns:1fr 1fr;">
+<div style="display:grid;gap:6px;grid-template-rows:1785fr 3200fr;">
+<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1785" data-material="concrete+drain" data-w-mm="3000" data-window-mm="1200" data-x-mm="0" data-y-mm="7715" role="button" tabindex="0" aria-pressed="false" aria-label="後工作陽台" onclick="highlightRoom('balcony1', this)">
+<span class="cell-icon">🧺</span><span class="cell-name">工作陽台／水路進線</span>
+<div class="io-badges"><span class="badge valve">B-V1</span><span class="badge water">B-F1／B-T1</span></div>
+</div>
+<div class="plan-cell wet" data-door-mm="900" data-h-mm="3200" data-material="tile+waterproof" data-room-role="accessible-bath" data-w-mm="3000" data-window-mm="900" data-x-mm="0" data-y-mm="9500" role="button" tabindex="0" aria-pressed="false" aria-label="無障礙衛浴" onclick="highlightRoom('bath1', this)">
+<span class="cell-icon">🚿</span><span class="cell-name">無障礙衛浴</span><span class="cell-size">門淨寬目標 900mm</span>
+<div class="io-badges"><span class="badge pwr">🆘 求救鈴</span><span class="badge water">💧 B-V4</span></div>
+</div>
+</div>
+<div style="display:grid;gap:6px;grid-template-rows:3300fr 1685fr;">
+<div class="plan-cell stair" data-door-mm="900" data-h-mm="3300" data-material="concrete+paint" data-w-mm="3000" data-window-mm="900" data-x-mm="3000" data-y-mm="7715" role="button" tabindex="0" aria-pressed="false" aria-label="樓梯間" onclick="highlightRoom('stair1', this)">
+<span class="cell-icon">🪜</span><span class="cell-name">正式樓梯間</span><span class="cell-size">⬆️ 2F</span>
+</div>
+<div class="plan-cell idf" data-door-mm="900" data-h-mm="1685" data-material="service+utility" data-w-mm="3000" data-window-mm="600" data-x-mm="3000" data-y-mm="11015" role="button" tabindex="0" aria-pressed="false" aria-label="後梯廳／IDF 壁櫃" onclick="highlightRoom('idf-cabinet', this)">
+<span class="cell-icon">🔗</span><span class="cell-name">後梯廳／IDF 壁櫃</span><span class="cell-size">保留通往神明廳淨通路</span>
 </div>
 </div>
 </div>
-<div class="plan-row" data-row-h-mm="1300" style="grid-template-columns:1fr;">
-<div class="plan-cell shrine"  data-door-mm="1000" data-entry="true" data-h-mm="1300" data-material="tile" data-room-role="shrine" data-w-mm="11000" data-window-mm="3100" data-x-mm="0" data-y-mm="1200" role="button" tabindex="0" aria-pressed="false" aria-label="神明廳 + 玄關" onclick="highlightRoom('shrine', this)">
-<span class="cell-icon">🛕</span>
-<span class="cell-name">神明廳 + 玄關</span>
-<span class="cell-size">核心傳承空間</span>
+<div class="plan-row" data-row-h-mm="4930" style="grid-template-columns:1fr;">
+<div class="plan-cell shrine has-layout-overlay" data-door-mm="1200" data-h-mm="4930" data-layout-profile="shrine-v1" data-layout-source="inputs/furniture-layout.json" data-material="tile" data-model-room-id="B:floor-1:shrine" data-overhead-protection="no-stair-wet-mep" data-room-role="shrine" data-w-mm="6000" data-window-mm="2400" data-x-mm="0" data-y-mm="12700" role="button" tabindex="0" aria-pressed="false" aria-label="後帶神明廳" onclick="highlightRoom('shrine', this)">
+<span class="cell-icon">🛕</span><span class="cell-name">後帶完整神明廳</span><span class="cell-size">概念 6.0 × 4.93m；神桌靠後牆、面向前方</span>
 <div class="io-badges">
 <span class="badge shrine">✨ 龍邊神桌</span>
 <span class="badge pwr">⚡ 專迴×2</span>
 <span class="badge shrine">💨 獨立排氣</span>
 </div>
+<div class="layout-caption">家具比例配置（位置／尺寸與 3D 同步；後牆在圖面下方）</div>
+<div class="furniture-overlay" style="--room-aspect:6000 / 4930;" aria-label="神明廳第一版家具配置">
+<div class="layout-item" data-furniture-id="B:floor-1:shrine:furniture:altar" data-catalog-id="altar-table" data-x-ratio="0.28" data-y-ratio="0.91" data-width-mm="1800" data-depth-mm="600" data-height-mm="1250" data-rotation-deg="0" style="--item-x:28%;--item-y:91%;--item-w:30%;--item-d:12.1704%;--item-color:#9a3412;" tabindex="0" title="神桌 180 × 60 × 125cm">1<span class="layout-item-label">神桌 180×60×125</span></div>
+<div class="layout-item" data-furniture-id="B:floor-1:shrine:furniture:offering-table" data-catalog-id="folding-offering-table" data-x-ratio="0.28" data-y-ratio="0.6" data-width-mm="1200" data-depth-mm="500" data-height-mm="750" data-rotation-deg="0" style="--item-x:28%;--item-y:60%;--item-w:20%;--item-d:10.142%;--item-color:#c2410c;" tabindex="0" title="活動供桌 120 × 50 × 75cm">2<span class="layout-item-label">活動供桌 120×50</span></div>
+<div class="layout-item" data-furniture-id="B:floor-1:shrine:furniture:bench-left" data-catalog-id="movable-bench" data-x-ratio="0.7" data-y-ratio="0.53" data-width-mm="1400" data-depth-mm="450" data-height-mm="450" data-rotation-deg="0" style="--item-x:70%;--item-y:53%;--item-w:23.3333%;--item-d:9.1278%;--item-color:#a16207;" tabindex="0" title="可移動長凳 A 140 × 45 × 45cm">3<span class="layout-item-label">可移動長凳 A</span></div>
+<div class="layout-item" data-furniture-id="B:floor-1:shrine:furniture:bench-right" data-catalog-id="movable-bench" data-x-ratio="0.7" data-y-ratio="0.68" data-width-mm="1400" data-depth-mm="450" data-height-mm="450" data-rotation-deg="0" style="--item-x:70%;--item-y:68%;--item-w:23.3333%;--item-d:9.1278%;--item-color:#a16207;" tabindex="0" title="可移動長凳 B 140 × 45 × 45cm">4<span class="layout-item-label">可移動長凳 B</span></div>
+<div class="layout-item" data-furniture-id="B:floor-1:shrine:furniture:shoe-cabinet" data-catalog-id="shoe-cabinet" data-x-ratio="0.8" data-y-ratio="0.14" data-width-mm="1200" data-depth-mm="350" data-height-mm="1100" data-rotation-deg="0" style="--item-x:80%;--item-y:14%;--item-w:20%;--item-d:7.0994%;--item-color:#a16207;" tabindex="0" title="鞋櫃 120 × 35 × 110cm">5<span class="layout-item-label">鞋櫃 120×35</span></div>
 </div>
-</div>
-<div class="plan-row" data-row-h-mm="1100" style="grid-template-columns:1fr 1fr 1fr;">
-<div class="plan-cell stair"  data-door-mm="900" data-h-mm="1100" data-material="concrete+paint" data-w-mm="3667" data-window-mm="600" data-x-mm="0" data-y-mm="2500" role="button" tabindex="0" aria-pressed="false" aria-label="樓梯間" onclick="highlightRoom('stair1', this)">
-<span class="cell-icon">🪜</span>
-<span class="cell-name">樓梯間</span>
-<span class="cell-size">⬆️ 2F</span>
-<div class="io-badges">
-<span class="badge stair">感應燈</span>
-<span class="badge stair">住警器</span>
-</div>
-</div>
-<div class="plan-cell idf"  data-door-mm="800" data-h-mm="1100" data-material="service+utility" data-w-mm="3667" data-window-mm="600" data-x-mm="3667" data-y-mm="2500" role="button" tabindex="0" aria-pressed="false" aria-label="IDF-B 機櫃" onclick="highlightRoom('idf-cabinet', this)">
-<span class="cell-icon">🔗</span>
-<span class="cell-name">IDF-B 機櫃</span>
-<span class="cell-size">樓梯下空間</span>
-<div class="io-badges">
-<span class="badge net">🔌 12芯光纖</span>
-<span class="badge net">🌐 PoE交換器</span>
-</div>
-</div>
-<div class="plan-cell wet"  data-door-mm="800" data-h-mm="1100" data-material="tile+waterproof" data-w-mm="3667" data-window-mm="600" data-x-mm="7333" data-y-mm="2500" role="button" tabindex="0" aria-pressed="false" aria-label="無障礙衛浴" onclick="highlightRoom('bath1', this)">
-<span class="cell-icon">🚿</span>
-<span class="cell-name">無障礙衛浴</span>
-<div class="io-badges">
-<span class="badge pwr">🆘 求救鈴</span>
-<span class="badge water">💧 B-V4</span>
+<div class="layout-key">1 神桌 · 2 活動供桌 · 3–4 可移動長凳 · 5 鞋櫃</div>
 </div>
 </div>
 </div>
-<div class="plan-row" data-row-h-mm="1700" style="grid-template-columns:1fr 1fr;">
-<div class="plan-cell storage-wide"  data-door-mm="800" data-fire-detector="true" data-h-mm="1700" data-material="service+utility" data-turning-diameter-mm="1800" data-w-mm="5500" data-window-mm="600" data-x-mm="0" data-y-mm="3600" role="button" tabindex="0" aria-pressed="false" aria-label="武轎儲藏室" onclick="highlightRoom('storage', this)">
-<span class="cell-icon">🔒</span>
-<span class="cell-name">武轎儲藏室</span>
-<span class="cell-size">淨開口依武轎尺寸</span>
-<div class="io-badges">
-<span class="badge pwr">💧 除濕專插</span>
-<span class="badge shrine">轉向圓徑180cm</span>
-</div>
-</div>
-<div class="plan-cell outdoor"  data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-w-mm="5500" data-window-mm="0" data-x-mm="5500" data-y-mm="3600" role="button" tabindex="0" aria-pressed="false" aria-label="後工作陽台" onclick="highlightRoom('balcony1', this)">
-<span class="cell-icon">🧺</span>
-<span class="cell-name">後工作陽台</span>
-<div class="io-badges">
-<span class="badge valve">B-V1 總閥</span>
-<span class="badge water">B-F1 濾水</span>
-<span class="badge water">B-T1 抽水</span>
-<span class="badge ac-out">🌀 室外機（北陰面・低樓層短管）</span>
-</div>
-</div>
-</div>
-</div>
-<div class="compass"><span class="compass-arrow">⬆️</span> 北向（計畫道路側）</div>
+<div class="compass"><span class="compass-arrow">⬆️</span> 圖面前方（暫定道路側；真北待基地確認）</div>
 <div class="legend">
 <div class="legend-item"><div class="legend-color" style="background:rgba(251,191,36,.4);"></div>神明廳</div>
 <div class="legend-item"><div class="legend-color" style="background:rgba(16,185,129,.4);"></div>樓梯間</div>
@@ -615,10 +647,24 @@ h1{ font-size:clamp(1.35rem,8vw,2rem); letter-spacing:0; overflow-wrap:anywhere;
 </div>
 </div>
 <div class="details-panel">
-<div class="room" data-h-mm="1200" data-target-cell="slot-1" data-w-mm="11000" data-x-mm="0" data-y-mm="0" id="room-garage">
+<div class="room" data-h-mm="1800" data-target-cell="slot-1" data-w-mm="2600" data-x-mm="0" data-y-mm="0" id="room-entry">
+<div class="room-head"><div class="room-name"><div class="room-name-icon">🚪</div> 前帶玄關</div><div class="room-area">概念 2.6 × 1.8m</div></div>
+<div class="room-details">
+<li><strong>入內順序：</strong>大門進玄關後轉入搬運前室，再通往後帶神明廳；神桌不在大門直線視線上。</li>
+<li><strong>消防區劃：</strong>法規要求的防火／隔煙門須保留其認證門組與自閉功能；屏風或裝飾拉門只能另設，不能取代。</li>
+</div>
+</div>
+<div class="room" data-carry-path-mm="1500" data-h-mm="1315" data-target-cell="slot-4" data-w-mm="6000" data-x-mm="0" data-y-mm="6400" id="room-corridor1">
+<div class="room-head"><div class="room-name"><div class="room-name-icon">↪️</div> 轉折走道／搬運前室</div><div class="room-area">150cm 連續搬運帶</div></div>
+<div class="room-details">
+<li><strong>武轎動線：</strong>門外至收納位保持直線且無門檻；固定櫃、鞋櫃、門扇與臨時紙箱不得侵入搬運帶。</li>
+<li><strong>穿堂處理：</strong>以錯位門洞或短牆形成轉折，不用會妨礙避難或搬運的臨時簾幕。</li>
+</div>
+</div>
+<div class="room" data-h-mm="6400" data-target-cell="slot-3" data-w-mm="3400" data-x-mm="2600" data-y-mm="0" id="room-garage">
 <div class="room-head">
 <div class="room-name"><div class="room-name-icon">🚗</div> 前院車庫</div>
-<div class="room-area">約 33 ㎡</div>
+<div class="room-area">概念 21.8 ㎡（未實測）</div>
 </div>
 <div class="room-details">
 <li><strong>EV 充電：</strong>獨立迴路 32A/40A（建議 NEMA 14-50 或 Type2），預留管徑 1"</li>
@@ -632,16 +678,19 @@ h1{ font-size:clamp(1.35rem,8vw,2rem); letter-spacing:0; overflow-wrap:anywhere;
 車庫入口建議預留防颱板軌道，大面窗採膠合玻璃，抗風壓等級目標 ≥360 kgf/m²
 </div>
 </div>
-<div class="room" data-h-mm="1300" data-room-role="shrine" data-target-cell="slot-2" data-w-mm="11000" data-x-mm="0" data-y-mm="1200" id="room-shrine" style="border-color:#fbbf24; background:linear-gradient(135deg,rgba(251,191,36,.1),rgba(30,41,59,.5));">
+<div class="room" data-h-mm="4930" data-overhead-protection="no-stair-wet-mep" data-room-role="shrine" data-target-cell="slot-9" data-w-mm="6000" data-x-mm="0" data-y-mm="12700" id="room-shrine" style="border-color:#fbbf24; background:linear-gradient(135deg,rgba(251,191,36,.1),rgba(30,41,59,.5));">
 <div class="room-head">
 <div class="room-name"><div class="room-name-icon">神</div> 神明廳 (核心)</div>
 <div class="room-area">傳承重點</div>
 </div>
 <div class="room-details">
-<li><strong>神桌位置：</strong>偏龍邊靠實牆，避開樑壓與廁所上方。</li>
-<li><strong>神桌背牆規範：</strong>實牆 RC ≥15cm（不可輕隔間）、背後無廁所/浴室/樓梯/電梯/主要排水立管、不可樑壓、龍邊（左）靠實牆為佳、高度約 110cm（文公尺吉位）、背牆不可走任何電線管（防高溫干擾）</li>
+<li><strong>神桌位置：</strong>概念版靠後方完整實牆、面向前方，偏左側配置；真正龍邊須等基地坐向、門向與祭祀習慣確認後定案。</li>
+<li><strong>第一版家具：</strong>180 × 60 × 125cm 神桌、120 × 50 × 75cm 活動供桌、140 × 45 × 45cm 可移動長凳 2 張、120 × 35 × 110cm 鞋櫃；尺寸與相對位置和 3D 共用 <code>shrine-v1</code> 配置。</li>
+<li><strong>日常模式：</strong>供桌收合或靠神桌、長凳靠側排列，保留玄關至樓梯／後側的主通道。</li>
+<li><strong>祭拜模式：</strong>活動供桌展開，兩張長凳依參拜人數移位；香案前淨空、人流與避難路徑須待建築師正式平面尺寸確認。</li>
+<li><strong>神桌背牆規範：</strong>本版神桌模型外廓為 180 × 60 × 125cm；實際桌面與神像高度須依實物及祭祀專業複核。背牆概念採 RC ≥15cm，避開浴廁、樓梯、主要排水立管與樑壓。</li>
 <li><strong>背牆虛實處理：</strong>若管線/樑柱必經，RC 牆後加輕隔間假牆藏管，正面保持實牆</li>
-<li><strong>神明燈插座：</strong>左右各預留專用插座（獨立回路），採耐熱電線</li>
+<li><strong>神明燈插座：</strong>左右側牆／側回預留專用插座，採耐熱電線與獨立回路；神桌正後方投影區不埋管、不設接線盒，配線由可檢修側向管槽進入。</li>
 <li><strong>排風系統（第一優先補強）：</strong>
 <ul style="margin-top:4px;padding-left:16px;">
 <li><strong>管徑：</strong>天花預留 4"（Ø100mm）獨立排風管，<strong>不與廚房/浴廁共用</strong>，最短路徑直通戶外。</li>
@@ -653,8 +702,8 @@ h1{ font-size:clamp(1.35rem,8vw,2rem); letter-spacing:0; overflow-wrap:anywhere;
 </ul>
 </li>
 <li><strong>補氣路徑：</strong>固定補氣百葉/進氣口（可調風量、止回、防雨防蟲），位置避開直吹神桌，避免負壓回灌</li>
-<li><strong>電力規劃：</strong>神桌牆面專用插座 ×4（建議 H=110cm），一迴路給照明/神桌，一迴路給除濕/排風。</li>
-<li><strong>隔斷/氣密門：</strong>樓梯口隔煙門（60 分鐘防火）或隱藏拉門需門縫氣密條 + 門下擋條，減少香氣外溢並保留動線；化解穿堂煞。</li>
+<li><strong>電力規劃：</strong>插座集中神桌兩側可檢修區，一迴路供照明／神明燈，一迴路供除濕／排風；插座高度待神桌實物與使用者操作確認。</li>
+<li><strong>隔斷/氣密門：</strong>樓梯口若依法需要 60 分鐘防火／隔煙門，必須採合格認證門組並保留自閉與氣密功能；隱藏拉門或屏風僅能作第二道裝飾隔斷，不能互相替代。</li>
 <li><strong>火警偵測（第一優先補強）：</strong>熱感應式探測器，訊號回 IDF-B 聯動聲光警報與手機推播。<strong>需與空氣品質 PM2.5 感測分開迴路</strong>，避免誤判。</li>
 <li><strong>防火建材（第一優先補強）：</strong>神桌背牆與天花採防火矽酸鈣板（耐燃一級）；光明燈/佛龕燈獨立專用迴路。施工圖標註防火材料型號與施作範圍，驗收時拍照存檔。</li>
 <li><strong>滅火設備：</strong>懸掛式自動滅火球或家用滅火器，放在易取處。</li>
@@ -665,42 +714,43 @@ h1{ font-size:clamp(1.35rem,8vw,2rem); letter-spacing:0; overflow-wrap:anywhere;
 </div>
 <div class="tag tag-fengshui">
 <div class="tag-title">☯️ 風水紅線清單</div>
-神桌背牆：實牆 RC ≥15cm｜背後無廁所/浴室/樓梯/主要排水立管｜不可樑壓｜龍邊靠實牆｜高度約 110cm（文公尺）｜背牆禁走電線管
+神桌背牆：實牆 RC ≥15cm｜背後及上方投影無廁所／樓梯／排水／重設備｜不可樑壓｜龍邊待坐向確認｜模型總高 125cm｜正後方投影禁埋管與接線盒
 </div>
 <div class="tag tag-opt">
 <div class="tag-title">施工建議</div>
-神明廳為 B 棟精神核心。桌面高度依神桌（H=110cm 左右 + 桌面厚度）校正；電氣、金屬件以不鏽鋼為佳，耐香火油煙。可選配 PM2.5/溫濕度感測器聯動排風。
+神明廳為 B 棟精神核心。本版以實物外廓 180 × 60 × 125cm 建模；實際桌面、神像與香爐高度待實物及祭祀專業確認。電氣、金屬件以耐熱、耐油煙與可檢修為原則，可選配 PM2.5／溫濕度感測器聯動排風。
 </div>
 </div>
-<div class="room" data-h-mm="1100" data-target-cell="slot-3" data-w-mm="3667" data-x-mm="0" data-y-mm="2500" id="room-stair1" style="background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(30,41,59,.6)); border-color:rgba(16,185,129,.3);">
+<div class="room" data-h-mm="3300" data-target-cell="slot-7" data-w-mm="3000" data-x-mm="3000" data-y-mm="7715" id="room-stair1" style="background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(30,41,59,.6)); border-color:rgba(16,185,129,.3);">
 <div class="room-head">
 <div class="room-name"><div class="room-name-icon">🪜</div> 樓梯間（1F）</div>
 <div class="room-area">⬆️ 2F</div>
 </div>
 <div class="room-details">
-<li><strong>位置：</strong>設於神明廳後方右側（避開神桌正沖）</li>
+<li><strong>位置：</strong>固定在 y=7715..11015 中段服務核心，完全停在神明廳 y≥12700 之前。</li>
 <li><strong>標示：</strong>🪜 樓梯間（⬆️2F）- 帶箭頭圖示</li>
 <li><strong>照明：</strong>感應式 LED 燈 + 手動開關雙控</li>
 <li><strong>安全設備：</strong>住警器（火災/一氧化碳偵測）</li>
-<li><strong>隔斷門：</strong>透明防火氣密門（可見樓梯又防煙），60 分鐘防火等級 + 門縫氣密條/門下擋條</li>
-<li><strong>IDF-B 位置：</strong>機櫃設於樓梯下空間（與 A/C 棟一致）</li>
+<li><strong>隔斷門：</strong>若法規要求 60 分鐘防火門，採具證明文件的完整門組、自閉器與氣密條；裝飾拉門不得替代。</li>
+<li><strong>IDF-B 位置：</strong>設於樓梯後方梯廳的牆側淺櫃，不假設塞入不明淨高的梯下空間，也不得阻斷通往神明廳的通路。</li>
 <li style="color:#ef4444;"><strong>⚠️ 需專業計算（第一優先）：</strong>樓梯級高、級深、2R+T、平台淨深、扶手高度、踏步止滑、緊急照明與避難步行距離，需由建築師/結構技師依《建築技術規則》正式計算與檢核；本 HTML 僅為示意，不可替代法規審查。</li>
 </div>
 <div class="tag tag-spec">
 <div class="tag-title">📋 樓梯標示統一規範</div>
-1F：🪜 樓梯間（⬆️2F）｜2F：🪜 樓梯間（⬇️1F ⬆️3F）｜3F：🪜 樓梯間（⬇️2F ⬆️RF）｜RF：🪜 樓梯出口（⬇️3F）+ 防水人孔蓋
+1F：🪜 樓梯間（⬆️2F）｜2F：🪜 樓梯間（⬇️1F ⬆️3F）｜3F：🪜 樓梯間（⬇️2F ⬆️RF）｜RF：🪜 正式樓梯屋突（⬇️3F）
 </div>
 </div>
-<div class="room" data-h-mm="1100" data-target-cell="slot-4" data-w-mm="3667" data-x-mm="3667" data-y-mm="2500" id="room-idf-cabinet" style="background:linear-gradient(135deg,rgba(99,102,241,.1),rgba(30,41,59,.6)); border-color:rgba(99,102,241,.3);">
+<div class="room" data-h-mm="1685" data-target-cell="slot-8" data-w-mm="3000" data-x-mm="3000" data-y-mm="11015" id="room-idf-cabinet" style="background:linear-gradient(135deg,rgba(99,102,241,.1),rgba(30,41,59,.6)); border-color:rgba(99,102,241,.3);">
 <div class="room-head">
-<div class="room-name"><div class="room-name-icon">🔗</div> IDF-B 機櫃</div>
-<div class="room-area">弱電分點｜樓梯下空間</div>
+<div class="room-name"><div class="room-name-icon">🔗</div> 後梯廳／IDF-B 壁櫃</div>
+<div class="room-area">弱電分點｜通往神明廳的後梯廳</div>
 </div>
 <div class="room-details">
+<li><strong>通行原則：</strong>IDF-B 改採靠牆淺櫃，櫃體、開門與檢修人員不得占用通往神明廳的淨通路；正式淨寬待完成面與機櫃型號確認。</li>
 <li><strong>機櫃規格：</strong>15U 壁掛式（建議大一號，預留 ≥1/3 空位），深度 600mm，百葉門 + 前門透氣網孔</li>
 <li><strong>散熱：</strong>頂部加裝 2 顆靜音風扇（<strong>28–30°C 低速 / 32°C 中速 / 35°C 高速</strong>） + 櫃門百葉孔對流 + 溫濕度顯示/告警</li>
 <li><strong>櫃內配電：</strong>預留 110V 插座 ×2 + PDU + 櫃內維修照明 + 理線架/走線槽（UPS/交換器/配線架）</li>
-<li><strong>位置：</strong>移至 1F 樓梯下空間（與 A/C 一致），避開神明廳排風管（防髒空氣進入）</li>
+<li><strong>位置：</strong>位於樓梯後方梯廳的牆側淺櫃，避開神明廳排風管與無障礙衛浴排水；櫃深、開門、實際淨高及通行淨寬待正式剖面確認。</li>
 <li><strong>避水/避悶：</strong>不貼近給排水管，避免密閉悶箱，必要時加防水托盤</li>
 <li><strong>接地：</strong>機櫃殼體、交換器金屬件需接建物接地（6sq 以上）+ SPD 防雷</li>
 <li><strong>維修淨空：</strong>前 ≥80cm、後 ≥60cm</li>
@@ -762,39 +812,41 @@ h1{ font-size:clamp(1.35rem,8vw,2rem); letter-spacing:0; overflow-wrap:anywhere;
 同孔/同盒不可共用｜依規範低壓 ≥15cm、高壓 ≥50cm｜本案平行 ≥30cm、交叉 90°｜管內禁止接頭｜每段需預留拉線繩
 </div>
 </div>
-<div class="room" data-h-mm="1100" data-target-cell="slot-5" data-w-mm="3667" data-x-mm="7333" data-y-mm="2500" id="room-bath1">
+<div class="room" data-door-mm="900" data-h-mm="3200" data-target-cell="slot-6" data-w-mm="3000" data-x-mm="0" data-y-mm="9500" id="room-bath1">
 <div class="room-head">
 <div class="room-name"><div class="room-name-icon">浴</div> 無障礙衛浴</div>
 </div>
 <div class="room-details">
 <li><strong>給水：</strong>B-V4（冷水分支閥）+ B-V5（熱水分支閥）</li>
-<li><strong>無障礙配置：</strong>淋浴滑桿、扶手、求救鈴（拉繩式），門淨寬 ≥80cm（法規底線）；本案 ≥90cm。</li>
+<li><strong>無障礙配置：</strong>淋浴滑桿、扶手、求救鈴（拉繩式）；本概念版完成面門淨寬目標 ≥900mm，迴轉與扶手尺寸仍須依適用法規及建築師圖說驗證。</li>
 <li><strong>牆面補強：</strong>淋浴區/馬桶旁預埋木芯或鋼襯，後續可裝 L 型扶手。</li>
 <li><strong>智能馬桶：</strong>防水插座 + 進水角閥 + 等電位接地端子預留。</li>
 <li><strong>排水：</strong>洩水坡度 1:60，地排建議 2"</li>
 <li><strong>減震：</strong>馬桶/龍頭安裝加防震墊。</li>
 <li><strong>緊急拉繩訊號（第一優先補強）：</strong>預埋 2C 線回 IDF-B，<strong>同步連動：</strong>
 <ul style="margin-top:4px;padding-left:16px;">
-<li>1F 客廳聲光警報（本地即時反應）</li>
+<li>1F 玄關與 2F 家庭客廳聲光警報（本地即時反應）</li>
 <li>手機推播通知（住戶/緊急聯絡人同步接收）</li>
 <li>訊號與火警偵測分開迴路，避免誤判與干擾</li>
 </ul>
 </li>
 </div>
 </div>
-<div class="room" data-h-mm="1700" data-target-cell="slot-6" data-w-mm="5500" data-x-mm="0" data-y-mm="3600" id="room-storage" style="border-color:rgba(217,119,6,.4); background:linear-gradient(135deg,rgba(217,119,6,.1),rgba(30,41,59,.5));">
+<div class="room" data-access-mode="straight-pull" data-carry-path-mm="1500" data-door-mm="1500" data-h-mm="4600" data-target-cell="slot-2" data-w-mm="2600" data-x-mm="0" data-y-mm="1800" id="room-storage" style="border-color:rgba(217,119,6,.4); background:linear-gradient(135deg,rgba(217,119,6,.1),rgba(30,41,59,.5));">
 <div class="room-head">
 <div class="room-name"><div class="room-name-icon">🔒</div> 武轎儲藏室</div>
-<div class="room-area">特殊動線需求</div>
+<div class="room-area">第一版：直進直出</div>
 </div>
 <div class="room-details">
-<li><strong>用途：</strong>武轎、金紙、祭祀用品、雜物集中收納。</li>
-<li><strong>門片/淨開口：</strong>以「淨開口」為準，≥（武轎最寬處 + 10~15cm）；若需整座進出目標 ≥150cm，折疊/上掀門需註明折疊後淨開口；採無門檻或活動式門檻</li>
-<li><strong>動線規範：</strong>通道淨寬 ≥150cm｜大門→儲藏室 避免 90 度直角（建議 135° 斜角）｜地面防滑平整</li>
+<li><strong>限定用途：</strong>只收武轎、法器／旗幟、短期香燭金紙與祭典整備用品；不作一般雜物間，避免主動線被紙箱或家具占用。</li>
+<li><strong>武轎尺寸來源：</strong><code>inputs/physical-items.json</code> 的 <code>B.palanquin.primary</code>；收納外廓先採一般值 120 × 170 × 180cm，狀態為「待實測」。抬桿組裝後搬運外廓仍未知，後續另量。</li>
+<li><strong>第一版設備：</strong>武轎收納位、120 × 45 × 210cm 法器／旗幟櫃、90 × 50 × 180cm 香燭金紙耐燃櫃、120 × 45 × 90cm 折疊整備桌、35 × 30 × 60cm 除濕機；尺寸與相對位置和 3D 共用 <code>ceremonial-storage-v1</code> 配置。</li>
+<li><strong>門片/淨開口：</strong>第一版暫定完成面淨開口 150cm，採無門檻或可拆式活動門檻；折疊／上掀門須以完全開啟後的實際淨開口驗收。</li>
+<li><strong>動線方式：</strong>武轎長向對準門洞，採直線拉入、直線拉出；門外至收納位須連續保留 150cm 搬運帶，地面平整防滑且不得固定堆物。</li>
+<li><strong>轉向條件：</strong>本概念格 260 × 460cm 不假設室內轉向。若正式圖面無法提供直線進出路徑，房間／前室須擴大到可驗證 180cm 轉向圓；不得縮小武轎模型來製造可行假象。</li>
 <li><strong>防水/排水驗收：</strong>地面整體防水 + 洩水坡度導向地漏，無門檻也不回灌；需做灑水/淹水測試確認排水能力</li>
-<li><strong>轎架轉向：</strong>室內通道預留「轎架轉向圓徑 180cm」</li>
 <li><strong>除濕排水：</strong>除濕機專用插座 + 預留排水孔（管徑 1/2"）貼牆設置，排水孔加止逆/防蟲/濾網防回灌</li>
-<li><strong>層板/掛勾：</strong>內部規劃層板＋掛勾，分類放置香燭/供品，保持乾燥整潔。</li>
+<li><strong>分類收納：</strong>法器與旗幟進專櫃；香燭金紙限短期用量並進耐燃櫃；折疊桌使用後收合，武轎前方搬運帶不得作臨時堆放。</li>
 <li><strong>氣密：</strong>實心門 + 鎖 + 氣密條（防味道外溢）。</li>
 <li><strong>防火管理（第一優先補強）：</strong>
 <ul style="margin-top:4px;padding-left:16px;">
@@ -808,11 +860,11 @@ h1{ font-size:clamp(1.35rem,8vw,2rem); letter-spacing:0; overflow-wrap:anywhere;
 </li>
 </div>
 <div class="tag tag-opt">
-<div class="tag-title">🛕 武轎動線建議</div>
-武轎進出頻繁時需確保動線順暢，建議大門至儲藏室採 135° 斜角設計，避免直角轉彎困難。地面需完全平整無高差。
+<div class="tag-title">🛕 第一版武轎動線</div>
+150cm 暫定淨開口＋連續直線搬運帶；櫃體與整備桌集中房間後側，不占前半部搬運線。實測武轎、抬桿搬運外廓及正式門位確認後，再決定維持直進直出或擴充 180cm 轉向空間。
 </div>
 </div>
-<div class="room" data-h-mm="1700" data-target-cell="slot-7" data-w-mm="5500" data-x-mm="5500" data-y-mm="3600" id="room-balcony1">
+<div class="room" data-h-mm="1785" data-target-cell="slot-5" data-w-mm="3000" data-x-mm="0" data-y-mm="7715" id="room-balcony1">
 <div class="room-head">
 <div class="room-name"><div class="room-name-icon">🧺</div> 後工作陽台（水路進線點）</div>
 </div>
@@ -835,14 +887,14 @@ B 棟擁有獨立水表/水塔/加壓系統，與 A、C 棟水路互不連通，
 </div>
 </div>
 <!-- 2F -->
-<div class="floor-plan" data-floor-depth-mm="5400" data-floor-width-mm="11000" data-front-side="top" data-geometry-source="auto-grid-v1" data-north-deg="0" data-rear-side="bottom" id="floor-2" role="tabpanel">
+<div class="floor-plan" data-floor-depth-mm="17630" data-floor-width-mm="6000" data-front-side="top" data-geometry-source="concept-safety-v1" data-north-deg="0" data-rear-side="bottom" id="floor-2" role="tabpanel">
 <div class="floor-header">
 <div class="floor-title">
 <div class="floor-title-icon">2F</div>
 <div>
-<div>大客廳 × 主臥 × 茶水吧</div>
+<div>前帶客廳 × 中段濕式核心 × 後帶主臥乾區</div>
 <div style="font-size:.8rem;color:#64748b;font-weight:400;">
-尊榮起居層｜影音高頻寬需求｜主臥舒適配置
+與 1F 共用 6.0 × 17.63m 概念座標｜神明廳上方不設浴廁、樓梯或排水
 </div>
 </div>
 </div>
@@ -855,10 +907,9 @@ B 棟擁有獨立水表/水塔/加壓系統，與 A、C 棟水路互不連通，
 <div class="visual-plan">
 <div class="plan-header"><div class="plan-title">📐 2F 空間配置圖</div></div>
 <div class="plan-grid-visual">
-<div class="plan-row" data-row-h-mm="1300" style="grid-template-columns:1fr;">
-<div class="plan-cell" role="button" tabindex="0" aria-pressed="false" aria-label="家庭大客廳" data-door-mm="900" data-h-mm="1300" data-material="wood+paint" data-w-mm="11000" data-window-mm="3100" data-x-mm="0" data-y-mm="0" onclick="highlightRoom('living2', this)" style="padding:20px;">
-<span class="cell-icon">🛋️</span>
-<span class="cell-name">家庭大客廳</span>
+<div class="plan-row" data-row-h-mm="6400" style="grid-template-columns:1fr;">
+<div class="plan-cell" role="button" tabindex="0" aria-pressed="false" aria-label="家庭大客廳" data-door-mm="900" data-h-mm="6400" data-material="wood+paint" data-w-mm="6000" data-window-mm="2600" data-x-mm="0" data-y-mm="0" onclick="highlightRoom('living2', this)" style="padding:20px;">
+<span class="cell-icon">🛋️</span><span class="cell-name">前帶家庭大客廳</span><span class="cell-size">概念 6.0 × 6.4m</span>
 <div class="io-badges">
 <span class="badge tv">📺 TV/NAS</span>
 <span class="badge ap">📡 AP×1</span>
@@ -867,49 +918,43 @@ B 棟擁有獨立水表/水塔/加壓系統，與 A、C 棟水路互不連通，
 </div>
 </div>
 </div>
-<div class="plan-row" data-row-h-mm="1100" style="grid-template-columns:1fr 1fr 1fr;">
-<div class="plan-cell stair"  data-door-mm="900" data-h-mm="1100" data-material="concrete+paint" data-w-mm="3667" data-window-mm="600" data-x-mm="0" data-y-mm="1300" role="button" tabindex="0" aria-pressed="false" aria-label="樓梯間" onclick="highlightRoom('stair2', this)">
-<span class="cell-icon">🪜</span>
-<span class="cell-name">樓梯間</span>
-<span class="cell-size">⬇️1F ⬆️3F</span>
-</div>
-<div class="plan-cell"  data-door-mm="900" data-h-mm="1100" data-material="paint+default" data-w-mm="3667" data-window-mm="1100" data-x-mm="3667" data-y-mm="1300" role="button" tabindex="0" aria-pressed="false" aria-label="茶水吧" onclick="highlightRoom('bar2', this)">
-<span class="cell-icon">☕</span>
-<span class="cell-name">茶水吧</span>
-<div class="io-badges">
-<span class="badge pwr">⚡ 專迴</span>
+<div class="plan-row" data-row-h-mm="1315" style="grid-template-columns:1fr;">
+<div class="plan-cell" data-door-mm="900" data-h-mm="1315" data-material="tile" data-w-mm="6000" data-window-mm="600" data-x-mm="0" data-y-mm="6400" role="button" tabindex="0" aria-pressed="false" aria-label="2F 轉折走道" onclick="highlightRoom('corridor2', this)">
+<span class="cell-icon">↪️</span><span class="cell-name">2F 轉折走道</span><span class="cell-size">乾濕分界</span>
 </div>
 </div>
-<div class="plan-cell wet"  data-door-mm="800" data-h-mm="1100" data-material="tile+waterproof" data-w-mm="3667" data-window-mm="600" data-x-mm="7333" data-y-mm="1300" role="button" tabindex="0" aria-pressed="false" aria-label="客用衛浴" onclick="highlightRoom('bath2', this)">
-<span class="cell-icon">🚿</span>
-<span class="cell-name">客用衛浴</span>
-<div class="io-badges">
-<span class="badge water">B-V6/V7</span>
+<div class="plan-row" data-row-h-mm="4985" style="grid-template-columns:1fr 1fr;">
+<div style="display:grid;gap:6px;grid-template-rows:1615fr 1615fr 1755fr;">
+<div class="plan-cell outdoor" data-compliance-status="architect-review-required" data-door-mm="900" data-facing="unknown" data-h-mm="1615" data-landscape-balcony="true" data-lowered-slab="true" data-material="concrete+drain+soil" data-outdoor-role="kaohsiung-house-balcony" data-planting-ratio="0.34" data-w-mm="3000" data-window-mm="1200" data-x-mm="0" data-y-mm="7715" data-zone="core" role="button" tabindex="0" aria-pressed="false" aria-label="2F 景觀陽臺" onclick="highlightRoom('balcony2', this)">
+<span class="cell-icon">🌿</span><span class="cell-name">2F 景觀陽臺</span><span class="cell-size">面向待基地確認</span>
+</div>
+<div class="plan-cell wet" data-door-mm="900" data-h-mm="1615" data-material="tile+waterproof" data-w-mm="3000" data-window-mm="600" data-x-mm="0" data-y-mm="9330" role="button" tabindex="0" aria-pressed="false" aria-label="客用衛浴" onclick="highlightRoom('bath2', this)">
+<span class="cell-icon">🚿</span><span class="cell-name">客用衛浴</span><div class="io-badges"><span class="badge water">B-V6/V7</span></div>
+</div>
+<div class="plan-cell wet" data-door-mm="900" data-h-mm="1755" data-material="tile+waterproof" data-w-mm="3000" data-window-mm="600" data-x-mm="0" data-y-mm="10945" role="button" tabindex="0" aria-pressed="false" aria-label="主臥衛浴" onclick="highlightRoom('master-bath2', this)">
+<span class="cell-icon">🚿</span><span class="cell-name">主臥衛浴</span><span class="cell-size">中段濕區；不壓神桌</span>
 </div>
 </div>
+<div style="display:grid;gap:6px;grid-template-rows:3300fr 1685fr;">
+<div class="plan-cell stair" data-door-mm="900" data-entry="true" data-h-mm="3300" data-material="concrete+paint" data-w-mm="3000" data-window-mm="900" data-x-mm="3000" data-y-mm="7715" role="button" tabindex="0" aria-pressed="false" aria-label="樓梯間" onclick="highlightRoom('stair2', this)">
+<span class="cell-icon">🪜</span><span class="cell-name">正式樓梯間</span><span class="cell-size">⬇️1F ⬆️3F</span>
 </div>
-<div class="plan-row" data-row-h-mm="1300" style="grid-template-columns:1fr;">
-<div class="plan-cell" role="button" tabindex="0" aria-pressed="false" aria-label="主臥套房" data-door-mm="900" data-h-mm="1000" data-material="wood+paint" data-w-mm="11000" data-window-mm="2600" data-x-mm="0" data-y-mm="2400" onclick="highlightRoom('master2', this)" style="padding:20px;">
-<span class="cell-icon">👑</span>
-<span class="cell-name">主臥套房</span>
-<div class="io-badges">
-<span class="badge net">🌐 LAN×2</span>
-<span class="badge pwr">🔌 床頭雙切</span>
-<span class="badge ac">🌬️ 室內機 1.8噸・床頭不直吹</span>
+<div class="plan-cell" data-door-mm="900" data-h-mm="1685" data-material="paint+default" data-w-mm="3000" data-window-mm="900" data-x-mm="3000" data-y-mm="11015" role="button" tabindex="0" aria-pressed="false" aria-label="茶水吧／梯廳" onclick="highlightRoom('bar2', this)">
+<span class="cell-icon">☕</span><span class="cell-name">茶水吧／梯廳</span><div class="io-badges"><span class="badge pwr">⚡ 專迴</span></div>
 </div>
 </div>
 </div>
-<div class="plan-row" data-row-h-mm="1700" style="grid-template-columns:1fr;">
-<div class="plan-cell outdoor"  data-compliance-status="architect-review-required" data-door-mm="900" data-facing="unknown" data-h-mm="2000" data-landscape-balcony="true" data-lowered-slab="true" data-material="concrete+drain+soil" data-outdoor-role="kaohsiung-house-balcony" data-planting-ratio="0.34" data-w-mm="5000" data-window-mm="0" data-x-mm="6000" data-y-mm="3400" data-zone="unknown" role="button" tabindex="0" aria-pressed="false" aria-label="2F 高雄厝景觀陽臺（位置待道路側確認）" onclick="highlightRoom('balcony2', this)">
-<span class="cell-icon">🌿</span>
-<span class="cell-name">2F 高雄厝景觀陽臺（位置待道路側確認）</span>
+<div class="plan-row" data-row-h-mm="4930" style="grid-template-columns:1fr;">
+<div class="plan-cell" role="button" tabindex="0" aria-pressed="false" aria-label="主臥乾區" data-door-mm="900" data-h-mm="4930" data-material="wood+paint" data-overhead-zone="shrine-dry-only" data-w-mm="6000" data-window-mm="2400" data-x-mm="0" data-y-mm="12700" onclick="highlightRoom('master2', this)" style="padding:20px;">
+<span class="cell-icon">👑</span><span class="cell-name">後帶主臥乾區</span><span class="cell-size">神明廳上方：無衛浴、地漏與排水</span>
+<div class="io-badges"><span class="badge net">🌐 LAN×2</span><span class="badge pwr">🔌 床頭雙切</span><span class="badge shrine">乾式保護帶</span></div>
 </div>
 </div>
 </div>
-<div class="compass"><span class="compass-arrow">⬆️</span> 北向</div>
+<div class="compass"><span class="compass-arrow">⬆️</span> 圖面前方（真北／道路側待基地確認）</div>
 </div>
 <div class="details-panel">
-<div class="room" data-h-mm="1100" data-target-cell="slot-2" data-w-mm="3667" data-x-mm="0" data-y-mm="1300" id="room-stair2" style="background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(30,41,59,.6)); border-color:rgba(16,185,129,.3);">
+<div class="room" data-h-mm="3300" data-target-cell="slot-6" data-w-mm="3000" data-x-mm="3000" data-y-mm="7715" id="room-stair2" style="background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(30,41,59,.6)); border-color:rgba(16,185,129,.3);">
 <div class="room-head">
 <div class="room-name"><div class="room-name-icon">🪜</div> 樓梯間（2F）</div>
 <div class="room-area">⬇️1F ⬆️3F</div>
@@ -920,7 +965,11 @@ B 棟擁有獨立水表/水塔/加壓系統，與 A、C 棟水路互不連通，
 <li><strong>安全設備：</strong>住警器</li>
 </div>
 </div>
-<div class="room" data-h-mm="1300" data-target-cell="slot-1" data-w-mm="11000" data-x-mm="0" data-y-mm="0" id="room-living2">
+<div class="room" data-h-mm="1315" data-target-cell="slot-2" data-w-mm="6000" data-x-mm="0" data-y-mm="6400" id="room-corridor2">
+<div class="room-head"><div class="room-name"><div class="room-name-icon">↪️</div> 2F 轉折走道</div><div class="room-area">乾濕分界</div></div>
+<div class="room-details"><li>通往後帶主臥前先經中段核心；浴廁門不直接對床，排水管線不越過 y=12700。</li></div>
+</div>
+<div class="room" data-h-mm="6400" data-target-cell="slot-1" data-w-mm="6000" data-x-mm="0" data-y-mm="0" id="room-living2">
 <div class="room-head">
 <div class="room-name"><div class="room-name-icon">🛋️</div> 家庭大客廳</div>
 <div class="room-area">主要起居</div>
@@ -929,7 +978,7 @@ B 棟擁有獨立水表/水塔/加壓系統，與 A、C 棟水路互不連通，
 <li><strong>電視牆：</strong>LAN×2（TV/串流盒）+ 1.25" 空管（HDMI/光纖音訊）</li>
 <li><strong>沙發側：</strong>LAN×1（筆電/遊戲機備用）+ 雙插座×2 組</li>
 <li><strong>AP 位置：</strong>天花板中央吸頂 AP（PoE），覆蓋 2F 全層</li>
-<li><strong>空調：</strong>分離式 1.8~2.0 噸；室外機集中 RF 北側陰面、避西曬、留散熱間距防熱回流、冷媒管就近縮短；冷氣排水 3/4"</li>
+<li><strong>空調：</strong>分離式容量須依熱負荷計算；室外機只可進 RF 中段設備核心，留散熱間距、防熱回流，冷氣排水接合規排水，不進神桌上方保護帶。</li>
 <li><strong>無障礙衛浴求救鈴聯動：</strong>聲光警報器安裝於客廳明顯處</li>
 </div>
 <div class="tag tag-net">
@@ -938,7 +987,7 @@ B 棟擁有獨立水表/水塔/加壓系統，與 A、C 棟水路互不連通，
 TV 牆建議預埋 1.25" 空管方便日後升級 HDMI 2.1。
 </div>
 </div>
-<div class="room" data-h-mm="1100" data-target-cell="slot-3" data-w-mm="3667" data-x-mm="3667" data-y-mm="1300" id="room-bar2">
+<div class="room" data-h-mm="1685" data-target-cell="slot-7" data-w-mm="3000" data-x-mm="3000" data-y-mm="11015" id="room-bar2">
 <div class="room-head">
 <div class="room-name"><div class="room-name-icon">☕</div> 茶水吧/梯廳</div>
 </div>
@@ -950,7 +999,7 @@ TV 牆建議預埋 1.25" 空管方便日後升級 HDMI 2.1。
 <li><strong>洗碗/廚餘：</strong>預留進排水口，廚餘機排水需耐熱防堵</li>
 </div>
 </div>
-<div class="room" data-h-mm="1100" data-target-cell="slot-4" data-w-mm="3667" data-x-mm="7333" data-y-mm="1300" id="room-bath2">
+<div class="room" data-h-mm="1615" data-target-cell="slot-4" data-w-mm="3000" data-x-mm="0" data-y-mm="9330" id="room-bath2">
 <div class="room-head">
 <div class="room-name"><div class="room-name-icon">🚿</div> 客用衛浴</div>
 </div>
@@ -963,22 +1012,30 @@ TV 牆建議預埋 1.25" 空管方便日後升級 HDMI 2.1。
 <li><strong>熱水保溫：</strong>熱水管全程 ≥15mm 保溫</li>
 </div>
 </div>
-<div class="room" data-h-mm="1000" data-target-cell="slot-5" data-w-mm="11000" data-x-mm="0" data-y-mm="2400" id="room-master2">
+<div class="room" data-h-mm="1755" data-target-cell="slot-5" data-w-mm="3000" data-x-mm="0" data-y-mm="10945" id="room-master-bath2">
+<div class="room-head"><div class="room-name"><div class="room-name-icon">🚿</div> 主臥衛浴</div><div class="room-area">中段濕式核心</div></div>
+<div class="room-details">
+<li><strong>位置紅線：</strong>設備、地漏、管道間與排水立管全部停在 y&lt;12700，不能跨入後帶神桌投影。</li>
+<li><strong>進出：</strong>由主臥乾區側向進入；門口須兼顧隱私、通風與防水高差。</li>
+<li><strong>設備：</strong>B-V9（冷）、B-V10（熱），免治馬桶防水插座與等電位接地端子預留。</li>
+</div>
+</div>
+<div class="room" data-h-mm="4930" data-overhead-zone="shrine-dry-only" data-target-cell="slot-8" data-w-mm="6000" data-x-mm="0" data-y-mm="12700" id="room-master2">
 <div class="room-head">
-<div class="room-name"><div class="room-name-icon">👑</div> 主臥套房</div>
-<div class="room-area">含更衣+主衛</div>
+<div class="room-name"><div class="room-name-icon">👑</div> 主臥乾區</div>
+<div class="room-area">神明廳上方乾式保護帶</div>
 </div>
 <div class="room-details">
 <li><strong>床頭：</strong>兩側各 2 插座 + USB-C×1 + 燈光雙切開關</li>
 <li><strong>書桌區：</strong>LAN×2（電腦/備用）+ 插座×4</li>
-<li><strong>主衛浴：</strong>B-V9（冷）、B-V10（熱），免治馬桶防水插座 + 等電位接地端子預留</li>
+<li><strong>濕區分離：</strong>主衛浴已獨立放在中段；本區只留床、衣櫃、梳妝與乾式收納，不設地漏、浴缸、給排水立管或重設備。</li>
 <li><strong>空調：</strong>分離式 1.0~1.2 噸，床頭避免直吹</li>
-<li><strong>熱水管路：</strong>全程 ≥15mm 保溫，回水循環完工即啟用（回水管/循環泵電源列驗收）</li>
+<li><strong>投影保護：</strong>正式套繪時須把 1F 神桌外廓、樑柱與 2F 管線一併出圖複核；本版只證明概念座標不相交。</li>
 </div>
 </div>
-<div class="room" data-h-mm="2000" data-target-cell="slot-6" data-w-mm="5000" data-x-mm="6000" data-y-mm="3400" id="room-balcony2">
+<div class="room" data-h-mm="1615" data-target-cell="slot-3" data-w-mm="3000" data-x-mm="0" data-y-mm="7715" id="room-balcony2">
 <div class="room-head">
-<div class="room-name"><div class="room-name-icon">🌿</div> 2F 高雄厝景觀陽臺（位置待道路側確認）</div>
+<div class="room-name"><div class="room-name-icon">🌿</div> 2F 景觀陽臺（面向待基地確認）</div>
 </div>
 <div class="room-details">
 <li><strong>立管通過：</strong>弱電立管（1F→RF）+ 給排水立管</li>
@@ -989,14 +1046,14 @@ TV 牆建議預埋 1.25" 空管方便日後升級 HDMI 2.1。
 </div>
 </div>
 <!-- 3F -->
-<div class="floor-plan" data-floor-depth-mm="5300" data-floor-width-mm="11000" data-front-side="top" data-geometry-source="auto-grid-v1" data-north-deg="0" data-rear-side="bottom" id="floor-3" role="tabpanel">
+<div class="floor-plan" data-floor-depth-mm="17630" data-floor-width-mm="6000" data-front-side="top" data-geometry-source="concept-safety-v1" data-north-deg="0" data-rear-side="bottom" id="floor-3" role="tabpanel">
 <div class="floor-header">
 <div class="floor-title">
 <div class="floor-title-icon">3F</div>
 <div>
-<div>娛樂室 × 後客房 × 大露台</div>
+<div>前帶彈性區／KTV × 中段服務核心 × 後帶安靜客房</div>
 <div style="font-size:.8rem;color:#64748b;font-weight:400;">
-KTV/影音專區｜彈性空間｜戶外機能｜<strong>熱水保溫 ≥15mm</strong>
+KTV 不壓神明廳｜正式樓梯通 RF｜濕區集中 y&lt;12700
 </div>
 </div>
 </div>
@@ -1009,25 +1066,14 @@ KTV/影音專區｜彈性空間｜戶外機能｜<strong>熱水保溫 ≥15mm</s
 <div class="visual-plan">
 <div class="plan-header"><div class="plan-title">📐 3F 空間配置圖</div></div>
 <div class="plan-grid-visual">
-<div class="plan-row" data-row-h-mm="1200" style="grid-template-columns:1fr;">
-<div class="plan-cell"  data-door-mm="900" data-h-mm="1200" data-material="wood+paint" data-w-mm="11000" data-window-mm="1800" data-x-mm="0" data-y-mm="0" role="button" tabindex="0" aria-pressed="false" aria-label="3F 前側彈性室內區" onclick="highlightRoom('terrace3', this)">
-<span class="cell-icon">☀️</span>
-<span class="cell-name">3F 前側彈性室內區</span>
-<div class="io-badges">
-<span class="badge water">🚿 戶外龍頭</span>
-<span class="badge pwr">⚡ 防雨插座</span>
+<div class="plan-row" data-row-h-mm="2400" style="grid-template-columns:1fr;">
+<div class="plan-cell" data-door-mm="900" data-h-mm="2400" data-material="wood+paint" data-w-mm="6000" data-window-mm="1800" data-x-mm="0" data-y-mm="0" role="button" tabindex="0" aria-pressed="false" aria-label="3F 前側彈性室內區" onclick="highlightRoom('terrace3', this)">
+<span class="cell-icon">🛋️</span><span class="cell-name">前側彈性室內區</span><span class="cell-size">純室內乾區；無戶外龍頭／露台設備</span>
 </div>
 </div>
-</div>
-<div class="plan-row" data-row-h-mm="1300" style="grid-template-columns:1fr 1fr;">
-<div class="plan-cell stair"  data-door-mm="900" data-h-mm="1300" data-material="concrete+paint" data-w-mm="5500" data-window-mm="600" data-x-mm="0" data-y-mm="1200" role="button" tabindex="0" aria-pressed="false" aria-label="樓梯間" onclick="highlightRoom('stair3', this)">
-<span class="cell-icon">🪜</span>
-<span class="cell-name">樓梯間</span>
-<span class="cell-size">⬇️2F ⬆️RF</span>
-</div>
-<div class="plan-cell" role="button" tabindex="0" aria-pressed="false" aria-label="多功能娛樂室" data-door-mm="900" data-h-mm="1300" data-material="paint+default" data-w-mm="5500" data-window-mm="1700" data-x-mm="5500" data-y-mm="1200" onclick="highlightRoom('ktv3', this)" style="border-color:#fbbf24; background:rgba(251,191,36,.1);">
-<span class="cell-icon">🎤</span>
-<span class="cell-name">多功能娛樂室</span>
+<div class="plan-row" data-row-h-mm="4000" style="grid-template-columns:1fr;">
+<div class="plan-cell" role="button" tabindex="0" aria-pressed="false" aria-label="前帶多功能娛樂室" data-door-mm="900" data-h-mm="4000" data-material="wood+acoustic" data-w-mm="6000" data-window-mm="1700" data-x-mm="0" data-y-mm="2400" onclick="highlightRoom('ktv3', this)" style="border-color:#fbbf24; background:rgba(251,191,36,.1);">
+<span class="cell-icon">🎤</span><span class="cell-name">前帶 KTV／劇院</span><span class="cell-size">與後客房、神明廳投影分離</span>
 <div class="io-badges">
 <span class="badge pwr">⚡ 器材專迴</span>
 <span class="badge net">🌐 LAN×4</span>
@@ -1036,35 +1082,40 @@ KTV/影音專區｜彈性空間｜戶外機能｜<strong>熱水保溫 ≥15mm</s
 </div>
 </div>
 </div>
-<div class="plan-row" data-row-h-mm="1100" style="grid-template-columns:1fr 1fr;">
-<div class="plan-cell wet"  data-door-mm="800" data-h-mm="2800" data-material="tile+waterproof" data-w-mm="6600" data-window-mm="600" data-x-mm="0" data-y-mm="2500" role="button" tabindex="0" aria-pressed="false" aria-label="3F 衛浴" onclick="highlightRoom('bath3', this)">
-<span class="cell-icon">🚿</span>
-<span class="cell-name">3F 衛浴</span>
-<div class="io-badges">
-<span class="badge water">B-V11/V12</span>
-<span class="badge hot">保溫15mm</span>
+<div class="plan-row" data-row-h-mm="1315" style="grid-template-columns:1fr;">
+<div class="plan-cell" data-door-mm="900" data-h-mm="1315" data-material="wood+acoustic" data-w-mm="6000" data-window-mm="600" data-x-mm="0" data-y-mm="6400" role="button" tabindex="0" aria-pressed="false" aria-label="隔音轉折走道" onclick="highlightRoom('corridor3', this)">
+<span class="cell-icon">↪️</span><span class="cell-name">隔音轉折走道</span><span class="cell-size">KTV 與後客房緩衝</span>
 </div>
 </div>
-<div class="plan-cell"  data-door-mm="900" data-h-mm="1800" data-material="wood+paint" data-w-mm="4400" data-window-mm="1900" data-x-mm="6600" data-y-mm="2500" role="button" tabindex="0" aria-pressed="false" aria-label="後客房" onclick="highlightRoom('guest3', this)">
-<span class="cell-icon">🛏️</span>
-<span class="cell-name">後客房</span>
-<div class="io-badges">
-<span class="badge net">🌐 LAN×1</span>
-<span class="badge ac">🌬️ 室內機 0.9噸・床頭不直吹</span>
+<div class="plan-row" data-row-h-mm="4985" style="grid-template-columns:1fr 1fr;">
+<div style="display:grid;gap:6px;grid-template-rows:1785fr 3200fr;">
+<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="1785" data-material="concrete+drain" data-outdoor-role="service-yard" data-w-mm="3000" data-window-mm="1200" data-x-mm="0" data-y-mm="7715" role="button" tabindex="0" aria-pressed="false" aria-label="3F 工作小陽台" onclick="highlightRoom('balcony3', this)">
+<span class="cell-icon">🧺</span><span class="cell-name">3F 工作小陽台</span><span class="cell-size">立管檢修；非 RF 主要通行</span>
+</div>
+<div class="plan-cell wet" data-door-mm="900" data-h-mm="3200" data-material="tile+waterproof" data-w-mm="3000" data-window-mm="900" data-x-mm="0" data-y-mm="9500" role="button" tabindex="0" aria-pressed="false" aria-label="3F 衛浴" onclick="highlightRoom('bath3', this)">
+<span class="cell-icon">🚿</span><span class="cell-name">3F 衛浴</span><div class="io-badges"><span class="badge water">B-V11/V12</span><span class="badge hot">保溫15mm</span></div>
 </div>
 </div>
+<div style="display:grid;gap:6px;grid-template-rows:3300fr 1685fr;">
+<div class="plan-cell stair" data-door-mm="900" data-entry="true" data-h-mm="3300" data-material="concrete+paint" data-w-mm="3000" data-window-mm="900" data-x-mm="3000" data-y-mm="7715" role="button" tabindex="0" aria-pressed="false" aria-label="正式樓梯間" onclick="highlightRoom('stair3', this)">
+<span class="cell-icon">🪜</span><span class="cell-name">正式樓梯間</span><span class="cell-size">⬇️2F ⬆️RF</span>
 </div>
-<div class="plan-row" data-row-h-mm="1700" style="grid-template-columns:1fr;">
-<div class="plan-cell outdoor"  data-door-mm="900" data-h-mm="1000" data-material="concrete+paint" data-outdoor-role="service-yard" data-w-mm="4400" data-window-mm="600" data-x-mm="6600" data-y-mm="4300" role="button" tabindex="0" aria-pressed="false" aria-label="3F 後側工作小陽台＋爬梯（通RF）" onclick="highlightRoom('ladder3', this)">
-<span class="cell-icon">🪜</span>
-<span class="cell-name">3F 後側工作小陽台＋爬梯（通RF）</span>
+<div class="plan-cell core" data-door-mm="900" data-h-mm="1685" data-material="wood+acoustic" data-w-mm="3000" data-window-mm="600" data-x-mm="3000" data-y-mm="11015" role="button" tabindex="0" aria-pressed="false" aria-label="隔音設備緩衝" onclick="highlightRoom('buffer3', this)">
+<span class="cell-icon">🔇</span><span class="cell-name">隔音／設備緩衝</span><span class="cell-size">機櫃、穿孔集中；不越後帶</span>
 </div>
 </div>
 </div>
-<div class="compass"><span class="compass-arrow">⬆️</span> 北向</div>
+<div class="plan-row" data-row-h-mm="4930" style="grid-template-columns:1fr;">
+<div class="plan-cell" data-door-mm="900" data-h-mm="4930" data-material="wood+paint" data-overhead-zone="shrine-dry-only" data-w-mm="6000" data-window-mm="2400" data-x-mm="0" data-y-mm="12700" role="button" tabindex="0" aria-pressed="false" aria-label="後客房" onclick="highlightRoom('guest3', this)">
+<span class="cell-icon">🛏️</span><span class="cell-name">後帶安靜客房</span><span class="cell-size">神明廳上方乾式保護帶</span>
+<div class="io-badges"><span class="badge net">🌐 LAN×1</span><span class="badge ac">🌬️ 床頭不直吹</span><span class="badge shrine">無濕區／重設備</span></div>
+</div>
+</div>
+</div>
+<div class="compass"><span class="compass-arrow">⬆️</span> 圖面前方（真北／道路側待基地確認）</div>
 </div>
 <div class="details-panel">
-<div class="room" data-h-mm="1300" data-target-cell="slot-2" data-w-mm="5500" data-x-mm="0" data-y-mm="1200" id="room-stair3" style="background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(30,41,59,.6)); border-color:rgba(16,185,129,.3);">
+<div class="room" data-h-mm="3300" data-target-cell="slot-6" data-w-mm="3000" data-x-mm="3000" data-y-mm="7715" id="room-stair3" style="background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(30,41,59,.6)); border-color:rgba(16,185,129,.3);">
 <div class="room-head">
 <div class="room-name"><div class="room-name-icon">🪜</div> 樓梯間（3F）</div>
 <div class="room-area">⬇️2F ⬆️RF</div>
@@ -1073,27 +1124,35 @@ KTV/影音專區｜彈性空間｜戶外機能｜<strong>熱水保溫 ≥15mm</s
 <li><strong>標示：</strong>🪜 樓梯間（⬇️2F ⬆️RF）- 帶箭頭圖示</li>
 <li><strong>照明：</strong>感應式 LED 燈</li>
 <li><strong>安全設備：</strong>住警器</li>
+<li><strong>RF 到達：</strong>本樓梯須延續至屋突，作為 RF 日常與設備維修的主要通行；寬度、級高、級深、防火區劃與搬運能力待建築師正式設計。</li>
 </div>
 </div>
-<div class="room" data-h-mm="1200" data-target-cell="slot-1" data-w-mm="11000" data-x-mm="0" data-y-mm="0" id="room-terrace3">
+<div class="room" data-h-mm="1315" data-target-cell="slot-3" data-w-mm="6000" data-x-mm="0" data-y-mm="6400" id="room-corridor3">
+<div class="room-head"><div class="room-name"><div class="room-name-icon">↪️</div> 隔音轉折走道</div><div class="room-area">KTV／客房緩衝</div></div>
+<div class="room-details"><li>用兩道錯位門或聲學前室減少聲音直達客房；不得縮減法定避難淨寬。</li></div>
+</div>
+<div class="room" data-h-mm="1685" data-target-cell="slot-7" data-w-mm="3000" data-x-mm="3000" data-y-mm="11015" id="room-buffer3">
+<div class="room-head"><div class="room-name"><div class="room-name-icon">🔇</div> 隔音／設備緩衝</div><div class="room-area">中段服務格</div></div>
+<div class="room-details"><li>KTV 機櫃、弱電與需封堵的穿孔集中在此；不把低頻設備、排水或立管帶進後客房／神桌投影。</li></div>
+</div>
+<div class="room" data-h-mm="2400" data-target-cell="slot-1" data-w-mm="6000" data-x-mm="0" data-y-mm="0" id="room-terrace3">
 <div class="room-head">
 <div class="room-name"><div class="room-name-icon">🛋️</div> 3F 前側彈性室內區</div>
-<div class="room-area">戶外空間</div>
+<div class="room-area">前帶室內乾區</div>
 </div>
 <div class="room-details">
-<li><strong>戶外龍頭：</strong>B-V13（冷水），澆花/清洗用</li>
-<li><strong>防雨插座：</strong>IP65 等級 ×2 組（烤肉/電扇）</li>
-<li><strong>排水：</strong>落水頭（加濾網/檢修口）+ 防水層延伸至女兒牆</li>
+<li><strong>用途：</strong>閱讀、瑜伽、臨時客房或 KTV 等候區，以可移動家具維持彈性。</li>
+<li><strong>室內定義：</strong>不設戶外龍頭、落水頭、防雨插座或露台女兒牆；一般插座及空調依室內規範配置。</li>
 </div>
 <div class="tag tag-typhoon">
-<div class="tag-title">🌀 颱風防護</div>
-露台排水需確保暢通，落水頭防堵/可檢修，女兒牆高度符合法規，防水層延伸確實
+<div class="tag-title">🧭 空間界定</div>
+本區已從舊版「露台」矛盾文字統一為室內；真正工作陽台位於中段側外牆。
 </div>
 </div>
-<div class="room" data-h-mm="1300" data-target-cell="slot-3" data-w-mm="5500" data-x-mm="5500" data-y-mm="1200" id="room-ktv3" style="border-color:rgba(251,191,36,.3);">
+<div class="room" data-h-mm="4000" data-target-cell="slot-2" data-w-mm="6000" data-x-mm="0" data-y-mm="2400" id="room-ktv3" style="border-color:rgba(251,191,36,.3);">
 <div class="room-head">
 <div class="room-name"><div class="room-name-icon">🎤</div> 多功能娛樂室（KTV/劇院）</div>
-<div class="room-area">重點空間</div>
+<div class="room-area">前帶重點空間</div>
 </div>
 <div class="room-details">
 <li><strong>網路：</strong>LAN×4（KTV 主機/擴大機/遊戲機/備用）</li>
@@ -1102,6 +1161,7 @@ KTV/影音專區｜彈性空間｜戶外機能｜<strong>熱水保溫 ≥15mm</s
 <li><strong>音響電力：</strong>獨立 20A 迴路（減少電源干擾雜訊）</li>
 <li><strong>隔音/氣密：</strong>3F 地坪採浮式地板或 ≥10mm 橡膠隔音墊；2F 天花雙層石膏板 + 隔音棉；門縫氣密條 + 穿孔封堵</li>
 <li><strong>AP：</strong>天花板吸頂 AP（遊戲低延遲需求）</li>
+<li><strong>上下疊合：</strong>KTV 全部位於 y&lt;6400 前帶，不直接壓 1F 後帶神明廳；與後客房間另有 6.3m 中段核心緩衝。</li>
 </div>
 <div class="tag tag-opt">
 <div class="tag-title">🎵 娛樂室優化</div>
@@ -1109,7 +1169,7 @@ KTV/影音專區｜彈性空間｜戶外機能｜<strong>熱水保溫 ≥15mm</s
 投影幕電動升降需預留電源與控制線。
 </div>
 </div>
-<div class="room" data-h-mm="2800" data-target-cell="slot-4" data-w-mm="6600" data-x-mm="0" data-y-mm="2500" id="room-bath3">
+<div class="room" data-h-mm="3200" data-target-cell="slot-5" data-w-mm="3000" data-x-mm="0" data-y-mm="9500" id="room-bath3">
 <div class="room-head">
 <div class="room-name"><div class="room-name-icon">🚿</div> 3F 衛浴</div>
 </div>
@@ -1121,9 +1181,10 @@ KTV/影音專區｜彈性空間｜戶外機能｜<strong>熱水保溫 ≥15mm</s
 <li><strong>智能馬桶：</strong>防水插座 + 進水角閥 + 等電位接地端子預留</li>
 <li><strong>熱水保溫：</strong><strong>熱水管全程 ≥15mm 保溫（含接頭）</strong></li>
 <li><strong>回水循環：</strong>完工即啟用循環泵，3F 出水時間目標 &lt;10 秒；若超時評估熱水幹管升級 1"</li>
+<li><strong>投影紅線：</strong>浴廁、地漏與排水立管皆停在 y&lt;12700 的服務核心，不跨入後客房／神桌上方保護帶。</li>
 </div>
 </div>
-<div class="room" data-h-mm="1800" data-target-cell="slot-5" data-w-mm="4400" data-x-mm="6600" data-y-mm="2500" id="room-guest3">
+<div class="room" data-h-mm="4930" data-overhead-zone="shrine-dry-only" data-target-cell="slot-8" data-w-mm="6000" data-x-mm="0" data-y-mm="12700" id="room-guest3">
 <div class="room-head">
 <div class="room-name"><div class="room-name-icon">🛏️</div> 後客房</div>
 </div>
@@ -1131,30 +1192,31 @@ KTV/影音專區｜彈性空間｜戶外機能｜<strong>熱水保溫 ≥15mm</s
 <li><strong>網路：</strong>LAN×1（床頭或書桌）</li>
 <li><strong>電力：</strong>床頭雙插座 + 空調專插</li>
 <li><strong>空調：</strong>分離式 0.8~1.0 噸</li>
+<li><strong>安靜／投影：</strong>位於 KTV 後方並隔著中段核心；只作乾式房間，不設衛浴、地漏、排水立管或重設備。</li>
 </div>
 </div>
-<div class="room" data-h-mm="1000" data-target-cell="slot-6" data-w-mm="4400" data-x-mm="6600" data-y-mm="4300" id="room-ladder3">
+<div class="room" data-h-mm="1785" data-target-cell="slot-4" data-w-mm="3000" data-x-mm="0" data-y-mm="7715" id="room-balcony3">
 <div class="room-head">
-<div class="room-name"><div class="room-name-icon">🪜</div> 3F 後側工作小陽台與爬梯</div>
+<div class="room-name"><div class="room-name-icon">🧺</div> 3F 工作小陽台</div>
 </div>
 <div class="room-details">
 <li><strong>立管：</strong>B 棟弱電立管（1F→RF）經此處通往屋頂</li>
-<li><strong>爬梯：</strong>通往 RF 設備層，建議加裝護籠</li>
-<li><strong>預留：</strong>冷氣室外機吊掛位置</li>
+<li><strong>RF 通行：</strong>不再以爬梯作主要維修動線；人員與一般工具由相鄰正式樓梯到 RF。</li>
+<li><strong>設備：</strong>可保留小型立管檢修，但冷氣室外機與重設備集中 RF 中段，避免噪音及載重落在後帶。</li>
 </div>
 </div>
 </div>
 </div>
 </div>
 <!-- RF -->
-<div class="floor-plan" data-floor-depth-mm="5400" data-floor-width-mm="11000" data-front-side="top" data-geometry-source="auto-grid-v1" data-north-deg="0" data-rear-side="bottom" id="floor-4" role="tabpanel">
+<div class="floor-plan" data-floor-depth-mm="17630" data-floor-width-mm="6000" data-front-side="top" data-geometry-source="concept-safety-v1" data-north-deg="0" data-rear-side="bottom" id="floor-4" role="tabpanel">
 <div class="floor-header">
 <div class="floor-title">
 <div class="floor-title-icon">RF</div>
 <div>
-<div>B 棟設備核心層（獨立系統）</div>
+<div>前帶活動 × 中段設備／正式樓梯 × 後帶無設備保護區</div>
 <div style="font-size:.8rem;color:#64748b;font-weight:400;">
-水塔｜VF800 恆壓｜Haier 熱泵｜<strong>水錘吸收器｜重力旁通｜15mm 保溫｜壓力表｜颱風防護</strong>
+設備全部停在 y&lt;12700｜後帶對應神桌上方禁止水塔、泵浦、熱泵與重設備
 </div>
 </div>
 </div>
@@ -1168,71 +1230,54 @@ KTV/影音專區｜彈性空間｜戶外機能｜<strong>熱水保溫 ≥15mm</s
 <div class="visual-plan">
 <div class="plan-header"><div class="plan-title">📐 RF 設備配置圖</div></div>
 <div class="plan-grid-visual">
-<div class="plan-row" data-row-h-mm="1300" style="grid-template-columns:1fr;">
-<div class="plan-cell stair"  data-door-mm="900" data-h-mm="1300" data-material="concrete+paint" data-w-mm="11000" data-window-mm="600" data-x-mm="0" data-y-mm="0" role="button" tabindex="0" aria-pressed="false" aria-label="樓梯出口" onclick="highlightRoom('stairRF', this)">
-<span class="cell-icon">🪜</span>
-<span class="cell-name">樓梯出口</span>
-<span class="cell-size">⬇️3F + 防水人孔蓋</span>
+<div class="plan-row" data-row-h-mm="7715" style="grid-template-columns:1fr;">
+<div class="plan-cell outdoor" data-door-mm="900" data-h-mm="7715" data-material="concrete+drain" data-w-mm="6000" data-window-mm="0" data-x-mm="0" data-y-mm="0" role="button" tabindex="0" aria-pressed="false" aria-label="前側活動平台" onclick="highlightRoom('platform-rf', this)">
+<span class="cell-icon">🏗️</span><span class="cell-name">前側活動平台／曬衣</span><span class="cell-size">日常活動集中前帶；不跨神桌投影</span>
+<div class="io-badges"><span class="badge pwr">檢修電源</span><span class="badge water">屋面排水</span></div>
 </div>
 </div>
-<div class="plan-row" data-row-h-mm="1100" style="grid-template-columns:1fr 1fr;">
-<div class="plan-cell water"  data-door-mm="800" data-h-mm="1100" data-material="service+utility" data-w-mm="5500" data-window-mm="600" data-x-mm="0" data-y-mm="1300" role="button" tabindex="0" aria-pressed="false" aria-label="B 棟水塔" onclick="highlightRoom('tank-rf', this)">
-<span class="cell-icon">🛢️</span>
-<span class="cell-name">B 棟水塔</span>
-<span class="cell-size">1000L｜基座抬高15cm</span>
-<div class="io-badges">
-<span class="badge water">B-D1 排水</span>
-<span class="badge valve">B-V2 旁通</span>
-<span class="badge typhoon">🌀 防颱基座</span>
+<div class="plan-row" data-row-h-mm="4985" style="grid-template-columns:1fr 1fr;">
+<div style="display:grid;gap:6px;grid-template-rows:1585fr 1585fr 1815fr;">
+<div class="plan-cell water" data-door-mm="900" data-h-mm="1585" data-material="service+utility" data-w-mm="3000" data-window-mm="600" data-x-mm="0" data-y-mm="7715" role="button" tabindex="0" aria-pressed="false" aria-label="B 棟水塔" onclick="highlightRoom('tank-rf', this)">
+<span class="cell-icon">🛢️</span><span class="cell-name">B 棟水塔</span><span class="cell-size">1000L｜中段結構區</span>
+<div class="io-badges"><span class="badge water">B-D1</span><span class="badge valve">B-V2</span><span class="badge typhoon">🌀 錨定</span></div>
+</div>
+<div class="plan-cell core" data-door-mm="900" data-h-mm="1585" data-material="service+utility" data-w-mm="3000" data-window-mm="600" data-x-mm="0" data-y-mm="9300" role="button" tabindex="0" aria-pressed="false" aria-label="VF800 恆壓" onclick="highlightRoom('pump-rf', this)">
+<span class="cell-icon">⚙️</span><span class="cell-name">VF800 恆壓</span><span class="cell-size">減震＋結構錨定</span>
+<div class="io-badges"><span class="badge valve">B-C1</span><span class="badge valve">B-A2</span><span class="badge pwr">⚡ 專迴</span></div>
+</div>
+<div class="plan-cell core" role="button" tabindex="0" aria-pressed="false" aria-label="Haier 熱泵熱水器" data-door-mm="900" data-h-mm="1815" data-material="service+utility" data-w-mm="3000" data-window-mm="900" data-x-mm="0" data-y-mm="10885" onclick="highlightRoom('hotwater-rf', this)" style="border-color:rgba(239,68,68,.4); background:rgba(239,68,68,.08);">
+<span class="cell-icon">🔥</span><span class="cell-name">Haier 熱泵</span><span class="cell-size">冷凝水→獨立間接排水</span>
+<div class="io-badges"><span class="badge hot">B-C3</span><span class="badge water">禁回生活水塔</span><span class="badge pwr">⚡ 專迴</span></div>
 </div>
 </div>
-<div class="plan-cell core"  data-door-mm="800" data-h-mm="1100" data-material="service+utility" data-w-mm="5500" data-window-mm="600" data-x-mm="5500" data-y-mm="1300" role="button" tabindex="0" aria-pressed="false" aria-label="VF800 恆壓" onclick="highlightRoom('pump-rf', this)">
-<span class="cell-icon">⚙️</span>
-<span class="cell-name">VF800 恆壓</span>
-<span class="cell-size">基座抬高15cm</span>
-<div class="io-badges">
-<span class="badge valve">B-C1 止回</span>
-<span class="badge valve">B-A2 吸收器</span>
-<span class="badge pwr">⚡ 專迴</span>
+<div style="display:grid;gap:6px;grid-template-rows:3300fr 1685fr;">
+<div class="plan-cell stair" data-door-mm="900" data-entry="true" data-h-mm="3300" data-material="concrete+paint" data-w-mm="3000" data-window-mm="900" data-x-mm="3000" data-y-mm="7715" role="button" tabindex="0" aria-pressed="false" aria-label="樓梯屋突" onclick="highlightRoom('stairRF', this)">
+<span class="cell-icon">🪜</span><span class="cell-name">正式樓梯屋突</span><span class="cell-size">⬇️3F；非爬梯／人孔</span>
 </div>
-</div>
-</div>
-<div class="plan-row" data-row-h-mm="1300" style="grid-template-columns:1fr;">
-<div class="plan-cell" role="button" tabindex="0" aria-pressed="false" aria-label="Haier 熱泵熱水器" data-door-mm="900" data-h-mm="1300" data-material="paint+default" data-w-mm="11000" data-window-mm="1000" data-x-mm="0" data-y-mm="2400" onclick="highlightRoom('hotwater-rf', this)" style="border-color:rgba(239,68,68,.4); background:rgba(239,68,68,.08);">
-<span class="cell-icon">🔥</span>
-<span class="cell-name">Haier 熱泵熱水器</span>
-<span class="cell-size">基座抬高15cm</span>
-<div class="io-badges">
-<span class="badge hot">B-C3 熱水止回</span>
-<span class="badge water">冷凝排水→回收</span>
-<span class="badge pwr">⚡ 專迴</span>
+<div class="plan-cell core" data-door-mm="900" data-h-mm="1685" data-material="service+utility" data-w-mm="3000" data-window-mm="600" data-x-mm="3000" data-y-mm="11015" role="button" tabindex="0" aria-pressed="false" aria-label="設備維修淨空" onclick="highlightRoom('service-rf', this)">
+<span class="cell-icon">🛠️</span><span class="cell-name">設備維修淨空</span><span class="cell-size">室外機／吊裝／檢修集中</span>
 </div>
 </div>
 </div>
-<div class="plan-row" data-row-h-mm="1700" style="grid-template-columns:1fr;">
-<div class="plan-cell outdoor"  data-door-mm="900" data-h-mm="1700" data-material="concrete+drain" data-w-mm="11000" data-window-mm="0" data-x-mm="0" data-y-mm="3700" role="button" tabindex="0" aria-pressed="false" aria-label="活動平台 / 曬衣棚架" onclick="highlightRoom('platform-rf', this)">
-<span class="cell-icon">🏗️</span>
-<span class="cell-name">活動平台 / 曬衣棚架</span>
-<span class="cell-size">預留孔：未來太陽能擴充</span>
-<div class="io-badges">
-<span class="badge pwr">預留管路→1F電表</span>
-<span class="badge ac-out">🌀 室外機集中區×3（北陰面・留散熱間距・避熱回流）</span>
-<span class="badge water">💧 冷氣排水 3/4"</span>
+<div class="plan-row" data-row-h-mm="4930" style="grid-template-columns:1fr;">
+<div class="plan-cell outdoor" data-door-mm="900" data-equipment-free="true" data-h-mm="4930" data-material="concrete+drain" data-overhead-zone="shrine-protected" data-w-mm="6000" data-window-mm="0" data-x-mm="0" data-y-mm="12700" role="button" tabindex="0" aria-pressed="false" aria-label="神桌上方無設備保護區" onclick="highlightRoom('shrine-buffer-rf', this)">
+<span class="cell-icon">🛕</span><span class="cell-name">神桌上方無設備／低活動保護區</span><span class="cell-size">禁止水塔、泵浦、熱泵、室外機、立管與重設備</span>
+<div class="io-badges"><span class="badge shrine">設備零侵入</span><span class="badge shrine">非日常活動</span></div>
 </div>
 </div>
 </div>
-</div>
-<div class="compass"><span class="compass-arrow">⬆️</span> 北向</div>
+<div class="compass"><span class="compass-arrow">⬆️</span> 圖面前方（真北／道路側待基地確認）</div>
 </div>
 <div class="details-panel">
-<div class="room" data-h-mm="1300" data-target-cell="slot-1" data-w-mm="11000" data-x-mm="0" data-y-mm="0" id="room-stairRF" style="background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(30,41,59,.6)); border-color:rgba(16,185,129,.3);">
+<div class="room" data-h-mm="3300" data-target-cell="slot-5" data-w-mm="3000" data-x-mm="3000" data-y-mm="7715" id="room-stairRF" style="background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(30,41,59,.6)); border-color:rgba(16,185,129,.3);">
 <div class="room-head">
-<div class="room-name"><div class="room-name-icon">🪜</div> 樓梯出口（RF）</div>
+<div class="room-name"><div class="room-name-icon">🪜</div> 正式樓梯屋突（RF）</div>
 <div class="room-area">⬇️3F</div>
 </div>
 <div class="room-details">
-<li><strong>標示：</strong>🪜 樓梯出口（⬇️3F）+ 防水人孔蓋</li>
-<li><strong>人孔蓋：</strong>可掀式防水蓋板，標示「設備層入口」</li>
+<li><strong>主要通行：</strong>由 3F 正式樓梯連續到達 RF，不再把護籠爬梯或可掀人孔當日常／主要維修通道。</li>
+<li><strong>屋面出口：</strong>採正式門洞、合規門組與防水門檻／雨庇；樓梯及屋突面積、防火區劃、淨高與設備搬運須由建築師確認。</li>
 </div>
 </div>
 <div class="system-box">
@@ -1280,12 +1325,12 @@ KTV/影音專區｜彈性空間｜戶外機能｜<strong>熱水保溫 ≥15mm</s
 <div class="flow-diagram" style="margin-top:15px;">
 <div class="flow-item hot">熱泵冷凝水</div>
 <div class="flow-arrow">➡</div>
-<div class="flow-item valve">3-way閥</div>
+<div class="flow-item valve">可視氣隙／存水彎</div>
 <div class="flow-arrow">➡</div>
-<div class="flow-item storage">回收至水塔<br/><small>年節水5-10%</small></div>
+<div class="flow-item storage">獨立地排／雨排<br/><small>禁止回生活水塔</small></div>
 </div>
 </div>
-<div class="room" data-h-mm="1100" data-target-cell="slot-2" data-w-mm="5500" data-x-mm="0" data-y-mm="1300" id="room-tank-rf">
+<div class="room" data-h-mm="1585" data-target-cell="slot-2" data-w-mm="3000" data-x-mm="0" data-y-mm="7715" id="room-tank-rf">
 <div class="room-head">
 <div class="room-name"><div class="room-name-icon">🛢️</div> B 棟水塔</div>
 <div class="room-area">1000L</div>
@@ -1297,6 +1342,7 @@ KTV/影音專區｜彈性空間｜戶外機能｜<strong>熱水保溫 ≥15mm</s
 <li><strong>B-D1 排水閥：</strong>底部排污用，定期清洗開啟</li>
 <li><strong>B-V2 旁通閥：</strong>常閉，VF800 故障時手動開啟，供 1F/2F 重力用水，<strong>加裝防風防撞保護箱</strong></li>
 <li><strong>基座：</strong>需落在結構梁柱上（載重約 1.2 噸），並做抗震錨定，<strong>抬高 15cm 防颱風淹水</strong></li>
+<li><strong>神桌投影：</strong>水塔外廓固定在 y&lt;9300 的中段結構區，與 y≥12700 保護帶分離；最後仍須用結構圖及設備基座圖疊合。</li>
 <li style="color:#ef4444;"><strong>⚠️ 需專業計算（第一優先）：</strong>RF 水塔（約 1.2 噸）、熱泵、VF800、太陽能設備、棚架等載重與錨定，需由結構技師正式計算並確認樑柱承載力；本 HTML 僅標示設備位置示意，不可替代結構計算書。</li>
 </div>
 <div class="tag tag-typhoon">
@@ -1304,7 +1350,7 @@ KTV/影音專區｜彈性空間｜戶外機能｜<strong>熱水保溫 ≥15mm</s
 基座抬高 15cm｜溢流管增至 3"｜設緊急溢流口/第二溢流｜落水頭防堵可檢修｜閥件加裝防風防撞保護箱｜地坪洩水坡度 1:50
 </div>
 </div>
-<div class="room" data-h-mm="1100" data-target-cell="slot-3" data-w-mm="5500" data-x-mm="5500" data-y-mm="1300" id="room-pump-rf">
+<div class="room" data-h-mm="1585" data-target-cell="slot-3" data-w-mm="3000" data-x-mm="0" data-y-mm="9300" id="room-pump-rf">
 <div class="room-head">
 <div class="room-name"><div class="room-name-icon">⚙️</div> VF800 變頻恆壓泵</div>
 </div>
@@ -1318,9 +1364,10 @@ KTV/影音專區｜彈性空間｜戶外機能｜<strong>熱水保溫 ≥15mm</s
 <li><strong>電力：</strong>專用迴路 20A，建議加裝漏電斷路器</li>
 <li><strong>壓力表：</strong><strong>出口端已加裝</strong>，方便現場判斷水壓異常</li>
 <li><strong>基座：</strong><strong>抬高 15cm 防颱風淹水導致馬達短路</strong></li>
+<li><strong>神桌投影：</strong>泵浦與減震基座停在 y&lt;10885，不得移入 RF 後帶。</li>
 </div>
 </div>
-<div class="room" data-h-mm="1300" data-target-cell="slot-4" data-w-mm="11000" data-x-mm="0" data-y-mm="2400" id="room-hotwater-rf">
+<div class="room" data-h-mm="1815" data-target-cell="slot-4" data-w-mm="3000" data-x-mm="0" data-y-mm="10885" id="room-hotwater-rf">
 <div class="room-head">
 <div class="room-name"><div class="room-name-icon">🔥</div> Haier 熱泵熱水器</div>
 </div>
@@ -1328,29 +1375,30 @@ KTV/影音專區｜彈性空間｜戶外機能｜<strong>熱水保溫 ≥15mm</s
 <li><strong>水源：</strong>來自 RF 水塔（經 VF800 或重力）</li>
 <li><strong>B-C3 熱水止回閥：</strong>防止熱水回流至冷水系統</li>
 <li><strong>膨脹處理：</strong>加裝膨脹桶或泄壓閥（熱水膨脹）</li>
-<li><strong>冷凝排水：</strong>熱泵運作產生冷凝水，<strong>經 3-way 閥回收至水塔（年節水約 5–10%）</strong></li>
+<li><strong>冷凝排水：</strong>以可視氣隙間接接入有存水彎且可清潔的獨立地排／合規雨排；<strong>不得回接生活飲用水塔，也不得與溢流管直接密接</strong>。</li>
 <li><strong>通風：</strong>熱泵需良好通風，避免封閉空間</li>
 <li><strong>熱水管保溫：</strong><strong>全程包覆保溫材，厚度 ≥15mm（含接頭）</strong></li>
 <li><strong>排氣閥 B-Vent：</strong>熱水最高點設自動排氣，避免氣堵</li>
 <li><strong>抗震：</strong>設備基座錨定到結構（錨栓/支架），列入驗收</li>
 <li><strong>基座：</strong><strong>抬高 15cm 防颱風淹水</strong></li>
+<li><strong>神桌投影：</strong>熱泵外廓停在 y&lt;12700；配管、冷凝排水與維修空間同樣不能越入後帶保護區。</li>
 </div>
 <div class="tag tag-spec">
 <div class="tag-title">📋 熱水設計決策（已定案）</div>
 B 棟完工即裝回水循環泵（定時/溫控/按鍵三選一），回水末端設常閉球閥 + 永久標示；回水管與電源列入驗收。幹管走最短路徑 + 全程 15mm 保溫。
 </div>
 </div>
-<div class="room" data-h-mm="1700" data-target-cell="slot-5" data-w-mm="11000" data-x-mm="0" data-y-mm="3700" id="room-platform-rf">
+<div class="room" data-h-mm="7715" data-target-cell="slot-1" data-w-mm="6000" data-x-mm="0" data-y-mm="0" id="room-platform-rf">
 <div class="room-head">
 <div class="room-name"><div class="room-name-icon">🏗️</div> 活動平台 / 曬衣棚架</div>
 <div class="room-area">未來擴充預留</div>
 </div>
 <div class="room-details">
 <li><strong>功能：</strong>曬衣、活動空間</li>
-<li><strong>太陽能預留：</strong>2 支 1.5" PVC 管，路徑：1F 電表箱 → 垂直貫穿每層 → RF</li>
+<li><strong>太陽能預留：</strong>2 支 1.5" PVC 管可先到中段維修格；未來面板、逆變器與基座位置須重做結構／風壓／神桌投影檢核。</li>
 <li><strong>預留管路：</strong>每層電錶箱皆經過（預留穿孔），管內預留拉繩，RF 出口加 PVC 防水鴨嘴彎頭（Drip Loop）+ 防塵蓋</li>
 <li><strong>預留電表空間：</strong>B-M2 併網電表空間、B-M3 EV 充電表</li>
-<li><strong>維修人孔：</strong>可掀式防水蓋板，標示「非使用中｜未來擴充用（太陽能監控/氣象站）」</li>
+<li><strong>出入：</strong>人員由正式樓梯屋突到達；另以防水檢修箱收納未來太陽能監控／氣象站預留，不把人孔當主要入口。</li>
 <li><strong>檢修配電：</strong>RF 預留檢修照明 + 110V 防雨插座/檢修用 PDU，方便保養</li>
 <li><strong>吊裝動線：</strong>預留設備吊點/吊裝動線，便於未來更換水塔/熱泵</li>
 <li><strong>穿屋面孔洞：</strong>二次防水收邊 + 封堵，避免長期滲漏</li>
@@ -1358,7 +1406,22 @@ B 棟完工即裝回水循環泵（定時/溫控/按鍵三選一），回水末�
 </div>
 <div class="tag tag-opt">
 <div class="tag-title">☀️ 未來太陽能擴充</div>
-雖目前無太陽能規劃，但預留管路可供未來加設。管路出口應由下向上彎（防雨水倒灌）。
+雖目前無太陽能規劃，但可保留空管。日後設備只可在通過結構、風壓、維修及神桌投影複核後設置；RF 後帶保護區不得先以「預留」名義放入逆變器、基座或重設備。
+</div>
+</div>
+<div class="room" data-h-mm="1685" data-target-cell="slot-6" data-w-mm="3000" data-x-mm="3000" data-y-mm="11015" id="room-service-rf">
+<div class="room-head"><div class="room-name"><div class="room-name-icon">🛠️</div> 設備維修淨空</div><div class="room-area">中段服務格</div></div>
+<div class="room-details">
+<li>室外機、吊裝點、檢修照明與防雨插座集中此區；維修走道不得被曬衣或儲物占用。</li>
+<li>任何設備外廓、基座、避震距離與管線均須停在 y&lt;12700，並以正式設備型錄重新檢核。</li>
+</div>
+</div>
+<div class="room" data-equipment-free="true" data-h-mm="4930" data-overhead-zone="shrine-protected" data-target-cell="slot-7" data-w-mm="6000" data-x-mm="0" data-y-mm="12700" id="room-shrine-buffer-rf">
+<div class="room-head"><div class="room-name"><div class="room-name-icon">🛕</div> 神桌上方無設備保護區</div><div class="room-area">後帶 6.0 × 4.93m</div></div>
+<div class="room-details">
+<li><strong>禁止：</strong>水塔、泵浦、熱泵、冷氣室外機、逆變器、排水立管、蓄水、固定棚架基座與其他重／振動設備。</li>
+<li><strong>使用：</strong>低活動、非日常使用，只保留防水巡檢所需動線；不作曬衣、聚會、儲物或頻繁踩踏區。</li>
+<li><strong>待確認：</strong>神桌精確外廓、樑柱、屋面坡度與落水頭須由建築師／結構／機電套繪，保護帶可放大不可任意縮小。</li>
 </div>
 </div>
 <div class="io-table">
@@ -1456,7 +1519,7 @@ B 棟完工即裝回水循環泵（定時/溫控/按鍵三選一），回水末�
 <strong>減震：</strong>VF800/熱泵/TS400B 均需橡膠減震座 + 軟接頭（降噪）<br/>
 <strong>檢修動線：</strong>RF 出入口尺寸需可搬運設備，或預留吊點<br/>
 <strong>檢修配電：</strong>RF 預留照明 + 110V 防雨插座/檢修用 PDU<br/>
-<strong>排水：</strong>熱泵冷凝水回收至水塔、水塔溢流 3"、落水頭防堵/第二溢流需確認去處<br/>
+<strong>排水：</strong>熱泵冷凝水以可視氣隙接獨立地排／合規雨排，禁止回生活水塔；水塔溢流 3"、落水頭防堵／第二溢流仍須確認去處<br/>
 <strong>穿屋面孔洞：</strong>二次防水收邊 + 封堵，避免長期滲漏<br/>
 <strong>壓力表：</strong>VF800 出口需加裝，方便故障判斷<br/>
 <strong>水錘吸收器：</strong>已於 B-A1/B-A2 加裝，位置勿更動<br/>
@@ -1696,7 +1759,7 @@ B 棟完工即裝回水循環泵（定時/溫控/按鍵三選一），回水末�
 <h5>扶手與求救</h5>
 <ul>
 <li>浴室牆面預埋補強，可裝 L 型扶手</li>
-<li>求救鈴連動 1F 客廳聲光警報</li>
+<li>求救鈴連動 1F 玄關與 2F 家庭客廳聲光警報</li>
 </ul>
 </div>
 <div class="spec-card">
@@ -1758,16 +1821,16 @@ B 棟完工即裝回水循環泵（定時/溫控/按鍵三選一），回水末�
 <li>實牆 <strong>RC ≥15cm</strong>（不可輕隔間）</li>
 <li>背後 <strong>無廁所/浴室/樓梯/電梯/主要排水立管</strong></li>
 <li><strong>不可樑壓</strong>（結構圖需避開）</li>
-<li>龍邊（左）靠實牆為佳</li>
-<li>高度約 <strong>110cm</strong>（文公尺吉位）</li>
-<li>背牆 <strong>禁走任何電線管</strong></li>
-<li>若管線必經，RC 牆後加<strong>輕隔間假牆</strong>藏管</li>
+<li>概念版靠圖面左側；真正龍邊須待基地坐向、門向與祭祀習慣確認</li>
+<li>本版神桌模型外廓 <strong>180 × 60 × 125cm</strong>；實際桌面／神像高度待實物與祭祀專業複核</li>
+<li>神桌正後方投影 <strong>禁埋管、接線盒與排水立管</strong>，必要電源由側向可檢修管槽進入</li>
+<li>結構或主幹管無法避開時應移動神桌／重新配置，不以假牆掩蓋衝突</li>
 </ul>
 </div>
 <div class="spec-card">
 <h5>空間格局</h5>
 <ul>
-<li><strong>穿堂煞：</strong>設隔斷簾幕/拉門</li>
+<li><strong>穿堂：</strong>玄關與神明廳以錯位門洞／短牆轉折；裝飾拉門不得取代防火門</li>
 <li><strong>明堂開闊：</strong>車庫高度不高於屋簷</li>
 <li><strong>樓梯位置：</strong>避開神桌正沖</li>
 </ul>
@@ -1828,16 +1891,16 @@ B 棟完工即裝回水循環泵（定時/溫控/按鍵三選一），回水末�
 <li>1F：🪜 樓梯間（⬆️2F）</li>
 <li>2F：🪜 樓梯間（⬇️1F ⬆️3F）</li>
 <li>3F：🪜 樓梯間（⬇️2F ⬆️RF）</li>
-<li>RF：🪜 樓梯出口（⬇️3F）+ 防水人孔蓋</li>
+<li>RF：🪜 正式樓梯屋突（⬇️3F），不用爬梯／人孔作主要通行</li>
 </ul>
 </div>
 <div class="spec-card">
 <h5>無障礙與高齡友善</h5>
 <ul>
-<li>無障礙衛浴求救鈴 <strong>連動 1F 客廳聲光警報</strong></li>
-<li>無障礙衛浴門淨寬 ≥80cm、迴轉空間 ≥150cm（法規底線）；本案加值：門淨寬 ≥90cm、迴轉 180cm</li>
-<li>武轎儲藏室門淨開口 ≥（武轎最寬處 + 10~15cm）；若需整座進出目標 ≥150cm</li>
-<li>通道淨寬 ≥150cm</li>
+<li>無障礙衛浴求救鈴 <strong>連動 1F 玄關與 2F 家庭客廳聲光警報</strong></li>
+<li>無障礙衛浴完成面門淨寬概念目標 <strong>≥900mm</strong>；迴轉、扶手、門操作空間依適用法規與建築師正式圖說驗證</li>
+<li>武轎儲藏室第一版完成面淨開口 150cm；武轎實測後再以最寬處加操作餘量複核</li>
+<li>門外至收納位連續保留 150cm 直線搬運帶；若不能直進直出，另擴充 180cm 轉向空間</li>
 </ul>
 </div>
 </div>

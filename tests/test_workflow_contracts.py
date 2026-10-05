@@ -1,8 +1,7 @@
 from __future__ import annotations
 
-from pathlib import Path
 import re
-
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -48,6 +47,7 @@ def test_manual_workflow_docs_include_mode_for_html_consistency() -> None:
 def test_expert_gate_stage_does_not_update_task_board() -> None:
     script = (ROOT / "scripts" / "evaluate_expert_gates.py").read_text(encoding="utf-8")
 
+    assert 'ROOT / "structured" / "historical" / "html-workflow-task-board.md"' in script
     assert 'if args.stage in {"report", "full"}:' in script
     assert 'task_board_status = "skipped for stage gate"' in script
     assert 'print(f"Task board:  {task_board_status}")' in script

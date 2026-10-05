@@ -13,22 +13,21 @@ from typing import Any
 
 from bs4 import BeautifulSoup, Tag
 
-
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
 
+from lib.dimension_overrides import (  # noqa: E402
+    PING_TO_SQM,
+    load_overrides,
+)
 from lib.spatial_metadata import (  # noqa: E402
     is_daylight_exempt,
     nearest_declared_side,
     parse_cell_spatial,
     parse_floor_orientation,
     window_issue_level,
-)
-from lib.dimension_overrides import (  # noqa: E402
-    PING_TO_SQM,
-    load_overrides,
 )
 from lib.standards import load_residential_defaults  # noqa: E402
 
@@ -227,7 +226,7 @@ def covered_area_sqmm(cells: list[dict[str, Any]]) -> float:
         return 0.0
     xs = sorted({c["x_mm"] for c in cells} | {c["x_mm"] + c["w_mm"] for c in cells})
     total = 0.0
-    for left, right in zip(xs, xs[1:]):
+    for left, right in zip(xs, xs[1:], strict=False):
         strip_w = right - left
         if strip_w <= 0:
             continue
@@ -477,11 +476,23 @@ def check_floor_geometry(
                         )
 
         door_mm = to_int(cell.get("data-door-mm"))
+        carry_path_mm = to_int(cell.get("data-carry-path-mm"))
+        access_mode = normalize_whitespace(str(cell.get("data-access-mode", ""))).lower()
+        is_declared_transfer_opening = (
+            door_mm is not None
+            and carry_path_mm is not None
+            and carry_path_mm >= door_mm
+            and access_mode in {"straight-pull", "straight-push", "equipment-transfer"}
+        )
         raw_window_mm = cell.get("data-window-mm")
         window_mm = to_int(raw_window_mm)
         has_window_attr = cell.has_attr("data-window-mm")
         is_window_outside_range = window_mm is None or not (window_min_mm <= window_mm <= window_max_mm)
-        if door_mm is not None and not (door_min_mm <= door_mm <= door_max_mm):
+        if (
+            door_mm is not None
+            and not (door_min_mm <= door_mm <= door_max_mm)
+            and not (door_mm > door_max_mm and is_declared_transfer_opening)
+        ):
             issue(
                 issues,
                 "warning",

@@ -3,6 +3,12 @@
   "candidate_id": "SITE-001",
   "label": "候選土地名稱",
   "status": "screening",
+  "evidence_policy": "每個事實欄位使用 {status, value, source}；source 須為 {reference, reviewer, checked_at}。暫估用 assumed，未查核不得標 verified；reference 可指向私有文件，不填公開金額。",
+  "parcels": [
+    {"parcel_id": "PARCEL-A", "building_id": "A", "land_number": null, "area_sqm": {"status": "unknown", "value": null, "source": null}, "frontage_mm": {"status": "unknown", "value": null, "source": null}, "depth_mm": {"status": "unknown", "value": null, "source": null}},
+    {"parcel_id": "PARCEL-B", "building_id": "B", "land_number": null, "area_sqm": {"status": "unknown", "value": null, "source": null}, "frontage_mm": {"status": "unknown", "value": null, "source": null}, "depth_mm": {"status": "unknown", "value": null, "source": null}},
+    {"parcel_id": "PARCEL-C", "building_id": "C", "land_number": null, "area_sqm": {"status": "unknown", "value": null, "source": null}, "frontage_mm": {"status": "unknown", "value": null, "source": null}, "depth_mm": {"status": "unknown", "value": null, "source": null}}
+  ],
   "location": {
     "address": null,
     "district": null,
@@ -10,7 +16,7 @@
     "land_numbers": []
   },
   "target_fit": {
-    "three_adjacent_parcels": "unknown",
+    "three_adjacent_parcels": {"status": "unknown", "value": null, "source": null},
     "parcel_count": null,
     "total_area_sqm": null,
     "frontage_mm": null,
@@ -26,21 +32,41 @@
     "land_rights": {"status": "unknown", "value": null, "source": null}
   },
   "risk_screen": {
-    "flood": {"status": "unknown", "source": null},
-    "liquefaction": {"status": "unknown", "source": null},
-    "site_elevation_and_drainage": {"status": "unknown", "source": null},
-    "noise_odor_and_neighbours": {"status": "unknown", "source": null}
+    "flood": {"status": "unknown", "value": null, "source": null},
+    "liquefaction": {"status": "unknown", "value": null, "source": null},
+    "site_elevation_and_drainage": {"status": "unknown", "value": null, "source": null},
+    "noise_odor_and_neighbours": {"status": "unknown", "value": null, "source": null}
   },
   "utilities": {
-    "water": {"status": "unknown", "source": null},
-    "electricity": {"status": "unknown", "source": null},
-    "sewer_and_stormwater": {"status": "unknown", "source": null},
-    "telecom": {"status": "unknown", "source": null}
+    "water": {"status": "unknown", "value": null, "source": null},
+    "electricity": {"status": "unknown", "value": null, "source": null},
+    "sewer_and_stormwater": {"status": "unknown", "value": null, "source": null},
+    "telecom": {"status": "unknown", "value": null, "source": null}
+  },
+  "cross_parcel_utilities": {
+    "water": {"connectivity": {"status": "unknown", "value": null, "source": null}, "route_rights": {"status": "unknown", "value": null, "source": null}, "responsibility_boundary": {"status": "unknown", "value": null, "source": null}},
+    "electricity": {"connectivity": {"status": "unknown", "value": null, "source": null}, "route_rights": {"status": "unknown", "value": null, "source": null}, "responsibility_boundary": {"status": "unknown", "value": null, "source": null}},
+    "sewer_and_stormwater": {"connectivity": {"status": "unknown", "value": null, "source": null}, "route_rights": {"status": "unknown", "value": null, "source": null}, "responsibility_boundary": {"status": "unknown", "value": null, "source": null}},
+    "telecom": {"connectivity": {"status": "unknown", "value": null, "source": null}, "route_rights": {"status": "unknown", "value": null, "source": null}, "responsibility_boundary": {"status": "unknown", "value": null, "source": null}}
+  },
+  "core_function_assessment": {
+    "A": {"status": "unknown", "value": null, "source": null, "scope": "一樓完整全齡生活圈、車庫、照護與逃生操作空間"},
+    "B": {"status": "unknown", "value": null, "source": null, "scope": "神明堂、上下疊圖、武轎收納及完整搬運動線"},
+    "C": {"status": "unknown", "value": null, "source": null, "scope": "孝親房、無障礙衛浴、輪椅與照護操作空間"}
+  },
+  "budget_assessment": {
+    "affordability": {"status": "unknown", "value": null, "source": null},
+    "budget_limit_reviewed": {"status": "unknown", "value": null, "source": null},
+    "land_estimate_reviewed": {"status": "unknown", "value": null, "source": null},
+    "foundation_estimate_reviewed": {"status": "unknown", "value": null, "source": null},
+    "utility_estimate_reviewed": {"status": "unknown", "value": null, "source": null},
+    "handling_estimate_reviewed": {"status": "unknown", "value": null, "source": null},
+    "note": "只保存 yes/no 評估與查核依據；金額留在 inputs/private，不以土地決定狀態替代可負擔性。"
   },
   "constructability": {
-    "truck_access": "unknown",
-    "crane_and_material_staging": "unknown",
-    "neighbour_protection": "unknown"
+    "truck_access": {"status": "unknown", "value": null, "source": null},
+    "crane_and_material_staging": {"status": "unknown", "value": null, "source": null},
+    "neighbour_protection": {"status": "unknown", "value": null, "source": null}
   },
   "professional_precheck": {
     "architect": {"status": "unknown", "reviewer": null, "date": null, "evidence": null},

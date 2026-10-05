@@ -30,7 +30,6 @@ from typing import Any
 
 from bs4 import BeautifulSoup, Tag
 
-
 ROOT = Path(__file__).resolve().parents[1]
 TARGET_GLOB = "*.html"
 

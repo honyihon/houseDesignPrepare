@@ -5,13 +5,18 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
-from house_design.contracts import ContractError, REVIEW_STATUSES, ROOT, read_json, stable_hash, utc_now, write_json
-from house_design.drawings import REVISION_ROOT, assess_model3d_readiness, compare_revisions, load_revision
+from house_design.contracts import REVIEW_STATUSES, ROOT, ContractError, read_json, stable_hash, utc_now, write_json
+from house_design.coordination import compare_coordination, coordination_html, coordination_review
+from house_design.drawing_readiness import _valid_bbox, _valid_polygon, assess_model3d_readiness
+from house_design.drawings import VERIFIED_COORDINATE_STATUSES, compare_revisions, load_revision
 from house_design.intake import (
     PROJECT_PATH,
+    RELATIONSHIP_SPECIAL_TARGETS,
+    RELATIONSHIP_TYPES,
     REQUIREMENTS_PATH,
     actual_parcels,
     project_readiness,
+    relationship_status,
     validate_project,
     validate_requirements,
 )
@@ -21,7 +26,7 @@ from house_design.predesign import (
     PRIVATE_BUDGET_PATH,
     build_predesign_report,
 )
-
+from house_design.revision_integrity import REVISION_ROOT
 
 RULE_PACK_PATH = ROOT / "rules/kaohsiung_review_rules.json"
 REVIEW_ROOT = ROOT / "structured/reviews"
@@ -168,6 +173,290 @@ def _readiness_findings(project: dict[str, Any]) -> list[dict[str, Any]]:
     return results
 
 
+RELATIONSHIP_GEOMETRIC_TYPES = {"adjacent", "not_stacked_over", "not_stacked_under", "stacked_over"}
+_EXACT_GEOMETRY_METHODS = {"closed_dxf_polyline", "professional_verified_polygon", "surveyed_polygon"}
+_RELATIONSHIP_TOLERANCE_MM = 250.0
+_STACKED_OVERLAP_RATIO = 0.8
+
+
+def _floor_order(floor_id: Any) -> float | None:
+    value = str(floor_id or "")
+    if value == "floor-rf":
+        return 999.0
+    if value.startswith("floor-b"):
+        suffix = value[len("floor-b"):]
+        return -float(suffix) if suffix.isdigit() else None
+    if value.startswith("floor-"):
+        suffix = value[len("floor-"):]
+        return float(suffix) if suffix.isdigit() else None
+    return None
+
+
+def _bbox_separations(bbox_a: Any, bbox_b: Any) -> tuple[float, float]:
+    """Per-axis separation between two bboxes: >0 apart, 0 touching, <0 overlapping."""
+
+    ax0, ay0, ax1, ay1 = (float(item) for item in bbox_a)
+    bx0, by0, bx1, by1 = (float(item) for item in bbox_b)
+    return max(bx0 - ax1, ax0 - bx1), max(by0 - ay1, ay0 - by1)
+
+
+def _bbox_overlap_extents(bbox_a: Any, bbox_b: Any) -> tuple[float, float]:
+    ax0, ay0, ax1, ay1 = (float(item) for item in bbox_a)
+    bx0, by0, bx1, by1 = (float(item) for item in bbox_b)
+    return min(ax1, bx1) - max(ax0, bx0), min(ay1, by1) - max(ay0, by0)
+
+
+def _exact_rectangle(space: dict[str, Any]) -> bool:
+    """A precise polygon that is exactly the axis-aligned bbox rectangle."""
+
+    bbox = space.get("bbox_mm")
+    polygon = space.get("polygon_mm")
+    if str(space.get("geometry_method") or "") not in _EXACT_GEOMETRY_METHODS:
+        return False
+    if not _valid_bbox(bbox) or not _valid_polygon(polygon):
+        return False
+    points = [(float(point[0]), float(point[1])) for point in polygon]
+    if points and points[0] == points[-1]:
+        points = points[:-1]
+    if len(points) != 4 or len(set(points)) != 4:
+        return False
+    x0, y0, x1, y1 = (float(item) for item in bbox)
+    corners = {(x0, y0), (x1, y0), (x1, y1), (x0, y1)}
+    return all(point in corners for point in points)
+
+
+def _coordinate_verified(model: dict[str, Any]) -> bool:
+    """Cross-floor plan comparison is only trustworthy with verified floor alignment."""
+
+    coordinate = model.get("coordinate_system")
+    if not isinstance(coordinate, dict) or str(coordinate.get("status") or "") not in VERIFIED_COORDINATE_STATUSES:
+        return False
+    reference_points = coordinate.get("reference_points")
+    return (
+        bool(coordinate.get("axis"))
+        and all(str(coordinate.get(key) or "").strip() for key in ("verified_by", "verified_at", "method"))
+        and isinstance(reference_points, list)
+        and len(reference_points) >= 2
+    )
+
+
+def _storey_elevations(model: dict[str, Any]) -> dict[tuple[str, str], float]:
+    elevations: dict[tuple[str, str], float] = {}
+    for storey in model.get("entities", {}).get("storeys", []) or []:
+        if not (isinstance(storey, dict) and storey.get("building_id") and storey.get("floor_id")):
+            continue
+        elevation = storey.get("elevation_mm")
+        if isinstance(elevation, (int, float)) and not isinstance(elevation, bool):
+            elevations[(str(storey["building_id"]), str(storey["floor_id"]))] = float(elevation)
+    return elevations
+
+
+def _vertical_order(
+    space_a: dict[str, Any], space_b: dict[str, Any], elevations: dict[tuple[str, str], float]
+) -> str | None:
+    key_a = (str(space_a.get("building_id") or ""), str(space_a.get("floor_id") or ""))
+    key_b = (str(space_b.get("building_id") or ""), str(space_b.get("floor_id") or ""))
+    elevation_a, elevation_b = elevations.get(key_a), elevations.get(key_b)
+    if elevation_a is not None and elevation_b is not None and elevation_a != elevation_b:
+        return "above" if elevation_a > elevation_b else "below"
+    order_a, order_b = _floor_order(key_a[1]), _floor_order(key_b[1])
+    if order_a is None or order_b is None:
+        return None
+    if order_a > order_b:
+        return "above"
+    if order_a < order_b:
+        return "below"
+    return "same"
+
+
+def _relationship_findings(
+    requirement: dict[str, Any],
+    model: dict[str, Any],
+    spaces: dict[str, dict[str, Any]],
+    elevations: dict[tuple[str, str], float],
+) -> list[dict[str, Any]]:
+    findings: list[dict[str, Any]] = []
+    pending = 0
+    for relationship in requirement.get("relationships") or []:
+        if not isinstance(relationship, dict):
+            continue
+        if relationship_status(requirement, relationship) != "confirmed":
+            pending += 1
+            continue
+        findings.append(_confirmed_relationship_finding(requirement, relationship, model, spaces, elevations))
+    if pending:
+        requirement_id = str(requirement["id"])
+        applies_to = dict(requirement.get("applies_to") or {})
+        applies_to["requirement_id"] = requirement_id
+        findings.append(
+            _finding(
+                rule_id="REQ-RELATIONSHIP-PENDING",
+                status="unknown",
+                domain="space_program",
+                title=f"{requirement['title']}：{pending} 條空間關係尚待屋主確認",
+                message="需求確認後才新增或修改的空間關係不會自動生效，檢核暫不採計。",
+                responsible_role="屋主",
+                next_action="重新匯出決策表，把這些關係一併確認。",
+                applies_to=applies_to,
+                evidence=[{"kind": "relationship", "requirement_id": requirement_id, "count": pending}],
+            )
+        )
+    return findings
+
+
+def _confirmed_relationship_finding(
+    requirement: dict[str, Any],
+    relationship: dict[str, Any],
+    model: dict[str, Any],
+    spaces: dict[str, dict[str, Any]],
+    elevations: dict[tuple[str, str], float],
+) -> dict[str, Any]:
+    relationship_type = str(relationship.get("type") or "")
+    target = str(relationship.get("target") or "")
+    label = RELATIONSHIP_TYPES.get(relationship_type, relationship_type)
+    requirement_id = str(requirement["id"])
+    applies_to = dict(requirement.get("applies_to") or {})
+    applies_to["requirement_id"] = requirement_id
+    source_space = spaces.get(requirement_id)
+    target_space = None if target in RELATIONSHIP_SPECIAL_TARGETS else spaces.get(target)
+    evidence = [
+        {
+            "kind": "relationship",
+            "type": relationship_type,
+            "target": target,
+            "source_entity_id": (source_space or {}).get("id"),
+            "target_entity_id": (target_space or {}).get("id"),
+        }
+    ]
+    hard = requirement.get("priority") == "must"
+
+    def emit(status: str, message: str, next_action: str, responsible_role: str = "建築師") -> dict[str, Any]:
+        return _finding(
+            rule_id=f"REQ-RELATIONSHIP-{relationship_type.upper()}",
+            status=status,
+            domain="space_program",
+            title=f"{requirement['title']}空間關係：{label}",
+            message=message,
+            responsible_role=responsible_role,
+            next_action=next_action,
+            applies_to=applies_to,
+            evidence=evidence,
+        )
+
+    if target in RELATIONSHIP_SPECIAL_TARGETS or relationship_type not in RELATIONSHIP_GEOMETRIC_TYPES:
+        return emit(
+            "professional_review",
+            "此關係無法只用圖面幾何自動判定，須由專業者在圖面上複核。",
+            "請建築師在平面圖上標示此關係並說明如何滿足。",
+        )
+    if source_space is None or target_space is None:
+        missing = requirement_id if source_space is None else target
+        return emit(
+            "unknown",
+            f"找不到 {missing} 的圖面空間綁定，無法判定此關係。",
+            "在 IFC 空間或 DXF layer mapping 中綁定 requirement_id 後重新檢核。",
+            responsible_role="建築師／圖面資料管理者",
+        )
+    bbox_a = source_space.get("bbox_mm")
+    bbox_b = target_space.get("bbox_mm")
+    if not _valid_bbox(bbox_a) or not _valid_bbox(bbox_b):
+        return emit("unknown", "關係兩端缺少可驗證的 bbox 幾何，無法判定。", "補齊圖面空間幾何後重新檢核。")
+    if str(source_space.get("building_id") or "") != str(target_space.get("building_id") or ""):
+        return emit(
+            "professional_review",
+            "兩個空間位於不同棟，此關係須由建築師說明如何成立。",
+            "請建築師確認跨棟關係的設計意圖。",
+        )
+    order = _vertical_order(source_space, target_space, elevations)
+    if order is None:
+        return emit("unknown", "無法判定兩個空間的樓層上下關係。", "請補齊樓層編號或 elevation 證據後重新檢核。")
+
+    def violation(message: str) -> dict[str, Any]:
+        return emit("fail" if hard else "warning", message, "請調整平面配置，或與屋主重新確認此關係。")
+
+    if relationship_type == "adjacent":
+        if order != "same":
+            return violation("兩個空間位於不同樓層，無法相鄰。")
+        sep_x, sep_y = _bbox_separations(bbox_a, bbox_b)
+        if sep_x > 0 and sep_y > 0:
+            return violation(f"兩空間平面分離（X 間距 {sep_x:.0f} mm、Y 間距 {sep_y:.0f} mm），未相鄰。")
+        if sep_x < 0 and sep_y < 0:
+            return emit(
+                "professional_review",
+                "兩空間的 bbox 平面範圍重疊，請建築師確認牆體與實際相鄰介面。",
+                "請建築師在平面圖上標示兩空間的實際邊界。",
+            )
+        gap = max(sep_x, sep_y)
+        overlap_x, overlap_y = _bbox_overlap_extents(bbox_a, bbox_b)
+        shared = overlap_y if sep_x >= sep_y else overlap_x
+        if gap > _RELATIONSHIP_TOLERANCE_MM:
+            return violation(f"兩空間平面間距 {gap:.0f} mm，超過 {_RELATIONSHIP_TOLERANCE_MM:.0f} mm 門檻，未相鄰。")
+        if shared <= 0:
+            return violation("兩空間只在角落接觸，沒有可用的相鄰介面。")
+        if _exact_rectangle(source_space) and _exact_rectangle(target_space):
+            return emit(
+                "pass",
+                f"兩空間以 {gap:.0f} mm 間距相鄰，共用介面長度 {shared:.0f} mm。",
+                "仍請建築師複核牆厚與門位。",
+            )
+        return emit(
+            "professional_review",
+            f"兩空間 bbox 相鄰（間距 {gap:.0f} mm），但幾何非精確矩形，請確認實際相鄰介面。",
+            "請建築師以精確 polygon 複核相鄰關係。",
+        )
+
+    if relationship_type in {"not_stacked_over", "not_stacked_under"}:
+        violated = "above" if relationship_type == "not_stacked_over" else "below"
+        if order != violated:
+            return emit("pass", "樓層上下關係未違反此限制。", "仍請建築師複核結構與管線配置。")
+        if not _coordinate_verified(model):
+            return emit(
+                "unknown",
+                "兩空間上下壓疊與否須比對各樓層平面座標，但座標系統尚未驗證。",
+                "請先完成樓層平面對位證據（coordinate_system），再重新檢核。",
+            )
+        overlap_x, overlap_y = _bbox_overlap_extents(bbox_a, bbox_b)
+        if overlap_x <= _RELATIONSHIP_TOLERANCE_MM or overlap_y <= _RELATIONSHIP_TOLERANCE_MM:
+            return emit(
+                "pass",
+                f"上下樓層平面投影重疊未超過 {_RELATIONSHIP_TOLERANCE_MM:.0f} mm 門檻，不構成壓疊。",
+                "仍請建築師複核結構與管線配置。",
+            )
+        if _exact_rectangle(source_space) and _exact_rectangle(target_space):
+            return violation(
+                f"兩空間上下壓疊（X 重疊 {overlap_x:.0f} mm、Y 重疊 {overlap_y:.0f} mm），違反此限制。"
+            )
+        return emit(
+            "professional_review",
+            f"上下樓層 bbox 重疊（X {overlap_x:.0f} mm、Y {overlap_y:.0f} mm），但幾何非精確矩形，請確認實際壓疊範圍。",
+            "請建築師以精確 polygon 複核壓疊關係。",
+        )
+
+    # stacked_over: the source must sit above the target with aligned footprints.
+    if order != "above":
+        return violation("來源空間未位於目標空間正上方，不符合上下對齊關係。")
+    if not _coordinate_verified(model):
+        return emit(
+            "unknown",
+            "上下對齊程度須比對各樓層平面座標，但座標系統尚未驗證。",
+            "請先完成樓層平面對位證據（coordinate_system），再重新檢核。",
+        )
+    overlap_x, overlap_y = _bbox_overlap_extents(bbox_a, bbox_b)
+    area_a = (bbox_a[2] - bbox_a[0]) * (bbox_a[3] - bbox_a[1])
+    area_b = (bbox_b[2] - bbox_b[0]) * (bbox_b[3] - bbox_b[1])
+    smaller = min(float(area_a), float(area_b))
+    ratio = max(overlap_x, 0.0) * max(overlap_y, 0.0) / smaller if smaller > 0 else 0.0
+    if _exact_rectangle(source_space) and _exact_rectangle(target_space):
+        if ratio >= _STACKED_OVERLAP_RATIO:
+            return emit("pass", f"上下投影重疊比例 {ratio:.0%}，達到對齊目標。", "仍請建築師複核結構對位。")
+        return violation(f"上下投影重疊比例只有 {ratio:.0%}，未達 {_STACKED_OVERLAP_RATIO:.0%} 對齊目標。")
+    return emit(
+        "professional_review",
+        f"上下投影 bbox 重疊比例約 {ratio:.0%}，但幾何非精確矩形，請確認實際對齊狀況。",
+        "請建築師以精確 polygon 複核上下對齊。",
+    )
+
+
 def _requirement_findings(requirements: dict[str, Any], model: dict[str, Any]) -> list[dict[str, Any]]:
     findings: list[dict[str, Any]] = []
     contract_issues = validate_requirements(requirements)
@@ -203,11 +492,13 @@ def _requirement_findings(requirements: dict[str, Any], model: dict[str, Any]) -
     confirmed = [item for item in items if item.get("status") == "confirmed"]
     spaces = {str(item.get("requirement_id")): item for item in model.get("entities", {}).get("spaces", []) if item.get("requirement_id")}
     doors = model.get("entities", {}).get("doors", [])
+    elevations = _storey_elevations(model)
     for requirement in confirmed:
         requirement_id = str(requirement["id"])
         space = spaces.get(requirement_id)
         applies_to = dict(requirement.get("applies_to") or {})
         applies_to["requirement_id"] = requirement_id
+        findings.extend(_relationship_findings(requirement, model, spaces, elevations))
         if space is None:
             findings.append(
                 _finding(
@@ -405,6 +696,8 @@ def _report_hash_payload(report: dict[str, Any]) -> dict[str, Any]:
     value.pop("generated_at", None)
     value.pop("report_hash", None)
     value.pop("signoff", None)
+    if isinstance(value.get("planning"), dict):
+        value["planning"].pop("generated_at", None)
     return value
 
 
@@ -444,11 +737,35 @@ def build_review(
     revision_root: Path = REVISION_ROOT,
     previous_revision: str | None = None,
     signoff_path: Path | None = None,
+    coordination_path: Path | None = None,
+    previous_coordination_path: Path | None = None,
+    planning_register_path: Path | None = None,
 ) -> dict[str, Any]:
     project = read_json(project_path)
     requirements = read_json(requirements_path)
     rule_pack = read_json(rule_pack_path)
+    planning = None
+    if planning_register_path is not None or project_path.resolve() == PROJECT_PATH.resolve():
+        from house_design.planning import REGISTER_PATH, build_risk_review
+
+        planning = build_risk_review(project_path=project_path, requirements_path=requirements_path,
+                                     register_path=planning_register_path or REGISTER_PATH,
+                                     rules_path=predesign_rule_pack_path)
     manifest, model = load_revision(revision_id, revision_root)
+    if previous_coordination_path and not previous_revision:
+        raise ContractError("--previous-coordination requires --previous")
+    coordination = coordination_review(
+        model, read_json(coordination_path) if coordination_path else None,
+        manifest["content_hash"], requirements,
+    )
+    coordination_changes = None
+    if previous_revision:
+        previous_manifest, previous_model = load_revision(previous_revision, revision_root)
+        previous_coordination = coordination_review(
+            previous_model, read_json(previous_coordination_path) if previous_coordination_path else None,
+            previous_manifest["content_hash"], requirements,
+        )
+        coordination_changes = compare_coordination(previous_coordination, coordination)
     model3d_readiness = assess_model3d_readiness(manifest, model)
     if predesign_path is None and project_path.resolve() == PROJECT_PATH.resolve():
         predesign_path = PREDESIGN_PATH
@@ -478,6 +795,7 @@ def build_review(
         *_requirement_findings(requirements, model),
         *_rule_pack_findings(rule_pack),
         *_coordination_findings(project),
+        *coordination["findings"],
     ]
     order = {"fail": 0, "warning": 1, "unknown": 2, "professional_review": 3, "pass": 4, "not_applicable": 5}
     findings.sort(key=lambda item: (order[item["status"]], item["domain"], item["rule_id"], item["finding_id"]))
@@ -521,8 +839,14 @@ def build_review(
         },
         "findings": findings,
         "comparison": comparison,
+        "coordination": coordination,
+        "coordination_changes": coordination_changes,
+        "planning": planning,
         "model": model,
     }
+    if planning:
+        report["release"]["eligible"] = bool(report["release"]["eligible"] and planning["readiness"]["eligible_for_decision_freeze"])
+        report["release"]["planning_decision_ready"] = planning["readiness"]["eligible_for_decision_freeze"]
     report["report_hash"] = stable_hash(_report_hash_payload(report))
     signoff = read_json(signoff_path) if signoff_path and signoff_path.exists() else None
     report["signoff"] = validate_signoff(report, signoff)
@@ -582,6 +906,17 @@ def review_markdown(report: dict[str, Any]) -> str:
         lines.append("")
     else:
         lines.extend(["目前沒有 3D readiness 阻擋；此判定只代表輸入可產圖，不等同設計合規。", ""])
+    if report.get("planning"):
+        p = report["planning"]
+        lines.extend(["## 防漏項與當期決策", "", "[完整決策／驗收總表](risk-review.html)", "",
+                      f"需求已追蹤 {p['summary']['tracked_requirements']}/{p['summary']['total_requirements']}（不代表已驗證）。", "",
+                      f"當期未完成：{len(p['readiness']['due_open_ids'])}；未到期項目僅提前提醒。", ""])
+    if report.get("coordination"):
+        lines.extend(["## 建築／裝潢套繪", "", "[可列印套繪與數值明細](coordination.html)", "",
+                      "僅確認指定檢查，不等同全案合規；套繪更新後需重新簽認。", ""])
+        for change in report.get("coordination_changes") or []:
+            lines.append(f"- `{change['check_id']}`：{change['state']}")
+        lines.append("")
     lines.extend(["## 檢核事項", ""])
     for finding in report["findings"]:
         applies = finding.get("applies_to") or {}
@@ -611,5 +946,13 @@ def write_review(
     directory = output_root / revision_id
     directory.mkdir(parents=True, exist_ok=True)
     write_json(directory / "report.json", report)
+    if report.get("planning"):
+        from house_design.planning import write_risk_review
+
+        write_risk_review(report["planning"], directory)
     (directory / "report.md").write_text(review_markdown(report), encoding="utf-8", newline="\n")
+    if report.get("coordination"):
+        (directory / "coordination.html").write_text(
+            coordination_html(report["coordination"]), encoding="utf-8", newline="\n"
+        )
     return directory

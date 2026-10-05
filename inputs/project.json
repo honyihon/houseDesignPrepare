@@ -15,13 +15,325 @@
     "target_scenario": {
       "parcel_relationship": "adjacent_separate_parcels",
       "target_parcel_count": 3,
-      "target_area_ping_each": 32.0,
+      "target_area_ping_each": 32,
       "area_tolerance": "to_be_decided_after_feasibility_review",
-      "order_left_to_right": ["C", "B", "A"],
+      "order_left_to_right": [
+        "C",
+        "B",
+        "A"
+      ],
       "provenance": "owner_selected_search_target",
       "note": "三筆相鄰、每筆約 32 坪是選地目標，不是已取得的基地事實。"
     },
-    "candidate_sites": [],
+    "candidate_sites": [
+      {
+        "schema": "house-site-candidate-v1",
+        "candidate_id": "SITE-001",
+        "label": "測試候選地",
+        "status": "screening",
+        "location": {
+          "address": null,
+          "district": null,
+          "land_section": null,
+          "land_numbers": []
+        },
+        "target_fit": {
+          "three_adjacent_parcels": "unknown",
+          "parcel_count": null,
+          "total_area_sqm": null,
+          "frontage_mm": null,
+          "depth_mm": null,
+          "orientation": null
+        },
+        "official_facts": {
+          "zoning": {
+            "status": "unknown",
+            "value": null,
+            "source": null
+          },
+          "road": {
+            "status": "unknown",
+            "value": null,
+            "source": null
+          },
+          "building_coverage_ratio": {
+            "status": "unknown",
+            "value": null,
+            "source": null
+          },
+          "floor_area_ratio": {
+            "status": "unknown",
+            "value": null,
+            "source": null
+          },
+          "setbacks": {
+            "status": "unknown",
+            "value": null,
+            "source": null
+          },
+          "land_rights": {
+            "status": "unknown",
+            "value": null,
+            "source": null
+          }
+        },
+        "risk_screen": {
+          "flood": {
+            "status": "unknown",
+            "source": null,
+            "value": null
+          },
+          "liquefaction": {
+            "status": "unknown",
+            "source": null,
+            "value": null
+          },
+          "site_elevation_and_drainage": {
+            "status": "unknown",
+            "source": null,
+            "value": null
+          },
+          "noise_odor_and_neighbours": {
+            "status": "unknown",
+            "source": null,
+            "value": null
+          }
+        },
+        "utilities": {
+          "water": {
+            "status": "unknown",
+            "source": null,
+            "value": null
+          },
+          "electricity": {
+            "status": "unknown",
+            "source": null,
+            "value": null
+          },
+          "sewer_and_stormwater": {
+            "status": "unknown",
+            "source": null,
+            "value": null
+          },
+          "telecom": {
+            "status": "unknown",
+            "source": null,
+            "value": null
+          }
+        },
+        "constructability": {
+          "truck_access": "unknown",
+          "crane_and_material_staging": "unknown",
+          "neighbour_protection": "unknown"
+        },
+        "professional_precheck": {
+          "architect": {
+            "status": "unknown",
+            "reviewer": null,
+            "date": null,
+            "evidence": null
+          },
+          "land_agent": {
+            "status": "unknown",
+            "reviewer": null,
+            "date": null,
+            "evidence": null
+          }
+        },
+        "decision": {
+          "status": "pending",
+          "reason": null,
+          "decided_at": null
+        },
+        "added_at": "2026-09-21T08:56:19.566818+00:00",
+        "evidence_policy": "每個事實欄位使用 {status, value, source}；source 須為 {reference, reviewer, checked_at}。暫估用 assumed，未查核不得標 verified；reference 可指向私有文件，不填公開金額。",
+        "parcels": [
+          {
+            "parcel_id": "PARCEL-A",
+            "building_id": "A",
+            "land_number": null,
+            "area_sqm": {
+              "status": "unknown",
+              "value": null,
+              "source": null
+            },
+            "frontage_mm": {
+              "status": "unknown",
+              "value": null,
+              "source": null
+            },
+            "depth_mm": {
+              "status": "unknown",
+              "value": null,
+              "source": null
+            }
+          },
+          {
+            "parcel_id": "PARCEL-B",
+            "building_id": "B",
+            "land_number": null,
+            "area_sqm": {
+              "status": "unknown",
+              "value": null,
+              "source": null
+            },
+            "frontage_mm": {
+              "status": "unknown",
+              "value": null,
+              "source": null
+            },
+            "depth_mm": {
+              "status": "unknown",
+              "value": null,
+              "source": null
+            }
+          },
+          {
+            "parcel_id": "PARCEL-C",
+            "building_id": "C",
+            "land_number": null,
+            "area_sqm": {
+              "status": "unknown",
+              "value": null,
+              "source": null
+            },
+            "frontage_mm": {
+              "status": "unknown",
+              "value": null,
+              "source": null
+            },
+            "depth_mm": {
+              "status": "unknown",
+              "value": null,
+              "source": null
+            }
+          }
+        ],
+        "cross_parcel_utilities": {
+          "water": {
+            "connectivity": {
+              "status": "unknown",
+              "value": null,
+              "source": null
+            },
+            "route_rights": {
+              "status": "unknown",
+              "value": null,
+              "source": null
+            },
+            "responsibility_boundary": {
+              "status": "unknown",
+              "value": null,
+              "source": null
+            }
+          },
+          "electricity": {
+            "connectivity": {
+              "status": "unknown",
+              "value": null,
+              "source": null
+            },
+            "route_rights": {
+              "status": "unknown",
+              "value": null,
+              "source": null
+            },
+            "responsibility_boundary": {
+              "status": "unknown",
+              "value": null,
+              "source": null
+            }
+          },
+          "sewer_and_stormwater": {
+            "connectivity": {
+              "status": "unknown",
+              "value": null,
+              "source": null
+            },
+            "route_rights": {
+              "status": "unknown",
+              "value": null,
+              "source": null
+            },
+            "responsibility_boundary": {
+              "status": "unknown",
+              "value": null,
+              "source": null
+            }
+          },
+          "telecom": {
+            "connectivity": {
+              "status": "unknown",
+              "value": null,
+              "source": null
+            },
+            "route_rights": {
+              "status": "unknown",
+              "value": null,
+              "source": null
+            },
+            "responsibility_boundary": {
+              "status": "unknown",
+              "value": null,
+              "source": null
+            }
+          }
+        },
+        "core_function_assessment": {
+          "A": {
+            "status": "unknown",
+            "value": null,
+            "source": null,
+            "scope": "一樓完整全齡生活圈、車庫、照護與逃生操作空間"
+          },
+          "B": {
+            "status": "unknown",
+            "value": null,
+            "source": null,
+            "scope": "神明堂、上下疊圖、武轎收納及完整搬運動線"
+          },
+          "C": {
+            "status": "unknown",
+            "value": null,
+            "source": null,
+            "scope": "孝親房、無障礙衛浴、輪椅與照護操作空間"
+          }
+        },
+        "budget_assessment": {
+          "affordability": {
+            "status": "unknown",
+            "value": null,
+            "source": null
+          },
+          "budget_limit_reviewed": {
+            "status": "unknown",
+            "value": null,
+            "source": null
+          },
+          "land_estimate_reviewed": {
+            "status": "unknown",
+            "value": null,
+            "source": null
+          },
+          "foundation_estimate_reviewed": {
+            "status": "unknown",
+            "value": null,
+            "source": null
+          },
+          "utility_estimate_reviewed": {
+            "status": "unknown",
+            "value": null,
+            "source": null
+          },
+          "handling_estimate_reviewed": {
+            "status": "unknown",
+            "value": null,
+            "source": null
+          },
+          "note": "只保存 yes/no 評估與查核依據；金額留在 inputs/private，不以土地決定狀態替代可負擔性。"
+        }
+      }
+    ],
     "selected_site": null
   },
   "buildings": [

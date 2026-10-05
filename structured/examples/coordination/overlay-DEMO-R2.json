@@ -1,0 +1,783 @@
+{
+  "schema": "house-coordination-overlay-v1",
+  "revision_id": "DEMO-R2",
+  "revision_hash": "d0df1413263651c1d31800586cfcca82cc85ebc33b48cc5e1eebb73a2f1fb65d",
+  "registration": {
+    "verified_by": "SYNTHETIC EXAMPLE ONLY",
+    "verified_at": "2026-10-01",
+    "reference": "DEMO / NOT A REAL DRAWING"
+  },
+  "objects": [
+    {
+      "id": "B-altar",
+      "building_id": "B",
+      "floor_id": "floor-1",
+      "polygon_mm": [
+        [
+          500,
+          500
+        ],
+        [
+          1700,
+          500
+        ],
+        [
+          1700,
+          1300
+        ],
+        [
+          500,
+          1300
+        ]
+      ],
+      "geometry_method": "professional_verified_polygon",
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "category": "altar"
+    },
+    {
+      "id": "B-door-sweep",
+      "building_id": "B",
+      "floor_id": "floor-1",
+      "polygon_mm": [
+        [
+          3000,
+          500
+        ],
+        [
+          4000,
+          500
+        ],
+        [
+          4000,
+          1500
+        ],
+        [
+          3000,
+          1500
+        ]
+      ],
+      "geometry_method": "professional_verified_polygon",
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "category": "door_swing"
+    },
+    {
+      "id": "B-wet-zone",
+      "building_id": "B",
+      "floor_id": "floor-2",
+      "polygon_mm": [
+        [
+          3500,
+          500
+        ],
+        [
+          5300,
+          500
+        ],
+        [
+          5300,
+          2500
+        ],
+        [
+          3500,
+          2500
+        ]
+      ],
+      "geometry_method": "professional_verified_polygon",
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "category": "wet_area"
+    },
+    {
+      "id": "C-equipment",
+      "building_id": "C",
+      "floor_id": "floor-1",
+      "polygon_mm": [
+        [
+          500,
+          500
+        ],
+        [
+          1500,
+          500
+        ],
+        [
+          1500,
+          1500
+        ],
+        [
+          500,
+          1500
+        ]
+      ],
+      "geometry_method": "professional_verified_polygon",
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      }
+    },
+    {
+      "id": "C-service-zone",
+      "building_id": "C",
+      "floor_id": "floor-1",
+      "polygon_mm": [
+        [
+          1600,
+          500
+        ],
+        [
+          2800,
+          500
+        ],
+        [
+          2800,
+          2000
+        ],
+        [
+          1600,
+          2000
+        ]
+      ],
+      "geometry_method": "professional_verified_polygon",
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      }
+    },
+    {
+      "id": "C-cabinet",
+      "building_id": "C",
+      "floor_id": "floor-1",
+      "polygon_mm": [
+        [
+          4000,
+          500
+        ],
+        [
+          4800,
+          500
+        ],
+        [
+          4800,
+          1700
+        ],
+        [
+          4000,
+          1700
+        ]
+      ],
+      "geometry_method": "professional_verified_polygon",
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "priority": "must",
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "id": "A-turn",
+      "title": "A：指定輪椅迴轉區（示範門檻，非法定）",
+      "kind": "turning_circle",
+      "domain": "accessibility",
+      "subject_id": "A-room",
+      "center_mm": [
+        3500,
+        3500
+      ],
+      "diameter_mm": 1500
+    },
+    {
+      "priority": "must",
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "id": "A-headroom",
+      "title": "A：完成面最低淨高（示範屋主標準）",
+      "kind": "headroom",
+      "domain": "structural",
+      "subject_id": "A-room",
+      "minimum_mm": 2200
+    },
+    {
+      "priority": "must",
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "id": "B-swing",
+      "title": "B：門扇與神桌保護區",
+      "kind": "collision",
+      "domain": "space_program",
+      "subject_id": "B-altar",
+      "target_ids": [
+        "B-door-sweep"
+      ]
+    },
+    {
+      "priority": "must",
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "id": "B-stack",
+      "title": "B：神桌上方濕區投影",
+      "kind": "projection",
+      "domain": "fengshui",
+      "subject_id": "B-altar",
+      "target_ids": [
+        "B-wet-zone",
+        "B-door-sweep"
+      ]
+    },
+    {
+      "priority": "must",
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "id": "B-carry",
+      "title": "B：武轎暫估收納不能當作實測搬運",
+      "kind": "carry_route",
+      "domain": "maintenance",
+      "subject_id": "B-room",
+      "obstacle_ids": [
+        "B-altar",
+        "B-door-sweep"
+      ],
+      "path_mm": [
+        [
+          1800,
+          3500
+        ],
+        [
+          6000,
+          3500
+        ]
+      ],
+      "width_mm": 1400,
+      "route_clear_height_mm": 2600,
+      "transport": {
+        "width_mm": 1200,
+        "depth_mm": 2200,
+        "height_mm": 2100,
+        "measurement_state": "estimated"
+      }
+    },
+    {
+      "priority": "must",
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "id": "C-service",
+      "title": "C：設備維修抽換操作區",
+      "kind": "clearance",
+      "domain": "maintenance",
+      "subject_id": "C-room",
+      "target_ids": [
+        "C-service-zone"
+      ],
+      "obstacle_ids": [
+        "C-equipment",
+        "C-cabinet"
+      ]
+    }
+  ],
+  "coverage": [
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "domain": "accessibility",
+      "complete": true,
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "check_ids": [
+        "A-turn",
+        "A-headroom",
+        "B-swing",
+        "B-stack",
+        "B-carry",
+        "C-service"
+      ],
+      "object_ids": [
+        "A-room"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "domain": "space_program",
+      "complete": true,
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "check_ids": [
+        "A-turn",
+        "A-headroom",
+        "B-swing",
+        "B-stack",
+        "B-carry",
+        "C-service"
+      ],
+      "object_ids": [
+        "A-room"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "domain": "fengshui",
+      "complete": true,
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "check_ids": [
+        "A-turn",
+        "A-headroom",
+        "B-swing",
+        "B-stack",
+        "B-carry",
+        "C-service"
+      ],
+      "object_ids": [
+        "A-room"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "domain": "structural",
+      "complete": true,
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "check_ids": [
+        "A-turn",
+        "A-headroom",
+        "B-swing",
+        "B-stack",
+        "B-carry",
+        "C-service"
+      ],
+      "object_ids": [
+        "A-room"
+      ]
+    },
+    {
+      "building_id": "A",
+      "floor_id": "floor-1",
+      "domain": "maintenance",
+      "complete": true,
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "check_ids": [
+        "A-turn",
+        "A-headroom",
+        "B-swing",
+        "B-stack",
+        "B-carry",
+        "C-service"
+      ],
+      "object_ids": [
+        "A-room"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-1",
+      "domain": "accessibility",
+      "complete": true,
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "check_ids": [
+        "A-turn",
+        "A-headroom",
+        "B-swing",
+        "B-stack",
+        "B-carry",
+        "C-service"
+      ],
+      "object_ids": [
+        "B-room",
+        "B-altar",
+        "B-door-sweep"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-1",
+      "domain": "space_program",
+      "complete": true,
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "check_ids": [
+        "A-turn",
+        "A-headroom",
+        "B-swing",
+        "B-stack",
+        "B-carry",
+        "C-service"
+      ],
+      "object_ids": [
+        "B-room",
+        "B-altar",
+        "B-door-sweep"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-1",
+      "domain": "fengshui",
+      "complete": true,
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "check_ids": [
+        "A-turn",
+        "A-headroom",
+        "B-swing",
+        "B-stack",
+        "B-carry",
+        "C-service"
+      ],
+      "object_ids": [
+        "B-room",
+        "B-altar",
+        "B-door-sweep"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-1",
+      "domain": "structural",
+      "complete": true,
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "check_ids": [
+        "A-turn",
+        "A-headroom",
+        "B-swing",
+        "B-stack",
+        "B-carry",
+        "C-service"
+      ],
+      "object_ids": [
+        "B-room",
+        "B-altar",
+        "B-door-sweep"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-1",
+      "domain": "maintenance",
+      "complete": true,
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "check_ids": [
+        "A-turn",
+        "A-headroom",
+        "B-swing",
+        "B-stack",
+        "B-carry",
+        "C-service"
+      ],
+      "object_ids": [
+        "B-room",
+        "B-altar",
+        "B-door-sweep"
+      ]
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-1",
+      "domain": "accessibility",
+      "complete": true,
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "check_ids": [
+        "A-turn",
+        "A-headroom",
+        "B-swing",
+        "B-stack",
+        "B-carry",
+        "C-service"
+      ],
+      "object_ids": [
+        "C-room",
+        "C-equipment",
+        "C-service-zone",
+        "C-cabinet"
+      ]
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-1",
+      "domain": "space_program",
+      "complete": true,
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "check_ids": [
+        "A-turn",
+        "A-headroom",
+        "B-swing",
+        "B-stack",
+        "B-carry",
+        "C-service"
+      ],
+      "object_ids": [
+        "C-room",
+        "C-equipment",
+        "C-service-zone",
+        "C-cabinet"
+      ]
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-1",
+      "domain": "fengshui",
+      "complete": true,
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "check_ids": [
+        "A-turn",
+        "A-headroom",
+        "B-swing",
+        "B-stack",
+        "B-carry",
+        "C-service"
+      ],
+      "object_ids": [
+        "C-room",
+        "C-equipment",
+        "C-service-zone",
+        "C-cabinet"
+      ]
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-1",
+      "domain": "structural",
+      "complete": true,
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "check_ids": [
+        "A-turn",
+        "A-headroom",
+        "B-swing",
+        "B-stack",
+        "B-carry",
+        "C-service"
+      ],
+      "object_ids": [
+        "C-room",
+        "C-equipment",
+        "C-service-zone",
+        "C-cabinet"
+      ]
+    },
+    {
+      "building_id": "C",
+      "floor_id": "floor-1",
+      "domain": "maintenance",
+      "complete": true,
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "check_ids": [
+        "A-turn",
+        "A-headroom",
+        "B-swing",
+        "B-stack",
+        "B-carry",
+        "C-service"
+      ],
+      "object_ids": [
+        "C-room",
+        "C-equipment",
+        "C-service-zone",
+        "C-cabinet"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-2",
+      "domain": "accessibility",
+      "complete": true,
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "check_ids": [
+        "A-turn",
+        "A-headroom",
+        "B-swing",
+        "B-stack",
+        "B-carry",
+        "C-service"
+      ],
+      "object_ids": [
+        "B-upper",
+        "B-wet-zone"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-2",
+      "domain": "space_program",
+      "complete": true,
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "check_ids": [
+        "A-turn",
+        "A-headroom",
+        "B-swing",
+        "B-stack",
+        "B-carry",
+        "C-service"
+      ],
+      "object_ids": [
+        "B-upper",
+        "B-wet-zone"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-2",
+      "domain": "fengshui",
+      "complete": true,
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "check_ids": [
+        "A-turn",
+        "A-headroom",
+        "B-swing",
+        "B-stack",
+        "B-carry",
+        "C-service"
+      ],
+      "object_ids": [
+        "B-upper",
+        "B-wet-zone"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-2",
+      "domain": "structural",
+      "complete": true,
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "check_ids": [
+        "A-turn",
+        "A-headroom",
+        "B-swing",
+        "B-stack",
+        "B-carry",
+        "C-service"
+      ],
+      "object_ids": [
+        "B-upper",
+        "B-wet-zone"
+      ]
+    },
+    {
+      "building_id": "B",
+      "floor_id": "floor-2",
+      "domain": "maintenance",
+      "complete": true,
+      "evidence": {
+        "verified_by": "SYNTHETIC EXAMPLE ONLY",
+        "verified_at": "2026-10-01",
+        "reference": "DEMO / NOT A REAL DRAWING"
+      },
+      "check_ids": [
+        "A-turn",
+        "A-headroom",
+        "B-swing",
+        "B-stack",
+        "B-carry",
+        "C-service"
+      ],
+      "object_ids": [
+        "B-upper",
+        "B-wet-zone"
+      ]
+    }
+  ]
+}

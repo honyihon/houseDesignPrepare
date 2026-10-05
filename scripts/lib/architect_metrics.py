@@ -14,7 +14,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-
 SCHEMA_VERSION = "architect-metrics-v1"
 STATUS_OK = "ok"
 STATUS_ADVISORY = "advisory"

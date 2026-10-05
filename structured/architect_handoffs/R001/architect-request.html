@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>R001 建築師交付需求</title>
+<style>body{font:16px/1.65 system-ui,sans-serif;color:#17212b;max-width:960px;margin:32px auto;padding:0 20px}h1,h2{line-height:1.25}.warn{border-left:5px solid #b45309;background:#fff7ed;padding:14px 16px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #b8c2cc;padding:8px;text-align:left}code{background:#eef2f6;padding:2px 5px}@media print{body{margin:0;max-width:none}}</style></head>
+<body><h1>R001 建築師圖面交付需求</h1><p class="warn">土地尚未選定：這是未來交付規格，不是開始定案或施工授權。</p>
+<h2>檔案</h2><ul><li>PDF ＋ IFC（優先），或 PDF ＋ DXF。</li><li>填妥 <code>delivery.json</code> 與 <code>mapping.json</code>。</li><li>前身 HTML 只供需求對照，不是權威幾何。</li></ul>
+<h2>預期棟層</h2><table><thead><tr><th>棟</th><th>樓層</th><th>必要證據</th></tr></thead><tbody><tr><td>A</td><td>floor-1</td><td>□ 標高　□ 層高　□ 圖號證據</td></tr><tr><td>A</td><td>floor-2</td><td>□ 標高　□ 層高　□ 圖號證據</td></tr><tr><td>A</td><td>floor-3</td><td>□ 標高　□ 層高　□ 圖號證據</td></tr><tr><td>A</td><td>floor-rf</td><td>□ 標高　□ 層高　□ 圖號證據</td></tr><tr><td>B</td><td>floor-1</td><td>□ 標高　□ 層高　□ 圖號證據</td></tr><tr><td>B</td><td>floor-2</td><td>□ 標高　□ 層高　□ 圖號證據</td></tr><tr><td>B</td><td>floor-3</td><td>□ 標高　□ 層高　□ 圖號證據</td></tr><tr><td>B</td><td>floor-rf</td><td>□ 標高　□ 層高　□ 圖號證據</td></tr><tr><td>C</td><td>floor-1</td><td>□ 標高　□ 層高　□ 圖號證據</td></tr><tr><td>C</td><td>floor-2</td><td>□ 標高　□ 層高　□ 圖號證據</td></tr><tr><td>C</td><td>floor-3</td><td>□ 標高　□ 層高　□ 圖號證據</td></tr><tr><td>C</td><td>floor-rf</td><td>□ 標高　□ 層高　□ 圖號證據</td></tr></tbody></table>
+<h2>模型內容</h2><ul><li>空間閉合邊界、棟層位置與 requirement_id。</li><li>已驗證座標、至少兩個基準點及各層標高。</li><li>walkthrough 另需牆、樓梯、門窗位置／高度、設備範圍。</li><li>完工門淨寬需獨立量測型態與圖號證據。</li></ul>
+<h2>交回前</h2><p>執行 <code>house-design drawings preflight --package structured/architect_handoffs/R001</code>；此步只在暫存目錄試匯入，不建立 R001。</p>
+<details><summary>Markdown 原文</summary><pre># R001 建築師圖面交付需求
+
+&gt; 目前土地尚未選定；本包是未來圖面交付契約，不是開始定案或施工授權。
+
+## 必交檔案
+
+- 同一版次的 PDF 圖冊。
+- 優先提供 IFC；若只有 DWG，請另存 DXF。IFC 與 DXF 可同時提供，但跨格式合併只接受明確 IFC GlobalId。
+- 填妥 `delivery.json` 與 `mapping.json`；所有檔案應放在本目錄內並使用相對路徑。
+- 前身 A／B／C HTML 位於 `legacy-reference/`，只用來討論房間需求與名稱，不是基地、權威幾何或合規證據。
+
+## 必須可追溯的模型資料
+
+- 棟別只使用：A, B, C。
+- 預期棟層：A floor-1、A floor-2、A floor-3、A floor-rf、B floor-1、B floor-2、B floor-3、B floor-rf、C floor-1、C floor-2、C floor-3、C floor-rf。
+- 每個 IfcSpace 或 DXF 閉合空間需有棟別、樓層、名稱；能對應屋主需求時填 `requirement_id`。
+- 座標需寫明單位、軸向、查核人、日期、方法及至少兩個共同基準點。
+- 樓層需提供 `elevation_mm`、層高、查核人、日期及圖號證據；1F 也要明列 0 mm 基準。
+- 走入式模型另需：精確空間 polygon、牆、樓梯、門窗位置與高度、固定設備位置或經查核的不適用聲明。
+- 門窗幾何外框不可自動當成完工淨寬；淨寬必須標示量測型態並附門窗表／圖號證據。
+
+## 交回前檢查
+
+將檔案放入本包並更新 `delivery.json` 後，在專案根目錄執行：
+
+```bash
+.venv/bin/python -m house_design drawings preflight --package structured/architect_handoffs/R001
+```
+
+preflight 使用暫存目錄試匯入，不會建立或覆寫 `inputs/revisions/R001`。通過後才執行正式不可變匯入；若要修改圖面，使用新的 revision id，不得覆寫既有版次。
+
+## 狀態解讀
+
+- `ready_for_import`：檔案格式、mapping 與語意足以建立正常版次。
+- `ready_for_space_block`：可產生有來源追溯的空間量體 3D。
+- `ready_for_walkthrough`：牆、開口、樓梯、高度及設備範圍也完整；仍不等於法規或施工簽證。
+</pre></details></body></html>

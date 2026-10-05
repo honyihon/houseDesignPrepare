@@ -4,10 +4,11 @@ import html
 from pathlib import Path
 from typing import Any
 
-from house_design.contracts import ContractError, ROOT, read_json
-from house_design.drawings import REVISION_ROOT, assess_model3d_readiness, load_revision
+from house_design.contracts import ROOT, ContractError, read_json
+from house_design.drawing_readiness import assess_model3d_readiness
+from house_design.drawings import load_revision
 from house_design.rendering import encode_html_json
-
+from house_design.revision_integrity import REVISION_ROOT
 
 THREE_PATH = ROOT / "assets/vendor/three/three.min.js"
 

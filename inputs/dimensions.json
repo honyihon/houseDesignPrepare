@@ -123,40 +123,80 @@
     "B": {
       "floors": {
         "floor-1": {
-          "width_mm": 11000.0,
-          "depth_mm": 5300.0,
+          "width_mm": 6000.0,
+          "depth_mm": 17630.0,
           "north_deg": 0.0,
           "storey_height_mm": 3000.0,
           "_provenance": "auto",
           "_title": "1F",
-          "cells": {}
+          "_note": "2026-09-09 B 棟概念安全版座標；基地與完成面未實測，僅供配置檢核。前方固定為 y=0。",
+          "cells": {
+            "entry": {"x_mm": 0.0, "y_mm": 0.0, "w_mm": 2600.0, "h_mm": 1800.0, "_provenance": "auto", "_name": "玄關"},
+            "storage": {"x_mm": 0.0, "y_mm": 1800.0, "w_mm": 2600.0, "h_mm": 4600.0, "_provenance": "auto", "_name": "武轎室"},
+            "garage": {"x_mm": 2600.0, "y_mm": 0.0, "w_mm": 3400.0, "h_mm": 6400.0, "_provenance": "auto", "_name": "車庫"},
+            "corridor1": {"x_mm": 0.0, "y_mm": 6400.0, "w_mm": 6000.0, "h_mm": 1315.0, "_provenance": "auto", "_name": "轉折走道"},
+            "balcony1": {"x_mm": 0.0, "y_mm": 7715.0, "w_mm": 3000.0, "h_mm": 1785.0, "_provenance": "auto", "_name": "工作陽台"},
+            "bath1": {"x_mm": 0.0, "y_mm": 9500.0, "w_mm": 3000.0, "h_mm": 3200.0, "_provenance": "auto", "_name": "無障礙衛浴"},
+            "stair1": {"x_mm": 3000.0, "y_mm": 7715.0, "w_mm": 3000.0, "h_mm": 3300.0, "_provenance": "auto", "_name": "樓梯間"},
+            "idf-cabinet": {"x_mm": 3000.0, "y_mm": 11015.0, "w_mm": 3000.0, "h_mm": 1685.0, "_provenance": "auto", "_name": "後梯廳／IDF 壁櫃"},
+            "shrine": {"x_mm": 0.0, "y_mm": 12700.0, "w_mm": 6000.0, "h_mm": 4930.0, "_provenance": "auto", "_name": "神明廳"}
+          }
         },
         "floor-2": {
-          "width_mm": 11000.0,
-          "depth_mm": 5400.0,
+          "width_mm": 6000.0,
+          "depth_mm": 17630.0,
           "north_deg": 0.0,
           "storey_height_mm": 3000.0,
           "_provenance": "auto",
           "_title": "2F",
-          "cells": {}
+          "_note": "與 1F 共用概念座標框；濕區與樓梯集中 y<12700，神桌後帶投影只安排乾式主臥。",
+          "cells": {
+            "living2": {"x_mm": 0.0, "y_mm": 0.0, "w_mm": 6000.0, "h_mm": 6400.0, "_provenance": "auto", "_name": "家庭大客廳"},
+            "corridor2": {"x_mm": 0.0, "y_mm": 6400.0, "w_mm": 6000.0, "h_mm": 1315.0, "_provenance": "auto", "_name": "轉折走道"},
+            "balcony2": {"x_mm": 0.0, "y_mm": 7715.0, "w_mm": 3000.0, "h_mm": 1615.0, "_provenance": "auto", "_name": "2F 景觀陽臺"},
+            "bath2": {"x_mm": 0.0, "y_mm": 9330.0, "w_mm": 3000.0, "h_mm": 1615.0, "_provenance": "auto", "_name": "客用衛浴"},
+            "master-bath2": {"x_mm": 0.0, "y_mm": 10945.0, "w_mm": 3000.0, "h_mm": 1755.0, "_provenance": "auto", "_name": "主臥衛浴"},
+            "stair2": {"x_mm": 3000.0, "y_mm": 7715.0, "w_mm": 3000.0, "h_mm": 3300.0, "_provenance": "auto", "_name": "樓梯間"},
+            "bar2": {"x_mm": 3000.0, "y_mm": 11015.0, "w_mm": 3000.0, "h_mm": 1685.0, "_provenance": "auto", "_name": "茶水吧／梯廳"},
+            "master2": {"x_mm": 0.0, "y_mm": 12700.0, "w_mm": 6000.0, "h_mm": 4930.0, "_provenance": "auto", "_name": "主臥乾區"}
+          }
         },
         "floor-3": {
-          "width_mm": 11000.0,
-          "depth_mm": 5300.0,
+          "width_mm": 6000.0,
+          "depth_mm": 17630.0,
           "north_deg": 0.0,
           "storey_height_mm": 3000.0,
           "_provenance": "auto",
           "_title": "3F",
-          "cells": {}
+          "_note": "KTV 移至前帶；中段為樓梯、衛浴與設備緩衝，後帶只留安靜客房。",
+          "cells": {
+            "terrace3": {"x_mm": 0.0, "y_mm": 0.0, "w_mm": 6000.0, "h_mm": 2400.0, "_provenance": "auto", "_name": "前側彈性室內區"},
+            "ktv3": {"x_mm": 0.0, "y_mm": 2400.0, "w_mm": 6000.0, "h_mm": 4000.0, "_provenance": "auto", "_name": "多功能娛樂室"},
+            "corridor3": {"x_mm": 0.0, "y_mm": 6400.0, "w_mm": 6000.0, "h_mm": 1315.0, "_provenance": "auto", "_name": "隔音轉折走道"},
+            "balcony3": {"x_mm": 0.0, "y_mm": 7715.0, "w_mm": 3000.0, "h_mm": 1785.0, "_provenance": "auto", "_name": "工作陽台"},
+            "bath3": {"x_mm": 0.0, "y_mm": 9500.0, "w_mm": 3000.0, "h_mm": 3200.0, "_provenance": "auto", "_name": "3F 衛浴"},
+            "stair3": {"x_mm": 3000.0, "y_mm": 7715.0, "w_mm": 3000.0, "h_mm": 3300.0, "_provenance": "auto", "_name": "正式樓梯間"},
+            "buffer3": {"x_mm": 3000.0, "y_mm": 11015.0, "w_mm": 3000.0, "h_mm": 1685.0, "_provenance": "auto", "_name": "隔音／設備緩衝"},
+            "guest3": {"x_mm": 0.0, "y_mm": 12700.0, "w_mm": 6000.0, "h_mm": 4930.0, "_provenance": "auto", "_name": "後客房"}
+          }
         },
         "floor-4": {
-          "width_mm": 11000.0,
-          "depth_mm": 5400.0,
+          "width_mm": 6000.0,
+          "depth_mm": 17630.0,
           "north_deg": 0.0,
           "storey_height_mm": 3000.0,
           "_provenance": "auto",
           "_title": "RF",
-          "cells": {}
+          "_note": "正式樓梯到達；設備集中中段，y>=12700 為神桌上方禁設備、低活動保護區。",
+          "cells": {
+            "platform-rf": {"x_mm": 0.0, "y_mm": 0.0, "w_mm": 6000.0, "h_mm": 7715.0, "_provenance": "auto", "_name": "前側活動平台"},
+            "tank-rf": {"x_mm": 0.0, "y_mm": 7715.0, "w_mm": 3000.0, "h_mm": 1585.0, "_provenance": "auto", "_name": "B 棟水塔"},
+            "pump-rf": {"x_mm": 0.0, "y_mm": 9300.0, "w_mm": 3000.0, "h_mm": 1585.0, "_provenance": "auto", "_name": "VF800 恆壓"},
+            "hotwater-rf": {"x_mm": 0.0, "y_mm": 10885.0, "w_mm": 3000.0, "h_mm": 1815.0, "_provenance": "auto", "_name": "Haier 熱泵熱水器"},
+            "stairRF": {"x_mm": 3000.0, "y_mm": 7715.0, "w_mm": 3000.0, "h_mm": 3300.0, "_provenance": "auto", "_name": "樓梯屋突"},
+            "service-rf": {"x_mm": 3000.0, "y_mm": 11015.0, "w_mm": 3000.0, "h_mm": 1685.0, "_provenance": "auto", "_name": "設備維修淨空"},
+            "shrine-buffer-rf": {"x_mm": 0.0, "y_mm": 12700.0, "w_mm": 6000.0, "h_mm": 4930.0, "_provenance": "auto", "_name": "神桌上方無設備保護區"}
+          }
         }
       }
     },

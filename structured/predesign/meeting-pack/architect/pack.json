@@ -1,0 +1,1665 @@
+{
+  "schema": "house-meeting-pack-v1",
+  "audience": "architect",
+  "generated_at": "2026-10-05T01:55:03.807970+00:00",
+  "project": {
+    "project_id": "kaohsiung-three-house-compound",
+    "name": "高雄三棟住宅前期規劃",
+    "stage": "site_search"
+  },
+  "warnings": [
+    "本資料夾全部是屋主端的前期整理，不是法規檢討、不是設計圖、也不是可行性意見。所有分區、建蔽率、容積率、退縮、建築線、結構與消防結論，都必須由高雄市執業建築師依個案正式認定並簽證。",
+    "土地尚未選定。三筆相鄰、每筆約 32 坪是選地目標，不是已取得的基地，更不是每層可建面積。",
+    "未知永遠不是通過：本包內任何標示「未知／資料不足」的項目，都不得被當成已通過或已合規。"
+  ],
+  "sections": [
+    {
+      "id": "identity",
+      "number": 1,
+      "title": "我們是誰、要蓋什麼",
+      "available": true,
+      "facts": [
+        [
+          "專案",
+          "高雄三棟住宅前期規劃"
+        ],
+        [
+          "目前階段",
+          "site_search"
+        ],
+        [
+          "土地狀態",
+          "searching"
+        ],
+        [
+          "選地目標",
+          "三筆相鄰土地，每筆約 32 坪"
+        ],
+        [
+          "已登錄候選地",
+          1
+        ],
+        [
+          "層數政策",
+          "每棟 3 層＋RF（RF 是屋頂層，不是第四層）"
+        ]
+      ],
+      "buildings": [
+        {
+          "id": "A",
+          "role": "主要設備與全齡生活棟",
+          "status": "屋主已確認的前期定位"
+        },
+        {
+          "id": "B",
+          "role": "祭祀傳承棟",
+          "status": "屋主已確認的前期定位"
+        },
+        {
+          "id": "C",
+          "role": "長輩友善自住棟",
+          "status": "屋主已確認的前期定位"
+        }
+      ],
+      "shared_items": [
+        "共同車道與車輛迴轉",
+        "跨棟給排水、電力與弱電路徑",
+        "棟距、開口與防火間隔",
+        "共用設備的產權、維修與計量"
+      ],
+      "household": {
+        "provided": true,
+        "people_total": 8,
+        "age_bands": {
+          "未分級": 1,
+          "未滿 40 歲": 5,
+          "未滿 70 歲": 2
+        },
+        "usual_building": {
+          "A": 4,
+          "B": 1,
+          "C": 3,
+          "未指定": 0
+        },
+        "mobility_now": {
+          "其他（細節僅保存在私有檔）": 8
+        },
+        "vehicles": [
+          {
+            "category": "汽車",
+            "current_count": 2,
+            "future_count": 3
+          },
+          {
+            "category": "機車",
+            "current_count": 4,
+            "future_count": null
+          }
+        ],
+        "note": "僅呈現去識別化統計；個人資料保留在未進版控的私有檔。"
+      },
+      "note": "土地尚未選定。三筆相鄰、每筆約 32 坪是選地目標，不是已取得的基地，更不是每層可建面積。"
+    },
+    {
+      "id": "criteria",
+      "number": 2,
+      "title": "選地淘汰條件",
+      "available": true,
+      "policy": {
+        "purpose": "把選地淘汰線從散文變成可逐條檢核的資料，讓候選土地比較不靠印象。",
+        "threshold_rule": "門檻未填（value 為 null）時 status 必須是 unknown；程式不得替屋主猜門檻。",
+        "verdict_rule": "任一 hard_eliminate 判定 eliminated 即淘汰該地；任一判定 unknown 時整體只能是 unknown，不得顯示通過。",
+        "authority": "本檔是屋主與建築師共同決定的篩選條件，不是法規條文；法規結論須由高雄市執業建築師依個案認定。"
+      },
+      "criteria": [
+        {
+          "id": "SC-PARCEL-ADJACENCY",
+          "label": "三筆地界相鄰與各棟基地對應",
+          "kind": "must_ask",
+          "threshold": null,
+          "unit": "qualitative",
+          "comparator": "==",
+          "rationale": "相鄰只證明基地關係，不證明三棟核心功能、獨立申照或跨基地管線成立。",
+          "evidence_required": "三筆地籍圖、地號與界址查核；須有來源、查核人與日期",
+          "responsible_role": "建築師／地政士／測量人員"
+        },
+        {
+          "id": "SC-FRONTAGE-MIN",
+          "label": "每棟最小有效面寬",
+          "kind": "hard_eliminate",
+          "threshold": null,
+          "unit": "mm",
+          "comparator": ">=",
+          "rationale": "面寬決定室內車庫是否成立（單車位淨寬由 garage_min_bay_mm 推導），也決定樓梯與走道之後還剩多少可用進深。",
+          "evidence_required": "地籍圖或實測面寬",
+          "responsible_role": "屋主／建築師"
+        },
+        {
+          "id": "SC-DEPTH-MIN",
+          "label": "每棟最小有效深度",
+          "kind": "hard_eliminate",
+          "threshold": null,
+          "unit": "mm",
+          "comparator": ">=",
+          "rationale": "車庫淨深加上前後退縮，是 1F 能否同時容納車庫與完整生活圈的下限。",
+          "evidence_required": "地籍圖或實測深度",
+          "responsible_role": "屋主／建築師"
+        },
+        {
+          "id": "SC-ROAD-WIDTH",
+          "label": "臨路寬度與退縮條件",
+          "kind": "hard_eliminate",
+          "threshold": null,
+          "unit": "m",
+          "comparator": ">=",
+          "rationale": "臨路寬度同時影響建築線、退縮、消防搶救與車輛進出；過窄的既成道路可能無法申照。",
+          "evidence_required": "都發局建築線指定或地籍圖說",
+          "responsible_role": "建築師"
+        },
+        {
+          "id": "SC-CONSTRUCTION-ACCESS",
+          "label": "施工車輛與吊裝進出",
+          "kind": "hard_eliminate",
+          "threshold": null,
+          "unit": "qualitative",
+          "comparator": "==",
+          "rationale": "預拌混凝土車、吊車與板模車進不來，會直接變成小搬運與人工加價，甚至改變結構工法。",
+          "evidence_required": "現勘照片與路寬、轉彎半徑、限高紀錄",
+          "responsible_role": "屋主／營造廠"
+        },
+        {
+          "id": "SC-THREE-PERMITS",
+          "label": "三棟能否各自申照與計量",
+          "kind": "must_ask",
+          "threshold": null,
+          "unit": "qualitative",
+          "comparator": "==",
+          "rationale": "各自申照與合併申請，對建蔽率、法定空地、防火間隔、棟距與水電表位的影響完全不同。",
+          "evidence_required": "建築師書面意見",
+          "responsible_role": "建築師／地政士"
+        },
+        {
+          "id": "SC-CROSS-PARCEL-UTILITY",
+          "label": "跨基地管線是否可行",
+          "kind": "must_ask",
+          "threshold": null,
+          "unit": "qualitative",
+          "comparator": "==",
+          "rationale": "專案已列出跨棟給排水、電力與弱電路徑為待確認事項；若不允許跨基地埋管，三棟的設備策略要重做。",
+          "evidence_required": "給水、電力、污雨排水、弱電各自的可接性、管路權利與責任分界書面查核；每個欄位皆須有來源、查核人與日期",
+          "responsible_role": "建築師／水電／公用事業單位"
+        },
+        {
+          "id": "SC-CORE-FUNCTIONS",
+          "label": "A／B／C 核心功能能否同時容納",
+          "kind": "hard_eliminate",
+          "threshold": null,
+          "unit": "qualitative",
+          "comparator": "==",
+          "rationale": "A 全齡 1F 生活圈、B 神明廳與武轎搬運、C 孝親房與無障礙衛浴是三棟定位的底線；放不下就該換地，不是壓縮需求。",
+          "evidence_required": "建築師逐棟核心機能配置評估與圖面證據；predesign envelope 只能當提問素材，不能當已確認證據",
+          "responsible_role": "屋主／建築師"
+        },
+        {
+          "id": "SC-FLOOD",
+          "label": "淹水潛勢與基地標高排水",
+          "kind": "hard_eliminate",
+          "threshold": null,
+          "unit": "qualitative",
+          "comparator": "==",
+          "rationale": "室內車庫加上高雄降雨，淹水潛勢與相對標高是不可逆的選地條件。",
+          "evidence_required": "水利署防災資訊服務網查詢結果與雨後現勘",
+          "responsible_role": "屋主／建築師"
+        },
+        {
+          "id": "SC-LIQUEFACTION",
+          "label": "土壤液化潛勢",
+          "kind": "must_ask",
+          "threshold": null,
+          "unit": "qualitative",
+          "comparator": "==",
+          "rationale": "液化潛勢影響地質調查範圍、基礎工法與造價，須在出價前知道。",
+          "evidence_required": "土壤液化潛勢查詢系統結果；必要時由技師判斷是否需鑽探",
+          "responsible_role": "建築師／結構技師"
+        },
+        {
+          "id": "SC-NEIGHBOUR-ENV",
+          "label": "噪音、異味、鄰房開口與西曬",
+          "kind": "preference",
+          "threshold": null,
+          "unit": "qualitative",
+          "comparator": "==",
+          "rationale": "白天、夜間與雨後各看一次才看得出來；長輩房與神明廳對這幾項特別敏感。",
+          "evidence_required": "三個時段的現勘紀錄",
+          "responsible_role": "屋主"
+        },
+        {
+          "id": "SC-TOTAL-COST",
+          "label": "土地加基礎、管線與搬運後仍在預算內",
+          "kind": "hard_eliminate",
+          "threshold": null,
+          "unit": "qualitative",
+          "comparator": "==",
+          "rationale": "土地單價便宜但基礎、擋土、管線與小搬運昂貴的基地，總價可能反而超出上限。",
+          "evidence_required": "私有預算表上限與建築師／營造廠粗估",
+          "responsible_role": "屋主／建築師"
+        }
+      ],
+      "unset_count": 12,
+      "note": "12 條中有 12 條門檻尚未設定。會議第 1、2 題的答案就是要填回這裡。"
+    },
+    {
+      "id": "candidates",
+      "number": 3,
+      "title": "候選地比較與缺件",
+      "available": true,
+      "summary": {
+        "criteria_total": 12,
+        "criteria_with_threshold": 0,
+        "criteria_without_threshold": 12,
+        "candidates_total": 1,
+        "verdict_counts": {
+          "keep": 0,
+          "eliminated": 0,
+          "unknown": 1
+        },
+        "open_evidence_items": 12
+      },
+      "candidates": [
+        {
+          "candidate_id": "SITE-001",
+          "label": "測試候選地",
+          "verdict": "unknown",
+          "verdict_label": "資料不足，不得視為通過",
+          "state_counts": {
+            "pass": 0,
+            "eliminated": 0,
+            "unknown": 12,
+            "not_applicable": 0
+          },
+          "missing_evidence": [
+            {
+              "criterion_id": "SC-PARCEL-ADJACENCY",
+              "label": "三筆地界相鄰與各棟基地對應",
+              "kind_label": "必問",
+              "evidence_required": "三筆地籍圖、地號與界址查核；須有來源、查核人與日期",
+              "responsible_role": "建築師／地政士／測量人員",
+              "reason": "門檻尚未設定"
+            },
+            {
+              "criterion_id": "SC-FRONTAGE-MIN",
+              "label": "每棟最小有效面寬",
+              "kind_label": "硬淘汰",
+              "evidence_required": "地籍圖或實測面寬",
+              "responsible_role": "屋主／建築師",
+              "reason": "parcels.PARCEL-A.frontage_mm：門檻尚未設定；parcels.PARCEL-B.frontage_mm：門檻尚未設定；parcels.PARCEL-C.frontage_mm：門檻尚未設定"
+            },
+            {
+              "criterion_id": "SC-DEPTH-MIN",
+              "label": "每棟最小有效深度",
+              "kind_label": "硬淘汰",
+              "evidence_required": "地籍圖或實測深度",
+              "responsible_role": "屋主／建築師",
+              "reason": "parcels.PARCEL-A.depth_mm：門檻尚未設定；parcels.PARCEL-B.depth_mm：門檻尚未設定；parcels.PARCEL-C.depth_mm：門檻尚未設定"
+            },
+            {
+              "criterion_id": "SC-ROAD-WIDTH",
+              "label": "臨路寬度與退縮條件",
+              "kind_label": "硬淘汰",
+              "evidence_required": "都發局建築線指定或地籍圖說",
+              "responsible_role": "建築師",
+              "reason": "門檻尚未設定"
+            },
+            {
+              "criterion_id": "SC-CONSTRUCTION-ACCESS",
+              "label": "施工車輛與吊裝進出",
+              "kind_label": "硬淘汰",
+              "evidence_required": "現勘照片與路寬、轉彎半徑、限高紀錄",
+              "responsible_role": "屋主／營造廠",
+              "reason": "門檻尚未設定"
+            },
+            {
+              "criterion_id": "SC-THREE-PERMITS",
+              "label": "三棟能否各自申照與計量",
+              "kind_label": "必問",
+              "evidence_required": "建築師書面意見",
+              "responsible_role": "建築師／地政士",
+              "reason": "門檻尚未設定"
+            },
+            {
+              "criterion_id": "SC-CROSS-PARCEL-UTILITY",
+              "label": "跨基地管線是否可行",
+              "kind_label": "必問",
+              "evidence_required": "給水、電力、污雨排水、弱電各自的可接性、管路權利與責任分界書面查核；每個欄位皆須有來源、查核人與日期",
+              "responsible_role": "建築師／水電／公用事業單位",
+              "reason": "cross_parcel_utilities.water.connectivity：門檻尚未設定；cross_parcel_utilities.water.route_rights：門檻尚未設定；cross_parcel_utilities.water.responsibility_boundary：門檻尚未設定；cross_parcel_utilities.electricity.connectivity：門檻尚未設定；cross_parcel_utilities.electricity.route_rights：門檻尚未設定；cross_parcel_utilities.electricity.responsibility_boundary：門檻尚未設定；cross_parcel_utilities.sewer_and_stormwater.connectivity：門檻尚未設定；cross_parcel_utilities.sewer_and_stormwater.route_rights：門檻尚未設定；cross_parcel_utilities.sewer_and_stormwater.responsibility_boundary：門檻尚未設定；cross_parcel_utilities.telecom.connectivity：門檻尚未設定；cross_parcel_utilities.telecom.route_rights：門檻尚未設定；cross_parcel_utilities.telecom.responsibility_boundary：門檻尚未設定"
+            },
+            {
+              "criterion_id": "SC-CORE-FUNCTIONS",
+              "label": "A／B／C 核心功能能否同時容納",
+              "kind_label": "硬淘汰",
+              "evidence_required": "建築師逐棟核心機能配置評估與圖面證據；predesign envelope 只能當提問素材，不能當已確認證據",
+              "responsible_role": "屋主／建築師",
+              "reason": "core_function_assessment.A：門檻尚未設定；core_function_assessment.B：門檻尚未設定；core_function_assessment.C：門檻尚未設定"
+            },
+            {
+              "criterion_id": "SC-FLOOD",
+              "label": "淹水潛勢與基地標高排水",
+              "kind_label": "硬淘汰",
+              "evidence_required": "水利署防災資訊服務網查詢結果與雨後現勘",
+              "responsible_role": "屋主／建築師",
+              "reason": "門檻尚未設定"
+            },
+            {
+              "criterion_id": "SC-LIQUEFACTION",
+              "label": "土壤液化潛勢",
+              "kind_label": "必問",
+              "evidence_required": "土壤液化潛勢查詢系統結果；必要時由技師判斷是否需鑽探",
+              "responsible_role": "建築師／結構技師",
+              "reason": "門檻尚未設定"
+            },
+            {
+              "criterion_id": "SC-NEIGHBOUR-ENV",
+              "label": "噪音、異味、鄰房開口與西曬",
+              "kind_label": "偏好",
+              "evidence_required": "三個時段的現勘紀錄",
+              "responsible_role": "屋主",
+              "reason": "門檻尚未設定"
+            },
+            {
+              "criterion_id": "SC-TOTAL-COST",
+              "label": "土地加基礎、管線與搬運後仍在預算內",
+              "kind_label": "硬淘汰",
+              "evidence_required": "私有預算表上限與建築師／營造廠粗估",
+              "responsible_role": "屋主／建築師",
+              "reason": "budget_assessment.affordability：門檻尚未設定；budget_assessment.budget_limit_reviewed：門檻尚未設定；budget_assessment.land_estimate_reviewed：門檻尚未設定；budget_assessment.foundation_estimate_reviewed：門檻尚未設定；budget_assessment.utility_estimate_reviewed：門檻尚未設定；budget_assessment.handling_estimate_reviewed：門檻尚未設定"
+            }
+          ]
+        }
+      ],
+      "next_actions": [
+        {
+          "kind": "threshold",
+          "target": "SC-PARCEL-ADJACENCY",
+          "action": "與建築師談定「三筆地界相鄰與各棟基地對應」的門檻值，填回 inputs/site-criteria.json",
+          "responsible_role": "建築師／地政士／測量人員"
+        },
+        {
+          "kind": "threshold",
+          "target": "SC-FRONTAGE-MIN",
+          "action": "與建築師談定「每棟最小有效面寬」的門檻值，填回 inputs/site-criteria.json",
+          "responsible_role": "屋主／建築師"
+        },
+        {
+          "kind": "threshold",
+          "target": "SC-DEPTH-MIN",
+          "action": "與建築師談定「每棟最小有效深度」的門檻值，填回 inputs/site-criteria.json",
+          "responsible_role": "屋主／建築師"
+        },
+        {
+          "kind": "threshold",
+          "target": "SC-ROAD-WIDTH",
+          "action": "與建築師談定「臨路寬度與退縮條件」的門檻值，填回 inputs/site-criteria.json",
+          "responsible_role": "建築師"
+        },
+        {
+          "kind": "threshold",
+          "target": "SC-CONSTRUCTION-ACCESS",
+          "action": "與建築師談定「施工車輛與吊裝進出」的門檻值，填回 inputs/site-criteria.json",
+          "responsible_role": "屋主／營造廠"
+        },
+        {
+          "kind": "threshold",
+          "target": "SC-THREE-PERMITS",
+          "action": "與建築師談定「三棟能否各自申照與計量」的門檻值，填回 inputs/site-criteria.json",
+          "responsible_role": "建築師／地政士"
+        },
+        {
+          "kind": "threshold",
+          "target": "SC-CROSS-PARCEL-UTILITY",
+          "action": "與建築師談定「跨基地管線是否可行」的門檻值，填回 inputs/site-criteria.json",
+          "responsible_role": "建築師／水電／公用事業單位"
+        },
+        {
+          "kind": "threshold",
+          "target": "SC-CORE-FUNCTIONS",
+          "action": "與建築師談定「A／B／C 核心功能能否同時容納」的門檻值，填回 inputs/site-criteria.json",
+          "responsible_role": "屋主／建築師"
+        },
+        {
+          "kind": "threshold",
+          "target": "SC-FLOOD",
+          "action": "與建築師談定「淹水潛勢與基地標高排水」的門檻值，填回 inputs/site-criteria.json",
+          "responsible_role": "屋主／建築師"
+        },
+        {
+          "kind": "threshold",
+          "target": "SC-LIQUEFACTION",
+          "action": "與建築師談定「土壤液化潛勢」的門檻值，填回 inputs/site-criteria.json",
+          "responsible_role": "建築師／結構技師"
+        },
+        {
+          "kind": "threshold",
+          "target": "SC-NEIGHBOUR-ENV",
+          "action": "與建築師談定「噪音、異味、鄰房開口與西曬」的門檻值，填回 inputs/site-criteria.json",
+          "responsible_role": "屋主"
+        },
+        {
+          "kind": "threshold",
+          "target": "SC-TOTAL-COST",
+          "action": "與建築師談定「土地加基礎、管線與搬運後仍在預算內」的門檻值，填回 inputs/site-criteria.json",
+          "responsible_role": "屋主／建築師"
+        },
+        {
+          "kind": "evidence",
+          "target": "SITE-001 / SC-PARCEL-ADJACENCY",
+          "action": "取得三筆地籍圖、地號與界址查核；須有來源、查核人與日期，補上「三筆地界相鄰與各棟基地對應」",
+          "responsible_role": "建築師／地政士／測量人員"
+        },
+        {
+          "kind": "evidence",
+          "target": "SITE-001 / SC-FRONTAGE-MIN",
+          "action": "取得地籍圖或實測面寬，補上「每棟最小有效面寬」",
+          "responsible_role": "屋主／建築師"
+        },
+        {
+          "kind": "evidence",
+          "target": "SITE-001 / SC-DEPTH-MIN",
+          "action": "取得地籍圖或實測深度，補上「每棟最小有效深度」",
+          "responsible_role": "屋主／建築師"
+        },
+        {
+          "kind": "evidence",
+          "target": "SITE-001 / SC-ROAD-WIDTH",
+          "action": "取得都發局建築線指定或地籍圖說，補上「臨路寬度與退縮條件」",
+          "responsible_role": "建築師"
+        },
+        {
+          "kind": "evidence",
+          "target": "SITE-001 / SC-CONSTRUCTION-ACCESS",
+          "action": "取得現勘照片與路寬、轉彎半徑、限高紀錄，補上「施工車輛與吊裝進出」",
+          "responsible_role": "屋主／營造廠"
+        },
+        {
+          "kind": "evidence",
+          "target": "SITE-001 / SC-THREE-PERMITS",
+          "action": "取得建築師書面意見，補上「三棟能否各自申照與計量」",
+          "responsible_role": "建築師／地政士"
+        },
+        {
+          "kind": "evidence",
+          "target": "SITE-001 / SC-CROSS-PARCEL-UTILITY",
+          "action": "取得給水、電力、污雨排水、弱電各自的可接性、管路權利與責任分界書面查核；每個欄位皆須有來源、查核人與日期，補上「跨基地管線是否可行」",
+          "responsible_role": "建築師／水電／公用事業單位"
+        },
+        {
+          "kind": "evidence",
+          "target": "SITE-001 / SC-CORE-FUNCTIONS",
+          "action": "取得建築師逐棟核心機能配置評估與圖面證據；predesign envelope 只能當提問素材，不能當已確認證據，補上「A／B／C 核心功能能否同時容納」",
+          "responsible_role": "屋主／建築師"
+        },
+        {
+          "kind": "evidence",
+          "target": "SITE-001 / SC-FLOOD",
+          "action": "取得水利署防災資訊服務網查詢結果與雨後現勘，補上「淹水潛勢與基地標高排水」",
+          "responsible_role": "屋主／建築師"
+        },
+        {
+          "kind": "evidence",
+          "target": "SITE-001 / SC-LIQUEFACTION",
+          "action": "取得土壤液化潛勢查詢系統結果；必要時由技師判斷是否需鑽探，補上「土壤液化潛勢」",
+          "responsible_role": "建築師／結構技師"
+        },
+        {
+          "kind": "evidence",
+          "target": "SITE-001 / SC-NEIGHBOUR-ENV",
+          "action": "取得三個時段的現勘紀錄，補上「噪音、異味、鄰房開口與西曬」",
+          "responsible_role": "屋主"
+        },
+        {
+          "kind": "evidence",
+          "target": "SITE-001 / SC-TOTAL-COST",
+          "action": "取得私有預算表上限與建築師／營造廠粗估，補上「土地加基礎、管線與搬運後仍在預算內」",
+          "responsible_role": "屋主／建築師"
+        }
+      ],
+      "compare_hash": "53fca7e539d9abe7a180b802dad435b6354290823c9d1ba82a40157f226584e4",
+      "note": "未知永遠不是通過：本包內任何標示「未知／資料不足」的項目，都不得被當成已通過或已合規。"
+    },
+    {
+      "id": "envelope",
+      "number": 4,
+      "title": "假設量體試算（假設情境）",
+      "available": true,
+      "scenario": "hypothetical",
+      "inputs": {
+        "candidate_id": null,
+        "label": null,
+        "building_coverage_ratio": null,
+        "floor_area_ratio": null,
+        "setback_mm": null,
+        "frontage_mm": null,
+        "depth_mm": null,
+        "parcel_area_sqm": 105.79,
+        "provenance": "assumed",
+        "parcel_area_source": "site_search.target_scenario.target_area_ping_each（選地目標，非已取得基地）",
+        "assumed_fields": [
+          "parcel_area_sqm"
+        ]
+      },
+      "area": {
+        "parcel_area_sqm": 105.79,
+        "parcel_area_ping": 32.0,
+        "legal_footprint_sqm": null,
+        "legal_total_floor_sqm": null,
+        "net_frontage_mm": null,
+        "net_depth_mm": null,
+        "working_depth_mm": null,
+        "working_depth_basis": "未知",
+        "geometric_footprint_sqm": null,
+        "effective_footprint_sqm": null,
+        "effective_footprint_ping": null,
+        "binding_constraint": null,
+        "binding_caveat": "",
+        "total_floor_sqm_at_storeys": null,
+        "storeys_allowed_by_far": null,
+        "far_note": "未給容積率，無法檢查總樓地板上限"
+      },
+      "checks": [
+        {
+          "id": "ENV-GARAGE-1BAY",
+          "building": "A／B／C",
+          "label": "室內單車位車庫（休旅車＋壁掛充電樁）",
+          "required": "淨 3000 × 6100 mm",
+          "verdict": "unknown",
+          "reason": "寬度：缺少可比較的尺寸；深度：缺少可比較的尺寸",
+          "basis": "scripts/lib/plan_geometry.py garage_min_bay_mm()，由 residential_defaults_tw.json 的 vehicle 推導",
+          "basis_kind": "derived"
+        },
+        {
+          "id": "ENV-GARAGE-2BAY",
+          "building": "A／B／C",
+          "label": "室內雙車位車庫",
+          "required": "淨 5250 × 6100 mm",
+          "verdict": "unknown",
+          "reason": "寬度：缺少可比較的尺寸；深度：缺少可比較的尺寸",
+          "basis": "同上，bays=2",
+          "basis_kind": "derived"
+        },
+        {
+          "id": "ENV-PALANQUIN-PATH",
+          "building": "B",
+          "label": "武轎搬運路徑淨寬",
+          "required": "淨寬 1500 mm",
+          "verdict": "unknown",
+          "reason": "缺少可比較的尺寸；此為規劃目標值，搬運外廓尚未完整實測並附查核證據，抬桿與轉彎需求未確認（收納實測不能替代）；尚未完成有證據的實際路徑搬運演練；僅比較量體寬度與規劃門寬，不是門位、轉角、淨高或搬運安全核可",
+          "storage_measured": false,
+          "transport_measured": false,
+          "route_rehearsed": false,
+          "basis": "inputs/physical-items.json transport.door_clear_target_mm",
+          "basis_kind": "planning_value"
+        },
+        {
+          "id": "ENV-WHEELCHAIR-TURN",
+          "building": "A／B／C",
+          "label": "關鍵節點輪椅迴轉圈",
+          "required": "淨短邊 1500 mm",
+          "verdict": "unknown",
+          "reason": "缺少可比較的尺寸；只檢查量體短邊，未檢查個別房間",
+          "basis": "inputs/site.json corridor.wheelchair_turn_mm",
+          "basis_kind": "planning_value"
+        },
+        {
+          "id": "ENV-GROUND-FLOOR-LIFE",
+          "building": "A",
+          "label": "1F 完整全齡生活圈最小合理面積",
+          "required": "未知",
+          "verdict": "unknown",
+          "reason": "沒有可引用的最小面積依據；本模組不自行發明數字。",
+          "basis": "待建築師提供",
+          "basis_kind": "open_question",
+          "question": "全齡無障礙基準下，1F 要同時容納出入、衛浴、起居與照護動作，最小合理面積是多少？"
+        },
+        {
+          "id": "ENV-SHRINE-STACK",
+          "building": "B",
+          "label": "神明廳與武轎儲藏的上下疊圖關係",
+          "required": "未知",
+          "verdict": "unknown",
+          "reason": "沒有可引用的最小面積依據；本模組不自行發明數字。",
+          "basis": "待建築師提供",
+          "basis_kind": "open_question",
+          "question": "神明廳位置、背牆、排水立管與武轎儲藏的上下對位，在結構與法規上有哪些早期限制？"
+        },
+        {
+          "id": "ENV-ELDER-SUITE",
+          "building": "C",
+          "label": "孝親房＋無障礙衛浴最小合理面積",
+          "required": "未知",
+          "verdict": "unknown",
+          "reason": "沒有可引用的最小面積依據；本模組不自行發明數字。",
+          "basis": "待建築師提供",
+          "basis_kind": "open_question",
+          "question": "含床、衣櫃、輪椅迴轉、淋浴椅與扶手後，孝親房與無障礙衛浴的最小合理面積是多少？"
+        }
+      ],
+      "overall_verdict": "unknown",
+      "overall_verdict_label": "無法判斷",
+      "scenario_hash": "dd855c295ae6ef6b735a39b1afb50bc56d0ffc2d9d801079ed48ed9fa6a5a05f",
+      "warnings": [
+        "假設情境試算，非法規結論；實際可建量體必須由高雄市執業建築師依基地、建築線、法定空地與各項法規個案認定。",
+        "本頁每一個輸入值都是假設或未經查驗的候選地資料；任何一項改變，結論都會改變。請把它當成向建築師提問的素材，不要當成答案。",
+        "幾何極度簡化：矩形基地、四邊等值退縮、不含法定空地位置、騎樓、地界線斜率、防火間隔與屋突計算。真實基地幾乎不會這麼乾淨。",
+        "選地前共用的假設單筆基地情境，不代表 A／B／C 均已驗證。"
+      ],
+      "note": "此頁每個數字都是假設。請建築師直接指出哪個假設不成立。"
+    },
+    {
+      "id": "brief",
+      "number": 5,
+      "title": "設計任務書摘要",
+      "available": true,
+      "summary": {
+        "requirements": 66,
+        "status_counts": {
+          "confirmed": 0,
+          "candidate": 66,
+          "rejected": 0
+        },
+        "priority_counts": {
+          "must": 0,
+          "should": 66,
+          "could": 0
+        },
+        "confirmed_must": 0,
+        "relationships": 11,
+        "relationship_status_counts": {
+          "confirmed": 0,
+          "candidate": 11,
+          "rejected": 0
+        }
+      },
+      "relationships": [
+        {
+          "requirement_title": "玄關（含車庫進屋緩衝）",
+          "building_id": "A",
+          "type_label": "不得一眼看穿（穿堂）",
+          "description": "不得一眼看穿（穿堂）：後工作陽台（含給水進線）（A.floor-1.balcony）",
+          "status_label": "待屋主決定",
+          "rationale": "A 棟大門不可一眼直通後陽台（穿堂）；若用屏風遮擋，不得擋到輪椅動線。"
+        },
+        {
+          "requirement_title": "廚房",
+          "building_id": "A",
+          "type_label": "須直接可達，不穿越其他房間",
+          "description": "須直接可達，不穿越其他房間：後工作陽台（含給水進線）（A.floor-1.balcony）；不得穿越 孝親房（原多功能房）（A.floor-1.elder）",
+          "status_label": "待屋主決定",
+          "rationale": "廚房／餐廳到後工作陽台是關鍵家務動線：要直接開門連通，不得穿越孝親房。"
+        },
+        {
+          "requirement_title": "1F 無障礙公衛",
+          "building_id": "A",
+          "type_label": "門不得正對",
+          "description": "門不得正對：客餐廳（開放式）（A.floor-1.living）",
+          "status_label": "待屋主決定",
+          "rationale": "公衛門不要正對餐廳；原文建議側向口袋門或側開門，並用餐邊櫃遮視線。"
+        },
+        {
+          "requirement_title": "玄關",
+          "building_id": "B",
+          "type_label": "不得一眼看穿（穿堂）",
+          "description": "不得一眼看穿（穿堂）：後工作陽台（水路進線點）（B.floor-1.balcony_b）",
+          "status_label": "待屋主決定",
+          "rationale": "大門到後陽台不可一眼看穿（穿堂）；原文建議半透屏風或格柵拉門，且不得擋祭祀動線。"
+        },
+        {
+          "requirement_title": "神明廳（核心）",
+          "building_id": "B",
+          "type_label": "不得位於其下方",
+          "description": "不得位於其下方：客用衛浴（B.floor-2.bath_g）",
+          "status_label": "待屋主決定",
+          "rationale": "神明廳上方不要有 2F 客用衛浴；至少馬桶、淋浴區與排水管不得壓在神桌正上方（風水紅線，也有漏水與濕氣風險）。"
+        },
+        {
+          "requirement_title": "神明廳（核心）",
+          "building_id": "B",
+          "type_label": "不得位於其下方",
+          "description": "不得位於其下方：主臥衛浴（B.floor-2.master_bath）",
+          "status_label": "待屋主決定",
+          "rationale": "神明廳上方不要有 2F 主臥衛浴；至少馬桶、淋浴區與排水管不得壓在神桌正上方。"
+        },
+        {
+          "requirement_title": "神明廳（核心）",
+          "building_id": "B",
+          "type_label": "須獨立排氣，不得共管",
+          "description": "須獨立排氣，不得共管：戶外",
+          "status_label": "待屋主決定",
+          "rationale": "神明廳排風要 4 吋獨立直排戶外，不與浴室、廚房、ERV 共管；補氣口不可直吹神桌。"
+        },
+        {
+          "requirement_title": "武轎儲藏室",
+          "building_id": "B",
+          "type_label": "須保留搬運路徑",
+          "description": "須保留搬運路徑：大門／入口；搬運物件 B.palanquin.primary；淨寬目標 ≥ 1500 mm",
+          "status_label": "待屋主決定",
+          "rationale": "以武轎實際尺寸檢查從大門到武轎儲藏室的搬運路徑（原文為「大門 → 神明廳 → 儲藏室」）；整座進出時門淨寬目標 ≥150cm，轉向建議 180cm 圓徑，避免 90 度死角。"
+        },
+        {
+          "requirement_title": "神桌上方無設備保護區",
+          "building_id": "B",
+          "type_label": "應上下對齊（位於其上方）",
+          "description": "應上下對齊（位於其上方）：神明廳（核心）（B.floor-1.shrine）",
+          "status_label": "待屋主決定",
+          "rationale": "屋頂神桌上方保護區要落在神明廳正上方；區內不放水塔、泵浦、熱泵、冷氣室外機、逆變器與排水立管等重設備。"
+        },
+        {
+          "requirement_title": "孝親房／長輩房",
+          "building_id": "C",
+          "type_label": "須直接可達，不穿越其他房間",
+          "description": "須直接可達，不穿越其他房間：孝親衛浴（C.floor-1.elder_bath）",
+          "status_label": "待屋主決定",
+          "rationale": "孝親房到孝親衛浴要夜間最短、最亮、無門檻；舊概念把衛浴放在走道對面且兩門正對，照服員可從走道直接進出。"
+        },
+        {
+          "requirement_title": "廁所（乾濕分離）",
+          "building_id": "C",
+          "type_label": "應上下對齊（位於其上方）",
+          "description": "應上下對齊（位於其上方）：廁所（乾濕分離）（C.floor-2.bath_c2）",
+          "status_label": "待屋主決定",
+          "rationale": "2F／3F 衛浴上下對齊，讓管線合理、降低堵塞；是否列為設計凍結待屋主與建築師確認。"
+        }
+      ],
+      "physical_items": [
+        {
+          "id": "B.palanquin.primary",
+          "label": "武轎（收納狀態）",
+          "category": "ceremonial_equipment",
+          "quantity": 1,
+          "building_id": "B",
+          "floor_id": "floor-1",
+          "requirement_id": "B.floor-1.palanquin",
+          "active_dimensions_mm": {
+            "width_mm": 1200.0,
+            "depth_mm": 1700.0,
+            "height_mm": 1800.0
+          },
+          "dimension_source": "planning",
+          "dimension_source_label": "暫估（待實測）",
+          "measurement_count": 0,
+          "transport": {
+            "door_clear_target_mm": 1500,
+            "carrying_poles_removable": null,
+            "assembled_dimensions_mm": null,
+            "note": "1500 mm 是第一版規劃目標，不是由本體寬度自動推得的施工定案；抬桿與轉彎仍待實測。"
+          },
+          "source_note": "2026-09-09 屋主同意先採一般武轎規劃量體；1200 × 1700 mm 取自既有 storage.html 神轎預留區，1800 mm 高為前期保守暫估。"
+        }
+      ],
+      "physical_items_policy": "規劃值只用於前期容量測試；實測完成前不得當成採購、門寬或施工尺寸。",
+      "open_questions": [
+        {
+          "building_id": "A",
+          "role": "主要設備與全齡生活棟",
+          "questions": [
+            {
+              "id": "A-Q1",
+              "number": 1,
+              "text": "A 棟 1F 多功能房可以正式改成孝親房嗎？",
+              "related_requirement_ids": [
+                "A.floor-1.elder"
+              ]
+            },
+            {
+              "id": "A-Q2",
+              "number": 2,
+              "text": "請在圖上畫出床、衣櫃與 150cm 輪椅迴轉圈。",
+              "related_requirement_ids": [
+                "A.floor-1.elder"
+              ]
+            },
+            {
+              "id": "A-Q3",
+              "number": 3,
+              "text": "A 棟 1F 公衛門淨寬可以做到 90cm 嗎？",
+              "related_requirement_ids": [
+                "A.floor-1.bath1"
+              ]
+            },
+            {
+              "id": "A-Q4",
+              "number": 4,
+              "text": "浴室門可以改成橫拉門或外開門嗎？不要內開。",
+              "related_requirement_ids": [
+                "A.floor-1.bath1"
+              ]
+            },
+            {
+              "id": "A-Q5",
+              "number": 5,
+              "text": "浴室能不能做無門檻，改用長條截水溝排水？",
+              "related_requirement_ids": []
+            },
+            {
+              "id": "A-Q6",
+              "number": 6,
+              "text": "馬桶旁、淋浴區、洗手台旁扶手位置在哪裡？",
+              "related_requirement_ids": []
+            },
+            {
+              "id": "A-Q7",
+              "number": 7,
+              "text": "公衛門可以不要正對餐廳嗎？有沒有側開或口袋門方案？",
+              "related_requirement_ids": [
+                "A.floor-1.bath1",
+                "A.floor-1.living"
+              ]
+            },
+            {
+              "id": "A-Q8",
+              "number": 8,
+              "text": "廚房或餐廳能不能直接開門到後陽台，不穿越孝親房？",
+              "related_requirement_ids": [
+                "A.floor-1.kitchen"
+              ]
+            },
+            {
+              "id": "A-Q9",
+              "number": 9,
+              "text": "車庫到玄關、玄關到客廳、客廳到孝親房有沒有任何高低差？",
+              "related_requirement_ids": [
+                "A.floor-1.living"
+              ]
+            },
+            {
+              "id": "A-Q10",
+              "number": 10,
+              "text": "玄關鞋櫃做完後，輪椅還有 150cm 迴轉空間嗎？",
+              "related_requirement_ids": [
+                "A.floor-1.entry"
+              ]
+            },
+            {
+              "id": "A-Q11",
+              "number": 11,
+              "text": "A 棟大門會不會直通後陽台？屏風會不會擋到輪椅？",
+              "related_requirement_ids": [
+                "A.floor-1.balcony",
+                "A.floor-1.entry"
+              ]
+            },
+            {
+              "id": "A-Q12",
+              "number": 12,
+              "text": "RF 水塔、熱泵、MDF 機櫃，有沒有結構、散熱、防水的正式圖說？",
+              "related_requirement_ids": [
+                "A.floor-rf.rf_tank"
+              ]
+            }
+          ]
+        },
+        {
+          "building_id": "B",
+          "role": "祭祀傳承棟",
+          "questions": [
+            {
+              "id": "B-Q1",
+              "number": 1,
+              "text": "B 棟神桌背牆是否為 RC 實牆？厚度多少？",
+              "related_requirement_ids": []
+            },
+            {
+              "id": "B-Q2",
+              "number": 2,
+              "text": "神桌背後有沒有廁所、樓梯、排水立管、電線管？",
+              "related_requirement_ids": []
+            },
+            {
+              "id": "B-Q3",
+              "number": 3,
+              "text": "神桌上方有沒有樑？請提供樑位疊圖。",
+              "related_requirement_ids": []
+            },
+            {
+              "id": "B-Q4",
+              "number": 4,
+              "text": "2F 客衛、主衛或排水管，有沒有壓在神桌正上方？",
+              "related_requirement_ids": [
+                "B.floor-1.shrine"
+              ]
+            },
+            {
+              "id": "B-Q5",
+              "number": 5,
+              "text": "神明廳排風是否 4 吋獨立直排戶外？有沒有共管？",
+              "related_requirement_ids": [
+                "B.floor-1.shrine"
+              ]
+            },
+            {
+              "id": "B-Q6",
+              "number": 6,
+              "text": "補氣口在哪裡？會不會直吹神桌、香爐或神明燈？",
+              "related_requirement_ids": []
+            },
+            {
+              "id": "B-Q7",
+              "number": 7,
+              "text": "大門到後陽台是否一眼看穿？屏風或拉門位置在哪？",
+              "related_requirement_ids": [
+                "B.floor-1.entry_b"
+              ]
+            },
+            {
+              "id": "B-Q8",
+              "number": 8,
+              "text": "樓梯口氣密門是否能防止香火味往上跑？",
+              "related_requirement_ids": []
+            },
+            {
+              "id": "B-Q9",
+              "number": 9,
+              "text": "武轎實際尺寸帶入後，門寬與轉向空間夠不夠？",
+              "related_requirement_ids": [
+                "B.floor-1.palanquin"
+              ]
+            },
+            {
+              "id": "B-Q10",
+              "number": 10,
+              "text": "金紙、香燭是否有獨立金屬櫃或耐燃櫃？",
+              "related_requirement_ids": []
+            },
+            {
+              "id": "B-Q11",
+              "number": 11,
+              "text": "1F 無障礙衛浴是否能畫出 150 或 180cm 輪椅迴轉圈？",
+              "related_requirement_ids": []
+            },
+            {
+              "id": "B-Q12",
+              "number": 12,
+              "text": "RF 水塔、熱泵、VF800 是否有結構技師載重與錨定圖？",
+              "related_requirement_ids": []
+            }
+          ]
+        },
+        {
+          "building_id": "C",
+          "role": "長輩友善自住棟",
+          "questions": [
+            {
+              "id": "C-Q1",
+              "number": 1,
+              "text": "C 棟 1F 孝親房放床、衣櫃後，還能畫出 150cm 輪椅迴轉圈嗎？",
+              "related_requirement_ids": []
+            },
+            {
+              "id": "C-Q2",
+              "number": 2,
+              "text": "孝親房門淨寬可以做到 90～100cm 嗎？",
+              "related_requirement_ids": []
+            },
+            {
+              "id": "C-Q3",
+              "number": 3,
+              "text": "孝親衛浴門可以改橫拉門或外開門嗎？不要內開。",
+              "related_requirement_ids": []
+            },
+            {
+              "id": "C-Q4",
+              "number": 4,
+              "text": "孝親衛浴能不能做無門檻，改長條截水溝？",
+              "related_requirement_ids": []
+            },
+            {
+              "id": "C-Q5",
+              "number": 5,
+              "text": "馬桶旁、淋浴區、洗手台旁扶手位置在哪裡？",
+              "related_requirement_ids": []
+            },
+            {
+              "id": "C-Q6",
+              "number": 6,
+              "text": "車庫到玄關、玄關到客廳、客廳到孝親房有沒有任何高低差？",
+              "related_requirement_ids": []
+            },
+            {
+              "id": "C-Q7",
+              "number": 7,
+              "text": "側院淨寬是否能保證 ≥150cm？完工後如何避免堆物？",
+              "related_requirement_ids": []
+            },
+            {
+              "id": "C-Q8",
+              "number": 8,
+              "text": "側院格柵的抗風固定詳圖誰負責？",
+              "related_requirement_ids": []
+            },
+            {
+              "id": "C-Q9",
+              "number": 9,
+              "text": "2F 洗衣陽台有沒有防水剖面圖、地漏、門檻、緊急溢流？",
+              "related_requirement_ids": []
+            },
+            {
+              "id": "C-Q10",
+              "number": 10,
+              "text": "2F 和 3F 衛浴是否完全上下對齊？能不能列為設計凍結？",
+              "related_requirement_ids": [
+                "C.floor-3.bath_c3"
+              ]
+            },
+            {
+              "id": "C-Q11",
+              "number": 11,
+              "text": "3F 跑步機位置是否靠樑柱？隔振層怎麼做？",
+              "related_requirement_ids": []
+            },
+            {
+              "id": "C-Q12",
+              "number": 12,
+              "text": "RF 水塔、熱泵、VF800 是否有結構技師載重與錨定圖？",
+              "related_requirement_ids": []
+            }
+          ]
+        }
+      ],
+      "brief_hash": "8da9978f405ec7d57be3e1ff80c63383b4536de8e8280bf71541f26745fc58ab",
+      "note": "66 項需求中，已確認 0 項。未確認的項目代表屋主尚未取捨，不是建築師可以自由決定的空白。"
+    },
+    {
+      "id": "blockers",
+      "number": 6,
+      "title": "目前的硬阻擋與責任分工",
+      "available": true,
+      "readiness": {
+        "completed": 3,
+        "total": 10,
+        "percent": 30,
+        "by_phase": {
+          "owner_brief": {
+            "completed": 3,
+            "total": 4
+          },
+          "finance": {
+            "completed": 0,
+            "total": 2
+          },
+          "site_search": {
+            "completed": 0,
+            "total": 4
+          },
+          "site_due_diligence": {
+            "completed": 0,
+            "total": 6
+          },
+          "design": {
+            "completed": 0,
+            "total": 12
+          },
+          "tender": {
+            "completed": 0,
+            "total": 4
+          },
+          "construction": {
+            "completed": 0,
+            "total": 4
+          },
+          "handover": {
+            "completed": 0,
+            "total": 3
+          }
+        }
+      },
+      "gate": {
+        "eligible_for_next_phase": false,
+        "active_blockers": 5,
+        "policy": "目前及先前階段的 blocking 項目必須 verified 或有理由地 not_applicable。"
+      },
+      "blockers": [
+        {
+          "rule_id": "PD-OWNER-HOUSEHOLD-PROFILE",
+          "title": "家庭成員與 20 年情境訪談",
+          "phase": "owner_brief",
+          "status_label": "未知",
+          "responsible_role": "屋主家庭",
+          "next_action": "完成現在、5 年、10 年、20 年四個情境，區分 must／should／could。"
+        },
+        {
+          "rule_id": "PD-BUDGET-CEILING",
+          "title": "總預算上限與資金時程",
+          "phase": "finance",
+          "status_label": "未知",
+          "responsible_role": "屋主／財務顧問",
+          "next_action": "在 gitignored 私有預算表填入精確金額，版控只保留完成狀態與級距。"
+        },
+        {
+          "rule_id": "PD-BUDGET-SCOPE-CONTINGENCY",
+          "title": "預算範圍與備用金",
+          "phase": "finance",
+          "status_label": "未知",
+          "responsible_role": "屋主／建築師",
+          "next_action": "確認每一類是否含稅、運送、安裝、測試與介面工程，並由屋主確認備用金。"
+        },
+        {
+          "rule_id": "PD-SITE-TARGET-CRITERIA",
+          "title": "選地硬條件與淘汰條件",
+          "phase": "site_search",
+          "status_label": "未知",
+          "responsible_role": "屋主／建築師",
+          "next_action": "建立候選土地評分表，先用硬淘汰條件篩掉無法容納三棟定位的基地。"
+        },
+        {
+          "rule_id": "PD-SITE-SELECTED",
+          "title": "候選土地尚未選定",
+          "phase": "site_search",
+          "status_label": "專業確認",
+          "responsible_role": "屋主／建築師／地政士",
+          "next_action": "至少取得候選地號、地籍圖與謄本，再由建築師進行書面初篩。"
+        },
+        {
+          "rule_id": "PD-OWNER-ALL-AGE",
+          "title": "全齡無障礙家庭基準",
+          "phase": "owner_brief",
+          "status_label": "通過",
+          "responsible_role": "屋主／建築師／無障礙顧問",
+          "next_action": "把主要入口、公共生活區、1F 臥室與衛浴的連續無障礙路徑寫入設計任務書。"
+        },
+        {
+          "rule_id": "PD-OWNER-BUILDING-ROLES",
+          "title": "A／B／C 三棟功能定位",
+          "phase": "owner_brief",
+          "status_label": "通過",
+          "responsible_role": "屋主",
+          "next_action": "維持 A 全齡設備棟、B 祭祀傳承棟、C 長輩自住棟，土地確定後再驗證是否容納得下。"
+        },
+        {
+          "rule_id": "PD-OWNER-WHOLE-LIFE-COST",
+          "title": "全生命週期成本原則",
+          "phase": "owner_brief",
+          "status_label": "通過",
+          "responsible_role": "屋主／建築師",
+          "next_action": "先保住防水、外殼、結構、管線與維修性；裝飾、影音及智慧設備可分期。"
+        },
+        {
+          "rule_id": "PD-DUE-BOUNDARY-SURVEY",
+          "title": "界址與現況測量",
+          "phase": "site_due_diligence",
+          "status_label": "警告",
+          "responsible_role": "測量專業人員／建築師",
+          "next_action": "購地或設計定案前完成界址及現況測量，將道路、鄰房、電桿、排水與高程納入。"
+        },
+        {
+          "rule_id": "PD-DUE-GEOTECH-FLOOD",
+          "title": "地質、液化與基地排水風險",
+          "phase": "site_due_diligence",
+          "status_label": "警告",
+          "responsible_role": "大地／結構技師／建築師",
+          "next_action": "由專業人員依建築規模和基地條件決定鑽探需求，並確認防淹、排水與基礎成本。"
+        },
+        {
+          "rule_id": "PD-DUE-LAND-RIGHTS",
+          "title": "地籍、權利與交易文件查核",
+          "phase": "site_due_diligence",
+          "status_label": "警告",
+          "responsible_role": "地政士／屋主",
+          "next_action": "在承諾購買前取得最新謄本、地籍圖及必要權利文件，由地政士書面說明。"
+        },
+        {
+          "rule_id": "PD-DUE-UTILITIES",
+          "title": "公用管線個案可接性",
+          "phase": "site_due_diligence",
+          "status_label": "警告",
+          "responsible_role": "公用事業單位／水電技師／建築師",
+          "next_action": "確認三棟獨立或共用申請方案、表位、管徑容量、責任分界與未來維修權。"
+        },
+        {
+          "rule_id": "PD-DUE-ZONING-ROAD-BUILDABLE",
+          "title": "分區、道路與可建量體書面預檢",
+          "phase": "site_due_diligence",
+          "status_label": "警告",
+          "responsible_role": "高雄市執業建築師",
+          "next_action": "要求建築師以正式資料提出三筆分開檢核及整體配置的法規預檢表。"
+        },
+        {
+          "rule_id": "PD-DESIGN-ACCESSIBLE-ROUTE",
+          "title": "家具與設備完成後的全齡動線",
+          "phase": "design",
+          "status_label": "警告",
+          "responsible_role": "建築師／無障礙顧問／室內設計",
+          "next_action": "在 A 主要公共區與 C 長輩生活圈畫出連續零高差路徑、門淨寬、轉移空間與迴轉圈。"
+        },
+        {
+          "rule_id": "PD-DESIGN-ENVELOPE-COMFORT",
+          "title": "高雄氣候下的隔熱、遮陽與通風",
+          "phase": "design",
+          "status_label": "警告",
+          "responsible_role": "建築師／空調顧問",
+          "next_action": "先降低熱與濕負荷，再選冷氣設備；避免只靠加大冷氣補救外殼。"
+        },
+        {
+          "rule_id": "PD-DESIGN-EQUIPMENT-MAINTENANCE",
+          "title": "設備尺寸、拆換與維修路徑",
+          "phase": "design",
+          "status_label": "警告",
+          "responsible_role": "機電／空調／弱電／屋主",
+          "next_action": "以實際型錄畫進水塔、熱泵、泵浦、室外機、MDF／IDF、濾網和清潔口，保留搬運與拆換淨空。"
+        },
+        {
+          "rule_id": "PD-DESIGN-HEALTHY-DURABLE-MATERIALS",
+          "title": "低逸散材料、室內空氣、濕黴蟲害與沿海腐蝕",
+          "phase": "design",
+          "status_label": "警告",
+          "responsible_role": "建築師／室內設計／空調顧問／材料供應商",
+          "next_action": "依實際基地暴露條件建立材料與 IAQ 規格，畫出防潮排水、可清潔節點與蟲害封堵，要求產品文件、施工養護及入住前通風／檢測證據。"
+        },
+        {
+          "rule_id": "PD-DESIGN-LIFE-SAFETY-SHRINE",
+          "title": "避難、樓梯、火災偵測與祭祀用火安全",
+          "phase": "design",
+          "status_label": "警告",
+          "responsible_role": "建築師／消防設備專業人員／機電／屋主",
+          "next_action": "以家具完成圖逐層走查兩方向避難與救援，建立互聯式偵煙／警報、緊急照明及神明廳明火、香灰、排風和可燃物管理方案。"
+        },
+        {
+          "rule_id": "PD-DESIGN-STRUCTURE-HAZARDS",
+          "title": "三棟整體結構、耐震、強風與地工協調",
+          "phase": "design",
+          "status_label": "警告",
+          "responsible_role": "建築師／結構技師／大地技師",
+          "next_action": "在格局凍結前完成各棟結構系統與地質條件的書面設計基準，疊合梁柱、開口、設備荷重及套管，保留計算與簽證責任。"
+        },
+        {
+          "rule_id": "PD-DESIGN-VERTICAL-MOBILITY",
+          "title": "一樓完整生活與未來垂直移動策略",
+          "phase": "design",
+          "status_label": "警告",
+          "responsible_role": "屋主／建築師／結構技師／無障礙顧問",
+          "next_action": "先證明至少一處 1F 睡眠、如廁、沐浴、用餐與出入口可連續使用，再比較現在設電梯、預留井道／基礎電力或樓梯升降椅的全生命週期方案。"
+        },
+        {
+          "rule_id": "PD-DESIGN-VERTICAL-SYSTEMS",
+          "title": "樓梯、管道間與濕區垂直整合",
+          "phase": "design",
+          "status_label": "警告",
+          "responsible_role": "建築師／結構／機電",
+          "next_action": "平面定案前完成各層疊圖，鎖定不得任意移動的垂直核心、套管與清潔維修口。"
+        },
+        {
+          "rule_id": "PD-DESIGN-WATERPROOF-DRAINAGE",
+          "title": "防水、排水、溢流與穿孔詳圖",
+          "phase": "design",
+          "status_label": "警告",
+          "responsible_role": "建築師／水電／營造",
+          "next_action": "開工前完成剖面和排水方向，訂定閉水／灑水測試與封板前照片證據。"
+        },
+        {
+          "rule_id": "PD-TENDER-BID-COMPARISON",
+          "title": "同範圍估價比較與異常單價釐清",
+          "phase": "tender",
+          "status_label": "警告",
+          "responsible_role": "屋主／建築師／估價顧問",
+          "next_action": "使用同一份數量與規格回標，逐項標記包含、排除、暫估與替代方案。"
+        },
+        {
+          "rule_id": "PD-TENDER-COMPLETE-DOCUMENTS",
+          "title": "跨專業施工圖與界面表完成",
+          "phase": "tender",
+          "status_label": "警告",
+          "responsible_role": "建築師／各技師",
+          "next_action": "發包前凍結建築、結構、機電、空調、弱電與室內界面，列清未包含項目。"
+        },
+        {
+          "rule_id": "PD-TENDER-CONTRACT-CHANGE",
+          "title": "契約、付款、變更單與保固責任",
+          "phase": "tender",
+          "status_label": "警告",
+          "responsible_role": "屋主／建築師／法律顧問",
+          "next_action": "任何追加減都要先有書面變更單、價格與工期影響，避免口頭施工後才結算。"
+        },
+        {
+          "rule_id": "PD-TENDER-SUPERVISION-HOLDPOINTS",
+          "title": "監造頻率與不得越過的查驗點",
+          "phase": "tender",
+          "status_label": "警告",
+          "responsible_role": "建築師／監造／屋主",
+          "next_action": "契約列出鋼筋、澆置、管線試壓、防水、扶手補強、封板及設備試運轉停留點。"
+        },
+        {
+          "rule_id": "PD-CONSTRUCTION-CONCEALED-EVIDENCE",
+          "title": "隱蔽工程查驗與定位照片",
+          "phase": "construction",
+          "status_label": "警告",
+          "responsible_role": "監造／營造",
+          "next_action": "每個停留點以樓層、軸線、尺規與圖號拍照，通過後才准澆置或封板。"
+        },
+        {
+          "rule_id": "PD-CONSTRUCTION-SUBMITTALS-MOCKUPS",
+          "title": "材料送審、樣品與關鍵做法樣板",
+          "phase": "construction",
+          "status_label": "警告",
+          "responsible_role": "監造／營造／屋主",
+          "next_action": "先核定防水、門窗、外牆、磁磚、衛浴與重要收邊樣品，再大量施工。"
+        },
+        {
+          "rule_id": "PD-CONSTRUCTION-SYSTEM-COMMISSIONING",
+          "title": "電氣、空調、弱電與控制試運轉",
+          "phase": "construction",
+          "status_label": "警告",
+          "responsible_role": "機電／空調／弱電／監造",
+          "next_action": "按設備逐項測試正常、故障、停電與手動備援情境，保存量測值與設定備份。"
+        },
+        {
+          "rule_id": "PD-CONSTRUCTION-WATER-TESTS",
+          "title": "防水、排水與給水測試",
+          "phase": "construction",
+          "status_label": "警告",
+          "responsible_role": "監造／水電／防水廠商",
+          "next_action": "依圖說記錄閉水／灑水、排水通水、溢流與給水壓力測試結果及缺失複驗。"
+        },
+        {
+          "rule_id": "PD-HANDOVER-ASBUILT",
+          "title": "竣工圖、管線定位與設備清冊",
+          "phase": "handover",
+          "status_label": "警告",
+          "responsible_role": "建築師／營造／各承包商",
+          "next_action": "交付可編輯與 PDF 竣工圖、閥件／電箱／端點標示、設備序號與實際管線照片索引。"
+        },
+        {
+          "rule_id": "PD-HANDOVER-WARRANTY-MAINTENANCE",
+          "title": "保固、維護週期與責任窗口",
+          "phase": "handover",
+          "status_label": "警告",
+          "responsible_role": "營造／供應商／屋主",
+          "next_action": "建立一頁式叫修表與年度維護日曆，安排保固到期前總檢。"
+        }
+      ],
+      "report_hash": "0f20a2352964afcf61633ba0e9e006bb8bc2f3e697aec761076f55ce49df8dfd",
+      "note": "這些阻擋不是程式可以自行解除的；每一項都要由負責角色補上證據後，由屋主手動改狀態。"
+    },
+    {
+      "id": "handoff",
+      "number": 7,
+      "title": "圖面交付契約預告",
+      "available": true,
+      "revision": null,
+      "label": "初步設計",
+      "root": "structured/architect_handoffs/R001",
+      "expectations": [
+        "PDF 圖面（不可變版次的主文件）",
+        "IFC 或 DXF 幾何；只有 2D CAD 時請將 DWG 另存 DXF",
+        "圖層對應表（mapping v2）：圖層 → 棟別、樓層、空間／門窗／設備",
+        "匯入時原圖與 mapping 會一併雜湊並鎖定在該版次，之後不得就地修改"
+      ],
+      "note": "土地尚未選定，因此這只是未來的交付契約，不是現在的委託。"
+    },
+    {
+      "id": "questions",
+      "number": 8,
+      "title": "本次會議要拿到的答案",
+      "available": true,
+      "questions": [
+        {
+          "number": 1,
+          "text": "以三筆各約 32 坪相鄰地、每棟 3 層＋RF 為前提，最小可接受的面寬與深度是多少？",
+          "why": "這兩個數字直接填回 SC-FRONTAGE-MIN 與 SC-DEPTH-MIN，沒有它們，候選地比較表無法做出任何篩選。",
+          "writes_back": "inputs/site-criteria.json · SC-FRONTAGE-MIN / SC-DEPTH-MIN",
+          "answer": ""
+        },
+        {
+          "number": 2,
+          "text": "三筆地要各自申照還是合併申請？對建蔽率、法定空地、防火間隔與棟距分別有什麼影響？",
+          "why": "影響三棟的量體、棟距與設備策略；也決定跨基地管線是否可行。",
+          "writes_back": "inputs/site-criteria.json · SC-THREE-PERMITS / SC-CROSS-PARCEL-UTILITY",
+          "answer": ""
+        },
+        {
+          "number": 3,
+          "text": "室內車庫（單車位淨 3000 × 6100 mm）在這種面寬下是否成立？不成立時的替代方案是什麼？",
+          "why": "車位在室內是屋主的硬需求；此淨尺寸由休旅車加壁掛充電樁推導，不是抓的。",
+          "writes_back": "inputs/site-criteria.json · SC-FRONTAGE-MIN；envelope 情境的 ENV-GARAGE-1BAY",
+          "answer": ""
+        },
+        {
+          "number": 4,
+          "text": "B 棟神明廳與武轎搬運路徑（目前規劃目標淨寬 1500 mm），在結構與法規上有哪些早期限制？",
+          "why": "神明廳位置與武轎進出會鎖住樓梯、開口與結構，愈晚改代價愈高。",
+          "writes_back": "envelope 情境的 ENV-SHRINE-STACK / ENV-PALANQUIN-PATH",
+          "answer": ""
+        },
+        {
+          "number": 5,
+          "text": "全齡無障礙基準下，1F 完整生活圈（出入、衛浴、睡眠、用餐）的最小合理面積是多少？",
+          "why": "全齡無障礙是不可妥協的家庭基準，但專案目前沒有可引用的最小面積依據，只能標 unknown。",
+          "writes_back": "envelope 情境的 ENV-GROUND-FLOOR-LIFE / ENV-ELDER-SUITE",
+          "answer": ""
+        },
+        {
+          "number": 6,
+          "text": "你需要我在簽約買地前準備哪些文件，才能給出書面可行性意見？費用與時程大概是多少？",
+          "why": "這場會議的目的就是把「憑印象買地」換成「有書面意見再出價」。",
+          "writes_back": "inputs/predesign.json · PD-SITE-SELECTED 的 evidence pointer",
+          "answer": ""
+        }
+      ],
+      "note": "每一題都標明答案會寫回哪個檔案。會後請照這個對應更新，不要只留在記憶裡。"
+    },
+    {
+      "id": "planning",
+      "number": 9,
+      "title": "防漏項與當期決策",
+      "available": true,
+      "report_hash": "cb0714dde13fd258a90fc8339559227c929f6d02978e6c0be91c28127b2b3c08",
+      "summary": {
+        "total_items": 105,
+        "total_requirements": 66,
+        "tracked_requirements": 66,
+        "untracked_requirements": [],
+        "topic_count": 12,
+        "status_counts": {
+          "unknown": 105
+        },
+        "due_items": 8,
+        "due_completed": 0
+      },
+      "readiness": {
+        "eligible_for_decision_freeze": false,
+        "policy": "僅當期決策準備度；未到期項目提前提醒。不取代前期閘門或專業放行。",
+        "due_open_ids": [
+          "PLAN-ACCESSIBILITY-03",
+          "PLAN-HOUSEHOLD-01",
+          "PLAN-HOUSEHOLD-02",
+          "PLAN-HOUSEHOLD-03",
+          "PLAN-RITUAL-01",
+          "PLAN-RITUAL-03",
+          "PLAN-SHARED-01",
+          "PLAN-DELIVERY-01"
+        ]
+      },
+      "warnings": [
+        "已追蹤不等於已驗證；未檢查不等於通過。本表不是法規簽證、施工授權或風水保證。",
+        "土地尚未選定：不推定實際尺寸、造價或可建量體。"
+      ],
+      "conflict_policy": [
+        "依法適用的法規／安全要求與已確認全齡基準先守住，適用性由專業確認。",
+        "土地、結構、樓梯／升降設備、管道、防水及跨棟介面先決定。",
+        "風水與配置衝突列替代、空間／成本／維護代價，屋主確認，不自動取捨。",
+        "可分期的裝飾及設備晚決定；容量、空管與結構預留提前討論。"
+      ],
+      "owner_records": {
+        "record_hash": "045649a2695d84a97ea5435b3e69e13401fba90a37180897d01fd2fbbd799121",
+        "entries": [],
+        "warning": "草稿與屋主回覆不是需求確認、法規簽證或專業驗收。禁止填姓名、健康細節、精確預算及電腦絕對路徑。"
+      },
+      "open_decisions": [
+        {
+          "id": "PLAN-ACCESSIBILITY-03",
+          "title": "升降策略與停電",
+          "question": "預留電梯、樓梯升降或只維持一樓生活？",
+          "building_ids": [
+            "A",
+            "C"
+          ],
+          "due_phase": "site_search",
+          "responsible_role": "屋主／建築師／相關專業",
+          "status": "unknown"
+        },
+        {
+          "id": "PLAN-HOUSEHOLD-01",
+          "title": "家庭20年與分級",
+          "question": "哪些空間與使用需求不能刪？",
+          "building_ids": [
+            "A",
+            "B",
+            "C"
+          ],
+          "due_phase": "site_search",
+          "responsible_role": "屋主／建築師／相關專業",
+          "status": "unknown"
+        },
+        {
+          "id": "PLAN-HOUSEHOLD-02",
+          "title": "共餐及尖峰人數",
+          "question": "日常與尖峰人數各是多少？",
+          "building_ids": [
+            "A",
+            "B",
+            "C"
+          ],
+          "due_phase": "site_search",
+          "responsible_role": "屋主／建築師／相關專業",
+          "status": "unknown"
+        },
+        {
+          "id": "PLAN-HOUSEHOLD-03",
+          "title": "一樓完整生活",
+          "question": "A與C各要保留哪些一樓完整生活能力？",
+          "building_ids": [
+            "A",
+            "B",
+            "C"
+          ],
+          "due_phase": "site_search",
+          "responsible_role": "屋主／建築師／相關專業",
+          "status": "unknown"
+        },
+        {
+          "id": "PLAN-RITUAL-01",
+          "title": "祭祀用火與煙氣",
+          "question": "香燭及金紙在哪裡用、頻率多少？",
+          "building_ids": [
+            "B"
+          ],
+          "due_phase": "site_search",
+          "responsible_role": "屋主／建築師／相關專業",
+          "status": "unknown"
+        },
+        {
+          "id": "PLAN-RITUAL-03",
+          "title": "神桌風水與安全衝突",
+          "question": "哪些風水禁忌是不可接受，哪些可調整？",
+          "building_ids": [
+            "B"
+          ],
+          "due_phase": "site_search",
+          "responsible_role": "屋主／建築師／相關專業",
+          "status": "unknown"
+        },
+        {
+          "id": "PLAN-SHARED-01",
+          "title": "三棟各自或共用",
+          "question": "水電網路和車道各自獨立到什麼程度？",
+          "building_ids": [
+            "A",
+            "B",
+            "C"
+          ],
+          "due_phase": "site_search",
+          "responsible_role": "屋主／建築師／相關專業",
+          "status": "unknown"
+        },
+        {
+          "id": "PLAN-DELIVERY-01",
+          "title": "預算分期與同範圍估價",
+          "question": "總預算範圍備用金與分期順序如何確認？",
+          "building_ids": [
+            "A",
+            "B",
+            "C"
+          ],
+          "due_phase": "finance",
+          "responsible_role": "屋主／建築師／相關專業",
+          "status": "unknown"
+        }
+      ],
+      "note": "本節只引用當期問題；完整十二組情境及驗收總表見 ../../risk-review.html。"
+    }
+  ],
+  "missing_sections": [],
+  "sources": [
+    {
+      "path": "inputs/project.json",
+      "role": "基地事實與候選土地",
+      "exists": true,
+      "produced_by": "屋主維護",
+      "sha256": "c407735841f79c599cd087ad5a9853f1110f50652cefa93b62945addedb5f930"
+    },
+    {
+      "path": "inputs/predesign.json",
+      "role": "階段閘門與三棟定位",
+      "exists": true,
+      "produced_by": "屋主維護",
+      "sha256": "739cc4a6a0dabe2c86f6c6a689832bfcdef0e38caaeed45c5f2a0f623008fb0b"
+    },
+    {
+      "path": "inputs/site-criteria.json",
+      "role": "選地淘汰條件",
+      "exists": true,
+      "produced_by": "屋主與建築師共同填寫",
+      "sha256": "89f8b97d416604d9b1cea55b1ab6fa65a743397da7bdc11ee5fee92c7c1af878"
+    },
+    {
+      "path": "structured/predesign/site-compare.json",
+      "role": "候選地比較",
+      "exists": true,
+      "produced_by": "predesign site-compare",
+      "sha256": "2d85c10e634a7e0db90b86e8f628867aeeb3e3ac9a4dd30c483f1fba9bcfe167"
+    },
+    {
+      "path": "structured/predesign/envelope.json",
+      "role": "假設量體試算",
+      "exists": true,
+      "produced_by": "predesign envelope",
+      "sha256": "a19ae26e93d5bc237eb7943900451fdba6f8bdbef5b4fe87de5098611ac6d6ed"
+    },
+    {
+      "path": "structured/predesign/design-brief.json",
+      "role": "設計任務書",
+      "exists": true,
+      "produced_by": "predesign brief",
+      "sha256": "d72ff0cd79aa8701dc5eb7e81d8fdaa4fb0593f908343a236fe1f197279892b0"
+    },
+    {
+      "path": "structured/predesign/report.json",
+      "role": "前期準備完成度",
+      "exists": true,
+      "produced_by": "predesign report",
+      "sha256": "4ce3477c57c012265a816a85e14ac9daf78b3428075fc60eb62eb887d86fc6ca"
+    },
+    {
+      "path": "structured/architect_handoffs/R001/handoff-manifest.json",
+      "role": "交付契約",
+      "exists": true,
+      "produced_by": "drawings prepare-handoff",
+      "sha256": "99c7169b67cec0e938a824761e739f5c3680a8f5b90ec46fe9b43baddc62d4e1"
+    },
+    {
+      "path": "structured/predesign/risk-review.json",
+      "role": "防漏項與當期決策",
+      "exists": true,
+      "produced_by": "predesign risk-review",
+      "sha256": "84c5b8be524fc5a166a4557e2a98dc011d0eac749d38d0944444852d0f4bdc6f"
+    }
+  ],
+  "pack_hash": "55f2b818b42055a757d4abf757f7d07a103a03e48c22396cdeee311f91abf7ec"
+}

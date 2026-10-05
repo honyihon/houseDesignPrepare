@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from bs4 import BeautifulSoup
-
 from check_html_consistency import check_floor_geometry
 
 
@@ -77,6 +76,22 @@ def test_indoor_missing_window_warns() -> None:
     issues = _run(html)
 
     assert any(i["code"] == "WINDOW_MISSING" and i["level"] == "warning" for i in issues)
+
+
+def test_wide_equipment_transfer_opening_is_not_treated_as_a_typical_door() -> None:
+    html = """
+    <div class="floor-plan" id="floor-1" data-floor-width-mm="3000" data-floor-depth-mm="3000">
+      <div class="plan-grid-visual"><div class="plan-row">
+        <div class="plan-cell" data-x-mm="0" data-y-mm="0" data-w-mm="3000" data-h-mm="3000"
+             data-door-mm="1500" data-window-mm="800" data-carry-path-mm="1500"
+             data-access-mode="straight-pull"><span class="cell-name">設備搬運室</span></div>
+      </div></div>
+    </div>
+    """
+
+    issues = _run(html)
+
+    assert not any(i["code"] == "DOOR_RANGE" for i in issues)
 
 
 def test_invalid_window_value_emits_dedicated_issue() -> None:

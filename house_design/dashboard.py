@@ -7,7 +7,6 @@ from typing import Any
 
 from house_design.contracts import ROOT
 
-
 CONCEPT_PATH = ROOT / "Docs/design/house-review-dashboard-concept.png"
 
 
@@ -336,7 +335,7 @@ __MODEL3D_LINK__
       </section>
 
       <section class="comparison-panel" id="comparison" aria-labelledby="comparisonHeading">
-        <div class="section-header"><h2 id="comparisonHeading">版次比較</h2></div>
+        <div class="section-header"><h2 id="comparisonHeading">版次比較</h2><a href="coordination.html">列印建築／裝潢套繪</a><a id="planningLink" href="risk-review.html" hidden>情境與驗收總表</a></div>
         <div class="comparison-body" id="comparisonBody"></div>
       </section>
     </main>
@@ -379,6 +378,7 @@ __MODEL3D_LINK__
       if (first.path) return first.field ? `${first.path} · ${first.field}` : first.path;
       if (first.revision_id) return first.revision_id;
       if (first.entity_id) return first.entity_id;
+      if (first.kind === 'coordination') return [first.reference?.reference || '缺圖號', ...(first.entity_ids || [])].join(' · ');
       return first.kind || '專案檢核規則';
     }
 
@@ -511,6 +511,8 @@ __MODEL3D_LINK__
           <dt>類別</dt><dd>${escapeHtml(selectedFinding.domain)}</dd>
           <dt>說明</dt><dd>${escapeHtml(selectedFinding.message)}</dd>
           <dt>證據</dt><dd>${escapeHtml(evidenceText(selectedFinding.evidence))}</dd>
+          ${selectedFinding.measurements ? `<dt>實際／門檻</dt><dd>${escapeHtml(JSON.stringify(selectedFinding.measurements))}</dd>` : ''}
+          ${selectedFinding.source && Object.keys(selectedFinding.source).length ? `<dt>門檻來源</dt><dd>${escapeHtml(JSON.stringify(selectedFinding.source))}</dd>` : ''}
           <dt>負責角色</dt><dd>${escapeHtml(selectedFinding.responsible_role)}</dd>
         </dl>
         <div class="next-action"><h4>下一步行動</h4><p>${escapeHtml(selectedFinding.next_action)}</p></div>`;
@@ -541,14 +543,16 @@ __MODEL3D_LINK__
       const host = document.getElementById('comparisonBody');
       if (!comparison) { document.getElementById('comparisonHeading').textContent = '版次比較 · 尚未指定上一版'; host.innerHTML = '<div class="empty-row">下次執行 review run 時加上 --previous R000，即可看到可追溯差異。</div>'; return; }
       document.getElementById('comparisonHeading').textContent = `版次比較：${comparison.from.revision_id} ${comparison.from.label || ''} → ${comparison.to.revision_id} ${comparison.to.label || ''}`;
-      const changes = comparison.changes.slice(0,3);
+      const changes = comparison.changes;
       host.innerHTML = changes.length ? changes.map((change,index) => {
-        const field = change.fields?.[0];
-        const detail = field ? `${field.field}: ${JSON.stringify(field.before)} → ${JSON.stringify(field.after)}` : change.change;
+        const detail = change.fields?.length ? change.fields.map(field => `${field.field}: ${JSON.stringify(field.before)} → ${JSON.stringify(field.after)}`).join('; ') : change.change;
         return `<article class="change"><strong><span class="change-index">${index+1}</span>${escapeHtml(change.name || change.entity_id)}</strong><p>${escapeHtml(detail)}</p></article>`;
       }).join('') : '<div class="empty-row">兩版正規化模型沒有偵測到空間、門窗或設備變更。</div>';
+      const labels = {new:'新增項目／問題', resolved:'已解決', persistent:'持續追蹤', evidence_lost:'證據遺失'};
+      host.innerHTML += (report.coordination_changes || []).map(change => `<article class="change"><strong>${escapeHtml(change.check_id)}</strong><p>${escapeHtml(labels[change.state] || change.state)} · ${escapeHtml(change.before?.status || '無')} → ${escapeHtml(change.after?.status || '已移除')}</p></article>`).join('');
     }
 
+    document.getElementById('planningLink').hidden = !report.planning;
     renderFacts(); renderPredesign(); renderModel3dReadiness(); renderTree(); renderPlan(); renderInspector(); renderFindings(); renderComparison();
     document.getElementById('statusFilter').addEventListener('change',() => renderFindings());
     document.querySelectorAll('.nav button[data-domain]').forEach(button => button.addEventListener('click',() => { document.getElementById('statusFilter').value='all'; renderFindings(button.dataset.domain); document.querySelector('.table-panel').scrollIntoView({behavior:'smooth'}); }));

@@ -8,7 +8,6 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterable
 
-
 ROOT = Path(__file__).resolve().parents[1]
 CACHE_FILE = ROOT / ".house-design-cache.json"
 
@@ -85,8 +84,13 @@ def build_steps(selection: str, style: str, paper: str, output: str, mode: str) 
             _paths(
                 "structured/room_program.json",
                 "inputs/dimensions.json",
+                "inputs/furniture-layout.json",
+                "inputs/physical-items.json",
                 "scripts/export_model_3d.py",
+                "scripts/templates/model3d.html",
                 "scripts/export_top1_svgs.py",
+                "scripts/lib/furniture_layout.py",
+                "house_design/physical_items.py",
                 "scripts/config/residential_defaults_tw.json",
                 "scripts/lib/html_parametric_compare.py",
                 "scripts/lib/standards.py",
@@ -94,9 +98,9 @@ def build_steps(selection: str, style: str, paper: str, output: str, mode: str) 
             ),
             _paths("structured/candidates/model3d.html"),
         ),
-        # The parametric branch does not read the HTML at all: it derives a plan
-        # from the area brief, so it neither depends on nor invalidates anything
-        # above it. It sits here only because the run order has to be some order.
+        # The historical variants derive from the area briefs.  The reviewed B
+        # f6000_g1 concept additionally anchors to dimensions.json so its safety
+        # bands stay aligned with the HTML/original-design 3D branch.
         Step(
             "parametric",
             ("scripts/generate_parametric_plan.py",),
@@ -105,6 +109,7 @@ def build_steps(selection: str, style: str, paper: str, output: str, mode: str) 
                 "inputs/brief/A.json",
                 "inputs/brief/B.json",
                 "inputs/brief/C.json",
+                "inputs/dimensions.json",
                 "scripts/generate_parametric_plan.py",
                 "scripts/lib/plan_geometry.py",
                 "scripts/lib/plan_rules.py",
@@ -123,6 +128,7 @@ def build_steps(selection: str, style: str, paper: str, output: str, mode: str) 
                 # dimension change must therefore invalidate this viewer too.
                 "structured/room_program.json",
                 "scripts/export_walkthrough_3d.py",
+                "scripts/templates/walkthrough.html",
                 "scripts/lib/html_parametric_compare.py",
                 "scripts/lib/standards.py",
                 "scripts/lib/viewer_shell.py",

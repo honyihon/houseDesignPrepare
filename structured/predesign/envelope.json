@@ -1,0 +1,176 @@
+{
+  "schema": "house-envelope-scenario-v1",
+  "scenario": "hypothetical",
+  "generated_at": "2026-10-05T01:55:03.699017+00:00",
+  "project": {
+    "project_id": "kaohsiung-three-house-compound",
+    "name": "高雄三棟住宅前期規劃",
+    "stage": "site_search"
+  },
+  "warnings": [
+    "假設情境試算，非法規結論；實際可建量體必須由高雄市執業建築師依基地、建築線、法定空地與各項法規個案認定。",
+    "本頁每一個輸入值都是假設或未經查驗的候選地資料；任何一項改變，結論都會改變。請把它當成向建築師提問的素材，不要當成答案。",
+    "幾何極度簡化：矩形基地、四邊等值退縮、不含法定空地位置、騎樓、地界線斜率、防火間隔與屋突計算。真實基地幾乎不會這麼乾淨。",
+    "選地前共用的假設單筆基地情境，不代表 A／B／C 均已驗證。"
+  ],
+  "inputs": {
+    "candidate_id": null,
+    "label": null,
+    "building_coverage_ratio": null,
+    "floor_area_ratio": null,
+    "setback_mm": null,
+    "frontage_mm": null,
+    "depth_mm": null,
+    "parcel_area_sqm": 105.79,
+    "provenance": "assumed",
+    "parcel_area_source": "site_search.target_scenario.target_area_ping_each（選地目標，非已取得基地）",
+    "assumed_fields": [
+      "parcel_area_sqm"
+    ]
+  },
+  "storeys": {
+    "habitable": 3,
+    "roof": "RF 是屋頂層（女兒牆、樓梯間、水塔、熱泵、太陽能），不是第四層。"
+  },
+  "area": {
+    "parcel_area_sqm": 105.79,
+    "parcel_area_ping": 32.0,
+    "legal_footprint_sqm": null,
+    "legal_total_floor_sqm": null,
+    "net_frontage_mm": null,
+    "net_depth_mm": null,
+    "working_depth_mm": null,
+    "working_depth_basis": "未知",
+    "geometric_footprint_sqm": null,
+    "effective_footprint_sqm": null,
+    "effective_footprint_ping": null,
+    "binding_constraint": null,
+    "binding_caveat": "",
+    "total_floor_sqm_at_storeys": null,
+    "storeys_allowed_by_far": null,
+    "far_note": "未給容積率，無法檢查總樓地板上限"
+  },
+  "clearances": {
+    "exterior_wall_mm": 200.0,
+    "net_frontage_mm": null,
+    "working_depth_mm": null,
+    "working_depth_basis": "未知",
+    "working_depth_derived": false,
+    "interior_clear_width_mm": null,
+    "interior_clear_depth_mm": null,
+    "note": "室內淨尺寸＝可用量體扣兩道外牆；未扣內隔牆、樓梯、管道間與裝修完成面，也未扣樓梯與車庫以外的任何機能，因此這是樂觀上限。"
+  },
+  "core_function_checks": [
+    {
+      "id": "ENV-GARAGE-1BAY",
+      "building": "A／B／C",
+      "label": "室內單車位車庫（休旅車＋壁掛充電樁）",
+      "required": "淨 3000 × 6100 mm",
+      "verdict": "unknown",
+      "reason": "寬度：缺少可比較的尺寸；深度：缺少可比較的尺寸",
+      "basis": "scripts/lib/plan_geometry.py garage_min_bay_mm()，由 residential_defaults_tw.json 的 vehicle 推導",
+      "basis_kind": "derived"
+    },
+    {
+      "id": "ENV-GARAGE-2BAY",
+      "building": "A／B／C",
+      "label": "室內雙車位車庫",
+      "required": "淨 5250 × 6100 mm",
+      "verdict": "unknown",
+      "reason": "寬度：缺少可比較的尺寸；深度：缺少可比較的尺寸",
+      "basis": "同上，bays=2",
+      "basis_kind": "derived"
+    },
+    {
+      "id": "ENV-PALANQUIN-PATH",
+      "building": "B",
+      "label": "武轎搬運路徑淨寬",
+      "required": "淨寬 1500 mm",
+      "verdict": "unknown",
+      "reason": "缺少可比較的尺寸；此為規劃目標值，搬運外廓尚未完整實測並附查核證據，抬桿與轉彎需求未確認（收納實測不能替代）；尚未完成有證據的實際路徑搬運演練；僅比較量體寬度與規劃門寬，不是門位、轉角、淨高或搬運安全核可",
+      "storage_measured": false,
+      "transport_measured": false,
+      "route_rehearsed": false,
+      "basis": "inputs/physical-items.json transport.door_clear_target_mm",
+      "basis_kind": "planning_value"
+    },
+    {
+      "id": "ENV-WHEELCHAIR-TURN",
+      "building": "A／B／C",
+      "label": "關鍵節點輪椅迴轉圈",
+      "required": "淨短邊 1500 mm",
+      "verdict": "unknown",
+      "reason": "缺少可比較的尺寸；只檢查量體短邊，未檢查個別房間",
+      "basis": "inputs/site.json corridor.wheelchair_turn_mm",
+      "basis_kind": "planning_value"
+    },
+    {
+      "id": "ENV-GROUND-FLOOR-LIFE",
+      "building": "A",
+      "label": "1F 完整全齡生活圈最小合理面積",
+      "required": "未知",
+      "verdict": "unknown",
+      "reason": "沒有可引用的最小面積依據；本模組不自行發明數字。",
+      "basis": "待建築師提供",
+      "basis_kind": "open_question",
+      "question": "全齡無障礙基準下，1F 要同時容納出入、衛浴、起居與照護動作，最小合理面積是多少？"
+    },
+    {
+      "id": "ENV-SHRINE-STACK",
+      "building": "B",
+      "label": "神明廳與武轎儲藏的上下疊圖關係",
+      "required": "未知",
+      "verdict": "unknown",
+      "reason": "沒有可引用的最小面積依據；本模組不自行發明數字。",
+      "basis": "待建築師提供",
+      "basis_kind": "open_question",
+      "question": "神明廳位置、背牆、排水立管與武轎儲藏的上下對位，在結構與法規上有哪些早期限制？"
+    },
+    {
+      "id": "ENV-ELDER-SUITE",
+      "building": "C",
+      "label": "孝親房＋無障礙衛浴最小合理面積",
+      "required": "未知",
+      "verdict": "unknown",
+      "reason": "沒有可引用的最小面積依據；本模組不自行發明數字。",
+      "basis": "待建築師提供",
+      "basis_kind": "open_question",
+      "question": "含床、衣櫃、輪椅迴轉、淋浴椅與扶手後，孝親房與無障礙衛浴的最小合理面積是多少？"
+    }
+  ],
+  "overall_verdict": "unknown",
+  "open_questions": [
+    "以下輸入尚未給值，結論因此不完整：building_coverage_ratio、floor_area_ratio、frontage_mm、depth_mm、setback_mm",
+    "全齡無障礙基準下，1F 要同時容納出入、衛浴、起居與照護動作，最小合理面積是多少？",
+    "神明廳位置、背牆、排水立管與武轎儲藏的上下對位，在結構與法規上有哪些早期限制？",
+    "含床、衣櫃、輪椅迴轉、淋浴椅與扶手後，孝親房與無障礙衛浴的最小合理面積是多少？"
+  ],
+  "sources": [
+    {
+      "path": "inputs/project.json",
+      "role": "選地目標與候選地",
+      "exists": true,
+      "sha256": "c407735841f79c599cd087ad5a9853f1110f50652cefa93b62945addedb5f930"
+    },
+    {
+      "path": "scripts/config/residential_defaults_tw.json",
+      "role": "牆厚與車輛淨空基準",
+      "exists": true,
+      "sha256": "202b762eaf93185f8011e1825a6dd7720c1ea87e4e41cff86da48873a52a0651"
+    },
+    {
+      "path": "inputs/physical-items.json",
+      "role": "武轎規劃量體與目標門淨寬",
+      "exists": true,
+      "sha256": "6e432d68abd0b4380962a4e57dcd5a6bbfffaec762da1b9d0c5ae2c8c391e78c"
+    },
+    {
+      "path": "inputs/site.json",
+      "role": "輪椅迴轉圈檢查值（歷史參數化情境）",
+      "exists": true,
+      "sha256": "9376b84a64e84761eb50b0594bbde7f3d8f96a71ae1369fae934eee957366c0d"
+    }
+  ],
+  "overall_verdict_label": "無法判斷",
+  "scenario_hash": "dd855c295ae6ef6b735a39b1afb50bc56d0ffc2d9d801079ed48ed9fa6a5a05f"
+}

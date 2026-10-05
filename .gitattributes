@@ -17,3 +17,6 @@
 # Vendored and binary payloads: never touch.
 assets/vendor/** -text
 *.pdf    binary
+
+# Recovered historical bytes must retain their exact original SHA-256.
+inputs/revisions/R000/source/plan.json -text

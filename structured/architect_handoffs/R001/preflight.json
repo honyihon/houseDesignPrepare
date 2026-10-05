@@ -1,0 +1,200 @@
+{
+  "schema": "house-architect-delivery-preflight-v1",
+  "revision_id": "R001",
+  "checked_at": "2026-09-01T08:36:22.932048+00:00",
+  "package": "/root/workspace/houseDesignPrepare/structured/architect_handoffs/R001",
+  "ready_for_import": false,
+  "ready_for_space_block": false,
+  "ready_for_walkthrough": false,
+  "project_ready_for_design": false,
+  "policy": "Technical preflight never replaces site due diligence, professional review or immutable import.",
+  "summary": {
+    "checks": 13,
+    "pass": 5,
+    "fail": 6,
+    "warning": 2
+  },
+  "checks": [
+    {
+      "code": "HANDOFF_MANIFEST",
+      "status": "pass",
+      "message": "交付包 manifest 格式正確。",
+      "blocks": []
+    },
+    {
+      "code": "DELIVERY_MANIFEST",
+      "status": "pass",
+      "message": "delivery.json 格式正確。",
+      "blocks": []
+    },
+    {
+      "code": "REVISION_ID_MATCH",
+      "status": "pass",
+      "message": "交付版次 id 一致。",
+      "blocks": []
+    },
+    {
+      "code": "PREPARER_EVIDENCE",
+      "status": "fail",
+      "message": "prepared_by 或 prepared_at 尚未填妥。",
+      "blocks": [
+        "import",
+        "space_block",
+        "walkthrough"
+      ],
+      "next_action": "填入可追溯的交付人與 ISO 日期。"
+    },
+    {
+      "code": "DELIVERY_DECLARATIONS",
+      "status": "fail",
+      "message": "仍有必要交付聲明未確認。",
+      "blocks": [
+        "import",
+        "space_block",
+        "walkthrough"
+      ],
+      "next_action": "由交付人逐項查核 delivery.json declarations。",
+      "details": {
+        "missing": [
+          "source_files_are_final_for_this_revision",
+          "coordinate_system_reviewed",
+          "storey_elevations_reviewed",
+          "room_boundaries_reviewed"
+        ]
+      }
+    },
+    {
+      "code": "BUILDING_SCOPE_DECLARATION",
+      "status": "pass",
+      "message": "交付聲明涵蓋所有預期棟別。",
+      "blocks": [],
+      "details": {
+        "missing": []
+      }
+    },
+    {
+      "code": "WALKTHROUGH_DECLARATIONS",
+      "status": "warning",
+      "message": "門窗或設備範圍聲明尚未確認。",
+      "blocks": [
+        "walkthrough"
+      ],
+      "next_action": "若要 walkthrough，補齊門窗位置／高度與設備範圍聲明。"
+    },
+    {
+      "code": "PDF_SOURCE",
+      "status": "fail",
+      "message": "缺少 PDF 圖冊。",
+      "blocks": [
+        "import",
+        "space_block",
+        "walkthrough"
+      ],
+      "next_action": "將同版 PDF 放入包內並更新 delivery.json files.pdf。"
+    },
+    {
+      "code": "MACHINE_SOURCE",
+      "status": "fail",
+      "message": "缺少 IFC 或 DXF。",
+      "blocks": [
+        "import",
+        "space_block",
+        "walkthrough"
+      ],
+      "next_action": "提供 IFC；若只有 DWG，另存 DXF。"
+    },
+    {
+      "code": "MAPPING_SCHEMA",
+      "status": "pass",
+      "message": "mapping v2 schema 正確。",
+      "blocks": []
+    },
+    {
+      "code": "COORDINATE_EVIDENCE",
+      "status": "fail",
+      "message": "座標驗證或基準點證據不完整。",
+      "blocks": [
+        "space_block",
+        "walkthrough"
+      ],
+      "next_action": "補單位、軸向、查核人／日期／方法及至少兩個基準點。"
+    },
+    {
+      "code": "STOREY_EVIDENCE",
+      "status": "fail",
+      "message": "部分棟層缺少標高或圖號證據。",
+      "blocks": [
+        "space_block",
+        "walkthrough"
+      ],
+      "next_action": "補齊每一棟層 elevation_mm、查核人、日期及 evidence.reference。",
+      "details": {
+        "missing": [
+          {
+            "building_id": "A",
+            "floor_id": "floor-1"
+          },
+          {
+            "building_id": "A",
+            "floor_id": "floor-2"
+          },
+          {
+            "building_id": "A",
+            "floor_id": "floor-3"
+          },
+          {
+            "building_id": "A",
+            "floor_id": "floor-rf"
+          },
+          {
+            "building_id": "B",
+            "floor_id": "floor-1"
+          },
+          {
+            "building_id": "B",
+            "floor_id": "floor-2"
+          },
+          {
+            "building_id": "B",
+            "floor_id": "floor-3"
+          },
+          {
+            "building_id": "B",
+            "floor_id": "floor-rf"
+          },
+          {
+            "building_id": "C",
+            "floor_id": "floor-1"
+          },
+          {
+            "building_id": "C",
+            "floor_id": "floor-2"
+          },
+          {
+            "building_id": "C",
+            "floor_id": "floor-3"
+          },
+          {
+            "building_id": "C",
+            "floor_id": "floor-rf"
+          }
+        ]
+      }
+    },
+    {
+      "code": "PREVIEW_IMPORT",
+      "status": "warning",
+      "message": "必要檔案尚未通過，因此未執行暫存試匯入。",
+      "blocks": [
+        "import",
+        "space_block",
+        "walkthrough"
+      ]
+    }
+  ],
+  "import_preview": null,
+  "model3d_readiness": {
+    "space_block": null,
+    "walkthrough": null
+  }
+}

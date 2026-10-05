@@ -4,7 +4,7 @@
 > 這裡的分數建立在 HTML 推測出來的幾何上（約 8 成為 `auto`），
 > 保留作存檔與需求追溯。現行圖面檢核入口見 `structured/reviews/`。
 
-- Generated at: `2026-08-11T06:11:40.364954+00:00`
+- Generated at: `2026-09-21T06:21:40.861189+00:00`
 - Evaluated floors: **12**
 
 ## Best Candidate by Floor
@@ -15,10 +15,10 @@
 | A | floor-2 2F | baseline | weak | 55.76 | +0.00 | 55.36 | 52.73 | 58.75 |
 | A | floor-3 3F | baseline | weak | 54.08 | +0.00 | 56.17 | 52.53 | 53.33 |
 | A | floor-4 RF | baseline | review | 67.8 | +0.00 | 56.5 | 57.5 | 87.92 |
-| B | floor-1 1F | baseline | weak | 63.34 | +0.00 | 56.43 | 53.62 | 78.57 |
-| B | floor-2 2F | baseline | weak | 62.92 | +0.00 | 62.67 | 58.83 | 66.67 |
-| B | floor-3 3F | baseline | weak | 53.9 | +0.00 | 57.67 | 50.18 | 53.33 |
-| B | floor-4 RF | baseline | weak | 58.57 | +0.00 | 53.0 | 57.0 | 65.5 |
+| B | floor-1 1F | baseline | weak | 56.52 | +0.00 | 55.0 | 51.98 | 61.94 |
+| B | floor-2 2F | baseline | weak | 60.5 | +0.00 | 61.16 | 50.1 | 68.75 |
+| B | floor-3 3F | baseline | weak | 56.5 | +0.00 | 59.2 | 50.73 | 58.75 |
+| B | floor-4 RF | baseline | weak | 63.59 | +0.00 | 55.36 | 55.71 | 78.57 |
 | C | floor-1 1F | baseline | weak | 60.95 | +0.00 | 62.18 | 51.07 | 68.18 |
 | C | floor-2 2F | baseline | weak | 57.25 | +0.00 | 56.33 | 57.06 | 58.33 |
 | C | floor-3 3F | baseline | weak | 48.08 | +0.00 | 51.75 | 48.57 | 44.0 |
@@ -31,10 +31,10 @@
 | A:floor-1 | daylight | 50.74 |
 | A:floor-2 | daylight | 52.73 |
 | A:floor-3 | daylight | 52.53 |
-| B:floor-1 | daylight | 53.62 |
-| B:floor-2 | daylight | 58.83 |
-| B:floor-3 | daylight | 50.18 |
-| B:floor-4 | circulation | 53.0 |
+| B:floor-1 | daylight | 51.98 |
+| B:floor-2 | daylight | 50.1 |
+| B:floor-3 | daylight | 50.73 |
+| B:floor-4 | circulation | 55.36 |
 | C:floor-1 | daylight | 51.07 |
 | C:floor-2 | circulation | 56.33 |
 | C:floor-3 | mep | 44.0 |

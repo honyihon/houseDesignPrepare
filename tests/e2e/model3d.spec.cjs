@@ -31,10 +31,21 @@ test('original HTML model3d viewer loads and its primary controls respond', asyn
   await expect(page.locator('#compare')).toContainText('只在 HTML：側院');
   await expect(page.locator('#orientation')).toContainText('道路／前方');
   await expect(page.locator('a[href="../parametric/walkthrough.html"]')).toBeVisible();
+  await expect(page.locator('#furniture')).toBeChecked();
+  await expect(page.locator('#furniture-status')).toContainText('70 個空間、157 件');
+  await expect(page.locator('#furniture-status')).toContainText('連結實物清單 1 件（待實測 1 件）');
+  await expect(page.locator('#furniture-status')).toContainText('目前幾何下');
+  await expect(page.locator('#furniture-start')).toContainText('家具無碰撞不代表');
+  await expect(page.locator('a[href="../predesign/consistency-review.html"]')).toBeVisible();
+  const furnitureState = await page.evaluate(() => window.__htmlModel3dDebug().furniture);
+  expect(furnitureState.visible).toBe(true);
+  expect(furnitureState.items).toBe(157);
+  expect(furnitureState.issues.overflow).toBeGreaterThan(0);
   await assertNoFrameworkOverlay(page);
 
   await page.locator('#geom-source [data-geom="declared"]').click();
   await expect(page.locator('#geom-source [data-geom="declared"]')).toHaveClass(/on/);
+  expect((await page.evaluate(() => window.__htmlModel3dDebug())).furniture.issues.collision).toBe(0);
   await page.locator('#color-mode [data-mode="provenance"]').click();
   await expect(page.locator('#color-mode [data-mode="provenance"]')).toHaveClass(/on/);
   await page.locator('#view-plan').click();
@@ -43,6 +54,56 @@ test('original HTML model3d viewer loads and its primary controls respond', asyn
   await expect(page.locator('#compass')).toContainText('上方是道路');
   await page.locator('#openings').check();
   await expect(page.locator('#openings')).toBeChecked();
+  await page.locator('#furniture').uncheck();
+  expect((await page.evaluate(() => window.__htmlModel3dDebug())).furniture.visible).toBe(false);
+  expectNoUnexpectedConsole(messages);
+});
+
+test('furniture shortcuts select original HTML rooms without changing their layout', async ({ page }) => {
+  const messages = monitorConsole(page);
+  await page.goto('/structured/candidates/model3d.html', { waitUntil: 'load' });
+  for (const [label, room, count] of [
+    ['A 棟客廳', 'A:floor-1:living', 3],
+    ['B 棟神明堂', 'B:floor-1:shrine', 5],
+    ['B 棟武轎儲藏室', 'B:floor-1:storage', 5],
+    ['C 棟孝親房', 'C:floor-1:elder', 3],
+  ]) {
+    await page.locator('#furniture-start').getByRole('link', { name: label, exact: true }).click();
+    await expect.poll(() => page.evaluate(() => window.__htmlModel3dDebug().state.room)).toBe(room);
+    const debug = await page.evaluate(() => window.__htmlModel3dDebug());
+    expect(debug.state.view).toBe('plan');
+    expect(debug.furniture.visibleItems).toBe(count);
+  }
+  expectNoUnexpectedConsole(messages);
+});
+
+test('B palanquin uses the shared physical-item estimate and labels it pending measurement', async ({ page }) => {
+  const messages = monitorConsole(page);
+  await page.goto('/BbuildingView.html#room-storage', { waitUntil: 'load' });
+  const storagePlan = page.locator('[data-model-room-id="B:floor-1:storage"]');
+  await expect(storagePlan.locator('.layout-item')).toHaveCount(5);
+  await expect(storagePlan.locator('[data-physical-item-id="B.palanquin.primary"]')).toBeVisible();
+  await expect(storagePlan).toContainText('暫定淨開口150cm');
+  await expect(storagePlan).toContainText('直進直出');
+
+  await page.goto(
+    '/structured/candidates/model3d.html#building=B&floor=floor-1&room=B%3Afloor-1%3Astorage&view=plan',
+    { waitUntil: 'load' },
+  );
+
+  await expect.poll(() => page.evaluate(() => window.__htmlModel3dDebug().state.room))
+    .toBe('B:floor-1:storage');
+  await expect(page.locator('#info')).toContainText('武轎（收納狀態）：1200 × 1700 × 1800 mm');
+  await expect(page.locator('#info')).toContainText('一般尺寸暫估／待實測');
+  await expect(page.locator('#info')).toContainText('法器／旗幟櫃');
+  await expect(page.locator('#info')).toContainText('香燭金紙耐燃櫃');
+  const debug = await page.evaluate(() => window.__htmlModel3dDebug());
+  expect(debug.furniture.visibleItems).toBe(5);
+  const screenX = Object.fromEntries(debug.furniture.visibleScreenPositions.map((item) => [item.id, item.x]));
+  expect(screenX['B:floor-1:storage:furniture:ritual-cabinet'])
+    .toBeLessThan(screenX['B:floor-1:storage:furniture:ceremonial-storage']);
+  expect(screenX['B:floor-1:storage:furniture:ceremonial-storage'])
+    .toBeLessThan(screenX['B:floor-1:storage:furniture:dehumidifier']);
   expectNoUnexpectedConsole(messages);
 });
 
@@ -66,6 +127,9 @@ test('original HTML room and 3D use a reversible deep link', async ({ page }) =>
   await expect(page.locator('#scope-floors [data-floor="floor-1"]')).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('#scope-rooms [data-room="A:floor-1:living"]')).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('#info')).toContainText('客廳');
+  await expect(page.locator('#info')).toContainText('三人沙發');
+  await expect(page.locator('#info')).toContainText('HTML＋房型推排');
+  expect((await page.evaluate(() => window.__htmlModel3dDebug())).furniture.visibleItems).toBe(3);
   await expect(page.locator('#info')).toContainText('道路側／前段（平面 y=1200 mm）');
   const backLink = page.locator('#info .info-link');
   await expect(backLink).toHaveAttribute('href', /AbuildingView\.html#room-living$/);

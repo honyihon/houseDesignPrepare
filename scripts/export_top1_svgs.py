@@ -13,7 +13,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
@@ -21,7 +20,6 @@ if str(SCRIPT_DIR) not in sys.path:
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from house_design.rendering import stable_svg_filename  # noqa: E402
 from lib.dimension_overrides import (  # noqa: E402
     PROVENANCE_AUTO,
     PROVENANCE_LEVELS,
@@ -36,6 +34,8 @@ from lib.standards import (  # noqa: E402
     wall_thickness_mm,
     window_width_mm,
 )
+
+from house_design.rendering import stable_svg_filename  # noqa: E402
 
 PROGRAM_FILE = ROOT / "structured" / "room_program.json"
 CANDIDATES_FILE = ROOT / "structured" / "candidates" / "layout_candidates.json"

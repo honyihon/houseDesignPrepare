@@ -1,0 +1,166 @@
+{
+  "schema": "house-site-criteria-v1",
+  "project_id": "kaohsiung-three-house-compound",
+  "updated_at": "2026-10-05",
+  "policy": {
+    "purpose": "把選地淘汰線從散文變成可逐條檢核的資料，讓候選土地比較不靠印象。",
+    "threshold_rule": "門檻未填（value 為 null）時 status 必須是 unknown；程式不得替屋主猜門檻。",
+    "verdict_rule": "任一 hard_eliminate 判定 eliminated 即淘汰該地；任一判定 unknown 時整體只能是 unknown，不得顯示通過。",
+    "authority": "本檔是屋主與建築師共同決定的篩選條件，不是法規條文；法規結論須由高雄市執業建築師依個案認定。"
+  },
+  "criteria": [
+    {
+      "id": "SC-PARCEL-ADJACENCY",
+      "label": "三筆地界相鄰與各棟基地對應",
+      "kind": "must_ask",
+      "field": "target_fit.three_adjacent_parcels",
+      "threshold": {"value": null, "unit": "qualitative", "comparator": "=="},
+      "rationale": "相鄰只證明基地關係，不證明三棟核心功能、獨立申照或跨基地管線成立。",
+      "evidence_required": "三筆地籍圖、地號與界址查核；須有來源、查核人與日期",
+      "responsible_role": "建築師／地政士／測量人員",
+      "status": "unknown"
+    },
+    {
+      "id": "SC-FRONTAGE-MIN",
+      "label": "每棟最小有效面寬",
+      "kind": "hard_eliminate",
+      "field": "target_fit.frontage_mm",
+      "parcel_field": "frontage_mm",
+      "threshold": {"value": null, "unit": "mm", "comparator": ">="},
+      "rationale": "面寬決定室內車庫是否成立（單車位淨寬由 garage_min_bay_mm 推導），也決定樓梯與走道之後還剩多少可用進深。",
+      "evidence_required": "地籍圖或實測面寬",
+      "responsible_role": "屋主／建築師",
+      "status": "unknown",
+      "note": "會議第 1 題要問出這個數字；填入後本條才會開始篩選。"
+    },
+    {
+      "id": "SC-DEPTH-MIN",
+      "label": "每棟最小有效深度",
+      "kind": "hard_eliminate",
+      "field": "target_fit.depth_mm",
+      "parcel_field": "depth_mm",
+      "threshold": {"value": null, "unit": "mm", "comparator": ">="},
+      "rationale": "車庫淨深加上前後退縮，是 1F 能否同時容納車庫與完整生活圈的下限。",
+      "evidence_required": "地籍圖或實測深度",
+      "responsible_role": "屋主／建築師",
+      "status": "unknown"
+    },
+    {
+      "id": "SC-ROAD-WIDTH",
+      "label": "臨路寬度與退縮條件",
+      "kind": "hard_eliminate",
+      "field": "official_facts.road",
+      "threshold": {"value": null, "unit": "m", "comparator": ">="},
+      "rationale": "臨路寬度同時影響建築線、退縮、消防搶救與車輛進出；過窄的既成道路可能無法申照。",
+      "evidence_required": "都發局建築線指定或地籍圖說",
+      "responsible_role": "建築師",
+      "status": "unknown"
+    },
+    {
+      "id": "SC-CONSTRUCTION-ACCESS",
+      "label": "施工車輛與吊裝進出",
+      "kind": "hard_eliminate",
+      "field": "constructability.truck_access",
+      "threshold": {"value": null, "unit": "qualitative", "comparator": "=="},
+      "rationale": "預拌混凝土車、吊車與板模車進不來，會直接變成小搬運與人工加價，甚至改變結構工法。",
+      "evidence_required": "現勘照片與路寬、轉彎半徑、限高紀錄",
+      "responsible_role": "屋主／營造廠",
+      "status": "unknown"
+    },
+    {
+      "id": "SC-THREE-PERMITS",
+      "label": "三棟能否各自申照與計量",
+      "kind": "must_ask",
+      "field": "official_facts.land_rights",
+      "threshold": {"value": null, "unit": "qualitative", "comparator": "=="},
+      "rationale": "各自申照與合併申請，對建蔽率、法定空地、防火間隔、棟距與水電表位的影響完全不同。",
+      "evidence_required": "建築師書面意見",
+      "responsible_role": "建築師／地政士",
+      "status": "unknown",
+      "note": "會議第 2 題。"
+    },
+    {
+      "id": "SC-CROSS-PARCEL-UTILITY",
+      "label": "跨基地管線是否可行",
+      "kind": "must_ask",
+      "field": "cross_parcel_utilities",
+      "all_fields": [
+        "cross_parcel_utilities.water.connectivity",
+        "cross_parcel_utilities.water.route_rights",
+        "cross_parcel_utilities.water.responsibility_boundary",
+        "cross_parcel_utilities.electricity.connectivity",
+        "cross_parcel_utilities.electricity.route_rights",
+        "cross_parcel_utilities.electricity.responsibility_boundary",
+        "cross_parcel_utilities.sewer_and_stormwater.connectivity",
+        "cross_parcel_utilities.sewer_and_stormwater.route_rights",
+        "cross_parcel_utilities.sewer_and_stormwater.responsibility_boundary",
+        "cross_parcel_utilities.telecom.connectivity",
+        "cross_parcel_utilities.telecom.route_rights",
+        "cross_parcel_utilities.telecom.responsibility_boundary"
+      ],
+      "threshold": {"value": null, "unit": "qualitative", "comparator": "=="},
+      "rationale": "專案已列出跨棟給排水、電力與弱電路徑為待確認事項；若不允許跨基地埋管，三棟的設備策略要重做。",
+      "evidence_required": "給水、電力、污雨排水、弱電各自的可接性、管路權利與責任分界書面查核；每個欄位皆須有來源、查核人與日期",
+      "responsible_role": "建築師／水電／公用事業單位",
+      "status": "unknown"
+    },
+    {
+      "id": "SC-CORE-FUNCTIONS",
+      "label": "A／B／C 核心功能能否同時容納",
+      "kind": "hard_eliminate",
+      "field": "core_function_assessment",
+      "all_fields": ["core_function_assessment.A", "core_function_assessment.B", "core_function_assessment.C"],
+      "threshold": {"value": null, "unit": "qualitative", "comparator": "=="},
+      "rationale": "A 全齡 1F 生活圈、B 神明廳與武轎搬運、C 孝親房與無障礙衛浴是三棟定位的底線；放不下就該換地，不是壓縮需求。",
+      "evidence_required": "建築師逐棟核心機能配置評估與圖面證據；predesign envelope 只能當提問素材，不能當已確認證據",
+      "responsible_role": "屋主／建築師",
+      "status": "unknown"
+    },
+    {
+      "id": "SC-FLOOD",
+      "label": "淹水潛勢與基地標高排水",
+      "kind": "hard_eliminate",
+      "field": "risk_screen.flood",
+      "threshold": {"value": null, "unit": "qualitative", "comparator": "=="},
+      "rationale": "室內車庫加上高雄降雨，淹水潛勢與相對標高是不可逆的選地條件。",
+      "evidence_required": "水利署防災資訊服務網查詢結果與雨後現勘",
+      "responsible_role": "屋主／建築師",
+      "status": "unknown"
+    },
+    {
+      "id": "SC-LIQUEFACTION",
+      "label": "土壤液化潛勢",
+      "kind": "must_ask",
+      "field": "risk_screen.liquefaction",
+      "threshold": {"value": null, "unit": "qualitative", "comparator": "=="},
+      "rationale": "液化潛勢影響地質調查範圍、基礎工法與造價，須在出價前知道。",
+      "evidence_required": "土壤液化潛勢查詢系統結果；必要時由技師判斷是否需鑽探",
+      "responsible_role": "建築師／結構技師",
+      "status": "unknown"
+    },
+    {
+      "id": "SC-NEIGHBOUR-ENV",
+      "label": "噪音、異味、鄰房開口與西曬",
+      "kind": "preference",
+      "field": "risk_screen.noise_odor_and_neighbours",
+      "threshold": {"value": null, "unit": "qualitative", "comparator": "=="},
+      "rationale": "白天、夜間與雨後各看一次才看得出來；長輩房與神明廳對這幾項特別敏感。",
+      "evidence_required": "三個時段的現勘紀錄",
+      "responsible_role": "屋主",
+      "status": "unknown"
+    },
+    {
+      "id": "SC-TOTAL-COST",
+      "label": "土地加基礎、管線與搬運後仍在預算內",
+      "kind": "hard_eliminate",
+      "field": "budget_assessment",
+      "all_fields": ["budget_assessment.affordability", "budget_assessment.budget_limit_reviewed", "budget_assessment.land_estimate_reviewed", "budget_assessment.foundation_estimate_reviewed", "budget_assessment.utility_estimate_reviewed", "budget_assessment.handling_estimate_reviewed"],
+      "threshold": {"value": null, "unit": "qualitative", "comparator": "=="},
+      "rationale": "土地單價便宜但基礎、擋土、管線與小搬運昂貴的基地，總價可能反而超出上限。",
+      "evidence_required": "私有預算表上限與建築師／營造廠粗估",
+      "responsible_role": "屋主／建築師",
+      "status": "unknown",
+      "note": "需先建立 inputs/private/budget.json 才有可比的上限。"
+    }
+  ]
+}

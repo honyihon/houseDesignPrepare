@@ -84,16 +84,26 @@ GENERIC_ALIASES: dict[str, str] = {
     "platform-rf": "rf_deck",
 }
 
-BUILDING_ALIASES: dict[str, dict[str, str]] = {
+BUILDING_ALIASES: dict[str, dict[str, str | tuple[str, ...]]] = {
     "A": {
         "balcony1": "balcony",
         "terrace3": "balcony3",
         "balcony2": "balcony2",
     },
     "B": {
+        "entry": "entry_b",
         "bath1": "bath_acc",
         "balcony1": "balcony_b",
         "balcony2": "balcony_b2",
+        "balcony3": "balcony_b3",
+        "corridor1": "corridor",
+        "corridor2": "corridor",
+        "corridor3": "corridor",
+        "master-bath2": "master_bath",
+        "buffer3": ("buffer_b3", "corridor"),
+        "service-rf": "rf_service_aisle",
+        "shrine-buffer-rf": "rf_shrine_buffer",
+        "pump-rf": ("rf_pump", "rf_hp"),
         # The original HTML calls this a terrace, but its visible label and
         # role are the stable front flexible room.  Mapping to a generated
         # leftover (flex_front0) broke as soon as a wider variant named that
@@ -197,10 +207,18 @@ def resolve_html_to_para(building_id: str, html_id: str, para_ids: set[str]) -> 
     n = norm_id(raw)
     building_map = {norm_id(key): value for key, value in (BUILDING_ALIASES.get(building_id) or {}).items()}
     generic_map = {norm_id(key): value for key, value in GENERIC_ALIASES.items()}
+    def available(value: str | tuple[str, ...]) -> str | None:
+        choices = value if isinstance(value, tuple) else (value,)
+        return next((choice for choice in choices if choice in para_ids), None)
+
     if n in building_map:
-        return building_map[n]
+        target = available(building_map[n])
+        if target is not None:
+            return target
     if n in generic_map:
-        return generic_map[n]
+        target = available(generic_map[n])
+        if target is not None:
+            return target
     if n in by_norm:
         return by_norm[n]
     if raw in para_ids:

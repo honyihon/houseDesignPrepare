@@ -8,7 +8,6 @@ import json
 from pathlib import Path
 from typing import Any
 
-
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_CONFIG_PATH = ROOT / "scripts" / "config" / "residential_defaults_tw.json"
 

@@ -1,0 +1,329 @@
+{
+  "schema": "house-furniture-layout-v1",
+  "status": "historical-html-space-planning-draft",
+  "note": "第一版家具與設備量體：尺寸採一般市售規格，位置依 A／B／C 原始 HTML 的房名、坪數、家具文字與設備需求推排。沒有明載的位置皆為房型推估，不是室內設計或施工定位。",
+  "category_labels": {
+    "sleep": "睡眠",
+    "seating": "座椅／沙發",
+    "table": "桌面",
+    "storage": "收納",
+    "kitchen": "廚房",
+    "appliance": "家電",
+    "bath": "衛浴",
+    "media": "影音",
+    "work": "工作",
+    "network": "弱電",
+    "worship": "祭祀",
+    "fitness": "運動",
+    "vehicle": "車輛",
+    "mechanical": "機電設備",
+    "outdoor": "戶外"
+  },
+  "catalog": {
+    "car": {"label": "小客車", "category": "vehicle", "shape": "car", "color": "#64748b", "width_mm": 1800, "depth_mm": 4500, "height_mm": 1450},
+    "motorcycle": {"label": "機車", "category": "vehicle", "shape": "motorcycle", "color": "#94a3b8", "width_mm": 750, "depth_mm": 2000, "height_mm": 1200},
+    "shoe-cabinet": {"label": "鞋櫃", "category": "storage", "shape": "cabinet", "color": "#a16207", "width_mm": 1200, "depth_mm": 350, "height_mm": 1100},
+    "parcel-cabinet": {"label": "包裹收納櫃", "category": "storage", "shape": "cabinet", "color": "#92400e", "width_mm": 600, "depth_mm": 350, "height_mm": 1000},
+    "sofa-3": {"label": "三人沙發", "category": "seating", "shape": "sofa", "color": "#0f766e", "width_mm": 2400, "depth_mm": 900, "height_mm": 850},
+    "sofa-l": {"label": "L 型沙發", "category": "seating", "shape": "l-sofa", "color": "#0d9488", "width_mm": 3000, "depth_mm": 2100, "height_mm": 850},
+    "sofa-bed": {"label": "沙發床", "category": "seating", "shape": "sofa", "color": "#0f766e", "width_mm": 1800, "depth_mm": 950, "height_mm": 800},
+    "theater-sofa": {"label": "家庭劇院沙發", "category": "seating", "shape": "sofa", "color": "#115e59", "width_mm": 2800, "depth_mm": 950, "height_mm": 900},
+    "outdoor-bench": {"label": "戶外休憩椅", "category": "seating", "shape": "sofa", "color": "#15803d", "width_mm": 1400, "depth_mm": 650, "height_mm": 800},
+    "coffee-table": {"label": "茶几", "category": "table", "shape": "table", "color": "#d97706", "width_mm": 1100, "depth_mm": 600, "height_mm": 420},
+    "dining-4": {"label": "四人餐桌椅", "category": "table", "shape": "dining-set", "color": "#b45309", "width_mm": 1800, "depth_mm": 1000, "height_mm": 750},
+    "dining-6": {"label": "六人餐桌椅", "category": "table", "shape": "dining-set", "color": "#b45309", "width_mm": 2200, "depth_mm": 1000, "height_mm": 750},
+    "tv-console": {"label": "電視牆／電視櫃", "category": "media", "shape": "tv-console", "color": "#475569", "width_mm": 1800, "depth_mm": 450, "height_mm": 1250},
+    "counter-240": {"label": "240 cm 流理台", "category": "kitchen", "shape": "counter", "color": "#be123c", "width_mm": 2400, "depth_mm": 650, "height_mm": 900},
+    "counter-300": {"label": "300 cm 流理台", "category": "kitchen", "shape": "counter", "color": "#be123c", "width_mm": 3000, "depth_mm": 650, "height_mm": 900},
+    "island-180": {"label": "180 cm 中島", "category": "kitchen", "shape": "counter", "color": "#e11d48", "width_mm": 1800, "depth_mm": 900, "height_mm": 900},
+    "fridge-75": {"label": "75 cm 冰箱", "category": "appliance", "shape": "cabinet", "color": "#64748b", "width_mm": 750, "depth_mm": 700, "height_mm": 1800},
+    "double-bed": {"label": "標準雙人床", "category": "sleep", "shape": "bed", "color": "#7c3aed", "width_mm": 1800, "depth_mm": 2000, "height_mm": 950},
+    "queen-bed": {"label": "雙人床", "category": "sleep", "shape": "bed", "color": "#7c3aed", "width_mm": 1520, "depth_mm": 1880, "height_mm": 900},
+    "single-bed": {"label": "單人床", "category": "sleep", "shape": "bed", "color": "#8b5cf6", "width_mm": 1050, "depth_mm": 1880, "height_mm": 850},
+    "wardrobe-180": {"label": "180 cm 衣櫃", "category": "storage", "shape": "cabinet", "color": "#a16207", "width_mm": 1800, "depth_mm": 600, "height_mm": 2200},
+    "wardrobe-360": {"label": "360 cm 四衣櫃牆", "category": "storage", "shape": "cabinet", "color": "#92400e", "width_mm": 3600, "depth_mm": 600, "height_mm": 2200},
+    "desk-140": {"label": "140 cm 書桌", "category": "work", "shape": "table", "color": "#0369a1", "width_mm": 1400, "depth_mm": 700, "height_mm": 750},
+    "vanity-desk": {"label": "梳妝台", "category": "work", "shape": "table", "color": "#0284c7", "width_mm": 1200, "depth_mm": 500, "height_mm": 750},
+    "shelf-180": {"label": "書櫃／收納櫃", "category": "storage", "shape": "cabinet", "color": "#a16207", "width_mm": 1800, "depth_mm": 400, "height_mm": 2100},
+    "hall-cabinet": {"label": "走廊收納櫃", "category": "storage", "shape": "cabinet", "color": "#a16207", "width_mm": 2400, "depth_mm": 400, "height_mm": 2200},
+    "utility-cabinet": {"label": "家務整合櫃", "category": "storage", "shape": "cabinet", "color": "#a16207", "width_mm": 900, "depth_mm": 600, "height_mm": 1900},
+    "toilet": {"label": "馬桶", "category": "bath", "shape": "toilet", "color": "#e2e8f0", "width_mm": 450, "depth_mm": 700, "height_mm": 800},
+    "vanity-90": {"label": "90 cm 洗手台", "category": "bath", "shape": "vanity", "color": "#38bdf8", "width_mm": 900, "depth_mm": 550, "height_mm": 850},
+    "shower-90": {"label": "90 cm 淋浴區", "category": "bath", "shape": "shower", "color": "#0ea5e9", "width_mm": 900, "depth_mm": 900, "height_mm": 2000},
+    "shower-accessible": {"label": "無障礙淋浴區", "category": "bath", "shape": "shower", "color": "#0284c7", "width_mm": 1200, "depth_mm": 1200, "height_mm": 2000},
+    "washer": {"label": "洗衣機", "category": "appliance", "shape": "appliance", "color": "#64748b", "width_mm": 650, "depth_mm": 650, "height_mm": 1000},
+    "dryer": {"label": "烘衣機", "category": "appliance", "shape": "appliance", "color": "#475569", "width_mm": 650, "depth_mm": 650, "height_mm": 1000},
+    "rack-18u": {"label": "18U 落地機櫃", "category": "network", "shape": "rack", "color": "#334155", "width_mm": 600, "depth_mm": 600, "height_mm": 1000},
+    "rack-12u": {"label": "12U IDF 機櫃", "category": "network", "shape": "rack", "color": "#334155", "width_mm": 600, "depth_mm": 600, "height_mm": 700},
+    "altar-table": {"label": "龍邊神桌", "category": "worship", "shape": "altar", "color": "#9a3412", "width_mm": 1800, "depth_mm": 600, "height_mm": 1250},
+    "folding-offering-table": {"label": "活動供桌", "category": "worship", "shape": "table", "color": "#c2410c", "width_mm": 1200, "depth_mm": 500, "height_mm": 750},
+    "movable-bench": {"label": "可移動長凳", "category": "seating", "shape": "bench", "color": "#a16207", "width_mm": 1400, "depth_mm": 450, "height_mm": 450},
+    "ceremonial-storage": {"label": "武轎收納位", "category": "worship", "shape": "palanquin", "color": "#b91c1c", "physical_item_id": "B.palanquin.primary"},
+    "ritual-cabinet": {"label": "法器／旗幟櫃", "category": "storage", "shape": "cabinet", "color": "#92400e", "width_mm": 1200, "depth_mm": 450, "height_mm": 2100},
+    "fireproof-offering-cabinet": {"label": "香燭金紙耐燃櫃", "category": "storage", "shape": "cabinet", "color": "#7f1d1d", "width_mm": 900, "depth_mm": 500, "height_mm": 1800},
+    "fold-down-prep-table": {"label": "折疊整備桌", "category": "table", "shape": "table", "color": "#b45309", "width_mm": 1200, "depth_mm": 450, "height_mm": 900},
+    "dehumidifier": {"label": "除濕機", "category": "appliance", "shape": "appliance", "color": "#475569", "width_mm": 350, "depth_mm": 300, "height_mm": 600},
+    "tea-bar": {"label": "茶水吧檯", "category": "kitchen", "shape": "counter", "color": "#be123c", "width_mm": 1800, "depth_mm": 600, "height_mm": 1050},
+    "treadmill": {"label": "跑步機", "category": "fitness", "shape": "treadmill", "color": "#ea580c", "width_mm": 900, "depth_mm": 2000, "height_mm": 1400},
+    "yoga-mat": {"label": "瑜伽墊", "category": "fitness", "shape": "mat", "color": "#f97316", "width_mm": 700, "depth_mm": 1800, "height_mm": 25},
+    "dumbbell-rack": {"label": "啞鈴架", "category": "fitness", "shape": "rack", "color": "#c2410c", "width_mm": 1200, "depth_mm": 500, "height_mm": 900},
+    "water-filter": {"label": "淨軟水／過濾設備", "category": "mechanical", "shape": "appliance", "color": "#0891b2", "width_mm": 900, "depth_mm": 650, "height_mm": 1450},
+    "water-tank": {"label": "1000L 水塔", "category": "mechanical", "shape": "tank", "color": "#0e7490", "width_mm": 1100, "depth_mm": 1100, "height_mm": 1500},
+    "pressure-pump": {"label": "VF800 恆壓泵", "category": "mechanical", "shape": "appliance", "color": "#0369a1", "width_mm": 800, "depth_mm": 600, "height_mm": 900},
+    "heat-pump": {"label": "Haier 熱泵熱水器", "category": "mechanical", "shape": "appliance", "color": "#be123c", "width_mm": 900, "depth_mm": 800, "height_mm": 1600},
+    "solar-inverter": {"label": "太陽能逆變器", "category": "mechanical", "shape": "appliance", "color": "#ca8a04", "width_mm": 800, "depth_mm": 350, "height_mm": 1200},
+    "clothes-rack": {"label": "曬衣架", "category": "outdoor", "shape": "rack", "color": "#15803d", "width_mm": 2400, "depth_mm": 600, "height_mm": 1900},
+    "planter": {"label": "植栽槽", "category": "outdoor", "shape": "planter", "color": "#16a34a", "width_mm": 1600, "depth_mm": 500, "height_mm": 550}
+  },
+  "profiles": {
+    "garage-one": [
+      {"id": "car-1", "catalog": "car", "position": [0.5, 0.5]}
+    ],
+    "garage-two-plus-motorcycle": [
+      {"id": "car-1", "catalog": "car", "position": [0.24, 0.5]},
+      {"id": "car-2", "catalog": "car", "position": [0.52, 0.5]},
+      {"id": "motorcycle", "catalog": "motorcycle", "position": [0.79, 0.5]}
+    ],
+    "entry": [
+      {"id": "shoe-cabinet", "catalog": "shoe-cabinet", "position": [0.28, 0.76]}
+    ],
+    "entry-package": [
+      {"id": "shoe-cabinet", "catalog": "shoe-cabinet", "position": [0.24, 0.76]},
+      {"id": "parcel-cabinet", "catalog": "parcel-cabinet", "position": [0.76, 0.76]}
+    ],
+    "living": [
+      {"id": "sofa", "catalog": "sofa-3", "position": [0.22, 0.62]},
+      {"id": "coffee-table", "catalog": "coffee-table", "position": [0.555, 0.52]},
+      {"id": "tv", "catalog": "tv-console", "position": [0.827, 0.38]}
+    ],
+    "living-l": [
+      {"id": "l-sofa", "catalog": "sofa-l", "position": [0.23, 0.52]},
+      {"id": "coffee-table", "catalog": "coffee-table", "position": [0.53, 0.54]},
+      {"id": "tv-wall", "catalog": "tv-console", "position": [0.79, 0.38]}
+    ],
+    "dining-four": [
+      {"id": "dining-set", "catalog": "dining-4", "position": [0.5, 0.5]}
+    ],
+    "dining-six": [
+      {"id": "dining-set", "catalog": "dining-6", "position": [0.5, 0.5]}
+    ],
+    "kitchen": [
+      {"id": "counter", "catalog": "counter-240", "position": [0.3, 0.3]},
+      {"id": "fridge", "catalog": "fridge-75", "position": [0.76, 0.35]}
+    ],
+    "kitchen-island": [
+      {"id": "counter", "catalog": "counter-300", "position": [0.25, 0.25]},
+      {"id": "island", "catalog": "island-180", "position": [0.675, 0.7]},
+      {"id": "fridge", "catalog": "fridge-75", "position": [0.92, 0.34]}
+    ],
+    "kitchen-240": [
+      {"id": "counter-240", "catalog": "counter-240", "position": [0.2, 0.32]},
+      {"id": "fridge-75", "catalog": "fridge-75", "position": [0.43, 0.38]}
+    ],
+    "bathroom": [
+      {"id": "vanity", "catalog": "vanity-90", "position": [0.16, 0.48]},
+      {"id": "toilet", "catalog": "toilet", "position": [0.49, 0.52]},
+      {"id": "shower", "catalog": "shower-90", "position": [0.8, 0.5]}
+    ],
+    "bathroom-accessible": [
+      {"id": "vanity", "catalog": "vanity-90", "position": [0.15, 0.45]},
+      {"id": "toilet", "catalog": "toilet", "position": [0.45, 0.5]},
+      {"id": "accessible-shower", "catalog": "shower-accessible", "position": [0.78, 0.5]}
+    ],
+    "bedroom-double": [
+      {"id": "bed", "catalog": "double-bed", "position": [0.2, 0.54]},
+      {"id": "wardrobe", "catalog": "wardrobe-180", "position": [0.56, 0.25]},
+      {"id": "vanity", "catalog": "vanity-desk", "position": [0.84, 0.68]}
+    ],
+    "bedroom-single": [
+      {"id": "bed", "catalog": "single-bed", "position": [0.18, 0.53]},
+      {"id": "wardrobe", "catalog": "wardrobe-180", "position": [0.53, 0.26]},
+      {"id": "desk", "catalog": "desk-140", "position": [0.84, 0.68]}
+    ],
+    "elder-bedroom": [
+      {"id": "bed", "catalog": "queen-bed", "position": [0.2, 0.5]},
+      {"id": "wardrobe", "catalog": "wardrobe-180", "position": [0.52, 0.25]},
+      {"id": "tv", "catalog": "tv-console", "position": [0.82, 0.38]}
+    ],
+    "guest-flex": [
+      {"id": "sofa-bed", "catalog": "sofa-bed", "position": [0.2, 0.52]},
+      {"id": "desk", "catalog": "desk-140", "position": [0.55, 0.65]},
+      {"id": "wardrobe", "catalog": "wardrobe-180", "position": [0.84, 0.28]}
+    ],
+    "hotel-master": [
+      {"id": "double-bed", "catalog": "double-bed", "position": [0.18, 0.6]},
+      {"id": "wardrobe-wall", "catalog": "wardrobe-360", "position": [0.56, 0.18]},
+      {"id": "vanity-by-window", "catalog": "vanity-desk", "position": [0.88, 0.7]},
+      {"id": "tv-wall", "catalog": "tv-console", "position": [0.68, 0.72]}
+    ],
+    "walk-in": [
+      {"id": "wardrobe-left", "catalog": "wardrobe-180", "position": [0.26, 0.5]},
+      {"id": "wardrobe-right", "catalog": "wardrobe-180", "position": [0.74, 0.5]}
+    ],
+    "hall-storage": [
+      {"id": "hall-cabinet", "catalog": "hall-cabinet", "position": [0.5, 0.72]}
+    ],
+    "study": [
+      {"id": "desk", "catalog": "desk-140", "position": [0.32, 0.58]},
+      {"id": "shelf", "catalog": "shelf-180", "position": [0.75, 0.3]}
+    ],
+    "entertainment": [
+      {"id": "theater-sofa", "catalog": "theater-sofa", "position": [0.25, 0.57]},
+      {"id": "coffee-table", "catalog": "coffee-table", "position": [0.55, 0.55]},
+      {"id": "media-wall", "catalog": "tv-console", "position": [0.82, 0.36]}
+    ],
+    "entertainment-compact": [
+      {"id": "theater-sofa", "catalog": "theater-sofa", "position": [0.264, 0.55]},
+      {"id": "coffee-table", "catalog": "coffee-table", "position": [0.582, 0.5], "width_mm": 650, "depth_mm": 400, "label": "緊湊茶几"},
+      {"id": "media-wall", "catalog": "tv-console", "position": [0.809, 0.4]}
+    ],
+    "multi-purpose": [
+      {"id": "yoga-mat", "catalog": "yoga-mat", "position": [0.3, 0.5]},
+      {"id": "storage", "catalog": "shelf-180", "position": [0.75, 0.25]}
+    ],
+    "fitness": [
+      {"id": "treadmill", "catalog": "treadmill", "position": [0.18, 0.5]},
+      {"id": "yoga-mat", "catalog": "yoga-mat", "position": [0.5, 0.5]},
+      {"id": "dumbbell-rack", "catalog": "dumbbell-rack", "position": [0.82, 0.28]}
+    ],
+    "laundry": [
+      {"id": "washer", "catalog": "washer", "position": [0.18, 0.5]},
+      {"id": "dryer", "catalog": "dryer", "position": [0.4, 0.5]},
+      {"id": "utility-cabinet", "catalog": "utility-cabinet", "position": [0.76, 0.45]}
+    ],
+    "balcony-laundry-plants": [
+      {"id": "washer", "catalog": "washer", "position": [0.12, 0.5]},
+      {"id": "clothes-rack", "catalog": "clothes-rack", "position": [0.48, 0.5]},
+      {"id": "planter", "catalog": "planter", "position": [0.83, 0.83]}
+    ],
+    "balcony-plants": [
+      {"id": "planter-front", "catalog": "planter", "position": [0.28, 0.52]},
+      {"id": "planter-rear", "catalog": "planter", "position": [0.72, 0.52]}
+    ],
+    "outdoor-rest": [
+      {"id": "bench", "catalog": "outdoor-bench", "position": [0.28, 0.28]},
+      {"id": "planter", "catalog": "planter", "position": [0.72, 0.78]}
+    ],
+    "mdf-18u": [
+      {"id": "rack", "catalog": "rack-18u", "position": [0.18, 0.5]},
+      {"id": "service-cabinet", "catalog": "utility-cabinet", "position": [0.55, 0.5]}
+    ],
+    "idf-12u": [
+      {"id": "rack", "catalog": "rack-12u", "position": [0.3, 0.5]}
+    ],
+    "shrine-v1": [
+      {"id": "altar", "catalog": "altar-table", "position": [0.28, 0.91]},
+      {"id": "offering-table", "catalog": "folding-offering-table", "position": [0.28, 0.6]},
+      {"id": "bench-left", "catalog": "movable-bench", "position": [0.7, 0.53], "label": "可移動長凳 A"},
+      {"id": "bench-right", "catalog": "movable-bench", "position": [0.7, 0.68], "label": "可移動長凳 B"},
+      {"id": "shoe-cabinet", "catalog": "shoe-cabinet", "position": [0.8, 0.14]}
+    ],
+    "ceremonial-storage-v1": [
+      {"id": "ceremonial-storage", "catalog": "ceremonial-storage", "position": [0.5, 0.3]},
+      {"id": "ritual-cabinet", "catalog": "ritual-cabinet", "position": [0.25, 0.93]},
+      {"id": "fireproof-cabinet", "catalog": "fireproof-offering-cabinet", "position": [0.75, 0.93]},
+      {"id": "prep-table", "catalog": "fold-down-prep-table", "position": [0.25, 0.78]},
+      {"id": "dehumidifier", "catalog": "dehumidifier", "position": [0.83, 0.78]}
+    ],
+    "tea-bar": [
+      {"id": "tea-bar", "catalog": "tea-bar", "position": [0.5, 0.5]}
+    ],
+    "water-inlet": [
+      {"id": "filter-system", "catalog": "water-filter", "position": [0.28, 0.5]},
+      {"id": "pump", "catalog": "pressure-pump", "position": [0.68, 0.5]}
+    ],
+    "water-tank": [
+      {"id": "water-tank", "catalog": "water-tank", "position": [0.5, 0.5]}
+    ],
+    "pressure-pump": [
+      {"id": "pressure-pump", "catalog": "pressure-pump", "position": [0.5, 0.5]}
+    ],
+    "heat-pump": [
+      {"id": "heat-pump", "catalog": "heat-pump", "position": [0.5, 0.5]}
+    ],
+    "solar": [
+      {"id": "solar-inverter", "catalog": "solar-inverter", "position": [0.3, 0.5]}
+    ],
+    "clothes-platform": [
+      {"id": "clothes-rack", "catalog": "clothes-rack", "position": [0.5, 0.5]}
+    ],
+    "flex-indoor": [
+      {"id": "sofa-bed", "catalog": "sofa-bed", "position": [0.25, 0.5]},
+      {"id": "yoga-mat", "catalog": "yoga-mat", "position": [0.58, 0.5]}
+    ]
+  },
+  "rooms": {
+    "A:floor-1:garage": {"profile": "garage-one", "basis": "html-explicit", "evidence": ["前院車庫 5.5m × 6.0m（示意）", "EV 充電與洗車需求"]},
+    "A:floor-1:entry": {"profile": "entry-package", "basis": "html-explicit", "evidence": ["三段式收納", "包裹收納櫃深度 ≥30cm"]},
+    "A:floor-1:living": {"profile": "living", "basis": "html-mixed", "evidence": ["客廳約 5 坪", "HTML 明載電視牆；沙發與茶几依房型推估"]},
+    "A:floor-1:mdf": {"profile": "mdf-18u", "basis": "html-explicit", "evidence": ["19 吋 18U、600mm 深、600mm 寬落地式機櫃", "需預留維修與設備收納"]},
+    "A:floor-1:dining": {"profile": "dining-four", "basis": "room-use-inference", "evidence": ["房名為餐廳；HTML 未指定餐桌尺寸"]},
+    "A:floor-1:bath1": {"profile": "bathroom-accessible", "basis": "html-mixed", "evidence": ["外側洗手台、內側馬桶／淋浴", "扶手預留；設備相對位置為推估"]},
+    "A:floor-1:kitchen": {"profile": "kitchen-island", "basis": "html-mixed", "evidence": ["HTML 明載中島、水槽、洗碗機與飲水預留", "流理台與冰箱尺寸採一般規格"]},
+    "A:floor-1:flex1": {"profile": "guest-flex", "basis": "html-mixed", "evidence": ["多功能房／客房 3.5–4 坪", "床頭插座明載；沙發床、書桌與衣櫃為彈性用途推估"]},
+    "A:floor-1:balcony1": {"profile": "laundry", "basis": "html-explicit", "evidence": ["洗衣機／烘衣機", "家務整合櫃"]},
+    "A:floor-1:water-inlet": {"profile": "water-inlet", "basis": "html-explicit", "evidence": ["瑞士水全戶淨軟水機", "TS400B 抽水機"]},
+    "A:floor-2:master": {"profile": "bedroom-double", "basis": "html-mixed", "evidence": ["主臥室約 6 坪與床頭雙側需求", "電視牆明載；衣櫃與梳妝台位置為推估"]},
+    "A:floor-2:master-bath": {"profile": "bathroom", "basis": "html-explicit", "evidence": ["智能馬桶、洗手台、淋浴與乾濕設備需求"]},
+    "A:floor-2:walkin": {"profile": "walk-in", "basis": "room-use-inference", "evidence": ["更衣／收納房；櫃體尺寸與位置未明載"]},
+    "A:floor-2:hall2": {"profile": "hall-storage", "basis": "html-explicit", "evidence": ["走廊一側可做深 35–40cm 頂天立地櫃"]},
+    "A:floor-2:study": {"profile": "study", "basis": "html-mixed", "evidence": ["書房／工作室與遠端工作核心", "桌面 LAN×4；桌櫃尺寸為推估"]},
+    "A:floor-2:bedroom2": {"profile": "bedroom-single", "basis": "html-mixed", "evidence": ["次臥約 4 坪", "床頭、網路與未來分房需求；家具尺寸為推估"]},
+    "A:floor-2:bath2": {"profile": "bathroom", "basis": "html-explicit", "evidence": ["智能馬桶、洗手台、淋浴與乾濕設備需求"]},
+    "A:floor-2:balcony2": {"profile": "balcony-plants", "basis": "html-mixed", "evidence": ["高雄厝陽台植栽區", "植栽槽數量與位置為推估"]},
+    "A:floor-3:entertainment": {"profile": "entertainment", "basis": "html-mixed", "evidence": ["娛樂室／家庭劇院約 6–8 坪", "TV／投影與 5.1／7.1；沙發與茶几尺寸為推估"]},
+    "A:floor-3:guest": {"profile": "bedroom-single", "basis": "html-mixed", "evidence": ["客房約 4 坪與床頭插座", "衣櫃及書桌為房型推估"]},
+    "A:floor-3:bath3": {"profile": "bathroom", "basis": "html-explicit", "evidence": ["智能馬桶、洗手台、淋浴與乾濕設備需求"]},
+    "A:floor-3:multi": {"profile": "multi-purpose", "basis": "html-explicit", "evidence": ["彈性用途：健身房／瑜伽室／兒童遊戲室"]},
+    "A:floor-4:water-tank": {"profile": "water-tank", "basis": "html-explicit", "evidence": ["WT-L-1000B #304，1000L"]},
+    "A:floor-4:vf800": {"profile": "pressure-pump", "basis": "html-explicit", "evidence": ["VF800 變頻恆壓泵"]},
+    "A:floor-4:haier": {"profile": "heat-pump", "basis": "html-explicit", "evidence": ["Haier HPSE23W/256T 熱泵熱水器"]},
+    "A:floor-4:solar": {"profile": "solar", "basis": "html-explicit", "evidence": ["太陽能設備區與併網逆變器"]},
+    "A:floor-4:laundry-rf": {"profile": "clothes-platform", "basis": "html-explicit", "evidence": ["RF 曬衣／設備維修平台"]},
+
+    "B:floor-1:garage": {"profile": "garage-one", "basis": "html-mixed", "evidence": ["前院車庫約 33㎡與 EV 預留", "HTML 未指定車輛數，先以一車測試"]},
+    "B:floor-1:shrine": {"profile": "shrine-v1", "basis": "html-mixed", "evidence": ["HTML 明載神明廳＋玄關、龍邊神桌與玄關收納", "活動供桌與可移動長凳為 2026-09-09 第一版彈性使用推排"], "note": "日常保留可移動家具；大型祭拜時長凳與供桌依人數移位，正式淨空須待建築師平面尺寸檢核。"},
+    "B:floor-1:idf-cabinet": {"profile": "idf-12u", "basis": "html-explicit", "evidence": ["IDF-B 機櫃位於樓梯下空間"]},
+    "B:floor-1:bath1": {"profile": "bathroom-accessible", "basis": "html-explicit", "evidence": ["無障礙衛浴、求救鈴與迴轉需求"]},
+    "B:floor-1:storage": {"profile": "ceremonial-storage-v1", "basis": "html-mixed", "evidence": ["HTML 明載武轎儲藏、防潮、防火與分類收納", "武轎暫估收納外廓由 inputs/physical-items.json 統一提供；第一版採 150cm 寬門直進直出，不在淺格內轉向"], "note": "武轎正對 150cm 暫定淨開口；法器櫃、耐燃櫃、折疊整備桌與除濕機集中另一側。若正式動線不能直進直出，必須擴大至可容納 180cm 轉向圓，而非縮小武轎。"},
+    "B:floor-1:balcony1": {"profile": "laundry", "basis": "room-use-inference", "evidence": ["後工作陽台；家具設備內容未完整明載"]},
+    "B:floor-2:living2": {"profile": "living", "basis": "html-mixed", "evidence": ["家庭大客廳與 TV／NAS", "沙發、茶几尺寸為房型推估"]},
+    "B:floor-2:bar2": {"profile": "tea-bar", "basis": "room-use-inference", "evidence": ["房名為茶水吧；吧檯尺寸未明載"]},
+    "B:floor-2:bath2": {"profile": "bathroom", "basis": "html-explicit", "evidence": ["客用衛浴的洗手台、馬桶與淋浴基本組合"]},
+    "B:floor-2:master-bath2": {"profile": "bathroom", "basis": "html-explicit", "evidence": ["主臥衛浴由後帶主臥乾區分離，固定在中段濕式核心", "洗手台、馬桶與淋浴設備維持基本組合"], "note": "所有排水與地漏均須停留在 y<12700，不得跨入神桌上方保護帶。"},
+    "B:floor-2:master2": {"profile": "bedroom-double", "basis": "html-mixed", "evidence": ["主臥乾區與床頭雙切", "床、衣櫃與梳妝台尺寸為推估；衛浴另置中段"]},
+    "B:floor-2:balcony2": {"profile": "outdoor-rest", "basis": "room-use-inference", "evidence": ["高雄厝景觀陽臺；休憩椅與植栽為第一版推估"]},
+    "B:floor-3:terrace3": {"profile": "flex-indoor", "basis": "room-use-inference", "evidence": ["3F 前側彈性室內區；先以沙發床與瑜伽用途測試"]},
+    "B:floor-3:ktv3": {"profile": "entertainment-compact", "basis": "html-mixed", "evidence": ["多功能娛樂室與影音器材專迴", "狹長 HTML 格位採家庭劇院沙發、緊湊茶几與影音牆推排"]},
+    "B:floor-3:bath3": {"profile": "bathroom", "basis": "html-explicit", "evidence": ["HTML 明載洗手台＋馬桶＋淋浴"]},
+    "B:floor-3:guest3": {"profile": "bedroom-single", "basis": "html-mixed", "evidence": ["後客房、床頭或書桌網路點", "家具尺寸與相對位置為推估"]},
+    "B:floor-4:tank-rf": {"profile": "water-tank", "basis": "html-explicit", "evidence": ["B 棟 1000L 不鏽鋼水塔"]},
+    "B:floor-4:pump-rf": {"profile": "pressure-pump", "basis": "html-explicit", "evidence": ["VF800 變頻恆壓泵"]},
+    "B:floor-4:hotwater-rf": {"profile": "heat-pump", "basis": "html-explicit", "evidence": ["Haier 熱泵熱水器"]},
+    "B:floor-4:platform-rf": {"profile": "clothes-platform", "basis": "html-explicit", "evidence": ["活動平台／曬衣棚架"]},
+
+    "C:floor-1:garage": {"profile": "garage-two-plus-motorcycle", "basis": "html-explicit", "evidence": ["前院車庫約 2 車位＋機車"]},
+    "C:floor-1:entrance": {"profile": "entry", "basis": "html-explicit", "evidence": ["玄關鞋櫃深度不得壓縮輪椅迴轉"]},
+    "C:floor-1:living": {"profile": "living", "basis": "html-mixed", "evidence": ["客廳約 8 坪與 TV 點位", "家具需保留輪椅通行；尺寸為推估"]},
+    "C:floor-1:dining": {"profile": "dining-six", "basis": "room-use-inference", "evidence": ["餐桌不得阻擋玄關、客廳、廚房與孝親房主要通道"]},
+    "C:floor-1:kitchen": {"profile": "kitchen", "basis": "html-mixed", "evidence": ["冷熱水、IH／烤箱專迴與排煙", "流理台與冰箱尺寸為推估"]},
+    "C:floor-1:stair1f": {"profile": "idf-12u", "basis": "html-explicit", "evidence": ["樓梯下 12U IDF 弱電機櫃，深度 600mm"]},
+    "C:floor-1:elder": {"profile": "elder-bedroom", "basis": "html-mixed", "evidence": ["孝親房約 5 坪、床邊緊急鈕與電視牆", "床邊至對牆仍須保留 150cm，家具位置為初排"]},
+    "C:floor-1:elder-bath": {"profile": "bathroom-accessible", "basis": "html-explicit", "evidence": ["無障礙淋浴、馬桶、洗手台及 150×180cm 迴轉需求"]},
+    "C:floor-1:service": {"profile": "laundry", "basis": "html-mixed", "evidence": ["後工作陽台明載洗衣", "烘衣與家務櫃為第一版推估"]},
+    "C:floor-2:balcony2f": {"profile": "balcony-laundry-plants", "basis": "html-explicit", "evidence": ["10.0m²、覆土植栽至少 1/3", "洗衣機＋曬衣桿"]},
+    "C:floor-2:living2f": {"profile": "living-l", "basis": "html-explicit", "evidence": ["約 8.5 坪｜L 型沙發＋電視牆＋茶几"]},
+    "C:floor-2:guestroom2f": {"profile": "guest-flex", "basis": "html-explicit", "evidence": ["單人床或沙發床＋書桌＋衣櫃"]},
+    "C:floor-2:kitchen2f": {"profile": "kitchen-240", "basis": "html-explicit", "evidence": ["流理台長度 ≥240cm", "冰箱位 75×70cm"]},
+    "C:floor-2:bath2f": {"profile": "bathroom", "basis": "html-explicit", "evidence": ["乾濕分離：馬桶＋洗手台＋淋浴間"]},
+    "C:floor-3:terrace3f": {"profile": "outdoor-rest", "basis": "html-mixed", "evidence": ["通風、曬衣、休憩小空間", "休憩椅與植栽位置為推估"]},
+    "C:floor-3:master3f": {"profile": "hotel-master", "basis": "html-explicit", "evidence": ["標準雙人床 180×200cm", "梳妝台靠窗", "360cm 四衣櫃牆與電視"]},
+    "C:floor-3:fitness3f": {"profile": "fitness", "basis": "html-explicit", "evidence": ["跑步機／瑜伽／重訓", "啞鈴架與隔振底座需求"]},
+    "C:floor-3:bath3f": {"profile": "bathroom", "basis": "html-explicit", "evidence": ["乾濕分離：馬桶＋洗手台＋淋浴間"]},
+    "C:floor-4:water-tank": {"profile": "water-tank", "basis": "html-explicit", "evidence": ["不鏽鋼水塔 1000L"]},
+    "C:floor-4:pump": {"profile": "pressure-pump", "basis": "html-explicit", "evidence": ["VF800 加壓系統"]},
+    "C:floor-4:heatpump": {"profile": "heat-pump", "basis": "html-explicit", "evidence": ["Haier 200L 熱泵熱水器"]},
+    "C:floor-4:platform": {"profile": "clothes-platform", "basis": "html-mixed", "evidence": ["活動平台／曬衣棚架與室外機區", "先放一組曬衣架量體"]},
+    "C:floor-4:laundry-rf": {"profile": "clothes-platform", "basis": "html-explicit", "evidence": ["曬衣區"]}
+  }
+}

@@ -4,9 +4,8 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
-from house_design.contracts import ContractError, ROOT, read_json, stable_hash, utc_now, write_json
+from house_design.contracts import ROOT, ContractError, read_json, stable_hash, utc_now, write_json
 from house_design.intake import validate_project
-
 
 PREDESIGN_PATH = ROOT / "inputs/predesign.json"
 PREDESIGN_RULES_PATH = ROOT / "rules/predesign_readiness_rules.json"

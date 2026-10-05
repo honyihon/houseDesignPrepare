@@ -768,18 +768,142 @@ def _swap_for_daylight(cells: list[Cell], net: Rect) -> None:
            and ((c.role == "room" and c.brief.get("light") == "none")
                 or c.role == "flex")]
 
-    for d in dark:
-        for l in lit:
-            a, b = d.rect.area_sqm, l.rect.area_sqm
+    for dark_cell in dark:
+        for lit_cell in lit:
+            a, b = dark_cell.rect.area_sqm, lit_cell.rect.area_sqm
             if min(a, b) / max(a, b) < 0.6:
                 continue
-            d.rect, l.rect = l.rect, d.rect
-            lit.remove(l)
+            dark_cell.rect, lit_cell.rect = lit_cell.rect, dark_cell.rect
+            lit.remove(lit_cell)
             break
 
 
+def _anchored_boundary(value: float, outer_size: int, net_lo: int, net_hi: int) -> int:
+    """Move only an outer-face coordinate onto the inside face of the shell.
+
+    ``inputs/dimensions.json`` describes the same outer frame as the HTML plans:
+    0..frontage and 0..depth.  Parametric cells, on the other hand, tile the
+    inside of the exterior wall.  Interior grid lines are shared design
+    decisions and must therefore stay put; only 0 and the far outer edge are
+    pulled back to ``net``.
+    """
+
+    if abs(value) <= 0.5:
+        return net_lo
+    if abs(value - outer_size) <= 0.5:
+        return net_hi
+    return int(round(value))
+
+
+def anchored_cells(
+    floor_brief: dict[str, Any],
+    layout_floor: dict[str, Any],
+    cell_map: dict[str, Any],
+    net: Rect,
+    frontage_mm: int,
+    depth_mm: int,
+) -> list[Cell]:
+    """Translate a reviewed concept grid into ordinary parametric ``Cell``s.
+
+    This is deliberately strict.  An anchored floor is used when a reviewed
+    concept (currently B/f6000_g1) must stay aligned with the HTML/3D branch.
+    Silently dropping a newly added HTML cell would recreate the exact drift
+    this bridge exists to prevent, so every source cell must be mapped and the
+    resulting rectangles must tile the parametric net without gaps or overlaps.
+
+    A map value may be a room id string, or an object with ``id``, optional
+    ``brief_id``, ``role``, ``kind`` and a small ``brief`` overlay.  The latter
+    is for circulation/equipment cells which do not appear in the area brief.
+    """
+
+    source_cells = layout_floor.get("cells") or {}
+    missing_map = sorted(set(source_cells) - set(cell_map))
+    stale_map = sorted(set(cell_map) - set(source_cells))
+    if missing_map or stale_map:
+        raise ValueError(
+            f"anchored layout map mismatch on {floor_brief.get('floor_id')}: "
+            f"unmapped={missing_map}, missing_source={stale_map}"
+        )
+
+    room_by_id = {str(room.get("id")): room for room in floor_brief.get("rooms", [])}
+    out: list[Cell] = []
+    seen_ids: set[str] = set()
+
+    for source_id, raw in source_cells.items():
+        mapped = cell_map[source_id]
+        spec = {"id": mapped} if isinstance(mapped, str) else dict(mapped)
+        target_id = str(spec.get("id") or source_id)
+        if target_id in seen_ids:
+            raise ValueError(
+                f"anchored layout has duplicate target id {target_id!r} on "
+                f"{floor_brief.get('floor_id')}"
+            )
+        seen_ids.add(target_id)
+
+        brief_id = str(spec.get("brief_id") or target_id)
+        brief = dict(room_by_id.get(brief_id) or {})
+        brief.update(spec.get("brief") or {})
+        brief["id"] = target_id
+
+        x0_raw = float(raw.get("x_mm", 0))
+        y0_raw = float(raw.get("y_mm", 0))
+        x1_raw = x0_raw + float(raw.get("w_mm", 0))
+        y1_raw = y0_raw + float(raw.get("h_mm", 0))
+        rect = Rect(
+            _anchored_boundary(x0_raw, frontage_mm, net.x0, net.x1),
+            _anchored_boundary(y0_raw, depth_mm, net.y0, net.y1),
+            _anchored_boundary(x1_raw, frontage_mm, net.x0, net.x1),
+            _anchored_boundary(y1_raw, depth_mm, net.y0, net.y1),
+        )
+        if not rect.valid:
+            raise ValueError(
+                f"anchored layout cell {source_id!r} has invalid rect {rect.as_list()}"
+            )
+        if rect.x0 < net.x0 or rect.y0 < net.y0 or rect.x1 > net.x1 or rect.y1 > net.y1:
+            raise ValueError(
+                f"anchored layout cell {source_id!r} lies outside net {net.as_list()}: "
+                f"{rect.as_list()}"
+            )
+
+        role = str(spec.get("role") or "room")
+        kind = str(spec.get("kind") or brief.get("kind") or "other")
+        name = str(spec.get("name") or raw.get("_name") or brief.get("name") or source_id)
+        out.append(
+            Cell(
+                target_id,
+                name,
+                kind,
+                role,  # type: ignore[arg-type]
+                rect,
+                brief=brief,
+                flags=list(spec.get("flags") or []),
+            )
+        )
+
+    # Pairwise non-overlap plus equal area is enough to prove an axis-aligned
+    # set inside ``net`` is an exact tiling.  Keep the error in mm² so a 1 mm
+    # typo cannot disappear behind area rounding in the capacity report.
+    for index, a in enumerate(out):
+        for b in out[index + 1 :]:
+            ox = min(a.rect.x1, b.rect.x1) - max(a.rect.x0, b.rect.x0)
+            oy = min(a.rect.y1, b.rect.y1) - max(a.rect.y0, b.rect.y0)
+            if ox > 0 and oy > 0:
+                raise ValueError(
+                    f"anchored layout overlap on {floor_brief.get('floor_id')}: "
+                    f"{a.id} x {b.id} ({ox * oy} mm2)"
+                )
+    tile_error = net.area_mm2 - sum(cell.rect.area_mm2 for cell in out)
+    if tile_error:
+        raise ValueError(
+            f"anchored layout does not tile {floor_brief.get('floor_id')}: "
+            f"area error {tile_error} mm2"
+        )
+    return out
+
+
 def build_floor(floor_brief: dict[str, Any], sk: Skeleton, site: dict[str, Any],
-                defaults: dict[str, Any]) -> dict[str, Any]:
+                defaults: dict[str, Any],
+                anchored_layout: dict[str, Any] | None = None) -> dict[str, Any]:
     net = sk.net
     corridor_y0 = net.y0 + sk.front_depth
     cells: list[Cell] = []
@@ -788,7 +912,20 @@ def build_floor(floor_brief: dict[str, Any], sk: Skeleton, site: dict[str, Any],
     rooms = [dict(r) for r in floor_brief.get("rooms", [])]
     has_garage = bool(floor_brief.get("has_garage")) and sk.garage is not None
 
-    if floor_brief.get("fill") == "fixed":
+    if anchored_layout is not None:
+        cells = anchored_cells(
+            floor_brief,
+            anchored_layout["floor"],
+            anchored_layout["cell_map"],
+            net,
+            int(anchored_layout["frontage_mm"]),
+            int(anchored_layout["depth_mm"]),
+        )
+        notes.append(
+            f"固定對齊 {anchored_layout.get('profile', 'reviewed-concept')}；"
+            "座標為概念自動值，不是基地實測或施工放樣。"
+        )
+    elif floor_brief.get("fill") == "fixed":
         _place_roof(rooms, sk, cells)
     else:
         reserved: list[Rect] = []
@@ -904,7 +1041,7 @@ def build_floor(floor_brief: dict[str, Any], sk: Skeleton, site: dict[str, Any],
     stair_info = stair_dims(site)
     stair_info["rect"] = sk.stair.as_list()
 
-    return {
+    payload = {
         "floor_id": floor_brief.get("floor_id"),
         "label": floor_brief.get("label"),
         "fill": floor_brief.get("fill", "expand"),
@@ -917,6 +1054,14 @@ def build_floor(floor_brief: dict[str, Any], sk: Skeleton, site: dict[str, Any],
         "stairs": stair_info,
         "notes": notes,
     }
+    if anchored_layout is not None:
+        payload.update({
+            "geometry_profile": anchored_layout.get("profile"),
+            "geometry_source": anchored_layout.get("source"),
+            "geometry_provenance": anchored_layout.get("provenance", "auto"),
+            "anchored_layout": True,
+        })
+    return payload
 
 
 def _place_roof(rooms: list[dict[str, Any]], sk: Skeleton, cells: list[Cell]) -> None:
@@ -1071,6 +1216,7 @@ def _cell_payload(cell: Cell, net: Rect) -> dict[str, Any]:
         "light": brief.get("light", "preferred"),
         "private": bool(brief.get("private")),
         "counts_in_footprint": brief.get("counts_in_footprint", cell.kind != "outdoor"),
+        "counts_as_fixed": brief.get("counts_as_fixed", True),
         "penthouse": bool(brief.get("penthouse")),
         "penthouse_class": pclass,
         "counts_in_projection": brief.get("counts_in_projection"),
@@ -1083,6 +1229,7 @@ def _cell_payload(cell: Cell, net: Rect) -> dict[str, Any]:
         "access_from": brief.get("access_from") or [],
         "open_plan": bool(brief.get("open_plan")),
         "carry_path": bool(brief.get("carry_path")),
+        "required_facade": brief.get("facade"),
         "niche": niche,
         "note": brief.get("note"),
         "flags": flags,

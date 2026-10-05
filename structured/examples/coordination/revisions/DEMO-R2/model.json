@@ -1,0 +1,183 @@
+{
+  "schema": "house-normalized-model-v1",
+  "revision_id": "DEMO-R2",
+  "units": {
+    "length": "mm",
+    "area": "sqm"
+  },
+  "coordinate_system": {
+    "status": "verified",
+    "axis": "synthetic x/y (NOT NORTH)",
+    "verified_by": "SYNTHETIC EXAMPLE ONLY",
+    "verified_at": "2026-10-01",
+    "method": "synthetic matching",
+    "reference_points": [
+      [
+        0,
+        0
+      ],
+      [
+        8000,
+        0
+      ]
+    ]
+  },
+  "entities": {
+    "buildings": [],
+    "storeys": [
+      {
+        "id": "A-level",
+        "building_id": "A",
+        "floor_id": "floor-1",
+        "elevation_mm": 0
+      },
+      {
+        "id": "B-level",
+        "building_id": "B",
+        "floor_id": "floor-1",
+        "elevation_mm": 0
+      },
+      {
+        "id": "C-level",
+        "building_id": "C",
+        "floor_id": "floor-1",
+        "elevation_mm": 0
+      },
+      {
+        "id": "B-level-2",
+        "building_id": "B",
+        "floor_id": "floor-2",
+        "elevation_mm": 3000
+      }
+    ],
+    "spaces": [
+      {
+        "id": "A-room",
+        "building_id": "A",
+        "floor_id": "floor-1",
+        "polygon_mm": [
+          [
+            0,
+            0
+          ],
+          [
+            8000,
+            0
+          ],
+          [
+            8000,
+            6000
+          ],
+          [
+            0,
+            6000
+          ]
+        ],
+        "geometry_method": "professional_verified_polygon",
+        "evidence": {
+          "verified_by": "SYNTHETIC EXAMPLE ONLY",
+          "verified_at": "2026-10-01",
+          "reference": "DEMO / NOT A REAL DRAWING"
+        },
+        "boundary_measurement": "finished_clear",
+        "finished_headroom_mm": 2100
+      },
+      {
+        "id": "B-room",
+        "building_id": "B",
+        "floor_id": "floor-1",
+        "polygon_mm": [
+          [
+            0,
+            0
+          ],
+          [
+            8000,
+            0
+          ],
+          [
+            8000,
+            6000
+          ],
+          [
+            0,
+            6000
+          ]
+        ],
+        "geometry_method": "professional_verified_polygon",
+        "evidence": {
+          "verified_by": "SYNTHETIC EXAMPLE ONLY",
+          "verified_at": "2026-10-01",
+          "reference": "DEMO / NOT A REAL DRAWING"
+        },
+        "boundary_measurement": "finished_clear",
+        "finished_headroom_mm": 2600
+      },
+      {
+        "id": "C-room",
+        "building_id": "C",
+        "floor_id": "floor-1",
+        "polygon_mm": [
+          [
+            0,
+            0
+          ],
+          [
+            8000,
+            0
+          ],
+          [
+            8000,
+            6000
+          ],
+          [
+            0,
+            6000
+          ]
+        ],
+        "geometry_method": "professional_verified_polygon",
+        "evidence": {
+          "verified_by": "SYNTHETIC EXAMPLE ONLY",
+          "verified_at": "2026-10-01",
+          "reference": "DEMO / NOT A REAL DRAWING"
+        },
+        "boundary_measurement": "finished_clear",
+        "finished_headroom_mm": 2600
+      },
+      {
+        "id": "B-upper",
+        "building_id": "B",
+        "floor_id": "floor-2",
+        "polygon_mm": [
+          [
+            0,
+            0
+          ],
+          [
+            8000,
+            0
+          ],
+          [
+            8000,
+            6000
+          ],
+          [
+            0,
+            6000
+          ]
+        ],
+        "geometry_method": "professional_verified_polygon",
+        "evidence": {
+          "verified_by": "SYNTHETIC EXAMPLE ONLY",
+          "verified_at": "2026-10-01",
+          "reference": "DEMO / NOT A REAL DRAWING"
+        },
+        "boundary_measurement": "finished_clear"
+      }
+    ],
+    "walls": [],
+    "doors": [],
+    "windows": [],
+    "equipment": []
+  }
+}

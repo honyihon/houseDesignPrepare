@@ -12,7 +12,6 @@ from typing import Any
 
 from lib.architect_metrics import build_daylight_score_index
 
-
 ROOT = Path(__file__).resolve().parents[1]
 PROGRAM_FILE = ROOT / "structured" / "room_program.json"
 ARCHITECT_METRICS_FILE = ROOT / "structured" / "architect_metrics" / "metrics.json"

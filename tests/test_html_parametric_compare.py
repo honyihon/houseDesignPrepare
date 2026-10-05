@@ -14,7 +14,6 @@ from lib.html_parametric_compare import (
     resolve_html_to_para,
 )
 
-
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -180,7 +179,7 @@ def test_repository_mapping_has_only_documented_sideyard_difference() -> None:
     html_only = [item for floor in floors for item in floor["html_only"]]
     unmapped = [item for floor in floors for item in floor["unmapped"]]
 
-    assert mapped_html == 83
+    assert mapped_html == 91
     assert [(item["id"], item["relation"]) for item in html_only] == [("sideyard", "html_only")]
     assert unmapped == []
 

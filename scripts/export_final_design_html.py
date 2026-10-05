@@ -15,7 +15,6 @@ from typing import Any
 
 from bs4 import BeautifulSoup, Tag
 
-
 ROOT = Path(__file__).resolve().parents[1]
 PROGRAM_FILE = ROOT / "structured" / "room_program.json"
 CANDIDATES_FILE = ROOT / "structured" / "candidates" / "layout_candidates.json"

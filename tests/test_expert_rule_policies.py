@@ -2,9 +2,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from bs4 import BeautifulSoup
-
 import evaluate_expert_gates as gates
+from bs4 import BeautifulSoup
 
 
 def _context(html: str) -> gates.RuleEvalContext:

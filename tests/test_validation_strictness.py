@@ -6,10 +6,9 @@ import sys
 from pathlib import Path
 
 import pytest
-
 from lib.standards import load_residential_defaults
-from scripts.validate_layout_bundle import expected_floor_keys
 
+from scripts.validate_layout_bundle import expected_floor_keys
 
 ROOT = Path(__file__).resolve().parents[1]
 

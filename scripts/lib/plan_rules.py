@@ -40,7 +40,7 @@ CODES = {
     "BAND_UNREALISABLE": "需求指定的前後分帶沒有做到",
     "BALCONY_NOT_ON_FACADE": "後陽台沒有貼到後外牆",
     "OUTDOOR_LANDLOCKED": "戶外空間四面都是室內，沒有任何外牆",
-    "SHRINE_STACK": "神明廳正上方是衛浴或廚房",
+    "SHRINE_STACK": "神明廳正上方有濕區、樓梯、管道或設備",
 }
 
 ROOF_CLASS_LABEL = {
@@ -419,12 +419,11 @@ def _check_floor(floor: dict[str, Any], cap: dict[str, Any], building_id: str,
                 f"{cell['name']} 需求指定在{BAND_ZH[want]}，實際落在{BAND_ZH[got]}",
                 [cell["id"]])
 
-    # --- an outdoor space has to reach the outside ------------------------
-    # Two checks, because they fail differently. A balcony surrounded by rooms
-    # is not a balcony at all; one that reaches only a side wall is usable but
-    # is not the 後工作陽台 the brief asked for - the water risers, the drain and
-    # the drying line are all on the rear service wall, and the rear yard is the
-    # only side with room to work.
+    # --- an outdoor space has to reach the stated facade -------------------
+    # Most briefs put the service balcony on the rear riser wall. B's reviewed
+    # safety layout explicitly moves its balconies to a side facade so the
+    # entire rear band can stay dry above the shrine. Treating every balcony as
+    # rear-only would report that deliberate trade as a generator mistake.
     for b in (c for c in cells.values()
               if c.get("kind") == "outdoor" and "陽台" in c["name"]):
         sides = b.get("exterior_sides") or []
@@ -432,9 +431,18 @@ def _check_floor(floor: dict[str, Any], cap: dict[str, Any], building_id: str,
             add("OUTDOOR_LANDLOCKED",
                 f"{b['name']} 四周都是室內，沒有任何外牆 —— 無法排水、曬衣、通風，"
                 "這不是陽台", [b["id"]])
-        elif "rear" not in sides:
+        else:
+            required = b.get("required_facade") or "rear"
+            reaches_required = (
+                bool({"left", "right"} & set(sides))
+                if required == "side"
+                else required in sides
+            )
+            if reaches_required:
+                continue
             where = "、".join({"left": "左", "right": "右", "front": "前（臨路）"}.get(s, s)
                              for s in sides)
+            target = "側外牆" if required == "side" else "後外牆"
             # The 穿堂煞 clause only belongs on the floor that has the front
             # door. Said on 3F it reads as a rule misfiring, which costs the
             # finding the credibility the other 30 need.
@@ -442,7 +450,7 @@ def _check_floor(floor: dict[str, Any], cap: dict[str, Any], building_id: str,
                    if floor.get("floor_id") == "floor-1"
                    else "排水立管要上下對齊，與樓下的後陽台不同側就接不起來")
             add("BALCONY_NOT_ON_FACADE",
-                f"{b['name']} 只貼到{where}外牆，沒有貼到後外牆 —— {why}",
+                f"{b['name']} 只貼到{where}外牆，沒有貼到指定的{target} —— {why}",
                 [b["id"]])
 
     # --- front door lined up with the rear balcony (Q11) ----------------
@@ -538,7 +546,7 @@ def _check_roof(floor: dict[str, Any], cap: dict[str, Any]) -> list[dict[str, An
 
 
 def _check_stacking(building: dict[str, Any]) -> list[dict[str, Any]]:
-    """Cross-floor check: nothing that drains may sit over the 神明廳.
+    """Cross-floor check: keep wet, circulation and MEP hazards off the shrine.
 
     ``design_request.md`` line 340 lists 「2F 衛浴／排水管不要壓到神桌」 as 必做 and
     「B 棟風水最大紅線之一」, and §2 spells out 馬桶、淋浴區、排水立管、天花排水.
@@ -547,9 +555,10 @@ def _check_stacking(building: dict[str, Any]) -> list[dict[str, Any]]:
     3F 衛浴 are placed by the guillotine split like any other room. Eight
     layouts put one directly over the shrine and nothing said a word.
 
-    Whole-footprint, not 神桌-only: the model does not carry the altar's
-    position, and the altar is the least movable thing in the room. Flagging
-    the room is the honest resolution of what we actually know.
+    Whole-footprint, not 神桌-only: the parametric branch does not carry the
+    altar's exact object projection.  The reviewed concept reserves the full
+    rear shrine band, which is the conservative and auditable boundary until a
+    measured altar and structural grid replace these automatic coordinates.
     """
     out: list[dict[str, Any]] = []
     floors = building["floors"]
@@ -560,13 +569,24 @@ def _check_stacking(building: dict[str, Any]) -> list[dict[str, Any]]:
     if shrine is None:
         return out
     s = Rect(*shrine["rect"])
-    WET = {"bath": "衛浴排水", "kitchen": "廚房排水"}
+    hazards = {
+        "bath": "衛浴排水",
+        "kitchen": "廚房／茶水排水",
+        "service": "機電或重設備",
+    }
+    equipment_classes = {"tank", "open_mep", "energy"}
     for floor in floors:
         if floor["floor_id"] == "floor-1":
             continue
         for cell in floor["cells"]:
-            what = WET.get(cell.get("kind"))
-            if what is None and cell.get("kind") == "outdoor" and "陽台" in cell["name"]:
+            what = hazards.get(cell.get("kind"))
+            if cell.get("role") == "stair":
+                what = "樓梯與上下動線"
+            elif cell.get("role") == "shaft":
+                what = "管道間／排水立管"
+            elif cell.get("penthouse_class") in equipment_classes:
+                what = "屋頂水塔／機電設備"
+            elif what is None and cell.get("kind") == "outdoor" and "陽台" in cell["name"]:
                 what = "陽台落水頭"
             if what is None:
                 continue
@@ -579,10 +599,10 @@ def _check_stacking(building: dict[str, Any]) -> list[dict[str, Any]]:
             out.append({
                 "code": "SHRINE_STACK",
                 "severity": SEVERITY["SHRINE_STACK"],
-                "message": (f"{cell['name']} 壓在 {shrine['name']} 正上方 "
-                            f"{area:.2f} m²（{what}在神桌上方）—— "
-                            f"design_request 第 340 行列為必做紅線；"
-                            f"神桌確切位置與排水立管走向仍須建築師確認"),
+                "message": (f"{cell['name']} 壓在 {shrine['name']} 垂直投影 "
+                            f"{area:.2f} m²（{what}）—— B 棟安全版要求整個神明廳後帶"
+                            f"避開濕區、樓梯、管道與重設備；神桌、樑柱及管線位置仍須"
+                            f"實測並由建築師確認"),
                 "refs": [cell["id"], shrine["id"]],
                 "floor": floor["label"],
                 "floor_id": floor["floor_id"],

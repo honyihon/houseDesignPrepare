@@ -84,6 +84,41 @@
     outline-offset: 2px;
 }
 
+.design-review-note {
+    grid-column: 1 / -1;
+    margin: 12px 0;
+    padding: 12px 14px;
+    border: 1px solid #b45309;
+    border-left: 4px solid #f59e0b;
+    border-radius: 8px;
+    background: #fff7ed;
+    color: #713f12;
+    font-size: .9rem;
+    line-height: 1.65;
+    overflow-wrap: anywhere;
+}
+
+.design-review-note strong { color: #713f12; }
+.design-review-note p { margin: 6px 0; }
+.design-review-note a { color: #075985; }
+
+/* Once the page stacks, the formerly left-hand sticky plan must return to
+   normal flow. Otherwise it floats over the room details below it. */
+@media (max-width: 1050px) {
+    body[data-design-status="historical-html-sketch"] .visual-plan {
+        position: static;
+        top: auto;
+    }
+}
+
+@media print {
+    body[data-design-status="historical-html-sketch"] .visual-plan {
+        position: static;
+        top: auto;
+    }
+    .design-review-note { break-inside: avoid; }
+}
+
 @media (max-width: 760px) {
     .design-bridge {
         grid-template-columns: 1fr;

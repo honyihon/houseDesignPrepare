@@ -26,6 +26,8 @@
 | 匯入 PDF＋DXF | `python -m house_design drawings import ... --dxf ... --mapping ...` | 不可變來源、mapping 與標準化模型 |
 | 查看所有圖面版次 | `python -m house_design drawings list` | 終端機 JSON |
 | 驗證不可變版次完整性 | `python -m house_design drawings verify --revision R001` | 來源、mapping、模型與 manifest seal 檢查 |
+| 建立建築師交付契約 | `python -m house_design drawings prepare-handoff --revision R001` | 前身 HTML 快照、delivery／mapping 範本與交付說明 |
+| 正式落版前試匯入 | `python -m house_design drawings preflight --package structured/architect_handoffs/R001` | 暫存 import、空間量體與 walkthrough readiness，不建立 revision |
 | 檢查現行版次是否具備 3D 輸入 | `python -m house_design drawings model3d-readiness --revision R001` | readiness JSON；阻擋時 exit code 1 |
 | 產生現行空間量體模型 | `python -m house_design drawings export-model3d --revision R001` | `structured/reviews/R001/model3d.html` |
 | 比較兩個圖面版次 | `python -m house_design drawings compare --from R001 --to R002` | 終端機 JSON，可另存檔 |
@@ -580,7 +582,7 @@ extract
   → validate   （只有 release 執行）
 ```
 
-`parametric` 分支不讀 HTML；它只是在同一個 orchestrator 中依序執行。它讀取 `inputs/site.json` 與 `inputs/brief/`，仍是舊的 32 坪 footprint 情境。
+`parametric` 分支不直接讀 HTML；它仍是舊的 32 坪 footprint 情境，主要讀取 `inputs/site.json` 與 `inputs/brief/`。例外是 B 棟主版本 `f6000_g1`：為避免安全分帶與原設計 3D 再次漂移，它會從 `inputs/dimensions.json` 讀取 `concept-safety-v1` 概念座標。這些座標仍是 `auto`，不能當成實測或施工圖。
 
 `.house-design-cache.json` 會記錄命令、輸入與輸出 hash。未變更且輸出完整的 step 會跳過；SVG manifest 內的每張 SVG 與 PDF 依賴也會納入檢查。使用 `--force` 可忽略快取。
 
@@ -735,7 +737,7 @@ powershell -ExecutionPolicy Bypass -File scripts/run_full_expert_workflow.ps1 `
 - `structured/expert_review/report.json`、`report.md`：舊 expert gate 報告。
 - `structured/expert_review/domain_checklist.json`、`domain_checklist.md`：屋主與各專業角色的待確認清單。
 - `structured/final_design_html/index.html`：不覆蓋 canonical HTML 的討論版入口。
-- `task-board.md`：歷史工作流更新的任務板。
+- `structured/historical/html-workflow-task-board.md`：前身 HTML 工作流的歷史任務板；現行狀態仍以 `structured/CURRENT_STATUS.md` 與 revision review 為準。
 
 歷史流程的人工簽核使用：
 
@@ -768,7 +770,7 @@ Claude Code 仍提供歷史 slash commands：
 | `scripts/generate_layout_candidates.py` | 建立 baseline／circulation／daylight／MEP 候選 |
 | `scripts/render_candidate_viewer.py` | 建立候選切換 viewer |
 | `scripts/export_model_3d.py` | 建立 HTML 草圖的離線 3D 量體 viewer |
-| `scripts/generate_parametric_plan.py` | 建立舊 32 坪 footprint 變體與 capacity report |
+| `scripts/generate_parametric_plan.py` | 建立舊 32 坪 footprint 變體與 capacity report；B/f6000_g1 錨定概念安全座標 |
 | `scripts/export_walkthrough_3d.py` | 建立舊參數化 walk-in 3D |
 | `scripts/export_top1_svgs.py` | 依 selection/style 匯出穩定檔名 SVG 與 manifest |
 | `scripts/export_print_bundle_pdf.py` | 依 SVG manifest 匯出 A3／A4 PDF |
