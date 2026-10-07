@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import copy
 import json
+import math
 import re
 from pathlib import Path
 from typing import Any
@@ -21,6 +22,18 @@ from house_design.physical_items import PHYSICAL_ITEMS_PATH, load_physical_items
 SCHEMA = "house-furniture-layout-v1"
 ALLOWED_BASIS = {"html-explicit", "html-mixed", "room-use-inference"}
 HEX_COLOUR = re.compile(r"^#[0-9a-fA-F]{6}$")
+WALL_FACES = {"front", "rear", "left", "right"}
+# Discussion allowances, not code thresholds or completed-face clearances.
+OPERATION_MM = {
+    "network": 800,
+    "storage": 600,
+    "kitchen": 900,
+    "bath": 700,
+    "appliance": 600,
+    "sleep": 600,
+    "seating": 300,
+    "work": 700,
+}
 
 
 class FurnitureLayoutError(ValueError):
@@ -43,6 +56,8 @@ def _number(value: Any, context: str, *, positive: bool = False) -> float:
     if isinstance(value, bool) or not isinstance(value, (int, float)):
         raise FurnitureLayoutError(f"{context} must be a number")
     result = float(value)
+    if not math.isfinite(result):
+        raise FurnitureLayoutError(f"{context} must be finite")
     if positive and result <= 0:
         raise FurnitureLayoutError(f"{context} must be greater than zero")
     return result
@@ -57,13 +72,12 @@ def _known_cells(buildings: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
                 if not cell_id or cell_id in cells:
                     raise FurnitureLayoutError(f"duplicate or blank model cell id: {cell_id!r}")
                 cell["furniture"] = []
+                cell["furniture_min_depth_mm"] = 0
                 cells[cell_id] = cell
     return cells
 
 
-def _catalogue(
-    raw: dict[str, Any], physical_items: dict[str, dict[str, Any]]
-) -> dict[str, dict[str, Any]]:
+def _catalogue(raw: dict[str, Any], physical_items: dict[str, dict[str, Any]]) -> dict[str, dict[str, Any]]:
     catalogue = _mapping(raw.get("catalog"), "catalog")
     out: dict[str, dict[str, Any]] = {}
     for catalog_id, value in catalogue.items():
@@ -82,9 +96,7 @@ def _catalogue(
         if physical_item_id:
             linked = physical_items.get(physical_item_id)
             if linked is None:
-                raise FurnitureLayoutError(
-                    f"{context}.physical_item_id references unknown item {physical_item_id!r}"
-                )
+                raise FurnitureLayoutError(f"{context}.physical_item_id references unknown item {physical_item_id!r}")
             duplicate_dimensions = [key for key in ("width_mm", "depth_mm", "height_mm") if key in item]
             if duplicate_dimensions:
                 raise FurnitureLayoutError(
@@ -106,6 +118,9 @@ def _catalogue(
             "color": colour.lower(),
             **dimensions,
         }
+        for dimension in ("table_width_mm", "table_depth_mm"):
+            if dimension in item:
+                resolved[dimension] = _number(item[dimension], f"{context}.{dimension}", positive=True)
         if linked is not None:
             resolved.update(
                 {
@@ -147,9 +162,7 @@ def _expand_item(
         raise FurnitureLayoutError(f"{context}.position ratios must be between 0 and 1")
 
     item = copy.deepcopy(catalogue[catalog_id])
-    if item.get("physical_item_id") and any(
-        dimension in spec for dimension in ("width_mm", "depth_mm", "height_mm")
-    ):
+    if item.get("physical_item_id") and any(dimension in spec for dimension in ("width_mm", "depth_mm", "height_mm")):
         raise FurnitureLayoutError(
             f"{context} cannot override dimensions linked to physical item {item['physical_item_id']!r}"
         )
@@ -172,6 +185,50 @@ def _expand_item(
             "note": str(spec.get("note") or "").strip(),
         }
     )
+    wall = str(spec.get("wall_anchor") or "")
+    if wall and wall not in WALL_FACES:
+        raise FurnitureLayoutError(f"{context}.wall_anchor must be a wall face")
+    locked = spec.get("wall_locked", False)
+    if not isinstance(locked, bool):
+        raise FurnitureLayoutError(f"{context}.wall_locked must be boolean")
+    if locked and not wall:
+        raise FurnitureLayoutError(f"{context}.wall_locked requires wall_anchor")
+    item["wall_anchor"] = wall
+    item["wall_locked"] = locked
+    shared = _list(spec.get("shared_operation_with", []), f"{context}.shared_operation_with")
+    allowed = {
+        "bath": {"care-turn"},
+        "kitchen": {"circulation", "door-approach"},
+        "appliance": {"circulation", "door-approach"},
+    }
+    if any(not isinstance(kind, str) or kind not in allowed.get(item["category"], set()) for kind in shared):
+        raise FurnitureLayoutError(f"{context}: operation sharing only permits bath turning / kitchen work aisles")
+    if shared and not item["note"]:
+        raise FurnitureLayoutError(f"{context}: shared operation requires an explicit limitation note")
+    item["shared_operation_with"] = shared
+    step_free = spec.get("step_free", False)
+    if not isinstance(step_free, bool) or step_free and item["shape"] != "shower":
+        raise FurnitureLayoutError(f"{context}: step_free must be boolean and only applies to a shower proposal")
+    item["step_free"] = step_free
+    for key, default in (
+        ("wall_gap_mm", 80),
+        ("front_clearance_mm", OPERATION_MM.get(item["category"], 0) if wall else 0),
+        ("mount_height_mm", 0),
+        ("rear_clearance_mm", 0),
+    ):
+        value = _number(spec.get(key, default), f"{context}.{key}")
+        if value < 0:
+            raise FurnitureLayoutError(f"{context}.{key} must not be negative")
+        item[key] = value
+    for key in ("in_front_of", "aligned_with"):
+        target = spec.get(key)
+        if target is not None and (not isinstance(target, str) or not target.strip()):
+            raise FurnitureLayoutError(f"{context}.{key} must be a nonblank local furniture id")
+        item[key] = f"{room_id}:furniture:{target}" if target else ""
+    gap = _number(spec.get("front_gap_mm", 400), f"{context}.front_gap_mm")
+    if gap < 0:
+        raise FurnitureLayoutError(f"{context}.front_gap_mm must not be negative")
+    item["front_gap_mm"] = gap
     return item
 
 
@@ -210,8 +267,7 @@ def attach_furniture_layout(
     profiles = _mapping(root.get("profiles"), "profiles")
     rooms = _mapping(root.get("rooms"), "rooms")
     category_labels = {
-        str(key): str(value)
-        for key, value in _mapping(root.get("category_labels", {}), "category_labels").items()
+        str(key): str(value) for key, value in _mapping(root.get("category_labels", {}), "category_labels").items()
     }
     basis_counts = {basis: 0 for basis in sorted(ALLOWED_BASIS)}
     categories: dict[str, dict[str, str]] = {}
@@ -219,11 +275,34 @@ def attach_furniture_layout(
     used_physical_item_ids: set[str] = set()
     total_items = 0
 
-    for room_id, raw_assignment in rooms.items():
+    for room_id in rooms:
+        if room_id not in cells:
+            raise FurnitureLayoutError(f"rooms.{room_id} does not match any HTML model cell")
+    active_rooms = 0
+    for room_id, cell in cells.items():
+        raw_assignment = rooms.get(room_id)
+        proposal = cell.get("review_spec", {})
+        if cell.get("tour_active") is False or proposal.get("clear"):
+            cell["deferred_furniture_assignment"] = copy.deepcopy(raw_assignment)
+            continue
+        if proposal.get("profile"):
+            cell["deferred_furniture_assignment"] = copy.deepcopy(raw_assignment)
+            raw_assignment = {
+                "profile": proposal["profile"],
+                "basis": "room-use-inference",
+                "evidence": ["inputs/concept-layout-review.json 有界合理性提案；非原HTML承諾或實測。"],
+                "note": "固定外框推排，無法放入者保留待調整，不縮小家具。",
+            }
+        if raw_assignment is None:
+            continue
         context = f"rooms.{room_id}"
         if room_id not in cells:
             raise FurnitureLayoutError(f"{context} does not match any HTML model cell")
         assignment = _mapping(raw_assignment, context)
+        concept_depth = _number(assignment.get("concept_min_depth_mm", 0), f"{context}.concept_min_depth_mm")
+        if concept_depth < 0:
+            raise FurnitureLayoutError(f"{context}.concept_min_depth_mm must not be negative")
+        cells[room_id]["furniture_min_depth_mm"] = concept_depth
         basis = str(assignment.get("basis") or "")
         if basis not in ALLOWED_BASIS:
             raise FurnitureLayoutError(f"{context}.basis must be one of {sorted(ALLOWED_BASIS)}")
@@ -267,6 +346,13 @@ def attach_furniture_layout(
                 },
             )
         cells[room_id]["furniture"] = resolved
+        active_rooms += 1
+        room_ids = {item["id"] for item in resolved}
+        for item in resolved:
+            for key in ("in_front_of", "aligned_with"):
+                target = item[key]
+                if target and (target not in room_ids or target == item["id"]):
+                    raise FurnitureLayoutError(f"{context}.{key} references invalid furniture {target!r}")
 
     linked_physical_items = [physical_register["by_id"][item_id] for item_id in sorted(used_physical_item_ids)]
     return {
@@ -274,7 +360,7 @@ def attach_furniture_layout(
         "schema": SCHEMA,
         "status": str(root.get("status") or "historical-space-planning-draft"),
         "note": str(root.get("note") or "").strip(),
-        "rooms": len(rooms),
+        "rooms": active_rooms,
         "items": total_items,
         "basis_counts": basis_counts,
         "categories": categories,
@@ -282,9 +368,7 @@ def attach_furniture_layout(
             "source": str(physical_items_path),
             "registered": physical_register["summary"]["total"],
             "linked": len(linked_physical_items),
-            "measured": sum(
-                1 for item in linked_physical_items if item["active_dimension_source"] == "measured"
-            ),
+            "measured": sum(1 for item in linked_physical_items if item["active_dimension_source"] == "measured"),
             "pending_measurement": sum(
                 1 for item in linked_physical_items if item["active_dimension_source"] == "planning"
             ),

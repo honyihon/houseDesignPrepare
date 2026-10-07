@@ -35,7 +35,13 @@ def build_steps(selection: str, style: str, paper: str, output: str, mode: str) 
         Step(
             "extract",
             ("scripts/extract_layout_data.py",),
-            _paths("AbuildingView.html", "BbuildingView.html", "CbuildingView.html", "storage.html", "scripts/extract_layout_data.py"),
+            _paths(
+                "AbuildingView.html",
+                "BbuildingView.html",
+                "CbuildingView.html",
+                "storage.html",
+                "scripts/extract_layout_data.py",
+            ),
             (*structured_sources, ROOT / "structured/index.json"),
         ),
         Step(
@@ -58,7 +64,11 @@ def build_steps(selection: str, style: str, paper: str, output: str, mode: str) 
         Step(
             "metrics",
             ("scripts/evaluate_architect_metrics.py",),
-            _paths("structured/room_program.json", "scripts/evaluate_architect_metrics.py", "scripts/lib/architect_metrics.py"),
+            _paths(
+                "structured/room_program.json",
+                "scripts/evaluate_architect_metrics.py",
+                "scripts/lib/architect_metrics.py",
+            ),
             _paths("structured/architect_metrics/metrics.json", "structured/architect_metrics/report.md"),
         ),
         Step(
@@ -75,7 +85,11 @@ def build_steps(selection: str, style: str, paper: str, output: str, mode: str) 
         Step(
             "viewer",
             ("scripts/render_candidate_viewer.py",),
-            _paths("structured/room_program.json", "structured/candidates/layout_candidates.json", "scripts/render_candidate_viewer.py"),
+            _paths(
+                "structured/room_program.json",
+                "structured/candidates/layout_candidates.json",
+                "scripts/render_candidate_viewer.py",
+            ),
             _paths("structured/candidates/viewer.html"),
         ),
         Step(
@@ -85,18 +99,38 @@ def build_steps(selection: str, style: str, paper: str, output: str, mode: str) 
                 "structured/room_program.json",
                 "inputs/dimensions.json",
                 "inputs/furniture-layout.json",
+                "inputs/concept-layout-review.json",
+                "inputs/facade-concept.json",
+                "inputs/requirements.json",
                 "inputs/physical-items.json",
                 "scripts/export_model_3d.py",
                 "scripts/templates/model3d.html",
+                "scripts/templates/model3d_facade.js",
                 "scripts/export_top1_svgs.py",
                 "scripts/lib/furniture_layout.py",
+                "scripts/lib/model3d_tour.py",
+                "scripts/lib/model3d_review.py",
+                "scripts/lib/model3d_functions.py",
+                "scripts/lib/model3d_placement.py",
+                "scripts/lib/model3d_plan.py",
+                "scripts/lib/model3d_facade.py",
+                "assets/references/facade-photo-v1.jpg",
                 "house_design/physical_items.py",
                 "scripts/config/residential_defaults_tw.json",
                 "scripts/lib/html_parametric_compare.py",
                 "scripts/lib/standards.py",
                 "assets/vendor/three/three.min.js",
             ),
-            _paths("structured/candidates/model3d.html"),
+            _paths(
+                "structured/candidates/model3d.html",
+                "structured/candidates/furniture-plans/layout.js",
+                *(f"structured/candidates/furniture-plans/{building}_facade-front.svg" for building in "ABC"),
+                *(
+                    f"structured/candidates/furniture-plans/{building}_floor-{floor}.svg"
+                    for building in "ABC"
+                    for floor in range(1, 5)
+                ),
+            ),
         ),
         # The historical variants derive from the area briefs.  The reviewed B
         # f6000_g1 concept additionally anchors to dimensions.json so its safety
@@ -164,7 +198,11 @@ def build_steps(selection: str, style: str, paper: str, output: str, mode: str) 
             Step(
                 "validate",
                 ("scripts/validate_layout_bundle.py", "--strict"),
-                _paths("structured/room_program.json", "structured/candidates/svg/manifest.json", "scripts/validate_layout_bundle.py"),
+                _paths(
+                    "structured/room_program.json",
+                    "structured/candidates/svg/manifest.json",
+                    "scripts/validate_layout_bundle.py",
+                ),
                 (),
             )
         )

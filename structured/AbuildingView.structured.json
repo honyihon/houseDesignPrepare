@@ -1,6 +1,6 @@
 {
   "schema_version": "house-design-structured-v3",
-  "generated_at": "2026-09-21T06:21:40.482632+00:00",
+  "generated_at": "2026-10-05T07:15:22.307770+00:00",
   "source_file": "AbuildingView.html",
   "meta": {
     "title": "A棟 - 主棟核心 × 10G MDF 中樞 × 給水系統（整合版 v8.1）",
@@ -854,7 +854,12 @@
             "is_accessible": false,
             "daylight_required": null
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         },
         {
           "order": 2,
@@ -895,7 +900,12 @@
             "is_accessible": false,
             "daylight_required": null
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         },
         {
           "order": 3,
@@ -938,13 +948,18 @@
             "is_accessible": false,
             "daylight_required": null
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         },
         {
           "order": 4,
           "target_room_id": "mdf",
           "icon": "🖥️",
-          "name": "A-MDF 主機櫃",
+          "name": "梯廳乾區／A-MDF 主機櫃",
           "size": "19吋 18U（落地）",
           "badges": [
             "🟡 ISP光纖",
@@ -985,7 +1000,12 @@
             "is_accessible": false,
             "daylight_required": null
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "A1-stair-hall",
+          "space_role": "equipment-alcove",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         },
         {
           "order": 5,
@@ -1028,7 +1048,12 @@
             "is_accessible": false,
             "daylight_required": null
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "A1-stair-hall",
+          "space_role": "circulation",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         },
         {
           "order": 6,
@@ -1068,7 +1093,12 @@
             "is_accessible": false,
             "daylight_required": null
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         },
         {
           "order": 7,
@@ -1113,7 +1143,12 @@
             "is_accessible": true,
             "daylight_required": null
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         },
         {
           "order": 8,
@@ -1157,7 +1192,12 @@
             "is_accessible": false,
             "daylight_required": null
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         },
         {
           "order": 9,
@@ -1199,7 +1239,12 @@
             "is_accessible": true,
             "daylight_required": null
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         },
         {
           "order": 10,
@@ -1243,7 +1288,12 @@
             "is_accessible": false,
             "daylight_required": null
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         },
         {
           "order": 11,
@@ -1288,7 +1338,12 @@
             "is_accessible": false,
             "daylight_required": null
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         }
       ],
       "rooms": [
@@ -1401,21 +1456,21 @@
           "name": "🖥️ A-MDF 主機櫃（三棟中樞） v8.0 強化",
           "area": "18U 落地式",
           "details": [
-            "機櫃定位： 樓梯下「乾區儲藏間」，避開浴廁/廚房水線",
+            "機櫃定位： 樓梯／梯廳的乾區設備凹位，與梯廳共用空間，不新增獨立機房。梯下為備選，須取得剖面淨高後再確認；避開浴廁／廚房水線。",
             "機櫃規格： 19吋 18U，深度 600mm，落地式（非壁掛）",
             "機櫃空間： 空間大一號，預留理線架/線槽 + 110V 插座",
             "維修空間： 前方 ≥80cm、後方 ≥60cm、上方排風空間 新增",
             "散熱： 前門下方百葉進氣口或前網孔門 + 後排風，頂部排風扇 × 2 + 溫控開關（35°C 自動啟動） 新增",
-            "降噪： 儲藏室門加氣密條，牆面貼吸音棉 ≥25mm，降低 PoE/NAS 風扇噪音",
-            "除濕： 預留除濕機插座，濕度建議 <60%，門縫氣密",
-            "防水： MDF 區域地坪做微止水坎或門檻式防水分區，避免清洗水流入",
+            "降噪： 以通風型設備櫃的吸音與減震設計降低風扇噪音；不為降噪封死散熱，不預設另隔房間。",
+            "除濕： 預留除濕機插座，濕度建議 <60%，櫃內需保留通風。",
+            "防水： 設備區防濺與漏水偵測交由專業整合；通行帶不預設新增止水坎或門檻，避免絆倒。",
             "漏水偵測： MDF 機櫃區設漏水偵測器（蜂鳴/推播）",
             "接地： 機櫃接地線 6sq 以上 → 接地端子排 → 建物接地 新增",
             "走線： 上出線，配線架 24port × 2（1 用 1 備）",
             "核心設備： 路由/防火牆、核心交換器（含 10G SFP+）、PoE 交換器",
             "錄影儲存： NVR（PoE 攝影機集中）＋ NAS",
             "電力： 專用迴路 20A + UPS（1000VA 以上）+ 配電箱端 SPD（二級）+ 機櫃防雷 PDU 新增",
-            "空調與排水： 機櫃所在儲藏室預留回風或小型空調，地上設地排以防滲漏。"
+            "空調與排水： 設備凹位保留進排風；冷凝排水、地排與給水管不得穿越機櫃上方，位置由水電與弱電專業共同確認。"
           ],
           "tags": [
             {
@@ -1947,7 +2002,12 @@
             "is_accessible": false,
             "daylight_required": null
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         },
         {
           "order": 2,
@@ -1990,7 +2050,12 @@
             "is_accessible": false,
             "daylight_required": false
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         },
         {
           "order": 3,
@@ -2028,7 +2093,12 @@
             "is_accessible": false,
             "daylight_required": null
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         },
         {
           "order": 4,
@@ -2071,7 +2141,12 @@
             "is_accessible": false,
             "daylight_required": null
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         },
         {
           "order": 5,
@@ -2115,7 +2190,12 @@
             "is_accessible": false,
             "daylight_required": null
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         },
         {
           "order": 6,
@@ -2156,7 +2236,12 @@
             "is_accessible": false,
             "daylight_required": null
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         },
         {
           "order": 7,
@@ -2199,7 +2284,12 @@
             "is_accessible": false,
             "daylight_required": null
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         },
         {
           "order": 8,
@@ -2241,7 +2331,12 @@
             "is_accessible": false,
             "daylight_required": null
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         }
       ],
       "rooms": [
@@ -2660,7 +2755,12 @@
             "is_accessible": false,
             "daylight_required": false
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         },
         {
           "order": 2,
@@ -2701,7 +2801,12 @@
             "is_accessible": false,
             "daylight_required": null
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         },
         {
           "order": 3,
@@ -2744,7 +2849,12 @@
             "is_accessible": false,
             "daylight_required": null
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         },
         {
           "order": 4,
@@ -2784,7 +2894,12 @@
             "is_accessible": false,
             "daylight_required": null
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         },
         {
           "order": 5,
@@ -2827,7 +2942,12 @@
             "is_accessible": false,
             "daylight_required": null
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         },
         {
           "order": 6,
@@ -2868,7 +2988,12 @@
             "is_accessible": false,
             "daylight_required": null
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         }
       ],
       "rooms": [
@@ -3205,7 +3330,12 @@
             "is_accessible": false,
             "daylight_required": null
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         },
         {
           "order": 2,
@@ -3250,7 +3380,12 @@
             "is_accessible": false,
             "daylight_required": null
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         },
         {
           "order": 3,
@@ -3295,7 +3430,12 @@
             "is_accessible": false,
             "daylight_required": null
           },
-          "structural_review": "required"
+          "structural_review": "required",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         },
         {
           "order": 4,
@@ -3337,7 +3477,12 @@
             "is_accessible": false,
             "daylight_required": null
           },
-          "structural_review": "required"
+          "structural_review": "required",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         },
         {
           "order": 5,
@@ -3378,7 +3523,12 @@
             "is_accessible": false,
             "daylight_required": null
           },
-          "structural_review": "required"
+          "structural_review": "required",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         },
         {
           "order": 6,
@@ -3422,7 +3572,12 @@
             "is_accessible": false,
             "daylight_required": null
           },
-          "structural_review": ""
+          "structural_review": "",
+          "space_group": "",
+          "space_role": "",
+          "carry_path_mm": null,
+          "access_mode": "",
+          "door_contact_ratio": null
         }
       ],
       "rooms": [

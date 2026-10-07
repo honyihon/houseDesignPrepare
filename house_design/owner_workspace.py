@@ -24,6 +24,8 @@ SOURCE_FILES = {
     "register": "inputs/planning-register.json",
     "physical": "inputs/physical-items.json",
     "furniture": "inputs/furniture-layout.json",
+    "concept_review": "inputs/concept-layout-review.json",
+    "facade": "inputs/facade-concept.json",
     "program": "structured/room_program.json",
     "dimensions": "inputs/dimensions.json",
 }

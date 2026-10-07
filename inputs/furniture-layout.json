@@ -1,7 +1,7 @@
 {
   "schema": "house-furniture-layout-v1",
   "status": "historical-html-space-planning-draft",
-  "note": "第一版家具與設備量體：尺寸採一般市售規格，位置依 A／B／C 原始 HTML 的房名、坪數、家具文字與設備需求推排。沒有明載的位置皆為房型推估，不是室內設計或施工定位。",
+  "note": "家具尺寸採常見市售規劃值（非統計平均、非實測）；固定家具以靠牆、操作與出入口暫留空間推排，不縮小家具硬塞。HTML 等比例家具圖與 3D 全層導覽共用同一份解算資料，舊格子圖僅為索引，概念外框不代表基地可建容量。",
   "category_labels": {
     "sleep": "睡眠",
     "seating": "座椅／沙發",
@@ -25,15 +25,19 @@
     "shoe-cabinet": {"label": "鞋櫃", "category": "storage", "shape": "cabinet", "color": "#a16207", "width_mm": 1200, "depth_mm": 350, "height_mm": 1100},
     "parcel-cabinet": {"label": "包裹收納櫃", "category": "storage", "shape": "cabinet", "color": "#92400e", "width_mm": 600, "depth_mm": 350, "height_mm": 1000},
     "sofa-3": {"label": "三人沙發", "category": "seating", "shape": "sofa", "color": "#0f766e", "width_mm": 2400, "depth_mm": 900, "height_mm": 850},
+    "sofa-2": {"label": "180cm雙人沙發（一般尺寸）", "category": "seating", "shape": "sofa", "color": "#0f766e", "width_mm": 1800, "depth_mm": 900, "height_mm": 850},
+    "reading-chair": {"label": "90cm單人休閒椅（一般尺寸）", "category": "seating", "shape": "sofa", "color": "#7a948a", "width_mm": 900, "depth_mm": 850, "height_mm": 850},
     "sofa-l": {"label": "L 型沙發", "category": "seating", "shape": "l-sofa", "color": "#0d9488", "width_mm": 3000, "depth_mm": 2100, "height_mm": 850},
     "sofa-bed": {"label": "沙發床", "category": "seating", "shape": "sofa", "color": "#0f766e", "width_mm": 1800, "depth_mm": 950, "height_mm": 800},
     "theater-sofa": {"label": "家庭劇院沙發", "category": "seating", "shape": "sofa", "color": "#115e59", "width_mm": 2800, "depth_mm": 950, "height_mm": 900},
-    "outdoor-bench": {"label": "戶外休憩椅", "category": "seating", "shape": "sofa", "color": "#15803d", "width_mm": 1400, "depth_mm": 650, "height_mm": 800},
+    "outdoor-bench": {"label": "戶外休憩椅", "category": "seating", "shape": "outdoor-bench", "color": "#15803d", "width_mm": 1400, "depth_mm": 650, "height_mm": 800},
     "coffee-table": {"label": "茶几", "category": "table", "shape": "table", "color": "#d97706", "width_mm": 1100, "depth_mm": 600, "height_mm": 420},
-    "dining-4": {"label": "四人餐桌椅", "category": "table", "shape": "dining-set", "color": "#b45309", "width_mm": 1800, "depth_mm": 1000, "height_mm": 750},
-    "dining-6": {"label": "六人餐桌椅", "category": "table", "shape": "dining-set", "color": "#b45309", "width_mm": 2200, "depth_mm": 1000, "height_mm": 750},
+    "dining-4": {"label": "四人餐桌椅（含座椅外廓）", "category": "table", "shape": "dining-set", "color": "#b45309", "width_mm": 1800, "depth_mm": 1800, "height_mm": 750, "table_width_mm": 1200, "table_depth_mm": 800},
+    "dining-6": {"label": "六人餐桌椅（含座椅外廓）", "category": "table", "shape": "dining-set", "color": "#b45309", "width_mm": 2400, "depth_mm": 1800, "height_mm": 750, "table_width_mm": 1800, "table_depth_mm": 800},
     "tv-console": {"label": "電視牆／電視櫃", "category": "media", "shape": "tv-console", "color": "#475569", "width_mm": 1800, "depth_mm": 450, "height_mm": 1250},
+    "wall-tv": {"label": "43吋壁掛電視（代表外廓）", "category": "media", "shape": "wall-tv", "color": "#475569", "width_mm": 1000, "depth_mm": 80, "height_mm": 600},
     "counter-240": {"label": "240 cm 流理台", "category": "kitchen", "shape": "counter", "color": "#be123c", "width_mm": 2400, "depth_mm": 650, "height_mm": 900},
+    "counter-240-60": {"label": "240×60 cm 一字廚具候選", "category": "kitchen", "shape": "counter", "color": "#be123c", "width_mm": 2400, "depth_mm": 600, "height_mm": 900},
     "counter-300": {"label": "300 cm 流理台", "category": "kitchen", "shape": "counter", "color": "#be123c", "width_mm": 3000, "depth_mm": 650, "height_mm": 900},
     "island-180": {"label": "180 cm 中島", "category": "kitchen", "shape": "counter", "color": "#e11d48", "width_mm": 1800, "depth_mm": 900, "height_mm": 900},
     "fridge-75": {"label": "75 cm 冰箱", "category": "appliance", "shape": "cabinet", "color": "#64748b", "width_mm": 750, "depth_mm": 700, "height_mm": 1800},
@@ -41,8 +45,12 @@
     "queen-bed": {"label": "雙人床", "category": "sleep", "shape": "bed", "color": "#7c3aed", "width_mm": 1520, "depth_mm": 1880, "height_mm": 900},
     "single-bed": {"label": "單人床", "category": "sleep", "shape": "bed", "color": "#8b5cf6", "width_mm": 1050, "depth_mm": 1880, "height_mm": 850},
     "wardrobe-180": {"label": "180 cm 衣櫃", "category": "storage", "shape": "cabinet", "color": "#a16207", "width_mm": 1800, "depth_mm": 600, "height_mm": 2200},
+    "wardrobe-120": {"label": "120 cm 衣櫃（替代型）", "category": "storage", "shape": "cabinet", "color": "#a16207", "width_mm": 1200, "depth_mm": 600, "height_mm": 2200},
     "wardrobe-360": {"label": "360 cm 四衣櫃牆", "category": "storage", "shape": "cabinet", "color": "#92400e", "width_mm": 3600, "depth_mm": 600, "height_mm": 2200},
     "desk-140": {"label": "140 cm 書桌", "category": "work", "shape": "table", "color": "#0369a1", "width_mm": 1400, "depth_mm": 700, "height_mm": 750},
+    "desk-120": {"label": "120 cm 一般書桌", "category": "work", "shape": "table", "color": "#0369a1", "width_mm": 1200, "depth_mm": 600, "height_mm": 750},
+    "counter-180": {"label": "180 × 60 cm 一字廚具（替代型）", "category": "kitchen", "shape": "counter", "color": "#be123c", "width_mm": 1800, "depth_mm": 600, "height_mm": 900},
+    "vanity-60": {"label": "60 cm 一般洗手台", "category": "bath", "shape": "vanity", "color": "#0891b2", "width_mm": 600, "depth_mm": 450, "height_mm": 850},
     "vanity-desk": {"label": "梳妝台", "category": "work", "shape": "table", "color": "#0284c7", "width_mm": 1200, "depth_mm": 500, "height_mm": 750},
     "shelf-180": {"label": "書櫃／收納櫃", "category": "storage", "shape": "cabinet", "color": "#a16207", "width_mm": 1800, "depth_mm": 400, "height_mm": 2100},
     "hall-cabinet": {"label": "走廊收納櫃", "category": "storage", "shape": "cabinet", "color": "#a16207", "width_mm": 2400, "depth_mm": 400, "height_mm": 2200},
@@ -54,6 +62,7 @@
     "washer": {"label": "洗衣機", "category": "appliance", "shape": "appliance", "color": "#64748b", "width_mm": 650, "depth_mm": 650, "height_mm": 1000},
     "dryer": {"label": "烘衣機", "category": "appliance", "shape": "appliance", "color": "#475569", "width_mm": 650, "depth_mm": 650, "height_mm": 1000},
     "rack-18u": {"label": "18U 落地機櫃", "category": "network", "shape": "rack", "color": "#334155", "width_mm": 600, "depth_mm": 600, "height_mm": 1000},
+    "rack-15u": {"label": "15U IDF-B 壁掛機櫃", "category": "network", "shape": "rack", "color": "#334155", "width_mm": 600, "depth_mm": 600, "height_mm": 800},
     "rack-12u": {"label": "12U IDF 機櫃", "category": "network", "shape": "rack", "color": "#334155", "width_mm": 600, "depth_mm": 600, "height_mm": 700},
     "altar-table": {"label": "龍邊神桌", "category": "worship", "shape": "altar", "color": "#9a3412", "width_mm": 1800, "depth_mm": 600, "height_mm": 1250},
     "folding-offering-table": {"label": "活動供桌", "category": "worship", "shape": "table", "color": "#c2410c", "width_mm": 1200, "depth_mm": 500, "height_mm": 750},
@@ -72,7 +81,7 @@
     "pressure-pump": {"label": "VF800 恆壓泵", "category": "mechanical", "shape": "appliance", "color": "#0369a1", "width_mm": 800, "depth_mm": 600, "height_mm": 900},
     "heat-pump": {"label": "Haier 熱泵熱水器", "category": "mechanical", "shape": "appliance", "color": "#be123c", "width_mm": 900, "depth_mm": 800, "height_mm": 1600},
     "solar-inverter": {"label": "太陽能逆變器", "category": "mechanical", "shape": "appliance", "color": "#ca8a04", "width_mm": 800, "depth_mm": 350, "height_mm": 1200},
-    "clothes-rack": {"label": "曬衣架", "category": "outdoor", "shape": "rack", "color": "#15803d", "width_mm": 2400, "depth_mm": 600, "height_mm": 1900},
+    "clothes-rack": {"label": "曬衣架", "category": "outdoor", "shape": "clothes-rack", "color": "#15803d", "width_mm": 2400, "depth_mm": 600, "height_mm": 1900},
     "planter": {"label": "植栽槽", "category": "outdoor", "shape": "planter", "color": "#16a34a", "width_mm": 1600, "depth_mm": 500, "height_mm": 550}
   },
   "profiles": {
@@ -85,21 +94,21 @@
       {"id": "motorcycle", "catalog": "motorcycle", "position": [0.79, 0.5]}
     ],
     "entry": [
-      {"id": "shoe-cabinet", "catalog": "shoe-cabinet", "position": [0.28, 0.76]}
+      {"id": "shoe-cabinet", "catalog": "shoe-cabinet", "position": [0.28, 0.76], "wall_anchor": "rear"}
     ],
     "entry-package": [
-      {"id": "shoe-cabinet", "catalog": "shoe-cabinet", "position": [0.24, 0.76]},
-      {"id": "parcel-cabinet", "catalog": "parcel-cabinet", "position": [0.76, 0.76]}
+      {"id": "shoe-cabinet", "catalog": "shoe-cabinet", "position": [0.24, 0.76], "wall_anchor": "left"},
+      {"id": "parcel-cabinet", "catalog": "parcel-cabinet", "position": [0.76, 0.76], "wall_anchor": "right"}
     ],
     "living": [
-      {"id": "sofa", "catalog": "sofa-3", "position": [0.22, 0.62]},
-      {"id": "coffee-table", "catalog": "coffee-table", "position": [0.555, 0.52]},
-      {"id": "tv", "catalog": "tv-console", "position": [0.827, 0.38]}
+      {"id": "sofa", "catalog": "sofa-3", "position": [0.3, 0.7], "wall_anchor": "rear", "wall_locked": true},
+      {"id": "coffee-table", "catalog": "coffee-table", "position": [0.3, 0.5], "in_front_of": "sofa", "front_gap_mm": 400},
+      {"id": "tv", "catalog": "tv-console", "position": [0.3, 0.2], "wall_anchor": "front", "aligned_with": "sofa", "wall_locked": true}
     ],
     "living-l": [
-      {"id": "l-sofa", "catalog": "sofa-l", "position": [0.23, 0.52]},
-      {"id": "coffee-table", "catalog": "coffee-table", "position": [0.53, 0.54]},
-      {"id": "tv-wall", "catalog": "tv-console", "position": [0.79, 0.38]}
+      {"id": "l-sofa", "catalog": "sofa-l", "position": [0.3, 0.7], "wall_anchor": "rear", "wall_locked": true},
+      {"id": "coffee-table", "catalog": "coffee-table", "position": [0.3, 0.4], "in_front_of": "l-sofa", "front_gap_mm": 400},
+      {"id": "tv-wall", "catalog": "tv-console", "position": [0.3, 0.2], "wall_anchor": "front", "aligned_with": "l-sofa", "wall_locked": true}
     ],
     "dining-four": [
       {"id": "dining-set", "catalog": "dining-4", "position": [0.5, 0.5]}
@@ -108,129 +117,132 @@
       {"id": "dining-set", "catalog": "dining-6", "position": [0.5, 0.5]}
     ],
     "kitchen": [
-      {"id": "counter", "catalog": "counter-240", "position": [0.3, 0.3]},
-      {"id": "fridge", "catalog": "fridge-75", "position": [0.76, 0.35]}
+      {"id": "counter", "catalog": "counter-240", "position": [0.3, 0.3], "wall_anchor": "rear"},
+      {"id": "fridge", "catalog": "fridge-75", "position": [0.76, 0.35], "wall_anchor": "rear"}
     ],
     "kitchen-island": [
-      {"id": "counter", "catalog": "counter-300", "position": [0.25, 0.25]},
+      {"id": "counter", "catalog": "counter-300", "position": [0.25, 0.25], "wall_anchor": "rear"},
       {"id": "island", "catalog": "island-180", "position": [0.675, 0.7]},
-      {"id": "fridge", "catalog": "fridge-75", "position": [0.92, 0.34]}
+      {"id": "fridge", "catalog": "fridge-75", "position": [0.92, 0.34], "wall_anchor": "rear"}
     ],
     "kitchen-240": [
-      {"id": "counter-240", "catalog": "counter-240", "position": [0.2, 0.32]},
-      {"id": "fridge-75", "catalog": "fridge-75", "position": [0.43, 0.38]}
+      {"id": "counter-240", "catalog": "counter-240", "position": [0.3, 0.7], "wall_anchor": "rear"},
+      {"id": "fridge-75", "catalog": "fridge-75", "position": [0.75, 0.7], "wall_anchor": "rear"}
     ],
     "bathroom": [
-      {"id": "vanity", "catalog": "vanity-90", "position": [0.16, 0.48]},
-      {"id": "toilet", "catalog": "toilet", "position": [0.49, 0.52]},
-      {"id": "shower", "catalog": "shower-90", "position": [0.8, 0.5]}
+      {"id": "vanity", "catalog": "vanity-90", "position": [0.16, 0.48], "wall_anchor": "rear"},
+      {"id": "toilet", "catalog": "toilet", "position": [0.49, 0.52], "wall_anchor": "rear"},
+      {"id": "shower", "catalog": "shower-90", "position": [0.8, 0.5], "wall_anchor": "rear"}
     ],
     "bathroom-accessible": [
-      {"id": "vanity", "catalog": "vanity-90", "position": [0.15, 0.45]},
-      {"id": "toilet", "catalog": "toilet", "position": [0.45, 0.5]},
-      {"id": "accessible-shower", "catalog": "shower-accessible", "position": [0.78, 0.5]}
+      {"id": "vanity", "catalog": "vanity-90", "position": [0.15, 0.45], "wall_anchor": "rear"},
+      {"id": "toilet", "catalog": "toilet", "position": [0.45, 0.5], "wall_anchor": "rear"},
+      {"id": "accessible-shower", "catalog": "shower-accessible", "position": [0.78, 0.5], "wall_anchor": "rear"}
     ],
     "bedroom-double": [
-      {"id": "bed", "catalog": "double-bed", "position": [0.2, 0.54]},
-      {"id": "wardrobe", "catalog": "wardrobe-180", "position": [0.56, 0.25]},
-      {"id": "vanity", "catalog": "vanity-desk", "position": [0.84, 0.68]}
+      {"id": "bed", "catalog": "double-bed", "position": [0.25, 0.7], "wall_anchor": "rear"},
+      {"id": "wardrobe", "catalog": "wardrobe-180", "position": [0.6, 0.2], "wall_anchor": "front"},
+      {"id": "vanity", "catalog": "vanity-desk", "position": [0.84, 0.68], "wall_anchor": "right"}
     ],
     "bedroom-single": [
-      {"id": "bed", "catalog": "single-bed", "position": [0.18, 0.53]},
-      {"id": "wardrobe", "catalog": "wardrobe-180", "position": [0.53, 0.26]},
-      {"id": "desk", "catalog": "desk-140", "position": [0.84, 0.68]}
+      {"id": "bed", "catalog": "single-bed", "position": [0.25, 0.7], "wall_anchor": "rear"},
+      {"id": "wardrobe", "catalog": "wardrobe-180", "position": [0.6, 0.2], "wall_anchor": "front"},
+      {"id": "desk", "catalog": "desk-140", "position": [0.84, 0.68], "wall_anchor": "right"}
     ],
     "elder-bedroom": [
-      {"id": "bed", "catalog": "queen-bed", "position": [0.2, 0.5]},
-      {"id": "wardrobe", "catalog": "wardrobe-180", "position": [0.52, 0.25]},
-      {"id": "tv", "catalog": "tv-console", "position": [0.82, 0.38]}
+      {"id": "bed", "catalog": "queen-bed", "position": [0.25, 0.7], "wall_anchor": "rear"},
+      {"id": "wardrobe", "catalog": "wardrobe-180", "position": [0.6, 0.2], "wall_anchor": "front"},
+      {"id": "tv", "catalog": "tv-console", "position": [0.82, 0.38], "wall_anchor": "front", "aligned_with": "bed", "wall_locked": true}
     ],
     "guest-flex": [
-      {"id": "sofa-bed", "catalog": "sofa-bed", "position": [0.2, 0.52]},
-      {"id": "desk", "catalog": "desk-140", "position": [0.55, 0.65]},
-      {"id": "wardrobe", "catalog": "wardrobe-180", "position": [0.84, 0.28]}
+      {"id": "sofa-bed", "catalog": "sofa-bed", "position": [0.2, 0.52], "wall_anchor": "rear"},
+      {"id": "desk", "catalog": "desk-140", "position": [0.55, 0.65], "wall_anchor": "right"},
+      {"id": "wardrobe", "catalog": "wardrobe-180", "position": [0.84, 0.28], "wall_anchor": "front"}
     ],
     "hotel-master": [
-      {"id": "double-bed", "catalog": "double-bed", "position": [0.18, 0.6]},
-      {"id": "wardrobe-wall", "catalog": "wardrobe-360", "position": [0.56, 0.18]},
-      {"id": "vanity-by-window", "catalog": "vanity-desk", "position": [0.88, 0.7]},
-      {"id": "tv-wall", "catalog": "tv-console", "position": [0.68, 0.72]}
+      {"id": "double-bed", "catalog": "double-bed", "position": [0.25, 0.7], "wall_anchor": "rear"},
+      {"id": "wardrobe-wall", "catalog": "wardrobe-360", "position": [0.6, 0.2], "wall_anchor": "front"},
+      {"id": "vanity-by-window", "catalog": "vanity-desk", "position": [0.88, 0.7], "wall_anchor": "right"},
+      {"id": "tv-wall", "catalog": "tv-console", "position": [0.86, 0.2], "wall_anchor": "front", "aligned_with": "double-bed", "wall_locked": true}
     ],
     "walk-in": [
-      {"id": "wardrobe-left", "catalog": "wardrobe-180", "position": [0.26, 0.5]},
-      {"id": "wardrobe-right", "catalog": "wardrobe-180", "position": [0.74, 0.5]}
+      {"id": "wardrobe-left", "catalog": "wardrobe-180", "position": [0.26, 0.5], "wall_anchor": "left"},
+      {"id": "wardrobe-right", "catalog": "wardrobe-180", "position": [0.74, 0.5], "wall_anchor": "right"}
     ],
     "hall-storage": [
-      {"id": "hall-cabinet", "catalog": "hall-cabinet", "position": [0.5, 0.72]}
+      {"id": "hall-cabinet", "catalog": "hall-cabinet", "position": [0.5, 0.72], "wall_anchor": "rear"}
     ],
     "study": [
-      {"id": "desk", "catalog": "desk-140", "position": [0.32, 0.58]},
-      {"id": "shelf", "catalog": "shelf-180", "position": [0.75, 0.3]}
+      {"id": "desk", "catalog": "desk-140", "position": [0.32, 0.58], "wall_anchor": "left"},
+      {"id": "shelf", "catalog": "shelf-180", "position": [0.75, 0.3], "wall_anchor": "rear"}
     ],
     "entertainment": [
-      {"id": "theater-sofa", "catalog": "theater-sofa", "position": [0.25, 0.57]},
-      {"id": "coffee-table", "catalog": "coffee-table", "position": [0.55, 0.55]},
-      {"id": "media-wall", "catalog": "tv-console", "position": [0.82, 0.36]}
+      {"id": "theater-sofa", "catalog": "theater-sofa", "position": [0.3, 0.7], "wall_anchor": "rear", "wall_locked": true},
+      {"id": "coffee-table", "catalog": "coffee-table", "position": [0.3, 0.5], "in_front_of": "theater-sofa", "front_gap_mm": 400},
+      {"id": "media-wall", "catalog": "tv-console", "position": [0.3, 0.2], "wall_anchor": "front", "aligned_with": "theater-sofa", "wall_locked": true}
     ],
     "entertainment-compact": [
-      {"id": "theater-sofa", "catalog": "theater-sofa", "position": [0.264, 0.55]},
-      {"id": "coffee-table", "catalog": "coffee-table", "position": [0.582, 0.5], "width_mm": 650, "depth_mm": 400, "label": "緊湊茶几"},
-      {"id": "media-wall", "catalog": "tv-console", "position": [0.809, 0.4]}
+      {"id": "theater-sofa", "catalog": "theater-sofa", "position": [0.3, 0.7], "wall_anchor": "rear", "wall_locked": true},
+      {"id": "coffee-table", "catalog": "coffee-table", "position": [0.3, 0.5], "width_mm": 650, "depth_mm": 400, "label": "緊湊茶几", "in_front_of": "theater-sofa", "front_gap_mm": 400},
+      {"id": "media-wall", "catalog": "tv-console", "position": [0.3, 0.2], "wall_anchor": "front", "aligned_with": "theater-sofa", "wall_locked": true}
     ],
     "multi-purpose": [
       {"id": "yoga-mat", "catalog": "yoga-mat", "position": [0.3, 0.5]},
-      {"id": "storage", "catalog": "shelf-180", "position": [0.75, 0.25]}
+      {"id": "storage", "catalog": "shelf-180", "position": [0.75, 0.25], "wall_anchor": "rear"}
     ],
     "fitness": [
       {"id": "treadmill", "catalog": "treadmill", "position": [0.18, 0.5]},
       {"id": "yoga-mat", "catalog": "yoga-mat", "position": [0.5, 0.5]},
-      {"id": "dumbbell-rack", "catalog": "dumbbell-rack", "position": [0.82, 0.28]}
+      {"id": "dumbbell-rack", "catalog": "dumbbell-rack", "position": [0.82, 0.28], "wall_anchor": "rear"}
     ],
     "laundry": [
-      {"id": "washer", "catalog": "washer", "position": [0.18, 0.5]},
-      {"id": "dryer", "catalog": "dryer", "position": [0.4, 0.5]},
-      {"id": "utility-cabinet", "catalog": "utility-cabinet", "position": [0.76, 0.45]}
+      {"id": "washer", "catalog": "washer", "position": [0.18, 0.5], "wall_anchor": "rear"},
+      {"id": "dryer", "catalog": "dryer", "position": [0.4, 0.5], "wall_anchor": "rear"},
+      {"id": "utility-cabinet", "catalog": "utility-cabinet", "position": [0.76, 0.45], "wall_anchor": "rear"}
     ],
     "balcony-laundry-plants": [
-      {"id": "washer", "catalog": "washer", "position": [0.12, 0.5]},
+      {"id": "washer", "catalog": "washer", "position": [0.12, 0.5], "wall_anchor": "rear"},
       {"id": "clothes-rack", "catalog": "clothes-rack", "position": [0.48, 0.5]},
-      {"id": "planter", "catalog": "planter", "position": [0.83, 0.83]}
+      {"id": "planter", "catalog": "planter", "position": [0.83, 0.83], "wall_anchor": "rear"}
     ],
     "balcony-plants": [
-      {"id": "planter-front", "catalog": "planter", "position": [0.28, 0.52]},
-      {"id": "planter-rear", "catalog": "planter", "position": [0.72, 0.52]}
+      {"id": "planter-front", "catalog": "planter", "position": [0.28, 0.52], "wall_anchor": "rear"},
+      {"id": "planter-rear", "catalog": "planter", "position": [0.72, 0.52], "wall_anchor": "rear"}
     ],
     "outdoor-rest": [
-      {"id": "bench", "catalog": "outdoor-bench", "position": [0.28, 0.28]},
-      {"id": "planter", "catalog": "planter", "position": [0.72, 0.78]}
+      {"id": "bench", "catalog": "outdoor-bench", "position": [0.28, 0.28], "wall_anchor": "rear"},
+      {"id": "planter", "catalog": "planter", "position": [0.72, 0.78], "wall_anchor": "rear"}
     ],
     "mdf-18u": [
-      {"id": "rack", "catalog": "rack-18u", "position": [0.18, 0.5]},
-      {"id": "service-cabinet", "catalog": "utility-cabinet", "position": [0.55, 0.5]}
+      {"id": "rack", "catalog": "rack-18u", "position": [0.18, 0.5], "wall_anchor": "rear", "wall_gap_mm": 650, "wall_locked": true, "note": "保留後方 600mm 維修，不能硬貼牆；梯下淨高未確認。"},
+      {"id": "service-cabinet", "catalog": "utility-cabinet", "position": [0.55, 0.5], "wall_anchor": "rear"}
     ],
     "idf-12u": [
-      {"id": "rack", "catalog": "rack-12u", "position": [0.3, 0.5]}
+      {"id": "rack", "catalog": "rack-12u", "position": [0.8, 0.45], "wall_anchor": "right", "wall_locked": true, "mount_height_mm": 1100}
+    ],
+    "idf-15u": [
+      {"id": "rack", "catalog": "rack-15u", "position": [0.8, 0.5], "wall_anchor": "right", "wall_locked": true, "mount_height_mm": 1000, "note": "後梯廳側牆壁掛，前方維修；背部可前修型號與承重待確認。"}
     ],
     "shrine-v1": [
-      {"id": "altar", "catalog": "altar-table", "position": [0.28, 0.91]},
+      {"id": "altar", "catalog": "altar-table", "position": [0.28, 0.91], "wall_anchor": "rear", "wall_locked": true},
       {"id": "offering-table", "catalog": "folding-offering-table", "position": [0.28, 0.6]},
       {"id": "bench-left", "catalog": "movable-bench", "position": [0.7, 0.53], "label": "可移動長凳 A"},
       {"id": "bench-right", "catalog": "movable-bench", "position": [0.7, 0.68], "label": "可移動長凳 B"},
-      {"id": "shoe-cabinet", "catalog": "shoe-cabinet", "position": [0.8, 0.14]}
+      {"id": "shoe-cabinet", "catalog": "shoe-cabinet", "position": [0.8, 0.14], "wall_anchor": "right"}
     ],
     "ceremonial-storage-v1": [
-      {"id": "ceremonial-storage", "catalog": "ceremonial-storage", "position": [0.5, 0.3]},
-      {"id": "ritual-cabinet", "catalog": "ritual-cabinet", "position": [0.25, 0.93]},
-      {"id": "fireproof-cabinet", "catalog": "fireproof-offering-cabinet", "position": [0.75, 0.93]},
-      {"id": "prep-table", "catalog": "fold-down-prep-table", "position": [0.25, 0.78]},
-      {"id": "dehumidifier", "catalog": "dehumidifier", "position": [0.83, 0.78]}
+      {"id": "ceremonial-storage", "catalog": "ceremonial-storage", "position": [0.5, 0.46]},
+      {"id": "ritual-cabinet", "catalog": "ritual-cabinet", "position": [0.25, 0.93], "wall_anchor": "rear"},
+      {"id": "fireproof-cabinet", "catalog": "fireproof-offering-cabinet", "position": [0.75, 0.93], "wall_anchor": "rear"},
+      {"id": "prep-table", "catalog": "fold-down-prep-table", "position": [0.25, 0.6], "wall_anchor": "left", "note": "畫出桌面展開外廓；搬運時先收折。"},
+      {"id": "dehumidifier", "catalog": "dehumidifier", "position": [0.83, 0.78], "wall_anchor": "rear"}
     ],
     "tea-bar": [
-      {"id": "tea-bar", "catalog": "tea-bar", "position": [0.5, 0.5]}
+      {"id": "tea-bar", "catalog": "tea-bar", "position": [0.5, 0.5], "wall_anchor": "rear"}
     ],
     "water-inlet": [
-      {"id": "filter-system", "catalog": "water-filter", "position": [0.28, 0.5]},
-      {"id": "pump", "catalog": "pressure-pump", "position": [0.68, 0.5]}
+      {"id": "filter-system", "catalog": "water-filter", "position": [0.28, 0.5], "wall_anchor": "rear"},
+      {"id": "pump", "catalog": "pressure-pump", "position": [0.68, 0.5], "wall_anchor": "rear"}
     ],
     "water-tank": [
       {"id": "water-tank", "catalog": "water-tank", "position": [0.5, 0.5]}
@@ -242,13 +254,177 @@
       {"id": "heat-pump", "catalog": "heat-pump", "position": [0.5, 0.5]}
     ],
     "solar": [
-      {"id": "solar-inverter", "catalog": "solar-inverter", "position": [0.3, 0.5]}
+      {"id": "solar-inverter", "catalog": "solar-inverter", "position": [0.3, 0.5], "wall_anchor": "rear"}
     ],
     "clothes-platform": [
       {"id": "clothes-rack", "catalog": "clothes-rack", "position": [0.5, 0.5]}
     ],
+    "review-mdf": [
+      {"id": "rack", "catalog": "rack-18u", "position": [0.25, 0.5], "wall_anchor": "rear", "wall_locked": true, "wall_gap_mm": 650, "rear_clearance_mm": 600, "front_clearance_mm": 800, "note": "梯廳側壁龕，非梯段正下方；後方600與前方800mm暫留維修，通風、承重與防火待核。"}
+    ],
+    "review-idf": [
+      {"id": "rack", "catalog": "rack-15u", "position": [0.5, 0.85], "wall_anchor": "rear", "wall_locked": true, "mount_height_mm": 1000, "note": "同一梯廳端牆壁掛；深600mm仍保留前修800mm，不掛在梯段上或搬運通道。"}
+    ],
+    "review-c-idf": [
+      {"id": "rack", "catalog": "rack-12u", "position": [0.5, 0.85], "wall_anchor": "rear", "wall_locked": true, "mount_height_mm": 1100, "note": "梯廳旁乾式壁龕；不與洗衣給排水共龕，承重／消防與前修型號待核。"}
+    ],
+    "review-living-dining": [
+      {"id": "sofa", "catalog": "sofa-3", "position": [0.3, 0.5], "wall_anchor": "left", "wall_locked": true},
+      {"id": "tv", "catalog": "tv-console", "position": [0.5, 0.2], "wall_anchor": "front", "wall_locked": true, "note": "避梯廳入口；視線角度與弱電待確認。"},
+      {"id": "dining-set", "catalog": "dining-4", "position": [0.76, 0.58], "note": "外廓含座椅；另暫留400mm拉椅帶，節慶增座不算日常容量。"}
+    ],
+    "review-flex": [
+      {"id": "desk", "catalog": "desk-120", "position": [0.5, 0.4], "wall_anchor": "left", "wall_locked": true, "front_clearance_mm": 600, "note": "改選一般120cm書桌，不縮放140cm原家具；先當日間書桌，不算客房。"}
+    ],
+    "review-a-care-living": [
+      {"id": "sofa", "catalog": "sofa-3", "position": [0.2, 0.24], "wall_anchor": "left", "wall_locked": true},
+      {"id": "tv", "catalog": "tv-console", "position": [0.8, 0.24], "wall_anchor": "right", "aligned_with": "sofa", "wall_locked": true, "note": "電視與沙發同軸，餐桌放在後側，不擋視線或梯廳入口。"},
+      {"id": "dining-set", "catalog": "dining-4", "position": [0.57, 0.52], "note": "四人桌含座椅外廓；與照護轉位及後側進梯廳路徑分開，不以六人桌替代。"},
+      {"id": "shoe-cabinet", "catalog": "shoe-cabinet", "position": [0.55, 0.1], "wall_anchor": "front", "wall_locked": true, "note": "玄關收納移至同前帶客餐廳前牆，不塞進照護入口的150cm乾式通道。"},
+      {"id": "parcel-cabinet", "catalog": "parcel-cabinet", "position": [0.78, 0.1], "wall_anchor": "front", "wall_locked": true}
+    ],
+    "review-a-care-elder": [
+      {"id": "bed", "catalog": "queen-bed", "position": [0.25, 0.85], "wall_anchor": "rear", "wall_locked": true, "note": "常見152 × 188cm雙人床，不是沙發床；靠後側實牆段，右側留照護與轉位區，不靠共壁假側窗取得採光。"},
+      {"id": "wardrobe", "catalog": "wardrobe-120", "position": [0.47, 0.1], "wall_anchor": "front", "wall_locked": true, "note": "一般120 × 60cm衣櫃；不擋滑門、右側照護路徑及150cm轉位，原180cm衣櫃另案保留。"}
+    ],
+    "review-a-care-bath": [
+      {"id": "shower", "catalog": "shower-accessible", "position": [0.75, 0.85], "wall_anchor": "rear", "wall_locked": true, "step_free": true, "shared_operation_with": ["care-turn"], "note": "120 × 120cm淋浴暫留；零門檻與可移除浴簾提案，不能照一般高門檻玻璃淋浴間施工。淋浴接近與转位地面分時共用，坡度、防水、扶手及照護實物演練未核。"},
+      {"id": "toilet", "catalog": "toilet", "position": [0.2, 0.1], "wall_anchor": "front", "wall_locked": true, "shared_operation_with": ["care-turn"], "note": "前側馬桶與後側淋浴分開；前方操作與转位地面分時共用，不讓設備本體侵入。側移、扶手、緊急救援及排污管位待專業查核。"},
+      {"id": "vanity", "catalog": "vanity-90", "position": [0.75, 0.1], "wall_anchor": "front", "wall_locked": true, "shared_operation_with": ["care-turn"], "note": "90cm洗手台代表外廓，操作與转位地面分時共用；膝下淨空及輪椅操作高度尚待產品選型，不宣稱已符合無障礙。"}
+    ],
+    "review-a-care-kitchen": [
+      {"id": "counter", "catalog": "counter-240", "position": [0.2, 0.7], "wall_anchor": "left", "wall_locked": true, "shared_operation_with": ["circulation", "door-approach"], "note": "右側走道、後門接近帶與廚具操作分時共用；抽屜／洗碗機開啟時須暫停通行。設備本體不擋路，不當獨立照護或已驗證避難通道；完成面及門扇需建築師核對。"},
+      {"id": "fridge", "catalog": "fridge-75", "position": [0.15, 0.15], "wall_anchor": "left", "wall_locked": true, "shared_operation_with": ["circulation", "door-approach"], "note": "冰箱靠前側左牆；開門操作與廚房入口接近帶、右側工作走道分時共用，開門時須避讓，不宣稱可同時通行。產品門扇、完成面與避難仍待查核。"}
+    ],
+    "review-a-care-laundry": [
+      {"id": "washer", "catalog": "washer", "position": [0.55, 0.1], "wall_anchor": "front", "wall_locked": true, "note": "僅計一台洗衣機；烘衣機堆疊仍待產品、承重與散熱核對，不把需求算已完成。"},
+      {"id": "water-filter", "catalog": "water-filter", "position": [0.08, 0.1], "wall_anchor": "front", "wall_locked": true, "note": "給水／淨軟水設備併入公共工作陽台，不另開需要穿越孝親房的設備房；TS400B實際外廓與換修另核。"}
+    ],
+    "review-living-dining-c": [
+      {"id": "sofa", "catalog": "sofa-3", "position": [0.3, 0.5], "wall_anchor": "left", "wall_locked": true},
+      {"id": "tv", "catalog": "wall-tv", "position": [0.7, 0.2], "wall_anchor": "front", "wall_locked": true, "mount_height_mm": 1400, "front_clearance_mm": 0, "note": "不另放落地電視櫃；沙發視線與支架角度待實際討論。"},
+      {"id": "dining-set", "catalog": "dining-4", "position": [0.77, 0.45], "note": "四人桌含椅外廓，不壓縮前後公共門口的暫留帶。"}
+    ],
+    "review-c-1f-dining": [
+      {"id": "dining-set", "catalog": "dining-4", "position": [0.35, 0.5], "note": "120×80cm四人桌，連椅外廓180×180cm，另保留四周40cm操作帶；右側120cm照護路徑不與拉椅帶共用。原六人桌另案，不縮小桌椅。"}
+    ],
+    "review-c-1f-living": [
+      {"id": "sofa", "catalog": "sofa-2", "position": [0.18, 0.8], "wall_anchor": "rear", "wall_locked": true, "note": "一般180×90cm雙人沙發靠實牆，另配單椅維持三個坐位；原240cm三人沙發保留替代，不縮放原品。"},
+      {"id": "tv", "catalog": "wall-tv", "position": [0.18, 0.1], "wall_anchor": "front", "aligned_with": "sofa", "wall_locked": true, "mount_height_mm": 1200, "front_clearance_mm": 0, "note": "43吋代表外廓與沙發同軸、面對面，中心距暫約1.75m；實際眼位、底高、反光與支架另核，不靠窗掛電視。"},
+      {"id": "coffee-table", "catalog": "coffee-table", "position": [0.18, 0.4], "in_front_of": "sofa", "front_gap_mm": 400, "note": "110×60cm一般茶几，沙發前留40cm，不擋客廳中央120cm照護帶與150cm轉位區。"},
+      {"id": "reading-chair", "catalog": "reading-chair", "position": [0.9, 0.75], "wall_anchor": "right", "wall_locked": true, "note": "90cm一般單椅靠右側後段，供閱讀／陪伴；主看電視位是對向雙人沙發，保留入口横向通行。"}
+    ],
+    "review-c-1f-kitchen": [
+      {"id": "counter", "catalog": "counter-240-60", "position": [0.2, 0.5], "wall_anchor": "left", "wall_locked": true, "shared_operation_with": ["door-approach"], "note": "另選常見240×60cm一字廚具候選，非把原240×65cm代表型號縮薄。900mm操作帶與廚房門口分時使用；只適用廚房工作，不與孝親主通道共用。原型號、前側排煙、完成面與消防另核。"},
+      {"id": "fridge", "catalog": "fridge-75", "position": [0.85, 0.8], "wall_anchor": "right", "wall_locked": true, "note": "75×70cm一般冰箱，避開梯廳側廚房入口；門扇、散熱與換機仍需產品資料。"}
+    ],
+    "review-c-1f-elder": [
+      {"id": "bed", "catalog": "queen-bed", "position": [0.35, 0.85], "wall_anchor": "rear", "wall_locked": true, "note": "保留一般152×188cm雙人床；床右側照護淨空與前側150cm轉位暫留不變，醫療床及雙側照護須實物重排。"},
+      {"id": "tv", "catalog": "wall-tv", "position": [0.35, 0.45], "wall_anchor": "left", "wall_locked": true, "mount_height_mm": 1400, "front_clearance_mm": 0, "note": "保留原側牆壁掛電視，不佔床側轉位；視角、支架承重待核。"},
+      {"id": "wardrobe", "catalog": "wardrobe-120", "position": [0.18, 0.1], "wall_anchor": "front", "wall_locked": true, "note": "一般120×60cm衣櫃補回前左實牆，不挡兩個公共入口或床侧照護；原360cm整排衣櫃仍未容納。"}
+    ],
+    "review-shrine": [
+      {"id": "altar", "catalog": "altar-table", "position": [0.5, 0.9], "wall_anchor": "rear", "wall_locked": true, "note": "私有前廳後方實牆，面前方；門位在側邊，非讓神桌擺在騎樓。"},
+      {"id": "offering-table", "catalog": "folding-offering-table", "position": [0.5, 0.65]},
+      {"id": "bench-left", "catalog": "movable-bench", "position": [0.2, 0.35]},
+      {"id": "bench-right", "catalog": "movable-bench", "position": [0.7, 0.35]}
+    ],
+    "review-storage": [
+      {"id": "ceremonial-storage", "catalog": "ceremonial-storage", "position": [0.73, 0.56], "note": "收納本體對齊側邊直線出口；抬桿及搬運外廓未測，不能宣稱可搬出。"},
+      {"id": "ritual-cabinet", "catalog": "ritual-cabinet", "position": [0.22, 0.8], "wall_anchor": "left", "wall_locked": true},
+      {"id": "dehumidifier", "catalog": "dehumidifier", "position": [0.2, 0.2], "wall_anchor": "left", "wall_locked": true}
+    ],
+    "review-tea": [
+      {"id": "tea-bar", "catalog": "tea-bar", "position": [0.5, 0.85], "wall_anchor": "rear", "note": "只留靠牆茶水檯，不佔通往主臥的公共通道。"}
+    ],
+    "review-theater": [
+      {"id": "sofa", "catalog": "sofa-bed", "position": [0.5, 0.7], "wall_anchor": "rear", "wall_locked": true, "note": "180cm市售雙人沙發，夜間展開不計睡眠容量。"},
+      {"id": "tv", "catalog": "tv-console", "position": [0.5, 0.2], "wall_anchor": "front", "wall_locked": true, "aligned_with": "sofa"}
+    ],
+    "review-kitchen": [
+      {"id": "counter", "catalog": "counter-180", "position": [0.2, 0.5], "wall_anchor": "left", "wall_locked": true, "note": "窄廚房先選常見180×60cm替代廚具，240cm廚具仍是未解的原需求。"},
+      {"id": "fridge", "catalog": "fridge-75", "position": [0.75, 0.75], "wall_anchor": "right", "wall_locked": true}
+    ],
+    "review-bath": [
+      {"id": "vanity", "catalog": "vanity-60", "position": [0.2, 0.3], "wall_anchor": "left"},
+      {"id": "toilet", "catalog": "toilet", "position": [0.3, 0.75], "wall_anchor": "rear"},
+      {"id": "shower", "catalog": "shower-90", "position": [0.78, 0.75], "wall_anchor": "rear"}
+    ],
+    "review-a-bath": [
+      {"id": "shower", "catalog": "shower-90", "position": [0.2, 0.8], "wall_anchor": "rear", "wall_locked": true},
+      {"id": "toilet", "catalog": "toilet", "position": [0.7, 0.2], "wall_anchor": "front", "wall_locked": true},
+      {"id": "vanity", "catalog": "vanity-60", "position": [0.8, 0.85], "wall_anchor": "right", "wall_locked": true}
+    ],
+    "review-guest-wc": [
+      {"id": "toilet", "catalog": "toilet", "position": [0.25, 0.75], "wall_anchor": "rear", "wall_locked": true},
+      {"id": "vanity", "catalog": "vanity-60", "position": [0.25, 0.2], "wall_anchor": "front", "wall_locked": true}
+    ],
+    "review-a-wc": [
+      {"id": "toilet", "catalog": "toilet", "position": [0.75, 0.75], "wall_anchor": "rear", "wall_locked": true},
+      {"id": "vanity", "catalog": "vanity-60", "position": [0.75, 0.2], "wall_anchor": "front", "wall_locked": true}
+    ],
+    "review-entry": [
+      {"id": "shoe-cabinet", "catalog": "shoe-cabinet", "position": [0.9, 0.5], "wall_anchor": "right", "wall_locked": true}
+    ],
+    "review-accessible-bath": [
+      {"id": "accessible-shower", "catalog": "shower-accessible", "position": [0.2, 0.8], "wall_anchor": "rear", "wall_locked": true},
+      {"id": "toilet", "catalog": "toilet", "position": [0.82, 0.26], "wall_anchor": "right", "wall_locked": true},
+      {"id": "vanity", "catalog": "vanity-60", "position": [0.55, 0.2], "wall_anchor": "front", "wall_locked": true}
+    ],
+    "review-laundry": [
+      {"id": "washer", "catalog": "washer", "position": [0.6, 0.7], "wall_anchor": "rear", "note": "只先擺一台洗衣機，烘衣機堆疊承重／熱泵與散熱未核，不畫成兩台平面重疊。"}
+    ],
+    "review-elder": [
+      {"id": "bed", "catalog": "queen-bed", "position": [0.35, 0.85], "wall_anchor": "rear", "wall_locked": true, "note": "市售1520 × 1880mm床，右側照護路徑暫留；若採醫療床需換實物外廓重排。"},
+      {"id": "tv", "catalog": "wall-tv", "position": [0.35, 0.45], "wall_anchor": "left", "wall_locked": true, "mount_height_mm": 1400, "front_clearance_mm": 0, "note": "側牆壁掛電視取代落地TV櫃；角度、底高與支架承重待實物確認，不佔床側照護帶。"}
+    ],
+    "review-shallow-master": [
+      {"id": "bed", "catalog": "double-bed", "position": [0.25, 0.4], "wall_anchor": "left", "wall_locked": true},
+      {"id": "wardrobe", "catalog": "wardrobe-120", "position": [0.8, 0.8], "wall_anchor": "rear", "wall_locked": true, "note": "改選常見120cm櫃；原180cm櫃及梳妝台需求保留為替代案，不是縮放原產品。"}
+    ],
+    "review-a-upper-bath": [
+      {"id": "vanity", "catalog": "vanity-60", "position": [0.173, 0.2], "wall_anchor": "front", "wall_locked": true, "note": "60 × 45cm洗手台靠前牆；與馬桶本體分開，700mm操作帶不縮減。"},
+      {"id": "toilet", "catalog": "toilet", "position": [0.455, 0.2], "wall_anchor": "front", "wall_locked": true, "note": "公衛／前室分界移200mm後，馬桶與洗手台外廓間暫留約15cm；700mm前操作帶保留。側向人體空間、滑門、救援與防水待核，不是無障礙衛浴。"},
+      {"id": "shower", "catalog": "shower-90", "position": [0.78, 0.75], "wall_anchor": "right", "wall_locked": true, "note": "90 × 90cm淋浴靠右後角，開口朝中央；700mm接近帶保留。排風、淋浴門、完成面與防水需專業核對。"}
+    ],
+    "review-a-upper-hall": [
+      {"id": "hall-cabinet", "catalog": "hall-cabinet", "position": [0.8, 0.5], "wall_anchor": "right", "wall_locked": true, "note": "240 × 40cm櫃沿走道側牆，避開各門口，優先滑門櫃體；兩側各暫扣80mm時，關櫃通行約1040mm，600mm取物操作時剩約440mm，不能同時當通道。完成面、門框及連續救援通行需核對，必要時櫃體另移，不宣稱走道或消防合格。"}
+    ],
+    "review-b-upper-public-bath": [
+      {"id": "vanity", "catalog": "vanity-60", "position": [0.2, 0.2], "wall_anchor": "front", "wall_locked": true, "note": "60 × 45cm洗手台靠前牆；公衛減深200mm後仍保留700mm操作帶，不把洗手台移除來補套衛。"},
+      {"id": "toilet", "catalog": "toilet", "position": [0.435, 0.2], "wall_anchor": "front", "wall_locked": true, "note": "馬桶與洗手台外廓間暫留18cm，避開前方公共入口；700mm前操作帶保留。側向人體空間、門扇、救援與完成面仍待專業核對。"},
+      {"id": "shower", "catalog": "shower-90", "position": [0.8, 0.85], "wall_anchor": "right", "wall_locked": true, "note": "90 × 90cm淋浴靠右後角、朝中央開口，避開前方公共入口；700mm接近帶不縮減，淋浴門、排風與防水待核。"}
+    ],
+    "review-b-upper-ensuite": [
+      {"id": "vanity", "catalog": "vanity-90", "position": [0.48, 0.8], "wall_anchor": "rear", "wall_locked": true, "note": "90 × 55cm洗手台維持原外廓與700mm操作帶；公衛／套衛分界前移200mm，不擴大後段濕區總範圍。"},
+      {"id": "toilet", "catalog": "toilet", "position": [0.85, 0.32], "wall_anchor": "right", "wall_locked": true, "note": "馬桶改靠右前牆，避開右後方套衛滑門；700mm前操作帶保留，門框、側向淨距與倒地救援仍待核。"},
+      {"id": "shower", "catalog": "shower-90", "position": [0.18, 0.29], "wall_anchor": "left", "wall_locked": true, "note": "90 × 90cm淋浴靠左前角，開口朝中央；不縮小產品或操作淨空。完成面、排風與濕區管線未核定。"}
+    ],
+    "review-single": [
+      {"id": "bed", "catalog": "single-bed", "position": [0.25, 0.2], "wall_anchor": "front", "wall_locked": true},
+      {"id": "wardrobe", "catalog": "wardrobe-180", "position": [0.8, 0.7], "wall_anchor": "right"},
+      {"id": "desk", "catalog": "desk-140", "position": [0.84, 0.68], "wall_anchor": "right"}
+    ],
+    "review-multi": [
+      {"id": "yoga-mat", "catalog": "yoga-mat", "position": [0.5, 0.85], "rotation_deg": 90},
+      {"id": "storage", "catalog": "shelf-180", "position": [0.2, 0.25], "wall_anchor": "left", "wall_locked": true}
+    ],
+    "review-front-living": [
+      {"id": "sofa", "catalog": "sofa-3", "position": [0.534, 0.7], "wall_anchor": "rear", "wall_locked": true},
+      {"id": "coffee-table", "catalog": "coffee-table", "position": [0.534, 0.5], "in_front_of": "sofa", "front_gap_mm": 400},
+      {"id": "tv", "catalog": "tv-console", "position": [0.534, 0.2], "wall_anchor": "front", "aligned_with": "sofa", "wall_locked": true}
+    ],
+    "review-rear-master": [
+      {"id": "bed", "catalog": "queen-bed", "position": [0.3, 0.2], "wall_anchor": "front", "wall_locked": true, "note": "此為152 × 188cm常見雙人床替代型；原180 × 200cm床需另案檢查，不能視為原需求已達成。"},
+      {"id": "wardrobe", "catalog": "wardrobe-180", "position": [0.8, 0.6], "wall_anchor": "right", "wall_locked": true},
+      {"id": "vanity", "catalog": "vanity-desk", "position": [0.5, 0.85], "wall_anchor": "rear", "wall_locked": true}
+    ],
+    "review-corner-theater": [
+      {"id": "sofa", "catalog": "sofa-bed", "position": [0.33, 0.7], "wall_anchor": "rear", "wall_locked": true},
+      {"id": "tv", "catalog": "wall-tv", "position": [0.33, 0.2], "wall_anchor": "front", "aligned_with": "sofa", "wall_locked": true, "mount_height_mm": 1200, "note": "壁掛43吋代表型號；大螢幕、視距與隔音牆厚須另核。"}
+    ],
     "flex-indoor": [
-      {"id": "sofa-bed", "catalog": "sofa-bed", "position": [0.25, 0.5]},
+      {"id": "sofa-bed", "catalog": "sofa-bed", "position": [0.25, 0.5], "wall_anchor": "rear"},
       {"id": "yoga-mat", "catalog": "yoga-mat", "position": [0.58, 0.5]}
     ]
   },
@@ -283,7 +459,7 @@
 
     "B:floor-1:garage": {"profile": "garage-one", "basis": "html-mixed", "evidence": ["前院車庫約 33㎡與 EV 預留", "HTML 未指定車輛數，先以一車測試"]},
     "B:floor-1:shrine": {"profile": "shrine-v1", "basis": "html-mixed", "evidence": ["HTML 明載神明廳＋玄關、龍邊神桌與玄關收納", "活動供桌與可移動長凳為 2026-09-09 第一版彈性使用推排"], "note": "日常保留可移動家具；大型祭拜時長凳與供桌依人數移位，正式淨空須待建築師平面尺寸檢核。"},
-    "B:floor-1:idf-cabinet": {"profile": "idf-12u", "basis": "html-explicit", "evidence": ["IDF-B 機櫃位於樓梯下空間"]},
+    "B:floor-1:idf-cabinet": {"profile": "idf-15u", "basis": "html-explicit", "evidence": ["HTML 為 15U 壁掛式、深度 600mm", "位置為樓梯後方梯廳側牆，不新增機房，不假設梯下淨高"]},
     "B:floor-1:bath1": {"profile": "bathroom-accessible", "basis": "html-explicit", "evidence": ["無障礙衛浴、求救鈴與迴轉需求"]},
     "B:floor-1:storage": {"profile": "ceremonial-storage-v1", "basis": "html-mixed", "evidence": ["HTML 明載武轎儲藏、防潮、防火與分類收納", "武轎暫估收納外廓由 inputs/physical-items.json 統一提供；第一版採 150cm 寬門直進直出，不在淺格內轉向"], "note": "武轎正對 150cm 暫定淨開口；法器櫃、耐燃櫃、折疊整備桌與除濕機集中另一側。若正式動線不能直進直出，必須擴大至可容納 180cm 轉向圓，而非縮小武轎。"},
     "B:floor-1:balcony1": {"profile": "laundry", "basis": "room-use-inference", "evidence": ["後工作陽台；家具設備內容未完整明載"]},
@@ -303,11 +479,11 @@
     "B:floor-4:platform-rf": {"profile": "clothes-platform", "basis": "html-explicit", "evidence": ["活動平台／曬衣棚架"]},
 
     "C:floor-1:garage": {"profile": "garage-two-plus-motorcycle", "basis": "html-explicit", "evidence": ["前院車庫約 2 車位＋機車"]},
-    "C:floor-1:entrance": {"profile": "entry", "basis": "html-explicit", "evidence": ["玄關鞋櫃深度不得壓縮輪椅迴轉"]},
+    "C:floor-1:entrance": {"profile": "entry", "basis": "html-explicit", "evidence": ["玄關鞋櫃深度不得壓縮輪椅迴轉"], "concept_min_depth_mm": 5400, "note": "三處入口加上 120cm 鞋櫃操作帶，需求圖先加深為 5400mm，非基地或完成面尺寸；輪椅轉位仍待正式演練。"},
     "C:floor-1:living": {"profile": "living", "basis": "html-mixed", "evidence": ["客廳約 8 坪與 TV 點位", "家具需保留輪椅通行；尺寸為推估"]},
     "C:floor-1:dining": {"profile": "dining-six", "basis": "room-use-inference", "evidence": ["餐桌不得阻擋玄關、客廳、廚房與孝親房主要通道"]},
     "C:floor-1:kitchen": {"profile": "kitchen", "basis": "html-mixed", "evidence": ["冷熱水、IH／烤箱專迴與排煙", "流理台與冰箱尺寸為推估"]},
-    "C:floor-1:stair1f": {"profile": "idf-12u", "basis": "html-explicit", "evidence": ["樓梯下 12U IDF 弱電機櫃，深度 600mm"]},
+    "C:floor-1:stair1f": {"profile": "idf-12u", "basis": "html-explicit", "evidence": ["12U 壁掛、深度 600mm", "先設於樓梯間側牆；梯下為淨高與通路確認後的備選"]},
     "C:floor-1:elder": {"profile": "elder-bedroom", "basis": "html-mixed", "evidence": ["孝親房約 5 坪、床邊緊急鈕與電視牆", "床邊至對牆仍須保留 150cm，家具位置為初排"]},
     "C:floor-1:elder-bath": {"profile": "bathroom-accessible", "basis": "html-explicit", "evidence": ["無障礙淋浴、馬桶、洗手台及 150×180cm 迴轉需求"]},
     "C:floor-1:service": {"profile": "laundry", "basis": "html-mixed", "evidence": ["後工作陽台明載洗衣", "烘衣與家務櫃為第一版推估"]},

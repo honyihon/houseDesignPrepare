@@ -16,6 +16,76 @@ from house_design.owner_workspace import SOURCE_FILES, _e, build_workspace, sour
 from house_design.revision_integrity import verify_revision_integrity
 
 
+def _check_shared_plans(root: Path, building: str, expected: dict, add: Any) -> None:
+    from lib.model3d_facade import render_elevation
+    from lib.model3d_plan import plan_data, render_plan
+
+    relative = "structured/candidates/furniture-plans"
+    directory = root / relative
+    try:
+        source = (directory / "layout.js").read_text(encoding="utf-8")
+        prefix, suffix = "window.HOUSE_CONCEPT_LAYOUT = ", ";\n"
+        if not source.startswith(prefix) or not source.endswith(suffix):
+            raise ValueError("Expected generated offline plan data, not an executable data loader")
+        actual = json.loads(source[len(prefix) : -len(suffix)])
+        wanted = plan_data(expected)
+        add(
+            "consistent" if actual == wanted else "stale",
+            "HTML／3D 共用家具配置資料",
+            relative + "/layout.js",
+            {
+                "building": building,
+                "fields": "全部房間尺寸、家具尺寸、中心、旋轉、靠牆、入口、梯段、操作帶與獨立外觀提案",
+                "sha256": sha256_file(directory / "layout.js"),
+                "limitation": "資料一致性，非配置／法規／專業驗收。",
+            },
+        )
+        expected_building = next(b for b in wanted["buildings"] if b["id"] == building)
+        for floor in expected_building["floors"]:
+            svg = directory / floor["plan_file"]
+            equal = svg.is_file() and svg.read_text(encoding="utf-8") == render_plan(building, floor)
+            add(
+                "consistent" if equal else "stale",
+                "HTML 等比例圖是否使用當前共用配置",
+                relative + "/" + floor["plan_file"],
+                {
+                    "building": building,
+                    "floor": floor["id"],
+                    "sha256": sha256_file(svg) if svg.is_file() else None,
+                    "action": "共同重跑 scripts/export_model_3d.py；不可手改生成圖，也不代表圖面可施工。",
+                },
+            )
+            if floor.get("frontage_study_file"):
+                svg = directory / floor["frontage_study_file"]
+                equal = svg.is_file() and svg.read_text(encoding="utf-8") == render_plan(
+                    building, floor, show_frontage_study=True
+                )
+                add(
+                    "consistent" if equal else "stale",
+                    "HTML 前院待核比較是否使用當前 3D 虛框",
+                    relative + "/" + floor["frontage_study_file"],
+                    {
+                        "building": building,
+                        "floor": floor["id"],
+                        "sha256": sha256_file(svg) if svg.is_file() else None,
+                        "action": "共用重匯出；只是未施作比較，騎樓／公共退縮與私用權利仍未知。",
+                    },
+                )
+        facade = wanted["facade"]
+        record = next(b for b in facade["buildings"] if b["id"] == building)
+        svg = directory / record["elevation_file"]
+        equal = svg.is_file() and svg.read_text(encoding="utf-8") == render_elevation(facade, record)
+        add(
+            "consistent" if equal else "stale",
+            "HTML 正立面是否使用當前 3D 外觀元件",
+            relative + "/" + record["elevation_file"],
+            {"building": building, "sha256": sha256_file(svg) if svg.is_file() else None,
+             "action": "共同重跑 scripts/export_model_3d.py；外觀一致不等於開口、停車、結構或法規核准。"},
+        )
+    except (OSError, ValueError, TypeError, KeyError, StopIteration) as exc:
+        add("insufficient", "HTML 共用家具配置資料不可讀", relative + "/layout.js", str(exc))
+
+
 def build_consistency_review(root: Path = ROOT) -> dict[str, Any]:
     workspace = build_workspace(root)
     src = sources(root)
@@ -105,7 +175,7 @@ def build_consistency_review(root: Path = ROOT) -> dict[str, Any]:
                 "insufficient",
                 "A 棟客餐廳提案與原 HTML 版本不同",
                 "AbuildingView.html / inputs/requirements.json",
-                "原 HTML 客廳與餐廳分開；需求 A.floor-1.living 為合併客餐廳提案，仍待確認。保留兩版，不自動合併、移動或匹配家具。",
+                "原 HTML 的分開客廳／餐廳保留在歷史對照；A 照護回補版共用圖與 3D 改前段客餐廳、後段孝親房與一樓淋浴。屋主同意回補功能，不等於正式採用前帶可建或停車取捨；前段位置與原需求表後帶條件不同，須比較。勿把歷史卡的位置或坪數套用到新提案。",
             )
     expected = None
     try:
@@ -120,10 +190,44 @@ def build_consistency_review(root: Path = ROOT) -> dict[str, Any]:
             "presentation",
             furniture_path=root / SOURCE_FILES["furniture"],
             physical_items_path=root / SOURCE_FILES["physical"],
+            review_path=root / SOURCE_FILES["concept_review"],
+            requirements_path=root / SOURCE_FILES["requirements"],
+            facade_path=root / SOURCE_FILES["facade"],
         )
     except (ContractError, ValueError, KeyError, TypeError, OSError) as exc:
-        add("insufficient", "無法建立當前家具容量比較資料", SOURCE_FILES["program"], str(exc))
+        care_regression = str(exc).startswith("A 1F care requirement:")
+        add(
+            "conflict" if care_regression else "insufficient",
+            "A 棟一樓照護功能回歸缺漏" if care_regression else "無法建立當前家具容量比較資料",
+            SOURCE_FILES["concept_review"] if care_regression else SOURCE_FILES["program"],
+            str(exc),
+        )
     if expected:
+        facade = expected["facade"]
+        add(
+            "insufficient",
+            "ABC 外觀提案的採光／結構／維修仍待專業核定",
+            SOURCE_FILES["facade"],
+            {"status": facade["status"], "pending_checks": facade["pending_checks"],
+             "pending_by_building": {b["id"]: b["pending"] for b in facade["buildings"]}},
+        )
+        reference = facade["reference"]
+        photo = root / "assets/references/facade-photo-v1.jpg"
+        equal = photo.is_file() and sha256_file(photo) == reference.get("sha256")
+        add(
+            "consistent" if equal else "insufficient",
+            "外觀參考照片的來源雜湊",
+            "assets/references/facade-photo-v1.jpg",
+            {"expected": reference.get("sha256"), "actual": sha256_file(photo) if photo.is_file() else None,
+             "limitation": "只證明引用的照片位元組；不推定材質、尺寸、結構或合法性。"},
+        )
+        care = next(c for c in expected["layout_review"]["checks"] if c["id"] == "A-1F-care-functions")
+        add(
+            "insufficient",
+            "A 棟一樓照護功能已回補，仍為有條件提案",
+            "inputs/requirements.json / inputs/concept-layout-review.json",
+            care,
+        )
         cells = {c["id"]: c for b in expected["buildings"] for f in b["floors"] for c in f["cells"]}
         for b in "ABC":
             path = root / f"{b}buildingView.html"
@@ -131,6 +235,9 @@ def build_consistency_review(root: Path = ROOT) -> dict[str, Any]:
                 add("insufficient", "缺原始 HTML", path.name, "未檢查")
                 continue
             soup = BeautifulSoup(path.read_text(encoding="utf-8"), "html.parser")
+            if soup.select_one('script[src="structured/candidates/furniture-plans/layout.js"]'):
+                _check_shared_plans(root, b, expected, add)
+                continue  # old cells are room indexes, not duplicate furniture positions
             overlays = soup.select("[data-model-room-id][data-layout-source]")
             for overlay in overlays:
                 cid = overlay.get("data-model-room-id")
@@ -202,8 +309,13 @@ def build_consistency_review(root: Path = ROOT) -> dict[str, Any]:
                         key: {
                             "name": c["name"],
                             "declared_mm": c["declared_mm"],
+                            "auto_mm": c.get("auto_mm"),
+                            "tour_mm": c.get("tour_mm"),
+                            "tour_features": c.get("tour_features"),
+                            "space_group": c.get("space_group"),
                             "provenance": c["provenance"],
                             "furniture": c.get("furniture", []),
+                            "furniture_placements": c.get("furniture_placements"),
                         }
                         for key, c in values.items()
                     }
@@ -212,7 +324,13 @@ def build_consistency_review(root: Path = ROOT) -> dict[str, Any]:
                     "consistent" if stable_hash(signature(cells)) == stable_hash(signature(current)) else "stale",
                     "歷史 3D 是否使用當前格位與家具來源",
                     "structured/candidates/model3d.html",
-                    "比較 ID、名稱、格位尺寸、來源狀態及家具配置；非合規檢查",
+                    "比較 ID、名稱、原格位／需求尺寸、靠牆擺位、梯廳分區及門窗／操作帶；非合規檢查",
+                )
+                add(
+                    "consistent" if rendered.get("facade") == expected["facade"] else "stale",
+                    "3D 是否使用當前獨立外觀來源",
+                    "structured/candidates/model3d.html / inputs/facade-concept.json",
+                    "比較完整元件、候選開口、色票、假設及待確認項目；不更動屋主需求或宣稱法規通過。",
                 )
             except (TypeError, KeyError, json.JSONDecodeError):
                 add("insufficient", "3D 內嵌資料不可解析", "structured/candidates/model3d.html", "未檢查")

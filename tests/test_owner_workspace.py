@@ -5,7 +5,7 @@ import shutil
 
 import pytest
 
-from house_design.contracts import ROOT, ContractError, read_json, stable_hash, write_json
+from house_design.contracts import ROOT, ContractError, read_json, sha256_file, stable_hash, write_json
 from house_design.owner_consistency import build_consistency_review, write_consistency_review
 from house_design.owner_workspace import (
     DRAFT_SCHEMA,
@@ -18,6 +18,7 @@ from house_design.owner_workspace import (
     records_html,
     write_workspace,
 )
+from house_design.revision_integrity import verify_revision_integrity
 
 
 @pytest.fixture
@@ -213,11 +214,21 @@ def test_consistency_does_not_hide_missing_geometry(workspace_root):
 
 def test_r000_diagnosis_read_only():
     path = ROOT / "inputs/revisions/R000/manifest.json"
-    before = path.read_bytes()
+    recovery = path.parent / "source-recovery.json"
+    archived = path.parent / "source/plan.json"
+    before = {file: file.read_bytes() for file in (path, recovery, archived)}
     report = build_consistency_review()
     item = next(f for f in report["findings"] if f["title"] == "R000 原來源已偏離封存雜湊")
-    assert item["detail"]["historical_candidate"]["matches_manifest"] is True
-    assert path.read_bytes() == before
+    detail = item["detail"]
+    # HEAD tracks a live design, not necessarily the R000 historical source.
+    # Committing a newer plan must not invalidate its independently sealed copy.
+    historical = detail["historical_candidate"]
+    assert historical is not None
+    assert historical["matches_manifest"] == (historical["sha256"] == detail["expected"])
+    assert detail["actual"] != detail["expected"]
+    assert sha256_file(archived) == detail["expected"]
+    assert verify_revision_integrity("R000")["valid"]
+    assert {file: file.read_bytes() for file in before} == before
 
 
 def test_owner_reply_in_risk_and_stale_packet(workspace_root):

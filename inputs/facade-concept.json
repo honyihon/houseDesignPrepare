@@ -1,0 +1,74 @@
+{
+  "schema": "house-facade-concept-v1",
+  "id": "abc-photo-facade-v1",
+  "status": "proposal-owner-and-architect-review-pending",
+  "geometry_source": "tour_mm",
+  "reference": {
+    "file": "assets/references/facade-photo-v1.jpg",
+    "sha256": "6d0cbe10c26404da43f874afa4c3fbf19f299790122e81728a247f95bc562f61",
+    "evidence": "屋主提供的外觀照片；只用於風格，不推定材質、尺寸、結構或合法性。",
+    "adopted": ["深色外框", "淺色石紋橫帶", "局部古銅金直條", "內縮陽台與有框玻璃欄杆"],
+    "not_adopted": ["覆蓋採光面的整面鐵捲門", "未經設計的承重門廊柱", "整片屋頂棚架", "把騎樓或退縮帶當成車庫"]
+  },
+  "palette": {
+    "dark": {"color": "#30363c", "label": "霧面深灰石紋／外牆磚候選", "note": "不從照片認定天然石材；樣板、熱吸收、接縫、防水與固定方式待核。"},
+    "light": {"color": "#e7e2d8", "label": "霧面淺色石紋外牆磚候選", "note": "淺色橫帶；不採大片厚重天然石材作已定方案。"},
+    "wall": {"color": "#d5d4cd", "label": "淺灰耐候外牆面候選", "note": "側／後立面較簡化；共壁、合法開口及外保溫待基地確認。"},
+    "metal": {"color": "#a98549", "label": "古銅金鋁合金直條候選", "note": "粉體／氟碳塗裝、異種金屬隔離、排水、抗風與可拆維修待核。"},
+    "glass": {"color": "#a9c4cb", "label": "有框夾層安全玻璃欄杆候選", "note": "厚度、膠膜、框柱、錨栓與風壓須另行設計；不是已指定產品。"}
+  },
+  "assumptions_mm": {
+    "wall_thickness": 100,
+    "frame_width": 140,
+    "fascia_height": 200,
+    "rail_height": 1200,
+    "rail_frame": 40,
+    "glass_visual_thickness": 16,
+    "slat_module_width": 600,
+    "slat_width": 30,
+    "slat_pitch": 75,
+    "slat_depth": 40
+  },
+  "assumption_note": "全部是表現用暫估尺寸，非統計平均、完成面、結構或選定產品。1200mm 欄高是本案暫定設計選擇；16mm 僅為模型視覺厚度，不是玻璃規格。",
+  "slat_alternative_x_mm": [1850, 4000],
+  "buildings": {
+    "A": {
+      "summary": "一樓前段客餐廳採光＋右側獨立照護入口；不以捲門替換採光。上層沿既有1.5m前陽台，不為了外觀改房間或加深。",
+      "entry": "右側1000mm門位沿共用提案，非完成面淨寬；無門檻、雨遮、坡度與排水待核。",
+      "parking": "停車需求保留待基地條件／替代案，本照護主案不計車位。前帶若依法須留騎樓，1F需重排，不靠外觀遮掩。"
+    },
+    "B": {
+      "summary": "神明堂位於退縮候選線後；入口錯開神桌中軸，右側直線搬轎帶不加裝飾柱、門廊或柵門。",
+      "entry": "1500mm搬轎入口與1600mm通道沿既有提案；神桌朝前、後牆完整、上方保護用途不變。抬桿與人員仍未演練。",
+      "parking": "3.9m前緣只留通行，不列車位／武轎收納；原一車需求另列替代案。"
+    },
+    "C": {
+      "summary": "一樓改前餐廳候選採光＋右側玄關、中段客廳與後段孝親生活圈；一樓前側室外機改配對既有2F前陽台，梯廳IDF壁龕不包成封閉機房。",
+      "entry": "1000mm主入口沿共用提案；輔具、接送、雨天與無障礙完成面待核，不新增門前台階。",
+      "parking": "兩汽車＋機車仍是未解需求；3.9m前帶維持全帶通行主案，私有庭院只作未施作比較，地權／騎樓／公共退縮未明，不算車庫或室內房間。"
+    }
+  },
+  "pending_checks": [
+    {"id": "site-and-arcade", "status": "unknown", "note": "地籍、使用分區、建築線、騎樓／退縮、前後鄰界及是否能相鄰興建未知。三棟並列只作展示，不證明跨基地可施工。"},
+    {"id": "structure-and-balconies", "status": "unknown", "note": "現有層高3000mm、陽台深度及屋突沿提案，非結構認可；挑出、支承、梁柱、地震與屋頂用途需建築師／結構技師確認。"},
+    {"id": "daylight-and-ventilation", "status": "unknown", "note": "保留原候選窗不等於有效採光／通風達標；遮蔽、鄰棟距離、室內進深及格柵須按適用法規核算。"},
+    {"id": "rails-and-glass", "status": "unknown", "note": "欄高、防攀爬、開口、玻璃破損後防墜、框柱、錨栓及風壓待專業設計；直條不是已驗證防墜系統。"},
+    {"id": "hvac-and-rear-screen", "status": "unknown", "note": "17組冷氣位置／維修帶沿原提案；前後設備遮屏待選機型與手冊、散熱、逃生口及法定遮蔽核對，暫不畫成已裝完成。"},
+    {"id": "water-and-maintenance", "status": "unknown", "note": "陽台／屋頂洩水坡、溢流、滴水、牆磚固定、伸縮縫、清洗換片及可拆維修，需施工圖和驗收依據。"},
+    {"id": "entry-and-flood", "status": "unknown", "note": "入口高程、淹水歷史、車道與人行坡度、門扇、排水及照護／武轎雨天動線待現場資料；不先新增台階。"},
+    {"id": "roof-canopy", "status": "pending-option-not-installed", "note": "照片棚架保留選項；未畫整片屋頂棚。使用、容積、建蔽、高度、消防與抗風應另核，不把查報例外當成許可。"}
+  ],
+  "sources": [
+    {"id": "tw-building-code", "url": "https://law.moj.gov.tw/LawClass/LawAll.aspx?pcode=D0070115", "checked_on": "2026-10-07", "scope": "建築技術規則建築設計施工編，現行文本修正日2026-02-23；適用性仍須專業核對。"},
+    {"id": "rails", "url": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=D0070115&flno=38", "checked_on": "2026-10-07", "scope": "欄杆高度、防攀爬及開口要求；不是本模型的設計簽證。"},
+    {"id": "daylight", "url": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=D0070115&flno=41", "checked_on": "2026-10-07", "scope": "住宅採光面積與低於樓地板75cm部分扣除；另按第42條確認有效採光。"},
+    {"id": "effective-daylight", "url": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=D0070115&flno=42", "checked_on": "2026-10-07", "scope": "有效採光面積需鄰界、遮蔽等實際條件。"},
+    {"id": "ventilation", "url": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=D0070115&flno=43", "checked_on": "2026-10-07", "scope": "通風開口及有效面積需另核算。"},
+    {"id": "parking", "url": "https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=D0070115&flno=60", "checked_on": "2026-10-07", "scope": "一般停車位2.5×5.5m初篩，角度等規定需按適用條件核對；尺寸不證明合法位置。"},
+    {"id": "kaohsiung-arcade", "url": "https://outlaw.kcg.gov.tw/LawContent.aspx?id=GL000537", "checked_on": "2026-10-07", "scope": "高雄市建築管理自治條例第15至20條條件式騎樓／退縮規定；基地尚未知，不能預先判定適用。"},
+    {"id": "kaohsiung-equipment", "url": "https://outlaw.kcg.gov.tw/LawContent.aspx?id=GL001307", "checked_on": "2026-10-07", "scope": "高雄設備遮蔽、透空、工作陽台逃生開口及冷氣遮屏限制；不能以直條60%名義透空證明機電／法規合格。"},
+    {"id": "glass-research", "url": "https://www.abri.gov.tw/PeriodicalDetail.aspx?isShowAll=false&key=115&n=861&s=3098", "checked_on": "2026-10-07", "scope": "2025玻璃欄杆耐風安全研究；試驗案例不直接外推本案厚度或風壓係數。"},
+    {"id": "cladding-research", "url": "https://www.abri.gov.tw/News_Content_Table.aspx?n=807&s=39487", "checked_on": "2026-10-07", "scope": "外牆石材固定、接縫及施工品質研究；材料仍須工程設計。"},
+    {"id": "hvac-manual", "url": "https://pmst.panasonic.com.tw/Consumer/Support/Download", "checked_on": "2026-10-07", "scope": "後續選定機型應核原廠安裝手冊，非品牌推薦或已完成配管計算。"}
+  ]
+}

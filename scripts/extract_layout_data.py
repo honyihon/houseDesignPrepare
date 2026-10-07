@@ -226,6 +226,11 @@ def extract_plan_cell(
         "material": _attr_text(cell, ["data-material"]),
         "spatial": parse_cell_spatial(cell.attrs, classes_of(cell, remove={"plan-cell"})),
         "structural_review": _attr_text(cell, ["data-structural-review"]),
+        "space_group": _attr_text(cell, ["data-space-group"]),
+        "space_role": _attr_text(cell, ["data-space-role"]),
+        "carry_path_mm": _attr_float(cell, ["data-carry-path-mm"]),
+        "access_mode": _attr_text(cell, ["data-access-mode"]),
+        "door_contact_ratio": _attr_float(cell, ["data-door-contact-ratio"]),
     }
 
 
@@ -407,8 +412,7 @@ def extract_checklists(scope: Tag) -> list[dict[str, Any]]:
 
 def extract_section_blocks(scope: Tag) -> list[dict[str, Any]]:
     selector = (
-        ".system-box, .spec-box, .warning-box, .checklist-box, "
-        ".important-notes, .typhoon-section, .fengshui-section"
+        ".system-box, .spec-box, .warning-box, .checklist-box, .important-notes, .typhoon-section, .fengshui-section"
     )
     sections: list[dict[str, Any]] = []
     for idx, block in enumerate(scope.select(selector), start=1):

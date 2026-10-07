@@ -102,6 +102,43 @@
 .design-review-note p { margin: 6px 0; }
 .design-review-note a { color: #075985; }
 
+.shared-furniture-plan {
+    margin: 12px 0 20px; padding: 12px; border: 1px solid #93b3b6;
+    border-radius: 10px; background: #f4f7f5; color: #263846;
+}
+.shared-furniture-plan h3 { margin: 0 0 8px; font-size: 1rem; color: #183f4b; }
+.shared-furniture-plan p, .legacy-plan-caption { font-size: .82rem; line-height: 1.65; margin: 8px 0; }
+.shared-plan-open { display: block; margin: 12px 0; text-align: center; background: #fff; border-radius: 6px; }
+.shared-plan-open img { display: block; width: 100%; max-height: 760px; object-fit: contain; }
+.shared-furniture-plan details { margin-top: 8px; border-top: 1px solid #bcc9c9; padding: 8px 0; }
+.shared-furniture-plan summary { cursor: pointer; font-size: .85rem; font-weight: 650; }
+.shared-furniture-plan ul { padding-left: 20px; font-size: .8rem; line-height: 1.65; }
+.shared-furniture-plan li { margin: 5px 0; overflow-wrap: anywhere; }
+.shared-furniture-plan [data-placement-status="pending-layout"] { color: #9a3412; }
+.legacy-layout { margin: 12px 0 24px; padding: 12px; border: 1px dashed #947238; border-radius: 8px; background: #fffaf0; }
+.legacy-layout > summary { cursor: pointer; font-size: .9rem; color: #713f12; }
+.legacy-layout[open] > .floor-content { margin-top: 16px; }
+.hvac-route-review p { overflow-wrap: anywhere; }
+.proposal-floor-header { flex-wrap: wrap; gap: 12px; }
+.proposal-floor-header h2 { margin: 0; font-size: 1.2rem; }
+.proposal-floor-header .design-review-note { flex-basis: 100%; }
+.proposal-header p { line-height: 1.6; }
+body[data-design-status="historical-html-sketch"] .visual-plan.with-shared-plan { position: static; }
+.legacy-plan-caption { color: #947238; }
+.shared-facade-proposal { margin:16px 0 24px;padding:16px;border:1px solid #c4b18b;border-radius:10px;background:#f7f7f2;color:#263846; }
+.shared-facade-proposal h2 { margin:0 0 8px;font-size:1.2rem; }
+.shared-facade-proposal p, .shared-facade-proposal li { font-size:.85rem;line-height:1.65; }
+.shared-facade-proposal details { margin-top:10px;border-top:1px solid #c6c7bb;padding-top:10px; }
+.shared-facade-proposal summary { cursor:pointer;font-weight:650;font-size:.85rem; }
+.shared-facade-open { display:block;background:#f7f8f6;margin:12px 0; }
+.shared-facade-open img { display:block;width:100%;max-height:540px;object-fit:contain; }
+.shared-facade-proposal details img { display:block;max-width:100%;max-height:600px;object-fit:contain;margin-top:10px; }
+.facade-materials { display:grid;gap:8px;padding:0;list-style:none; }
+.facade-materials li { display:flex;gap:10px;align-items:flex-start; }
+.facade-materials i { flex:0 0 26px;height:26px;border:1px solid #a5b0b2;border-radius:4px;margin-top:2px; }
+.shared-facade-proposal .design-bridge-actions { justify-content:flex-start; }
+.shared-facade-proposal .design-bridge-link { white-space:normal;text-align:center; }
+
 /* Once the page stacks, the formerly left-hand sticky plan must return to
    normal flow. Otherwise it floats over the room details below it. */
 @media (max-width: 1050px) {
@@ -117,6 +154,7 @@
         top: auto;
     }
     .design-review-note { break-inside: avoid; }
+    .shared-facade-open { break-inside:avoid; }
 }
 
 @media (max-width: 760px) {
@@ -135,3 +173,5 @@
         margin: 8px 0 0;
     }
 }
+.frontage-study-toggle { display:flex;align-items:flex-start;gap:8px;line-height:1.6;cursor:pointer; }
+.frontage-study-toggle input { flex:0 0 auto;margin-top:6px; }

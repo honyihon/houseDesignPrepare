@@ -293,7 +293,9 @@ def transform_floor(
             "defaults_applied": {
                 "standard_profile": RESIDENTIAL_DEFAULTS.get("profile", ""),
                 "standard_schema": RESIDENTIAL_DEFAULTS.get("schema_version", ""),
-                "used_default_area_assumption": not bool(area_metrics.get("dimension_m") or area_metrics.get("ping_values")),
+                "used_default_area_assumption": not bool(
+                    area_metrics.get("dimension_m") or area_metrics.get("ping_values")
+                ),
             },
             "classes": room.get("classes", []),
             "geometry_mm": room_geometry_mm,
@@ -343,6 +345,11 @@ def transform_floor(
                 "material": normalize_whitespace(cell.get("material", "")),
                 "spatial": normalize_spatial(cell.get("spatial"), cell.get("classes", [])),
                 "structural_review": normalize_whitespace(str(cell.get("structural_review", ""))),
+                "space_group": normalize_whitespace(str(cell.get("space_group", ""))),
+                "space_role": normalize_whitespace(str(cell.get("space_role", ""))),
+                "carry_path_mm": to_optional_float(cell.get("carry_path_mm")),
+                "access_mode": normalize_whitespace(str(cell.get("access_mode", ""))),
+                "door_contact_ratio": to_optional_float(cell.get("door_contact_ratio")),
             }
         )
 
@@ -393,7 +400,9 @@ def transform_floor(
                 "order": sec.get("order"),
                 "title": normalize_whitespace(sec.get("title", "")),
                 "classes": sec.get("classes", []),
-                "bullet_items": [normalize_whitespace(i) for i in sec.get("bullet_items", []) if normalize_whitespace(i)],
+                "bullet_items": [
+                    normalize_whitespace(i) for i in sec.get("bullet_items", []) if normalize_whitespace(i)
+                ],
             }
         )
 
@@ -592,9 +601,7 @@ def main() -> None:
     override_summary = apply_to_room_program(
         program,
         overrides,
-        default_storey_height_mm=float(
-            RESIDENTIAL_DEFAULTS.get("architect_metrics", {}).get("room_height_mm", 3000)
-        ),
+        default_storey_height_mm=float(RESIDENTIAL_DEFAULTS.get("architect_metrics", {}).get("room_height_mm", 3000)),
     )
 
     OUTPUT_FILE.write_text(json.dumps(program, ensure_ascii=False, indent=2), encoding="utf-8")

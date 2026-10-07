@@ -21,6 +21,10 @@ def test_canonical_html_pages_load_the_shared_3d_bridge() -> None:
         assert soup.body["data-design-status"] == "historical-html-sketch"
         assert soup.select_one('link[href="assets/html_design_bridge.css"]') is not None
         assert soup.select_one('script[src="assets/html_design_bridge.js"]') is not None
+        scripts = [tag.get("src") for tag in soup.select("script[src]")]
+        assert scripts.index("structured/candidates/furniture-plans/layout.js") < scripts.index(
+            "assets/html_design_bridge.js"
+        )
 
 
 def test_every_html_plan_cell_still_binds_to_a_room_and_known_orientation() -> None:
@@ -44,6 +48,7 @@ def test_bridge_declares_the_room_deep_link_and_anchor_restore_contract() -> Non
     assert 'params.set("floor", floorId)' in source
     assert 'params.set("room", buildingId + ":" + floorId + ":" + roomId)' in source
     assert 'params.set("view", "plan")' in source
+    assert 'params.set("mode", "tour")' in source
     assert "match(/^#room-(.+)$/)" in source
 
 

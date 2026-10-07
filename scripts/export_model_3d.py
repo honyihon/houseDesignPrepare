@@ -6,12 +6,14 @@ layer from ``scripts/lib/dimension_overrides.py``) and writes
 ``structured/candidates/model3d.html`` — one self-contained file that opens by
 double-clicking, with no web server and no network.
 
-Read-only massing, not a modelling tool
----------------------------------------
-Every box in the output is derived from ``plan_cells[].geometry_mm``. Nothing
-here can be edited and saved back; ``structured/room_program.json`` stays the
-single source of truth. See ``Docs/superpowers/plans/`` for how this sits
-against the "no BIM/CAD/3D stack" non-goal.
+Read-only concept viewer, not a modelling tool
+---------------------------------------------
+Original-coordinate modes derive rooms from ``plan_cells[].geometry_mm``
+and the corresponding CSS geometry. The separate whole-floor tour uses the
+editable bounded proposal without expanding rooms to accommodate furniture;
+its ``tour_mm`` must never be used as surveyed geometry or parcel capacity.
+Walls/openings, HVAC and stair symbols are unverified visual proposals. Nothing
+here can be edited and saved back to ``structured/room_program.json``.
 
 Honesty is the point
 --------------------
@@ -65,6 +67,12 @@ from lib.html_parametric_compare import (  # noqa: E402
     find_cell_overlaps,
     format_compare_panel,
 )
+from lib.model3d_facade import FACADE_FILE, build_facade  # noqa: E402
+from lib.model3d_functions import REQUIREMENTS_FILE  # noqa: E402
+from lib.model3d_placement import attach_placements  # noqa: E402
+from lib.model3d_plan import write_html_plans  # noqa: E402
+from lib.model3d_review import REVIEW_FILE, attach_hvac_proposals, prepare_review, review_checks  # noqa: E402
+from lib.model3d_tour import attach_tour  # noqa: E402
 from lib.standards import load_residential_defaults, repo_relative  # noqa: E402
 
 from house_design.physical_items import PHYSICAL_ITEMS_PATH  # noqa: E402
@@ -208,6 +216,11 @@ def build_cell(
         "is_outdoor": bool(spatial.get("is_outdoor_like")),
         "is_entry": bool(cell.get("is_entry")),
         "room_role": str(spatial.get("room_role") or "unknown"),
+        "space_group": str(cell.get("space_group") or ""),
+        "space_role": str(cell.get("space_role") or ""),
+        "carry_path_mm": as_float(cell.get("carry_path_mm")),
+        "access_mode": str(cell.get("access_mode") or ""),
+        "door_contact_ratio": cell.get("door_contact_ratio"),
         "zone": str(spatial.get("zone") or "unknown"),
         "facing": str(spatial.get("facing") or "unknown"),
         "area_sqm": area_sqm,
@@ -218,6 +231,18 @@ def build_cell(
         "opening_face": face,
         "opening_face_source": face_source,
         "badges": [normalize(v) for v in cell.get("badges", []) if normalize(v)][:4],
+        "hvac": {
+            "indoor": any(
+                "室內機" in v or (("空調" in v or "冷氣" in v) and not any(word in v for word in ("排水", "室外機")))
+                for v in cell.get("badges", [])
+            ),
+            "outdoor": any("室外機" in v for v in cell.get("badges", [])),
+            "evidence": [
+                normalize(v)
+                for v in cell.get("badges", [])
+                if any(word in v for word in ("室內機", "室外機", "空調", "冷氣"))
+            ],
+        },
         "room_uid": str(cell.get("target_room_uid") or ""),
     }
 
@@ -252,10 +277,7 @@ def build_buildings(
             label = raw_label
             if is_roof and "RF" not in raw_label.upper() and "屋頂" not in raw_label:
                 label = f"{raw_label}（屋頂／RF，非 4F）"
-            cells = [
-                build_cell(building_id, floor_id, cell, fills, front_side)
-                for cell in floor.get("plan_cells", [])
-            ]
+            cells = [build_cell(building_id, floor_id, cell, fills, front_side) for cell in floor.get("plan_cells", [])]
             overlaps_auto.extend(find_cell_overlaps(cells, "auto_mm", building_id, floor_id))
             overlaps_declared.extend(find_cell_overlaps(cells, "declared_mm", building_id, floor_id))
             floors_out.append(
@@ -315,6 +337,9 @@ def build_payload(
     plan: dict[str, Any] | None = None,
     furniture_path: Path = FURNITURE_FILE,
     physical_items_path: Path = PHYSICAL_ITEMS_FILE,
+    review_path: Path = REVIEW_FILE,
+    requirements_path: Path = REQUIREMENTS_FILE,
+    facade_path: Path = FACADE_FILE,
 ) -> dict[str, Any]:
     defaults = load_residential_defaults()
     metrics = defaults.get("architect_metrics", {}) if isinstance(defaults.get("architect_metrics"), dict) else {}
@@ -330,15 +355,26 @@ def build_payload(
         fills.update({str(k): str(v) for k, v in screen.items() if not str(k).startswith("_")})
 
     default_storey_mm = as_float(metrics.get("room_height_mm"), FALLBACK_STOREY_MM) or FALLBACK_STOREY_MM
-    buildings, skipped, overlaps_auto, overlaps_declared = build_buildings(
-        program, overrides, fills, default_storey_mm
-    )
+    buildings, skipped, overlaps_auto, overlaps_declared = build_buildings(program, overrides, fills, default_storey_mm)
 
     site = overrides.site()
     provenance = summarize_provenance(program)
     cells_summary = provenance.get("cells", {}) if isinstance(provenance.get("cells"), dict) else {}
     compare = build_compare(program, plan)
+    review = prepare_review(buildings, review_path)
     furniture = attach_furniture_layout(buildings, furniture_path, physical_items_path)
+    attach_tour(buildings)
+    review["hvac_routes"] = attach_hvac_proposals(buildings)
+    attach_placements(buildings)
+    review["checks"] = review_checks(buildings, requirements_path)
+    standards = {
+        "storey_height_mm": default_storey_mm,
+        "outdoor_slab_mm": OUTDOOR_SLAB_MM,
+        "door_height_mm": as_float(geometry.get("door_height_mm"), FALLBACK_DOOR_HEIGHT_MM),
+        "window_sill_height_mm": as_float(metrics.get("window_sill_height_mm"), FALLBACK_WINDOW_SILL_MM),
+        "window_height_mm": as_float(metrics.get("window_height_mm"), FALLBACK_WINDOW_HEIGHT_MM),
+    }
+    facade = build_facade(buildings, standards, facade_path)
 
     return {
         "schema": SCHEMA_VERSION,
@@ -351,14 +387,11 @@ def build_payload(
             "drawing_style": style,
             "furniture": repo_relative(furniture_path),
             "physical_items": repo_relative(physical_items_path),
+            "concept_review": repo_relative(review_path),
+            "requirements": repo_relative(requirements_path),
+            "facade": repo_relative(facade_path),
         },
-        "standards": {
-            "storey_height_mm": default_storey_mm,
-            "outdoor_slab_mm": OUTDOOR_SLAB_MM,
-            "door_height_mm": as_float(geometry.get("door_height_mm"), FALLBACK_DOOR_HEIGHT_MM),
-            "window_sill_height_mm": as_float(metrics.get("window_sill_height_mm"), FALLBACK_WINDOW_SILL_MM),
-            "window_height_mm": as_float(metrics.get("window_height_mm"), FALLBACK_WINDOW_HEIGHT_MM),
-        },
+        "standards": standards,
         "site": {
             "provenance": str(site.get("_provenance") or "assumed"),
             "note": normalize(str(site.get("_note") or "")),
@@ -375,6 +408,8 @@ def build_payload(
         "overlaps": {"auto": overlaps_auto, "declared": overlaps_declared},
         "compare": compare,
         "furniture": furniture,
+        "layout_review": review,
+        "facade": facade,
         "geom_source_default": "auto",
     }
 
@@ -390,9 +425,7 @@ def three_source() -> tuple[str, dict[str, Any]]:
     # A future three.js upgrade that breaks this should fail loudly here rather
     # than silently produce a truncated viewer.
     if "</script" in source.lower():
-        raise SystemExit(
-            f"{repo_relative(THREE_FILE)} contains a closing script tag and cannot be inlined verbatim."
-        )
+        raise SystemExit(f"{repo_relative(THREE_FILE)} contains a closing script tag and cannot be inlined verbatim.")
     return source, {"file": repo_relative(THREE_FILE), "bytes": len(source.encode("utf-8"))}
 
 
@@ -400,6 +433,7 @@ def three_source() -> tuple[str, dict[str, Any]]:
 # JavaScript below is mostly braces, and doubling every one of them to survive
 # f-string interpolation is a reliable way to introduce a typo nobody can see.
 TEMPLATE_FILE = SCRIPT_DIR / "templates/model3d.html"
+FACADE_JS_FILE = SCRIPT_DIR / "templates/model3d_facade.js"
 HTML_TEMPLATE = TEMPLATE_FILE.read_text(encoding="utf-8")
 
 
@@ -409,6 +443,7 @@ def render_html(payload: dict[str, Any], three_js: str) -> str:
         HTML_TEMPLATE.replace("__THREE_JS__", three_js)
         .replace("__MODEL_DATA__", encode_html_json(payload))
         .replace("__COMPARE_HTML__", compare_html)
+        .replace("__FACADE_JS__", FACADE_JS_FILE.read_text(encoding="utf-8"))
     )
 
 
@@ -430,6 +465,7 @@ def main() -> None:
         default=PHYSICAL_ITEMS_FILE,
         help="owner physical-item register supplying shared measured or planning dimensions",
     )
+    parser.add_argument("--facade", type=Path, default=FACADE_FILE, help="independent facade material/option proposal")
     args = parser.parse_args()
 
     if not args.program.exists():
@@ -441,7 +477,7 @@ def main() -> None:
         plan = json.loads(args.plan.read_text(encoding="utf-8"))
     overrides = load_overrides()
     style = args.style or default_drawing_style()
-    payload = build_payload(program, overrides, style, plan, args.furniture, args.physical_items)
+    payload = build_payload(program, overrides, style, plan, args.furniture, args.physical_items, facade_path=args.facade)
     three_js, three_meta = three_source()
     payload["source"]["three_bytes"] = three_meta["bytes"]
     if plan:
@@ -449,6 +485,7 @@ def main() -> None:
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(render_html(payload, three_js), encoding="utf-8")
+    write_html_plans(payload, args.output.parent / "furniture-plans")
 
     cells = payload["provenance"]["cells"]
     floor_count = sum(len(b["floors"]) for b in payload["buildings"])

@@ -25,8 +25,7 @@ def test_b_floors_share_one_concept_frame_and_keep_forbidden_uses_off_shrine() -
 
     assert all(floor is not None for floor in floors)
     assert {
-        (floor["data-floor-width-mm"], floor["data-floor-depth-mm"], floor["data-geometry-source"])
-        for floor in floors
+        (floor["data-floor-width-mm"], floor["data-floor-depth-mm"], floor["data-geometry-source"]) for floor in floors
     } == {("6000", "17630", "concept-safety-v1")}
 
     shrine = soup.select_one('#floor-1 .plan-cell[data-room-role="shrine"]')
@@ -57,12 +56,18 @@ def test_b_floors_share_one_concept_frame_and_keep_forbidden_uses_off_shrine() -
 
 def test_b_shrine_altar_uses_the_shared_125_cm_model_near_the_rear_wall() -> None:
     soup = BeautifulSoup((ROOT / "BbuildingView.html").read_text(encoding="utf-8"), "html.parser")
-    altar = soup.select_one('[data-furniture-id="B:floor-1:shrine:furniture:altar"]')
+    plan = BeautifulSoup(
+        (ROOT / "structured/candidates/furniture-plans/B_floor-1.svg").read_text(encoding="utf-8"), "xml"
+    )
+    altar = plan.select_one('[data-furniture-id="B:floor-1:shrine:furniture:altar"]')
+    shrine = plan.select_one('[data-room-id="B:floor-1:shrine"]')
 
     assert altar is not None
-    assert altar["data-height-mm"] == "1250"
-    assert altar["data-x-ratio"] == "0.28"
-    assert altar["data-y-ratio"] == "0.91"
+    assert float(altar["data-height-mm"]) == 1250
+    assert float(altar["data-center-x-mm"]) == 2200
+    assert altar["data-wall-anchor"] == "rear"
+    assert float(shrine["data-y-mm"]) + float(shrine["data-h-mm"]) - float(altar["data-center-y-mm"]) - 300 == 80
+    assert soup.select_one('script[src="structured/candidates/furniture-plans/layout.js"]')
     assert "模型總高 125cm" in soup.get_text(" ", strip=True)
 
 
@@ -79,13 +84,9 @@ def test_primary_parametric_b_variant_is_anchored_to_the_reviewed_html_grid() ->
     assert building["protected_zone_start_mm"] == 12700
     assert building["skeleton"]["front_depth_mm"] == 6200
 
-    ground_floor = next(
-        floor for floor in building["floors"] if floor["floor_id"] == "floor-1"
-    )
+    ground_floor = next(floor for floor in building["floors"] if floor["floor_id"] == "floor-1")
     idf_hall = next(cell for cell in ground_floor["cells"] if cell["id"] == "idf_b")
-    ground_capacity = next(
-        item for item in building["capacity"] if item["floor_id"] == "floor-1"
-    )
+    ground_capacity = next(item for item in building["capacity"] if item["floor_id"] == "floor-1")
     assert idf_hall["role"] == "corridor"
     assert idf_hall["counts_as_fixed"] is False
     assert ground_capacity["over_capacity"] is False
@@ -134,20 +135,21 @@ def test_primary_parametric_b_variant_keeps_shrine_projection_clear() -> None:
 
     assert hazards == []
     findings = [
-        finding
-        for finding in plan["findings"]
-        if finding["variant"] == "f6000_g1" and finding["building"] == "B"
+        finding for finding in plan["findings"] if finding["variant"] == "f6000_g1" and finding["building"] == "B"
     ]
-    assert not ({
-        "GARAGE_NOT_PARKABLE",
-        "WHEELCHAIR_TURN",
-        "CAPACITY_OVERFLOW",
-        "SHRINE_STACK",
-        "ACCESS_UNREALISABLE",
-        "BAND_UNREALISABLE",
-        "NESTED_ACCESS",
-        "BALCONY_NOT_ON_FACADE",
-    } & {finding["code"] for finding in findings})
+    assert not (
+        {
+            "GARAGE_NOT_PARKABLE",
+            "WHEELCHAIR_TURN",
+            "CAPACITY_OVERFLOW",
+            "SHRINE_STACK",
+            "ACCESS_UNREALISABLE",
+            "BAND_UNREALISABLE",
+            "NESTED_ACCESS",
+            "BALCONY_NOT_ON_FACADE",
+        }
+        & {finding["code"] for finding in findings}
+    )
 
 
 def test_parametric_shrine_rule_catches_wet_stair_and_roof_equipment() -> None:

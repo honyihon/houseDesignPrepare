@@ -40,16 +40,27 @@ python3 -m venv .venv
 
 ## 舊草圖的設計討論入口
 
-- `AbuildingView.html`、`BbuildingView.html`、`CbuildingView.html`：原始房間格位與需求說明。
-- `structured/candidates/model3d.html`：逐格讀取上述 HTML 座標的主要 3D 對照，可從 HTML 樓層／房間雙向定位；第一版另放入 70 個空間、157 件比例家具／設備，可切換顯示並檢查越界／碰撞。
+- `AbuildingView.html`、`BbuildingView.html`、`CbuildingView.html`：先看 ABC v2 共用配置圖；舊房間格位、坪數、系統位置與需求卡折疊為歷史對照。
+- `structured/candidates/model3d.html`：主要 3D 討論入口，預設 A 棟 1F；A 棟已回補孝親房與一樓淋浴，主案不計車位，前帶可合法興建仍待核。本版共 105 個空間、61 個家具空間、129 件家具／設備、17 組冷氣配對。選房後可用「房間特寫」放大並自動剖去遮擋牆／梯段上部；只改展示，不改房間或家具尺寸，可切完整牆高核對。原 HTML 的 92 個來源格位仍保留在原格位模式。
+- [C 一樓空間利用續版](Docs/c-1f-space-use-v3.md)：獨立四人餐區、對向電視客廳、240cm廚具候選与孝親房衣櫃；門外全帶暢通主案／私有庭院待核虛框可切換，候選不計家具。A／B不改配置，ABC十二層共同核對產圖。
+- 照片風格外觀 v1：[三棟完整外觀](structured/candidates/model3d.html#mode=tour&view=exterior&angle=oblique)，可看單棟正面／斜角、分享連結並還原室內設定。三份 HTML 新增同源立面、材料候選與 pending；保留孝親／祭祀動線，不新增車庫、承重柱或屋頂棚架。[外觀資料與建築師清單](Docs/abc-facade-v1.md)列官方法源及候選窗問題。地籍、採光、欄杆、機電和停車均未核准。
 - `structured/parametric/walkthrough.html`：會依 6–10 m 開間重新排房的另一個歷史容量情境；只有主版本 `f6000_g1` 的 B 棟固定對齊 `concept-safety-v1`，其餘仍不代表原 HTML 格局。
 
-這三項都不是現行可建或施工設計。原設計 3D 的分享連結使用
-`#building=A&floor=floor-1&room=A:floor-1:living&view=plan`；道路／前方固定對應 HTML 平面上方 `y=0`。
-家具配置可在 `inputs/furniture-layout.json` 調整，使用與限制見 `Docs/furniture-layout-v1.md`。家具維持市售尺寸；洋紅警示代表目前歷史格位容納不了，不會自動縮小掩蓋問題。
+這三項都不是現行可建或施工設計。全層導覽使用
+`#mode=tour&building=A&floor=floor-1&view=front`；原座標單房分享連結使用
+`#mode=interior&building=A&floor=floor-1&room=A:floor-1:living&view=plan`（舊連結仍有效）。道路／前方固定對應 HTML 平面上方 `y=0`。
+全層導覽與HTML共用同一份 `inputs/concept-layout-review.json` 固定比較框（6 × 17.63m，非地籍或可建外框）；不再自動加深房屋。A已依屋主同意的回補方向恢復孝親房、一樓淋浴與公共夜間如廁路徑，主案不計車位；B採祭祀／搬轎優先、C採照護優先，也不計車位。原停車與其他未解需求另案保留，不視為已解或取捨定案。A前帶可合法興建、建蔽及騎樓未知，完整照護與無障礙仍需完成面、輔具演練及專業核對。
+版本取捨、待調整家具與冷氣安裝核對項目見 [ABC 合理性提案](Docs/abc-layout-rationality-v2.md)。家具來源在 `inputs/furniture-layout.json`，操作見 [共用家具配置](Docs/furniture-layout-v1.md)。採常見市售代表尺寸，不是人口平均或實測；尺寸不縮放，放不下仍列原尺寸與原因。樓上淨空續版 `abc-rationality-v2-upstairs-clearance` 初排了 A 2F 洗手台／馬桶／走道櫃及 B 2F 套衛洗手台，待調整由6件降為2件（A更衣前室兩組180cm櫃）；一樓照護配置不變。兩處內部分界各移200mm，未擴大外框；A走道櫃取物時不能同時通行，仍需專業核對。無程式衝突不等於全棟可施工。外觀來源另在 `inputs/facade-concept.json`，不覆寫平面。修改後執行 `scripts/export_model_3d.py` 一起更新 viewer、共用資料、12份平面SVG與3份正立面SVG；交付 HTML 需附上 `assets/` 和 `structured/`。
 
 大型或既有實物統一登錄在 `inputs/physical-items.json`，操作方式見 `Docs/physical-items.md`。目前 B 棟武轎先採收納外廓 1200 × 1700 × 1800 mm 的一般規劃值並標記待實測；家具 3D 會讀取這份清單，不在兩處重複維護尺寸。
-B 棟 1F 的神明堂與武轎儲藏室已在 `BbuildingView.html` 畫出和 3D 同座標、同尺寸的第一版家具配置；儲藏室暫採 1500 mm 淨開口與直進直出動線，正式門位及轉向需求仍須待實測與建築師圖面確認。
+B 神桌在前緣通行區後的私有前廳，入口偏軸，後側武轎室經 1600mm 直線預留帶與 1500mm 門進出；不在騎樓同時存轎與停車。樓上濕區、KTV、樓梯及屋頂設備避開神桌投影，仍待梁／管線與宗教顧問複核。三棟弱電放梯廳側邊壁龕、不另隔機房；同軸雙折梯只是初排，淨高／結構／消防待核。
+
+Windows 原生 Playwright CLI 驗收入口為 `scripts/check_windows_playwright.cjs`，
+不再依賴 `/tmp` 暫存腳本。操作與路徑預檢見 [Windows 驗收方式](scripts/README.md#windows-原生-playwright-cli-驗收)；
+結果與截圖存入 Windows TEMP，預檢成功不代表畫面驗收通過。
+2026-10-06 已核對樓上說明修正後的 Windows Edge 報告 `house-design-cli-EHN6RW`：1877項檢查通過、當時25個來源雜湊一致、24張截圖已目視複查；A 2F衛浴仍有鄰房高牆遮擋。最新特寫自動剖視續版針對此問題改善，CLI新增完整牆高、旋轉重算及手機衛浴驗收，完整跑完預期27張截圖，須在Windows重跑；不能沿用EHN6RW替新版畫面背書。兩組衣櫃及基地、停車、機電和專業核定仍待處理，詳見 [驗收證據與未解項目](Docs/abc-layout-rationality-v2.md#未解與驗證)。
+
+外觀v1的house-design-cli-lgBJsy（2603項／36張、30份來源雜湊）是本次C一樓重排前證據。本次已改viewer／bridge／共用資料及CLI，預檢現在是12 floors／105 rooms／129 items，完整預期44張、31份來源雜湊。440項Python測試、7組JS、Ruff與檔案預檢通過；實際HTTP e2e因socket權限無法啟動，本次瀏覽器畫面仍須Windows重跑及截圖目視，不能沿用舊passed。
 
 ## 建築師 R001 交付包
 
@@ -93,6 +104,7 @@ B 棟 1F 的神明堂與武轎儲藏室已在 `BbuildingView.html` 畫出和 3D 
 - `inputs/private/budget.json`：不進版控的精確預算；範本是 `inputs/budget.private.template.json`。
 - `inputs/requirements.json`：屋主需求狀態與決策紀錄。
 - `inputs/physical-items.json`：既有大型實物的規劃尺寸與逐次實測紀錄。
+- `inputs/facade-concept.json`：照片風格外觀的材料、假設、逐棟差異、法源及待確認項目；不是基地事實或專業核定。
 - `inputs/revisions/`：不可變 PDF／IFC／DXF 圖面版次。
 - `structured/reviews/`：檢核報告、會議 PDF 與離線儀表板。
 - `structured/predesign/`：前期準備報告與分層研究來源。

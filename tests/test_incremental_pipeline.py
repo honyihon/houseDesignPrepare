@@ -67,10 +67,7 @@ def test_concept_step_range_does_not_offer_ifc_only_validation() -> None:
 
 
 def test_legacy_render_steps_track_authority_warning_sources() -> None:
-    steps = {
-        step.name: step
-        for step in build_steps("baseline", "presentation", "a3", "bundle.pdf", "concept")
-    }
+    steps = {step.name: step for step in build_steps("baseline", "presentation", "a3", "bundle.pdf", "concept")}
 
     standards = Path("scripts/lib/standards.py")
     compare = Path("scripts/lib/html_parametric_compare.py")
@@ -94,3 +91,20 @@ def test_legacy_render_steps_track_authority_warning_sources() -> None:
     assert any(path.as_posix().endswith(physical_items_loader.as_posix()) for path in steps["model3d"].inputs)
     assert any(path.as_posix().endswith(model3d_template.as_posix()) for path in steps["model3d"].inputs)
     assert any(path.as_posix().endswith(walkthrough_template.as_posix()) for path in steps["walkthrough"].inputs)
+
+
+def test_model3d_step_tracks_the_entire_shared_html_furniture_bundle() -> None:
+    step = next(
+        s for s in build_steps("baseline", "presentation", "a3", "bundle.pdf", "concept") if s.name == "model3d"
+    )
+    for module in ("model3d_tour", "model3d_placement", "model3d_plan", "model3d_review", "model3d_facade"):
+        assert any(p.as_posix().endswith(f"scripts/lib/{module}.py") for p in step.inputs)
+    assert any(p.as_posix().endswith("inputs/concept-layout-review.json") for p in step.inputs)
+    assert len(step.outputs) == 17  # viewer, shared data, 12 plans, 3 facade elevations
+    for source in ("inputs/facade-concept.json", "scripts/templates/model3d_facade.js", "assets/references/facade-photo-v1.jpg"):
+        assert any(p.as_posix().endswith(source) for p in step.inputs)
+    assert any(p.as_posix().endswith("furniture-plans/layout.js") for p in step.outputs)
+    for building in "ABC":
+        assert any(p.as_posix().endswith(f"furniture-plans/{building}_facade-front.svg") for p in step.outputs)
+        for floor in range(1, 5):
+            assert any(p.as_posix().endswith(f"furniture-plans/{building}_floor-{floor}.svg") for p in step.outputs)

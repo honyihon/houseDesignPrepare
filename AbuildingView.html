@@ -1937,9 +1937,9 @@
 </div>
 <!-- MDF + 梯間門 -->
 <div class="plan-row" data-row-h-mm="1100" style="grid-template-columns:1.2fr 1fr;">
-<div class="plan-cell mdf highlight"  data-door-mm="800" data-h-mm="1100" data-material="service+utility" data-w-mm="6000" data-window-mm="600" data-x-mm="0" data-y-mm="2500" role="button" tabindex="0" aria-pressed="false" aria-label="A-MDF 主機櫃" onclick="highlightRoom('mdf', this)">
+<div class="plan-cell mdf highlight" data-space-group="A1-stair-hall" data-space-role="equipment-alcove" data-door-mm="800" data-h-mm="1100" data-material="service+utility" data-w-mm="6000" data-window-mm="600" data-x-mm="0" data-y-mm="2500" role="button" tabindex="0" aria-pressed="false" aria-label="梯廳乾區／A-MDF 主機櫃" onclick="highlightRoom('mdf', this)">
 <span class="cell-icon">🖥️</span>
-<span class="cell-name">A-MDF 主機櫃</span>
+<span class="cell-name">梯廳乾區／A-MDF 主機櫃</span>
 <span class="cell-size">19吋 18U（落地）</span>
 <div class="io-badges">
 <span class="badge fiber">🟡 ISP光纖</span>
@@ -1949,7 +1949,7 @@
 <span class="badge ground">⏚ 接地</span>
 </div>
 </div>
-<div class="plan-cell highlight" role="button" tabindex="0" aria-pressed="false" aria-label="🚪✨ 梯間隔斷門" data-door-mm="900" data-h-mm="1100" data-material="concrete+paint" data-w-mm="5000" data-window-mm="600" data-x-mm="6000" data-y-mm="2500" onclick="highlightRoom('stair-door', this)" style="padding:10px;">
+<div class="plan-cell highlight" data-space-group="A1-stair-hall" data-space-role="circulation" role="button" tabindex="0" aria-pressed="false" aria-label="🚪✨ 梯間隔斷門" data-door-mm="900" data-h-mm="1100" data-material="concrete+paint" data-w-mm="5000" data-window-mm="600" data-x-mm="6000" data-y-mm="2500" onclick="highlightRoom('stair-door', this)" style="padding:10px;">
 <span class="cell-name">🚪✨ 梯間隔斷門</span>
 <div class="io-badges">
 <span class="badge pwr">💡 感應燈</span>
@@ -2117,15 +2117,15 @@
 <div class="room-area">18U 落地式</div>
 </div>
 <div class="room-details">
-<li><strong>機櫃定位：</strong>樓梯下「乾區儲藏間」，避開浴廁/廚房水線</li>
+<li><strong>機櫃定位：</strong>樓梯／梯廳的乾區設備凹位，與梯廳共用空間，不新增獨立機房。梯下為備選，須取得剖面淨高後再確認；避開浴廁／廚房水線。</li>
 <li><strong>機櫃規格：</strong>19吋 18U，深度 600mm，落地式（非壁掛）</li>
 <li><strong>機櫃空間：</strong>空間大一號，預留理線架/線槽 + 110V 插座</li>
 <li><strong>維修空間：</strong>前方 ≥80cm、後方 ≥60cm、上方排風空間<span class="new-badge">新增</span></li>
 <li><strong>散熱：</strong>前門下方百葉進氣口或前網孔門 + 後排風，頂部排風扇 × 2 + <strong>溫控開關（35°C
                                     自動啟動）</strong><span class="new-badge">新增</span></li>
-<li><strong>降噪：</strong>儲藏室門加氣密條，牆面貼吸音棉 ≥25mm，降低 PoE/NAS 風扇噪音</li>
-<li><strong>除濕：</strong>預留除濕機插座，濕度建議 &lt;60%，門縫氣密</li>
-<li><strong>防水：</strong>MDF 區域地坪做微止水坎或門檻式防水分區，避免清洗水流入</li>
+<li><strong>降噪：</strong>以通風型設備櫃的吸音與減震設計降低風扇噪音；不為降噪封死散熱，不預設另隔房間。</li>
+<li><strong>除濕：</strong>預留除濕機插座，濕度建議 &lt;60%，櫃內需保留通風。</li>
+<li><strong>防水：</strong>設備區防濺與漏水偵測交由專業整合；通行帶不預設新增止水坎或門檻，避免絆倒。</li>
 <li><strong>漏水偵測：</strong>MDF 機櫃區設漏水偵測器（蜂鳴/推播）</li>
 <li><strong>接地：</strong>機櫃接地線 6sq 以上 → 接地端子排 → 建物接地<span class="new-badge">新增</span></li>
 <li><strong>走線：</strong>上出線，配線架 24port × 2（1 用 1 備）</li>
@@ -2133,7 +2133,7 @@
 <li><strong>錄影儲存：</strong>NVR（PoE 攝影機集中）＋ NAS</li>
 <li><strong>電力：</strong>專用迴路 20A + UPS（1000VA 以上）+ <strong>配電箱端 SPD（二級）+ 機櫃防雷
                                     PDU</strong><span class="new-badge">新增</span></li>
-<li><strong>空調與排水：</strong>機櫃所在儲藏室預留回風或小型空調，地上設地排以防滲漏。</li>
+<li><strong>空調與排水：</strong>設備凹位保留進排風；冷凝排水、地排與給水管不得穿越機櫃上方，位置由水電與弱電專業共同確認。</li>
 </div>
 <div class="spec-box">
 <div class="spec-title">📋 MDF 機櫃詳細規格（v8.0 強化版）</div>
@@ -4493,6 +4493,7 @@ document.addEventListener('keydown', function (ev) {
     }
 });
 </script>
+<script src="structured/candidates/furniture-plans/layout.js"></script>
 <script src="assets/html_design_bridge.js"></script>
 </body>
 </html>

@@ -1301,7 +1301,7 @@
 </div>
 </div>
 <div class="plan-row" data-row-h-mm="1300" style="grid-template-columns:2.5fr 1fr;">
-<div class="plan-cell"  data-accessible="true" data-door-mm="900" data-h-mm="1300" data-material="paint+default" data-room-role="elder" data-w-mm="7857" data-window-mm="2300" data-x-mm="0" data-y-mm="4000" role="button" tabindex="0" aria-pressed="false" aria-label="孝親房" onclick="highlightRoom('elder', this)">
+<div class="plan-cell" data-door-contact-ratio="0.85" data-accessible="true" data-door-mm="900" data-h-mm="1300" data-material="paint+default" data-room-role="elder" data-w-mm="7857" data-window-mm="2300" data-x-mm="0" data-y-mm="4000" role="button" tabindex="0" aria-pressed="false" aria-label="孝親房" onclick="highlightRoom('elder', this)">
 <span class="cell-icon">🛏️</span>
 <span class="cell-name">孝親房</span>
 <span class="cell-size">約 5 坪｜長輩友善</span>
@@ -1413,7 +1413,7 @@
 <div class="room-area">核心節點</div>
 </div>
 <div class="room-details">
-<li><strong>位置：</strong>利用 1F 樓梯下方閒置空間設置弱電機櫃（12U 壁掛，深度 600mm）。</li>
+<li><strong>位置：</strong>先在 1F 樓梯間側牆配置 12U 壁掛機櫃（深度 600mm），與梯段定位分開；前方暫留 80cm 檢修帶。梯下僅列備選，須確認正式剖面淨高、櫃門與避難通路後再決定，不新增獨立機房。</li>
 <li><strong>光纖進線：</strong>地下管道由 A 棟 MDF 引入，單模 OS2 12 芯 LC 端接。</li>
 <li><strong>⚠️ 散熱優化：</strong>櫃體採「百葉門」設計 + 頂部溫控風扇 ×2，設定 <strong>35°C 自動啟動</strong>。</li>
 <li><strong>⚠️ 進排氣對流：</strong>保留進氣/排氣路徑，外加濾網防塵。</li>
@@ -1495,6 +1495,7 @@
 <li><strong>⚠️ 緊急呼叫：</strong>床邊預留 <strong>有線式雙迴路緊急按鈕</strong>（供電一路＋訊號一路，訊號回 IDF；連動 2F 與 1F
                                 客廳聲光警報 <strong>+ 手機推播</strong>）。</li>
 <li><strong>網路：</strong>CAT6 ×2（床頭 + 電視牆）。</li>
+<li><strong>共用概念配置：</strong>由餐廳側進房的開口先偏向該共用邊的右段，避開床前電視；床頭靠實牆、電視對準床位。HTML 家具圖與 3D 同步，床側轉位、夜間如廁、門扇與照護者空間仍須依正式平面演練。</li>
 </div>
 </div>
 <div class="room" data-accessible="true" data-daylight-required="false" data-h-mm="1700" data-room-role="accessible-bath" data-target-cell="slot-10" data-w-mm="5500" data-x-mm="0" data-y-mm="5300" id="room-elder-bath">
@@ -2357,6 +2358,7 @@ document.addEventListener('keydown', function (ev) {
     }
 });
 </script>
+<script src="structured/candidates/furniture-plans/layout.js"></script>
 <script src="assets/html_design_bridge.js"></script>
 </body>
 </html>

@@ -1,14 +1,16 @@
 {
   "schema": "house-owner-consistency-v1",
   "project_id": "kaohsiung-three-house-compound",
-  "generated_at": "2026-10-05T01:53:07.352936+00:00",
+  "generated_at": "2026-10-07T07:35:28.684531+00:00",
   "source_hashes": {
     "project": "a6dc5c70aabe9c326a6619661809e031a86de96c10c6119450c0495728a518e9",
     "requirements": "139803a817f297c5894053620aa111ad0815c288c62f8f4c8e7adc9d0f122960",
     "register": "2313f1fa54106ef7df4fb731747cdc7838051242ea77a62f13bfd57363cec2c6",
     "physical": "fffcd12d764cb62d632b99c798a618af5393b4ed31735d9ac64165d1b36f795f",
-    "furniture": "2dd76061b967cb2111044afe6d083daa007005bcd87ddb3a7e4a93dddc376a08",
-    "program": "01e090bb7249c7d5d0d4de2368b43a44361fe79ea8e7acd01e62cd416c4cf3d4",
+    "furniture": "3fef0575f79f96812b1751c8b8ea1d780b16bcd2ffd74f4762e8c4ada0c9dbc8",
+    "concept_review": "afb4a78539f2d186f2ac40b5302881761e7293ce1a08e54eb0c9fde949fb4bfc",
+    "facade": "d51cd29a210ceafac123fd5d430d11bf7a734f1d93e1e5351262b433b6c6a8d1",
+    "program": "eb254aa26614b25ef659127c985d8e15f14ada9df9c60a98096ed8e38fd963eb",
     "dimensions": "5bde20ce13fb04e87ed6645204433ab5de73ad76bd31d4d28008706077aaaf03"
   },
   "findings": [
@@ -268,435 +270,728 @@
       "status": "insufficient",
       "title": "A 棟客餐廳提案與原 HTML 版本不同",
       "source": "AbuildingView.html / inputs/requirements.json",
-      "detail": "原 HTML 客廳與餐廳分開；需求 A.floor-1.living 為合併客餐廳提案，仍待確認。保留兩版，不自動合併、移動或匹配家具。"
+      "detail": "原 HTML 的分開客廳／餐廳保留在歷史對照；A 照護回補版共用圖與 3D 改前段客餐廳、後段孝親房與一樓淋浴。屋主同意回補功能，不等於正式採用前帶可建或停車取捨；前段位置與原需求表後帶條件不同，須比較。勿把歷史卡的位置或坪數套用到新提案。"
     },
     {
       "status": "insufficient",
-      "title": "原始 HTML 未提供完整家具映射",
-      "source": "AbuildingView.html",
-      "detail": "無可解析家具比例覆層；不代表內容通過"
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具尺寸",
-      "source": "BbuildingView.html",
+      "title": "ABC 外觀提案的採光／結構／維修仍待專業核定",
+      "source": "inputs/facade-concept.json",
       "detail": {
-        "id": "B:floor-1:storage:furniture:ceremonial-storage",
-        "axes_checked": [
-          "width_mm",
-          "depth_mm",
-          "height_mm"
-        ]
+        "status": "proposal-owner-and-architect-review-pending",
+        "pending_checks": [
+          {
+            "id": "site-and-arcade",
+            "status": "unknown",
+            "note": "地籍、使用分區、建築線、騎樓／退縮、前後鄰界及是否能相鄰興建未知。三棟並列只作展示，不證明跨基地可施工。"
+          },
+          {
+            "id": "structure-and-balconies",
+            "status": "unknown",
+            "note": "現有層高3000mm、陽台深度及屋突沿提案，非結構認可；挑出、支承、梁柱、地震與屋頂用途需建築師／結構技師確認。"
+          },
+          {
+            "id": "daylight-and-ventilation",
+            "status": "unknown",
+            "note": "保留原候選窗不等於有效採光／通風達標；遮蔽、鄰棟距離、室內進深及格柵須按適用法規核算。"
+          },
+          {
+            "id": "rails-and-glass",
+            "status": "unknown",
+            "note": "欄高、防攀爬、開口、玻璃破損後防墜、框柱、錨栓及風壓待專業設計；直條不是已驗證防墜系統。"
+          },
+          {
+            "id": "hvac-and-rear-screen",
+            "status": "unknown",
+            "note": "17組冷氣位置／維修帶沿原提案；前後設備遮屏待選機型與手冊、散熱、逃生口及法定遮蔽核對，暫不畫成已裝完成。"
+          },
+          {
+            "id": "water-and-maintenance",
+            "status": "unknown",
+            "note": "陽台／屋頂洩水坡、溢流、滴水、牆磚固定、伸縮縫、清洗換片及可拆維修，需施工圖和驗收依據。"
+          },
+          {
+            "id": "entry-and-flood",
+            "status": "unknown",
+            "note": "入口高程、淹水歷史、車道與人行坡度、門扇、排水及照護／武轎雨天動線待現場資料；不先新增台階。"
+          },
+          {
+            "id": "roof-canopy",
+            "status": "pending-option-not-installed",
+            "note": "照片棚架保留選項；未畫整片屋頂棚。使用、容積、建蔽、高度、消防與抗風應另核，不把查報例外當成許可。"
+          }
+        ],
+        "pending_by_building": {
+          "A": [
+            {
+              "id": "A:floor-1:entry:front:door-1:leaf",
+              "status": "unknown",
+              "note": "門扇、淨寬、門檻、防水及開啟方式未選；外觀只示意原門洞，不增設鐵捲門。"
+            },
+            {
+              "id": "A:floor-1:kitchen:rear:door-1:leaf",
+              "status": "unknown",
+              "note": "門扇、淨寬、門檻、防水及開啟方式未選；外觀只示意原門洞，不增設鐵捲門。"
+            },
+            {
+              "id": "A:floor-1:entry:front:window",
+              "status": "pending-opening",
+              "issues": [
+                "overlaps-source-door"
+              ],
+              "note": "原候選開口重疊門洞、越出牆端或部分位於內牆；保留原值，不假裝已裝、不偷偷縮窄或搬窗。"
+            },
+            {
+              "id": "A:floor-1:kitchen:rear:window",
+              "status": "pending-opening",
+              "issues": [
+                "overlaps-source-door"
+              ],
+              "note": "原候選開口重疊門洞、越出牆端或部分位於內牆；保留原值，不假裝已裝、不偷偷縮窄或搬窗。"
+            },
+            {
+              "id": "A:floor-2:master:front:door-1:leaf",
+              "status": "unknown",
+              "note": "門扇、淨寬、門檻、防水及開啟方式未選；外觀只示意原門洞，不增設鐵捲門。"
+            },
+            {
+              "id": "A:floor-2:study:rear:door-1:leaf",
+              "status": "unknown",
+              "note": "門扇、淨寬、門檻、防水及開啟方式未選；外觀只示意原門洞，不增設鐵捲門。"
+            },
+            {
+              "id": "A:floor-2:bedroom2:rear:door-1:leaf",
+              "status": "unknown",
+              "note": "門扇、淨寬、門檻、防水及開啟方式未選；外觀只示意原門洞，不增設鐵捲門。"
+            },
+            {
+              "id": "A:floor-2:gold-slat-option",
+              "status": "pending-conflict",
+              "issues": [
+                "hvac-service"
+              ],
+              "box_mm": {
+                "x_mm": 190,
+                "y_mm": 100,
+                "z_mm": 4280.0,
+                "w_mm": 600,
+                "d_mm": 40,
+                "h_mm": 1520.0
+              },
+              "note": "局部直條會遮候選開口或佔用維修／通行帶；不搬家具／設備、不改窗，先留待調整。"
+            },
+            {
+              "id": "A:floor-2:study:rear:window",
+              "status": "pending-opening",
+              "issues": [
+                "overlaps-source-door"
+              ],
+              "note": "原候選開口重疊門洞、越出牆端或部分位於內牆；保留原值，不假裝已裝、不偷偷縮窄或搬窗。"
+            },
+            {
+              "id": "A:floor-2:bedroom2:rear:window",
+              "status": "pending-opening",
+              "issues": [
+                "overlaps-source-door"
+              ],
+              "note": "原候選開口重疊門洞、越出牆端或部分位於內牆；保留原值，不假裝已裝、不偷偷縮窄或搬窗。"
+            },
+            {
+              "id": "A:floor-3:entertainment:front:door-1:leaf",
+              "status": "unknown",
+              "note": "門扇、淨寬、門檻、防水及開啟方式未選；外觀只示意原門洞，不增設鐵捲門。"
+            },
+            {
+              "id": "A:floor-3:guest:rear:door-1:leaf",
+              "status": "unknown",
+              "note": "門扇、淨寬、門檻、防水及開啟方式未選；外觀只示意原門洞，不增設鐵捲門。"
+            },
+            {
+              "id": "A:floor-3:back-hall:rear:door-3:leaf",
+              "status": "unknown",
+              "note": "門扇、淨寬、門檻、防水及開啟方式未選；外觀只示意原門洞，不增設鐵捲門。"
+            },
+            {
+              "id": "A:floor-3:guest:rear:window",
+              "status": "pending-opening",
+              "issues": [
+                "overlaps-source-door"
+              ],
+              "note": "原候選開口重疊門洞、越出牆端或部分位於內牆；保留原值，不假裝已裝、不偷偷縮窄或搬窗。"
+            },
+            {
+              "id": "A:floor-4:stair-rf:front:door-0:leaf",
+              "status": "unknown",
+              "note": "門扇、淨寬、門檻、防水及開啟方式未選；外觀只示意原門洞，不增設鐵捲門。"
+            },
+            {
+              "id": "A:floor-4:stair-rf:rear:door-1:leaf",
+              "status": "unknown",
+              "note": "門扇、淨寬、門檻、防水及開啟方式未選；外觀只示意原門洞，不增設鐵捲門。"
+            },
+            {
+              "id": "A:floor-4:haier:right:guardrail",
+              "status": "pending-conflict",
+              "issues": [
+                "open-projection"
+              ],
+              "box_mm": {
+                "x_mm": 5940.0,
+                "y_mm": 10440,
+                "z_mm": 9000.0,
+                "w_mm": 40,
+                "d_mm": 2920,
+                "h_mm": 1200.0
+              },
+              "note": "防墜欄與原預留帶衝突；尚未畫成完成欄杆，需維修／防墜整合設計。"
+            },
+            {
+              "id": "A:floor-4:laundry-rf:right:guardrail",
+              "status": "pending-conflict",
+              "issues": [
+                "open-projection"
+              ],
+              "box_mm": {
+                "x_mm": 5940.0,
+                "y_mm": 13440,
+                "z_mm": 9000.0,
+                "w_mm": 40,
+                "d_mm": 4150,
+                "h_mm": 1200.0
+              },
+              "note": "防墜欄與原預留帶衝突；尚未畫成完成欄杆，需維修／防墜整合設計。"
+            },
+            {
+              "id": "A:floor-4:riser:rear:window",
+              "status": "pending-opening",
+              "issues": [
+                "overlaps-source-door"
+              ],
+              "note": "原候選開口重疊門洞、越出牆端或部分位於內牆；保留原值，不假裝已裝、不偷偷縮窄或搬窗。"
+            },
+            {
+              "id": "A:equipment-screen",
+              "status": "unknown",
+              "note": "前後設備遮蔽未選機型／合法逃生與採光條件；保留冷氣原位置及維修帶，不畫封閉遮屏。"
+            }
+          ],
+          "B": [
+            {
+              "id": "B:floor-1:entry:front:door-1:leaf",
+              "status": "unknown",
+              "note": "門扇、淨寬、門檻、防水及開啟方式未選；外觀只示意原門洞，不增設鐵捲門。"
+            },
+            {
+              "id": "B:floor-1:rear-hall:rear:door-2:leaf",
+              "status": "unknown",
+              "note": "門扇、淨寬、門檻、防水及開啟方式未選；外觀只示意原門洞，不增設鐵捲門。"
+            },
+            {
+              "id": "B:floor-1:entry:front:window",
+              "status": "pending-opening",
+              "issues": [
+                "overlaps-source-door"
+              ],
+              "note": "原候選開口重疊門洞、越出牆端或部分位於內牆；保留原值，不假裝已裝、不偷偷縮窄或搬窗。"
+            },
+            {
+              "id": "B:floor-1:shrine:front:window",
+              "status": "pending-opening",
+              "issues": [
+                "candidate-outside-source-wall",
+                "candidate-not-fully-exterior"
+              ],
+              "note": "原候選開口重疊門洞、越出牆端或部分位於內牆；保留原值，不假裝已裝、不偷偷縮窄或搬窗。"
+            },
+            {
+              "id": "B:floor-2:living2:front:door-1:leaf",
+              "status": "unknown",
+              "note": "門扇、淨寬、門檻、防水及開啟方式未選；外觀只示意原門洞，不增設鐵捲門。"
+            },
+            {
+              "id": "B:floor-2:gold-slat-option",
+              "status": "pending-conflict",
+              "issues": [
+                "window-projection"
+              ],
+              "box_mm": {
+                "x_mm": 190,
+                "y_mm": 100,
+                "z_mm": 4280.0,
+                "w_mm": 600,
+                "d_mm": 40,
+                "h_mm": 1520.0
+              },
+              "note": "局部直條會遮候選開口或佔用維修／通行帶；不搬家具／設備、不改窗，先留待調整。"
+            },
+            {
+              "id": "B:floor-3:guest3:front:door-1:leaf",
+              "status": "unknown",
+              "note": "門扇、淨寬、門檻、防水及開啟方式未選；外觀只示意原門洞，不增設鐵捲門。"
+            },
+            {
+              "id": "B:floor-3:guest3:front:window",
+              "status": "pending-opening",
+              "issues": [
+                "overlaps-source-door"
+              ],
+              "note": "原候選開口重疊門洞、越出牆端或部分位於內牆；保留原值，不假裝已裝、不偷偷縮窄或搬窗。"
+            },
+            {
+              "id": "B:floor-4:stairRF:rear:door-0:leaf",
+              "status": "unknown",
+              "note": "門扇、淨寬、門檻、防水及開啟方式未選；外觀只示意原門洞，不增設鐵捲門。"
+            },
+            {
+              "id": "B:equipment-screen",
+              "status": "unknown",
+              "note": "前後設備遮蔽未選機型／合法逃生與採光條件；保留冷氣原位置及維修帶，不畫封閉遮屏。"
+            }
+          ],
+          "C": [
+            {
+              "id": "C:floor-1:entrance:front:door-1:leaf",
+              "status": "unknown",
+              "note": "門扇、淨寬、門檻、防水及開啟方式未選；外觀只示意原門洞，不增設鐵捲門。"
+            },
+            {
+              "id": "C:floor-2:living2f:front:door-1:leaf",
+              "status": "unknown",
+              "note": "門扇、淨寬、門檻、防水及開啟方式未選；外觀只示意原門洞，不增設鐵捲門。"
+            },
+            {
+              "id": "C:floor-2:rear-hall:left:door-2:leaf",
+              "status": "unknown",
+              "note": "門扇、淨寬、門檻、防水及開啟方式未選；外觀只示意原門洞，不增設鐵捲門。"
+            },
+            {
+              "id": "C:floor-2:gold-slat-option",
+              "status": "pending-conflict",
+              "issues": [
+                "hvac-service",
+                "window-projection"
+              ],
+              "box_mm": {
+                "x_mm": 190,
+                "y_mm": 100,
+                "z_mm": 4280.0,
+                "w_mm": 600,
+                "d_mm": 40,
+                "h_mm": 1520.0
+              },
+              "note": "局部直條會遮候選開口或佔用維修／通行帶；不搬家具／設備、不改窗，先留待調整。"
+            },
+            {
+              "id": "C:floor-3:master3f:front:door-2:leaf",
+              "status": "unknown",
+              "note": "門扇、淨寬、門檻、防水及開啟方式未選；外觀只示意原門洞，不增設鐵捲門。"
+            },
+            {
+              "id": "C:floor-3:stair3f:rear:door-1:leaf",
+              "status": "unknown",
+              "note": "門扇、淨寬、門檻、防水及開啟方式未選；外觀只示意原門洞，不增設鐵捲門。"
+            },
+            {
+              "id": "C:floor-3:bath3f:right:door-0:leaf",
+              "status": "unknown",
+              "note": "門扇、淨寬、門檻、防水及開啟方式未選；外觀只示意原門洞，不增設鐵捲門。"
+            },
+            {
+              "id": "C:floor-3:gold-slat-option",
+              "status": "pending-conflict",
+              "issues": [
+                "window-projection"
+              ],
+              "box_mm": {
+                "x_mm": 190,
+                "y_mm": 100,
+                "z_mm": 7280.0,
+                "w_mm": 600,
+                "d_mm": 40,
+                "h_mm": 1520.0
+              },
+              "note": "局部直條會遮候選開口或佔用維修／通行帶；不搬家具／設備、不改窗，先留待調整。"
+            },
+            {
+              "id": "C:floor-3:master3f:front:window",
+              "status": "pending-opening",
+              "issues": [
+                "overlaps-source-door"
+              ],
+              "note": "原候選開口重疊門洞、越出牆端或部分位於內牆；保留原值，不假裝已裝、不偷偷縮窄或搬窗。"
+            },
+            {
+              "id": "C:floor-4:stair-rf:front:door-1:leaf",
+              "status": "unknown",
+              "note": "門扇、淨寬、門檻、防水及開啟方式未選；外觀只示意原門洞，不增設鐵捲門。"
+            },
+            {
+              "id": "C:floor-4:stair-rf:rear:door-2:leaf",
+              "status": "unknown",
+              "note": "門扇、淨寬、門檻、防水及開啟方式未選；外觀只示意原門洞，不增設鐵捲門。"
+            },
+            {
+              "id": "C:equipment-screen",
+              "status": "unknown",
+              "note": "前後設備遮蔽未選機型／合法逃生與採光條件；保留冷氣原位置及維修帶，不畫封閉遮屏。"
+            }
+          ]
+        }
       }
     },
     {
       "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
+      "title": "外觀參考照片的來源雜湊",
+      "source": "assets/references/facade-photo-v1.jpg",
       "detail": {
-        "id": "B:floor-1:storage:furniture:ceremonial-storage",
-        "field": "data-x-ratio"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:storage:furniture:ceremonial-storage",
-        "field": "data-y-ratio"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:storage:furniture:ceremonial-storage",
-        "field": "data-rotation-deg"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具尺寸",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:storage:furniture:ritual-cabinet",
-        "axes_checked": [
-          "width_mm",
-          "depth_mm",
-          "height_mm"
-        ]
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:storage:furniture:ritual-cabinet",
-        "field": "data-x-ratio"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:storage:furniture:ritual-cabinet",
-        "field": "data-y-ratio"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:storage:furniture:ritual-cabinet",
-        "field": "data-rotation-deg"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具尺寸",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:storage:furniture:fireproof-cabinet",
-        "axes_checked": [
-          "width_mm",
-          "depth_mm",
-          "height_mm"
-        ]
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:storage:furniture:fireproof-cabinet",
-        "field": "data-x-ratio"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:storage:furniture:fireproof-cabinet",
-        "field": "data-y-ratio"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:storage:furniture:fireproof-cabinet",
-        "field": "data-rotation-deg"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具尺寸",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:storage:furniture:prep-table",
-        "axes_checked": [
-          "width_mm",
-          "depth_mm",
-          "height_mm"
-        ]
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:storage:furniture:prep-table",
-        "field": "data-x-ratio"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:storage:furniture:prep-table",
-        "field": "data-y-ratio"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:storage:furniture:prep-table",
-        "field": "data-rotation-deg"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具尺寸",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:storage:furniture:dehumidifier",
-        "axes_checked": [
-          "width_mm",
-          "depth_mm",
-          "height_mm"
-        ]
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:storage:furniture:dehumidifier",
-        "field": "data-x-ratio"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:storage:furniture:dehumidifier",
-        "field": "data-y-ratio"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:storage:furniture:dehumidifier",
-        "field": "data-rotation-deg"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具尺寸",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:shrine:furniture:altar",
-        "axes_checked": [
-          "width_mm",
-          "depth_mm",
-          "height_mm"
-        ]
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:shrine:furniture:altar",
-        "field": "data-x-ratio"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:shrine:furniture:altar",
-        "field": "data-y-ratio"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:shrine:furniture:altar",
-        "field": "data-rotation-deg"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具尺寸",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:shrine:furniture:offering-table",
-        "axes_checked": [
-          "width_mm",
-          "depth_mm",
-          "height_mm"
-        ]
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:shrine:furniture:offering-table",
-        "field": "data-x-ratio"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:shrine:furniture:offering-table",
-        "field": "data-y-ratio"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:shrine:furniture:offering-table",
-        "field": "data-rotation-deg"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具尺寸",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:shrine:furniture:bench-left",
-        "axes_checked": [
-          "width_mm",
-          "depth_mm",
-          "height_mm"
-        ]
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:shrine:furniture:bench-left",
-        "field": "data-x-ratio"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:shrine:furniture:bench-left",
-        "field": "data-y-ratio"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:shrine:furniture:bench-left",
-        "field": "data-rotation-deg"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具尺寸",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:shrine:furniture:bench-right",
-        "axes_checked": [
-          "width_mm",
-          "depth_mm",
-          "height_mm"
-        ]
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:shrine:furniture:bench-right",
-        "field": "data-x-ratio"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:shrine:furniture:bench-right",
-        "field": "data-y-ratio"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:shrine:furniture:bench-right",
-        "field": "data-rotation-deg"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具尺寸",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:shrine:furniture:shoe-cabinet",
-        "axes_checked": [
-          "width_mm",
-          "depth_mm",
-          "height_mm"
-        ]
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:shrine:furniture:shoe-cabinet",
-        "field": "data-x-ratio"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:shrine:furniture:shoe-cabinet",
-        "field": "data-y-ratio"
-      }
-    },
-    {
-      "status": "consistent",
-      "title": "HTML／來源家具比例位置",
-      "source": "BbuildingView.html",
-      "detail": {
-        "id": "B:floor-1:shrine:furniture:shoe-cabinet",
-        "field": "data-rotation-deg"
+        "expected": "6d0cbe10c26404da43f874afa4c3fbf19f299790122e81728a247f95bc562f61",
+        "actual": "6d0cbe10c26404da43f874afa4c3fbf19f299790122e81728a247f95bc562f61",
+        "limitation": "只證明引用的照片位元組；不推定材質、尺寸、結構或合法性。"
       }
     },
     {
       "status": "insufficient",
-      "title": "原始 HTML 未提供完整家具映射",
-      "source": "CbuildingView.html",
-      "detail": "無可解析家具比例覆層；不代表內容通過"
+      "title": "A 棟一樓照護功能已回補，仍為有條件提案",
+      "source": "inputs/requirements.json / inputs/concept-layout-review.json",
+      "detail": {
+        "id": "A-1F-care-functions",
+        "status": "conditional-proposal-function-screen-only",
+        "source": "inputs/requirements.json",
+        "requirements": [
+          {
+            "requirement_id": "A.floor-1.entry",
+            "room_id": "A:floor-1:entry",
+            "title": "玄關（含車庫進屋緩衝）",
+            "source_status": "candidate",
+            "proposal_box_area_sqm": 10.126,
+            "assumed_clear_area_sqm": 8.91,
+            "assumed_inset_mm": 80.0
+          },
+          {
+            "requirement_id": "A.floor-1.living",
+            "room_id": "A:floor-1:living",
+            "title": "客餐廳（開放式）",
+            "source_status": "candidate",
+            "proposal_box_area_sqm": 26.474,
+            "assumed_clear_area_sqm": 24.829,
+            "assumed_inset_mm": 80.0
+          },
+          {
+            "requirement_id": "A.floor-1.elder",
+            "room_id": "A:floor-1:flex1",
+            "title": "孝親房（原多功能房）",
+            "source_status": "candidate",
+            "proposal_box_area_sqm": 13.572,
+            "assumed_clear_area_sqm": 12.418,
+            "assumed_inset_mm": 80.0
+          },
+          {
+            "requirement_id": "A.floor-1.bath1",
+            "room_id": "A:floor-1:bath1",
+            "title": "1F 無障礙公衛",
+            "source_status": "candidate",
+            "proposal_box_area_sqm": 8.64,
+            "assumed_clear_area_sqm": 7.706,
+            "assumed_inset_mm": 80.0
+          },
+          {
+            "requirement_id": "A.floor-1.kitchen",
+            "room_id": "A:floor-1:kitchen",
+            "title": "廚房",
+            "source_status": "candidate",
+            "proposal_box_area_sqm": 9.048,
+            "assumed_clear_area_sqm": 8.086,
+            "assumed_inset_mm": 80.0
+          },
+          {
+            "requirement_id": "A.floor-1.balcony",
+            "room_id": "A:floor-1:balcony1",
+            "title": "後工作陽台（含給水進線）",
+            "source_status": "candidate",
+            "proposal_box_area_sqm": 10.8,
+            "assumed_clear_area_sqm": 9.578,
+            "assumed_inset_mm": 80.0
+          },
+          {
+            "requirement_id": "A.floor-1.mdf",
+            "room_id": "A:floor-1:mdf",
+            "title": "樓梯下 MDF 主機櫃",
+            "source_status": "candidate",
+            "proposal_box_area_sqm": 5.28,
+            "assumed_clear_area_sqm": 4.57,
+            "assumed_inset_mm": 80.0
+          }
+        ],
+        "routes": {
+          "entrance_to_elder": [
+            "A:floor-1:entry",
+            "A:floor-1:living",
+            "A:floor-1:stair-door",
+            "A:floor-1:rear-hall1",
+            "A:floor-1:flex1"
+          ],
+          "elder_to_bath": [
+            "A:floor-1:flex1",
+            "A:floor-1:rear-hall1",
+            "A:floor-1:bath1"
+          ],
+          "entrance_to_bath": [
+            "A:floor-1:entry",
+            "A:floor-1:living",
+            "A:floor-1:stair-door",
+            "A:floor-1:rear-hall1",
+            "A:floor-1:bath1"
+          ],
+          "kitchen_to_work_balcony": [
+            "A:floor-1:kitchen",
+            "A:floor-1:balcony1"
+          ]
+        },
+        "site_legality": "unknown",
+        "professional_accessibility": "unknown",
+        "deviations_pending_review": [
+          {
+            "requirement_id": "A.floor-1.living",
+            "note": "客餐廳由原需求後帶改前帶，為本次照護回補替代配置，不視為位置條件已滿足。"
+          },
+          {
+            "requirement_id": "A.floor-1.entry",
+            "note": "車庫進屋緩衝改街側乾式入口，原停車需求未容納；須比較合法外部停車與一車替代案。"
+          },
+          {
+            "requirement_id": "A.floor-1.mdf",
+            "note": "樓梯下機櫃改梯廳側維修壁龕，不假定梯段下方淨高、防火或散熱足夠。"
+          }
+        ],
+        "note": "保護孝親房、床與衣櫃、150cm轉位、淋浴／馬桶／洗手台及公共動線，不只檢查HTML／3D一致。前帶可建、基地容量、門框後淨寬、輪椅與照護演練、扶手、浴簾、防水及避難未核。浴廁操作與轉位地面、廚房操作與通行分時共用，設備本體不占暫留區；不是法規通過。客餐廳前移與停車替代仍待方案確認，原需求狀態不變。"
+      }
+    },
+    {
+      "status": "consistent",
+      "title": "HTML／3D 共用家具配置資料",
+      "source": "structured/candidates/furniture-plans/layout.js",
+      "detail": {
+        "building": "A",
+        "fields": "全部房間尺寸、家具尺寸、中心、旋轉、靠牆、入口、梯段、操作帶與獨立外觀提案",
+        "sha256": "ac1b9d69510a3998785f27e89b47cb4d7408ccaa1696fa3ef9eda22abd1cebd3",
+        "limitation": "資料一致性，非配置／法規／專業驗收。"
+      }
+    },
+    {
+      "status": "consistent",
+      "title": "HTML 等比例圖是否使用當前共用配置",
+      "source": "structured/candidates/furniture-plans/A_floor-1.svg",
+      "detail": {
+        "building": "A",
+        "floor": "floor-1",
+        "sha256": "7d2356e29fffe092c60b85c4706c0b5dabf25785b101beada9f74df9b7b2aedc",
+        "action": "共同重跑 scripts/export_model_3d.py；不可手改生成圖，也不代表圖面可施工。"
+      }
+    },
+    {
+      "status": "consistent",
+      "title": "HTML 等比例圖是否使用當前共用配置",
+      "source": "structured/candidates/furniture-plans/A_floor-2.svg",
+      "detail": {
+        "building": "A",
+        "floor": "floor-2",
+        "sha256": "3d68cf6951216fb4a33323b9b11948e65eb30d786d9841f0348ec3a616716c7d",
+        "action": "共同重跑 scripts/export_model_3d.py；不可手改生成圖，也不代表圖面可施工。"
+      }
+    },
+    {
+      "status": "consistent",
+      "title": "HTML 等比例圖是否使用當前共用配置",
+      "source": "structured/candidates/furniture-plans/A_floor-3.svg",
+      "detail": {
+        "building": "A",
+        "floor": "floor-3",
+        "sha256": "5a9f339329f99fde1ddf494cf23686880304a6269a4128e0a80a28830fc06d49",
+        "action": "共同重跑 scripts/export_model_3d.py；不可手改生成圖，也不代表圖面可施工。"
+      }
+    },
+    {
+      "status": "consistent",
+      "title": "HTML 等比例圖是否使用當前共用配置",
+      "source": "structured/candidates/furniture-plans/A_floor-4.svg",
+      "detail": {
+        "building": "A",
+        "floor": "floor-4",
+        "sha256": "cc1888ffd1e8cf5d4f5c9b6b54140d8152285e5e88534c840c5a29da96ff25f8",
+        "action": "共同重跑 scripts/export_model_3d.py；不可手改生成圖，也不代表圖面可施工。"
+      }
+    },
+    {
+      "status": "consistent",
+      "title": "HTML 正立面是否使用當前 3D 外觀元件",
+      "source": "structured/candidates/furniture-plans/A_facade-front.svg",
+      "detail": {
+        "building": "A",
+        "sha256": "63f1268901bab3d7aa63f142e5be6a30510784fa9fdca9ea8e8c44b293c5c47f",
+        "action": "共同重跑 scripts/export_model_3d.py；外觀一致不等於開口、停車、結構或法規核准。"
+      }
+    },
+    {
+      "status": "consistent",
+      "title": "HTML／3D 共用家具配置資料",
+      "source": "structured/candidates/furniture-plans/layout.js",
+      "detail": {
+        "building": "B",
+        "fields": "全部房間尺寸、家具尺寸、中心、旋轉、靠牆、入口、梯段、操作帶與獨立外觀提案",
+        "sha256": "ac1b9d69510a3998785f27e89b47cb4d7408ccaa1696fa3ef9eda22abd1cebd3",
+        "limitation": "資料一致性，非配置／法規／專業驗收。"
+      }
+    },
+    {
+      "status": "consistent",
+      "title": "HTML 等比例圖是否使用當前共用配置",
+      "source": "structured/candidates/furniture-plans/B_floor-1.svg",
+      "detail": {
+        "building": "B",
+        "floor": "floor-1",
+        "sha256": "e5293352a3c585dbe047b4f54acdd05582d03c16fa377506972599454a0e5c38",
+        "action": "共同重跑 scripts/export_model_3d.py；不可手改生成圖，也不代表圖面可施工。"
+      }
+    },
+    {
+      "status": "consistent",
+      "title": "HTML 等比例圖是否使用當前共用配置",
+      "source": "structured/candidates/furniture-plans/B_floor-2.svg",
+      "detail": {
+        "building": "B",
+        "floor": "floor-2",
+        "sha256": "e0eee3c908d573bfd797460c688611087ba3ad913928e4d880a8055827423f4f",
+        "action": "共同重跑 scripts/export_model_3d.py；不可手改生成圖，也不代表圖面可施工。"
+      }
+    },
+    {
+      "status": "consistent",
+      "title": "HTML 等比例圖是否使用當前共用配置",
+      "source": "structured/candidates/furniture-plans/B_floor-3.svg",
+      "detail": {
+        "building": "B",
+        "floor": "floor-3",
+        "sha256": "a10a5c44d9b2cf0a4eb0320e272444d2c4eb89e585af0effab147bd71af052fc",
+        "action": "共同重跑 scripts/export_model_3d.py；不可手改生成圖，也不代表圖面可施工。"
+      }
+    },
+    {
+      "status": "consistent",
+      "title": "HTML 等比例圖是否使用當前共用配置",
+      "source": "structured/candidates/furniture-plans/B_floor-4.svg",
+      "detail": {
+        "building": "B",
+        "floor": "floor-4",
+        "sha256": "e7f51b972a7cb3aedb22d73ddcfb2294a4f390c45e3aff657b90dc4fd0f6959a",
+        "action": "共同重跑 scripts/export_model_3d.py；不可手改生成圖，也不代表圖面可施工。"
+      }
+    },
+    {
+      "status": "consistent",
+      "title": "HTML 正立面是否使用當前 3D 外觀元件",
+      "source": "structured/candidates/furniture-plans/B_facade-front.svg",
+      "detail": {
+        "building": "B",
+        "sha256": "1ec86872cbeeacf17898f364ac7f98a382993f89eae7b19de39023a02ddb7ddd",
+        "action": "共同重跑 scripts/export_model_3d.py；外觀一致不等於開口、停車、結構或法規核准。"
+      }
+    },
+    {
+      "status": "consistent",
+      "title": "HTML／3D 共用家具配置資料",
+      "source": "structured/candidates/furniture-plans/layout.js",
+      "detail": {
+        "building": "C",
+        "fields": "全部房間尺寸、家具尺寸、中心、旋轉、靠牆、入口、梯段、操作帶與獨立外觀提案",
+        "sha256": "ac1b9d69510a3998785f27e89b47cb4d7408ccaa1696fa3ef9eda22abd1cebd3",
+        "limitation": "資料一致性，非配置／法規／專業驗收。"
+      }
+    },
+    {
+      "status": "consistent",
+      "title": "HTML 等比例圖是否使用當前共用配置",
+      "source": "structured/candidates/furniture-plans/C_floor-1.svg",
+      "detail": {
+        "building": "C",
+        "floor": "floor-1",
+        "sha256": "046c8c012a26ee4081459ed2a28e4fe9c6a0bf06ee819afbe2feb58bec5fbab9",
+        "action": "共同重跑 scripts/export_model_3d.py；不可手改生成圖，也不代表圖面可施工。"
+      }
+    },
+    {
+      "status": "consistent",
+      "title": "HTML 前院待核比較是否使用當前 3D 虛框",
+      "source": "structured/candidates/furniture-plans/C_floor-1_frontage-study.svg",
+      "detail": {
+        "building": "C",
+        "floor": "floor-1",
+        "sha256": "c1cab90f874254677958121f4865b58c15149b58a9ec101546c53af29e239349",
+        "action": "共用重匯出；只是未施作比較，騎樓／公共退縮與私用權利仍未知。"
+      }
+    },
+    {
+      "status": "consistent",
+      "title": "HTML 等比例圖是否使用當前共用配置",
+      "source": "structured/candidates/furniture-plans/C_floor-2.svg",
+      "detail": {
+        "building": "C",
+        "floor": "floor-2",
+        "sha256": "bf352aab600af386880453d8f896d7b9f4a5b7aedb22de758c525ccb58ba66e5",
+        "action": "共同重跑 scripts/export_model_3d.py；不可手改生成圖，也不代表圖面可施工。"
+      }
+    },
+    {
+      "status": "consistent",
+      "title": "HTML 等比例圖是否使用當前共用配置",
+      "source": "structured/candidates/furniture-plans/C_floor-3.svg",
+      "detail": {
+        "building": "C",
+        "floor": "floor-3",
+        "sha256": "4b227e86760884c383e6584f5c6512f25e46f3c585c7bf7ba48dcb87ff2ee314",
+        "action": "共同重跑 scripts/export_model_3d.py；不可手改生成圖，也不代表圖面可施工。"
+      }
+    },
+    {
+      "status": "consistent",
+      "title": "HTML 等比例圖是否使用當前共用配置",
+      "source": "structured/candidates/furniture-plans/C_floor-4.svg",
+      "detail": {
+        "building": "C",
+        "floor": "floor-4",
+        "sha256": "4e02f1b23cd31a2ae486bb069672fed686c73c3d4d8d6fd700b2057aaa9ea1b6",
+        "action": "共同重跑 scripts/export_model_3d.py；不可手改生成圖，也不代表圖面可施工。"
+      }
+    },
+    {
+      "status": "consistent",
+      "title": "HTML 正立面是否使用當前 3D 外觀元件",
+      "source": "structured/candidates/furniture-plans/C_facade-front.svg",
+      "detail": {
+        "building": "C",
+        "sha256": "286a6357daad1778a22c777683f9f9cf35682e6cdc890e83d727d9f7dcf60332",
+        "action": "共同重跑 scripts/export_model_3d.py；外觀一致不等於開口、停車、結構或法規核准。"
+      }
     },
     {
       "status": "consistent",
       "title": "歷史 3D 是否使用當前格位與家具來源",
       "source": "structured/candidates/model3d.html",
-      "detail": "比較 ID、名稱、格位尺寸、來源狀態及家具配置；非合規檢查"
+      "detail": "比較 ID、名稱、原格位／需求尺寸、靠牆擺位、梯廳分區及門窗／操作帶；非合規檢查"
     },
     {
-      "status": "conflict",
+      "status": "consistent",
+      "title": "3D 是否使用當前獨立外觀來源",
+      "source": "structured/candidates/model3d.html / inputs/facade-concept.json",
+      "detail": "比較完整元件、候選開口、色票、假設及待確認項目；不更動屋主需求或宣稱法規通過。"
+    },
+    {
+      "status": "consistent",
       "title": "不可變圖版完整性",
       "source": "inputs/revisions/R000/manifest.json",
       "detail": {
         "schema": "house-revision-integrity-v1",
         "revision_id": "R000",
-        "checked_at": "2026-10-05T01:53:07.343634+00:00",
-        "valid": false,
+        "checked_at": "2026-10-07T07:35:28.676504+00:00",
+        "valid": true,
         "checks": [
           {
             "name": "manifest_revision_id",
@@ -704,13 +999,21 @@
             "message": "manifest revision_id matches the requested immutable directory"
           },
           {
+            "name": "source_recovery",
+            "valid": true,
+            "message": "audited historical sources match the original manifest"
+          },
+          {
             "name": "source[0]",
-            "valid": false,
-            "message": "source file is missing or its SHA-256 does not match",
+            "valid": true,
+            "message": "source digest matches",
             "details": {
               "file": "structured/parametric/plan.json",
               "expected_sha256": "44dca801266f1f76d403b010765fcc3377073e22532ce08344e1c4c651b014a8",
-              "actual_sha256": "30b94dc0e660484155c96b0d1984f546c38a228cf42f8da6b1bc4fe867d1dfae"
+              "actual_sha256": "44dca801266f1f76d403b010765fcc3377073e22532ce08344e1c4c651b014a8",
+              "verification_source": "audited_historical_copy",
+              "verified_file": "/root/workspace/houseDesignPrepare/inputs/revisions/R000/source/plan.json",
+              "live_reference_sha256": "30b94dc0e660484155c96b0d1984f546c38a228cf42f8da6b1bc4fe867d1dfae"
             }
           },
           {
@@ -738,18 +1041,7 @@
             }
           }
         ],
-        "errors": [
-          {
-            "name": "source[0]",
-            "valid": false,
-            "message": "source file is missing or its SHA-256 does not match",
-            "details": {
-              "file": "structured/parametric/plan.json",
-              "expected_sha256": "44dca801266f1f76d403b010765fcc3377073e22532ce08344e1c4c651b014a8",
-              "actual_sha256": "30b94dc0e660484155c96b0d1984f546c38a228cf42f8da6b1bc4fe867d1dfae"
-            }
-          }
-        ]
+        "errors": []
       }
     },
     {
@@ -762,8 +1054,8 @@
         "actual": "30b94dc0e660484155c96b0d1984f546c38a228cf42f8da6b1bc4fe867d1dfae",
         "historical_candidate": {
           "reference": "git HEAD:structured/parametric/plan.json",
-          "sha256": "44dca801266f1f76d403b010765fcc3377073e22532ce08344e1c4c651b014a8",
-          "matches_manifest": true
+          "sha256": "30b94dc0e660484155c96b0d1984f546c38a228cf42f8da6b1bc4fe867d1dfae",
+          "matches_manifest": false
         },
         "action": "保存現況；從可信歷史版本／備份比對原來源。若無法復原，保留異常，另經授權建立新版本；不得改 manifest。"
       }

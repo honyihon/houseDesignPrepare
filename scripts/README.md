@@ -26,6 +26,66 @@ Large existing objects are recorded once in `inputs/physical-items.json`.
 appends a complete measured width/depth/height set without discarding the
 planning estimate or earlier measurements.
 
+## Windows 原生 Playwright CLI 驗收
+
+正式入口是 `scripts/check_windows_playwright.cjs`，不要再使用會消失的
+`/tmp/house-windows-cli-check.cjs`。腳本預設檢查自身所在的專案，不硬編碼
+WSL 發行版或 Desktop 舊目錄。需先備妥 Windows Node.js 20+、Edge（或 Chrome）
+及專案 `node_modules`；不會自動安裝、要求系統管理員或更動安全設定。
+
+在 **Windows PowerShell** 執行；下面的 `Ubuntu` 必須是實際存放最新專案的
+WSL 發行版，可用 `wsl -l -q` 確認：
+
+```powershell
+$qa = '\\wsl.localhost\Ubuntu\root\workspace\houseDesignPrepare\scripts\check_windows_playwright.cjs'
+Test-Path -LiteralPath $qa
+node $qa --preflight
+node $qa
+```
+
+若 `Test-Path` 為 `False`，先確認發行版及專案位置，不要直接執行 `node`。
+如果腳本另存到 Windows，可指定 `--project '最新專案的完整路徑'`；只有三份
+HTML 的舊 `D:\Desktop\houseDesign` 不會通過預檢。需要 Chrome 時加上
+`--browser=chrome`。缺少專案依賴時另行在最新專案執行 `npm ci`；這只準備
+Playwright 程式套件，不代表瀏覽器驗收通過。
+
+`--preflight` 只檢查檔案，不啟動瀏覽器。完整驗收使用單一無頭瀏覽器／頁面，
+依序檢查三棟十二層 HTML→3D 連結、共用尺寸與擺位、待調整家具清單、
+固定比較框、停車取捨、雙折梯與冷氣配對／未核狀態、梯廳分區及牆面切換，
+以及 1440×900／390×844 畫面的互動與標籤；不啟動 Python server、錄影或 trace。
+另外檢查室內／外屬性、戶外家具類型及手機房間特寫／返回整層，不把標籤不重疊誤認為房內細節已清楚。
+HTML 預設頁不一定是 1F；驗收會先點各層分頁並確認面板可見，再載入延遲
+圖片，最後返回 1F 才點其 3D 連結，不強制顯示原本隱藏的樓層。
+房間標籤以完整 `data-room`（棟別／樓層／房間）定位，並確認唯一且可見；
+A、C 都有孝親房，不能只用共用文字找按鈕，也不以第一個匹配或強制點擊略過錯誤。
+所有結果、CLI 紀錄及截圖都存入印出的 Windows `QA output folder`，不寫回
+專案。驗收前後比對來源雜湊，來源中途變動、啟動失敗或缺結果都不判通過。
+本版預檢應為 12 floors、105 rooms、129 items；會截取各樓層、A棟孝親房／一樓公衛、A／B二樓共用圖與四張衛浴／走道特寫，以及手機整層／房間特寫畫面。此前特寫自動剖視續版另加A二樓衛浴完整牆高、旋轉剖視、手機特寫，完整跑完預期27張。樓上另獨立檢查三間衛浴的完整設備、700mm操作帶、馬桶側邊本體間距、A走道櫃分時使用及兩組原尺寸衣櫃仍待排，不只比對兩張圖是否一樣。
+
+本次C續版另加HTML基本圖／庭院比較、餐廳／客廳／廚房特寫、3D前院虛框及手機客廳／前院；完整預期44張、31份來源雜湊。獨立查面積、正常產品、照護暫留帶、TV同軸與未知前院，不只查兩張圖是否一樣，詳見[C一樓續版](../Docs/c-1f-space-use-v3.md)。
+
+照片風格外觀v1保留上述27張，另加HTML立面、三棟各自正面／斜角、三棟合看及手機外觀，共36張。來源雜湊從25份增為30份，包含外觀JSON、原照片及三份立面SVG；預檢也核照片記錄的SHA-256。實際檢查HTML→全層外觀、正面／斜角、棟別／樓層切換、分享重載、手機返回室內，以及原剖視、展開、牆面、房間特寫與家具pending還原。外觀開口／装飾衝突保留待確認，17組室外機座標沿共用來源，不把美觀當成合規。
+外觀v1的house-design-cli-lgBJsy已核對2603項／36張，是本次C重排前報告，不能替新版背書。本環境socket與Chromium受限制，C續版須Windows重跑及截圖目視。研究來源見[ABC外觀提案](../Docs/abc-facade-v1.md)；下列27／36張及126件為歷史流程，本次以44張／129件為準。
+自動剖視驗收以設備本體五個取樣點檢查牆／門窗框／梯段遮擋，並實際旋轉、切完整牆高、返回整層與手機重載。剖視不得改HTML幾何、家具尺寸／位置或pending清單，也不得裁去冷氣／家具本體。取樣不等於像素可見或家具互不遮擋，仍須看截圖。
+另獨立檢查 A 孝親房的床與衣櫃、150cm轉位、90cm滑門、一樓淋浴／馬桶／洗手台與公共夜間如廁路徑，不能只因兩張圖一起漏房仍一致就判通過。來源雜湊也包含需求表與CLI腳本自身。
+2026-10-06 的照護回補版 `house-design-cli-WHIoXY` 已核對：Windows Edge 1799項檢查通過，
+25個受驗收來源雜湊與當時版本一致，18張截圖已目視複查；手機選房、特寫、
+重載還原與返回整層均完成。這是樓上重排前的歷史證據；本續版改過來源、viewer及CLI，須重新執行並目視複查，不能沿用舊passed。仍有兩組衣櫃與其他未解需求，不因CLI passed就視為全棟可施工。
+`house-design-cli-kgqbHV` 是樓上續版的部分failed報告：430項已記錄檢查通過，A二樓走道特寫的使用限制檢查失敗。原因是3D房間資訊未輸出共同資料的家具備註，並非將尺寸或擺位驗成失敗；B／C與手機流程尚未跑到。已補房間／逐件限制及對應來源比對，仍保留原走道分時使用斷言。新版四張樓上特寫會先捲動至房間資訊，讓截圖包含限制說明；需重新跑完，不沿用部分報告當passed。
+其後 `house-design-cli-EHN6RW` 的1877項自動檢查、25個當時來源雜湊及24張截圖已核對；走道限制正常顯示，但A二樓衛浴本體仍被鄰房高牆遮擋。此報告是最新自動剖視改動前的歷史證據，不代表27張截圖版已通過；須重新執行相同Windows命令。
+自動剖視版 `house-design-cli-FGNn3E` 為1924項通過／1項失敗：末段手機A衛浴檢查誤將2F房間數寫為9，共用資料實際是10；先前整層房間ID／尺寸、兩組衣櫃pending及手機衛浴本體視線均通過。已改用共用房間ID集合比對，保留兩座特定衣櫃的1800 × 600 × 2200mm尺寸與隱藏狀態檢查，不改房屋圖。手機收合改為讀取狀態後設定，避免同頁hash切換把已收合面板反向展開，並等待畫布resize。這份failed仍是部分證據，修正後須重新執行相同命令；預期27張不變。
+詳細證據與限制見 [ABC 合理性提案](../Docs/abc-layout-rationality-v2.md#未解與驗證)。
+105 rooms／126 items 的 `house-design-cli-yh8nGv` 在手機選房前已完成1785項檢查，
+但舊文字定位同時匹配A、C孝親房而中斷；屬部分證據，不是完整通過。
+定位修正後已由上述新報告完成重跑，舊failed報告不能替代新報告。
+106 rooms／126 items 的 `house-design-cli-hzNQgd` 是回補前報告，不適用目前 A 照護回補版。
+106 rooms／128 items 報告對應截圖修正前版本，不能驗證目前已移除露台室內家具及修正造型的版本。
+舊版 92 rooms／157 items 的通過報告不能驗證 ABC v2。
+只關閉本次命名 session，不影響其他瀏覽器 session。
+
+`passed` 只代表自動瀏覽器檢查通過，仍須看截圖；不是家具動線、建築容量、
+法規或風水核定。回傳 `result.json`、錯誤紀錄或輸出目錄，才能繼續人工檢視。
+
 ## Historical HTML layout extraction
 
 ## Purpose
