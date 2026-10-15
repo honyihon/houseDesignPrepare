@@ -29,17 +29,17 @@ function sceneHarness(buildingId, floorId = 'floor-2', width = 1080, height = 90
   const rootGroup = new THREE.Group(), pickables = [], furnitureEntries = [], meshById = {};
   for (const room of floor.rooms) {
     const g = room.geometry, mesh = new THREE.Mesh(new THREE.BoxGeometry(g.w_mm / 1000, .12, g.h_mm / 1000));
-    mesh.position.set((g.x_mm + g.w_mm / 2) / 1000, 2.94, -(g.y_mm + g.h_mm / 2) / 1000);
+    mesh.position.set((g.x_mm + g.w_mm / 2) / 1000, floor.base_mm/1000-.06, -(g.y_mm + g.h_mm / 2) / 1000);
     const shell = new THREE.Group();
     mesh.userData = { cell: { id: room.id, name: room.name, is_outdoor: room.outdoor,
       tour_mm: g, tour_features: room.features, window_mm: room.features.window_mm },
-    floor: { id: floor.id, base_mm: 3000, height_mm: 3000 }, building: { id: buildingId }, shell };
+    floor: { id: floor.id, base_mm: floor.base_mm, height_mm: floor.height_mm }, building: { id: buildingId }, shell };
     rootGroup.add(mesh, shell);
     pickables.push(mesh);
     meshById[room.id] = mesh;
     for (const item of room.furniture) {
       const p = item.placement, group = new THREE.Group();
-      group.position.set(p.center_x_mm / 1000, (3000 + p.mount_height_mm) / 1000, -p.center_y_mm / 1000);
+      group.position.set(p.center_x_mm / 1000, (floor.base_mm + p.mount_height_mm) / 1000, -p.center_y_mm / 1000);
       group.rotation.y = -p.rotation_deg * Math.PI / 180;
       group.visible = !p.issues.length;
       for (const part of furnitureParts(item)) {
@@ -95,7 +95,10 @@ function sceneHarness(buildingId, floorId = 'floor-2', width = 1080, height = 90
       explode(y){root.position.y=y;root.updateMatrixWorld(true);updateCamera();return inspect();},inspect});`, {
     THREE, root: rootGroup, pickables, furnitureEntries, meshById, buildingId, floorId, controls,
     stage: { clientWidth: width, clientHeight: height },
-    document: { getElementById: id => { assert.ok(controls[id], id); return controls[id]; } },
+    document: { getElementById: id => {
+      if(['hud','stage-title','room-view-actions','facade-actions','compass','orientation','study-stage-note','mdf-study-note'].includes(id))return null;
+      assert.ok(controls[id], id);return controls[id];
+    } },
     DATA: { standards: { door_height_mm: 2100, window_sill_height_mm: 900, window_height_mm: 1200 } },
   });
   return { api, floor };
@@ -113,13 +116,13 @@ test('A 2F bathroom cutaway clears real fixture-body sightlines, including the a
     const after = api.toggle('room-cutaway', true);
     assert.equal(after.active, true);
     assert.equal(after.statusHidden, false);
-    assert.equal(after.cutHeight, 3.55);
+    assert.equal(after.cutHeight, 4.55);
     assert.equal(after.sightlines.length, 3);
     assert.ok(after.sightlines.every(i => i.unobstructedSamples === i.samples), 'all basin/toilet/shower body probes clear');
     assert.ok(after.parts.some(p => p.clipped && p.room !== 'A:floor-2:master-bath'), 'neighbor wall also cut, not a detached room');
     assert.deepEqual(stableGeometry(after), stableGeometry(before), 'clipping never changes the plan or furniture');
     assert.equal(after.visible.length, floor.rooms.length);
-    assert.equal(after.furniture.filter(i => !i.visible).length, 2, 'both original-size wardrobes stay pending');
+    assert.deepEqual(Array.from(after.furniture.filter(i => !i.visible),i=>i.id).sort(),[]);
   }
 });
 
@@ -178,7 +181,7 @@ test('cut plane follows the exploded selected floor, not a hard-coded ground ele
   const { api } = sceneHarness('A');
   api.frame('A:floor-2:master-bath');
   const exploded = api.explode(2.4);
-  assert.ok(Math.abs(exploded.cutHeight - 5.95) < 1e-10);
+  assert.ok(Math.abs(exploded.cutHeight - 6.95) < 1e-10);
   assert.ok(exploded.sightlines.every(i => i.unobstructedSamples === i.samples));
 });
 
@@ -209,7 +212,21 @@ test('upstairs hall and ensuite keep body sightlines and do not clip HVAC symbol
     const { api } = sceneHarness(building);
     const state = api.frame(`${building}:floor-2:${room}`);
     assert.equal(state.active, true);
+    if(building==='A'){
+      assert.equal(state.sightlines.length,0,'pending cabinet is not falsely credited as a visible fixture');
+      assert.equal(state.furniture.find(i=>i.id==='A:floor-2:master:furniture:hall-cabinet').visible,true);
+    }else assert.equal(state.sightlines.length,3);
     assert.ok(state.sightlines.every(i => i.unobstructedSamples >= 3));
     assert.ok(state.parts.every(p => ['wall', 'door', 'window', 'stairs'].includes(p.role)));
+  }
+});
+
+test('current A first-floor care and dining cutaways retain full bodies at the real 4m nominal storey',()=>{
+  for(const [w,h] of [[1080,900],[390,790]])for(const [key,count] of [['living',4],['flex1',2],['bath1',3]]){
+    const {api,floor}=sceneHarness('A','floor-1',w,h),state=api.frame('A:floor-1:'+key);
+    assert.equal(floor.base_mm,0);assert.equal(floor.height_mm,4000);
+    assert.equal(state.cutHeight,.55);assert.equal(state.sightlines.length,count);
+    assert.equal(state.visible.length,floor.rooms.length);
+    assert.ok(state.sightlines.every(i=>i.unobstructedSamples>=3),key+' full bodies, not just labels');
   }
 });

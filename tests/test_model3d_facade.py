@@ -29,8 +29,8 @@ def test_facade_is_non_mutating_and_not_a_second_floor_plan(payload):
     assert rebuilt["geometry_source"] == "tour_mm"
     assert rebuilt["status"] == "proposal-owner-and-architect-review-pending"
     assert len([f for b in before for f in b["floors"]]) == 12
-    assert len([c for b in before for f in b["floors"] for c in f["cells"] if c.get("tour_active")]) == 105
-    assert sum(len(c["furniture"]) for b in before for f in b["floors"] for c in f["cells"]) == 129
+    assert len([c for b in before for f in b["floors"] for c in f["cells"] if c.get("tour_active")]) == 112
+    assert sum(len(c["furniture"]) for b in before for f in b["floors"] for c in f["cells"]) == 127
     assert all(c["compliance"] == "unknown" for b in rebuilt["buildings"] for c in b["components"])
     assert all(b["checks"]["compliance"] == "unknown" for b in rebuilt["buildings"])
     assert all(b["layout_review"]["parking"]["verified_spaces"] is None for b in before)
@@ -106,8 +106,8 @@ def test_exterior_openings_use_source_ratios_widths_and_heights_without_moving_t
 def test_bad_source_windows_remain_pending_not_clipped_or_reinvented(payload):
     pending = {o["id"]: o for b in payload["facade"]["buildings"] for o in b["openings"] if not o["rendered"]}
     assert "overlaps-source-door" in pending["A:floor-1:entry:front:window"]["issues"]
-    assert "candidate-outside-source-wall" in pending["B:floor-1:shrine:front:window"]["issues"]
-    assert pending["B:floor-1:shrine:front:window"]["source"]["width_mm"] == 2400
+    b_window = next(o for o in payload["facade"]["buildings"][1]["openings"] if o["id"] == "B:floor-1:shrine:front:window")
+    assert b_window["rendered"] and b_window["source"]["width_mm"] == 1000  # explicit ritual-door/window redesign
     c = payload["facade"]["buildings"][2]
     assert not any(o["id"] == "C:floor-1:living:front:window" for o in c["openings"])
     dining_window = next(o for o in c["openings"] if o["id"] == "C:floor-1:dining:front:window")

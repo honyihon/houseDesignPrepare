@@ -1,0 +1,93 @@
+{
+  "schema": "house-c1f-window-moisture-brief-v1",
+  "id": "c1f-front-window-moisture-v1",
+  "status": "research-preference-not-adopted",
+  "scope": "C.floor-1.independent-visitor-wc",
+  "adopted": false,
+  "owner_preference": {
+    "source": "owner-conversation:2026-10-13",
+    "quote": "如果有外窗的會比較好 避免後續生黴菌之問題",
+    "priority": "preferred",
+    "hard_requirement_confirmed": false,
+    "prefers_exterior_window": true,
+    "accepts_public_area_reduction": null,
+    "accepts_main_door_and_window_relocation": null
+  },
+  "research_direction": {
+    "preferred": "front-right-public-wc-with-exterior-window",
+    "geometry_reference": "inputs/references/c1f-kimi-round2-audit-20261013.json",
+    "geometry_reference_key": "backup_equal_basis",
+    "geometry_status": "coordinate-probe-only-not-adopted",
+    "do_not_apply_old_bath_front_unchanged": true,
+    "ordinary_visitor_wc_only": true,
+    "no_added_shower": true,
+    "retains_side_wall_bed_and_private_ensuite_direction": true,
+    "preserves_normal_product_dimensions": true,
+    "preserves_open_living_dining": true,
+    "preserves_frontage_as_unenclosed_unverified_clear_zone": true,
+    "nominal_living_dining_sqm": 25.272,
+    "kitchen_discussion_inset_goal_sqm": 6.5,
+    "area_method_note": "名義分區與既有每邊80mm討論內縮，不是完成面、牆柱或法規淨面積；不改原需求。"
+  },
+  "window_candidate": {
+    "status": "illustrative-not-selected",
+    "face": "front",
+    "opens_toward": "frontage-air-exchange-not-yet-verified",
+    "width_mm": 600,
+    "height_mm": 500,
+    "sill_mm": 2100,
+    "operable": "proposed",
+    "opening_type": null,
+    "effective_openable_area_sqm": null,
+    "privacy_glazing": "proposed",
+    "reachable_controls_without_step_stool": "to-be-designed",
+    "screen_and_cleaning_access": "to-be-designed",
+    "rain_wind_and_public_passage_clearance": "unknown",
+    "note": "60×50cm高窗只是比較占位，不是產品選定、有效通風達標或防黴保證。"
+  },
+  "moisture_controls": {
+    "window_does_not_replace_exhaust": true,
+    "independent_outdoor_exhaust": {
+      "status": "to-be-designed",
+      "legal_discharge_point": null,
+      "duct_route": null,
+      "fan_model": null,
+      "installed_airflow": null,
+      "makeup_air_path": null,
+      "backdraft_prevention_and_cleaning": "to-be-designed",
+      "shares_kitchen_or_idf_exhaust": false
+    },
+    "automatic_control": {
+      "humidity_sensor": "proposed",
+      "delayed_shutdown": "proposed",
+      "selected_delay_seconds": null,
+      "selected_humidity_setpoint_percent": null,
+      "note": "定時與濕度控制待機電設計／實際乾燥測試，不以固定分鐘數保證排濕。"
+    },
+    "window_frame_rainproofing_and_outward_drainage": "to-be-designed",
+    "floor_and_penetration_waterproofing": "to-be-designed",
+    "pipe_leaks_and_condensation_access": "to-be-designed",
+    "materials_cleaning_and_service_access": "to-be-designed",
+    "outdoor_humidity_weather_operation": "to-be-designed",
+    "guidance_source": "https://www.epa.gov/mold/brief-guide-mold-moisture-and-your-home",
+    "guidance_checked_on": "2026-10-13",
+    "guidance_is_local_building_law": false,
+    "mold_free_verified": null
+  },
+  "professional_status": {
+    "cadastral_buildable_envelope": "unknown",
+    "frontage_arcade_rights": "unknown",
+    "window_structure_and_effective_ventilation": "unknown",
+    "exhaust_makeup_air_and_noise": "unknown",
+    "plumbing_and_maintenance": "unknown",
+    "waterproofing_and_condensation": "unknown",
+    "finished_clearances_and_care_routes": "unknown",
+    "higher_ground_floor_stair_and_levels": "unknown"
+  },
+  "implementation_status": {
+    "main_design_replaced": false,
+    "new_html_or_3d_generated": false,
+    "historical_model_conversation_modified": false,
+    "next_step": "deepen-isolated-windowed-comparison-before-owner-adoption"
+  }
+}

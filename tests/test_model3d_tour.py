@@ -103,10 +103,11 @@ def test_access_proposals_do_not_route_through_bathroom_or_storage():
     cells = {c["id"]: c for b in payload()["buildings"] for f in b["floors"] for c in f["cells"]}
     shrine = cells["B:floor-1:shrine"]["tour_features"]
     assert not shrine["access_pending"]
-    assert {d["neighbor"] for d in shrine["doors"]} == {"B:floor-1:entry"}
+    assert {d["neighbor"] for d in shrine["doors"]} == {"B:floor-1:entry", "B:floor-1:garage"}
+    assert next(d for d in shrine["doors"] if d["neighbor"] == "B:floor-1:garage")["purpose"] == "ritual-entry"
     assert {d["neighbor"] for d in cells["B:floor-1:storage"]["tour_features"]["doors"]} == {"B:floor-1:corridor1"}
     assert cells["A:floor-1:dining"]["tour_active"] is False  # merged, not deleted from the source
-    assert cells["A:floor-1:living"]["name"] == "前段合併客餐廳（前帶可建待核）"
+    assert cells["A:floor-1:living"]["name"] == "前段合併客餐廳（騎樓後）"
     elder_bath = cells["C:floor-1:elder-bath"]["tour_features"]
     assert not elder_bath["access_pending"]
     assert {d["neighbor"] for d in elder_bath["doors"]} == {"C:floor-1:elder"}
@@ -189,8 +190,12 @@ def test_aligned_u_stairs_and_c_care_reserves_are_not_approval():
             flight = features["stair_geometry"]
             assert flight["type"] == "two-flight-u-proposal" and flight["fits_reserved_box"]
             assert flight["connects_to_next_storey"] is (floor["id"] != "floor-4")
-            assert flight["risers"] == 18 and flight["tread_mm"] == 270
-            assert flight["flight_width_mm"] == flight["landing_mm"] == 1000
+            is_a = building["id"] == "A"
+            assert flight["risers"] == (24 if is_a and floor["id"] == "floor-1" else 18)
+            assert flight["tread_mm"] == (260 if is_a else 270)
+            assert flight["flight_width_mm"] == (900 if is_a else 1000)
+            assert flight["landing_mm"] == 1000
+            assert flight["departure_offset_mm"] == (0 if is_a else 1000)
             assert features["stair_geometry_verified"] is False
         assert footprints == [footprints[0]] * 4
     elder = next(c for c in payload()["buildings"][2]["floors"][0]["cells"] if c["key"] == "elder")

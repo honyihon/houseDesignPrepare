@@ -92,8 +92,8 @@ test('room info retains every shared furniture-use note without selecting a furn
       assert.ok(html.includes(escape(item.note)), item.id + ' shared note is in the room info');
     }
     if (room.id === 'A:floor-2:hall2') {
-      assert.ok(html.includes('1040mm') && html.includes('440mm') && html.includes('不能同時當通道'),
-        'hallway operating limitation appears before any cabinet click');
+      assert.ok(html.includes('880mm') && html.includes('280mm') && html.includes('待移') && html.includes('1280mm'),
+        'pending hallway cabinet and continuous passage are explained before any cabinet click');
     }
   }
 });
@@ -146,6 +146,85 @@ test('actual detailed parts stay within every real-size furniture envelope, incl
       const spec=parts(item);
       assert.equal(spec[0].w*item.width_mm,item.table_width_mm);
       assert.equal(spec[0].d*item.depth_mm,item.table_depth_mm);
+    }
+  }
+});
+
+test('actual 3D countertop details use shared local dimensions, not the generic decorative hob position', () => {
+  const source = template.match(/  function furnitureParts\([\s\S]*?(?=  function furnitureColour\()/)[0];
+  const parts = vm.runInNewContext(`${source};furnitureParts`);
+  const counter = manifest.buildings[0].floors[0].rooms.find(r => r.key === 'kitchen').furniture.find(i => i.shape === 'counter');
+  const details = parts(counter).filter(p => p.worktopPart);
+  assert.equal(details.length, 2);
+  for (const p of details) {
+    const local = counter.worktop_parts.find(i => i.id === p.worktopPart);
+    assert.equal(p.x * counter.width_mm, local.center_x_mm);
+    assert.equal(p.z * counter.depth_mm, local.center_z_mm);
+    assert.equal(p.w * counter.width_mm, local.width_mm);
+    assert.equal(p.d * counter.depth_mm, local.depth_mm);
+    // The SVG uses -z locally; the 3D uses world z and plan y=-world z.
+    const radians = counter.placement.rotation_deg * Math.PI / 180;
+    const x = counter.placement.center_x_mm + local.center_x_mm * Math.cos(radians) - local.center_z_mm * Math.sin(radians);
+    const y = counter.placement.center_y_mm - local.center_x_mm * Math.sin(radians) - local.center_z_mm * Math.cos(radians);
+    const mm = counter.placement.worktop_parts_mm.find(i => i.id === local.id);
+    assert.ok(Math.abs(x - mm.center_x_mm) < .01 && Math.abs(y - mm.center_y_mm) < .01);
+  }
+});
+
+test('compact four-seat candidate has full physical table, chairs and legs rather than scaled parts', () => {
+  const source = template.match(/  function furnitureParts\([\s\S]*?(?=  function furnitureColour\()/)[0];
+  const parts = vm.runInNewContext(`${source};furnitureParts`);
+  const item = manifest.buildings[0].floors[0].rooms.find(r => r.key === 'living').furniture.find(i => i.catalog_id === 'dining-4-sides');
+  const model = parts(item), seats = model.filter(p => Math.abs(p.h*item.height_mm-45)<1e-8);
+  const backs = model.filter(p => Math.abs(p.h*item.height_mm-400)<1e-8);
+  const legs = model.filter(p => Math.abs(p.w*item.width_mm-30)<1e-8 && Math.abs(p.d*item.depth_mm-30)<1e-8);
+  assert.equal(item.height_mm,850,'external chair-back height, not just table height');
+  assert.equal((model[0].bottom+model[0].h)*item.height_mm,750,'ordinary tabletop height');
+  assert.equal(seats.length,4);assert.equal(backs.length,4);assert.equal(legs.length,16);
+  assert.equal(new Set(seats.map(p=>p.x)).size,2);assert.equal(new Set(seats.map(p=>p.z)).size,2);
+  for(const p of [...seats,...backs]) assert.equal(p.w*item.width_mm,450,'full-width seat/back');
+  for(const p of seats){assert.equal(p.d*item.depth_mm,450);assert.equal((p.bottom+p.h)*item.height_mm,450);}
+  for(const p of backs) assert.equal((p.bottom+p.h)*item.height_mm,850);
+});
+
+test('actual stair renderer uses shared A landings and full-height stacked flights without a fifth storey', () => {
+  const THREE = require(path.join(root, 'assets/vendor/three/three.min.js'));
+  const definitions = [
+    template.match(/  function geomOf\([\s\S]*?(?=  function placementOf\()/)[0],
+    template.match(/  function layoutCell\([\s\S]*?(?=  \/\/ ---------- build)/)[0],
+    template.match(/  function wallPoint\([\s\S]*?(?=  function positionNavigationLabels\()/)[0],
+  ].join('\n');
+  const build = vm.runInNewContext(`var presentation='tour',geomSource='auto',viewState={room:''},MM=.001;
+    var architectureCutawayParts=[];
+    function wz(y){return -y*MM;} function addNavigationLabel(){}
+    function architectureBox(group,x,y,z,w,h,d,colour){
+      const part={x,y,z,w,h,d,colour,userData:{},material:{transparent:false,opacity:1,depthWrite:true}};
+      group.children.push(part);return part;
+    } ${definitions};buildArchitecture;`,{THREE,document:{getElementById:()=>({checked:true})},
+      DATA:{standards:{door_height_mm:2100,window_sill_height_mm:900,window_height_mm:1200}}});
+  for(const b of manifest.buildings) for(const f of b.floors){
+    const r=f.rooms.find(r=>r.features.stairs),group={children:[],clear(){this.children=[];}};
+    build({visible:true,userData:{shell:group,floor:f,cell:{id:r.id,name:r.name,tour_mm:r.geometry,
+      tour_features:r.features,is_outdoor:r.outdoor,window_mm:0}}});
+    const parts=group.children.filter(p=>p.colour===0xa4aead),g=r.features.stair_geometry;
+    const base=f.base_mm/1000,fp=r.features.stair_footprint_mm;
+    assert.equal(parts.length,g.connects_to_next_storey?g.risers+1:1,r.id+' actual step/platform count');
+    const landing=parts[0],offset=g.departure_offset_mm;
+    assert.ok(Math.abs(landing.z+fp.y_mm/1000+offset/1000-.5)<1e-8,'front floor-level platform position');
+    assert.ok(Math.abs(landing.y+landing.h/2-base)<1e-8,'departure landing exactly at floor base');
+    if(!g.connects_to_next_storey)continue;
+    assert.ok(Math.abs(parts[1].y+parts[1].h/2-base-f.height_mm/1000)<1e-8,'top landing connects the next base');
+    const middle=parts[2];assert.equal(Math.round(middle.d*1000),g.middle_landing_mm);
+    assert.ok(Math.abs(middle.y+middle.h/2-base-f.height_mm/2000)<1e-8,'middle landing half height');
+    assert.ok(Math.abs(middle.z+fp.y_mm/1000+(offset+g.run_mm+g.middle_landing_mm/2)/1000)<1e-8);
+    for(const step of parts.slice(3)){
+      assert.equal(Math.round(step.w*1000),g.flight_width_mm);
+      assert.equal(Math.round(step.d*1000),g.tread_mm);
+    }
+    if(b.id==='A'){
+      const shared=r.features.shared_landing_mm;
+      assert.equal(Math.round(-landing.z*1000-landing.d*500),shared.y_mm);
+      assert.equal(Math.round(landing.d*1000),shared.h_mm);
     }
   }
 });
@@ -221,7 +300,8 @@ test('actual camera closeup fits the shared room at mobile and desktop sizes wit
         return {radius:spherical.radius,size:box.getSize(new THREE.Vector3()).toArray(),
           corners:boxCorners(box).map(p=>p.project(camera).toArray()),
           visible:pickables.filter(m=>m.visible).map(m=>m.userData.cell.id)};
-      };`, { THREE, pickables, furnitureEntries, stage: { clientWidth: width, clientHeight: height } });
+      };`, { THREE, pickables, furnitureEntries, stage: { clientWidth: width, clientHeight: height },
+        document: { getElementById: () => null } });
     const overview = frame(false, 'front');
     const closeup = frame(true, 'front');
     assert.ok(closeup.radius < overview.radius * 0.6, 'room is meaningfully larger on screen');
@@ -235,7 +315,8 @@ test('actual camera closeup fits the shared room at mobile and desktop sizes wit
 });
 
 test('closeup URL state is limited to a selected shared-proposal room', () => {
-  const definition = template.match(/  function writeHash\([\s\S]*?(?=  function updateOrientation\()/)[0];
+  const definition = template.match(/  function mdfStudyActive\([\s\S]*?(?=  function buildMdfStudy\()/)[0] +
+    template.match(/  function writeHash\([\s\S]*?(?=  function updateOrientation\()/)[0];
   for (const [presentation, room, focused, expected] of [
     ['tour', 'C:floor-1:elder', true, true], ['tour', 'C:floor-1:elder', false, false],
     ['tour', '', true, false], ['interior', 'C:floor-1:elder', true, false],
@@ -245,6 +326,7 @@ test('closeup URL state is limited to a selected shared-proposal room', () => {
       presentation, roomCameraFocused: focused, viewState: { building: 'C', floor: 'floor-1', room, view: 'front' },
       URLSearchParams, history: { replaceState(_state, _title, value) { hash = value; } },
       facadeIsActive: () => false,
+      DATA: {},
     });
     assert.equal(new URLSearchParams(hash.slice(1)).get('focus') === 'room', expected);
   }
@@ -267,14 +349,14 @@ test('actual wall builder leaves shared stair-hall boundaries open without walls
       }
       ${definitions}
       buildArchitecture;`, {
-      THREE,
+      THREE, clipPlane: new THREE.Plane(new THREE.Vector3(0, -1, 0), 1000),
       document: { getElementById: id => ({ checked: id === 'full-walls' ? full : true }) },
       DATA: { standards: { door_height_mm: 2100, window_sill_height_mm: 900, window_height_mm: 1200 } },
     });
     let count = 0;
     for (const b of manifest.buildings) for (const f of b.floors) for (const r of f.rooms) {
       if (!r.features.open_connections.length) continue;
-      const group = { children: [], clear() { this.children = []; } };
+      const group = { children: [], clear() { this.children = []; }, add(part) { this.children.push(part); } };
       build({ visible: true, userData: { shell: group, floor: { base_mm: 0, height_mm: 3000 },
         cell: { id: r.id, name: r.name, tour_mm: r.geometry, tour_features: r.features,
           is_outdoor: r.outdoor, window_mm: r.features.window_mm } } });

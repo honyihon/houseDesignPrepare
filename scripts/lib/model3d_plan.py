@@ -8,8 +8,79 @@ from urllib.parse import urlencode
 from xml.etree.ElementTree import Element, SubElement, tostring
 
 from lib.model3d_facade import render_elevation
+from lib.model3d_mdf import draw_mdf_overlay, render_mdf_section
 
 SCHEMA = "house-concept-furniture-plan-v1"
+
+
+def hvac_plan_mark(unit: dict) -> dict:
+    """One source for the unchanged unit symbol and its estimated text bounds.
+
+    These bounds reserve display space, not equipment or installation clearance.
+    Real browser font bounds still need the separate Windows visual check.
+    """
+    w, d = unit["width_mm"], unit["depth_mm"]
+    if unit["face"] in {"left", "right"}:
+        w, d = d, w
+    text = unit["id"] + ("內" if unit["type"] == "indoor" else "外")
+    x, y, font, pad = unit["x_mm"] + 100, unit["y_mm"] + 150, 155, 30
+    text_width = sum(font * (.6 if c.isascii() else 1) for c in text)
+    return {
+        "body": {"minX": unit["x_mm"] - w / 2, "maxX": unit["x_mm"] + w / 2,
+                 "minY": unit["y_mm"] - d / 2, "maxY": unit["y_mm"] + d / 2},
+        "text": text, "x": x, "y": y, "font": font,
+        "text_bounds": {"minX": x - pad, "maxX": x + text_width + pad,
+                        "minY": y - font - pad, "maxY": y + font * .3 + pad},
+    }
+
+
+def room_label(room: dict) -> dict:
+    """Short, bounded labels; keep the full source name in the DOM/list/title."""
+    g = room["geometry"]
+    font, line_height = 210, 260
+    available = g["w_mm"] - 280
+    name = room["name"].split("（", 1)[0].strip()
+    lines, current, advance = [], "", 0
+    for char in name:
+        width = font * (.6 if char.isascii() else 1)
+        if current and advance + width > available:
+            lines.append(current)
+            current, advance = "", 0
+        current += char
+        advance += width
+    if current:
+        lines.append(current)
+    limit = max(1, min(4, int((g["h_mm"] - 200) / line_height)))
+    if len(lines) > limit:
+        lines = lines[:limit]
+        lines[-1] = lines[-1][:-1] + "…"
+    width = max(sum(font * (.6 if c.isascii() else 1) for c in line) for line in lines) + 120
+    height = len(lines) * line_height + 60
+    blocks = [i["placement"]["aabb"] for i in room["furniture"] if not i["placement"]["issues"]]
+    stair = room["features"].get("stair_footprint_mm")
+    if stair:
+        blocks.append({"minX": stair["x_mm"], "maxX": stair["x_mm"] + stair["w_mm"],
+                       "minY": stair["y_mm"], "maxY": stair["y_mm"] + stair["h_mm"]})
+    hvac_blocks = [box for unit in room["features"].get("hvac_units", [])
+                   for box in (hvac_plan_mark(unit)["body"], hvac_plan_mark(unit)["text_bounds"])]
+    def result(x: float, y: float) -> dict:
+        def hits(boxes: list[dict]) -> bool:
+            return any(x + width > b["minX"] and x < b["maxX"] and
+                       y + height > b["minY"] and y < b["maxY"] for b in boxes)
+        furniture_overlap, hvac_overlap = hits(blocks), hits(hvac_blocks)
+        return {"lines": lines, "x": x, "y": y, "w": width, "h": height,
+                "overlap": furniture_overlap or hvac_overlap,
+                "furniture_overlap": furniture_overlap, "hvac_overlap": hvac_overlap}
+    left, top = g["x_mm"] + 80, g["y_mm"] + 80
+    right, bottom = g["x_mm"] + g["w_mm"] - width - 80, g["y_mm"] + g["h_mm"] - height - 80
+    xs = [left, right, (left + right) / 2]
+    ys = [top, bottom, *[top + n * line_height for n in range(1, max(1, int((bottom - top) / line_height)))]]
+    for y in ys:
+        for x in xs:
+            placed = result(x, y)
+            if not placed["overlap"]:
+                return placed
+    return result(left, top)
 
 
 def _tag(parent: Element, name: str, **attrs: object) -> Element:
@@ -67,6 +138,8 @@ def plan_data(payload: dict) -> dict:
                     "depth_mm": floor["tour_depth_mm"],
                     "original_depth_mm": floor["auto_depth_mm"],
                     "plan_file": f"{building['id']}_{floor['id']}.svg",
+                    "base_mm": floor["base_mm"],
+                    "height_mm": floor["height_mm"],
                     "rooms": rooms,
                     "deferred_rooms": floor.get("deferred_rooms", []),
                 }
@@ -79,7 +152,15 @@ def plan_data(payload: dict) -> dict:
     return result
 
 
-def render_plan(building: str, floor: dict, *, show_frontage_study: bool = False) -> str:
+def render_plan(
+    building: str,
+    floor: dict,
+    *,
+    show_frontage_study: bool = False,
+    viewer_url: str = "../model3d.html",
+    mdf_study: dict | None = None,
+    room_labels: dict[str, str] | None = None,
+) -> str:
     width, depth = floor["width_mm"], floor["depth_mm"]
     root = Element(
         "svg",
@@ -100,7 +181,7 @@ def render_plan(building: str, floor: dict, *, show_frontage_study: bool = False
         root, "desc", id="plan-desc"
     ).text = "道路／前方在上。常見市售暫估尺寸，尚未實測。虛線為操作與入口暫留帶，非驗證動線；未能放入的家具列待調整。"
     _tag(root, "style").text = (
-        "text{font-family:system-ui,sans-serif;fill:#263846} .room-name{font-size:210px;font-weight:600} "
+        "text{font-family:system-ui,sans-serif;fill:#263846} .room-name{font-size:210px;font-weight:600;paint-order:stroke fill;stroke:#fff;stroke-width:45;stroke-linejoin:round} "
         ".item-number{font-size:180px;font-weight:700;fill:#fff;text-anchor:middle} "
         ".wall{stroke:#6b7274;stroke-width:100} .allowance{fill:none;stroke:#c2904c;stroke-width:18;stroke-dasharray:70 40} "
         ".front-mark{stroke:#24394a;stroke-width:22;fill:none}"
@@ -133,22 +214,18 @@ def render_plan(building: str, floor: dict, *, show_frontage_study: bool = False
             data_w_mm=g["w_mm"],
             data_h_mm=g["h_mm"],
         )
-        url = "../model3d.html#" + urlencode(
-            {"mode": "tour", "building": building, "floor": floor["id"], "room": room["id"], "view": "plan"}
-        )
-        anchor = _tag(group, "a", href=url, target="_blank")
-        _text(
-            anchor,
-            room["name"][:16] + (" · 入口待定" if features["access_pending"] else ""),
-            g["x_mm"] + 140,
-            g["y_mm"] + 320,
-            **{"class": "room-name"},
-        )
+        if building == "A" and room["key"] == "arcade":
+            _text(group, "不置物／不停車；適用與梁下淨高待核", g["x_mm"] + 140, g["y_mm"] + 620, font_size=175)
         study = features.get("frontage_study")
         if study and show_frontage_study:
             overlay = _tag(group, "g", data_frontage_study=study["status"])
             for key, box, name, colour in [
-                ("clear-route", study["route_mm"], f"{study['route_mm']['w_mm']/10:g}cm通行比較帶（未核）", "#287b89"),
+                (
+                    "clear-route",
+                    study["route_mm"],
+                    f"{study['route_mm']['w_mm'] / 10:g}cm通行比較帶（未核）",
+                    "#287b89",
+                ),
                 *((zone["id"], zone["geometry"], zone["name"], "#bf731b") for zone in study["zones"]),
             ]:
                 footprint = _tag(
@@ -166,7 +243,13 @@ def render_plan(building: str, floor: dict, *, show_frontage_study: bool = False
                 )
                 _tag(footprint, "title").text = name
                 _text(overlay, name[:8], box["x_mm"] + 70, box["y_mm"] + 220, font_size=145)
-                _text(overlay, "未核" if key == "clear-route" else "未施作", box["x_mm"] + 70, box["y_mm"] + 410, font_size=145)
+                _text(
+                    overlay,
+                    "未核" if key == "clear-route" else "未施作",
+                    box["x_mm"] + 70,
+                    box["y_mm"] + 410,
+                    font_size=145,
+                )
             _text(overlay, "私有前院條件未明：比較虛框非已擺放，騎樓／公共退縮適用即撤銷。", 140, 620, font_size=140)
         if not room["outdoor"]:
             for face in ("front", "rear", "left", "right"):
@@ -193,7 +276,7 @@ def render_plan(building: str, floor: dict, *, show_frontage_study: bool = False
                     face: str = face,
                     along_x: bool = along_x,
                 ) -> None:
-                    if hi <= lo:
+                    if hi - lo < 1:  # ignore sub-mm ratio-rounding remnants, not real wall segments
                         return
                     x = g["x_mm"] + (g["w_mm"] if face == "right" else 0)
                     y = g["y_mm"] + (g["h_mm"] if face == "rear" else 0)
@@ -242,10 +325,75 @@ def render_plan(building: str, floor: dict, *, show_frontage_study: bool = False
                 )
                 _text(group, "Ø150cm轉位暫留", b["minX"] + 100, b["maxY"] - 100, font_size=145)
         for door in features["doors"]:
+            if door.get("label"):
+                along_x = door["face"] in {"front", "rear"}
+                length = g["w_mm"] if along_x else g["h_mm"]
+                centre = length * door["ratio"]
+                x = g["x_mm"] + (centre if along_x else g["w_mm"] if door["face"] == "right" else 0)
+                y = g["y_mm"] + (centre if not along_x else g["h_mm"] if door["face"] == "rear" else 0)
+                _text(
+                    group,
+                    door["label"],
+                    x - (door["width_mm"] / 2 if along_x else 0),
+                    y - 150,
+                    font_size=155,
+                    fill="#257354",
+                    data_door_label=door["label"],
+                    data_door_purpose=door.get("purpose", "entry"),
+                    data_door_width_mm=door["width_mm"],
+                )
             if door.get("operation") == "sliding":
                 _tag(
                     group, "desc", data_door_operation="sliding"
                 ).text = f"滑門提案，門寬暫估{door['width_mm']:g}mm；完成面淨寬未核。"
+        segment = features.get("transport_segment_mm")
+        if segment:
+            route = _tag(group, "g", data_transport_route=features["transport_review"]["status"])
+            box = segment["body_sweep_mm"]
+            _tag(
+                route,
+                "rect",
+                x=box["minX"],
+                y=box["minY"],
+                width=box["maxX"] - box["minX"],
+                height=box["maxY"] - box["minY"],
+                fill="none",
+                stroke="#287b89",
+                stroke_width=20,
+                stroke_dasharray="100 60",
+                data_transport_body_width_mm=box["maxX"] - box["minX"],
+            )
+            (x0, y0), (x1, y1) = segment["centerline_mm"]
+            _tag(
+                route,
+                "line",
+                x1=x0,
+                y1=y0,
+                x2=x1,
+                y2=y1,
+                stroke="#287b89",
+                stroke_width=32,
+                stroke_dasharray="100 60",
+                data_transport_centerline="storage-body-only",
+            )
+            middle = (y0 + y1) / 2
+            _tag(
+                route,
+                "path",
+                d=f"M {x1 - 130} {middle - 150} L {x1} {middle} L {x1 + 130} {middle - 150}",
+                fill="none",
+                stroke="#287b89",
+                stroke_width=32,
+            )
+            if room["key"] == "entry":
+                _text(
+                    route,
+                    "直線收納本體路徑／裝桿未核",
+                    x0 - 110,
+                    y0 + 1000,
+                    font_size=145,
+                    transform=f"rotate(90 {x0 - 110} {y0 + 1000})",
+                )
         if room["key"] == "garage" and building == "A" and any(i["category"] == "vehicle" for i in room["furniture"]):
             _tag(
                 group,
@@ -277,10 +425,25 @@ def render_plan(building: str, floor: dict, *, show_frontage_study: bool = False
             )
             stair_geometry = features.get("stair_geometry", {})
             landing = stair_geometry.get("landing_mm", 0)
+            departure = stair_geometry.get("departure_offset_mm", landing)
+            shared = features.get("shared_landing_mm")
+            if shared:
+                _tag(
+                    group,
+                    "rect",
+                    x=shared["x_mm"],
+                    y=shared["y_mm"],
+                    width=shared["w_mm"],
+                    height=shared["h_mm"],
+                    fill="#c5ceca",
+                    fill_opacity="0.3",
+                    data_shared_stair_landing=shared["space"],
+                )
+                _text(group, "共用前平台1m（禁置物）", shared["x_mm"] + 80, shared["y_mm"] + 400, font_size=145)
             run = stair_geometry.get("run_mm", stair["h_mm"])
             half = stair_geometry.get("risers", 16) // 2
             for i in range(1, half) if stair_geometry.get("connects_to_next_storey") is not False else ():
-                y = stair["y_mm"] + landing + run * i / (half - 1)
+                y = stair["y_mm"] + departure + run * i / (half - 1)
                 _tag(
                     group,
                     "line",
@@ -296,8 +459,8 @@ def render_plan(building: str, floor: dict, *, show_frontage_study: bool = False
                 "line",
                 x1=stair["x_mm"] + stair["w_mm"] / 2,
                 x2=stair["x_mm"] + stair["w_mm"] / 2,
-                y1=stair["y_mm"] + landing,
-                y2=stair["y_mm"] + landing + run,
+                y1=stair["y_mm"] + departure,
+                y2=stair["y_mm"] + departure + run,
                 stroke="#62716f",
                 stroke_width=80,
             )
@@ -309,16 +472,15 @@ def render_plan(building: str, floor: dict, *, show_frontage_study: bool = False
                 font_size=180,
             )
         for unit in features.get("hvac_units", []):
-            w, d = unit["width_mm"], unit["depth_mm"]
-            if unit["face"] in {"left", "right"}:
-                w, d = d, w
+            mark = hvac_plan_mark(unit)
+            body = mark["body"]
             _tag(
                 group,
                 "rect",
-                x=unit["x_mm"] - w / 2,
-                y=unit["y_mm"] - d / 2,
-                width=w,
-                height=d,
+                x=body["minX"],
+                y=body["minY"],
+                width=body["maxX"] - body["minX"],
+                height=body["maxY"] - body["minY"],
                 fill="#54a5bb",
                 stroke="#14586c",
                 stroke_width=20,
@@ -327,10 +489,12 @@ def render_plan(building: str, floor: dict, *, show_frontage_study: bool = False
             )
             _text(
                 group,
-                unit["id"] + ("內" if unit["type"] == "indoor" else "外"),
-                unit["x_mm"] + 100,
-                unit["y_mm"] + 150,
-                font_size=155,
+                mark["text"],
+                mark["x"],
+                mark["y"],
+                font_size=mark["font"],
+                data_hvac_label_id=unit["id"],
+                data_hvac_label_type=unit["type"],
             )
         for item in room["furniture"]:
             number += 1
@@ -378,6 +542,18 @@ def render_plan(building: str, floor: dict, *, show_frontage_study: bool = False
                     **{"class": "allowance"},
                     data_maintenance="rear",
                 )
+            for side in p.get("side_operation_mm", []):
+                b = side["aabb"]
+                _tag(
+                    group,
+                    "rect",
+                    x=b["minX"],
+                    y=b["minY"],
+                    width=b["maxX"] - b["minX"],
+                    height=b["maxY"] - b["minY"],
+                    data_maintenance=side["side"],
+                    **{"class": "allowance"},
+                )
             fg.set("transform", f"translate({p['center_x_mm']} {p['center_y_mm']}) rotate({-p['rotation_deg']})")
             w, d = item["width_mm"], item["depth_mm"]
             _tag(
@@ -395,6 +571,33 @@ def render_plan(building: str, floor: dict, *, show_frontage_study: bool = False
             if item["shape"] == "bed":
                 for x in (-w * 0.35, w * 0.05):
                     _tag(fg, "rect", x=x, y=d * 0.25, width=w * 0.3, height=d * 0.16, rx=35, fill="#f4f1e8")
+            for part in item.get("worktop_parts", []):
+                detail = _tag(
+                    fg,
+                    "rect",
+                    x=part["center_x_mm"] - part["width_mm"] / 2,
+                    y=-part["center_z_mm"] - part["depth_mm"] / 2,
+                    width=part["width_mm"],
+                    height=part["depth_mm"],
+                    fill="#252c30" if part["kind"] == "hob" else "#7b939a",
+                    stroke="#f4f1e8",
+                    stroke_width=12,
+                    data_worktop_part=part["id"],
+                    data_width_mm=part["width_mm"],
+                    data_depth_mm=part["depth_mm"],
+                    data_status=part["status"],
+                )
+                _tag(detail, "title").text = f"{part['label']}，未選型；位置與3D同源。"
+                _text(
+                    fg,
+                    "爐" if part["kind"] == "hob" else "槽",
+                    part["center_x_mm"],
+                    -part["center_z_mm"] + 70,
+                    transform=f"rotate({p['rotation_deg']} {part['center_x_mm']} {-part['center_z_mm']})",
+                    font_size=145,
+                    text_anchor="middle",
+                    style="fill:#ffffff",
+                )
             if p["wall_anchor"]:
                 _tag(
                     fg,
@@ -403,21 +606,46 @@ def render_plan(building: str, floor: dict, *, show_frontage_study: bool = False
                     **{"class": "front-mark"},
                 )
             _text(fg, str(number), 0, 70, transform=f"rotate({p['rotation_deg']})", **{"class": "item-number"})
+    labels = _tag(root, "g", data_plan_labels="room-names")
+    for room in floor["rooms"]:
+        label = room_label({**room, "name": (room_labels or {}).get(room["key"], room["name"])})
+        node = _tag(labels, "a", href=viewer_url + "#" + urlencode(
+            {"mode": "tour", "building": building, "floor": floor["id"], "room": room["id"], "view": "plan"}
+        ), target="_blank", data_label_room_id=room["id"], data_full_name=room["name"],
+            data_x_mm=label["x"], data_y_mm=label["y"], data_w_mm=label["w"], data_h_mm=label["h"],
+            data_furniture_overlap=str(label["furniture_overlap"]).lower(),
+            data_hvac_overlap=str(label["hvac_overlap"]).lower())
+        _tag(node, "title").text = room["name"] + (" · 入口待定" if room["features"]["access_pending"] else "")
+        text = _tag(node, "text", x=label["x"] + 60, y=label["y"] + 230, **{"class": "room-name"})
+        for n, line in enumerate(label["lines"]):
+            _tag(text, "tspan", x=label["x"] + 60, dy=0 if n == 0 else 260).text = line
+    if mdf_study:
+        if building != "A" or floor["id"] != "floor-1":
+            raise ValueError("MDF overlay only belongs to current A1F")
+        draw_mdf_overlay(root, mdf_study)
     return '<?xml version="1.0" encoding="UTF-8"?>\n' + tostring(root, encoding="unicode") + "\n"
 
 
 def write_html_plans(payload: dict, directory: Path) -> None:
     directory.mkdir(parents=True, exist_ok=True)
     data = plan_data(payload)
+    mdf_study = data.get("layout_review", {}).get("mdf_study")
     for building in data["buildings"]:
         for floor in building["floors"]:
             (directory / floor["plan_file"]).write_text(render_plan(building["id"], floor), encoding="utf-8")
+            if mdf_study and building["id"] == "A" and floor["id"] == "floor-1":
+                (directory / mdf_study["plan_file"]).write_text(
+                    render_plan("A", floor, mdf_study=mdf_study), encoding="utf-8"
+                )
+                (directory / mdf_study["section_file"]).write_text(render_mdf_section(mdf_study), encoding="utf-8")
             if floor.get("frontage_study_file"):
                 (directory / floor["frontage_study_file"]).write_text(
                     render_plan(building["id"], floor, show_frontage_study=True), encoding="utf-8"
                 )
     for building in data["facade"].get("buildings", []):
-        (directory / building["elevation_file"]).write_text(render_elevation(data["facade"], building), encoding="utf-8")
+        (directory / building["elevation_file"]).write_text(
+            render_elevation(data["facade"], building), encoding="utf-8"
+        )
     (directory / "layout.js").write_text(
         "window.HOUSE_CONCEPT_LAYOUT = " + json.dumps(data, ensure_ascii=False, separators=(",", ":")) + ";\n",
         encoding="utf-8",

@@ -33,6 +33,8 @@
     "outdoor-bench": {"label": "戶外休憩椅", "category": "seating", "shape": "outdoor-bench", "color": "#15803d", "width_mm": 1400, "depth_mm": 650, "height_mm": 800},
     "coffee-table": {"label": "茶几", "category": "table", "shape": "table", "color": "#d97706", "width_mm": 1100, "depth_mm": 600, "height_mm": 420},
     "dining-4": {"label": "四人餐桌椅（含座椅外廓）", "category": "table", "shape": "dining-set", "color": "#b45309", "width_mm": 1800, "depth_mm": 1800, "height_mm": 750, "table_width_mm": 1200, "table_depth_mm": 800},
+    "dining-4-sides": {"label": "四人餐桌椅（長邊各2席）", "category": "table", "shape": "dining-set", "color": "#b45309", "width_mm": 1200, "depth_mm": 1800, "height_mm": 850, "table_width_mm": 1200, "table_depth_mm": 800},
+    "tv-wall-55": {"label": "55吋壁掛電視（一般外廓）", "category": "appliance", "shape": "wall-tv", "color": "#263238", "width_mm": 1230, "depth_mm": 80, "height_mm": 710},
     "dining-6": {"label": "六人餐桌椅（含座椅外廓）", "category": "table", "shape": "dining-set", "color": "#b45309", "width_mm": 2400, "depth_mm": 1800, "height_mm": 750, "table_width_mm": 1800, "table_depth_mm": 800},
     "tv-console": {"label": "電視牆／電視櫃", "category": "media", "shape": "tv-console", "color": "#475569", "width_mm": 1800, "depth_mm": 450, "height_mm": 1250},
     "wall-tv": {"label": "43吋壁掛電視（代表外廓）", "category": "media", "shape": "wall-tv", "color": "#475569", "width_mm": 1000, "depth_mm": 80, "height_mm": 600},
@@ -85,6 +87,107 @@
     "planter": {"label": "植栽槽", "category": "outdoor", "shape": "planter", "color": "#16a34a", "width_mm": 1600, "depth_mm": 500, "height_mm": 550}
   },
   "profiles": {
+    "review-a-storage-master": [
+      {"id":"bed","catalog":"double-bed","position":[0.25,0.2],"wall_anchor":"left","wall_locked":true,"note":"原180×200cm床仍靠左實牆，沿牆往前調整以避後方兩櫃的取物帶；不縮床，樑位、完成面與搬運未核。"},
+      {"id":"wardrobe","catalog":"wardrobe-180","position":[0.72,0.9],"wall_anchor":"rear","wall_locked":true,"note":"原主臥180cm衣櫃靠後實牆右段，中間保留主臥入口；不改產品尺寸。"},
+      {"id":"wardrobe-right","catalog":"wardrobe-180","label":"180cm衣櫃（原更衣右櫃）","position":[0.15,0.9],"wall_anchor":"rear","wall_locked":true,"note":"由更衣前室移入的同一組180×60cm衣櫃，靠後實牆左段；原兩組更衣櫃分散放置，不宣稱仍是雙排更衣室。"},
+      {"id":"hall-cabinet","catalog":"hall-cabinet","label":"240cm主臥淺收納櫃（原走道櫃）","position":[0.9,0.2],"wall_anchor":"right","wall_locked":true,"note":"原240×40×220cm走道櫃移到主臥右側實牆，不再占公共走道；是淺收納，不當60cm深衣櫃容量計算。門扇、床與取物演練仍待核。"}
+    ],
+    "review-a-storage-closet": [
+      {"id":"wardrobe-left","catalog":"wardrobe-180","label":"180cm衣櫃（原更衣左櫃）","position":[0.5,0.1],"wall_anchor":"front","wall_locked":true,"shared_operation_with":["door-approach"],"shared_operation_mode":"sequential-only-not-verified","note":"原180×60cm衣櫃轉靠前實牆，房門向後調整；只在更衣室內分時共用取物與入口接近地面，不與外側公共通道共用。人數、門扇、救援未核，不宣稱雙人同時更衣或已符合無障礙。"}
+    ],
+    "review-a-storage-multi": [
+      {"id":"sofa-bed","catalog":"sofa-bed","position":[0.1,0.78],"wall_anchor":"left","wall_locked":true,"note":"原一般沙發床靠左實牆，原工作桌移到後段閱讀／工作區；收合外廓不縮，展床與睡眠通路仍待實物驗證。"}
+    ],
+    "review-a-storage-reading": [
+      {"id":"desk","catalog":"desk-120","position":[0.9,0.9],"wall_anchor":"rear","wall_locked":true,"note":"由3F多功能區移入的原120×60cm書桌靠後實牆；房內是工作區，不作到衛浴或後陽台的必經通道。椅子、實際坐姿與照明仍待選型。"},
+      {"id":"shelf","catalog":"shelf-180","position":[0.1,0.5],"wall_anchor":"left","wall_locked":true,"note":"新增一般180×40cm書櫃靠左實牆，與原書桌共同把空乾區變成可用閱讀／工作區；固定防傾、濕區隔音與完成面未核。"}
+    ],
+    "review-a-efficient-master": [
+      {
+        "id": "bed",
+        "catalog": "double-bed",
+        "position": [
+          0.25,
+          0.4
+        ],
+        "wall_anchor": "left",
+        "wall_locked": true
+      },
+      {
+        "id": "wardrobe",
+        "catalog": "wardrobe-180",
+        "position": [
+          0.8,
+          0.8
+        ],
+        "wall_anchor": "rear",
+        "wall_locked": true,
+        "note": "回收前段走道後恢復一般180×60cm衣櫃；不縮放產品。梳妝台及雙排更衣櫃仍需另案，不代表套房已完成。"
+      }
+    ],
+    "review-a-efficient-theatre": [
+      {
+        "id": "sofa",
+        "catalog": "theater-sofa",
+        "position": [
+          0.4,
+          0.15
+        ],
+        "wall_anchor": "front",
+        "wall_locked": true,
+        "note": "保留原型錄尺寸；沙發與電視向左同軸排列，右後方留公共平台入口，不把門開在電視背牆上。"
+      },
+      {
+        "id": "tv",
+        "catalog": "tv-wall-55",
+        "position": [
+          0.4,
+          0.9
+        ],
+        "wall_anchor": "rear",
+        "wall_locked": true,
+        "aligned_with": "sofa",
+        "mount_height_mm": 1200,
+        "front_clearance_mm": 0,
+        "note": "保留原型錄尺寸；沙發與電視向左同軸排列，右後方留公共平台入口，不把門開在電視背牆上。"
+      }
+    ],
+    "review-c-efficient-master": [
+      {
+        "id": "bed",
+        "catalog": "double-bed",
+        "position": [
+          0.2,
+          0.62
+        ],
+        "wall_anchor": "left",
+        "wall_locked": true,
+        "note": "原180×200cm床轉向靠左側中段實牆；床頭不再貼後段樓梯／運動區，既有門窗不動。梁、鄰界聲音及實際隔音待核，不宣稱睡眠或風水已通過。"
+      },
+      {
+        "id": "wardrobe",
+        "catalog": "wardrobe-180",
+        "position": [
+          0.62,
+          0.9
+        ],
+        "wall_anchor": "rear",
+        "wall_locked": true,
+        "note": "180×60cm衣櫃改靠後側實牆，右側保留房門，不與左側床體重疊；門扇及完成面仍待核。"
+      },
+      {
+        "id": "vanity",
+        "catalog": "vanity-desk",
+        "position": [
+          0.84,
+          0.68
+        ],
+        "wall_anchor": "right",
+        "wall_locked": true,
+        "note": "原120cm梳妝台維持右側實牆；操作位置沿牆微調以避新床位，不縮台。鏡面角度尚未建模，後續需確認不照床及門口。"
+      }
+    ],
     "garage-one": [
       {"id": "car-1", "catalog": "car", "position": [0.5, 0.5]}
     ],
@@ -260,7 +363,7 @@
       {"id": "clothes-rack", "catalog": "clothes-rack", "position": [0.5, 0.5]}
     ],
     "review-mdf": [
-      {"id": "rack", "catalog": "rack-18u", "position": [0.25, 0.5], "wall_anchor": "rear", "wall_locked": true, "wall_gap_mm": 650, "rear_clearance_mm": 600, "front_clearance_mm": 800, "note": "梯廳側壁龕，非梯段正下方；後方600與前方800mm暫留維修，通風、承重與防火待核。"}
+      {"id": "rack", "catalog": "rack-18u", "position": [0.5, 0.5], "wall_anchor": "rear", "wall_locked": true, "wall_gap_mm": 650, "rear_clearance_mm": 600, "front_clearance_mm": 800, "left_clearance_mm": 300, "right_clearance_mm": 300, "note": "梯下為優先待核候選，側壁龕仍作未定案備援；600×600×1000mm原機櫃不縮小，前800／後600／左右各300mm暫留。梯下未成立前不釋放本區；通風、承重、防火及產品查核待核。"}
     ],
     "review-idf": [
       {"id": "rack", "catalog": "rack-15u", "position": [0.5, 0.85], "wall_anchor": "rear", "wall_locked": true, "mount_height_mm": 1000, "note": "同一梯廳端牆壁掛；深600mm仍保留前修800mm，不掛在梯段上或搬運通道。"}
@@ -282,6 +385,56 @@
       {"id": "dining-set", "catalog": "dining-4", "position": [0.57, 0.52], "note": "四人桌含座椅外廓；與照護轉位及後側進梯廳路徑分開，不以六人桌替代。"},
       {"id": "shoe-cabinet", "catalog": "shoe-cabinet", "position": [0.55, 0.1], "wall_anchor": "front", "wall_locked": true, "note": "玄關收納移至同前帶客餐廳前牆，不塞進照護入口的150cm乾式通道。"},
       {"id": "parcel-cabinet", "catalog": "parcel-cabinet", "position": [0.78, 0.1], "wall_anchor": "front", "wall_locked": true}
+    ],
+    "review-a-arcade-living": [
+      {"id":"sofa","catalog":"sofa-2","position":[0.85,0.77],"wall_anchor":"right","wall_locked":true,"note":"一般180×90cm雙人沙發；原240cm三人沙發另案，不縮放原家具。"},
+      {"id":"tv","catalog":"tv-wall-55","position":[0.1,0.77],"wall_anchor":"left","wall_locked":true,"aligned_with":"sofa","mount_height_mm":1200,"front_clearance_mm":0,"note":"壁掛55吋，與沙發同軸；無落地電視櫃，原180cm櫃另案。牆體補強、端子與實際視距待核。"},
+      {"id":"dining-set","catalog":"dining-4-sides","position":[0.68,0.3],"note":"一般120×80cm桌＋4張45cm椅，兩長邊各2席，本體外廓120×180cm，另留40cm拉椅帶；桌面與椅子不縮小，端座及六人桌另案。"},
+      {"id":"shoe-cabinet","catalog":"shoe-cabinet","position":[0.18,0.1],"wall_anchor":"front","wall_locked":true,"note":"120cm鞋櫃在客餐廳前側實牆段；不占玄關共用階梯平台或照護轉位。"}
+    ],
+    "review-a-arcade-bath": [
+      {"id":"vanity","catalog":"vanity-60","position":[0.9,0.12],"wall_anchor":"right","wall_locked":true,"shared_operation_with":["care-turn"],"note":"一般60cm洗手台，操作地面與轉位分時；原90cm型另案，膝下淨空及扶手未核。"},
+      {"id":"toilet","catalog":"toilet","position":[0.9,0.37],"wall_anchor":"right","wall_locked":true,"shared_operation_with":["care-turn"],"note":"一般45×70cm馬桶；右牆排列，操作地面與150cm轉位分時，本體不占轉位區。側移、扶手、救援及排水待核。"},
+      {"id":"shower","catalog":"shower-accessible","position":[0.28,0.85],"wall_anchor":"rear","wall_locked":true,"step_free":true,"shared_operation_with":["care-turn"],"note":"保留120×120cm零門檻淋浴與可移除浴簾提案；接近及轉位地面分時共用，防水、坡度、救援及照護演練未核。"}
+    ],
+    "review-a-arcade-kitchen": [
+      {"id":"counter","catalog":"counter-240-60","position":[0.2,0.65],"wall_anchor":"left","wall_locked":true,"shared_operation_with":["circulation","door-approach"],"note":"一般240×60cm一字廚具，與右側75cm冰箱間暫留約94cm；900mm工作带與廚具開啟分時，非獨立照護通道。原65cm深廚具另案。"},
+      {"id":"fridge","catalog":"fridge-75","position":[0.85,0.35],"wall_anchor":"right","wall_locked":true,"shared_operation_with":["circulation","door-approach"],"note":"75×70cm冰箱在右前側，避開前後門接近帶；開門與通行分時，散熱及實際門扇待選型。"}
+    ],
+    "review-a-fengshui-kitchen": [
+      {"id":"counter","catalog":"counter-240-60","position":[0.2,0.3395],"wall_anchor":"left","wall_locked":true,"shared_operation_with":["circulation","door-approach"],"note":"240×60cm廚具保留原尺寸、向前移約117cm；60×50cm爐台在前段，60×45cm洗槽在後段，中間留60cm備料段。爐台避三樓衛浴投影，不代表整個廚房無上層濕區；管線、產品開孔、隔熱與排煙待核。900mm操作帶與通行分時，冰箱／前後門不動。", "worktop_parts":[{"id":"hob","kind":"hob","label":"60cm爐台候選","center_x_mm":-700,"center_z_mm":0,"width_mm":600,"depth_mm":500},{"id":"sink","kind":"sink","label":"60cm洗槽候選","center_x_mm":500,"center_z_mm":0,"width_mm":600,"depth_mm":450}]},
+      {"id":"fridge","catalog":"fridge-75","position":[0.85,0.35],"wall_anchor":"right","wall_locked":true,"shared_operation_with":["circulation","door-approach"],"note":"原75×70cm冰箱位置不動，與廚具間仍暫留約94cm；開門、工作及通行分時，實際門扇、散熱與完成面待核。"}
+    ],
+    "review-b-fengshui-living": [
+      {"id":"sofa","catalog":"sofa-3","position":[0.2,0.5893],"wall_anchor":"left","wall_locked":true,"note":"原240×90cm沙發轉向靠左側實牆、中段擺放，避開一樓神桌本體上方；整個起居區仍在神明堂上層，不代表家族禁忌已確認。"},
+      {"id":"coffee-table","catalog":"coffee-table","position":[0.4,0.5893],"in_front_of":"sofa","front_gap_mm":400,"note":"原110×60cm茶几跟隨沙發，前留40cm；與神桌外廓投影分離，不新增隔牆。"},
+      {"id":"tv","catalog":"tv-console","position":[0.85,0.5893],"wall_anchor":"right","aligned_with":"sofa","wall_locked":true,"note":"原180cm電視櫃改靠右側實牆、與沙發同軸，避開房門及神桌本體投影；端子、牆體與視距待核。"}
+    ],
+    "review-b-fengshui-guest": [
+      {"id":"bed","catalog":"single-bed","position":[0.2,0.5],"wall_anchor":"left","wall_locked":true,"note":"原105×188cm床轉向靠左側中段實牆，避開一樓神桌本體上方；若家規禁止整個神明堂上方睡人，本客房仍不能視為已符合。"},
+      {"id":"wardrobe","catalog":"wardrobe-180","position":[0.2,0.8],"wall_anchor":"left","wall_locked":true,"note":"原180×60cm衣櫃沿左後段實牆，不壓一樓神桌本體投影，不縮櫃；門扇與搬運待核。"},
+      {"id":"desk","catalog":"desk-140","position":[0.84,0.68],"wall_anchor":"right","note":"原140cm書桌位置與產品尺寸保留。"}
+    ],
+    "review-c-fengshui-master": [
+      {"id":"bed","catalog":"double-bed","position":[0.2,0.62],"wall_anchor":"left","wall_locked":true,"note":"原180×200cm床轉向靠左側中段實牆；床頭不再貼後段樓梯／運動區，既有門窗不動。梁、鄰界聲音及實際隔音待核，不宣稱睡眠或風水已通過。"},
+      {"id":"wardrobe","catalog":"wardrobe-180","position":[0.2,0.2],"wall_anchor":"left","wall_locked":true,"note":"原180×60cm衣櫃維持左前段實牆及一般尺寸，未占前陽台門。"},
+      {"id":"vanity","catalog":"vanity-desk","position":[0.84,0.68],"wall_anchor":"right","wall_locked":true,"note":"原120cm梳妝台維持右側實牆；操作位置沿牆微調以避新床位，不縮台。鏡面角度尚未建模，後續需確認不照床及門口。"}
+    ],
+    "review-a-arcade-theatre": [
+      {"id":"sofa","catalog":"theater-sofa","position":[0.5,0.15],"wall_anchor":"front","wall_locked":true},
+      {"id":"tv","catalog":"tv-wall-55","position":[0.5,0.9],"wall_anchor":"rear","wall_locked":true,"aligned_with":"sofa","mount_height_mm":1200,"front_clearance_mm":0,"note":"移位樓梯後的家庭劇院初排；原電視櫃與額外娛樂設備需求另案。"}
+    ],
+    "review-a-arcade-multi": [
+      {"id":"sofa-bed","catalog":"sofa-bed","position":[0.1,0.78],"wall_anchor":"left","wall_locked":true,"note":"一般沙發床收合狀態；展床後尺度與睡眠動線尚未核，不能當客房已完成。"},
+      {"id":"desk","catalog":"desk-120","position":[0.1,0.2],"wall_anchor":"left","wall_locked":true,"note":"一般120cm工作桌與沙發床分放前後，不擋入口；原額外設備／椅子另案。"}
+    ],
+    "review-a-arcade-single": [
+      {"id":"bed","catalog":"single-bed","position":[0.25,0.1],"wall_anchor":"front","wall_locked":true,"note":"105×188cm單人床，避開右前入口，不縮小原床。"},
+      {"id":"wardrobe","catalog":"wardrobe-180","position":[0.9,0.57],"wall_anchor":"right","wall_locked":true,"note":"180×60cm衣櫃靠右中段，不占前後門接近帶；完成面及門扇待核。"},
+      {"id":"desk","catalog":"desk-120","position":[0.3,0.9],"wall_anchor":"rear","wall_locked":true,"note":"一般120cm書桌靠後側左實牆段，右側留後陽台門；原140cm桌另案保留。"}
+    ],
+    "review-a-arcade-hall": [
+      {"id":"hall-cabinet","catalog":"hall-cabinet","position":[0.8,0.5],"wall_anchor":"right","wall_locked":true,"note":"原240×40cm櫃保留原尺寸列待移，不畫成已安裝。若硬放，關櫃僅約880mm、取物時約280mm；不足本版1280mm公共通行暫留，不能同時當通道。完成面、避難、救援及替代位置待建築師核對。"}
     ],
     "review-a-care-elder": [
       {"id": "bed", "catalog": "queen-bed", "position": [0.25, 0.85], "wall_anchor": "rear", "wall_locked": true, "note": "常見152 × 188cm雙人床，不是沙發床；靠後側實牆段，右側留照護與轉位區，不靠共壁假側窗取得採光。"},
@@ -314,6 +467,12 @@
       {"id": "coffee-table", "catalog": "coffee-table", "position": [0.18, 0.4], "in_front_of": "sofa", "front_gap_mm": 400, "note": "110×60cm一般茶几，沙發前留40cm，不擋客廳中央120cm照護帶與150cm轉位區。"},
       {"id": "reading-chair", "catalog": "reading-chair", "position": [0.9, 0.75], "wall_anchor": "right", "wall_locked": true, "note": "90cm一般單椅靠右側後段，供閱讀／陪伴；主看電視位是對向雙人沙發，保留入口横向通行。"}
     ],
+    "review-c-open-living": [
+      {"id": "sofa", "catalog": "sofa-2", "position": [0.325, 0.54], "rotation_deg": 90, "note": "一般180×90cm雙人沙發活動擺位、面向左側實牆電視；不是靠已取消的餐廳隔牆。背後留照護通道，另配90cm單椅。原240cm三人沙發仍另案，不縮放。"},
+      {"id": "tv", "catalog": "wall-tv", "position": [0.1, 0.54], "wall_anchor": "left", "aligned_with": "sofa", "wall_locked": true, "mount_height_mm": 1200, "front_clearance_mm": 0, "note": "43吋代表外廓改掛左側實牆，與沙發同軸、面對面；不掛已拆除的客餐隔牆。眼位、支架承重、底高及眩光待核。"},
+      {"id": "coffee-table", "catalog": "coffee-table", "position": [0.13, 0.54], "in_front_of": "sofa", "front_gap_mm": 400, "note": "110×60cm一般茶几跟隨沙發轉向，前留40cm；不占右側120cm照護帶／150cm轉位暫留。"},
+      {"id": "reading-chair", "catalog": "reading-chair", "position": [0.9, 0.75], "wall_anchor": "right", "wall_locked": true, "note": "90cm一般單椅靠右側後段，供閱讀／陪伴；主看電視位是對向雙人沙發，保留入口横向通行。"}
+    ],
     "review-c-1f-kitchen": [
       {"id": "counter", "catalog": "counter-240-60", "position": [0.2, 0.5], "wall_anchor": "left", "wall_locked": true, "shared_operation_with": ["door-approach"], "note": "另選常見240×60cm一字廚具候選，非把原240×65cm代表型號縮薄。900mm操作帶與廚房門口分時使用；只適用廚房工作，不與孝親主通道共用。原型號、前側排煙、完成面與消防另核。"},
       {"id": "fridge", "catalog": "fridge-75", "position": [0.85, 0.8], "wall_anchor": "right", "wall_locked": true, "note": "75×70cm一般冰箱，避開梯廳側廚房入口；門扇、散熱與換機仍需產品資料。"}
@@ -328,6 +487,12 @@
       {"id": "offering-table", "catalog": "folding-offering-table", "position": [0.5, 0.65]},
       {"id": "bench-left", "catalog": "movable-bench", "position": [0.2, 0.35]},
       {"id": "bench-right", "catalog": "movable-bench", "position": [0.7, 0.35]}
+    ],
+    "review-b-axial-shrine": [
+      {"id": "altar", "catalog": "altar-table", "position": [0.5, 0.9], "wall_anchor": "rear", "wall_locked": true, "note": "私有前廳後方實牆、面向中軸祭祀門，依屋主家規正前方開門；搬轎走獨立右側通道，不把神桌移入騎樓。坐向、梁與管線及香火安全仍待核。"},
+      {"id": "offering-table", "catalog": "folding-offering-table", "position": [0.5, 0.65]},
+      {"id": "bench-left", "catalog": "movable-bench", "position": [0.1, 0.38], "wall_anchor": "left", "wall_locked": true, "note": "140×45cm長凳沿左牆轉向，不攔神桌正前方180cm祭拜暫留帶。"},
+      {"id": "bench-right", "catalog": "movable-bench", "position": [0.9, 0.55], "wall_anchor": "right", "wall_locked": true, "note": "140×45cm長凳沿右側後段實牆，避側門與中軸祭拜暫留带；節慶人數與站跪需求另演練。"}
     ],
     "review-storage": [
       {"id": "ceremonial-storage", "catalog": "ceremonial-storage", "position": [0.73, 0.56], "note": "收納本體對齊側邊直線出口；抬桿及搬運外廓未測，不能宣稱可搬出。"},

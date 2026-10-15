@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ABC · 32地坪含騎樓容量比較（未採用）</title>
+<style>
+:root{font-family:system-ui,"Microsoft JhengHei",sans-serif;color:#263b43;background:#f4f6f4;color-scheme:light}*{box-sizing:border-box}body{margin:0}
+header,main{max-width:1160px;margin:auto;padding:16px}header{padding-bottom:0}h1{font-size:22px;margin:0 0 8px}h2{font-size:18px;margin:12px 0}p{line-height:1.65;margin:8px 0}
+a{color:#146c70}button,select,a.action{font:inherit;min-height:44px;padding:8px 12px;border-radius:6px;border:1px solid #7f9b99;background:white;color:inherit}button,select{cursor:pointer}a.action{display:inline-flex;align-items:center;color:#146c70;text-decoration:none}button:hover,a.action:hover{background:#e3eeeb}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0}.toolbar label{font-size:13px}.status{border-left:3px solid #b58028;background:#fff1d5;padding:8px 10px;font-size:13px;line-height:1.5}
+.workspace{display:grid;grid-template-columns:minmax(320px,510px) minmax(0,1fr);gap:20px;align-items:start}.panel,.plan{margin:0;background:white;border:1px solid #cad6d0;border-radius:8px;padding:14px}.plan object{display:block;width:100%;aspect-ratio:6600/19030}figcaption,.small{font-size:13px;line-height:1.6;color:#4e6569}
+#selection-status{margin:8px 0}dl{display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:14px}dt,dd{margin:0;padding:3px 0}dd{font-variant-numeric:tabular-nums}.warning{color:#824121;border-left:3px solid #b36b43;background:#fff5e8;padding:8px 10px}.footer{margin-top:20px}
+ul,ol{padding-left:24px;line-height:1.7}li{margin-bottom:5px}summary{min-height:44px;padding:10px 0;cursor:pointer;font-weight:600}table{border-collapse:collapse;width:100%;font-size:14px;margin:12px 0}th,td{padding:9px;text-align:left;border-bottom:1px solid #d8e0dc;vertical-align:top}caption{text-align:left;color:#4e6569;line-height:1.6;padding:8px 0}.table-scroll{overflow-x:auto}th{font-weight:600}.error{display:none}
+@media(max-width:700px){header,main{padding:12px}h1{font-size:20px}.workspace{grid-template-columns:1fr}.plan{padding:6px}.panel{padding:12px}.toolbar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.toolbar label{display:none}.toolbar select{width:100%;min-width:0}#scheme,#reset{grid-column:1/-1}.toolbar a.action{min-width:0;white-space:nowrap;justify-content:center}table{font-size:13px}th,td{padding:7px 4px}dl{font-size:13px}#option-summary{display:none}.footer{margin-top:12px}}
+@media print{body{background:white}.toolbar{display:none}.workspace{grid-template-columns:1fr 1fr}.table-scroll{overflow:visible}details{break-inside:avoid}a{color:inherit}}
+</style>
+</head>
+<body>
+<header>
+  <h1>ABC · 舊骨架32地坪含騎樓容量對照</h1>
+  <p class="notice">本頁保留騎樓整合前的歷史骨架；現行A主案已另重排，請到<a href="../../AbuildingView.html">A主案HTML</a>／<a href="model3d.html#mode=tour&amp;building=A&amp;floor=floor-1&amp;view=front">現行A 3D</a>查看。這些比較案不自動採用。</p>
+  <div class="status">比較用，未採用／未核准。主案保留；32坪含前3.9m，不能當作每層32坪室內。</div>
+  <div class="toolbar">
+    <label for="scheme">方案</label><select id="scheme" aria-label="容量比較方案"></select>
+    <label for="building">棟別</label><select id="building" aria-label="比較棟別"><option>A</option><option>B</option><option>C</option></select>
+    <label for="floor">樓層</label><select id="floor" aria-label="比較樓層"><option value="floor-1">1F</option><option value="floor-2">2F</option><option value="floor-3">3F</option><option value="floor-4">RF</option></select>
+    <button type="button" id="reset">回32坪檢查</button>
+    <a class="action" id="open-3d" href="arcade-capacity-3d.html?scheme=arcade32#mode=tour&amp;building=A&amp;floor=floor-1&amp;view=front">本案3D</a>
+    <a class="action" id="main-design" href="../../AbuildingView.html">原主案HTML</a>
+  </div>
+  <p id="selection-status" class="warning" role="status" aria-live="polite">A／C空間衝突未解，B只作祭祀優先初排。</p>
+  <p id="option-summary" class="small"></p>
+</header>
+<main>
+  <div class="workspace">
+    <figure class="plan">
+      <object id="plan" data="arcade-capacity/arcade32_A_floor-1.svg" type="image/svg+xml" aria-label="A棟32坪含騎樓容量衝突平面">
+        <p>平面無法載入：<a id="plan-fallback-link" href="arcade-capacity/arcade32_A_floor-1.svg">單獨開啟本案SVG</a>，或查看空間／家具清單。</p>
+      </object>
+      <figcaption id="caption">前方／道路在上，mm。正常尺寸放不下的家具不畫成已擺放；詳見待調整清單。</figcaption>
+      <a class="action" id="svg-link" href="arcade-capacity/arcade32_A_floor-1.svg" target="_blank" rel="noopener">開啟／列印平面SVG</a>
+    </figure>
+    <section class="panel" aria-labelledby="selected-title">
+      <h2 id="selected-title">本案範圍與代價</h2>
+      <dl id="areas"></dl>
+      <h2>仍未滿足的需求</h2><ul id="unmet"></ul>
+      <details open><summary>待調整家具 · 保留正常外廓</summary><div id="pending"></div></details>
+      <details><summary>孝親房／一樓洗澡仍保留</summary><ul id="care"></ul></details>
+      <details><summary>本層家具與設備明細</summary><ol id="furniture"></ol></details>
+      <details><summary>跨層樓梯／冷氣／外觀同源核對</summary><div id="systems"></div></details>
+      <p class="small">相鄰門圖不是通行、照護、逃生或宗教坐向通過。未解項目不能因換圖而自動刪除。</p>
+    </section>
+  </div>
+  <section class="panel footer" aria-labelledby="capacity-title">
+    <h2 id="capacity-title">三棟結論 · 同一方案一起看</h2>
+    <div class="table-scroll"><table><thead><tr><th>項目</th><th>A棟</th><th>B棟</th><th>C棟</th></tr></thead><tbody id="abc-summary"></tbody></table></div>
+    <p class="small">加深對照：A約40.71坪、B／C約33.63坪，僅保留此版空間骨架的幾何代價，不是最小基地解。建蔽、容積、停車與原需求仍未通過；可另比較更寬基地、橫向樓梯或需求重新分層，不能直接拿這些面積購地。</p>
+    <details><summary>建蔽率敏感度 · 不是法定面積或通過判定</summary>
+      <p>目前棟別的所有樓層室內矩形聯集僅作投影警訊。牆柱、陽台與騎樓的法定認列未知，並未建立法定建築面積；結果偏樂觀或偏保守皆有可能。</p>
+      <table><thead><tr><th>假設建蔽</th><th>假設上限</th><th>概念投影超出量</th><th>法規判定</th></tr></thead><tbody id="coverage"></tbody></table>
+    </details>
+    <details><summary>後方空地敏感度 · 每筆32坪／前3.9m</summary>
+      <p>以下只是6m面寬的全寬長方形扣除。室內牆柱尚未扣除；後方深度不是法定退縮，既有陽台是否可兼用也未核，不能重複扣除再宣稱合法。</p>
+      <table><thead><tr><th>後方另留</th><th>剩餘矩形</th><th>換算坪數</th></tr></thead><tbody id="rear"></tbody></table>
+    </details>
+    <details><summary>假設／來源／取得地籍後要核對什麼</summary><ul id="conditions"></ul><ul id="sources"></ul></details>
+    <p><a href="model3d.html#mode=tour&amp;building=A&amp;floor=floor-1&amp;view=front">現行ABC主案3D</a> · <a href="c1f-options.html">C公衛／採光比較（未合併）</a> · <a href="../../Docs/abc-32ping-arcade-v1.md">舊骨架容量比較說明</a></p>
+  </section>
+  <noscript>本頁是未採用容量比較。停用JavaScript時先看A棟32坪衝突圖；其他棟別／樓層可到arcade-capacity目錄開啟SVG。主案未變更。</noscript>
+</main>
+<script src="arcade-capacity/layout.js"></script>
+<script>
+(function(){
+  "use strict";
+  var data=window.HOUSE_ARCADE_CAPACITY;
+  if(!data){document.getElementById("selection-status").textContent="容量資料未載入；不要據此判定任何方案通過。";return;}
+  var scheme=document.getElementById("scheme"),building=document.getElementById("building"),floor=document.getElementById("floor");
+  function el(tag,text){var n=document.createElement(tag);n.textContent=text;return n;}
+  function list(id,values){var n=document.getElementById(id);n.replaceChildren();values.forEach(function(v){n.appendChild(el("li",v));});}
+  function rows(id,values){var n=document.getElementById(id);n.replaceChildren();values.forEach(function(row){var tr=document.createElement("tr");row.forEach(function(v,i){tr.appendChild(el(i?"td":"th",v));});n.appendChild(tr);});}
+  function result(c){return c.status==="conflicts-remain"?"空間衝突未解，不可採用":"僅幾何初排，法規／原需求未通過";}
+  data.options.forEach(function(o){var n=el("option",o.label);n.value=o.id;scheme.appendChild(n);});
+  list("conditions",data.conditions);var sources=document.getElementById("sources");data.sources.forEach(function(s){var li=document.createElement("li"),a=el("a",s.note);a.href=s.url;a.target="_blank";a.rel="noopener";li.appendChild(a);sources.appendChild(li);});
+  rows("rear",data.rear_sensitivity.map(function(r){return [r.rear_mm/1000+"m（假設）",r.rectangular_remainder_sqm.toFixed(2)+"m²",(r.rectangular_remainder_sqm/(400/121)).toFixed(2)+"坪，未扣牆柱"]; }));
+  function render(write){
+    var p=new URLSearchParams(location.hash.slice(1));
+    var o=data.options.find(function(v){return v.id===(write?scheme.value:p.get("scheme"));})||data.options[1];
+    var bid=write?building.value:p.get("building");if(!["A","B","C"].includes(bid))bid="A";
+    var b=o.plans.buildings.find(function(v){return v.id===bid;});var fid=write?floor.value:p.get("floor");var f=b.floors.find(function(v){return v.id===fid;})||b.floors[0];
+    scheme.value=o.id;building.value=bid;floor.value=f.id;document.body.dataset.scheme=o.id;document.body.dataset.building=bid;document.body.dataset.floor=f.id;
+    var c=o.capacity[bid],file="arcade-capacity/"+f.plan_file,plan=document.getElementById("plan");if(plan.getAttribute("data")!==file)plan.setAttribute("data",file);plan.style.aspectRatio=(f.width_mm+600)+" / "+(f.depth_mm+1400);plan.setAttribute("aria-label",bid+"棟 "+f.label+" "+o.label+"（未採用）");
+    document.getElementById("selected-title").textContent=bid+"棟 · "+o.label;
+    document.getElementById("selection-status").textContent=bid+"棟 · "+result(c)+(c.front_clear?"；前3.9m通行，不計車位。":"；原前帶未留騎樓，主案不能直接沿用。");
+    document.getElementById("option-summary").textContent=o.summary;
+    document.getElementById("svg-link").href=file;document.getElementById("plan-fallback-link").href=file;
+    document.getElementById("open-3d").href="arcade-capacity-3d.html?scheme="+o.id+"#mode=tour&building="+bid+"&floor="+f.id+"&view=front";
+    document.getElementById("main-design").href="../../"+bid+"buildingView.html";
+    document.getElementById("caption").textContent=bid+"棟 "+f.label+" · 道路在上／mm；SVG與3D同源。未能放入的家具保持原尺寸但不畫成已擺放，房名可開同方案特寫。";
+    var areas=document.getElementById("areas");areas.replaceChildren();[
+      ["每筆比較框",c.frame_mm[0]/1000+"×"+c.frame_mm[1]/1000+"m／"+c.parcel_ping.toFixed(2)+"坪"],
+      ["1F室內矩形合計",c.ground_indoor_rectangles_sqm.toFixed(2)+"m²（非淨面積）"],
+      ["全層室內投影聯集",c.indoor_projection_proxy_sqm.toFixed(2)+"m²（非法定面積）"],
+      ["本層標高／層高",f.base_mm/1000+"m／"+f.height_mm/1000+"m（暫估）"],
+      ["騎樓梁下淨高",o.id==="baseline"?"未知；原1F僅3m層高":"未知；4m−500mm僅名義預留"],
+      ["汽車位","0；核准車位未知／原需求未解"]
+    ].forEach(function(v){areas.appendChild(el("dt",v[0]));areas.appendChild(el("dd",v[1]));});
+    list("unmet",c.unmet);var pending=document.getElementById("pending");pending.replaceChildren();if(!c.pending_furniture.length)pending.appendChild(el("p","無程式家具衝突，不代表法規、實測或需求全部通過。"));
+    c.pending_furniture.forEach(function(i){var p=el("p",i.room+" · "+i.item+" "+i.dimensions_mm.map(function(v){return v/10;}).join("×")+"cm；待調整："+i.issues.join("、"));p.dataset.pendingItem=i.item_id;pending.appendChild(p);});
+    list("care",c.care_rooms.length?c.care_rooms.map(function(r){return r.room+"：仍保留"+(r.furniture_pending?"，家具衝突待重排":"，普通尺寸初排")+(r.turning_reservation_present?"；圖上轉位只暫留，非核准":"；尚無150cm轉位暫留，不可當照護衛浴完成")+"；完成面、淋浴／救援與照護實物演練未核。";}):["B棟1F目前只有客用廁所，未增加淋浴；搬轎需求獨立保留。"]);
+    list("furniture",f.rooms.flatMap(function(r){return r.furniture.map(function(i){return r.name+" · "+i.label+" "+[i.width_mm,i.depth_mm,i.height_mm].map(function(v){return v/10;}).join("×")+"cm（"+(i.placement.issues.length?"待調整／未安裝":"代表規劃值／非實測")+"）";});}));
+    var systems=document.getElementById("systems");systems.replaceChildren();b.floors.forEach(function(upper){var stair=upper.rooms.find(function(r){return r.features.stairs;});var sg=stair.features.stair_geometry;systems.appendChild(el("p",upper.label+"：標高"+upper.base_mm/1000+"m、層高"+upper.height_mm/1000+"m；雙折梯"+sg.risers+"級、級高"+sg.riser_mm+"mm、級深"+sg.tread_mm+"mm，保留框內"+(sg.fits_reserved_box?"初排容納":"不足")+"；非淨高／消防核准。"));});
+    o.plans.layout_review.hvac_routes.filter(function(r){return r.id.startsWith(bid+"-");}).forEach(function(r){systems.appendChild(el("p",r.id+"：折線"+(r.estimated_routed_length_mm/1000).toFixed(2)+"m／高低差"+(r.elevation_difference_mm/1000).toFixed(2)+"m；型號、手冊、冷凝水重力排水與維修仍未知。"));});
+    rows("coverage",c.coverage_sensitivity.map(function(r){return [r.ratio*100+"%",r.hypothetical_limit_sqm.toFixed(2)+"m²",r.proxy_excess_sqm.toFixed(2)+"m²（僅警訊）","未知／未核"]; }));
+    rows("abc-summary",[
+      ["此方案結論"].concat(["A","B","C"].map(function(id){return result(o.capacity[id]);})),
+      ["每筆比較面積"].concat(["A","B","C"].map(function(id){return o.capacity[id].parcel_ping.toFixed(2)+"坪";})),
+      ["正常尺寸待調整件數"].concat(["A","B","C"].map(function(id){return o.capacity[id].pending_furniture.length+"件";})),
+      ["汽車／法規核准"].concat(["A","B","C"].map(function(){return "0車／未知";}))
+    ]);
+    if(write)history.replaceState(null,"","#scheme="+o.id+"&building="+bid+"&floor="+f.id);
+    window.__arcadeCapacityDebug=function(){return {id:o.id,building:bid,floor:f.id,status:data.status,activeDesign:data.active_design,capacity:c,plan:f,option:o};};
+  }
+  [scheme,building,floor].forEach(function(n){n.addEventListener("change",function(){render(true);});});document.getElementById("reset").addEventListener("click",function(){scheme.value="arcade32";building.value="A";floor.value="floor-1";render(true);scheme.focus();});window.addEventListener("hashchange",function(){render(false);});render(false);
+})();
+</script>
+</body>
+</html>

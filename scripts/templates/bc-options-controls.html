@@ -1,0 +1,30 @@
+<style>
+  body.bc-study .bc-study-controls{border:1px solid #c99d48;border-radius:8px;padding:12px;margin:0 0 12px;background:#102b32;font-size:12px;line-height:1.5}
+  body.bc-study #bc-study-controls h2{margin:0 0 8px;color:#ffdda1;font-size:14px;letter-spacing:0;text-transform:none}
+  body.bc-study .bc-study-warning{margin:0 0 10px;color:#ffdda1}
+  body.bc-study .bc-study-controls label{display:block;margin-bottom:10px}
+  body.bc-study #study-scheme{display:block;box-sizing:border-box;width:100%;max-width:100%;min-width:0;min-height:44px;margin-top:5px;border:1px solid #739ca6;border-radius:6px;background:#132238;color:#eef6ff;font:inherit}
+  body.bc-study #study-scheme:focus-visible,body.bc-study .bc-study-controls a:focus-visible,body.bc-study .bc-study-controls summary:focus-visible{outline:3px solid #ffdda1;outline-offset:2px}
+  body.bc-study .bc-study-links{display:flex;gap:6px;flex-wrap:wrap}
+  body.bc-study .bc-study-links a{display:inline-flex;align-items:center;min-height:44px;box-sizing:border-box;max-width:100%;padding:5px 8px;color:#a8e2df;border:1px solid #739ca6;border-radius:6px;text-decoration:none;overflow-wrap:anywhere}
+  body.bc-study .bc-study-controls details{margin-top:10px}
+  body.bc-study .bc-study-controls summary{min-height:44px;padding:8px 0;cursor:pointer;color:#ffdda1}
+  body.bc-study #bc-study-tradeoffs{overflow-wrap:anywhere}
+  body.bc-study #tour-actions,body.bc-study #furniture-start,body.bc-study #presentation-mode,
+  body.bc-study #geom-source,body.bc-study #geometry-hint,body.bc-study #mdf-study-description,body.bc-study #mdf-section-link,
+  body.bc-study #facade-actions,body.bc-study #compare,body.bc-study label:has(#ghost),body.bc-study h2:has(+label #ghost),
+  body.bc-study label:has(#mdf-study),body.bc-study label:has(#frontage-study),body.bc-study label:has(#frontage-study)+.hint,
+  body.bc-study h2:has(+#presentation-mode),body.bc-study h2:has(+#geom-source){display:none}
+  body.bc-study #study-stage-note{position:absolute;left:14px;bottom:56px;z-index:4;box-sizing:border-box;max-width:calc(100% - 28px);padding:7px 10px;border:1px solid #c99d48;border-radius:6px;background:#fff5dd;color:#65430b;font:600 12px/1.45 "Segoe UI","Microsoft JhengHei",sans-serif;overflow-wrap:anywhere;pointer-events:none}
+  @media(max-width:860px) and (max-height:500px){body.bc-study #study-stage-note{left:auto;right:14px;bottom:8px;max-width:calc(50% - 28px);font-size:11px;padding:5px 8px}}
+</style>
+    <section id="bc-study-controls" class="bc-study-controls" aria-label="B／C比較方案控制（未採用）">
+      <h2>B 家規／C 照護比較（未採用）</h2>
+      <p class="bc-study-warning">本頁是比較方案，未採用／未核；切換方案不會改成 ABC 主案。</p>
+      <label for="study-scheme">方案<select id="study-scheme"></select></label>
+      <div class="bc-study-links">
+        <a id="study-plan-link" href="bc-options.html">同源平面圖／取捨</a>
+        <a href="model3d.html">返回 ABC 主案</a>
+      </div>
+      <details><summary>本案取捨與未解需求</summary><p id="bc-study-tradeoffs"></p></details>
+    </section>

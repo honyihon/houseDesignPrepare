@@ -1,0 +1,98 @@
+{
+  "schema": "house-b32-entry-options-v1",
+  "revision": 1,
+  "updated_at": "2026-10-14",
+  "status": "comparison-only-not-adopted",
+  "active_design": "baseline",
+  "default_option": "b32-rear",
+  "land_cap_ping": 32,
+  "frame_mm": [6000, 17630],
+  "frontage_depth_mm": 3900,
+  "storey_heights_mm": [4000, 3000, 3000, 3000],
+  "discussion_inset_mm": 80,
+  "core": {"flight_side": "left", "flight_width_mm": 1000, "tread_mm": 270, "well_depth_mm": 5060, "shared_front_landing": false},
+  "owner_decisions": [
+    {"date": "2026-10-14", "decision": "32地坪為B棟上限；不採37.3坪擴框作解答。"},
+    {"date": "2026-10-14", "decision": "先以後門搬轎做預先設計，保留共用前門搬轎備案；不是採用或認定後巷存在。"},
+    {"date": "2026-10-14", "decision": "維持朝街同軸祭祀門、神桌背後不設梯間、整間神明堂上方不睡眠及20m²主臥原目標。"}
+  ],
+  "access_evidence": {
+    "rear_route_exists": {"status": "unknown", "value": null, "source": null},
+    "rear_route_rights": {"status": "unknown", "value": null, "source": null},
+    "rear_opening_permission": {"status": "unknown", "value": null, "source": null},
+    "rear_route_clear_dimensions_levels": {"status": "unknown", "value": null, "source": null},
+    "rear_turn_staging_people_rehearsal": {"status": "unknown", "value": null, "source": null}
+  },
+  "options": [
+    {"id": "b32-rear", "label": "B 32地坪｜後門搬轎優先預案（後巷未核／未採用）", "entry_mode": "rear", "role": "preferred-conditional", "rear_gate_nominal_mm": 1960, "rear_gate_center_mm": 4500, "pedestrian_reserve_clear_mm": 1200, "palanquin_body_origin_mm": [2680, 14550]},
+    {"id": "b32-front", "label": "B 32地坪｜共用前門搬轎備案（無後巷時比較／未採用）", "entry_mode": "front", "role": "fallback-if-no-rear-access", "pedestrian_reserve_clear_mm": 1520, "palanquin_body_origin_mm": [4560, 15700]}
+  ],
+  "floors": {
+    "floor-1": {
+      "rooms": {
+        "garage": {"rect": [0, 0, 6000, 3900], "name": "騎樓／前通行帶（不計車位）", "kind": "outdoor", "outdoor": true, "clear": true, "window_mm": 0},
+        "stair1": {"rect": [0, 3900, 2400, 5200], "name": "前左雙折樓梯／平台（淨高待核）", "kind": "stair", "clear": true, "window_mm": 0},
+        "shrine-front": {"rect": [2400, 3900, 3600, 5200], "name": "神明堂｜朝街前廳（與祭拜區無隔牆）", "kind": "living", "group": "b32-shrine", "role": "living", "clear": true, "window_mm": 0},
+        "shrine": {"rect": [0, 9100, 6000, 2270], "name": "神明堂｜祭拜區／神桌乾背牆", "kind": "living", "group": "b32-shrine", "role": "living", "profile": "b32-shrine", "window_mm": 0},
+        "altar-backing": {"rect": [2500, 11370, 1820, 1600], "name": "神桌背後乾式法器收納（非通道）", "kind": "service", "profile": "b32-backing", "window_mm": 0},
+        "bath1": {"rect": [0, 11370, 2500, 2960], "name": "一樓淋浴衛浴｜設備／轉位暫留", "kind": "bath", "room_role": "bathroom", "group": "b32-bath1", "role": "bath", "profile": "b32-bath1", "window_mm": 0},
+        "bath-extension": {"rect": [2500, 12970, 1820, 1360], "name": "一樓衛浴｜側向入口（非第二間）", "kind": "bath", "room_role": "bathroom", "group": "b32-bath1", "role": "bath", "clear": true, "window_mm": 0},
+        "corridor1": {"rect": [4320, 11370, 1680, 2960], "name": "側緣公共通行／浴室入口（不得置物）", "kind": "other", "role": "circulation", "clear": true, "window_mm": 0},
+        "storage": {"rect": [2400, 14330, 3600, 3300], "name": "武轎儲藏室（實物搬運待演練）", "kind": "service", "profile": "b32-storage", "window_mm": 0, "carry_path_mm": 1680},
+        "work-reserve": {"rect": [0, 14330, 2400, 3300], "name": "後段工作預留（非已成立工作陽台）", "kind": "service", "clear": true, "window_face": "rear", "window_mm": 1200}
+      },
+      "connections": [
+        ["shrine-front", "shrine", "open"],
+        ["stair1", "shrine-front", 1000, 4400],
+        ["shrine", "corridor1", "open"],
+        ["corridor1", "altar-backing", {"width_mm": 1060, "label": "乾櫃入口（門片／取物分時）"}, 12170],
+        ["corridor1", "bath-extension", {"width_mm": 1060, "label": "淋浴側門（救援門型未定）"}, 13650],
+        ["bath1", "bath-extension", "open"],
+        ["corridor1", "storage", {"width_mm": 1660, "purpose": "palanquin-storage", "label": "儲藏室前門（166cm名義／淨寬待核）"}, 5160],
+        ["storage", "work-reserve", {"width_mm": 1060, "label": "工作預留區入口（需經儲藏室）"}, 16950]
+      ],
+      "entry": ["shrine-front", "front", 1800, 3400],
+      "entry_label": "朝街同軸祭祀正門（180cm名義）",
+      "additional_entries": [["stair1", "front", 1000, 1200]]
+    },
+    "floor-2": {
+      "rooms": {
+        "balcony2": {"rect": [0, 0, 6000, 3900], "name": "前陽台／室外機候選（合法性待核）", "kind": "outdoor", "outdoor": true, "clear": true, "window_mm": 0},
+        "stair2": {"rect": [0, 3900, 2400, 5200], "name": "同軸前左樓梯／平台", "kind": "stair", "clear": true, "window_mm": 0},
+        "living2-front": {"rect": [2400, 3900, 3600, 5200], "name": "安靜起居｜前區（禁作睡眠）", "kind": "living", "group": "b32-living2", "role": "living", "profile": "b32-living", "window_face": "front", "window_mm": 1200, "window_ratio": 0.75},
+        "living2": {"rect": [0, 9100, 6000, 2270], "name": "安靜起居｜後區（整廳上方禁睡）", "kind": "living", "group": "b32-living2", "role": "living", "clear": true, "window_mm": 0},
+        "corridor2": {"rect": [0, 11370, 1200, 2670], "name": "主臥／公衛公共通道（完成面待核）", "kind": "other", "role": "circulation", "clear": true, "window_mm": 0},
+        "bath2": {"rect": [1200, 11370, 2160, 2670], "name": "二樓公衛（排氣／救援待核）", "kind": "bath", "room_role": "bathroom", "profile": "b32-public-bath", "window_mm": 0},
+        "master-bath2": {"rect": [3360, 11370, 2640, 2670], "name": "主臥套衛（管道／防水待核）", "kind": "bath", "room_role": "bathroom", "profile": "b32-ensuite", "window_mm": 0},
+        "master2": {"rect": [0, 14040, 6000, 3590], "name": "主臥20m²原目標（牆柱餘量極薄）", "kind": "bedroom", "profile": "b32-bedroom", "window_face": "rear", "window_mm": 2400}
+      },
+      "connections": [["stair2", "living2-front", 1000, 4400], ["living2-front", "living2", "open"], ["living2-front", "balcony2", 1000, 3400], ["living2", "corridor2", "open"], ["corridor2", "bath2", {"width_mm": 1060, "label": "公衛入口（救援待核）"}, 12870], ["corridor2", "master2", 1000, 600], ["master2", "master-bath2", {"width_mm": 1060, "label": "套衛入口（衣櫃取物分時）"}, 4580]]
+    },
+    "floor-3": {
+      "rooms": {
+        "terrace3": {"rect": [0, 0, 6000, 3900], "name": "前露台候選（合法性待核）", "kind": "outdoor", "outdoor": true, "clear": true, "window_mm": 0},
+        "stair3": {"rect": [0, 3900, 2400, 5200], "name": "同軸前左樓梯／平台", "kind": "stair", "clear": true, "window_mm": 0},
+        "quiet-study-front": {"rect": [2400, 3900, 3600, 5200], "name": "安靜閱讀｜前區（禁放床／KTV）", "kind": "living", "group": "b32-study3", "role": "living", "profile": "b32-living", "window_face": "front", "window_mm": 1200, "window_ratio": 0.75},
+        "quiet-study": {"rect": [0, 9100, 6000, 2270], "name": "安靜閱讀｜後區（整廳上方禁睡）", "kind": "living", "group": "b32-study3", "role": "living", "clear": true, "window_mm": 0},
+        "corridor3": {"rect": [0, 11370, 1200, 2670], "name": "客房／公衛公共通道", "kind": "other", "role": "circulation", "clear": true, "window_mm": 0},
+        "bath3": {"rect": [1200, 11370, 2160, 2670], "name": "三樓公衛（排氣／救援待核）", "kind": "bath", "room_role": "bathroom", "profile": "b32-public-bath", "window_mm": 0},
+        "buffer3": {"rect": [3360, 11370, 2640, 2670], "name": "後段乾式彈性預留（KTV容量未解）", "kind": "other", "clear": true, "window_mm": 0},
+        "guest3": {"rect": [0, 14040, 6000, 3590], "name": "後段客房（不在神明堂上方）", "kind": "bedroom", "profile": "b32-bedroom", "window_face": "rear", "window_mm": 2400}
+      },
+      "connections": [["stair3", "quiet-study-front", 1000, 4400], ["quiet-study-front", "quiet-study", "open"], ["quiet-study-front", "terrace3", 1000, 3400], ["quiet-study", "corridor3", "open"], ["corridor3", "bath3", 1060, 12870], ["corridor3", "guest3", 1000, 600], ["quiet-study", "buffer3", 1060, 4580]]
+    },
+    "floor-4": {
+      "rooms": {
+        "roof-front": {"rect": [0, 0, 6000, 3900], "name": "前屋頂候選（不作已核屋突）", "kind": "outdoor", "outdoor": true, "clear": true, "window_mm": 0},
+        "stairRF": {"rect": [0, 3900, 2400, 5200], "name": "同軸梯間屋突候選（合法性待核）", "kind": "stair", "clear": true, "window_mm": 0},
+        "shrine-buffer-front": {"rect": [2400, 3900, 3600, 5200], "name": "神明堂上方保護區｜前段（不放設備）", "kind": "outdoor", "outdoor": true, "clear": true, "window_mm": 0},
+        "shrine-buffer-rear": {"rect": [0, 9100, 6000, 2270], "name": "神明堂上方保護區｜後段（不放設備）", "kind": "outdoor", "outdoor": true, "clear": true, "window_mm": 0},
+        "service-rf": {"rect": [0, 11370, 2400, 6260], "name": "後屋頂室外機／維修候選（承重待核）", "kind": "outdoor", "outdoor": true, "clear": true, "window_mm": 0},
+        "rear-roof": {"rect": [2400, 11370, 3600, 6260], "name": "屋頂設備需求待排（非可自由加蓋）", "kind": "outdoor", "outdoor": true, "clear": true, "window_mm": 0}
+      },
+      "connections": [["stairRF", "shrine-buffer-front", 1000, 4400], ["shrine-buffer-front", "roof-front", "open"], ["shrine-buffer-front", "shrine-buffer-rear", "open"], ["shrine-buffer-rear", "service-rf", "open"], ["shrine-buffer-rear", "rear-roof", "open"], ["service-rf", "rear-roof", "open"]]
+    }
+  },
+  "professional_status": {"site": "unknown", "structure_fire": "unknown", "accessibility": "unknown", "religious_acceptance": "unknown", "plumbing_hvac": "unknown", "transport": "unknown", "budget": "unknown"},
+  "unresolved": ["原一車位尚未容納，不借騎樓停車", "KTV／茶水跨棟或另案仍待研究，未刪需求", "後段工作預留需經儲藏室，非原獨立1F工作陽台已完成", "IDF位置、淨高、散熱、維修與防火未完成", "獨立玄關、鞋櫃與祭祀分類收納尚未完整排入", "RF水塔、熱泵及其他設備未排，承重／屋突未核", "實際牆柱、梁管、建蔽容積與完成面未知", "武轎裝桿、人員、輪具與雨天搬運未知", "衛浴門片、倒地救援、防水及獨立排氣／補氣未知"]
+}

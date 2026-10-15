@@ -32,7 +32,7 @@ def test_repository_payload_preserves_all_html_cells_and_a_living_front_position
     assert len([c for c in cells.values() if not c.get("proposal_only")]) == 92
     assert cells["A:floor-1:living"]["auto_mm"]["y_mm"] == 1200
     assert cells["A:floor-1:living"]["source_name"] == "客廳"
-    assert cells["A:floor-1:living"]["name"] == "前段合併客餐廳（前帶可建待核）"
+    assert cells["A:floor-1:living"]["name"] == "前段合併客餐廳（騎樓後）"
     assert payload["buildings"][0]["floors"][0]["front_side"] == "top"
 
 

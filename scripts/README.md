@@ -1,5 +1,55 @@
 # House Design Workflows
 
+## 資源安全：重型驗收另開終端機執行
+
+目前主案[A收納／乾區續修](../Docs/a-storage-dry-zone-v2.md)為12層／112區／128件，增加的是1件書櫃；下列舊案章節的127件為當時主案，比較案本身沒有採用新布局。先跑Windows主案CLI，不自動並行全套測試。
+
+2026-10-15只修平面房名／冷氣符號與代碼的避讓，A二樓前陽台房名排入兩機之間。房間、家具與設備座標不變；比較圖依共用繪圖器更新，不採用。Windows CLI新增原生SVG實際字框檢查（含白邊）、兩台完整代碼及設備原位置／尺寸查核；`snbl6T`是修改前passed，不可沿用作新版目視或渲染通過。
+
+屋主要求：卡住、逾時或耗資源的檢查不要在代理背景反覆重跑、影響正常修改。代理只做有20秒上限的檔案／語法／小範圍檢查；瀏覽器、全套測試、整套3D場景及大型轉图預設交屋主另外執行，且一次只跑一項。詳細規則見[AGENTS.md](../AGENTS.md)。
+
+新版主案渲染先在另一個 **Windows PowerShell** 執行：
+
+```powershell
+node '\\wsl.localhost\Ubuntu\root\workspace\houseDesignPrepare\scripts\check_windows_playwright.cjs'
+```
+
+若要補完整程式驗收，再另開 **WSL 終端機** 逐項執行；逾時即列未完成，不自动重試：
+
+```bash
+cd /root/workspace/houseDesignPrepare
+timeout 300s .venv/bin/pytest -q --tb=short
+timeout 90s node --max-old-space-size=384 tests/js/model3d-facade-runtime.test.cjs
+```
+
+需要停下時使用該終端機的 `Ctrl+C`。不要與Windows瀏覽器驗收同時跑；exit 124是逾時，不是通過。無結果或被中止的執行也不算通過，渲染passed仍需目視。
+
+## B 32地坪：後門搬轎預案／前門備案（未採用）
+
+`python3 scripts/export_b32_entry_options.py` 只產出獨立的 `structured/candidates/b32-entry-options*`，不改ABC主案或既有七案。兩案、八層、64分區、60件為比較合計；主案仍12／112／127。後方通路、通行權與實物搬運未知；B不超32地坪，37.3坪舊圖不是本輪可採候選。詳見[比較契約](../Docs/b32-entry-options-v1.md)。
+
+```bash
+.venv/bin/pytest -q tests/test_b32_entry_options.py
+node --test tests/js/b32-entry-playwright.test.cjs tests/js/b32-plan-viewer.test.cjs
+node scripts/check_b32_entry_playwright.cjs --preflight
+```
+
+Windows PowerShell執行 `node '\\wsl.localhost\Ubuntu\root\workspace\houseDesignPrepare\scripts\check_b32_entry_playwright.cjs'`。沿用已安裝的Playwright CLI／Edge；結果在新TEMP，不安裝、不採用、不把舊七案passed套用新圖。前門備案的收納位置與通行暫留不同，不能只保留一個後門案並宣稱前門也已驗證可搬。
+
+平面展示v2加入獨立放大、縮小、讀字／整層還原與原生捲動；配置仍v1、八張SVG不變。CLI會顯示 `B32 display revision: 2`，新增兩案×桌機／手機直橫六組閱讀操作及至少16張截圖。`o1kJdw`的v1 passed保留作歷史證據，不涵蓋新介面。
+
+## ABC 前期整合比較／會談補充（未採用）
+
+`python3 scripts/export_preparation_review.py` 只輸出新的 `structured/candidates/preparation-review*` 與 `structured/discussions/abc-preparation-meeting.*`，原 ABC 主案／需求／封存對話受雜湊保護。七案、28 層、281 區、284 件是比較間合計；主案仍 12 層／112 區／127 件。v2 更新 B 搬轎／神明堂連動、C 門前操作與客餐家具，不改固定32坪B缺口對照；範圍與未解需求見[動線修正版 v2](../Docs/abc-preparation-review-v2.md)，v1驗收不可當成v2渲染通過。
+
+```bash
+.venv/bin/python -m pytest tests/test_preparation_review.py -q
+node --test tests/js/preparation-playwright.test.cjs
+node scripts/check_preparation_playwright.cjs --preflight
+```
+
+新頁渲染須在 Windows PowerShell 執行 `node '\\wsl.localhost\Ubuntu\root\workspace\houseDesignPrepare\scripts\check_preparation_playwright.cjs'`；不只跑舊主案 QA。沿用已安裝的 Playwright CLI／Edge，不安裝、不採用、不修改來源；新 TEMP 目錄存結果與截圖，passed 仍需目視及專業查核。
+
 ## Current parcel and drawing review
 
 The confirmed 32 ping is **each parcel's land area**, not each floor's building
@@ -26,7 +76,29 @@ Large existing objects are recorded once in `inputs/physical-items.json`.
 appends a complete measured width/depth/height set without discarding the
 planning estimate or earlier measurements.
 
+## 每筆32地坪含騎樓容量比較（未採用）
+
+情境來源為 `inputs/abc-arcade-capacity.json`，以`inputs/references/abc-before-a-arcade.json`固定舊骨架／32坪限制／加深對照，皆為歷史未採用方案。現A主案已改[32坪含騎樓](../Docs/a-32ping-arcade-layout-v1.md)，12 floors／112 rooms／127 items；B／C配置未改。修改情境或其來源後執行：
+
+```bash
+.venv/bin/python scripts/export_arcade_capacity.py
+.venv/bin/pytest -q tests/test_arcade_capacity.py
+node scripts/check_windows_playwright.cjs --preflight
+```
+
+入口：[容量比較](../structured/candidates/arcade-capacity.html)／[獨立3D](../structured/candidates/arcade-capacity-3d.html?scheme=arcade32#mode=tour&building=A&floor=floor-1&view=front)。36張平面SVG、manifest與3D同源；只重分配房間，不縮市售代表產品。1F暫估4m層高、同軸共同梯井、冷氣與立面同步，法規及專業狀態保持unknown。[結果與產圖契約](../Docs/abc-32ping-arcade-v1.md)列A／C衝突、B未解需求及每筆面積敏感度。
+
+CLI保留主案及C公衛／採光流程，涵蓋三案 × ABC × 四層HTML／3D、返回同案／棟／層、無效連結與手機重載／重設／橫向。容量初版`0mTIes`已核對4598項／114份當時來源雜湊／71張分級目視截圖。後續手機取景續修加入360／390／430px按鈕尺寸及單行文字、實際overlay安全區、至少60%單一軸占比／16px家具本體投影／橫向整層40%寬度檢查；當時預期114份來源雜湊、72張截圖。本輪A騎樓主案改為115份來源雜湊，新增騎樓與A客餐廳手機直向／橫向特寫，舊版張數不適用。新版渲染與目視待Windows重跑，不能沿用0mTIes或sAmDnF；細節見[取景續修契約](../Docs/abc-32ping-arcade-v1.md#手機取景續修僅展示)及[A騎樓主案](../Docs/a-32ping-arcade-layout-v1.md)。
+
 ## Windows 原生 Playwright CLI 驗收
+
+新增[B嚴格家規／C照護改善比較](../Docs/bc-constraints-review-v1.md)：執行 `.venv/bin/python scripts/export_bc_options.py` 產生五案、20張平面及單棟比較3D。ABC主案仍12 floors／112 rooms／127 items；B全層樓梯重排未採用，C客房待排衣櫃不算已容納。sXV7ej是新增比較前的驗收，新版需以原Windows命令重跑。
+
+現行[風水小改與待決最佳方案](../Docs/fengshui-minimal-v1.md)增加A爐台／洗槽真正元件位置、B二／三樓神桌投影與C三樓側牆床檢查，另截四個桌面房間特寫。主案仍12 floors／112 rooms／127 items；B1及C1待決方案未採用。TBqvyB是改版前證據，新版必須重跑下方原命令，不宣稱風水／照護核可。
+
+2026-10-12新增[B／C一樓動線續版](../Docs/bc-1f-flow-v1.md)：B神桌中軸180cm祭祀門、側門搬轎四段線與三個桌面特寫；C三區全寬開放、實牆電視與配管重算。主案仍12 floors／112 rooms／127 items；FYY4NW只適用改版前，請以原命令重跑，新截圖與專業條件不得沿用舊passed。
+
+2026-10-12 [A MDF續修](../Docs/a-mdf-under-stair-v1.md)：新增共用平面候選虛框、敏感度剖面、3D可逆開關與手機驗收。備援補齊前後／左右維修，未新增第二台機櫃或認列原位釋放；預檢仍12／112／127。`house-design-cli-T1uj2e`的5133項／115份來源／75張截圖是此次續修前證據，新版須重跑，不覆寫舊報告。
 
 正式入口是 `scripts/check_windows_playwright.cjs`，不要再使用會消失的
 `/tmp/house-windows-cli-check.cjs`。腳本預設檢查自身所在的專案，不硬編碼
@@ -60,12 +132,17 @@ HTML 預設頁不一定是 1F；驗收會先點各層分頁並確認面板可見
 A、C 都有孝親房，不能只用共用文字找按鈕，也不以第一個匹配或強制點擊略過錯誤。
 所有結果、CLI 紀錄及截圖都存入印出的 Windows `QA output folder`，不寫回
 專案。驗收前後比對來源雜湊，來源中途變動、啟動失敗或缺結果都不判通過。
-本版預檢應為 12 floors、105 rooms、129 items；會截取各樓層、A棟孝親房／一樓公衛、A／B二樓共用圖與四張衛浴／走道特寫，以及手機整層／房間特寫畫面。此前特寫自動剖視續版另加A二樓衛浴完整牆高、旋轉剖視、手機特寫，完整跑完預期27張。樓上另獨立檢查三間衛浴的完整設備、700mm操作帶、馬桶側邊本體間距、A走道櫃分時使用及兩組原尺寸衣櫃仍待排，不只比對兩張圖是否一樣。
+2026-10-14修正SVG獨立房名層的驗收定位，以及純SVG失敗後CLI快照掩蓋原錯誤的問題；錯誤回報保留原網址／截圖，不重試、不降低判定。[894MkV未完成紀錄](../Docs/a-storage-dry-zone-v2.md#2026-10-14-windows未完成結果與驗收器修正)不能當作通過；新版請用上方Windows命令重驗，預檢12／112／128。房屋配置沒有因這次修驗收而更動。
+本版預檢應為 **12 floors、112 rooms、128 items**；A主案騎樓、1200mm照護通道、4m名義一樓與共用前平台另做獨立檢查。會截取各樓層、A孝親房／一樓公衛、A／B二樓共用圖與衛浴／走道特寫，以及手機整層／特寫。樓上檢查三間衛浴700mm操作帶、馬桶側邊間距，以及屋主同意的A兩組更衣櫃分散／240cm淺櫃搬移；保留全部原尺寸與總收納量、公共1280mm暫留、私人更衣操作分時但未核。依當前同源pending清單判斷，不沿用舊版3件待排數字；下列27張及兩件待排等為歷史流程，不只比對兩張圖是否一樣。
 
-本次C續版另加HTML基本圖／庭院比較、餐廳／客廳／廚房特寫、3D前院虛框及手機客廳／前院；完整預期44張、31份來源雜湊。獨立查面積、正常產品、照護暫留帶、TV同軸與未知前院，不只查兩張圖是否一樣，詳見[C一樓續版](../Docs/c-1f-space-use-v3.md)。
+提交1e38934的C續版另加HTML基本圖／庭院比較、餐廳／客廳／廚房特寫、3D前院虛框及手機客廳／前院；共44張、31份來源雜湊。獨立查面積、正常產品、照護暫留帶、TV同軸與未知前院，不只查兩張圖是否一樣，詳見[C一樓續版](../Docs/c-1f-space-use-v3.md)。
+
+2026-10-07已核對 `house-design-cli-QEFdQU`：Windows Edge的2682項檢查通過，31份來源SHA-256與提交1e38934當時檔案一致，44張截圖已目視複查；12 floors／105 rooms／129 items，session已關閉。無pageerror或非預期錯誤，僅8次既有Three.js棄用warning。原始結果與截圖仍在Windows TEMP，詳細證據見[歷史驗收](../Docs/c-1f-space-use-v3.md#歷史-windows-驗收)。這份passed不適用本輪新增比較及共用viewer／HTML bridge／CLI改動。
+
+2026-10-08新增[C一樓公衛／採光三案比較](../Docs/c-1f-bath-daylight-v1.md)：HTML實際選案、同方案SVG／3D、兩案公衛特寫、3D切換返回現況、手機重載／重設／收合及橫向特寫；最後返回ABC主案，確認未採用替代案。普通設備、孝親房床／衣櫃、前帶／樓梯、150cm暫留、門圖、候選窗、鞋櫃未容納與冷氣量另做獨立查核，不以兩張圖一起錯就判通過。主案預檢12／105／129；`house-design-cli-sAmDnF` 已核對**3275項自動檢查通過、64份來源雜湊與當時檔案吻合、56張截圖全部目視複查**，Windows Edge、1440 × 900／390 × 844／844 × 390。無pageerror或非預期錯誤，19次既有Three.js棄用warning，session已關閉。橫向公衛與含冷氣管路的C客廳特寫仍偏小，不能將passed當成全面可讀性驗收；詳細證據與待辦見[該輪Windows驗收](../Docs/c-1f-bath-daylight-v1.md#本輪-windows-驗收)。後續容量比較已改bridge／CLI，這份報告是歷史證據，須用上方原命令重新驗收，無需另裝Browser插件。
 
 照片風格外觀v1保留上述27張，另加HTML立面、三棟各自正面／斜角、三棟合看及手機外觀，共36張。來源雜湊從25份增為30份，包含外觀JSON、原照片及三份立面SVG；預檢也核照片記錄的SHA-256。實際檢查HTML→全層外觀、正面／斜角、棟別／樓層切換、分享重載、手機返回室內，以及原剖視、展開、牆面、房間特寫與家具pending還原。外觀開口／装飾衝突保留待確認，17組室外機座標沿共用來源，不把美觀當成合規。
-外觀v1的house-design-cli-lgBJsy已核對2603項／36張，是本次C重排前報告，不能替新版背書。本環境socket與Chromium受限制，C續版須Windows重跑及截圖目視。研究來源見[ABC外觀提案](../Docs/abc-facade-v1.md)；下列27／36張及126件為歷史流程，本次以44張／129件為準。
+外觀v1的house-design-cli-lgBJsy已核對2603項／36張，是C重排前報告，不能替新版背書。本環境socket與Chromium受限制；QEFdQU是提交1e38934的Windows證據，sAmDnF只適用容量比較前來源，0mTIes只適用手機取景續修前來源，g2jEnZ只適用新A重排前來源，不代表Linux HTTP e2e也已執行。研究來源見[ABC外觀提案](../Docs/abc-facade-v1.md)；下列27／36／44／56／71張及126／129件為歷史流程，最新CLI主案127件，Windows與新截圖目視仍待重跑。
 自動剖視驗收以設備本體五個取樣點檢查牆／門窗框／梯段遮擋，並實際旋轉、切完整牆高、返回整層與手機重載。剖視不得改HTML幾何、家具尺寸／位置或pending清單，也不得裁去冷氣／家具本體。取樣不等於像素可見或家具互不遮擋，仍須看截圖。
 另獨立檢查 A 孝親房的床與衣櫃、150cm轉位、90cm滑門、一樓淋浴／馬桶／洗手台與公共夜間如廁路徑，不能只因兩張圖一起漏房仍一致就判通過。來源雜湊也包含需求表與CLI腳本自身。
 2026-10-06 的照護回補版 `house-design-cli-WHIoXY` 已核對：Windows Edge 1799項檢查通過，

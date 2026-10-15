@@ -67,11 +67,15 @@ from lib.html_parametric_compare import (  # noqa: E402
     find_cell_overlaps,
     format_compare_panel,
 )
+from lib.model3d_bc_flow import build_bc_flow_checks  # noqa: E402
 from lib.model3d_facade import FACADE_FILE, build_facade  # noqa: E402
+from lib.model3d_fengshui import attach_fengshui_checks  # noqa: E402
 from lib.model3d_functions import REQUIREMENTS_FILE  # noqa: E402
+from lib.model3d_mdf import build_mdf_study  # noqa: E402
 from lib.model3d_placement import attach_placements  # noqa: E402
 from lib.model3d_plan import write_html_plans  # noqa: E402
 from lib.model3d_review import REVIEW_FILE, attach_hvac_proposals, prepare_review, review_checks  # noqa: E402
+from lib.model3d_space_efficiency import attach_space_efficiency  # noqa: E402
 from lib.model3d_tour import attach_tour  # noqa: E402
 from lib.standards import load_residential_defaults, repo_relative  # noqa: E402
 
@@ -340,6 +344,10 @@ def build_payload(
     review_path: Path = REVIEW_FILE,
     requirements_path: Path = REQUIREMENTS_FILE,
     facade_path: Path = FACADE_FILE,
+    *,
+    review_data: dict[str, Any] | None = None,
+    furniture_data: dict[str, Any] | None = None,
+    validate_a_arcade: bool = True,
 ) -> dict[str, Any]:
     defaults = load_residential_defaults()
     metrics = defaults.get("architect_metrics", {}) if isinstance(defaults.get("architect_metrics"), dict) else {}
@@ -361,12 +369,19 @@ def build_payload(
     provenance = summarize_provenance(program)
     cells_summary = provenance.get("cells", {}) if isinstance(provenance.get("cells"), dict) else {}
     compare = build_compare(program, plan)
-    review = prepare_review(buildings, review_path)
-    furniture = attach_furniture_layout(buildings, furniture_path, physical_items_path)
+    review = prepare_review(buildings, review_path, data=review_data)
+    furniture = attach_furniture_layout(buildings, furniture_path, physical_items_path, data=furniture_data)
     attach_tour(buildings)
     review["hvac_routes"] = attach_hvac_proposals(buildings)
     attach_placements(buildings)
-    review["checks"] = review_checks(buildings, requirements_path)
+    review["checks"] = review_checks(buildings, requirements_path, validate_a_arcade=validate_a_arcade)
+    review["checks"].extend(build_bc_flow_checks(buildings, physical_items_path))
+    review["checks"].extend(attach_fengshui_checks(buildings, review))
+    allocation = attach_space_efficiency(buildings, review)
+    if allocation:
+        review["space_efficiency_review"] = allocation
+    if validate_a_arcade:
+        review["mdf_study"] = build_mdf_study(buildings)
     standards = {
         "storey_height_mm": default_storey_mm,
         "outdoor_slab_mm": OUTDOOR_SLAB_MM,
@@ -437,13 +452,15 @@ FACADE_JS_FILE = SCRIPT_DIR / "templates/model3d_facade.js"
 HTML_TEMPLATE = TEMPLATE_FILE.read_text(encoding="utf-8")
 
 
-def render_html(payload: dict[str, Any], three_js: str) -> str:
+def render_html(payload: dict[str, Any], three_js: str, *, study_controls: str = "", study_bootstrap: str = "") -> str:
     compare_html = format_compare_panel(payload.get("compare") or {})
     return (
         HTML_TEMPLATE.replace("__THREE_JS__", three_js)
         .replace("__MODEL_DATA__", encode_html_json(payload))
         .replace("__COMPARE_HTML__", compare_html)
         .replace("__FACADE_JS__", FACADE_JS_FILE.read_text(encoding="utf-8"))
+        .replace("    __STUDY_CONTROLS__", study_controls)
+        .replace("  __STUDY_BOOTSTRAP__", study_bootstrap)
     )
 
 
@@ -477,7 +494,9 @@ def main() -> None:
         plan = json.loads(args.plan.read_text(encoding="utf-8"))
     overrides = load_overrides()
     style = args.style or default_drawing_style()
-    payload = build_payload(program, overrides, style, plan, args.furniture, args.physical_items, facade_path=args.facade)
+    payload = build_payload(
+        program, overrides, style, plan, args.furniture, args.physical_items, facade_path=args.facade
+    )
     three_js, three_meta = three_source()
     payload["source"]["three_bytes"] = three_meta["bytes"]
     if plan:

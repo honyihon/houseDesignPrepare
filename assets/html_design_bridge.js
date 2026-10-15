@@ -26,6 +26,16 @@
         return url.href;
     }
 
+    function proposalLabel() {
+        if (buildingId === "A" && window.HOUSE_CONCEPT_LAYOUT && window.HOUSE_CONCEPT_LAYOUT.layout_review && window.HOUSE_CONCEPT_LAYOUT.layout_review.space_efficiency_review && window.HOUSE_CONCEPT_LAYOUT.layout_review.space_efficiency_review.a_followup) return "空間分配 v6 · 收納／閱讀續修";
+        if (buildingId === "A" && window.HOUSE_CONCEPT_LAYOUT && window.HOUSE_CONCEPT_LAYOUT.layout_review && window.HOUSE_CONCEPT_LAYOUT.layout_review.space_efficiency_review) return "空間分配修正 v6";
+        if (buildingId === "A") return "32坪含騎樓重排 v1";
+        var building = window.HOUSE_CONCEPT_LAYOUT && window.HOUSE_CONCEPT_LAYOUT.buildings.find(function(b){return b.id===buildingId;});
+        if (building && building.layout_review && building.layout_review.ritual_access) return "中軸祭祀門／搬轎分流";
+        if (building && building.layout_review && building.layout_review.open_living) return "開放客餐廳續版";
+        return "ABC v2";
+    }
+
     function link(className, text, href) {
         var anchor = document.createElement("a");
         anchor.className = className;
@@ -96,13 +106,23 @@
 
         var copy = document.createElement("div");
         copy.innerHTML =
-            "<strong>有界合理性提案 · " + buildingId + " 棟 · ABC v2</strong>" +
+            "<strong>有界合理性提案 · " + buildingId + " 棟 · " + proposalLabel() + "</strong>" +
             "<p>道路／前方在上（y=0）。下方共用圖與 3D 同版；不再靠放大房屋或縮小家具消除衝突。6 × 17.63m 只是比較框，非地籍或可建面積。舊格子及需求卡保留作版本對照，不代表本版已容納。</p>";
+        if (buildingId === "A") copy.innerHTML += "<p>A棟已留基地內前3.9m騎樓：只通行、不置物、不計車位。客餐廳在騎樓後，原孝親房／淋浴保留；客餐廳僅貼近18m²下限，牆柱、梁下淨高、法規及照護仍待核。下方舊骨架容量比較不是本版A主案。</p>";
 
         var actions = document.createElement("div");
         actions.className = "design-bridge-actions";
         actions.appendChild(link("design-bridge-link", "開啟本版 3D 提案", viewerUrl("floor-1", "")));
+        var capacityUrl = new URL("structured/candidates/arcade-capacity.html", document.baseURI);
+        capacityUrl.hash = new URLSearchParams({scheme:"arcade32",building:buildingId,floor:"floor-1"}).toString();
+        actions.appendChild(link("design-bridge-link secondary arcade-capacity-link", "舊骨架32坪含騎樓比較（未採用）", capacityUrl.href));
+        if (buildingId === "A") actions.appendChild(link("design-bridge-link secondary", "A含騎樓重排與待核清單", new URL("Docs/a-32ping-arcade-layout-v1.md", document.baseURI).href));
         if (buildingId === "A") actions.appendChild(link("design-bridge-link secondary", "在 3D 查看補回的孝親房", viewerUrl("floor-1", "flex1")));
+        if (buildingId === "B" || buildingId === "C") actions.appendChild(link("design-bridge-link secondary", "祭祀／搬轎與合併客餐廳說明", new URL("Docs/bc-1f-flow-v1.md", document.baseURI).href));
+        if (buildingId === "B" || buildingId === "C") actions.appendChild(link("design-bridge-link secondary bc-constraints-link", "B嚴格家規／C照護改善比較（未採用）", new URL("structured/candidates/bc-options.html#"+(buildingId === "B" ? "b-strict" : "c-side-bed"), document.baseURI).href));
+        if (window.HOUSE_CONCEPT_LAYOUT && window.HOUSE_CONCEPT_LAYOUT.layout_review && window.HOUSE_CONCEPT_LAYOUT.layout_review.fengshui_minimal) {
+            actions.appendChild(link("design-bridge-link secondary", "風水小改／待決最佳方案", new URL("Docs/fengshui-minimal-v1.md", document.baseURI).href));
+        }
         actions.appendChild(link(
             "design-bridge-link secondary",
             "查看不同的參數化情境",
@@ -126,6 +146,39 @@
     var placementIssues = {overflow: "量體越界", "furniture-overlap": "家具重疊", "operation-space": "操作空間不足",
         "door-approach": "入口暫留帶受阻", stairs: "梯段定位受阻", "unsupported-wall": "櫃背落在開口",
         window: "遮擋窗位", "transport-band": "武轎搬運帶受阻", "transport-width": "武轎寬度大於暫定搬運帶", "reference-pending": "對應沙發／床位尚待調整", circulation: "公共通行預留帶受阻", "care-route": "照護路徑受阻", "care-turn": "照護轉位預留受阻", "hvac-service": "室外機散熱／檢修預留受阻"};
+
+    function installPlanReader(panel, floor, image, openLink) {
+        var reader = document.createElement("div");
+        reader.className = "shared-plan-viewer";
+        reader.setAttribute("data-plan-viewer", "");
+        reader.setAttribute("data-source-width", String(floor.width_mm + 600));
+        reader.setAttribute("data-source-height", String(floor.depth_mm + 1400));
+        reader.setAttribute("data-readable-width", "660");
+        var controls = document.createElement("div");controls.className = "shared-plan-controls";
+        controls.setAttribute("data-plan-controls", "");controls.setAttribute("role", "group");
+        controls.setAttribute("aria-label", buildingId + " " + floor.label + " 圖面閱讀控制");
+        controls.hidden = true;
+        [["in","放大"],["out","縮小"],["readable","讀字模式"],["overview","整層總覽"]].forEach(function(entry){
+            var button = document.createElement("button");button.type = "button";button.textContent = entry[1];
+            button.setAttribute("data-plan-action", entry[0]);
+            if (entry[0] === "readable" || entry[0] === "overview") button.setAttribute("aria-pressed", "false");
+            controls.appendChild(button);
+        });
+        var state = document.createElement("p");state.setAttribute("data-plan-state", "");
+        state.setAttribute("role", "status");state.setAttribute("aria-live", "polite");
+        state.textContent = "原始向量圖，可在圖框內捲動；按圖或下方連結另開原圖。";
+        var viewport = document.createElement("div");viewport.className = "shared-plan-viewport";
+        viewport.setAttribute("data-plan-viewport", "");viewport.setAttribute("tabindex", "0");
+        viewport.setAttribute("role", "region");viewport.setAttribute("aria-label", floor.label + " 原比例配置圖，可捲動");
+        image.setAttribute("data-plan-content", "");image.draggable = false;
+        image.style.width = "660px";image.style.height = (660 * (floor.depth_mm + 1400) / (floor.width_mm + 600)) + "px";
+        viewport.appendChild(openLink);
+        var error = document.createElement("p");error.hidden = true;error.setAttribute("data-plan-error", "");
+        error.textContent = "圖面載入失敗，請用下方『放大配置圖』開啟原SVG；未載入不算驗收通過。";
+        reader.appendChild(controls);reader.appendChild(state);reader.appendChild(viewport);reader.appendChild(error);
+        panel.appendChild(reader);
+        if (window.HousePlanViewer) window.HousePlanViewer.attach(reader);
+    }
 
     function installSharedPlans() {
         var data = window.HOUSE_CONCEPT_LAYOUT;
@@ -151,6 +204,35 @@
                 (floor.width_mm/1000).toFixed(2) + " × " + (floor.depth_mm/1000).toFixed(2) +
                 "m，不因家具變大而加深。未解家具保留原尺寸列待調整；車位、門窗、法規、實際管路與照護淨空未核定。";
             panel.appendChild(note);
+            var allocation = data.layout_review.space_efficiency_review;
+            var allocationFloor = allocation && allocation.floors.find(function(a){return a.building===buildingId && a.floor===floor.id;});
+            if (allocationFloor) {
+                var allocationNote = document.createElement("p");
+                allocationNote.className = "design-review-note";
+                allocationNote.setAttribute("data-space-allocation", buildingId + ":" + floor.id);
+                allocationNote.textContent = "本層名義面積：通行／待排乾區 " + allocationFloor.circulation_nominal_sqm.toFixed(2) +
+                    "m²，樓梯保留框 " + allocationFloor.stairs_reserved_sqm.toFixed(2) + "m²（不是整框都是梯廳），臥室合計 " +
+                    allocationFloor.bedroom_nominal_sqm.toFixed(2) + "m²。外框未扣實際牆柱，不是完成面或合法可建面積。";
+                if (allocationFloor.baseline) allocationNote.textContent += " 修改前通行／待排乾區 " + allocationFloor.baseline.circulation_nominal_sqm.toFixed(2) + "m²。";
+                panel.appendChild(allocationNote);
+                if (buildingId === "A" && allocation.a_followup && ["floor-2", "floor-3"].includes(floor.id)) {
+                    var followup = document.createElement("p");followup.className = "design-review-note";
+                    followup.setAttribute("data-a-storage-followup", floor.id);
+                    followup.textContent = allocation.a_followup.note;
+                    followup.appendChild(link("design-bridge-room-link", "收納／乾區續修與限制", new URL("Docs/a-storage-dry-zone-v2.md",document.baseURI).href));
+                    panel.appendChild(followup);
+                }
+                allocationFloor.findings.forEach(function(finding){
+                    var pending = document.createElement("p");pending.className="design-review-note";
+                    pending.setAttribute("data-space-finding", finding.code);pending.textContent="空間檢視待解："+finding.note;panel.appendChild(pending);
+                });
+                if (buildingId === "B") {
+                    var priority = document.createElement("p");priority.className="design-review-note";priority.setAttribute("data-b32-priority","b32-rear");
+                    priority.textContent=allocation.b_priority.note;
+                    priority.appendChild(link("design-bridge-link", "本輪B32後門預案／前門備案", new URL("structured/candidates/b32-entry-options.html",document.baseURI).href));
+                    panel.appendChild(priority);
+                }
+            }
             if (floor.id === "floor-1" && building.layout_review) {
                 var decision = document.createElement("p");
                 decision.className = "design-review-note";
@@ -182,12 +264,69 @@
             img.alt = buildingId + " 棟 " + floor.label + " 等比例家具、入口與樓梯定位圖；與 3D 全層導覽相同";
             img.loading = "lazy";
             open.appendChild(img);
-            panel.appendChild(open);
+            installPlanReader(panel, floor, img, open);
             var actions = document.createElement("div");
             actions.className = "design-bridge-actions";
             actions.appendChild(link("design-bridge-link secondary", "放大配置圖", svgUrl));
             actions.appendChild(link("design-bridge-link", "在 3D 核對這一層", viewerUrl(floor.id, "")));
+            if (buildingId === "C" && floor.id === "floor-1") {
+                actions.appendChild(link("design-bridge-link secondary c1f-options-link",
+                    "比較公衛／採光方案（未採用）",
+                    new URL("structured/candidates/c1f-options.html", document.baseURI).href));
+            }
             panel.appendChild(actions);
+            if (buildingId === "A" && floor.id === "floor-1" && data.layout_review.mdf_study) {
+                var mdf = data.layout_review.mdf_study;
+                var mdfPanel = document.createElement("details");
+                mdfPanel.className = "mdf-study-review";
+                mdfPanel.setAttribute("data-mdf-study-status", mdf.status);
+                var mdfTitle = document.createElement("summary");
+                mdfTitle.textContent = "MDF：梯下優先候選／側壁龕備援（未定案）";
+                mdfPanel.appendChild(mdfTitle);
+                var mdfNote = document.createElement("p");
+                mdfNote.textContent = mdf.note;
+                mdfPanel.appendChild(mdfNote);
+                var mdfSize = document.createElement("p");
+                mdfSize.setAttribute("data-mdf-maintenance", "original-clearances-retained");
+                mdfSize.textContent = "原18U機櫃 " + mdf.rack.width_mm + "×" + mdf.rack.depth_mm + "×" + mdf.rack.height_mm +
+                    "mm；維修前800／後600／左右各300mm，完整外廓1200×2000mm。側壁龕備援調為1360×2180mm，" +
+                    "機櫃仍只計1台；左右留量已補齊，後段150cm轉位及孝親房不縮小。";
+                mdfPanel.appendChild(mdfSize);
+                var mdfToggleLabel = document.createElement("label");
+                mdfToggleLabel.className = "frontage-study-toggle";
+                var mdfToggle = document.createElement("input");
+                mdfToggle.type = "checkbox";
+                mdfToggle.setAttribute("data-mdf-study-toggle", mdf.id);
+                mdfToggleLabel.appendChild(mdfToggle);
+                mdfToggleLabel.appendChild(document.createTextNode("在同源平面加上梯下候選／維修／原位再利用虛框（非已安裝）"));
+                mdfPanel.appendChild(mdfToggleLabel);
+                var mdfPlanUrl = new URL("structured/candidates/furniture-plans/" + mdf.plan_file, document.baseURI).href;
+                mdfToggle.addEventListener("change", function(){
+                    img.src = open.href = mdfToggle.checked ? mdfPlanUrl : svgUrl;
+                    actions.querySelector("a").href = open.href;
+                    panel.setAttribute("data-mdf-study-visible", String(mdfToggle.checked));
+                });
+                panel.setAttribute("data-mdf-study-visible", "false");
+                var mdfReuse = document.createElement("p");
+                mdfReuse.textContent = mdf.reuse.note + " 現在釋放面積：未知／未採用，不認列 " + mdf.backup.reserved_area_sqm + "m² 為新增可用空間。";
+                mdfPanel.appendChild(mdfReuse);
+                var mdfActions = document.createElement("div");
+                mdfActions.className = "design-bridge-actions";
+                var mdfViewer = new URL(viewerUrl(floor.id, "stair-door"));
+                var mdfParams = new URLSearchParams(mdfViewer.hash.slice(1));
+                mdfParams.set("mdf", "study"); mdfParams.set("view", "front"); mdfParams.set("focus", "room");
+                mdfViewer.hash = mdfParams.toString();
+                mdfActions.appendChild(link("design-bridge-link mdf-study-link", "在3D比較梯下MDF（未定案）", mdfViewer.href));
+                var mdfSectionUrl = new URL("structured/candidates/furniture-plans/" + mdf.section_file, document.baseURI).href;
+                mdfActions.appendChild(link("design-bridge-link secondary", "放大梯下剖面", mdfSectionUrl));
+                mdfActions.appendChild(link("design-bridge-link secondary", "MDF條件與取捨", new URL("Docs/a-mdf-under-stair-v1.md", document.baseURI).href));
+                mdfPanel.appendChild(mdfActions);
+                var mdfSection = document.createElement("img");
+                mdfSection.src = mdfSectionUrl; mdfSection.loading = "lazy";
+                mdfSection.alt = "A棟梯下MDF敏感度剖面：非結構核定，90cm梯段仍有左右維修衝突";
+                mdfPanel.appendChild(mdfSection);
+                panel.appendChild(mdfPanel);
+            }
             if (floor.frontage_study_file) {
                 var frontage = floor.rooms.find(function(room){return !!room.features.frontage_study;});
                 var study = frontage.features.frontage_study;
@@ -236,8 +375,23 @@
                 var summary = document.createElement("summary");
                 var pending = room.furniture.filter(function (i) { return i.placement.issues.length; });
                 summary.textContent = room.name + " · " + room.furniture.length + " 件" + (pending.length ? "／" + pending.length + " 件待調整" : "") +
-                    (room.features.space_group ? " · 同一梯廳分區" : "") + (room.features.access_pending ? " · 入口待配置" : "");
+                    (room.features.space_group ? (room.features.open_living_review ? " · 同一開放客餐廳分區" : " · 同一梯廳分區") : "") + (room.features.access_pending ? " · 入口待配置" : "");
                 details.appendChild(summary);
+                [room.features.ritual_access_review, room.features.transport_review, room.features.open_living_review, room.features.fengshui_review, room.features.storage_resolution].forEach(function(review){
+                    if (!review) return;
+                    var flow = document.createElement("p");
+                    flow.setAttribute("data-flow-review-status", review.status);
+                    flow.textContent = review.note;
+                    if (review.gates) flow.textContent += " 兩道門對本體的名義單側餘量 " + review.gates.map(function(g){return g.body_side_margin_mm/10;}).join("／") +
+                        "cm；扣模型兩側各" + review.assumed_inset_mm + "mm暫留後最窄約" + review.bottleneck_assumed_width_mm/10 + "cm，非實測淨寬。";
+                    details.appendChild(flow);
+                });
+                room.features.doors.filter(function(door){return !!door.label;}).forEach(function(door){
+                    var opening = document.createElement("p");
+                    opening.setAttribute("data-door-purpose", door.purpose || "entry");
+                    opening.textContent = door.label + "；門扇／門框後淨寬、防雨防颱與開啟方式待核。";
+                    details.appendChild(opening);
+                });
                 if (room.features.frontage_study) {
                     var frontageNote = document.createElement("p");
                     frontageNote.textContent = room.features.frontage_study.note;
@@ -342,7 +496,7 @@
                 var newHeader=document.createElement("div");newHeader.className="floor-header proposal-floor-header";
                 var title=document.createElement("h2");title.className="floor-title";
                 var record=current.floors.find(function(f){return f.id===floor.id;});
-                title.textContent=record?buildingId+" 棟 "+record.label+" · ABC v2 有界提案":"歷史系統與需求參考（非現場使用指南）";
+                title.textContent=record?buildingId+" 棟 "+record.label+" · "+proposalLabel()+" 有界提案":"歷史系統與需求參考（非現場使用指南）";
                 newHeader.appendChild(title);
                 var floorLink=oldHeader.querySelector(".design-bridge-floor-link");
                 if(floorLink)newHeader.appendChild(floorLink);
@@ -362,7 +516,7 @@
         var summary=document.createElement("summary");summary.textContent="歷史版本標題／統計（舊坪數、設備位置及收納容量，不是本版承諾）";
         archive.appendChild(summary);
         var header=document.createElement("div");header.className="header proposal-header";
-        var title=document.createElement("h1");title.textContent=buildingId+" 棟 · ABC v2 合理性提案";header.appendChild(title);
+        var title=document.createElement("h1");title.textContent=buildingId+" 棟 · "+proposalLabel()+" 合理性提案";header.appendChild(title);
         var note=document.createElement("p");note.textContent="與 3D 共用有界初排；基地、完成面、法規及屋主取捨未核定。";header.appendChild(note);
         oldHeader.insertAdjacentElement("beforebegin",header);
         bridge.insertAdjacentElement("afterend",archive);

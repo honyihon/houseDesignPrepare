@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>B 嚴格家規／C 照護改善比較（未採用）</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f3f5f2;color:#263846;font-family:system-ui,sans-serif;line-height:1.7}
+main{max-width:1000px;margin:auto;padding:24px}h1{font-size:clamp(1.3rem,4vw,2rem)}h2{font-size:1.2rem}
+section{background:#fff;border:1px solid #c5cfcb;border-radius:12px;padding:20px;margin:20px 0;scroll-margin-top:20px}
+a{color:#086b65;overflow-wrap:anywhere}a:focus-visible{outline:3px solid #d88935;outline-offset:3px}
+nav{display:flex;gap:10px;flex-wrap:wrap}nav a{padding:10px;border:1px solid #bdccc8;border-radius:8px;background:#fff}
+.warning{background:#fff5e7;border-left:4px solid #d88935;padding:12px}li{margin:8px 0}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:.8rem}
+.review-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}.review-grid div{border:1px solid #c5cfcb;padding:10px;border-radius:6px}
+figure{margin:18px 0}object{display:block;width:100%;height:min(850px,110vh);border:1px solid #c5cfcb;background:#fff}figcaption{font-size:.9rem}
+@media(max-width:500px){main{padding:14px}section{padding:14px}a{display:inline-block;min-height:44px}}
+</style></head>
+<body><main>
+<h1>B 嚴格家規／C 照護改善方案比較</h1>
+<p class="warning">比較用，尚未採用；不取代既有 ABC 主案配置。新版畫面須重新驗收。這些圖不是地籍、完成面、施工或法規／風水核定。家具使用原尺寸，不吞騎樓。</p>
+<p>B 固定三條紅線：神桌前門朝道路／騎樓；背牆另一側不得是樓梯或梯廳；整個神明堂上方不得安排睡眠。C 則比較保窗側牆床與整體濕區同軸方案，照護及救援優先。</p>
+<nav aria-label="方案比較"><a href="#b-baseline">B 現主案</a><a href="#b-strict">B 嚴格重排</a><a href="#c-baseline">C 現主案</a><a href="#c-side-bed">C 小改首選</a><a href="#c-wet-stack">C 濕區同軸備案</a></nav>
+<p><a href="../../Docs/bc-constraints-review-v1.md">設計取捨／採用條件</a> · <a href="model3d.html">返回 ABC 主案 3D</a></p>
+<section id="b-baseline"><h2>B 現主案（兩條禁忌尚未解）</h2><p>保留現主案配置作比較基準，不將舊QA當作本輪圖面已驗收。</p><p class="warning">比較用，未採用；不代表全部原需求或專業查核已滿足。</p><ul><li>神桌背面仍接梯廳。</li><li>三樓客房仍在整個神明堂上方。</li></ul><ul><li><a href="bc-options/b-baseline_floor-1.svg" target="_blank" rel="noopener">1F 神明廳 × IDF 等比例圖（放大）</a> · <a href="bc-options-3d.html?scheme=b-baseline#mode=tour&amp;building=B&amp;floor=floor-1&amp;view=plan">同源 3D</a></li><li><a href="bc-options/b-baseline_floor-2.svg" target="_blank" rel="noopener">2F 大客廳 × 主臥 等比例圖（放大）</a> · <a href="bc-options-3d.html?scheme=b-baseline#mode=tour&amp;building=B&amp;floor=floor-2&amp;view=plan">同源 3D</a></li><li><a href="bc-options/b-baseline_floor-3.svg" target="_blank" rel="noopener">3F 娛樂室 × 客房 等比例圖（放大）</a> · <a href="bc-options-3d.html?scheme=b-baseline#mode=tour&amp;building=B&amp;floor=floor-3&amp;view=plan">同源 3D</a></li><li><a href="bc-options/b-baseline_floor-4.svg" target="_blank" rel="noopener">RF 設備核心 等比例圖（放大）</a> · <a href="bc-options-3d.html?scheme=b-baseline#mode=tour&amp;building=B&amp;floor=floor-4&amp;view=plan">同源 3D</a></li></ul><figure><figcaption>一樓比較預覽；放大及上層圖請用上方連結。</figcaption><object type="image/svg+xml" data="bc-options/b-baseline_floor-1.svg" aria-label="B 現主案（兩條禁忌尚未解）一樓比較圖"><a href="bc-options/b-baseline_floor-1.svg">開啟平面圖</a></object></figure><details><summary>實際幾何初篩／未解項目</summary><pre>{
+  &quot;status&quot;: &quot;geometry-and-function-screen-only&quot;,
+  &quot;religious_acceptance&quot;: &quot;unknown&quot;,
+  &quot;backing_room_ids&quot;: [
+    &quot;B:floor-1:stair1&quot;
+  ],
+  &quot;prohibited_backing&quot;: [
+    &quot;B:floor-1:stair1&quot;
+  ],
+  &quot;stair_or_hall_in_rear_axis&quot;: [
+    &quot;B:floor-1:stair1&quot;,
+    &quot;B:floor-1:rear-hall&quot;
+  ],
+  &quot;sleep_rooms_above_whole_shrine&quot;: [
+    &quot;B:floor-3:guest3&quot;
+  ],
+  &quot;street_facing_axial_door&quot;: true,
+  &quot;whole_shrine_geometry&quot;: {
+    &quot;x_mm&quot;: 0,
+    &quot;y_mm&quot;: 3900,
+    &quot;w_mm&quot;: 4400,
+    &quot;h_mm&quot;: 5600
+  },
+  &quot;shrine_assumed_clear_sqm&quot;: 23.0656,
+  &quot;program_screen&quot;: {
+    &quot;status&quot;: &quot;incomplete-not-adoptable-as-full-program&quot;,
+    &quot;areas&quot;: [],
+    &quot;unaccommodated_requirement_ids&quot;: [],
+    &quot;owner_tradeoffs_accepted&quot;: null,
+    &quot;legal_area_sqm&quot;: null
+  }
+}</pre><pre>[]</pre></details></section>
+<section id="b-strict"><h2>B 嚴格家規重排（待取捨）</h2><p>嚴格家規比較：神桌面道路／騎樓，背面為真正乾式祭祀收納；左側獨立公共通道與後置同軸樓梯不穿神明堂，客房及主臥均移出整廳投影。主臥整合後走道成3.6×4.3m，原床櫃保留；KTV／茶水及1F照護、洗衣缺口仍待屋主取捨，未採用。</p><p class="warning">比較用，未採用；不代表全部原需求或專業查核已滿足。</p><ul><li>B2後走道整合進主臥，由共用平台直接進房；3.6×4.3m名義15.48m²、按80mm討論內縮約14.24m²。原152cm床、180cm衣櫃及120cm梳妝台保留在房內，完成面、平台門框與隔音仍未核。</li><li>KTV／沙發床及120cm茶水吧本比較不容納，原需求仍保留；不能把它們放回神明堂上方來假裝全部完成。</li><li>1F只保留普通客用廁所，無障礙淋浴、浴室救援及後工作陽台需求未解；洗衣改RF候選，不代表屋突／樓地板及維修搬運已合法。</li><li>搬轎只初篩120×170×180cm收納本體；裝桿、人員、門框、輪具與演練未知，騎樓不作裝桿場。</li><li>152cm床改靠主臥右側實牆，180cm衣櫃回房；床尾與取衣操作仍待實物演練，單人客房產品尺寸也維持原型。</li><li>房門由共用前平台直接進主臥，不經套衛或其他臥室；示意平台深100cm、900mm門兩側僅50mm名義牆段，門框、滑門袋牆、逃生及隔音需重算，不能視為完成面可施工。</li></ul><ul><li><a href="bc-options/b-strict_floor-1.svg" target="_blank" rel="noopener">1F 神明廳 × IDF 等比例圖（放大）</a> · <a href="bc-options-3d.html?scheme=b-strict#mode=tour&amp;building=B&amp;floor=floor-1&amp;view=plan">同源 3D</a></li><li><a href="bc-options/b-strict_floor-2.svg" target="_blank" rel="noopener">2F 大客廳 × 主臥 等比例圖（放大）</a> · <a href="bc-options-3d.html?scheme=b-strict#mode=tour&amp;building=B&amp;floor=floor-2&amp;view=plan">同源 3D</a></li><li><a href="bc-options/b-strict_floor-3.svg" target="_blank" rel="noopener">3F 娛樂室 × 客房 等比例圖（放大）</a> · <a href="bc-options-3d.html?scheme=b-strict#mode=tour&amp;building=B&amp;floor=floor-3&amp;view=plan">同源 3D</a></li><li><a href="bc-options/b-strict_floor-4.svg" target="_blank" rel="noopener">RF 設備核心 等比例圖（放大）</a> · <a href="bc-options-3d.html?scheme=b-strict#mode=tour&amp;building=B&amp;floor=floor-4&amp;view=plan">同源 3D</a></li></ul><figure><figcaption>一樓比較預覽；放大及上層圖請用上方連結。</figcaption><object type="image/svg+xml" data="bc-options/b-strict_floor-1.svg" aria-label="B 嚴格家規重排（待取捨）一樓比較圖"><a href="bc-options/b-strict_floor-1.svg">開啟平面圖</a></object></figure><details><summary>實際幾何初篩／未解項目</summary><pre>{
+  &quot;status&quot;: &quot;geometry-and-function-screen-only&quot;,
+  &quot;religious_acceptance&quot;: &quot;unknown&quot;,
+  &quot;backing_room_ids&quot;: [
+    &quot;B:floor-1:altar-backing&quot;
+  ],
+  &quot;prohibited_backing&quot;: [],
+  &quot;stair_or_hall_in_rear_axis&quot;: [],
+  &quot;sleep_rooms_above_whole_shrine&quot;: [],
+  &quot;street_facing_axial_door&quot;: true,
+  &quot;whole_shrine_geometry&quot;: {
+    &quot;x_mm&quot;: 1200,
+    &quot;y_mm&quot;: 3900,
+    &quot;w_mm&quot;: 3200,
+    &quot;h_mm&quot;: 7500
+  },
+  &quot;shrine_assumed_clear_sqm&quot;: 22.3136,
+  &quot;public_stair_path&quot;: [
+    &quot;public-entry&quot;,
+    &quot;rear-hall&quot;,
+    &quot;stair1&quot;
+  ],
+  &quot;master_long_side_body_gaps_mm&quot;: {
+    &quot;front&quot;: 661.0,
+    &quot;rear&quot;: 665.0
+  },
+  &quot;program_screen&quot;: {
+    &quot;status&quot;: &quot;incomplete-not-adoptable-as-full-program&quot;,
+    &quot;areas&quot;: [
+      {
+        &quot;requirement_id&quot;: &quot;B.floor-1.shrine&quot;,
+        &quot;room_id&quot;: &quot;B:floor-1:shrine&quot;,
+        &quot;requirement_status&quot;: &quot;candidate&quot;,
+        &quot;minimum_sqm&quot;: 22.0,
+        &quot;target_sqm&quot;: 30.0,
+        &quot;nominal_sqm&quot;: 24.0,
+        &quot;assumed_clear_sqm&quot;: 22.3136,
+        &quot;state&quot;: &quot;area-only-not-function-approval&quot;,
+        &quot;target_state&quot;: &quot;below-brief-target&quot;,
+        &quot;source&quot;: &quot;inputs/requirements.json&quot;,
+        &quot;legal_area_sqm&quot;: null
+      },
+      {
+        &quot;requirement_id&quot;: &quot;B.floor-1.palanquin&quot;,
+        &quot;room_id&quot;: &quot;B:floor-1:storage&quot;,
+        &quot;requirement_status&quot;: &quot;candidate&quot;,
+        &quot;minimum_sqm&quot;: 9.0,
+        &quot;target_sqm&quot;: 10.5,
+        &quot;nominal_sqm&quot;: 9.648,
+        &quot;assumed_clear_sqm&quot;: 8.6688,
+        &quot;state&quot;: &quot;brief-area-shortfall&quot;,
+        &quot;target_state&quot;: &quot;below-brief-target&quot;,
+        &quot;source&quot;: &quot;inputs/requirements.json&quot;,
+        &quot;legal_area_sqm&quot;: null
+      },
+      {
+        &quot;requirement_id&quot;: &quot;B.floor-2.master_b&quot;,
+        &quot;room_id&quot;: &quot;B:floor-2:master2&quot;,
+        &quot;requirement_status&quot;: &quot;candidate&quot;,
+        &quot;minimum_sqm&quot;: 14.0,
+        &quot;target_sqm&quot;: 20.0,
+        &quot;nominal_sqm&quot;: 15.48,
+        &quot;assumed_clear_sqm&quot;: 14.2416,
+        &quot;state&quot;: &quot;area-only-not-function-approval&quot;,
+        &quot;target_state&quot;: &quot;below-brief-target&quot;,
+        &quot;source&quot;: &quot;inputs/requirements.json&quot;,
+        &quot;legal_area_sqm&quot;: null
+      },
+      {
+        &quot;requirement_id&quot;: &quot;B.floor-1.bath_acc&quot;,
+        &quot;room_id&quot;: &quot;B:floor-1:bath1&quot;,
+        &quot;requirement_status&quot;: &quot;candidate&quot;,
+        &quot;minimum_sqm&quot;: 4.5,
+        &quot;target_sqm&quot;: 7.0,
+        &quot;nominal_sqm&quot;: 3.24,
+        &quot;assumed_clear_sqm&quot;: 2.6864,
+        &quot;state&quot;: &quot;brief-area-shortfall&quot;,
+        &quot;target_state&quot;: &quot;below-brief-target&quot;,
+        &quot;source&quot;: &quot;inputs/requirements.json&quot;,
+        &quot;legal_area_sqm&quot;: null
+      }
+    ],
+    &quot;unaccommodated_requirement_ids&quot;: [
+      &quot;B.floor-2.tea&quot;,
+      &quot;B.floor-3.ktv&quot;,
+      &quot;B.floor-1.balcony_b&quot;
+    ],
+    &quot;owner_tradeoffs_accepted&quot;: null,
+    &quot;legal_area_sqm&quot;: null
+  },
+  &quot;transport&quot;: {
+    &quot;status&quot;: &quot;storage-body-sweep-only-not-transport-approval&quot;,
+    &quot;physical_item_id&quot;: &quot;B.palanquin.primary&quot;,
+    &quot;storage_dimensions&quot;: {
+      &quot;width_mm&quot;: 1200.0,
+      &quot;depth_mm&quot;: 1700.0,
+      &quot;height_mm&quot;: 1800.0
+    },
+    &quot;storage_dimension_source&quot;: &quot;planning&quot;,
+    &quot;assembled_dimensions&quot;: null,
+    &quot;assembled_measurement&quot;: {
+      &quot;status&quot;: &quot;unknown&quot;,
+      &quot;value&quot;: null,
+      &quot;source&quot;: null
+    },
+    &quot;route_rehearsal&quot;: {
+      &quot;status&quot;: &quot;unknown&quot;,
+      &quot;value&quot;: null,
+      &quot;source&quot;: null
+    },
+    &quot;carrying_poles_removable&quot;: null,
+    &quot;transport_acceptance&quot;: &quot;unknown&quot;,
+    &quot;axis_x_mm&quot;: 5200.0,
+    &quot;gates&quot;: [
+      {
+        &quot;room_id&quot;: &quot;B:floor-1:entry&quot;,
+        &quot;nominal_width_mm&quot;: 1500,
+        &quot;body_side_margin_mm&quot;: 150.0
+      },
+      {
+        &quot;room_id&quot;: &quot;B:floor-1:storage&quot;,
+        &quot;nominal_width_mm&quot;: 1500,
+        &quot;body_side_margin_mm&quot;: 150.0
+      }
+    ],
+    &quot;segments&quot;: [
+      {
+        &quot;room_id&quot;: &quot;B:floor-1:garage&quot;,
+        &quot;centerline_mm&quot;: [
+          [
+            5200.0,
+            0
+          ],
+          [
+            5200.0,
+            3900
+          ]
+        ],
+        &quot;body_sweep_mm&quot;: {
+          &quot;minX&quot;: 4600.0,
+          &quot;maxX&quot;: 5800.0,
+          &quot;minY&quot;: 0,
+          &quot;maxY&quot;: 3900
+        },
+        &quot;nominal_width_mm&quot;: 6000,
+        &quot;assumed_clear_width_mm&quot;: 6000
+      },
+      {
+        &quot;room_id&quot;: &quot;B:floor-1:entry&quot;,
+        &quot;centerline_mm&quot;: [
+          [
+            5200.0,
+            3900
+          ],
+          [
+            5200.0,
+            11400
+          ]
+        ],
+        &quot;body_sweep_mm&quot;: {
+          &quot;minX&quot;: 4600.0,
+          &quot;maxX&quot;: 5800.0,
+          &quot;minY&quot;: 3900,
+          &quot;maxY&quot;: 11400
+        },
+        &quot;nominal_width_mm&quot;: 1600,
+        &quot;assumed_clear_width_mm&quot;: 1440.0
+      },
+      {
+        &quot;room_id&quot;: &quot;B:floor-1:corridor1&quot;,
+        &quot;centerline_mm&quot;: [
+          [
+            5200.0,
+            11400
+          ],
+          [
+            5200.0,
+            14950
+          ]
+        ],
+        &quot;body_sweep_mm&quot;: {
+          &quot;minX&quot;: 4600.0,
+          &quot;maxX&quot;: 5800.0,
+          &quot;minY&quot;: 11400,
+          &quot;maxY&quot;: 14950
+        },
+        &quot;nominal_width_mm&quot;: 1600,
+        &quot;assumed_clear_width_mm&quot;: 1440.0
+      },
+      {
+        &quot;room_id&quot;: &quot;B:floor-1:storage&quot;,
+        &quot;centerline_mm&quot;: [
+          [
+            5200.0,
+            14950
+          ],
+          [
+            5200.0,
+            15850.04
+          ]
+        ],
+        &quot;body_sweep_mm&quot;: {
+          &quot;minX&quot;: 4600.0,
+          &quot;maxX&quot;: 5800.0,
+          &quot;minY&quot;: 14950,
+          &quot;maxY&quot;: 15850.04
+        },
+        &quot;nominal_width_mm&quot;: 3600,
+        &quot;assumed_clear_width_mm&quot;: 3440.0
+      }
+    ],
+    &quot;assumed_inset_mm&quot;: 80.0,
+    &quot;bottleneck_assumed_width_mm&quot;: 1440.0,
+    &quot;note&quot;: &quot;門外通行帶 → 150cm搬轎側門 → 前後1.6m名義通道 → 150cm收納門 → 武轎位；不穿神明堂、不在室內轉向。只初篩收納本體，拆桿／裝桿、輪具高度、人員、門框／門扇、坡度高差及雨天演練未核。騎樓不能當已核准裝桿場。&quot;
+  }
+}</pre><pre>[]</pre></details></section>
+<section id="c-baseline"><h2>C 現主案（床頭／濕區待解）</h2><p>保留開放客餐廳與孝親套衛，作為比較基準。</p><p class="warning">比較用，未採用；不代表全部原需求或專業查核已滿足。</p><ul><li>床頭仍靠後窗，上層浴廁部分投影到床尾。</li><li>訪客公衛與浴室救援演練未解。</li></ul><ul><li><a href="bc-options/c-baseline_floor-1.svg" target="_blank" rel="noopener">1F IDF×孝親 等比例圖（放大）</a> · <a href="bc-options-3d.html?scheme=c-baseline#mode=tour&amp;building=C&amp;floor=floor-1&amp;view=plan">同源 3D</a></li><li><a href="bc-options/c-baseline_floor-2.svg" target="_blank" rel="noopener">2F 公共×客房 等比例圖（放大）</a> · <a href="bc-options-3d.html?scheme=c-baseline#mode=tour&amp;building=C&amp;floor=floor-2&amp;view=plan">同源 3D</a></li><li><a href="bc-options/c-baseline_floor-3.svg" target="_blank" rel="noopener">3F 主臥×運動 等比例圖（放大）</a> · <a href="bc-options-3d.html?scheme=c-baseline#mode=tour&amp;building=C&amp;floor=floor-3&amp;view=plan">同源 3D</a></li><li><a href="bc-options/c-baseline_floor-4.svg" target="_blank" rel="noopener">RF 設備層 等比例圖（放大）</a> · <a href="bc-options-3d.html?scheme=c-baseline#mode=tour&amp;building=C&amp;floor=floor-4&amp;view=plan">同源 3D</a></li></ul><figure><figcaption>一樓比較預覽；放大及上層圖請用上方連結。</figcaption><object type="image/svg+xml" data="bc-options/c-baseline_floor-1.svg" aria-label="C 現主案（床頭／濕區待解）一樓比較圖"><a href="bc-options/c-baseline_floor-1.svg">開啟平面圖</a></object></figure><details><summary>實際幾何初篩／未解項目</summary><pre>{
+  &quot;status&quot;: &quot;geometry-and-function-screen-only&quot;,
+  &quot;religious_acceptance&quot;: &quot;unknown&quot;,
+  &quot;headboard_wall&quot;: &quot;rear&quot;,
+  &quot;rear_window_mm&quot;: 2300.0,
+  &quot;wet_rooms_over_bed&quot;: [
+    &quot;C:floor-2:bath2f&quot;,
+    &quot;C:floor-3:bath3f&quot;
+  ],
+  &quot;wet_rooms_over_bedroom&quot;: [
+    &quot;C:floor-2:bath2f&quot;,
+    &quot;C:floor-3:bath3f&quot;
+  ],
+  &quot;bathroom_turning_and_rescue&quot;: &quot;unknown&quot;,
+  &quot;visitor_public_bath&quot;: &quot;not-provided&quot;,
+  &quot;program_screen&quot;: {
+    &quot;status&quot;: &quot;incomplete-not-adoptable-as-full-program&quot;,
+    &quot;areas&quot;: [],
+    &quot;unaccommodated_requirement_ids&quot;: [],
+    &quot;owner_tradeoffs_accepted&quot;: null,
+    &quot;legal_area_sqm&quot;: null
+  }
+}</pre><pre>[]</pre></details></section>
+<section id="c-side-bed"><h2>C 保窗側牆床／濕區小移（建議先比較）</h2><p>保留1F床、房、套衛與230cm窗：關閉重複前室門，床頭改側牆、電視改前牆；2F／3F衛浴後牆同軸前移20cm，90cm淋浴／馬桶／洗手台不縮。</p><p class="warning">比較用，未採用；不代表全部原需求或專業查核已滿足。</p><ul><li>床尾操作與120cm照護通行地面分時，雙人／醫療床演練仍未核。</li><li>2F／3F衛浴後牆前移20cm，名義2.4×2m；原90cm淋浴與700mm操作帶保留，但配管、後牆、防水與鄰界須重核。後維修帶增200mm，不把戶外轉室內。</li><li>床體與上層浴廁名義投影由30mm增加為230mm；這仍不是樑、管道、完成面或防漏核定。</li><li>上層浴室仍在臥室前半部上方，訪客公衛及套衛救援仍未解。</li></ul><ul><li><a href="bc-options/c-side-bed_floor-1.svg" target="_blank" rel="noopener">1F IDF×孝親 等比例圖（放大）</a> · <a href="bc-options-3d.html?scheme=c-side-bed#mode=tour&amp;building=C&amp;floor=floor-1&amp;view=plan">同源 3D</a></li><li><a href="bc-options/c-side-bed_floor-2.svg" target="_blank" rel="noopener">2F 公共×客房 等比例圖（放大）</a> · <a href="bc-options-3d.html?scheme=c-side-bed#mode=tour&amp;building=C&amp;floor=floor-2&amp;view=plan">同源 3D</a></li><li><a href="bc-options/c-side-bed_floor-3.svg" target="_blank" rel="noopener">3F 主臥×運動 等比例圖（放大）</a> · <a href="bc-options-3d.html?scheme=c-side-bed#mode=tour&amp;building=C&amp;floor=floor-3&amp;view=plan">同源 3D</a></li><li><a href="bc-options/c-side-bed_floor-4.svg" target="_blank" rel="noopener">RF 設備層 等比例圖（放大）</a> · <a href="bc-options-3d.html?scheme=c-side-bed#mode=tour&amp;building=C&amp;floor=floor-4&amp;view=plan">同源 3D</a></li></ul><figure><figcaption>一樓比較預覽；放大及上層圖請用上方連結。</figcaption><object type="image/svg+xml" data="bc-options/c-side-bed_floor-1.svg" aria-label="C 保窗側牆床／濕區小移（建議先比較）一樓比較圖"><a href="bc-options/c-side-bed_floor-1.svg">開啟平面圖</a></object></figure><details><summary>實際幾何初篩／未解項目</summary><pre>{
+  &quot;status&quot;: &quot;geometry-and-function-screen-only&quot;,
+  &quot;religious_acceptance&quot;: &quot;unknown&quot;,
+  &quot;headboard_wall&quot;: &quot;left&quot;,
+  &quot;rear_window_mm&quot;: 2300.0,
+  &quot;wet_rooms_over_bed&quot;: [],
+  &quot;wet_rooms_over_bedroom&quot;: [
+    &quot;C:floor-2:bath2f&quot;,
+    &quot;C:floor-3:bath3f&quot;
+  ],
+  &quot;bathroom_turning_and_rescue&quot;: &quot;unknown&quot;,
+  &quot;visitor_public_bath&quot;: &quot;not-provided&quot;,
+  &quot;wet_room_to_bed_nominal_gap_mm&quot;: 230.0,
+  &quot;program_screen&quot;: {
+    &quot;status&quot;: &quot;incomplete-not-adoptable-as-full-program&quot;,
+    &quot;areas&quot;: [
+      {
+        &quot;requirement_id&quot;: &quot;C.floor-2.bath_c2&quot;,
+        &quot;room_id&quot;: &quot;C:floor-2:bath2f&quot;,
+        &quot;requirement_status&quot;: &quot;candidate&quot;,
+        &quot;minimum_sqm&quot;: 3.6,
+        &quot;target_sqm&quot;: 5.0,
+        &quot;nominal_sqm&quot;: 4.8,
+        &quot;assumed_clear_sqm&quot;: 4.1216,
+        &quot;state&quot;: &quot;area-only-not-function-approval&quot;,
+        &quot;target_state&quot;: &quot;below-brief-target&quot;,
+        &quot;source&quot;: &quot;inputs/requirements.json&quot;,
+        &quot;legal_area_sqm&quot;: null
+      },
+      {
+        &quot;requirement_id&quot;: &quot;C.floor-3.bath_c3&quot;,
+        &quot;room_id&quot;: &quot;C:floor-3:bath3f&quot;,
+        &quot;requirement_status&quot;: &quot;candidate&quot;,
+        &quot;minimum_sqm&quot;: 3.6,
+        &quot;target_sqm&quot;: 5.0,
+        &quot;nominal_sqm&quot;: 4.8,
+        &quot;assumed_clear_sqm&quot;: 4.1216,
+        &quot;state&quot;: &quot;area-only-not-function-approval&quot;,
+        &quot;target_state&quot;: &quot;below-brief-target&quot;,
+        &quot;source&quot;: &quot;inputs/requirements.json&quot;,
+        &quot;legal_area_sqm&quot;: null
+      }
+    ],
+    &quot;unaccommodated_requirement_ids&quot;: [],
+    &quot;owner_tradeoffs_accepted&quot;: null,
+    &quot;legal_area_sqm&quot;: null
+  }
+}</pre><pre>[]</pre></details></section>
+<section id="c-wet-stack"><h2>C 濕區同軸重排（高影響備案）</h2><p>採側牆床小改，另將2F／3F衛浴移到1F套衛上方；2F小廚房改中段，後客房重新試排。</p><p class="warning">比較用，未採用；不代表全部原需求或專業查核已滿足。</p><ul><li>C2後客房2.4×3.83m，假設扣邊約8.22m²，低於原9m²下限；比較改105×188cm市售單人床，並非原180cm沙發床保留，產品選擇仍須屋主決定。</li><li>C3部分原戶外維修平台轉衛浴約5.28m²，合法樓地板、結構、排水、採光及鄰界未核；同外框不代表可封。</li><li>中段小廚房沒有已核定直接外窗，排煙與機電路徑需設計；客房、室外機維修與後窗重新查核。</li><li>全臥室上方無濕區是幾何比較，不是防漏／宗教／照護核定，任一功能或法規不成立就不採用。</li><li>後客房180cm衣櫃仍有家具／操作衝突，保留原尺寸列待排；不得因另一張圖也省略就宣稱已容納。</li></ul><ul><li><a href="bc-options/c-wet-stack_floor-1.svg" target="_blank" rel="noopener">1F IDF×孝親 等比例圖（放大）</a> · <a href="bc-options-3d.html?scheme=c-wet-stack#mode=tour&amp;building=C&amp;floor=floor-1&amp;view=plan">同源 3D</a></li><li><a href="bc-options/c-wet-stack_floor-2.svg" target="_blank" rel="noopener">2F 公共×客房 等比例圖（放大）</a> · <a href="bc-options-3d.html?scheme=c-wet-stack#mode=tour&amp;building=C&amp;floor=floor-2&amp;view=plan">同源 3D</a></li><li><a href="bc-options/c-wet-stack_floor-3.svg" target="_blank" rel="noopener">3F 主臥×運動 等比例圖（放大）</a> · <a href="bc-options-3d.html?scheme=c-wet-stack#mode=tour&amp;building=C&amp;floor=floor-3&amp;view=plan">同源 3D</a></li><li><a href="bc-options/c-wet-stack_floor-4.svg" target="_blank" rel="noopener">RF 設備層 等比例圖（放大）</a> · <a href="bc-options-3d.html?scheme=c-wet-stack#mode=tour&amp;building=C&amp;floor=floor-4&amp;view=plan">同源 3D</a></li></ul><figure><figcaption>一樓比較預覽；放大及上層圖請用上方連結。</figcaption><object type="image/svg+xml" data="bc-options/c-wet-stack_floor-1.svg" aria-label="C 濕區同軸重排（高影響備案）一樓比較圖"><a href="bc-options/c-wet-stack_floor-1.svg">開啟平面圖</a></object></figure><details><summary>實際幾何初篩／未解項目</summary><pre>{
+  &quot;status&quot;: &quot;geometry-and-function-screen-only&quot;,
+  &quot;religious_acceptance&quot;: &quot;unknown&quot;,
+  &quot;headboard_wall&quot;: &quot;left&quot;,
+  &quot;rear_window_mm&quot;: 2300.0,
+  &quot;wet_rooms_over_bed&quot;: [],
+  &quot;wet_rooms_over_bedroom&quot;: [],
+  &quot;bathroom_turning_and_rescue&quot;: &quot;unknown&quot;,
+  &quot;visitor_public_bath&quot;: &quot;not-provided&quot;,
+  &quot;wet_room_to_bed_nominal_gap_mm&quot;: null,
+  &quot;program_screen&quot;: {
+    &quot;status&quot;: &quot;incomplete-not-adoptable-as-full-program&quot;,
+    &quot;areas&quot;: [
+      {
+        &quot;requirement_id&quot;: &quot;C.floor-2.guest2&quot;,
+        &quot;room_id&quot;: &quot;C:floor-2:guestroom2f&quot;,
+        &quot;requirement_status&quot;: &quot;candidate&quot;,
+        &quot;minimum_sqm&quot;: 9.0,
+        &quot;target_sqm&quot;: 12.0,
+        &quot;nominal_sqm&quot;: 9.192,
+        &quot;assumed_clear_sqm&quot;: 8.2208,
+        &quot;state&quot;: &quot;brief-area-shortfall&quot;,
+        &quot;target_state&quot;: &quot;below-brief-target&quot;,
+        &quot;source&quot;: &quot;inputs/requirements.json&quot;,
+        &quot;legal_area_sqm&quot;: null
+      }
+    ],
+    &quot;unaccommodated_requirement_ids&quot;: [],
+    &quot;owner_tradeoffs_accepted&quot;: null,
+    &quot;legal_area_sqm&quot;: null
+  }
+}</pre><pre>[
+  {
+    &quot;room_id&quot;: &quot;C:floor-2:guestroom2f&quot;,
+    &quot;item_id&quot;: &quot;C:floor-2:guestroom2f:furniture:wardrobe&quot;,
+    &quot;issues&quot;: [
+      &quot;furniture-overlap&quot;,
+      &quot;operation-space&quot;
+    ]
+  }
+]</pre></details></section>
+<p>採用前須確認：原需求取捨 → 實物與照護／搬運演練 → 完成面及結構 → 法規、排水、消防、採光與空調 → 屋主定案。任一未成立就保留比較，不宣稱全部完成。</p>
+</main><script src="bc-options/layout.js"></script></body></html>

@@ -1,0 +1,114 @@
+{
+  "schema": "house-c1f-options-v1",
+  "id": "c1f-bath-daylight-v1",
+  "status": "comparison-only-not-adopted",
+  "active_design": "baseline",
+  "note": "只比較 C 一樓公衛與採光，未取代主案、未核准需求取捨。尺寸是固定比較框，非地籍、完成面或法規證明。",
+  "conditions": [
+    "先核逐筆地籍、建築線、騎樓／退縮、建蔽與容積；三案皆不把門外 3.9m 帶封成室內、不計車位。",
+    "側界可能共壁，三案不增加側窗；前後開口也只是候選，朝向、遮蔽、有效採光與自然通風均未知。",
+    "公衛僅普通馬桶＋洗手台，不是無障礙公衛或額外淋浴；門扇、救援、完成面淨寬及輪椅演練仍待核。",
+    "前／中段新增濕區不對齊原 2F、3F 後段衛浴；獨立可檢修污排水、通氣、排氣、防水、結構穿孔及責任分界均未知。不得直接穿梁或借 IDF 壁龕排水。",
+    "原 3.2m² 室外機壁龕轉室內的建築面積條件未解除；保留孝親房、套衛與同軸樓梯，不代表全棟已可施工。"
+  ],
+  "profiles": {
+    "study-c-partitioned-living": [
+      {"id":"sofa","catalog":"sofa-2","position":[0.18,0.8],"wall_anchor":"rear","wall_locked":true,"note":"保留舊分隔比較：180cm雙人沙發靠後實牆，不把本案當現行開放客餐廳。"},
+      {"id":"tv","catalog":"wall-tv","position":[0.18,0.1],"wall_anchor":"front","aligned_with":"sofa","wall_locked":true,"mount_height_mm":1200,"front_clearance_mm":0,"note":"只在本比較案仍保留的前隔牆掛43吋電視；現行開放主案改左側實牆。"},
+      {"id":"coffee-table","catalog":"coffee-table","position":[0.18,0.4],"in_front_of":"sofa","front_gap_mm":400,"note":"110×60cm茶几，保留沙發前40cm；不縮家具。"},
+      {"id":"reading-chair","catalog":"reading-chair","position":[0.9,0.75],"wall_anchor":"right","wall_locked":true,"note":"90cm單椅靠右側後段，公共橫向通行暫留。"}
+    ],
+    "study-c-public-front": [
+      {"id":"toilet","catalog":"toilet","position":[0.75,0.2],"wall_anchor":"front","wall_locked":true,"note":"一般45×70cm馬桶，前側候選高窗不取代排氣查核。"},
+      {"id":"vanity","catalog":"vanity-60","position":[0.2,0.32],"wall_anchor":"left","wall_locked":true,"note":"一般60×45cm洗手台；普通訪客使用，不宣稱輪椅公衛。"}
+    ],
+    "study-c-public-middle": [
+      {"id":"toilet","catalog":"toilet","position":[0.75,0.85],"wall_anchor":"rear","wall_locked":true,"note":"一般45×70cm馬桶；獨立污排水與通氣管待設計。"},
+      {"id":"vanity","catalog":"vanity-60","position":[0.2,0.5],"wall_anchor":"left","wall_locked":true,"note":"一般60×45cm洗手台；室內公衛無外窗，獨立排氣與補氣未知。"}
+    ],
+    "study-c-front-living": [
+      {"id":"sofa","catalog":"sofa-2","position":[0.27,0.85],"wall_anchor":"rear","wall_locked":true,"note":"180cm雙人沙發靠後段實牆；不縮成較小模型。"},
+      {"id":"tv","catalog":"wall-tv","position":[0.27,0.1],"wall_anchor":"front","aligned_with":"sofa","wall_locked":true,"mount_height_mm":1200,"front_clearance_mm":0,"note":"43吋電視在前左實牆、與沙發同軸；前右才是候選窗，反光／眼位仍待核。"},
+      {"id":"coffee-table","catalog":"coffee-table","position":[0.27,0.4],"in_front_of":"sofa","front_gap_mm":400,"note":"110×60cm茶几，保留沙發前40cm；與右側照護帶分開。"},
+      {"id":"reading-chair","catalog":"reading-chair","position":[0.57,0.2],"wall_anchor":"front","wall_locked":true,"note":"90cm單椅靠前側低窗下候選區，供陪伴／閱讀；不是主看電視位，窗扇形式與開啟操作待核。"}
+    ]
+  },
+  "options": [
+    {
+      "id": "baseline",
+      "label": "現行｜開放客餐廳主案",
+      "summary": "前餐桌、中段客廳與玄關無內部分隔，電視改左側實牆；後段孝親套衛保留，不另增濕區。",
+      "tradeoffs": ["訪客如廁需經孝親房，隱私問題未解。", "只有餐廳前側候選窗；中段客廳借光不能當成有效採光通過。"],
+      "visitor_route": ["entrance", "living", "stair1f", "elder", "elder-bath"],
+      "public_bath_key": null,
+      "public_bath_verified": null,
+      "daylight_verified": null,
+      "plumbing_verified": null,
+      "patch": {}
+    },
+    {
+      "id": "bath-front",
+      "label": "方案 1｜前右公衛",
+      "summary": "把原玄關前段分給普通公衛，入口改到餐廳右側通行帶，保留中段客廳與四人桌。",
+      "tradeoffs": ["公衛4.4m²，乾式前室2.0m²；原獨立玄關與120cm鞋櫃未容納，不另縮櫃。", "入口先進餐廳，前室僅1m深且需轉向，不能宣稱無障礙入口已完成。", "公衛門朝側後前室，不正對餐桌或神位，但隔音、防臭、滑門救援與排氣仍待核。", "保留餐廳240cm候選前窗、增加公衛60cm候選高窗；客廳仍無獨立外窗。", "前側污排水距原後段濕區遠；須另設可檢修立管／排氣，不能假設長水平糞管可直接接通。"],
+      "visitor_route": ["dining", "entrance", "public-bath"],
+      "public_bath_key": "public-bath",
+      "public_bath_verified": null,
+      "daylight_verified": null,
+      "plumbing_verified": null,
+      "patch": {
+        "rooms": {
+          "entrance": {"rect":[4000,6100,2000,1000],"name":"公衛乾式前室（鞋櫃另案）","kind":"entry","clear":true,"window_mm":0},
+          "living": {"rect":[0,7100,6000,2400],"name":"中段客廳（保留分隔比較）","kind":"living","profile":"study-c-partitioned-living","clearance_reservations":[{"kind":"care-route","rect":[2400,0,1200,2400]},{"kind":"circulation","rect":[3600,0,2200,1200]},{"kind":"care-turn","rect":[2400,0,1500,1500]}]},
+          "public-bath": {"rect":[4000,3900,2000,2200],"name":"訪客公衛（普通廁所／新增濕區）","kind":"bath","room_role":"bathroom","outdoor":false,"profile":"study-c-public-front","door_operation":"sliding","window_face":"front","window_mm":600,"window_ratio":0.25}
+        },
+        "connections": [
+          ["dining","entrance",{"type":"open","width_mm":900},6600],
+          ["entrance","public-bath",800,4500],
+          ["entrance","living",1000,4800],
+          ["dining","living",1000,3400],
+          ["living","stair1f",1000,3000],
+          ["stair1f","kitchen",900,10200],
+          ["stair1f","sliding-door","open"],
+          ["sliding-door","sideyard","open"],
+          ["sliding-door","elder",1000,1900],
+          ["stair1f","elder",1000,3000],
+          ["elder","elder-bath",1000,14900]
+        ],
+        "entry": ["dining","front",1000,3400]
+      }
+    },
+    {
+      "id": "front-living",
+      "label": "方案 2｜前客廳＋中段公衛",
+      "summary": "客廳改到前左候選窗邊，餐廳移中段，普通公衛在玄關後方；保留四人桌、雙人沙發＋單椅。",
+      "tradeoffs": ["客廳與餐廳各11.2m²，公衛5.6m²，乾式玄關5.6m²；原27.2m²客餐廳減為22.4m²。", "前右120cm候選窗服務客廳，電視留前左實牆；採光面受電視牆限制，反光及日照深度仍未知。", "餐廳變中段借光；不能把客廳有窗當成餐廳有效採光證明。", "室內公衛無外窗，須獨立排氣到合法外部與補氣；不接廚房排油煙或 IDF 排風。", "玄關鞋櫃暫不排入，優先留入口、公衛門前與150cm轉位暫留；開門、轉位分時演練，鞋櫃另案，不因面積相近宣稱原收納仍在。", "冷氣 C-AC01 隨客廳前移重新計算，仍配2F前陽台；原廠管長、高低差與冷凝水重力排水未核。"],
+      "visitor_route": ["entrance", "public-bath"],
+      "public_bath_key": "public-bath",
+      "public_bath_verified": null,
+      "daylight_verified": null,
+      "plumbing_verified": null,
+      "patch": {
+        "rooms": {
+          "living": {"rect":[0,3900,4000,2800],"name":"前側客廳（候選窗／電視實牆）","kind":"living","outdoor":false,"profile":"study-c-front-living","window_face":"front","window_mm":1200,"window_ratio":0.68,"clearance_reservations":[{"kind":"care-route","rect":[2800,0,1200,2800]}]},
+          "dining": {"rect":[0,6700,4000,2800],"name":"中段四人餐廳（借光待核）","kind":"dining","outdoor":false,"profile":"review-c-1f-dining","window_mm":0,"clearance_reservations":[{"kind":"care-route","rect":[2800,0,1200,2800]}]},
+          "entrance": {"rect":[4000,3900,2000,2800],"name":"乾式玄關（鞋櫃另案／轉向待核）","kind":"entry","clear":true,"window_mm":0,"clearance_reservations":[{"kind":"care-turn","rect":[80,1000,1500,1500]}]},
+          "public-bath": {"rect":[4000,6700,2000,2800],"name":"中段訪客公衛（排氣待核）","kind":"bath","room_role":"bathroom","outdoor":false,"profile":"study-c-public-middle","door_operation":"sliding","window_mm":0}
+        },
+        "connections": [
+          ["entrance","living",{"type":"open","width_mm":1200},5700],
+          ["entrance","public-bath",800,5000],
+          ["living","dining",{"type":"open","width_mm":1200},3400],
+          ["dining","stair1f",1000,3400],
+          ["stair1f","kitchen",900,10200],
+          ["stair1f","sliding-door","open"],
+          ["sliding-door","sideyard","open"],
+          ["sliding-door","elder",1000,1900],
+          ["stair1f","elder",1000,3000],
+          ["elder","elder-bath",1000,14900]
+        ],
+        "entry": ["entrance","front",1000,5300]
+      }
+    }
+  ]
+}

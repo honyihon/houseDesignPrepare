@@ -56,13 +56,14 @@ test('production exterior camera fits single/all buildings, front/oblique and de
 });
 
 function stateHarness(){
-  const controls=Object.fromEntries(['architecture','full-walls','navigation','room-cutaway','cut','explode','ghost'].map(id=>
+  const controls=Object.fromEntries(['architecture','full-walls','navigation','room-cutaway','cut','explode','ghost','mdf-study'].map(id=>
     [id,{checked:['architecture','navigation','room-cutaway'].includes(id),value:id==='cut'?'900':id==='explode'?'600':'on'}]));
   const buildings=shared.buildings.map(b=>({id:b.id,floors:b.floors.map(f=>({id:f.id,cells:f.rooms.map(r=>({id:r.id,tour_active:true}))}))}));
   const floorGroups=buildings.flatMap(b=>b.floors.map(f=>({building:b,floor:f,group:{visible:b.id==='A'&&f.id==='floor-2'},checkbox:{checked:b.id==='A'&&f.id==='floor-2'}})));
   const meshById=Object.fromEntries(buildings.flatMap(b=>b.floors.flatMap(f=>f.cells.map(c=>[c.id,{userData:{building:b,floor:f,cell:c}}]))));
   const stateFunctions=[section(fragment,'facadeIsActive','facadeMaterial'),section(fragment,'captureIndoorState','facadeViewBox'),
-    section(template,'buildingRecord','writeHash'),section(template,'writeHash','updateOrientation'),section(template,'cellInPresentation','selectMesh')].join('\n');
+    section(template,'buildingRecord','writeHash'),section(template,'mdfStudyActive','buildMdfStudy'),
+    section(template,'writeHash','updateOrientation'),section(template,'cellInPresentation','selectMesh')].join('\n');
   const api=vm.runInNewContext(`var viewState={building:'A',floor:'floor-2',room:'A:floor-2:master-bath',view:'front'};
     var presentation='tour',geomSource='auto',roomCameraFocused=true,selectedFurniture='item';
     var exteriorAngle='front',indoorSnapshot=null,hashInitialized=true;

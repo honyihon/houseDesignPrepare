@@ -110,6 +110,23 @@
 .shared-furniture-plan p, .legacy-plan-caption { font-size: .82rem; line-height: 1.65; margin: 8px 0; }
 .shared-plan-open { display: block; margin: 12px 0; text-align: center; background: #fff; border-radius: 6px; }
 .shared-plan-open img { display: block; width: 100%; max-height: 760px; object-fit: contain; }
+.shared-plan-viewer { min-width: 0; margin: 12px 0; }
+.shared-plan-controls { display: flex; flex-wrap: wrap; gap: 8px; }
+.shared-plan-controls[hidden] { display: none; }
+.shared-plan-controls button {
+    min-height: 44px; min-width: 64px; padding: 8px 12px; border: 1px solid #527982;
+    border-radius: 6px; color: #183f4b; background: #fff; font: inherit; cursor: pointer;
+}
+.shared-plan-controls button[aria-pressed="true"] { color: #fff; background: #176974; }
+.shared-plan-controls button:disabled { opacity: .5; cursor: default; }
+.shared-plan-controls button:focus-visible, .shared-plan-viewport:focus-visible { outline: 3px solid #176974; outline-offset: 3px; }
+.shared-plan-viewport {
+    width: 100%; height: clamp(320px, 62vh, 640px); overflow: auto; background: #fff;
+    border: 1px solid #bcc9c9; border-radius: 6px; touch-action: auto;
+}
+.shared-plan-viewer .shared-plan-open { width: max-content; margin: 0 auto; }
+.shared-plan-viewer .shared-plan-open img { max-height: none; max-width: none; object-fit: fill; }
+@media (max-width: 600px) { .shared-plan-viewport { height: clamp(280px, 58vh, 540px); } }
 .shared-furniture-plan details { margin-top: 8px; border-top: 1px solid #bcc9c9; padding: 8px 0; }
 .shared-furniture-plan summary { cursor: pointer; font-size: .85rem; font-weight: 650; }
 .shared-furniture-plan ul { padding-left: 20px; font-size: .8rem; line-height: 1.65; }
@@ -175,3 +192,6 @@ body[data-design-status="historical-html-sketch"] .visual-plan.with-shared-plan 
 }
 .frontage-study-toggle { display:flex;align-items:flex-start;gap:8px;line-height:1.6;cursor:pointer; }
 .frontage-study-toggle input { flex:0 0 auto;margin-top:6px; }
+.mdf-study-review { margin:16px 0;padding:12px;border:1px dashed #b45309;border-radius:8px; }
+.mdf-study-review summary { cursor:pointer;font-weight:600;color:#7c420f; }
+.mdf-study-review > img { display:block;width:100%;height:auto;max-width:1100px;margin:12px auto; }

@@ -147,6 +147,9 @@
     padding: 7px 10px; border: 1px solid var(--line); border-radius: 8px;
     background: rgba(9, 14, 26, .78); color: var(--text); font-size: 11px; line-height: 1.45;
   }
+  #mdf-study-note { position:absolute;left:14px;bottom:58px;max-width:min(650px,calc(100% - 28px));
+    padding:7px 10px;border:1px dashed #b45309;border-radius:6px;background:#fff7edee;color:#7c420f;font-size:11px;line-height:1.45; }
+  #mdf-study-note[hidden] { display:none; }
   #mobile-panel-toggle { display: none; }
   @media (max-width: 860px) {
     #hud { display:none; }
@@ -161,6 +164,17 @@
     #app.panel-collapsed #panel { overflow: hidden; padding-block: 6px; }
     #app.panel-collapsed #panel > :not(#mobile-panel-toggle) { display: none !important; }
     #orientation { bottom: 8px; }
+    #stage-title { left:14px;top:62px;font-size:16px; }
+    .room-view-button { min-height:44px; }
+    #room-view-actions { left:14px;max-width:calc(100% - 28px); }
+  }
+  @media (max-width:860px) and (max-height:500px) {
+    #stage-title { top:12px;max-width:calc(100% - 240px);font-size:14px; }
+    #stage-title small { font-size:11px;margin-top:3px; }
+    #room-view-actions { align-items:center;gap:6px; }
+    #room-cutaway-status { flex-basis:auto;max-width:calc(100% - 250px); }
+    #orientation { max-width:calc(50% - 28px);padding:5px 8px; }
+    #mdf-study-note { left:auto;right:14px;bottom:8px;max-width:calc(50% - 28px); }
   }
 </style>
 </head>
@@ -168,6 +182,7 @@
 <div id="app">
   <aside id="panel">
     <button id="mobile-panel-toggle" type="button" aria-controls="panel" aria-expanded="true">收合控制，放大 3D</button>
+    __STUDY_CONTROLS__
     <h1>原設計 HTML · 三棟 3D 對照</h1>
     <p class="sub" id="subtitle"></p>
     <h2>展示方式</h2>
@@ -176,7 +191,7 @@
       <button type="button" data-presentation="interior" class="on" aria-pressed="true">原格位單房</button>
       <button type="button" data-presentation="diagnostic" aria-pressed="false">原格位檢查</button>
     </div>
-    <div id="tour-notice">ABC v2 固定比較框提案，A 棟已補回一樓孝親房與淋浴，主案不計車位；與 HTML 共用同一份配置。6×17.63m 非地籍或可建面積，A 前帶可合法興建仍待核；未解需求另列。</div>
+    <div id="tour-notice">現行A棟32坪含騎樓重排：前3.9m只通行、不置物、不計車位；孝親房與淋浴保留，樓梯跨層同步。B/C配置保留。HTML／3D同版，6×17.63m非地籍或可建面積；舊骨架容量圖為歷史比較，不是本版A。法規與未解需求另列。</div>
     <div class="hint" id="layout-review-note"></div>
     <div class="model-links" id="tour-actions">
       <a href="#mode=tour&amp;building=A&amp;floor=floor-1&amp;view=front">A 棟完整 1F</a>
@@ -191,6 +206,9 @@
     <label class="row"><input type="checkbox" id="navigation" checked /> 房名／入口／樓梯／冷氣標籤</label>
     <label class="row"><input type="checkbox" id="frontage-study" /> C 一樓私有前院待核比較（未施作）</label>
     <div class="hint">前院比較預設關閉，只在 C 棟 1F 生效。橘色虛框不是已擺放家具；地權／騎樓／公共退縮未明，主案仍保留整帶通行，不能據比較帶宣稱無障礙或合法占用。</div>
+    <label class="row"><input type="checkbox" id="mdf-study" /> A 一樓梯下 MDF 優先候選（未定案）</label>
+    <div class="hint" id="mdf-study-description">青色是梯下原尺寸機櫃候選；橘色是維修／原位再利用虛框，非新增設備。90cm梯段未完整容納120cm維修外廓，側壁龕備援不算已釋放。</div>
+    <div class="model-links"><a id="mdf-section-link" href="furniture-plans/A_floor-1_mdf-section.svg" target="_blank" rel="noopener">MDF梯下剖面與維修尺寸</a></div>
     <div class="hint">綠色＝入口；藍色玻璃＝候選窗；藍色機體＝冷氣配對；階梯＝同軸雙折梯提案（淨高／消防未核）。全層保留設備背牆；房間特寫會依視角裁去遮擋的牆、門窗框及梯段上部，不更動位置或尺寸。完整牆高可核對未剖視的提案。標籤可點選房間。</div>
     <div class="seg" style="margin-top:6px"><button type="button" id="back-to-floor">返回完整樓層</button><button type="button" id="next-storey">樓梯 → 下一層</button></div>
     <div class="hint">室內初排以單房剖視閱讀家具；全層仍採 HTML 示意格子。低牆只示意邊界，非正式牆厚、門位或施工圖。</div>
@@ -297,6 +315,7 @@
     <div id="hud">拖曳旋轉 · 滾輪縮放 · 右鍵/Shift 拖曳平移 · 點選看資訊</div>
     <div id="compass"><span><b>正面</b><br />道路側 y=0</span></div>
     <div id="orientation">道路／前方：HTML 平面上方（y=0）→ 3D 正面（+Z）</div>
+    <div id="mdf-study-note" role="status" hidden>梯下MDF是候選虛框，非第二台機櫃。維修120cm ＞ 梯段90cm，淨高／消防／散熱未核；備援與家務再利用不可同時計入可用空間。</div>
   </main>
 </div>
 
@@ -305,6 +324,7 @@
 (function () {
   "use strict";
   var DATA = __MODEL_DATA__;
+  __STUDY_BOOTSTRAP__
   var MM = 0.001;
 
   var PROV_STYLE = {
@@ -322,7 +342,32 @@
   // ---------- scene ----------
   var canvas = document.getElementById("canvas");
   var stage = document.getElementById("stage");
-  var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+  var renderer, rendererContextLost = false, loopHandle = 0, renderedFrames = 0;
+  var fallback = document.createElement("div");
+  fallback.id = "renderer-fallback"; fallback.hidden = true; fallback.setAttribute("role", "alert");
+  fallback.style.cssText = "position:absolute;inset:0;padding:28px;background:#f1f4f5;color:#263846;z-index:12";
+  fallback.appendChild(document.createTextNode("3D 暫不可用；平面仍可查看，不表示設計已通過。 "));
+  var fallbackLink = document.createElement("a");
+  var fallbackBuilding = (new URLSearchParams(location.hash.replace(/^#/, "")).get("building") || DATA.buildings[0].id).toUpperCase();
+  if (!["A", "B", "C"].includes(fallbackBuilding)) { fallbackBuilding = DATA.buildings[0].id; }
+  fallbackLink.href = DATA.study_option ? "c1f-options.html#scheme=" + DATA.study_option.id : "../../" + fallbackBuilding + "buildingView.html";
+  fallbackLink.textContent = DATA.study_option ? "返回本方案平面與清單" : "開啟 HTML 共用平面";
+  fallback.appendChild(fallbackLink);
+  var reloadLink = document.createElement("button");
+  reloadLink.type = "button"; reloadLink.textContent = "重新載入 3D";
+  reloadLink.style.cssText = "display:block;margin-top:14px;min-height:44px";
+  reloadLink.addEventListener("click", function () { location.reload(); }); fallback.appendChild(reloadLink);
+  stage.appendChild(fallback);
+  try { renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true }); }
+  catch (error) { canvas.hidden = true; fallback.hidden = false; return; }
+  canvas.addEventListener("webglcontextlost", function (event) {
+    event.preventDefault(); rendererContextLost = true; fallback.hidden = false;
+    if (loopHandle) { cancelAnimationFrame(loopHandle); loopHandle = 0; }
+  });
+  canvas.addEventListener("webglcontextrestored", function () {
+    rendererContextLost = false; fallback.hidden = true;
+    if (!loopHandle && !document.hidden) { loop(); }
+  });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   renderer.localClippingEnabled = true;
   renderer.setClearColor(0xf1f4f5, 1);
@@ -649,7 +694,31 @@ __FACADE_JS__
         { x: 0, z: 0, w: tableW/item.width_mm, d: tableD/item.depth_mm, h: 0.1, bottom: 0.86, opacity: 0.98 },
         { x: 0, z: 0, w: 0.1, d: 0.1, h: 0.86, bottom: 0, opacity: 1 }
       ];
+      if (item.catalog_id === "dining-4-sides") {
+        // 750mm table top and 850mm chair backs are physical dimensions,
+        // not percentages of a shorter table-only height envelope.
+        dining = [
+          { x: 0, z: 0, w: tableW/item.width_mm, d: tableD/item.depth_mm,
+            h: 50/item.height_mm, bottom: 700/item.height_mm, opacity: 0.98 },
+          { x: 0, z: 0, w: 120/item.width_mm, d: 120/item.depth_mm,
+            h: 700/item.height_mm, bottom: 0, opacity: 1 }
+        ];
+      }
       chairs.forEach(function (chair) {
+        if (item.catalog_id === "dining-4-sides") {
+          // Full-size 450mm seats/backs and four 30mm legs. A narrower
+          // table arrangement must not shrink chair parts with its envelope.
+          dining.push({ x: chair.x, z: chair.z, w: 450/item.width_mm, d: 450/item.depth_mm,
+            h: 45/item.height_mm, bottom: 405/item.height_mm, color: 0xa58b6f });
+          dining.push({ x: chair.x, z: chair.z + (chair.z > 0 ? 210 : -210)/item.depth_mm,
+            w: 450/item.width_mm, d: 30/item.depth_mm, h: 400/item.height_mm,
+            bottom: 450/item.height_mm, color: 0xa58b6f });
+          [-1, 1].forEach(function (sx) { [-1, 1].forEach(function (sz) {
+            dining.push({ x: chair.x + sx*160/item.width_mm, z: chair.z + sz*160/item.depth_mm,
+              w: 30/item.width_mm, d: 30/item.depth_mm, h: 405/item.height_mm, bottom: 0, color: 0x484844 });
+          }); });
+          return;
+        }
         dining.push({ x: chair.x, z: chair.z, w: 450/item.width_mm, d: 450/item.depth_mm, h: 0.09, bottom: 0.5, color: 0xa58b6f });
         var backOffset = Math.min(0.08, 0.4875 - Math.abs(chair.z));
         dining.push({ x: chair.x, z: chair.z + (chair.z > 0 ? backOffset : -backOffset), w: 0.16, d: 0.025, h: 0.4, bottom: 0.59, color: 0xa58b6f });
@@ -769,7 +838,13 @@ __FACADE_JS__
       }
       if (shape === "counter") {
         pieces.push({ x: 0, z: 0, w: 1, d: 1, h: 0.03, bottom: 0.96, color: 0xe7e4de });
-        if (item.catalog_id.indexOf("counter-") === 0) {
+        if (item.worktop_parts && item.worktop_parts.length) {
+          item.worktop_parts.forEach(function (part) {
+            pieces.push({x:part.center_x_mm/item.width_mm,z:part.center_z_mm/item.depth_mm,
+              w:part.width_mm/item.width_mm,d:part.depth_mm/item.depth_mm,h:0.006,bottom:0.994,
+              color:part.kind==="hob"?0x252c30:0x7b939a,worktopPart:part.id});
+          });
+        } else if (item.catalog_id.indexOf("counter-") === 0) {
           pieces.push({ x: -0.22, z: 0, w: 0.25, d: 0.6, h: 0.006, bottom: 0.994, color: 0x7b939a });
           pieces.push({ x: 0.24, z: 0, w: 0.2, d: 0.65, h: 0.006, bottom: 0.994, color: 0x252c30 });
         }
@@ -1072,6 +1147,14 @@ __FACADE_JS__
     button.textContent = roomCameraFocused ? "回到整層視角" : "房間特寫";
     var title = document.getElementById("stage-title");
     actions.style.top = (title.offsetTop + title.offsetHeight + 8) + "px";
+    ["study-stage-note","mdf-study-note"].forEach(function(id){
+      var badge=document.getElementById(id);if(!badge){return;}
+      var landscape=window.matchMedia ? window.matchMedia("(max-width:860px) and (max-height:500px)").matches
+        : stage.clientWidth<=860 && stage.clientHeight<=400;
+      // Stack above the measured direction note, including wrapped text. In
+      // short landscape CSS places the two footers side by side instead.
+      badge.style.bottom=landscape?"":(stage.clientHeight-document.getElementById("orientation").offsetTop+8)+"px";
+    });
   }
 
   // Both overlay types share centre-based rectangles. Clamping labels AFTER
@@ -1095,11 +1178,7 @@ __FACADE_JS__
     return null;
   }
   function overlayLabelArea() {
-    var title=document.getElementById("stage-title");
-    var actions=document.getElementById("room-view-actions");
-    var orientation=document.getElementById("orientation");
-    var headingBottom=actions.hidden?title.offsetTop+title.offsetHeight:actions.offsetTop+actions.offsetHeight;
-    return {left:8,right:stage.clientWidth-8,top:Math.max(90,headingBottom+12),bottom:orientation.offsetTop-12};
+    return cameraViewportRect();
   }
   var furnitureLabelRects=[];
   function positionFurnitureLabels() {
@@ -1316,6 +1395,43 @@ __FACADE_JS__
     });
   }
   var frontageStudyParts = [];
+  var mdfStudyParts = [];
+  var transportRouteParts = [];
+  function mdfStudyActive() {
+    return !!(DATA.layout_review && DATA.layout_review.mdf_study) && presentation==="tour" && !facadeIsActive() &&
+      viewState.building==="A" && viewState.floor==="floor-1" && document.getElementById("mdf-study").checked &&
+      document.getElementById("architecture").checked;
+  }
+  function buildMdfStudy(mesh, group, base) {
+    if (!mdfStudyActive()) { return; }
+    var study=DATA.layout_review.mdf_study, candidate=study.candidate;
+    function outline(id, box, height, colour) {
+      var part=new THREE.LineSegments(edgeGeom,lineMaterial(colour,.95));
+      part.scale.set((box.maxX-box.minX)*MM,height*MM,(box.maxY-box.minY)*MM);
+      part.position.set((box.minX+box.maxX)/2*MM,base+height*MM/2,wz((box.minY+box.maxY)/2));
+      part.userData.cameraFit=false;
+      part.userData.mdfStudy=true; // Comparison graphics are not architecture or inventory.
+      group.add(part);
+      mdfStudyParts.push({id:id,mesh:mesh,part:part,box:box,height:height,status:study.status});
+      return part;
+    }
+    if(mesh.userData.cell.id==="A:floor-1:stair-door"){
+      outline("candidate-rack",candidate.body_mm,study.rack.height_mm,0x0e7490);
+      outline("candidate-maintenance",candidate.service_mm,study.maintenance_height_target_mm,0xb45309);
+      addNavigationLabel(mesh,"18U梯下候選（未安裝）",new THREE.Vector3(candidate.center_x_mm*MM,
+        base+study.rack.height_mm*MM+.12,wz(candidate.center_y_mm)),"study");
+      addNavigationLabel(mesh,"維修120cm ＞ 梯段90cm（待改）",new THREE.Vector3(candidate.service_mm.maxX*MM,
+        base+.15,wz(candidate.service_mm.minY)),"study");
+    }else if(mesh.userData.cell.id===study.backup.room_id){
+      var p=study.backup.placement;
+      [p.operation_mm,p.rear_operation_mm].concat((p.side_operation_mm || []).map(function(s){return s.aabb;}))
+        .forEach(function(box,i){outline("backup-maintenance-"+i,box,30,0xb45309);});
+      outline("conditional-reuse",study.reuse.body_mm,study.reuse.storage_height_mm,0xb45309);
+      outline("reuse-operation",study.reuse.operation_mm,30,0xb45309);
+      addNavigationLabel(mesh,"家務收納虛框（備援未釋放）",new THREE.Vector3(study.reuse.body_mm.minX*MM,
+        base+study.reuse.storage_height_mm*MM+.12,wz(study.reuse.body_mm.minY)),"study");
+    }
+  }
   function buildFrontageStudy(mesh, group, base, study) {
     if(presentation!=="tour" || facadeIsActive() || viewState.building!=="C" || viewState.floor!=="floor-1" || !document.getElementById("frontage-study").checked){return;}
     var candidates=[{id:"clear-route",name:(study.route_mm.w_mm/10)+"cm通行比較（未核）",geometry:study.route_mm,height_mm:0}].concat(study.zones);
@@ -1343,6 +1459,21 @@ __FACADE_JS__
     var features = featuresOf(cell) || {doors:[],hvac:{}};
     var full = document.getElementById("full-walls").checked;
     if(features.frontage_study){buildFrontageStudy(mesh,group,base,features.frontage_study);}
+    if(features.transport_segment_mm){
+      var segment=features.transport_segment_mm, b=segment.body_sweep_mm, transportPoints=[];
+      segment.centerline_mm.forEach(function(p){transportPoints.push(new THREE.Vector3(p[0]*MM,base+.04,wz(p[1])));});
+      var routeLine=new THREE.Line(new THREE.BufferGeometry().setFromPoints(transportPoints),new THREE.LineDashedMaterial({color:0x287b89,dashSize:.16,gapSize:.10,clippingPlanes:[clipPlane]}));
+      routeLine.computeLineDistances();routeLine.userData.cameraFit=false;group.add(routeLine);
+      var bandPoints=[[b.minX,b.minY],[b.maxX,b.minY],[b.maxX,b.maxY],[b.minX,b.maxY],[b.minX,b.minY]].map(function(p){return new THREE.Vector3(p[0]*MM,base+.035,wz(p[1]));});
+      var band=new THREE.Line(new THREE.BufferGeometry().setFromPoints(bandPoints),new THREE.LineDashedMaterial({color:0x287b89,dashSize:.16,gapSize:.10,clippingPlanes:[clipPlane]}));
+      band.computeLineDistances();band.userData.cameraFit=false;group.add(band);
+      var ax=segment.centerline_mm[0][0], ay=(segment.centerline_mm[0][1]+segment.centerline_mm[1][1])/2;
+      var arrowPoints=[[ax-130,ay-150],[ax,ay],[ax+130,ay-150]].map(function(p){return new THREE.Vector3(p[0]*MM,base+.05,wz(p[1]));});
+      var arrow=new THREE.Line(new THREE.BufferGeometry().setFromPoints(arrowPoints),new THREE.LineBasicMaterial({color:0x287b89,clippingPlanes:[clipPlane]}));
+      arrow.userData.cameraFit=false;group.add(arrow);
+      transportRouteParts.push({mesh:mesh,part:routeLine,segment:segment,status:features.transport_review.status});
+      if(viewState.room===cell.id)addNavigationLabel(mesh,"收納本體直進直出（裝桿未核）",new THREE.Vector3(ax*MM,base+.15,wz(ay)),"study");
+    }
     if (!cell.is_outdoor) {
       ["front", "rear", "left", "right"].forEach(function (face) {
         var alongX = face === "front" || face === "rear";
@@ -1372,7 +1503,7 @@ __FACADE_JS__
           }
         }
         function strip(lo, hi, bottom, top, colour, thickness, opacity) {
-          if (hi <= lo || top <= bottom) { return; }
+          if (hi-lo < .001 || top <= bottom) { return; } // same sub-mm rounding tolerance as the shared SVG
           var point = wallPoint(L,face,(lo+hi)/2,base+(top+bottom)/2);
           var part=architectureBox(group,point.x,point.y,point.z,alongX?hi-lo:thickness,top-bottom,alongX?thickness:hi-lo,colour,opacity);
           trackArchitecturePart(part,mesh,colour===0xeae9e1?"wall":colour===0x3e8d74?"door":"window",face);
@@ -1405,7 +1536,7 @@ __FACADE_JS__
             strip((hole.lo+hole.hi)/2-0.018,(hole.lo+hole.hi)/2+0.018,hole.bottom,hole.top,frameColour,0.04);
           }
           if (viewState.room === cell.id || (cell.is_entry && !hole.window && !hole.door.neighbor)) {
-            addNavigationLabel(mesh,hole.window?"窗（待確認）":hole.door.operation==="sliding"?(hole.door.width_mm/10)+"cm滑門（暫估）":cell.is_entry&&!hole.door.neighbor?"主入口（示意）":cell.space_group?"梯廳入口（待確認）":"房門（待確認）",wallPoint(L,face,(hole.lo+hole.hi)/2,base+0.25),hole.window?"window":"entry");
+            addNavigationLabel(mesh,hole.window?"窗（待確認）":hole.door.label || (hole.door.operation==="sliding"?(hole.door.width_mm/10)+"cm滑門（暫估）":cell.is_entry&&!hole.door.neighbor?"主入口（示意）":cell.space_group?"共用空間入口（待確認）":"房門（待確認）"),wallPoint(L,face,(hole.lo+hole.hi)/2,base+0.25),hole.window?"window":"entry");
           }
         });
       });
@@ -1436,6 +1567,9 @@ __FACADE_JS__
       if(indoor && viewState.room===cell.id && unit.route){
         var points=unit.route.polyline_mm.map(function(p){return new THREE.Vector3(p[0]*MM,p[2]*MM,wz(p[1]));});
         var pipe=new THREE.Line(new THREE.BufferGeometry().setFromPoints(points),new THREE.LineDashedMaterial({color:0x2f7890,dashSize:.2,gapSize:.1,clippingPlanes:[clipPlane]}));
+        // Keep the actual remote route rendered and inspectable. It is not a
+        // room body and must not pull its furniture closeup across the house.
+        pipe.userData.cameraFit=false;pipe.userData.hvacRoute=unit.id;
         pipe.computeLineDistances();group.add(pipe);
       }
     });
@@ -1451,22 +1585,24 @@ __FACADE_JS__
       var flight=features.stair_geometry;
       if(flight && flight.connects_to_next_storey!==false){
         var fw=flight.flight_width_mm*MM,landing=flight.landing_mm*MM,run=flight.run_mm*MM;
+        var departure=(flight.departure_offset_mm===undefined?flight.landing_mm:flight.departure_offset_mm)*MM;
+        var middle=(flight.middle_landing_mm || flight.landing_mm)*MM;
         var n=flight.risers/2,rise=floor.height_mm*MM/flight.risers,frontZ=wz(footprint.y_mm);
         var leftX=footprint.x_mm*MM+fw/2,rightX=(footprint.x_mm+footprint.w_mm)*MM-fw/2;
         // Shared floor-level landing connects arrival from the previous
         // flight and departure on the next; side/front doors don't open into
         // a flight drawn three metres above the current floor.
-        stairBox(stairX,base-.06,frontZ-landing/2,stairW,.12,landing,0xa4aead);
-        stairBox(rightX,base+floor.height_mm*MM-.06,frontZ-landing/2,fw,.12,landing,0xa4aead);
-        stairBox(stairX,base+floor.height_mm*MM/2-.06,frontZ-landing-run-landing/2,stairW,.12,landing,0xa4aead);
+        stairBox(stairX,base-.06,frontZ-departure+landing/2,stairW,.12,landing,0xa4aead);
+        stairBox(rightX,base+floor.height_mm*MM-.06,frontZ-departure+landing/2,fw,.12,landing,0xa4aead);
+        stairBox(stairX,base+floor.height_mm*MM/2-.06,frontZ-departure-run-middle/2,stairW,.12,middle,0xa4aead);
         for(var step=0;step<n-1;step++){
           var tread=run/(n-1),y=base+(step+1)*rise-.06;
-          stairBox(leftX,y,frontZ-landing-(step+.5)*tread,fw,.12,tread,0xa4aead);
-          stairBox(rightX,base+floor.height_mm*MM/2+(step+1)*rise-.06,frontZ-landing-run+(step+.5)*tread,fw,.12,tread,0xa4aead);
+          stairBox(leftX,y,frontZ-departure-(step+.5)*tread,fw,.12,tread,0xa4aead);
+          stairBox(rightX,base+floor.height_mm*MM/2+(step+1)*rise-.06,frontZ-departure-run+(step+.5)*tread,fw,.12,tread,0xa4aead);
         }
       }else if(flight){
         // RF is the arrival storey, not a newly invented fifth floor.
-        stairBox(stairX,base-.06,wz(footprint.y_mm+flight.landing_mm/2),stairW,.12,flight.landing_mm*MM,0xa4aead);
+        stairBox(stairX,base-.06,wz(footprint.y_mm+(flight.departure_offset_mm===0?-flight.landing_mm/2:flight.landing_mm/2)),stairW,.12,flight.landing_mm*MM,0xa4aead);
         stairBox(stairX,base+.008,stairZ,stairW-.15,.016,Math.max(.1,stairD-flight.landing_mm*MM),0x607678);
       }else{
         for(var step=0;step<8;step++) {var h=(step+1)*0.13;stairBox(stairX,base+h/2,stairZ+stairD/2-(step+.5)*stairD/8,stairW,h,stairD/8,0xa4aead);}
@@ -1481,6 +1617,7 @@ __FACADE_JS__
       arrow.position.set(L.cx,base+0.06,L.cz+L.d/2+0.7);
       group.add(arrow);
     }
+    buildMdfStudy(mesh,group,base);
     addNavigationLabel(mesh,(features.stairs?(features.stair_geometry && features.stair_geometry.connects_to_next_storey===false?"↓ ":"↑ "):"")+cell.name+(features.access_pending?" · 入口待定":""),new THREE.Vector3(L.cx,base+0.15,L.cz+L.d*0.15),"room");
     group.visible = presentation !== "diagnostic" && mesh.visible && document.getElementById("architecture").checked;
   }
@@ -1514,8 +1651,14 @@ __FACADE_JS__
     architecturalLabels=[];
     architectureCutawayParts=[];
     frontageStudyParts=[];
+    mdfStudyParts=[];
+    transportRouteParts=[];
     roomCutawayActive=false;
     document.getElementById("frontage-study").disabled=presentation!=="tour" || facadeIsActive() || viewState.building!=="C" || viewState.floor!=="floor-1";
+    document.getElementById("mdf-study").disabled=!(DATA.layout_review && DATA.layout_review.mdf_study) ||
+      presentation!=="tour" || facadeIsActive() || viewState.building!=="A" || viewState.floor!=="floor-1";
+    document.getElementById("mdf-study-note").hidden=!mdfStudyActive();
+    document.getElementById("mdf-section-link").hidden=!(DATA.layout_review && DATA.layout_review.mdf_study);
     overlappingKeys = {};
     var effectiveSource = presentation === "interior" && !viewState.room ? "auto" : geomSource;
     var hits = presentation === "tour" ? [] : ((DATA.overlaps || {})[effectiveSource]) || [];
@@ -1702,8 +1845,20 @@ __FACADE_JS__
     row("幾何來源", presentation==="tour"?"ABC v2 固定比較框提案（非地籍或可建容量）":geomSource === "auto" ? "歷史示意格子（CSS 列／欄）" : "歷史標示覆寫");
     var features=featuresOf(cell);
     if(features){
+      if(presentation==="tour" && features.allocation_review){var ar=features.allocation_review;
+        row("空間分配初篩", escapeHtml("本空間外框 "+ar.nominal_area_sqm.toFixed(2)+"m²；本層通行／待排乾區 "+ar.floor_circulation_sqm.toFixed(2)+"m²、臥室合計 "+ar.floor_bedroom_sqm.toFixed(2)+"m²。"+ar.note));
+        if(building.id==="B"){row("本輪B討論基準",'32坪後門預案優先、前門备案保留；本頁舊B不是已採用新案。<a href="b32-entry-options.html">開啟兩案同源平面／3D</a>');}
+      }
+      if(presentation==="tour" && features.storage_resolution){
+        row("收納／乾區續修", escapeHtml(features.storage_resolution.note)+"<br><a href='../../Docs/a-storage-dry-zone-v2.md'>查看本輪改法與未核限制</a>");
+      }
       row("入口／門窗", "綠色門框為入口提案；窗位僅外側示意，缺外側位置者不畫。門向、牆厚與開口皆待建築師確認。");
       if(presentation==="tour" && cell.review_spec && cell.review_spec.requirement_id){row("需求對應",escapeHtml(cell.review_spec.requirement_id)+"；功能初篩不修改原需求狀態。");}
+      if(features.ritual_access_review){row("中軸祭祀門",escapeHtml(features.ritual_access_review.note));}
+      if(features.transport_review){var tr=features.transport_review;row("武轎搬運路徑",escapeHtml(tr.note)+" 兩道門對暫估本體的名義單側餘量"+tr.gates.map(function(g){return g.body_side_margin_mm/10;}).join("／")+"cm；扣模型牆邊暫留後最窄約"+(tr.bottleneck_assumed_width_mm/10)+"cm，不是實測或施工許可。");}
+      if(features.open_living_review){row("合併客餐廳",escapeHtml(features.open_living_review.note));}
+      if(features.fengshui_review){row("風水最小修改／待決",escapeHtml(features.fengshui_review.note));}
+      if(DATA.bc_option){row("比較案／取捨未定",escapeHtml(DATA.bc_option.tradeoffs.join(" ")));}
       var slidingDoors=(features.doors || []).filter(function(d){return d.operation==="sliding";});
       if(slidingDoors.length){row("滑門提案","門寬暫估"+slidingDoors.map(function(d){return d.width_mm;}).join("／")+"mm，不用內開門占操作／轉位區；門框後淨寬、軌道、防水與緊急救援未核。");}
       if((features.reserved_mm || []).some(function(z){return z.kind==="care-turn";})){row("照護轉位","金色虛線圓為Ø150cm轉位暫留，非輪椅演練或無障礙核可。浴廁操作可分時共用地面，但設備本體不可侵入。");}
@@ -1772,8 +1927,9 @@ __FACADE_JS__
     }
 
     var htmlHref = "../../" + encodeURI(building.source_file || "") + (presentation==="tour"?"#proposal-room-":"#room-") + encodeURIComponent(cell.key);
+    if(DATA.bc_option){htmlHref="bc-options.html#"+encodeURIComponent(DATA.bc_option.id);}
     var actions = '<div class="info-actions">' +
-      '<a class="info-link" href="' + escapeHtml(htmlHref) + '">回到原 HTML 房間說明</a>' +
+      '<a class="info-link" href="' + escapeHtml(htmlHref) + '">' + (DATA.bc_option ? '回到比較案說明（未採用）' : '回到原 HTML 房間說明') + '</a>' +
       '</div>';
 
     info.className = "";
@@ -1842,6 +1998,7 @@ __FACADE_JS__
     document.getElementById("view-plan").classList.toggle("on", kind === "plan");
     document.getElementById("compass").innerHTML = kind === "plan"
       ? "<span><b>俯視</b><br />上方是道路</span>"
+      : cameraFitState && cameraFitState.landscape ? "<span><b>斜看</b><br />道路在 +Z</span>"
       : (presentation === "interior" ? "<span><b>剖視</b><br />室內初排</span>" : "<span><b>正面</b><br />道路側 y=0</span>");
     updateCamera();
     if (viewState.room && meshById[viewState.room]) {
@@ -1865,30 +2022,81 @@ __FACADE_JS__
     var meshes = scopedMeshes().filter(function (mesh) { return mesh.visible && mesh.parent.visible; });
     var box = new THREE.Box3();
     meshes.forEach(function (mesh) {
-      box.expandByObject(mesh);
-      if (mesh.userData.shell.visible) { box.expandByObject(mesh.userData.shell); }
+      expandCameraBox(box,mesh);
+      if (mesh.userData.shell.visible) { expandCameraBox(box,mesh.userData.shell); }
     });
     if (furnitureIsVisible()) {
       furnitureEntries.forEach(function (entry) {
         var inScope = ((presentation==="tour" && !roomCameraFocused) || !viewState.room || entry.cell.id === viewState.room) &&
           (!viewState.building || entry.building.id === viewState.building) &&
           (!viewState.floor || entry.floor.id === viewState.floor);
-        if (inScope && entry.group.visible) { box.expandByObject(entry.group); }
+        if (inScope && entry.group.visible && entry.group.parent.visible) { expandCameraBox(box,entry.group); }
       });
     }
     return box;
   }
 
+  function expandCameraBox(box,object) {
+    object.updateWorldMatrix(true,true);
+    function visit(part) {
+      if (!part.visible || part.userData.cameraFit===false) { return; }
+      if (part.geometry) {
+        if (!part.geometry.boundingBox) { part.geometry.computeBoundingBox(); }
+        box.union(part.geometry.boundingBox.clone().applyMatrix4(part.matrixWorld));
+      }
+      part.children.forEach(visit);
+    }
+    visit(object);
+  }
+
+  function stageOverlayRect(id) {
+    var element=document.getElementById(id);
+    if (!element || element.hidden || (element.getClientRects && !element.getClientRects().length)) { return null; }
+    var stageRect=stage.getBoundingClientRect(),rect=element.getBoundingClientRect();
+    if (!rect.width || !rect.height) { return null; }
+    return {id:id,left:rect.left-stageRect.left,right:rect.right-stageRect.left,
+      top:rect.top-stageRect.top,bottom:rect.bottom-stageRect.top};
+  }
+
+  function cameraViewportRect() {
+    var width=stage.clientWidth || 1,height=stage.clientHeight || 1;
+    var area={left:12,right:width-12,top:12,bottom:height-12};
+    ["hud","stage-title","room-view-actions","facade-actions","compass"].forEach(function(id){
+      var rect=stageOverlayRect(id);if(rect){area.top=Math.max(area.top,rect.bottom+10);}
+    });
+    ["orientation","study-stage-note","mdf-study-note"].forEach(function(id){
+      var rect=stageOverlayRect(id);if(rect){area.bottom=Math.min(area.bottom,rect.top-10);}
+    });
+    area.usable=area.right-area.left>=48 && area.bottom-area.top>=48;
+    return area;
+  }
+
+  var cameraFitState=null;
   function focusScope(kind) {
+    cameraFitState=null;
     if (!viewState.building && !viewState.floor && !viewState.room) { return false; }
     var box = scopedViewBox();
     if (box.isEmpty()) { return false; }
     var centre = box.getCenter(new THREE.Vector3());
     frameLighting(box);
-    target.copy(centre);
     var aspect = (stage.clientWidth || 1) / (stage.clientHeight || 1);
+    var size=box.getSize(new THREE.Vector3());
+    var landscape=kind!=="plan" && presentation==="tour" && aspect>=1.8 && !!viewState.floor &&
+      !roomCameraFocused && size.z>size.x*1.25;
     spherical.theta = kind === "plan" ? Math.PI : presentation !== "diagnostic" ? 0.6 : 0;
+    if (landscape) { spherical.theta=1.5; }
+    if (kind!=="plan" && presentation==="tour" && roomCameraFocused && aspect>=1.8) {
+      var sideTelevision=furnitureEntries.find(function(entry){
+        return entry.cell.id===viewState.room && entry.group.visible && entry.group.parent.visible &&
+          entry.item.shape==="wall-tv" && entry.placement &&
+          (entry.placement.wall_anchor==="left" || entry.placement.wall_anchor==="right");
+      });
+      // Look toward a side-mounted screen in a shallow landscape viewport.
+      // Change only the camera angle; keep all room and product dimensions.
+      if (sideTelevision) { spherical.theta=sideTelevision.placement.wall_anchor==="left" ? .85 : -.85; }
+    }
     spherical.phi = kind === "plan" ? 0.1 : presentation !== "diagnostic" ? 0.65 : Math.PI * 0.34;
+    if (landscape) { spherical.phi=.45; }
     var direction = new THREE.Vector3(
       Math.sin(spherical.phi) * Math.sin(spherical.theta), Math.cos(spherical.phi),
       Math.sin(spherical.phi) * Math.cos(spherical.theta)
@@ -1896,8 +2104,14 @@ __FACADE_JS__
     var right = new THREE.Vector3().crossVectors(new THREE.Vector3(0, 1, 0), direction).normalize();
     var up = new THREE.Vector3().crossVectors(direction, right).normalize();
     var tanV = Math.tan(camera.fov * Math.PI / 360);
-    var topLimit = Math.max(0.3, 1 - 300 / (stage.clientHeight || 1));
-    var bottomLimit = Math.max(0.3, 1 - 170 / (stage.clientHeight || 1));
+    // Measured DOM space, not fixed desktop padding. Translate the camera's
+    // target (never scene geometry) so the room is centred below its controls.
+    updateRoomCutaway();
+    var area=cameraViewportRect(),width=stage.clientWidth || 1,height=stage.clientHeight || 1;
+    var fit=area.usable?area:{left:12,right:width-12,top:12,bottom:height-12};
+    var cx=(fit.left+fit.right)/width-1,cy=1-(fit.top+fit.bottom)/height;
+    var halfW=Math.max(.01,(fit.right-fit.left)/width)*.96;
+    var halfH=Math.max(.01,(fit.bottom-fit.top)/height)*.96;
     var radius = 3;
     // Fit projected corners, not just world width: narrow mobile viewports
     // should show a useful model without clipping furniture or the room.
@@ -1906,11 +2120,13 @@ __FACADE_JS__
       var depth = offset.dot(direction);
       var vertical = offset.dot(up);
       radius = Math.max(radius,
-        depth + Math.abs(offset.dot(right)) / (tanV * aspect * 0.87),
-        depth + Math.abs(vertical) / (tanV * (vertical > 0 ? topLimit : bottomLimit))
+        depth + Math.abs(offset.dot(right)/(tanV*aspect)+cx*depth)/halfW,
+        depth + Math.abs(vertical/tanV+cy*depth)/halfH
       );
     });
     spherical.radius = radius;
+    target.copy(centre).addScaledVector(right,-cx*radius*tanV*aspect).addScaledVector(up,-cy*radius*tanV);
+    cameraFitState={landscape:landscape,area:area,theta:spherical.theta,phi:spherical.phi,radius:radius};
     return true;
   }
 
@@ -1960,6 +2176,7 @@ __FACADE_JS__
     if (viewState.floor) { values.set("floor", viewState.floor); }
     if (viewState.room) { values.set("room", viewState.room); }
     if (presentation === "tour" && viewState.room && roomCameraFocused) { values.set("focus", "room"); }
+    if (mdfStudyActive()) { values.set("mdf", "study"); }
     if (facadeIsActive()) {
       values.set("view", "exterior");
       values.set("angle", exteriorAngle);
@@ -2001,7 +2218,7 @@ __FACADE_JS__
     allButton.className = "scope-button" + (!viewState.building ? " on" : "");
     allButton.setAttribute("data-building", "overview");
     allButton.setAttribute("aria-pressed", !viewState.building ? "true" : "false");
-    allButton.textContent = "三棟";
+    allButton.textContent = DATA.buildings.length === 1 ? "全棟" : "三棟";
     allButton.addEventListener("click", function () { setScope("", "", "", true, true); });
     buildingsEl.appendChild(allButton);
 
@@ -2107,6 +2324,7 @@ __FACADE_JS__
     hashInitialized=true;
     if(facadeIsActive()){restoreIndoorControls();viewState.view="front";applyCut();}
     var previousPresentation=presentation;
+    document.getElementById("mdf-study").checked=values.get("mdf")==="study";
     presentation=!location.hash?"tour":values.get("mode")==="tour"?"tour":values.get("mode")==="diagnostic"?"diagnostic":"interior";
     if(previousPresentation!==presentation && presentation==="interior"){geomSource=values.get("room")?"declared":"auto";}
     syncPresentation();
@@ -2451,7 +2669,7 @@ __FACADE_JS__
     stage.classList.toggle("diagnostic",presentation==="diagnostic");
     renderer.setClearColor(presentation==="diagnostic"?0x0b1020:0xf1f4f5,1);
   }
-  ["architecture","full-walls","navigation","frontage-study"].forEach(function(id){document.getElementById(id).addEventListener("change",function(){applyLayout();applyViewPreset(viewState.view,false);});});
+  ["architecture","full-walls","navigation","frontage-study","mdf-study"].forEach(function(id){document.getElementById(id).addEventListener("change",function(){applyLayout();applyViewPreset(viewState.view,false);writeHash();});});
   document.getElementById("room-cutaway").addEventListener("change",function(){updateRoomCutaway();syncRoomViewActions();});
   document.getElementById("back-to-floor").addEventListener("click",function(){if(facadeIsActive()){leaveExterior(true,viewState.building||"A","floor-1");return;}presentation="tour";syncPresentation();setScope(viewState.building||"A",viewState.floor||"floor-1","",true,true);});
   document.getElementById("focus-room").addEventListener("click", function () {
@@ -2528,15 +2746,36 @@ __FACADE_JS__
         }),fixtureSightlines:fixtureSightlineEvidence(),
         limitation:"Architecture-only body samples, not pixel visibility, other-furniture clearance or professional approval."},
       focusedScreenBounds: focusedBox.isEmpty() ? [] : boxCorners(focusedBox).map(function (corner) { return corner.project(camera).toArray(); }),
+      cameraFraming: {ready:renderedFrames>0 && !rendererContextLost,width:stage.clientWidth,height:stage.clientHeight,
+        safeArea:cameraViewportRect(),autoFit:facadeIsActive()?null:cameraFitState,
+        worldBounds:focusedBox.isEmpty()?null:{min:focusedBox.min.toArray(),max:focusedBox.max.toArray()},
+        overlays:["hud","stage-title","room-view-actions","facade-actions","compass","orientation","study-stage-note","mdf-study-note"].map(stageOverlayRect).filter(Boolean),
+        routes:pickables.filter(function(mesh){return mesh.visible && mesh.parent.visible && mesh.userData.shell.visible;}).flatMap(function(mesh){
+          return mesh.userData.shell.children.filter(function(part){return part.userData.hvacRoute;}).map(function(part){
+            return {id:part.userData.hvacRoute,room:mesh.userData.cell.id,visible:part.visible,cameraFit:part.userData.cameraFit,
+              points:Array.from(part.geometry.attributes.position.array)};
+          });
+        }),
+        selectedItems:furnitureEntries.filter(function(entry){return entry.cell.id===viewState.room && entry.group.visible && entry.group.parent.visible;}).map(function(entry){
+          return {id:entry.item.id,corners:boxCorners(new THREE.Box3().setFromObject(entry.group)).map(function(corner){return corner.project(camera).toArray();})};
+        }),limitation:"Projected body bounds only; not pixel visibility, clearance or professional approval."},
       geomSource: geomSource,
       facade: facadeDebug(),
       layoutReview: DATA.layout_review,
+      bcOption: DATA.bc_option || null,
       frontageStudy: {checked:document.getElementById("frontage-study").checked,
         visible:frontageStudyParts.filter(function(entry){return entry.mesh.visible && entry.mesh.parent.visible && entry.mesh.userData.shell.visible;}).map(function(entry){
           return {room:entry.mesh.userData.cell.id,id:entry.id,geometry:entry.geometry,height_mm:entry.height_mm,status:entry.status,
             renderedBounds:{min:new THREE.Box3().setFromObject(entry.part).min.toArray(),max:new THREE.Box3().setFromObject(entry.part).max.toArray()}};
         })},
-      tour: {status:"bounded-proposal-not-authoritative",rooms:pickables.filter(function(m){return m.visible&&m.parent.visible;}).map(function(m){return {id:m.userData.cell.id,outdoor:m.userData.cell.is_outdoor,features:featuresOf(m.userData.cell),geometry:geomOf(m.userData.cell),architectureParts:m.userData.shell.children.length,architectureVisible:m.userData.shell.visible};})},
+      mdfStudy: {active:mdfStudyActive(),status:"conditional-not-installed",data:DATA.layout_review && DATA.layout_review.mdf_study || null,
+        visible:mdfStudyParts.filter(function(entry){return entry.mesh.visible && entry.mesh.parent.visible && entry.mesh.userData.shell.visible;}).map(function(entry){
+          var bounds=new THREE.Box3().setFromObject(entry.part);
+          return {id:entry.id,status:entry.status,box:entry.box,height_mm:entry.height,counts_as_furniture:false,
+            renderedBounds:{min:bounds.min.toArray(),max:bounds.max.toArray()}};
+        })},
+      transportRoutes:transportRouteParts.filter(function(entry){return entry.mesh.visible && entry.mesh.parent.visible && entry.mesh.userData.shell.visible;}).map(function(entry){return {room:entry.mesh.userData.cell.id,status:entry.status,segment:entry.segment,renderedPoints:Array.from(entry.part.geometry.attributes.position.array)};}),
+      tour: {status:"bounded-proposal-not-authoritative",rooms:pickables.filter(function(m){return m.visible&&m.parent.visible;}).map(function(m){return {id:m.userData.cell.id,outdoor:m.userData.cell.is_outdoor,base_mm:m.userData.floor.base_mm,height_mm:m.userData.floor.height_mm,features:featuresOf(m.userData.cell),geometry:geomOf(m.userData.cell),architectureParts:m.userData.shell.children.filter(function(p){return !p.userData.mdfStudy;}).length,architectureVisible:m.userData.shell.visible};})},
       screenBounds: displayBox.isEmpty() ? [] : boxCorners(displayBox).map(function (corner) { return corner.project(camera).toArray(); }),
       furniture: {
         visible: furnitureIsVisible(),
@@ -2546,6 +2785,15 @@ __FACADE_JS__
         pendingItems: furnitureEntries.filter(function (entry) { return inCurrentScope(entry) && (entry.overflow || entry.collision); }).map(function (entry) { return entry.item.id; }),
         shapes: furnitureEntries.filter(inCurrentScope).map(function (entry) {
           return {id:entry.item.id,shape:entry.item.shape,parts:entry.parts.length,width:entry.item.width_mm,depth:entry.item.depth_mm,height:entry.item.height_mm,
+            worktopParts:entry.parts.filter(function(part){return !!part.spec.worktopPart;}).map(function(part){
+              // Remove the row's display translation and floor explode before
+              // comparing mesh bounds with floor-local HTML/SVG coordinates.
+              part.mesh.updateWorldMatrix(true,false);
+              part.mesh.geometry.computeBoundingBox();
+              var floorLocal=new THREE.Matrix4().copy(entry.group.parent.matrixWorld).invert().multiply(part.mesh.matrixWorld);
+              var box=part.mesh.geometry.boundingBox.clone().applyMatrix4(floorLocal);
+              return {id:part.spec.worktopPart,aabb:{minX:box.min.x/MM,maxX:box.max.x/MM,minY:-box.max.z/MM,maxY:-box.min.z/MM}};
+            }),
             placement:entry.placement,center:[entry.group.position.x/MM,-entry.group.position.z/MM],rotation:-entry.group.rotation.y*180/Math.PI,
             overflow:entry.overflow,collision:entry.collision,visible:entry.group.visible,
             partBounds:entry.parts.map(function (part) {
@@ -2571,12 +2819,18 @@ __FACADE_JS__
     };
   };
 
-  (function loop() {
-    requestAnimationFrame(loop);
+  function loop() {
+    if (document.hidden || rendererContextLost) { loopHandle = 0; return; }
+    loopHandle = requestAnimationFrame(loop);
     renderer.render(scene, camera);
+    renderedFrames+=1;
     positionFurnitureLabels();
     positionNavigationLabels();
-  })();
+  }
+  document.addEventListener("visibilitychange", function () {
+    if (!document.hidden && !rendererContextLost && !loopHandle) { loop(); }
+  });
+  loop();
 })();
 </script>
 </body>

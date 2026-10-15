@@ -1,0 +1,619 @@
+{
+  "schema_version": 1,
+  "purpose": "C-only-research-audit-not-a-drawing-source",
+  "created_on": "2026-10-13",
+  "adopted": false,
+  "professional_approval": "unknown",
+  "rendered_qa_performed": false,
+  "provenance": {
+    "round2_result": "inputs/references/c1f-kimi-round2-20261013.json",
+    "result_sha256": "22fbb0a657a167c3da38f51ebe6f3f3ddc758b841f0364c8117db0dc43a01f89",
+    "reply_created_at": "2026-10-13T05:34:15.117Z",
+    "model": "kimi-k3:cloud",
+    "responding_model": "kimi-k3",
+    "source_hashes": {
+      "Docs/c1f-kimi-discussion-brief-v1.md": "db53f0cdf2d4b734c60dd570e85763996ff191c7d08d4a2aec762607a47e7058",
+      "structured/candidates/furniture-plans/layout.js": "ff9048a9d157ec0956802f70c67f421c83d7faaffb06d91a04dae4d21a69b133",
+      "structured/candidates/bc-options/layout.js": "d351ebf9d32d0ba73db6f8e5dffc0a2153b9b81a8f9712e28db0b889bfe1ca6e",
+      "structured/candidates/c1f-options/layout.js": "d5ddb840fcea1401cb8e2cead3a0c4185b1a0a18e6f1c946b7837497f771c42f",
+      "inputs/requirements.json": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066"
+    }
+  },
+  "verified_findings": {
+    "undersized_kimi_furniture": [
+      {
+        "catalog_id": "sofa-2",
+        "body": [
+          1500,
+          8000,
+          900,
+          900
+        ],
+        "required_dimensions_mm": [
+          1800,
+          900
+        ],
+        "dimensions_match": false
+      },
+      {
+        "catalog_id": "coffee-table",
+        "body": [
+          500,
+          7950,
+          600,
+          900
+        ],
+        "required_dimensions_mm": [
+          1100,
+          600
+        ],
+        "dimensions_match": false
+      }
+    ],
+    "kimi_door_hits_cabinet": {
+      "body": [
+        5570,
+        4400,
+        350,
+        1200
+      ],
+      "witness": [
+        5650,
+        4500
+      ],
+      "witnesses": [
+        {
+          "hinge": [
+            4900,
+            3900
+          ],
+          "distance_mm": 960.4686356149274,
+          "within_1000mm_inward_sweep": true
+        },
+        {
+          "hinge": [
+            5900,
+            3900
+          ],
+          "distance_mm": 650,
+          "within_1000mm_inward_sweep": true
+        }
+      ],
+      "operation_bounding_overlap_sqm": 0.3
+    },
+    "kimi_front_wc_circle_intersection": {
+      "circle": [
+        3470,
+        6050,
+        750
+      ],
+      "wc": [
+        4000,
+        3900,
+        2000,
+        1800
+      ],
+      "nearest_distance_mm": 635.1377803280167,
+      "radius_mm": 750
+    },
+    "kimi_bare_entry_rectangle_can_fit_1500_circle": {
+      "clear_dimensions_mm": [
+        1840,
+        1640
+      ],
+      "bare_box_only": true,
+      "with_furniture_and_doors_verified": false
+    },
+    "kimi_wc_entry_sink_bottleneck": {
+      "door_x_interval": [
+        4050,
+        4850
+      ],
+      "sink_body": [
+        4080,
+        5780,
+        450,
+        600
+      ],
+      "remaining_straight_entry_span_mm": 320,
+      "door_to_sink_mm": 80
+    },
+    "existing_hvac_intrudes_new_wc": {
+      "body": [
+        5710,
+        7345,
+        280,
+        950
+      ],
+      "overlap_y_mm": 155
+    },
+    "upper_projection": [
+      {
+        "key": "living2f",
+        "kind": "living",
+        "intersection_sqm": 0.72
+      },
+      {
+        "key": "front-hall",
+        "kind": "other",
+        "intersection_sqm": 2.88
+      }
+    ],
+    "stair_same_parallel_u_geometry": [
+      {
+        "height_mm": 3000,
+        "assumed_risers": 18,
+        "riser_mm": 166.66666666666666,
+        "run_mm": 2160,
+        "depth_with_1000_departure_and_1000_middle_mm": 4160,
+        "extra_parallel_flight_depth_vs_18_mm": 0
+      },
+      {
+        "height_mm": 3600,
+        "assumed_risers": 22,
+        "riser_mm": 163.63636363636363,
+        "run_mm": 2700,
+        "depth_with_1000_departure_and_1000_middle_mm": 4700,
+        "extra_parallel_flight_depth_vs_18_mm": 540
+      },
+      {
+        "height_mm": 4000,
+        "assumed_risers": 24,
+        "riser_mm": 166.66666666666666,
+        "run_mm": 2970,
+        "depth_with_1000_departure_and_1000_middle_mm": 4970,
+        "extra_parallel_flight_depth_vs_18_mm": 810
+      }
+    ]
+  },
+  "preferred_corrected_probe": {
+    "id": "c-entrance-rear-wc-codex-research-probe-v1",
+    "status": "coordinate-probe-only-not-adopted",
+    "floor_height_assumption_mm": 3000,
+    "zones": {
+      "dining": [
+        0,
+        3900,
+        4000,
+        3200
+      ],
+      "entrance": [
+        4000,
+        3900,
+        2000,
+        1800
+      ],
+      "public_wc": [
+        4000,
+        5700,
+        2000,
+        1800
+      ],
+      "kitchen": [
+        0,
+        9030,
+        2400,
+        3070
+      ],
+      "living_polygon": [
+        [
+          0,
+          7100
+        ],
+        [
+          4000,
+          7100
+        ],
+        [
+          4000,
+          7500
+        ],
+        [
+          6000,
+          7500
+        ],
+        [
+          6000,
+          9500
+        ],
+        [
+          2400,
+          9500
+        ],
+        [
+          2400,
+          9030
+        ],
+        [
+          0,
+          9030
+        ]
+      ]
+    },
+    "living_dining_nominal_sqm": 25.272,
+    "kitchen_discussion_inset_sqm": 6.5184,
+    "furniture": [
+      {
+        "catalog_id": "dining-4",
+        "body": [
+          500,
+          4600,
+          1800,
+          1800
+        ],
+        "operation": [
+          100,
+          4200,
+          2600,
+          2600
+        ],
+        "zone": "dining"
+      },
+      {
+        "catalog_id": "sofa-2",
+        "body": [
+          1500,
+          7100,
+          900,
+          1800
+        ],
+        "operation": null,
+        "zone": "living"
+      },
+      {
+        "catalog_id": "coffee-table",
+        "body": [
+          500,
+          7450,
+          600,
+          1100
+        ],
+        "operation": null,
+        "zone": "living"
+      },
+      {
+        "catalog_id": "wall-tv",
+        "body": [
+          80,
+          7500,
+          80,
+          1000
+        ],
+        "operation": null,
+        "zone": "living"
+      },
+      {
+        "catalog_id": "reading-chair",
+        "body": [
+          5070,
+          8450,
+          850,
+          900
+        ],
+        "operation": [
+          4770,
+          8450,
+          300,
+          900
+        ],
+        "zone": "living"
+      },
+      {
+        "catalog_id": "shoe-cabinet",
+        "body": [
+          5570,
+          4400,
+          350,
+          1200
+        ],
+        "operation": [
+          4970,
+          4400,
+          600,
+          1200
+        ],
+        "zone": "entrance"
+      },
+      {
+        "catalog_id": "counter-240-60",
+        "body": [
+          80,
+          9600,
+          600,
+          2400
+        ],
+        "operation": [
+          680,
+          9600,
+          900,
+          2400
+        ],
+        "zone": "kitchen"
+      },
+      {
+        "catalog_id": "fridge-75",
+        "body": [
+          1620,
+          11205,
+          700,
+          750
+        ],
+        "operation": [
+          1020,
+          11205,
+          600,
+          750
+        ],
+        "zone": "kitchen"
+      }
+    ],
+    "public_wc_fixtures": [
+      {
+        "name": "toilet",
+        "product_dimensions_mm": [
+          450,
+          700
+        ],
+        "body": [
+          5220,
+          5950,
+          700,
+          450
+        ],
+        "operation": [
+          4520,
+          5950,
+          700,
+          450
+        ]
+      },
+      {
+        "name": "vanity",
+        "product_dimensions_mm": [
+          600,
+          450
+        ],
+        "body": [
+          5470,
+          6770,
+          450,
+          600
+        ],
+        "operation": [
+          4870,
+          6770,
+          600,
+          600
+        ]
+      }
+    ],
+    "main_door": {
+      "face": "front",
+      "y": 3900,
+      "x_interval": [
+        4300,
+        5300
+      ],
+      "hinge": [
+        5300,
+        3900
+      ],
+      "inward_swing_radius_mm": 1000,
+      "original_x_interval": [
+        4800,
+        5800
+      ],
+      "shift_mm": -500,
+      "clear_width_verified": false
+    },
+    "public_wc_door": {
+      "face": "left",
+      "x": 4000,
+      "y_interval": [
+        6600,
+        7400
+      ],
+      "pocket_y_interval": [
+        5800,
+        6600
+      ],
+      "nominal_width_mm": 800,
+      "clear_width_verified": false
+    },
+    "turning_circles": {
+      "entrance_cross_dining": [
+        4100,
+        4800,
+        750
+      ],
+      "living": [
+        3350,
+        8350,
+        750
+      ]
+    },
+    "hvac": {
+      "id": "C-AC01",
+      "candidate_center_mm": [
+        5850,
+        8100
+      ],
+      "body": [
+        5710,
+        7625,
+        280,
+        950
+      ],
+      "existing_route_reusable": false,
+      "manufacturer_and_new_route_status": "unknown"
+    },
+    "shared_operation": {
+      "main_door_sweep_with_shoe_operation": "sequential-only-unverified; fixed body collision removed",
+      "kitchen_counter_fridge_operation_overlap_sqm": 0.42,
+      "circulation_with_turns": "same floor, not separate simultaneous clearances"
+    },
+    "route_centerlines_only": {
+      "to_wc": [
+        [
+          4800,
+          4300
+        ],
+        [
+          4100,
+          4800
+        ],
+        [
+          3500,
+          6000
+        ],
+        [
+          3500,
+          7000
+        ],
+        [
+          4000,
+          7000
+        ],
+        [
+          4750,
+          7000
+        ]
+      ],
+      "to_elder_via_stair_hall": [
+        [
+          4100,
+          4800
+        ],
+        [
+          3500,
+          6000
+        ],
+        [
+          3350,
+          8350
+        ],
+        [
+          3000,
+          9500
+        ],
+        [
+          3000,
+          13800
+        ]
+      ],
+      "kitchen_branch": [
+        [
+          3000,
+          10200
+        ],
+        [
+          2400,
+          10200
+        ]
+      ],
+      "verified_clear_route_width_mm": null
+    }
+  },
+  "backup_equal_basis": {
+    "id": "front-wc-with-front-window-and-relocated-main-door",
+    "status": "coordinate-probe-only-not-adopted",
+    "zones": {
+      "public_wc": [
+        4000,
+        3900,
+        2000,
+        1800
+      ],
+      "entrance": [
+        4000,
+        5700,
+        2000,
+        1800
+      ],
+      "dining": [
+        0,
+        3900,
+        4000,
+        3200
+      ],
+      "kitchen": [
+        0,
+        9030,
+        2400,
+        3070
+      ],
+      "living_polygon": [
+        [
+          0,
+          7100
+        ],
+        [
+          4000,
+          7100
+        ],
+        [
+          4000,
+          7500
+        ],
+        [
+          6000,
+          7500
+        ],
+        [
+          6000,
+          9500
+        ],
+        [
+          2400,
+          9500
+        ],
+        [
+          2400,
+          9030
+        ],
+        [
+          0,
+          9030
+        ]
+      ]
+    },
+    "living_dining_nominal_sqm": 25.272,
+    "entrance_discussion_inset_sqm": 3.0176,
+    "kitchen_discussion_inset_sqm": 6.5184,
+    "main_door_x_interval": [
+      2900,
+      3900
+    ],
+    "dining_window_x_interval": [
+      400,
+      2800
+    ],
+    "window_door_nominal_gap_mm": 100,
+    "public_wc_window": {
+      "x_interval": [
+        4700,
+        5300
+      ],
+      "sill_mm": 2100,
+      "effective_daylight_ventilation": "unknown"
+    },
+    "cross_zone_turn_circle": [
+      3500,
+      6500,
+      750
+    ],
+    "source_kimi_26_072sqm_version_has_entrance_only": {
+      "nominal_sqm": 2.8,
+      "discussion_inset_sqm": 2.2816,
+      "old_candidate_min_sqm": 3
+    }
+  },
+  "limitations": [
+    "Nominal frame 6000x17630 with 3900mm frontage is not cadastral or buildable-envelope evidence.",
+    "80mm per-edge discussion inset is not a measured wall/column/finish allowance; open dining/living edge at y7100 is not a wall.",
+    "Tests establish only stated planar dimensions/intersections and arithmetic; no full door-human swept path or accessibility certification.",
+    "Public WC is ordinary visitor WC, not verified accessible; elder ensuite turning/rescue remains unknown.",
+    "Door frames/pocket assembly, wall intrusion into circulation, public WC exhaust/makeup air, plumbing, waterproofing, noise, daylight and permits are unknown.",
+    "Higher ground-floor stairs, all level heights, facade, structure, HVAC piping/condensate/drain and installation manuals require professional integrated design."
+  ]
+}

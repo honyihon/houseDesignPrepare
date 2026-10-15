@@ -77,7 +77,7 @@ def _candidate(item: dict, cx: float, cy: float, angle: float, face: str) -> dic
     w = abs(math.cos(radians)) * item["width_mm"] + abs(math.sin(radians)) * item["depth_mm"]
     d = abs(math.sin(radians)) * item["width_mm"] + abs(math.cos(radians)) * item["depth_mm"]
     box = rectangle(cx, cy, w, d)
-    return {
+    result = {
         "id": item["id"],
         "center_x_mm": round(cx, 2),
         "center_y_mm": round(cy, 2),
@@ -95,6 +95,31 @@ def _candidate(item: dict, cx: float, cy: float, angle: float, face: str) -> dic
         "issues": [],
         "status": "planning-not-measured",
     }
+    if item.get("worktop_parts"):
+        result["worktop_parts_mm"] = []
+        for part in item["worktop_parts"]:
+            # The renderer uses local x along the product, +z toward the user;
+            # plan y is -world z. This is the same transform as the SVG/3D.
+            px = cx + part["center_x_mm"] * math.cos(radians) - part["center_z_mm"] * math.sin(radians)
+            py = cy - part["center_x_mm"] * math.sin(radians) - part["center_z_mm"] * math.cos(radians)
+            pw = abs(math.cos(radians)) * part["width_mm"] + abs(math.sin(radians)) * part["depth_mm"]
+            pd = abs(math.sin(radians)) * part["width_mm"] + abs(math.cos(radians)) * part["depth_mm"]
+            result["worktop_parts_mm"].append(
+                {**part, "aabb": rectangle(px, py, pw, pd), "center_x_mm": round(px, 2), "center_y_mm": round(py, 2)}
+            )
+    if item.get("left_clearance_mm", 0) or item.get("right_clearance_mm", 0):
+        # Local sides follow the product orientation, not the room axes.
+        front = face or {0: "rear", 90: "right", 180: "front", 270: "left"}.get(angle % 360)
+        if front is None:
+            raise ValueError("Side maintenance requires a cardinal product orientation")
+        left_face = {"rear": "right", "right": "front", "front": "left", "left": "rear"}[front]
+        right_face = {"rear": "left", "right": "rear", "front": "right", "left": "front"}[front]
+        result["side_operation_mm"] = [
+            {"side": side, "aabb": _operation(box, direction, item.get(side + "_clearance_mm", 0))}
+            for side, direction in (("left", left_face), ("right", right_face))
+            if item.get(side + "_clearance_mm", 0)
+        ]
+    return result
 
 
 def _positions(item: dict, g: dict, features: dict, resolved: dict) -> list[dict]:
@@ -170,18 +195,22 @@ def _issues(item: dict, candidate: dict, g: dict, features: dict, placed: list[d
     rear = candidate.get("rear_operation_mm")
     if rear and not _inside(rear, g, inset=50):
         issues.append("operation-space")
+    sides = [entry["aabb"] for entry in candidate.get("side_operation_mm", [])]
+    if any(not _inside(side, g) for side in sides):
+        issues.append("operation-space")
     carry = features.get("carry_path_mm")
     if item["shape"] == "palanquin" and carry and box["maxX"] - box["minX"] > carry["width_mm"]:
         issues.append("transport-width")
     for zone in features["reserved_mm"]:
-        # Toilet/vanity approaches may sequentially share a turning floor;
-        # kitchen work aisles may share circulation, never physical fixtures.
+        # Explicit sequential approaches may share named floor reserves;
+        # this never permits a fixed body, rear/side service or stair obstruction.
         # This is an explicitly annotated proposal, not accessibility approval.
         shared_operation = zone["kind"] in item.get("shared_operation_with", [])
         if (
             overlaps(box, zone["aabb"])
             or (op and not shared_operation and overlaps(op, zone["aabb"]))
             or (rear and overlaps(rear, zone["aabb"]))
+            or any(overlaps(side, zone["aabb"]) for side in sides)
         ):
             issues.append(zone["kind"])
     if face:
@@ -207,6 +236,10 @@ def _issues(item: dict, candidate: dict, g: dict, features: dict, placed: list[d
             issues.append("operation-space")
         if (rear and overlaps(rear, other["aabb"])) or (
             other.get("rear_operation_mm") and overlaps(box, other["rear_operation_mm"])
+        ):
+            issues.append("operation-space")
+        if any(overlaps(side, other["aabb"]) for side in sides) or any(
+            overlaps(box, side["aabb"]) for side in other.get("side_operation_mm", [])
         ):
             issues.append("operation-space")
     return sorted(set(issues))

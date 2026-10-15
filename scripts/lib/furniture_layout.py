@@ -197,14 +197,26 @@ def _expand_item(
     item["wall_locked"] = locked
     shared = _list(spec.get("shared_operation_with", []), f"{context}.shared_operation_with")
     allowed = {
-        "bath": {"care-turn"},
+        "bath": {"care-turn", "door-approach"},
+        "sleep": {"care-route", "care-turn"},
+        "storage": {"door-approach"},
         "kitchen": {"circulation", "door-approach"},
         "appliance": {"circulation", "door-approach"},
     }
     if any(not isinstance(kind, str) or kind not in allowed.get(item["category"], set()) for kind in shared):
-        raise FurnitureLayoutError(f"{context}: operation sharing only permits bath turning / kitchen work aisles")
+        raise FurnitureLayoutError(f"{context}: unsupported sequential operation sharing")
     if shared and not item["note"]:
         raise FurnitureLayoutError(f"{context}: shared operation requires an explicit limitation note")
+    extended_sharing = bool(shared) and (
+        item["category"] in {"sleep", "storage"} or item["category"] == "bath" and "door-approach" in shared
+    )
+    sharing_mode = spec.get("shared_operation_mode")
+    if extended_sharing and sharing_mode != "sequential-only-not-verified":
+        raise FurnitureLayoutError(f"{context}: extended sharing requires an explicit sequential-only mode")
+    if sharing_mode is not None:
+        if sharing_mode != "sequential-only-not-verified" or not shared:
+            raise FurnitureLayoutError(f"{context}: invalid shared operation mode")
+        item["shared_operation_mode"] = sharing_mode
     item["shared_operation_with"] = shared
     step_free = spec.get("step_free", False)
     if not isinstance(step_free, bool) or step_free and item["shape"] != "shower":
@@ -215,6 +227,8 @@ def _expand_item(
         ("front_clearance_mm", OPERATION_MM.get(item["category"], 0) if wall else 0),
         ("mount_height_mm", 0),
         ("rear_clearance_mm", 0),
+        ("left_clearance_mm", 0),
+        ("right_clearance_mm", 0),
     ):
         value = _number(spec.get(key, default), f"{context}.{key}")
         if value < 0:
@@ -229,6 +243,40 @@ def _expand_item(
     if gap < 0:
         raise FurnitureLayoutError(f"{context}.front_gap_mm must not be negative")
     item["front_gap_mm"] = gap
+    if "worktop_parts" in spec:
+        if item["shape"] != "counter":
+            raise FurnitureLayoutError(f"{context}: worktop_parts only belong to a counter")
+        parts = []
+        identifiers = set()
+        for ordinal, raw_part in enumerate(_list(spec["worktop_parts"], f"{context}.worktop_parts")):
+            part_context = f"{context}.worktop_parts[{ordinal}]"
+            part = _mapping(raw_part, part_context)
+            part_id, kind = part.get("id"), part.get("kind")
+            label = part.get("label")
+            if not isinstance(part_id, str) or not part_id.strip() or part_id in identifiers:
+                raise FurnitureLayoutError(f"{part_context}: needs a unique nonblank id")
+            if kind not in {"hob", "sink"} or not isinstance(label, str) or not label.strip():
+                raise FurnitureLayoutError(f"{part_context}: needs a hob/sink kind and label")
+            values = {
+                k: _number(part.get(k), f"{part_context}.{k}", positive=k in {"width_mm", "depth_mm"})
+                for k in ("center_x_mm", "center_z_mm", "width_mm", "depth_mm")
+            }
+            if (
+                abs(values["center_x_mm"]) + values["width_mm"] / 2 > item["width_mm"] / 2
+                or abs(values["center_z_mm"]) + values["depth_mm"] / 2 > item["depth_mm"] / 2
+            ):
+                raise FurnitureLayoutError(f"{part_context}: exceeds the full-size counter")
+            for other in parts:
+                if (
+                    abs(values["center_x_mm"] - other["center_x_mm"]) < (values["width_mm"] + other["width_mm"]) / 2
+                    and abs(values["center_z_mm"] - other["center_z_mm"]) < (values["depth_mm"] + other["depth_mm"]) / 2
+                ):
+                    raise FurnitureLayoutError(f"{part_context}: overlaps another worktop part")
+            identifiers.add(part_id)
+            parts.append({"id": part_id, "kind": kind, "label": label, **values, "status": "planning-not-measured"})
+        if not parts:
+            raise FurnitureLayoutError(f"{context}: worktop_parts must not be empty")
+        item["worktop_parts"] = parts
     return item
 
 
@@ -236,11 +284,13 @@ def attach_furniture_layout(
     buildings: list[dict[str, Any]],
     path: Path,
     physical_items_path: Path = PHYSICAL_ITEMS_PATH,
+    *,
+    data: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Attach resolved furniture lists to cells and return display metadata."""
 
     cells = _known_cells(buildings)
-    if not path.is_file():
+    if data is None and not path.is_file():
         return {
             "available": False,
             "status": "missing",
@@ -252,7 +302,7 @@ def attach_furniture_layout(
         }
 
     try:
-        raw = json.loads(path.read_text(encoding="utf-8"))
+        raw = copy.deepcopy(data) if data is not None else json.loads(path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
         raise FurnitureLayoutError(f"cannot read furniture layout {path}: {exc}") from exc
     root = _mapping(raw, "furniture layout")

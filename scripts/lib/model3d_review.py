@@ -18,6 +18,26 @@ REVIEW_FILE = Path(__file__).resolve().parents[2] / "inputs/concept-layout-revie
 STATUS = "bounded-proposal-not-authoritative"
 
 
+def _entry_specs(proposal: dict) -> list:
+    entries = ([proposal["entry"]] if proposal.get("entry") else []) + proposal.get("additional_entries", [])
+    keys = set()
+    for entry in entries:
+        if not isinstance(entry, list) or len(entry) != 4:
+            raise ValueError("Proposed external entry requires [room, face, width, centre]")
+        key, face, width, centre = entry
+        if not isinstance(key, str) or key not in proposal["rooms"] or face not in {"front", "rear", "left", "right"}:
+            raise ValueError("Invalid proposed external entry room or face")
+        if (
+            any(isinstance(n, bool) or not isinstance(n, (int, float)) or not math.isfinite(n) for n in (width, centre))
+            or width <= 0
+        ):
+            raise ValueError("Proposed external entry requires finite positive width")
+        if key in keys:
+            raise ValueError("Duplicate proposed external entry")
+        keys.add(key)
+    return entries
+
+
 def _box(rect: Any, context: str) -> dict[str, float]:
     if not isinstance(rect, list) or len(rect) != 4:
         raise ValueError(f"{context}: expected [x,y,width,depth]")
@@ -79,16 +99,28 @@ def frontage_study(cell: dict) -> dict | None:
     return study
 
 
-def prepare_review(buildings: list[dict], path: Path = REVIEW_FILE) -> dict:
-    raw = json.loads(path.read_text(encoding="utf-8"))
+def prepare_review(buildings: list[dict], path: Path = REVIEW_FILE, *, data: dict | None = None) -> dict:
+    raw = copy.deepcopy(data) if data is not None else json.loads(path.read_text(encoding="utf-8"))
     if raw.get("schema") != "house-bounded-concept-v1":
         raise ValueError("Unsupported bounded concept schema")
     frame = _box([0, 0, *raw["frame_mm"]], "frame")
     for building in buildings:
         spec = raw["buildings"][building["id"]]
         building["layout_review"] = {k: copy.deepcopy(v) for k, v in spec.items() if k != "floors"}
+        heights = spec.get("storey_heights_mm")
+        if heights is not None:
+            if len(heights) != len(building["floors"]) or any(
+                isinstance(h, bool) or not isinstance(h, (int, float)) or not math.isfinite(h) or h <= 0
+                for h in heights
+            ):
+                raise ValueError("Invalid proposed storey heights")
+            base = 0
+            for floor, height in zip(building["floors"], heights, strict=True):
+                floor["base_mm"], floor["height_mm"] = base, height
+                base += height
         for floor in building["floors"]:
             proposal = spec["floors"][floor["id"]]
+            entries = _entry_specs(proposal)
             floor["layout_review"] = copy.deepcopy(proposal)
             floor["review_core"] = copy.deepcopy(spec["core"])
             floor["tour_width_mm"], floor["tour_depth_mm"] = frame["w_mm"], frame["h_mm"]
@@ -146,7 +178,7 @@ def prepare_review(buildings: list[dict], path: Path = REVIEW_FILE) -> dict:
                 cell["space_group"] = room.get("group", "")
                 cell["space_role"] = room.get("role", "circulation" if room.get("group") else "")
                 cell["is_outdoor"] = room.get("outdoor", cell["is_outdoor"])
-                cell["is_entry"] = bool(proposal.get("entry") and proposal["entry"][0] == key)
+                cell["is_entry"] = any(entry[0] == key for entry in entries)
                 for field in ("door_mm", "window_mm", "carry_path_mm", "access_mode"):
                     if field in room:
                         cell[field] = room[field]
@@ -195,6 +227,7 @@ def proposal_features(floor: dict) -> None:
 
     inverse = {"front": "rear", "rear": "front", "left": "right", "right": "left"}
     cells = {c["key"]: c for c in floor["cells"] if c.get("tour_active", True)}
+    landing_reservations = []
     for cell in floor["cells"]:
         features = cell["tour_features"]
         features["doors"], features["open_connections"] = [], []
@@ -243,11 +276,17 @@ def proposal_features(floor: dict) -> None:
             )
         if features["stairs"]:
             core = floor["review_core"]
-            width, tread, landing = 1000, 270, 1000
+            width, tread, landing = core.get("flight_width_mm", 1000), core.get("tread_mm", 270), 1000
+            shared_landing = core.get("shared_front_landing", False)
+            offset = 0 if shared_landing else landing
             risers = math.ceil(floor["height_mm"] / 180)
             risers += risers % 2
             run = (risers // 2 - 1) * tread
-            stair_w, stair_d = width * 2 + 200, run + landing * 2
+            stair_w = width * 2 + 200
+            stair_d = core.get("well_depth_mm", run + landing + offset)
+            middle = stair_d - run - offset
+            if width < 900 or tread < 260 or middle < landing:
+                raise ValueError("Proposed stair geometry below discussion allowances")
             side = core["flight_side"]
             x = g["x_mm"] + (80 if side == "left" else g["w_mm"] - stair_w - 80)
             features["stair_footprint_mm"] = {"x_mm": x, "y_mm": g["y_mm"] + 70, "w_mm": stair_w, "h_mm": stair_d}
@@ -259,10 +298,49 @@ def proposal_features(floor: dict) -> None:
                 "tread_mm": tread,
                 "flight_width_mm": width,
                 "landing_mm": landing,
+                "departure_offset_mm": offset,
+                "middle_landing_mm": middle,
+                "shared_front_landing": shared_landing,
                 "run_mm": run,
                 "fits_reserved_box": stair_w + 160 <= g["w_mm"] and stair_d + 140 <= g["h_mm"],
                 "note": "兩折梯與平台僅初排；完成面淨寬、扶手、結構、梯井、淨高、消防分隔及屋突資格未核。",
             }
+            if shared_landing:
+                shared = cells.get(floor["layout_review"].get("stair_landing_space"))
+                if shared is None or shared.get("space_role") == "equipment-alcove":
+                    raise ValueError("Shared stair landing requires a common floor-level space")
+                sg = shared["tour_mm"]
+                # The 70mm inset at the core front is part of the same flat
+                # landing, not a tread. The complete 1m landing is covered by
+                # the shared space plus this explicit floor-level core strip.
+                if (
+                    sg["x_mm"] > x
+                    or sg["x_mm"] + sg["w_mm"] < x + stair_w
+                    or sg["y_mm"] > g["y_mm"] + 70 - landing
+                    or sg["y_mm"] + sg["h_mm"] != g["y_mm"]
+                ):
+                    raise ValueError("Shared landing does not cover the proposed stair front")
+                features["shared_landing_mm"] = {
+                    "x_mm": x,
+                    "y_mm": g["y_mm"] + 70 - landing,
+                    "w_mm": stair_w,
+                    "h_mm": landing,
+                    "space": shared["id"],
+                }
+                landing_reservations.append(
+                    (
+                        shared,
+                        {
+                            "kind": "stairs-landing",
+                            "aabb": {
+                                "minX": x,
+                                "maxX": x + stair_w,
+                                "minY": g["y_mm"] + 70 - landing,
+                                "maxY": g["y_mm"],
+                            },
+                        },
+                    )
+                )
         route = spec.get("route_width_mm")
         if route:
             features["fixed_reserved_mm"].append(
@@ -299,6 +377,8 @@ def proposal_features(floor: dict) -> None:
                     },
                 ]
             )
+    for shared, reservation in landing_reservations:
+        shared["tour_features"]["fixed_reserved_mm"].append(reservation)
     graph: dict[str, list[str]] = {key: [] for key in cells}
     for a_key, b_key, opening, *coordinate in floor["layout_review"].get("connections", []):
         a, b = cells[a_key], cells[b_key]
@@ -323,17 +403,43 @@ def proposal_features(floor: dict) -> None:
                 "operation": a.get("review_spec", {}).get("door_operation")
                 or b.get("review_spec", {}).get("door_operation", "unconfirmed"),
             }
+            if isinstance(opening, dict):
+                for field in ("label", "purpose", "operation"):
+                    if field in opening:
+                        if not isinstance(opening[field], str) or not opening[field].strip():
+                            raise ValueError(f"Invalid proposed opening {field}: {a['id']} / {b['id']}")
+                        item[field] = opening[field]
             room["tour_features"]["open_connections" if is_open else "doors"].append(item)
         graph[a_key].append(b_key)
         graph[b_key].append(a_key)
-    entry = floor["layout_review"].get("entry")
-    roots = [entry[0]] if entry else [key for key, cell in cells.items() if cell["tour_features"]["stairs"]]
-    if entry:
+    entries = _entry_specs(floor["layout_review"])
+    roots = (
+        [e[0] for e in entries] if entries else [key for key, cell in cells.items() if cell["tour_features"]["stairs"]]
+    )
+    if len(roots) != len(set(roots)):
+        raise ValueError("Duplicate proposed external entry")
+    for entry in entries:
         key, face, width, centre = entry
         cell, g = cells[key], cells[key]["tour_mm"]
         axis, length = ("x_mm", "w_mm") if face in {"front", "rear"} else ("y_mm", "h_mm")
         if centre - width / 2 < g[axis] or centre + width / 2 > g[axis] + g[length]:
             raise ValueError(f"Entry exceeds wall: {cell['id']}")
+        on_boundary = {
+            "front": g["y_mm"] == 0,
+            "rear": g["y_mm"] + g["h_mm"] == floor["tour_depth_mm"],
+            "left": g["x_mm"] == 0,
+            "right": g["x_mm"] + g["w_mm"] == floor["tour_width_mm"],
+        }[face]
+        outdoor_contact = any(
+            other["is_outdoor"]
+            and (contact := _contacts(g, other["tour_mm"]))
+            and contact[0] == face
+            and contact[1] <= centre - width / 2
+            and contact[2] >= centre + width / 2
+            for other in cells.values()
+        )
+        if not on_boundary and not outdoor_contact:
+            raise ValueError(f"Proposed external entry does not reach exterior: {cell['id']}")
         cell["tour_features"]["doors"].append(
             {
                 "face": face,
@@ -343,6 +449,8 @@ def proposal_features(floor: dict) -> None:
                 "status": "external-entry-proposal-not-verified",
             }
         )
+        if entry == floor["layout_review"].get("entry") and floor["layout_review"].get("entry_label"):
+            cell["tour_features"]["doors"][-1]["label"] = floor["layout_review"]["entry_label"]
     reached, queue = set(roots), deque(roots)
     while queue:
         key = queue.popleft()
@@ -364,8 +472,10 @@ def proposal_features(floor: dict) -> None:
         )
 
 
-def review_checks(buildings: list[dict], requirements_path: Path | None = None) -> list[dict]:
-    from lib.model3d_functions import REQUIREMENTS_FILE, check_a_care_functions
+def review_checks(
+    buildings: list[dict], requirements_path: Path | None = None, *, validate_a_arcade: bool = True
+) -> list[dict]:
+    from lib.model3d_functions import REQUIREMENTS_FILE, check_a_arcade_functions, check_a_care_functions
 
     checks = []
     b = next(building for building in buildings if building["id"] == "B")
@@ -406,7 +516,10 @@ def review_checks(buildings: list[dict], requirements_path: Path | None = None) 
                 "note": "同軸雙折梯初排；淨高、扶手、梯井、結構與消防仍待核。",
             }
         )
-    checks.append(check_a_care_functions(buildings, requirements_path or REQUIREMENTS_FILE))
+    care = check_a_care_functions(buildings, requirements_path or REQUIREMENTS_FILE)
+    checks.append(care)
+    if validate_a_arcade:
+        checks.append(check_a_arcade_functions(buildings, care))
     return checks
 
 

@@ -53,3 +53,21 @@ test('impossible or full label areas hide text instead of clipping or stacking',
   assert.equal(place(100, 60, 180, 200, area, []), null);
   assert.equal(place(100, 30, 180, 200, area, [{ x: 195, y: 188, w: 374, h: 44 }]), null);
 });
+
+test('camera safe area measures stage-relative overlays, CSS visibility and wrapped study notes',()=>{
+  const definitions=template.match(/  function stageOverlayRect\([\s\S]*?(?=  var cameraFitState)/)[0];
+  const stage={clientWidth:844,clientHeight:336,getBoundingClientRect:()=>({left:360,top:54})};
+  const elements={};
+  const measure=(id,top,height,shown=true)=>elements[id]={hidden:false,
+    getClientRects:()=>shown?[{}]:[],getBoundingClientRect:()=>({left:374,right:704,top:54+top,bottom:54+top+height,width:330,height})};
+  measure('hud',12,40,false);measure('stage-title',12,36);measure('room-view-actions',56,54);
+  measure('facade-actions',12,44,false);measure('compass',14,54);measure('orientation',282,46);
+  measure('study-stage-note',276,52);
+  const cameraArea=vm.runInNewContext(definitions+'\ncameraViewportRect',{stage,document:{getElementById:id=>elements[id]||null}});
+  assert.deepEqual(JSON.parse(JSON.stringify(cameraArea())),{left:12,right:832,top:120,bottom:266,usable:true});
+  measure('room-view-actions',56,84);measure('study-stage-note',248,80);
+  const wrapped=cameraArea();assert.equal(wrapped.top,150);assert.equal(wrapped.bottom,238);
+  elements['study-stage-note'].hidden=true;assert.equal(cameraArea().bottom,272,'hidden notes do not reserve a phantom band');
+  stage.clientHeight=180;measure('orientation',126,46);
+  assert.equal(cameraArea().usable,false,'insufficient room is explicit, not a fake readable fit');
+});

@@ -31,7 +31,7 @@ def test_repository_furniture_draft_covers_html_specific_layouts_at_real_scale()
 
     assert payload["furniture"]["available"] is True
     assert payload["furniture"]["rooms"] == 61
-    assert payload["furniture"]["items"] == 129
+    assert payload["furniture"]["items"] == 127
 
     c_living = {item["catalog_id"]: item for item in cells["C:floor-2:living2f"]["furniture"]}
     assert {"sofa-3", "coffee-table", "tv-console"} <= c_living.keys()

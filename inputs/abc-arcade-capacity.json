@@ -1,0 +1,58 @@
+{
+  "schema": "house-abc-arcade-capacity-v1",
+  "id": "abc-32ping-arcade-v1",
+  "status": "comparison-only-not-adopted",
+  "active_design": "main-a32-arcade-v1",
+  "default_comparison": "arcade32",
+  "assumptions": {
+    "area_ping_each": 32,
+    "frontage_mm": 6000,
+    "front_clear_mm": 3900,
+    "frame_depth_mm": 17630,
+    "ground_storey_height_mm": 4000,
+    "upper_storey_height_mm": 3000,
+    "arcade_clear_height_target_mm": 3500,
+    "beam_slab_finish_budget_mm": 500,
+    "stair_core_depth_mm": 5200,
+    "rear_open_sensitivity_mm": [0, 1000, 1500, 1800, 2000],
+    "coverage_sensitivity": [0.5, 0.6, 0.7]
+  },
+  "professional_status": {
+    "parcel_dimensions": "unknown",
+    "arcade_applicability": "unknown",
+    "building_area": "unknown",
+    "coverage_and_far": "unknown",
+    "arcade_clear_height": "unknown",
+    "structure_and_fire": "unknown",
+    "accessibility": "unknown",
+    "daylight_and_ventilation": "unknown",
+    "hvac_installation": "unknown",
+    "feng_shui_and_altar_orientation": "unknown"
+  },
+  "conditions": [
+    "每筆32地坪包含騎樓，是選地目標而非實測；6m面寬與17.63m深度只供比較，三筆總面積不能當作單棟基地。",
+    "前3.9m全寬留通行，不擺汽車、武轎、鞋櫃、室外機或庭院設施；適用道路、行政區、分區及都市計畫未確認。",
+    "後方1m至2m僅面積敏感度，不是已確認的法定退縮。既有工作陽台／後檢修帶是否可兼算空地，仍須建築師核對。",
+    "1F層高4m暫留500mm給梁／版／高程／完成面，只能得到名義3.5m；不是前梁下淨高實測或法規通過。柱位、梁深、鄰接騎樓高程、排水及樓梯淨高未知。",
+    "代表家具尺寸不縮放；孝親房、正常床／衣櫃、地面層洗澡及照護需求仍保留。放不下的家具不渲染成已安裝，原尺寸與原因列在清單。",
+    "樓梯採1m梯段、270mm級深、級高不超過暫估180mm，1F改24級；同軸5.2m梯廳跨層同步。這是幾何初排，非消防／結構／無障礙核可。",
+    "概念室內矩形的跨層聯集不是法定建築面積；牆柱中心線、上層最大投影、陽台、騎樓建蔽／容積認列均未知，不以扣除騎樓得到法規通過。",
+    "加深對照不是最小基地解，不是已選土地，也未滿足原停車／六人用餐／全部收納；不得自動改變主案或需求決定。"
+  ],
+  "sources": [
+    {"id":"arcade","url":"https://outlaw.kcg.gov.tw/LawContent.aspx?id=GL000537","note":"高雄市建築管理自治條例15至20條；3.9m條件及前梁下3.5m須依逐筆基地確認，不宣稱全高雄通用。"},
+    {"id":"building-area","url":"https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=D0070115&flno=1","note":"建築技術規則建築設計施工編第1條：建築面積／建蔽率；需看最大水平投影與牆柱中心線。"},
+    {"id":"parking","url":"https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=D0070115&flno=60","note":"第60條一般車位2.5×5.5m；不包含全部車道、開門、柱牆及轉向需求。"},
+    {"id":"far","url":"https://law.moj.gov.tw/LawClass/LawSingle.aspx?pcode=D0070115&flno=162","note":"第162條符合條件的騎樓容積計算；不等於室內免費增加或建蔽自動豁免。"}
+  ],
+  "options": [
+    {"id":"baseline","label":"整合騎樓前參考｜舊骨架","summary":"歷史參考，非現行A主案；舊A前帶私用、全棟3m層高，不能當成32坪含騎樓成立。"},
+    {"id":"arcade32","label":"舊骨架32坪含騎樓｜衝突檢查","summary":"舊骨架失敗對照：每筆6×17.63m，前3.9m清空，1F暫估4m；樓梯加長至5.2m，保留後段孝親／洗澡／工作區。這版A客餐廳不成立；現行A已另重排。C客廳需取捨，B只作祭祀優先初排。"},
+    {"id":"room-first","label":"舊骨架加深｜非最小解","summary":"歷史加深對照：A增加前3.9m及梯廳0.9m；B/C只增加梯廳0.9m。不是現行A配置、最小土地面積或已可施工證明。"}
+  ],
+  "unmet": {
+    "A": ["原一車停車需求仍未容納。", "原180cm孝親衣櫃、醫療床／雙側照護、中島及六人桌另案。", "2F更衣前室雙排180cm櫃仍須重排；增加基地不會自動解除家具衝突。"],
+    "B": ["原一車停車需求仍未容納。", "1F只有客用廁所，淋浴仍未容納。", "武轎僅收納本體暫估；裝桿、搬運人員外廓、轉向與雨天演練未知。"],
+    "C": ["原兩車＋機車需求仍未容納；騎樓不計車位。", "訪客仍須經孝親房如廁；既有公衛／採光比較尚未合併或採用。", "孝親套衛保留120cm淋浴、馬桶、洗手台，但尚無獨立150cm轉位暫留；不可當作照護／無障礙衛浴已完成。", "六人桌與360cm整排衣櫃未容納；中段客廳採光／通風未知。"]
+  }
+}

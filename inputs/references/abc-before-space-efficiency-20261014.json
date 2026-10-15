@@ -1,0 +1,1219 @@
+{
+  "schema": "house-bounded-concept-v1",
+  "id": "abc-rationality-v5-minimal-fengshui",
+  "status": "proposal-owner-and-architect-review-pending",
+  "note": "最小修改主案：A廚具向前、爐台避上層衛浴投影；B二／三樓家具只避神桌本體上方；C三樓床頭改左實牆。屋主已要求B背牆不得接樓梯／梯廳、整廳上方禁睡、前門朝道路／騎樓，現B主案仍有衝突。B嚴格重排及C保窗照護比較見Docs/bc-constraints-review-v1.md，尚未採用。HTML／3D同源，6×17.63m非地籍或可建面積；不縮家具、不占騎樓，不宣稱風水、法規或照護核可。",
+  "fengshui_minimal": {
+    "id": "abc-minimal-fengshui-v1",
+    "status": "partial-proposal-not-approved",
+    "religious_acceptance": "unknown",
+    "structural_acceptance": "unknown",
+    "document": "Docs/fengshui-minimal-v1.md",
+    "note": "只落地低影響家具／爐台提案；座向、樑、管線與專業接受仍未核。B背牆禁梯廳／整廳上方禁睡家規已作比較硬條件，主案尚有衝突。B嚴格重排及C照護比較未採用，不能以家具初篩冒充完整風水通過。",
+    "pending_decisions": [
+      {"id": "B1-backing", "building": "B", "status": "not-adopted", "owner_preference": "confirmed-no-stair-or-hall-behind-altar", "recommendation": "不採右移108cm仍接梯廳的舊條件案。優先比較真正乾式收納背牆、四層樓梯後置，180cm祭祀門仍朝道路／騎樓；主臥整合走道成3.6×4.3m、原床櫃留房。平台門框、KTV、茶水、武轎面積與1F照護仍待複核／取捨，見Docs/bc-constraints-review-v1.md。"},
+      {"id": "B-upper-use", "building": "B", "status": "not-adopted", "owner_preference": "confirmed-no-sleep-above-whole-shrine", "recommendation": "現主案僅讓家具避神桌本體，三樓客房仍違反已採作硬條件的整廳上方禁睡。比較案將整間客房及主臥移出全廳投影，保護區只作安靜不睡眠用途；不靠改房名或縮產品假裝符合。"},
+      {"id": "C1-care-suite", "building": "C", "status": "not-adopted", "recommendation": "優先比較保窗側牆床及重複入口整合，保留1F原房間、2.4m寬套衛及230cm窗；2F／3F衛浴後牆前移20cm，原產品不縮，床體投影間隔增加至230mm。配管、防水、窗框與完成面未核，床尾／照護通行分時。整間臥室禁上層濕區則比較濕區同軸備案，客房衣櫃與3F原戶外面積仍待解。"},
+      {"id": "A-door-and-kitchen-scope", "building": "A", "status": "not-adopted", "recommendation": "入口見梯、孝親房門朝床尾先保留，避免屏風占平台／照護帶；若列硬禁忌須另排。本版爐台避浴廁，不代表整個廚房上方無濕區。"}
+    ]
+  },
+  "frame_mm": [6000, 17630],
+  "sources": [
+    {"id": "parking", "url": "https://www.nlma.gov.tw/ch/legislation/law&regusw/6175", "note": "建築技術規則建築設計施工編第60條：一般車位2.5 × 5.5m，尚須檢查進出、開門、柱牆及道路。"},
+    {"id": "arcade", "url": "https://outlaw.kcg.gov.tw/LawContent.aspx?id=GL000537", "note": "高雄市建築管理自治條例15至19條；適用行政區、道路、分區、都市計畫及例外不同。3.9m是保守情境，不宣稱每筆均適用。"},
+    {"id": "hvac", "url": "https://pmst.panasonic.com.tw/Consumer/Support/Download", "note": "依最終室內外機配對的原廠安裝手冊檢查配管上限、最短管長、高低差、追加冷媒及散熱淨空；不引用VRF數字當一般分離式許可。"}
+  ],
+  "buildings": {
+    "A": {
+      "summary": "32坪含騎樓的照護優先重排：前3.9m整帶通行；私有前段合併客餐廳與乾式入口，中段緊湊雙折梯；MDF優先研究上折梯下，未完成維修與專業查核前仍保留梯廳側備援。後段孝親房、含淋浴公衛及廚房直達工作陽台保留。主案不計車位；地籍、建蔽／容積及騎樓適用仍待專業確認。",
+      "assumptions": [
+        "32地坪含騎樓是比較目標，6×17.63m不是地籍實測；前3.9m先保持通行、不停車、不收納、不設冷氣室外機，實際騎樓深度、柱位、建築線、梁下淨高與道路高程未知。",
+        "1F層高暫估4m、樓上3m，4m扣500mm僅名義3.5m，不能當成梁下淨高合格；上層前凸、騎樓認列、建蔽與容積均待建築師計算。",
+        "樓梯採暫估90cm梯段、26cm踏面、1m平台；入口與樓上公共區共用前方平平台，禁止放家具或用梯段當通道。梯寬是概念值，不證明完成面、扶手、搬運／避難、梯井淨高及消防已合格。",
+        "客餐廳選一般180cm雙人沙發、55吋壁掛電視及120×80cm四人桌，四張45cm椅分坐兩長邊；桌椅本體外廓120×180cm，另外40cm拉椅帶。不是縮放原三人沙發、電視櫃或餐椅；原品項另案保留。",
+        "孝親房維持360×377cm框、152×188cm床、120×60cm衣櫃、150cm轉位及120cm照護帶；醫療床、雙側照護、完成面及輪椅／雙人協助演練仍待實物查核。",
+        "公衛保留120×120cm零門檻淋浴、一般馬桶、60cm洗手台與150cm轉位，操作地面分時共用；膝下空間、扶手、防水、排風、門框後淨寬及救援未核。",
+        "廚房改選一般240×60cm一字廚具與75cm冰箱，保留900mm工作帶；抽屜、冰箱門及通行分時，不把工作帶當獨立照護或已核避難通道。原65cm深廚具另案。",
+        "側界先視為可能共壁，不憑側窗取得採光；客餐廳候選前窗面向騎樓，遮蔭與法定有效採光未核。孝親房後窗面向工作陽台，空調配對及實際排水另核。",
+        "樓梯跨層同步移位，2F公共走道保留不放收納櫃，原兩組180cm更衣櫃及走道櫃仍列待排；3F多功能房與後段走道同步调整，RF共用平台不增加第五層。所有上層功能與尺寸仍須屋主／建築師確認。"
+      ],
+      "parking": {
+        "displayed_cars": 0,
+        "verified_spaces": null,
+        "status": "not-accommodated-in-care-priority-proposal",
+        "alternative_bay_mm": [
+          3000,
+          6100
+        ],
+        "note": "主案不畫車位、不計停車容量；原一车需求保留為待比較替代案，3 × 6.1m只是原案車位框，不代表已能與孝親房共存。須查合法外部停車，或取得可建外框後另排一車＋完整一樓生活圈，交由屋主確認，不再默默取消房間。"
+      },
+      "core": {
+        "key": "stair-door",
+        "rect": [
+          0,
+          5880,
+          2160,
+          4000
+        ],
+        "flight_side": "left",
+        "flight_width_mm": 900,
+        "tread_mm": 260,
+        "well_depth_mm": 3860,
+        "shared_front_landing": true
+      },
+      "hvac_pairs": [
+        [
+          "floor-1",
+          "living",
+          "floor-2",
+          "front-service",
+          "front"
+        ],
+        [
+          "floor-1",
+          "flex1",
+          "floor-1",
+          "balcony1",
+          "rear"
+        ],
+        [
+          "floor-2",
+          "master",
+          "floor-2",
+          "front-service",
+          "front"
+        ],
+        [
+          "floor-2",
+          "study",
+          "floor-2",
+          "balcony2",
+          "rear"
+        ],
+        [
+          "floor-2",
+          "bedroom2",
+          "floor-2",
+          "balcony2",
+          "rear"
+        ],
+        [
+          "floor-3",
+          "entertainment",
+          "floor-3",
+          "front-service",
+          "front"
+        ],
+        [
+          "floor-3",
+          "guest",
+          "floor-3",
+          "terrace3",
+          "rear"
+        ]
+      ],
+      "deferred": [
+        {
+          "key": "garage",
+          "floor": "floor-1",
+          "state": "alternative",
+          "note": "原一車需求未刪除；本照護優先主案不計車位。一車＋孝親房須另排並比較，尚無可宣稱成立的替代圖。"
+        },
+        {
+          "key": "water-inlet",
+          "floor": "floor-1",
+          "state": "merged",
+          "target": "balcony1",
+          "note": "給水／淨軟水設備併入公共工作陽台；由廚房直達，不穿越孝親房。"
+        },
+        {
+          "state": "alternative",
+          "note": "中島、六人餐桌、MDF雜物櫃不強塞；先保留工作走道與機櫃前後維修。"
+        },
+        {
+          "state": "alternative",
+          "note": "2F主臥先採180 × 200cm床與120cm衣櫃；原180cm衣櫃、梳妝台及更衣室雙排櫃另案，不以減小床或加深屋子達成。"
+        },
+        {
+          "state": "alternative",
+          "note": "孝親房衣櫃先用常見120cm型，不縮放家具；原180cm櫃／書桌另案保留。醫療床、雙側照護、更大淋浴及完成面淨空需實物與建築師重核。"
+        },
+        {
+          "key": "garage",
+          "floor": "floor-1",
+          "state": "merged",
+          "target": "arcade",
+          "note": "原車庫房間不作騎樓車位；原一車需求仍另案保留。"
+        },
+        {
+          "state": "alternative",
+          "note": "本32坪提案改選180cm雙人沙發、壁掛55吋電視及兩長邊各2席四人桌；原240cm三人沙發、180cm電視櫃、包裹櫃與六人桌均未算已容納。"
+        },
+        {
+          "state": "alternative",
+          "note": "一樓洗手台採一般60cm型、廚具深60cm；原90cm洗手台及65cm廚具仍為替代需求，不縮放模型。2F走道櫃不得占連續通道，兩組更衣櫃仍待排。"
+        },
+        {
+          "state": "alternative",
+          "note": "2F次臥／3F客房改選一般120cm書桌；105cm單人床及180cm衣櫃不縮小，原140cm桌另案。2F／3F後段房間依新公共走道重分配，均待屋主及建築師核對。"
+        }
+      ],
+      "floors": {
+        "floor-1": {
+          "stair_landing_space": "entry",
+          "rooms": {
+            "arcade": {
+              "rect": [
+                0,
+                0,
+                6000,
+                3900
+              ],
+              "name": "騎樓3.9m通行預留（不置物／不停車）",
+              "kind": "outdoor",
+              "outdoor": true,
+              "clear": true
+            },
+            "entry": {
+              "rect": [
+                0,
+                3900,
+                2160,
+                1980
+              ],
+              "name": "乾式玄關／共用樓梯前平台",
+              "kind": "entry",
+              "requirement_id": "A.floor-1.entry",
+              "clear": true,
+              "clearance_reservations": [
+                {
+                  "kind": "care-turn",
+                  "rect": [
+                    80,
+                    80,
+                    1500,
+                    1500
+                  ]
+                },
+                {
+                  "kind": "care-route",
+                  "rect": [
+                    80,
+                    80,
+                    1200,
+                    1820
+                  ]
+                }
+              ]
+            },
+            "living": {
+              "rect": [
+                2160,
+                3900,
+                3840,
+                5052
+              ],
+              "name": "前段合併客餐廳（騎樓後）",
+              "kind": "living",
+              "requirement_id": "A.floor-1.living",
+              "window_mm": 1200,
+              "window_ratio": 0.6,
+              "profile": "review-a-arcade-living",
+              "clearance_reservations": [
+                {
+                  "kind": "care-turn",
+                  "rect": [
+                    80,
+                    1760,
+                    1500,
+                    1500
+                  ]
+                },
+                {
+                  "kind": "care-route",
+                  "rect": [
+                    160,
+                    1100,
+                    1200,
+                    3872
+                  ]
+                }
+              ]
+            },
+            "stair-door": {
+              "rect": [
+                0,
+                5880,
+                2160,
+                4000
+              ],
+              "name": "緊湊雙折梯（90cm梯段／共享前平台）",
+              "kind": "stair",
+              "group": "A1-dry-hall"
+            },
+            "care-passage": {
+              "rect": [
+                2160,
+                8952,
+                1360,
+                1048
+              ],
+              "name": "連續照護通道（暫扣牆後120cm）",
+              "kind": "other",
+              "role": "circulation",
+              "group": "A1-dry-hall",
+              "clear": true,
+              "clearance_reservations": [
+                {
+                  "kind": "care-route",
+                  "rect": [
+                    80,
+                    0,
+                    1200,
+                    1048
+                  ]
+                }
+              ]
+            },
+            "mdf": {
+              "rect": [
+                0,
+                9880,
+                1360,
+                2180
+              ],
+              "name": "MDF側壁龕備援（梯下優先待核）",
+              "kind": "service",
+              "group": "A1-dry-hall",
+              "role": "equipment-alcove",
+              "requirement_id": "A.floor-1.mdf",
+              "profile": "review-mdf"
+            },
+            "rear-hall1": {
+              "rect": [
+                1360,
+                10000,
+                2160,
+                2060
+              ],
+              "name": "後段照護轉位／公共乾區",
+              "kind": "other",
+              "role": "circulation",
+              "group": "A1-dry-hall",
+              "clear": true,
+              "clearance_reservations": [
+                {
+                  "kind": "care-turn",
+                  "rect": [
+                    580,
+                    80,
+                    1500,
+                    1500
+                  ]
+                }
+              ]
+            },
+            "bath1": {
+              "rect": [
+                3520,
+                8952,
+                2480,
+                3108
+              ],
+              "name": "1F照護公衛／零門檻淋浴提案",
+              "kind": "bath",
+              "requirement_id": "A.floor-1.bath1",
+              "door_operation": "sliding",
+              "profile": "review-a-arcade-bath",
+              "clearance_reservations": [
+                {
+                  "kind": "care-turn",
+                  "rect": [
+                    80,
+                    80,
+                    1500,
+                    1500
+                  ]
+                }
+              ]
+            },
+            "kitchen": {
+              "rect": [
+                0,
+                12060,
+                2400,
+                3770
+              ],
+              "name": "一字廚房／直達工作陽台",
+              "requirement_id": "A.floor-1.kitchen",
+              "profile": "review-a-fengshui-kitchen",
+              "clearance_reservations": [
+                {
+                  "kind": "circulation",
+                  "rect": [
+                    700,
+                    80,
+                    900,
+                    3610
+                  ]
+                }
+              ]
+            },
+            "flex1": {
+              "rect": [
+                2400,
+                12060,
+                3600,
+                3770
+              ],
+              "name": "孝親房（床＋衣櫃＋照護轉位）",
+              "kind": "bedroom",
+              "room_role": "elder",
+              "requirement_id": "A.floor-1.elder",
+              "door_operation": "sliding",
+              "window_mm": 1200,
+              "window_ratio": 0.8,
+              "profile": "review-a-care-elder",
+              "clearance_reservations": [
+                {
+                  "kind": "care-route",
+                  "rect": [
+                    2320,
+                    80,
+                    1200,
+                    3610
+                  ]
+                },
+                {
+                  "kind": "care-turn",
+                  "rect": [
+                    2020,
+                    1400,
+                    1500,
+                    1500
+                  ]
+                }
+              ]
+            },
+            "balcony1": {
+              "rect": [
+                0,
+                15830,
+                6000,
+                1800
+              ],
+              "name": "公共工作／給水／空調設備陽台",
+              "outdoor": true,
+              "requirement_id": "A.floor-1.balcony",
+              "profile": "review-a-care-laundry"
+            }
+          },
+          "connections": [
+            [
+              "entry",
+              "living",
+              {
+                "type": "open",
+                "width_mm": 1200
+              },
+              5200
+            ],
+            [
+              "entry",
+              "stair-door",
+              {
+                "type": "open",
+                "width_mm": 2000
+              },
+              1080
+            ],
+            [
+              "living",
+              "care-passage",
+              {
+                "type": "open",
+                "width_mm": 1360
+              },
+              2840
+            ],
+            [
+              "care-passage",
+              "rear-hall1",
+              "open"
+            ],
+            [
+              "care-passage",
+              "bath1",
+              900,
+              9492
+            ],
+            [
+              "rear-hall1",
+              "mdf",
+              "open"
+            ],
+            [
+              "rear-hall1",
+              "kitchen",
+              900,
+              1900
+            ],
+            [
+              "rear-hall1",
+              "flex1",
+              900,
+              2900
+            ],
+            [
+              "kitchen",
+              "balcony1",
+              900,
+              1750
+            ]
+          ],
+          "entry": [
+            "entry",
+            "front",
+            1000,
+            1080
+          ],
+          "unallocated_allowances": [
+            {
+              "rect": [
+                1100,
+                9880,
+                1060,
+                120
+              ],
+              "note": "0.1272m²轉接留白，不列為房間、通道淨空或已核牆柱。"
+            }
+          ]
+        },
+        "floor-2": {
+          "rooms": {
+            "front-service": {
+              "rect": [
+                0,
+                0,
+                6000,
+                1500
+              ],
+              "name": "前側空調維修陽台（待核）",
+              "kind": "outdoor",
+              "outdoor": true
+            },
+            "master": {
+              "rect": [
+                0,
+                1500,
+                4560,
+                2500
+              ],
+              "name": "主臥（縮減收納提案）",
+              "profile": "review-shallow-master"
+            },
+            "master-bath": {
+              "rect": [
+                2160,
+                5880,
+                2400,
+                2100
+              ],
+              "name": "2F共用衛浴（套衛另案）",
+              "profile": "review-a-upper-bath",
+              "door_operation": "sliding"
+            },
+            "walkin": {
+              "rect": [
+                2160,
+                7980,
+                2400,
+                1900
+              ],
+              "name": "乾式更衣前室（兩組衣櫃待排）",
+              "role": "circulation"
+            },
+            "hall2": {
+              "rect": [
+                4560,
+                1500,
+                1440,
+                9880
+              ],
+              "name": "連續公共走道（原收納櫃待移）",
+              "kind": "other",
+              "role": "circulation",
+              "profile": "review-a-arcade-hall",
+              "clearance_reservations": [
+                {
+                  "kind": "circulation",
+                  "rect": [
+                    80,
+                    80,
+                    1280,
+                    9720
+                  ]
+                }
+              ]
+            },
+            "stair2": {
+              "rect": [
+                0,
+                5880,
+                2160,
+                4000
+              ],
+              "name": "緊湊雙折梯／共享前平台",
+              "kind": "stair"
+            },
+            "rear-hall": {
+              "rect": [
+                0,
+                9880,
+                4560,
+                1500
+              ],
+              "name": "後段公共乾區（不穿更衣室）",
+              "kind": "other",
+              "role": "circulation",
+              "clear": true
+            },
+            "study": {
+              "rect": [
+                0,
+                11380,
+                3560,
+                4250
+              ],
+              "name": "書房／工作室"
+            },
+            "bedroom2": {
+              "rect": [
+                3560,
+                11380,
+                2440,
+                4250
+              ],
+              "name": "次臥（淨寬待核）",
+              "profile": "review-a-arcade-single"
+            },
+            "balcony2": {
+              "rect": [
+                0,
+                15630,
+                6000,
+                2000
+              ],
+              "name": "後工作／空調維修陽台",
+              "outdoor": true
+            },
+            "front-landing": {
+              "rect": [
+                0,
+                4000,
+                4560,
+                1880
+              ],
+              "name": "公共乾式梯廳／到達平台",
+              "kind": "other",
+              "role": "circulation",
+              "clear": true
+            }
+          },
+          "connections": [
+            [
+              "hall2",
+              "master",
+              900,
+              2050
+            ],
+            [
+              "hall2",
+              "front-landing",
+              "open"
+            ],
+            [
+              "front-landing",
+              "stair2",
+              {
+                "type": "open",
+                "width_mm": 2000
+              },
+              1080
+            ],
+            [
+              "front-landing",
+              "master-bath",
+              800,
+              4010
+            ],
+            [
+              "hall2",
+              "walkin",
+              900,
+              8880
+            ],
+            [
+              "hall2",
+              "rear-hall",
+              "open"
+            ],
+            [
+              "rear-hall",
+              "study",
+              900,
+              3000
+            ],
+            [
+              "hall2",
+              "bedroom2",
+              900,
+              5480
+            ],
+            [
+              "study",
+              "balcony2",
+              900,
+              3000
+            ],
+            [
+              "bedroom2",
+              "balcony2",
+              900,
+              5520
+            ],
+            [
+              "master",
+              "front-service",
+              900,
+              3800
+            ]
+          ],
+          "stair_landing_space": "front-landing"
+        },
+        "floor-3": {
+          "rooms": {
+            "front-service": {
+              "rect": [
+                0,
+                0,
+                6000,
+                1500
+              ],
+              "name": "前側空調維修陽台（待核）",
+              "kind": "outdoor",
+              "outdoor": true
+            },
+            "entertainment": {
+              "rect": [
+                0,
+                1500,
+                4400,
+                3000
+              ],
+              "name": "家庭劇院（隔音待核）",
+              "profile": "review-a-arcade-theatre"
+            },
+            "front-hall": {
+              "rect": [
+                4400,
+                1500,
+                1600,
+                9880
+              ],
+              "name": "前段公共走道",
+              "kind": "other",
+              "role": "circulation"
+            },
+            "stair3": {
+              "rect": [
+                0,
+                5880,
+                2160,
+                4000
+              ],
+              "name": "緊湊雙折梯／共享前平台",
+              "kind": "stair"
+            },
+            "rear-hall": {
+              "rect": [
+                0,
+                9880,
+                4400,
+                1500
+              ],
+              "name": "後段公共乾式通道",
+              "kind": "other",
+              "role": "circulation",
+              "clear": true
+            },
+            "multi": {
+              "rect": [
+                2160,
+                5880,
+                2240,
+                4000
+              ],
+              "name": "多功能工作／沙發床區（展床待核）",
+              "kind": "other",
+              "profile": "review-a-arcade-multi"
+            },
+            "bath3": {
+              "rect": [
+                0,
+                13400,
+                2360,
+                2230
+              ],
+              "name": "3F衛浴",
+              "profile": "review-bath"
+            },
+            "back-hall": {
+              "rect": [
+                2360,
+                11380,
+                1200,
+                4250
+              ],
+              "name": "衛浴公共走道",
+              "kind": "other",
+              "role": "circulation"
+            },
+            "guest": {
+              "rect": [
+                3560,
+                11380,
+                2440,
+                4250
+              ],
+              "name": "客房（淨寬待核）",
+              "profile": "review-a-arcade-single"
+            },
+            "terrace3": {
+              "rect": [
+                0,
+                15630,
+                6000,
+                2000
+              ],
+              "name": "後工作／空調維修陽台",
+              "outdoor": true
+            },
+            "front-landing": {
+              "rect": [
+                0,
+                4500,
+                4400,
+                1380
+              ],
+              "name": "公共乾式梯廳／到達平台",
+              "kind": "other",
+              "role": "circulation",
+              "clear": true
+            },
+            "rear-common": {
+              "rect": [
+                0,
+                11380,
+                2360,
+                2020
+              ],
+              "name": "後段公共閱讀／彈性區（家具待定）",
+              "kind": "other",
+              "role": "circulation",
+              "clear": true
+            }
+          },
+          "connections": [
+            [
+              "front-hall",
+              "entertainment",
+              900,
+              2050
+            ],
+            [
+              "front-hall",
+              "front-landing",
+              "open"
+            ],
+            [
+              "front-landing",
+              "stair3",
+              {
+                "type": "open",
+                "width_mm": 2000
+              },
+              1080
+            ],
+            [
+              "front-hall",
+              "multi",
+              900,
+              8060
+            ],
+            [
+              "front-hall",
+              "rear-hall",
+              "open"
+            ],
+            [
+              "front-hall",
+              "guest",
+              900,
+              5480
+            ],
+            [
+              "rear-hall",
+              "rear-common",
+              {
+                "type": "open",
+                "width_mm": 1200
+              },
+              1200
+            ],
+            [
+              "rear-hall",
+              "back-hall",
+              {
+                "type": "open",
+                "width_mm": 1200
+              },
+              2960
+            ],
+            [
+              "rear-common",
+              "back-hall",
+              "open"
+            ],
+            [
+              "back-hall",
+              "bath3",
+              900,
+              14600
+            ],
+            [
+              "back-hall",
+              "terrace3",
+              900,
+              2960
+            ],
+            [
+              "guest",
+              "terrace3",
+              900,
+              5520
+            ]
+          ],
+          "stair_landing_space": "front-landing"
+        },
+        "floor-4": {
+          "rooms": {
+            "solar": {
+              "rect": [
+                0,
+                0,
+                6000,
+                4500
+              ],
+              "name": "太陽能候選區（結構待核）",
+              "outdoor": true
+            },
+            "stair-rf": {
+              "rect": [
+                0,
+                5880,
+                2160,
+                4000
+              ],
+              "name": "同軸樓梯屋突（合法性待核）",
+              "kind": "stair"
+            },
+            "riser": {
+              "rect": [
+                2160,
+                5880,
+                3840,
+                4000
+              ],
+              "name": "弱電立管／乾式檢修區",
+              "kind": "other",
+              "role": "circulation"
+            },
+            "water-tank": {
+              "rect": [
+                0,
+                11380,
+                2000,
+                3000
+              ],
+              "name": "水塔候選區",
+              "outdoor": true
+            },
+            "vf800": {
+              "rect": [
+                2000,
+                11380,
+                2000,
+                3000
+              ],
+              "name": "加壓候選區",
+              "outdoor": true
+            },
+            "haier": {
+              "rect": [
+                4000,
+                11380,
+                2000,
+                3000
+              ],
+              "name": "熱泵候選區",
+              "outdoor": true
+            },
+            "laundry-rf": {
+              "rect": [
+                0,
+                14380,
+                6000,
+                3250
+              ],
+              "name": "曬衣／設備維修平台（非冷氣集中區）",
+              "outdoor": true
+            },
+            "front-landing": {
+              "rect": [
+                0,
+                4500,
+                6000,
+                1380
+              ],
+              "name": "RF共用到達／維修平台（非第五層）",
+              "kind": "other",
+              "role": "circulation",
+              "clear": true
+            },
+            "rear-hall": {
+              "rect": [
+                0,
+                9880,
+                6000,
+                1500
+              ],
+              "name": "RF共用設備維修通道",
+              "kind": "other",
+              "role": "circulation",
+              "clear": true
+            }
+          },
+          "connections": [
+            [
+              "stair-rf",
+              "front-landing",
+              {
+                "type": "open",
+                "width_mm": 2000
+              },
+              1080
+            ],
+            [
+              "front-landing",
+              "solar",
+              1200,
+              3000
+            ],
+            [
+              "front-landing",
+              "riser",
+              {
+                "type": "open",
+                "width_mm": 1200
+              },
+              4000
+            ],
+            [
+              "riser",
+              "rear-hall",
+              "open"
+            ],
+            [
+              "rear-hall",
+              "water-tank",
+              900,
+              1000
+            ],
+            [
+              "rear-hall",
+              "vf800",
+              900,
+              3000
+            ],
+            [
+              "rear-hall",
+              "haier",
+              900,
+              5000
+            ]
+          ],
+          "stair_landing_space": "front-landing"
+        }
+      },
+      "storey_heights_mm": [
+        4000,
+        3000,
+        3000,
+        3000
+      ]
+    },
+    "B": {
+      "summary": "祭祀／搬轎分流提案：依屋主家規，神桌正前方加180cm中軸祭祀門；右側150cm搬轎側門＋1.6m名義通道直達後段武轎室，不穿過神明堂。前3.9m通行預留不當倉庫／停車／裝桿場地。",
+      "assumptions": ["騎樓／退縮是否適用未知，先保留3.9m、不列為私有車位、倉庫或抬桿組裝場。", "屋主確認家規為神桌正前方必須開門，採同中軸前方180cm祭祀門；不將正門直對神桌自動判成犯忌，也不以此保證風水。坐向、道路視線、祭拜方向、開門時機及香火補氣由家人／祭祀顧問再確認。", "前門加大後，原240cm前窗不硬塞；改100cm左側前窗候選，不假設鄰地可開側窗。採光／通風與風雨防護仍待核。", "神桌投影上方不放浴廁、廚房、樓梯、KTV、水塔或熱泵；2F安靜起居、3F安靜客房、RF保護區仍須結構與宗教顧問核對。", "搬轎只比較120×170×180cm暫估收納本體。兩道150cm門對120cm本體僅各留15cm側餘量；1.6m為分配寬度，扣牆框後未知。拆桿能力、輪具高度、裝桿外廓、人員、門扇、高差及雨天演練未核；未驗證前不能宣稱搬得進去。", "2F公衛／套衛分界與設備不動；完成面、排風、救援及原需求中段位置仍待核，不視為已可施工。"],
+      "ritual_access": {"status": "owner-preference-proposal-not-verified", "owner_requires_axial_front_door": true, "front_door_width_mm": 1800, "religious_acceptance": "unknown", "transport_acceptance": "unknown", "note": "祭祀門對準神桌中軸，側門搬轎直進直出；家規不是通用風水結論。"},
+      "parking": {"displayed_cars": 0, "verified_spaces": null, "status": "not-accommodated-in-worship-priority-proposal", "note": "本提案不保留私有汽車位。若一車位為必要，需縮減／移動祭祀及收納或另尋基地，不可侵占騎樓與搬運帶。"},
+      "core": {"key": "stair1", "rect": [0, 9500, 3600, 4300], "flight_side": "left"},
+      "hvac_pairs": [["floor-2", "living2", "floor-2", "balcony2", "front"], ["floor-2", "master2", "floor-4", "service-rf", "rear"], ["floor-3", "guest3", "floor-3", "terrace3", "front"], ["floor-3", "ktv3", "floor-4", "service-rf", "rear"]],
+      "deferred": [{"key": "garage", "floor": "floor-1", "state": "alternative", "note": "原一車需求保留為替代案，本祭祀優先案不計車位。"}, {"state": "alternative", "note": "後主臥改選152 × 188cm市售雙人床；原180 × 200cm床不算已容納。1F淋浴仍待另一版；2F公衛／套衛均保留洗手台、馬桶與90cm淋浴的配置提案，完成面、排風、套衛門及原需求中段位置仍未核定，不視為兩套衛浴已可施工。"}, {"key": "terrace3", "floor": "floor-3", "state": "alternative", "note": "前側露台只作通風與空調維修候選區；原室內沙發床／瑜伽用途保留替代案，不把室內家具直接移到露台，也不當作可睡眠空間。"}],
+      "floors": {
+        "floor-1": {
+          "rooms": {
+            "garage": {"rect": [0, 0, 6000, 3900], "name": "騎樓／前緣通行預留（非車位）", "kind": "outdoor", "outdoor": true, "clear": true},
+            "shrine": {"rect": [0, 3900, 4400, 5600], "name": "神明堂（中軸祭祀門／面前方）", "kind": "living", "window_face": "front", "window_mm": 1000, "window_ratio": 0.15, "profile": "review-b-axial-shrine", "clearance_reservations": [{"kind": "ritual-approach", "rect": [1300, 0, 1800, 3200]}]},
+            "entry": {"rect": [4400, 3900, 1600, 5600], "name": "側邊玄關／直線搬轎通道", "kind": "entry", "clear": true, "route_width_mm": 1600},
+            "stair1": {"rect": [0, 9500, 3600, 4300], "name": "正式樓梯／共用梯廳", "kind": "stair", "group": "B1-dry-hall"},
+            "idf-cabinet": {"rect": [3600, 9500, 800, 4300], "name": "IDF壁龕（梯廳分區）", "kind": "service", "group": "B1-dry-hall", "role": "equipment-alcove", "profile": "review-idf"},
+            "corridor1": {"rect": [4400, 9500, 1600, 4300], "name": "後段直線搬運／公共通道", "kind": "other", "group": "B1-dry-hall", "role": "circulation", "clear": true, "route_width_mm": 1600},
+            "storage": {"rect": [3000, 13800, 3000, 3830], "name": "後段武轎／祭祀物品收納", "door_mm": 1500, "carry_path_mm": 1600, "access_mode": "straight-pull", "profile": "review-storage"},
+            "bath1": {"rect": [0, 13800, 1800, 2200], "name": "後段客用廁所（淋浴另案）", "profile": "review-guest-wc"},
+            "rear-hall": {"rect": [1800, 13800, 1200, 2200], "name": "工作區公共乾式通道", "kind": "other", "role": "circulation", "clear": true},
+            "balcony1": {"rect": [0, 16000, 3000, 1630], "name": "後工作／洗滌準備區", "outdoor": true, "profile": "review-laundry"}
+          },
+          "connections": [["garage", "shrine", {"type": "door", "width_mm": 1800, "label": "中軸祭祀門（180cm暫估）", "purpose": "ritual-entry"}, 2200], ["entry", "shrine", 1500, 5000], ["entry", "corridor1", "open"], ["corridor1", "idf-cabinet", "open"], ["idf-cabinet", "stair1", "open"], ["corridor1", "storage", {"type": "door", "width_mm": 1500, "label": "武轎收納門（150cm待核）", "purpose": "palanquin-storage"}, 5200], ["stair1", "rear-hall", 1000, 2400], ["rear-hall", "bath1", 900, 14900], ["rear-hall", "balcony1", 1000, 2400]],
+          "entry": ["entry", "front", 1500, 5200],
+          "entry_label": "搬轎側門（150cm待核）"
+        },
+        "floor-2": {
+          "rooms": {
+            "balcony2": {"rect": [0, 0, 6000, 3900], "name": "前側陽台／空調維修候選區", "outdoor": true},
+            "living2": {"rect": [0, 3900, 4400, 5600], "name": "安靜起居區（神桌投影上方）", "profile": "review-b-fengshui-living", "window_ratio": 0.18, "window_mm": 1200},
+            "corridor2": {"rect": [4400, 3900, 1600, 5600], "name": "前段公共走道", "kind": "other", "role": "circulation"},
+            "stair2": {"rect": [0, 9500, 3600, 4300], "name": "正式樓梯／梯廳", "kind": "stair"},
+            "bar2": {"rect": [3600, 9500, 2400, 4300], "name": "後段茶水／乾式梯廳", "kind": "kitchen", "profile": "review-tea"},
+            "bath2": {"rect": [0, 13800, 3000, 2000], "name": "後段公共衛浴（完成面待核）", "profile": "review-b-upper-public-bath"},
+            "master-bath2": {"rect": [0, 15800, 3000, 1830], "name": "後段套衛候選（設備齊、完成面待核）", "profile": "review-b-upper-ensuite", "door_operation": "sliding"},
+            "master2": {"rect": [3000, 13800, 3000, 3830], "name": "後段主臥（152cm床替代案）", "profile": "review-rear-master", "window_mm": 600, "window_ratio": 0.766667}
+          },
+          "connections": [["corridor2", "living2", 900, 5500], ["corridor2", "bar2", "open"], ["bar2", "stair2", "open"], ["stair2", "bath2", 900, 2450], ["bar2", "master2", 900, 5550], ["master2", "master-bath2", 800, 17150], ["living2", "balcony2", 900, 3800]]
+        },
+        "floor-3": {
+          "rooms": {
+            "terrace3": {"rect": [0, 0, 6000, 3900], "name": "前側通風／空調維修候選區", "kind": "outdoor", "outdoor": true, "clear": true},
+            "guest3": {"rect": [0, 3900, 4400, 5600], "name": "前段安靜客房（神桌投影上方）", "profile": "review-b-fengshui-guest"},
+            "corridor3": {"rect": [4400, 3900, 1600, 5600], "name": "前段公共走道", "kind": "other", "role": "circulation"},
+            "stair3": {"rect": [0, 9500, 3600, 4300], "name": "正式樓梯／梯廳", "kind": "stair"},
+            "buffer3": {"rect": [3600, 9500, 2400, 4300], "name": "後段隔音前室／梯廳", "kind": "other", "role": "circulation"},
+            "bath3": {"rect": [0, 13800, 3000, 2200], "name": "後段衛浴", "profile": "review-bath"},
+            "balcony3": {"rect": [0, 16000, 3000, 1630], "name": "後側設備壁架（無穿浴室通行）", "outdoor": true, "clear": true},
+            "ktv3": {"rect": [3000, 13800, 3000, 3830], "name": "後段小型KTV（隔振待核）", "profile": "review-corner-theater"}
+          },
+          "connections": [["corridor3", "guest3", 900, 5500], ["corridor3", "buffer3", "open"], ["buffer3", "stair3", "open"], ["stair3", "bath3", 900, 2450], ["buffer3", "ktv3", 900, 5550], ["guest3", "terrace3", 900, 3000]]
+        },
+        "floor-4": {
+          "rooms": {
+            "platform-rf": {"rect": [0, 0, 6000, 3900], "name": "前緣平台（不在神桌投影內）", "outdoor": true},
+            "shrine-buffer-rf": {"rect": [0, 3900, 4400, 5600], "name": "神桌投影／無設備低活動保護區", "outdoor": true, "clear": true},
+            "front-hall": {"rect": [4400, 3900, 1600, 5600], "name": "屋頂通行預留", "kind": "outdoor", "outdoor": true},
+            "stairRF": {"rect": [0, 9500, 3600, 4300], "name": "同軸楼梯屋突（合法性待核）", "kind": "stair"},
+            "service-rf": {"rect": [3600, 9500, 2400, 4300], "name": "設備維修／通行預留", "kind": "outdoor", "outdoor": true},
+            "tank-rf": {"rect": [0, 13800, 2000, 3830], "name": "後段水塔候選區", "outdoor": true},
+            "pump-rf": {"rect": [2000, 13800, 2000, 3830], "name": "後段加壓候選區", "outdoor": true},
+            "hotwater-rf": {"rect": [4000, 13800, 2000, 3830], "name": "後段熱泵候選區", "outdoor": true}
+          },
+          "connections": [["front-hall", "service-rf", "open"], ["service-rf", "stairRF", "open"], ["stairRF", "pump-rf", 900, 3000]]
+        }
+      }
+    },
+    "C": {
+      "summary": "C一樓客餐廳合併：前餐桌、中段客廳與玄關為同一開放空間，不設內部分隔牆／假門框。客餐分配仍27.2m²，連玄關6×5.6m、33.6m²；不是新增樓地板或完成面淨面積。電視改左側實牆，雙人沙發朝左，照護帶／孝親房／梯位保留。前3.9m整帶通行不吞入室內，兩汽車＋機車仍未容納。",
+      "assumptions": ["若騎樓／公共退縮適用，前方整帶需依規定暢通，庭院候選不可施作；接送臨停不等於合法固定停車位。", "一樓客廳空調改放仍保留的右側牆，不掛在已取消的內部分隔；室外機仍在既有2F前陽台。開放33.6m²的冷房能力、油煙、雙機散熱、原廠管長、高低差、噪音及排水待核。", "餐區12.8m²、玄關6.4m²、客廳14.4m²只是無隔牆功能分區；合併不增加面積，也不把借光當法定採光／通風合格。結構柱、剪力牆及樓梯防火分隔未核，不能直接當可拆牆施工圖。", "180cm雙人沙發改活動擺位朝左侧實牆電視，不假裝靠已拆除的隔牆；90cm單椅及四人桌保留一般產品尺寸。原240cm三人沙發／六人桌仍另案，轉位與拉椅帶不共用。", "玄關鞋櫃關閉時側方暫約149cm，開櫃／換鞋不可同時當完整照護通道；保留客廳150cm暫留轉位區，不宣稱入口無障礙已通過。", "240cm廚具保留900mm操作帶，廚房入口操作與工作分時，照護主路不穿廚房；本版未連廚房拆隔牆，排煙及消防待核。", "1F後套衛以長輩如廁為主；訪客獨立公衛目前未解。公衛／採光比較保留另案，不因合併客餐廳而採用。", "本案不計兩車＋機車但保留原需求；輪椅轉位、照護床、雙人協助、側院、可建外框及原室外機壁龕轉室內仍待實際資料與專業確認。"],
+      "open_living": {"status": "open-zones-proposal-not-verified", "group": "C1-open-living-dining", "room_keys": ["entrance", "dining", "living"], "structural_acceptance": "unknown", "fire_acceptance": "unknown", "daylight_acceptance": "unknown", "note": "同一客餐廳的功能分區，不是三間隔開的房間；未增加面積。"},
+      "parking": {"displayed_cars": 0, "verified_spaces": null, "status": "not-accommodated-in-care-priority-proposal", "note": "此版不計私有汽車／機車位；原兩車＋機車是需求，不是證明。並排兩標準車位至少5 × 5.5m，尚未加柱牆、開門與人行；3.9m前緣深度不夠。"},
+      "core": {"key": "stair1f", "rect": [2400, 9500, 3600, 4300], "flight_side": "right"},
+      "hvac_pairs": [["floor-1", "living", "floor-2", "balcony2f", "front"], ["floor-1", "elder", "floor-2", "rear-service", "rear"], ["floor-2", "living2f", "floor-2", "balcony2f", "front"], ["floor-2", "guestroom2f", "floor-2", "rear-service", "rear"], ["floor-3", "master3f", "floor-3", "terrace3f", "front"], ["floor-3", "fitness3f", "floor-3", "rear-service", "rear"]],
+      "deferred": [
+        {"key": "garage", "floor": "floor-1", "state": "alternative", "note": "兩汽車＋機車需求保留在清單，照護優先案不計車位。"},
+        {"key": "dining", "floor": "floor-1", "state": "alternative", "note": "四人餐桌與客廳合併為開放空間；原六人桌仍未容納，不因拆除隔牆就視為需求已通過。"},
+        {"key": "living", "floor": "floor-1", "state": "alternative", "note": "本版選180cm雙人沙發＋90cm單椅；原240cm三人沙發與落地TV櫃保留歷史需求，不縮放成已容納。"},
+        {"state": "alternative", "note": "原室外機壁龕3.2m²轉室內可能增加建築／樓地板計算面積；同外框不代表可封閉。可建外框、建蔽／容積及採光不允許時，須撤銷轉室內提案並重排客餐區。"},
+        {"state": "alternative", "note": "側院、360cm整排衣櫃、額外公衛不得因原格子有畫就視為成立；需在固定外框內確認或選更合適基地。"}
+      ],
+      "floors": {
+        "floor-1": {
+          "rooms": {
+            "garage": {
+              "rect": [0, 0, 6000, 3900], "name": "前緣通行／接送（庭院另案待核）", "kind": "outdoor", "outdoor": true, "clear": true,
+              "frontage_study": {
+                "status": "conditional-not-installed", "active_option": "keep-full-clear", "site_use_status": "unknown",
+                "note": "23.4m²先保留整帶通行。橘色虛框只比較私有庭院可能位置，不是已配置家具、停車位或核准可占用範圍。騎樓／公共退縮適用時整案撤銷。",
+                "conditions": ["逐筆地籍、道路與建築線確認", "建築師確認非須維持全帶通行的騎樓／公共退縮", "確認私有地權、完成面高程與合法排水", "照護接送、入口轉位與室外清潔／維修演練"],
+                "route_rect": [3800, 0, 2120, 3900],
+                "zones": [
+                  {"id": "garden-pocket", "name": "私有庭院植栽候選（未施作）", "rect": [80, 900, 1400, 2700], "height_mm": 600, "note": "可撤式低植栽候選；不設永久花台、不積水、不遮入口視線，根系與防蚊待核。"},
+                  {"id": "waiting-bench", "name": "120cm等候椅候選（未擺放）", "rect": [1800, 2200, 1200, 500], "height_mm": 450, "note": "一般120×50cm活動椅外廓；僅在私有可用前院條件確認後使用，雨遮／防滑／照護動線另核。"}
+                ]
+              }
+            },
+            "entrance": {"rect": [4000, 3900, 2000, 3200], "name": "開放客餐廳｜玄關區（操作分時）", "group": "C1-open-living-dining", "role": "entry-zone", "profile": "review-entry", "window_mm": 0},
+            "dining": {"rect": [0, 3900, 4000, 3200], "name": "開放客餐廳｜四人餐桌區", "group": "C1-open-living-dining", "role": "dining-zone", "kind": "dining", "profile": "review-c-1f-dining", "window_face": "front", "window_mm": 2400, "window_ratio": 0.45, "clearance_reservations": [{"kind": "care-route", "rect": [2800, 0, 1200, 3200]}]},
+            "living": {"rect": [0, 7100, 6000, 2400], "name": "開放客餐廳｜左向電視／照護轉位", "group": "C1-open-living-dining", "role": "living-zone", "kind": "living", "profile": "review-c-open-living", "clearance_reservations": [{"kind": "care-route", "rect": [2600, 0, 1200, 2400]}, {"kind": "circulation", "rect": [3800, 0, 2000, 1200]}, {"kind": "care-turn", "rect": [2600, 0, 1500, 1500]}]},
+            "kitchen": {"rect": [0, 9500, 2400, 2600], "name": "240cm一字廚房（工作分時／通風待核）", "profile": "review-c-1f-kitchen"},
+            "stair1f": {"rect": [2400, 9500, 3600, 4300], "name": "正式樓梯／乾式通道（非梯下機房）", "kind": "stair", "clear": true},
+            "sideyard": {"rect": [0, 12100, 1200, 1700], "name": "梯廳側IDF乾式壁龕（非側院）", "kind": "service", "outdoor": false, "role": "equipment-alcove", "group": "C1-dry-hall", "profile": "review-c-idf"},
+            "sliding-door": {"rect": [1200, 12100, 1200, 1700], "name": "乾式照護前室（不另隔門）", "kind": "other", "role": "circulation", "group": "C1-dry-hall", "clear": true},
+            "elder": {"rect": [0, 13800, 3600, 3830], "name": "後段孝親房（床＋衣櫃／轉位待演練）", "profile": "review-c-1f-elder"},
+            "elder-bath": {"rect": [3600, 13800, 2400, 3000], "name": "孝親套衛（救援門／排水待核）", "profile": "review-accessible-bath"},
+            "service": {"rect": [3600, 16800, 2400, 830], "name": "後側通風／檢修預留（不放室外機）", "outdoor": true, "clear": true}
+          },
+          "connections": [["entrance", "dining", "open"], ["entrance", "living", "open"], ["dining", "living", "open"], ["living", "stair1f", 1000, 3000], ["stair1f", "kitchen", 900, 10200], ["stair1f", "sliding-door", "open"], ["sliding-door", "sideyard", "open"], ["sliding-door", "elder", 1000, 1900], ["stair1f", "elder", 1000, 3000], ["elder", "elder-bath", 1000, 14900]],
+          "entry": ["entrance", "front", 1000, 5300]
+        },
+        "floor-2": {
+          "rooms": {
+            "balcony2f": {"rect": [0, 0, 6000, 3900], "name": "前側陽台／空調維修候選區", "outdoor": true},
+            "living2f": {"rect": [0, 3900, 4400, 5600], "name": "2F起居（沙發形式待調整）", "profile": "review-front-living", "window_ratio": 0.18, "window_mm": 1200},
+            "front-hall": {"rect": [4400, 3900, 1600, 5600], "name": "前段公共走道", "kind": "other", "role": "circulation"},
+            "guestroom2f": {"rect": [0, 9500, 2400, 4300], "name": "客房／多功能房（淨寬待核）"},
+            "stair2f": {"rect": [2400, 9500, 3600, 4300], "name": "正式樓梯／乾式梯廳", "kind": "stair"},
+            "kitchen2f": {"rect": [3600, 13800, 2400, 3830], "name": "後段茶水／小廚房", "profile": "review-kitchen"},
+            "rear-hall": {"rect": [2400, 13800, 1200, 3830], "name": "後段公共乾式走道", "kind": "other", "role": "circulation"},
+            "bath2f": {"rect": [0, 13800, 2400, 2200], "name": "後段公共衛浴", "profile": "review-bath"},
+            "rear-service": {"rect": [0, 16000, 2400, 1630], "name": "後側空調維修候選區", "kind": "outdoor", "outdoor": true}
+          },
+          "connections": [["living2f", "front-hall", 900, 5500], ["front-hall", "stair2f", 900, 5200], ["stair2f", "guestroom2f", 900, 10100], ["stair2f", "rear-hall", "open"], ["rear-hall", "kitchen2f", 800, 15100], ["rear-hall", "bath2f", 900, 15100], ["rear-hall", "rear-service", 900, 16700], ["living2f", "balcony2f", 900, 3800]]
+        },
+        "floor-3": {
+          "rooms": {
+            "terrace3f": {"rect": [0, 0, 6000, 3900], "name": "前側通風／空調維修候選區", "outdoor": true},
+            "master3f": {"rect": [0, 3900, 4400, 5600], "name": "主臥（一般尺寸家具）", "profile": "review-c-fengshui-master"},
+            "front-hall": {"rect": [4400, 3900, 1600, 5600], "name": "前段公共走道", "kind": "other", "role": "circulation"},
+            "fitness3f": {"rect": [0, 9500, 2400, 4300], "name": "輕量運動（器材量待核）"},
+            "stair3f": {"rect": [2400, 9500, 3600, 4300], "name": "正式樓梯／乾式梯廳", "kind": "stair"},
+            "rear-hall": {"rect": [2400, 13800, 3600, 3830], "name": "後段通行／維修預留", "kind": "outdoor", "outdoor": true},
+            "bath3f": {"rect": [0, 13800, 2400, 2200], "name": "後段衛浴（對齊2F濕區）", "profile": "review-bath"},
+            "rear-service": {"rect": [0, 16000, 2400, 1630], "name": "後側空調維修候選區", "kind": "outdoor", "outdoor": true}
+          },
+          "connections": [["master3f", "front-hall", 900, 5500], ["front-hall", "stair3f", 900, 5200], ["stair3f", "rear-hall", 1000, 3000], ["master3f", "fitness3f", 900, 1200], ["rear-hall", "bath3f", 900, 15100], ["master3f", "terrace3f", 900, 3000]]
+        },
+        "floor-4": {
+          "rooms": {
+            "platform": {"rect": [0, 0, 6000, 9500], "name": "屋頂平台（非冷氣集中區）", "outdoor": true},
+            "riser-rf": {"rect": [0, 9500, 2400, 4300], "name": "弱電立管／乾式維修區", "kind": "other", "role": "circulation"},
+            "stair-rf": {"rect": [2400, 9500, 3600, 4300], "name": "同軸樓梯屋突（合法性待核）", "kind": "stair"},
+            "water-tank": {"rect": [0, 13800, 2000, 2500], "name": "水塔候選區", "outdoor": true},
+            "pump": {"rect": [2000, 13800, 2000, 2500], "name": "加壓候選區", "outdoor": true},
+            "heatpump": {"rect": [4000, 13800, 2000, 2500], "name": "熱泵候選區", "outdoor": true},
+            "laundry-rf": {"rect": [0, 16300, 6000, 1330], "name": "曬衣候選區（維修動線待核）", "outdoor": true}
+          },
+          "connections": [["stair-rf", "riser-rf", 900, 10050], ["stair-rf", "platform", 1000, 3000], ["stair-rf", "pump", 1000, 3000]]
+        }
+      }
+    }
+  }
+}

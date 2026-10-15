@@ -31,7 +31,12 @@ def test_a_1f_care_program_is_retained_separately_from_html_3d_parity(data):
     assert all(r["source_status"] == "candidate" for r in check["requirements"])
     assert check["status"] == "conditional-proposal-function-screen-only"
     assert check["site_legality"] == check["professional_accessibility"] == "unknown"
-    assert check["routes"]["elder_to_bath"] == ["A:floor-1:flex1", "A:floor-1:rear-hall1", "A:floor-1:bath1"]
+    assert check["routes"]["elder_to_bath"] == [
+        "A:floor-1:flex1",
+        "A:floor-1:rear-hall1",
+        "A:floor-1:care-passage",
+        "A:floor-1:bath1",
+    ]
     assert check["routes"]["kitchen_to_work_balcony"] == ["A:floor-1:kitchen", "A:floor-1:balcony1"]
     cells = a_cells(data["buildings"])
     assert (cells["flex1"]["tour_mm"]["w_mm"], cells["flex1"]["tour_mm"]["h_mm"]) == (3600, 3770)
@@ -112,7 +117,7 @@ def test_function_regressions_fail_even_if_both_frontends_would_share_the_same_b
                 d for d in cells[key]["tour_features"]["open_connections"] if d["neighbor"] != cells[neighbor]["id"]
             ]
     elif mutation == "kitchen_night_route":
-        hall = cells["rear-hall1"]["tour_features"]
+        hall = cells["care-passage"]["tour_features"]
         hall["doors"] = [d for d in hall["doors"] if d["neighbor"] != bath["id"]]
         door = bath["tour_features"]["doors"][0]
         door["neighbor"] = cells["kitchen"]["id"]
@@ -177,7 +182,7 @@ def test_clearance_sharing_and_step_free_metadata_cannot_hide_an_unrelated_fit(t
     if mutation == "bed_sharing":
         furniture["profiles"]["review-a-care-elder"][0]["shared_operation_with"] = ["care-turn"]
     elif mutation == "missing_note":
-        furniture["profiles"]["review-a-care-bath"][0]["note"] = ""
+        furniture["profiles"]["review-a-arcade-bath"][0]["note"] = ""
     else:
         furniture["profiles"]["review-a-care-elder"][1]["step_free"] = True
     path = tmp_path / "furniture.json"

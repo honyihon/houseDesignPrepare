@@ -92,7 +92,13 @@ def check_a_care_functions(buildings: list[dict], requirements_path: Path = REQU
     shower = component("bath1", "shower", width=1200, depth=1200)
     require(shower.get("step_free") is True, "missing step-free shower proposal")
     component("living", "sofa", width=1800)
-    component("living", "dining-set", width=1800, depth=1800)
+    dining = component("living", "dining-set", width=1200, depth=1800)
+    require(
+        dining.get("table_width_mm", 0) >= 1200
+        and dining.get("table_depth_mm", 0) >= 800
+        and (dining["width_mm"] >= 1800 or dining["catalog_id"] == "dining-4-sides"),
+        "four-seat table cannot be shrunk or replaced by a tiny unverified envelope",
+    )
     component("living", "cabinet", catalog_prefix="shoe-cabinet")
     component("kitchen", "counter", width=2400)
     component("kitchen", "cabinet", catalog_prefix="fridge-")
@@ -183,7 +189,7 @@ def check_a_care_functions(buildings: list[dict], requirements_path: Path = REQU
         require(False, f"no 900mm common route: {start} -> {target}")
         return []
 
-    common = {"entry", "living", "stair-door", "rear-hall1"}
+    common = {"entry", "living", "stair-door", "rear-hall1", "care-passage"}
     routes = {
         "entrance_to_elder": route("entry", "flex1", common),
         "elder_to_bath": route("flex1", "bath1", common),
@@ -210,8 +216,113 @@ def check_a_care_functions(buildings: list[dict], requirements_path: Path = REQU
             },
             {
                 "requirement_id": "A.floor-1.mdf",
-                "note": "樓梯下機櫃改梯廳側維修壁龕，不假定梯段下方淨高、防火或散熱足夠。",
+                "note": "MDF優先研究上折梯下，梯廳側維修壁龕保留備援；候選未成立前不釋放備援，不假定梯段下方淨高、防火或散熱足夠。",
             },
         ],
-        "note": "保護孝親房、床與衣櫃、150cm轉位、淋浴／馬桶／洗手台及公共動線，不只檢查HTML／3D一致。前帶可建、基地容量、門框後淨寬、輪椅與照護演練、扶手、浴簾、防水及避難未核。浴廁操作與轉位地面、廚房操作與通行分時共用，設備本體不占暫留區；不是法規通過。客餐廳前移與停車替代仍待方案確認，原需求狀態不變。",
+        "note": "保護孝親房、床與衣櫃、150cm轉位、淋浴／馬桶／洗手台及公共動線，不只檢查HTML／3D一致。基地容量、門框後淨寬、輪椅與照護演練、扶手、浴簾、防水及避難未核。浴廁操作與轉位地面、廚房操作與通行分時共用，設備本體不占暫留區；不是法規通過。客餐廳前移與停車替代仍待方案確認，原需求狀態不變。"
+        + (" 本版已保留3.9m騎樓；適用、牆柱與梁下淨高仍未知。" if "arcade" in cells else " 歷史骨架以前帶可建為條件。"),
+    }
+
+
+def check_a_arcade_functions(buildings: list[dict], care: dict) -> dict:
+    """Protect the agreed A design basis, independently of frontend parity.
+
+    This checks a provisional 32-ping frame, NOT surveyed land, legal floor
+    area, headroom, accessibility or parking approval. Historical comparisons
+    must explicitly opt out rather than quietly inherit the new main basis.
+    """
+    a = next(b for b in buildings if b["id"] == "A")
+    floors = a["floors"]
+    rooms = {c["key"]: c for c in floors[0]["cells"] if c.get("tour_active")}
+
+    def require(condition: bool, message: str) -> None:
+        if not condition:
+            raise ValueError("A 32-ping arcade: " + message)
+
+    parking = a["layout_review"]["parking"]
+    require(
+        parking["verified_spaces"] is None and parking["displayed_cars"] == 0, "parking is not verified or accommodated"
+    )
+    require(
+        care["site_legality"] == care["professional_accessibility"] == "unknown",
+        "function screen is not professional approval",
+    )
+    require(
+        all((f["tour_width_mm"], f["tour_depth_mm"]) == (6000, 17630) for f in floors), "fixed parcel frame changed"
+    )
+    arcade = rooms.get("arcade")
+    require(arcade is not None, "missing visible arcade room")
+    require(arcade["tour_mm"] == {"x_mm": 0, "y_mm": 0, "w_mm": 6000, "h_mm": 3900}, "lost full-width 3.9m frontage")
+    require(arcade["is_outdoor"] and arcade["review_spec"].get("clear"), "frontage cannot be private indoor use")
+    require(not arcade["furniture"] and not arcade["tour_features"]["hvac_units"], "private item occupies arcade")
+    require(all(c is arcade or c["tour_mm"]["y_mm"] >= 3900 for c in rooms.values()), "room encroaches on arcade")
+    require(
+        not any(i["category"] == "vehicle" for c in rooms.values() for i in c["furniture"]),
+        "parking cannot be counted in arcade",
+    )
+    require([f["base_mm"] for f in floors] == [0, 4000, 7000, 10000], "storey bases disagree with ground height")
+    require([f["height_mm"] for f in floors] == [4000, 3000, 3000, 3000], "nominal heights changed")
+    passage = rooms.get("care-passage")
+    require(passage is not None and passage["tour_mm"]["w_mm"] - 2 * INSET >= 1200, "lost 120cm assumed clear passage")
+    forbidden = {c["id"] for c in rooms.values() if c["kind"] == "stair" or c.get("space_role") == "equipment-alcove"}
+    require(
+        all(not forbidden.intersection(route) for route in care["routes"].values()), "care route crosses stairs or MDF"
+    )
+    common_landing = None
+    for floor in floors:
+        stair = next(c for c in floor["cells"] if c.get("tour_active") and c["tour_features"]["stairs"])
+        features = stair["tour_features"]
+        geometry, landing = features["stair_geometry"], features.get("shared_landing_mm")
+        require(
+            geometry["fits_reserved_box"] and geometry["shared_front_landing"], "stair has no fitting shared landing"
+        )
+        require(
+            geometry["flight_width_mm"] == 900 and geometry["tread_mm"] == 260, "stair discussion dimensions changed"
+        )
+        require(features["stair_geometry_verified"] is False, "stair is not professionally verified")
+        require(
+            geometry["risers"] == (24 if floor["id"] == "floor-1" else 18) and geometry["departure_offset_mm"] == 0,
+            "stair run disagrees with proposed storey",
+        )
+        require(landing is not None and landing["h_mm"] == 1000, "lost full 1m front landing")
+        box = {
+            "minX": landing["x_mm"],
+            "maxX": landing["x_mm"] + landing["w_mm"],
+            "minY": landing["y_mm"],
+            "maxY": landing["y_mm"] + landing["h_mm"],
+        }
+        shared = next(c for c in floor["cells"] if c["id"] == landing["space"])
+        require(
+            any(
+                o["neighbor"] == shared["id"] and o["face"] == "front" and o["width_mm"] >= landing["w_mm"]
+                for o in features["open_connections"]
+            ),
+            "landing not connected at floor level",
+        )
+        require(
+            not features["doors"] and all(o["face"] == "front" for o in features["open_connections"]),
+            "side/rear door opens into a stair flight",
+        )
+        require(
+            all(not overlaps(box, p["aabb"]) for p in shared["furniture_placements"]["tour_mm"].values()),
+            "furniture occupies shared landing",
+        )
+        footprint = {k: landing[k] for k in ("x_mm", "y_mm", "w_mm", "h_mm")}
+        require(common_landing is None or footprint == common_landing, "front landings are not stacked")
+        common_landing = footprint
+    return {
+        "id": "A-32ping-arcade-functions",
+        "status": "bounded-arcade-and-function-screen-only",
+        "arcade_depth_mm": 3900,
+        "arcade_area_sqm": 23.4,
+        "assumed_clear_passage_mm": 1200,
+        "nominal_ground_storey_mm": 4000,
+        "nominal_headroom_budget_mm": 3500,
+        "surveyed_parcel": "unknown",
+        "arcade_applicability": "unknown",
+        "legal_building_area_sqm": None,
+        "verified_headroom_mm": None,
+        "professional_acceptance": "unknown",
+        "verified_parking_spaces": None,
+        "note": "32坪含騎樓的概念功能初篩；前3.9m只通行，沒有新增基地或停車。90cm梯段、平台、牆柱、梁下淨高、建蔽／容積、採光、消防及照護演練仍待核。客餐廳假設淨面積僅約18.00m²，施工餘裕很小。",
     }

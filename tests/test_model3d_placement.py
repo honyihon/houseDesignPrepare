@@ -62,7 +62,7 @@ def test_committed_html_manifest_and_all_svgs_match_fresh_3d_data(data):
                         assert float(node.attrib["data-" + k.replace("_", "-")]) == item[k]
                     item_count += 1
                 room_count += 1
-    assert (floor_count, room_count, item_count) == (12, 105, 129)
+    assert (floor_count, room_count, item_count) == (12, 112, 128)
 
 
 def test_displayable_furniture_is_clear_and_unsatisfied_furniture_remains_explicit(data):
@@ -148,15 +148,16 @@ def test_upstairs_toilet_has_real_side_gap_instead_of_merely_nonoverlapping_bodi
     assert all("待" in item["note"] for item in room["furniture"] if item["shape"] == "toilet")
 
 
-def test_upstairs_partition_transfer_preserves_total_bands_and_other_room_outlines(data):
+def test_upstairs_reflow_keeps_a_shared_core_and_b_original_wet_zone_band(data):
     rooms = cells(data)
     a_bath, closet = (rooms[key]["tour_mm"] for key in ("A:floor-2:master-bath", "A:floor-2:walkin"))
-    assert a_bath == {"x_mm": 0, "y_mm": 4000, "w_mm": 2400, "h_mm": 2100}
-    assert closet == {"x_mm": 2400, "y_mm": 4000, "w_mm": 2000, "h_mm": 2100}
-    assert a_bath["w_mm"] + closet["w_mm"] == 4400
-    assert rooms["A:floor-2:master"]["tour_mm"] == {"x_mm": 0, "y_mm": 1500, "w_mm": 4400, "h_mm": 2500}
-    assert rooms["A:floor-2:study"]["tour_mm"] == {"x_mm": 0, "y_mm": 10400, "w_mm": 3600, "h_mm": 5230}
-    assert rooms["A:floor-2:bedroom2"]["tour_mm"] == {"x_mm": 3600, "y_mm": 10400, "w_mm": 2400, "h_mm": 5230}
+    assert a_bath == {"x_mm": 2160, "y_mm": 5880, "w_mm": 2400, "h_mm": 2100}
+    assert closet == {"x_mm": 2160, "y_mm": 7980, "w_mm": 2400, "h_mm": 1900}
+    assert a_bath["h_mm"] + closet["h_mm"] == 4000
+    assert a_bath["y_mm"] + a_bath["h_mm"] == closet["y_mm"]
+    assert rooms["A:floor-2:master"]["tour_mm"] == {"x_mm": 0, "y_mm": 1500, "w_mm": 6000, "h_mm": 3280}
+    assert rooms["A:floor-2:study"]["tour_mm"] == {"x_mm": 0, "y_mm": 11240, "w_mm": 3200, "h_mm": 4390}
+    assert rooms["A:floor-2:bedroom2"]["tour_mm"] == {"x_mm": 3200, "y_mm": 11240, "w_mm": 2800, "h_mm": 4390}
     public, ensuite = (rooms[key]["tour_mm"] for key in ("B:floor-2:bath2", "B:floor-2:master-bath2"))
     assert public == {"x_mm": 0, "y_mm": 13800, "w_mm": 3000, "h_mm": 2000}
     assert ensuite == {"x_mm": 0, "y_mm": 15800, "w_mm": 3000, "h_mm": 1830}
@@ -169,38 +170,42 @@ def test_upstairs_partition_transfer_preserves_total_bands_and_other_room_outlin
             assert (floor["tour_width_mm"], floor["tour_depth_mm"]) == (6000, 17630)
 
 
-def test_upstairs_cabinet_avoids_doors_but_working_and_passing_are_not_simultaneous(data):
+def test_upstairs_full_size_cabinet_moves_to_master_to_protect_continuous_public_passage(data):
     hall = cells(data)["A:floor-2:hall2"]
-    item = hall["furniture"][0]
-    p = hall["furniture_placements"]["tour_mm"][item["id"]]
+    master = cells(data)["A:floor-2:master"]
+    assert not hall["furniture"]
+    item = next(i for i in master["furniture"] if i["catalog_id"] == "hall-cabinet")
+    p = master["furniture_placements"]["tour_mm"][item["id"]]
     assert (item["width_mm"], item["depth_mm"], item["height_mm"]) == (2400, 400, 2200)
     assert not p["issues"] and p["wall_anchor"] == "right"
-    inside_left = hall["tour_mm"]["x_mm"] + INSET
-    assert p["aabb"]["minX"] - inside_left == 1040
-    assert p["operation_mm"]["minX"] - inside_left == 440
+    assert p["status"] == "planning-not-measured"
+    assert hall["tour_mm"]["w_mm"] - 2 * INSET == 1280
     assert item["front_clearance_mm"] == 600
     assert item["shared_operation_with"] == []
-    assert "不能同時當通道" in item["note"] and "必要時櫃體另移" in item["note"]
+    assert item["relocated_from"] == "A:floor-2:hall2:furniture:hall-cabinet"
 
 
-def test_only_two_original_full_size_closet_wardrobes_are_pending(data):
+def test_original_closet_wardrobes_and_hall_cabinet_are_resolved_without_lost_capacity(data):
     rooms = cells(data)
     pending = {
-        p["id"] for room in rooms.values() if room.get("tour_active")
-        for p in room["furniture_placements"]["tour_mm"].values() if p["issues"]
+        p["id"]
+        for room in rooms.values()
+        if room.get("tour_active")
+        for p in room["furniture_placements"]["tour_mm"].values()
+        if p["issues"]
     }
-    assert pending == {
-        "A:floor-2:walkin:furniture:wardrobe-left", "A:floor-2:walkin:furniture:wardrobe-right"
-    }
+    assert pending == set()
     closet = rooms["A:floor-2:walkin"]
-    assert "profile" not in closet["review_spec"]  # do not substitute smaller products
-    assert len(closet["furniture"]) == 2
-    for item in closet["furniture"]:
+    master = rooms["A:floor-2:master"]
+    assert len(closet["furniture"]) == 1
+    wardrobes = [(r, i) for r in [closet, master] for i in r["furniture"] if i["catalog_id"] == "wardrobe-180"]
+    assert len(wardrobes) == 3
+    for room, item in wardrobes:
         assert item["catalog_id"] == "wardrobe-180"
         assert (item["width_mm"], item["depth_mm"], item["height_mm"]) == (1800, 600, 2200)
         assert item["front_clearance_mm"] == 600
-        p = closet["furniture_placements"]["tour_mm"][item["id"]]
-        assert p["status"] == "pending-layout" and "door-approach" in p["issues"]
+        p = room["furniture_placements"]["tour_mm"][item["id"]]
+        assert p["status"] == "planning-not-measured" and not p["issues"]
 
 
 @pytest.mark.parametrize("room_id", ["A:floor-2:master-bath", "B:floor-2:bath2", "B:floor-2:master-bath2"])
@@ -218,10 +223,12 @@ def test_upstairs_oversized_fixture_is_pending_without_shrinking_or_hiding_it(da
 
 def test_stair_equipment_is_same_hall_with_no_invented_partition_or_door(data):
     all_cells = cells(data)
-    for a_id, b_id in (("A:floor-1:mdf", "A:floor-1:stair-door"), ("B:floor-1:idf-cabinet", "B:floor-1:stair1")):
+    for a_id, b_id in (("A:floor-1:mdf", "A:floor-1:rear-hall1"), ("B:floor-1:idf-cabinet", "B:floor-1:stair1")):
         a, b = all_cells[a_id], all_cells[b_id]
         assert a["space_group"] == b["space_group"] != ""
         for _geometry, feature in GEOMETRIES:
+            if a_id.startswith("A:") and feature != "tour_features":
+                continue  # shared rear alcove exists only in the new main proposal
             assert b_id in {o["neighbor"] for o in a[feature]["open_connections"]}
             assert a_id in {o["neighbor"] for o in b[feature]["open_connections"]}
             assert not any(d["neighbor"] == b_id for d in a[feature]["doors"])
@@ -270,7 +277,7 @@ def test_dining_envelopes_include_real_table_and_chairs(data):
     assert items
     for item in items:
         assert item["depth_mm"] >= item["table_depth_mm"] + 2 * 450 + 100
-        assert item["width_mm"] > item["table_width_mm"]
+        assert item["width_mm"] >= item["table_width_mm"] + (0 if item["catalog_id"] == "dining-4-sides" else 1)
 
 
 def test_coffee_tables_and_tvs_stay_aligned_with_sofas_or_beds(data):
@@ -282,9 +289,17 @@ def test_coffee_tables_and_tvs_stay_aligned_with_sofas_or_beds(data):
                 continue
             if item["in_front_of"]:
                 sofa = placements[item["in_front_of"]]
-                assert p["center_x_mm"] == sofa["center_x_mm"]
-                assert p["rotation_deg"] == sofa["rotation_deg"] == 0
-                assert sofa["aabb"]["minY"] - p["aabb"]["maxY"] == pytest.approx(item["front_gap_mm"], abs=0.02)
+                assert p["rotation_deg"] == sofa["rotation_deg"]
+                angle = sofa["rotation_deg"] % 360
+                axis = "center_x_mm" if angle in (0, 180) else "center_y_mm"
+                assert p[axis] == sofa[axis]
+                gap = {
+                    0: (sofa["aabb"]["minY"], p["aabb"]["maxY"]),
+                    90: (sofa["aabb"]["minX"], p["aabb"]["maxX"]),
+                    180: (p["aabb"]["minY"], sofa["aabb"]["maxY"]),
+                    270: (p["aabb"]["minX"], sofa["aabb"]["maxX"]),
+                }[angle]
+                assert gap[0] - gap[1] == pytest.approx(item["front_gap_mm"], abs=0.02)
             if item["aligned_with"]:
                 ref = placements[item["aligned_with"]]
                 axis = "center_y_mm" if p["wall_anchor"] in {"left", "right"} else "center_x_mm"
@@ -312,7 +327,15 @@ def test_cyclic_furniture_relationship_fails_instead_of_silently_drifting(data):
         attach_placements(buildings)
 
 
-@pytest.mark.parametrize("filename", ["model3d-placement.test.cjs", "html-furniture-bridge.test.cjs", "model3d-facade.test.cjs", "model3d-facade-runtime.test.cjs"])
+@pytest.mark.parametrize(
+    "filename",
+    [
+        "model3d-placement.test.cjs",
+        "html-furniture-bridge.test.cjs",
+        "model3d-facade.test.cjs",
+        "model3d-facade-runtime.test.cjs",
+    ],
+)
 def test_actual_js_layout_and_html_installation_without_browser(filename):
     node = shutil.which("node")
     if node is None:

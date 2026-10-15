@@ -79,9 +79,9 @@ def test_dining_lounge_and_care_reserves_keep_normal_products_and_clear_operatio
     living = cells["living"]
     placements = living["furniture_placements"]["tour_mm"]
     sofa, tv, table = (placements[living["id"] + ":furniture:" + key] for key in ("sofa", "tv", "coffee-table"))
-    assert sofa["wall_anchor"] == "rear" and tv["wall_anchor"] == "front"
-    assert sofa["center_x_mm"] == tv["center_x_mm"] == table["center_x_mm"]
-    assert sofa["aabb"]["minY"] - table["aabb"]["maxY"] == 400
+    assert sofa["wall_anchor"] == "" and sofa["rotation_deg"] == 90 and tv["wall_anchor"] == "left"
+    assert sofa["center_y_mm"] == tv["center_y_mm"] == table["center_y_mm"]
+    assert sofa["aabb"]["minX"] - table["aabb"]["maxX"] == 400
     assert any(z["kind"] == "care-turn" and z["aabb"]["maxX"] - z["aabb"]["minX"] == 1500
                for z in living["tour_features"]["reserved_mm"])
     assert cells["dining"]["deferred_furniture_assignment"]["profile"] == "dining-six"
@@ -111,7 +111,7 @@ def test_frontage_study_is_uninstalled_and_separated_from_route_and_indoor_furni
     assert [z["id"] for z in study["zones"]] == ["garden-pocket", "waiting-bench"]
     assert study["zones"][1]["rect"] == [1800, 2200, 1200, 500]
     assert payload["buildings"][2]["layout_review"]["parking"]["verified_spaces"] is None
-    assert sum(len(c["furniture"]) for b in payload["buildings"] for f in b["floors"] for c in f["cells"]) == 129
+    assert sum(len(c["furniture"]) for b in payload["buildings"] for f in b["floors"] for c in f["cells"]) == 127
     for building in payload["buildings"]:
         for floor in building["floors"]:
             for room in floor["cells"]:
@@ -148,7 +148,7 @@ def test_ac_relocation_keeps_all_pairs_and_uses_existing_2f_balcony_without_appr
     assert len(routes) == 17
     assert routes["C-AC01"]["indoor_room"] == "C:floor-1:living"
     assert routes["C-AC01"]["outdoor_room"] == routes["C-AC03"]["outdoor_room"] == "C:floor-2:balcony2f"
-    assert (routes["C-AC01"]["estimated_routed_length_mm"], routes["C-AC01"]["elevation_difference_mm"]) == (14645, 1150)
+    assert (routes["C-AC01"]["estimated_routed_length_mm"], routes["C-AC01"]["elevation_difference_mm"]) == (14325, 1150)
     assert routes["C-AC01"]["manual_source"] is None and routes["C-AC01"]["compliance"] == "unknown"
     balcony = next(c for c in payload["buildings"][2]["floors"][1]["cells"] if c["key"] == "balcony2f")
     assert balcony["tour_mm"]["h_mm"] == 3900

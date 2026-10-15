@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>C 一樓公衛／採光方案比較（未採用）</title>
+<style>
+  :root{color-scheme:light;font-family:system-ui,"Microsoft JhengHei",sans-serif;color:#263b43;background:#f4f6f4}
+  *{box-sizing:border-box}body{margin:0}header,main{max-width:1140px;margin:auto;padding:16px}
+  header{padding-bottom:8px}h1{font-size:22px;margin:0 0 6px}h2{font-size:18px;margin:0 0 10px}p{line-height:1.65;margin:8px 0}
+  a{color:#146c70}button,select,a.action{font:inherit;min-height:44px;border-radius:6px;padding:8px 12px}
+  button,select{border:1px solid #7f9b99;background:white;color:inherit}button,a.action{cursor:pointer}button:hover,a.action:hover{background:#e3eeeb}
+  a.action{display:inline-flex;align-items:center;border:1px solid #7f9b99;text-decoration:none;background:white}
+  .status{font-size:13px;color:#754c12;background:#fff1d5;padding:8px 10px;border-left:3px solid #bc8d3a}
+  .toolbar{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:10px 0}.toolbar label{font-size:13px}
+  .workspace{display:grid;grid-template-columns:minmax(320px,520px) minmax(0,1fr);gap:20px;align-items:start}
+  .plan{margin:0;background:white;padding:12px;border:1px solid #cad6d0;border-radius:8px}.plan object{display:block;width:100%;aspect-ratio:6600/19030}
+  figcaption,.small{font-size:13px;line-height:1.6;color:#4e6569}.details{background:white;border:1px solid #cad6d0;border-radius:8px;padding:16px}
+  #route{background:#e8f3ee;padding:8px;border-left:3px solid #468980}ul,ol{padding-left:24px;line-height:1.65;margin:8px 0}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin:12px 0}th,td{border-bottom:1px solid #d8e0dc;padding:9px;text-align:left;vertical-align:top}th{font-weight:600}
+  dl{display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:14px}dt,dd{margin:0;padding:4px 0}dd{font-variant-numeric:tabular-nums}
+  summary{min-height:44px;cursor:pointer;padding:10px 0;font-weight:600}.footer{margin-top:20px}#option-summary{font-size:14px}
+  .fixture-list li{margin-bottom:7px}.nowrap{white-space:nowrap}noscript{display:block;padding:10px}
+  @media(max-width:700px){header,main{padding:12px}.workspace{grid-template-columns:1fr}.toolbar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.toolbar label{display:none}.toolbar select{width:100%;min-width:0}#scheme,#reset{grid-column:1/-1}h1{font-size:20px}.plan{padding:6px}.details{padding:12px}#option-summary{display:none}.toolbar a{min-width:0;white-space:nowrap;justify-content:center}table{font-size:13px}th,td{padding:7px 4px}.plan object{min-height:0}}
+  @media print{.toolbar button,.toolbar select,.toolbar label{display:none}.workspace{grid-template-columns:1fr 1fr}body{background:white}details{break-inside:avoid}a{color:inherit}.plan object{width:100%}}
+</style>
+</head>
+<body>
+<header>
+  <h1>C 一樓公衛／採光 · 三案比較</h1>
+  <div class="status">主案仍是「現況」。此頁只供討論，未採用／未專業核准；門外 3.9m 帶維持通行、不計車位。</div>
+  <div class="toolbar">
+    <label for="scheme">比較方案</label><select id="scheme" aria-label="比較方案"></select>
+    <button type="button" id="reset">回到現況</button>
+    <a class="action" id="open-3d" href="c1f-options-3d.html?scheme=baseline#mode=tour&amp;building=C&amp;floor=floor-1&amp;view=front">開啟本案 3D</a>
+    <a class="action" href="../../CbuildingView.html">回 C 棟主設計</a>
+  </div>
+  <p id="option-summary"></p>
+</header>
+<main>
+  <div class="workspace">
+    <figure class="plan">
+      <object id="plan" data="c1f-options/baseline.svg" type="image/svg+xml" aria-label="現況 C 一樓共用平面">
+        <p>平面載入失敗，可<a id="plan-fallback-link" href="c1f-options/baseline.svg">直接開本案 SVG</a>，或查看下方空間／家具清單。</p>
+      </object>
+      <figcaption id="caption">道路在上，單位 mm。SVG 與本案 3D 同一資料；房名可開啟同方案的 3D 特寫。</figcaption>
+      <a id="svg-link" class="action" href="c1f-options/baseline.svg" target="_blank" rel="noopener">單獨開啟／列印 SVG</a>
+    </figure>
+    <section class="details" aria-labelledby="option-title">
+      <h2 id="option-title">現況｜保留主案</h2>
+      <div id="selection-status" class="small" role="status" aria-live="polite"></div>
+      <p id="route"></p><p class="small">以上只證明門與空間相連，不證明家具間淨寬、輪椅轉向、門檻或逃生合格。</p>
+      <dl id="areas"></dl>
+      <h2>取得的功能與代價</h2><ul id="tradeoffs"></ul>
+      <details open><summary>候選開口與冷氣（未核）</summary><div id="services"></div></details>
+      <details><summary>家具明細 · 圖上編號／未縮放代表尺寸</summary><ol class="fixture-list" id="furniture"></ol></details>
+      <details><summary>實際資料出來前仍保留未知</summary><ul id="conditions"></ul></details>
+    </section>
+  </div>
+  <section class="details footer" aria-labelledby="comparison-title">
+    <h2 id="comparison-title">怎麼選 · 先看取捨</h2>
+    <p>如果最在意長輩隱私，先討論方案 1；如果更在意日常客廳靠前側開口，先討論方案 2。但方案 1 未解客廳直接採光，方案 2 把餐廳變借光區，兩案都有新增濕區與鞋櫃未容納的代價。沒有一案已全面達標。</p>
+    <table><thead><tr><th>項目</th><th>現況</th><th>方案 1</th><th>方案 2</th></tr></thead><tbody id="compare"></tbody></table>
+    <p class="small">討論順序：屋主選優先需求 → 建築師核可建範圍與採光 → 水電／空調核系統 → 完成面、輔具與門扇演練 → 再正式改主案及 ABC 圖。不以本比較自動更新需求狀態。</p>
+    <p><a href="model3d.html#mode=tour&amp;building=C&amp;floor=floor-1&amp;view=front">現行 ABC 3D 主案</a> · <a href="../../Docs/c-1f-bath-daylight-v1.md">方案說明</a></p>
+  </section>
+  <noscript>此頁可離線開啟。停用 JavaScript 時先看上方現況；比較圖：<a href="c1f-options/bath-front.svg">前右公衛</a>／<a href="c1f-options/front-living.svg">前客廳＋中段公衛</a>。各圖仍是未採用方案。</noscript>
+</main>
+<script src="c1f-options/layout.js"></script>
+<script>
+(function () {
+  "use strict";
+  var data = window.HOUSE_C1F_OPTIONS;
+  if (!data) { document.getElementById("selection-status").textContent="比較資料未載入，暫只看現況 SVG；不要據此判定其他方案。"; return; }
+  var selector=document.getElementById("scheme");
+  function element(tag, content){var el=document.createElement(tag);el.textContent=content;return el;}
+  function list(id, values){var node=document.getElementById(id);node.replaceChildren();values.forEach(function(v){node.appendChild(element("li",v));});}
+  data.options.forEach(function(o){var el=element("option",o.label);el.value=o.id;selector.appendChild(el);});
+  list("conditions",data.conditions);
+  var table=document.getElementById("compare");
+  [
+    ["訪客避開孝親房",function(o){return o.route.avoids_elder_bedroom?"門圖相連／淨空未核":"未解";}],
+    ["客餐廳框內面積",function(o){return (o.areas_sqm.living+o.areas_sqm.dining).toFixed(1)+" m²";}],
+    ["普通公衛框內面積",function(o){return o.areas_sqm.public_bath?o.areas_sqm.public_bath.toFixed(1)+" m²":"無";}],
+    ["獨立前側候選窗",function(o){return o.id==="front-living"?"客廳120cm":"餐廳240cm";}],
+    ["新增污排水／排氣",function(o){return o.id==="baseline"?"不新增公衛":"需新系統／未核";}],
+    ["原120cm玄關鞋櫃",function(o){return o.id==="baseline"?"初排保留":"未容納，另案";}],
+    ["有效採光／法規",function(){return "未知，未核准";}]
+  ].forEach(function(row){var tr=document.createElement("tr");tr.appendChild(element("th",row[0]));data.options.forEach(function(o){tr.appendChild(element("td",row[1](o)));});table.appendChild(tr);});
+  function render(write){
+    var params=new URLSearchParams(location.hash.slice(1)), id=write?selector.value:params.get("scheme");
+    var o=data.options.find(function(v){return v.id===id;})||data.options[0];selector.value=o.id;
+    document.body.dataset.scheme=o.id;document.getElementById("option-title").textContent=o.label;
+    document.getElementById("option-summary").textContent=o.summary;
+    document.getElementById("selection-status").textContent=o.label+" · 比較用，主案與需求決定未變更";
+    document.getElementById("route").textContent="訪客如廁提案："+o.route.room_names.join(" → ")+(o.route.avoids_elder_bedroom?"（避開孝親房）":"（經孝親房，隱私未解）");
+    var areas=document.getElementById("areas");areas.replaceChildren();
+    [["客廳","living"],["餐廳","dining"],["乾式玄關／前室","entrance"],["普通公衛","public_bath"]].forEach(function(pair){areas.appendChild(element("dt",pair[0]+"框內面積"));areas.appendChild(element("dd",o.areas_sqm[pair[1]].toFixed(1)+" m²"));});
+    list("tradeoffs",o.tradeoffs);
+    var services=document.getElementById("services");services.replaceChildren();
+    o.windows.forEach(function(w){services.appendChild(element("p",w.room+"："+(w.face==="front"?"前側":"後側")+"候選窗 "+(w.width_mm/10)+"cm，非有效採光核准。"));});
+    services.appendChild(element("p","C-AC01 本案折線暫估 "+(o.hvac.estimated_routed_length_mm/1000).toFixed(2)+"m、高低差 "+(o.hvac.elevation_difference_mm/1000).toFixed(2)+"m；配2F前陽台，機型／安裝／冷凝水排水仍未知。"));
+    list("furniture",o.floor.rooms.flatMap(function(r){return r.furniture.map(function(i){return r.name+" · "+i.label+" "+i.width_mm/10+"×"+i.depth_mm/10+"×"+i.height_mm/10+"cm"+(i.placement.issues.length?"（待調整）":"（一般規劃值，非實測）");});}));
+    var file="c1f-options/"+o.floor.plan_file,plan=document.getElementById("plan");
+    if(plan.getAttribute("data")!==file)plan.setAttribute("data",file);
+    plan.setAttribute("aria-label",o.label+" C一樓共用平面（未採用）");document.getElementById("svg-link").href=file;
+    document.getElementById("plan-fallback-link").href=file;
+    document.getElementById("open-3d").href="c1f-options-3d.html?scheme="+o.id+"#mode=tour&building=C&floor=floor-1&view=front";
+    document.getElementById("caption").textContent=o.label+" · 道路在上，單位 mm；SVG／3D 共用同一資料。房名可開本方案 3D，虛線是暫留帶，非無障礙驗證。";
+    if(write)history.replaceState(null,"","#scheme="+o.id);
+  }
+  selector.addEventListener("change",function(){render(true);});
+  document.getElementById("reset").addEventListener("click",function(){selector.value="baseline";render(true);selector.focus();});
+  window.addEventListener("hashchange",function(){render(false);});render(false);
+  window.__c1fOptionsDebug=function(){return {id:selector.value,status:data.status,activeDesign:data.active_design,option:data.options.find(function(o){return o.id===selector.value;})};};
+})();
+</script>
+</body>
+</html>
