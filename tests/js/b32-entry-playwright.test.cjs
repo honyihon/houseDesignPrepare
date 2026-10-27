@@ -39,14 +39,25 @@ test('passing report requires new desktop/mobile reading coverage, not old scree
   const counts={options:2,floors:8,rooms:64,items:60};
   const planReadability=['b32-rear','b32-front'].flatMap(option=>[{width:1440,height:900},{width:390,height:844},{width:844,height:390}].map(viewport=>
     ({option,viewport,readableWidth:660,zoomWidth:891,overviewWidth:210,minimumLabelPx:14.5,loaded:true,keyboardScroll:true,independent:true,noPageOverflow:true})));
-  const report={marker:'house-b32-entry-cli-qa',revision:2,displayRevision:2,status:'passed',counts,checks:[{name:'fixture',passed:true}],planReadability,screenshots:Array.from({length:16},(_,i)=>i+'.png')};
-  assert.equal(qa.validateReport(report,counts),report);assert.deepEqual(qa.findReport({result:JSON.stringify(report)}),report);
-  for(const patch of [{revision:1},{displayRevision:1},{screenshots:undefined},{screenshots:report.screenshots.slice(0,8)},
+  const entryAccess=manifest().options.flatMap(o=>['storage','bath1','bath-extension','work-reserve'].map(key=>{
+    const r=o.review.program.entry_access.rooms.find(r=>r.room_id==='B:floor-1:'+key);
+    return {option:o.id,room:r.room_id,route:r.route_room_ids,status:r.status,finishedClearance:r.finished_clearance,professionalAcceptance:r.professional_acceptance,visibleConditionalNote:true};
+  }));
+  const navigationRooms=Object.fromEntries(manifest().options.map(o=>[o.id,o.plans.floors[0].rooms.map(r=>r.id)]));
+  const navigationLabels=Object.entries(navigationRooms).map(([option,ids])=>({option,labels:ids.map(room=>({room,text:'條件式連通分區',visible:true}))}));
+  const report={marker:'house-b32-entry-cli-qa',revision:3,displayRevision:2,entryAccessRevision:1,status:'passed',counts,checks:[{name:'fixture',passed:true}],planReadability,entryAccess,navigationLabels,screenshots:Array.from({length:18},(_,i)=>i+'.png')};
+  assert.equal(qa.validateReport(report,counts,navigationRooms),report);assert.deepEqual(qa.findReport({result:JSON.stringify(report)}),report);
+  for(const patch of [{revision:1},{revision:2},{displayRevision:1},{entryAccessRevision:undefined},{entryAccess:undefined},
+    {entryAccess:entryAccess.slice(0,7)},{entryAccess:entryAccess.map(v=>({...v,visibleConditionalNote:false}))},
+    {entryAccess:entryAccess.map(v=>({...v,professionalAcceptance:'passed'}))},{screenshots:undefined},{screenshots:report.screenshots.slice(0,8)},
     {planReadability:undefined},{planReadability:planReadability.slice(0,5)},
     {planReadability:planReadability.map(v=>({...v,minimumLabelPx:6}))},
     {planReadability:planReadability.map(v=>({...v,loaded:false}))},
     {planReadability:planReadability.map(v=>({...v,option:'b32-rear'}))},
-    {counts:{...counts,items:59}},{checks:[{passed:false}]},{status:'incomplete'}])assert.throws(()=>qa.validateReport({...report,...patch},counts));
+    {navigationLabels:undefined},{navigationLabels:navigationLabels.slice(0,1)},
+    {navigationLabels:navigationLabels.map(v=>({...v,labels:[...v.labels,{room:'B:floor-1:entry',text:'舊玄關 · 入口待定',visible:true}]}))},
+    {counts:{...counts,items:59}},{checks:[{passed:false}]},{status:'incomplete'}])assert.throws(()=>qa.validateReport({...report,...patch},counts,navigationRooms));
+  assert.throws(()=>qa.validateReport(report,counts),'passing report requires current source room IDs');
 });
 
 // Exercise the serialized production callback, not a second copy of its checks.

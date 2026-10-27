@@ -92,49 +92,8 @@ def build_steps(selection: str, style: str, paper: str, output: str, mode: str) 
             ),
             _paths("structured/candidates/viewer.html"),
         ),
-        Step(
-            "model3d",
-            ("scripts/export_model_3d.py",),
-            _paths(
-                "structured/room_program.json",
-                "inputs/dimensions.json",
-                "inputs/furniture-layout.json",
-                "inputs/concept-layout-review.json",
-                "inputs/facade-concept.json",
-                "inputs/requirements.json",
-                "inputs/physical-items.json",
-                "scripts/export_model_3d.py",
-                "scripts/templates/model3d.html",
-                "scripts/templates/model3d_facade.js",
-                "scripts/export_top1_svgs.py",
-                "scripts/lib/furniture_layout.py",
-                "scripts/lib/model3d_tour.py",
-                "scripts/lib/model3d_review.py",
-                "scripts/lib/model3d_functions.py",
-                "scripts/lib/model3d_placement.py",
-                "scripts/lib/model3d_plan.py",
-                "scripts/lib/model3d_facade.py",
-                "assets/references/facade-photo-v1.jpg",
-                "house_design/physical_items.py",
-                "scripts/config/residential_defaults_tw.json",
-                "scripts/lib/html_parametric_compare.py",
-                "scripts/lib/standards.py",
-                "assets/vendor/three/three.min.js",
-            ),
-            _paths(
-                "structured/candidates/model3d.html",
-                "structured/candidates/furniture-plans/layout.js",
-                *(f"structured/candidates/furniture-plans/{building}_facade-front.svg" for building in "ABC"),
-                *(
-                    f"structured/candidates/furniture-plans/{building}_floor-{floor}.svg"
-                    for building in "ABC"
-                    for floor in range(1, 5)
-                ),
-            ),
-        ),
-        # The historical variants derive from the area briefs.  The reviewed B
-        # f6000_g1 concept additionally anchors to dimensions.json so its safety
-        # bands stay aligned with the HTML/original-design 3D branch.
+        # model3d reads this plan for the historical comparison. Generate it
+        # first so one pipeline run cannot pair a fresh viewer with an old plan.
         Step(
             "parametric",
             ("scripts/generate_parametric_plan.py",),
@@ -151,6 +110,62 @@ def build_steps(selection: str, style: str, paper: str, output: str, mode: str) 
                 "scripts/config/residential_defaults_tw.json",
             ),
             _paths("structured/parametric/plan.json", "structured/parametric/capacity.md"),
+        ),
+        Step(
+            "model3d",
+            ("scripts/export_model_3d.py",),
+            _paths(
+                "structured/room_program.json",
+                "inputs/dimensions.json",
+                "inputs/furniture-layout.json",
+                "inputs/concept-layout-review.json",
+                "inputs/facade-concept.json",
+                "inputs/requirements.json",
+                "inputs/physical-items.json",
+                "inputs/a-mdf-under-stair.json",
+                "inputs/references/abc-before-space-efficiency-20261014.json",
+                "inputs/references/abc-before-a-storage-20261014.json",
+                "structured/parametric/plan.json",
+                "scripts/export_model_3d.py",
+                "scripts/templates/model3d.html",
+                "scripts/templates/model3d_facade.js",
+                "scripts/export_top1_svgs.py",
+                "scripts/lib/__init__.py",
+                "scripts/lib/dimension_overrides.py",
+                "scripts/lib/furniture_layout.py",
+                "scripts/lib/model3d_bc_flow.py",
+                "scripts/lib/model3d_fengshui.py",
+                "scripts/lib/model3d_mdf.py",
+                "scripts/lib/model3d_openings.py",
+                "scripts/lib/model3d_space_efficiency.py",
+                "scripts/lib/model3d_tour.py",
+                "scripts/lib/model3d_review.py",
+                "scripts/lib/model3d_functions.py",
+                "scripts/lib/model3d_placement.py",
+                "scripts/lib/model3d_plan.py",
+                "scripts/lib/model3d_facade.py",
+                "assets/references/facade-photo-v1.jpg",
+                "house_design/__init__.py",
+                "house_design/contracts.py",
+                "house_design/physical_items.py",
+                "house_design/rendering/__init__.py",
+                "house_design/rendering/html_payload.py",
+                "house_design/rendering/naming.py",
+                "scripts/config/residential_defaults_tw.json",
+                "scripts/lib/html_parametric_compare.py",
+                "scripts/lib/standards.py",
+                "assets/vendor/three/three.min.js",
+            ),
+            _paths(
+                "structured/candidates/model3d.html",
+                "structured/candidates/furniture-plans/layout.js",
+                *(f"structured/candidates/furniture-plans/{building}_facade-front.svg" for building in "ABC"),
+                *(
+                    f"structured/candidates/furniture-plans/{building}_floor-{floor}.svg"
+                    for building in "ABC"
+                    for floor in range(1, 5)
+                ),
+            ),
         ),
         Step(
             "walkthrough",
@@ -220,6 +235,52 @@ def _manifest_svg_paths(manifest_path: Path) -> tuple[Path, ...]:
     return tuple(manifest_path.parent / str(item.get("file", "")) for item in exports if item.get("file"))
 
 
+def _model3d_optional_outputs() -> tuple[Path, ...]:
+    """Read the generated data assignment, never import or run the renderer.
+
+    Missing base outputs already invalidate the cache. An unreadable manifest
+    must also invalidate it, rather than silently forgetting its conditional
+    outputs. Invalid output contracts after generation must not be cached.
+    """
+    directory = ROOT / "structured/candidates/furniture-plans"
+    manifest = directory / "layout.js"
+    if not manifest.exists():
+        return ()
+    source = manifest.read_text(encoding="utf-8").strip()
+    prefix = "window.HOUSE_CONCEPT_LAYOUT = "
+    if not source.startswith(prefix) or not source.endswith(";"):
+        raise ValueError("Invalid model3d plan data assignment")
+    data = json.loads(source[len(prefix):-1])
+    if not isinstance(data, dict) or data.get("schema") != "house-concept-furniture-plan-v1":
+        raise ValueError("Invalid model3d plan manifest schema")
+    review, buildings = data.get("layout_review", {}), data.get("buildings")
+    if not isinstance(review, dict) or not isinstance(buildings, list):
+        raise ValueError("Invalid model3d plan manifest structure")
+    mdf = review.get("mdf_study")
+    paths: list[Path] = []
+
+    def include(name: object) -> None:
+        if (not isinstance(name, str) or not name.endswith(".svg")
+                or Path(name).name != name or "\\" in name):
+            raise ValueError("Conditional model3d outputs must be SVG filenames in furniture-plans")
+        paths.append(directory / name)
+
+    for building in buildings:
+        if not isinstance(building, dict) or not isinstance(building.get("floors"), list):
+            raise ValueError("Invalid model3d building in plan manifest")
+        for floor in building["floors"]:
+            if not isinstance(floor, dict):
+                raise ValueError("Invalid model3d floor in plan manifest")
+            if mdf and building.get("id") == "A" and floor.get("id") == "floor-1":
+                if not isinstance(mdf, dict):
+                    raise ValueError("Invalid model3d MDF study in plan manifest")
+                include(mdf.get("plan_file"))
+                include(mdf.get("section_file"))
+            if floor.get("frontage_study_file"):
+                include(floor["frontage_study_file"])
+    return tuple(dict.fromkeys(paths))
+
+
 def _effective_inputs(step: Step) -> tuple[Path, ...]:
     if step.name == "pdf":
         manifest = ROOT / "structured/candidates/svg/manifest.json"
@@ -228,6 +289,8 @@ def _effective_inputs(step: Step) -> tuple[Path, ...]:
 
 
 def _effective_outputs(step: Step) -> tuple[Path, ...]:
+    if step.name == "model3d":
+        return tuple(dict.fromkeys((*step.outputs, *_model3d_optional_outputs())))
     if step.name == "svg":
         manifest = ROOT / "structured/candidates/svg/manifest.json"
         return (*step.outputs, *_manifest_svg_paths(manifest))
@@ -301,7 +364,11 @@ def run_pipeline(
     for step in steps[start : end + 1]:
         fingerprint = _fingerprint(step)
         cache_key = f"{mode}:{step.name}"
-        outputs = _effective_outputs(step)
+        try:
+            outputs = _effective_outputs(step)
+        except (OSError, ValueError):
+            # A damaged generated manifest needs rebuilding, not a cache hit.
+            outputs = ()
         cached = cache.get(cache_key, {})
         cache_hit = (
             not force

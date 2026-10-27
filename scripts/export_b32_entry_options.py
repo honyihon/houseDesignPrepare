@@ -10,6 +10,7 @@ import copy
 import html
 import json
 import math
+from collections import deque
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
@@ -19,6 +20,7 @@ from lib.dimension_overrides import load_overrides
 from lib.model3d_facade import build_facade
 from lib.model3d_placement import overlaps
 from lib.model3d_plan import plan_data, render_plan
+from lib.model3d_tour import _contacts
 
 from house_design.physical_items import load_physical_items
 from house_design.rendering import encode_html_json
@@ -322,6 +324,114 @@ def program_screen(building: dict, option: dict, physical: dict) -> dict:
             "statutory_building_area": None, "rear_access": "unknown"}
 
 
+def attach_entry_access(building: dict, option: dict) -> dict:
+    """B32-specific conditional door graph; never a general shrine shortcut.
+
+    Start at the street door, not an unverified rear alley. Bathroom subzones
+    are destinations of ONE open L-shaped room, never public through-routes.
+    A work-reserve path explicitly goes through storage and is not independent.
+    """
+    floor = building["floors"][0]
+    cells = {c["key"]: c for c in floor["cells"] if c.get("tour_active")}
+    root = cells["shrine-front"]
+    g = root["tour_mm"]
+    gate = next((d for d in root["tour_features"]["doors"] if d["neighbor"] is None and d["face"] == "front"
+                 and d.get("purpose") == "ritual-entry" and 0 < d["width_mm"] <= g["w_mm"]
+                 and d["width_mm"]/2 <= d["ratio"]*g["w_mm"] <= g["w_mm"]-d["width_mm"]/2), None)
+    graph = {key: [] for key in cells}
+    for key, cell in cells.items():
+        for kind in ("doors", "open_connections"):
+            for door in cell["tour_features"][kind]:
+                neighbor = door["neighbor"]
+                if neighbor is None:
+                    continue
+                other = next((c for c in cells.values() if c["id"] == neighbor), None)
+                if other is None:
+                    continue
+                contact = _contacts(cell["tour_mm"], other["tour_mm"])
+                axis, length = ("x_mm", "w_mm") if door["face"] in {"front", "rear"} else ("y_mm", "h_mm")
+                centre = cell["tour_mm"][axis] + door["ratio"] * cell["tour_mm"][length]
+                inverse = {"front": "rear", "rear": "front", "left": "right", "right": "left"}[door["face"]]
+                pair = next((p for p in other["tour_features"][kind] if p["neighbor"] == cell["id"]
+                             and p["face"] == inverse and p["width_mm"] == door["width_mm"]
+                             and abs(other["tour_mm"][axis] + p["ratio"] * other["tour_mm"][length] - centre) < 1), None)
+                if (pair and contact and contact[0] == door["face"] and door["width_mm"] > 0
+                        and centre-door["width_mm"]/2 >= contact[1]-1 and centre+door["width_mm"]/2 <= contact[2]+1):
+                    graph[key].append((other["key"], kind, door["width_mm"]))
+    # Only the already drawn, unobstructed side-edge reservations permit this
+    # special use. A matching room name/group alone cannot grant a public path.
+    reserves = []
+    for key in ("shrine-front", "shrine"):
+        c, width = cells[key], option["pedestrian_reserve_clear_mm"]
+        g = c["tour_mm"]
+        zones = [z["aabb"] for z in c["tour_features"]["reserved_mm"] if z["kind"] == "circulation"]
+        reserve = zones[0] if len(zones) == 1 else None
+        expected = shared.box(shared.rect(5920-width, g["y_mm"]+(80 if key == "shrine-front" else 0), width, g["h_mm"]-80))
+        if (c.get("space_group") != "b32-shrine" or reserve != expected
+                or any(overlaps(reserve, p["aabb"]) for p in c["furniture_placements"]["tour_mm"].values())):
+            reserves = []
+            break
+        reserves.append({"room_id": c["id"], "aabb": copy.deepcopy(reserve)})
+    shared_shrine = len(reserves) == 2
+    common = {"shrine-front", "stair1", "corridor1"} | ({"shrine"} if shared_shrine else set())
+
+    def route(target: str) -> list[str]:
+        if gate is None:
+            return []
+        queue, seen = deque([["shrine-front"]]), {"shrine-front"}
+        while queue:
+            path = queue.popleft()
+            key = path[-1]
+            if key == target:
+                return path
+            for neighbor, kind, _ in graph[key]:
+                if neighbor in seen:
+                    continue
+                same_bath = (cells[key]["kind"] == cells[neighbor]["kind"] == "bath"
+                             and cells[key].get("space_group") == cells[neighbor].get("space_group") == "b32-bath1"
+                             and kind == "open_connections")
+                permitted = neighbor in common or neighbor == target
+                if target in {"bath1", "bath-extension"} and neighbor == "bath-extension":
+                    permitted = True
+                if cells[key]["kind"] == "bath" and not same_bath:
+                    permitted = False
+                if target == "work-reserve" and neighbor == "storage":
+                    permitted = True
+                if permitted:
+                    seen.add(neighbor)
+                    queue.append([*path, neighbor])
+        return []
+
+    records = []
+    for key, cell in cells.items():
+        if cell["is_outdoor"]:
+            continue
+        path = route(key)
+        through_shrine = "shrine" in path or key == "shrine-front"
+        conditions = ["完成面淨寬、門框／門片、倒地救援及真人通行未核。"]
+        if through_shrine:
+            conditions.insert(0, "沿圖上祭祀側緣暫留帶通行，祭祀與通行／搬轎分時；不是獨立走廊或已驗收通道。")
+        if key in {"bath1", "bath-extension"}:
+            conditions.append("浴室入口與淋浴設備區為同一L形衛浴的無隔牆分區，不是穿越另一間公衛。")
+        if key == "work-reserve":
+            conditions.append("必須經武轎儲藏室，非原獨立工作陽台已完成；搬轎與家務操作分時。")
+        note = ("朝街門到本區的成對門洞圖已連接；僅條件式連通，不是實際通行核可。" if path
+                else "未找到符合本案用途限制的成對門洞路徑，入口仍待配置。") + " ".join(conditions)
+        record = {"room_id": cell["id"], "status": "conditional-door-graph-only" if path else "unresolved",
+                  "route_room_ids": [cells[k]["id"] for k in path], "start": "street-ritual-door",
+                  "shared_shrine_edge": through_shrine, "same_bathroom_subzones": key in {"bath1", "bath-extension"},
+                  "independent_work_access": False if key == "work-reserve" else None,
+                  "finished_clearance": "unknown", "professional_acceptance": "unknown", "note": note}
+        cell["tour_features"]["access_pending"] = not bool(path)
+        cell["tour_features"]["access_reason"] = note
+        cell["tour_features"]["entry_access_review"] = record
+        records.append(record)
+    return {"revision": 1, "status": "conditional-door-graph-only", "source": "inputs/b32-entry-options.json",
+            "rear_alley_used_as_public_root": False, "shared_edge_reservations": reserves, "rooms": records,
+            "unresolved_room_ids": [r["room_id"] for r in records if r["status"] == "unresolved"],
+            "professional_acceptance": "unknown"}
+
+
 def build_study(settings: dict | None = None) -> dict:
     settings = copy.deepcopy(settings) if settings is not None else json.loads(SOURCE.read_text())
     validate_settings(settings)
@@ -339,6 +449,9 @@ def build_study(settings: dict | None = None) -> dict:
             floor["label"] = label
         place_products(building, spec, physical)
         review = program_screen(building, spec, physical)
+        review["entry_access"] = attach_entry_access(building, spec)
+        if review["entry_access"]["unresolved_room_ids"]:
+            raise ValueError("B32 conditional entry route incomplete: " + spec["id"])
         screen = shared.body_screen(building)
         if (screen["fixed_body_failures"] or screen["pending_solver_items"] or screen["operation_limits"]
                 or any(v["issue"] == "operation-vs-body" for v in screen["operation_sharing"])):
@@ -378,7 +491,7 @@ def build_study(settings: dict | None = None) -> dict:
                     ROOT / "scripts/config/residential_defaults_tw.json", ROOT / "inputs/bc-constraints-options.json",
                     ROOT / "inputs/dimensions.json", *sorted((ROOT / "scripts/lib").glob("*.py")),
                     *sorted((ROOT / "house_design/rendering").glob("*.py")), ROOT / "house_design/physical_items.py"]
-    return {**settings, "display_revision": DISPLAY_REVISION, "options": options,
+    return {**settings, "display_revision": DISPLAY_REVISION, "entry_access_revision": 1, "options": options,
             "source_hashes": {str(p.relative_to(ROOT)): shared.digest(p) for p in source_files},
             "protected_main_hashes": {p: shared.digest(ROOT / p) for p in PROTECTED}}
 
@@ -477,6 +590,10 @@ def render_index(study: dict) -> str:
         rows = "".join(f'<tr><th>{html.escape(a["title"])}</th><td>{a["discussion_inset_sqm"]:.2f}</td><td>{a["target_sqm"]:g}</td><td>僅面積試算／功能未核</td></tr>' for a in p["area_checks"])
         floors = "".join(f'<li><a href="b32-entry-options/{f["plan_file"]}">{html.escape(f["label"])} SVG</a> · <a href="b32-entry-options-3d.html?scheme={o["id"]}#mode=tour&amp;building=B&amp;floor={f["id"]}&amp;view=plan">同案3D</a></li>' for f in o["plans"]["floors"])
         steps = "".join('<li>'+html.escape(s["label"])+'</li>' for s in p["transport"]["segments"])
+        names = {r["id"]: r["name"] for r in o["plans"]["floors"][0]["rooms"]}
+        access_rows = "".join('<tr data-entry-room="'+html.escape(r["room_id"])+'"><th>'+html.escape(names[r["room_id"]])+
+                              '</th><td>'+html.escape(" → ".join(names[rid] for rid in r["route_room_ids"]))+
+                              '</td><td>'+html.escape(r["note"])+'</td></tr>' for r in p["entry_access"]["rooms"])
         catalogs = []
         for f in o["plans"]["floors"]:
             objects = [(room, i) for room in f["rooms"] for i in room["furniture"]]
@@ -489,6 +606,8 @@ def render_index(study: dict) -> str:
                         + render_plan_viewer(o) +
                         '<p>青綠線框＝收納本體平移試排；不是人員／裝桿外廓。琥珀暫留帶不是已核淨空。道路在圖上前端，後門在圖上後端。可切讀字／整層模式、開原尺寸SVG或同案3D房間特寫。</p>'
                         '<details><summary>本案搬運步驟（收納本體試排）</summary><ol data-route-steps>'+steps+'</ol></details>'
+                        '<details data-entry-access><summary>一樓條件式入口連通（非實際通行核可）</summary><p>由朝街祭祀門判讀，不以未核後巷作公共入口。祭祀與通行分時；同一L形衛浴的入口、淋浴區不當作兩間房。</p>'
+                        '<div class="scroll"><table><thead><tr><th>分區</th><th>成對門洞路徑</th><th>限制</th></tr></thead><tbody>'+access_rows+'</tbody></table></div></details>'
                         '<ul>'+floors+'</ul><details data-furniture-catalog><summary>圖上家具編號與原尺寸（每層重新編號）</summary>'+"".join(catalogs)+'</details><details><summary>面積、敏感度與未解需求</summary><div class="scroll"><table><thead><tr><th>原需求</th><th>討論m²</th><th>原目標m²</th><th>狀態</th></tr></thead><tbody>'+rows+'</tbody></table></div><ul>'+"".join('<li>'+html.escape(t)+'</li>' for t in o["tradeoffs"])+
                         '</ul><pre>'+html.escape(json.dumps(o["review"], ensure_ascii=False, indent=2))+'</pre></details></section>')
     template = (ROOT / "scripts/templates/b32-entry-options.html").read_text()

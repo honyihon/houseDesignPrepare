@@ -2,6 +2,8 @@
 
 這份表把「先想到」變成能追蹤的設計決策。已追蹤不等於已驗證，不取代法規簽證、風水專業判斷或施工授權。
 
+2026-10-20空間討論的目前入口為[ABC整棟使用／工程整合](current-design-basis-v1.md)：A套衛取捨待選、B後巷優先／前門備案各自深化、C單台二樓洗衣機家務。附同源圖、最新逐需求對帳及濕區／設備待核項；本輪不把既有規劃總表或原需求狀態改成verified，不以比較圖取代本表的責任、來源及專業證據。
+
 ## 先看與先決定
 
 開啟 `structured/predesign/risk-review.html`。目前初稿有十二組情境，包含全棟逃生、防墜、健康材料與燃氣／電氣安全，再加上原有空間需求的逐項使用與驗收追蹤。數量及完成狀態每次由資料計算，不能把本文件的文字當成即時完成率。
@@ -66,7 +68,23 @@ python -m house_design predesign meeting-pack
 python -m house_design predesign risk-review --drawing-report structured/reviews/R001/report.json
 ```
 
-指定報告需符合雜湊、專案及不可變版次來源；不能拿合成範例通過結果證明實際設計。圖面更新後要指定新報告並複核。檢查即使 pass，整個停電／照護／搬運情境仍要有人工驗收證據。
+指定報告需含 `drawing_evidence`，符合當前專案／需求內容、不可變版次、模型及套繪重算結果；不能只憑自行重算的 report hash 通過。修復前沒有獨立快照的舊報告仍可讀，但圖面檢查降為 unknown，需以相應來源重新產生，不替它補造當前證據。不能拿合成範例通過結果證明實際設計。
+
+也可直接使用正式 review 同目錄的獨立快照，並明確要求版次：
+
+```sh
+python -m house_design predesign risk-review \
+  --drawing-evidence structured/reviews/R002/drawing-evidence.json \
+  --revision R002 --revision-root inputs/revisions
+```
+
+這是收到新 R002 後的操作範例，不代表本案已取得該版資料。`--drawing-report` 與 `--drawing-evidence` 是同一個輸入選項的別名。未提供 `--revision` 時只是檢視明確選取的報告／快照，不自動猜最新版本；正式 `review run --revision` 一律綁定該版，不會借用舊版。
+
+快照使用 `house-drawing-evidence-v1`，只包含專案 id／內容雜湊、需求雜湊、版次 id／manifest content_hash、model_hash、coordination（含 overlay、findings）及 `evidence_hash`，不包含 planning／release／signoff 或執行時間。系統重新載入封存並重算套繪比對，不把自簽雜湊當成真人簽核。planning 的 `inputs.drawing_evidence` 是此穩定 hash；舊鍵 `inputs.drawing_report` 保留為相同 hash 的相容別名，已不是最終 report_hash，避免循環依賴。舊 context 證據必須重新複核，不能直接改貼新 hash。
+
+檢查還須對應情境的棟、樓層及關聯需求；另一棟／樓層的同名檢查，或無定位的單棟數值檢查，不能充當本項證據。圖面、套繪或綁定實物改變後要指定新快照並複核；即使新計算仍 pass，原情境驗收也不會自動繼續有效。整個停電／照護／搬運情境仍要有人工驗收證據。
+
+正式 `review run` 與獨立 `risk-review` 的實物清冊預設都在 `--project` 同目錄的 `physical-items.json`；可用 `--physical-items` 明確指定。自訂專案缺清冊不會回退讀主專案清冊。自訂 revision 存放位置也須用 `--revision-root` 明確傳入。這些命令可能產生正式報告，應依現有版次管理安排執行，不覆寫交付封存來補測。
 
 武轎專項預設 `requires_transport_measurement: true`：實物清冊的 transport 除 assembled_dimensions（width_mm／depth_mm／height_mm）外，須有 measurement_state: measured 及具名日期來源 evidence。既有收納實測仍不等於裝上抬桿的搬運外廓；尺寸尚未補時不能標示已驗證。即使已測尺寸，轉彎、抬行與完整出入仍需實物演練。
 

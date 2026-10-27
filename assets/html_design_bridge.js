@@ -120,6 +120,9 @@
         if (buildingId === "A") actions.appendChild(link("design-bridge-link secondary", "在 3D 查看補回的孝親房", viewerUrl("floor-1", "flex1")));
         if (buildingId === "B" || buildingId === "C") actions.appendChild(link("design-bridge-link secondary", "祭祀／搬轎與合併客餐廳說明", new URL("Docs/bc-1f-flow-v1.md", document.baseURI).href));
         if (buildingId === "B" || buildingId === "C") actions.appendChild(link("design-bridge-link secondary bc-constraints-link", "B嚴格家規／C照護改善比較（未採用）", new URL("structured/candidates/bc-options.html#"+(buildingId === "B" ? "b-strict" : "c-side-bed"), document.baseURI).href));
+        if (buildingId === "C") actions.appendChild(link("design-bridge-link secondary c-integrated-link", "C有窗公衛／前客房／運動整合比較（未採用）", new URL("structured/candidates/c-integrated-options.html#c-integrated-3600", document.baseURI).href));
+        if (window.HOUSE_CONCEPT_LAYOUT && window.HOUSE_CONCEPT_LAYOUT.layout_review && window.HOUSE_CONCEPT_LAYOUT.layout_review.rationality_followup)
+            actions.appendChild(link("design-bridge-link secondary", "本輪合理性續修／待決清單", new URL("Docs/abc-rationality-followup-v1.md", document.baseURI).href));
         if (window.HOUSE_CONCEPT_LAYOUT && window.HOUSE_CONCEPT_LAYOUT.layout_review && window.HOUSE_CONCEPT_LAYOUT.layout_review.fengshui_minimal) {
             actions.appendChild(link("design-bridge-link secondary", "風水小改／待決最佳方案", new URL("Docs/fengshui-minimal-v1.md", document.baseURI).href));
         }
@@ -377,6 +380,12 @@
                 summary.textContent = room.name + " · " + room.furniture.length + " 件" + (pending.length ? "／" + pending.length + " 件待調整" : "") +
                     (room.features.space_group ? (room.features.open_living_review ? " · 同一開放客餐廳分區" : " · 同一梯廳分區") : "") + (room.features.access_pending ? " · 入口待配置" : "");
                 details.appendChild(summary);
+                if (room.features.window_review && !room.outdoor) {
+                    var windowNote = document.createElement("p");
+                    windowNote.setAttribute("data-window-review", room.features.window_review.status);
+                    windowNote.textContent = room.features.window_review.note;
+                    details.appendChild(windowNote);
+                }
                 [room.features.ritual_access_review, room.features.transport_review, room.features.open_living_review, room.features.fengshui_review, room.features.storage_resolution].forEach(function(review){
                     if (!review) return;
                     var flow = document.createElement("p");

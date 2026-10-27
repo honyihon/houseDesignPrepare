@@ -1,0 +1,2738 @@
+{
+  "schema": "house-current-requirement-ledger-v1",
+  "canonical_requirements": 66,
+  "scenario_rows": 40,
+  "scenarios": [
+    {
+      "id": "c-route-control",
+      "label": "C｜上版入口控制（前段770mm缺口）",
+      "building": "C",
+      "adopted": false,
+      "rows": [
+        {
+          "requirement_id": "C.floor-1.entry",
+          "title": "玄關（含車庫進屋緩衝）",
+          "building_id": "C",
+          "floor_id": "floor-1",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "mapped",
+          "allocation_label": "有對應配置／功能未核",
+          "note": "獨立公衛加入後前室縮小，6.5m²原目標保留；進出／鞋櫃分時未核。",
+          "room_ids": [
+            "C:floor-1:entrance"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-1:entrance",
+              "name": "開放乾式前室／120cm鞋櫃",
+              "geometry": {
+                "x_mm": 4000,
+                "y_mm": 5700,
+                "w_mm": 2000,
+                "h_mm": 1800
+              },
+              "plan_file": "c-route-control_baseline_floor-1.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 3.6,
+            "discussion_inset_sqm": 3.0176,
+            "minimum_sqm": 3.0,
+            "target_sqm": 6.5,
+            "state": "below-target",
+            "state_label": "低於原目標",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 3.0176
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 2.88
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 2.7789
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [
+            "sensitivity-below-minimum"
+          ],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-1.living",
+          "title": "客餐廳（開放式）",
+          "building_id": "C",
+          "floor_id": "floor-1",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "partial",
+          "allocation_label": "部分配置／原功能或位置有差異",
+          "note": "開放客餐聯集包含共同通行與彈性照護地面，不含玄關／公衛；不是全為座位或原六人桌容量。",
+          "room_ids": [
+            "C:floor-1:living",
+            "C:floor-1:dining",
+            "C:floor-1:living-hall",
+            "C:floor-1:living-right"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-1:living",
+              "name": "開放客餐｜沙發電視區",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 7100,
+                "w_mm": 2400,
+                "h_mm": 1480
+              },
+              "plan_file": "c-route-control_baseline_floor-1.svg"
+            },
+            {
+              "id": "C:floor-1:dining",
+              "name": "開放客餐廳｜四人餐桌區",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 3900,
+                "w_mm": 4000,
+                "h_mm": 3200
+              },
+              "plan_file": "c-route-control_baseline_floor-1.svg"
+            },
+            {
+              "id": "C:floor-1:living-hall",
+              "name": "客餐共用通行／轉位（非獨立房）",
+              "geometry": {
+                "x_mm": 2400,
+                "y_mm": 7100,
+                "w_mm": 1600,
+                "h_mm": 1860
+              },
+              "plan_file": "c-route-control_baseline_floor-1.svg"
+            },
+            {
+              "id": "C:floor-1:living-right",
+              "name": "開放客餐｜彈性照護／通行（不固定擺椅）",
+              "geometry": {
+                "x_mm": 4000,
+                "y_mm": 7500,
+                "w_mm": 2000,
+                "h_mm": 1460
+              },
+              "plan_file": "c-route-control_baseline_floor-1.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 22.248,
+            "discussion_inset_sqm": 20.504,
+            "minimum_sqm": 18.0,
+            "target_sqm": 18.0,
+            "state": "discussion-only",
+            "state_label": "僅討論面積達數值／功能未核",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 20.504
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 20.076
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 19.7571
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [
+            "original-function-or-location-pending"
+          ],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-1.kitchen",
+          "title": "廚房",
+          "building_id": "C",
+          "floor_id": "floor-1",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "mapped",
+          "allocation_label": "有對應配置／功能未核",
+          "note": "沿用屋主已接受的450mm／1.08m²取捨；不改其幾何與設備，冰箱／備餐仍分時，專業未核。",
+          "room_ids": [
+            "C:floor-1:kitchen"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-1:kitchen",
+              "name": "一字廚房／前置冰箱（洗衣僅二樓一台）",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 8580,
+                "w_mm": 2400,
+                "h_mm": 3520
+              },
+              "plan_file": "c-route-control_baseline_floor-1.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 8.448,
+            "discussion_inset_sqm": 7.5264,
+            "minimum_sqm": 6.0,
+            "target_sqm": 6.5,
+            "state": "discussion-only",
+            "state_label": "僅討論面積達數值／功能未核",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 7.5264
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 7.304
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 7.1393
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-1.elder",
+          "title": "孝親房／長輩房",
+          "building_id": "C",
+          "floor_id": "floor-1",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "partial",
+          "allocation_label": "部分配置／原功能或位置有差異",
+          "note": "側牆床避上層濕區限床體；非整間臥室上方無浴廁，轉位／救援／原書桌收納待核。",
+          "room_ids": [
+            "C:floor-1:elder"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-1:elder",
+              "name": "孝親房側牆床比較（操作地面分時）",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 13800,
+                "w_mm": 3600,
+                "h_mm": 3830
+              },
+              "plan_file": "c-route-control_baseline_floor-1.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 13.788,
+            "discussion_inset_sqm": 12.6248,
+            "minimum_sqm": 10.0,
+            "target_sqm": 11.5,
+            "state": "discussion-only",
+            "state_label": "僅討論面積達數值／功能未核",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 12.6248
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 12.342
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 12.132
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [
+            "original-function-or-location-pending",
+            "whole-route-human-care-and-rescue-still-unknown"
+          ],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": [
+            {
+              "room": "C:floor-1:elder",
+              "neighbor": "C:floor-1:sideyard",
+              "nominal_mm": 1200,
+              "original_required_clear_mm": 900,
+              "clear_assumption_at_115mm": 970,
+              "shortfall_at_115mm": 0,
+              "actual_product_finished_clear_and_rescue": "unknown"
+            },
+            {
+              "room": "C:floor-1:elder",
+              "neighbor": "C:floor-1:elder-bath",
+              "nominal_mm": 1200,
+              "original_required_clear_mm": 900,
+              "clear_assumption_at_115mm": 970,
+              "shortfall_at_115mm": 0,
+              "actual_product_finished_clear_and_rescue": "unknown"
+            }
+          ],
+          "whole_route_care_acceptance": "unknown-specified-900mm-rectangle-is-not-wheelchair-approval",
+          "upstream_discussion_budgets_mm": [
+            770,
+            770
+          ]
+        },
+        {
+          "requirement_id": "C.floor-1.elder_bath",
+          "title": "孝親衛浴",
+          "building_id": "C",
+          "floor_id": "floor-1",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "mapped",
+          "allocation_label": "有對應配置／功能未核",
+          "note": "孝親套衛與前方公衛不同間，套衛原8m²目標保留；完整轉位／排濕未核。 仍由私人臥室進入，原公共直達照服偏好未滿足；完整轉位／排氣未核。",
+          "room_ids": [
+            "C:floor-1:elder-bath"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-1:elder-bath",
+              "name": "孝親套衛（救援門／排水待核）",
+              "geometry": {
+                "x_mm": 3600,
+                "y_mm": 13800,
+                "w_mm": 2400,
+                "h_mm": 3000
+              },
+              "plan_file": "c-route-control_baseline_floor-1.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 7.2,
+            "discussion_inset_sqm": 6.3616,
+            "minimum_sqm": 4.5,
+            "target_sqm": 8.0,
+            "state": "below-target",
+            "state_label": "低於原目標",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 6.3616
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 6.16
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 6.0109
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [
+            "whole-route-human-care-and-rescue-still-unknown"
+          ],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": [
+            {
+              "room": "C:floor-1:elder-bath",
+              "neighbor": "C:floor-1:elder",
+              "nominal_mm": 1200,
+              "original_required_clear_mm": 900,
+              "clear_assumption_at_115mm": 970,
+              "shortfall_at_115mm": 0,
+              "actual_product_finished_clear_and_rescue": "unknown"
+            }
+          ],
+          "whole_route_care_acceptance": "unknown-specified-900mm-rectangle-is-not-wheelchair-approval",
+          "upstream_discussion_budgets_mm": [
+            770,
+            770
+          ]
+        },
+        {
+          "requirement_id": "C.floor-1.idf_c",
+          "title": "IDF-C 弱電機櫃",
+          "building_id": "C",
+          "floor_id": "floor-1",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "shared",
+          "allocation_label": "併入共用組／不給獨立面積信用",
+          "note": "原IDF壁龕及600×600mm機櫃保留；共享前室不給獨立機房面積信用。",
+          "room_ids": [
+            "C:floor-1:sideyard"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-1:sideyard",
+              "name": "乾式照護前室／共享IDF壁龕（非機房）",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 12100,
+                "w_mm": 3600,
+                "h_mm": 1700
+              },
+              "plan_file": "c-route-control_baseline_floor-1.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": null,
+            "discussion_inset_sqm": null,
+            "minimum_sqm": 1.0,
+            "target_sqm": 1.5,
+            "state": "shared-not-independent",
+            "state_label": "共用，不計獨立面積",
+            "sensitivity": [],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": [],
+          "dedicated_service_area_credit_sqm": 0
+        },
+        {
+          "requirement_id": "C.floor-1.balcony",
+          "title": "後工作陽台",
+          "building_id": "C",
+          "floor_id": "floor-1",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "partial",
+          "allocation_label": "部分配置／原功能或位置有差異",
+          "note": "原1F至少4m²／目標4.8m²工作陽台仍未容納；2F單機洗槽／晾衣提案不抵銷本列，1F污衣籃不給獨立家務面積。",
+          "room_ids": [
+            "C:floor-1:service"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-1:service",
+              "name": "後側通風／檢修預留（不放室外機）",
+              "geometry": {
+                "x_mm": 3600,
+                "y_mm": 16800,
+                "w_mm": 2400,
+                "h_mm": 830
+              },
+              "plan_file": "c-route-control_baseline_floor-1.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 1.992,
+            "discussion_inset_sqm": 1.5008,
+            "minimum_sqm": 4.0,
+            "target_sqm": 4.8,
+            "state": "below-minimum",
+            "state_label": "低於原下限",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 1.5008
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 1.386
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 1.302
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [
+            "sensitivity-below-minimum",
+            "original-function-or-location-pending"
+          ],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-2.living2",
+          "title": "客廳（2F 主角空間）",
+          "building_id": "C",
+          "floor_id": "floor-2",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "mapped",
+          "allocation_label": "有對應配置／功能未核",
+          "note": "開放起居／延伸取聯集，含通行；樓高越高壓縮面積，原22m²目標不刪。",
+          "room_ids": [
+            "C:floor-2:living2f",
+            "C:floor-2:living-nook"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-2:living2f",
+              "name": "二樓開放起居｜三人沙發電視區",
+              "geometry": {
+                "x_mm": 2800,
+                "y_mm": 3900,
+                "w_mm": 3200,
+                "h_mm": 5060
+              },
+              "plan_file": "c-route-control_baseline_floor-2.svg"
+            },
+            {
+              "id": "C:floor-2:living-nook",
+              "name": "開放起居延伸／通行（不重複計面積）",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 7600,
+                "w_mm": 2800,
+                "h_mm": 1360
+              },
+              "plan_file": "c-route-control_baseline_floor-2.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 20.0,
+            "discussion_inset_sqm": 18.256,
+            "minimum_sqm": 16.0,
+            "target_sqm": 22.0,
+            "state": "below-target",
+            "state_label": "低於原目標",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 18.256
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 17.828
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 17.5091
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-2.guest2",
+          "title": "客房／多功能房",
+          "building_id": "C",
+          "floor_id": "floor-2",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "partial",
+          "allocation_label": "部分配置／原功能或位置有差異",
+          "note": "前客房有候選外窗，但改變原後段偏好；80mm時9.3456m²低於12m²目標，115mm時低於9m²下限，取捨未定。",
+          "room_ids": [
+            "C:floor-2:guestroom2f"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-2:guestroom2f",
+              "name": "前左有窗客房（單人床／位置取捨未定）",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 3900,
+                "w_mm": 2800,
+                "h_mm": 3700
+              },
+              "plan_file": "c-route-control_baseline_floor-2.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 10.36,
+            "discussion_inset_sqm": 9.3456,
+            "minimum_sqm": 9.0,
+            "target_sqm": 12.0,
+            "state": "below-target",
+            "state_label": "低於原目標",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 9.3456
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 9.1
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 8.9179
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [
+            "sensitivity-below-minimum",
+            "original-function-or-location-pending"
+          ],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-2.kitchenette",
+          "title": "小型廚房",
+          "building_id": "C",
+          "floor_id": "floor-2",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "mapped",
+          "allocation_label": "有對應配置／功能未核",
+          "note": "240×65cm廚具與75cm冰箱保留，取物／通行分時、管線未核。",
+          "room_ids": [
+            "C:floor-2:kitchen2f"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-2:kitchen2f",
+              "name": "240cm後小廚房（原65cm深／操作分時）",
+              "geometry": {
+                "x_mm": 3600,
+                "y_mm": 13800,
+                "w_mm": 2400,
+                "h_mm": 3830
+              },
+              "plan_file": "c-route-control_baseline_floor-2.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 9.192,
+            "discussion_inset_sqm": 8.2208,
+            "minimum_sqm": 4.0,
+            "target_sqm": 6.0,
+            "state": "discussion-only",
+            "state_label": "僅討論面積達數值／功能未核",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 8.2208
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 7.986
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 7.812
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-2.bath_c2",
+          "title": "廁所（乾濕分離）",
+          "building_id": "C",
+          "floor_id": "floor-2",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "mapped",
+          "allocation_label": "有對應配置／功能未核",
+          "note": "後段乾濕分離提案，原5m²目標保留，完成面與防水排氣未知。",
+          "room_ids": [
+            "C:floor-2:bath2f"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-2:bath2f",
+              "name": "後段公共衛浴（後牆前移20cm比較）",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 13800,
+                "w_mm": 2400,
+                "h_mm": 2000
+              },
+              "plan_file": "c-route-control_baseline_floor-2.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 4.8,
+            "discussion_inset_sqm": 4.1216,
+            "minimum_sqm": 3.6,
+            "target_sqm": 5.0,
+            "state": "below-target",
+            "state_label": "低於原目標",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 4.1216
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 3.96
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 3.8409
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-2.balcony_c2",
+          "title": "2F 高雄厝景觀陽臺",
+          "building_id": "C",
+          "floor_id": "floor-2",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "partial",
+          "allocation_label": "部分配置／原功能或位置有差異",
+          "note": "保留2F唯一洗衣機／240cm晾衣架，補洗槽及防雨上鎖洗劑櫃；前陽台兼空調維修，防雨防墜及合法使用未核。",
+          "room_ids": [
+            "C:floor-2:balcony2f"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-2:balcony2f",
+              "name": "前側陽台／空調維修候選區",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 0,
+                "w_mm": 6000,
+                "h_mm": 3900
+              },
+              "plan_file": "c-route-control_baseline_floor-2.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 23.4,
+            "discussion_inset_sqm": 21.8416,
+            "minimum_sqm": 4.0,
+            "target_sqm": 7.0,
+            "state": "discussion-only",
+            "state_label": "僅討論面積達數值／功能未核",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 21.8416
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 21.46
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 21.1759
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [
+            "original-function-or-location-pending"
+          ],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-3.master_c",
+          "title": "主臥室（飯店級配置）",
+          "building_id": "C",
+          "floor_id": "floor-3",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "mapped",
+          "allocation_label": "有對應配置／功能未核",
+          "note": "4m樓高案另壓縮主臥；20m²目標保留，家具操作／完成面未核。",
+          "room_ids": [
+            "C:floor-3:master3f"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-3:master3f",
+              "name": "前側主臥（4m樓高案面積取捨）",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 3900,
+                "w_mm": 6000,
+                "h_mm": 3700
+              },
+              "plan_file": "c-route-control_baseline_floor-3.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 22.2,
+            "discussion_inset_sqm": 20.6736,
+            "minimum_sqm": 14.0,
+            "target_sqm": 20.0,
+            "state": "discussion-only",
+            "state_label": "僅討論面積達數值／功能未核",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 20.6736
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 20.3
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 20.0219
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-3.gym",
+          "title": "運動空間",
+          "building_id": "C",
+          "floor_id": "floor-3",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "partial",
+          "allocation_label": "部分配置／原功能或位置有差異",
+          "note": "器材與討論外廓避客房，不表示整房不壓客房或結構傳音已解；原廠前端淨空、梁板與多人操作未核。",
+          "room_ids": [
+            "C:floor-3:fitness3f"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-3:fitness3f",
+              "name": "加深運動區（原廠／隔振仍待核）",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 7600,
+                "w_mm": 2400,
+                "h_mm": 6200
+              },
+              "plan_file": "c-route-control_baseline_floor-3.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 14.88,
+            "discussion_inset_sqm": 13.5296,
+            "minimum_sqm": 9.0,
+            "target_sqm": 14.0,
+            "state": "below-target",
+            "state_label": "低於原目標",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 13.5296
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 13.2
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 12.9549
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [
+            "original-function-or-location-pending"
+          ],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-3.bath_c3",
+          "title": "廁所（乾濕分離）",
+          "building_id": "C",
+          "floor_id": "floor-3",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "mapped",
+          "allocation_label": "有對應配置／功能未核",
+          "note": "對齊2F濕區的衛浴提案，原5m²目標保留。",
+          "room_ids": [
+            "C:floor-3:bath3f"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-3:bath3f",
+              "name": "後段衛浴（對齊2F、後牆前移20cm比較）",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 13800,
+                "w_mm": 2400,
+                "h_mm": 2000
+              },
+              "plan_file": "c-route-control_baseline_floor-3.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 4.8,
+            "discussion_inset_sqm": 4.1216,
+            "minimum_sqm": 3.6,
+            "target_sqm": 5.0,
+            "state": "below-target",
+            "state_label": "低於原目標",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 4.1216
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 3.96
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 3.8409
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-3.balcony_c3",
+          "title": "3F 主臥通風小陽台",
+          "building_id": "C",
+          "floor_id": "floor-3",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "partial",
+          "allocation_label": "部分配置／原功能或位置有差異",
+          "note": "前側通風／空調維修候選，原後側主臥陽台偏好仍需決策。",
+          "room_ids": [
+            "C:floor-3:terrace3f"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-3:terrace3f",
+              "name": "前側通風／空調維修候選區",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 0,
+                "w_mm": 6000,
+                "h_mm": 3900
+              },
+              "plan_file": "c-route-control_baseline_floor-3.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 23.4,
+            "discussion_inset_sqm": 21.8416,
+            "minimum_sqm": 2.5,
+            "target_sqm": 4.0,
+            "state": "discussion-only",
+            "state_label": "僅討論面積達數值／功能未核",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 21.8416
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 21.46
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 21.1759
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [
+            "original-function-or-location-pending"
+          ],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-rf.rf_stair",
+          "title": "梯間屋突",
+          "building_id": "C",
+          "floor_id": "floor-rf",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "mapped",
+          "allocation_label": "有對應配置／功能未核",
+          "note": "樓梯屋突候選，合法性與防火淨高未核。",
+          "room_ids": [
+            "C:floor-4:stair-rf"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-4:stair-rf",
+              "name": "同軸樓梯屋突（合法性待核）",
+              "geometry": {
+                "x_mm": 2400,
+                "y_mm": 8960,
+                "w_mm": 3600,
+                "h_mm": 4840
+              },
+              "plan_file": "c-route-control_baseline_floor-4.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 17.424,
+            "discussion_inset_sqm": 16.0992,
+            "minimum_sqm": 4.5,
+            "target_sqm": 6.0,
+            "state": "discussion-only",
+            "state_label": "僅討論面積達數值／功能未核",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 16.0992
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 15.776
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 15.5357
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-rf.rf_tank",
+          "title": "不鏽鋼水塔／加壓 VF800",
+          "building_id": "C",
+          "floor_id": "floor-rf",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "mapped",
+          "allocation_label": "有對應配置／功能未核",
+          "note": "水塔／加壓設備代表量體；承重、錨定與維修未核。",
+          "room_ids": [
+            "C:floor-4:water-tank",
+            "C:floor-4:pump"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-4:water-tank",
+              "name": "水塔候選區",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 13800,
+                "w_mm": 2000,
+                "h_mm": 2500
+              },
+              "plan_file": "c-route-control_baseline_floor-4.svg"
+            },
+            {
+              "id": "C:floor-4:pump",
+              "name": "加壓候選區",
+              "geometry": {
+                "x_mm": 2000,
+                "y_mm": 13800,
+                "w_mm": 2000,
+                "h_mm": 2500
+              },
+              "plan_file": "c-route-control_baseline_floor-4.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 10.0,
+            "discussion_inset_sqm": 8.9856,
+            "minimum_sqm": 2.4,
+            "target_sqm": 3.0,
+            "state": "discussion-only",
+            "state_label": "僅討論面積達數值／功能未核",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 8.9856
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 8.74
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 8.5579
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-rf.rf_hp",
+          "title": "熱泵熱水器（Haier）",
+          "building_id": "C",
+          "floor_id": "floor-rf",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "mapped",
+          "allocation_label": "有對應配置／功能未核",
+          "note": "熱泵代表量體，原廠／管線／承重未核。",
+          "room_ids": [
+            "C:floor-4:heatpump"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-4:heatpump",
+              "name": "熱泵候選區",
+              "geometry": {
+                "x_mm": 4000,
+                "y_mm": 13800,
+                "w_mm": 2000,
+                "h_mm": 2500
+              },
+              "plan_file": "c-route-control_baseline_floor-4.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 5.0,
+            "discussion_inset_sqm": 4.3056,
+            "minimum_sqm": 2.0,
+            "target_sqm": 2.5,
+            "state": "discussion-only",
+            "state_label": "僅討論面積達數值／功能未核",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 4.3056
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 4.14
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 4.0179
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-rf.rf_dry",
+          "title": "曬衣區／活動平台",
+          "building_id": "C",
+          "floor_id": "floor-rf",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "mapped",
+          "allocation_label": "有對應配置／功能未核",
+          "note": "曬衣候選區聯集，不等於核定活動平台／棚架；不拿它抵銷一樓工作陽台缺口。",
+          "room_ids": [
+            "C:floor-4:platform",
+            "C:floor-4:laundry-rf"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-4:platform",
+              "name": "屋頂平台（非冷氣集中區）",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 0,
+                "w_mm": 6000,
+                "h_mm": 8960
+              },
+              "plan_file": "c-route-control_baseline_floor-4.svg"
+            },
+            {
+              "id": "C:floor-4:laundry-rf",
+              "name": "曬衣候選區（維修動線待核）",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 16300,
+                "w_mm": 6000,
+                "h_mm": 1330
+              },
+              "plan_file": "c-route-control_baseline_floor-4.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 61.74,
+            "discussion_inset_sqm": 58.2248,
+            "minimum_sqm": 10.0,
+            "target_sqm": 24.0,
+            "state": "discussion-only",
+            "state_label": "僅討論面積達數值／功能未核",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 58.2248
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 57.362
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 56.7191
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        }
+      ],
+      "supplementary": [
+        {
+          "requirement_id": "C-parking",
+          "title": "C 原兩汽車＋機車",
+          "building_id": "C",
+          "floor_id": "floor-1",
+          "requirement_status": "unknown",
+          "priority": null,
+          "allocation": "unaccommodated",
+          "allocation_label": "未容納／原需求保留",
+          "note": "公衛／照護比較未容納兩車＋機車；須另選配置／基地，不自動刪需求。",
+          "room_ids": [],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [],
+          "area": {
+            "nominal_union_sqm": null,
+            "discussion_inset_sqm": null,
+            "minimum_sqm": null,
+            "target_sqm": null,
+            "state": "unallocated",
+            "state_label": "未分配",
+            "sensitivity": [],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown"
+        },
+        {
+          "requirement_id": "C-public-wc",
+          "title": "C 訪客不穿孝親房的獨立公衛＋外窗排濕",
+          "building_id": "C",
+          "floor_id": "floor-1",
+          "requirement_status": "unknown",
+          "priority": null,
+          "allocation": "partial",
+          "allocation_label": "部分配置／原功能或位置有差異",
+          "note": "已提案前側公衛與可開高窗，未採用；有效排濕、獨立排氣補氣、防水及救援仍未知，外窗不保證不發黴。",
+          "room_ids": [
+            "C:floor-1:public-bath"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-1:public-bath",
+              "name": "有可開高窗的訪客公衛（排氣待核）",
+              "geometry": {
+                "x_mm": 4000,
+                "y_mm": 3900,
+                "w_mm": 2000,
+                "h_mm": 1800
+              },
+              "plan_file": "c-route-control_baseline_floor-1.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 3.6,
+            "discussion_inset_sqm": 3.0176,
+            "minimum_sqm": null,
+            "target_sqm": null,
+            "state": "discussion-only",
+            "state_label": "僅討論面積達數值／功能未核",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 3.0176
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 2.88
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 2.7789
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [
+            "original-function-or-location-pending"
+          ],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown"
+        }
+      ],
+      "state_scope": "daily geometry; other use states are not additive area",
+      "counts": {
+        "mapped": 12,
+        "partial": 7,
+        "shared": 1
+      }
+    },
+    {
+      "id": "c-route-refined",
+      "label": "C｜騎樓內側至照護入口連續動線提案",
+      "building": "C",
+      "adopted": false,
+      "rows": [
+        {
+          "requirement_id": "C.floor-1.entry",
+          "title": "玄關（含車庫進屋緩衝）",
+          "building_id": "C",
+          "floor_id": "floor-1",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "mapped",
+          "allocation_label": "有對應配置／功能未核",
+          "note": "獨立公衛加入後前室縮小，6.5m²原目標保留；進出／鞋櫃分時未核。",
+          "room_ids": [
+            "C:floor-1:entrance"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-1:entrance",
+              "name": "開放乾式前室／120cm鞋櫃",
+              "geometry": {
+                "x_mm": 4000,
+                "y_mm": 5700,
+                "w_mm": 2000,
+                "h_mm": 1800
+              },
+              "plan_file": "c-route-refined_open_floor-1.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 3.6,
+            "discussion_inset_sqm": 3.0176,
+            "minimum_sqm": 3.0,
+            "target_sqm": 6.5,
+            "state": "below-target",
+            "state_label": "低於原目標",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 3.0176
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 2.88
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 2.7789
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [
+            "sensitivity-below-minimum"
+          ],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-1.living",
+          "title": "客餐廳（開放式）",
+          "building_id": "C",
+          "floor_id": "floor-1",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "partial",
+          "allocation_label": "部分配置／原功能或位置有差異",
+          "note": "開放客餐聯集包含共同通行與彈性照護地面，不含玄關／公衛；不是全為座位或原六人桌容量。",
+          "room_ids": [
+            "C:floor-1:living",
+            "C:floor-1:dining",
+            "C:floor-1:living-hall",
+            "C:floor-1:living-right"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-1:living",
+              "name": "開放客餐｜沙發電視區",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 7100,
+                "w_mm": 2400,
+                "h_mm": 1480
+              },
+              "plan_file": "c-route-refined_open_floor-1.svg"
+            },
+            {
+              "id": "C:floor-1:dining",
+              "name": "開放客餐廳｜四人餐桌區",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 3900,
+                "w_mm": 4000,
+                "h_mm": 3200
+              },
+              "plan_file": "c-route-refined_open_floor-1.svg"
+            },
+            {
+              "id": "C:floor-1:living-hall",
+              "name": "客餐共用通行／轉位（非獨立房）",
+              "geometry": {
+                "x_mm": 2400,
+                "y_mm": 7100,
+                "w_mm": 1600,
+                "h_mm": 1860
+              },
+              "plan_file": "c-route-refined_open_floor-1.svg"
+            },
+            {
+              "id": "C:floor-1:living-right",
+              "name": "開放客餐｜彈性照護／通行（不固定擺椅）",
+              "geometry": {
+                "x_mm": 4000,
+                "y_mm": 7500,
+                "w_mm": 2000,
+                "h_mm": 1460
+              },
+              "plan_file": "c-route-refined_open_floor-1.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 22.248,
+            "discussion_inset_sqm": 20.504,
+            "minimum_sqm": 18.0,
+            "target_sqm": 18.0,
+            "state": "discussion-only",
+            "state_label": "僅討論面積達數值／功能未核",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 20.504
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 20.076
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 19.7571
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [
+            "original-function-or-location-pending"
+          ],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-1.kitchen",
+          "title": "廚房",
+          "building_id": "C",
+          "floor_id": "floor-1",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "mapped",
+          "allocation_label": "有對應配置／功能未核",
+          "note": "沿用屋主已接受的450mm／1.08m²取捨；不改其幾何與設備，冰箱／備餐仍分時，專業未核。",
+          "room_ids": [
+            "C:floor-1:kitchen"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-1:kitchen",
+              "name": "一字廚房／前置冰箱（洗衣僅二樓一台）",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 8580,
+                "w_mm": 2400,
+                "h_mm": 3520
+              },
+              "plan_file": "c-route-refined_open_floor-1.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 8.448,
+            "discussion_inset_sqm": 7.5264,
+            "minimum_sqm": 6.0,
+            "target_sqm": 6.5,
+            "state": "discussion-only",
+            "state_label": "僅討論面積達數值／功能未核",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 7.5264
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 7.304
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 7.1393
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-1.elder",
+          "title": "孝親房／長輩房",
+          "building_id": "C",
+          "floor_id": "floor-1",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "partial",
+          "allocation_label": "部分配置／原功能或位置有差異",
+          "note": "側牆床避上層濕區限床體；非整間臥室上方無浴廁，轉位／救援／原書桌收納待核。",
+          "room_ids": [
+            "C:floor-1:elder"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-1:elder",
+              "name": "孝親房側牆床比較（操作地面分時）",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 13800,
+                "w_mm": 3600,
+                "h_mm": 3830
+              },
+              "plan_file": "c-route-refined_open_floor-1.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 13.788,
+            "discussion_inset_sqm": 12.6248,
+            "minimum_sqm": 10.0,
+            "target_sqm": 11.5,
+            "state": "discussion-only",
+            "state_label": "僅討論面積達數值／功能未核",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 12.6248
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 12.342
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 12.132
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [
+            "original-function-or-location-pending",
+            "whole-route-human-care-and-rescue-still-unknown"
+          ],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": [
+            {
+              "room": "C:floor-1:elder",
+              "neighbor": "C:floor-1:sideyard",
+              "nominal_mm": 1200,
+              "original_required_clear_mm": 900,
+              "clear_assumption_at_115mm": 970,
+              "shortfall_at_115mm": 0,
+              "actual_product_finished_clear_and_rescue": "unknown"
+            },
+            {
+              "room": "C:floor-1:elder",
+              "neighbor": "C:floor-1:elder-bath",
+              "nominal_mm": 1200,
+              "original_required_clear_mm": 900,
+              "clear_assumption_at_115mm": 970,
+              "shortfall_at_115mm": 0,
+              "actual_product_finished_clear_and_rescue": "unknown"
+            }
+          ],
+          "whole_route_care_acceptance": "unknown-specified-900mm-rectangle-is-not-wheelchair-approval",
+          "upstream_discussion_budgets_mm": [
+            970,
+            970
+          ]
+        },
+        {
+          "requirement_id": "C.floor-1.elder_bath",
+          "title": "孝親衛浴",
+          "building_id": "C",
+          "floor_id": "floor-1",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "mapped",
+          "allocation_label": "有對應配置／功能未核",
+          "note": "孝親套衛與前方公衛不同間，套衛原8m²目標保留；完整轉位／排濕未核。 仍由私人臥室進入，原公共直達照服偏好未滿足；完整轉位／排氣未核。",
+          "room_ids": [
+            "C:floor-1:elder-bath"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-1:elder-bath",
+              "name": "孝親套衛（救援門／排水待核）",
+              "geometry": {
+                "x_mm": 3600,
+                "y_mm": 13800,
+                "w_mm": 2400,
+                "h_mm": 3000
+              },
+              "plan_file": "c-route-refined_open_floor-1.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 7.2,
+            "discussion_inset_sqm": 6.3616,
+            "minimum_sqm": 4.5,
+            "target_sqm": 8.0,
+            "state": "below-target",
+            "state_label": "低於原目標",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 6.3616
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 6.16
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 6.0109
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [
+            "whole-route-human-care-and-rescue-still-unknown"
+          ],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": [
+            {
+              "room": "C:floor-1:elder-bath",
+              "neighbor": "C:floor-1:elder",
+              "nominal_mm": 1200,
+              "original_required_clear_mm": 900,
+              "clear_assumption_at_115mm": 970,
+              "shortfall_at_115mm": 0,
+              "actual_product_finished_clear_and_rescue": "unknown"
+            }
+          ],
+          "whole_route_care_acceptance": "unknown-specified-900mm-rectangle-is-not-wheelchair-approval",
+          "upstream_discussion_budgets_mm": [
+            970,
+            970
+          ]
+        },
+        {
+          "requirement_id": "C.floor-1.idf_c",
+          "title": "IDF-C 弱電機櫃",
+          "building_id": "C",
+          "floor_id": "floor-1",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "shared",
+          "allocation_label": "併入共用組／不給獨立面積信用",
+          "note": "原IDF壁龕及600×600mm機櫃保留；共享前室不給獨立機房面積信用。",
+          "room_ids": [
+            "C:floor-1:sideyard"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-1:sideyard",
+              "name": "乾式照護前室／共享IDF壁龕（非機房）",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 12100,
+                "w_mm": 3600,
+                "h_mm": 1700
+              },
+              "plan_file": "c-route-refined_open_floor-1.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": null,
+            "discussion_inset_sqm": null,
+            "minimum_sqm": 1.0,
+            "target_sqm": 1.5,
+            "state": "shared-not-independent",
+            "state_label": "共用，不計獨立面積",
+            "sensitivity": [],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": [],
+          "dedicated_service_area_credit_sqm": 0
+        },
+        {
+          "requirement_id": "C.floor-1.balcony",
+          "title": "後工作陽台",
+          "building_id": "C",
+          "floor_id": "floor-1",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "partial",
+          "allocation_label": "部分配置／原功能或位置有差異",
+          "note": "原1F至少4m²／目標4.8m²工作陽台仍未容納；2F單機洗槽／晾衣提案不抵銷本列，1F污衣籃不給獨立家務面積。",
+          "room_ids": [
+            "C:floor-1:service"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-1:service",
+              "name": "後側通風／檢修預留（不放室外機）",
+              "geometry": {
+                "x_mm": 3600,
+                "y_mm": 16800,
+                "w_mm": 2400,
+                "h_mm": 830
+              },
+              "plan_file": "c-route-refined_open_floor-1.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 1.992,
+            "discussion_inset_sqm": 1.5008,
+            "minimum_sqm": 4.0,
+            "target_sqm": 4.8,
+            "state": "below-minimum",
+            "state_label": "低於原下限",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 1.5008
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 1.386
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 1.302
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [
+            "sensitivity-below-minimum",
+            "original-function-or-location-pending"
+          ],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-2.living2",
+          "title": "客廳（2F 主角空間）",
+          "building_id": "C",
+          "floor_id": "floor-2",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "mapped",
+          "allocation_label": "有對應配置／功能未核",
+          "note": "開放起居／延伸取聯集，含通行；樓高越高壓縮面積，原22m²目標不刪。",
+          "room_ids": [
+            "C:floor-2:living2f",
+            "C:floor-2:living-nook"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-2:living2f",
+              "name": "二樓開放起居｜三人沙發電視區",
+              "geometry": {
+                "x_mm": 2800,
+                "y_mm": 3900,
+                "w_mm": 3200,
+                "h_mm": 5060
+              },
+              "plan_file": "c-route-refined_open_floor-2.svg"
+            },
+            {
+              "id": "C:floor-2:living-nook",
+              "name": "開放起居延伸／通行（不重複計面積）",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 7600,
+                "w_mm": 2800,
+                "h_mm": 1360
+              },
+              "plan_file": "c-route-refined_open_floor-2.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 20.0,
+            "discussion_inset_sqm": 18.256,
+            "minimum_sqm": 16.0,
+            "target_sqm": 22.0,
+            "state": "below-target",
+            "state_label": "低於原目標",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 18.256
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 17.828
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 17.5091
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-2.guest2",
+          "title": "客房／多功能房",
+          "building_id": "C",
+          "floor_id": "floor-2",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "partial",
+          "allocation_label": "部分配置／原功能或位置有差異",
+          "note": "前客房有候選外窗，但改變原後段偏好；80mm時9.3456m²低於12m²目標，115mm時低於9m²下限，取捨未定。",
+          "room_ids": [
+            "C:floor-2:guestroom2f"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-2:guestroom2f",
+              "name": "前左有窗客房（單人床／位置取捨未定）",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 3900,
+                "w_mm": 2800,
+                "h_mm": 3700
+              },
+              "plan_file": "c-route-refined_open_floor-2.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 10.36,
+            "discussion_inset_sqm": 9.3456,
+            "minimum_sqm": 9.0,
+            "target_sqm": 12.0,
+            "state": "below-target",
+            "state_label": "低於原目標",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 9.3456
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 9.1
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 8.9179
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [
+            "sensitivity-below-minimum",
+            "original-function-or-location-pending"
+          ],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-2.kitchenette",
+          "title": "小型廚房",
+          "building_id": "C",
+          "floor_id": "floor-2",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "mapped",
+          "allocation_label": "有對應配置／功能未核",
+          "note": "240×65cm廚具與75cm冰箱保留，取物／通行分時、管線未核。",
+          "room_ids": [
+            "C:floor-2:kitchen2f"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-2:kitchen2f",
+              "name": "240cm後小廚房（原65cm深／操作分時）",
+              "geometry": {
+                "x_mm": 3600,
+                "y_mm": 13800,
+                "w_mm": 2400,
+                "h_mm": 3830
+              },
+              "plan_file": "c-route-refined_open_floor-2.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 9.192,
+            "discussion_inset_sqm": 8.2208,
+            "minimum_sqm": 4.0,
+            "target_sqm": 6.0,
+            "state": "discussion-only",
+            "state_label": "僅討論面積達數值／功能未核",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 8.2208
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 7.986
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 7.812
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-2.bath_c2",
+          "title": "廁所（乾濕分離）",
+          "building_id": "C",
+          "floor_id": "floor-2",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "mapped",
+          "allocation_label": "有對應配置／功能未核",
+          "note": "後段乾濕分離提案，原5m²目標保留，完成面與防水排氣未知。",
+          "room_ids": [
+            "C:floor-2:bath2f"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-2:bath2f",
+              "name": "後段公共衛浴（後牆前移20cm比較）",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 13800,
+                "w_mm": 2400,
+                "h_mm": 2000
+              },
+              "plan_file": "c-route-refined_open_floor-2.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 4.8,
+            "discussion_inset_sqm": 4.1216,
+            "minimum_sqm": 3.6,
+            "target_sqm": 5.0,
+            "state": "below-target",
+            "state_label": "低於原目標",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 4.1216
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 3.96
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 3.8409
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-2.balcony_c2",
+          "title": "2F 高雄厝景觀陽臺",
+          "building_id": "C",
+          "floor_id": "floor-2",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "partial",
+          "allocation_label": "部分配置／原功能或位置有差異",
+          "note": "保留2F唯一洗衣機／240cm晾衣架，補洗槽及防雨上鎖洗劑櫃；前陽台兼空調維修，防雨防墜及合法使用未核。",
+          "room_ids": [
+            "C:floor-2:balcony2f"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-2:balcony2f",
+              "name": "前側陽台／空調維修候選區",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 0,
+                "w_mm": 6000,
+                "h_mm": 3900
+              },
+              "plan_file": "c-route-refined_open_floor-2.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 23.4,
+            "discussion_inset_sqm": 21.8416,
+            "minimum_sqm": 4.0,
+            "target_sqm": 7.0,
+            "state": "discussion-only",
+            "state_label": "僅討論面積達數值／功能未核",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 21.8416
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 21.46
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 21.1759
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [
+            "original-function-or-location-pending"
+          ],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-3.master_c",
+          "title": "主臥室（飯店級配置）",
+          "building_id": "C",
+          "floor_id": "floor-3",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "mapped",
+          "allocation_label": "有對應配置／功能未核",
+          "note": "4m樓高案另壓縮主臥；20m²目標保留，家具操作／完成面未核。",
+          "room_ids": [
+            "C:floor-3:master3f"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-3:master3f",
+              "name": "前側主臥（4m樓高案面積取捨）",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 3900,
+                "w_mm": 6000,
+                "h_mm": 3700
+              },
+              "plan_file": "c-route-refined_open_floor-3.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 22.2,
+            "discussion_inset_sqm": 20.6736,
+            "minimum_sqm": 14.0,
+            "target_sqm": 20.0,
+            "state": "discussion-only",
+            "state_label": "僅討論面積達數值／功能未核",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 20.6736
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 20.3
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 20.0219
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-3.gym",
+          "title": "運動空間",
+          "building_id": "C",
+          "floor_id": "floor-3",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "partial",
+          "allocation_label": "部分配置／原功能或位置有差異",
+          "note": "器材與討論外廓避客房，不表示整房不壓客房或結構傳音已解；原廠前端淨空、梁板與多人操作未核。",
+          "room_ids": [
+            "C:floor-3:fitness3f"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-3:fitness3f",
+              "name": "加深運動區（原廠／隔振仍待核）",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 7600,
+                "w_mm": 2400,
+                "h_mm": 6200
+              },
+              "plan_file": "c-route-refined_open_floor-3.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 14.88,
+            "discussion_inset_sqm": 13.5296,
+            "minimum_sqm": 9.0,
+            "target_sqm": 14.0,
+            "state": "below-target",
+            "state_label": "低於原目標",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 13.5296
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 13.2
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 12.9549
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [
+            "original-function-or-location-pending"
+          ],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-3.bath_c3",
+          "title": "廁所（乾濕分離）",
+          "building_id": "C",
+          "floor_id": "floor-3",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "mapped",
+          "allocation_label": "有對應配置／功能未核",
+          "note": "對齊2F濕區的衛浴提案，原5m²目標保留。",
+          "room_ids": [
+            "C:floor-3:bath3f"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-3:bath3f",
+              "name": "後段衛浴（對齊2F、後牆前移20cm比較）",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 13800,
+                "w_mm": 2400,
+                "h_mm": 2000
+              },
+              "plan_file": "c-route-refined_open_floor-3.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 4.8,
+            "discussion_inset_sqm": 4.1216,
+            "minimum_sqm": 3.6,
+            "target_sqm": 5.0,
+            "state": "below-target",
+            "state_label": "低於原目標",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 4.1216
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 3.96
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 3.8409
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-3.balcony_c3",
+          "title": "3F 主臥通風小陽台",
+          "building_id": "C",
+          "floor_id": "floor-3",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "partial",
+          "allocation_label": "部分配置／原功能或位置有差異",
+          "note": "前側通風／空調維修候選，原後側主臥陽台偏好仍需決策。",
+          "room_ids": [
+            "C:floor-3:terrace3f"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-3:terrace3f",
+              "name": "前側通風／空調維修候選區",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 0,
+                "w_mm": 6000,
+                "h_mm": 3900
+              },
+              "plan_file": "c-route-refined_open_floor-3.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 23.4,
+            "discussion_inset_sqm": 21.8416,
+            "minimum_sqm": 2.5,
+            "target_sqm": 4.0,
+            "state": "discussion-only",
+            "state_label": "僅討論面積達數值／功能未核",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 21.8416
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 21.46
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 21.1759
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [
+            "original-function-or-location-pending"
+          ],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-rf.rf_stair",
+          "title": "梯間屋突",
+          "building_id": "C",
+          "floor_id": "floor-rf",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "mapped",
+          "allocation_label": "有對應配置／功能未核",
+          "note": "樓梯屋突候選，合法性與防火淨高未核。",
+          "room_ids": [
+            "C:floor-4:stair-rf"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-4:stair-rf",
+              "name": "同軸樓梯屋突（合法性待核）",
+              "geometry": {
+                "x_mm": 2400,
+                "y_mm": 8960,
+                "w_mm": 3600,
+                "h_mm": 4840
+              },
+              "plan_file": "c-route-refined_open_floor-4.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 17.424,
+            "discussion_inset_sqm": 16.0992,
+            "minimum_sqm": 4.5,
+            "target_sqm": 6.0,
+            "state": "discussion-only",
+            "state_label": "僅討論面積達數值／功能未核",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 16.0992
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 15.776
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 15.5357
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-rf.rf_tank",
+          "title": "不鏽鋼水塔／加壓 VF800",
+          "building_id": "C",
+          "floor_id": "floor-rf",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "mapped",
+          "allocation_label": "有對應配置／功能未核",
+          "note": "水塔／加壓設備代表量體；承重、錨定與維修未核。",
+          "room_ids": [
+            "C:floor-4:water-tank",
+            "C:floor-4:pump"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-4:water-tank",
+              "name": "水塔候選區",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 13800,
+                "w_mm": 2000,
+                "h_mm": 2500
+              },
+              "plan_file": "c-route-refined_open_floor-4.svg"
+            },
+            {
+              "id": "C:floor-4:pump",
+              "name": "加壓候選區",
+              "geometry": {
+                "x_mm": 2000,
+                "y_mm": 13800,
+                "w_mm": 2000,
+                "h_mm": 2500
+              },
+              "plan_file": "c-route-refined_open_floor-4.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 10.0,
+            "discussion_inset_sqm": 8.9856,
+            "minimum_sqm": 2.4,
+            "target_sqm": 3.0,
+            "state": "discussion-only",
+            "state_label": "僅討論面積達數值／功能未核",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 8.9856
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 8.74
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 8.5579
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-rf.rf_hp",
+          "title": "熱泵熱水器（Haier）",
+          "building_id": "C",
+          "floor_id": "floor-rf",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "mapped",
+          "allocation_label": "有對應配置／功能未核",
+          "note": "熱泵代表量體，原廠／管線／承重未核。",
+          "room_ids": [
+            "C:floor-4:heatpump"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-4:heatpump",
+              "name": "熱泵候選區",
+              "geometry": {
+                "x_mm": 4000,
+                "y_mm": 13800,
+                "w_mm": 2000,
+                "h_mm": 2500
+              },
+              "plan_file": "c-route-refined_open_floor-4.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 5.0,
+            "discussion_inset_sqm": 4.3056,
+            "minimum_sqm": 2.0,
+            "target_sqm": 2.5,
+            "state": "discussion-only",
+            "state_label": "僅討論面積達數值／功能未核",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 4.3056
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 4.14
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 4.0179
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        },
+        {
+          "requirement_id": "C.floor-rf.rf_dry",
+          "title": "曬衣區／活動平台",
+          "building_id": "C",
+          "floor_id": "floor-rf",
+          "requirement_status": "candidate",
+          "priority": "should",
+          "allocation": "mapped",
+          "allocation_label": "有對應配置／功能未核",
+          "note": "曬衣候選區聯集，不等於核定活動平台／棚架；不拿它抵銷一樓工作陽台缺口。",
+          "room_ids": [
+            "C:floor-4:platform",
+            "C:floor-4:laundry-rf"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-4:platform",
+              "name": "屋頂平台（非冷氣集中區）",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 0,
+                "w_mm": 6000,
+                "h_mm": 8960
+              },
+              "plan_file": "c-route-refined_open_floor-4.svg"
+            },
+            {
+              "id": "C:floor-4:laundry-rf",
+              "name": "曬衣候選區（維修動線待核）",
+              "geometry": {
+                "x_mm": 0,
+                "y_mm": 16300,
+                "w_mm": 6000,
+                "h_mm": 1330
+              },
+              "plan_file": "c-route-refined_open_floor-4.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 61.74,
+            "discussion_inset_sqm": 58.2248,
+            "minimum_sqm": 10.0,
+            "target_sqm": 24.0,
+            "state": "discussion-only",
+            "state_label": "僅討論面積達數值／功能未核",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 58.2248
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 57.362
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 56.7191
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown",
+          "door_budget_checks": []
+        }
+      ],
+      "supplementary": [
+        {
+          "requirement_id": "C-parking",
+          "title": "C 原兩汽車＋機車",
+          "building_id": "C",
+          "floor_id": "floor-1",
+          "requirement_status": "unknown",
+          "priority": null,
+          "allocation": "unaccommodated",
+          "allocation_label": "未容納／原需求保留",
+          "note": "公衛／照護比較未容納兩車＋機車；須另選配置／基地，不自動刪需求。",
+          "room_ids": [],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [],
+          "area": {
+            "nominal_union_sqm": null,
+            "discussion_inset_sqm": null,
+            "minimum_sqm": null,
+            "target_sqm": null,
+            "state": "unallocated",
+            "state_label": "未分配",
+            "sensitivity": [],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown"
+        },
+        {
+          "requirement_id": "C-public-wc",
+          "title": "C 訪客不穿孝親房的獨立公衛＋外窗排濕",
+          "building_id": "C",
+          "floor_id": "floor-1",
+          "requirement_status": "unknown",
+          "priority": null,
+          "allocation": "partial",
+          "allocation_label": "部分配置／原功能或位置有差異",
+          "note": "已提案前側公衛與可開高窗，未採用；有效排濕、獨立排氣補氣、防水及救援仍未知，外窗不保證不發黴。",
+          "room_ids": [
+            "C:floor-1:public-bath"
+          ],
+          "related_room_ids": [],
+          "missing_room_ids": [],
+          "rooms": [
+            {
+              "id": "C:floor-1:public-bath",
+              "name": "有可開高窗的訪客公衛（排氣待核）",
+              "geometry": {
+                "x_mm": 4000,
+                "y_mm": 3900,
+                "w_mm": 2000,
+                "h_mm": 1800
+              },
+              "plan_file": "c-route-refined_open_floor-1.svg"
+            }
+          ],
+          "area": {
+            "nominal_union_sqm": 3.6,
+            "discussion_inset_sqm": 3.0176,
+            "minimum_sqm": null,
+            "target_sqm": null,
+            "state": "discussion-only",
+            "state_label": "僅討論面積達數值／功能未核",
+            "sensitivity": [
+              {
+                "inset_mm": 80,
+                "area_sqm": 3.0176
+              },
+              {
+                "inset_mm": 100,
+                "area_sqm": 2.88
+              },
+              {
+                "inset_mm": 115,
+                "area_sqm": 2.7789
+              }
+            ],
+            "finished_or_legal_sqm": null,
+            "additive_across_requirements": false
+          },
+          "flags": [
+            "original-function-or-location-pending"
+          ],
+          "functional_acceptance": "unknown",
+          "professional_acceptance": "unknown"
+        }
+      ],
+      "state_scope": "daily geometry; other use states are not additive area",
+      "counts": {
+        "mapped": 12,
+        "partial": 7,
+        "shared": 1
+      }
+    }
+  ],
+  "verified_requirements": 0,
+  "adopted": false,
+  "requirements_sha256": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066",
+  "area_policy": "Orthogonal union, 80/100/115mm discussion insets; not legal/finished area; never sum shared rows",
+  "ledger_hash": "1e8dffa5ecf7a490bf494027270e5acd66fb550097e5d8878effe2faec2ab4f0"
+}

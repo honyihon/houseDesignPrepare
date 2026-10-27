@@ -1,0 +1,65 @@
+{
+  "schema": "house-b32-service-detail-v1",
+  "status": "comparison-only-not-adopted",
+  "service_settings": "inputs/b32-service-study.json",
+  "service_option": "compact-service",
+  "owner_authorization": "continue-detail-research-only-not-layout-or-target-approval",
+  "care_body_mm": [900, 900],
+  "bathroom": {
+    "fixtures": [
+      {"id": "shower", "catalog": "shower-accessible", "rect_mm": [1255, 13615, 1200, 1200], "rotation_deg": 0, "shared_step_free_floor_proposal": true},
+      {"id": "toilet", "catalog": "toilet", "rect_mm": [3755, 14115, 450, 700], "rotation_deg": 0},
+      {"id": "basin", "catalog": "vanity-60", "rect_mm": [1255, 11485, 600, 450], "rotation_deg": 0}
+    ],
+    "operations": [
+      {"id": "toilet-front", "rect_mm": [3755, 13315, 450, 800]},
+      {"id": "toilet-side-transfer", "rect_mm": [2855, 13615, 900, 1200]},
+      {"id": "basin-front", "rect_mm": [1255, 11935, 900, 800]}
+    ],
+    "turn_circle_mm": [2455, 13950, 750],
+    "entry_center_y_mm": 13650,
+    "entry_nominal_mm": 1130,
+    "door_comparisons": {
+      "single_outward_leaf_mm": 1000,
+      "double_outward_leaf_each_mm": 500,
+      "assumed_leaf_thickness_mm": 45,
+      "status": "envelope-comparisons-only-no-product-selected",
+      "original_sliding_requirement": "retained-unresolved"
+    },
+    "fallen_body_example_mm": [2405, 13350, 1800, 600],
+    "note": "保留原900mm門淨寬及拉門需求。下段120cm零門檻淋浴提案與轉位分時共用地面；不能改成有固定玻璃／高門檻的淋浴間。一般洗手台膝下、扶手、坡度、漏水及倒地救援仍未核。"
+  },
+  "shrine": {
+    "offering_rear_shift_mm": 220,
+    "daily_park_benches": [
+      {"id": "bench-1", "catalog": "movable-bench", "rect_mm": [1080, 10220, 1400, 450], "rotation_deg": 0},
+      {"id": "bench-2", "catalog": "movable-bench", "rect_mm": [1080, 10805, 1400, 450], "rotation_deg": 0}
+    ],
+    "ritual_seated_benches": [
+      {"id": "bench-1", "catalog": "movable-bench", "rect_mm": [115, 9850, 450, 1400], "rotation_deg": 90, "seated_operation_mm": [565, 9850, 600, 1400]},
+      {"id": "bench-2", "catalog": "movable-bench", "rect_mm": [1450, 9850, 450, 1400], "rotation_deg": 90, "seated_operation_mm": [1900, 9850, 600, 1400]}
+    ],
+    "note": "供桌後移220mm至貼神桌前緣，只作家規待決比較；不移神桌或中軸朝街正門。平日兩長凳以全尺寸停放，不當可坐席；祭祀移成兩列，停止家務穿越及搬轎。長凳移位／旋轉及祭祀人數未演練。"
+  },
+  "laundry": {
+    "items": [
+      {"id": "washer", "catalog": "washer", "rect_mm": [115, 16865, 650, 650], "rotation_deg": 0},
+      {"id": "utility-sink", "catalog": null, "rect_mm": [1130, 16915, 600, 600], "rotation_deg": 0}
+    ],
+    "operations": [
+      {"id": "washer-front", "rect_mm": [115, 16065, 900, 800]},
+      {"id": "sink-front", "rect_mm": [1130, 16115, 900, 800]}
+    ],
+    "rear_high_window_proposal": {"width_mm": 1200, "center_x_mm": 1250, "sill_mm": 1200, "height_mm": 900, "rights_and_effective_ventilation": "unknown"},
+    "note": "洗衣機與洗槽移靠後牆，讓入口先轉向再操作，尺寸不縮。後高窗只是避開設備的研究，不能視為合法外窗／外陽台；有效換氣、防雨、補氣、防水與獨立污排水待設計。"
+  },
+  "gates": {
+    "offering_table_abutting_altar_owner_and_family": "unknown",
+    "bench_parking_seating_and_daily_time_separation": "unknown",
+    "sliding_door_product_rescue_and_fire": "unknown",
+    "care_transfer_rails_knee_space_and_rehearsal": "unknown",
+    "storage_target_tradeoff": "unknown",
+    "rear_access_window_rights_and_moisture_control": "unknown",
+    "palanquin_assembled_dimensions_and_people": "unknown"
+  }
+}

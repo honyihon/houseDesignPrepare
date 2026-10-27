@@ -1,0 +1,90 @@
+{
+  "schema": "house-project-status-index-v1",
+  "updated_at": "2026-10-27",
+  "authority": "navigation-and-work-index-only-not-design-requirement-or-approval",
+  "default_package": "current-basis",
+  "packages": [
+    {
+      "id": "current-basis",
+      "label": "ABC整棟討論基準（C照護續版另讀）",
+      "role": "discussion-basis",
+      "document": "Docs/current-design-basis-v1.md",
+      "entry": "structured/candidates/current-design-basis.html",
+      "viewer": "structured/candidates/current-design-basis-3d.html",
+      "report": "structured/candidates/current-design-basis/review.json",
+      "files_command": "node scripts/check_current_design_playwright.cjs --preflight",
+      "owner_reported_run": "house-current-design-cli-ne3nbQ",
+      "owner_reported_status": "passed",
+      "raw_result": null,
+      "evidence_scope": "owner-console-report-only-not-current-source-verification"
+    },
+    {
+      "id": "b-rear-right",
+      "label": "B一樓後巷優先／前門備案對照",
+      "role": "first-floor-comparison-not-whole-building-adoption",
+      "document": "Docs/b32-rear-right-v1.md",
+      "entry": "structured/candidates/b32-rear-right.html",
+      "viewer": "structured/candidates/b32-rear-right-3d.html",
+      "report": "structured/candidates/b32-rear-right/review.json",
+      "files_command": "node scripts/check_b32_rear_right_playwright.cjs --preflight",
+      "owner_reported_run": "house-b32-right-cli-Lnm9eK",
+      "owner_reported_status": "passed",
+      "raw_result": null,
+      "evidence_scope": "historical-document-and-owner-report-not-current-source-verification"
+    },
+    {
+      "id": "c-care-layout",
+      "label": "C照護續版：側牆盆／兩片門比較",
+      "role": "care-comparison-not-merged-into-current-basis",
+      "document": "Docs/c-care-bath-layout-v1.md",
+      "entry": "structured/candidates/c-care-bath-layout.html",
+      "viewer": "structured/candidates/c-care-bath-layout-3d.html",
+      "report": "structured/candidates/c-care-bath-layout/review.json",
+      "files_command": "node scripts/check_c_care_bath_layout_playwright.cjs --preflight",
+      "owner_reported_run": "house-c-bath-layout-cli-3UM6jA",
+      "owner_reported_status": "passed",
+      "raw_result": null,
+      "evidence_scope": "owner-console-report-only-not-current-source-verification"
+    },
+    {
+      "id": "c-care-products",
+      "label": "C照護選品與安全足尺準備",
+      "role": "data-only-no-new-viewer",
+      "document": "Docs/c-care-bath-readiness-v1.md",
+      "entry": "structured/candidates/c-care-bath-readiness/summary.md",
+      "viewer": null,
+      "report": "structured/candidates/c-care-bath-readiness/review.json",
+      "files_command": ".venv/bin/python -B scripts/export_c_care_bath_readiness.py --check",
+      "owner_reported_run": null,
+      "owner_reported_status": null,
+      "raw_result": null,
+      "evidence_scope": "bounded-data-study-not-product-or-care-approval"
+    },
+    {
+      "id": "legacy-abc",
+      "label": "原ABC共用配置（歷史對照，舊B非推薦採用）",
+      "role": "history-reference",
+      "document": "Docs/abc-space-efficiency-v1.md",
+      "entry": "AbuildingView.html",
+      "viewer": "structured/candidates/model3d.html",
+      "report": null,
+      "files_command": "node scripts/check_windows_playwright.cjs --preflight",
+      "owner_reported_run": "house-design-cli-O9qsqw",
+      "owner_reported_status": "passed",
+      "raw_result": null,
+      "evidence_scope": "historical-owner-report-not-current-source-verification"
+    }
+  ],
+  "work_items": [
+    {"id": "NAV-001", "priority": 1, "status": "indexed-not-design-adoption", "title": "統一入口，保留ABC基準與C續版的分案邊界"},
+    {"id": "WIN-001", "priority": 1, "status": "source-fixed-frozen-drawings-not-regenerated", "title": "開窗原始意圖與有效繪圖狀態分離"},
+    {"id": "QA-001", "priority": 1, "status": "awaiting-original-results-and-source-match", "title": "回收原始QA證據；來源更動先處理重建，不盲跑瀏覽器"},
+    {"id": "PROD-001", "priority": 1, "status": "shortlisted-not-selected", "title": "一般衛浴三組候選，不寫入正式選品或圖面"},
+    {"id": "A-CARE-001", "priority": 2, "status": "needs-door-and-finished-dimension-study", "title": "A一樓照護門組、完整動線及完成面預算"},
+    {"id": "A-SUITE-001", "priority": 2, "status": "owner-choice-required-not-adopted", "title": "A二樓主臥套衛與原公衛、面積、收納取捨"},
+    {"id": "B-CARRY-001", "priority": 2, "status": "needs-measurements-rights-and-engineering", "title": "B實物搬轎、後巷／後窗及機電缺口，保留前門備案"},
+    {"id": "C-PRODUCT-001", "priority": 2, "status": "needs-supplier-data-and-safe-mockup", "title": "C四類商品16項資料及安全足尺驗證"},
+    {"id": "MEP-SITE-001", "priority": 2, "status": "needs-site-and-professional-evidence", "title": "三棟基地、停車、屋頂與機電工程整合"},
+    {"id": "BACKUP-001", "priority": 1, "status": "not-committed-in-this-batch", "title": "檢查內容與隱私後另行明確確認commit／push範圍"}
+  ]
+}

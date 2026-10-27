@@ -7,6 +7,8 @@ import re
 from collections import deque
 from typing import Any
 
+from lib.model3d_openings import is_shrine_room
+
 
 def attach_tour(buildings: list[dict[str, Any]]) -> None:
     from lib.model3d_review import STATUS, proposal_features
@@ -132,7 +134,7 @@ def _openings(cells: list[dict], width: float, depth: float, geometry_key: str, 
             # The ceremonial brief requires a solid altar backing wall.
             faces = (
                 ("left", "right", "front")
-                if re.search(r"神明|神桌", cell["name"])
+                if is_shrine_room(cell)
                 else ("rear", "left", "right", "front")
             )
             features["window_face"] = next((f for f in faces if f in exterior), None)

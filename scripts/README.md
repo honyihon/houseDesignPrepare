@@ -1,5 +1,66 @@
 # House Design Workflows
 
+## 目前唯一導覽與唯讀盤點（2026-10-27）
+
+先看[專案入口與待辦](../Docs/project-status-v1.md)、[QA證據／上游更新索引](../Docs/qa-evidence-index-v1.md)與[一般衛浴三組候選](../Docs/abc-standard-bath-shortlist-v3.md)。ABC基準與後續C照護續版仍分案，所有採用／專業條件不變。
+
+```bash
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/check_project_status.py
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/check_project_status.py --check --json
+```
+
+不寫檔、不啟動生成器或瀏覽器；`--check`遇來源變更預期exit 1。共享開窗重評估已修來源，但既有HTML／SVG／3D與報告未重產，因此下方歷史末端preflight可能被舊上游雜湊攔截。不要反覆重跑、修改預期hash或沿用舊passed；先按QA索引確認重建範圍，完整產圖仍交屋主另終端。純文件／索引維護不新增畫面驗收任務。
+
+## 目前討論基準／局部整棟深化（2026-10-20）
+
+[新版入口與取捨](../Docs/current-design-basis-v1.md)：五個獨立版本／九個狀態，A套衛取捨、B後巷優先／前門備案上層家具、C已接受廚房與單機家務；原ABC、舊比較、需求及封存不覆寫。輸出112列最新需求對帳、同源HTML／SVG／3D與濕區／機電關係示意，未採用／專業未核。
+
+以下各自20秒上限、逐項執行；只做既有快照局部修改與向量序列化／小範圍測試，不啟動場景或瀏覽器：
+
+```bash
+timeout 20s .venv/bin/python scripts/export_current_design_basis.py
+timeout 20s .venv/bin/python -m pytest -q tests/test_current_design_basis.py
+timeout 20s node tests/js/current-design-playwright.test.cjs
+timeout 20s node scripts/check_current_design_playwright.cjs --preflight
+```
+
+畫面驗收交由屋主另開Windows PowerShell執行，一次一項，不背景重跑：
+
+```powershell
+node '\\wsl.localhost\Ubuntu\root\workspace\houseDesignPrepare\scripts\check_current_design_playwright.cjs'
+```
+
+預期`5 options / 9 states / 36 floors / 340 rooms / 341 items`，是比較快照加總，不是新增實物件數。原B一樓展示v2的Lnm9eK結果只保留為其自身證據，不套用到本包；新版仍須來源一致的Windows結果及目視。
+
+## ABC合理性續修／C三層整合比較（2026-10-15）
+
+本輪修候選窗跨門／越牆、A3維修入口與B32客房後窗。C新增未採用的[三層整合比較](../structured/candidates/c-integrated-options.html)：有窗公衛、側牆床、前客房與運動討論外廓連動；3／3.6／4m三案，合計12層／117區／141件，與ABC主案12／112／128分開。[改動、面積缺口、前修風險與待決](../Docs/abc-rationality-followup-v1.md)不能省略。
+
+生成需按順序逐項執行，每項限20秒，不並行；逾時即停止本次嘗試：
+
+```bash
+timeout 20s .venv/bin/python scripts/export_model_3d.py
+timeout 20s .venv/bin/python scripts/export_c1f_options.py
+timeout 20s .venv/bin/python scripts/export_bc_options.py
+timeout 20s .venv/bin/python scripts/export_arcade_capacity.py
+timeout 20s .venv/bin/python scripts/export_preparation_review.py
+timeout 20s .venv/bin/python scripts/export_b32_entry_options.py
+timeout 20s .venv/bin/python scripts/export_c_integrated_options.py
+```
+
+新增Windows畫面驗收：`node '\\wsl.localhost\Ubuntu\root\workspace\houseDesignPrepare\scripts\check_c_integrated_playwright.cjs'`。與主案、B32分開一次只跑一項；`--preflight`僅檔案檢查，不啟動瀏覽器。C比較不改ABC、B32、原需求或封存；窗與運動虛框初篩不代表採光、排濕、承重、隔振與家規全部通過。
+
+入口／手機展示續修不改格局：B32新增entry access revision 1，依實際成對門洞、側緣暫留與同室衛浴接縫檢查入口；QA revision 3新增8組房間資訊操作，至少18張截圖。C display／QA revision 2新增三組390×844本體投影角點及最小像素檢查（主要設備／床40／96px，其餘12／28px），不能以標籤或自報相機分數代替。`aQLPKX`、`cWpT6z`、`4J5w7M`是此續修前的結果，不能沿用；仍以Windows目視確認遮擋與可讀性。
+
+僅檔案／座標／投影數學的輕量回歸（逐項執行，各20秒上限；不啟動WebGL）：
+
+```bash
+timeout 20s .venv/bin/python -m pytest -q tests/test_b32_entry_access.py
+timeout 20s node tests/js/b32-entry-access.test.cjs
+timeout 20s node tests/js/model3d-readable-camera.test.cjs
+timeout 20s node tests/js/c-integrated-playwright.test.cjs
+```
+
 ## 資源安全：重型驗收另開終端機執行
 
 目前主案[A收納／乾區續修](../Docs/a-storage-dry-zone-v2.md)為12層／112區／128件，增加的是1件書櫃；下列舊案章節的127件為當時主案，比較案本身沒有採用新布局。先跑Windows主案CLI，不自動並行全套測試。
@@ -36,7 +97,7 @@ node scripts/check_b32_entry_playwright.cjs --preflight
 
 Windows PowerShell執行 `node '\\wsl.localhost\Ubuntu\root\workspace\houseDesignPrepare\scripts\check_b32_entry_playwright.cjs'`。沿用已安裝的Playwright CLI／Edge；結果在新TEMP，不安裝、不採用、不把舊七案passed套用新圖。前門備案的收納位置與通行暫留不同，不能只保留一個後門案並宣稱前門也已驗證可搬。
 
-平面展示v2加入獨立放大、縮小、讀字／整層還原與原生捲動；配置仍v1、八張SVG不變。CLI會顯示 `B32 display revision: 2`，新增兩案×桌機／手機直橫六組閱讀操作及至少16張截圖。`o1kJdw`的v1 passed保留作歷史證據，不涵蓋新介面。
+平面展示v2加入獨立放大、縮小、讀字／整層還原與原生捲動；配置仍v1、八張SVG幾何不變。CLI會顯示 `B32 display revision: 2`，包含兩案×桌機／手機直橫六組閱讀操作；入口續修後為QA revision 3、至少18張截圖。`o1kJdw`的v1 passed保留作歷史證據，不涵蓋新介面。
 
 ## ABC 前期整合比較／會談補充（未採用）
 

@@ -1,0 +1,66 @@
+{
+  "schema": "house-b32-service-study-v1",
+  "project_id": "kaohsiung-three-house-compound",
+  "status": "comparison-only-not-adopted",
+  "source": "structured/candidates/b32-entry-options/layout.js",
+  "base_settings": "inputs/b32-entry-options.json",
+  "frame_mm": [6000, 17630],
+  "frontage_depth_mm": 3900,
+  "insets_mm": [80, 100, 115],
+  "common": {
+    "work_front_y_mm": 15270,
+    "work_width_mm": 2500,
+    "dry_backing_rect_mm": [2500, 11370, 1820, 1600],
+    "washer_catalog": "washer",
+    "utility_sink": {"width_mm": 600, "depth_mm": 600, "height_mm": 850, "basis": "generic-planning-not-selected-product"},
+    "laundry_items": [
+      {"id": "washer", "rect_mm": [80, 15900, 650, 650]},
+      {"id": "utility-sink", "rect_mm": [80, 16700, 600, 600]}
+    ],
+    "laundry_operation_rects_mm": [[730, 15900, 800, 650], [680, 16700, 800, 600]],
+    "palanquin_park_origin_mm": [4560, 15700],
+    "nominal_housework_opening": "open-seam-only-no-certified-fire-door"
+  },
+  "options": [
+    {"id": "compact-service", "label": "約1m家務通道比較（優先討論，未採用）", "passage_width_mm": 1140, "bath_end_y_mm": 14930,
+     "position": "preferred-for-discussion-not-adoption", "note": "80mm假設淨寬約980mm，只研究家務進出；不是1200mm照護路線或消防核定。儲藏低於10.5m²目標。"},
+    {"id": "wide-service", "label": "120cm討論淨寬比較（不建議直接採用）", "passage_width_mm": 1360, "bath_end_y_mm": 15100,
+     "position": "not-recommended-thin-storage", "note": "80mm假設時通道1200mm，但儲藏在100／115mm敏感度低於原9m²下限；不能用薄牆硬湊。"},
+    {"id": "storage-first", "label": "保儲藏目標比較（淋浴面積取捨，未採用）", "passage_width_mm": 1140, "bath_end_y_mm": 14630,
+     "position": "alternative-bath-target-unmet", "note": "較接近保住10.5m²儲藏目標，但浴室低於原7m²目標，不自動降低需求。"}
+  ],
+  "idf": {
+    "catalog": "rack-15u",
+    "first_floor_priority": "retained-unresolved",
+    "under_stair": {"status": "section-and-fire-evidence-required-not-installed", "finished_headroom_mm": null, "reason": "不得把樓梯平面投影當可用壁龕；剖面、維修立位、防火與散熱未核。"},
+    "upper_dry_backup": {"floor_id": "floor-3", "room_id": "B:floor-3:buffer3", "body_rect_mm": [5000, 13360, 600, 600],
+      "front_service_rect_mm": [5000, 12560, 600, 800], "mount_bottom_mm": 1000,
+      "status": "floor-change-owner-decision-required", "note": "3F乾式彈性預留只作備選，不算原1F IDF需求已完成；管線長度、散熱、防火及固定未核。"}
+  },
+  "roof": {
+    "status": "equipment-body-and-assumed-service-envelopes-only",
+    "route_rect_mm": [2480, 11370, 1000, 6180],
+    "items": [
+      {"id": "tank", "catalog": "water-tank", "rect_mm": [4200, 12050, 1100, 1100]},
+      {"id": "pump", "catalog": "pressure-pump", "rect_mm": [4200, 14350, 800, 600]},
+      {"id": "heat-pump", "catalog": "heat-pump", "rect_mm": [700, 12050, 900, 800]}
+    ],
+    "assumed_service_each_side_mm": 600,
+    "pump_over_sleeping_rooms": "unresolved-noise-vibration-and-structure-not-approved",
+    "manufacturer_clearances": null,
+    "water_load_lower_bound_kg": 1000,
+    "note": "不進神明堂整廳上方保護區，不占既有室外機維修帶；通道1000mm是討論量不是法定淨寬。水塔1000L只計水重約1噸，另有塔體、基座、動載與地震；泵浦投影睡眠區是明列待解，不當作選址已核。"
+  },
+  "gates": {
+    "owner_storage_target_tradeoff": "unknown",
+    "owner_laundry_route_width_and_first_floor_use": "unknown",
+    "owner_shrine_seating_and_daily_crossing": "unknown",
+    "architect_fire_separation_and_openings": "unknown",
+    "care_bathroom_layout_and_rescue": "unknown",
+    "rear_route_and_window_rights": "unknown",
+    "idf_location_fire_heat_cabling": "unknown",
+    "roof_structure_and_pump_vibration": "unknown",
+    "plumbing_drainage_and_product_manuals": "unknown",
+    "assembled_transport_and_people_rehearsal": "unknown"
+  }
+}

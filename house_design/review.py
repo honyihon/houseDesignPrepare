@@ -7,6 +7,7 @@ from typing import Any
 
 from house_design.contracts import REVIEW_STATUSES, ROOT, ContractError, read_json, stable_hash, utc_now, write_json
 from house_design.coordination import compare_coordination, coordination_html, coordination_review
+from house_design.drawing_evidence import build_drawing_evidence
 from house_design.drawing_readiness import _valid_bbox, _valid_polygon, assess_model3d_readiness
 from house_design.drawings import VERIFIED_COORDINATE_STATUSES, compare_revisions, load_revision
 from house_design.intake import (
@@ -27,6 +28,7 @@ from house_design.predesign import (
     build_predesign_report,
 )
 from house_design.revision_integrity import REVISION_ROOT
+from house_design.site_evidence import assess_parcel_area
 
 RULE_PACK_PATH = ROOT / "rules/kaohsiung_review_rules.json"
 REVIEW_ROOT = ROOT / "structured/reviews"
@@ -99,22 +101,23 @@ def _project_findings(project: dict[str, Any]) -> list[dict[str, Any]]:
         )
     for parcel in actual_parcels(project):
         parcel_id = str(parcel.get("id"))
-        area = parcel.get("parcel_area_ping")
+        area = assess_parcel_area(parcel)
         findings.append(
             _finding(
                 rule_id="SITE-PARCEL-AREA",
-                status="pass" if isinstance(area, (int, float)) and area > 0 else "unknown",
+                status=area["status"],
                 domain="site",
                 title=f"{parcel_id} 基地面積",
                 message=(
-                    f"正式資料記錄此筆基地約 {area:.1f} 坪；此值只代表基地面積，不代表可建築面積。"
-                    if isinstance(area, (int, float))
-                    else "尚未提供基地面積。"
+                    f"本筆地籍面積 {area['area_sqm']:.2f} m²（約 {area['derived_area_ping']:.2f} 坪）"
+                    "的紀錄、換算及來源綁定完整；不代表可建築面積或專業批准。"
+                    if area["status"] == "pass"
+                    else "；".join(issue["message"] for issue in area["issues"])
                 ),
                 responsible_role="屋主／建築師",
                 next_action="取得地籍謄本或測量成果後，以實際平方公尺更新並保留來源。",
                 applies_to={"parcel_id": parcel_id, "building_id": parcel_id},
-                evidence=[{"kind": "selected_site_fact", "path": "inputs/project.json"}],
+                evidence=[{"kind": "selected_site_fact", "field": "parcel_area_evidence", "assessment": area}],
             )
         )
         coverage = parcel.get("building_coverage_ratio")
@@ -740,17 +743,11 @@ def build_review(
     coordination_path: Path | None = None,
     previous_coordination_path: Path | None = None,
     planning_register_path: Path | None = None,
+    physical_items_path: Path | None = None,
 ) -> dict[str, Any]:
     project = read_json(project_path)
     requirements = read_json(requirements_path)
     rule_pack = read_json(rule_pack_path)
-    planning = None
-    if planning_register_path is not None or project_path.resolve() == PROJECT_PATH.resolve():
-        from house_design.planning import REGISTER_PATH, build_risk_review
-
-        planning = build_risk_review(project_path=project_path, requirements_path=requirements_path,
-                                     register_path=planning_register_path or REGISTER_PATH,
-                                     rules_path=predesign_rule_pack_path)
     manifest, model = load_revision(revision_id, revision_root)
     if previous_coordination_path and not previous_revision:
         raise ContractError("--previous-coordination requires --previous")
@@ -758,6 +755,19 @@ def build_review(
         model, read_json(coordination_path) if coordination_path else None,
         manifest["content_hash"], requirements,
     )
+    drawing_evidence = build_drawing_evidence(
+        project=project, requirements=requirements, manifest=manifest, model=model, coordination=coordination,
+    )
+    planning = None
+    if planning_register_path is not None or project_path.resolve() == PROJECT_PATH.resolve():
+        from house_design.planning import REGISTER_PATH, build_risk_review
+
+        planning = build_risk_review(
+            project_path=project_path, requirements_path=requirements_path,
+            register_path=planning_register_path or REGISTER_PATH, rules_path=predesign_rule_pack_path,
+            drawing_snapshot=drawing_evidence, expected_revision_id=revision_id, revision_root=revision_root,
+            physical_items_path=physical_items_path if physical_items_path is not None else project_path.parent / "physical-items.json",
+        )
     coordination_changes = None
     if previous_revision:
         previous_manifest, previous_model = load_revision(previous_revision, revision_root)
@@ -840,6 +850,7 @@ def build_review(
         "findings": findings,
         "comparison": comparison,
         "coordination": coordination,
+        "drawing_evidence": drawing_evidence,
         "coordination_changes": coordination_changes,
         "planning": planning,
         "model": model,
@@ -946,6 +957,8 @@ def write_review(
     directory = output_root / revision_id
     directory.mkdir(parents=True, exist_ok=True)
     write_json(directory / "report.json", report)
+    if report.get("drawing_evidence"):
+        write_json(directory / "drawing-evidence.json", report["drawing_evidence"])
     if report.get("planning"):
         from house_design.planning import write_risk_review
 

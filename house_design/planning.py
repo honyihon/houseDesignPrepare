@@ -12,6 +12,8 @@ from pathlib import Path
 from typing import Any
 
 from house_design.contracts import ROOT, ContractError, read_json, stable_hash, utc_now, write_json
+from house_design.drawing_evidence import SCHEMA as DRAWING_EVIDENCE_SCHEMA
+from house_design.drawing_evidence import check_scope_matches, validate_drawing_evidence
 from house_design.predesign import PHASES
 
 REGISTER_PATH = ROOT / "inputs/planning-register.json"
@@ -161,6 +163,48 @@ def _public_item(item: dict[str, Any]) -> dict[str, Any]:
     return result
 
 
+def _validated_drawing_snapshot(
+    drawing: dict[str, Any] | None, *, project: dict[str, Any], requirements: dict[str, Any],
+    revision_root: Path, expected_revision_id: str | None,
+) -> dict[str, Any] | None:
+    if drawing is None:
+        return None
+    try:
+        if drawing.get("schema") == DRAWING_EVIDENCE_SCHEMA:
+            snapshot = drawing
+        else:
+            # Legacy --drawing-report is still accepted, but neither signoff
+            # nor final release is evidence. Verify the envelope before adapting.
+            from house_design.review import _report_hash_payload
+
+            if (
+                drawing.get("schema") != "house-review-report-v1"
+                or drawing.get("project", {}).get("project_id") != project["project_id"]
+                or stable_hash(_report_hash_payload(drawing)) != drawing.get("report_hash")
+            ):
+                return None
+            snapshot = drawing.get("drawing_evidence")
+            if snapshot is None:
+                # An old final report has no full project/requirements binding.
+                # Keep it readable, but require regeneration rather than binding
+                # its old results to today's inputs on the caller's behalf.
+                return None
+            if (
+                snapshot["revision"] != {k: drawing["revision"].get(k) for k in ("revision_id", "content_hash")}
+                or snapshot["model_hash"] != stable_hash(drawing["model"])
+                or stable_hash(snapshot["coordination"]) != stable_hash(drawing["coordination"])
+            ):
+                return None
+        if validate_drawing_evidence(
+            snapshot, project=project, requirements=requirements, revision_root=revision_root,
+            expected_revision_id=expected_revision_id,
+        ):
+            return copy.deepcopy(snapshot)
+    except (ContractError, KeyError, TypeError, ValueError, AttributeError):
+        pass
+    return None
+
+
 def build_risk_review(
     *,
     project_path: Path = ROOT / "inputs/project.json",
@@ -168,16 +212,22 @@ def build_risk_review(
     register_path: Path = REGISTER_PATH,
     rules_path: Path = RULES_PATH,
     drawing_report_path: Path | None = None,
+    drawing_snapshot: dict[str, Any] | None = None,
+    expected_revision_id: str | None = None,
     previous_report_path: Path | None = None,
     revision_root: Path = ROOT / "inputs/revisions",
-    physical_items_path: Path = ROOT / "inputs/physical-items.json",
+    physical_items_path: Path | None = None,
 ) -> dict[str, Any]:
+    if drawing_report_path is not None and drawing_snapshot is not None:
+        raise ContractError("Choose one drawing_report_path or drawing_snapshot, not both")
     project, requirements, rules = read_json(project_path), read_json(requirements_path), read_json(rules_path)
     phase = project.get("stage")
     if phase not in PHASES:
         raise ContractError("Project stage must be a supported planning phase")
     reqs = {r["id"]: r for r in requirements.get("requirements", [])}
     rule_map = {r["rule_id"]: r for r in rules.get("rules", [])}
+    if physical_items_path is None:
+        physical_items_path = project_path.parent / "physical-items.json"
     physical = read_json(physical_items_path) if physical_items_path.is_file() else {"items": []}
     physical_map = {i["id"]: i for i in physical.get("items", [])}
     missing_register = not register_path.is_file()
@@ -192,29 +242,14 @@ def build_risk_review(
     owner_records = owner_summary(project["project_id"], project_path.parent / "owner-records.json")
     if register["project_id"] != project.get("project_id"):
         raise ContractError("Planning register belongs to another project")
-    drawing = read_json(drawing_report_path) if drawing_report_path else None
-    checks = {}
-    drawing_verified = False
-    if drawing:
-        # Review hashes bind the snapshot; never import its signoff or overall release conclusion.
-        from house_design.review import _report_hash_payload
-
-        drawing_verified = (
-            drawing.get("schema") == "house-review-report-v1"
-            and drawing.get("project", {}).get("project_id") == project["project_id"]
-            and stable_hash(_report_hash_payload(drawing)) == drawing.get("report_hash")
-        )
-        if drawing_verified:
-            from house_design.drawings import load_revision
-
-            try:
-                manifest, model = load_revision(drawing.get("revision", {}).get("revision_id", ""), revision_root)
-                drawing_verified = manifest["content_hash"] == drawing["revision"].get("content_hash") and stable_hash(
-                    model
-                ) == stable_hash(drawing.get("model"))
-            except (ContractError, KeyError, TypeError):
-                drawing_verified = False
-        checks = {c["check_id"]: c for c in drawing.get("coordination", {}).get("findings", [])}
+    drawing = read_json(drawing_report_path) if drawing_report_path is not None else drawing_snapshot
+    snapshot = _validated_drawing_snapshot(
+        drawing, project=project, requirements=requirements, revision_root=revision_root,
+        expected_revision_id=expected_revision_id,
+    )
+    drawing_verified = snapshot is not None
+    evidence_hash = snapshot["evidence_hash"] if snapshot else None
+    checks = {c["check_id"]: c for c in snapshot["coordination"]["findings"]} if snapshot else {}
     items, gaps = [], []
     raw_items = {i["id"]: i for i in register["items"]}
     linked = set()
@@ -230,7 +265,7 @@ def build_risk_review(
             rules={r: rule_map.get(r) for r in item["rule_ids"]},
             dependencies={i: _public_item(raw_items[i]) for i in item["dependencies"] if i in raw_items},
             physical_item=physical_map.get(item.get("physical_item_id")),
-            drawing_hash=drawing.get("report_hash") if drawing else None,
+            drawing_hash=evidence_hash,
         )
         item["context_hash"] = stable_hash(context)
         issues = []
@@ -262,11 +297,14 @@ def build_risk_review(
         item["check_results"] = []
         for cid in item["check_ids"]:
             check = checks.get(cid)
+            scoped = bool(check and check_scope_matches(item, check, requirements))
             item["check_results"].append(
-                {"check_id": cid, "status": check.get("status") if check and drawing_verified else "unknown"}
+                {"check_id": cid, "status": check.get("status") if check and drawing_verified and scoped else "unknown"}
             )
             if not drawing_verified or not check:
                 issues.append(f"尚未檢查／缺可信本版報告：{cid}")
+            elif not scoped:
+                issues.append(f"指定檢查的棟層／需求範圍與此情境不符：{cid}")
             elif check["status"] != "pass":
                 issues.append(f"指定檢查未通過：{cid} ({check['status']})")
         proofs = item["evidence"]
@@ -350,7 +388,17 @@ def build_risk_review(
             "register": stable_hash(register),
             "rules": stable_hash(rules),
             "physical_items": stable_hash(physical),
-            "drawing_report": drawing.get("report_hash") if drawing_verified else None,
+            # Compatibility key now aliases the non-circular evidence hash,
+            # never the hash of a final report which itself includes planning.
+            "drawing_report": evidence_hash,
+            "drawing_evidence": evidence_hash,
+        },
+        "drawing_evidence": {
+            "requested": drawing is not None,
+            "verified": drawing_verified,
+            "revision_id": snapshot["revision"]["revision_id"] if snapshot else expected_revision_id,
+            "evidence_hash": evidence_hash,
+            "policy": "本版套繪證據須可重算；單項 pass 不取代具名情境驗收或專業簽核。",
         },
         "changes": [],
         "owner_records": owner_records,

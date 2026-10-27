@@ -14,6 +14,8 @@ from collections import deque
 from pathlib import Path
 from typing import Any
 
+from lib.model3d_openings import is_shrine_room, review_window, set_window_request
+
 REVIEW_FILE = Path(__file__).resolve().parents[2] / "inputs/concept-layout-review.json"
 STATUS = "bounded-proposal-not-authoritative"
 
@@ -250,15 +252,16 @@ def proposal_features(floor: dict) -> None:
                 contact = _contacts(g, other["tour_mm"])
                 if contact and other["is_outdoor"] and contact[0] in faces:
                     faces[contact[0]] = True
-            preferred = spec.get("window_face")
             features["window_face"] = (
-                preferred if faces.get(preferred) else next((face for face in ("rear", "front") if faces[face]), None)
+                spec["window_face"] if "window_face" in spec
+                else next((face for face in ("rear", "front") if faces[face]), None)
             )
-            if "神明" in cell["name"] and features["window_face"] == "rear":
-                features["window_face"] = None
         features["window_ratio"] = spec.get("window_ratio", 0.5)
         features["window_sill_mm"] = 2100 if cell["kind"] == "bath" else 900
         features["window_height_mm"] = 500 if cell["kind"] == "bath" else 1200
+        # A proposal rebuild replaces the request using current geometry/spec,
+        # never a previously rejected or cancelled review's requested_face.
+        set_window_request(cell, features["window_face"])
         for reservation in spec.get("clearance_reservations", []):
             box = _box(reservation["rect"], f"{cell['id']} clearance")
             if box["x_mm"] + box["w_mm"] > g["w_mm"] or box["y_mm"] + box["h_mm"] > g["h_mm"]:
@@ -455,7 +458,7 @@ def proposal_features(floor: dict) -> None:
     while queue:
         key = queue.popleft()
         for neighbor in graph[key]:
-            if neighbor not in reached and _common_access(cells[neighbor]) and "神明" not in cells[neighbor]["name"]:
+            if neighbor not in reached and _common_access(cells[neighbor]) and not is_shrine_room(cells[neighbor]):
                 reached.add(neighbor)
                 queue.append(neighbor)
     for key, cell in cells.items():
@@ -470,6 +473,17 @@ def proposal_features(floor: dict) -> None:
         cell["tour_features"]["access_reason"] = (
             "公共區相鄰／套衛提案；非已驗證通行。梯段、門扇、轉位、雨天及完成面淨空待核。"
         )
+        g = cell["tour_mm"]
+        spans = {"front": [], "rear": []}
+        if g["y_mm"] == 0:
+            spans["front"].append((g["x_mm"], g["x_mm"] + g["w_mm"]))
+        if g["y_mm"] + g["h_mm"] == floor["tour_depth_mm"]:
+            spans["rear"].append((g["x_mm"], g["x_mm"] + g["w_mm"]))
+        for other in cells.values():
+            contact = _contacts(g, other["tour_mm"])
+            if other["is_outdoor"] and contact and contact[0] in spans:
+                spans[contact[0]].append((contact[1], contact[2]))
+        review_window(cell, floor, spans)
 
 
 def review_checks(

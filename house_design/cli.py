@@ -138,13 +138,24 @@ def build_parser() -> argparse.ArgumentParser:
         command = predesign_sub.add_parser(name, help="Generate public offline owner tools")
         command.add_argument("--root", default=".")
         command.add_argument("--output-root")
+    ledger = predesign_sub.add_parser("requirement-ledger", help="Reconcile all requirement IDs with existing concept snapshots; never adopts layouts")
+    ledger.add_argument("--root", default=".")
+    ledger.add_argument("--output-root")
+    services = predesign_sub.add_parser("b32-service-study", help="Small isolated B32 service-zone comparisons; no renderer or adoption")
+    services.add_argument("--root", default=".")
+    services.add_argument("--output-root")
+    service_detail = predesign_sub.add_parser("b32-service-detail", help="Isolated B32 fixture, seating and route research; no renderer or adoption")
+    service_detail.add_argument("--root", default=".")
+    service_detail.add_argument("--output-root")
     risk = predesign_sub.add_parser("risk-review", help="Review public scenario decisions, missing coverage and phase deadlines")
     risk.add_argument("--project", default="inputs/project.json")
     risk.add_argument("--requirements", default="inputs/requirements.json")
     risk.add_argument("--register", default="inputs/planning-register.json")
     risk.add_argument("--rules", default="rules/predesign_readiness_rules.json")
-    risk.add_argument("--physical-items", default="inputs/physical-items.json")
-    risk.add_argument("--drawing-report", help="Selected formal review JSON; missing/untrusted checks remain unknown")
+    risk.add_argument("--physical-items", help="Defaults to physical-items.json beside --project, not another project's inventory")
+    risk.add_argument("--drawing-report", "--drawing-evidence", dest="drawing_report",
+                      help="Formal review or independent drawing-evidence JSON; untrusted checks remain unknown")
+    risk.add_argument("--revision", help="Require evidence for this exact revision; never guess the latest revision")
     risk.add_argument("--previous-report", help="Hash-verified earlier risk-review JSON to track removed/changed items")
     risk.add_argument("--revision-root", default="inputs/revisions")
     risk.add_argument("--output-root", default="structured/predesign")
@@ -275,6 +286,7 @@ def build_parser() -> argparse.ArgumentParser:
     review_run.add_argument("--output-root", default="structured/reviews")
     review_run.add_argument("--signoff")
     review_run.add_argument("--planning-register", help="Public scenario register; does not confirm owner requirements")
+    review_run.add_argument("--physical-items", help="Planning physical inventory; defaults to physical-items.json beside --project")
     review_run.add_argument("--skip-pdf", action="store_true")
     return parser
 
@@ -358,6 +370,29 @@ def main() -> None:
         elif args.command == "intake" and args.intake_command in {"owner-records-import", "physical-measurements-import"}:
             operation = import_owner_records if args.intake_command == "owner-records-import" else apply_measurements
             _print_json(operation(Path(args.file), root=Path(args.root).resolve(), apply=args.apply))
+        elif args.command == "predesign" and args.predesign_command == "b32-service-detail":
+            from house_design.b32_service_detail import build_service_detail, write_service_detail
+
+            root = Path(args.root).resolve()
+            report = build_service_detail(root)
+            paths = write_service_detail(report, root, _path(args.output_root))
+            _print_json({**{k: str(p) for k, p in paths.items()}, "comparisons": len(report["cases"]),
+                         "professional_approval": report["professional_approval"], "report_hash": report["report_hash"]})
+        elif args.command == "predesign" and args.predesign_command == "b32-service-study":
+            from house_design.b32_services import build_service_study, write_service_study
+
+            root = Path(args.root).resolve()
+            report = build_service_study(root)
+            paths = write_service_study(report, root, _path(args.output_root))
+            _print_json({**{k: str(p) for k, p in paths.items()}, "comparisons": len(report["cases"]),
+                         "professional_approval": report["professional_approval"], "report_hash": report["report_hash"]})
+        elif args.command == "predesign" and args.predesign_command == "requirement-ledger":
+            from house_design.requirement_reconciliation import build_reconciliation, write_reconciliation
+
+            root = Path(args.root).resolve()
+            report = build_reconciliation(root)
+            paths = write_reconciliation(report, root, _path(args.output_root))
+            _print_json({**{k: str(p) for k, p in paths.items()}, "summary": report["summary"], "report_hash": report["report_hash"]})
         elif args.command == "predesign" and args.predesign_command in {"owner-workspace", "consistency-review"}:
             operation = write_workspace if args.predesign_command == "owner-workspace" else write_consistency_review
             _print_json(operation(root=Path(args.root).resolve(), output_root=_path(args.output_root)))
@@ -384,8 +419,9 @@ def main() -> None:
                 project_path=Path(args.project), requirements_path=Path(args.requirements),
                 register_path=Path(args.register), rules_path=Path(args.rules),
                 drawing_report_path=_path(args.drawing_report), previous_report_path=_path(args.previous_report),
+                expected_revision_id=args.revision,
                 revision_root=Path(args.revision_root),
-                physical_items_path=Path(args.physical_items),
+                physical_items_path=_path(args.physical_items),
             )
             paths = write_risk_review(report, Path(args.output_root))
             _print_json({**{key: str(path) for key, path in paths.items()},
@@ -583,6 +619,7 @@ def main() -> None:
                 coordination_path=_path(args.coordination),
                 previous_coordination_path=_path(args.previous_coordination),
                 planning_register_path=_path(args.planning_register),
+                physical_items_path=_path(args.physical_items),
             )
             directory = write_review(report, output_root=Path(args.output_root))
             dashboard = write_dashboard(report, directory)

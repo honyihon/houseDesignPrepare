@@ -442,7 +442,7 @@ def _section_handoff(handoff: dict[str, Any] | None, handoff_root: Path) -> dict
         "number": 7,
         "title": "圖面交付契約預告",
         "available": True,
-        "revision": handoff.get("revision"),
+        "revision": handoff.get("revision_id") or handoff.get("revision"),
         "label": handoff.get("label"),
         "root": relative_to_root(handoff_root),
         "expectations": [
@@ -816,7 +816,7 @@ def _render_blockers(section: dict[str, Any]) -> str:
 
 def _render_handoff(section: dict[str, Any]) -> str:
     parts = [
-        f'<p class="meta">版次 <code>{_e(section.get("revision"))}</code>'
+        f'<p class="meta">版次 <code>{_e(section.get("revision") or "未提供")}</code>'
         f'｜{_e(section.get("label"))}｜登錄於 <code>{_e(section.get("root"))}</code></p>',
         "<p>未來建築師交圖時，希望收到：</p><ul>",
     ]
@@ -893,6 +893,14 @@ def meeting_pack_markdown(pack: dict[str, Any]) -> str:
         lines.append(f"{section['number']}. {section['title']}{mark}")
     if pack["missing_sections"]:
         lines.extend(["", f"**尚未產生的分節：{'、'.join(pack['missing_sections'])}**", ""])
+    handoff = next((s for s in pack["sections"] if s["id"] == "handoff"), None)
+    if handoff and handoff["available"]:
+        lines.extend([
+            "", "## 圖面交付契約版次", "",
+            f"- 版次：`{handoff.get('revision') or '未提供'}`",
+            f"- 標籤：{handoff.get('label') or '未提供'}",
+            f"- {handoff['note']}",
+        ])
     lines.extend(["", "## 本次會議要拿到的答案", ""])
     for item in MEETING_QUESTIONS:
         lines.append(f"{item['number']}. {item['text']}")

@@ -19,6 +19,41 @@ python3 -m house_design predesign report
 
 在正式 parcel 記錄填入地號、地籍面積、使用分區、道路、建蔽率、容積率與退縮，並保留來源。未取得的欄位維持 `null` 或 `status: unknown`。
 
+### 2a. 面積證據（v2／v3 都適用）
+
+保留舊的 `parcel_area_sqm`／`parcel_area_ping` 數值格式，不需搬動既有資料。每筆正式 parcel 另加 `parcel_area_evidence`；以下是**未查核空白範例，不是本案地籍事實**：
+
+```json
+{
+  "id": "A",
+  "land_number": null,
+  "parcel_area_sqm": null,
+  "parcel_area_ping": null,
+  "parcel_area_evidence": {
+    "status": "unknown",
+    "parcel_id": "A",
+    "land_number": null,
+    "value": null,
+    "unit": "m2",
+    "source": {
+      "reference": null,
+      "reviewer": null,
+      "checked_at": null
+    }
+  }
+}
+```
+
+取得資料後，由查核者逐筆填寫：
+
+- `land_number`：包含行政區／段／小段／號碼等可唯一識別內容；證據中的地號須與本筆相同。若原地號採 `{status, value}`，須為 `verified` 且 value 為相同字串。
+- `parcel_area_sqm` 與證據 `value`：同一筆地籍的有限正數平方公尺；unit 只接受 `m2` 或 `m²`。不能用三筆合計或面積目標代替。
+- `source.reference`：可追溯的文件／測量成果編號，可用私有文件代號，不需公開文件內容。`reviewer` 是真實具名查核人，`checked_at` 是有效 `YYYY-MM-DD`；程式不會開啟該文件或認證簽名真偽。
+- 查對完成才將證據 `status` 設為 `verified`。只有數字、verified 但無來源、舊地號／舊數值證據，均維持面積檢核 `unknown`。
+- 坪數可留空，報告按 `1 坪 = 400/121 m²` 顯示換算值，不回寫資料。若自行填坪數，與 m² 換算差大於 `0.01 m²` 則列資料矛盾 `fail`；這只是小數捨入容差，不是測量精度或可建性容許值。
+
+`intake validate` 檢查原格式；它接受舊數值不表示證據已通過。正式 `review run` 的 `SITE-PARCEL-AREA` 另查上述綁定；面積紀錄 `pass` 不代表建蔽率、退縮、後巷權利或可建量體通過。目前 `selected_site=null` 保持不變，32 地坪仍只是目標。
+
 ```bash
 python3 -m house_design intake validate
 ```
@@ -155,6 +190,7 @@ python3 -m house_design review run --revision R001 --previous R000
 輸出：
 
 - `report.json`：機器可讀 finding、證據、責任人、狀態與 3D readiness。
+- `drawing-evidence.json`：不含 planning、release 或 signoff 的獨立圖面證據快照；綁定專案／需求內容、版次、模型及可重算的套繪資料。
 - `report.md`：逐項會議清單與 3D 阻擋原因。
 - `meeting-report.pdf`：可列印會議報告，摘要包含 3D readiness。
 - `index.html`：完全離線的互動檢核儀表板，明示現行 revision 3D 是 blocked 或 ready。
@@ -162,6 +198,8 @@ python3 -m house_design review run --revision R001 --previous R000
 結果狀態是 `pass`、`fail`、`warning`、`unknown`、`not_applicable`、`professional_review`。只要仍有 fail、unknown 或 professional_review，就不能宣稱整體合規。
 
 review 會同時合併前期到期閘門；未到施工／交屋階段的未完成項目只保留為未來計畫，不會提早形成硬阻擋。
+
+正式 review 現在先檢核當版套繪，再將獨立快照與同一 `--revision-root` 傳給防漏項清單，不把最終 report 反餵 planning。需要不同實物資料時加 `--physical-items <清冊.json>`；不指定時使用 `--project` 同目錄的 `physical-items.json`，缺檔保持缺資料，不回退讀取另一專案清冊。圖面單項 pass 仍需具名情境驗收，不能解除照護／祭祀／搬轎等待核。
 
 ## 6. 人工簽核
 

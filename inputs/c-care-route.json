@@ -1,0 +1,52 @@
+{
+  "schema": "house-c-care-route-v1",
+  "revision": 1,
+  "status": "discussion-only-not-adopted",
+  "authorization": "2026-10-21屋主下一步：改善C朝街大門、客餐至照護走道及其家具連動，保留已驗收局部入口版作比較，不核定法規、門組或全程無障礙。",
+  "base_report": "structured/candidates/c-care-entry/review.json",
+  "base_viewer": "structured/candidates/c-care-entry-3d.html",
+  "base_option": "c-entry-refined",
+  "base_state": "open",
+  "private_entry_config": "inputs/c-care-entry.json",
+  "default_option": "c-route-refined",
+  "frame_mm": [6000, 17630],
+  "insets_mm": [80, 100, 115],
+  "care_body_mm": [900, 900],
+  "street_door": {
+    "nominal_mm": 1200,
+    "center_x_mm": 3300,
+    "operation": "hinged-inward-proposal",
+    "pivot_mm": [3825, 3940],
+    "closed_leaf_mm": [2775, 3900, 1050, 80],
+    "height_mm": 2100,
+    "open_rotation_degrees": -90,
+    "note": "1050×80×2100mm是一般單扇門外廓討論值，非商品。名義洞口1200mm、兩側115mm假設及實際全開門片須分開檢查；把手、止擋、防夾及合法開向仍待核。"
+  },
+  "moves": {
+    "dining-set": {"room": "dining", "rect_mm": [515, 4415, 1800, 1800], "rotation_deg": 0},
+    "sofa": {"room": "living", "rect_mm": [1615, 6630, 900, 1800], "rotation_deg": 90},
+    "coffee-table": {"room": "living", "rect_mm": [415, 7200, 600, 1100], "rotation_deg": 90},
+    "reading-chair": {"room": "living", "destination": "living-right", "rect_mm": [4700, 7945, 850, 900], "rotation_deg": 90}
+  },
+  "routes": {
+    "arcade-to-bed": [[3285, 3000], [3285, 7200], [3000, 7200], [3000, 12950], [2850, 12950], [2850, 14600], [2650, 14600], [2650, 16700]],
+    "bed-to-bath": [[2650, 16700], [2650, 14825], [4250, 14825]]
+  },
+  "public_rooms": ["dining", "entrance", "living", "living-hall", "living-right", "sliding-door", "sideyard"],
+  "private_rooms": ["elder", "elder-bath"],
+  "limits": [
+    "本輪900×900mm矩形路線起於基地內騎樓指定點，不包含道路、高差、坡道、門檻或法律通行權；不是實際輪椅、陪伴者與倒地救援演練。",
+    "向內開只是不占騎樓的概念選項，消防／防火門開向未核；若必須外開，優先另比較退縮門斗並明列面積代價，不直接伸入公共騎樓。",
+    "客餐至梯旁走道不另隔門，樓梯本體原分隔門、梯段與平台保留；樓梯門不得開入照護路線，但其門組、開向及防火認證仍未知。",
+    "原床、衣櫃、污衣籃、IDF、廚房、衛浴及C上層不動。四人餐桌、沙發、茶几與閱覽椅原尺寸及件數保留，閱覽椅改在右側公共彈性區。",
+    "前窗2400mm保留；擴大後門洞與窗邊保守間距100mm，不表示梁柱、窗框、氣密、水密或採光法規已核可。",
+    "私人衛浴完整轉位、前室1470mm獨立淨深不足1500mm、原公共直達照服偏好、部分完成面家具預留與工作陽台仍未解；不因前段門寬改善而通過。"
+  ],
+  "professional_status": {
+    "product_finished_clear_and_threshold": "unknown",
+    "fire_opening_direction_and_stair_separation": "unknown",
+    "road_arcade_level_and_access_rights": "unknown",
+    "wheelchair_caregiver_and_rescue": "unknown",
+    "structure_daylight_mep_and_fengshui": "unknown"
+  }
+}

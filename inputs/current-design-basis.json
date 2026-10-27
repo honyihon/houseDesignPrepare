@@ -1,0 +1,117 @@
+{
+  "schema": "house-current-design-basis-v1",
+  "revision": 1,
+  "status": "discussion-only-not-adopted",
+  "authorization": "2026-10-20屋主同意：整理最新討論基準，深化B上層、比較A套衛、補C家務及三棟設備整合；不代表採用方案或核可專業條件。",
+  "default_option": "b-rear-refined",
+  "insets_mm": [80, 100, 115],
+  "sources": {
+    "interior_report": "structured/candidates/interior-improvements/review.json",
+    "interior_model": "structured/candidates/interior-improvements-3d.html",
+    "b_report": "structured/candidates/b32-rear-right/review.json",
+    "b_model": "structured/candidates/b32-rear-right-3d.html"
+  },
+  "b": {
+    "edge_budget_mm": 150,
+    "note": "150mm只是家具相對概念分區的牆邊預留，不是牆厚、柱位或已量完成面。原尺寸、件數、房間及門窗不變。",
+    "moves": {
+      "floor-2": {
+        "bath2": {
+          "basin": [1350, 11520, 450, 600],
+          "toilet": [2510, 11520, 700, 450],
+          "shower": [2310, 12990, 900, 900]
+        },
+        "master-bath2": {
+          "shower": [3510, 11520, 900, 900],
+          "basin": [4950, 11520, 900, 550],
+          "toilet": [5150, 12810, 700, 450]
+        },
+        "master2": {
+          "bed": [150, 15100, 2000, 1800],
+          "wardrobe": [5250, 14900, 600, 1800],
+          "vanity": [2400, 14190, 1200, 500]
+        },
+        "living2-front": {
+          "sofa": [4950, 5700, 900, 1800],
+          "tv": [2550, 6200, 80, 1000]
+        }
+      },
+      "floor-3": {
+        "bath3": {
+          "basin": [1350, 11520, 450, 600],
+          "toilet": [2510, 11520, 700, 450],
+          "shower": [2310, 12990, 900, 900]
+        },
+        "guest3": {
+          "bed": [150, 15100, 2000, 1800],
+          "wardrobe": [5250, 14900, 600, 1800],
+          "vanity": [2400, 14190, 1200, 500]
+        },
+        "quiet-study-front": {
+          "sofa": [4950, 5700, 900, 1800],
+          "tv": [2550, 6200, 80, 1000]
+        }
+      }
+    },
+    "pump_alternative": {
+      "rect_mm": [4250, 12200, 800, 600],
+      "service_envelope_mm": [3650, 11600, 2000, 1800],
+      "status": "projection-study-only-not-installed",
+      "note": "候選泵位改投影2F套衛／3F乾式預留，避開整間神明堂與主臥／客房；尚未整合水塔、熱泵、基座、維修、管線或結構傳音，不代表設備方案已完成。"
+    }
+  },
+  "a": {
+    "status": "comparison-owner-choice-required",
+    "master_regions_mm": [[0, 1500, 3600, 3280], [3600, 1500, 2400, 1000]],
+    "ensuite_mm": [3600, 2500, 2400, 2280],
+    "door_nominal_mm": 1030,
+    "door_center_y_mm": 3500,
+    "slider_park_mm": [3390, 1855, 95, 1130],
+    "fixtures": [
+      {"local": "basin", "catalog": "vanity-60", "rect_mm": [3750, 2650, 600, 450], "rotation_deg": 180, "wall_anchor": "front"},
+      {"local": "toilet", "catalog": "toilet", "rect_mm": [3750, 3930, 450, 700], "rotation_deg": 0, "wall_anchor": "rear"},
+      {"local": "shower", "catalog": "shower-90", "rect_mm": [4950, 3730, 900, 900], "rotation_deg": 0, "wall_anchor": "rear"}
+    ],
+    "master_products": [
+      {"local": "bed", "rect_mm": [115, 1615, 2000, 1800], "rotation_deg": 270, "wall_anchor": "left"},
+      {"local": "wardrobe", "rect_mm": [115, 4065, 1800, 600], "rotation_deg": 0, "wall_anchor": "rear"}
+    ],
+    "study_products": [
+      {"source_room": "study", "local": "desk", "rect_mm": [115, 11355, 1400, 700], "rotation_deg": 180, "wall_anchor": "front"},
+      {"source_room": "study", "local": "shelf", "rect_mm": [2685, 12220, 400, 1800], "rotation_deg": 90, "wall_anchor": "right"},
+      {"source_room": "master", "local": "hall-cabinet", "rect_mm": [115, 13080, 400, 2400], "rotation_deg": 270, "wall_anchor": "left"},
+      {"source_room": "master", "local": "wardrobe-right", "rect_mm": [1285, 14915, 1800, 600], "rotation_deg": 0, "wall_anchor": "rear"}
+    ],
+    "tradeoff": "保留原2F公衛及3F後窗公衛；新增無外窗套衛僅作比較，須獨立排氣／補氣。主臥縮為L形並低於16m²目標，原180cm衣櫃一組及240cm淺櫃移到書房，總件數與尺寸不減。此收納分布不同於先前同意方向，必須另由屋主選擇；新立管、防水及天花未設計，不直接定案。"
+  },
+  "c": {
+    "washer_count": 1,
+    "washer_floor": "floor-2",
+    "accepted_public_area_loss_sqm": 1.08,
+    "linen_basket": {"rect_mm": [1450, 13915, 400, 350], "height_mm": 600, "operation_mm": [1450, 14265, 700, 600]},
+    "balcony": {
+      "washer_mm": [150, 3080, 650, 650],
+      "planter_mm": [1150, 150, 500, 1600],
+      "utility_sink_mm": [150, 1750, 600, 600],
+      "locked_cleaner_mm": [1800, 150, 600, 450],
+      "clothes_rack_mm": [1680, 2350, 2400, 600],
+      "sink_operation_mm": [750, 1750, 800, 800],
+      "rack_loading_mm": [1680, 1450, 2400, 900],
+      "route_mm": [[5200, 3400], [1200, 3400], [1200, 2730], [475, 2730]],
+      "rack_route_mm": [[5200, 3400], [4500, 3400], [4500, 1900], [3000, 1900]]
+    },
+    "workflow": [
+      "1F長者換洗衣物先入專用帶蓋污衣籃，不放廚房備餐檯、公共照護通道或IDF壁龕。",
+      "照護者分批用輕量衣袋送2F；沒有電梯，不要求長者負重上下樓。手扶梯、搬運能力及無照護者時替代流程仍待演練。",
+      "2F獨立洗槽處理預洗，唯一洗衣機清洗，原240cm晾衣架晾乾；洗劑另入防雨上鎖櫃。乾淨衣物用不同袋回1F。",
+      "連日雨天乾衣能力、空調室外機同時檢修、陽台防雨防墜／給排水及洗槽合法性未知；不增第二台洗衣機，也不把2F家務抵銷1F工作陽台原需求。"
+    ]
+  },
+  "professional_status": {
+    "buildable_envelope_structure_and_stairs": "unknown",
+    "window_rights_and_rear_access": "unknown",
+    "religious_and_fengshui_acceptance": "unknown",
+    "care_rescue_and_real_transport": "unknown",
+    "mep_fire_acoustics_and_maintenance": "unknown"
+  }
+}

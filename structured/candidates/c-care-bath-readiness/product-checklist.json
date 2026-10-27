@@ -1,0 +1,212 @@
+{
+  "schema": "house-c-care-bath-readiness-products-v1",
+  "adopted": false,
+  "base_report": "structured/candidates/c-care-bath-layout/review.json",
+  "base_plan_hash": "59aa1ccee2455b9d3ab0f7c0360d2f3ec2bea992576a91457884c7b71ab57640",
+  "report_hash": "f858fd100d097fb2b851a85411abc6fca5f9079886148f411ee090d83395e1f8",
+  "budgets": [
+    {
+      "product": "bath-door",
+      "field": "full_open_clear",
+      "direction": "min",
+      "zero_spare_boundary_mm": 900,
+      "max_for_optional_margin_mm": null,
+      "current_discussion_value_mm": 970,
+      "current_directional_spare_mm": 70,
+      "measurement_definition": "實際全開含框／把手淨寬；970只是討論扣框值。",
+      "approval": "unknown"
+    },
+    {
+      "product": "bath-door",
+      "field": "complete_pack",
+      "direction": "max",
+      "zero_spare_boundary_mm": 165,
+      "max_for_optional_margin_mm": 135,
+      "current_discussion_value_mm": 130,
+      "current_directional_spare_mm": 35,
+      "measurement_definition": "含軌、門片、把手、基座及施工安裝的完整向室內外凸，不只兩片厚度。",
+      "approval": "unknown"
+    },
+    {
+      "product": "bath-door",
+      "field": "rear_extent_from_nominal_aperture_end",
+      "direction": "max",
+      "zero_spare_boundary_mm": 910,
+      "max_for_optional_margin_mm": 880,
+      "current_discussion_value_mm": 710.0,
+      "current_directional_spare_mm": 200.0,
+      "measurement_definition": "由名義洞口後緣向後量，含全開門尾、止擋及檢修；現有20mm已計入，不能又扣一次。",
+      "approval": "unknown"
+    },
+    {
+      "product": "bath-door",
+      "field": "front_projection_from_nominal_aperture_start",
+      "direction": "max",
+      "zero_spare_boundary_mm": 60.0,
+      "max_for_optional_margin_mm": 30.0,
+      "current_discussion_value_mm": 30,
+      "current_directional_spare_mm": 30.0,
+      "measurement_definition": "整個連動行程最前凸出名義洞口前緣的距離，須含五金／把手。",
+      "approval": "unknown"
+    },
+    {
+      "product": "fold-seat",
+      "field": "folded_projection_from_rear_finish",
+      "direction": "max",
+      "zero_spare_boundary_mm": 116.0,
+      "max_for_optional_margin_mm": 86.0,
+      "current_discussion_value_mm": 57.5,
+      "current_directional_spare_mm": 58.5,
+      "measurement_definition": "折起整件含鉸座、背板、安裝離牆等最前外凸，不是只填45mm座板厚。",
+      "approval": "unknown"
+    },
+    {
+      "product": "right-grab-rail",
+      "field": "complete_projection_from_right_finish",
+      "direction": "max",
+      "zero_spare_boundary_mm": 86.0,
+      "max_for_optional_margin_mm": 56.0,
+      "current_discussion_value_mm": 67.5,
+      "current_directional_spare_mm": 18.5,
+      "measurement_definition": "由完成右牆至整件最內側，含底座／離牆握持；不能把35mm管徑當整件外凸。",
+      "approval": "unknown"
+    }
+  ],
+  "products": [
+    {
+      "id": "bath-door",
+      "manufacturer": null,
+      "model": null,
+      "evidence_issues": [
+        "missing-manufacturer-or-model",
+        "missing-traceable-document"
+      ],
+      "facts_mm": {
+        "full_open_clear": null,
+        "complete_pack": null,
+        "rear_extent_from_nominal_aperture_end": null,
+        "front_projection_from_nominal_aperture_start": null
+      },
+      "evidence": [],
+      "scalar_checks": [
+        {
+          "field": "full_open_clear",
+          "provided_value_mm": null,
+          "evidence_backed_value_mm": null,
+          "directional_spare_mm": null,
+          "status": "unknown"
+        },
+        {
+          "field": "complete_pack",
+          "provided_value_mm": null,
+          "evidence_backed_value_mm": null,
+          "directional_spare_mm": null,
+          "status": "unknown"
+        },
+        {
+          "field": "rear_extent_from_nominal_aperture_end",
+          "provided_value_mm": null,
+          "evidence_backed_value_mm": null,
+          "directional_spare_mm": null,
+          "status": "unknown"
+        },
+        {
+          "field": "front_projection_from_nominal_aperture_start",
+          "provided_value_mm": null,
+          "evidence_backed_value_mm": null,
+          "directional_spare_mm": null,
+          "status": "unknown"
+        }
+      ],
+      "status": "unknown",
+      "selected": false,
+      "product_or_care_approval": "unknown",
+      "knee_clearance_credit_mm": 0
+    },
+    {
+      "id": "basin",
+      "manufacturer": null,
+      "model": null,
+      "evidence_issues": [
+        "missing-manufacturer-or-model",
+        "missing-traceable-document"
+      ],
+      "facts_mm": {
+        "body_width": null,
+        "body_depth": null,
+        "top_height": null,
+        "knee_clear_width": null,
+        "knee_clear_height": null,
+        "knee_clear_depth": null,
+        "tap_control_from_front_edge": null,
+        "supply_drain_outer_projection": null
+      },
+      "evidence": [],
+      "scalar_checks": [],
+      "status": "unknown",
+      "selected": false,
+      "product_or_care_approval": "unknown",
+      "knee_clearance_credit_mm": 0
+    },
+    {
+      "id": "fold-seat",
+      "manufacturer": null,
+      "model": null,
+      "evidence_issues": [
+        "missing-manufacturer-or-model",
+        "missing-traceable-document"
+      ],
+      "facts_mm": {
+        "open_width": null,
+        "open_depth": null,
+        "folded_projection_from_rear_finish": null
+      },
+      "evidence": [],
+      "scalar_checks": [
+        {
+          "field": "folded_projection_from_rear_finish",
+          "provided_value_mm": null,
+          "evidence_backed_value_mm": null,
+          "directional_spare_mm": null,
+          "status": "unknown"
+        }
+      ],
+      "status": "unknown",
+      "selected": false,
+      "product_or_care_approval": "unknown",
+      "knee_clearance_credit_mm": 0
+    },
+    {
+      "id": "right-grab-rail",
+      "manufacturer": null,
+      "model": null,
+      "evidence_issues": [
+        "missing-manufacturer-or-model",
+        "missing-traceable-document"
+      ],
+      "facts_mm": {
+        "complete_projection_from_right_finish": null
+      },
+      "evidence": [],
+      "scalar_checks": [
+        {
+          "field": "complete_projection_from_right_finish",
+          "provided_value_mm": null,
+          "evidence_backed_value_mm": null,
+          "directional_spare_mm": null,
+          "status": "unknown"
+        }
+      ],
+      "status": "unknown",
+      "selected": false,
+      "product_or_care_approval": "unknown",
+      "knee_clearance_credit_mm": 0
+    }
+  ],
+  "professional_status": {
+    "products_and_complete_installation_envelopes": "unknown",
+    "actual_seated_reach_knees_and_care": "unknown",
+    "door_emergency_release_and_rescue": "unknown",
+    "waterproof_structure_fire_fengshui_and_adoption": "unknown"
+  }
+}

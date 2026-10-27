@@ -1,0 +1,98 @@
+{
+  "schema": "house-b32-rear-right-v1",
+  "revision": 1,
+  "status": "comparison-only-not-adopted",
+  "authorization": "2026-10-20屋主要求深化後右有窗公衛＋後左武轎庫；有後巷為預設，同時保留沒有後巷的前門備案。",
+  "default_option": "rear-alley",
+  "default_state": "daily",
+  "frame_mm": [6000, 17630],
+  "front_clear_depth_mm": 3900,
+  "insets_mm": [80, 100, 115],
+  "rear_alley": {
+    "existence": "owner-reported-planning-premise",
+    "source": "2026-10-20屋主：我現在有後巷可以塞入為預設選項。",
+    "measured_clear_width_height_turn_and_level": "unknown",
+    "access_rights_and_opening_permission": "unknown",
+    "rear_window_rights_effective_open_area_and_weather_protection": "unknown"
+  },
+  "rear_bath_mm": [3330, 14500, 2670, 3130],
+  "storage_mm": [0, 14500, 3330, 3130],
+  "fixtures": [
+    {"local": "shower", "catalog": "shower-accessible", "rect_mm": [4685, 16315, 1200, 1200], "rotation_deg": 0, "wall_anchor": "rear"},
+    {"local": "toilet", "catalog": "toilet", "rect_mm": [3445, 14825, 700, 450], "rotation_deg": 270, "wall_anchor": "left"},
+    {"local": "basin", "catalog": "vanity-60", "rect_mm": [3865, 17065, 600, 450], "rotation_deg": 0, "wall_anchor": "rear"}
+  ],
+  "bath_operations_mm": {
+    "toilet-front": [4145, 14825, 800, 450],
+    "toilet-side-transfer": [3445, 15275, 1200, 900],
+    "basin-front": [3565, 16265, 900, 800]
+  },
+  "turn_circle_mm": [4895, 15525, 750],
+  "rear_window": {"center_x_mm": 4050, "width_mm": 900, "sill_mm": 1500, "height_mm": 600},
+  "bath_door_nominal_mm": 1130,
+  "slide_park_length_mm": 1230,
+  "slide_projection_mm": 95,
+  "palanquin_body_mm": [400, 15700, 1200, 1700],
+  "front_staging": {
+    "offering_mm": [4685, 4015, 1200, 500],
+    "bench_1_mm": [1815, 14615, 1400, 450],
+    "bench_2_mm": [1815, 15180, 1400, 450],
+    "rotation_centers_mm": [[3600, 6550], [1200, 10320]],
+    "family_acceptance": "pending",
+    "assembled_poles_people_height_and_real_rehearsal": "unknown"
+  },
+  "options": [
+    {
+      "id": "rear-alley",
+      "label": "後巷優先｜後右有窗公衛＋後左武轎庫",
+      "role": "default-owner-authorized-planning-premise",
+      "bath_door_center_x_mm": 5320,
+      "rear_gate": {"width_mm": 1960, "center_x_mm": 1150},
+      "zones_mm": {
+        "left-approach": [0, 11370, 1360, 1600],
+        "storage-front": [0, 12970, 1360, 1530],
+        "laundry-front": [1360, 11370, 1140, 1600],
+        "laundry-base": [1360, 12970, 2960, 1530],
+        "altar-backing": [2500, 11370, 1820, 1600],
+        "corridor1": [4320, 11370, 1680, 1600],
+        "bath-approach": [4320, 12970, 1680, 1530]
+      },
+      "laundry_items": [
+        {"local": "washer", "room": "laundry-front", "rect_mm": [1475, 11485, 650, 650], "rotation_deg": 0, "wall_anchor": "front"},
+        {"local": "utility-sink", "room": "laundry-base", "rect_mm": [1475, 13785, 600, 600], "rotation_deg": 0, "wall_anchor": "rear"}
+      ],
+      "laundry_operations_mm": {"washer-front": [1475, 12135, 900, 800], "sink-front": [1475, 12985, 900, 800]},
+      "small_drying_equipment": true
+    },
+    {
+      "id": "front-backup",
+      "label": "無後巷備案｜前門整備搬轎＋後右有窗公衛",
+      "role": "fallback-separate-walls-not-a-door-toggle",
+      "bath_door_center_x_mm": 5375,
+      "rear_gate": null,
+      "zones_mm": {
+        "turn-bay": [0, 11370, 2500, 300],
+        "left-approach": [0, 11670, 1750, 1300],
+        "storage-front": [0, 12970, 1750, 1530],
+        "laundry-front": [1750, 11670, 750, 1300],
+        "laundry-base": [1750, 12970, 3000, 1530],
+        "altar-backing": [2500, 11370, 1820, 1600],
+        "corridor1": [4320, 11370, 1680, 1600],
+        "bath-approach": [4750, 12970, 1250, 1530]
+      },
+      "laundry_items": [
+        {"local": "washer", "room": "laundry-base", "rect_mm": [1865, 13085, 650, 650], "rotation_deg": 270, "wall_anchor": "left"},
+        {"local": "utility-sink", "room": "laundry-base", "rect_mm": [1915, 13785, 600, 600], "rotation_deg": 270, "wall_anchor": "left"}
+      ],
+      "laundry_operations_mm": {"washer-front": [2515, 13085, 800, 900], "sink-front": [2515, 13485, 800, 900]},
+      "small_drying_equipment": false
+    }
+  ],
+  "professional_status": {
+    "site_buildable_envelope_arcade_and_structure": "unknown",
+    "religious_family_table_benches_and_adoption": "unknown",
+    "care_rescue_door_products_and_thresholds": "unknown",
+    "assembled_palanquin_people_and_external_turn": "unknown",
+    "window_rights_ventilation_drainage_and_waterproofing": "unknown"
+  }
+}

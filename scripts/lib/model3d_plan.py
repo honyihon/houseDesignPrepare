@@ -213,7 +213,17 @@ def render_plan(
             data_y_mm=g["y_mm"],
             data_w_mm=g["w_mm"],
             data_h_mm=g["h_mm"],
+            data_window_status=features.get("window_review", {}).get("status", "legacy-unreviewed"),
         )
+        if features.get("window_review"):
+            _tag(group, "desc", data_window_review=features["window_review"]["status"]).text = features["window_review"]["note"]
+        for zone in features.get("exercise_review", {}).get("zones", []):
+            bounds = zone["aabb"]
+            outline = _tag(group, "rect", x=bounds["minX"], y=bounds["minY"],
+                           width=bounds["maxX"]-bounds["minX"], height=bounds["maxY"]-bounds["minY"],
+                           fill="none", stroke="#aa6218", stroke_width=18, stroke_dasharray="70 40",
+                           data_exercise_allowance=zone["kind"])
+            _tag(outline, "title").text = "運動討論暫留外廓，原廠、真人及隔振未核；不是一般走道。"
         if building == "A" and room["key"] == "arcade":
             _text(group, "不置物／不停車；適用與梁下淨高待核", g["x_mm"] + 140, g["y_mm"] + 620, font_size=175)
         study = features.get("frontage_study")

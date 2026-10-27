@@ -1,0 +1,29 @@
+{
+  "schema": "house-c-care-bath-fit-v1",
+  "revision": 1,
+  "status": "discussion-only-not-adopted",
+  "authorization": "屋主下一步：檢核C套衛商品、完成面、公差及配件操作；不改已驗收配置、不縮設備、不採用或核定施工。",
+  "base_report": "structured/candidates/c-care-bath/review.json",
+  "base_viewer": "structured/candidates/c-care-bath-3d.html",
+  "base_option": "c-bath-refined",
+  "base_state": "transfer",
+  "assumed_inset_each_face_mm": 115,
+  "required_door_clear_mm": 900,
+  "optional_discussion_margin_mm": 30,
+  "assumption_note": "115mm是上版已扣的牆／框綜合假設，不是實測牆厚；本表只額外加扣，不能再把115mm重複相加。5／10／20mm和30mm餘量均為壓力研究參數，不是建築法規、原廠容差或已核施工標準。",
+  "cases": [
+    {"id": "nominal", "label": "原座標零增量", "extra_finish_mm": 0, "extra_jamb_each_mm": 0, "extra_vanity_width_mm": 0, "extra_vanity_depth_mm": 0, "extra_folded_seat_projection_mm": 0, "extra_leaf_length_mm": 0, "relative_position_error_mm": 0, "end_stop_allowance_mm": 0, "extra_handle_clear_loss_total_mm": 0},
+    {"id": "finish-5", "label": "完成面／門框另吃5mm", "extra_finish_mm": 5, "extra_jamb_each_mm": 5, "extra_vanity_width_mm": 0, "extra_vanity_depth_mm": 0, "extra_folded_seat_projection_mm": 0, "extra_leaf_length_mm": 0, "relative_position_error_mm": 0, "end_stop_allowance_mm": 0, "extra_handle_clear_loss_total_mm": 0},
+    {"id": "finish-10", "label": "完成面／門框另吃10mm", "extra_finish_mm": 10, "extra_jamb_each_mm": 10, "extra_vanity_width_mm": 0, "extra_vanity_depth_mm": 0, "extra_folded_seat_projection_mm": 0, "extra_leaf_length_mm": 0, "relative_position_error_mm": 0, "end_stop_allowance_mm": 0, "extra_handle_clear_loss_total_mm": 0},
+    {"id": "product-10", "label": "商品局部外凸／門片另長10mm", "extra_finish_mm": 0, "extra_jamb_each_mm": 0, "extra_vanity_width_mm": 10, "extra_vanity_depth_mm": 10, "extra_folded_seat_projection_mm": 10, "extra_leaf_length_mm": 10, "relative_position_error_mm": 0, "end_stop_allowance_mm": 0, "extra_handle_clear_loss_total_mm": 0},
+    {"id": "position-5", "label": "相對定位向不利側5mm", "extra_finish_mm": 0, "extra_jamb_each_mm": 0, "extra_vanity_width_mm": 0, "extra_vanity_depth_mm": 0, "extra_folded_seat_projection_mm": 0, "extra_leaf_length_mm": 0, "relative_position_error_mm": 5, "end_stop_allowance_mm": 0, "extra_handle_clear_loss_total_mm": 0},
+    {"id": "stop-20", "label": "門後止擋／維修另留20mm", "extra_finish_mm": 0, "extra_jamb_each_mm": 0, "extra_vanity_width_mm": 0, "extra_vanity_depth_mm": 0, "extra_folded_seat_projection_mm": 0, "extra_leaf_length_mm": 0, "relative_position_error_mm": 0, "end_stop_allowance_mm": 20, "extra_handle_clear_loss_total_mm": 0},
+    {"id": "combined", "label": "不利組合：10mm完成面＋商品＋5mm定位＋止擋", "extra_finish_mm": 10, "extra_jamb_each_mm": 10, "extra_vanity_width_mm": 10, "extra_vanity_depth_mm": 10, "extra_folded_seat_projection_mm": 10, "extra_leaf_length_mm": 10, "relative_position_error_mm": 5, "end_stop_allowance_mm": 20, "extra_handle_clear_loss_total_mm": 20}
+  ],
+  "professional_status": {
+    "finished_wall_and_door_product": "unknown",
+    "fixture_and_hardware_products": "unknown",
+    "anchors_loads_waterproof_and_drainage": "unknown",
+    "care_rescue_fire_fengshui_and_adoption": "unknown"
+  }
+}

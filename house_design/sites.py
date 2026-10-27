@@ -62,7 +62,8 @@ VERDICT_LABELS = {
 }
 
 COMPARE_WARNING = (
-    "未知永遠不是通過：任一硬淘汰條件缺資料時，該候選地的結論只能是「資料不足」，不得當成可行、合規或已通過初篩。"
+    "未知永遠不是通過：已知硬淘汰或必問條件不符時仍列淘汰，其他缺證據欄位繼續追蹤；"
+    "沒有已知淘汰項，但硬淘汰或必問條件缺資料時，只能列「資料不足」，不得當成可行、合規或已通過初篩。"
 )
 NO_CRITERIA_WARNING = "尚未設定任何淘汰門檻：本表只能列出缺什麼資料，無法做出任何篩選結論。"
 NO_CANDIDATE_WARNING = "尚未登錄任何候選土地：請先以 intake site-add 建立候選地，再逐格填入官方查得的事實。"
@@ -345,6 +346,37 @@ def _aggregate(children: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
+def _missing_evidence(cells: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Track unknown leaves independently of the aggregate screening verdict."""
+    missing: list[dict[str, Any]] = []
+    seen: set[tuple[str, str]] = set()
+
+    def visit(node: dict[str, Any], criterion: dict[str, Any], field: str) -> None:
+        if node.get("state") == "not_applicable":
+            return
+        field = str(node.get("field") or field)
+        children = node.get("components") or []
+        if children:
+            for child in children:
+                visit(child, criterion, field)
+            return
+        key = (str(criterion["criterion_id"]), field)
+        if node.get("state") != "unknown" or key in seen:
+            return
+        seen.add(key)
+        missing.append({
+            **{k: criterion[k] for k in (
+                "criterion_id", "label", "kind_label", "evidence_required", "responsible_role",
+            )},
+            "field": field,
+            "reason": node["reason"],
+        })
+
+    for cell in cells:
+        visit(cell, cell, str(cell.get("field") or ""))
+    return missing
+
+
 def _verdict(cells: list[dict[str, Any]]) -> tuple[str, list[str]]:
     reasons: list[str] = []
     blocking = [cell for cell in cells if cell["kind"] in {"hard_eliminate", "must_ask"}]
@@ -413,6 +445,7 @@ def build_site_comparison(
             cells.append(
                 {
                     "criterion_id": item.get("id"),
+                    "field": item.get("field"),
                     "label": item.get("label"),
                     "kind": item.get("kind"),
                     "kind_label": CRITERION_KINDS.get(str(item.get("kind")), str(item.get("kind"))),
@@ -443,18 +476,7 @@ def build_site_comparison(
                 "verdict_reasons": reasons,
                 "cells": cells,
                 "state_counts": {key: sum(1 for cell in cells if cell["state"] == key) for key in CELL_LABELS},
-                "missing_evidence": [
-                    {
-                        "criterion_id": cell["criterion_id"],
-                        "label": cell["label"],
-                        "kind_label": cell["kind_label"],
-                        "evidence_required": cell["evidence_required"],
-                        "responsible_role": cell["responsible_role"],
-                        "reason": cell["reason"],
-                    }
-                    for cell in cells
-                    if cell["state"] == "unknown"
-                ],
+                "missing_evidence": _missing_evidence(cells),
             }
         )
 
@@ -479,6 +501,7 @@ def build_site_comparison(
             "candidates_total": len(results),
             "verdict_counts": {key: sum(1 for item in results if item["verdict"] == key) for key in VERDICT_LABELS},
             "open_evidence_items": sum(len(item["missing_evidence"]) for item in results),
+            "open_evidence_items_basis": "每候選地／條件／未知末端欄位去重；不是只計條件數",
         },
         "next_actions": _next_actions(unset, results),
         "sources": [
@@ -501,17 +524,19 @@ def _next_actions(unset: list[dict[str, Any]], results: list[dict[str, Any]]) ->
                 "responsible_role": str(row["responsible_role"]),
             }
         )
-    seen: set[tuple[str, str]] = set()
+    seen: set[tuple[str, str, str]] = set()
     for item in results:
         for missing in item["missing_evidence"]:
-            key = (str(item["candidate_id"]), str(missing["criterion_id"]))
+            field = str(missing.get("field") or "")
+            key = (str(item["candidate_id"]), str(missing["criterion_id"]), field)
             if key in seen:
                 continue
             seen.add(key)
             actions.append(
                 {
                     "kind": "evidence",
-                    "target": f"{item['candidate_id']} / {missing['criterion_id']}",
+                    "target": f"{item['candidate_id']} / {missing['criterion_id']}" + (f" / {field}" if field else ""),
+                    "field": field,
                     "action": f"取得{missing['evidence_required']}，補上「{missing['label']}」",
                     "responsible_role": str(missing["responsible_role"]),
                 }
@@ -605,7 +630,10 @@ def site_comparison_markdown(report: dict[str, Any]) -> str:
             if item["missing_evidence"]:
                 lines.extend(["", "待補證據：", ""])
                 lines.extend(
-                    f"- {missing['label']}：{missing['evidence_required']}（{missing['responsible_role']}）"
+                    f"- {missing['label']}"
+                    + (f"（`{_cell(missing['field'])}`）" if missing.get("field") else "")
+                    + f"：{missing['evidence_required']}（{missing['responsible_role']}）"
+                    + f"；待補原因：{_cell(missing['reason'])}"
                     for missing in item["missing_evidence"]
                 )
             lines.append("")
@@ -721,8 +749,10 @@ def site_comparison_html(report: dict[str, Any]) -> str:
             if item["missing_evidence"]:
                 parts.append("<p>待補證據：</p><ul>")
                 parts.extend(
-                    f"<li>{_e(missing['label'])}：{_e(missing['evidence_required'])}"
-                    f"（{_e(missing['responsible_role'])}）</li>"
+                    f"<li>{_e(missing['label'])}"
+                    + (f"（<code>{_e(missing['field'])}</code>）" if missing.get("field") else "")
+                    + f"：{_e(missing['evidence_required'])}（{_e(missing['responsible_role'])}）"
+                    + f"；待補原因：{_e(missing['reason'])}</li>"
                     for missing in item["missing_evidence"]
                 )
                 parts.append("</ul>")

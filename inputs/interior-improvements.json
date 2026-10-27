@@ -1,0 +1,159 @@
+{
+  "schema": "house-interior-improvements-v1",
+  "revision": 7,
+  "status": "comparison-only-not-adopted",
+  "frame_mm": [6000, 17630],
+  "frontage_depth_mm": 3900,
+  "insets_mm": [80, 100, 115],
+  "default_option": "b-rear-dry-service",
+  "sources": {
+    "abc": "structured/candidates/model3d.html",
+    "b32": "structured/candidates/b32-entry-options-3d.html",
+    "c_integrated": "structured/candidates/c-integrated-options-3d.html"
+  },
+  "b": {
+    "bath_entry_center_y_mm": 12550,
+    "bath_entry_nominal_mm": 1130,
+    "pocket_rect_mm": [1025, 13115, 230, 1230],
+    "pocket_required_wall_budget_mm": 230,
+    "door_operation": "sliding",
+    "shower_control_wall": "rear-not-door-pocket-wall",
+    "note": "左側家務通道入浴室，門袋向後，不借右側乾櫃／搬轎門牆。230mm牆袋與產品未定，115mm兩側內縮僅剛好有討論預算；910mm通道對900mm本體僅餘10mm，不作照護或消防核可。"
+  },
+  "b_right_access": {
+    "status": "comparison-only-not-adopted",
+    "bath_rect_mm": [1140, 12970, 3180, 1960],
+    "dry_access_rect_mm": [1140, 11370, 1360, 1600],
+    "bath_entry_center_y_mm": 13650,
+    "bath_entry_nominal_mm": 1130,
+    "dry_entry_center_y_mm": 12170,
+    "dry_entry_nominal_mm": 1060,
+    "surface_slide_park_length_mm": 1230,
+    "surface_slide_projection_mm": 95,
+    "dry_door_leaf_thickness_budget_mm": 45,
+    "basin_rect_mm": [1255, 13085, 600, 450],
+    "cabinet_rect_mm": [3755, 11485, 450, 1200],
+    "turn_circle_mm": [2900, 13950, 750],
+    "shower_control_wall": "left-solid-wall-away-from-slide",
+    "note": "新增右側浴室入口比較，不取代左側控制案。原衛浴上段改乾櫃前室，乾櫃改由左側進、120×45cm原櫃移靠右牆；右側浴室表面拉門向前停放，另留1230mm停門長及95mm凸出討論量。沒有壁內門袋，不需在神桌背牆開門，但浴室面積減少、仍無外窗。120cm淋浴朝中央開放，控制靠左實牆；洗手與轉位借用零門檻淋浴地面，只討論可移浴簾、全室防滑防水及分時使用，不是乾濕分離已成立。儲藏、家務及原目標不刪。門組、排濕、照護與救援仍未核；祭祀、搬轎與取物分時。"
+  },
+  "b_rear_window": {
+    "status": "comparison-only-not-adopted",
+    "authorization": "2026-10-19屋主同意依後側有窗公衛方向改一版；只授權新增比較，不採用、不減原目標。",
+    "zones_mm": {
+      "rear-bath": [0, 14500, 2700, 3130],
+      "dry-route": [0, 11370, 1360, 3130],
+      "laundry-front": [1360, 11370, 1140, 1600],
+      "laundry-base": [1360, 12970, 2960, 1530],
+      "altar-backing": [2500, 11370, 1820, 1600],
+      "corridor1": [4320, 11370, 1680, 1600],
+      "storage-front": [4320, 12970, 1680, 1530],
+      "storage": [2700, 14500, 3300, 3130]
+    },
+    "fixtures": [
+      {"local": "shower", "catalog": "shower-accessible", "rect_mm": [115, 16315, 1200, 1200], "rotation_deg": 0, "wall_anchor": "rear"},
+      {"local": "toilet", "catalog": "toilet", "rect_mm": [1885, 14825, 700, 450], "rotation_deg": 90, "wall_anchor": "right"},
+      {"local": "basin", "catalog": "vanity-60", "rect_mm": [1535, 17065, 600, 450], "rotation_deg": 0, "wall_anchor": "rear"}
+    ],
+    "turn_circle_mm": [1105, 15525, 750],
+    "bath_operations_mm": {
+      "toilet-front": [1085, 14825, 800, 450],
+      "toilet-side-transfer": [1385, 15275, 1200, 900],
+      "basin-front": [1535, 16265, 900, 800]
+    },
+    "bath_entry_center_x_mm": 680,
+    "bath_entry_nominal_mm": 1130,
+    "surface_slide_park_length_mm": 1230,
+    "surface_slide_projection_mm": 95,
+    "dry_entry_center_y_mm": 12170,
+    "dry_entry_nominal_mm": 1060,
+    "dry_door_leaf_thickness_budget_mm": 45,
+    "cabinet_rect_mm": [2615, 11485, 450, 1200],
+    "laundry_items": [
+      {"local": "washer", "room": "laundry-front", "rect_mm": [1475, 11485, 650, 650], "wall_anchor": "front"},
+      {"local": "utility-sink", "room": "laundry-base", "rect_mm": [1475, 13785, 600, 600], "wall_anchor": "rear"}
+    ],
+    "laundry_operations_mm": {
+      "washer-front": [1475, 12135, 900, 800],
+      "sink-front": [1475, 12985, 900, 800]
+    },
+    "rear_window": {"width_mm": 900, "center_x_mm": 1950, "sill_mm": 1500, "height_mm": 600, "rights_and_effective_ventilation": "unknown"},
+    "note": "新增後左有窗公衛、家務前移比較，後門優先／無後巷前門備案獨立。浴室270×313cm，便器靠右前實牆、洗手台靠後右、120cm淋浴靠後左；乾區150cm轉位與900×1200mm旋轉側移區不借淋浴本體。後牆90×60cm候選高窗、窗台150cm，避開淋浴；窗權利、防雨、有效通風仍未知，仍需獨立排氣補氣。左側136cm名義乾通道不算洗衣面積，公衛需經祭祀預留區、與祭祀分時。縮小原草排過大儲藏，讓家務L形向右展開；三區座標討論面積可達原目標，但115mm假設下家務僅多0.005m²，不能當可施工。家務不再有直接外窗，乾衣／排濕未核，室內凹間不等於完整工作陽台。乾櫃改右側獨立進入、不穿洗衣；神桌乾背牆、朝街中軸門、梯段及上層不移。門組／照護救援／裝桿搬運與後巷權利未核；原六案、需求及封存保留。"
+  },
+  "b_daily_use": {
+    "status": "comparison-only-not-adopted",
+    "basis_option_ids": ["b-rear-window", "b-front-window"],
+    "authorization": "2026-10-20繼續研究祭祀如廁與家務排濕；只新增使用比較，不採用或改原八案。",
+    "drying_rack": {
+      "catalog_id": "generic-indoor-drying-envelope-1200",
+      "label": "小型晾衣架／掛衣外廓（選品未定）",
+      "width_mm": 1200, "depth_mm": 600, "height_mm": 1600,
+      "rect_mm": [3005, 13785, 1200, 600],
+      "front_operation_rect_mm": [3005, 13085, 1200, 700],
+      "basis": "new-generic-occupied-clothes-envelope-not-scaled-2400mm-catalog-rack",
+      "note": "120×60×160cm是另選小型室內架含暫估掛衣外廓，不是把原240cm曬衣架縮小；容量、衣物滴水／外伸、承重與實品未核。"
+    },
+    "dehumidifier": {
+      "catalog_id": "dehumidifier", "rect_mm": [2500, 13985, 350, 300],
+      "assumed_service_each_side_mm": 100,
+      "note": "原目錄35×30×60cm除濕機，只預留本體與四周100mm討論維修／散熱量；非原廠間距或除濕能力已核。排水與插座不得用跨通道軟管／延長線代替設計。"
+    },
+    "laundry_access_body_mm": [700, 700],
+    "laundry_access_points_mm": [[680, 13435], [3355, 13435]],
+    "cross_corridor_rect_mm": [1360, 12970, 2960, 1130],
+    "cross_corridor_body_mm": [900, 900],
+    "mechanical_requirements": {
+      "bathroom_exhaust_and_makeup_air": "unknown-independent-discharge-required-window-is-not-proof",
+      "laundry_exhaust_outlet_and_duct_route": "unknown-rear-direction-not-engineered-route",
+      "dehumidification_capacity_heat_noise_and_controls": "unknown-product-and-load-needed",
+      "electrical_protection_and_condensate_drain": "unknown-no-hose-or-extension-across-route",
+      "clothing_waterproof_drip_control_and_clean_soiled_flow": "unknown",
+      "drying_capacity_and_hanging_envelope": "unknown-small-batch-study-only"
+    },
+    "note": "沿用後窗公衛及所有房間門位，只新增小型晾衣架、除濕機和操作預留比較；原八案、A／C、神桌及搬轎路徑不移。洗衣機650mm、洗槽600mm與各900×800mm操作帶保留；700mm本體試線僅研究局部取放衣物，不稱照護動線。家務仍無直接外窗、不是已成立的工作陽台，除濕不能代替換氣。祭祀占用時原左側如廁路線仍衝突；獨立橫通道會把家務壓到下限以下，不能拿操作地面雙重計面積或當公衛已可同時用。若要真正避開祭祀，建議下一版比較後右公衛／後左儲藏；需重排後門、前門備案及搬轎，不在本輪默認採用。"
+  },
+  "c": {
+    "base_option": "c-integrated-3600",
+    "washer_count": 1,
+    "washer_floor": "floor-2",
+    "kitchen_rect_mm": [0, 8580, 2400, 3520],
+    "living_rect_mm": [0, 7100, 2400, 1480],
+    "fridge_clearance_assumptions_mm": {"back": 100, "right_side": 100, "counter_longitudinal_gap": 50},
+    "living_products": [
+      {"local": "sofa", "rect_mm": [1815, 6610, 900, 1800], "rotation_deg": 90, "wall_anchor": ""},
+      {"local": "tv", "rect_mm": [115, 7425, 80, 1000], "rotation_deg": 270, "wall_anchor": "left"},
+      {"local": "coffee-table", "rect_mm": [115, 7770, 1100, 600], "rotation_deg": 0, "wall_anchor": ""},
+      {"local": "reading-chair", "rect_mm": [115, 6780, 900, 850], "rotation_deg": 0, "wall_anchor": ""}
+    ],
+    "kitchen_entry_nominal_mm": 1130,
+    "kitchen_entry_center_y_mm": 10450,
+    "products": [
+      {"local": "counter", "rect_mm": [115, 9545, 600, 2400], "rotation_deg": 270, "wall_anchor": "left"},
+      {"local": "fridge", "rect_mm": [1435, 8795, 750, 700], "rotation_deg": 180, "wall_anchor": "front"}
+    ],
+    "note": "屋主已確認全棟只需一台洗衣機，保留2F原機，不在1F新增；並已同意客餐讓出1.08m²換取廚房操作餘裕，列為後續整合方向。廚房前界由y=9030移到8580，借45cm，不壓縮原孝親通道、樓梯或公衛；75×70cm冰箱前置朝後、240×60cm廚具錯開，90cm操作帶不縮。家具尺寸及60cm座椅操作帶保留；本輪不再改位置。這不是整套C樓高／用途或ABC主案已定案，原對照保留；柱牆、滑門、散熱／排煙、1F工作陽台及污衣／乾衣仍未核。"
+  },
+  "a": {
+    "bath_strategy": "retain-original-rear-window",
+    "wet_stack_priority": "exterior-window-before-exact-stacking",
+    "note": "屋主已確認浴室有外窗優先，不強求上下完全疊齊；撤回3F無窗移浴室提案，保留原後側公衛及60×50cm高窗候選，閱讀、沙發床、書櫃與書桌回原位置。窗權利、有效排濕、補氣、防水及管線仍待專業設計；不是外窗已合法或不會發黴。原濕區投影、走道過大、主臥套衛及停車缺口不因此消失。"
+  },
+  "owner_decisions": [
+    {"id": "b-left-access", "building": "B", "status": "pending", "recommendation": "新增後窗公衛／家務前移比較，保留原左側與右側入口控制案。新案可保原7m²討論目標，但公衛到達須經祭祀區分時、家務無直接窗且餘裕極小；開窗權利、900mm門框假設、照護救援與原工作陽台仍未核。只研究不採用，家中通行規矩仍待確認。"},
+    {"id": "b-table-benches", "building": "B", "status": "pending", "recommendation": "供桌貼神桌與長凳分時停放仍須家中同意；不同意時撤回此通道方案，不縮供桌或凳子。"},
+    {"id": "b-storage", "building": "B", "status": "pending", "recommendation": "原儲藏10.5m²目標不減：舊入口控制案仍未達，新後窗案座標討論面積可達但功能未核。前門150cm連續搬運目標、裝桿外廓及後巷通行權仍未解，不因面積或本體試線判過。"},
+    {"id": "c-washer", "building": "C", "status": "confirmed-preference", "choice": "one-washer-retain-2f-no-1f-addition", "source": "2026-10-16屋主回覆：不用，一台洗衣機就可以；保留既有2F位置，未授權搬機或取消工作陽台。", "recommendation": "已確認：C全棟一台，保留2F原洗衣機，撤下1F新增機；1F工作陽台、照護污衣／乾衣流程仍保留未解，不代表整案已採用。"},
+    {"id": "c-base", "building": "C", "status": "pending", "recommendation": "C以3.6m有窗公衛整合比較為基礎，不代表樓高、前客房與原面積取捨已採用。"},
+    {"id": "c-kitchen", "building": "C", "status": "confirmed-preference", "choice": "front-fridge-450mm-public-area-tradeoff-for-integration", "source": "2026-10-19屋主回覆「是」，同意客餐減少1.08m²（約0.33坪）換取廚房操作餘裕；僅確認此方向，不是整套C／ABC或專業條件核可。", "accepted_scope": {"front_partition_shift_mm": 450, "nominal_public_loss_sqm": 1.08, "layout_sha256": "8e499a3b94745da0d5d874db2cb4f531aae0cf57a77db40bd69681ae16cb8980", "basis_report_hash": "d0e49d471d3a56eb8d0365ff1cb62665021a58256c5b033159c88de82af06ad7", "whole_c_layout_adopted": false, "professional_approval": "unknown"}, "recommendation": "已確認：廚房向客餐借45cm／1.08m²、冰箱前置朝後作後續整合方向；原尺寸、90cm操作帶及孝親通道保留。只確認這個取捨，樓高與其他用途未定；實際柱牆、滑門、散熱／排煙及開門仍須核，不表示原ABC已覆寫。"},
+    {"id": "a-bath-move", "building": "A", "status": "confirmed-preference", "choice": "exterior-window-priority-retain-rear-bath", "source": "2026-10-16屋主確認：浴室有外窗優先，不強求上下完全疊齊。", "recommendation": "已確認：A保留原後側有窗公衛，撤回3F無窗移位；外窗有效排濕、管線及既有濕區投影仍須另核，並非整棟配置或專業條件已通過。"}
+  ],
+  "professional_status": {
+    "site_and_buildable_envelope": "unknown",
+    "structure_fire_and_pocket_door": "unknown",
+    "care_rescue_and_rehearsal": "unknown",
+    "religious_acceptance": "unknown",
+    "plumbing_ventilation_waterproofing": "unknown",
+    "palanquin_assembled_and_access_rights": "unknown",
+    "equipment_manuals_and_budget": "unknown"
+  }
+}

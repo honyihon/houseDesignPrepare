@@ -2,6 +2,8 @@
   "schema": "house-bounded-concept-v1",
   "id": "abc-rationality-v6-space-efficiency",
   "status": "proposal-owner-and-architect-review-pending",
+  "opening_review_revision": 1,
+  "rationality_followup": {"revision": 1, "document": "Docs/abc-rationality-followup-v1.md", "status": "partial-corrections-comparisons-not-adopted", "note": "2026-10-15：修候選窗越牆／跨門及A三樓維修入口；C整合比較另存，不覆蓋主案、原需求與封存。風水、完成面、法規、承重、造價及實物搬運仍未核。"},
   "note": "最小修改主案：A廚具向前、爐台避上層衛浴投影；B二／三樓家具只避神桌本體上方；C三樓床頭改左實牆。屋主已要求B背牆不得接樓梯／梯廳、整廳上方禁睡、前門朝道路／騎樓，現B主案仍有衝突。B嚴格重排及C保窗照護比較見Docs/bc-constraints-review-v1.md，尚未採用。HTML／3D同源，6×17.63m非地籍或可建面積；不縮家具、不占騎樓，不宣稱風水、法規或照護核可。 2026-10-14空間效益修正：A樓上回收前段長走道、保留同軸梯與平台；C樓上橫向公共通道，不穿主臥到運動區。B本輪以32坪後門預案為研究優先、前門備案保留，ABC內舊B不自動被採用或覆蓋。",
   "fengshui_minimal": {
     "id": "abc-minimal-fengshui-v1",
@@ -214,6 +216,8 @@
               ],
               "name": "乾式玄關／共用樓梯前平台",
               "kind": "entry",
+              "window_mm": 0,
+              "window_note": "原獨立窗與主門重疊，取消該假窗；如需門上採光須另選門窗產品，不算獨立窗。",
               "requirement_id": "A.floor-1.entry",
               "clear": true,
               "clearance_reservations": [
@@ -376,6 +380,9 @@
                 3770
               ],
               "name": "一字廚房／直達工作陽台",
+              "window_mm": 900,
+              "window_ratio": 0.270833,
+              "window_note": "後窗改90cm偏左，避右側90cm工作陽台門；門窗間暫留20cm，抽油煙排放與有效採光未核。",
               "requirement_id": "A.floor-1.kitchen",
               "profile": "review-a-fengshui-kitchen",
               "clearance_reservations": [
@@ -541,6 +548,8 @@
                 3280
               ],
               "name": "主臥（兩組衣櫃＋原淺櫃）",
+              "window_mm": 1900,
+              "window_ratio": 0.22,
               "profile": "review-a-storage-master",
               "kind": "bedroom",
               "requirement_id": "A.floor-2.master"
@@ -623,6 +632,8 @@
                 4390
               ],
               "name": "書房／工作室",
+              "window_mm": 1500,
+              "window_ratio": 0.35,
               "requirement_id": "A.floor-2.study"
             },
             "bedroom2": {
@@ -633,6 +644,8 @@
                 4390
               ],
               "name": "次臥（向書房回收寬度）",
+              "window_mm": 1200,
+              "window_ratio": 0.3,
               "profile": "review-a-arcade-single",
               "requirement_id": "A.floor-2.bed2"
             },
@@ -818,6 +831,8 @@
               ],
               "name": "衛浴公共走道",
               "kind": "other",
+              "window_mm": 0,
+              "window_note": "後端保留陽台出入門，不另疊加120cm窗；採光門產品及安全玻璃另核。",
               "role": "circulation"
             },
             "guest": {
@@ -828,6 +843,9 @@
                 4390
               ],
               "name": "客房（淨寬待核）",
+              "window_mm": 1000,
+              "window_ratio": 0.3,
+              "window_note": "候選後窗改100cm並偏左，與右側陽台門分離；原170cm標示保留歷史來源，法定有效面積未核。",
               "profile": "review-a-arcade-single"
             },
             "terrace3": {
@@ -871,6 +889,12 @@
               "entertainment",
               900,
               3850
+            ],
+            [
+              "entertainment",
+              "front-service",
+              {"width_mm": 900, "purpose": "ac-maintenance", "label": "前陽台維修門（90cm名義／隔音防雨待核）", "operation": "unconfirmed"},
+              5100
             ],
             [
               "front-hall",
@@ -1024,6 +1048,7 @@
               ],
               "name": "RF共用到達／維修平台（非第五層）",
               "kind": "other",
+              "window_mm": 0,
               "role": "circulation",
               "clear": true
             },
@@ -1036,6 +1061,7 @@
               ],
               "name": "RF共用設備維修通道",
               "kind": "other",
+              "window_mm": 0,
               "role": "circulation",
               "clear": true
             }
@@ -1112,13 +1138,13 @@
           "rooms": {
             "garage": {"rect": [0, 0, 6000, 3900], "name": "騎樓／前緣通行預留（非車位）", "kind": "outdoor", "outdoor": true, "clear": true},
             "shrine": {"rect": [0, 3900, 4400, 5600], "name": "神明堂（中軸祭祀門／面前方）", "kind": "living", "window_face": "front", "window_mm": 1000, "window_ratio": 0.15, "profile": "review-b-axial-shrine", "clearance_reservations": [{"kind": "ritual-approach", "rect": [1300, 0, 1800, 3200]}]},
-            "entry": {"rect": [4400, 3900, 1600, 5600], "name": "側邊玄關／直線搬轎通道", "kind": "entry", "clear": true, "route_width_mm": 1600},
+            "entry": {"rect": [4400, 3900, 1600, 5600], "name": "側邊玄關／直線搬轎通道", "kind": "entry", "clear": true, "route_width_mm": 1600, "window_mm": 0},
             "stair1": {"rect": [0, 9500, 3600, 4300], "name": "正式樓梯／共用梯廳", "kind": "stair", "group": "B1-dry-hall"},
             "idf-cabinet": {"rect": [3600, 9500, 800, 4300], "name": "IDF壁龕（梯廳分區）", "kind": "service", "group": "B1-dry-hall", "role": "equipment-alcove", "profile": "review-idf"},
             "corridor1": {"rect": [4400, 9500, 1600, 4300], "name": "後段直線搬運／公共通道", "kind": "other", "group": "B1-dry-hall", "role": "circulation", "clear": true, "route_width_mm": 1600},
             "storage": {"rect": [3000, 13800, 3000, 3830], "name": "後段武轎／祭祀物品收納", "door_mm": 1500, "carry_path_mm": 1600, "access_mode": "straight-pull", "profile": "review-storage"},
             "bath1": {"rect": [0, 13800, 1800, 2200], "name": "後段客用廁所（淋浴另案）", "profile": "review-guest-wc"},
-            "rear-hall": {"rect": [1800, 13800, 1200, 2200], "name": "工作區公共乾式通道", "kind": "other", "role": "circulation", "clear": true},
+            "rear-hall": {"rect": [1800, 13800, 1200, 2200], "name": "工作區公共乾式通道", "kind": "other", "role": "circulation", "clear": true, "window_mm": 0},
             "balcony1": {"rect": [0, 16000, 3000, 1630], "name": "後工作／洗滌準備區", "outdoor": true, "profile": "review-laundry"}
           },
           "connections": [["garage", "shrine", {"type": "door", "width_mm": 1800, "label": "中軸祭祀門（180cm暫估）", "purpose": "ritual-entry"}, 2200], ["entry", "shrine", 1500, 5000], ["entry", "corridor1", "open"], ["corridor1", "idf-cabinet", "open"], ["idf-cabinet", "stair1", "open"], ["corridor1", "storage", {"type": "door", "width_mm": 1500, "label": "武轎收納門（150cm待核）", "purpose": "palanquin-storage"}, 5200], ["stair1", "rear-hall", 1000, 2400], ["rear-hall", "bath1", 900, 14900], ["rear-hall", "balcony1", 1000, 2400]],
@@ -1141,7 +1167,7 @@
         "floor-3": {
           "rooms": {
             "terrace3": {"rect": [0, 0, 6000, 3900], "name": "前側通風／空調維修候選區", "kind": "outdoor", "outdoor": true, "clear": true},
-            "guest3": {"rect": [0, 3900, 4400, 5600], "name": "前段安靜客房（神桌投影上方）", "profile": "review-b-fengshui-guest"},
+            "guest3": {"rect": [0, 3900, 4400, 5600], "name": "前段安靜客房（神桌投影上方）", "profile": "review-b-fengshui-guest", "window_mm": 1800, "window_ratio": 0.272727},
             "corridor3": {"rect": [4400, 3900, 1600, 5600], "name": "前段公共走道", "kind": "other", "role": "circulation"},
             "stair3": {"rect": [0, 9500, 3600, 4300], "name": "正式樓梯／梯廳", "kind": "stair"},
             "buffer3": {"rect": [3600, 9500, 2400, 4300], "name": "後段隔音前室／梯廳", "kind": "other", "role": "circulation"},
@@ -1294,6 +1320,9 @@
                 3830
               ],
               "name": "後段茶水／小廚房",
+              "window_mm": 1200,
+              "window_face": "rear",
+              "window_note": "240cm牆候選改120cm窗，取代超出牆長的舊310cm值；窗框、柱梁及有效採光通風仍待核。",
               "profile": "review-kitchen"
             },
             "rear-hall": {
@@ -1305,6 +1334,8 @@
               ],
               "name": "後段公共乾式走道",
               "kind": "other",
+              "window_mm": 600,
+              "window_face": "rear",
               "role": "circulation"
             },
             "bath2f": {
@@ -1400,6 +1431,9 @@
                 4240
               ],
               "name": "主臥（一般尺寸家具）",
+              "window_mm": 2100,
+              "window_ratio": 0.2,
+              "window_note": "前窗避中央陽台門改左側210cm候選，不把舊310cm窗跨門畫出；有效面積與立面需建築師核對。",
               "profile": "review-c-efficient-master"
             },
             "front-hall": {

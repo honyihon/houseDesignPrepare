@@ -1,0 +1,52 @@
+{
+  "schema": "house-c-care-bath-v1",
+  "revision": 1,
+  "status": "discussion-only-not-adopted",
+  "authorization": "2026-10-21屋主下一步：深化C孝親套衛轉位、扶手、防滑排水與門外救援；保留已驗收版，另作比較，不核定產品、法規或照護。",
+  "base_report": "structured/candidates/c-care-route/review.json",
+  "base_viewer": "structured/candidates/c-care-route-3d.html",
+  "base_option": "c-route-refined",
+  "base_state": "open",
+  "default_option": "c-bath-refined",
+  "frame_mm": [6000, 17630],
+  "bath_rect_mm": [3600, 13800, 2400, 3000],
+  "insets_mm": [80, 100, 115],
+  "body_mm": [900, 900],
+  "helper_mm": [600, 600],
+  "turn_reserve_mm": [3810, 14785, 1500, 1800],
+  "turn_circle_mm": [4560, 15685, 750],
+  "toilet_transfer_mm": [4330, 14015, 900, 1200],
+  "toilet_helper_mm": [5185, 15065, 600, 600],
+  "shower_helper_mm": [3950, 15600, 600, 600],
+  "fixtures": {
+    "toilet": {"rect_mm": [5230, 13915, 450, 700], "rotation_deg": 180, "wall_anchor": "front"},
+    "vanity": {"rect_mm": [3715, 13915, 600, 450], "rotation_deg": 180, "wall_anchor": "front"},
+    "accessible-shower": {"rect_mm": [4685, 15485, 1200, 1200], "rotation_deg": 0, "wall_anchor": "rear"}
+  },
+  "seat": {"width_mm": 480, "depth_mm": 450, "thickness_mm": 45, "center_x_mm": 5285, "hinge_y_mm": 16650, "hinge_height_mm": 427.5},
+  "toilet_arm": {"x_mm": 5085, "hinge_y_mm": 13965, "hinge_height_mm": 700, "length_mm": 650, "diameter_mm": 35},
+  "routes": {
+    "toilet-transfer": [[2650, 14825], [4250, 14825], [4780, 14825], [4780, 14615]],
+    "vanity-front": [[2650, 14825], [4175, 14825], [4175, 14815]],
+    "shower-seat-front": [[2650, 14825], [4560, 14825], [4560, 15750], [5285, 15750]]
+  },
+  "helper_routes": {
+    "toilet-helper": [[2850, 14825], [4250, 14825], [4250, 15150], [5485, 15150], [5485, 15365]],
+    "shower-helper": [[2850, 14825], [4250, 14825], [4250, 15900]]
+  },
+  "rescue_trial": {"body_mm": [1800, 600], "points_mm": [[2650, 14965], [4800, 14965], [4800, 15670]], "rotation_center_mm": [4800, 15670], "note": "只是600×1800mm剛性板及其全角度保守外接方框，不是擔架、真人、抬抱人員或全程救援核可。"},
+  "vent_route_mm": [[5700, 16500, 2700], [5700, 16800, 2700], [5700, 17100, 2700]],
+  "professional_status": {"care_and_occupational_therapy": "unknown", "rescue_and_external_door_release": "unknown", "products_anchors_and_loads": "unknown", "legal_ventilation_waterproof_and_mep": "unknown", "fire_fengshui_and_adoption": "unknown"},
+  "limits": [
+    "不擴大7.2m²名義套衛、不借後側830mm戶外通風帶；床、230cm臥室窗、IDF、前公衛、樓梯及上層全部保留。",
+    "1500×1800mm轉位討論矩形及1500mm圓借用淋浴地面，只在無固定玻璃／無門檻且折椅收起時比較；不是獨立乾區或濕地輪椅核可。",
+    "原馬桶450×700、洗手台600×450與淋浴1200×1200外廓不縮。洗手台改壁掛候選，但檯下膝部、熱管隔熱及實際檯高仍未知。",
+    "折椅放下會阻擋完整轉位預留；馬桶扶手放下會阻擋指定轉位路線。不同狀態不能相加或稱為同時適用。",
+    "目前入口試線距洗手台僅約10mm、側移預留距洗手台15mm；剛性板轉向距收起折椅僅8.5mm。這些是115mm假設扣除後的緊餘量，未核施工公差、把手與商品，不得釋出施工。",
+    "900×900mm身體與600×600mm照護者僅是指定平面外廓。轉位側別、力量、移位機、照護人數及真人運動學待職能治療／照護評估。",
+    "朝街至套衛原四道970mm假設餘量保留，不代表門檻、門把、消防開向、道路高差或輪椅全程已核。套衛仍須穿臥室，公共直達照服偏好未滿足。",
+    "保留600mm高窗朝後側戶外帶，不假設開窗權或有效換氣。排風及補氣另核，不能把外窗或除濕機當排風已完成。",
+    "線性地排、零門檻與防滑僅是候選工法；降板、坡度、止水、防水、管徑及排水去向未核，不修改結構／管線或選定產品。",
+    "外解鎖、門外可拆候選及聲光／手機求助需求保留；模型不保證倒地後能開門、抬抱或有足夠救援人員空間。扶手錨定與折椅承重未設計。"
+  ]
+}

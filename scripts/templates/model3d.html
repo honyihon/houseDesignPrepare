@@ -1459,6 +1459,15 @@ __FACADE_JS__
     var features = featuresOf(cell) || {doors:[],hvac:{}};
     var full = document.getElementById("full-walls").checked;
     if(features.frontage_study){buildFrontageStudy(mesh,group,base,features.frontage_study);}
+    if(presentation==="tour" && features.exercise_review){
+      features.exercise_review.zones.forEach(function(zone){
+        var b=zone.aabb;
+        var points=[[b.minX,b.minY],[b.maxX,b.minY],[b.maxX,b.maxY],[b.minX,b.maxY],[b.minX,b.minY]].map(function(p){return new THREE.Vector3(p[0]*MM,base+.035,wz(p[1]));});
+        var outline=new THREE.Line(new THREE.BufferGeometry().setFromPoints(points),new THREE.LineDashedMaterial({color:0xaa6218,dashSize:.07,gapSize:.04,clippingPlanes:[clipPlane]}));
+        outline.computeLineDistances();outline.userData.cameraFit=false;outline.userData.exerciseAllowance=zone.kind;group.add(outline);
+      });
+      if(viewState.room===cell.id)addNavigationLabel(mesh,"後2m／兩側50cm暫留（原廠未核）",new THREE.Vector3(L.cx,base+.15,L.cz),"study");
+    }
     if(features.transport_segment_mm){
       var segment=features.transport_segment_mm, b=segment.body_sweep_mm, transportPoints=[];
       segment.centerline_mm.forEach(function(p){transportPoints.push(new THREE.Vector3(p[0]*MM,base+.04,wz(p[1])));});
@@ -1481,7 +1490,7 @@ __FACADE_JS__
         var height = full ? floor.height_mm * MM : 1.05;
         if((features.hvac_units || []).some(function(u){return u.type==="indoor" && u.face===face;}))height=floor.height_mm*MM;
         // Exterior far walls remain tall enough to hold actual-size window symbols.
-        if (!full && (((face === "rear" || face === "left") && features.window_face === face) || (face==="rear" && ((features.hvac && features.hvac.indoor) || /神明|神桌/.test(cell.name))))) { height = floor.height_mm * MM; }
+        if (!full && (((face === "rear" || face === "left") && features.window_face === face) || (face==="rear" && ((features.hvac && features.hvac.indoor) || cell.key==="shrine" || cell.room_role==="shrine")))) { height = floor.height_mm * MM; }
         var holes = (features.doors || []).filter(function (door) {
           var width=door.width_mm*MM, centre=door.ratio*length;
           return door.face === face && width>0 && centre-width/2>=0 && centre+width/2<=length;
@@ -1845,6 +1854,7 @@ __FACADE_JS__
     row("幾何來源", presentation==="tour"?"ABC v2 固定比較框提案（非地籍或可建容量）":geomSource === "auto" ? "歷史示意格子（CSS 列／欄）" : "歷史標示覆寫");
     var features=featuresOf(cell);
     if(features){
+      if(presentation==="tour" && DATA.layout_review && DATA.layout_review.rationality_followup){row("合理性續修",escapeHtml(DATA.layout_review.rationality_followup.note)+" <a href='../../Docs/abc-rationality-followup-v1.md'>改動與待決清單</a>");}
       if(presentation==="tour" && features.allocation_review){var ar=features.allocation_review;
         row("空間分配初篩", escapeHtml("本空間外框 "+ar.nominal_area_sqm.toFixed(2)+"m²；本層通行／待排乾區 "+ar.floor_circulation_sqm.toFixed(2)+"m²、臥室合計 "+ar.floor_bedroom_sqm.toFixed(2)+"m²。"+ar.note));
         if(building.id==="B"){row("本輪B討論基準",'32坪後門預案優先、前門备案保留；本頁舊B不是已採用新案。<a href="b32-entry-options.html">開啟兩案同源平面／3D</a>');}
@@ -1853,8 +1863,11 @@ __FACADE_JS__
         row("收納／乾區續修", escapeHtml(features.storage_resolution.note)+"<br><a href='../../Docs/a-storage-dry-zone-v2.md'>查看本輪改法與未核限制</a>");
       }
       row("入口／門窗", "綠色門框為入口提案；窗位僅外側示意，缺外側位置者不畫。門向、牆厚與開口皆待建築師確認。");
+      if(presentation==="tour" && features.window_review && !cell.is_outdoor){row("候選窗檢查",escapeHtml(features.window_review.note));}
+      if(presentation==="tour" && features.exercise_review){row("運動安全／樓板傳音",escapeHtml(features.exercise_review.note)+" 前端扣模型牆邊暫剩"+features.exercise_review.front_budget_after_assumed_wall_mm+"mm，原廠最低要求未知。");}
       if(presentation==="tour" && cell.review_spec && cell.review_spec.requirement_id){row("需求對應",escapeHtml(cell.review_spec.requirement_id)+"；功能初篩不修改原需求狀態。");}
       if(features.ritual_access_review){row("中軸祭祀門",escapeHtml(features.ritual_access_review.note));}
+      if(features.entry_access_review){row("條件式入口連通",escapeHtml(features.entry_access_review.note));}
       if(features.transport_review){var tr=features.transport_review;row("武轎搬運路徑",escapeHtml(tr.note)+" 兩道門對暫估本體的名義單側餘量"+tr.gates.map(function(g){return g.body_side_margin_mm/10;}).join("／")+"cm；扣模型牆邊暫留後最窄約"+(tr.bottleneck_assumed_width_mm/10)+"cm，不是實測或施工許可。");}
       if(features.open_living_review){row("合併客餐廳",escapeHtml(features.open_living_review.note));}
       if(features.fengshui_review){row("風水最小修改／待決",escapeHtml(features.fengshui_review.note));}
@@ -2072,12 +2085,53 @@ __FACADE_JS__
   }
 
   var cameraFitState=null;
+  function cameraFrameForBox(box,area,width,height,theta,phi,fov) {
+    var centre=box.getCenter(new THREE.Vector3()),aspect=width/height,tanV=Math.tan(fov*Math.PI/360);
+    var direction=new THREE.Vector3(Math.sin(phi)*Math.sin(theta),Math.cos(phi),Math.sin(phi)*Math.cos(theta));
+    var right=new THREE.Vector3().crossVectors(new THREE.Vector3(0,1,0),direction).normalize();
+    var up=new THREE.Vector3().crossVectors(direction,right).normalize();
+    var fit=area.usable?area:{left:12,right:width-12,top:12,bottom:height-12};
+    var cx=(fit.left+fit.right)/width-1,cy=1-(fit.top+fit.bottom)/height;
+    var halfW=Math.max(.01,(fit.right-fit.left)/width)*.96,halfH=Math.max(.01,(fit.bottom-fit.top)/height)*.96,radius=3;
+    boxCorners(box).forEach(function(corner){
+      var offset=corner.sub(centre),depth=offset.dot(direction);
+      radius=Math.max(radius,depth+Math.abs(offset.dot(right)/(tanV*aspect)+cx*depth)/halfW,
+        depth+Math.abs(offset.dot(up)/tanV+cy*depth)/halfH);
+    });
+    return {centre:centre,direction:direction,right:right,up:up,tanV:tanV,aspect:aspect,cx:cx,cy:cy,radius:radius,theta:theta,phi:phi,
+      target:centre.clone().addScaledVector(right,-cx*radius*tanV*aspect).addScaledVector(up,-cy*radius*tanV)};
+  }
+  function frameBodyRect(box,frame,width,height) {
+    var xs=[],ys=[];
+    boxCorners(box).forEach(function(corner){
+      var offset=corner.sub(frame.centre),depth=frame.radius-offset.dot(frame.direction);
+      xs.push((1+(offset.dot(frame.right)+frame.cx*frame.radius*frame.tanV*frame.aspect)/(depth*frame.tanV*frame.aspect))*width/2);
+      ys.push((1-(offset.dot(frame.up)+frame.cy*frame.radius*frame.tanV)/(depth*frame.tanV))*height/2);
+    });
+    return {left:Math.min.apply(null,xs),right:Math.max.apply(null,xs),top:Math.min.apply(null,ys),bottom:Math.max.apply(null,ys)};
+  }
+  function chooseReadableRoomFrame(box,area,width,height,fov,bodies,baseline) {
+    function score(frame) {
+      var primary=bodies.filter(function(b){return b.primary;});
+      return Math.min.apply(null,(primary.length?primary:bodies).map(function(b){
+        var r=frameBodyRect(b.box,frame,width,height),w=r.right-r.left,h=r.bottom-r.top;
+        return Math.min(Math.min(w,h)/40,Math.max(w,h)/96);
+      }));
+    }
+    var best=baseline,bestScore=score(baseline);
+    if(!bodies.length||!area.usable)return {frame:best,baselineScore:null,score:null};
+    var original=bestScore;
+    [0,.2,-.2,.6,-.6,1.2].forEach(function(theta){[.25,.45,.75,1.0].forEach(function(phi){
+      var candidate=cameraFrameForBox(box,area,width,height,theta,phi,fov),value=score(candidate);
+      if(value>bestScore+.001){best=candidate;bestScore=value;}
+    });});
+    return {frame:best,baselineScore:original,score:bestScore};
+  }
   function focusScope(kind) {
     cameraFitState=null;
     if (!viewState.building && !viewState.floor && !viewState.room) { return false; }
     var box = scopedViewBox();
     if (box.isEmpty()) { return false; }
-    var centre = box.getCenter(new THREE.Vector3());
     frameLighting(box);
     var aspect = (stage.clientWidth || 1) / (stage.clientHeight || 1);
     var size=box.getSize(new THREE.Vector3());
@@ -2097,36 +2151,23 @@ __FACADE_JS__
     }
     spherical.phi = kind === "plan" ? 0.1 : presentation !== "diagnostic" ? 0.65 : Math.PI * 0.34;
     if (landscape) { spherical.phi=.45; }
-    var direction = new THREE.Vector3(
-      Math.sin(spherical.phi) * Math.sin(spherical.theta), Math.cos(spherical.phi),
-      Math.sin(spherical.phi) * Math.cos(spherical.theta)
-    );
-    var right = new THREE.Vector3().crossVectors(new THREE.Vector3(0, 1, 0), direction).normalize();
-    var up = new THREE.Vector3().crossVectors(direction, right).normalize();
-    var tanV = Math.tan(camera.fov * Math.PI / 360);
     // Measured DOM space, not fixed desktop padding. Translate the camera's
     // target (never scene geometry) so the room is centred below its controls.
     updateRoomCutaway();
     var area=cameraViewportRect(),width=stage.clientWidth || 1,height=stage.clientHeight || 1;
-    var fit=area.usable?area:{left:12,right:width-12,top:12,bottom:height-12};
-    var cx=(fit.left+fit.right)/width-1,cy=1-(fit.top+fit.bottom)/height;
-    var halfW=Math.max(.01,(fit.right-fit.left)/width)*.96;
-    var halfH=Math.max(.01,(fit.bottom-fit.top)/height)*.96;
-    var radius = 3;
-    // Fit projected corners, not just world width: narrow mobile viewports
-    // should show a useful model without clipping furniture or the room.
-    boxCorners(box).forEach(function (corner) {
-      var offset = corner.sub(centre);
-      var depth = offset.dot(direction);
-      var vertical = offset.dot(up);
-      radius = Math.max(radius,
-        depth + Math.abs(offset.dot(right)/(tanV*aspect)+cx*depth)/halfW,
-        depth + Math.abs(vertical/tanV+cy*depth)/halfH
-      );
-    });
-    spherical.radius = radius;
-    target.copy(centre).addScaledVector(right,-cx*radius*tanV*aspect).addScaledVector(up,-cy*radius*tanV);
-    cameraFitState={landscape:landscape,area:area,theta:spherical.theta,phi:spherical.phi,radius:radius};
+    var frame=cameraFrameForBox(box,area,width,height,spherical.theta,spherical.phi,camera.fov),readable=null;
+    // Opt in only for the unadopted C integration. Keep every room visible,
+    // fit its real bounds and score real furniture bodies, never their labels.
+    if(kind!=="plan" && presentation==="tour" && roomCameraFocused && width<=860 &&
+        DATA.source && DATA.source.c_integrated_review){
+      var bodies=furnitureEntries.filter(function(e){return e.cell.id===viewState.room&&e.group.visible&&e.group.parent.visible;}).map(function(e){
+        return {id:e.item.id,primary:["bed","treadmill","toilet","vanity"].indexOf(e.item.shape)>=0,box:new THREE.Box3().setFromObject(e.group)};
+      });
+      readable=chooseReadableRoomFrame(box,area,width,height,camera.fov,bodies,frame);frame=readable.frame;
+    }
+    spherical.theta=frame.theta;spherical.phi=frame.phi;spherical.radius=frame.radius;target.copy(frame.target);
+    cameraFitState={landscape:landscape,area:area,theta:spherical.theta,phi:spherical.phi,radius:frame.radius,
+      closeupPolicy:readable?"c-integrated-readable-v1":null,bodyScore:readable?readable.score:null,baselineBodyScore:readable?readable.baselineScore:null};
     return true;
   }
 
@@ -2775,7 +2816,7 @@ __FACADE_JS__
             renderedBounds:{min:bounds.min.toArray(),max:bounds.max.toArray()}};
         })},
       transportRoutes:transportRouteParts.filter(function(entry){return entry.mesh.visible && entry.mesh.parent.visible && entry.mesh.userData.shell.visible;}).map(function(entry){return {room:entry.mesh.userData.cell.id,status:entry.status,segment:entry.segment,renderedPoints:Array.from(entry.part.geometry.attributes.position.array)};}),
-      tour: {status:"bounded-proposal-not-authoritative",rooms:pickables.filter(function(m){return m.visible&&m.parent.visible;}).map(function(m){return {id:m.userData.cell.id,outdoor:m.userData.cell.is_outdoor,base_mm:m.userData.floor.base_mm,height_mm:m.userData.floor.height_mm,features:featuresOf(m.userData.cell),geometry:geomOf(m.userData.cell),architectureParts:m.userData.shell.children.filter(function(p){return !p.userData.mdfStudy;}).length,architectureVisible:m.userData.shell.visible};})},
+      tour: {status:"bounded-proposal-not-authoritative",rooms:pickables.filter(function(m){return m.visible&&m.parent.visible;}).map(function(m){return {id:m.userData.cell.id,outdoor:m.userData.cell.is_outdoor,base_mm:m.userData.floor.base_mm,height_mm:m.userData.floor.height_mm,features:featuresOf(m.userData.cell),geometry:geomOf(m.userData.cell),architectureParts:m.userData.shell.children.filter(function(p){return !p.userData.mdfStudy;}).length,windowParts:architectureCutawayParts.filter(function(p){return p.mesh===m && p.role==="window";}).length,exerciseAllowanceParts:m.userData.shell.children.filter(function(p){return !!p.userData.exerciseAllowance;}).length,architectureVisible:m.userData.shell.visible};})},
       screenBounds: displayBox.isEmpty() ? [] : boxCorners(displayBox).map(function (corner) { return corner.project(camera).toArray(); }),
       furniture: {
         visible: furnitureIsVisible(),

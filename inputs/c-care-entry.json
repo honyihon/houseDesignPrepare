@@ -1,0 +1,44 @@
+{
+  "schema": "house-c-care-entry-v1",
+  "revision": 1,
+  "status": "discussion-only-not-adopted",
+  "authorization": "2026-10-21屋主下一步：深化C孝親房入口，保留原900mm淨寬目標與現版比較；不核定格局、門組或照護。",
+  "base_report": "structured/candidates/current-design-basis/review.json",
+  "base_viewer": "structured/candidates/current-design-basis-3d.html",
+  "base_option": "c-care-refined",
+  "default_option": "c-entry-refined",
+  "frame_mm": [6000, 17630],
+  "insets_mm": [80, 100, 115],
+  "care_body_mm": [900, 900],
+  "zones_mm": {
+    "stair1f": [3600, 8960, 2400, 4840],
+    "sliding-door": [2400, 8960, 1200, 3140],
+    "sideyard": [0, 12100, 3600, 1700]
+  },
+  "doors": {
+    "bedroom": {"a": "elder", "b": "sideyard", "face": "front", "nominal_mm": 1200, "center_mm": 2850, "operation": "sliding", "park_owner": "sideyard", "open_leaf_mm": [990, 13590, 1260, 95], "closed_leaf_mm": [2220, 13590, 1260, 95]},
+    "bathroom": {"a": "elder", "b": "elder-bath", "face": "right", "nominal_mm": 1200, "center_mm": 14825, "operation": "sliding", "park_owner": "elder-bath", "open_leaf_mm": [3715, 15425, 95, 1260], "closed_leaf_mm": [3715, 14195, 95, 1260]}
+  },
+  "leaf_height_mm": 2100,
+  "tv_mm": [3405, 15850, 80, 1000],
+  "routes": {
+    "hall-to-bed": [[3000, 10000], [3000, 12950], [2850, 12950], [2850, 14600], [2650, 14600], [2650, 16700]],
+    "bed-to-bath": [[2650, 16700], [2650, 14825], [4250, 14825]]
+  },
+  "bedroom_turn_circle_mm": [2650, 15100, 750],
+  "limits": [
+    "900×900mm矩形平移不是實際輪椅或陪伴者運動學；轉身預留在臥室，前室單獨1700mm深扣230後1470mm不足1500mm。",
+    "只檢查梯旁走道至床邊及孝親套衛。朝街大門與客餐到照護走道的原1000mm名義開口在115mm假設仍僅770mm，不表示全程900mm。",
+    "既有衛浴完整轉位、淋浴扶手、救援、排氣與部分80mm家具牆邊預留仍待核；不因兩道門改善而通過。",
+    "兩片1260×95×2100mm只是一般保守門片外廓預留，非商品、門框、軌道、止擋、把手或防火門核定。須可緊急外解鎖、不設凸起地軌，產品與濕區耐用性未知。",
+    "原床、衣櫃、污衣籃、衛浴設備與IDF壁龕保留，僅移電視。前室與梯旁走道是共享通行，不給IDF獨立機房面積信用。",
+    "沿用避開床體上方濕區的屋主範圍；未宣稱整間臥室上方無浴廁或風水已核。"
+  ],
+  "professional_status": {
+    "finished_clear_product_and_threshold": "unknown",
+    "structure_fire_and_stair_headroom": "unknown",
+    "wheelchair_caregiver_and_rescue": "unknown",
+    "privacy_fengshui_and_family": "unknown",
+    "waterproof_ventilation_and_mep": "unknown"
+  }
+}

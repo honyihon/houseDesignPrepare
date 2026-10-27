@@ -425,12 +425,39 @@ function preflight(project) {
     if (!fs.existsSync(path.join(project, file))) throw new Error('Missing shared facade: ' + file);
     plans.push(file);
   }
+  preflightOpenings(layout);
   return { cli, counts, sourceFiles: [...new Set([...SOURCE_FILES, ...plans, ...preflightMdf(project, layout), ...preflightC1f(project, layout), ...preflightArcade(project, layout), ...preflightFengshui(project, layout), ...preflightBcOptions(project, layout), ...preflightSpaceAllocation(project, layout)])] };
 }
 
 function hashSources(project, files) {
   return Object.fromEntries(files.map(file => [file,
     crypto.createHash('sha256').update(fs.readFileSync(path.join(project, file))).digest('hex')]));
+}
+
+function preflightOpenings(layout) {
+  if (layout.layout_review?.id !== 'abc-rationality-v6-space-efficiency') return;
+  if (layout.layout_review.opening_review_revision !== 1) throw new Error('Stale candidate-opening review; regenerate main plans');
+  const rooms = layout.buildings.flatMap(b=>b.floors.flatMap(f=>f.rooms));
+  for (const r of rooms) {
+    const f=r.features, review=f?.window_review;
+    if (!review || review.professional_acceptance!=='unknown' || review.status==='invalid-candidate' ||
+        review.renderable!==Boolean(f.window_face) || review.requested_width_mm!==f.window_mm) {
+      throw new Error('Unresolved/missing candidate-window review: '+r.id);
+    }
+    if(review.renderable){
+      const n=['front','rear'].includes(f.window_face)?r.geometry.w_mm:r.geometry.h_mm,c=n*f.window_ratio,w=f.window_mm;
+      if(w<=0||w>=n-200||c-w/2<100||c+w/2>n-100||
+        [...f.doors,...f.open_connections].some(d=>d.face===f.window_face&&Math.abs(d.ratio*n-c)<(w+d.width_mm)/2+99))
+        throw new Error('Candidate window exceeds wall/opening budget: '+r.id);
+    }
+  }
+  const theatre=rooms.find(r=>r.id==='A:floor-3:entertainment'),balcony=rooms.find(r=>r.id==='A:floor-3:front-service');
+  for(const [r,other] of [[theatre,balcony],[balcony,theatre]]){
+    if(!r||!other||!r.features.doors.some(d=>d.purpose==='ac-maintenance'&&d.neighbor===other.id&&d.width_mm===900))
+      throw new Error('Missing A3 front AC maintenance connection');
+  }
+  const kitchen=rooms.find(r=>r.id==='C:floor-2:kitchen2f');
+  if(kitchen?.features.window_face!=='rear'||kitchen.features.window_mm!==1200)throw new Error('C2 kitchenette window not corrected');
 }
 
 // This function is serialized for run-code's VM, which provides page but no Node
@@ -1390,6 +1417,9 @@ async function checkPages(page, baseUrl, outputDir, expectedCounts) {
               item.category !== 'network'), room.id + ' no indoor furniture incorrectly placed outdoors');
           }
           assert(JSON.stringify(actualRoom.features) === JSON.stringify(room.features), room.id + ' full architecture/AC metadata matches HTML');
+          if(room.features.window_review?.renderable){
+            assert(actualRoom.windowParts>0,room.id+' valid candidate window has actual 3D window parts');
+          }
           if (room.features.stair_geometry) {
             const stair = actualRoom.features.stair_geometry;
             assert(stair.type === 'two-flight-u-proposal' && stair.fits_reserved_box &&
@@ -2388,4 +2418,4 @@ function main() {
 if (require.main === module) {
   try { main(); } catch (error) { console.error(String(error)); process.exitCode = 1; }
 }
-module.exports = { parseArguments, preflight, preflightC1f, preflightArcade, preflightMdf, preflightFengshui, preflightBcOptions, preflightSpaceAllocation, hashSources, checkPages, makeBrowserScript, findReport, validateReport, runQa };
+module.exports = { parseArguments, preflight, preflightC1f, preflightArcade, preflightMdf, preflightFengshui, preflightBcOptions, preflightSpaceAllocation, preflightOpenings, hashSources, checkPages, makeBrowserScript, findReport, validateReport, runQa };
