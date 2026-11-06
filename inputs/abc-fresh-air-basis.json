@@ -1,0 +1,245 @@
+{
+  "schema": "house-abc-fresh-air-basis-v1",
+  "date": "2026-11-06",
+  "owner_reference": "inputs/references/abc-fresh-air-owner-20261106.json",
+  "research_reference": "inputs/references/abc-fresh-air-research-20261106.json",
+  "source_report": "structured/candidates/kaohsiung-house-options/c-stair-integration.json",
+  "b_detail_report": "structured/coordination/b-ventilation-detail-v1/review.json",
+  "b_round3_report": "structured/coordination/b-claude-round3-v1/review.json",
+  "b_strict_report": "structured/coordination/b-fengshui-strict-v1/review.json",
+  "protected_controls": "inputs/abc-next-protected-controls.json",
+  "pinned_sources": {
+    "structured/candidates/kaohsiung-house-options/c-stair-integration.json": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+    "structured/coordination/b-ventilation-detail-v1/review.json": "1803c89469938a0134c9c7bab814c2c1e28b371a4180318620912fed9abb9337",
+    "structured/coordination/b-claude-round3-v1/review.json": "00baf0b3950e2593361e91698e4d72ac33e384edadd6da5a7d31b62e087b6223",
+    "structured/coordination/b-fengshui-strict-v1/review.json": "e595361db8281be6daf361251afe0187824c7bcb99d556f930cf90f15bf2f954",
+    "inputs/references/abc-fresh-air-owner-20261106.json": "20c17bfb3df2c08a0a822412ae78084f6d7a9809df84b0cb95217baf3dfde4b3",
+    "inputs/references/abc-fresh-air-research-20261106.json": "1eac844538fa396d2ae23985b3b864781d95b2bd7c2989755f3886d52597c813"
+  },
+  "source_options": {
+    "A": "a-rear-study",
+    "B": "b-rear-split",
+    "C": "c-split"
+  },
+  "b_front_backup": "b-front-split",
+  "building_air_systems_separate": true,
+  "preferred": "ERV",
+  "minimum": "filtered-mechanical-fresh-air-with-designed-exit",
+  "zones": [
+    {
+      "building": "A",
+      "floor": "floor-1",
+      "people": 2,
+      "label": "客餐＋孝親睡房",
+      "supply": [
+        "living",
+        "flex1"
+      ],
+      "return_strategy": "客餐乾淨側回風；孝親房關門要專支回風或消音轉送，不能靠梯廳。",
+      "wet": [
+        "bath1"
+      ],
+      "hood": [
+        "kitchen"
+      ],
+      "priority": "install-now",
+      "constraints": [
+        "送風避床頭直吹",
+        "主機／檢修避MDF、梯下與照護轉位",
+        "客餐回風遠離烹飪污染，油煙獨排"
+      ]
+    },
+    {
+      "building": "A",
+      "floor": "floor-2",
+      "people": 2,
+      "label": "主臥＋次臥／書房",
+      "supply": [
+        "master",
+        "bedroom2",
+        "study"
+      ],
+      "return_strategy": "各關門房有回風或消音轉送至本層乾淨公共區；不借樓梯。",
+      "wet": [
+        "master-bath"
+      ],
+      "hood": [],
+      "priority": "install-now",
+      "constraints": [
+        "常住2人屬整層，不每個房間重複計2人",
+        "次臥／書房支路先做，風量隨實際使用調節"
+      ]
+    },
+    {
+      "building": "A",
+      "floor": "floor-3",
+      "people": null,
+      "label": "客房＋劇院／多用與閱讀",
+      "supply": [
+        "guest",
+        "entertainment",
+        "multi",
+        "rear-common"
+      ],
+      "return_strategy": "劇院／客房關門仍須獨立或消音回風；活動使用按同時人數加強。",
+      "wet": [
+        "bath3"
+      ],
+      "hood": [],
+      "priority": "rough-in-before-finishes",
+      "constraints": [
+        "使用人數未定，不把三樓取消",
+        "留封口支路、機位／檢修與電源，不先決定一定要再買一台",
+        "三樓活動近期使用就須啟用通風，不因未指定睡眠人數而只留管"
+      ],
+      "enable_when_used": "客房／劇院／閱讀／運動若近期常用，該使用區須一期啟用；不常睡不等於不需通風。"
+    },
+    {
+      "building": "B",
+      "floor": "floor-1",
+      "people": null,
+      "label": "香火專用補排氣＋後段服務",
+      "supply": [],
+      "return_strategy": "神明堂排氣不進一般ERV回收；獨立過濾室外補氣，與源頭排氣聯動，樓梯隔煙門關閉。",
+      "wet": [
+        "rear-bath"
+      ],
+      "hood": [],
+      "priority": "install-now-separate-incense",
+      "constraints": [
+        "補氣不可直吹神桌",
+        "後段浴廁／家務／庫房排濕獨立核，不能把香火煙帶向後段或樓上",
+        "祭祀人數、香量與排風容量未定"
+      ]
+    },
+    {
+      "building": "B",
+      "floor": "floor-2",
+      "people": 2,
+      "label": "主臥＋安靜起居",
+      "supply": [
+        "master",
+        "living2",
+        "living2-front"
+      ],
+      "return_strategy": "主臥關門有乾淨回風支路或消音轉送；不經乾背櫃保護室、浴室或梯廳。",
+      "wet": [
+        "public-bath",
+        "private-bath"
+      ],
+      "hood": [],
+      "priority": "install-now",
+      "constraints": [
+        "原500×300排氣豎道只有兩條浴廁管，不塞ERV主幹",
+        "全熱主機、送回風立管避祭祀保護區另排",
+        "原主臥20／兩衛5與6㎡目標不降低"
+      ]
+    },
+    {
+      "building": "B",
+      "floor": "floor-3",
+      "people": null,
+      "label": "客房＋閱讀",
+      "supply": [
+        "guest",
+        "quiet-study",
+        "quiet-study-front"
+      ],
+      "return_strategy": "客房、閱讀各有支路；與B1香火完全分管，右後仍為乾式預留。",
+      "wet": [
+        "public-bath"
+      ],
+      "hood": [],
+      "priority": "rough-in-before-finishes",
+      "constraints": [
+        "不把乾保護室變主機房",
+        "未指定常住人數，不視為永遠不用",
+        "三樓活動近期使用就須啟用通風，不因未指定睡眠人數而只留管"
+      ],
+      "enable_when_used": "客房／劇院／閱讀／運動若近期常用，該使用區須一期啟用；不常睡不等於不需通風。"
+    },
+    {
+      "building": "C",
+      "floor": "floor-1",
+      "people": 2,
+      "label": "孝親房＋客餐",
+      "supply": [
+        "elder",
+        "dining",
+        "living",
+        "living-right"
+      ],
+      "return_strategy": "孝親房設專屬乾淨回風支路；客餐另回風，前置門關閉也不需經樓梯轉送。",
+      "wet": [
+        "elder-bath",
+        "public-bath"
+      ],
+      "hood": [
+        "kitchen"
+      ],
+      "priority": "install-now",
+      "constraints": [
+        "保留前置可關門與照護通道",
+        "濾網、主機維修不踩床／不占照護轉位",
+        "長輩床旁避免直吹與夜間風噪"
+      ]
+    },
+    {
+      "building": "C",
+      "floor": "floor-2",
+      "people": 1,
+      "label": "常睡客房＋二樓起居",
+      "supply": [
+        "guestroom2f",
+        "living2f",
+        "living-nook"
+      ],
+      "return_strategy": "睡房關門有專支回風或本區消音轉送；後段小廚房供排與前側分隔另核，不開梯門補氣。",
+      "wet": [
+        "bath2f"
+      ],
+      "hood": [
+        "kitchen2f"
+      ],
+      "priority": "install-now",
+      "constraints": [
+        "單人常睡房須送風，不能只在起居放一個風口",
+        "前陽台景觀、唯一洗衣機與C-AC01既有路線保留"
+      ]
+    },
+    {
+      "building": "C",
+      "floor": "floor-3",
+      "people": null,
+      "label": "主臥預留＋運動區",
+      "supply": [
+        "master3f",
+        "fitness3f"
+      ],
+      "return_strategy": "主臥與運動區各留送回風支路，運動使用按實際人數／負荷核。",
+      "wet": [
+        "bath3f"
+      ],
+      "hood": [],
+      "priority": "rough-in-before-finishes",
+      "constraints": [
+        "未指定常住，不刪現有主臥功能",
+        "送回風不靠開樓梯或借運動區作唯一回風",
+        "三樓活動近期使用就須啟用通風，不因未指定睡眠人數而只留管"
+      ],
+      "enable_when_used": "客房／劇院／閱讀／運動若近期常用，該使用區須一期啟用；不常睡不等於不需通風。"
+    }
+  ],
+  "per_person_flow_assumptions_m3_h": [
+    25,
+    30,
+    35
+  ],
+  "airflow_basis": "常住人數初估，不是法定通風量，也不含B1香火、訪客及三樓活動尖峰。",
+  "machine_count_decision": null,
+  "operating_pressure_pa": null,
+  "floor3_installation": "先預留，實際主機台數與啟用待使用及管路方案比較",
+  "b500x300_exhaust_only": true,
+  "adopted_layout": false,
+  "new_requirement_owner_confirmed": true
+}

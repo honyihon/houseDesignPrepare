@@ -1,0 +1,83 @@
+{
+  "schema": "house-b-strict-fengshui-study-v1",
+  "source_report": "structured/candidates/kaohsiung-house-options/c-stair-integration.json",
+  "source_report_sha256": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+  "protected_controls": "inputs/abc-next-protected-controls.json",
+  "options": ["b-rear-split", "b-front-split"],
+  "states": ["daily", "ritual", "carry"],
+  "adopted": false,
+  "religious_acceptance": "unknown",
+  "rules_basis": "屋主已確認的朝街正對祭祀門、背牆避梯廳、整廳上方禁睡；本輪保守增加完整背櫃上方獨立乾區、濕區避武轎庫。不是統一風水法規。",
+  "floor1": {
+    "altar_x_shift_mm": 255,
+    "altar_rect_mm": [2755, 10690, 1800, 600],
+    "offering_rect_mm": [3055, 10190, 1200, 500],
+    "street_axis_x_mm": 3655,
+    "street_door_nominal_width_mm": 1800,
+    "backing_rect_mm": [2640, 11370, 2030, 1600],
+    "backing_cabinet_rect_mm": [2755, 11485, 450, 1200],
+    "backing_door_nominal_mm": 1130,
+    "right_corridor_rect_mm": [4670, 11370, 1330, 1600]
+  },
+  "upper": {
+    "bedroom_polygon_mm": [[0, 11370], [2640, 11370], [2640, 12970], [3900, 12970], [3900, 17630], [0, 17630]],
+    "dry_room_rect_mm": [2640, 11370, 2030, 1600],
+    "foyer_polygon_mm": [[4670, 11370], [6000, 11370], [6000, 13170], [3900, 13170], [3900, 12970], [4670, 12970]],
+    "public_bath_rect_mm": [3900, 13170, 2100, 2300],
+    "private_bath_rect_mm": [3900, 15470, 2100, 2160],
+    "bedroom_fixtures_mm": {
+      "bed": [150, 13985, 2000, 1800],
+      "wardrobe": [3185, 13085, 600, 1800],
+      "vanity": [150, 11520, 500, 1200]
+    },
+    "bedroom_rear_window_x_mm": [750, 3150],
+    "bedroom_entry_x_mm": [1320, 2450],
+    "bedroom_route_points_mm": [[1885, 12270], [1885, 13535], [2670, 13535], [2670, 16150], [3335, 16150], [3335, 16900]],
+    "bedroom_route_square_mm": 900,
+    "public_bath": {
+      "fixtures_local_mm": {
+        "toilet": [150, 1370, 450, 700],
+        "basin": [0, 0, 600, 450],
+        "shower": [970, 1170, 900, 900]
+      },
+      "operations_local_mm": {
+        "toilet": [150, 670, 450, 700],
+        "basin": [0, 450, 600, 700],
+        "shower": [970, 470, 900, 700]
+      },
+      "door_nominal_x_mm": [4670, 5800],
+      "door_clear_illustrative_x_mm": [4785, 5685],
+      "inside_approach_local_mm": [770, 0, 900, 900],
+      "outside_approach_mm": [4785, 12155, 900, 900],
+      "door_operation": "向前乾廳外開；整樘／把手／救援未核",
+      "door_sweep_budget_mm": [4670, 12040, 1130, 1130]
+    },
+    "private_bath": {
+      "fixtures_local_mm": {
+        "toilet": [150, 0, 450, 700],
+        "basin": [1320, 0, 550, 900],
+        "shower": [970, 1030, 900, 900]
+      },
+      "operations_local_mm": {
+        "toilet": [150, 700, 450, 700],
+        "basin": [620, 0, 700, 900],
+        "shower": [270, 1030, 700, 900]
+      },
+      "door_nominal_y_mm": [16330, 17460],
+      "door_clear_illustrative_y_mm": [16445, 17345],
+      "inside_approach_local_mm": [0, 860, 900, 900],
+      "outside_approach_mm": [2885, 16445, 900, 900],
+      "door_operation": "向主臥外開；不經公衛，門片／把手及救援未核",
+      "door_sweep_budget_mm": [2770, 16330, 1130, 1130]
+    },
+    "ac_new_x_mm": 3000,
+    "inset_sensitivity_mm": [80, 115, 150],
+    "bath_layout_inset_mm": 115,
+    "fixture_operation_rule": "700操作帶可分時共用，不得碰其他固定本體；這是一般衛浴試排，不是照護或產品驗收。"
+  },
+  "rejected": [
+    {"id": "pipe-only", "reason": "移立管、防水、假天花均不能消除現有2.912㎡背櫃上方濕區。"},
+    {"id": "altar-forward-only", "altar_front_y_mm": 9040, "stair_rear_y_mm": 9100, "reason": "前移神桌令前門向左繞過樓梯至後左庫的局部轉向受阻；不能與後門版混用。"}
+  ],
+  "external_unknowns": ["地籍／道路與羅盤座向", "正式梁柱／樓板／RC背牆", "門窗完成面／產品框軌與實際淨寬", "全棟污水通氣、雨水、冷凝水與香火排風", "正式可建樓地板／主臥及浴室完成面積", "香爐火源、鏡面反射及冷氣氣流", "後巷權利與裝桿搬轎演練"]
+}

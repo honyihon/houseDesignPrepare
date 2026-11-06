@@ -1,0 +1,2171 @@
+{
+  "schema": "house-c-stair-shared-landing-v1",
+  "revision": 3,
+  "status": "bounded-detail-pending-architect-review",
+  "owner_authorized_detail_direction": "4000mm-24-risers-270mm-treads",
+  "complete_scheme_adopted": false,
+  "professional_approval": "unknown",
+  "source_option": "c-split",
+  "source_state": "daily",
+  "source_plans_mutated": false,
+  "core_rect_mm": [
+    2400,
+    8960,
+    3600,
+    4840
+  ],
+  "flight_footprint_mm": [
+    3720,
+    9030,
+    2200,
+    4700
+  ],
+  "first_stair": {
+    "risers": 24,
+    "tread_mm": 270,
+    "flight_width_mm": 1000,
+    "landing_depth_mm": 1000,
+    "footprint_mm": [
+      3720,
+      9030,
+      2200,
+      4700
+    ],
+    "departure_offset_mm": 730,
+    "middle_landing_mm": 1000,
+    "riser_mm": 166.66666666666666,
+    "treads_per_flight": 11,
+    "run_mm": 2970,
+    "first_step_start_y_mm": 9760,
+    "middle_start_y_mm": 12730,
+    "whole_core_extension_mm": 0,
+    "original_front_70mm_reallocated_to_shared_level_floor": 70,
+    "rear_70mm_nominal_budget_retained": 70,
+    "departure_offset_is_not_full_landing_depth": true
+  },
+  "floor_bases_mm": {
+    "floor-1": 0,
+    "floor-2": 4000,
+    "floor-3": 7000,
+    "floor-4": 10000
+  },
+  "shared_level_apron_mm": [
+    3720,
+    8760,
+    2200,
+    1000
+  ],
+  "shared_front_strip_mm": [
+    3720,
+    8760,
+    2200,
+    200
+  ],
+  "shared_floor_areas": [
+    {
+      "floor": "floor-1",
+      "affected": [
+        {
+          "room": "C:floor-1:living-hall",
+          "shared_rect_mm": [
+            3720,
+            8760,
+            280,
+            200
+          ],
+          "shared_sqm": 0.056
+        },
+        {
+          "room": "C:floor-1:living-right",
+          "shared_rect_mm": [
+            4000,
+            8760,
+            1920,
+            200
+          ],
+          "shared_sqm": 0.384
+        }
+      ],
+      "union_shared_sqm": 0.44
+    },
+    {
+      "floor": "floor-2",
+      "affected": [
+        {
+          "room": "C:floor-2:living2f",
+          "shared_rect_mm": [
+            3720,
+            8760,
+            2200,
+            200
+          ],
+          "shared_sqm": 0.44
+        }
+      ],
+      "union_shared_sqm": 0.44
+    }
+  ],
+  "source_furniture_count": 49,
+  "source_room_and_furniture_hash": "ed9237f2447b3578fb658e86160e4064880c9df65a54211bff5f9e3355346bd6",
+  "protected_rooms": [
+    {
+      "id": "C:floor-1:elder",
+      "geometry": {
+        "x_mm": 0,
+        "y_mm": 13800,
+        "w_mm": 3600,
+        "h_mm": 3830
+      },
+      "furniture_sha256": "1bf6354c92dc6ba4259f7e8ba652bb896d6ffa54771acebc3304d76a22bb1fc5"
+    },
+    {
+      "id": "C:floor-1:elder-bath",
+      "geometry": {
+        "x_mm": 3600,
+        "y_mm": 13800,
+        "w_mm": 2400,
+        "h_mm": 3000
+      },
+      "furniture_sha256": "f8c383d6b8dde6b7d4e5e49a394d6290762f11069391cb9f6061e2e80464cadc"
+    },
+    {
+      "id": "C:floor-3:front-hall",
+      "geometry": {
+        "x_mm": 2400,
+        "y_mm": 7600,
+        "w_mm": 3600,
+        "h_mm": 1360
+      },
+      "furniture_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  ],
+  "third_floor_front_hall_mm": [
+    2400,
+    7600,
+    3600,
+    1360
+  ],
+  "left_public_corridor_nominal_mm": [
+    2400,
+    8960,
+    1200,
+    4840
+  ],
+  "corridor_to_flight_horizontal_budget_mm": 120,
+  "nominal_corridor_is_not_finished_clear_width": true,
+  "opening_proposals": [
+    {
+      "floor": "floor-1",
+      "y_mm": 8960,
+      "x_range_mm": [
+        2900,
+        5920
+      ],
+      "opening_width_mm": 3020,
+      "operation": "shared-unobstructed-opening-leaf-pending",
+      "replaces_front_door_width_mm": 1000,
+      "neighbors": [
+        {
+          "room": "C:floor-1:living-hall",
+          "x_range_mm": [
+            2900,
+            4000
+          ]
+        },
+        {
+          "room": "C:floor-1:living-right",
+          "x_range_mm": [
+            4000,
+            5920
+          ]
+        }
+      ]
+    },
+    {
+      "floor": "floor-2",
+      "y_mm": 8960,
+      "x_range_mm": [
+        3720,
+        5920
+      ],
+      "opening_width_mm": 2200,
+      "operation": "shared-unobstructed-opening-leaf-pending",
+      "replaces_front_door_width_mm": 900,
+      "neighbors": [
+        {
+          "room": "C:floor-2:living2f",
+          "x_range_mm": [
+            3720,
+            5920
+          ]
+        }
+      ]
+    }
+  ],
+  "upper_floor_18_riser_and_RF_arrival_locations": "retained-relative-positions-bases-shifted-only",
+  "second_floor_floor_level_platform_removed_mm": [
+    4720,
+    9760,
+    1200,
+    270
+  ],
+  "removed_platform_sqm": 0.324,
+  "naive_full_width_platform_gap_over_last_incoming_tread_mm": 16.66666666666697,
+  "surfaces": [
+    {
+      "id": "floor-1:middle",
+      "rect_mm": [
+        3720,
+        12730,
+        2200,
+        1000
+      ],
+      "top_z_mm": 2000.0,
+      "kind": "middle",
+      "storey": "floor-1"
+    },
+    {
+      "id": "floor-1:up-1",
+      "rect_mm": [
+        3720,
+        9760,
+        1000,
+        270
+      ],
+      "top_z_mm": 166.66666666666666,
+      "kind": "tread",
+      "storey": "floor-1"
+    },
+    {
+      "id": "floor-1:return-13",
+      "rect_mm": [
+        4920,
+        12460,
+        1000,
+        270
+      ],
+      "top_z_mm": 2166.6666666666665,
+      "kind": "tread",
+      "storey": "floor-1"
+    },
+    {
+      "id": "floor-1:up-2",
+      "rect_mm": [
+        3720,
+        10030,
+        1000,
+        270
+      ],
+      "top_z_mm": 333.3333333333333,
+      "kind": "tread",
+      "storey": "floor-1"
+    },
+    {
+      "id": "floor-1:return-14",
+      "rect_mm": [
+        4920,
+        12190,
+        1000,
+        270
+      ],
+      "top_z_mm": 2333.3333333333335,
+      "kind": "tread",
+      "storey": "floor-1"
+    },
+    {
+      "id": "floor-1:up-3",
+      "rect_mm": [
+        3720,
+        10300,
+        1000,
+        270
+      ],
+      "top_z_mm": 500.0,
+      "kind": "tread",
+      "storey": "floor-1"
+    },
+    {
+      "id": "floor-1:return-15",
+      "rect_mm": [
+        4920,
+        11920,
+        1000,
+        270
+      ],
+      "top_z_mm": 2500.0,
+      "kind": "tread",
+      "storey": "floor-1"
+    },
+    {
+      "id": "floor-1:up-4",
+      "rect_mm": [
+        3720,
+        10570,
+        1000,
+        270
+      ],
+      "top_z_mm": 666.6666666666666,
+      "kind": "tread",
+      "storey": "floor-1"
+    },
+    {
+      "id": "floor-1:return-16",
+      "rect_mm": [
+        4920,
+        11650,
+        1000,
+        270
+      ],
+      "top_z_mm": 2666.6666666666665,
+      "kind": "tread",
+      "storey": "floor-1"
+    },
+    {
+      "id": "floor-1:up-5",
+      "rect_mm": [
+        3720,
+        10840,
+        1000,
+        270
+      ],
+      "top_z_mm": 833.3333333333334,
+      "kind": "tread",
+      "storey": "floor-1"
+    },
+    {
+      "id": "floor-1:return-17",
+      "rect_mm": [
+        4920,
+        11380,
+        1000,
+        270
+      ],
+      "top_z_mm": 2833.3333333333335,
+      "kind": "tread",
+      "storey": "floor-1"
+    },
+    {
+      "id": "floor-1:up-6",
+      "rect_mm": [
+        3720,
+        11110,
+        1000,
+        270
+      ],
+      "top_z_mm": 1000.0,
+      "kind": "tread",
+      "storey": "floor-1"
+    },
+    {
+      "id": "floor-1:return-18",
+      "rect_mm": [
+        4920,
+        11110,
+        1000,
+        270
+      ],
+      "top_z_mm": 3000.0,
+      "kind": "tread",
+      "storey": "floor-1"
+    },
+    {
+      "id": "floor-1:up-7",
+      "rect_mm": [
+        3720,
+        11380,
+        1000,
+        270
+      ],
+      "top_z_mm": 1166.6666666666667,
+      "kind": "tread",
+      "storey": "floor-1"
+    },
+    {
+      "id": "floor-1:return-19",
+      "rect_mm": [
+        4920,
+        10840,
+        1000,
+        270
+      ],
+      "top_z_mm": 3166.666666666667,
+      "kind": "tread",
+      "storey": "floor-1"
+    },
+    {
+      "id": "floor-1:up-8",
+      "rect_mm": [
+        3720,
+        11650,
+        1000,
+        270
+      ],
+      "top_z_mm": 1333.3333333333333,
+      "kind": "tread",
+      "storey": "floor-1"
+    },
+    {
+      "id": "floor-1:return-20",
+      "rect_mm": [
+        4920,
+        10570,
+        1000,
+        270
+      ],
+      "top_z_mm": 3333.333333333333,
+      "kind": "tread",
+      "storey": "floor-1"
+    },
+    {
+      "id": "floor-1:up-9",
+      "rect_mm": [
+        3720,
+        11920,
+        1000,
+        270
+      ],
+      "top_z_mm": 1500.0,
+      "kind": "tread",
+      "storey": "floor-1"
+    },
+    {
+      "id": "floor-1:return-21",
+      "rect_mm": [
+        4920,
+        10300,
+        1000,
+        270
+      ],
+      "top_z_mm": 3500.0,
+      "kind": "tread",
+      "storey": "floor-1"
+    },
+    {
+      "id": "floor-1:up-10",
+      "rect_mm": [
+        3720,
+        12190,
+        1000,
+        270
+      ],
+      "top_z_mm": 1666.6666666666667,
+      "kind": "tread",
+      "storey": "floor-1"
+    },
+    {
+      "id": "floor-1:return-22",
+      "rect_mm": [
+        4920,
+        10030,
+        1000,
+        270
+      ],
+      "top_z_mm": 3666.666666666667,
+      "kind": "tread",
+      "storey": "floor-1"
+    },
+    {
+      "id": "floor-1:up-11",
+      "rect_mm": [
+        3720,
+        12460,
+        1000,
+        270
+      ],
+      "top_z_mm": 1833.3333333333333,
+      "kind": "tread",
+      "storey": "floor-1"
+    },
+    {
+      "id": "floor-1:return-23",
+      "rect_mm": [
+        4920,
+        9760,
+        1000,
+        270
+      ],
+      "top_z_mm": 3833.333333333333,
+      "kind": "tread",
+      "storey": "floor-1"
+    },
+    {
+      "id": "floor-1:shared-departure",
+      "rect_mm": [
+        3720,
+        8760,
+        2200,
+        1000
+      ],
+      "top_z_mm": 0,
+      "kind": "shared-landing",
+      "storey": "floor-1"
+    },
+    {
+      "id": "floor-2:shared-arrival",
+      "rect_mm": [
+        3720,
+        8760,
+        2200,
+        1000
+      ],
+      "top_z_mm": 4000,
+      "kind": "shared-landing",
+      "storey": "floor-2"
+    },
+    {
+      "id": "floor-2:middle",
+      "rect_mm": [
+        3720,
+        12190,
+        2200,
+        1540
+      ],
+      "top_z_mm": 5500.0,
+      "kind": "middle",
+      "storey": "floor-2"
+    },
+    {
+      "id": "floor-2:up-1",
+      "rect_mm": [
+        3720,
+        10030,
+        1000,
+        270
+      ],
+      "top_z_mm": 4166.666666666667,
+      "kind": "tread",
+      "storey": "floor-2"
+    },
+    {
+      "id": "floor-2:return-10",
+      "rect_mm": [
+        4920,
+        11920,
+        1000,
+        270
+      ],
+      "top_z_mm": 5666.666666666667,
+      "kind": "tread",
+      "storey": "floor-2"
+    },
+    {
+      "id": "floor-2:up-2",
+      "rect_mm": [
+        3720,
+        10300,
+        1000,
+        270
+      ],
+      "top_z_mm": 4333.333333333333,
+      "kind": "tread",
+      "storey": "floor-2"
+    },
+    {
+      "id": "floor-2:return-11",
+      "rect_mm": [
+        4920,
+        11650,
+        1000,
+        270
+      ],
+      "top_z_mm": 5833.333333333333,
+      "kind": "tread",
+      "storey": "floor-2"
+    },
+    {
+      "id": "floor-2:up-3",
+      "rect_mm": [
+        3720,
+        10570,
+        1000,
+        270
+      ],
+      "top_z_mm": 4500.0,
+      "kind": "tread",
+      "storey": "floor-2"
+    },
+    {
+      "id": "floor-2:return-12",
+      "rect_mm": [
+        4920,
+        11380,
+        1000,
+        270
+      ],
+      "top_z_mm": 6000.0,
+      "kind": "tread",
+      "storey": "floor-2"
+    },
+    {
+      "id": "floor-2:up-4",
+      "rect_mm": [
+        3720,
+        10840,
+        1000,
+        270
+      ],
+      "top_z_mm": 4666.666666666667,
+      "kind": "tread",
+      "storey": "floor-2"
+    },
+    {
+      "id": "floor-2:return-13",
+      "rect_mm": [
+        4920,
+        11110,
+        1000,
+        270
+      ],
+      "top_z_mm": 6166.666666666667,
+      "kind": "tread",
+      "storey": "floor-2"
+    },
+    {
+      "id": "floor-2:up-5",
+      "rect_mm": [
+        3720,
+        11110,
+        1000,
+        270
+      ],
+      "top_z_mm": 4833.333333333333,
+      "kind": "tread",
+      "storey": "floor-2"
+    },
+    {
+      "id": "floor-2:return-14",
+      "rect_mm": [
+        4920,
+        10840,
+        1000,
+        270
+      ],
+      "top_z_mm": 6333.333333333333,
+      "kind": "tread",
+      "storey": "floor-2"
+    },
+    {
+      "id": "floor-2:up-6",
+      "rect_mm": [
+        3720,
+        11380,
+        1000,
+        270
+      ],
+      "top_z_mm": 5000.0,
+      "kind": "tread",
+      "storey": "floor-2"
+    },
+    {
+      "id": "floor-2:return-15",
+      "rect_mm": [
+        4920,
+        10570,
+        1000,
+        270
+      ],
+      "top_z_mm": 6500.0,
+      "kind": "tread",
+      "storey": "floor-2"
+    },
+    {
+      "id": "floor-2:up-7",
+      "rect_mm": [
+        3720,
+        11650,
+        1000,
+        270
+      ],
+      "top_z_mm": 5166.666666666667,
+      "kind": "tread",
+      "storey": "floor-2"
+    },
+    {
+      "id": "floor-2:return-16",
+      "rect_mm": [
+        4920,
+        10300,
+        1000,
+        270
+      ],
+      "top_z_mm": 6666.666666666667,
+      "kind": "tread",
+      "storey": "floor-2"
+    },
+    {
+      "id": "floor-2:up-8",
+      "rect_mm": [
+        3720,
+        11920,
+        1000,
+        270
+      ],
+      "top_z_mm": 5333.333333333333,
+      "kind": "tread",
+      "storey": "floor-2"
+    },
+    {
+      "id": "floor-2:return-17",
+      "rect_mm": [
+        4920,
+        10030,
+        1000,
+        270
+      ],
+      "top_z_mm": 6833.333333333333,
+      "kind": "tread",
+      "storey": "floor-2"
+    },
+    {
+      "id": "floor-2:departure",
+      "rect_mm": [
+        3720,
+        9030,
+        1000,
+        1000
+      ],
+      "top_z_mm": 4000,
+      "kind": "departure",
+      "storey": "floor-2"
+    },
+    {
+      "id": "floor-3:middle",
+      "rect_mm": [
+        3720,
+        12190,
+        2200,
+        1540
+      ],
+      "top_z_mm": 8500.0,
+      "kind": "middle",
+      "storey": "floor-3"
+    },
+    {
+      "id": "floor-3:up-1",
+      "rect_mm": [
+        3720,
+        10030,
+        1000,
+        270
+      ],
+      "top_z_mm": 7166.666666666667,
+      "kind": "tread",
+      "storey": "floor-3"
+    },
+    {
+      "id": "floor-3:return-10",
+      "rect_mm": [
+        4920,
+        11920,
+        1000,
+        270
+      ],
+      "top_z_mm": 8666.666666666666,
+      "kind": "tread",
+      "storey": "floor-3"
+    },
+    {
+      "id": "floor-3:up-2",
+      "rect_mm": [
+        3720,
+        10300,
+        1000,
+        270
+      ],
+      "top_z_mm": 7333.333333333333,
+      "kind": "tread",
+      "storey": "floor-3"
+    },
+    {
+      "id": "floor-3:return-11",
+      "rect_mm": [
+        4920,
+        11650,
+        1000,
+        270
+      ],
+      "top_z_mm": 8833.333333333334,
+      "kind": "tread",
+      "storey": "floor-3"
+    },
+    {
+      "id": "floor-3:up-3",
+      "rect_mm": [
+        3720,
+        10570,
+        1000,
+        270
+      ],
+      "top_z_mm": 7500.0,
+      "kind": "tread",
+      "storey": "floor-3"
+    },
+    {
+      "id": "floor-3:return-12",
+      "rect_mm": [
+        4920,
+        11380,
+        1000,
+        270
+      ],
+      "top_z_mm": 9000.0,
+      "kind": "tread",
+      "storey": "floor-3"
+    },
+    {
+      "id": "floor-3:up-4",
+      "rect_mm": [
+        3720,
+        10840,
+        1000,
+        270
+      ],
+      "top_z_mm": 7666.666666666667,
+      "kind": "tread",
+      "storey": "floor-3"
+    },
+    {
+      "id": "floor-3:return-13",
+      "rect_mm": [
+        4920,
+        11110,
+        1000,
+        270
+      ],
+      "top_z_mm": 9166.666666666666,
+      "kind": "tread",
+      "storey": "floor-3"
+    },
+    {
+      "id": "floor-3:up-5",
+      "rect_mm": [
+        3720,
+        11110,
+        1000,
+        270
+      ],
+      "top_z_mm": 7833.333333333333,
+      "kind": "tread",
+      "storey": "floor-3"
+    },
+    {
+      "id": "floor-3:return-14",
+      "rect_mm": [
+        4920,
+        10840,
+        1000,
+        270
+      ],
+      "top_z_mm": 9333.333333333334,
+      "kind": "tread",
+      "storey": "floor-3"
+    },
+    {
+      "id": "floor-3:up-6",
+      "rect_mm": [
+        3720,
+        11380,
+        1000,
+        270
+      ],
+      "top_z_mm": 8000.0,
+      "kind": "tread",
+      "storey": "floor-3"
+    },
+    {
+      "id": "floor-3:return-15",
+      "rect_mm": [
+        4920,
+        10570,
+        1000,
+        270
+      ],
+      "top_z_mm": 9500.0,
+      "kind": "tread",
+      "storey": "floor-3"
+    },
+    {
+      "id": "floor-3:up-7",
+      "rect_mm": [
+        3720,
+        11650,
+        1000,
+        270
+      ],
+      "top_z_mm": 8166.666666666667,
+      "kind": "tread",
+      "storey": "floor-3"
+    },
+    {
+      "id": "floor-3:return-16",
+      "rect_mm": [
+        4920,
+        10300,
+        1000,
+        270
+      ],
+      "top_z_mm": 9666.666666666666,
+      "kind": "tread",
+      "storey": "floor-3"
+    },
+    {
+      "id": "floor-3:up-8",
+      "rect_mm": [
+        3720,
+        11920,
+        1000,
+        270
+      ],
+      "top_z_mm": 8333.333333333334,
+      "kind": "tread",
+      "storey": "floor-3"
+    },
+    {
+      "id": "floor-3:return-17",
+      "rect_mm": [
+        4920,
+        10030,
+        1000,
+        270
+      ],
+      "top_z_mm": 9833.333333333334,
+      "kind": "tread",
+      "storey": "floor-3"
+    },
+    {
+      "id": "floor-3:departure",
+      "rect_mm": [
+        3720,
+        9030,
+        2200,
+        1000
+      ],
+      "top_z_mm": 7000,
+      "kind": "departure",
+      "storey": "floor-3"
+    },
+    {
+      "id": "floor-4:arrival",
+      "rect_mm": [
+        3720,
+        9030,
+        2200,
+        1000
+      ],
+      "top_z_mm": 10000,
+      "kind": "roof-arrival",
+      "storey": "floor-4"
+    }
+  ],
+  "headroom_proxy": {
+    "coordination_target_mm": 2000,
+    "illustrative_structure_depth_mm": 150,
+    "sample_count": 54,
+    "samples_without_modelled_overhead": 16,
+    "minimum_sampled_gap_mm": 2849.999999999999,
+    "below_target": [],
+    "samples": [
+      {
+        "walking_surface": "floor-1:up-1",
+        "point_mm": [
+          4220.0,
+          9895.0,
+          166.66666666666666
+        ],
+        "overhead_surface": "floor-2:departure",
+        "proxy_gap_mm": 3683.3333333333335
+      },
+      {
+        "walking_surface": "floor-1:return-13",
+        "point_mm": [
+          5420.0,
+          12595.0,
+          2166.6666666666665
+        ],
+        "overhead_surface": "floor-2:middle",
+        "proxy_gap_mm": 3183.3333333333335
+      },
+      {
+        "walking_surface": "floor-1:up-2",
+        "point_mm": [
+          4220.0,
+          10165.0,
+          333.3333333333333
+        ],
+        "overhead_surface": "floor-2:up-1",
+        "proxy_gap_mm": 3683.3333333333335
+      },
+      {
+        "walking_surface": "floor-1:return-14",
+        "point_mm": [
+          5420.0,
+          12325.0,
+          2333.3333333333335
+        ],
+        "overhead_surface": "floor-2:middle",
+        "proxy_gap_mm": 3016.6666666666665
+      },
+      {
+        "walking_surface": "floor-1:up-3",
+        "point_mm": [
+          4220.0,
+          10435.0,
+          500.0
+        ],
+        "overhead_surface": "floor-2:up-2",
+        "proxy_gap_mm": 3683.333333333333
+      },
+      {
+        "walking_surface": "floor-1:return-15",
+        "point_mm": [
+          5420.0,
+          12055.0,
+          2500.0
+        ],
+        "overhead_surface": "floor-2:return-10",
+        "proxy_gap_mm": 3016.666666666667
+      },
+      {
+        "walking_surface": "floor-1:up-4",
+        "point_mm": [
+          4220.0,
+          10705.0,
+          666.6666666666666
+        ],
+        "overhead_surface": "floor-2:up-3",
+        "proxy_gap_mm": 3683.3333333333335
+      },
+      {
+        "walking_surface": "floor-1:return-16",
+        "point_mm": [
+          5420.0,
+          11785.0,
+          2666.6666666666665
+        ],
+        "overhead_surface": "floor-2:return-11",
+        "proxy_gap_mm": 3016.6666666666665
+      },
+      {
+        "walking_surface": "floor-1:up-5",
+        "point_mm": [
+          4220.0,
+          10975.0,
+          833.3333333333334
+        ],
+        "overhead_surface": "floor-2:up-4",
+        "proxy_gap_mm": 3683.3333333333335
+      },
+      {
+        "walking_surface": "floor-1:return-17",
+        "point_mm": [
+          5420.0,
+          11515.0,
+          2833.3333333333335
+        ],
+        "overhead_surface": "floor-2:return-12",
+        "proxy_gap_mm": 3016.6666666666665
+      },
+      {
+        "walking_surface": "floor-1:up-6",
+        "point_mm": [
+          4220.0,
+          11245.0,
+          1000.0
+        ],
+        "overhead_surface": "floor-2:up-5",
+        "proxy_gap_mm": 3683.333333333333
+      },
+      {
+        "walking_surface": "floor-1:return-18",
+        "point_mm": [
+          5420.0,
+          11245.0,
+          3000.0
+        ],
+        "overhead_surface": "floor-2:return-13",
+        "proxy_gap_mm": 3016.666666666667
+      },
+      {
+        "walking_surface": "floor-1:up-7",
+        "point_mm": [
+          4220.0,
+          11515.0,
+          1166.6666666666667
+        ],
+        "overhead_surface": "floor-2:up-6",
+        "proxy_gap_mm": 3683.333333333333
+      },
+      {
+        "walking_surface": "floor-1:return-19",
+        "point_mm": [
+          5420.0,
+          10975.0,
+          3166.666666666667
+        ],
+        "overhead_surface": "floor-2:return-14",
+        "proxy_gap_mm": 3016.666666666666
+      },
+      {
+        "walking_surface": "floor-1:up-8",
+        "point_mm": [
+          4220.0,
+          11785.0,
+          1333.3333333333333
+        ],
+        "overhead_surface": "floor-2:up-7",
+        "proxy_gap_mm": 3683.333333333334
+      },
+      {
+        "walking_surface": "floor-1:return-20",
+        "point_mm": [
+          5420.0,
+          10705.0,
+          3333.333333333333
+        ],
+        "overhead_surface": "floor-2:return-15",
+        "proxy_gap_mm": 3016.666666666667
+      },
+      {
+        "walking_surface": "floor-1:up-9",
+        "point_mm": [
+          4220.0,
+          12055.0,
+          1500.0
+        ],
+        "overhead_surface": "floor-2:up-8",
+        "proxy_gap_mm": 3683.333333333333
+      },
+      {
+        "walking_surface": "floor-1:return-21",
+        "point_mm": [
+          5420.0,
+          10435.0,
+          3500.0
+        ],
+        "overhead_surface": "floor-2:return-16",
+        "proxy_gap_mm": 3016.666666666667
+      },
+      {
+        "walking_surface": "floor-1:up-10",
+        "point_mm": [
+          4220.0,
+          12325.0,
+          1666.6666666666667
+        ],
+        "overhead_surface": "floor-2:middle",
+        "proxy_gap_mm": 3683.333333333333
+      },
+      {
+        "walking_surface": "floor-1:return-22",
+        "point_mm": [
+          5420.0,
+          10165.0,
+          3666.666666666667
+        ],
+        "overhead_surface": "floor-2:return-17",
+        "proxy_gap_mm": 3016.666666666666
+      },
+      {
+        "walking_surface": "floor-1:up-11",
+        "point_mm": [
+          4220.0,
+          12595.0,
+          1833.3333333333333
+        ],
+        "overhead_surface": "floor-2:middle",
+        "proxy_gap_mm": 3516.666666666667
+      },
+      {
+        "walking_surface": "floor-1:return-23",
+        "point_mm": [
+          5420.0,
+          9895.0,
+          3833.333333333333
+        ],
+        "overhead_surface": "floor-3:departure",
+        "proxy_gap_mm": 3016.666666666667
+      },
+      {
+        "walking_surface": "floor-2:up-1",
+        "point_mm": [
+          4220.0,
+          10165.0,
+          4166.666666666667
+        ],
+        "overhead_surface": "floor-3:up-1",
+        "proxy_gap_mm": 2850.0
+      },
+      {
+        "walking_surface": "floor-2:return-10",
+        "point_mm": [
+          5420.0,
+          12055.0,
+          5666.666666666667
+        ],
+        "overhead_surface": "floor-3:return-10",
+        "proxy_gap_mm": 2849.999999999999
+      },
+      {
+        "walking_surface": "floor-2:up-2",
+        "point_mm": [
+          4220.0,
+          10435.0,
+          4333.333333333333
+        ],
+        "overhead_surface": "floor-3:up-2",
+        "proxy_gap_mm": 2850.0
+      },
+      {
+        "walking_surface": "floor-2:return-11",
+        "point_mm": [
+          5420.0,
+          11785.0,
+          5833.333333333333
+        ],
+        "overhead_surface": "floor-3:return-11",
+        "proxy_gap_mm": 2850.000000000001
+      },
+      {
+        "walking_surface": "floor-2:up-3",
+        "point_mm": [
+          4220.0,
+          10705.0,
+          4500.0
+        ],
+        "overhead_surface": "floor-3:up-3",
+        "proxy_gap_mm": 2850.0
+      },
+      {
+        "walking_surface": "floor-2:return-12",
+        "point_mm": [
+          5420.0,
+          11515.0,
+          6000.0
+        ],
+        "overhead_surface": "floor-3:return-12",
+        "proxy_gap_mm": 2850.0
+      },
+      {
+        "walking_surface": "floor-2:up-4",
+        "point_mm": [
+          4220.0,
+          10975.0,
+          4666.666666666667
+        ],
+        "overhead_surface": "floor-3:up-4",
+        "proxy_gap_mm": 2850.0
+      },
+      {
+        "walking_surface": "floor-2:return-13",
+        "point_mm": [
+          5420.0,
+          11245.0,
+          6166.666666666667
+        ],
+        "overhead_surface": "floor-3:return-13",
+        "proxy_gap_mm": 2849.999999999999
+      },
+      {
+        "walking_surface": "floor-2:up-5",
+        "point_mm": [
+          4220.0,
+          11245.0,
+          4833.333333333333
+        ],
+        "overhead_surface": "floor-3:up-5",
+        "proxy_gap_mm": 2850.0
+      },
+      {
+        "walking_surface": "floor-2:return-14",
+        "point_mm": [
+          5420.0,
+          10975.0,
+          6333.333333333333
+        ],
+        "overhead_surface": "floor-3:return-14",
+        "proxy_gap_mm": 2850.000000000001
+      },
+      {
+        "walking_surface": "floor-2:up-6",
+        "point_mm": [
+          4220.0,
+          11515.0,
+          5000.0
+        ],
+        "overhead_surface": "floor-3:up-6",
+        "proxy_gap_mm": 2850.0
+      },
+      {
+        "walking_surface": "floor-2:return-15",
+        "point_mm": [
+          5420.0,
+          10705.0,
+          6500.0
+        ],
+        "overhead_surface": "floor-3:return-15",
+        "proxy_gap_mm": 2850.0
+      },
+      {
+        "walking_surface": "floor-2:up-7",
+        "point_mm": [
+          4220.0,
+          11785.0,
+          5166.666666666667
+        ],
+        "overhead_surface": "floor-3:up-7",
+        "proxy_gap_mm": 2850.0
+      },
+      {
+        "walking_surface": "floor-2:return-16",
+        "point_mm": [
+          5420.0,
+          10435.0,
+          6666.666666666667
+        ],
+        "overhead_surface": "floor-3:return-16",
+        "proxy_gap_mm": 2849.999999999999
+      },
+      {
+        "walking_surface": "floor-2:up-8",
+        "point_mm": [
+          4220.0,
+          12055.0,
+          5333.333333333333
+        ],
+        "overhead_surface": "floor-3:up-8",
+        "proxy_gap_mm": 2850.000000000001
+      },
+      {
+        "walking_surface": "floor-2:return-17",
+        "point_mm": [
+          5420.0,
+          10165.0,
+          6833.333333333333
+        ],
+        "overhead_surface": "floor-3:return-17",
+        "proxy_gap_mm": 2850.000000000001
+      },
+      {
+        "walking_surface": "floor-3:up-1",
+        "point_mm": [
+          4220.0,
+          10165.0,
+          7166.666666666667
+        ],
+        "overhead_surface": null,
+        "proxy_gap_mm": null
+      },
+      {
+        "walking_surface": "floor-3:return-10",
+        "point_mm": [
+          5420.0,
+          12055.0,
+          8666.666666666666
+        ],
+        "overhead_surface": null,
+        "proxy_gap_mm": null
+      },
+      {
+        "walking_surface": "floor-3:up-2",
+        "point_mm": [
+          4220.0,
+          10435.0,
+          7333.333333333333
+        ],
+        "overhead_surface": null,
+        "proxy_gap_mm": null
+      },
+      {
+        "walking_surface": "floor-3:return-11",
+        "point_mm": [
+          5420.0,
+          11785.0,
+          8833.333333333334
+        ],
+        "overhead_surface": null,
+        "proxy_gap_mm": null
+      },
+      {
+        "walking_surface": "floor-3:up-3",
+        "point_mm": [
+          4220.0,
+          10705.0,
+          7500.0
+        ],
+        "overhead_surface": null,
+        "proxy_gap_mm": null
+      },
+      {
+        "walking_surface": "floor-3:return-12",
+        "point_mm": [
+          5420.0,
+          11515.0,
+          9000.0
+        ],
+        "overhead_surface": null,
+        "proxy_gap_mm": null
+      },
+      {
+        "walking_surface": "floor-3:up-4",
+        "point_mm": [
+          4220.0,
+          10975.0,
+          7666.666666666667
+        ],
+        "overhead_surface": null,
+        "proxy_gap_mm": null
+      },
+      {
+        "walking_surface": "floor-3:return-13",
+        "point_mm": [
+          5420.0,
+          11245.0,
+          9166.666666666666
+        ],
+        "overhead_surface": null,
+        "proxy_gap_mm": null
+      },
+      {
+        "walking_surface": "floor-3:up-5",
+        "point_mm": [
+          4220.0,
+          11245.0,
+          7833.333333333333
+        ],
+        "overhead_surface": null,
+        "proxy_gap_mm": null
+      },
+      {
+        "walking_surface": "floor-3:return-14",
+        "point_mm": [
+          5420.0,
+          10975.0,
+          9333.333333333334
+        ],
+        "overhead_surface": null,
+        "proxy_gap_mm": null
+      },
+      {
+        "walking_surface": "floor-3:up-6",
+        "point_mm": [
+          4220.0,
+          11515.0,
+          8000.0
+        ],
+        "overhead_surface": null,
+        "proxy_gap_mm": null
+      },
+      {
+        "walking_surface": "floor-3:return-15",
+        "point_mm": [
+          5420.0,
+          10705.0,
+          9500.0
+        ],
+        "overhead_surface": null,
+        "proxy_gap_mm": null
+      },
+      {
+        "walking_surface": "floor-3:up-7",
+        "point_mm": [
+          4220.0,
+          11785.0,
+          8166.666666666667
+        ],
+        "overhead_surface": null,
+        "proxy_gap_mm": null
+      },
+      {
+        "walking_surface": "floor-3:return-16",
+        "point_mm": [
+          5420.0,
+          10435.0,
+          9666.666666666666
+        ],
+        "overhead_surface": null,
+        "proxy_gap_mm": null
+      },
+      {
+        "walking_surface": "floor-3:up-8",
+        "point_mm": [
+          4220.0,
+          12055.0,
+          8333.333333333334
+        ],
+        "overhead_surface": null,
+        "proxy_gap_mm": null
+      },
+      {
+        "walking_surface": "floor-3:return-17",
+        "point_mm": [
+          5420.0,
+          10165.0,
+          9833.333333333334
+        ],
+        "overhead_surface": null,
+        "proxy_gap_mm": null
+      }
+    ],
+    "actual_waist_slab_beams_handrails_and_clearance_approval": "unknown"
+  },
+  "landing_furniture_and_operation_conflicts": [],
+  "legal_fire_separation_opening_structure_and_actual_headroom": "unknown",
+  "open_stair_acoustics_privacy_and_fengshui_acceptance": "open-baseline-not-selected-no-fengshui-approval",
+  "if_independent_fire_or_privacy_door_required": "forward-privacy-layout-selected-redesign-door-and-platform-if-rated-system-requires-not-in-730mm-offset",
+  "balcony_soil_section_and_AC01_riser": "remain-unresolved-in-separate-coordination-study",
+  "comparison_250mm_tread": "retained-in-c-balcony-coordination-not-used-here",
+  "front_partition_comparison": {
+    "status": "owner-selected-development-pending-professional-review",
+    "owner_preference": "forward-closing-door",
+    "owner_confirmation": {
+      "date": "2026-11-04",
+      "quote": "前置可關門版 可以接受",
+      "scope": "C棟前置分隔配置深化方向；非產品選定、整棟採用或專業核可"
+    },
+    "selection_scope": "partition-direction-only-not-product-full-scheme-or-professional-approval",
+    "options": [
+      {
+        "id": "shared-open",
+        "selected": false,
+        "new_partition": false,
+        "public_floor_used_in_additional_pocket_sqm": 0,
+        "acoustic_and_air_zone_isolation": "not-provided-by-open-apron"
+      },
+      {
+        "id": "forward-closing-door",
+        "selected": true,
+        "new_partition": true,
+        "floor_details": [
+          {
+            "floor": "floor-1",
+            "opening_x_mm": [
+              2900,
+              4100
+            ],
+            "sliding_parking_x_mm": [
+              4100,
+              5300
+            ],
+            "plane_y_mm": 8550,
+            "wall_budgets_mm": [
+              [
+                2400,
+                8500.0,
+                3600,
+                100
+              ],
+              [
+                2350.0,
+                8600.0,
+                100,
+                360.0
+              ]
+            ],
+            "parking_rect_mm": [
+              4100,
+              8600.0,
+              1200,
+              100
+            ],
+            "closed_leaf_rect_mm": [
+              2900,
+              8600.0,
+              1200,
+              100
+            ],
+            "approach_rectangles_mm": {
+              "outside": [
+                2800,
+                7600.0,
+                1400,
+                900
+              ],
+              "inside": [
+                2800,
+                8700.0,
+                1400,
+                900
+              ]
+            },
+            "opening_width_nominal_mm": 1200,
+            "actual_door_clear_width_mm": null,
+            "vestibule_proxy_mm": [
+              2400,
+              8550,
+              3600,
+              410
+            ],
+            "existing_public_floor_used_sqm": 1.476,
+            "includes_earlier_shared_apron_sqm": 0.44,
+            "additional_public_floor_in_pocket_sqm": 1.036,
+            "affected_existing_rooms": [
+              {
+                "room": "C:floor-1:living-hall",
+                "overlap_sqm": 0.656
+              },
+              {
+                "room": "C:floor-1:living-right",
+                "overlap_sqm": 0.82
+              }
+            ],
+            "inner_wall_face_to_first_riser_mm": 1160.0,
+            "wall_to_shared_apron_gap_mm": 160.0,
+            "inner_leaf_face_to_first_riser_mm": 1060.0,
+            "leaf_to_shared_apron_gap_mm": 60.0,
+            "furniture_body_and_operation_conflicts": [],
+            "actual_seals_leaf_hardware_slab_connection_and_rescue": "unknown"
+          },
+          {
+            "floor": "floor-2",
+            "opening_x_mm": [
+              3200,
+              4400
+            ],
+            "sliding_parking_x_mm": [
+              4400,
+              5600
+            ],
+            "plane_y_mm": 8550,
+            "wall_budgets_mm": [
+              [
+                2400,
+                8500.0,
+                3600,
+                100
+              ],
+              [
+                2350.0,
+                8600.0,
+                100,
+                360.0
+              ]
+            ],
+            "parking_rect_mm": [
+              4400,
+              8600.0,
+              1200,
+              100
+            ],
+            "closed_leaf_rect_mm": [
+              3200,
+              8600.0,
+              1200,
+              100
+            ],
+            "approach_rectangles_mm": {
+              "outside": [
+                3100,
+                7600.0,
+                1400,
+                900
+              ],
+              "inside": [
+                3100,
+                8700.0,
+                1400,
+                900
+              ]
+            },
+            "opening_width_nominal_mm": 1200,
+            "actual_door_clear_width_mm": null,
+            "vestibule_proxy_mm": [
+              2400,
+              8550,
+              3600,
+              410
+            ],
+            "existing_public_floor_used_sqm": 1.476,
+            "includes_earlier_shared_apron_sqm": 0.44,
+            "additional_public_floor_in_pocket_sqm": 1.036,
+            "affected_existing_rooms": [
+              {
+                "room": "C:floor-2:living2f",
+                "overlap_sqm": 1.312
+              },
+              {
+                "room": "C:floor-2:living-nook",
+                "overlap_sqm": 0.164
+              }
+            ],
+            "inner_wall_face_to_first_riser_mm": 1160.0,
+            "wall_to_shared_apron_gap_mm": 160.0,
+            "inner_leaf_face_to_first_riser_mm": 1060.0,
+            "leaf_to_shared_apron_gap_mm": 60.0,
+            "furniture_body_and_operation_conflicts": [],
+            "actual_seals_leaf_hardware_slab_connection_and_rescue": "unknown"
+          }
+        ],
+        "acoustic_and_air_zone_isolation": "unknown-side-openings-and-actual-seals-needed"
+      }
+    ],
+    "sightline_proxy_first_floor": {
+      "rays": [
+        {
+          "from_mm": [
+            3000,
+            3900
+          ],
+          "to_mm": [
+            4220,
+            9895
+          ],
+          "at_partition_x_mm": 3946.2885738115097,
+          "passes_open_aperture_in_plan": true,
+          "closed_opaque_panel_intercepts_at_plane": true
+        },
+        {
+          "from_mm": [
+            3400,
+            3900
+          ],
+          "to_mm": [
+            4220,
+            9895
+          ],
+          "at_partition_x_mm": 4036.0300250208506,
+          "passes_open_aperture_in_plan": true,
+          "closed_opaque_panel_intercepts_at_plane": true
+        },
+        {
+          "from_mm": [
+            3800,
+            3900
+          ],
+          "to_mm": [
+            4220,
+            9895
+          ],
+          "at_partition_x_mm": 4125.771476230192,
+          "passes_open_aperture_in_plan": false,
+          "closed_opaque_panel_intercepts_at_plane": true
+        }
+      ],
+      "all_open_rays_blocked": false,
+      "scope": "three-plane-rays-to-one-first-flight-point-not-eye-height-all-angles-or-fengshui-approval"
+    },
+    "second_floor_bypass": {
+      "path": [
+        "living-nook",
+        "day-reserve",
+        "stair2f"
+      ],
+      "source_side_door_width_mm": 900,
+      "source_side_door_operation": "unconfirmed",
+      "closing_front_door_does_not_close_side_door": true
+    },
+    "sliding_panel_and_fixed_panel_material": "opaque-or-privacy-study-no-selected-product",
+    "regulatory_fire_and_stair_compartment": "unknown-no-professional-fire-approval",
+    "sound_reduction_rating_dB": null,
+    "open_door_fengshui_and_privacy_approval": "unknown"
+  },
+  "door_fit_review": {
+    "scope": "door-fit-sensitivities-and-specified-two-door-state-paths",
+    "floor_details": [
+      {
+        "floor": "floor-1",
+        "clear_width_target_mm": 900,
+        "nominal_opening_mm": 1200,
+        "selected_product": null,
+        "actual_completed_clear_width_mm": null,
+        "clear_width_cases": [
+          {
+            "total_frame_stop_overlap_mm": 150,
+            "calculated_clear_width_mm": 1050,
+            "margin_to_900mm_mm": 150
+          },
+          {
+            "total_frame_stop_overlap_mm": 200,
+            "calculated_clear_width_mm": 1000,
+            "margin_to_900mm_mm": 100
+          },
+          {
+            "total_frame_stop_overlap_mm": 250,
+            "calculated_clear_width_mm": 950,
+            "margin_to_900mm_mm": 50
+          },
+          {
+            "total_frame_stop_overlap_mm": 300,
+            "calculated_clear_width_mm": 900,
+            "margin_to_900mm_mm": 0
+          },
+          {
+            "total_frame_stop_overlap_mm": 350,
+            "calculated_clear_width_mm": 850,
+            "margin_to_900mm_mm": -50
+          }
+        ],
+        "leaf_parking_available_before_corner_budget_mm": 1800,
+        "leaf_width_cases": [
+          {
+            "assumed_leaf_width_mm": 1200,
+            "parking_margin_mm": 600
+          },
+          {
+            "assumed_leaf_width_mm": 1300,
+            "parking_margin_mm": 500
+          },
+          {
+            "assumed_leaf_width_mm": 1400,
+            "parking_margin_mm": 400
+          },
+          {
+            "assumed_leaf_width_mm": 1500,
+            "parking_margin_mm": 300
+          },
+          {
+            "assumed_leaf_width_mm": 1600,
+            "parking_margin_mm": 200
+          }
+        ],
+        "track_and_leaf_depth_cases": [
+          {
+            "assumed_track_leaf_depth_mm": 80,
+            "margin_to_apron_at_current_line_mm": 80,
+            "forward_shift_to_keep_original_60mm_budget_mm": 0,
+            "extra_public_floor_if_shifted_sqm": 0.0,
+            "shifted_outside_approach_mm": [
+              2800,
+              7600.0,
+              1400,
+              900
+            ],
+            "shifted_outside_approach_conflicts": [],
+            "shift_is_only_sensitivity_not_selected_new_door_line": true
+          },
+          {
+            "assumed_track_leaf_depth_mm": 100,
+            "margin_to_apron_at_current_line_mm": 60,
+            "forward_shift_to_keep_original_60mm_budget_mm": 0,
+            "extra_public_floor_if_shifted_sqm": 0.0,
+            "shifted_outside_approach_mm": [
+              2800,
+              7600.0,
+              1400,
+              900
+            ],
+            "shifted_outside_approach_conflicts": [],
+            "shift_is_only_sensitivity_not_selected_new_door_line": true
+          },
+          {
+            "assumed_track_leaf_depth_mm": 120,
+            "margin_to_apron_at_current_line_mm": 40,
+            "forward_shift_to_keep_original_60mm_budget_mm": 20,
+            "extra_public_floor_if_shifted_sqm": 0.072,
+            "shifted_outside_approach_mm": [
+              2800,
+              7580.0,
+              1400,
+              900
+            ],
+            "shifted_outside_approach_conflicts": [],
+            "shift_is_only_sensitivity_not_selected_new_door_line": true
+          },
+          {
+            "assumed_track_leaf_depth_mm": 150,
+            "margin_to_apron_at_current_line_mm": 10,
+            "forward_shift_to_keep_original_60mm_budget_mm": 50,
+            "extra_public_floor_if_shifted_sqm": 0.18,
+            "shifted_outside_approach_mm": [
+              2800,
+              7550.0,
+              1400,
+              900
+            ],
+            "shifted_outside_approach_conflicts": [],
+            "shift_is_only_sensitivity_not_selected_new_door_line": true
+          },
+          {
+            "assumed_track_leaf_depth_mm": 180,
+            "margin_to_apron_at_current_line_mm": -20,
+            "forward_shift_to_keep_original_60mm_budget_mm": 80,
+            "extra_public_floor_if_shifted_sqm": 0.288,
+            "shifted_outside_approach_mm": [
+              2800,
+              7520.0,
+              1400,
+              900
+            ],
+            "shifted_outside_approach_conflicts": [],
+            "shift_is_only_sensitivity_not_selected_new_door_line": true
+          },
+          {
+            "assumed_track_leaf_depth_mm": 200,
+            "margin_to_apron_at_current_line_mm": -40,
+            "forward_shift_to_keep_original_60mm_budget_mm": 100,
+            "extra_public_floor_if_shifted_sqm": 0.36,
+            "shifted_outside_approach_mm": [
+              2800,
+              7500.0,
+              1400,
+              900
+            ],
+            "shifted_outside_approach_conflicts": [],
+            "shift_is_only_sensitivity_not_selected_new_door_line": true
+          },
+          {
+            "assumed_track_leaf_depth_mm": 220,
+            "margin_to_apron_at_current_line_mm": -60,
+            "forward_shift_to_keep_original_60mm_budget_mm": 120,
+            "extra_public_floor_if_shifted_sqm": 0.432,
+            "shifted_outside_approach_mm": [
+              2800,
+              7480.0,
+              1400,
+              900
+            ],
+            "shifted_outside_approach_conflicts": [],
+            "shift_is_only_sensitivity_not_selected_new_door_line": true
+          }
+        ],
+        "mechanical_stops_handles_clear_opening_and_maintenance": "unknown"
+      },
+      {
+        "floor": "floor-2",
+        "clear_width_target_mm": 900,
+        "nominal_opening_mm": 1200,
+        "selected_product": null,
+        "actual_completed_clear_width_mm": null,
+        "clear_width_cases": [
+          {
+            "total_frame_stop_overlap_mm": 150,
+            "calculated_clear_width_mm": 1050,
+            "margin_to_900mm_mm": 150
+          },
+          {
+            "total_frame_stop_overlap_mm": 200,
+            "calculated_clear_width_mm": 1000,
+            "margin_to_900mm_mm": 100
+          },
+          {
+            "total_frame_stop_overlap_mm": 250,
+            "calculated_clear_width_mm": 950,
+            "margin_to_900mm_mm": 50
+          },
+          {
+            "total_frame_stop_overlap_mm": 300,
+            "calculated_clear_width_mm": 900,
+            "margin_to_900mm_mm": 0
+          },
+          {
+            "total_frame_stop_overlap_mm": 350,
+            "calculated_clear_width_mm": 850,
+            "margin_to_900mm_mm": -50
+          }
+        ],
+        "leaf_parking_available_before_corner_budget_mm": 1500,
+        "leaf_width_cases": [
+          {
+            "assumed_leaf_width_mm": 1200,
+            "parking_margin_mm": 300
+          },
+          {
+            "assumed_leaf_width_mm": 1300,
+            "parking_margin_mm": 200
+          },
+          {
+            "assumed_leaf_width_mm": 1400,
+            "parking_margin_mm": 100
+          },
+          {
+            "assumed_leaf_width_mm": 1500,
+            "parking_margin_mm": 0
+          },
+          {
+            "assumed_leaf_width_mm": 1600,
+            "parking_margin_mm": -100
+          }
+        ],
+        "track_and_leaf_depth_cases": [
+          {
+            "assumed_track_leaf_depth_mm": 80,
+            "margin_to_apron_at_current_line_mm": 80,
+            "forward_shift_to_keep_original_60mm_budget_mm": 0,
+            "extra_public_floor_if_shifted_sqm": 0.0,
+            "shifted_outside_approach_mm": [
+              3100,
+              7600.0,
+              1400,
+              900
+            ],
+            "shifted_outside_approach_conflicts": [],
+            "shift_is_only_sensitivity_not_selected_new_door_line": true
+          },
+          {
+            "assumed_track_leaf_depth_mm": 100,
+            "margin_to_apron_at_current_line_mm": 60,
+            "forward_shift_to_keep_original_60mm_budget_mm": 0,
+            "extra_public_floor_if_shifted_sqm": 0.0,
+            "shifted_outside_approach_mm": [
+              3100,
+              7600.0,
+              1400,
+              900
+            ],
+            "shifted_outside_approach_conflicts": [],
+            "shift_is_only_sensitivity_not_selected_new_door_line": true
+          },
+          {
+            "assumed_track_leaf_depth_mm": 120,
+            "margin_to_apron_at_current_line_mm": 40,
+            "forward_shift_to_keep_original_60mm_budget_mm": 20,
+            "extra_public_floor_if_shifted_sqm": 0.072,
+            "shifted_outside_approach_mm": [
+              3100,
+              7580.0,
+              1400,
+              900
+            ],
+            "shifted_outside_approach_conflicts": [],
+            "shift_is_only_sensitivity_not_selected_new_door_line": true
+          },
+          {
+            "assumed_track_leaf_depth_mm": 150,
+            "margin_to_apron_at_current_line_mm": 10,
+            "forward_shift_to_keep_original_60mm_budget_mm": 50,
+            "extra_public_floor_if_shifted_sqm": 0.18,
+            "shifted_outside_approach_mm": [
+              3100,
+              7550.0,
+              1400,
+              900
+            ],
+            "shifted_outside_approach_conflicts": [],
+            "shift_is_only_sensitivity_not_selected_new_door_line": true
+          },
+          {
+            "assumed_track_leaf_depth_mm": 180,
+            "margin_to_apron_at_current_line_mm": -20,
+            "forward_shift_to_keep_original_60mm_budget_mm": 80,
+            "extra_public_floor_if_shifted_sqm": 0.288,
+            "shifted_outside_approach_mm": [
+              3100,
+              7520.0,
+              1400,
+              900
+            ],
+            "shifted_outside_approach_conflicts": [],
+            "shift_is_only_sensitivity_not_selected_new_door_line": true
+          },
+          {
+            "assumed_track_leaf_depth_mm": 200,
+            "margin_to_apron_at_current_line_mm": -40,
+            "forward_shift_to_keep_original_60mm_budget_mm": 100,
+            "extra_public_floor_if_shifted_sqm": 0.36,
+            "shifted_outside_approach_mm": [
+              3100,
+              7500.0,
+              1400,
+              900
+            ],
+            "shifted_outside_approach_conflicts": [],
+            "shift_is_only_sensitivity_not_selected_new_door_line": true
+          },
+          {
+            "assumed_track_leaf_depth_mm": 220,
+            "margin_to_apron_at_current_line_mm": -60,
+            "forward_shift_to_keep_original_60mm_budget_mm": 120,
+            "extra_public_floor_if_shifted_sqm": 0.432,
+            "shifted_outside_approach_mm": [
+              3100,
+              7480.0,
+              1400,
+              900
+            ],
+            "shifted_outside_approach_conflicts": [
+              {
+                "item": "C:floor-2:living2f:furniture:tv",
+                "kind": "body"
+              },
+              {
+                "item": "C:floor-2:living2f:furniture:tv",
+                "kind": "operation"
+              }
+            ],
+            "shift_is_only_sensitivity_not_selected_new_door_line": true
+          }
+        ],
+        "mechanical_stops_handles_clear_opening_and_maintenance": "unknown"
+      }
+    ],
+    "selected_product": null,
+    "side_door": {
+      "room_pair": [
+        "C:floor-2:day-reserve",
+        "C:floor-2:stair2f"
+      ],
+      "face": "left",
+      "ratio": 0.113636,
+      "source_nominal_width_mm": 900,
+      "source_operation": "unconfirmed",
+      "clear_width_target_mm": 900,
+      "actual_completed_clear_width_mm": null,
+      "source_900mm_has_no_extra_frame_budget_for_900mm_goal": true,
+      "action": "include-existing-side-door-in-same-fit-and-seal-review-widening-if-needed-is-not-yet-designed"
+    },
+    "two_door_states": [
+      {
+        "front_door_open": true,
+        "side_door_open": true,
+        "specified_unobstructed_doorway_paths": [
+          [
+            "living2f",
+            "stair2f"
+          ],
+          [
+            "living2f",
+            "living-nook",
+            "day-reserve",
+            "stair2f"
+          ]
+        ],
+        "people_can_open_closed_doors_and_air_leakage": "not-modelled-not-an-egress-or-airflow-graph"
+      },
+      {
+        "front_door_open": true,
+        "side_door_open": false,
+        "specified_unobstructed_doorway_paths": [
+          [
+            "living2f",
+            "stair2f"
+          ]
+        ],
+        "people_can_open_closed_doors_and_air_leakage": "not-modelled-not-an-egress-or-airflow-graph"
+      },
+      {
+        "front_door_open": false,
+        "side_door_open": true,
+        "specified_unobstructed_doorway_paths": [
+          [
+            "living2f",
+            "living-nook",
+            "day-reserve",
+            "stair2f"
+          ]
+        ],
+        "people_can_open_closed_doors_and_air_leakage": "not-modelled-not-an-egress-or-airflow-graph"
+      },
+      {
+        "front_door_open": false,
+        "side_door_open": false,
+        "specified_unobstructed_doorway_paths": [],
+        "people_can_open_closed_doors_and_air_leakage": "not-modelled-not-an-egress-or-airflow-graph"
+      }
+    ],
+    "regulatory_fire_acoustic_rescue_and_products": "unknown",
+    "both_closed_does_not_prove_airtight_or_soundproof": true
+  },
+  "source_hashes": {
+    "inputs/c-stair-shared-landing.json": "7ad83125deca8d1780f622b17910d0b14596554026f8ac0e9b74971a4396d600",
+    "structured/candidates/kaohsiung-house-options/review.json": "84f81465f280ec64931d29e49234b1dbcafc6b0b93a20b2a33f683e14f164fdf",
+    "house_design/c_stair_landing.py": "536ffba292fe2b9e0866bc941a917b0c5e9eac4092e143607598f6482a0c5757",
+    "house_design/c_balcony_coordination.py": "98fda615dab28c265114b8455b861b457c59372fa1593050287f53ba0ad57192",
+    "house_design/contracts.py": "2888419d49e8d8dbe8b8e99f6b8451363cd9020821c7fe3e703ab09779e202c3",
+    "scripts/export_c_stair_landing.py": "3122b7541048f95c29e20f690ff25013967b90b5e4f84dddaaadd58a1ba9216a",
+    "house_design/frozen_kaohsiung.py": "452c41f24251e93c13f26fcd65896cc1bddd27545af6a39ed4c884250316006a",
+    "inputs/references/source-history/20261104-kaohsiung-before-c-stair.json": "5476fcc33bc6d1573c8a5b72742744c01767e56f4e6bbe22a5840fcb648e03ff"
+  },
+  "parent_source_and_artifact_counts": [
+    69,
+    47
+  ]
+}

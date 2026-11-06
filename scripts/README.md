@@ -1,6 +1,179 @@
 # House Design Workflows
 
-## 目前唯一導覽與唯讀盤點（2026-10-27）
+## ABC條件式預先規劃（2026-11-06，最新工作方式）
+
+[條件表／影響清單／前後備案](../structured/coordination/abc-fresh-air-planning-v1/index.html)／[填寫及日後套入方式](../Docs/abc-conditional-planning-v1.md)。屋主要求等實際資料再統一套用，當前只做預先規劃；先為新風／機電提供184欄JSON／CSV及101項條件比較，均保持待資料。可分批填值，不把空白當0、不用假設當量測；每欄檢查單位／來源／日期，產品數據綁定機型版次，舊基準拒收。`--inputs`預設只讀摘要，只有`--out`指定新的`inputs/private/`子目錄才保存獨立結果；拒絕覆寫既有輸入／結果或原ABC／3D。B後巷與逐層前後外口獨立，原149控制及需求不變，不自動採用或取得專業核可。
+
+以下逐條20秒內，只檢查本批檔案與小範圍測試：
+
+```bash
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_abc_fresh_air_planning.py --check
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_abc_fresh_air_planning.py
+```
+
+不在背景啟動瀏覽器／WebGL、整套pytest或外部AI；初始化及實際資料重算指令見上述說明，現在無須先填資料。
+
+## ABC新風關門支路／室外口／檢修剖面（2026-11-06，前批）
+
+[三棟支路與剖面](../structured/coordination/abc-fresh-air-detail-v1/index.html)／[代價與商品核對限制](../Docs/abc-fresh-air-detail-v1.md)／[建商八列回覆](../structured/coordination/abc-fresh-air-detail-v1/contractor-response.csv)。24乾區標籤獨立送回風、B右側乾頸部接前區、B外口前後兩案。四管不能共塞500×300，另比950×300／500×500；名義拆板另扣框料及手部。13件純靜態輸出，所有Z／合法開孔／低速性能／全機運出未核，不改原3D、149控制或B前後搬轎兩版三態，不選購或宣稱採用。
+
+每條分別20秒，只做新包檔案／小測試，不啟動瀏覽器、WebGL或完整3D：
+
+```bash
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_abc_fresh_air_detail.py --check
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_abc_fresh_air_detail.py
+```
+
+## ABC全熱／新風機位、檢修與管井（2026-11-06，前批）
+
+[三棟預留比較](../structured/coordination/abc-fresh-air-layout-v1/index.html)／[尺寸與未解](../Docs/abc-fresh-air-layout-v1.md)／[九列等範圍報價空表](../structured/coordination/abc-fresh-air-layout-v1/builder-quotes.csv)。8處機位不等於8台，5條局部送回風管帶不代表完整四管已排。常用層分區僅條件式優先，三個中央管井試點不留，但其他集中方案可另比。C1機位與管帶避樓梯、鞋櫃及可關隔間；B前起居接通、關門各房分支、OA／EA終端、梁底與抽換尚待設計。三樓有既定用途須同期啟用通風，不以未知人數當0。沒有選機、填價格、採用或改原3D，149份控制及B前後門保留。
+
+以下逐一執行，每條20秒內；不啟動瀏覽器、WebGL、全套測試或外部AI：
+
+```bash
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_abc_fresh_air_layout.py --check
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_abc_fresh_air_layout.py
+```
+
+## ABC全熱／新風分區基準（2026-11-06，需求基準）
+
+[三棟分區圖](../structured/coordination/abc-fresh-air-v1/index.html)／[已述人數與建商回覆](../Docs/abc-fresh-air-v1.md)。屋主已確認三棟ERV優先、最低機械室外新風；A1／A2各2人，B2為2人、B1香火另核，C1為2人／C2為1人。新增九層服務分區、關門回風、三樓預留與每棟中央／常用層小機兩案。通風確認不等於格局／機型／無窗公衛採用；台數、風量及物理路線待核，原3D與149控制不改。
+
+每條分別20秒，只做新包檔案／小測試，不啟動瀏覽器、WebGL或完整3D：
+
+```bash
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_abc_fresh_air.py --check
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_abc_fresh_air.py
+```
+
+## B關門補氣／檢修／屋頂工程深化（2026-11-06，上一批）
+
+[三張深化圖](../structured/coordination/b-ventilation-detail-v1/index.html)／[八項建商回覆空表](../structured/coordination/b-ventilation-detail-v1/builder-response.csv)／[說明](../Docs/b-ventilation-detail-v1.md)。調整濕區抽氣口與RF兩個終端，另核關門補氣、主臥豎道維修、包覆厚度、直管與梁底及指定假設壓損。型號、實物尺寸、價格及核定工作點保持未知，原無窗偏好未答覆，不能把繼續作業當成採用；原一樓、3D與149控制不改。
+
+每條分別20秒，只檢這一小包，不啟動瀏覽器或完整3D：
+
+```bash
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_b_ventilation_detail.py --check
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_b_ventilation_detail.py
+```
+
+## B二三樓公衛外窗／獨立排氣比較（2026-11-06，上一批）
+
+[兩案三張圖](../structured/coordination/b-bath-ventilation-v1/index.html)／[面積、門床與工程代價](../Docs/b-bath-ventilation-v1.md)。保房間位置案新增獨立500×300mm排氣豎道，主臥估20.0761㎡；床櫃換位避套衛門正向投影，機盒改前臂上方候選。後窗公衛重排估16.0889㎡且門朝床未解，不列可採用案。原一樓、前後門三態、原3D及149份控制不改；新方案未送Claude、沒有瀏覽器或專業核可。
+
+每條單獨20秒內，只檢這個新包：
+
+```bash
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_b_bath_ventilation.py --check
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_b_bath_ventilation.py
+```
+
+## B與Claude第三輪深化（2026-11-06，上一批）
+
+[三張深化圖與比較表](../structured/coordination/b-claude-round3-v1/index.html)／[尺寸、家規及代價](../Docs/b-claude-round3-v1.md)。已收到第三輪原response並核對來源，Claude同意100mm研究基線；屋主三項家規已確認。新增公衛器具／200管井、前門洗衣機移位及右牆機盒候選。原5／6㎡兩衛目標仍未達，公衛缺直接外窗，149份控制與原3D不改。這輪不自動再呼叫Claude或啟動瀏覽器。
+
+只做本包輕量檢查，每條分別20秒內：
+
+```bash
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_b_claude_round3.py --check
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_b_claude_round3.py
+```
+
+下面兩節及其中Claude長命令保留歷史，不是要求重新執行。新包獨立產生，沒有更新舊包雜湊來冒充重驗。
+
+## B與Claude回覆交叉核對（2026-11-06，上輪歷史）
+
+[新拓樸三圖與核對入口](../structured/coordination/b-claude-crosscheck-v1/index.html)／[面積及管道代價](../Docs/b-claude-crosscheck-v1.md)。取得Claude「前方乾區三入口」回覆，獨立重算四區面積、本體、700操作、900局部到達與投影；另列套衛前牆後移100mm比較，尚未送回Claude確認。原20／5／6目標、前後搬轎兩版與149份控制維持，沒有新採用或瀏覽器passed。
+
+```bash
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_b_claude_crosscheck.py --check
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_b_claude_crosscheck.py
+```
+
+原TEMP回覆本回合不可讀，已保存上回完整工具回傳與當時hash核對的取得方式，不偽造原始stdout。第三輪較長討論仍交屋主獨立WSL終端，這次明確存至既有gitignore排除的專案私有目錄：
+
+```bash
+python3 scripts/review_b_fengshui_with_claude.py \
+  --brief Docs/claude-b-fengshui-followup-v3.md \
+  --timeout 900 \
+  --output inputs/private/b-claude-round3-20261106
+```
+
+`--output`必須為新建／空目錄，不覆寫舊回覆。此15分鐘上限只適用屋主獨立終端，不是代理20秒上限例外。CLI工具全停用，不執行讀寫專案命令；回覆須再由Codex核對，不直接採用或判風水／施工通過。
+
+## B嚴格祭祀與Claude Code只讀討論（2026-11-05）
+
+[四張圖與兩版六態](../structured/coordination/b-fengshui-strict-v1/index.html)／[代價及未解](../Docs/b-fengshui-strict-study-v1.md)。L形房退出整廳／背櫃、上層濕區移後右，保原家具；套衛面積仍不足，未採用或更新原3D。16項局部測試與小型靜態輸出不替代法規／風水／搬運簽證。
+
+```bash
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_b_fengshui_strict.py --check
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_b_fengshui_strict.py
+```
+
+Claude首輪17秒逾時且本次程序已關閉，沒有自動重試／回覆／共識。耗時雲端討論只給屋主另WSL終端執行，工具與MCP全停用，不改設計或登入設定：
+
+```bash
+python3 scripts/review_b_fengshui_with_claude.py --brief Docs/claude-b-fengshui-followup-v2.md --timeout 900
+```
+
+該命令最長15分鐘只適用屋主獨立終端，不是代理可延長20秒上限的例外；輸出新暫存目錄，回傳Result路徑後再由Codex核對。第二稿明列主臥／套衛面積、所有器具、家規與未知，未用「Claude已認同」替代完整討論。
+
+## ABC五項獨立深化（2026-11-05）
+
+[入口：六張圖、產品回套及完整詢價空表](../structured/coordination/abc-next-v1/index.html)／[建議與代價](../Docs/abc-next-improvements-v1.md)。五項包含A1門洞／乾區、B前後兩版整棟濕區與立管、C客房單雙機、景觀冷媒三案，以及ABC逐房衛浴／門／冷氣候選。A2、兩版立管與P2左繞均是比較，未併原3D或填正式商品回覆。
+
+每次20秒、依序執行；只序列化靜態圖表，沒有瀏覽器、WebGL、完整場景或全套測試：
+
+```bash
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_abc_next_improvements.py --check
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_abc_next_improvements.py
+```
+
+新增比較來源有改才去掉`--check`重產15件；來源主圖SHA或149份保留控制不同時停止重新評估，不改預期SHA湊通過。本批不要求重跑原3D；新增比較沒有沿用舊畫面passed。
+
+## C棟概念合圖（2026-11-05）
+
+[合圖入口](../structured/coordination/c-current-v1/index.html)／[判讀、代價與正式資料需求](../Docs/c-coordination-review-v1.md)：四張SVG整合一、二樓建築、門窗、家具、樓梯、冷媒及冷凝水方向，另有3處穿越表、12項廠商回覆表與來源JSON。結構梁柱／鋼筋、實機及合法排水終端仍缺，不把概念尺寸當已核施工圖；原3D與`NM2w2A`綁定的來源不改。
+
+以下逐條執行，各20秒，只作資料／向量檢查，不啟動瀏覽器或完整場景：
+
+```bash
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_c_coordination.py --check
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_c_coordination.py
+```
+
+只在本包來源變更後用`export_c_coordination.py`去掉`--check`重產8份靜態產物。正式梁板資料抵達時須先重新對位、補來源與覆核，不能只在CSV填「通過」就當合圖完成。本包不新增Windows／WebGL驗收任務。
+
+## C冷氣室內立管候選已同步原3D（2026-11-05）
+
+最新見[C-AC01尺寸、代價及未解](../Docs/c-ac01-route-study-v1.md)與[兩層平面／剖面](../structured/candidates/kaohsiung-house-options/c-ac01-route-study.svg)。原室內機會跨新前置牆，現移至乾式前室右壁；室內立管候選避開沙發及門口，從二樓門窗間牆帶穿出，估長15.495m。200×200mm協調帶占二樓0.04㎡，未核穿板、梁窗、支架、樹冠、機型及排水，不是已採用管井。
+
+沿用下方局部整合／預檢及Windows命令。新版本顯示`C integration revision: 2`、`C stair display revision: 2`及`C-AC01 routing revision: 1`，QA revision 3。已核對屋主`NM2w2A`：759項通過、141份來源相符、36張圖齊全，新增4張空調圖已目視；10組樓梯與4組空調證據完整，session已關閉。[結果與限制](../Docs/c-ac01-route-study-v1.md#windows結果與新增畫面核對2026-11-05)另列特寫範圍，未宣稱所有管段可見或工程核可。下方`OGEElh`只作歷史。
+
+## C樓梯與前置門整合紀錄（2026-11-05）
+
+[原ABC高雄厝3D入口](../structured/candidates/kaohsiung-house-options-3d.html)與[同步平面](../structured/candidates/kaohsiung-house-options.html)已更新`c-split`：1F4m／24級／270mm踏面、完整1000mm共享平台、前置可關門及二樓側門獨立開關。A／B、C控制案與C原49件家具保留，詳見[C樓梯整合](../Docs/c-stair-shared-landing-v1.md)。產品、淨寬、結構、消防及低位冷媒跨騎樓段仍待核；舊`JgwtIq`不適用本版。
+
+同日展示v2修正`zkWA7a`所見的梯井完整底板材質被還原問題：隱藏處理改至每次材質更新之後，小回歸直接使用產出頁面的材質函式；未通過狀態保留原始材質證據。當時格局不變、QA revision 2；已核對屋主`OGEElh`的754項通過、137份來源相符、32張截圖目視及10份樓梯／門態證據完整，session已關閉。[當時結果與範圍](../Docs/c-stair-shared-landing-v1.md#展示v2-windows結果2026-11-05)只對應空調候選修改前來源。
+
+本輪局部序列化只讀凍結快照，不啟動完整場景；每條限20秒，逐條執行：
+
+```bash
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/merge_c_stair_into_3d.py --check
+timeout 20s node scripts/check_kaohsiung_options_playwright.cjs --preflight
+```
+
+若修改本輪來源，用同一局部命令去掉`--check`更新整合產物；若也修改細排／協調來源，先分別執行`export_c_balcony_coordination.py`、`export_c_stair_landing.py`，每次同樣限20秒。不用原`export_kaohsiung_options.py`寫出當前入口，避免覆蓋新整合頁；其原報告與兩份原HTML封存仍保持原bytes。
+
+代理不自動執行瀏覽器。當前已取得`NM2w2A`，來源不變時無需重跑；後續改動時，由屋主另開Windows PowerShell重驗：
+
+```powershell
+node '\\wsl.localhost\Ubuntu\root\workspace\houseDesignPrepare\scripts\check_kaohsiung_options_playwright.cjs'
+```
+
+原命令自動轉到C整合驗收，預期5案／9態／36層／334區／340件；當前revision與36張圖範圍以上節空調候選為準。生成報告的`not-run`保留生成時原值，後取得的結果另記上述文件。Browser plugin not available，依屋主資源分流規則不在代理環境啟動瀏覽器。
+
+## 唯讀盤點與歷史維護（2026-10-27）
 
 先看[專案入口與待辦](../Docs/project-status-v1.md)、[QA證據／上游更新索引](../Docs/qa-evidence-index-v1.md)與[一般衛浴三組候選](../Docs/abc-standard-bath-shortlist-v3.md)。ABC基準與後續C照護續版仍分案，所有採用／專業條件不變。
 

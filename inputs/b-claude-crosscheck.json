@@ -1,0 +1,270 @@
+{
+  "schema": "house-b-claude-crosscheck-v1",
+  "source_report": "structured/candidates/kaohsiung-house-options/c-stair-integration.json",
+  "source_report_sha256": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+  "previous_study": "structured/coordination/b-fengshui-strict-v1/review.json",
+  "protected_controls": "inputs/abc-next-protected-controls.json",
+  "response_provenance": "inputs/references/b-claude-response-v2-provenance.json",
+  "response_archive": "inputs/references/b-claude-response-v2-transcript-20261105.md",
+  "options": [
+    "b-rear-split",
+    "b-front-split"
+  ],
+  "adopted": false,
+  "geometry_origin": "Claude回覆的上層四區拓樸／器具／路徑；Codex另列門片預算及條件，不當成Claude已確認整包。",
+  "codex_margin_comparison": {
+    "private_bath_front_shift_mm": 100,
+    "label": "Codex比較：套衛前牆後移100換主臥餘量",
+    "not_sent_back_to_claude_yet": true,
+    "adopted": false
+  },
+  "upper": {
+    "bedroom_polygon_mm": [
+      [
+        4670,
+        11370
+      ],
+      [
+        6000,
+        11370
+      ],
+      [
+        6000,
+        14780
+      ],
+      [
+        3900,
+        14780
+      ],
+      [
+        3900,
+        17630
+      ],
+      [
+        0,
+        17630
+      ],
+      [
+        0,
+        13470
+      ],
+      [
+        2640,
+        13470
+      ],
+      [
+        2640,
+        12970
+      ],
+      [
+        4670,
+        12970
+      ]
+    ],
+    "public_bath_rect_mm": [
+      0,
+      11370,
+      2640,
+      2100
+    ],
+    "dry_room_rect_mm": [
+      2640,
+      11370,
+      2030,
+      1600
+    ],
+    "private_bath_rect_mm": [
+      3900,
+      14780,
+      2100,
+      2850
+    ],
+    "bedroom_fixtures_mm": {
+      "bed": [
+        150,
+        15550,
+        2000,
+        1800
+      ],
+      "wardrobe": [
+        150,
+        13620,
+        600,
+        1800
+      ],
+      "vanity": [
+        2755,
+        13120,
+        1200,
+        500
+      ]
+    },
+    "bedroom_route_points_mm": [
+      [
+        5335,
+        12270
+      ],
+      [
+        5335,
+        14150
+      ],
+      [
+        2670,
+        14150
+      ],
+      [
+        2670,
+        16800
+      ],
+      [
+        3335,
+        16800
+      ],
+      [
+        3335,
+        16900
+      ]
+    ],
+    "bedroom_route_square_mm": 900,
+    "bedroom_entry_x_mm": [
+      4770,
+      5900
+    ],
+    "bedroom_rear_window_x_mm": [
+      750,
+      3150
+    ],
+    "dry_room_entry_x_mm": [
+      2850,
+      3980
+    ],
+    "public_bath": {
+      "fixtures_local_mm": {
+        "basin": [
+          0,
+          0,
+          600,
+          450
+        ],
+        "toilet": [
+          0,
+          1170,
+          450,
+          700
+        ],
+        "shower": [
+          1510,
+          970,
+          900,
+          900
+        ]
+      },
+      "operations_local_mm": {
+        "basin": [
+          0,
+          450,
+          600,
+          700
+        ],
+        "toilet": [
+          0,
+          470,
+          450,
+          700
+        ],
+        "shower": [
+          1510,
+          270,
+          900,
+          700
+        ]
+      },
+      "door_nominal_x_mm": [
+        1320,
+        2450
+      ],
+      "inside_approach_local_mm": [
+        1320,
+        0,
+        900,
+        900
+      ]
+    },
+    "private_bath": {
+      "fixtures_local_mm": {
+        "toilet": [
+          150,
+          0,
+          450,
+          700
+        ],
+        "basin": [
+          1320,
+          0,
+          550,
+          900
+        ],
+        "shower": [
+          970,
+          1030,
+          900,
+          900
+        ]
+      },
+      "operations_local_mm": {
+        "toilet": [
+          150,
+          700,
+          450,
+          700
+        ],
+        "basin": [
+          620,
+          0,
+          700,
+          900
+        ],
+        "shower": [
+          270,
+          1030,
+          700,
+          900
+        ]
+      },
+      "door_nominal_y_mm": [
+        16330,
+        17460
+      ],
+      "inside_approach_absolute_mm": [
+        4015,
+        16445,
+        900,
+        900
+      ]
+    },
+    "bath_layout_inset_mm": 115,
+    "inset_sensitivity_mm": [
+      80,
+      115,
+      150
+    ],
+    "ac_new_x_mm": 3000,
+    "codex_ac_new_center_y_mm": 17365
+  },
+  "original_targets_sqm": {
+    "bedroom_target": 20,
+    "public_bath_target": 5,
+    "public_bath_min": 3.6,
+    "private_bath_target": 6,
+    "private_bath_min": 4.5
+  },
+  "source_claims_to_recheck": {
+    "bedroom_115_sqm": 20.0161,
+    "public_bath_115_sqm": 4.5067,
+    "private_bath_115_sqm": 4.8994,
+    "bathroom_gain_vs_previous_115_sqm": 1.9261
+  },
+  "full_consensus": false,
+  "engineering_approval": "unknown",
+  "previous_study_sha256": "e595361db8281be6daf361251afe0187824c7bcb99d556f930cf90f15bf2f954"
+}

@@ -1,0 +1,193 @@
+{
+  "schema": "house-b-ventilation-detail-v1",
+  "date": "2026-11-06",
+  "parent_report": "structured/coordination/b-bath-ventilation-v1/review.json",
+  "protected_controls": "inputs/abc-next-protected-controls.json",
+  "pinned_sources": {
+    "structured/coordination/b-bath-ventilation-v1/review.json": "f89065dea268532b9c308438a896ce417d55f02fc2ec7224e70c096894094bdf",
+    "structured/coordination/b-bath-ventilation-v1/artifact-manifest.json": "b07fff75f64f03b4cdfdd33170537241f5c47c7fdff432cefc2aa872e981d683",
+    "inputs/references/b-bath-ventilation-static-review-20261106.json": "d7c647da9a03a633a69292289dbf3f18ad3b0d92d1918ee0e21bdc72c0bcfa40"
+  },
+  "revised_exhaust": {
+    "grille_center_mm": [
+      1150,
+      12950
+    ],
+    "branch_rear_y_mm": 13600,
+    "roof_offset_z_mm": 10350,
+    "roof_terminal_z_mm": 10600,
+    "roof_centers_mm": [
+      [
+        3850,
+        14000
+      ],
+      [
+        4850,
+        14000
+      ]
+    ],
+    "roof_terminal_reservations_mm": [
+      [
+        3600,
+        13750,
+        500,
+        500
+      ],
+      [
+        4600,
+        13750,
+        500,
+        500
+      ]
+    ],
+    "roof_service_reservations_mm": [
+      [
+        3500,
+        13650,
+        700,
+        700
+      ],
+      [
+        4500,
+        13650,
+        700,
+        700
+      ]
+    ],
+    "fan_reserved_box_mm": [
+      900,
+      12750,
+      2450,
+      500,
+      400,
+      250
+    ],
+    "fan_hatch_rect_mm": [
+      900,
+      12700,
+      500,
+      500
+    ],
+    "ladder_budget_rect_mm": [
+      800,
+      12550,
+      600,
+      800
+    ],
+    "shaft_service_rect_mm": [
+      4050,
+      13420,
+      500,
+      700
+    ]
+  },
+  "makeup_air": {
+    "design_comparison_q_m3_h": 120,
+    "door_illustrative_clear_mm": 900,
+    "door_undercut_cases_mm": [
+      10,
+      15,
+      20
+    ],
+    "candidate_opening_width_mm": 400,
+    "candidate_opening_height_mm": 200,
+    "free_area_ratio_assumptions": [
+      0.45,
+      0.6
+    ],
+    "front_wall_candidate_x_mm": [
+      800,
+      1200
+    ],
+    "door_panel_candidate_x_mm": [
+      1685,
+      2085
+    ],
+    "opening_bottom_relative_z_mm": 200,
+    "actual_free_area_sqm": null,
+    "actual_pressure_loss_pa": null,
+    "fire_and_acoustic_product_approval": null,
+    "fresh_air_from_outdoors_verified": false
+  },
+  "assembly": {
+    "wall_each_cases_mm": [
+      25,
+      50,
+      75
+    ],
+    "pipe_outer_mm": 175,
+    "inter_pipe_gap_assumption_mm": 50,
+    "enclosure_cases_mm": [
+      [
+        4050,
+        13120,
+        500,
+        300
+      ],
+      [
+        4000,
+        13095,
+        550,
+        350
+      ],
+      [
+        4000,
+        13095,
+        600,
+        400
+      ]
+    ],
+    "slab_thickness_cases_mm": [
+      150,
+      180,
+      200,
+      250
+    ],
+    "beam_depth_cases_mm": [
+      300,
+      400,
+      500
+    ],
+    "ceiling_relative_z_mm": 2400,
+    "duct_center_relative_z_mm": 2550,
+    "actual_structure": null
+  },
+  "pressure_sensitivity": {
+    "q_cases_m3_h": [
+      90,
+      120,
+      130
+    ],
+    "diameter_mm": 125,
+    "air_density_assumption_kg_m3": 1.2,
+    "darcy_friction_assumptions": [
+      0.02,
+      0.035
+    ],
+    "fitting_K_assumptions": {
+      "each_90_bend": [
+        0.3,
+        0.8
+      ],
+      "intake": [
+        1,
+        3
+      ],
+      "backdraft": [
+        1.5,
+        4
+      ],
+      "roof_hood": [
+        1.5,
+        4
+      ]
+    },
+    "actual_fan_curve": null,
+    "actual_material_and_fitting_coefficients": null,
+    "makeup_and_filter_losses_included": false
+  },
+  "adopted": false,
+  "original_requirement_changes": false,
+  "owner_no_window_decision": "pending-original-preference-not-inferred-from-continue",
+  "claude_status": "no-new-discussion-this-turn"
+}

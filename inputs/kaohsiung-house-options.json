@@ -1,0 +1,58 @@
+{
+  "schema": "house-kaohsiung-options-v1",
+  "revision": 1,
+  "status": "comparison-only-not-adopted",
+  "authorization": "2026-11-03屋主要求下一輪：深化高雄厝陽台／家務／空調分區，保留原案與B前後門，列A外窗及C騎樓／樓梯代價。",
+  "base_report": "structured/candidates/current-design-basis/review.json",
+  "base_viewer": "structured/candidates/current-design-basis-3d.html",
+  "base_report_sha256": "80e7e53c58741efad40f05e991ab9801e2c302be1a017e10d61fe3736f7f27f4",
+  "base_viewer_sha256": "a2feff7beabf96646c93c7d1b27a6e670e1acc3338a14caa3ce22837c7b84128",
+  "historical_source_manifest": "inputs/references/source-history/20261027-opening-source-references.json",
+  "default_option": "c-split",
+  "frame_mm": [6000, 17630],
+  "a": {
+    "room": "balcony2",
+    "garden_mm": [1000, 15630, 4000, 2000],
+    "soil_rects_mm": [[1100, 16830, 3800, 750]],
+    "woody_points_mm": [[1600, 17200], [2600, 17200], [3600, 17200]],
+    "replaces_inferred_planter_locals": ["planter-front", "planter-rear"],
+    "local_route_mm": [[2600, 16100], [3500, 16100]],
+    "note": "8m²只是後巷／永久性空地等臨接條件成立時的景觀比較；平均深度名義正好2m無餘量，完成面與量測基準未核。前後兩側室外機維修帶保留。"
+  },
+  "b": {
+    "room": "balcony2",
+    "garden_mm": [1100, 1500, 3800, 2400],
+    "soil_rects_mm": [[1200, 1600, 3600, 900]],
+    "woody_points_mm": [[1650, 2050], [2550, 2050], [3450, 2050], [4350, 2050]],
+    "local_route_mm": [[3400, 3400], [2000, 3400]],
+    "note": "9.12m²景觀區接前右起居室；左右兩台室外機及其原維修帶均保留。其餘14.28m²為普通陽台／設備待核區，不視為已合法或全數免計。"
+  },
+  "c": {
+    "room": "balcony2f",
+    "garden_mm": [2000, 1650, 4000, 2250],
+    "soil_rects_mm": [[2115, 1765, 3770, 900]],
+    "woody_points_mm": [[2590, 2215], [3530, 2215], [4470, 2215], [5410, 2215]],
+    "replaces_inferred_planter_locals": ["planter"],
+    "moves": {
+      "washer": {"rect_mm": [800, 115, 650, 650], "rotation_deg": 180, "wall_anchor": "front"},
+      "utility-sink": {"rect_mm": [1500, 115, 600, 600], "rotation_deg": 180, "wall_anchor": "front"},
+      "locked-cleaner": {"rect_mm": [2150, 115, 600, 450], "rotation_deg": 180, "wall_anchor": "front"},
+      "clothes-rack": {"rect_mm": [115, 1385, 600, 2400], "rotation_deg": 270, "wall_anchor": "left"}
+    },
+    "outdoor_x_mm": {"C-AC01": 5470, "C-AC03": 3300, "C-AC07": 4300},
+    "local_route_mm": [[5200, 3400], [3500, 3400], [2600, 3400]],
+    "service_routes_mm": {
+      "washer": [[5200, 3400], [1150, 3400], [1150, 1115], [1125, 1115]],
+      "utility-sink": [[5200, 3400], [1150, 3400], [1150, 1115], [1800, 1115]],
+      "clothes-rack": [[5200, 3400], [1150, 3400], [1150, 2600]]
+    },
+    "note": "9m²右側景觀區；前1650mm與左2000mm為普通服務分區。相較9.4m²初排，留多100mm服務深度，洗槽操作帶到景觀分界餘量由35增至135mm。保留右後原入口；移原單台2F洗衣機、預洗槽及240cm原晾衣架，洗劑櫃微調；移C-AC03／C-AC07兩台前側室外機，仍需重新設計冷媒／冷凝水與維修、抗風。"
+  },
+  "professional_status": {
+    "land_rights_and_legal_areas": "unknown",
+    "landscape_structure_soil_waterproofing": "unknown",
+    "energy_first_plus_and_bathroom_eligibility": "unknown",
+    "care_transport_fengshui_fire": "unknown",
+    "hvac_routing_and_products": "unknown"
+  }
+}

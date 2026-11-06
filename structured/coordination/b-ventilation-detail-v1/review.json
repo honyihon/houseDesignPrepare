@@ -1,0 +1,2442 @@
+{
+  "schema": "house-b-ventilation-detail-report-v1",
+  "date": "2026-11-06",
+  "config": {
+    "schema": "house-b-ventilation-detail-v1",
+    "date": "2026-11-06",
+    "parent_report": "structured/coordination/b-bath-ventilation-v1/review.json",
+    "protected_controls": "inputs/abc-next-protected-controls.json",
+    "pinned_sources": {
+      "structured/coordination/b-bath-ventilation-v1/review.json": "f89065dea268532b9c308438a896ce417d55f02fc2ec7224e70c096894094bdf",
+      "structured/coordination/b-bath-ventilation-v1/artifact-manifest.json": "b07fff75f64f03b4cdfdd33170537241f5c47c7fdff432cefc2aa872e981d683",
+      "inputs/references/b-bath-ventilation-static-review-20261106.json": "d7c647da9a03a633a69292289dbf3f18ad3b0d92d1918ee0e21bdc72c0bcfa40"
+    },
+    "revised_exhaust": {
+      "grille_center_mm": [
+        1150,
+        12950
+      ],
+      "branch_rear_y_mm": 13600,
+      "roof_offset_z_mm": 10350,
+      "roof_terminal_z_mm": 10600,
+      "roof_centers_mm": [
+        [
+          3850,
+          14000
+        ],
+        [
+          4850,
+          14000
+        ]
+      ],
+      "roof_terminal_reservations_mm": [
+        [
+          3600,
+          13750,
+          500,
+          500
+        ],
+        [
+          4600,
+          13750,
+          500,
+          500
+        ]
+      ],
+      "roof_service_reservations_mm": [
+        [
+          3500,
+          13650,
+          700,
+          700
+        ],
+        [
+          4500,
+          13650,
+          700,
+          700
+        ]
+      ],
+      "fan_reserved_box_mm": [
+        900,
+        12750,
+        2450,
+        500,
+        400,
+        250
+      ],
+      "fan_hatch_rect_mm": [
+        900,
+        12700,
+        500,
+        500
+      ],
+      "ladder_budget_rect_mm": [
+        800,
+        12550,
+        600,
+        800
+      ],
+      "shaft_service_rect_mm": [
+        4050,
+        13420,
+        500,
+        700
+      ]
+    },
+    "makeup_air": {
+      "design_comparison_q_m3_h": 120,
+      "door_illustrative_clear_mm": 900,
+      "door_undercut_cases_mm": [
+        10,
+        15,
+        20
+      ],
+      "candidate_opening_width_mm": 400,
+      "candidate_opening_height_mm": 200,
+      "free_area_ratio_assumptions": [
+        0.45,
+        0.6
+      ],
+      "front_wall_candidate_x_mm": [
+        800,
+        1200
+      ],
+      "door_panel_candidate_x_mm": [
+        1685,
+        2085
+      ],
+      "opening_bottom_relative_z_mm": 200,
+      "actual_free_area_sqm": null,
+      "actual_pressure_loss_pa": null,
+      "fire_and_acoustic_product_approval": null,
+      "fresh_air_from_outdoors_verified": false
+    },
+    "assembly": {
+      "wall_each_cases_mm": [
+        25,
+        50,
+        75
+      ],
+      "pipe_outer_mm": 175,
+      "inter_pipe_gap_assumption_mm": 50,
+      "enclosure_cases_mm": [
+        [
+          4050,
+          13120,
+          500,
+          300
+        ],
+        [
+          4000,
+          13095,
+          550,
+          350
+        ],
+        [
+          4000,
+          13095,
+          600,
+          400
+        ]
+      ],
+      "slab_thickness_cases_mm": [
+        150,
+        180,
+        200,
+        250
+      ],
+      "beam_depth_cases_mm": [
+        300,
+        400,
+        500
+      ],
+      "ceiling_relative_z_mm": 2400,
+      "duct_center_relative_z_mm": 2550,
+      "actual_structure": null
+    },
+    "pressure_sensitivity": {
+      "q_cases_m3_h": [
+        90,
+        120,
+        130
+      ],
+      "diameter_mm": 125,
+      "air_density_assumption_kg_m3": 1.2,
+      "darcy_friction_assumptions": [
+        0.02,
+        0.035
+      ],
+      "fitting_K_assumptions": {
+        "each_90_bend": [
+          0.3,
+          0.8
+        ],
+        "intake": [
+          1,
+          3
+        ],
+        "backdraft": [
+          1.5,
+          4
+        ],
+        "roof_hood": [
+          1.5,
+          4
+        ]
+      },
+      "actual_fan_curve": null,
+      "actual_material_and_fitting_coefficients": null,
+      "makeup_and_filter_losses_included": false
+    },
+    "adopted": false,
+    "original_requirement_changes": false,
+    "owner_no_window_decision": "pending-original-preference-not-inferred-from-continue",
+    "claude_status": "no-new-discussion-this-turn"
+  },
+  "source_layout_report_sha256": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+  "makeup": {
+    "comparison_q_m3_h": 120,
+    "door_undercuts": [
+      {
+        "gap_mm": 10,
+        "ideal_area_sqm": 0.009,
+        "velocity_m_s": 3.7037037037037037,
+        "actual_flow_or_noise_test": null
+      },
+      {
+        "gap_mm": 15,
+        "ideal_area_sqm": 0.0135,
+        "velocity_m_s": 2.4691358024691357,
+        "actual_flow_or_noise_test": null
+      },
+      {
+        "gap_mm": 20,
+        "ideal_area_sqm": 0.018,
+        "velocity_m_s": 1.8518518518518519,
+        "actual_flow_or_noise_test": null
+      }
+    ],
+    "nominal_transfer_opening_sqm": 0.08,
+    "transfer_free_area_cases": [
+      {
+        "assumed_free_fraction": 0.45,
+        "assumed_free_area_sqm": 0.036000000000000004,
+        "velocity_m_s": 0.9259259259259258
+      },
+      {
+        "assumed_free_fraction": 0.6,
+        "assumed_free_area_sqm": 0.048,
+        "velocity_m_s": 0.6944444444444444
+      }
+    ],
+    "front_wall_candidate_x_mm": [
+      800,
+      1200
+    ],
+    "door_panel_candidate_x_mm": [
+      1685,
+      2085
+    ],
+    "opening_bottom_relative_z_mm": 200,
+    "actual_free_area_sqm": null,
+    "actual_pressure_loss_pa": null,
+    "closed_door_airflow_verified": false,
+    "outdoor_fresh_air_verified": false,
+    "recommended_bidding_basis": "先比較原廠門片消音補氣與門旁牆消音補氣兩種完整構造；不加大門下縫作唯一解。",
+    "scope": "速度只按理想面積算，不是噪音、壓差、有效風量、隱私或防火核可。",
+    "source": "一般公共乾區；其合法室外進氣、關窗及同時排風的壓力平衡尚未設計。",
+    "excluded_sources": [
+      "樓梯",
+      "獨立乾保護室",
+      "其他浴廁",
+      "神明堂排煙管",
+      "污水通氣管"
+    ],
+    "product_conditions": [
+      "實際自由面積與指定風量壓損",
+      "阻視與聲學實測，不能只靠百葉名稱",
+      "門片厚度／重量／把手及900淨開口",
+      "完整牆種、RC／防火限制與可清潔檢修"
+    ]
+  },
+  "geometry": {
+    "floors": [
+      {
+        "id": "floor-2",
+        "rooms": [
+          {
+            "id": "master",
+            "name": "L形主臥",
+            "polygon_mm": [
+              [
+                4670,
+                11370
+              ],
+              [
+                6000,
+                11370
+              ],
+              [
+                6000,
+                14880
+              ],
+              [
+                3900,
+                14880
+              ],
+              [
+                3900,
+                17630
+              ],
+              [
+                0,
+                17630
+              ],
+              [
+                0,
+                13470
+              ],
+              [
+                2640,
+                13470
+              ],
+              [
+                2640,
+                12970
+              ],
+              [
+                4670,
+                12970
+              ]
+            ],
+            "nominal_area_sqm": 22.993,
+            "furniture": [
+              {
+                "id": "bed",
+                "rect_mm": [
+                  150,
+                  13735,
+                  2000,
+                  1800
+                ],
+                "operation_mm": [
+                  2150,
+                  13735,
+                  600,
+                  1800
+                ]
+              },
+              {
+                "id": "wardrobe",
+                "rect_mm": [
+                  150,
+                  15650,
+                  600,
+                  1800
+                ],
+                "operation_mm": [
+                  750,
+                  15650,
+                  600,
+                  1800
+                ]
+              },
+              {
+                "id": "vanity",
+                "rect_mm": [
+                  2755,
+                  13120,
+                  1200,
+                  500
+                ],
+                "operation_mm": [
+                  2755,
+                  13620,
+                  1200,
+                  700
+                ]
+              }
+            ],
+            "doors": [
+              {
+                "a": [
+                  4770,
+                  11370
+                ],
+                "b": [
+                  5900,
+                  11370
+                ],
+                "nominal_mm": 1130,
+                "assumed_clear_mm": 900,
+                "operation": "候選門，向房內開；門片／成品／救援仍待核。"
+              },
+              {
+                "a": [
+                  3900,
+                  16330
+                ],
+                "b": [
+                  3900,
+                  17460
+                ],
+                "nominal_mm": 1130,
+                "assumed_clear_mm": 900,
+                "hinge": "rear",
+                "operation": "向主臥外開，後端鉸鏈預算，非已選成品。",
+                "parked_leaf_budget_mm": [
+                  2770,
+                  17365,
+                  1130,
+                  95
+                ],
+                "swept_rect_mm": [
+                  2770,
+                  16330,
+                  1130,
+                  1130
+                ]
+              }
+            ],
+            "window": {
+              "a": [
+                750,
+                17630
+              ],
+              "b": [
+                3150,
+                17630
+              ],
+              "legal": "unknown"
+            },
+            "adopted": false,
+            "hvac_candidate": {
+              "id": "B-AC03",
+              "rect_mm": [
+                2875,
+                13095,
+                950,
+                280
+              ],
+              "bottom_relative_z_mm": 2350,
+              "height_mm": 280,
+              "mount_face": "front-wall-facing-rear",
+              "route": null,
+              "manual": null
+            }
+          },
+          {
+            "id": "dry-protection",
+            "name": "獨立乾保護室",
+            "polygon_mm": [
+              [
+                2640,
+                11370
+              ],
+              [
+                4670,
+                11370
+              ],
+              [
+                4670,
+                12970
+              ],
+              [
+                2640,
+                12970
+              ]
+            ],
+            "nominal_area_sqm": 3.248,
+            "furniture": [],
+            "doors": [
+              {
+                "a": [
+                  2850,
+                  11370
+                ],
+                "b": [
+                  3980,
+                  11370
+                ],
+                "nominal_mm": 1130,
+                "assumed_clear_mm": 900,
+                "operation": "前壁獨立門，向室內開；不穿臥室。"
+              }
+            ],
+            "window": null,
+            "adopted": false
+          },
+          {
+            "id": "public-bath",
+            "name": "左前公衛",
+            "polygon_mm": [
+              [
+                0,
+                11370
+              ],
+              [
+                2640,
+                11370
+              ],
+              [
+                2640,
+                13470
+              ],
+              [
+                0,
+                13470
+              ]
+            ],
+            "nominal_area_sqm": 5.544,
+            "furniture": [
+              {
+                "id": "basin",
+                "rect_mm": [
+                  115,
+                  11485,
+                  600,
+                  450
+                ],
+                "operation_mm": [
+                  115,
+                  11935,
+                  600,
+                  700
+                ]
+              },
+              {
+                "id": "toilet",
+                "rect_mm": [
+                  265,
+                  12655,
+                  450,
+                  700
+                ],
+                "operation_mm": [
+                  265,
+                  11955,
+                  450,
+                  700
+                ]
+              },
+              {
+                "id": "shower",
+                "rect_mm": [
+                  1425,
+                  12455,
+                  900,
+                  900
+                ],
+                "operation_mm": [
+                  1425,
+                  11755,
+                  900,
+                  700
+                ]
+              }
+            ],
+            "doors": [
+              {
+                "a": [
+                  1320,
+                  11370
+                ],
+                "b": [
+                  2450,
+                  11370
+                ],
+                "nominal_mm": 1130,
+                "assumed_clear_mm": 900,
+                "hinge": "right",
+                "operation": "向前乾區外開；完整門組與消防待核。",
+                "parked_leaf_budget_mm": [
+                  2355,
+                  10240,
+                  95,
+                  1130
+                ],
+                "swept_rect_mm": [
+                  1320,
+                  10240,
+                  1130,
+                  1130
+                ]
+              }
+            ],
+            "window": null,
+            "adopted": false,
+            "illustrative_finished_rect_mm": [
+              115,
+              11485,
+              2410,
+              1870
+            ],
+            "inside_approach_mm": [
+              1435,
+              11485,
+              900,
+              900
+            ],
+            "outside_approach_mm": [
+              1435,
+              10355,
+              900,
+              900
+            ],
+            "actual_product_pack": null,
+            "actual_finished_clear_mm": null,
+            "drainage_terminal": null,
+            "screen": {
+              "body_hits": [],
+              "operation_body_hits": [],
+              "inside_arrival_hits": [],
+              "all_listed_inside": true,
+              "inside_arrival_contained": true,
+              "shared_operation_pairs": [
+                [
+                  "basin",
+                  "toilet"
+                ]
+              ]
+            }
+          },
+          {
+            "id": "private-bath",
+            "name": "套衛",
+            "polygon_mm": [
+              [
+                3900,
+                14880
+              ],
+              [
+                6000,
+                14880
+              ],
+              [
+                6000,
+                17630
+              ],
+              [
+                3900,
+                17630
+              ]
+            ],
+            "nominal_area_sqm": 5.775,
+            "furniture": [
+              {
+                "id": "toilet",
+                "rect_mm": [
+                  4165,
+                  14995,
+                  450,
+                  700
+                ],
+                "operation_mm": [
+                  4165,
+                  15695,
+                  450,
+                  700
+                ]
+              },
+              {
+                "id": "basin",
+                "rect_mm": [
+                  5335,
+                  14995,
+                  550,
+                  900
+                ],
+                "operation_mm": [
+                  4635,
+                  14995,
+                  700,
+                  900
+                ]
+              },
+              {
+                "id": "shower",
+                "rect_mm": [
+                  4985,
+                  16025,
+                  900,
+                  900
+                ],
+                "operation_mm": [
+                  4285,
+                  16025,
+                  700,
+                  900
+                ]
+              }
+            ],
+            "doors": [
+              {
+                "a": [
+                  3900,
+                  16330
+                ],
+                "b": [
+                  3900,
+                  17460
+                ],
+                "nominal_mm": 1130,
+                "assumed_clear_mm": 900,
+                "hinge": "rear",
+                "operation": "向主臥外開，後端鉸鏈預算，非已選成品。",
+                "parked_leaf_budget_mm": [
+                  2770,
+                  17365,
+                  1130,
+                  95
+                ],
+                "swept_rect_mm": [
+                  2770,
+                  16330,
+                  1130,
+                  1130
+                ]
+              }
+            ],
+            "window": {
+              "a": [
+                4750,
+                17630
+              ],
+              "b": [
+                5650,
+                17630
+              ],
+              "legal": "unknown"
+            },
+            "adopted": false,
+            "illustrative_finished_rect_mm": [
+              4015,
+              14995,
+              1870,
+              2520
+            ],
+            "inside_approach_mm": [
+              4015,
+              16445,
+              900,
+              900
+            ],
+            "outside_approach_mm": [
+              2885,
+              16445,
+              900,
+              900
+            ],
+            "actual_product_pack": null,
+            "actual_finished_clear_mm": null,
+            "drainage_terminal": null,
+            "screen": {
+              "body_hits": [],
+              "operation_body_hits": [],
+              "inside_arrival_hits": [],
+              "all_listed_inside": true,
+              "inside_arrival_contained": true,
+              "shared_operation_pairs": [
+                [
+                  "toilet",
+                  "shower"
+                ]
+              ]
+            }
+          }
+        ],
+        "screen": {
+          "partition_gap_or_outside_sqm": 0.0,
+          "partition_overlap_sqm": 0.0,
+          "master_outline_115_sqm": 20.2261,
+          "reserved_enclosure_sqm": 0.15,
+          "master_after_enclosure_sqm": 20.0761,
+          "reservations_contained": true,
+          "reservation_body_hits": [],
+          "reservation_operation_hits": [],
+          "master_bodies_and_operations_contained": true,
+          "master_over_protected_sqm": 0.0,
+          "wet_projection": [
+            {
+              "id": "public-bath",
+              "protected_overlap_sqm": 0.0,
+              "storage_overlap_sqm": 0.0
+            },
+            {
+              "id": "private-bath",
+              "protected_overlap_sqm": 0.0,
+              "storage_overlap_sqm": 0.0
+            }
+          ],
+          "route": {
+            "points_mm": [
+              [
+                5335,
+                12270
+              ],
+              [
+                5335,
+                14150
+              ],
+              [
+                2670,
+                14150
+              ],
+              [
+                2670,
+                16800
+              ],
+              [
+                3335,
+                16800
+              ],
+              [
+                3335,
+                16900
+              ]
+            ],
+            "sweeps_mm": [
+              [
+                4885.0,
+                11820.0,
+                900,
+                2780
+              ],
+              [
+                2220.0,
+                13700.0,
+                3565,
+                900
+              ],
+              [
+                2220.0,
+                13700.0,
+                900,
+                3550
+              ],
+              [
+                2220.0,
+                16350.0,
+                1565,
+                900
+              ],
+              [
+                2885.0,
+                16350.0,
+                900,
+                1000
+              ]
+            ],
+            "all_inside_115": true,
+            "body_hits": [],
+            "enclosure_hits": [],
+            "actual_whole_route": "unknown"
+          },
+          "full_door_states": "not-checked-products-and-sweeps-unknown",
+          "professional_approval": "unknown"
+        },
+        "public_window": null,
+        "vent_enclosures_mm": [
+          [
+            4050,
+            13120,
+            500,
+            300
+          ]
+        ]
+      },
+      {
+        "id": "floor-3",
+        "rooms": [
+          {
+            "id": "guest",
+            "name": "L形客房",
+            "polygon_mm": [
+              [
+                4670,
+                11370
+              ],
+              [
+                6000,
+                11370
+              ],
+              [
+                6000,
+                14880
+              ],
+              [
+                3900,
+                14880
+              ],
+              [
+                3900,
+                17630
+              ],
+              [
+                0,
+                17630
+              ],
+              [
+                0,
+                13470
+              ],
+              [
+                2640,
+                13470
+              ],
+              [
+                2640,
+                12970
+              ],
+              [
+                4670,
+                12970
+              ]
+            ],
+            "nominal_area_sqm": 22.993,
+            "furniture": [
+              {
+                "id": "bed",
+                "rect_mm": [
+                  150,
+                  13735,
+                  2000,
+                  1800
+                ],
+                "operation_mm": [
+                  2150,
+                  13735,
+                  600,
+                  1800
+                ]
+              },
+              {
+                "id": "wardrobe",
+                "rect_mm": [
+                  150,
+                  15650,
+                  600,
+                  1800
+                ],
+                "operation_mm": [
+                  750,
+                  15650,
+                  600,
+                  1800
+                ]
+              },
+              {
+                "id": "vanity",
+                "rect_mm": [
+                  2755,
+                  13120,
+                  1200,
+                  500
+                ],
+                "operation_mm": [
+                  2755,
+                  13620,
+                  1200,
+                  700
+                ]
+              }
+            ],
+            "doors": [
+              {
+                "a": [
+                  4770,
+                  11370
+                ],
+                "b": [
+                  5900,
+                  11370
+                ],
+                "nominal_mm": 1130,
+                "assumed_clear_mm": 900,
+                "operation": "候選門，向房內開；門片／成品／救援仍待核。"
+              },
+              {
+                "a": [
+                  3900,
+                  16330
+                ],
+                "b": [
+                  3900,
+                  17460
+                ],
+                "nominal_mm": 1130,
+                "assumed_clear_mm": 900,
+                "hinge": "rear",
+                "operation": "向主臥外開，後端鉸鏈預算，非已選成品。",
+                "parked_leaf_budget_mm": [
+                  2770,
+                  17365,
+                  1130,
+                  95
+                ],
+                "swept_rect_mm": [
+                  2770,
+                  16330,
+                  1130,
+                  1130
+                ]
+              }
+            ],
+            "window": {
+              "a": [
+                750,
+                17630
+              ],
+              "b": [
+                3150,
+                17630
+              ],
+              "legal": "unknown"
+            },
+            "adopted": false,
+            "hvac_candidate": {
+              "id": "B-AC04",
+              "rect_mm": [
+                2875,
+                13095,
+                950,
+                280
+              ],
+              "bottom_relative_z_mm": 2350,
+              "height_mm": 280,
+              "mount_face": "front-wall-facing-rear",
+              "route": null,
+              "manual": null
+            }
+          },
+          {
+            "id": "dry-protection",
+            "name": "獨立乾保護室",
+            "polygon_mm": [
+              [
+                2640,
+                11370
+              ],
+              [
+                4670,
+                11370
+              ],
+              [
+                4670,
+                12970
+              ],
+              [
+                2640,
+                12970
+              ]
+            ],
+            "nominal_area_sqm": 3.248,
+            "furniture": [],
+            "doors": [
+              {
+                "a": [
+                  2850,
+                  11370
+                ],
+                "b": [
+                  3980,
+                  11370
+                ],
+                "nominal_mm": 1130,
+                "assumed_clear_mm": 900,
+                "operation": "前壁獨立門，向室內開；不穿臥室。"
+              }
+            ],
+            "window": null,
+            "adopted": false
+          },
+          {
+            "id": "public-bath",
+            "name": "左前公衛",
+            "polygon_mm": [
+              [
+                0,
+                11370
+              ],
+              [
+                2640,
+                11370
+              ],
+              [
+                2640,
+                13470
+              ],
+              [
+                0,
+                13470
+              ]
+            ],
+            "nominal_area_sqm": 5.544,
+            "furniture": [
+              {
+                "id": "basin",
+                "rect_mm": [
+                  115,
+                  11485,
+                  600,
+                  450
+                ],
+                "operation_mm": [
+                  115,
+                  11935,
+                  600,
+                  700
+                ]
+              },
+              {
+                "id": "toilet",
+                "rect_mm": [
+                  265,
+                  12655,
+                  450,
+                  700
+                ],
+                "operation_mm": [
+                  265,
+                  11955,
+                  450,
+                  700
+                ]
+              },
+              {
+                "id": "shower",
+                "rect_mm": [
+                  1425,
+                  12455,
+                  900,
+                  900
+                ],
+                "operation_mm": [
+                  1425,
+                  11755,
+                  900,
+                  700
+                ]
+              }
+            ],
+            "doors": [
+              {
+                "a": [
+                  1320,
+                  11370
+                ],
+                "b": [
+                  2450,
+                  11370
+                ],
+                "nominal_mm": 1130,
+                "assumed_clear_mm": 900,
+                "hinge": "right",
+                "operation": "向前乾區外開；完整門組與消防待核。",
+                "parked_leaf_budget_mm": [
+                  2355,
+                  10240,
+                  95,
+                  1130
+                ],
+                "swept_rect_mm": [
+                  1320,
+                  10240,
+                  1130,
+                  1130
+                ]
+              }
+            ],
+            "window": null,
+            "adopted": false,
+            "illustrative_finished_rect_mm": [
+              115,
+              11485,
+              2410,
+              1870
+            ],
+            "inside_approach_mm": [
+              1435,
+              11485,
+              900,
+              900
+            ],
+            "outside_approach_mm": [
+              1435,
+              10355,
+              900,
+              900
+            ],
+            "actual_product_pack": null,
+            "actual_finished_clear_mm": null,
+            "drainage_terminal": null,
+            "screen": {
+              "body_hits": [],
+              "operation_body_hits": [],
+              "inside_arrival_hits": [],
+              "all_listed_inside": true,
+              "inside_arrival_contained": true,
+              "shared_operation_pairs": [
+                [
+                  "basin",
+                  "toilet"
+                ]
+              ]
+            }
+          },
+          {
+            "id": "rear-dry",
+            "name": "後段乾式預留（不新增套衛）",
+            "polygon_mm": [
+              [
+                3900,
+                14880
+              ],
+              [
+                6000,
+                14880
+              ],
+              [
+                6000,
+                17630
+              ],
+              [
+                3900,
+                17630
+              ]
+            ],
+            "nominal_area_sqm": 5.775,
+            "furniture": [],
+            "doors": [
+              {
+                "a": [
+                  3900,
+                  16330
+                ],
+                "b": [
+                  3900,
+                  17460
+                ],
+                "nominal_mm": 1130,
+                "assumed_clear_mm": 900,
+                "hinge": "rear",
+                "operation": "向主臥外開，後端鉸鏈預算，非已選成品。",
+                "parked_leaf_budget_mm": [
+                  2770,
+                  17365,
+                  1130,
+                  95
+                ],
+                "swept_rect_mm": [
+                  2770,
+                  16330,
+                  1130,
+                  1130
+                ]
+              }
+            ],
+            "window": {
+              "a": [
+                4750,
+                17630
+              ],
+              "b": [
+                5650,
+                17630
+              ],
+              "legal": "unknown"
+            },
+            "adopted": false
+          }
+        ],
+        "screen": {
+          "partition_gap_or_outside_sqm": 0.0,
+          "partition_overlap_sqm": 0.0,
+          "master_outline_115_sqm": 20.2261,
+          "reserved_enclosure_sqm": 0.15,
+          "master_after_enclosure_sqm": 20.0761,
+          "reservations_contained": true,
+          "reservation_body_hits": [],
+          "reservation_operation_hits": [],
+          "master_bodies_and_operations_contained": true,
+          "master_over_protected_sqm": 0.0,
+          "wet_projection": [
+            {
+              "id": "public-bath",
+              "protected_overlap_sqm": 0.0,
+              "storage_overlap_sqm": 0.0
+            }
+          ],
+          "route": {
+            "points_mm": [
+              [
+                5335,
+                12270
+              ],
+              [
+                5335,
+                14150
+              ],
+              [
+                2670,
+                14150
+              ],
+              [
+                2670,
+                16800
+              ],
+              [
+                3335,
+                16800
+              ],
+              [
+                3335,
+                16900
+              ]
+            ],
+            "sweeps_mm": [
+              [
+                4885.0,
+                11820.0,
+                900,
+                2780
+              ],
+              [
+                2220.0,
+                13700.0,
+                3565,
+                900
+              ],
+              [
+                2220.0,
+                13700.0,
+                900,
+                3550
+              ],
+              [
+                2220.0,
+                16350.0,
+                1565,
+                900
+              ],
+              [
+                2885.0,
+                16350.0,
+                900,
+                1000
+              ]
+            ],
+            "all_inside_115": true,
+            "body_hits": [],
+            "enclosure_hits": [],
+            "actual_whole_route": "unknown"
+          },
+          "full_door_states": "not-checked-products-and-sweeps-unknown",
+          "professional_approval": "unknown"
+        },
+        "public_window": null,
+        "vent_enclosures_mm": [
+          [
+            4050,
+            13120,
+            500,
+            300
+          ]
+        ]
+      }
+    ],
+    "ducts": [
+      {
+        "points_mm": [
+          [
+            1150,
+            12950,
+            6400
+          ],
+          [
+            1150,
+            12950,
+            6550
+          ],
+          [
+            1150,
+            13600,
+            6550
+          ],
+          [
+            4175,
+            13600,
+            6550
+          ],
+          [
+            4175,
+            13270,
+            6550
+          ],
+          [
+            4175,
+            13270,
+            10350
+          ],
+          [
+            4175,
+            14000,
+            10350
+          ],
+          [
+            3850,
+            14000,
+            10350
+          ],
+          [
+            3850,
+            14000,
+            10600
+          ]
+        ],
+        "diameter_assumption_mm": 125,
+        "insulation_each_assumption_mm": 25,
+        "outer_plan_budget_width_mm": 175,
+        "plan_budget_polygon_mm": [
+          [
+            1062.5,
+            13687.5
+          ],
+          [
+            4087.5,
+            13687.5
+          ],
+          [
+            4087.5,
+            13912.5
+          ],
+          [
+            3850.0,
+            13912.5
+          ],
+          [
+            3762.5,
+            13912.5
+          ],
+          [
+            3762.5,
+            14087.5
+          ],
+          [
+            4262.5,
+            14087.5
+          ],
+          [
+            4262.5,
+            13687.5
+          ],
+          [
+            4262.5,
+            13270.0
+          ],
+          [
+            4087.5,
+            13270.0
+          ],
+          [
+            4087.5,
+            13512.5
+          ],
+          [
+            1237.5,
+            13512.5
+          ],
+          [
+            1237.5,
+            12950.0
+          ],
+          [
+            1237.5,
+            12862.5
+          ],
+          [
+            1062.5,
+            12862.5
+          ]
+        ],
+        "centerline_length_mm": 9260.0,
+        "protected_overlap_sqm": 0.0,
+        "storage_projection_overlap_sqm": 0.0,
+        "no_pipe_strip_overlap_sqm": 0.0,
+        "sewage_shaft_overlap_sqm": 0.0,
+        "enclosure_over_protected_sqm": 0.0,
+        "enclosure_over_storage_sqm": 0.0,
+        "enclosure_in_model_roof_outdoor": true,
+        "as_built_length_mm": null,
+        "pressure_loss_pa": null,
+        "fan_model": null,
+        "wall_slab_penetration_approval": "unknown",
+        "roof_terminal_approval": "unknown",
+        "hood_spacing_weatherproofing_and_air_intakes": "unknown",
+        "floor": "floor-2",
+        "old_centerline_length_mm": 8905.0
+      },
+      {
+        "points_mm": [
+          [
+            1150,
+            12950,
+            9400
+          ],
+          [
+            1150,
+            12950,
+            9550
+          ],
+          [
+            1150,
+            13600,
+            9550
+          ],
+          [
+            4425,
+            13600,
+            9550
+          ],
+          [
+            4425,
+            13270,
+            9550
+          ],
+          [
+            4425,
+            13270,
+            10350
+          ],
+          [
+            4425,
+            14000,
+            10350
+          ],
+          [
+            4850,
+            14000,
+            10350
+          ],
+          [
+            4850,
+            14000,
+            10600
+          ]
+        ],
+        "diameter_assumption_mm": 125,
+        "insulation_each_assumption_mm": 25,
+        "outer_plan_budget_width_mm": 175,
+        "plan_budget_polygon_mm": [
+          [
+            1062.5,
+            13687.5
+          ],
+          [
+            4337.5,
+            13687.5
+          ],
+          [
+            4337.5,
+            14087.5
+          ],
+          [
+            4850.0,
+            14087.5
+          ],
+          [
+            4937.5,
+            14087.5
+          ],
+          [
+            4937.5,
+            13912.5
+          ],
+          [
+            4512.5,
+            13912.5
+          ],
+          [
+            4512.5,
+            13687.5
+          ],
+          [
+            4512.5,
+            13270.0
+          ],
+          [
+            4337.5,
+            13270.0
+          ],
+          [
+            4337.5,
+            13512.5
+          ],
+          [
+            1237.5,
+            13512.5
+          ],
+          [
+            1237.5,
+            12950.0
+          ],
+          [
+            1237.5,
+            12862.5
+          ],
+          [
+            1062.5,
+            12862.5
+          ]
+        ],
+        "centerline_length_mm": 6610.0,
+        "protected_overlap_sqm": 0.0,
+        "storage_projection_overlap_sqm": 0.0,
+        "no_pipe_strip_overlap_sqm": 0.0,
+        "sewage_shaft_overlap_sqm": 0.0,
+        "enclosure_over_protected_sqm": 0.0,
+        "enclosure_over_storage_sqm": 0.0,
+        "enclosure_in_model_roof_outdoor": true,
+        "as_built_length_mm": null,
+        "pressure_loss_pa": null,
+        "fan_model": null,
+        "wall_slab_penetration_approval": "unknown",
+        "roof_terminal_approval": "unknown",
+        "hood_spacing_weatherproofing_and_air_intakes": "unknown",
+        "floor": "floor-3",
+        "old_centerline_length_mm": 6155.0
+      }
+    ],
+    "roof_terminal_rows": [
+      {
+        "floor": "floor-2",
+        "terminal_reservation_mm": [
+          3600,
+          13750,
+          500,
+          500
+        ],
+        "service_reservation_mm": [
+          3500,
+          13650,
+          700,
+          700
+        ],
+        "nominal_box_inside_roof": true,
+        "service_inside_roof": true,
+        "terminal_over_protected_sqm": 0.0,
+        "service_over_protected_sqm": 0.0,
+        "terminal_over_storage_sqm": 0.0,
+        "known_outdoor_unit_hits": [],
+        "actual_hood_product_and_approach": null
+      },
+      {
+        "floor": "floor-3",
+        "terminal_reservation_mm": [
+          4600,
+          13750,
+          500,
+          500
+        ],
+        "service_reservation_mm": [
+          4500,
+          13650,
+          700,
+          700
+        ],
+        "nominal_box_inside_roof": true,
+        "service_inside_roof": true,
+        "terminal_over_protected_sqm": 0.0,
+        "service_over_protected_sqm": 0.0,
+        "terminal_over_storage_sqm": 0.0,
+        "known_outdoor_unit_hits": [],
+        "actual_hood_product_and_approach": null
+      }
+    ],
+    "roof_centers_separation_mm": 1000.0,
+    "old_roof_riser_centers_separation_mm": 250.0,
+    "roof_reservation_overlap_sqm": 0.0,
+    "roof_service_overlap_sqm": 0.0,
+    "independent_duct_rectangular_budget_hits": [],
+    "old_makeup_to_extract_plan_mm": 660.9841147864297,
+    "new_makeup_to_extract_plan_mm": 1587.1042813879621,
+    "short_circuit_prevention_verified": null,
+    "interior_branch_over_bed_sqm": [
+      0.0,
+      0.0
+    ],
+    "service": {
+      "fan_reserved_box_mm": [
+        900,
+        12750,
+        2450,
+        500,
+        400,
+        250
+      ],
+      "fan_hatch_rect_mm": [
+        900,
+        12700,
+        500,
+        500
+      ],
+      "ladder_budget_rect_mm": [
+        800,
+        12550,
+        600,
+        800
+      ],
+      "fan_plan_inside_bath": true,
+      "hatch_inside_bath": true,
+      "ladder_inside_bath": true,
+      "fan_or_hatch_body_hits": [],
+      "ladder_body_hits": [],
+      "shaft_service_rect_mm": [
+        4050,
+        13420,
+        500,
+        700
+      ],
+      "shaft_service_inside_master_115": true,
+      "shaft_service_fixed_body_hits": [],
+      "shaft_service_route_overlap_sqm": 0.21,
+      "use": "浴室停用後檢修；主臥豎道檢修暫占房內路徑，不當成使用中仍可通行。",
+      "actual_product_removal_and_safe_ladder": null,
+      "fan_box_z_vs_horizontal_duct": "空間預留含管接，不是兩件固定實品相撞；真正風機／接管／檢修尺寸待廠商。"
+    },
+    "retained_master_after_sqm": 20.0761,
+    "retained_public_sqm": 4.4667,
+    "retained_private_sqm": 4.7124,
+    "actual_roof_weather_and_fire_design": null
+  },
+  "assembly": {
+    "enclosure_cases": [
+      {
+        "enclosure_mm": [
+          4050,
+          13120,
+          500,
+          300
+        ],
+        "reserved_sqm": 0.15,
+        "master_after_sqm": 20.0761,
+        "meets_original_master_20": true,
+        "floor_screen": {
+          "partition_gap_or_outside_sqm": 0.0,
+          "partition_overlap_sqm": 0.0,
+          "master_outline_115_sqm": 20.2261,
+          "reserved_enclosure_sqm": 0.15,
+          "master_after_enclosure_sqm": 20.0761,
+          "reservations_contained": true,
+          "reservation_body_hits": [],
+          "reservation_operation_hits": [],
+          "master_bodies_and_operations_contained": true,
+          "master_over_protected_sqm": 0.0,
+          "wet_projection": [
+            {
+              "id": "public-bath",
+              "protected_overlap_sqm": 0.0,
+              "storage_overlap_sqm": 0.0
+            },
+            {
+              "id": "private-bath",
+              "protected_overlap_sqm": 0.0,
+              "storage_overlap_sqm": 0.0
+            }
+          ],
+          "route": {
+            "points_mm": [
+              [
+                5335,
+                12270
+              ],
+              [
+                5335,
+                14150
+              ],
+              [
+                2670,
+                14150
+              ],
+              [
+                2670,
+                16800
+              ],
+              [
+                3335,
+                16800
+              ],
+              [
+                3335,
+                16900
+              ]
+            ],
+            "sweeps_mm": [
+              [
+                4885.0,
+                11820.0,
+                900,
+                2780
+              ],
+              [
+                2220.0,
+                13700.0,
+                3565,
+                900
+              ],
+              [
+                2220.0,
+                13700.0,
+                900,
+                3550
+              ],
+              [
+                2220.0,
+                16350.0,
+                1565,
+                900
+              ],
+              [
+                2885.0,
+                16350.0,
+                900,
+                1000
+              ]
+            ],
+            "all_inside_115": true,
+            "body_hits": [],
+            "enclosure_hits": [],
+            "actual_whole_route": "unknown"
+          },
+          "full_door_states": "not-checked-products-and-sweeps-unknown",
+          "professional_approval": "unknown"
+        },
+        "wall_pack_cases": [
+          {
+            "wall_each_assumption_mm": 25,
+            "inner_width_mm": 450,
+            "inner_depth_mm": 250,
+            "two_pipe_plus_gap_width_mm": 400,
+            "pipe_outer_depth_mm": 175,
+            "width_margin_mm": 50,
+            "depth_margin_mm": 75,
+            "reanchored_pipe_pack_fits": true,
+            "actual_fire_acoustic_and_access_pack": null
+          },
+          {
+            "wall_each_assumption_mm": 50,
+            "inner_width_mm": 400,
+            "inner_depth_mm": 200,
+            "two_pipe_plus_gap_width_mm": 400,
+            "pipe_outer_depth_mm": 175,
+            "width_margin_mm": 0,
+            "depth_margin_mm": 25,
+            "reanchored_pipe_pack_fits": true,
+            "actual_fire_acoustic_and_access_pack": null
+          },
+          {
+            "wall_each_assumption_mm": 75,
+            "inner_width_mm": 350,
+            "inner_depth_mm": 150,
+            "two_pipe_plus_gap_width_mm": 400,
+            "pipe_outer_depth_mm": 175,
+            "width_margin_mm": -50,
+            "depth_margin_mm": -25,
+            "reanchored_pipe_pack_fits": false,
+            "actual_fire_acoustic_and_access_pack": null
+          }
+        ],
+        "selected": false
+      },
+      {
+        "enclosure_mm": [
+          4000,
+          13095,
+          550,
+          350
+        ],
+        "reserved_sqm": 0.1925,
+        "master_after_sqm": 20.0336,
+        "meets_original_master_20": true,
+        "floor_screen": {
+          "partition_gap_or_outside_sqm": 0.0,
+          "partition_overlap_sqm": 0.0,
+          "master_outline_115_sqm": 20.2261,
+          "reserved_enclosure_sqm": 0.1925,
+          "master_after_enclosure_sqm": 20.0336,
+          "reservations_contained": true,
+          "reservation_body_hits": [],
+          "reservation_operation_hits": [],
+          "master_bodies_and_operations_contained": true,
+          "master_over_protected_sqm": 0.0,
+          "wet_projection": [
+            {
+              "id": "public-bath",
+              "protected_overlap_sqm": 0.0,
+              "storage_overlap_sqm": 0.0
+            },
+            {
+              "id": "private-bath",
+              "protected_overlap_sqm": 0.0,
+              "storage_overlap_sqm": 0.0
+            }
+          ],
+          "route": {
+            "points_mm": [
+              [
+                5335,
+                12270
+              ],
+              [
+                5335,
+                14150
+              ],
+              [
+                2670,
+                14150
+              ],
+              [
+                2670,
+                16800
+              ],
+              [
+                3335,
+                16800
+              ],
+              [
+                3335,
+                16900
+              ]
+            ],
+            "sweeps_mm": [
+              [
+                4885.0,
+                11820.0,
+                900,
+                2780
+              ],
+              [
+                2220.0,
+                13700.0,
+                3565,
+                900
+              ],
+              [
+                2220.0,
+                13700.0,
+                900,
+                3550
+              ],
+              [
+                2220.0,
+                16350.0,
+                1565,
+                900
+              ],
+              [
+                2885.0,
+                16350.0,
+                900,
+                1000
+              ]
+            ],
+            "all_inside_115": true,
+            "body_hits": [],
+            "enclosure_hits": [],
+            "actual_whole_route": "unknown"
+          },
+          "full_door_states": "not-checked-products-and-sweeps-unknown",
+          "professional_approval": "unknown"
+        },
+        "wall_pack_cases": [
+          {
+            "wall_each_assumption_mm": 25,
+            "inner_width_mm": 500,
+            "inner_depth_mm": 300,
+            "two_pipe_plus_gap_width_mm": 400,
+            "pipe_outer_depth_mm": 175,
+            "width_margin_mm": 100,
+            "depth_margin_mm": 125,
+            "reanchored_pipe_pack_fits": true,
+            "actual_fire_acoustic_and_access_pack": null
+          },
+          {
+            "wall_each_assumption_mm": 50,
+            "inner_width_mm": 450,
+            "inner_depth_mm": 250,
+            "two_pipe_plus_gap_width_mm": 400,
+            "pipe_outer_depth_mm": 175,
+            "width_margin_mm": 50,
+            "depth_margin_mm": 75,
+            "reanchored_pipe_pack_fits": true,
+            "actual_fire_acoustic_and_access_pack": null
+          },
+          {
+            "wall_each_assumption_mm": 75,
+            "inner_width_mm": 400,
+            "inner_depth_mm": 200,
+            "two_pipe_plus_gap_width_mm": 400,
+            "pipe_outer_depth_mm": 175,
+            "width_margin_mm": 0,
+            "depth_margin_mm": 25,
+            "reanchored_pipe_pack_fits": true,
+            "actual_fire_acoustic_and_access_pack": null
+          }
+        ],
+        "selected": false
+      },
+      {
+        "enclosure_mm": [
+          4000,
+          13095,
+          600,
+          400
+        ],
+        "reserved_sqm": 0.24,
+        "master_after_sqm": 19.9861,
+        "meets_original_master_20": false,
+        "floor_screen": {
+          "partition_gap_or_outside_sqm": 0.0,
+          "partition_overlap_sqm": 0.0,
+          "master_outline_115_sqm": 20.2261,
+          "reserved_enclosure_sqm": 0.24,
+          "master_after_enclosure_sqm": 19.9861,
+          "reservations_contained": true,
+          "reservation_body_hits": [],
+          "reservation_operation_hits": [],
+          "master_bodies_and_operations_contained": true,
+          "master_over_protected_sqm": 0.0,
+          "wet_projection": [
+            {
+              "id": "public-bath",
+              "protected_overlap_sqm": 0.0,
+              "storage_overlap_sqm": 0.0
+            },
+            {
+              "id": "private-bath",
+              "protected_overlap_sqm": 0.0,
+              "storage_overlap_sqm": 0.0
+            }
+          ],
+          "route": {
+            "points_mm": [
+              [
+                5335,
+                12270
+              ],
+              [
+                5335,
+                14150
+              ],
+              [
+                2670,
+                14150
+              ],
+              [
+                2670,
+                16800
+              ],
+              [
+                3335,
+                16800
+              ],
+              [
+                3335,
+                16900
+              ]
+            ],
+            "sweeps_mm": [
+              [
+                4885.0,
+                11820.0,
+                900,
+                2780
+              ],
+              [
+                2220.0,
+                13700.0,
+                3565,
+                900
+              ],
+              [
+                2220.0,
+                13700.0,
+                900,
+                3550
+              ],
+              [
+                2220.0,
+                16350.0,
+                1565,
+                900
+              ],
+              [
+                2885.0,
+                16350.0,
+                900,
+                1000
+              ]
+            ],
+            "all_inside_115": true,
+            "body_hits": [],
+            "enclosure_hits": [],
+            "actual_whole_route": "unknown"
+          },
+          "full_door_states": "not-checked-products-and-sweeps-unknown",
+          "professional_approval": "unknown"
+        },
+        "wall_pack_cases": [
+          {
+            "wall_each_assumption_mm": 25,
+            "inner_width_mm": 550,
+            "inner_depth_mm": 350,
+            "two_pipe_plus_gap_width_mm": 400,
+            "pipe_outer_depth_mm": 175,
+            "width_margin_mm": 150,
+            "depth_margin_mm": 175,
+            "reanchored_pipe_pack_fits": true,
+            "actual_fire_acoustic_and_access_pack": null
+          },
+          {
+            "wall_each_assumption_mm": 50,
+            "inner_width_mm": 500,
+            "inner_depth_mm": 300,
+            "two_pipe_plus_gap_width_mm": 400,
+            "pipe_outer_depth_mm": 175,
+            "width_margin_mm": 100,
+            "depth_margin_mm": 125,
+            "reanchored_pipe_pack_fits": true,
+            "actual_fire_acoustic_and_access_pack": null
+          },
+          {
+            "wall_each_assumption_mm": 75,
+            "inner_width_mm": 450,
+            "inner_depth_mm": 250,
+            "two_pipe_plus_gap_width_mm": 400,
+            "pipe_outer_depth_mm": 175,
+            "width_margin_mm": 50,
+            "depth_margin_mm": 75,
+            "reanchored_pipe_pack_fits": true,
+            "actual_fire_acoustic_and_access_pack": null
+          }
+        ],
+        "selected": false
+      }
+    ],
+    "selected_enclosure": null,
+    "pipe_pair_gap_mm_is_assumption": 50,
+    "duct_bottom_relative_z_mm": 2462.5,
+    "duct_top_relative_z_mm": 2637.5,
+    "gap_above_2400_ceiling_mm": 62.5,
+    "slab_cases": [
+      {
+        "assumed_slab_thickness_mm": 150,
+        "assumed_underside_mm": 2850,
+        "gap_above_duct_mm": 212.5
+      },
+      {
+        "assumed_slab_thickness_mm": 180,
+        "assumed_underside_mm": 2820,
+        "gap_above_duct_mm": 182.5
+      },
+      {
+        "assumed_slab_thickness_mm": 200,
+        "assumed_underside_mm": 2800,
+        "gap_above_duct_mm": 162.5
+      },
+      {
+        "assumed_slab_thickness_mm": 250,
+        "assumed_underside_mm": 2750,
+        "gap_above_duct_mm": 112.5
+      }
+    ],
+    "beam_cases": [
+      {
+        "assumed_total_depth_from_next_floor_mm": 300,
+        "assumed_underside_mm": 2700,
+        "gap_above_duct_mm": 62.5,
+        "rectangular_budget_conflict_if_beam_crosses": false
+      },
+      {
+        "assumed_total_depth_from_next_floor_mm": 400,
+        "assumed_underside_mm": 2600,
+        "gap_above_duct_mm": -37.5,
+        "rectangular_budget_conflict_if_beam_crosses": true
+      },
+      {
+        "assumed_total_depth_from_next_floor_mm": 500,
+        "assumed_underside_mm": 2500,
+        "gap_above_duct_mm": -137.5,
+        "rectangular_budget_conflict_if_beam_crosses": true
+      }
+    ],
+    "actual_beam_positions_and_depths": null,
+    "actual_slab_penetrations": null,
+    "scope": "矩形包覆與標高敏感度，假設管心2550／每層3000；未核真實牆厚、彎頭掃掠、風機及結構。"
+  },
+  "pressure_sensitivity": [
+    {
+      "floor": "floor-2",
+      "axis_bends": 7,
+      "diameter_assumption_mm": 125,
+      "centerline_length_mm": 9260.0,
+      "cases": [
+        {
+          "q_m3_h": 90,
+          "velocity_m_s": 2.0371832715762603,
+          "assumed_low": {
+            "darcy_f_assumption": 0.02,
+            "total_K_assumption": 6.1,
+            "straight_pa": 3.6892868366619687,
+            "fittings_pa": 15.189423396083969,
+            "sum_pa": 18.878710232745938
+          },
+          "assumed_high": {
+            "darcy_f_assumption": 0.035,
+            "total_K_assumption": 16.6,
+            "straight_pa": 6.4562519641584455,
+            "fittings_pa": 41.335152192621955,
+            "sum_pa": 47.7914041567804
+          }
+        },
+        {
+          "q_m3_h": 120,
+          "velocity_m_s": 2.7162443621016803,
+          "assumed_low": {
+            "darcy_f_assumption": 0.02,
+            "total_K_assumption": 6.1,
+            "straight_pa": 6.558732154065721,
+            "fittings_pa": 27.003419370815937,
+            "sum_pa": 33.562151524881656
+          },
+          "assumed_high": {
+            "darcy_f_assumption": 0.035,
+            "total_K_assumption": 16.6,
+            "straight_pa": 11.477781269615011,
+            "fittings_pa": 73.48471500910568,
+            "sum_pa": 84.96249627872069
+          }
+        },
+        {
+          "q_m3_h": 130,
+          "velocity_m_s": 2.942598058943487,
+          "assumed_low": {
+            "darcy_f_assumption": 0.02,
+            "total_K_assumption": 6.1,
+            "straight_pa": 7.697400930813241,
+            "fittings_pa": 31.69151301158259,
+            "sum_pa": 39.38891394239583
+          },
+          "assumed_high": {
+            "darcy_f_assumption": 0.035,
+            "total_K_assumption": 16.6,
+            "straight_pa": 13.47045162892317,
+            "fittings_pa": 86.24247803151984,
+            "sum_pa": 99.71292966044301
+          }
+        }
+      ],
+      "method": "Darcy-Weisbach fL/D*rho*v^2/2 plus selected sumK*rho*v^2/2",
+      "actual_required_static_pressure_pa": null,
+      "actual_fan_model": null,
+      "exclusions": [
+        "補氣端壓損",
+        "另加消音器／濾網與積塵",
+        "真實管材、彎頭及風帽曲線",
+        "風壓與同時排風壓力平衡"
+      ],
+      "scope": "只供同一假設下的發包敏感度；不是實測壓損上下界或可選機的核定工作點，長軟管不沿用此模型。"
+    },
+    {
+      "floor": "floor-3",
+      "axis_bends": 7,
+      "diameter_assumption_mm": 125,
+      "centerline_length_mm": 6610.0,
+      "cases": [
+        {
+          "q_m3_h": 90,
+          "velocity_m_s": 2.0371832715762603,
+          "assumed_low": {
+            "darcy_f_assumption": 0.02,
+            "total_K_assumption": 6.1,
+            "straight_pa": 2.633497407163673,
+            "fittings_pa": 15.189423396083969,
+            "sum_pa": 17.82292080324764
+          },
+          "assumed_high": {
+            "darcy_f_assumption": 0.035,
+            "total_K_assumption": 16.6,
+            "straight_pa": 4.608620462536429,
+            "fittings_pa": 41.335152192621955,
+            "sum_pa": 45.943772655158384
+          }
+        },
+        {
+          "q_m3_h": 120,
+          "velocity_m_s": 2.7162443621016803,
+          "assumed_low": {
+            "darcy_f_assumption": 0.02,
+            "total_K_assumption": 6.1,
+            "straight_pa": 4.681773168290974,
+            "fittings_pa": 27.003419370815937,
+            "sum_pa": 31.68519253910691
+          },
+          "assumed_high": {
+            "darcy_f_assumption": 0.035,
+            "total_K_assumption": 16.6,
+            "straight_pa": 8.193103044509204,
+            "fittings_pa": 73.48471500910568,
+            "sum_pa": 81.67781805361489
+          }
+        },
+        {
+          "q_m3_h": 130,
+          "velocity_m_s": 2.942598058943487,
+          "assumed_low": {
+            "darcy_f_assumption": 0.02,
+            "total_K_assumption": 6.1,
+            "straight_pa": 5.494581010008156,
+            "fittings_pa": 31.69151301158259,
+            "sum_pa": 37.18609402159075
+          },
+          "assumed_high": {
+            "darcy_f_assumption": 0.035,
+            "total_K_assumption": 16.6,
+            "straight_pa": 9.615516767514274,
+            "fittings_pa": 86.24247803151984,
+            "sum_pa": 95.85799479903412
+          }
+        }
+      ],
+      "method": "Darcy-Weisbach fL/D*rho*v^2/2 plus selected sumK*rho*v^2/2",
+      "actual_required_static_pressure_pa": null,
+      "actual_fan_model": null,
+      "exclusions": [
+        "補氣端壓損",
+        "另加消音器／濾網與積塵",
+        "真實管材、彎頭及風帽曲線",
+        "風壓與同時排風壓力平衡"
+      ],
+      "scope": "只供同一假設下的發包敏感度；不是實測壓損上下界或可選機的核定工作點，長軟管不沿用此模型。"
+    }
+  ],
+  "original_targets_sqm": {
+    "bedroom_target": 20,
+    "public_bath_target": 5,
+    "public_bath_min": 3.6,
+    "private_bath_target": 6,
+    "private_bath_min": 4.5
+  },
+  "owner_ritual_answers": [
+    {
+      "id": "B-RITUAL-01",
+      "question": "武轎祭祀時是否必須搬進神明堂？",
+      "answer": false,
+      "impact": "屋主確認不必進神明堂；後門到庫房可獨立研究，不需要把1360接段當祭祀必經線。",
+      "status": "owner-confirmed",
+      "answer_reference": "inputs/references/b-owner-ritual-answers-20261106.json"
+    },
+    {
+      "id": "B-RITUAL-02",
+      "question": "搬轎通道上方是否禁止浴廁與污水管？",
+      "answer": false,
+      "impact": "屋主確認不禁止通道上方浴廁／污水管；仍須機電、防水、檢修及衛生工程核對。",
+      "status": "owner-confirmed",
+      "answer_reference": "inputs/references/b-owner-ritual-answers-20261106.json"
+    },
+    {
+      "id": "B-RITUAL-03",
+      "question": "武轎庫上方是否禁止臥室？",
+      "answer": false,
+      "impact": "屋主確認不禁止庫房上方臥室；仍保留庫房上方不得有浴廁的原規則。",
+      "status": "owner-confirmed",
+      "answer_reference": "inputs/references/b-owner-ritual-answers-20261106.json"
+    }
+  ],
+  "retained_entries": [
+    {
+      "id": "b-rear-split",
+      "states": [
+        "daily",
+        "ritual",
+        "carry"
+      ],
+      "floor1_hashes": {
+        "daily": "09d63d031cbe94fced1c5f500237b4c376633783cf8e4c31b51e10a6747e1c12",
+        "ritual": "47b857a2dfb48e3ab2d52c78e05fdec6470c91a78934267b2a4f2565d5b8c535",
+        "carry": "09d63d031cbe94fced1c5f500237b4c376633783cf8e4c31b51e10a6747e1c12"
+      }
+    },
+    {
+      "id": "b-front-split",
+      "states": [
+        "daily",
+        "ritual",
+        "carry"
+      ],
+      "floor1_hashes": {
+        "daily": "fbe11519633188d7bdc4dd29d1e94b2dbc71d1e6d90f2dcd779a80011c278d0e",
+        "ritual": "39ed9cae06fc20a82dd4b0d6d0eb6c11c42fc106122552411816ad10fc75bf61",
+        "carry": "39d1140615b0b4a9e945208e8b21eb9558fec57cceaf78f54a0cf641e0c39515"
+      }
+    }
+  ],
+  "original_1f_and_3d_unchanged": true,
+  "protected_controls_unchanged": 149,
+  "owner_no_window_decision": {
+    "id": "B-UPPER-VENT-01",
+    "status": "owner-preference-pending",
+    "owner_answer": null,
+    "question": "B二三樓一般公衛是否先保主臥20㎡，以獨立機械排氣深化？若公衛必須有窗，需再議重排與主臥面積。"
+  },
+  "owner_requirement_changes": false,
+  "adopted": false,
+  "all_requirements_met": false,
+  "browser_qa": "not-run",
+  "claude_status": "no-new-discussion-this-turn",
+  "professional_approval": "unknown",
+  "recommendation": "以二三樓一般公衛發包資料準備為範圍，先核補氣、牆柱及風機性能；原無窗偏好待答，不併主案。",
+  "source_hashes": {
+    "inputs/b-ventilation-detail.json": "523b9c931c4f36caea62072031fe2d3c82cbea852d4ddf33e86827443b3c10f8",
+    "structured/coordination/b-bath-ventilation-v1/review.json": "f89065dea268532b9c308438a896ce417d55f02fc2ec7224e70c096894094bdf",
+    "structured/coordination/b-bath-ventilation-v1/artifact-manifest.json": "b07fff75f64f03b4cdfdd33170537241f5c47c7fdff432cefc2aa872e981d683",
+    "inputs/references/b-bath-ventilation-static-review-20261106.json": "d7c647da9a03a633a69292289dbf3f18ad3b0d92d1918ee0e21bdc72c0bcfa40",
+    "inputs/b-bath-ventilation.json": "42abe063c3503f07ac492cf42c6745bbbb075d8de7f0eb330cc324faaad2930c",
+    "structured/coordination/b-claude-round3-v1/review.json": "00baf0b3950e2593361e91698e4d72ac33e384edadd6da5a7d31b62e087b6223",
+    "structured/coordination/b-claude-round3-v1/artifact-manifest.json": "ad7327b07ef803ab57cf7390f84a3919da4165124a84e33288953981fa591062",
+    "structured/coordination/b-fengshui-strict-v1/review.json": "e595361db8281be6daf361251afe0187824c7bcb99d556f930cf90f15bf2f954",
+    "inputs/references/b-owner-ritual-answers-20261106.json": "736f5a477ce1fbfd8e1bf460ecf49f9043a83635201d1598e3e1842e6460ddb9",
+    "inputs/b-claude-round3.json": "25c006e1d7741395f53a8ae369ac905f7956ca0a3f8f7d2a94cc1625137fbc6f",
+    "structured/candidates/kaohsiung-house-options/c-stair-integration.json": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+    "structured/coordination/b-claude-crosscheck-v1/review.json": "b2a3604da09beaf1ebb4f8ed50d0525004cf6592ede2bde756eb05ae9ada95a4",
+    "structured/coordination/b-claude-crosscheck-v1/artifact-manifest.json": "32940e5ac7474e21fbe521a7a99d4c259b2bbaf9fcaa2e33acf67a0a5bad8197",
+    "inputs/b-claude-crosscheck.json": "d49320cef10eed1df0ece76c9e0ba17107c9d32630c25da26c48bf2350cc2a7d",
+    "inputs/references/b-claude-response-v2-provenance.json": "2c7c0cdc880c1d78a910a170edcfdc6b59c20865ae81fd6b041c72816656b32b",
+    "inputs/references/b-claude-response-v2-transcript-20261105.md": "67ad0a230f18b2495ebbbdc7f9c2986bc3a72eaf48eea846af3640a621bf51a7",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "house_design/b_claude_crosscheck.py": "9b157330308ec83bfc91d219d0bd0c632fd0ed0566e85b243209affa9a1daf20",
+    "house_design/b_fengshui_strict.py": "7f73ab7b7d84e7af976357a11cbf5ec78bb9550956b24973361a0a1dc6c6a2ab",
+    "house_design/abc_next_improvements.py": "9756b69f651f8431d361ffdc6f678e59edc1c3af0e9d8e9db782091366166568",
+    "house_design/c_coordination.py": "6d2c336496e0f1cabfabce3f3287b28ceecb13088d78f8cb0137d9ce14b689ff",
+    "house_design/contracts.py": "2888419d49e8d8dbe8b8e99f6b8451363cd9020821c7fe3e703ab09779e202c3",
+    "scripts/export_b_claude_crosscheck.py": "c6bf43bf9b8018f74042ae3f64ef60483d3bde13898c448f2d82cef848890d3f",
+    "scripts/export_b_fengshui_strict.py": "b097e116689af7ae1f074a1482adfb895a44d32f790fabe6386cdeafcb88a67f",
+    "scripts/export_abc_next_improvements.py": "875c13027466776a6e1661dae369e45c823c661c5e0369d8ee95b6535420e701",
+    "inputs/requirements.json": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066",
+    "Docs/claude-b-fengshui-followup-v3.md": "ce877ccd31a13e8757b39abef592ead3b78c6117ff2214d90c2b97f7696ec1ea",
+    "scripts/review_b_fengshui_with_claude.py": "dc6b4b855656cbdee16990857abbb44b1f471a720f6799cd9bdee96f71f58b55",
+    "inputs/references/b-claude-round3-provenance-20261106.json": "215a2f40a924a0f3ddd8a1e5a8dfd4da1807175f79310755ff74f8c2a29b4a64",
+    "inputs/references/b-claude-round3-response-20261106.md": "7ec4b66feb30aed715aaef272678e819e2e685342a64f4c24a5b22c0410d159f",
+    "house_design/b_claude_round3.py": "040a7b75fc604dc147b471800ae4c1c8a57935182dcceea26591514b106ec9d0",
+    "scripts/export_b_claude_round3.py": "be59ca0ded73f3f6a09e40580191eb2375849f3699b977dde887199e47a45e1d",
+    "Docs/b-claude-round3-v1.md": "a9a6fe163037a967962723738ca1535664fc7a54707f101af50066e0c35c68ff",
+    "house_design/b_bath_ventilation.py": "fc7375cbb054852507679e0821110dcbc369a5df16c4dce3876149e0fee0a4cb",
+    "scripts/export_b_bath_ventilation.py": "d78ba0730232507e9534d001759d30d1932f9654e758d3f09cc1238f0ca4da8b",
+    "Docs/b-bath-ventilation-v1.md": "bdc6c635a7c5850c446288c77db22d8b2bf9ea790486ea357489fe46a9606e73",
+    "house_design/b_ventilation_detail.py": "f676016d682e9c961b72000320d20f5e43dcba23294ca1aae3bab47768ff8462",
+    "scripts/export_b_ventilation_detail.py": "d7cef1efba0ca46e6a787895a828f8534654e4ff8a423c95bb1d50a9c8ece534",
+    "Docs/b-ventilation-detail-v1.md": "806a9f37f045e3c2e324c284e995131fc427885a7c0871c2c43fdb859327551d"
+  },
+  "report_hash": "ac62ef01d0e24f079ea9c74374c14b64d56ea4d97367797ebf52c49e2e3defc9"
+}

@@ -1,0 +1,80 @@
+{
+  "schema":"house-abc-fresh-air-detail-static-review-v1",
+  "date":"2026-11-06",
+  "report_path":"structured/coordination/abc-fresh-air-detail-v1/review.json",
+  "report_hash":"0c182bc92fb2914abcc417609931a21b04db5df5b5c64b14573992159a9d4391",
+  "report_sha256":"f0dcb5b60302df445d95f7990388aff3d1c9189ba96437146ac3265d7b1613b0",
+  "artifact_manifest_path":"structured/coordination/abc-fresh-air-detail-v1/artifact-manifest.json",
+  "artifact_manifest_sha256":"5947f8403a560bdffa530fddfe7a8104c7ebb0ef1b8897caf807b97ab3a79ec2",
+  "source_binding":{
+    "full_hashes_at":"structured/coordination/abc-fresh-air-detail-v1/review.json#/source_hashes",
+    "source_hash_count":57,
+    "all_source_bytes_match":true,
+    "manifest_artifact_hashes_checked":12,
+    "all_manifest_artifact_bytes_match":true,
+    "artifact_total_including_manifest":13,
+    "meaning":"本紀錄綁定完整報告及manifest的SHA256；變更來源後須重新檢查，不繼承歷史passed。"
+  },
+  "source_hashes_excerpt":{
+    "inputs/abc-fresh-air-detail.json":"7a0967c5cff5eaa507e0a420a9c1e694255562ccdc69f511ae801472649a61ec",
+    "inputs/references/abc-fresh-air-detail-research-20261106.json":"60110088e55deef1182004237af6b0306930b74c955bd15106eb47972b18d7b7",
+    "house_design/abc_fresh_air_detail.py":"27759888916cfbfb56bd28497a27d1c55e11623b12108c435c906f710b3199f2",
+    "scripts/export_abc_fresh_air_detail.py":"56e37663a2dd63d315c5f3feeabd049a8df6a803c1435be956a3947bc21029e8",
+    "Docs/abc-fresh-air-detail-v1.md":"896041fc2ba0b54228d7ead990ad80e10d2a8e877b731aa3e618b5c6a25d7d93",
+    "tests/test_abc_fresh_air_detail.py":"3cb5430eb44eacbfb90b07d160ed1e553a9eff5770918e68f1ac2e970aadb4c9"
+  },
+  "checks":[
+    {"command":"timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_abc_fresh_air_detail.py","status":"passed","tests_passed":25,"reported_seconds":0.51},
+    {"command":"timeout 20s .venv/bin/ruff check house_design/abc_fresh_air_detail.py scripts/export_abc_fresh_air_detail.py tests/test_abc_fresh_air_detail.py","status":"passed"},
+    {"command":"timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_abc_fresh_air_detail.py --check","status":"passed","artifacts":13},
+    {"command":"timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_abc_fresh_air_layout.py --check","status":"passed","scope":"上批11件機位預留產物與來源仍一致，沒有重生原3D。"},
+    {"method":"20秒內Node唯讀核對57個來源SHA256、12件產物SHA256、導覽與新證據綁定","status":"passed"},
+    {"command":"timeout 20s git diff --check","status":"passed","scope":"空白字元檢查；沒有commit、push或重設使用者異動。"}
+  ],
+  "static_previews":[
+    {"source_svg":"structured/coordination/abc-fresh-air-detail-v1/B-routes.svg","svg_sha256":"be798ca9c9cbd4d042f1ef0c27f642be64b15c521070dbbbe7026c77b2e64170","temporary_preview_path":"/tmp/house-abc-fresh-air-detail.TCRkNr/B-routes.png","preview_sha256":"8da647fa77e2559c52de93add84b5436d9b3de057a1a8b8f1bd788fa241ba8d0","pixels":[1000,786],"visually_reviewed":true,"observation":"未見明顯裁切；前後口替代說明、右側乾頸部、前起居／閱讀與未採用限制可辨。前後管線僅替代候選，不當同時安裝或宗教核可。"},
+    {"source_svg":"structured/coordination/abc-fresh-air-detail-v1/C-routes.svg","svg_sha256":"ad2ce50a0399a1473e2092d3560c6c658a165d532006baa67d140be4d3e995b0","temporary_preview_path":"/tmp/house-abc-fresh-air-detail.TCRkNr/C-routes.png","preview_sha256":"68c74104f6af9aa9c3275edd5c647466fbc56b08d7d9f95ea3443ee047d8c23c","pixels":[1000,786],"visually_reviewed":true,"observation":"未見明顯裁切；三層端點及1F避梯側帶可辨，原窗門保留、外口高位實牆與Z未知均註明。不當實際頭高、照護或關門風量驗收。"},
+    {"source_svg":"structured/coordination/abc-fresh-air-detail-v1/service-sections.svg","svg_sha256":"0fe1a07b2998bbbc2d7a51b567262d3b4147e5daf57b0498b35ffe5c7d48f63a","temporary_preview_path":"/tmp/house-abc-fresh-air-detail.TCRkNr/service-sections.png","preview_sha256":"0bbf559ef20f0a2ca3e6033a2d8018844bb568780b87baeec2956fc882ffab63","pixels":[1000,786],"visually_reviewed":true,"observation":"未見明顯裁切或文字壓圖；四管橫排與雙層分開，名義板／淨孔／手部餘量與未核落機運出均可辨。所有假設不當原廠或法定尺寸。"}
+  ],
+  "preview_limits":{
+    "distinct_project_previews":3,
+    "maximum_preview_pixels":[1000,786],
+    "current_previews_replaced_earlier_hash_versions":true,
+    "temporary_files_not_durable_artifacts":true,
+    "A_sheet_visual_review":"not-run; XML dimensions/source/artifact checks only",
+    "HTML_browser_visual_review":"not-run",
+    "WebGL_runtime":"not-run"
+  },
+  "navigation_hashes":{
+    "Docs/project-status-v1.md":"4b8f00160474d7c7fe0f53b01c50f09b69a344f3a4d16a2c827073dc1ab755bc",
+    "Docs/coordination-review.md":"c63b5832ebe48ae5f99e3aaddad6d989bf2247da484e76267abb0a72fdd56128",
+    "scripts/README.md":"74dfc07a7e24ba60d8a8df192d648beea1cf9137953c7a1a170d59aeb966c85d"
+  },
+  "research_access":{
+    "alaska_official_product_page_read":true,
+    "alaska_scanned_manual_local_download":"HTTP403; no retry or bypass, not visually verified",
+    "panasonic_catalogue_pdf_download_and_sha_checked":true,
+    "panasonic_FY15_design_crop_visually_reviewed":true,
+    "panasonic_service_pdf_download_sha_and_limited_text_read":true,
+    "complete_installation_manual_visually_verified":false,
+    "price_stock_product_selection_checked":false
+  },
+  "protected_scope":{
+    "original_ABC_and_current_3d_edited":false,
+    "protected_controls_unchanged":149,
+    "b_front_rear_entry_three_states_retained":true,
+    "c_closable_partitions_and_single_2f_washer_retained":true,
+    "current_3f_use_requires_ventilation_at_commissioning":true
+  },
+  "limitations":[
+    "8機位、24乾區與48末端是空間／拓樸比較，不是採購數量、獨立房間數或實測風量。",
+    "普通乾淨SA／RA不接浴廁、油煙或B香火；既有浴廁豎道不塞ERV主幹。",
+    "B前區平面接通不等於完整三維或一層一機核可；祭祀投影乾管仍待指定家規確認。",
+    "所有外口Z、窗頭以上實牆、門楣、梁、合法排放、鄰棟污染源及風雨條件未知；不改原窗門。",
+    "四角色管帶交會只是平面預算重疊，不當三維實撞或已排開。",
+    "天花高度、側抽600、框料25與手部50是研究假設，不當產品或法定最小值。",
+    "1600×1000名義整片可拆板僅直向平面預算容納，落機、重量、架梯與全程運出未核。",
+    "靜態預覽不是瀏覽器驗收；沒有施工、結構、法規、消防、照護、風水、搬運或產品簽證。"
+  ],
+  "approvals":{"layout_adopted":false,"product_selected":false,"full_mep_fit_verified":false,"legal":"unknown","fire":"unknown","structure":"unknown","care":"unknown","religious":"unknown","transport":"unknown","installation":"unknown"}
+}

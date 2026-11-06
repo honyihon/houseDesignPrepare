@@ -1,0 +1,6823 @@
+{
+  "schema": "house-abc-fresh-air-planning-report-v1",
+  "date": "2026-11-06",
+  "scope": "preplanning-condition-intake-and-independent-recalculation-only",
+  "source_layout_report_sha256": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+  "baseline_report_hash": "0c182bc92fb2914abcc417609931a21b04db5df5b5c64b14573992159a9d4391",
+  "registry_hash": "b3f838f0ea42d96a94d1d882471a56716db8c7838fba1d2550b50d083ed49534",
+  "fixed_requirements": [
+    "不改ABC原主案、現行3D、149控制或B前後搬轎兩版三態；三樓既有用途同期通風。",
+    "B1香火專用補排，浴廁／油煙各自獨排；不新增一般ERV回風。",
+    "C前置門與梯門保持可關，單台洗衣機留2F；不以梯間或門縫當唯一乾淨回風。",
+    "不放寬原外窗、主臥與衛浴面積、照護、祭祀方向與乾保護室條件。",
+    "所有風口是座標研究，保留原窗門；無合法高位實牆／防火／防雨條件即不得開孔。"
+  ],
+  "planning_assumptions_only": {
+    "four_duct_sections_mm": {
+      "four-flat": [
+        950,
+        275
+      ],
+      "four-stacked": [
+        500,
+        500
+      ]
+    },
+    "source": "frozen-concept-only-not-measurement",
+    "actual_installed": false
+  },
+  "registry": {
+    "common.duct.inner_mm": {
+      "id": "common.duct.inner_mm",
+      "label": "風管實際內徑",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "共用研究；多種管材／保溫時需另分版本，不混填。"
+    },
+    "common.duct.insulation_each_mm": {
+      "id": "common.duct.insulation_each_mm",
+      "label": "徑向保溫厚度",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "共用研究；多種管材／保溫時需另分版本，不混填。"
+    },
+    "common.duct.gap_mm": {
+      "id": "common.duct.gap_mm",
+      "label": "管間淨預留",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "共用研究；多種管材／保溫時需另分版本，不混填。"
+    },
+    "common.duct.edge_mm": {
+      "id": "common.duct.edge_mm",
+      "label": "管帶兩外側各預留",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "共用研究；多種管材／保溫時需另分版本，不混填。"
+    },
+    "common.duct.extra_hanging_mm": {
+      "id": "common.duct.extra_hanging_mm",
+      "label": "額外吊掛／施工公差",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "共用研究；多種管材／保溫時需另分版本，不混填。"
+    },
+    "B.rear_alley_exists": {
+      "id": "B.rear_alley_exists",
+      "label": "B實際後巷前提",
+      "unit": "boolean",
+      "kind": "boolean",
+      "scope": "只作搬轎備案提示，不推定後牆可開孔。"
+    },
+    "A1.model": {
+      "id": "A1.model",
+      "label": "候選設備同一型號／版次",
+      "unit": "text",
+      "kind": "text",
+      "scope": "A棟 floor-1／A1-N"
+    },
+    "A1.installed_box_mm": {
+      "id": "A1.installed_box_mm",
+      "label": "含接口／消音的主機安裝包絡[寬,深,高]，不含另列吊掛公差",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "A棟 floor-1／A1-N",
+      "candidate_model_field": "A1.model"
+    },
+    "A1.available_box_mm": {
+      "id": "A1.available_box_mm",
+      "label": "該機位可用安裝淨包絡[寬,深,高]",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "A棟 floor-1／A1-N"
+    },
+    "A1.beam_bottom_z_mm": {
+      "id": "A1.beam_bottom_z_mm",
+      "label": "該段最低梁板底標高（本層完成地坪為0）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "A棟 floor-1／A1-N"
+    },
+    "A1.ceiling_target_z_mm": {
+      "id": "A1.ceiling_target_z_mm",
+      "label": "目標完成天花標高（同一地坪基準）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "A棟 floor-1／A1-N"
+    },
+    "A1.duct_available_wh_mm": {
+      "id": "A1.duct_available_wh_mm",
+      "label": "四管路段可用管帶[寬,高]；不是房間走道寬",
+      "unit": "mm[W,H]",
+      "kind": "positive2",
+      "scope": "A棟 floor-1／A1-N"
+    },
+    "A1.pull_required_mm": {
+      "id": "A1.pull_required_mm",
+      "label": "同型號實際濾芯／交換芯所需抽拉行程",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-1／A1-N",
+      "candidate_model_field": "A1.model"
+    },
+    "A1.pull_available_mm": {
+      "id": "A1.pull_available_mm",
+      "label": "選定方向可提供的抽拉淨長",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-1／A1-N"
+    },
+    "A1.removal_required_wh_mm": {
+      "id": "A1.removal_required_wh_mm",
+      "label": "含操作餘量的整機直進所需完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "A棟 floor-1／A1-N",
+      "candidate_model_field": "A1.model"
+    },
+    "A1.removal_available_wh_mm": {
+      "id": "A1.removal_available_wh_mm",
+      "label": "扣框料後實際可拆完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "A棟 floor-1／A1-N"
+    },
+    "A1.design_flow_m3_h": {
+      "id": "A1.design_flow_m3_h",
+      "label": "該分區設計室外風量（每層不重複派給每房）",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "A棟 floor-1／A1-N"
+    },
+    "A1.fan_min_flow_m3_h": {
+      "id": "A1.fan_min_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最低風量",
+      "unit": "m3/h",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-1／A1-N",
+      "candidate_model_field": "A1.model"
+    },
+    "A1.fan_max_flow_m3_h": {
+      "id": "A1.fan_max_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最高風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "A棟 floor-1／A1-N",
+      "candidate_model_field": "A1.model"
+    },
+    "A1.required_pressure_pa": {
+      "id": "A1.required_pressure_pa",
+      "label": "設計路由及髒濾網所需機外靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-1／A1-N"
+    },
+    "A1.curve_flow_m3_h": {
+      "id": "A1.curve_flow_m3_h",
+      "label": "所提供風機曲線點對應風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "A棟 floor-1／A1-N",
+      "candidate_model_field": "A1.model"
+    },
+    "A1.curve_available_pressure_pa": {
+      "id": "A1.curve_available_pressure_pa",
+      "label": "該相同風量曲線點的可用靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-1／A1-N",
+      "candidate_model_field": "A1.model"
+    },
+    "A2.model": {
+      "id": "A2.model",
+      "label": "候選設備同一型號／版次",
+      "unit": "text",
+      "kind": "text",
+      "scope": "A棟 floor-2／A2-N"
+    },
+    "A2.installed_box_mm": {
+      "id": "A2.installed_box_mm",
+      "label": "含接口／消音的主機安裝包絡[寬,深,高]，不含另列吊掛公差",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "A棟 floor-2／A2-N",
+      "candidate_model_field": "A2.model"
+    },
+    "A2.available_box_mm": {
+      "id": "A2.available_box_mm",
+      "label": "該機位可用安裝淨包絡[寬,深,高]",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "A棟 floor-2／A2-N"
+    },
+    "A2.beam_bottom_z_mm": {
+      "id": "A2.beam_bottom_z_mm",
+      "label": "該段最低梁板底標高（本層完成地坪為0）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "A棟 floor-2／A2-N"
+    },
+    "A2.ceiling_target_z_mm": {
+      "id": "A2.ceiling_target_z_mm",
+      "label": "目標完成天花標高（同一地坪基準）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "A棟 floor-2／A2-N"
+    },
+    "A2.duct_available_wh_mm": {
+      "id": "A2.duct_available_wh_mm",
+      "label": "四管路段可用管帶[寬,高]；不是房間走道寬",
+      "unit": "mm[W,H]",
+      "kind": "positive2",
+      "scope": "A棟 floor-2／A2-N"
+    },
+    "A2.pull_required_mm": {
+      "id": "A2.pull_required_mm",
+      "label": "同型號實際濾芯／交換芯所需抽拉行程",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-2／A2-N",
+      "candidate_model_field": "A2.model"
+    },
+    "A2.pull_available_mm": {
+      "id": "A2.pull_available_mm",
+      "label": "選定方向可提供的抽拉淨長",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-2／A2-N"
+    },
+    "A2.removal_required_wh_mm": {
+      "id": "A2.removal_required_wh_mm",
+      "label": "含操作餘量的整機直進所需完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "A棟 floor-2／A2-N",
+      "candidate_model_field": "A2.model"
+    },
+    "A2.removal_available_wh_mm": {
+      "id": "A2.removal_available_wh_mm",
+      "label": "扣框料後實際可拆完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "A棟 floor-2／A2-N"
+    },
+    "A2.design_flow_m3_h": {
+      "id": "A2.design_flow_m3_h",
+      "label": "該分區設計室外風量（每層不重複派給每房）",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "A棟 floor-2／A2-N"
+    },
+    "A2.fan_min_flow_m3_h": {
+      "id": "A2.fan_min_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最低風量",
+      "unit": "m3/h",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-2／A2-N",
+      "candidate_model_field": "A2.model"
+    },
+    "A2.fan_max_flow_m3_h": {
+      "id": "A2.fan_max_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最高風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "A棟 floor-2／A2-N",
+      "candidate_model_field": "A2.model"
+    },
+    "A2.required_pressure_pa": {
+      "id": "A2.required_pressure_pa",
+      "label": "設計路由及髒濾網所需機外靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-2／A2-N"
+    },
+    "A2.curve_flow_m3_h": {
+      "id": "A2.curve_flow_m3_h",
+      "label": "所提供風機曲線點對應風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "A棟 floor-2／A2-N",
+      "candidate_model_field": "A2.model"
+    },
+    "A2.curve_available_pressure_pa": {
+      "id": "A2.curve_available_pressure_pa",
+      "label": "該相同風量曲線點的可用靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-2／A2-N",
+      "candidate_model_field": "A2.model"
+    },
+    "A3.model": {
+      "id": "A3.model",
+      "label": "候選設備同一型號／版次",
+      "unit": "text",
+      "kind": "text",
+      "scope": "A棟 floor-3／A3-R"
+    },
+    "A3.installed_box_mm": {
+      "id": "A3.installed_box_mm",
+      "label": "含接口／消音的主機安裝包絡[寬,深,高]，不含另列吊掛公差",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "A棟 floor-3／A3-R",
+      "candidate_model_field": "A3.model"
+    },
+    "A3.available_box_mm": {
+      "id": "A3.available_box_mm",
+      "label": "該機位可用安裝淨包絡[寬,深,高]",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "A棟 floor-3／A3-R"
+    },
+    "A3.beam_bottom_z_mm": {
+      "id": "A3.beam_bottom_z_mm",
+      "label": "該段最低梁板底標高（本層完成地坪為0）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "A棟 floor-3／A3-R"
+    },
+    "A3.ceiling_target_z_mm": {
+      "id": "A3.ceiling_target_z_mm",
+      "label": "目標完成天花標高（同一地坪基準）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "A棟 floor-3／A3-R"
+    },
+    "A3.duct_available_wh_mm": {
+      "id": "A3.duct_available_wh_mm",
+      "label": "四管路段可用管帶[寬,高]；不是房間走道寬",
+      "unit": "mm[W,H]",
+      "kind": "positive2",
+      "scope": "A棟 floor-3／A3-R"
+    },
+    "A3.pull_required_mm": {
+      "id": "A3.pull_required_mm",
+      "label": "同型號實際濾芯／交換芯所需抽拉行程",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-3／A3-R",
+      "candidate_model_field": "A3.model"
+    },
+    "A3.pull_available_mm": {
+      "id": "A3.pull_available_mm",
+      "label": "選定方向可提供的抽拉淨長",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-3／A3-R"
+    },
+    "A3.removal_required_wh_mm": {
+      "id": "A3.removal_required_wh_mm",
+      "label": "含操作餘量的整機直進所需完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "A棟 floor-3／A3-R",
+      "candidate_model_field": "A3.model"
+    },
+    "A3.removal_available_wh_mm": {
+      "id": "A3.removal_available_wh_mm",
+      "label": "扣框料後實際可拆完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "A棟 floor-3／A3-R"
+    },
+    "A3.design_flow_m3_h": {
+      "id": "A3.design_flow_m3_h",
+      "label": "該分區設計室外風量（每層不重複派給每房）",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "A棟 floor-3／A3-R"
+    },
+    "A3.fan_min_flow_m3_h": {
+      "id": "A3.fan_min_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最低風量",
+      "unit": "m3/h",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-3／A3-R",
+      "candidate_model_field": "A3.model"
+    },
+    "A3.fan_max_flow_m3_h": {
+      "id": "A3.fan_max_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最高風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "A棟 floor-3／A3-R",
+      "candidate_model_field": "A3.model"
+    },
+    "A3.required_pressure_pa": {
+      "id": "A3.required_pressure_pa",
+      "label": "設計路由及髒濾網所需機外靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-3／A3-R"
+    },
+    "A3.curve_flow_m3_h": {
+      "id": "A3.curve_flow_m3_h",
+      "label": "所提供風機曲線點對應風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "A棟 floor-3／A3-R",
+      "candidate_model_field": "A3.model"
+    },
+    "A3.curve_available_pressure_pa": {
+      "id": "A3.curve_available_pressure_pa",
+      "label": "該相同風量曲線點的可用靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-3／A3-R",
+      "candidate_model_field": "A3.model"
+    },
+    "B2.model": {
+      "id": "B2.model",
+      "label": "候選設備同一型號／版次",
+      "unit": "text",
+      "kind": "text",
+      "scope": "B棟 floor-2／B2-N"
+    },
+    "B2.installed_box_mm": {
+      "id": "B2.installed_box_mm",
+      "label": "含接口／消音的主機安裝包絡[寬,深,高]，不含另列吊掛公差",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "B棟 floor-2／B2-N",
+      "candidate_model_field": "B2.model"
+    },
+    "B2.available_box_mm": {
+      "id": "B2.available_box_mm",
+      "label": "該機位可用安裝淨包絡[寬,深,高]",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "B棟 floor-2／B2-N"
+    },
+    "B2.beam_bottom_z_mm": {
+      "id": "B2.beam_bottom_z_mm",
+      "label": "該段最低梁板底標高（本層完成地坪為0）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "B棟 floor-2／B2-N"
+    },
+    "B2.ceiling_target_z_mm": {
+      "id": "B2.ceiling_target_z_mm",
+      "label": "目標完成天花標高（同一地坪基準）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "B棟 floor-2／B2-N"
+    },
+    "B2.duct_available_wh_mm": {
+      "id": "B2.duct_available_wh_mm",
+      "label": "四管路段可用管帶[寬,高]；不是房間走道寬",
+      "unit": "mm[W,H]",
+      "kind": "positive2",
+      "scope": "B棟 floor-2／B2-N"
+    },
+    "B2.pull_required_mm": {
+      "id": "B2.pull_required_mm",
+      "label": "同型號實際濾芯／交換芯所需抽拉行程",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "B棟 floor-2／B2-N",
+      "candidate_model_field": "B2.model"
+    },
+    "B2.pull_available_mm": {
+      "id": "B2.pull_available_mm",
+      "label": "選定方向可提供的抽拉淨長",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "B棟 floor-2／B2-N"
+    },
+    "B2.removal_required_wh_mm": {
+      "id": "B2.removal_required_wh_mm",
+      "label": "含操作餘量的整機直進所需完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "B棟 floor-2／B2-N",
+      "candidate_model_field": "B2.model"
+    },
+    "B2.removal_available_wh_mm": {
+      "id": "B2.removal_available_wh_mm",
+      "label": "扣框料後實際可拆完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "B棟 floor-2／B2-N"
+    },
+    "B2.design_flow_m3_h": {
+      "id": "B2.design_flow_m3_h",
+      "label": "該分區設計室外風量（每層不重複派給每房）",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "B棟 floor-2／B2-N"
+    },
+    "B2.fan_min_flow_m3_h": {
+      "id": "B2.fan_min_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最低風量",
+      "unit": "m3/h",
+      "kind": "nonnegative",
+      "scope": "B棟 floor-2／B2-N",
+      "candidate_model_field": "B2.model"
+    },
+    "B2.fan_max_flow_m3_h": {
+      "id": "B2.fan_max_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最高風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "B棟 floor-2／B2-N",
+      "candidate_model_field": "B2.model"
+    },
+    "B2.required_pressure_pa": {
+      "id": "B2.required_pressure_pa",
+      "label": "設計路由及髒濾網所需機外靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "B棟 floor-2／B2-N"
+    },
+    "B2.curve_flow_m3_h": {
+      "id": "B2.curve_flow_m3_h",
+      "label": "所提供風機曲線點對應風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "B棟 floor-2／B2-N",
+      "candidate_model_field": "B2.model"
+    },
+    "B2.curve_available_pressure_pa": {
+      "id": "B2.curve_available_pressure_pa",
+      "label": "該相同風量曲線點的可用靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "B棟 floor-2／B2-N",
+      "candidate_model_field": "B2.model"
+    },
+    "B3.model": {
+      "id": "B3.model",
+      "label": "候選設備同一型號／版次",
+      "unit": "text",
+      "kind": "text",
+      "scope": "B棟 floor-3／B3-R"
+    },
+    "B3.installed_box_mm": {
+      "id": "B3.installed_box_mm",
+      "label": "含接口／消音的主機安裝包絡[寬,深,高]，不含另列吊掛公差",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "B棟 floor-3／B3-R",
+      "candidate_model_field": "B3.model"
+    },
+    "B3.available_box_mm": {
+      "id": "B3.available_box_mm",
+      "label": "該機位可用安裝淨包絡[寬,深,高]",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "B棟 floor-3／B3-R"
+    },
+    "B3.beam_bottom_z_mm": {
+      "id": "B3.beam_bottom_z_mm",
+      "label": "該段最低梁板底標高（本層完成地坪為0）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "B棟 floor-3／B3-R"
+    },
+    "B3.ceiling_target_z_mm": {
+      "id": "B3.ceiling_target_z_mm",
+      "label": "目標完成天花標高（同一地坪基準）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "B棟 floor-3／B3-R"
+    },
+    "B3.duct_available_wh_mm": {
+      "id": "B3.duct_available_wh_mm",
+      "label": "四管路段可用管帶[寬,高]；不是房間走道寬",
+      "unit": "mm[W,H]",
+      "kind": "positive2",
+      "scope": "B棟 floor-3／B3-R"
+    },
+    "B3.pull_required_mm": {
+      "id": "B3.pull_required_mm",
+      "label": "同型號實際濾芯／交換芯所需抽拉行程",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "B棟 floor-3／B3-R",
+      "candidate_model_field": "B3.model"
+    },
+    "B3.pull_available_mm": {
+      "id": "B3.pull_available_mm",
+      "label": "選定方向可提供的抽拉淨長",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "B棟 floor-3／B3-R"
+    },
+    "B3.removal_required_wh_mm": {
+      "id": "B3.removal_required_wh_mm",
+      "label": "含操作餘量的整機直進所需完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "B棟 floor-3／B3-R",
+      "candidate_model_field": "B3.model"
+    },
+    "B3.removal_available_wh_mm": {
+      "id": "B3.removal_available_wh_mm",
+      "label": "扣框料後實際可拆完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "B棟 floor-3／B3-R"
+    },
+    "B3.design_flow_m3_h": {
+      "id": "B3.design_flow_m3_h",
+      "label": "該分區設計室外風量（每層不重複派給每房）",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "B棟 floor-3／B3-R"
+    },
+    "B3.fan_min_flow_m3_h": {
+      "id": "B3.fan_min_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最低風量",
+      "unit": "m3/h",
+      "kind": "nonnegative",
+      "scope": "B棟 floor-3／B3-R",
+      "candidate_model_field": "B3.model"
+    },
+    "B3.fan_max_flow_m3_h": {
+      "id": "B3.fan_max_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最高風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "B棟 floor-3／B3-R",
+      "candidate_model_field": "B3.model"
+    },
+    "B3.required_pressure_pa": {
+      "id": "B3.required_pressure_pa",
+      "label": "設計路由及髒濾網所需機外靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "B棟 floor-3／B3-R"
+    },
+    "B3.curve_flow_m3_h": {
+      "id": "B3.curve_flow_m3_h",
+      "label": "所提供風機曲線點對應風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "B棟 floor-3／B3-R",
+      "candidate_model_field": "B3.model"
+    },
+    "B3.curve_available_pressure_pa": {
+      "id": "B3.curve_available_pressure_pa",
+      "label": "該相同風量曲線點的可用靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "B棟 floor-3／B3-R",
+      "candidate_model_field": "B3.model"
+    },
+    "C1.model": {
+      "id": "C1.model",
+      "label": "候選設備同一型號／版次",
+      "unit": "text",
+      "kind": "text",
+      "scope": "C棟 floor-1／C1-N"
+    },
+    "C1.installed_box_mm": {
+      "id": "C1.installed_box_mm",
+      "label": "含接口／消音的主機安裝包絡[寬,深,高]，不含另列吊掛公差",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "C棟 floor-1／C1-N",
+      "candidate_model_field": "C1.model"
+    },
+    "C1.available_box_mm": {
+      "id": "C1.available_box_mm",
+      "label": "該機位可用安裝淨包絡[寬,深,高]",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "C棟 floor-1／C1-N"
+    },
+    "C1.beam_bottom_z_mm": {
+      "id": "C1.beam_bottom_z_mm",
+      "label": "該段最低梁板底標高（本層完成地坪為0）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "C棟 floor-1／C1-N"
+    },
+    "C1.ceiling_target_z_mm": {
+      "id": "C1.ceiling_target_z_mm",
+      "label": "目標完成天花標高（同一地坪基準）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "C棟 floor-1／C1-N"
+    },
+    "C1.duct_available_wh_mm": {
+      "id": "C1.duct_available_wh_mm",
+      "label": "四管路段可用管帶[寬,高]；不是房間走道寬",
+      "unit": "mm[W,H]",
+      "kind": "positive2",
+      "scope": "C棟 floor-1／C1-N"
+    },
+    "C1.pull_required_mm": {
+      "id": "C1.pull_required_mm",
+      "label": "同型號實際濾芯／交換芯所需抽拉行程",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-1／C1-N",
+      "candidate_model_field": "C1.model"
+    },
+    "C1.pull_available_mm": {
+      "id": "C1.pull_available_mm",
+      "label": "選定方向可提供的抽拉淨長",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-1／C1-N"
+    },
+    "C1.removal_required_wh_mm": {
+      "id": "C1.removal_required_wh_mm",
+      "label": "含操作餘量的整機直進所需完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "C棟 floor-1／C1-N",
+      "candidate_model_field": "C1.model"
+    },
+    "C1.removal_available_wh_mm": {
+      "id": "C1.removal_available_wh_mm",
+      "label": "扣框料後實際可拆完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "C棟 floor-1／C1-N"
+    },
+    "C1.design_flow_m3_h": {
+      "id": "C1.design_flow_m3_h",
+      "label": "該分區設計室外風量（每層不重複派給每房）",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "C棟 floor-1／C1-N"
+    },
+    "C1.fan_min_flow_m3_h": {
+      "id": "C1.fan_min_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最低風量",
+      "unit": "m3/h",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-1／C1-N",
+      "candidate_model_field": "C1.model"
+    },
+    "C1.fan_max_flow_m3_h": {
+      "id": "C1.fan_max_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最高風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "C棟 floor-1／C1-N",
+      "candidate_model_field": "C1.model"
+    },
+    "C1.required_pressure_pa": {
+      "id": "C1.required_pressure_pa",
+      "label": "設計路由及髒濾網所需機外靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-1／C1-N"
+    },
+    "C1.curve_flow_m3_h": {
+      "id": "C1.curve_flow_m3_h",
+      "label": "所提供風機曲線點對應風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "C棟 floor-1／C1-N",
+      "candidate_model_field": "C1.model"
+    },
+    "C1.curve_available_pressure_pa": {
+      "id": "C1.curve_available_pressure_pa",
+      "label": "該相同風量曲線點的可用靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-1／C1-N",
+      "candidate_model_field": "C1.model"
+    },
+    "C2.model": {
+      "id": "C2.model",
+      "label": "候選設備同一型號／版次",
+      "unit": "text",
+      "kind": "text",
+      "scope": "C棟 floor-2／C2-N"
+    },
+    "C2.installed_box_mm": {
+      "id": "C2.installed_box_mm",
+      "label": "含接口／消音的主機安裝包絡[寬,深,高]，不含另列吊掛公差",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "C棟 floor-2／C2-N",
+      "candidate_model_field": "C2.model"
+    },
+    "C2.available_box_mm": {
+      "id": "C2.available_box_mm",
+      "label": "該機位可用安裝淨包絡[寬,深,高]",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "C棟 floor-2／C2-N"
+    },
+    "C2.beam_bottom_z_mm": {
+      "id": "C2.beam_bottom_z_mm",
+      "label": "該段最低梁板底標高（本層完成地坪為0）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "C棟 floor-2／C2-N"
+    },
+    "C2.ceiling_target_z_mm": {
+      "id": "C2.ceiling_target_z_mm",
+      "label": "目標完成天花標高（同一地坪基準）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "C棟 floor-2／C2-N"
+    },
+    "C2.duct_available_wh_mm": {
+      "id": "C2.duct_available_wh_mm",
+      "label": "四管路段可用管帶[寬,高]；不是房間走道寬",
+      "unit": "mm[W,H]",
+      "kind": "positive2",
+      "scope": "C棟 floor-2／C2-N"
+    },
+    "C2.pull_required_mm": {
+      "id": "C2.pull_required_mm",
+      "label": "同型號實際濾芯／交換芯所需抽拉行程",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-2／C2-N",
+      "candidate_model_field": "C2.model"
+    },
+    "C2.pull_available_mm": {
+      "id": "C2.pull_available_mm",
+      "label": "選定方向可提供的抽拉淨長",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-2／C2-N"
+    },
+    "C2.removal_required_wh_mm": {
+      "id": "C2.removal_required_wh_mm",
+      "label": "含操作餘量的整機直進所需完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "C棟 floor-2／C2-N",
+      "candidate_model_field": "C2.model"
+    },
+    "C2.removal_available_wh_mm": {
+      "id": "C2.removal_available_wh_mm",
+      "label": "扣框料後實際可拆完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "C棟 floor-2／C2-N"
+    },
+    "C2.design_flow_m3_h": {
+      "id": "C2.design_flow_m3_h",
+      "label": "該分區設計室外風量（每層不重複派給每房）",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "C棟 floor-2／C2-N"
+    },
+    "C2.fan_min_flow_m3_h": {
+      "id": "C2.fan_min_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最低風量",
+      "unit": "m3/h",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-2／C2-N",
+      "candidate_model_field": "C2.model"
+    },
+    "C2.fan_max_flow_m3_h": {
+      "id": "C2.fan_max_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最高風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "C棟 floor-2／C2-N",
+      "candidate_model_field": "C2.model"
+    },
+    "C2.required_pressure_pa": {
+      "id": "C2.required_pressure_pa",
+      "label": "設計路由及髒濾網所需機外靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-2／C2-N"
+    },
+    "C2.curve_flow_m3_h": {
+      "id": "C2.curve_flow_m3_h",
+      "label": "所提供風機曲線點對應風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "C棟 floor-2／C2-N",
+      "candidate_model_field": "C2.model"
+    },
+    "C2.curve_available_pressure_pa": {
+      "id": "C2.curve_available_pressure_pa",
+      "label": "該相同風量曲線點的可用靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-2／C2-N",
+      "candidate_model_field": "C2.model"
+    },
+    "C3.model": {
+      "id": "C3.model",
+      "label": "候選設備同一型號／版次",
+      "unit": "text",
+      "kind": "text",
+      "scope": "C棟 floor-3／C3-R"
+    },
+    "C3.installed_box_mm": {
+      "id": "C3.installed_box_mm",
+      "label": "含接口／消音的主機安裝包絡[寬,深,高]，不含另列吊掛公差",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "C棟 floor-3／C3-R",
+      "candidate_model_field": "C3.model"
+    },
+    "C3.available_box_mm": {
+      "id": "C3.available_box_mm",
+      "label": "該機位可用安裝淨包絡[寬,深,高]",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "C棟 floor-3／C3-R"
+    },
+    "C3.beam_bottom_z_mm": {
+      "id": "C3.beam_bottom_z_mm",
+      "label": "該段最低梁板底標高（本層完成地坪為0）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "C棟 floor-3／C3-R"
+    },
+    "C3.ceiling_target_z_mm": {
+      "id": "C3.ceiling_target_z_mm",
+      "label": "目標完成天花標高（同一地坪基準）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "C棟 floor-3／C3-R"
+    },
+    "C3.duct_available_wh_mm": {
+      "id": "C3.duct_available_wh_mm",
+      "label": "四管路段可用管帶[寬,高]；不是房間走道寬",
+      "unit": "mm[W,H]",
+      "kind": "positive2",
+      "scope": "C棟 floor-3／C3-R"
+    },
+    "C3.pull_required_mm": {
+      "id": "C3.pull_required_mm",
+      "label": "同型號實際濾芯／交換芯所需抽拉行程",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-3／C3-R",
+      "candidate_model_field": "C3.model"
+    },
+    "C3.pull_available_mm": {
+      "id": "C3.pull_available_mm",
+      "label": "選定方向可提供的抽拉淨長",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-3／C3-R"
+    },
+    "C3.removal_required_wh_mm": {
+      "id": "C3.removal_required_wh_mm",
+      "label": "含操作餘量的整機直進所需完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "C棟 floor-3／C3-R",
+      "candidate_model_field": "C3.model"
+    },
+    "C3.removal_available_wh_mm": {
+      "id": "C3.removal_available_wh_mm",
+      "label": "扣框料後實際可拆完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "C棟 floor-3／C3-R"
+    },
+    "C3.design_flow_m3_h": {
+      "id": "C3.design_flow_m3_h",
+      "label": "該分區設計室外風量（每層不重複派給每房）",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "C棟 floor-3／C3-R"
+    },
+    "C3.fan_min_flow_m3_h": {
+      "id": "C3.fan_min_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最低風量",
+      "unit": "m3/h",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-3／C3-R",
+      "candidate_model_field": "C3.model"
+    },
+    "C3.fan_max_flow_m3_h": {
+      "id": "C3.fan_max_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最高風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "C棟 floor-3／C3-R",
+      "candidate_model_field": "C3.model"
+    },
+    "C3.required_pressure_pa": {
+      "id": "C3.required_pressure_pa",
+      "label": "設計路由及髒濾網所需機外靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-3／C3-R"
+    },
+    "C3.curve_flow_m3_h": {
+      "id": "C3.curve_flow_m3_h",
+      "label": "所提供風機曲線點對應風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "C棟 floor-3／C3-R",
+      "candidate_model_field": "C3.model"
+    },
+    "C3.curve_available_pressure_pa": {
+      "id": "C3.curve_available_pressure_pa",
+      "label": "該相同風量曲線點的可用靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-3／C3-R",
+      "candidate_model_field": "C3.model"
+    },
+    "A1-front.opening_permitted": {
+      "id": "A1-front.opening_permitted",
+      "label": "此樓層／側向兩個候選口的開孔條件已有可用證據",
+      "unit": "boolean",
+      "kind": "boolean",
+      "scope": "A1-front指定位置，不套到其他樓層；填true不是工具核發合法開孔許可。"
+    },
+    "A1-front.OA.solid_z_interval_mm": {
+      "id": "A1-front.OA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "A1-front OA，本層完成地坪為0；需核定完整外罩寬度內的實牆。"
+    },
+    "A1-front.OA.required_opening_height_mm": {
+      "id": "A1-front.OA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "A1-front OA"
+    },
+    "A1-front.EA.solid_z_interval_mm": {
+      "id": "A1-front.EA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "A1-front EA，本層完成地坪為0；需核定完整外罩寬度內的實牆。"
+    },
+    "A1-front.EA.required_opening_height_mm": {
+      "id": "A1-front.EA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "A1-front EA"
+    },
+    "A2-rear.opening_permitted": {
+      "id": "A2-rear.opening_permitted",
+      "label": "此樓層／側向兩個候選口的開孔條件已有可用證據",
+      "unit": "boolean",
+      "kind": "boolean",
+      "scope": "A2-rear指定位置，不套到其他樓層；填true不是工具核發合法開孔許可。"
+    },
+    "A2-rear.OA.solid_z_interval_mm": {
+      "id": "A2-rear.OA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "A2-rear OA，本層完成地坪為0；需核定完整外罩寬度內的實牆。"
+    },
+    "A2-rear.OA.required_opening_height_mm": {
+      "id": "A2-rear.OA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "A2-rear OA"
+    },
+    "A2-rear.EA.solid_z_interval_mm": {
+      "id": "A2-rear.EA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "A2-rear EA，本層完成地坪為0；需核定完整外罩寬度內的實牆。"
+    },
+    "A2-rear.EA.required_opening_height_mm": {
+      "id": "A2-rear.EA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "A2-rear EA"
+    },
+    "A3-rear.opening_permitted": {
+      "id": "A3-rear.opening_permitted",
+      "label": "此樓層／側向兩個候選口的開孔條件已有可用證據",
+      "unit": "boolean",
+      "kind": "boolean",
+      "scope": "A3-rear指定位置，不套到其他樓層；填true不是工具核發合法開孔許可。"
+    },
+    "A3-rear.OA.solid_z_interval_mm": {
+      "id": "A3-rear.OA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "A3-rear OA，本層完成地坪為0；需核定完整外罩寬度內的實牆。"
+    },
+    "A3-rear.OA.required_opening_height_mm": {
+      "id": "A3-rear.OA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "A3-rear OA"
+    },
+    "A3-rear.EA.solid_z_interval_mm": {
+      "id": "A3-rear.EA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "A3-rear EA，本層完成地坪為0；需核定完整外罩寬度內的實牆。"
+    },
+    "A3-rear.EA.required_opening_height_mm": {
+      "id": "A3-rear.EA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "A3-rear EA"
+    },
+    "B2-rear.opening_permitted": {
+      "id": "B2-rear.opening_permitted",
+      "label": "此樓層／側向兩個候選口的開孔條件已有可用證據",
+      "unit": "boolean",
+      "kind": "boolean",
+      "scope": "B2-rear指定位置，不套到其他樓層；填true不是工具核發合法開孔許可。"
+    },
+    "B2-rear.OA.solid_z_interval_mm": {
+      "id": "B2-rear.OA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "B2-rear OA，本層完成地坪為0；需核定完整外罩寬度內的實牆。"
+    },
+    "B2-rear.OA.required_opening_height_mm": {
+      "id": "B2-rear.OA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "B2-rear OA"
+    },
+    "B2-rear.EA.solid_z_interval_mm": {
+      "id": "B2-rear.EA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "B2-rear EA，本層完成地坪為0；需核定完整外罩寬度內的實牆。"
+    },
+    "B2-rear.EA.required_opening_height_mm": {
+      "id": "B2-rear.EA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "B2-rear EA"
+    },
+    "B2-front.opening_permitted": {
+      "id": "B2-front.opening_permitted",
+      "label": "此樓層／側向兩個候選口的開孔條件已有可用證據",
+      "unit": "boolean",
+      "kind": "boolean",
+      "scope": "B2-front指定位置，不套到其他樓層；填true不是工具核發合法開孔許可。"
+    },
+    "B2-front.OA.solid_z_interval_mm": {
+      "id": "B2-front.OA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "B2-front OA，本層完成地坪為0；需核定完整外罩寬度內的實牆。"
+    },
+    "B2-front.OA.required_opening_height_mm": {
+      "id": "B2-front.OA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "B2-front OA"
+    },
+    "B2-front.EA.solid_z_interval_mm": {
+      "id": "B2-front.EA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "B2-front EA，本層完成地坪為0；需核定完整外罩寬度內的實牆。"
+    },
+    "B2-front.EA.required_opening_height_mm": {
+      "id": "B2-front.EA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "B2-front EA"
+    },
+    "B3-rear.opening_permitted": {
+      "id": "B3-rear.opening_permitted",
+      "label": "此樓層／側向兩個候選口的開孔條件已有可用證據",
+      "unit": "boolean",
+      "kind": "boolean",
+      "scope": "B3-rear指定位置，不套到其他樓層；填true不是工具核發合法開孔許可。"
+    },
+    "B3-rear.OA.solid_z_interval_mm": {
+      "id": "B3-rear.OA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "B3-rear OA，本層完成地坪為0；需核定完整外罩寬度內的實牆。"
+    },
+    "B3-rear.OA.required_opening_height_mm": {
+      "id": "B3-rear.OA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "B3-rear OA"
+    },
+    "B3-rear.EA.solid_z_interval_mm": {
+      "id": "B3-rear.EA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "B3-rear EA，本層完成地坪為0；需核定完整外罩寬度內的實牆。"
+    },
+    "B3-rear.EA.required_opening_height_mm": {
+      "id": "B3-rear.EA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "B3-rear EA"
+    },
+    "B3-front.opening_permitted": {
+      "id": "B3-front.opening_permitted",
+      "label": "此樓層／側向兩個候選口的開孔條件已有可用證據",
+      "unit": "boolean",
+      "kind": "boolean",
+      "scope": "B3-front指定位置，不套到其他樓層；填true不是工具核發合法開孔許可。"
+    },
+    "B3-front.OA.solid_z_interval_mm": {
+      "id": "B3-front.OA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "B3-front OA，本層完成地坪為0；需核定完整外罩寬度內的實牆。"
+    },
+    "B3-front.OA.required_opening_height_mm": {
+      "id": "B3-front.OA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "B3-front OA"
+    },
+    "B3-front.EA.solid_z_interval_mm": {
+      "id": "B3-front.EA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "B3-front EA，本層完成地坪為0；需核定完整外罩寬度內的實牆。"
+    },
+    "B3-front.EA.required_opening_height_mm": {
+      "id": "B3-front.EA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "B3-front EA"
+    },
+    "C1-front.opening_permitted": {
+      "id": "C1-front.opening_permitted",
+      "label": "此樓層／側向兩個候選口的開孔條件已有可用證據",
+      "unit": "boolean",
+      "kind": "boolean",
+      "scope": "C1-front指定位置，不套到其他樓層；填true不是工具核發合法開孔許可。"
+    },
+    "C1-front.OA.solid_z_interval_mm": {
+      "id": "C1-front.OA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "C1-front OA，本層完成地坪為0；需核定完整外罩寬度內的實牆。"
+    },
+    "C1-front.OA.required_opening_height_mm": {
+      "id": "C1-front.OA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "C1-front OA"
+    },
+    "C1-front.EA.solid_z_interval_mm": {
+      "id": "C1-front.EA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "C1-front EA，本層完成地坪為0；需核定完整外罩寬度內的實牆。"
+    },
+    "C1-front.EA.required_opening_height_mm": {
+      "id": "C1-front.EA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "C1-front EA"
+    },
+    "C2-front.opening_permitted": {
+      "id": "C2-front.opening_permitted",
+      "label": "此樓層／側向兩個候選口的開孔條件已有可用證據",
+      "unit": "boolean",
+      "kind": "boolean",
+      "scope": "C2-front指定位置，不套到其他樓層；填true不是工具核發合法開孔許可。"
+    },
+    "C2-front.OA.solid_z_interval_mm": {
+      "id": "C2-front.OA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "C2-front OA，本層完成地坪為0；需核定完整外罩寬度內的實牆。"
+    },
+    "C2-front.OA.required_opening_height_mm": {
+      "id": "C2-front.OA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "C2-front OA"
+    },
+    "C2-front.EA.solid_z_interval_mm": {
+      "id": "C2-front.EA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "C2-front EA，本層完成地坪為0；需核定完整外罩寬度內的實牆。"
+    },
+    "C2-front.EA.required_opening_height_mm": {
+      "id": "C2-front.EA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "C2-front EA"
+    },
+    "C3-front.opening_permitted": {
+      "id": "C3-front.opening_permitted",
+      "label": "此樓層／側向兩個候選口的開孔條件已有可用證據",
+      "unit": "boolean",
+      "kind": "boolean",
+      "scope": "C3-front指定位置，不套到其他樓層；填true不是工具核發合法開孔許可。"
+    },
+    "C3-front.OA.solid_z_interval_mm": {
+      "id": "C3-front.OA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "C3-front OA，本層完成地坪為0；需核定完整外罩寬度內的實牆。"
+    },
+    "C3-front.OA.required_opening_height_mm": {
+      "id": "C3-front.OA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "C3-front OA"
+    },
+    "C3-front.EA.solid_z_interval_mm": {
+      "id": "C3-front.EA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "C3-front EA，本層完成地坪為0；需核定完整外罩寬度內的實牆。"
+    },
+    "C3-front.EA.required_opening_height_mm": {
+      "id": "C3-front.EA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "C3-front EA"
+    }
+  },
+  "input_records": {
+    "common.duct.inner_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "common.duct.insulation_each_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "common.duct.gap_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "common.duct.edge_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "common.duct.extra_hanging_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B.rear_alley_exists": {
+      "value": null,
+      "unit": "boolean",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A1.model": {
+      "value": null,
+      "unit": "text",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A1.installed_box_mm": {
+      "value": null,
+      "unit": "mm[W,D,H]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A1.available_box_mm": {
+      "value": null,
+      "unit": "mm[W,D,H]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A1.beam_bottom_z_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A1.ceiling_target_z_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A1.duct_available_wh_mm": {
+      "value": null,
+      "unit": "mm[W,H]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A1.pull_required_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A1.pull_available_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A1.removal_required_wh_mm": {
+      "value": null,
+      "unit": "mm[W,D]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A1.removal_available_wh_mm": {
+      "value": null,
+      "unit": "mm[W,D]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A1.design_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A1.fan_min_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A1.fan_max_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A1.required_pressure_pa": {
+      "value": null,
+      "unit": "Pa",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A1.curve_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A1.curve_available_pressure_pa": {
+      "value": null,
+      "unit": "Pa",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A2.model": {
+      "value": null,
+      "unit": "text",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A2.installed_box_mm": {
+      "value": null,
+      "unit": "mm[W,D,H]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A2.available_box_mm": {
+      "value": null,
+      "unit": "mm[W,D,H]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A2.beam_bottom_z_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A2.ceiling_target_z_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A2.duct_available_wh_mm": {
+      "value": null,
+      "unit": "mm[W,H]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A2.pull_required_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A2.pull_available_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A2.removal_required_wh_mm": {
+      "value": null,
+      "unit": "mm[W,D]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A2.removal_available_wh_mm": {
+      "value": null,
+      "unit": "mm[W,D]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A2.design_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A2.fan_min_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A2.fan_max_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A2.required_pressure_pa": {
+      "value": null,
+      "unit": "Pa",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A2.curve_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A2.curve_available_pressure_pa": {
+      "value": null,
+      "unit": "Pa",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A3.model": {
+      "value": null,
+      "unit": "text",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A3.installed_box_mm": {
+      "value": null,
+      "unit": "mm[W,D,H]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A3.available_box_mm": {
+      "value": null,
+      "unit": "mm[W,D,H]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A3.beam_bottom_z_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A3.ceiling_target_z_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A3.duct_available_wh_mm": {
+      "value": null,
+      "unit": "mm[W,H]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A3.pull_required_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A3.pull_available_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A3.removal_required_wh_mm": {
+      "value": null,
+      "unit": "mm[W,D]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A3.removal_available_wh_mm": {
+      "value": null,
+      "unit": "mm[W,D]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A3.design_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A3.fan_min_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A3.fan_max_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A3.required_pressure_pa": {
+      "value": null,
+      "unit": "Pa",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A3.curve_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A3.curve_available_pressure_pa": {
+      "value": null,
+      "unit": "Pa",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B2.model": {
+      "value": null,
+      "unit": "text",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B2.installed_box_mm": {
+      "value": null,
+      "unit": "mm[W,D,H]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B2.available_box_mm": {
+      "value": null,
+      "unit": "mm[W,D,H]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B2.beam_bottom_z_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B2.ceiling_target_z_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B2.duct_available_wh_mm": {
+      "value": null,
+      "unit": "mm[W,H]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B2.pull_required_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B2.pull_available_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B2.removal_required_wh_mm": {
+      "value": null,
+      "unit": "mm[W,D]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B2.removal_available_wh_mm": {
+      "value": null,
+      "unit": "mm[W,D]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B2.design_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B2.fan_min_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B2.fan_max_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B2.required_pressure_pa": {
+      "value": null,
+      "unit": "Pa",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B2.curve_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B2.curve_available_pressure_pa": {
+      "value": null,
+      "unit": "Pa",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B3.model": {
+      "value": null,
+      "unit": "text",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B3.installed_box_mm": {
+      "value": null,
+      "unit": "mm[W,D,H]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B3.available_box_mm": {
+      "value": null,
+      "unit": "mm[W,D,H]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B3.beam_bottom_z_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B3.ceiling_target_z_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B3.duct_available_wh_mm": {
+      "value": null,
+      "unit": "mm[W,H]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B3.pull_required_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B3.pull_available_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B3.removal_required_wh_mm": {
+      "value": null,
+      "unit": "mm[W,D]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B3.removal_available_wh_mm": {
+      "value": null,
+      "unit": "mm[W,D]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B3.design_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B3.fan_min_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B3.fan_max_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B3.required_pressure_pa": {
+      "value": null,
+      "unit": "Pa",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B3.curve_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B3.curve_available_pressure_pa": {
+      "value": null,
+      "unit": "Pa",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C1.model": {
+      "value": null,
+      "unit": "text",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C1.installed_box_mm": {
+      "value": null,
+      "unit": "mm[W,D,H]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C1.available_box_mm": {
+      "value": null,
+      "unit": "mm[W,D,H]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C1.beam_bottom_z_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C1.ceiling_target_z_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C1.duct_available_wh_mm": {
+      "value": null,
+      "unit": "mm[W,H]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C1.pull_required_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C1.pull_available_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C1.removal_required_wh_mm": {
+      "value": null,
+      "unit": "mm[W,D]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C1.removal_available_wh_mm": {
+      "value": null,
+      "unit": "mm[W,D]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C1.design_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C1.fan_min_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C1.fan_max_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C1.required_pressure_pa": {
+      "value": null,
+      "unit": "Pa",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C1.curve_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C1.curve_available_pressure_pa": {
+      "value": null,
+      "unit": "Pa",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C2.model": {
+      "value": null,
+      "unit": "text",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C2.installed_box_mm": {
+      "value": null,
+      "unit": "mm[W,D,H]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C2.available_box_mm": {
+      "value": null,
+      "unit": "mm[W,D,H]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C2.beam_bottom_z_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C2.ceiling_target_z_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C2.duct_available_wh_mm": {
+      "value": null,
+      "unit": "mm[W,H]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C2.pull_required_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C2.pull_available_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C2.removal_required_wh_mm": {
+      "value": null,
+      "unit": "mm[W,D]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C2.removal_available_wh_mm": {
+      "value": null,
+      "unit": "mm[W,D]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C2.design_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C2.fan_min_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C2.fan_max_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C2.required_pressure_pa": {
+      "value": null,
+      "unit": "Pa",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C2.curve_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C2.curve_available_pressure_pa": {
+      "value": null,
+      "unit": "Pa",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C3.model": {
+      "value": null,
+      "unit": "text",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C3.installed_box_mm": {
+      "value": null,
+      "unit": "mm[W,D,H]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C3.available_box_mm": {
+      "value": null,
+      "unit": "mm[W,D,H]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C3.beam_bottom_z_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C3.ceiling_target_z_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C3.duct_available_wh_mm": {
+      "value": null,
+      "unit": "mm[W,H]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C3.pull_required_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C3.pull_available_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C3.removal_required_wh_mm": {
+      "value": null,
+      "unit": "mm[W,D]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C3.removal_available_wh_mm": {
+      "value": null,
+      "unit": "mm[W,D]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C3.design_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C3.fan_min_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C3.fan_max_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C3.required_pressure_pa": {
+      "value": null,
+      "unit": "Pa",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C3.curve_flow_m3_h": {
+      "value": null,
+      "unit": "m3/h",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C3.curve_available_pressure_pa": {
+      "value": null,
+      "unit": "Pa",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A1-front.opening_permitted": {
+      "value": null,
+      "unit": "boolean",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A1-front.OA.solid_z_interval_mm": {
+      "value": null,
+      "unit": "mm[low,high]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A1-front.OA.required_opening_height_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A1-front.EA.solid_z_interval_mm": {
+      "value": null,
+      "unit": "mm[low,high]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A1-front.EA.required_opening_height_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A2-rear.opening_permitted": {
+      "value": null,
+      "unit": "boolean",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A2-rear.OA.solid_z_interval_mm": {
+      "value": null,
+      "unit": "mm[low,high]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A2-rear.OA.required_opening_height_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A2-rear.EA.solid_z_interval_mm": {
+      "value": null,
+      "unit": "mm[low,high]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A2-rear.EA.required_opening_height_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A3-rear.opening_permitted": {
+      "value": null,
+      "unit": "boolean",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A3-rear.OA.solid_z_interval_mm": {
+      "value": null,
+      "unit": "mm[low,high]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A3-rear.OA.required_opening_height_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A3-rear.EA.solid_z_interval_mm": {
+      "value": null,
+      "unit": "mm[low,high]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "A3-rear.EA.required_opening_height_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B2-rear.opening_permitted": {
+      "value": null,
+      "unit": "boolean",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B2-rear.OA.solid_z_interval_mm": {
+      "value": null,
+      "unit": "mm[low,high]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B2-rear.OA.required_opening_height_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B2-rear.EA.solid_z_interval_mm": {
+      "value": null,
+      "unit": "mm[low,high]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B2-rear.EA.required_opening_height_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B2-front.opening_permitted": {
+      "value": null,
+      "unit": "boolean",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B2-front.OA.solid_z_interval_mm": {
+      "value": null,
+      "unit": "mm[low,high]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B2-front.OA.required_opening_height_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B2-front.EA.solid_z_interval_mm": {
+      "value": null,
+      "unit": "mm[low,high]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B2-front.EA.required_opening_height_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B3-rear.opening_permitted": {
+      "value": null,
+      "unit": "boolean",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B3-rear.OA.solid_z_interval_mm": {
+      "value": null,
+      "unit": "mm[low,high]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B3-rear.OA.required_opening_height_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B3-rear.EA.solid_z_interval_mm": {
+      "value": null,
+      "unit": "mm[low,high]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B3-rear.EA.required_opening_height_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B3-front.opening_permitted": {
+      "value": null,
+      "unit": "boolean",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B3-front.OA.solid_z_interval_mm": {
+      "value": null,
+      "unit": "mm[low,high]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B3-front.OA.required_opening_height_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B3-front.EA.solid_z_interval_mm": {
+      "value": null,
+      "unit": "mm[low,high]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "B3-front.EA.required_opening_height_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C1-front.opening_permitted": {
+      "value": null,
+      "unit": "boolean",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C1-front.OA.solid_z_interval_mm": {
+      "value": null,
+      "unit": "mm[low,high]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C1-front.OA.required_opening_height_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C1-front.EA.solid_z_interval_mm": {
+      "value": null,
+      "unit": "mm[low,high]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C1-front.EA.required_opening_height_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C2-front.opening_permitted": {
+      "value": null,
+      "unit": "boolean",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C2-front.OA.solid_z_interval_mm": {
+      "value": null,
+      "unit": "mm[low,high]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C2-front.OA.required_opening_height_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C2-front.EA.solid_z_interval_mm": {
+      "value": null,
+      "unit": "mm[low,high]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C2-front.EA.required_opening_height_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C3-front.opening_permitted": {
+      "value": null,
+      "unit": "boolean",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C3-front.OA.solid_z_interval_mm": {
+      "value": null,
+      "unit": "mm[low,high]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C3-front.OA.required_opening_height_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C3-front.EA.solid_z_interval_mm": {
+      "value": null,
+      "unit": "mm[low,high]",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    },
+    "C3-front.EA.required_opening_height_mm": {
+      "value": null,
+      "unit": "mm",
+      "source": null,
+      "date": null,
+      "model_ref": null
+    }
+  },
+  "input_document_sha256": null,
+  "conditions_received": 0,
+  "conditions_total": 184,
+  "checks": [
+    {
+      "id": "A1:model",
+      "label": "A1候選型號",
+      "needs": [
+        "A1.model"
+      ],
+      "missing": [
+        "A1.model"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "同一型號／版次的尺寸與曲線不得混搭，記錄不等於採購。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A1:machine",
+      "label": "A1主機含接口包絡",
+      "needs": [
+        "A1.installed_box_mm",
+        "A1.available_box_mm"
+      ],
+      "missing": [
+        "A1.installed_box_mm",
+        "A1.available_box_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不合則改機型／機位；不縮床櫃、照護或原房間需求。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A1:ducts",
+      "label": "A1四管斷面",
+      "needs": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "A1.duct_available_wh_mm"
+      ],
+      "missing": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "A1.duct_available_wh_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "橫排／雙層均不足就改路由或機位，不把四管重塞原雙管帶。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A1:ceiling",
+      "label": "A1梁下／完成天花",
+      "needs": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "A1.duct_available_wh_mm",
+        "A1.beam_bottom_z_mm",
+        "A1.ceiling_target_z_mm",
+        "A1.installed_box_mm",
+        "common.duct.extra_hanging_mm"
+      ],
+      "missing": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "A1.duct_available_wh_mm",
+        "A1.beam_bottom_z_mm",
+        "A1.ceiling_target_z_mm",
+        "A1.installed_box_mm",
+        "common.duct.extra_hanging_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足則重比機位／斷面；不能自動降低屋主目標或鑽梁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A1:pull",
+      "label": "A1側抽行程",
+      "needs": [
+        "A1.pull_required_mm",
+        "A1.pull_available_mm"
+      ],
+      "missing": [
+        "A1.pull_required_mm",
+        "A1.pull_available_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "還要核方向、障礙、架梯與檢修期間逃生，長度足夠不等於操作安全。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A1:removal",
+      "label": "A1完成淨孔",
+      "needs": [
+        "A1.removal_required_wh_mm",
+        "A1.removal_available_wh_mm"
+      ],
+      "missing": [
+        "A1.removal_required_wh_mm",
+        "A1.removal_available_wh_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "輸入必須已扣框料並含所需操作餘量；整機落機及運出另核。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A1:flow",
+      "label": "A1夜間風量範圍",
+      "needs": [
+        "A1.design_flow_m3_h",
+        "A1.fan_min_flow_m3_h",
+        "A1.fan_max_flow_m3_h"
+      ],
+      "missing": [
+        "A1.design_flow_m3_h",
+        "A1.fan_min_flow_m3_h",
+        "A1.fan_max_flow_m3_h"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "設計總量不重複派給每房；不合則改低負載機型或系統設計，不能省略通風。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A1:pressure",
+      "label": "A1同風量工作點",
+      "needs": [
+        "A1.design_flow_m3_h",
+        "A1.required_pressure_pa",
+        "A1.curve_flow_m3_h",
+        "A1.curve_available_pressure_pa"
+      ],
+      "missing": [
+        "A1.design_flow_m3_h",
+        "A1.required_pressure_pa",
+        "A1.curve_flow_m3_h",
+        "A1.curve_available_pressure_pa"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "同型號、髒濾網、全路由及支路平衡需與機電確認，不用自由風量／堵轉最大靜壓替代。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A2:model",
+      "label": "A2候選型號",
+      "needs": [
+        "A2.model"
+      ],
+      "missing": [
+        "A2.model"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "同一型號／版次的尺寸與曲線不得混搭，記錄不等於採購。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A2:machine",
+      "label": "A2主機含接口包絡",
+      "needs": [
+        "A2.installed_box_mm",
+        "A2.available_box_mm"
+      ],
+      "missing": [
+        "A2.installed_box_mm",
+        "A2.available_box_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不合則改機型／機位；不縮床櫃、照護或原房間需求。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A2:ducts",
+      "label": "A2四管斷面",
+      "needs": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "A2.duct_available_wh_mm"
+      ],
+      "missing": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "A2.duct_available_wh_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "橫排／雙層均不足就改路由或機位，不把四管重塞原雙管帶。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A2:ceiling",
+      "label": "A2梁下／完成天花",
+      "needs": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "A2.duct_available_wh_mm",
+        "A2.beam_bottom_z_mm",
+        "A2.ceiling_target_z_mm",
+        "A2.installed_box_mm",
+        "common.duct.extra_hanging_mm"
+      ],
+      "missing": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "A2.duct_available_wh_mm",
+        "A2.beam_bottom_z_mm",
+        "A2.ceiling_target_z_mm",
+        "A2.installed_box_mm",
+        "common.duct.extra_hanging_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足則重比機位／斷面；不能自動降低屋主目標或鑽梁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A2:pull",
+      "label": "A2側抽行程",
+      "needs": [
+        "A2.pull_required_mm",
+        "A2.pull_available_mm"
+      ],
+      "missing": [
+        "A2.pull_required_mm",
+        "A2.pull_available_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "還要核方向、障礙、架梯與檢修期間逃生，長度足夠不等於操作安全。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A2:removal",
+      "label": "A2完成淨孔",
+      "needs": [
+        "A2.removal_required_wh_mm",
+        "A2.removal_available_wh_mm"
+      ],
+      "missing": [
+        "A2.removal_required_wh_mm",
+        "A2.removal_available_wh_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "輸入必須已扣框料並含所需操作餘量；整機落機及運出另核。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A2:flow",
+      "label": "A2夜間風量範圍",
+      "needs": [
+        "A2.design_flow_m3_h",
+        "A2.fan_min_flow_m3_h",
+        "A2.fan_max_flow_m3_h"
+      ],
+      "missing": [
+        "A2.design_flow_m3_h",
+        "A2.fan_min_flow_m3_h",
+        "A2.fan_max_flow_m3_h"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "設計總量不重複派給每房；不合則改低負載機型或系統設計，不能省略通風。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A2:pressure",
+      "label": "A2同風量工作點",
+      "needs": [
+        "A2.design_flow_m3_h",
+        "A2.required_pressure_pa",
+        "A2.curve_flow_m3_h",
+        "A2.curve_available_pressure_pa"
+      ],
+      "missing": [
+        "A2.design_flow_m3_h",
+        "A2.required_pressure_pa",
+        "A2.curve_flow_m3_h",
+        "A2.curve_available_pressure_pa"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "同型號、髒濾網、全路由及支路平衡需與機電確認，不用自由風量／堵轉最大靜壓替代。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A3:model",
+      "label": "A3候選型號",
+      "needs": [
+        "A3.model"
+      ],
+      "missing": [
+        "A3.model"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "同一型號／版次的尺寸與曲線不得混搭，記錄不等於採購。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A3:machine",
+      "label": "A3主機含接口包絡",
+      "needs": [
+        "A3.installed_box_mm",
+        "A3.available_box_mm"
+      ],
+      "missing": [
+        "A3.installed_box_mm",
+        "A3.available_box_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不合則改機型／機位；不縮床櫃、照護或原房間需求。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A3:ducts",
+      "label": "A3四管斷面",
+      "needs": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "A3.duct_available_wh_mm"
+      ],
+      "missing": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "A3.duct_available_wh_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "橫排／雙層均不足就改路由或機位，不把四管重塞原雙管帶。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A3:ceiling",
+      "label": "A3梁下／完成天花",
+      "needs": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "A3.duct_available_wh_mm",
+        "A3.beam_bottom_z_mm",
+        "A3.ceiling_target_z_mm",
+        "A3.installed_box_mm",
+        "common.duct.extra_hanging_mm"
+      ],
+      "missing": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "A3.duct_available_wh_mm",
+        "A3.beam_bottom_z_mm",
+        "A3.ceiling_target_z_mm",
+        "A3.installed_box_mm",
+        "common.duct.extra_hanging_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足則重比機位／斷面；不能自動降低屋主目標或鑽梁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A3:pull",
+      "label": "A3側抽行程",
+      "needs": [
+        "A3.pull_required_mm",
+        "A3.pull_available_mm"
+      ],
+      "missing": [
+        "A3.pull_required_mm",
+        "A3.pull_available_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "還要核方向、障礙、架梯與檢修期間逃生，長度足夠不等於操作安全。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A3:removal",
+      "label": "A3完成淨孔",
+      "needs": [
+        "A3.removal_required_wh_mm",
+        "A3.removal_available_wh_mm"
+      ],
+      "missing": [
+        "A3.removal_required_wh_mm",
+        "A3.removal_available_wh_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "輸入必須已扣框料並含所需操作餘量；整機落機及運出另核。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A3:flow",
+      "label": "A3夜間風量範圍",
+      "needs": [
+        "A3.design_flow_m3_h",
+        "A3.fan_min_flow_m3_h",
+        "A3.fan_max_flow_m3_h"
+      ],
+      "missing": [
+        "A3.design_flow_m3_h",
+        "A3.fan_min_flow_m3_h",
+        "A3.fan_max_flow_m3_h"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "設計總量不重複派給每房；不合則改低負載機型或系統設計，不能省略通風。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A3:pressure",
+      "label": "A3同風量工作點",
+      "needs": [
+        "A3.design_flow_m3_h",
+        "A3.required_pressure_pa",
+        "A3.curve_flow_m3_h",
+        "A3.curve_available_pressure_pa"
+      ],
+      "missing": [
+        "A3.design_flow_m3_h",
+        "A3.required_pressure_pa",
+        "A3.curve_flow_m3_h",
+        "A3.curve_available_pressure_pa"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "同型號、髒濾網、全路由及支路平衡需與機電確認，不用自由風量／堵轉最大靜壓替代。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B2:model",
+      "label": "B2候選型號",
+      "needs": [
+        "B2.model"
+      ],
+      "missing": [
+        "B2.model"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "同一型號／版次的尺寸與曲線不得混搭，記錄不等於採購。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B2:machine",
+      "label": "B2主機含接口包絡",
+      "needs": [
+        "B2.installed_box_mm",
+        "B2.available_box_mm"
+      ],
+      "missing": [
+        "B2.installed_box_mm",
+        "B2.available_box_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不合則改機型／機位；不縮床櫃、照護或原房間需求。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B2:ducts",
+      "label": "B2四管斷面",
+      "needs": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "B2.duct_available_wh_mm"
+      ],
+      "missing": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "B2.duct_available_wh_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "橫排／雙層均不足就改路由或機位，不把四管重塞原雙管帶。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B2:ceiling",
+      "label": "B2梁下／完成天花",
+      "needs": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "B2.duct_available_wh_mm",
+        "B2.beam_bottom_z_mm",
+        "B2.ceiling_target_z_mm",
+        "B2.installed_box_mm",
+        "common.duct.extra_hanging_mm"
+      ],
+      "missing": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "B2.duct_available_wh_mm",
+        "B2.beam_bottom_z_mm",
+        "B2.ceiling_target_z_mm",
+        "B2.installed_box_mm",
+        "common.duct.extra_hanging_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足則重比機位／斷面；不能自動降低屋主目標或鑽梁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B2:pull",
+      "label": "B2側抽行程",
+      "needs": [
+        "B2.pull_required_mm",
+        "B2.pull_available_mm"
+      ],
+      "missing": [
+        "B2.pull_required_mm",
+        "B2.pull_available_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "還要核方向、障礙、架梯與檢修期間逃生，長度足夠不等於操作安全。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B2:removal",
+      "label": "B2完成淨孔",
+      "needs": [
+        "B2.removal_required_wh_mm",
+        "B2.removal_available_wh_mm"
+      ],
+      "missing": [
+        "B2.removal_required_wh_mm",
+        "B2.removal_available_wh_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "輸入必須已扣框料並含所需操作餘量；整機落機及運出另核。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B2:flow",
+      "label": "B2夜間風量範圍",
+      "needs": [
+        "B2.design_flow_m3_h",
+        "B2.fan_min_flow_m3_h",
+        "B2.fan_max_flow_m3_h"
+      ],
+      "missing": [
+        "B2.design_flow_m3_h",
+        "B2.fan_min_flow_m3_h",
+        "B2.fan_max_flow_m3_h"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "設計總量不重複派給每房；不合則改低負載機型或系統設計，不能省略通風。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B2:pressure",
+      "label": "B2同風量工作點",
+      "needs": [
+        "B2.design_flow_m3_h",
+        "B2.required_pressure_pa",
+        "B2.curve_flow_m3_h",
+        "B2.curve_available_pressure_pa"
+      ],
+      "missing": [
+        "B2.design_flow_m3_h",
+        "B2.required_pressure_pa",
+        "B2.curve_flow_m3_h",
+        "B2.curve_available_pressure_pa"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "同型號、髒濾網、全路由及支路平衡需與機電確認，不用自由風量／堵轉最大靜壓替代。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B3:model",
+      "label": "B3候選型號",
+      "needs": [
+        "B3.model"
+      ],
+      "missing": [
+        "B3.model"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "同一型號／版次的尺寸與曲線不得混搭，記錄不等於採購。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B3:machine",
+      "label": "B3主機含接口包絡",
+      "needs": [
+        "B3.installed_box_mm",
+        "B3.available_box_mm"
+      ],
+      "missing": [
+        "B3.installed_box_mm",
+        "B3.available_box_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不合則改機型／機位；不縮床櫃、照護或原房間需求。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B3:ducts",
+      "label": "B3四管斷面",
+      "needs": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "B3.duct_available_wh_mm"
+      ],
+      "missing": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "B3.duct_available_wh_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "橫排／雙層均不足就改路由或機位，不把四管重塞原雙管帶。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B3:ceiling",
+      "label": "B3梁下／完成天花",
+      "needs": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "B3.duct_available_wh_mm",
+        "B3.beam_bottom_z_mm",
+        "B3.ceiling_target_z_mm",
+        "B3.installed_box_mm",
+        "common.duct.extra_hanging_mm"
+      ],
+      "missing": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "B3.duct_available_wh_mm",
+        "B3.beam_bottom_z_mm",
+        "B3.ceiling_target_z_mm",
+        "B3.installed_box_mm",
+        "common.duct.extra_hanging_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足則重比機位／斷面；不能自動降低屋主目標或鑽梁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B3:pull",
+      "label": "B3側抽行程",
+      "needs": [
+        "B3.pull_required_mm",
+        "B3.pull_available_mm"
+      ],
+      "missing": [
+        "B3.pull_required_mm",
+        "B3.pull_available_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "還要核方向、障礙、架梯與檢修期間逃生，長度足夠不等於操作安全。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B3:removal",
+      "label": "B3完成淨孔",
+      "needs": [
+        "B3.removal_required_wh_mm",
+        "B3.removal_available_wh_mm"
+      ],
+      "missing": [
+        "B3.removal_required_wh_mm",
+        "B3.removal_available_wh_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "輸入必須已扣框料並含所需操作餘量；整機落機及運出另核。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B3:flow",
+      "label": "B3夜間風量範圍",
+      "needs": [
+        "B3.design_flow_m3_h",
+        "B3.fan_min_flow_m3_h",
+        "B3.fan_max_flow_m3_h"
+      ],
+      "missing": [
+        "B3.design_flow_m3_h",
+        "B3.fan_min_flow_m3_h",
+        "B3.fan_max_flow_m3_h"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "設計總量不重複派給每房；不合則改低負載機型或系統設計，不能省略通風。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B3:pressure",
+      "label": "B3同風量工作點",
+      "needs": [
+        "B3.design_flow_m3_h",
+        "B3.required_pressure_pa",
+        "B3.curve_flow_m3_h",
+        "B3.curve_available_pressure_pa"
+      ],
+      "missing": [
+        "B3.design_flow_m3_h",
+        "B3.required_pressure_pa",
+        "B3.curve_flow_m3_h",
+        "B3.curve_available_pressure_pa"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "同型號、髒濾網、全路由及支路平衡需與機電確認，不用自由風量／堵轉最大靜壓替代。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C1:model",
+      "label": "C1候選型號",
+      "needs": [
+        "C1.model"
+      ],
+      "missing": [
+        "C1.model"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "同一型號／版次的尺寸與曲線不得混搭，記錄不等於採購。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C1:machine",
+      "label": "C1主機含接口包絡",
+      "needs": [
+        "C1.installed_box_mm",
+        "C1.available_box_mm"
+      ],
+      "missing": [
+        "C1.installed_box_mm",
+        "C1.available_box_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不合則改機型／機位；不縮床櫃、照護或原房間需求。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C1:ducts",
+      "label": "C1四管斷面",
+      "needs": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "C1.duct_available_wh_mm"
+      ],
+      "missing": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "C1.duct_available_wh_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "橫排／雙層均不足就改路由或機位，不把四管重塞原雙管帶。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C1:ceiling",
+      "label": "C1梁下／完成天花",
+      "needs": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "C1.duct_available_wh_mm",
+        "C1.beam_bottom_z_mm",
+        "C1.ceiling_target_z_mm",
+        "C1.installed_box_mm",
+        "common.duct.extra_hanging_mm"
+      ],
+      "missing": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "C1.duct_available_wh_mm",
+        "C1.beam_bottom_z_mm",
+        "C1.ceiling_target_z_mm",
+        "C1.installed_box_mm",
+        "common.duct.extra_hanging_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足則重比機位／斷面；不能自動降低屋主目標或鑽梁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C1:pull",
+      "label": "C1側抽行程",
+      "needs": [
+        "C1.pull_required_mm",
+        "C1.pull_available_mm"
+      ],
+      "missing": [
+        "C1.pull_required_mm",
+        "C1.pull_available_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "還要核方向、障礙、架梯與檢修期間逃生，長度足夠不等於操作安全。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C1:removal",
+      "label": "C1完成淨孔",
+      "needs": [
+        "C1.removal_required_wh_mm",
+        "C1.removal_available_wh_mm"
+      ],
+      "missing": [
+        "C1.removal_required_wh_mm",
+        "C1.removal_available_wh_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "輸入必須已扣框料並含所需操作餘量；整機落機及運出另核。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C1:flow",
+      "label": "C1夜間風量範圍",
+      "needs": [
+        "C1.design_flow_m3_h",
+        "C1.fan_min_flow_m3_h",
+        "C1.fan_max_flow_m3_h"
+      ],
+      "missing": [
+        "C1.design_flow_m3_h",
+        "C1.fan_min_flow_m3_h",
+        "C1.fan_max_flow_m3_h"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "設計總量不重複派給每房；不合則改低負載機型或系統設計，不能省略通風。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C1:pressure",
+      "label": "C1同風量工作點",
+      "needs": [
+        "C1.design_flow_m3_h",
+        "C1.required_pressure_pa",
+        "C1.curve_flow_m3_h",
+        "C1.curve_available_pressure_pa"
+      ],
+      "missing": [
+        "C1.design_flow_m3_h",
+        "C1.required_pressure_pa",
+        "C1.curve_flow_m3_h",
+        "C1.curve_available_pressure_pa"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "同型號、髒濾網、全路由及支路平衡需與機電確認，不用自由風量／堵轉最大靜壓替代。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C2:model",
+      "label": "C2候選型號",
+      "needs": [
+        "C2.model"
+      ],
+      "missing": [
+        "C2.model"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "同一型號／版次的尺寸與曲線不得混搭，記錄不等於採購。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C2:machine",
+      "label": "C2主機含接口包絡",
+      "needs": [
+        "C2.installed_box_mm",
+        "C2.available_box_mm"
+      ],
+      "missing": [
+        "C2.installed_box_mm",
+        "C2.available_box_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不合則改機型／機位；不縮床櫃、照護或原房間需求。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C2:ducts",
+      "label": "C2四管斷面",
+      "needs": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "C2.duct_available_wh_mm"
+      ],
+      "missing": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "C2.duct_available_wh_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "橫排／雙層均不足就改路由或機位，不把四管重塞原雙管帶。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C2:ceiling",
+      "label": "C2梁下／完成天花",
+      "needs": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "C2.duct_available_wh_mm",
+        "C2.beam_bottom_z_mm",
+        "C2.ceiling_target_z_mm",
+        "C2.installed_box_mm",
+        "common.duct.extra_hanging_mm"
+      ],
+      "missing": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "C2.duct_available_wh_mm",
+        "C2.beam_bottom_z_mm",
+        "C2.ceiling_target_z_mm",
+        "C2.installed_box_mm",
+        "common.duct.extra_hanging_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足則重比機位／斷面；不能自動降低屋主目標或鑽梁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C2:pull",
+      "label": "C2側抽行程",
+      "needs": [
+        "C2.pull_required_mm",
+        "C2.pull_available_mm"
+      ],
+      "missing": [
+        "C2.pull_required_mm",
+        "C2.pull_available_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "還要核方向、障礙、架梯與檢修期間逃生，長度足夠不等於操作安全。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C2:removal",
+      "label": "C2完成淨孔",
+      "needs": [
+        "C2.removal_required_wh_mm",
+        "C2.removal_available_wh_mm"
+      ],
+      "missing": [
+        "C2.removal_required_wh_mm",
+        "C2.removal_available_wh_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "輸入必須已扣框料並含所需操作餘量；整機落機及運出另核。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C2:flow",
+      "label": "C2夜間風量範圍",
+      "needs": [
+        "C2.design_flow_m3_h",
+        "C2.fan_min_flow_m3_h",
+        "C2.fan_max_flow_m3_h"
+      ],
+      "missing": [
+        "C2.design_flow_m3_h",
+        "C2.fan_min_flow_m3_h",
+        "C2.fan_max_flow_m3_h"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "設計總量不重複派給每房；不合則改低負載機型或系統設計，不能省略通風。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C2:pressure",
+      "label": "C2同風量工作點",
+      "needs": [
+        "C2.design_flow_m3_h",
+        "C2.required_pressure_pa",
+        "C2.curve_flow_m3_h",
+        "C2.curve_available_pressure_pa"
+      ],
+      "missing": [
+        "C2.design_flow_m3_h",
+        "C2.required_pressure_pa",
+        "C2.curve_flow_m3_h",
+        "C2.curve_available_pressure_pa"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "同型號、髒濾網、全路由及支路平衡需與機電確認，不用自由風量／堵轉最大靜壓替代。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C3:model",
+      "label": "C3候選型號",
+      "needs": [
+        "C3.model"
+      ],
+      "missing": [
+        "C3.model"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "同一型號／版次的尺寸與曲線不得混搭，記錄不等於採購。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C3:machine",
+      "label": "C3主機含接口包絡",
+      "needs": [
+        "C3.installed_box_mm",
+        "C3.available_box_mm"
+      ],
+      "missing": [
+        "C3.installed_box_mm",
+        "C3.available_box_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不合則改機型／機位；不縮床櫃、照護或原房間需求。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C3:ducts",
+      "label": "C3四管斷面",
+      "needs": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "C3.duct_available_wh_mm"
+      ],
+      "missing": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "C3.duct_available_wh_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "橫排／雙層均不足就改路由或機位，不把四管重塞原雙管帶。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C3:ceiling",
+      "label": "C3梁下／完成天花",
+      "needs": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "C3.duct_available_wh_mm",
+        "C3.beam_bottom_z_mm",
+        "C3.ceiling_target_z_mm",
+        "C3.installed_box_mm",
+        "common.duct.extra_hanging_mm"
+      ],
+      "missing": [
+        "common.duct.inner_mm",
+        "common.duct.insulation_each_mm",
+        "common.duct.gap_mm",
+        "common.duct.edge_mm",
+        "C3.duct_available_wh_mm",
+        "C3.beam_bottom_z_mm",
+        "C3.ceiling_target_z_mm",
+        "C3.installed_box_mm",
+        "common.duct.extra_hanging_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足則重比機位／斷面；不能自動降低屋主目標或鑽梁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C3:pull",
+      "label": "C3側抽行程",
+      "needs": [
+        "C3.pull_required_mm",
+        "C3.pull_available_mm"
+      ],
+      "missing": [
+        "C3.pull_required_mm",
+        "C3.pull_available_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "還要核方向、障礙、架梯與檢修期間逃生，長度足夠不等於操作安全。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C3:removal",
+      "label": "C3完成淨孔",
+      "needs": [
+        "C3.removal_required_wh_mm",
+        "C3.removal_available_wh_mm"
+      ],
+      "missing": [
+        "C3.removal_required_wh_mm",
+        "C3.removal_available_wh_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "輸入必須已扣框料並含所需操作餘量；整機落機及運出另核。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C3:flow",
+      "label": "C3夜間風量範圍",
+      "needs": [
+        "C3.design_flow_m3_h",
+        "C3.fan_min_flow_m3_h",
+        "C3.fan_max_flow_m3_h"
+      ],
+      "missing": [
+        "C3.design_flow_m3_h",
+        "C3.fan_min_flow_m3_h",
+        "C3.fan_max_flow_m3_h"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "設計總量不重複派給每房；不合則改低負載機型或系統設計，不能省略通風。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C3:pressure",
+      "label": "C3同風量工作點",
+      "needs": [
+        "C3.design_flow_m3_h",
+        "C3.required_pressure_pa",
+        "C3.curve_flow_m3_h",
+        "C3.curve_available_pressure_pa"
+      ],
+      "missing": [
+        "C3.design_flow_m3_h",
+        "C3.required_pressure_pa",
+        "C3.curve_flow_m3_h",
+        "C3.curve_available_pressure_pa"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "同型號、髒濾網、全路由及支路平衡需與機電確認，不用自由風量／堵轉最大靜壓替代。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A1-front:wall",
+      "label": "A1-front外牆條件",
+      "needs": [
+        "A1-front.opening_permitted"
+      ],
+      "missing": [
+        "A1-front.opening_permitted"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "指定候選位置仍須風雨／鄰戶污染源及合法開孔簽認；true不是自動許可。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A1-front:OA",
+      "label": "A1-front OA高位實牆",
+      "needs": [
+        "A1-front.OA.solid_z_interval_mm",
+        "A1-front.OA.required_opening_height_mm"
+      ],
+      "missing": [
+        "A1-front.OA.solid_z_interval_mm",
+        "A1-front.OA.required_opening_height_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足就保留別端／重排，不能改窗、門楣、梁或未確認共壁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A1-front:EA",
+      "label": "A1-front EA高位實牆",
+      "needs": [
+        "A1-front.EA.solid_z_interval_mm",
+        "A1-front.EA.required_opening_height_mm"
+      ],
+      "missing": [
+        "A1-front.EA.solid_z_interval_mm",
+        "A1-front.EA.required_opening_height_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足就保留別端／重排，不能改窗、門楣、梁或未確認共壁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A2-rear:wall",
+      "label": "A2-rear外牆條件",
+      "needs": [
+        "A2-rear.opening_permitted"
+      ],
+      "missing": [
+        "A2-rear.opening_permitted"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "指定候選位置仍須風雨／鄰戶污染源及合法開孔簽認；true不是自動許可。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A2-rear:OA",
+      "label": "A2-rear OA高位實牆",
+      "needs": [
+        "A2-rear.OA.solid_z_interval_mm",
+        "A2-rear.OA.required_opening_height_mm"
+      ],
+      "missing": [
+        "A2-rear.OA.solid_z_interval_mm",
+        "A2-rear.OA.required_opening_height_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足就保留別端／重排，不能改窗、門楣、梁或未確認共壁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A2-rear:EA",
+      "label": "A2-rear EA高位實牆",
+      "needs": [
+        "A2-rear.EA.solid_z_interval_mm",
+        "A2-rear.EA.required_opening_height_mm"
+      ],
+      "missing": [
+        "A2-rear.EA.solid_z_interval_mm",
+        "A2-rear.EA.required_opening_height_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足就保留別端／重排，不能改窗、門楣、梁或未確認共壁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A3-rear:wall",
+      "label": "A3-rear外牆條件",
+      "needs": [
+        "A3-rear.opening_permitted"
+      ],
+      "missing": [
+        "A3-rear.opening_permitted"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "指定候選位置仍須風雨／鄰戶污染源及合法開孔簽認；true不是自動許可。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A3-rear:OA",
+      "label": "A3-rear OA高位實牆",
+      "needs": [
+        "A3-rear.OA.solid_z_interval_mm",
+        "A3-rear.OA.required_opening_height_mm"
+      ],
+      "missing": [
+        "A3-rear.OA.solid_z_interval_mm",
+        "A3-rear.OA.required_opening_height_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足就保留別端／重排，不能改窗、門楣、梁或未確認共壁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "A3-rear:EA",
+      "label": "A3-rear EA高位實牆",
+      "needs": [
+        "A3-rear.EA.solid_z_interval_mm",
+        "A3-rear.EA.required_opening_height_mm"
+      ],
+      "missing": [
+        "A3-rear.EA.solid_z_interval_mm",
+        "A3-rear.EA.required_opening_height_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足就保留別端／重排，不能改窗、門楣、梁或未確認共壁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B2-rear:wall",
+      "label": "B2-rear外牆條件",
+      "needs": [
+        "B2-rear.opening_permitted"
+      ],
+      "missing": [
+        "B2-rear.opening_permitted"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "指定候選位置仍須風雨／鄰戶污染源及合法開孔簽認；true不是自動許可。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B2-rear:OA",
+      "label": "B2-rear OA高位實牆",
+      "needs": [
+        "B2-rear.OA.solid_z_interval_mm",
+        "B2-rear.OA.required_opening_height_mm"
+      ],
+      "missing": [
+        "B2-rear.OA.solid_z_interval_mm",
+        "B2-rear.OA.required_opening_height_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足就保留別端／重排，不能改窗、門楣、梁或未確認共壁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B2-rear:EA",
+      "label": "B2-rear EA高位實牆",
+      "needs": [
+        "B2-rear.EA.solid_z_interval_mm",
+        "B2-rear.EA.required_opening_height_mm"
+      ],
+      "missing": [
+        "B2-rear.EA.solid_z_interval_mm",
+        "B2-rear.EA.required_opening_height_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足就保留別端／重排，不能改窗、門楣、梁或未確認共壁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B2-front:wall",
+      "label": "B2-front外牆條件",
+      "needs": [
+        "B2-front.opening_permitted"
+      ],
+      "missing": [
+        "B2-front.opening_permitted"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "指定候選位置仍須風雨／鄰戶污染源及合法開孔簽認；true不是自動許可。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B2-front:OA",
+      "label": "B2-front OA高位實牆",
+      "needs": [
+        "B2-front.OA.solid_z_interval_mm",
+        "B2-front.OA.required_opening_height_mm"
+      ],
+      "missing": [
+        "B2-front.OA.solid_z_interval_mm",
+        "B2-front.OA.required_opening_height_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足就保留別端／重排，不能改窗、門楣、梁或未確認共壁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B2-front:EA",
+      "label": "B2-front EA高位實牆",
+      "needs": [
+        "B2-front.EA.solid_z_interval_mm",
+        "B2-front.EA.required_opening_height_mm"
+      ],
+      "missing": [
+        "B2-front.EA.solid_z_interval_mm",
+        "B2-front.EA.required_opening_height_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足就保留別端／重排，不能改窗、門楣、梁或未確認共壁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B3-rear:wall",
+      "label": "B3-rear外牆條件",
+      "needs": [
+        "B3-rear.opening_permitted"
+      ],
+      "missing": [
+        "B3-rear.opening_permitted"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "指定候選位置仍須風雨／鄰戶污染源及合法開孔簽認；true不是自動許可。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B3-rear:OA",
+      "label": "B3-rear OA高位實牆",
+      "needs": [
+        "B3-rear.OA.solid_z_interval_mm",
+        "B3-rear.OA.required_opening_height_mm"
+      ],
+      "missing": [
+        "B3-rear.OA.solid_z_interval_mm",
+        "B3-rear.OA.required_opening_height_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足就保留別端／重排，不能改窗、門楣、梁或未確認共壁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B3-rear:EA",
+      "label": "B3-rear EA高位實牆",
+      "needs": [
+        "B3-rear.EA.solid_z_interval_mm",
+        "B3-rear.EA.required_opening_height_mm"
+      ],
+      "missing": [
+        "B3-rear.EA.solid_z_interval_mm",
+        "B3-rear.EA.required_opening_height_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足就保留別端／重排，不能改窗、門楣、梁或未確認共壁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B3-front:wall",
+      "label": "B3-front外牆條件",
+      "needs": [
+        "B3-front.opening_permitted"
+      ],
+      "missing": [
+        "B3-front.opening_permitted"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "指定候選位置仍須風雨／鄰戶污染源及合法開孔簽認；true不是自動許可。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B3-front:OA",
+      "label": "B3-front OA高位實牆",
+      "needs": [
+        "B3-front.OA.solid_z_interval_mm",
+        "B3-front.OA.required_opening_height_mm"
+      ],
+      "missing": [
+        "B3-front.OA.solid_z_interval_mm",
+        "B3-front.OA.required_opening_height_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足就保留別端／重排，不能改窗、門楣、梁或未確認共壁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B3-front:EA",
+      "label": "B3-front EA高位實牆",
+      "needs": [
+        "B3-front.EA.solid_z_interval_mm",
+        "B3-front.EA.required_opening_height_mm"
+      ],
+      "missing": [
+        "B3-front.EA.solid_z_interval_mm",
+        "B3-front.EA.required_opening_height_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足就保留別端／重排，不能改窗、門楣、梁或未確認共壁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C1-front:wall",
+      "label": "C1-front外牆條件",
+      "needs": [
+        "C1-front.opening_permitted"
+      ],
+      "missing": [
+        "C1-front.opening_permitted"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "指定候選位置仍須風雨／鄰戶污染源及合法開孔簽認；true不是自動許可。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C1-front:OA",
+      "label": "C1-front OA高位實牆",
+      "needs": [
+        "C1-front.OA.solid_z_interval_mm",
+        "C1-front.OA.required_opening_height_mm"
+      ],
+      "missing": [
+        "C1-front.OA.solid_z_interval_mm",
+        "C1-front.OA.required_opening_height_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足就保留別端／重排，不能改窗、門楣、梁或未確認共壁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C1-front:EA",
+      "label": "C1-front EA高位實牆",
+      "needs": [
+        "C1-front.EA.solid_z_interval_mm",
+        "C1-front.EA.required_opening_height_mm"
+      ],
+      "missing": [
+        "C1-front.EA.solid_z_interval_mm",
+        "C1-front.EA.required_opening_height_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足就保留別端／重排，不能改窗、門楣、梁或未確認共壁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C2-front:wall",
+      "label": "C2-front外牆條件",
+      "needs": [
+        "C2-front.opening_permitted"
+      ],
+      "missing": [
+        "C2-front.opening_permitted"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "指定候選位置仍須風雨／鄰戶污染源及合法開孔簽認；true不是自動許可。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C2-front:OA",
+      "label": "C2-front OA高位實牆",
+      "needs": [
+        "C2-front.OA.solid_z_interval_mm",
+        "C2-front.OA.required_opening_height_mm"
+      ],
+      "missing": [
+        "C2-front.OA.solid_z_interval_mm",
+        "C2-front.OA.required_opening_height_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足就保留別端／重排，不能改窗、門楣、梁或未確認共壁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C2-front:EA",
+      "label": "C2-front EA高位實牆",
+      "needs": [
+        "C2-front.EA.solid_z_interval_mm",
+        "C2-front.EA.required_opening_height_mm"
+      ],
+      "missing": [
+        "C2-front.EA.solid_z_interval_mm",
+        "C2-front.EA.required_opening_height_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足就保留別端／重排，不能改窗、門楣、梁或未確認共壁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C3-front:wall",
+      "label": "C3-front外牆條件",
+      "needs": [
+        "C3-front.opening_permitted"
+      ],
+      "missing": [
+        "C3-front.opening_permitted"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "指定候選位置仍須風雨／鄰戶污染源及合法開孔簽認；true不是自動許可。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C3-front:OA",
+      "label": "C3-front OA高位實牆",
+      "needs": [
+        "C3-front.OA.solid_z_interval_mm",
+        "C3-front.OA.required_opening_height_mm"
+      ],
+      "missing": [
+        "C3-front.OA.solid_z_interval_mm",
+        "C3-front.OA.required_opening_height_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足就保留別端／重排，不能改窗、門楣、梁或未確認共壁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "C3-front:EA",
+      "label": "C3-front EA高位實牆",
+      "needs": [
+        "C3-front.EA.solid_z_interval_mm",
+        "C3-front.EA.required_opening_height_mm"
+      ],
+      "missing": [
+        "C3-front.EA.solid_z_interval_mm",
+        "C3-front.EA.required_opening_height_mm"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "不足就保留別端／重排，不能改窗、門楣、梁或未確認共壁。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "B:rear-alley",
+      "label": "B後巷與搬轎比較提示",
+      "needs": [
+        "B.rear_alley_exists"
+      ],
+      "missing": [
+        "B.rear_alley_exists"
+      ],
+      "status": "pending",
+      "reason": "等待資料；不以規劃假設或空白代替。",
+      "next_action": "只改比較提示，不自動變更搬轎入口／外牆權利或刪原後門版。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "manual:1",
+      "label": "基地、建築師適用法規、合法外牆與消防／結構核對，不能由填true取代簽認。",
+      "needs": [],
+      "missing": [],
+      "status": "pending",
+      "reason": "人工關卡，不由數值填齊自動通過。",
+      "next_action": "基地、建築師適用法規、合法外牆與消防／結構核對，不能由填true取代簽認。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "manual:2",
+      "label": "三維梁柱、門窗、消音／冷媒／支架與完整房間路由合圖，尺寸包絡相容不代表已完成。",
+      "needs": [],
+      "missing": [],
+      "status": "pending",
+      "reason": "人工關卡，不由數值填齊自動通過。",
+      "next_action": "三維梁柱、門窗、消音／冷媒／支架與完整房間路由合圖，尺寸包絡相容不代表已完成。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "manual:3",
+      "label": "關門送回風、低速噪音、濾網積塵與各獨排同開補氣／濕度實測。",
+      "needs": [],
+      "missing": [],
+      "status": "pending",
+      "reason": "人工關卡，不由數值填齊自動通過。",
+      "next_action": "關門送回風、低速噪音、濾網積塵與各獨排同開補氣／濕度實測。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "manual:4",
+      "label": "指定家規與祭祀投影、照護、武轎實物搬運與全程救援。",
+      "needs": [],
+      "missing": [],
+      "status": "pending",
+      "reason": "人工關卡，不由數值填齊自動通過。",
+      "next_action": "指定家規與祭祀投影、照護、武轎實物搬運與全程救援。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "manual:5",
+      "label": "實際機型及同版施工圖、側抽方向、安全架梯、全機落機與運出。",
+      "needs": [],
+      "missing": [],
+      "status": "pending",
+      "reason": "人工關卡，不由數值填齊自動通過。",
+      "next_action": "實際機型及同版施工圖、側抽方向、安全架梯、全機落機與運出。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    },
+    {
+      "id": "manual:6",
+      "label": "屋主明確採用該版後，才另開來源更新／原HTML與3D同步及新來源驗收；本工具不執行。",
+      "needs": [],
+      "missing": [],
+      "status": "pending",
+      "reason": "人工關卡，不由數值填齊自動通過。",
+      "next_action": "屋主明確採用該版後，才另開來源更新／原HTML與3D同步及新來源驗收；本工具不執行。",
+      "independent_evidence_verification": false,
+      "professional_approval": "unknown"
+    }
+  ],
+  "comparison_choices": [
+    {
+      "network": "B2",
+      "external_interface_states": {
+        "rear": "pending",
+        "front": "pending"
+      },
+      "next_comparison": "retain-both-await-conditions",
+      "rear_and_front_retained": true,
+      "entry_layout_selected": null,
+      "adopted": false
+    },
+    {
+      "network": "B3",
+      "external_interface_states": {
+        "rear": "pending",
+        "front": "pending"
+      },
+      "next_comparison": "retain-both-await-conditions",
+      "rear_and_front_retained": true,
+      "entry_layout_selected": null,
+      "adopted": false
+    }
+  ],
+  "impact_map": [
+    {
+      "id": "common.duct.inner_mm",
+      "label": "風管實際內徑",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "共用研究；多種管材／保溫時需另分版本，不混填。",
+      "value_received": false,
+      "affected_checks": [
+        "A1:ducts",
+        "A1:ceiling",
+        "A2:ducts",
+        "A2:ceiling",
+        "A3:ducts",
+        "A3:ceiling",
+        "B2:ducts",
+        "B2:ceiling",
+        "B3:ducts",
+        "B3:ceiling",
+        "C1:ducts",
+        "C1:ceiling",
+        "C2:ducts",
+        "C2:ceiling",
+        "C3:ducts",
+        "C3:ceiling"
+      ]
+    },
+    {
+      "id": "common.duct.insulation_each_mm",
+      "label": "徑向保溫厚度",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "共用研究；多種管材／保溫時需另分版本，不混填。",
+      "value_received": false,
+      "affected_checks": [
+        "A1:ducts",
+        "A1:ceiling",
+        "A2:ducts",
+        "A2:ceiling",
+        "A3:ducts",
+        "A3:ceiling",
+        "B2:ducts",
+        "B2:ceiling",
+        "B3:ducts",
+        "B3:ceiling",
+        "C1:ducts",
+        "C1:ceiling",
+        "C2:ducts",
+        "C2:ceiling",
+        "C3:ducts",
+        "C3:ceiling"
+      ]
+    },
+    {
+      "id": "common.duct.gap_mm",
+      "label": "管間淨預留",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "共用研究；多種管材／保溫時需另分版本，不混填。",
+      "value_received": false,
+      "affected_checks": [
+        "A1:ducts",
+        "A1:ceiling",
+        "A2:ducts",
+        "A2:ceiling",
+        "A3:ducts",
+        "A3:ceiling",
+        "B2:ducts",
+        "B2:ceiling",
+        "B3:ducts",
+        "B3:ceiling",
+        "C1:ducts",
+        "C1:ceiling",
+        "C2:ducts",
+        "C2:ceiling",
+        "C3:ducts",
+        "C3:ceiling"
+      ]
+    },
+    {
+      "id": "common.duct.edge_mm",
+      "label": "管帶兩外側各預留",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "共用研究；多種管材／保溫時需另分版本，不混填。",
+      "value_received": false,
+      "affected_checks": [
+        "A1:ducts",
+        "A1:ceiling",
+        "A2:ducts",
+        "A2:ceiling",
+        "A3:ducts",
+        "A3:ceiling",
+        "B2:ducts",
+        "B2:ceiling",
+        "B3:ducts",
+        "B3:ceiling",
+        "C1:ducts",
+        "C1:ceiling",
+        "C2:ducts",
+        "C2:ceiling",
+        "C3:ducts",
+        "C3:ceiling"
+      ]
+    },
+    {
+      "id": "common.duct.extra_hanging_mm",
+      "label": "額外吊掛／施工公差",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "共用研究；多種管材／保溫時需另分版本，不混填。",
+      "value_received": false,
+      "affected_checks": [
+        "A1:ceiling",
+        "A2:ceiling",
+        "A3:ceiling",
+        "B2:ceiling",
+        "B3:ceiling",
+        "C1:ceiling",
+        "C2:ceiling",
+        "C3:ceiling"
+      ]
+    },
+    {
+      "id": "B.rear_alley_exists",
+      "label": "B實際後巷前提",
+      "unit": "boolean",
+      "kind": "boolean",
+      "scope": "只作搬轎備案提示，不推定後牆可開孔。",
+      "value_received": false,
+      "affected_checks": [
+        "B:rear-alley"
+      ]
+    },
+    {
+      "id": "A1.model",
+      "label": "候選設備同一型號／版次",
+      "unit": "text",
+      "kind": "text",
+      "scope": "A棟 floor-1／A1-N",
+      "value_received": false,
+      "affected_checks": [
+        "A1:model"
+      ]
+    },
+    {
+      "id": "A1.installed_box_mm",
+      "label": "含接口／消音的主機安裝包絡[寬,深,高]，不含另列吊掛公差",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "A棟 floor-1／A1-N",
+      "candidate_model_field": "A1.model",
+      "value_received": false,
+      "affected_checks": [
+        "A1:machine",
+        "A1:ceiling"
+      ]
+    },
+    {
+      "id": "A1.available_box_mm",
+      "label": "該機位可用安裝淨包絡[寬,深,高]",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "A棟 floor-1／A1-N",
+      "value_received": false,
+      "affected_checks": [
+        "A1:machine"
+      ]
+    },
+    {
+      "id": "A1.beam_bottom_z_mm",
+      "label": "該段最低梁板底標高（本層完成地坪為0）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "A棟 floor-1／A1-N",
+      "value_received": false,
+      "affected_checks": [
+        "A1:ceiling"
+      ]
+    },
+    {
+      "id": "A1.ceiling_target_z_mm",
+      "label": "目標完成天花標高（同一地坪基準）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "A棟 floor-1／A1-N",
+      "value_received": false,
+      "affected_checks": [
+        "A1:ceiling"
+      ]
+    },
+    {
+      "id": "A1.duct_available_wh_mm",
+      "label": "四管路段可用管帶[寬,高]；不是房間走道寬",
+      "unit": "mm[W,H]",
+      "kind": "positive2",
+      "scope": "A棟 floor-1／A1-N",
+      "value_received": false,
+      "affected_checks": [
+        "A1:ducts",
+        "A1:ceiling"
+      ]
+    },
+    {
+      "id": "A1.pull_required_mm",
+      "label": "同型號實際濾芯／交換芯所需抽拉行程",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-1／A1-N",
+      "candidate_model_field": "A1.model",
+      "value_received": false,
+      "affected_checks": [
+        "A1:pull"
+      ]
+    },
+    {
+      "id": "A1.pull_available_mm",
+      "label": "選定方向可提供的抽拉淨長",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-1／A1-N",
+      "value_received": false,
+      "affected_checks": [
+        "A1:pull"
+      ]
+    },
+    {
+      "id": "A1.removal_required_wh_mm",
+      "label": "含操作餘量的整機直進所需完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "A棟 floor-1／A1-N",
+      "candidate_model_field": "A1.model",
+      "value_received": false,
+      "affected_checks": [
+        "A1:removal"
+      ]
+    },
+    {
+      "id": "A1.removal_available_wh_mm",
+      "label": "扣框料後實際可拆完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "A棟 floor-1／A1-N",
+      "value_received": false,
+      "affected_checks": [
+        "A1:removal"
+      ]
+    },
+    {
+      "id": "A1.design_flow_m3_h",
+      "label": "該分區設計室外風量（每層不重複派給每房）",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "A棟 floor-1／A1-N",
+      "value_received": false,
+      "affected_checks": [
+        "A1:flow",
+        "A1:pressure"
+      ]
+    },
+    {
+      "id": "A1.fan_min_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最低風量",
+      "unit": "m3/h",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-1／A1-N",
+      "candidate_model_field": "A1.model",
+      "value_received": false,
+      "affected_checks": [
+        "A1:flow"
+      ]
+    },
+    {
+      "id": "A1.fan_max_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最高風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "A棟 floor-1／A1-N",
+      "candidate_model_field": "A1.model",
+      "value_received": false,
+      "affected_checks": [
+        "A1:flow"
+      ]
+    },
+    {
+      "id": "A1.required_pressure_pa",
+      "label": "設計路由及髒濾網所需機外靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-1／A1-N",
+      "value_received": false,
+      "affected_checks": [
+        "A1:pressure"
+      ]
+    },
+    {
+      "id": "A1.curve_flow_m3_h",
+      "label": "所提供風機曲線點對應風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "A棟 floor-1／A1-N",
+      "candidate_model_field": "A1.model",
+      "value_received": false,
+      "affected_checks": [
+        "A1:pressure"
+      ]
+    },
+    {
+      "id": "A1.curve_available_pressure_pa",
+      "label": "該相同風量曲線點的可用靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-1／A1-N",
+      "candidate_model_field": "A1.model",
+      "value_received": false,
+      "affected_checks": [
+        "A1:pressure"
+      ]
+    },
+    {
+      "id": "A2.model",
+      "label": "候選設備同一型號／版次",
+      "unit": "text",
+      "kind": "text",
+      "scope": "A棟 floor-2／A2-N",
+      "value_received": false,
+      "affected_checks": [
+        "A2:model"
+      ]
+    },
+    {
+      "id": "A2.installed_box_mm",
+      "label": "含接口／消音的主機安裝包絡[寬,深,高]，不含另列吊掛公差",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "A棟 floor-2／A2-N",
+      "candidate_model_field": "A2.model",
+      "value_received": false,
+      "affected_checks": [
+        "A2:machine",
+        "A2:ceiling"
+      ]
+    },
+    {
+      "id": "A2.available_box_mm",
+      "label": "該機位可用安裝淨包絡[寬,深,高]",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "A棟 floor-2／A2-N",
+      "value_received": false,
+      "affected_checks": [
+        "A2:machine"
+      ]
+    },
+    {
+      "id": "A2.beam_bottom_z_mm",
+      "label": "該段最低梁板底標高（本層完成地坪為0）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "A棟 floor-2／A2-N",
+      "value_received": false,
+      "affected_checks": [
+        "A2:ceiling"
+      ]
+    },
+    {
+      "id": "A2.ceiling_target_z_mm",
+      "label": "目標完成天花標高（同一地坪基準）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "A棟 floor-2／A2-N",
+      "value_received": false,
+      "affected_checks": [
+        "A2:ceiling"
+      ]
+    },
+    {
+      "id": "A2.duct_available_wh_mm",
+      "label": "四管路段可用管帶[寬,高]；不是房間走道寬",
+      "unit": "mm[W,H]",
+      "kind": "positive2",
+      "scope": "A棟 floor-2／A2-N",
+      "value_received": false,
+      "affected_checks": [
+        "A2:ducts",
+        "A2:ceiling"
+      ]
+    },
+    {
+      "id": "A2.pull_required_mm",
+      "label": "同型號實際濾芯／交換芯所需抽拉行程",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-2／A2-N",
+      "candidate_model_field": "A2.model",
+      "value_received": false,
+      "affected_checks": [
+        "A2:pull"
+      ]
+    },
+    {
+      "id": "A2.pull_available_mm",
+      "label": "選定方向可提供的抽拉淨長",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-2／A2-N",
+      "value_received": false,
+      "affected_checks": [
+        "A2:pull"
+      ]
+    },
+    {
+      "id": "A2.removal_required_wh_mm",
+      "label": "含操作餘量的整機直進所需完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "A棟 floor-2／A2-N",
+      "candidate_model_field": "A2.model",
+      "value_received": false,
+      "affected_checks": [
+        "A2:removal"
+      ]
+    },
+    {
+      "id": "A2.removal_available_wh_mm",
+      "label": "扣框料後實際可拆完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "A棟 floor-2／A2-N",
+      "value_received": false,
+      "affected_checks": [
+        "A2:removal"
+      ]
+    },
+    {
+      "id": "A2.design_flow_m3_h",
+      "label": "該分區設計室外風量（每層不重複派給每房）",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "A棟 floor-2／A2-N",
+      "value_received": false,
+      "affected_checks": [
+        "A2:flow",
+        "A2:pressure"
+      ]
+    },
+    {
+      "id": "A2.fan_min_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最低風量",
+      "unit": "m3/h",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-2／A2-N",
+      "candidate_model_field": "A2.model",
+      "value_received": false,
+      "affected_checks": [
+        "A2:flow"
+      ]
+    },
+    {
+      "id": "A2.fan_max_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最高風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "A棟 floor-2／A2-N",
+      "candidate_model_field": "A2.model",
+      "value_received": false,
+      "affected_checks": [
+        "A2:flow"
+      ]
+    },
+    {
+      "id": "A2.required_pressure_pa",
+      "label": "設計路由及髒濾網所需機外靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-2／A2-N",
+      "value_received": false,
+      "affected_checks": [
+        "A2:pressure"
+      ]
+    },
+    {
+      "id": "A2.curve_flow_m3_h",
+      "label": "所提供風機曲線點對應風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "A棟 floor-2／A2-N",
+      "candidate_model_field": "A2.model",
+      "value_received": false,
+      "affected_checks": [
+        "A2:pressure"
+      ]
+    },
+    {
+      "id": "A2.curve_available_pressure_pa",
+      "label": "該相同風量曲線點的可用靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-2／A2-N",
+      "candidate_model_field": "A2.model",
+      "value_received": false,
+      "affected_checks": [
+        "A2:pressure"
+      ]
+    },
+    {
+      "id": "A3.model",
+      "label": "候選設備同一型號／版次",
+      "unit": "text",
+      "kind": "text",
+      "scope": "A棟 floor-3／A3-R",
+      "value_received": false,
+      "affected_checks": [
+        "A3:model"
+      ]
+    },
+    {
+      "id": "A3.installed_box_mm",
+      "label": "含接口／消音的主機安裝包絡[寬,深,高]，不含另列吊掛公差",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "A棟 floor-3／A3-R",
+      "candidate_model_field": "A3.model",
+      "value_received": false,
+      "affected_checks": [
+        "A3:machine",
+        "A3:ceiling"
+      ]
+    },
+    {
+      "id": "A3.available_box_mm",
+      "label": "該機位可用安裝淨包絡[寬,深,高]",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "A棟 floor-3／A3-R",
+      "value_received": false,
+      "affected_checks": [
+        "A3:machine"
+      ]
+    },
+    {
+      "id": "A3.beam_bottom_z_mm",
+      "label": "該段最低梁板底標高（本層完成地坪為0）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "A棟 floor-3／A3-R",
+      "value_received": false,
+      "affected_checks": [
+        "A3:ceiling"
+      ]
+    },
+    {
+      "id": "A3.ceiling_target_z_mm",
+      "label": "目標完成天花標高（同一地坪基準）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "A棟 floor-3／A3-R",
+      "value_received": false,
+      "affected_checks": [
+        "A3:ceiling"
+      ]
+    },
+    {
+      "id": "A3.duct_available_wh_mm",
+      "label": "四管路段可用管帶[寬,高]；不是房間走道寬",
+      "unit": "mm[W,H]",
+      "kind": "positive2",
+      "scope": "A棟 floor-3／A3-R",
+      "value_received": false,
+      "affected_checks": [
+        "A3:ducts",
+        "A3:ceiling"
+      ]
+    },
+    {
+      "id": "A3.pull_required_mm",
+      "label": "同型號實際濾芯／交換芯所需抽拉行程",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-3／A3-R",
+      "candidate_model_field": "A3.model",
+      "value_received": false,
+      "affected_checks": [
+        "A3:pull"
+      ]
+    },
+    {
+      "id": "A3.pull_available_mm",
+      "label": "選定方向可提供的抽拉淨長",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-3／A3-R",
+      "value_received": false,
+      "affected_checks": [
+        "A3:pull"
+      ]
+    },
+    {
+      "id": "A3.removal_required_wh_mm",
+      "label": "含操作餘量的整機直進所需完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "A棟 floor-3／A3-R",
+      "candidate_model_field": "A3.model",
+      "value_received": false,
+      "affected_checks": [
+        "A3:removal"
+      ]
+    },
+    {
+      "id": "A3.removal_available_wh_mm",
+      "label": "扣框料後實際可拆完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "A棟 floor-3／A3-R",
+      "value_received": false,
+      "affected_checks": [
+        "A3:removal"
+      ]
+    },
+    {
+      "id": "A3.design_flow_m3_h",
+      "label": "該分區設計室外風量（每層不重複派給每房）",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "A棟 floor-3／A3-R",
+      "value_received": false,
+      "affected_checks": [
+        "A3:flow",
+        "A3:pressure"
+      ]
+    },
+    {
+      "id": "A3.fan_min_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最低風量",
+      "unit": "m3/h",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-3／A3-R",
+      "candidate_model_field": "A3.model",
+      "value_received": false,
+      "affected_checks": [
+        "A3:flow"
+      ]
+    },
+    {
+      "id": "A3.fan_max_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最高風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "A棟 floor-3／A3-R",
+      "candidate_model_field": "A3.model",
+      "value_received": false,
+      "affected_checks": [
+        "A3:flow"
+      ]
+    },
+    {
+      "id": "A3.required_pressure_pa",
+      "label": "設計路由及髒濾網所需機外靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-3／A3-R",
+      "value_received": false,
+      "affected_checks": [
+        "A3:pressure"
+      ]
+    },
+    {
+      "id": "A3.curve_flow_m3_h",
+      "label": "所提供風機曲線點對應風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "A棟 floor-3／A3-R",
+      "candidate_model_field": "A3.model",
+      "value_received": false,
+      "affected_checks": [
+        "A3:pressure"
+      ]
+    },
+    {
+      "id": "A3.curve_available_pressure_pa",
+      "label": "該相同風量曲線點的可用靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "A棟 floor-3／A3-R",
+      "candidate_model_field": "A3.model",
+      "value_received": false,
+      "affected_checks": [
+        "A3:pressure"
+      ]
+    },
+    {
+      "id": "B2.model",
+      "label": "候選設備同一型號／版次",
+      "unit": "text",
+      "kind": "text",
+      "scope": "B棟 floor-2／B2-N",
+      "value_received": false,
+      "affected_checks": [
+        "B2:model"
+      ]
+    },
+    {
+      "id": "B2.installed_box_mm",
+      "label": "含接口／消音的主機安裝包絡[寬,深,高]，不含另列吊掛公差",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "B棟 floor-2／B2-N",
+      "candidate_model_field": "B2.model",
+      "value_received": false,
+      "affected_checks": [
+        "B2:machine",
+        "B2:ceiling"
+      ]
+    },
+    {
+      "id": "B2.available_box_mm",
+      "label": "該機位可用安裝淨包絡[寬,深,高]",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "B棟 floor-2／B2-N",
+      "value_received": false,
+      "affected_checks": [
+        "B2:machine"
+      ]
+    },
+    {
+      "id": "B2.beam_bottom_z_mm",
+      "label": "該段最低梁板底標高（本層完成地坪為0）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "B棟 floor-2／B2-N",
+      "value_received": false,
+      "affected_checks": [
+        "B2:ceiling"
+      ]
+    },
+    {
+      "id": "B2.ceiling_target_z_mm",
+      "label": "目標完成天花標高（同一地坪基準）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "B棟 floor-2／B2-N",
+      "value_received": false,
+      "affected_checks": [
+        "B2:ceiling"
+      ]
+    },
+    {
+      "id": "B2.duct_available_wh_mm",
+      "label": "四管路段可用管帶[寬,高]；不是房間走道寬",
+      "unit": "mm[W,H]",
+      "kind": "positive2",
+      "scope": "B棟 floor-2／B2-N",
+      "value_received": false,
+      "affected_checks": [
+        "B2:ducts",
+        "B2:ceiling"
+      ]
+    },
+    {
+      "id": "B2.pull_required_mm",
+      "label": "同型號實際濾芯／交換芯所需抽拉行程",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "B棟 floor-2／B2-N",
+      "candidate_model_field": "B2.model",
+      "value_received": false,
+      "affected_checks": [
+        "B2:pull"
+      ]
+    },
+    {
+      "id": "B2.pull_available_mm",
+      "label": "選定方向可提供的抽拉淨長",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "B棟 floor-2／B2-N",
+      "value_received": false,
+      "affected_checks": [
+        "B2:pull"
+      ]
+    },
+    {
+      "id": "B2.removal_required_wh_mm",
+      "label": "含操作餘量的整機直進所需完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "B棟 floor-2／B2-N",
+      "candidate_model_field": "B2.model",
+      "value_received": false,
+      "affected_checks": [
+        "B2:removal"
+      ]
+    },
+    {
+      "id": "B2.removal_available_wh_mm",
+      "label": "扣框料後實際可拆完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "B棟 floor-2／B2-N",
+      "value_received": false,
+      "affected_checks": [
+        "B2:removal"
+      ]
+    },
+    {
+      "id": "B2.design_flow_m3_h",
+      "label": "該分區設計室外風量（每層不重複派給每房）",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "B棟 floor-2／B2-N",
+      "value_received": false,
+      "affected_checks": [
+        "B2:flow",
+        "B2:pressure"
+      ]
+    },
+    {
+      "id": "B2.fan_min_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最低風量",
+      "unit": "m3/h",
+      "kind": "nonnegative",
+      "scope": "B棟 floor-2／B2-N",
+      "candidate_model_field": "B2.model",
+      "value_received": false,
+      "affected_checks": [
+        "B2:flow"
+      ]
+    },
+    {
+      "id": "B2.fan_max_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最高風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "B棟 floor-2／B2-N",
+      "candidate_model_field": "B2.model",
+      "value_received": false,
+      "affected_checks": [
+        "B2:flow"
+      ]
+    },
+    {
+      "id": "B2.required_pressure_pa",
+      "label": "設計路由及髒濾網所需機外靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "B棟 floor-2／B2-N",
+      "value_received": false,
+      "affected_checks": [
+        "B2:pressure"
+      ]
+    },
+    {
+      "id": "B2.curve_flow_m3_h",
+      "label": "所提供風機曲線點對應風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "B棟 floor-2／B2-N",
+      "candidate_model_field": "B2.model",
+      "value_received": false,
+      "affected_checks": [
+        "B2:pressure"
+      ]
+    },
+    {
+      "id": "B2.curve_available_pressure_pa",
+      "label": "該相同風量曲線點的可用靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "B棟 floor-2／B2-N",
+      "candidate_model_field": "B2.model",
+      "value_received": false,
+      "affected_checks": [
+        "B2:pressure"
+      ]
+    },
+    {
+      "id": "B3.model",
+      "label": "候選設備同一型號／版次",
+      "unit": "text",
+      "kind": "text",
+      "scope": "B棟 floor-3／B3-R",
+      "value_received": false,
+      "affected_checks": [
+        "B3:model"
+      ]
+    },
+    {
+      "id": "B3.installed_box_mm",
+      "label": "含接口／消音的主機安裝包絡[寬,深,高]，不含另列吊掛公差",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "B棟 floor-3／B3-R",
+      "candidate_model_field": "B3.model",
+      "value_received": false,
+      "affected_checks": [
+        "B3:machine",
+        "B3:ceiling"
+      ]
+    },
+    {
+      "id": "B3.available_box_mm",
+      "label": "該機位可用安裝淨包絡[寬,深,高]",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "B棟 floor-3／B3-R",
+      "value_received": false,
+      "affected_checks": [
+        "B3:machine"
+      ]
+    },
+    {
+      "id": "B3.beam_bottom_z_mm",
+      "label": "該段最低梁板底標高（本層完成地坪為0）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "B棟 floor-3／B3-R",
+      "value_received": false,
+      "affected_checks": [
+        "B3:ceiling"
+      ]
+    },
+    {
+      "id": "B3.ceiling_target_z_mm",
+      "label": "目標完成天花標高（同一地坪基準）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "B棟 floor-3／B3-R",
+      "value_received": false,
+      "affected_checks": [
+        "B3:ceiling"
+      ]
+    },
+    {
+      "id": "B3.duct_available_wh_mm",
+      "label": "四管路段可用管帶[寬,高]；不是房間走道寬",
+      "unit": "mm[W,H]",
+      "kind": "positive2",
+      "scope": "B棟 floor-3／B3-R",
+      "value_received": false,
+      "affected_checks": [
+        "B3:ducts",
+        "B3:ceiling"
+      ]
+    },
+    {
+      "id": "B3.pull_required_mm",
+      "label": "同型號實際濾芯／交換芯所需抽拉行程",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "B棟 floor-3／B3-R",
+      "candidate_model_field": "B3.model",
+      "value_received": false,
+      "affected_checks": [
+        "B3:pull"
+      ]
+    },
+    {
+      "id": "B3.pull_available_mm",
+      "label": "選定方向可提供的抽拉淨長",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "B棟 floor-3／B3-R",
+      "value_received": false,
+      "affected_checks": [
+        "B3:pull"
+      ]
+    },
+    {
+      "id": "B3.removal_required_wh_mm",
+      "label": "含操作餘量的整機直進所需完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "B棟 floor-3／B3-R",
+      "candidate_model_field": "B3.model",
+      "value_received": false,
+      "affected_checks": [
+        "B3:removal"
+      ]
+    },
+    {
+      "id": "B3.removal_available_wh_mm",
+      "label": "扣框料後實際可拆完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "B棟 floor-3／B3-R",
+      "value_received": false,
+      "affected_checks": [
+        "B3:removal"
+      ]
+    },
+    {
+      "id": "B3.design_flow_m3_h",
+      "label": "該分區設計室外風量（每層不重複派給每房）",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "B棟 floor-3／B3-R",
+      "value_received": false,
+      "affected_checks": [
+        "B3:flow",
+        "B3:pressure"
+      ]
+    },
+    {
+      "id": "B3.fan_min_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最低風量",
+      "unit": "m3/h",
+      "kind": "nonnegative",
+      "scope": "B棟 floor-3／B3-R",
+      "candidate_model_field": "B3.model",
+      "value_received": false,
+      "affected_checks": [
+        "B3:flow"
+      ]
+    },
+    {
+      "id": "B3.fan_max_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最高風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "B棟 floor-3／B3-R",
+      "candidate_model_field": "B3.model",
+      "value_received": false,
+      "affected_checks": [
+        "B3:flow"
+      ]
+    },
+    {
+      "id": "B3.required_pressure_pa",
+      "label": "設計路由及髒濾網所需機外靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "B棟 floor-3／B3-R",
+      "value_received": false,
+      "affected_checks": [
+        "B3:pressure"
+      ]
+    },
+    {
+      "id": "B3.curve_flow_m3_h",
+      "label": "所提供風機曲線點對應風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "B棟 floor-3／B3-R",
+      "candidate_model_field": "B3.model",
+      "value_received": false,
+      "affected_checks": [
+        "B3:pressure"
+      ]
+    },
+    {
+      "id": "B3.curve_available_pressure_pa",
+      "label": "該相同風量曲線點的可用靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "B棟 floor-3／B3-R",
+      "candidate_model_field": "B3.model",
+      "value_received": false,
+      "affected_checks": [
+        "B3:pressure"
+      ]
+    },
+    {
+      "id": "C1.model",
+      "label": "候選設備同一型號／版次",
+      "unit": "text",
+      "kind": "text",
+      "scope": "C棟 floor-1／C1-N",
+      "value_received": false,
+      "affected_checks": [
+        "C1:model"
+      ]
+    },
+    {
+      "id": "C1.installed_box_mm",
+      "label": "含接口／消音的主機安裝包絡[寬,深,高]，不含另列吊掛公差",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "C棟 floor-1／C1-N",
+      "candidate_model_field": "C1.model",
+      "value_received": false,
+      "affected_checks": [
+        "C1:machine",
+        "C1:ceiling"
+      ]
+    },
+    {
+      "id": "C1.available_box_mm",
+      "label": "該機位可用安裝淨包絡[寬,深,高]",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "C棟 floor-1／C1-N",
+      "value_received": false,
+      "affected_checks": [
+        "C1:machine"
+      ]
+    },
+    {
+      "id": "C1.beam_bottom_z_mm",
+      "label": "該段最低梁板底標高（本層完成地坪為0）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "C棟 floor-1／C1-N",
+      "value_received": false,
+      "affected_checks": [
+        "C1:ceiling"
+      ]
+    },
+    {
+      "id": "C1.ceiling_target_z_mm",
+      "label": "目標完成天花標高（同一地坪基準）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "C棟 floor-1／C1-N",
+      "value_received": false,
+      "affected_checks": [
+        "C1:ceiling"
+      ]
+    },
+    {
+      "id": "C1.duct_available_wh_mm",
+      "label": "四管路段可用管帶[寬,高]；不是房間走道寬",
+      "unit": "mm[W,H]",
+      "kind": "positive2",
+      "scope": "C棟 floor-1／C1-N",
+      "value_received": false,
+      "affected_checks": [
+        "C1:ducts",
+        "C1:ceiling"
+      ]
+    },
+    {
+      "id": "C1.pull_required_mm",
+      "label": "同型號實際濾芯／交換芯所需抽拉行程",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-1／C1-N",
+      "candidate_model_field": "C1.model",
+      "value_received": false,
+      "affected_checks": [
+        "C1:pull"
+      ]
+    },
+    {
+      "id": "C1.pull_available_mm",
+      "label": "選定方向可提供的抽拉淨長",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-1／C1-N",
+      "value_received": false,
+      "affected_checks": [
+        "C1:pull"
+      ]
+    },
+    {
+      "id": "C1.removal_required_wh_mm",
+      "label": "含操作餘量的整機直進所需完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "C棟 floor-1／C1-N",
+      "candidate_model_field": "C1.model",
+      "value_received": false,
+      "affected_checks": [
+        "C1:removal"
+      ]
+    },
+    {
+      "id": "C1.removal_available_wh_mm",
+      "label": "扣框料後實際可拆完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "C棟 floor-1／C1-N",
+      "value_received": false,
+      "affected_checks": [
+        "C1:removal"
+      ]
+    },
+    {
+      "id": "C1.design_flow_m3_h",
+      "label": "該分區設計室外風量（每層不重複派給每房）",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "C棟 floor-1／C1-N",
+      "value_received": false,
+      "affected_checks": [
+        "C1:flow",
+        "C1:pressure"
+      ]
+    },
+    {
+      "id": "C1.fan_min_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最低風量",
+      "unit": "m3/h",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-1／C1-N",
+      "candidate_model_field": "C1.model",
+      "value_received": false,
+      "affected_checks": [
+        "C1:flow"
+      ]
+    },
+    {
+      "id": "C1.fan_max_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最高風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "C棟 floor-1／C1-N",
+      "candidate_model_field": "C1.model",
+      "value_received": false,
+      "affected_checks": [
+        "C1:flow"
+      ]
+    },
+    {
+      "id": "C1.required_pressure_pa",
+      "label": "設計路由及髒濾網所需機外靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-1／C1-N",
+      "value_received": false,
+      "affected_checks": [
+        "C1:pressure"
+      ]
+    },
+    {
+      "id": "C1.curve_flow_m3_h",
+      "label": "所提供風機曲線點對應風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "C棟 floor-1／C1-N",
+      "candidate_model_field": "C1.model",
+      "value_received": false,
+      "affected_checks": [
+        "C1:pressure"
+      ]
+    },
+    {
+      "id": "C1.curve_available_pressure_pa",
+      "label": "該相同風量曲線點的可用靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-1／C1-N",
+      "candidate_model_field": "C1.model",
+      "value_received": false,
+      "affected_checks": [
+        "C1:pressure"
+      ]
+    },
+    {
+      "id": "C2.model",
+      "label": "候選設備同一型號／版次",
+      "unit": "text",
+      "kind": "text",
+      "scope": "C棟 floor-2／C2-N",
+      "value_received": false,
+      "affected_checks": [
+        "C2:model"
+      ]
+    },
+    {
+      "id": "C2.installed_box_mm",
+      "label": "含接口／消音的主機安裝包絡[寬,深,高]，不含另列吊掛公差",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "C棟 floor-2／C2-N",
+      "candidate_model_field": "C2.model",
+      "value_received": false,
+      "affected_checks": [
+        "C2:machine",
+        "C2:ceiling"
+      ]
+    },
+    {
+      "id": "C2.available_box_mm",
+      "label": "該機位可用安裝淨包絡[寬,深,高]",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "C棟 floor-2／C2-N",
+      "value_received": false,
+      "affected_checks": [
+        "C2:machine"
+      ]
+    },
+    {
+      "id": "C2.beam_bottom_z_mm",
+      "label": "該段最低梁板底標高（本層完成地坪為0）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "C棟 floor-2／C2-N",
+      "value_received": false,
+      "affected_checks": [
+        "C2:ceiling"
+      ]
+    },
+    {
+      "id": "C2.ceiling_target_z_mm",
+      "label": "目標完成天花標高（同一地坪基準）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "C棟 floor-2／C2-N",
+      "value_received": false,
+      "affected_checks": [
+        "C2:ceiling"
+      ]
+    },
+    {
+      "id": "C2.duct_available_wh_mm",
+      "label": "四管路段可用管帶[寬,高]；不是房間走道寬",
+      "unit": "mm[W,H]",
+      "kind": "positive2",
+      "scope": "C棟 floor-2／C2-N",
+      "value_received": false,
+      "affected_checks": [
+        "C2:ducts",
+        "C2:ceiling"
+      ]
+    },
+    {
+      "id": "C2.pull_required_mm",
+      "label": "同型號實際濾芯／交換芯所需抽拉行程",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-2／C2-N",
+      "candidate_model_field": "C2.model",
+      "value_received": false,
+      "affected_checks": [
+        "C2:pull"
+      ]
+    },
+    {
+      "id": "C2.pull_available_mm",
+      "label": "選定方向可提供的抽拉淨長",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-2／C2-N",
+      "value_received": false,
+      "affected_checks": [
+        "C2:pull"
+      ]
+    },
+    {
+      "id": "C2.removal_required_wh_mm",
+      "label": "含操作餘量的整機直進所需完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "C棟 floor-2／C2-N",
+      "candidate_model_field": "C2.model",
+      "value_received": false,
+      "affected_checks": [
+        "C2:removal"
+      ]
+    },
+    {
+      "id": "C2.removal_available_wh_mm",
+      "label": "扣框料後實際可拆完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "C棟 floor-2／C2-N",
+      "value_received": false,
+      "affected_checks": [
+        "C2:removal"
+      ]
+    },
+    {
+      "id": "C2.design_flow_m3_h",
+      "label": "該分區設計室外風量（每層不重複派給每房）",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "C棟 floor-2／C2-N",
+      "value_received": false,
+      "affected_checks": [
+        "C2:flow",
+        "C2:pressure"
+      ]
+    },
+    {
+      "id": "C2.fan_min_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最低風量",
+      "unit": "m3/h",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-2／C2-N",
+      "candidate_model_field": "C2.model",
+      "value_received": false,
+      "affected_checks": [
+        "C2:flow"
+      ]
+    },
+    {
+      "id": "C2.fan_max_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最高風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "C棟 floor-2／C2-N",
+      "candidate_model_field": "C2.model",
+      "value_received": false,
+      "affected_checks": [
+        "C2:flow"
+      ]
+    },
+    {
+      "id": "C2.required_pressure_pa",
+      "label": "設計路由及髒濾網所需機外靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-2／C2-N",
+      "value_received": false,
+      "affected_checks": [
+        "C2:pressure"
+      ]
+    },
+    {
+      "id": "C2.curve_flow_m3_h",
+      "label": "所提供風機曲線點對應風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "C棟 floor-2／C2-N",
+      "candidate_model_field": "C2.model",
+      "value_received": false,
+      "affected_checks": [
+        "C2:pressure"
+      ]
+    },
+    {
+      "id": "C2.curve_available_pressure_pa",
+      "label": "該相同風量曲線點的可用靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-2／C2-N",
+      "candidate_model_field": "C2.model",
+      "value_received": false,
+      "affected_checks": [
+        "C2:pressure"
+      ]
+    },
+    {
+      "id": "C3.model",
+      "label": "候選設備同一型號／版次",
+      "unit": "text",
+      "kind": "text",
+      "scope": "C棟 floor-3／C3-R",
+      "value_received": false,
+      "affected_checks": [
+        "C3:model"
+      ]
+    },
+    {
+      "id": "C3.installed_box_mm",
+      "label": "含接口／消音的主機安裝包絡[寬,深,高]，不含另列吊掛公差",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "C棟 floor-3／C3-R",
+      "candidate_model_field": "C3.model",
+      "value_received": false,
+      "affected_checks": [
+        "C3:machine",
+        "C3:ceiling"
+      ]
+    },
+    {
+      "id": "C3.available_box_mm",
+      "label": "該機位可用安裝淨包絡[寬,深,高]",
+      "unit": "mm[W,D,H]",
+      "kind": "positive3",
+      "scope": "C棟 floor-3／C3-R",
+      "value_received": false,
+      "affected_checks": [
+        "C3:machine"
+      ]
+    },
+    {
+      "id": "C3.beam_bottom_z_mm",
+      "label": "該段最低梁板底標高（本層完成地坪為0）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "C棟 floor-3／C3-R",
+      "value_received": false,
+      "affected_checks": [
+        "C3:ceiling"
+      ]
+    },
+    {
+      "id": "C3.ceiling_target_z_mm",
+      "label": "目標完成天花標高（同一地坪基準）",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "C棟 floor-3／C3-R",
+      "value_received": false,
+      "affected_checks": [
+        "C3:ceiling"
+      ]
+    },
+    {
+      "id": "C3.duct_available_wh_mm",
+      "label": "四管路段可用管帶[寬,高]；不是房間走道寬",
+      "unit": "mm[W,H]",
+      "kind": "positive2",
+      "scope": "C棟 floor-3／C3-R",
+      "value_received": false,
+      "affected_checks": [
+        "C3:ducts",
+        "C3:ceiling"
+      ]
+    },
+    {
+      "id": "C3.pull_required_mm",
+      "label": "同型號實際濾芯／交換芯所需抽拉行程",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-3／C3-R",
+      "candidate_model_field": "C3.model",
+      "value_received": false,
+      "affected_checks": [
+        "C3:pull"
+      ]
+    },
+    {
+      "id": "C3.pull_available_mm",
+      "label": "選定方向可提供的抽拉淨長",
+      "unit": "mm",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-3／C3-R",
+      "value_received": false,
+      "affected_checks": [
+        "C3:pull"
+      ]
+    },
+    {
+      "id": "C3.removal_required_wh_mm",
+      "label": "含操作餘量的整機直進所需完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "C棟 floor-3／C3-R",
+      "candidate_model_field": "C3.model",
+      "value_received": false,
+      "affected_checks": [
+        "C3:removal"
+      ]
+    },
+    {
+      "id": "C3.removal_available_wh_mm",
+      "label": "扣框料後實際可拆完成淨孔[寬,深]",
+      "unit": "mm[W,D]",
+      "kind": "positive2",
+      "scope": "C棟 floor-3／C3-R",
+      "value_received": false,
+      "affected_checks": [
+        "C3:removal"
+      ]
+    },
+    {
+      "id": "C3.design_flow_m3_h",
+      "label": "該分區設計室外風量（每層不重複派給每房）",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "C棟 floor-3／C3-R",
+      "value_received": false,
+      "affected_checks": [
+        "C3:flow",
+        "C3:pressure"
+      ]
+    },
+    {
+      "id": "C3.fan_min_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最低風量",
+      "unit": "m3/h",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-3／C3-R",
+      "candidate_model_field": "C3.model",
+      "value_received": false,
+      "affected_checks": [
+        "C3:flow"
+      ]
+    },
+    {
+      "id": "C3.fan_max_flow_m3_h",
+      "label": "同型號／指定靜壓下可用最高風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "C棟 floor-3／C3-R",
+      "candidate_model_field": "C3.model",
+      "value_received": false,
+      "affected_checks": [
+        "C3:flow"
+      ]
+    },
+    {
+      "id": "C3.required_pressure_pa",
+      "label": "設計路由及髒濾網所需機外靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-3／C3-R",
+      "value_received": false,
+      "affected_checks": [
+        "C3:pressure"
+      ]
+    },
+    {
+      "id": "C3.curve_flow_m3_h",
+      "label": "所提供風機曲線點對應風量",
+      "unit": "m3/h",
+      "kind": "positive",
+      "scope": "C棟 floor-3／C3-R",
+      "candidate_model_field": "C3.model",
+      "value_received": false,
+      "affected_checks": [
+        "C3:pressure"
+      ]
+    },
+    {
+      "id": "C3.curve_available_pressure_pa",
+      "label": "該相同風量曲線點的可用靜壓",
+      "unit": "Pa",
+      "kind": "nonnegative",
+      "scope": "C棟 floor-3／C3-R",
+      "candidate_model_field": "C3.model",
+      "value_received": false,
+      "affected_checks": [
+        "C3:pressure"
+      ]
+    },
+    {
+      "id": "A1-front.opening_permitted",
+      "label": "此樓層／側向兩個候選口的開孔條件已有可用證據",
+      "unit": "boolean",
+      "kind": "boolean",
+      "scope": "A1-front指定位置，不套到其他樓層；填true不是工具核發合法開孔許可。",
+      "value_received": false,
+      "affected_checks": [
+        "A1-front:wall"
+      ]
+    },
+    {
+      "id": "A1-front.OA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "A1-front OA，本層完成地坪為0；需核定完整外罩寬度內的實牆。",
+      "value_received": false,
+      "affected_checks": [
+        "A1-front:OA"
+      ]
+    },
+    {
+      "id": "A1-front.OA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "A1-front OA",
+      "value_received": false,
+      "affected_checks": [
+        "A1-front:OA"
+      ]
+    },
+    {
+      "id": "A1-front.EA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "A1-front EA，本層完成地坪為0；需核定完整外罩寬度內的實牆。",
+      "value_received": false,
+      "affected_checks": [
+        "A1-front:EA"
+      ]
+    },
+    {
+      "id": "A1-front.EA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "A1-front EA",
+      "value_received": false,
+      "affected_checks": [
+        "A1-front:EA"
+      ]
+    },
+    {
+      "id": "A2-rear.opening_permitted",
+      "label": "此樓層／側向兩個候選口的開孔條件已有可用證據",
+      "unit": "boolean",
+      "kind": "boolean",
+      "scope": "A2-rear指定位置，不套到其他樓層；填true不是工具核發合法開孔許可。",
+      "value_received": false,
+      "affected_checks": [
+        "A2-rear:wall"
+      ]
+    },
+    {
+      "id": "A2-rear.OA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "A2-rear OA，本層完成地坪為0；需核定完整外罩寬度內的實牆。",
+      "value_received": false,
+      "affected_checks": [
+        "A2-rear:OA"
+      ]
+    },
+    {
+      "id": "A2-rear.OA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "A2-rear OA",
+      "value_received": false,
+      "affected_checks": [
+        "A2-rear:OA"
+      ]
+    },
+    {
+      "id": "A2-rear.EA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "A2-rear EA，本層完成地坪為0；需核定完整外罩寬度內的實牆。",
+      "value_received": false,
+      "affected_checks": [
+        "A2-rear:EA"
+      ]
+    },
+    {
+      "id": "A2-rear.EA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "A2-rear EA",
+      "value_received": false,
+      "affected_checks": [
+        "A2-rear:EA"
+      ]
+    },
+    {
+      "id": "A3-rear.opening_permitted",
+      "label": "此樓層／側向兩個候選口的開孔條件已有可用證據",
+      "unit": "boolean",
+      "kind": "boolean",
+      "scope": "A3-rear指定位置，不套到其他樓層；填true不是工具核發合法開孔許可。",
+      "value_received": false,
+      "affected_checks": [
+        "A3-rear:wall"
+      ]
+    },
+    {
+      "id": "A3-rear.OA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "A3-rear OA，本層完成地坪為0；需核定完整外罩寬度內的實牆。",
+      "value_received": false,
+      "affected_checks": [
+        "A3-rear:OA"
+      ]
+    },
+    {
+      "id": "A3-rear.OA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "A3-rear OA",
+      "value_received": false,
+      "affected_checks": [
+        "A3-rear:OA"
+      ]
+    },
+    {
+      "id": "A3-rear.EA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "A3-rear EA，本層完成地坪為0；需核定完整外罩寬度內的實牆。",
+      "value_received": false,
+      "affected_checks": [
+        "A3-rear:EA"
+      ]
+    },
+    {
+      "id": "A3-rear.EA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "A3-rear EA",
+      "value_received": false,
+      "affected_checks": [
+        "A3-rear:EA"
+      ]
+    },
+    {
+      "id": "B2-rear.opening_permitted",
+      "label": "此樓層／側向兩個候選口的開孔條件已有可用證據",
+      "unit": "boolean",
+      "kind": "boolean",
+      "scope": "B2-rear指定位置，不套到其他樓層；填true不是工具核發合法開孔許可。",
+      "value_received": false,
+      "affected_checks": [
+        "B2-rear:wall"
+      ]
+    },
+    {
+      "id": "B2-rear.OA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "B2-rear OA，本層完成地坪為0；需核定完整外罩寬度內的實牆。",
+      "value_received": false,
+      "affected_checks": [
+        "B2-rear:OA"
+      ]
+    },
+    {
+      "id": "B2-rear.OA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "B2-rear OA",
+      "value_received": false,
+      "affected_checks": [
+        "B2-rear:OA"
+      ]
+    },
+    {
+      "id": "B2-rear.EA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "B2-rear EA，本層完成地坪為0；需核定完整外罩寬度內的實牆。",
+      "value_received": false,
+      "affected_checks": [
+        "B2-rear:EA"
+      ]
+    },
+    {
+      "id": "B2-rear.EA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "B2-rear EA",
+      "value_received": false,
+      "affected_checks": [
+        "B2-rear:EA"
+      ]
+    },
+    {
+      "id": "B2-front.opening_permitted",
+      "label": "此樓層／側向兩個候選口的開孔條件已有可用證據",
+      "unit": "boolean",
+      "kind": "boolean",
+      "scope": "B2-front指定位置，不套到其他樓層；填true不是工具核發合法開孔許可。",
+      "value_received": false,
+      "affected_checks": [
+        "B2-front:wall"
+      ]
+    },
+    {
+      "id": "B2-front.OA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "B2-front OA，本層完成地坪為0；需核定完整外罩寬度內的實牆。",
+      "value_received": false,
+      "affected_checks": [
+        "B2-front:OA"
+      ]
+    },
+    {
+      "id": "B2-front.OA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "B2-front OA",
+      "value_received": false,
+      "affected_checks": [
+        "B2-front:OA"
+      ]
+    },
+    {
+      "id": "B2-front.EA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "B2-front EA，本層完成地坪為0；需核定完整外罩寬度內的實牆。",
+      "value_received": false,
+      "affected_checks": [
+        "B2-front:EA"
+      ]
+    },
+    {
+      "id": "B2-front.EA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "B2-front EA",
+      "value_received": false,
+      "affected_checks": [
+        "B2-front:EA"
+      ]
+    },
+    {
+      "id": "B3-rear.opening_permitted",
+      "label": "此樓層／側向兩個候選口的開孔條件已有可用證據",
+      "unit": "boolean",
+      "kind": "boolean",
+      "scope": "B3-rear指定位置，不套到其他樓層；填true不是工具核發合法開孔許可。",
+      "value_received": false,
+      "affected_checks": [
+        "B3-rear:wall"
+      ]
+    },
+    {
+      "id": "B3-rear.OA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "B3-rear OA，本層完成地坪為0；需核定完整外罩寬度內的實牆。",
+      "value_received": false,
+      "affected_checks": [
+        "B3-rear:OA"
+      ]
+    },
+    {
+      "id": "B3-rear.OA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "B3-rear OA",
+      "value_received": false,
+      "affected_checks": [
+        "B3-rear:OA"
+      ]
+    },
+    {
+      "id": "B3-rear.EA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "B3-rear EA，本層完成地坪為0；需核定完整外罩寬度內的實牆。",
+      "value_received": false,
+      "affected_checks": [
+        "B3-rear:EA"
+      ]
+    },
+    {
+      "id": "B3-rear.EA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "B3-rear EA",
+      "value_received": false,
+      "affected_checks": [
+        "B3-rear:EA"
+      ]
+    },
+    {
+      "id": "B3-front.opening_permitted",
+      "label": "此樓層／側向兩個候選口的開孔條件已有可用證據",
+      "unit": "boolean",
+      "kind": "boolean",
+      "scope": "B3-front指定位置，不套到其他樓層；填true不是工具核發合法開孔許可。",
+      "value_received": false,
+      "affected_checks": [
+        "B3-front:wall"
+      ]
+    },
+    {
+      "id": "B3-front.OA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "B3-front OA，本層完成地坪為0；需核定完整外罩寬度內的實牆。",
+      "value_received": false,
+      "affected_checks": [
+        "B3-front:OA"
+      ]
+    },
+    {
+      "id": "B3-front.OA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "B3-front OA",
+      "value_received": false,
+      "affected_checks": [
+        "B3-front:OA"
+      ]
+    },
+    {
+      "id": "B3-front.EA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "B3-front EA，本層完成地坪為0；需核定完整外罩寬度內的實牆。",
+      "value_received": false,
+      "affected_checks": [
+        "B3-front:EA"
+      ]
+    },
+    {
+      "id": "B3-front.EA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "B3-front EA",
+      "value_received": false,
+      "affected_checks": [
+        "B3-front:EA"
+      ]
+    },
+    {
+      "id": "C1-front.opening_permitted",
+      "label": "此樓層／側向兩個候選口的開孔條件已有可用證據",
+      "unit": "boolean",
+      "kind": "boolean",
+      "scope": "C1-front指定位置，不套到其他樓層；填true不是工具核發合法開孔許可。",
+      "value_received": false,
+      "affected_checks": [
+        "C1-front:wall"
+      ]
+    },
+    {
+      "id": "C1-front.OA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "C1-front OA，本層完成地坪為0；需核定完整外罩寬度內的實牆。",
+      "value_received": false,
+      "affected_checks": [
+        "C1-front:OA"
+      ]
+    },
+    {
+      "id": "C1-front.OA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "C1-front OA",
+      "value_received": false,
+      "affected_checks": [
+        "C1-front:OA"
+      ]
+    },
+    {
+      "id": "C1-front.EA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "C1-front EA，本層完成地坪為0；需核定完整外罩寬度內的實牆。",
+      "value_received": false,
+      "affected_checks": [
+        "C1-front:EA"
+      ]
+    },
+    {
+      "id": "C1-front.EA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "C1-front EA",
+      "value_received": false,
+      "affected_checks": [
+        "C1-front:EA"
+      ]
+    },
+    {
+      "id": "C2-front.opening_permitted",
+      "label": "此樓層／側向兩個候選口的開孔條件已有可用證據",
+      "unit": "boolean",
+      "kind": "boolean",
+      "scope": "C2-front指定位置，不套到其他樓層；填true不是工具核發合法開孔許可。",
+      "value_received": false,
+      "affected_checks": [
+        "C2-front:wall"
+      ]
+    },
+    {
+      "id": "C2-front.OA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "C2-front OA，本層完成地坪為0；需核定完整外罩寬度內的實牆。",
+      "value_received": false,
+      "affected_checks": [
+        "C2-front:OA"
+      ]
+    },
+    {
+      "id": "C2-front.OA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "C2-front OA",
+      "value_received": false,
+      "affected_checks": [
+        "C2-front:OA"
+      ]
+    },
+    {
+      "id": "C2-front.EA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "C2-front EA，本層完成地坪為0；需核定完整外罩寬度內的實牆。",
+      "value_received": false,
+      "affected_checks": [
+        "C2-front:EA"
+      ]
+    },
+    {
+      "id": "C2-front.EA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "C2-front EA",
+      "value_received": false,
+      "affected_checks": [
+        "C2-front:EA"
+      ]
+    },
+    {
+      "id": "C3-front.opening_permitted",
+      "label": "此樓層／側向兩個候選口的開孔條件已有可用證據",
+      "unit": "boolean",
+      "kind": "boolean",
+      "scope": "C3-front指定位置，不套到其他樓層；填true不是工具核發合法開孔許可。",
+      "value_received": false,
+      "affected_checks": [
+        "C3-front:wall"
+      ]
+    },
+    {
+      "id": "C3-front.OA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "C3-front OA，本層完成地坪為0；需核定完整外罩寬度內的實牆。",
+      "value_received": false,
+      "affected_checks": [
+        "C3-front:OA"
+      ]
+    },
+    {
+      "id": "C3-front.OA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "C3-front OA",
+      "value_received": false,
+      "affected_checks": [
+        "C3-front:OA"
+      ]
+    },
+    {
+      "id": "C3-front.EA.solid_z_interval_mm",
+      "label": "既定候選XY處實牆可用高位區間[下界,上界]",
+      "unit": "mm[low,high]",
+      "kind": "interval",
+      "scope": "C3-front EA，本層完成地坪為0；需核定完整外罩寬度內的實牆。",
+      "value_received": false,
+      "affected_checks": [
+        "C3-front:EA"
+      ]
+    },
+    {
+      "id": "C3-front.EA.required_opening_height_mm",
+      "label": "含外罩／框及邊界要求的安裝孔高",
+      "unit": "mm",
+      "kind": "positive",
+      "scope": "C3-front EA",
+      "value_received": false,
+      "affected_checks": [
+        "C3-front:EA"
+      ]
+    }
+  ],
+  "summary": {
+    "pending": 101
+  },
+  "adopted": false,
+  "selected_product": null,
+  "primary_or_3d_written": false,
+  "professional_approval": "unknown",
+  "actual_integration_performed": false,
+  "browser_qa": "not-run",
+  "protected_controls_unchanged": 149,
+  "retained_b_entries": [
+    {
+      "id": "b-rear-split",
+      "states": [
+        "daily",
+        "ritual",
+        "carry"
+      ],
+      "floor1_hashes": {
+        "daily": "09d63d031cbe94fced1c5f500237b4c376633783cf8e4c31b51e10a6747e1c12",
+        "ritual": "47b857a2dfb48e3ab2d52c78e05fdec6470c91a78934267b2a4f2565d5b8c535",
+        "carry": "09d63d031cbe94fced1c5f500237b4c376633783cf8e4c31b51e10a6747e1c12"
+      }
+    },
+    {
+      "id": "b-front-split",
+      "states": [
+        "daily",
+        "ritual",
+        "carry"
+      ],
+      "floor1_hashes": {
+        "daily": "fbe11519633188d7bdc4dd29d1e94b2dbc71d1e6d90f2dcd779a80011c278d0e",
+        "ritual": "39ed9cae06fc20a82dd4b0d6d0eb6c11c42fc106122552411816ad10fc75bf61",
+        "carry": "39d1140615b0b4a9e945208e8b21eb9558fec57cceaf78f54a0cf641e0c39515"
+      }
+    }
+  ],
+  "usage": "分批填條件即可獨立重算；缺資料不是0或失敗。數值相容不是施工、產品、法規、風水或照護核可。",
+  "source_hashes": {
+    "inputs/abc-fresh-air-planning.json": "0f31f0772fd52f15c35a1da81bb6a94cd7a91746cc3b9b0b77cb12da426a7a2b",
+    "structured/coordination/abc-fresh-air-detail-v1/review.json": "f0dcb5b60302df445d95f7990388aff3d1c9189ba96437146ac3265d7b1613b0",
+    "inputs/abc-fresh-air-detail.json": "7a0967c5cff5eaa507e0a420a9c1e694255562ccdc69f511ae801472649a61ec",
+    "structured/coordination/abc-fresh-air-layout-v1/review.json": "f6c95a847f51b8897dc8dc18f96520c18022749a8261ccfda6332e5ea6dd5ed9",
+    "inputs/abc-fresh-air-layout-options.json": "244a19fb3e44c81d6af95e8ee354836ca1f777cd7d2559cd312812ac6cb94ed7",
+    "structured/coordination/abc-fresh-air-v1/review.json": "a3e7e7ac740f6d08261bc90bdb9c11e2ca7bde0658026129d291ec0bc4c4a2e3",
+    "inputs/abc-fresh-air-basis.json": "67cc59dd280b535e984f36008e445c4cb539b5b456070725cc54f6632cdab803",
+    "structured/candidates/kaohsiung-house-options/c-stair-integration.json": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+    "structured/coordination/b-ventilation-detail-v1/review.json": "1803c89469938a0134c9c7bab814c2c1e28b371a4180318620912fed9abb9337",
+    "structured/coordination/b-claude-round3-v1/review.json": "00baf0b3950e2593361e91698e4d72ac33e384edadd6da5a7d31b62e087b6223",
+    "structured/coordination/b-fengshui-strict-v1/review.json": "e595361db8281be6daf361251afe0187824c7bcb99d556f930cf90f15bf2f954",
+    "inputs/references/abc-fresh-air-owner-20261106.json": "20c17bfb3df2c08a0a822412ae78084f6d7a9809df84b0cb95217baf3dfde4b3",
+    "inputs/references/abc-fresh-air-research-20261106.json": "1eac844538fa396d2ae23985b3b864781d95b2bd7c2989755f3886d52597c813",
+    "inputs/b-ventilation-detail.json": "523b9c931c4f36caea62072031fe2d3c82cbea852d4ddf33e86827443b3c10f8",
+    "structured/coordination/b-bath-ventilation-v1/review.json": "f89065dea268532b9c308438a896ce417d55f02fc2ec7224e70c096894094bdf",
+    "structured/coordination/b-bath-ventilation-v1/artifact-manifest.json": "b07fff75f64f03b4cdfdd33170537241f5c47c7fdff432cefc2aa872e981d683",
+    "inputs/references/b-bath-ventilation-static-review-20261106.json": "d7c647da9a03a633a69292289dbf3f18ad3b0d92d1918ee0e21bdc72c0bcfa40",
+    "inputs/b-bath-ventilation.json": "42abe063c3503f07ac492cf42c6745bbbb075d8de7f0eb330cc324faaad2930c",
+    "structured/coordination/b-claude-round3-v1/artifact-manifest.json": "ad7327b07ef803ab57cf7390f84a3919da4165124a84e33288953981fa591062",
+    "inputs/references/b-owner-ritual-answers-20261106.json": "736f5a477ce1fbfd8e1bf460ecf49f9043a83635201d1598e3e1842e6460ddb9",
+    "inputs/b-claude-round3.json": "25c006e1d7741395f53a8ae369ac905f7956ca0a3f8f7d2a94cc1625137fbc6f",
+    "structured/coordination/b-claude-crosscheck-v1/review.json": "b2a3604da09beaf1ebb4f8ed50d0525004cf6592ede2bde756eb05ae9ada95a4",
+    "structured/coordination/b-claude-crosscheck-v1/artifact-manifest.json": "32940e5ac7474e21fbe521a7a99d4c259b2bbaf9fcaa2e33acf67a0a5bad8197",
+    "inputs/b-claude-crosscheck.json": "d49320cef10eed1df0ece76c9e0ba17107c9d32630c25da26c48bf2350cc2a7d",
+    "inputs/references/b-claude-response-v2-provenance.json": "2c7c0cdc880c1d78a910a170edcfdc6b59c20865ae81fd6b041c72816656b32b",
+    "inputs/references/b-claude-response-v2-transcript-20261105.md": "67ad0a230f18b2495ebbbdc7f9c2986bc3a72eaf48eea846af3640a621bf51a7",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "house_design/b_claude_crosscheck.py": "9b157330308ec83bfc91d219d0bd0c632fd0ed0566e85b243209affa9a1daf20",
+    "house_design/b_fengshui_strict.py": "7f73ab7b7d84e7af976357a11cbf5ec78bb9550956b24973361a0a1dc6c6a2ab",
+    "house_design/abc_next_improvements.py": "9756b69f651f8431d361ffdc6f678e59edc1c3af0e9d8e9db782091366166568",
+    "house_design/c_coordination.py": "6d2c336496e0f1cabfabce3f3287b28ceecb13088d78f8cb0137d9ce14b689ff",
+    "house_design/contracts.py": "2888419d49e8d8dbe8b8e99f6b8451363cd9020821c7fe3e703ab09779e202c3",
+    "scripts/export_b_claude_crosscheck.py": "c6bf43bf9b8018f74042ae3f64ef60483d3bde13898c448f2d82cef848890d3f",
+    "scripts/export_b_fengshui_strict.py": "b097e116689af7ae1f074a1482adfb895a44d32f790fabe6386cdeafcb88a67f",
+    "scripts/export_abc_next_improvements.py": "875c13027466776a6e1661dae369e45c823c661c5e0369d8ee95b6535420e701",
+    "inputs/requirements.json": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066",
+    "Docs/claude-b-fengshui-followup-v3.md": "ce877ccd31a13e8757b39abef592ead3b78c6117ff2214d90c2b97f7696ec1ea",
+    "scripts/review_b_fengshui_with_claude.py": "dc6b4b855656cbdee16990857abbb44b1f471a720f6799cd9bdee96f71f58b55",
+    "inputs/references/b-claude-round3-provenance-20261106.json": "215a2f40a924a0f3ddd8a1e5a8dfd4da1807175f79310755ff74f8c2a29b4a64",
+    "inputs/references/b-claude-round3-response-20261106.md": "7ec4b66feb30aed715aaef272678e819e2e685342a64f4c24a5b22c0410d159f",
+    "house_design/b_claude_round3.py": "040a7b75fc604dc147b471800ae4c1c8a57935182dcceea26591514b106ec9d0",
+    "scripts/export_b_claude_round3.py": "be59ca0ded73f3f6a09e40580191eb2375849f3699b977dde887199e47a45e1d",
+    "Docs/b-claude-round3-v1.md": "a9a6fe163037a967962723738ca1535664fc7a54707f101af50066e0c35c68ff",
+    "house_design/b_bath_ventilation.py": "fc7375cbb054852507679e0821110dcbc369a5df16c4dce3876149e0fee0a4cb",
+    "scripts/export_b_bath_ventilation.py": "d78ba0730232507e9534d001759d30d1932f9654e758d3f09cc1238f0ca4da8b",
+    "Docs/b-bath-ventilation-v1.md": "bdc6c635a7c5850c446288c77db22d8b2bf9ea790486ea357489fe46a9606e73",
+    "house_design/b_ventilation_detail.py": "f676016d682e9c961b72000320d20f5e43dcba23294ca1aae3bab47768ff8462",
+    "scripts/export_b_ventilation_detail.py": "d7cef1efba0ca46e6a787895a828f8534654e4ff8a423c95bb1d50a9c8ece534",
+    "Docs/b-ventilation-detail-v1.md": "806a9f37f045e3c2e324c284e995131fc427885a7c0871c2c43fdb859327551d",
+    "house_design/abc_fresh_air.py": "4993565438bff73dbc59b6bf4dc9647563ab040319ac8e11e7a7c45dd1cae6b7",
+    "scripts/export_abc_fresh_air.py": "e49a8803e5b39776f44e54497f8102b14782ff5f72842bf420de6ec34f1d1654",
+    "Docs/abc-fresh-air-v1.md": "ca3d28d1e0b10fc82d555222845f29355561417e476002ba68181e7b49e1c407",
+    "house_design/abc_fresh_air_layout.py": "b0d0a667d56d9c0c912e77de3a0fc40ed92df9032fcf012992e6782fa5749a8b",
+    "scripts/export_abc_fresh_air_layout.py": "d53a8be17859f95caa84e8e99a7d20bfac0f7088a4651de83acf9c8a8cb1d413",
+    "Docs/abc-fresh-air-layout-v1.md": "5c151d6b0b01484fd081748722c8e039ce1266bbb1e05b801cc96dd3bfcc7fda",
+    "inputs/references/abc-fresh-air-detail-research-20261106.json": "60110088e55deef1182004237af6b0306930b74c955bd15106eb47972b18d7b7",
+    "house_design/abc_fresh_air_detail.py": "27759888916cfbfb56bd28497a27d1c55e11623b12108c435c906f710b3199f2",
+    "scripts/export_abc_fresh_air_detail.py": "56e37663a2dd63d315c5f3feeabd049a8df6a803c1435be956a3947bc21029e8",
+    "Docs/abc-fresh-air-detail-v1.md": "896041fc2ba0b54228d7ead990ad80e10d2a8e877b731aa3e618b5c6a25d7d93",
+    "inputs/references/abc-conditional-planning-owner-20261106.json": "a11be1ea7fc65c4611f256403d153bcbbdd581fa6b79a0d844a9134e457b4e60",
+    "house_design/abc_fresh_air_planning.py": "4c49d84b493b7ee44c31ced4f55d41944b0fa106288eab3018578c6debb67c41",
+    "scripts/export_abc_fresh_air_planning.py": "48d92e8babf4f45671c1a1fbf69d7c9b6d26ab3bde786c585249658da4b81506",
+    "Docs/abc-conditional-planning-v1.md": "8220a9e1483b4075c999b754677f97dc7fe1755d2ae2439c5652c8ceba444f6b"
+  },
+  "report_hash": "53e5675008203b12efb5281c2808cebe2a9627559e2cd976a8eac4126812fd0c"
+}

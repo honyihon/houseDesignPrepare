@@ -1,0 +1,138 @@
+{
+  "schema": "house-abc-fresh-air-layout-static-review-v1",
+  "date": "2026-11-06",
+  "report_path": "structured/coordination/abc-fresh-air-layout-v1/review.json",
+  "report_hash": "1b9c1877c9e12781f8f9ec3369adb8f91555b09c2f8bab3159f4088fe0897a59",
+  "report_sha256": "f6c95a847f51b8897dc8dc18f96520c18022749a8261ccfda6332e5ea6dd5ed9",
+  "artifact_manifest_path": "structured/coordination/abc-fresh-air-layout-v1/artifact-manifest.json",
+  "artifact_manifest_sha256": "1e3bc203fe9d413fa88cf61ca00f7ec452ceff5f27a7f54cf977a0da765f6032",
+  "source_binding": {
+    "full_source_hashes_at": "structured/coordination/abc-fresh-air-layout-v1/review.json#/source_hashes",
+    "full_source_hash_count": 51,
+    "all_source_bytes_match": true,
+    "all_ten_manifest_artifact_bytes_match": true,
+    "interpretation": "本紀錄以完整review.json與manifest的SHA256綁定全部51項來源及10件有雜湊的產物；不是只檢查以下摘錄。產物總數11件包含manifest本身。來源變更後不得沿用本次passed。"
+  },
+  "source_hashes_excerpt": {
+    "inputs/abc-fresh-air-layout-options.json": "244a19fb3e44c81d6af95e8ee354836ca1f777cd7d2559cd312812ac6cb94ed7",
+    "structured/coordination/abc-fresh-air-v1/review.json": "a3e7e7ac740f6d08261bc90bdb9c11e2ca7bde0658026129d291ec0bc4c4a2e3",
+    "structured/candidates/kaohsiung-house-options/c-stair-integration.json": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+    "house_design/abc_fresh_air_layout.py": "b0d0a667d56d9c0c912e77de3a0fc40ed92df9032fcf012992e6782fa5749a8b",
+    "scripts/export_abc_fresh_air_layout.py": "d53a8be17859f95caa84e8e99a7d20bfac0f7088a4651de83acf9c8a8cb1d413",
+    "Docs/abc-fresh-air-layout-v1.md": "5c151d6b0b01484fd081748722c8e039ce1266bbb1e05b801cc96dd3bfcc7fda",
+    "tests/test_abc_fresh_air_layout.py": "16fbf690d0a9baf26366999154ee580c720944cc240a597a376cd3a4cc2f168d"
+  },
+  "checks": [
+    {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_abc_fresh_air_layout.py",
+      "status": "passed",
+      "tests_passed": 16,
+      "reported_seconds": 0.73,
+      "scope": "單一新包的小範圍測試；不是全套pytest或場景runtime。"
+    },
+    {
+      "command": "timeout 20s .venv/bin/ruff check house_design/abc_fresh_air_layout.py scripts/export_abc_fresh_air_layout.py tests/test_abc_fresh_air_layout.py",
+      "status": "passed"
+    },
+    {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_abc_fresh_air_layout.py --check",
+      "status": "passed",
+      "artifacts": 11,
+      "unit_reservations": 8,
+      "partial_corridors": 5,
+      "rejected_central_shaft_sites": 3,
+      "protected_controls_unchanged": 149
+    },
+    {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_abc_fresh_air.py --check",
+      "status": "passed",
+      "scope": "前批10件通風基準產物與來源仍一致；沒有重生上游3D或重跑前批全套測試。"
+    },
+    {
+      "command": "timeout 20s git diff --check",
+      "status": "passed",
+      "note": "Git另提示scripts/README.md既有CRLF於後續Git操作可能轉為LF；未做全檔換行轉換。"
+    },
+    {
+      "method": "20秒內Node唯讀核對來源／產物SHA256及新增導覽連結存在性",
+      "status": "passed",
+      "source_hashes_checked": 51,
+      "artifact_hashes_checked": 10,
+      "new_navigation_links_checked": 8
+    }
+  ],
+  "static_previews": [
+    {
+      "building": "A",
+      "source_svg": "structured/coordination/abc-fresh-air-layout-v1/A-reservations.svg",
+      "source_svg_sha256": "ae071f9724ab37d7e1fd87d6bf31586c4a8747e8e9a559b671f8404e6a8ef557",
+      "temporary_preview_path": "/tmp/house-abc-fresh-air-layout.9HBP3f/A-reservations.png",
+      "preview_sha256": "52fbf0b57c32c5047846527f2064fc01e4b061dafa53640cb6fd1726044d166d",
+      "pixels": [1000, 786],
+      "visually_reviewed": true,
+      "observation": "限定像素靜態目視未見明顯裁切或文字覆蓋；1F／2F機位、局部管帶、中央試點與檢修限制分開標示。縮圖不證明逐毫米尺寸或實物安裝。"
+    },
+    {
+      "building": "B",
+      "source_svg": "structured/coordination/abc-fresh-air-layout-v1/B-reservations.svg",
+      "source_svg_sha256": "6edac0a3214307c273b272d41785a54da02eb25b9e96d6a14a0a718da08f5081",
+      "temporary_preview_path": "/tmp/house-abc-fresh-air-layout.9HBP3f/B-reservations.png",
+      "preview_sha256": "5165ff0b78cf3dcf087a241ad4df2d2d7598b966b5dd039d1717aebb97eb3d1a",
+      "pixels": [1000, 786],
+      "visually_reviewed": true,
+      "observation": "限定像素靜態目視未見明顯裁切或文字覆蓋；後主臥候選與前側服務缺口及宗教投影限制保留。未完成前起居／閱讀配管，不以縮圖當宗教核可。"
+    },
+    {
+      "building": "C",
+      "source_svg": "structured/coordination/abc-fresh-air-layout-v1/C-reservations.svg",
+      "source_svg_sha256": "82b3e2475215112f035f8bda2488c795d0aa8074ff53285a1224d8db967fbe28",
+      "temporary_preview_path": "/tmp/house-abc-fresh-air-layout.9HBP3f/C-reservations.png",
+      "preview_sha256": "46679e057206cfb5c65b4ca83d34e748a4ba0ed2e2890a130b07c79df55671bc",
+      "pixels": [1000, 786],
+      "visually_reviewed": true,
+      "observation": "限定像素靜態目視未見明顯裁切或文字覆蓋；1F餐區右側機位、左側避梯管帶與2F機位可辨，檢修抽換／不可踩家具及關門回風限制仍在圖內。機位地面架梯可能占餐區通道，未核安全性。"
+    }
+  ],
+  "preview_limits": {
+    "preview_count": 3,
+    "maximum_preview_pixels": [1000, 786],
+    "svg_canvas": [1400, 1100],
+    "temporary_files_are_not_durable_artifacts": true,
+    "browser_visual_review": "not-run",
+    "html_visual_review": "not-run",
+    "webgl_runtime": "not-run"
+  },
+  "navigation_hashes": {
+    "Docs/project-status-v1.md": "10f0fa6e139556c17aa6f7ecdc0907bb886950b00a3f017f7f923235b3ca652e",
+    "Docs/coordination-review.md": "e5a710f24570529d32e3b9a0074de9e7231ecfd742b275fd6625b61d6d3baf30",
+    "scripts/README.md": "67a7dcffec45dc1a5cd74ba4bc73442901d3206be80790728f90fbebec2f4550"
+  },
+  "protected_scope": {
+    "original_abc_and_current_3d_edited": false,
+    "protected_controls_unchanged": 149,
+    "b_front_and_rear_three_state_versions_retained": true,
+    "c_closable_partitions_and_single_2f_washer_retained": true,
+    "current_third_floor_uses_require_ventilation_at_commissioning": true
+  },
+  "limitations": [
+    "8處機位不是購買8台；機型、實際台數、價格及正式風量未選。",
+    "5條500mm寬管帶只有局部同層XY檢查；經冰箱、沙發或衣櫃上方仍待實際高度剖面。",
+    "三個中央管井試點不保留，不代表其他集中系統不能成立。",
+    "B前側起居／閱讀、各房關門分支及OA／EA合法室外開孔仍未排完。",
+    "1260×700mm可拆面板只作名義比較，框料／手部／公差／整機運出未核；不能當已合格檢修孔。",
+    "未做本回合商品市場、型號施工手冊或價格核驗；參考本體尺寸只來自前批封存尺寸例。",
+    "程式／靜態目視通過不是法規、結構、消防、照護、風水、搬運、產品或施工簽證。"
+  ],
+  "approvals": {
+    "layout_adopted": false,
+    "product_selected": false,
+    "full_mep_fit_verified": false,
+    "legal": "unknown",
+    "fire": "unknown",
+    "structure": "unknown",
+    "care": "unknown",
+    "religious": "unknown",
+    "transport": "unknown",
+    "installation": "unknown"
+  }
+}

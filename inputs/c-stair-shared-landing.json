@@ -1,0 +1,52 @@
+{
+  "schema": "house-c-stair-shared-landing-v1",
+  "status": "bounded-detail-pending-architect-review",
+  "authorization": "2026-11-04屋主要求依建議細排4m樓高、24級、270mm踏面，保留公共通道與孝親房／套衛，250mm踏面仍另案保留。",
+  "base_report": "structured/candidates/kaohsiung-house-options/review.json",
+  "base_report_sha256": "84f81465f280ec64931d29e49234b1dbcafc6b0b93a20b2a33f683e14f164fdf",
+  "option": "c-split",
+  "state": "daily",
+  "first_storey_mm": 4000,
+  "first_stair": {
+    "risers": 24,
+    "tread_mm": 270,
+    "flight_width_mm": 1000,
+    "landing_depth_mm": 1000,
+    "footprint_mm": [3720, 9030, 2200, 4700],
+    "departure_offset_mm": 730,
+    "middle_landing_mm": 1000
+  },
+  "headroom_proxy": {
+    "illustrative_structure_depth_mm": 150,
+    "coordination_target_mm": 2000,
+    "note": "僅離散踏步中心與既列梯面／平台的垂直距離；不含實際斜梯板、梁、門楣、管線或完成面，2000mm為協調目標，不是法規簽證。"
+  },
+  "front_partition_comparison": {
+    "status": "owner-selected-development-pending-professional-review",
+    "selected_option": "forward-closing-door",
+    "owner_confirmation": {
+      "date": "2026-11-04",
+      "quote": "前置可關門版 可以接受",
+      "scope": "C棟前置分隔配置深化方向；非產品選定、整棟採用或專業核可"
+    },
+    "plane_y_mm": 8550,
+    "partition_thickness_budget_mm": 100,
+    "nominal_opening_mm": 1200,
+    "approach_depth_proxy_mm": 900,
+    "approach_side_budget_mm": 100,
+    "floors": [
+      {"floor": "floor-1", "opening_x_mm": [2900, 4100], "sliding_parking_x_mm": [4100, 5300]},
+      {"floor": "floor-2", "opening_x_mm": [3200, 4400], "sliding_parking_x_mm": [4400, 5600]}
+    ],
+    "note": "屋主已接受前置可關門作深化方向，開放版保留比較；1200是名義開口，實際淨寬、門扇厚度、密封、救援、門框與無門檻產品均未選定。門片停放在門線內側示意，不作防火或隔音門認證。"
+  },
+  "door_fit_review": {
+    "clear_width_target_mm": 900,
+    "total_frame_stop_and_overlap_sensitivity_mm": [150, 200, 250, 300, 350],
+    "track_and_leaf_depth_sensitivity_mm": [80, 100, 120, 150, 180, 200, 220],
+    "leaf_width_sensitivity_mm": [1200, 1300, 1400, 1500, 1600],
+    "parking_corner_budget_mm": 100,
+    "note": "純幾何敏感度，不是實際門組尺寸或合格證明；保留原60mm平台前餘量作同條件比較，產品未知，不降低900mm目標。"
+  },
+  "professional_approval": "unknown"
+}

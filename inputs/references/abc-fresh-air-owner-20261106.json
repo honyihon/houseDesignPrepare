@@ -1,0 +1,46 @@
+{
+  "schema": "house-abc-fresh-air-owner-basis-v1",
+  "date": "2026-11-06",
+  "source": "owner-conversation",
+  "system_statement_exact": "下一步 我三棟都會裝全熱交換 至少也會用新風機",
+  "occupancy_statement_exact": "A 1f 2人 2f 2人 B 1f 有燒香 需要通風 2f 2人 C 1f 2人 2f 1人  1f 2f 經常睡人 可以思考不裝會後悔之情況",
+  "confirmed_requirement": {
+    "buildings": [
+      "A",
+      "B",
+      "C"
+    ],
+    "preferred_system": "energy-recovery-ventilation",
+    "minimum_fallback": "mechanical-filtered-outdoor-air-with-designed-exhaust-and-transfer",
+    "mechanical_outdoor_air_required": true,
+    "frequent_sleeping_floors": [
+      "floor-1",
+      "floor-2"
+    ],
+    "floor3_future_use_not_cancelled": true
+  },
+  "occupancy_by_building": {
+    "A": {
+      "floor-1": 2,
+      "floor-2": 2,
+      "floor-3": null
+    },
+    "B": {
+      "floor-1": null,
+      "floor-2": 2,
+      "floor-3": null,
+      "floor1_incense": true
+    },
+    "C": {
+      "floor-1": 2,
+      "floor-2": 1,
+      "floor-3": null
+    }
+  },
+  "unknowns": [
+    "三樓實際人數與使用頻率",
+    "B1祭祀人數、香火頻率與局部排氣量",
+    "實際產品、台數、管路、機電及法規核可"
+  ],
+  "scope": "確認通風需求與已述常住人數；不等於採用現有無窗公衛、縮減面積、實機或任何比較格局。"
+}

@@ -1,0 +1,61 @@
+{
+  "schema": "house-abc-fresh-air-layout-options-v1",
+  "date": "2026-11-06",
+  "parent_report": "structured/coordination/abc-fresh-air-v1/review.json",
+  "parent_file_sha256": "a3e7e7ac740f6d08261bc90bdb9c11e2ca7bde0658026129d291ec0bc4c4a2e3",
+  "parent_report_hash": "7f0687eac7983425b5307f04ba6e813f3bb7c46acddba7914f7b137e6af5428d",
+  "protected_controls": "inputs/abc-next-protected-controls.json",
+  "scope": "independent-physical-reservation-comparison-not-routed-mep",
+  "adopted": false,
+  "selected_product": null,
+  "planning_envelope": {
+    "unselected_reference_body_mm": [1230, 637, 220],
+    "reference_status": "archived-official-size-example-only-not-current-selection",
+    "reference_source": "inputs/references/abc-fresh-air-research-20261106.json",
+    "unit_and_connections_mm": [1600, 1000, 450],
+    "removal_panel_nominal_mm": [1260, 700],
+    "service_floor_rect_same_as_overhead": true,
+    "ceiling_finished_z_mm": null,
+    "filter_pull_direction": null,
+    "full_body_replacement_verified": false,
+    "meaning": "自行加大的試排預算，不是廠商安裝最小值；四接口、消音、濾網抽拉與整機移出仍須商品剖面。"
+  },
+  "duct_budgets": {
+    "floor_pair": {"inner_diameter_mm": 125, "insulation_radial_mm": 25, "pair_gap_mm": 50, "edge_mm": 50, "width_mm": 500, "height_mm": 300},
+    "central_pair": {"inner_diameter_mm": 150, "insulation_radial_mm": 25, "pair_gap_mm": 50, "edge_mm": 50, "width_mm": 550, "height_mm": 300},
+    "shaft_lining_each_side_mm": 50,
+    "meaning": "兩條各自密閉的送／回風管共用協調帶，不是共用空氣通道；口徑、保溫厚度及操作風量均未選型。"
+  },
+  "units": [
+    {"id": "A1-N", "building": "A", "floor": "floor-1", "room": "living", "rect_mm": [2500, 6500, 1600, 1000], "phase": "install-now", "note": "客餐天花局部候選，不在床／MDF／梯下；檢修時客餐需局部清空。"},
+    {"id": "A2-N", "building": "A", "floor": "floor-2", "room": "rear-hall", "rect_mm": [2500, 10050, 1600, 1000], "phase": "install-now", "note": "後梯廳乾區候選；拆換占走道，逃生不能因檢修失效。"},
+    {"id": "A3-R", "building": "A", "floor": "floor-3", "room": "rear-hall", "rect_mm": [2500, 10050, 1600, 1000], "phase": "commission-with-current-use", "note": "劇院／客房使用區需一期供風；人數未定不等0，也不是只留空管。"},
+    {"id": "B2-N", "building": "B", "floor": "floor-2", "room": "master", "rect_mm": [4800, 13150, 1000, 1600], "phase": "install-now", "note": "主臥入口乾區上方，非床上／乾背櫃室；前側起居送回風尚無完整避保護區路由，台數不能定為一台。"},
+    {"id": "B3-R", "building": "B", "floor": "floor-3", "room": "guest", "rect_mm": [4800, 13150, 1000, 1600], "phase": "commission-with-current-use", "note": "客房／前側閱讀使用區需一期供風，不是只留空管；前側分支仍待整合。"},
+    {"id": "C1-N", "building": "C", "floor": "floor-1", "room": "dining", "rect_mm": [2850, 4300, 1000, 1600], "phase": "install-now", "note": "餐區右側乾式天花候選，避鞋櫃與8550前置隔間；檢修會用到餐區通道，安全架梯／逃生、梁／管接及整機拆換未核。"},
+    {"id": "C2-N", "building": "C", "floor": "floor-2", "room": "living-nook", "rect_mm": [1000, 7800, 1600, 1000], "phase": "install-now", "note": "前側起居凹位；睡房專支回風，後側小廚／衛浴獨排，不能開梯門替代。"},
+    {"id": "C3-R", "building": "C", "floor": "floor-3", "room": "front-hall", "rect_mm": [4000, 7750, 1600, 1000], "phase": "commission-with-current-use", "note": "前梯廳乾區預留；健身／閱讀使用區需一期供風，不在運動器具／床上，檢修與疏散仍需審核。"}
+  ],
+  "partial_clean_duct_corridors": [
+    {"id": "A1-D", "building": "A", "floor": "floor-1", "unit": "A1-N", "points_mm": [[3100, 7000], [3100, 11350], [1900, 11350], [1900, 12900], [3000, 12900]], "purpose": "客餐到孝親房的部分密閉送回風帶；過廚區但不設一般回風口。"},
+    {"id": "A2-D", "building": "A", "floor": "floor-2", "unit": "A2-N", "points_mm": [[3300, 10550], [5280, 10550], [5280, 5300], [3000, 5300], [3000, 4300]], "purpose": "後機位沿右走道到主臥部分帶；次臥／書房支路、門上穿越未完成。"},
+    {"id": "B2-D", "building": "B", "floor": "floor-2", "unit": "B2-N", "points_mm": [[5300, 13950], [5300, 14600], [3300, 14600], [3300, 15200]], "purpose": "只試主臥內局部分配，沒有表示前側起居已接通；不經乾背櫃室或浴室。"},
+    {"id": "C1-D", "building": "C", "floor": "floor-1", "unit": "C1-N", "points_mm": [[3350, 5100], [3350, 8000], [1900, 8000], [1900, 14200], [2200, 14200], [2200, 15000]], "purpose": "餐區右側候選至左側高位廚區／照護通道，500寬整帶避開樓梯區再轉向；密閉風管過廚區不等於吸取廚房回風。"},
+    {"id": "C2-D", "building": "C", "floor": "floor-2", "unit": "C2-N", "points_mm": [[1800, 8300], [1800, 6400]], "purpose": "前側睡房部分送回風帶；不經樓梯門，後段與所有末端尚未排定。"}
+  ],
+  "central_shaft_tests": [
+    {"id": "A-S", "building": "A", "floors": ["floor-1", "floor-2", "floor-3"], "rect_mm": [1450, 10100, 700, 450], "screen_floor": "floor-1", "host_room": "rear-hall1", "cross_section_x_mm": [1360, 3520], "required_bypass_mm": 1500, "criterion": "照護轉位保護的保守試排目標，非走廊法定值；單一橫剖寬度不能證明轉彎。"},
+    {"id": "B-S", "building": "B", "floors": ["floor-2", "floor-3"], "rect_mm": [4800, 13750, 700, 450], "screen_floor": "floor-2", "host_room": "master", "cross_section_x_mm": [4670, 6000], "required_bypass_mm": 900, "criterion": "入口900mm是本次比較目標，不是法規或輪椅簽證；原主臥20㎡目標另核。"},
+    {"id": "C-S", "building": "C", "floors": ["floor-1", "floor-2", "floor-3"], "rect_mm": [1600, 10300, 700, 450], "screen_floor": "floor-1", "host_room": "kitchen", "cross_section_x_mm": [715, 2400], "required_bypass_mm": 1200, "criterion": "廚房／照護側動線1200mm是本次保守比較目標，非已核法規或完整動線。"}
+  ],
+  "cost_horizon_years": 10,
+  "cost_fields": ["equipment", "ducts_insulation_silencers", "outdoor_terminals_weatherproofing", "fire_structure", "electrical_controls", "ceiling_hatches", "commissioning", "annual_filters", "annual_labor", "annual_electricity", "ten_year_replacements"],
+  "fixed_gates": [
+    "ABC各自獨立空氣系統；B1香火補氣及源頭排氣另系統，不併一般ERV回收。",
+    "B既有500×300只留兩條浴廁排氣；不使用乾背櫃保護室放主機／立管。",
+    "C前置門／梯門可關，單台洗衣機留2F；既有C-AC01冷媒候選線保持不動。",
+    "窗、主臥及衛浴原面積目標、床與照護轉位、樓梯淨高不以新風需求自動放寬。",
+    "三樓使用人數未知不是0；近期使用區必須同期啟用；主機台數與低速能力未選定。",
+    "不把風管平面帶、示意風速或空白天花當成完整安裝可行。"
+  ]
+}

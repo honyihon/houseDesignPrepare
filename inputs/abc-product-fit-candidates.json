@@ -1,0 +1,36 @@
+{
+  "schema": "house-abc-market-fit-candidates-v1",
+  "research_date": "2026-11-05",
+  "status": "market-candidates-not-selected-or-supplier-replies",
+  "price_basis": "除KOHLER含蓋公開價本輪重閱外，價格仍為2026-10-22歷史材料價；無正式報價或現貨承諾。",
+  "sources": [
+    {"id": "kohler-shop", "url": "https://shop.kohler.com.tw/spacity-r360-20970t-0/", "access": "page-opened-2026-11-05", "facts": "SKU28020T-S-0、含20970T-0蓋；公開價16800；不是含工程完工價。"},
+    {"id": "kohler-manual", "url": "https://files.kohler.com.cn/pdfs/1687933239899_K-28020T-S%2CK-28020T-HC%2CK-28021T-S%2CK-28021T-HC%281535881%29.pdf", "access": "prior-research-2026-10-22", "facts": "尺寸及305管距沿用既有候選研究，本輪未重取PDF。"},
+    {"id": "toto-drawing", "url": "https://www.twtoto.com.tw/upload/TO_ProductUpload/PU_PDF/20240906_1013_CW981GUR.pdf", "access": "pdf-text-opened-2026-11-05", "facts": "2024.02.19修訂圖：390寬、707整組投影（便器前端700）、785高、305管距；SW981GR、TC301另購。"},
+    {"id": "caesar-basin", "url": "https://www.caesar.com.tw/product/detail/L2150S", "access": "prior-research-2026-10-22", "facts": "500×400×185盆；1800。"},
+    {"id": "caesar-tap", "url": "https://www.caesar.com.tw/product/detail/B260C", "access": "prior-research-2026-10-22", "facts": "3800；完整配件及操作點另核。"},
+    {"id": "hcg-cabinet", "url": "https://www.hcg.com.tw/tw/product/detail/LCS4175-3132E", "access": "prior-research-2026-10-22", "facts": "510×410×660整組；15730。"},
+    {"id": "hcg-shower", "url": "https://www.hcg.com.tw/tw/product/detail/BF3731", "access": "prior-research-2026-10-22", "facts": "3960；軟管、掛座與完整工程範圍另列。"},
+    {"id": "panasonic-k-manual", "url": "https://pmst.panasonic.com.tw/PSMIOUT/DL/DLFiles/1729/1729_C_26770.pdf", "access": "usage-manual-text-opened-2026-11-05", "facts": "K系列使用說明書、2021.06；本輪取得內容，不能代替當期安裝及維修淨空圖。"},
+    {"id": "panasonic-k-catalog", "url": "https://pstw.panasonic.com.tw/catalog/files/1_consumer/air-conditioner/2025_Panasonic_%E7%A9%BA%E8%AA%BF%E5%9E%8B%E9%8C%84_0220.pdf", "access": "search-index-excerpt-only-2026-11-05-direct-fetch-404", "facts": "2025型錄索引摘錄K28/36/40/50尺寸及20m/15m；完整現行安裝限制待原廠交付，不升格已核值。"},
+    {"id": "panasonic-energy", "url": "https://www.energylabel.org.tw/purchasing/product/item.aspx?itemp0=44677", "access": "government-search-result-2026-11-05", "facts": "CS-K28FA2/CU-K28FHA2，額定2.8kW、等級1、證書2025/01/15至2027/01/14；僅此精確配對，不套到別型號。"},
+    {"id": "door-hardware", "url": "https://www.j-home.com.tw/products_detail_3892.htm", "access": "prior-research-2026-10-22", "facts": "VILLES5700僅五金候選，濕區完整門組／淨寬／防夾／救援／安裝價未核。"}
+  ],
+  "products": [
+    {"id": "WC-K", "kind": "toilet", "model": "KOHLER K-28020T-S-0 + K-20970T-0", "body_whd_mm": [372, 695, 679], "rough_in_mm": 305, "historical_material_price_twd": 16800, "source_ids": ["kohler-shop", "kohler-manual"], "easy_clean": "裙包單體候選；後縫／固定蓋／角閥仍須看實物", "selected": false},
+    {"id": "WC-T", "kind": "toilet", "model": "TOTO CW981GUR / SW981GR + TC301", "body_whd_mm": [390, 785, 707], "rough_in_mm": 305, "historical_material_price_twd": 17500, "source_ids": ["toto-drawing"], "easy_clean": "包覆分離式候選；整組按707投影，不用700替代", "selected": false},
+    {"id": "BS-C", "kind": "basin", "model": "CAESAR L2150S + B260C", "body_whd_mm": [500, 185, 400], "historical_material_price_twd": 5600, "source_ids": ["caesar-basin", "caesar-tap"], "storage_capacity": "no-cabinet", "selected": false},
+    {"id": "BS-H", "kind": "basin", "model": "HCG LCS4175-3132E", "body_whd_mm": [510, 660, 410], "historical_material_price_twd": 15730, "source_ids": ["hcg-cabinet"], "storage_capacity": "small-cabinet-not-equivalent-to-900mm", "selected": false},
+    {"id": "AC-K28", "kind": "hvac", "model": "Panasonic CS-K28FA2 / CU-K28FHA2", "capacity_kw": 2.8, "indoor_whd_mm": [798, 295, 235], "outdoor_whd_mm": [780, 540, 289], "catalog_index_max_pipe_mm": 20000, "catalog_index_max_elevation_mm": 15000, "current_full_installation_manual": null, "formal_price_twd": null, "source_ids": ["panasonic-k-manual", "panasonic-k-catalog", "panasonic-energy"], "selected": false},
+    {"id": "AC-K36", "kind": "hvac", "model": "Panasonic CS-K36FA2 / CU-K36FHA2", "capacity_kw": 3.6, "indoor_whd_mm": [798, 295, 235], "outdoor_whd_mm": [780, 540, 289], "catalog_index_max_pipe_mm": 20000, "catalog_index_max_elevation_mm": 15000, "current_full_installation_manual": null, "formal_price_twd": null, "source_ids": ["panasonic-k-manual", "panasonic-k-catalog"], "selected": false},
+    {"id": "AC-K40", "kind": "hvac", "model": "Panasonic CS-K40FA2 / CU-K40FHA2", "capacity_kw": 4.1, "indoor_whd_mm": [890, 295, 235], "outdoor_whd_mm": [780, 540, 289], "catalog_index_max_pipe_mm": 20000, "catalog_index_max_elevation_mm": 15000, "current_full_installation_manual": null, "formal_price_twd": null, "source_ids": ["panasonic-k-manual", "panasonic-k-catalog"], "selected": false},
+    {"id": "AC-K50", "kind": "hvac", "model": "Panasonic CS-K50FA2 / CU-K50FHA2", "capacity_kw": 5.0, "indoor_whd_mm": [890, 295, 235], "outdoor_whd_mm": [780, 582, 289], "catalog_index_max_pipe_mm": 20000, "catalog_index_max_elevation_mm": 15000, "current_full_installation_manual": null, "formal_price_twd": null, "source_ids": ["panasonic-k-manual", "panasonic-k-catalog"], "selected": false},
+    {"id": "DOOR-2P", "kind": "door", "model": "VILLES 5700兩片連動五金／完整門組待報", "complete_product_dimensions": null, "actual_full_open_clear_mm": null, "formal_price_twd": null, "source_ids": ["door-hardware"], "selected": false}
+  ],
+  "installation_scope": {
+    "toilet": ["便器／水箱／指定緩降蓋", "305完成牆管距與排污接頭", "角閥／軟管／固定件／矽利康", "後側清潔與蓋板拆裝空間", "座高與沖排試水", "搬運／安裝／稅／保固", "原標配折抵與增價分列"],
+    "basin": ["盆／龍頭／排桿／存水彎／角閥", "掛牆支架／補強／防水修補", "實際安裝高度與膝部／包管", "鏡／毛巾與收納需求另列", "門板開啟與清潔維修", "搬運／安裝／稅／保固"],
+    "door": ["框／軌／完整門片／把手／鎖／止擋", "全開／半開／關閉實際外廓及完成淨寬", "濕區／門檻／排水／救援／防夾", "門楣補強／防火與密封要求另核", "五金不得冒充整樘價格", "運送／安裝／稅／保固"],
+    "hvac": ["室內外精確配對／負荷與效率", "安裝與維修手冊／完整突出外廓", "實長／彎頭／最短管長／高差／追加冷媒", "連續坡降冷凝水／保溫／合法終端", "穿孔／套管／補強／防火／防水", "進出風／散熱／防颱支架／防振", "專用電路／隔離開關／測試／換機搬運", "標準安裝包含米數／超長單價／稅／保固"]
+  }
+}

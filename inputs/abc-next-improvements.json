@@ -1,0 +1,70 @@
+{
+  "schema": "house-abc-next-improvements-v1",
+  "source_report": "structured/candidates/kaohsiung-house-options/c-stair-integration.json",
+  "source_report_sha256": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+  "basis_options": ["a-rear-study", "b-rear-split", "b-front-split", "c-split"],
+  "adopted": false,
+  "professional_approval": "unknown",
+  "a_care": {
+    "door_clear_target_mm": 900,
+    "illustrative_frame_total_deductions_mm": [150, 200, 230, 300],
+    "control": {"bath_opening_mm": 900, "elder_opening_mm": 900},
+    "small": {
+      "label": "A1小改：公衛改後段入口；房門1050仍須薄框實品",
+      "bath_opening_mm": 1200,
+      "bath_opening_y_mm": [10020, 11220],
+      "elder_opening_x_mm": [2420, 3470],
+      "shower_rect_mm": [4720, 10780, 1200, 1200],
+      "bath_park_rect_mm": [3355, 11220, 165, 700],
+      "note": "浴室兩片後收疊為概念預算，未選完整門組。孝親房1050洞口僅在總扣除不超150時達900；230敏感度只剩820。床／衣櫃不動；非完整照護解答。"
+    },
+    "wider": {
+      "label": "A2優先深化：乾區向右280、兩門1200、衣櫃轉右牆",
+      "new_bath_left_mm": 3800,
+      "bath_opening_y_mm": [9140, 10340],
+      "elder_opening_x_mm": [2500, 3700],
+      "bath_turn_rect_mm": [3915, 9067, 1500, 1500],
+      "bath_fixture_rects_mm": {
+        "vanity": [5435, 9067, 450, 600],
+        "toilet": [5435, 11245, 450, 700],
+        "shower": [3915, 10745, 1200, 1200]
+      },
+      "elder_wardrobe_rect_mm": [5285, 12140, 600, 1200],
+      "elder_bed_shift_mm": [-15, 0],
+      "elder_turn_rect_mm": [4385, 13460, 1500, 1500],
+      "elder_route_centerline_mm": [[3100, 12660], [3100, 12930], [4665, 12930], [4665, 14210]],
+      "route_square_budget_mm": 1200,
+      "door_parking_rects_mm": {
+        "bath": [3635, 10340, 165, 1300],
+        "elder": [3700, 12140, 1300, 165]
+      },
+      "illustrative_wall_inset_mm": 115,
+      "note": "兩段乾區同層相通，交界y10000不加牆；浴室1200門跨交界。浴室少0.87024㎡換乾區；床僅左移15、不縮小，120cm衣櫃旋轉不減容量。路徑方塊與收納／盆操作分時，不是輪椅實演、門框或法規通過。"
+    }
+  },
+  "b_coordination": {
+    "shaft_rects_by_option_mm": {
+      "b-rear-split": [5600, 13480, 250, 250],
+      "b-front-split": [3510, 13480, 250, 250]
+    },
+    "shaft_budget_only": true,
+    "protected_backing_room": "B:floor-1:altar-backing",
+    "required_states": ["daily", "ritual", "carry"],
+    "note": "外緣立管不消除背櫃上方濕區；不把濕區投影稱神桌本體上方。孔徑、坡度、防火及排水終端待核。"
+  },
+  "c_hvac": {
+    "guestroom": "C:floor-2:guestroom2f",
+    "unit_ids": ["C-AC04", "C-AC07"],
+    "sensitivity_w_per_sqm": [120, 180, 240],
+    "preference": "單機服務客房優先；先研究後端AC04，前端AC07作短管備案。原圖兩機保留；未算負荷、未選型、未刪機。",
+    "load_scope_note": "三個面積係數只是比較敏感度，並非建築熱負荷計算；朝向、窗玻璃、外殼、人數、電器、通風潛熱及使用時間未知。"
+  },
+  "c_landscape": {
+    "pipe_half_budget_mm": 75,
+    "additional_canopy_buffer_mm": 100,
+    "illustrative_canopy_radii_mm": [300, 450, 600],
+    "tree_relayout_points_mm": [[2520, 2215], [3340, 2215], [4930, 2215], [5650, 2215]],
+    "left_bypass_after_p03_mm": [[4450, 3900, 6350], [4450, 3600, 6350], [1750, 3600, 6350], [1750, 275, 6350], [5470, 275, 6350], [5470, 275, 4500]],
+    "note": "9㎡景觀、3.393㎡覆土、4株木本／一株至少1200的模型要求與洗曬設備均保留。樹冠半徑是假設敏感度，不是選定樹種；新增高位線無已核支架或梁板。"
+  }
+}

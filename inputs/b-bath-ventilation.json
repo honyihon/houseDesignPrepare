@@ -1,0 +1,253 @@
+{
+  "schema": "house-b-bath-ventilation-v1",
+  "date": "2026-11-06",
+  "parent_report": "structured/coordination/b-claude-round3-v1/review.json",
+  "strict_report": "structured/coordination/b-fengshui-strict-v1/review.json",
+  "protected_controls": "inputs/abc-next-protected-controls.json",
+  "pinned_sources": {
+    "structured/coordination/b-claude-round3-v1/review.json": "00baf0b3950e2593361e91698e4d72ac33e384edadd6da5a7d31b62e087b6223",
+    "structured/coordination/b-claude-round3-v1/artifact-manifest.json": "ad7327b07ef803ab57cf7390f84a3919da4165124a84e33288953981fa591062",
+    "structured/coordination/b-fengshui-strict-v1/review.json": "e595361db8281be6daf361251afe0187824c7bcb99d556f930cf90f15bf2f954",
+    "inputs/references/b-owner-ritual-answers-20261106.json": "736f5a477ce1fbfd8e1bf460ecf49f9043a83635201d1598e3e1842e6460ddb9"
+  },
+  "floor_base_mm": {
+    "floor-2": 4000,
+    "floor-3": 7000,
+    "floor-4": 10000
+  },
+  "analytical_inset_each_mm": 115,
+  "mechanical": {
+    "enclosure_mm": [
+      4050,
+      13120,
+      500,
+      300
+    ],
+    "clear_pipe_centers_mm": [
+      [
+        4175,
+        13270
+      ],
+      [
+        4425,
+        13270
+      ]
+    ],
+    "duct_nominal_diameter_mm": 125,
+    "insulation_each_mm": 25,
+    "design_ceiling_mm": 2400,
+    "branch_center_relative_z_mm": 2550,
+    "roof_outlet_candidate_z_mm": 10600,
+    "grille_xy_mm": [
+      1200,
+      12000
+    ],
+    "bed_rect_mm": [
+      150,
+      13735,
+      2000,
+      1800
+    ],
+    "wardrobe_rect_mm": [
+      150,
+      15650,
+      600,
+      1800
+    ],
+    "branch_rear_y_mm": 13500,
+    "ac_candidate": {
+      "rect_mm": [
+        2875,
+        13095,
+        950,
+        280
+      ],
+      "bottom_relative_z_mm": 2350,
+      "height_mm": 280,
+      "mount_face": "front-wall-facing-rear",
+      "route": null,
+      "manual": null
+    }
+  },
+  "rear_window": {
+    "public_rect_mm": [
+      3900,
+      14880,
+      2100,
+      2750
+    ],
+    "private_rect_mm": [
+      0,
+      11370,
+      2640,
+      2120
+    ],
+    "corridor_rect_mm": [
+      4670,
+      11370,
+      1330,
+      3510
+    ],
+    "public_door_x_mm": [
+      4770,
+      5900
+    ],
+    "master_door_y_mm": [
+      13690,
+      14820
+    ],
+    "private_door_x_mm": [
+      1300,
+      2430
+    ],
+    "private_vent_enclosure_mm": [
+      4200,
+      13120,
+      300,
+      300
+    ],
+    "private_vent_pipe_center_mm": [
+      4350,
+      13270
+    ],
+    "candidate_window": {
+      "a": [
+        4750,
+        17630
+      ],
+      "b": [
+        5650,
+        17630
+      ],
+      "nominal_width_mm": 900,
+      "nominal_height_mm": 600,
+      "sill_mm": 1500,
+      "legal_opening": null,
+      "effective_opening_sqm": null
+    },
+    "public_fixture_local_mm": {
+      "basin": [
+        0,
+        0,
+        600,
+        450
+      ],
+      "toilet": [
+        150,
+        1820,
+        450,
+        700
+      ],
+      "shower": [
+        970,
+        1620,
+        900,
+        900
+      ]
+    },
+    "public_operation_local_mm": {
+      "basin": [
+        0,
+        450,
+        600,
+        700
+      ],
+      "toilet": [
+        150,
+        1120,
+        450,
+        700
+      ],
+      "shower": [
+        970,
+        920,
+        900,
+        700
+      ]
+    },
+    "private_fixture_local_mm": {
+      "basin": [
+        0,
+        0,
+        900,
+        550
+      ],
+      "toilet": [
+        0,
+        1270,
+        700,
+        450
+      ],
+      "shower": [
+        1030,
+        0,
+        900,
+        900
+      ]
+    },
+    "private_operation_local_mm": {
+      "basin": [
+        0,
+        550,
+        900,
+        700
+      ],
+      "toilet": [
+        700,
+        1270,
+        700,
+        450
+      ],
+      "shower": [
+        1030,
+        900,
+        900,
+        700
+      ]
+    },
+    "master_route_points_mm": [
+      [
+        4105,
+        14255
+      ],
+      [
+        2670,
+        14255
+      ],
+      [
+        2670,
+        16800
+      ],
+      [
+        3335,
+        16800
+      ],
+      [
+        3335,
+        16900
+      ]
+    ]
+  },
+  "airflow_comparison": {
+    "air_changes_per_hour_assumptions": [
+      8,
+      10,
+      12
+    ],
+    "reference_q_m3_h": 120,
+    "duct_diameter_cases_mm": [
+      100,
+      125,
+      150
+    ],
+    "assumed_control_rh_percent": [
+      60,
+      65
+    ],
+    "control_note": "濕度目標及延時僅討論；室外潮濕時單靠換氣未必降低相對濕度。"
+  },
+  "adopted": false,
+  "owner_requirement_changes": false,
+  "claude_review": "not-requested-this-turn",
+  "source_report": "structured/candidates/kaohsiung-house-options/c-stair-integration.json"
+}

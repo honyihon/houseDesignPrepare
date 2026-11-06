@@ -1,0 +1,36 @@
+{
+  "schema": "house-c-balcony-coordination-v1",
+  "status": "engineering-coordination-not-construction",
+  "authorization": "屋主確認C棟2F右景觀／左洗曬符合使用習慣，並要求下一步深化。",
+  "base_report": "structured/candidates/kaohsiung-house-options/review.json",
+  "base_report_sha256": "84f81465f280ec64931d29e49234b1dbcafc6b0b93a20b2a33f683e14f164fdf",
+  "option": "c-split",
+  "state": "daily",
+  "load_sensitivity": {
+    "soil_depths_mm": [300, 450, 600],
+    "saturated_unit_weight_kN_m3": 18,
+    "ponding_depth_mm": 30,
+    "note": "純荷重敏感度，非土層規範、選定介質、可接受積水或結構承載值；實際土深與飽和單位重須由景觀及結構設計確認。"
+  },
+  "drain_sensitivity": {
+    "slopes_percent": [1, 1.5, 2],
+    "note": "純高差預算，非已採用排水坡度、排水路徑或門檻；正式低點、管徑、雨量與合法接管點未定。"
+  },
+  "section_sensitivity": {
+    "storey_heights_mm": [3600, 4000],
+    "illustrative_slab_thickness_mm": 150,
+    "conservative_arcade_clearance_target_mm": 3500,
+    "note": "將整段騎樓維持3500mm淨高作保守協調目標；法條原文是地面外緣至正面過樑底，不將這個目標誤寫為每處適用的法定值。150mm板厚僅敏感度；土面取2F基準，尚未扣防水排水、完成面及梁深，也未設計下凹樓板。"
+  },
+  "section_comparison": {
+    "illustrative_other_layers_mm": 50,
+    "options": [
+      {"id": "c36-22", "label": "原3.6m／22級／踏面270", "first_storey_mm": 3600, "risers": 22, "tread_mm": 270},
+      {"id": "c40-22", "label": "4m／22級／踏面270", "first_storey_mm": 4000, "risers": 22, "tread_mm": 270},
+      {"id": "c40-24-270", "label": "4m／24級／踏面270", "first_storey_mm": 4000, "risers": 24, "tread_mm": 270},
+      {"id": "c40-24-250", "label": "4m／24級／踏面250", "first_storey_mm": 4000, "risers": 24, "tread_mm": 250}
+    ],
+    "note": "50mm只是防水排水等其他層次的敏感度，非已選構造。踏面250為新緊湊比較，原270mm未更改；所有選項均未採用。原梯段前後各70mm預留不是法定完成面淨空。"
+  },
+  "professional_approval": "unknown"
+}

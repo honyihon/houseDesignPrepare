@@ -1,0 +1,88 @@
+{
+  "schema": "house-abc-fresh-air-planning-static-review-v1",
+  "date": "2026-11-06",
+  "report_path": "structured/coordination/abc-fresh-air-planning-v1/review.json",
+  "report_hash": "53e5675008203b12efb5281c2808cebe2a9627559e2cd976a8eac4126812fd0c",
+  "report_sha256": "ca96a9a2bc30f22aa7e31f0f1298464ec26d385e8cc0d32c63c5913db9715eb7",
+  "artifact_manifest_path": "structured/coordination/abc-fresh-air-planning-v1/artifact-manifest.json",
+  "artifact_manifest_sha256": "b5fccf95c94f61be71e8cb3f186dacd138c292de4f17ef4e489780312fbc3e06",
+  "source_binding": {
+    "full_source_hashes_at": "structured/coordination/abc-fresh-air-planning-v1/review.json#/source_hashes",
+    "source_count": 63,
+    "all_source_bytes_match": true,
+    "manifest_artifact_hash_count": 8,
+    "all_manifest_artifact_bytes_match": true,
+    "artifact_total_including_manifest": 9,
+    "meaning": "完整報告及manifest的SHA256綁定來源；不是只檢查以下摘錄。來源改版後不得沿用passed。"
+  },
+  "source_hashes_excerpt": {
+    "inputs/abc-fresh-air-planning.json": "0f31f0772fd52f15c35a1da81bb6a94cd7a91746cc3b9b0b77cb12da426a7a2b",
+    "inputs/references/abc-conditional-planning-owner-20261106.json": "a11be1ea7fc65c4611f256403d153bcbbdd581fa6b79a0d844a9134e457b4e60",
+    "house_design/abc_fresh_air_planning.py": "4c49d84b493b7ee44c31ced4f55d41944b0fa106288eab3018578c6debb67c41",
+    "scripts/export_abc_fresh_air_planning.py": "48d92e8babf4f45671c1a1fbf69d7c9b6d26ab3bde786c585249658da4b81506",
+    "Docs/abc-conditional-planning-v1.md": "8220a9e1483b4075c999b754677f97dc7fe1755d2ae2439c5652c8ceba444f6b",
+    "tests/test_abc_fresh_air_planning.py": "a4cfc1c367bad70ca0c4cf5782b24fc8d8287660a4a17a577400bc6633e6d34e"
+  },
+  "checks": [
+    {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_abc_fresh_air_planning.py",
+      "status": "passed",
+      "tests_passed": 44,
+      "reported_seconds": 0.81,
+      "test_data": "只用明確標示SYNTHETIC的測試資料與臨時目錄；不把測試值寫入正式條件表或原圖。"
+    },
+    {
+      "command": "timeout 20s .venv/bin/ruff check house_design/abc_fresh_air_planning.py scripts/export_abc_fresh_air_planning.py tests/test_abc_fresh_air_planning.py",
+      "status": "passed"
+    },
+    {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_abc_fresh_air_planning.py --check",
+      "status": "passed",
+      "conditions_received": 0,
+      "conditions_total": 184,
+      "condition_results": {"pending": 101},
+      "interpretation": "軟體／檔案通過；工程條件全待資料，沒有把缺值當失敗或通過。"
+    },
+    {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_abc_fresh_air_detail.py --check",
+      "status": "passed",
+      "scope": "前批13件路由比較與來源仍一致，未重生原3D。"
+    },
+    {"command": "timeout 20s git diff --check", "status": "passed", "note": "Git提示既有scripts/README.md的CRLF後續可能轉LF；未做全檔換行改寫。"},
+    {"method": "20秒內Node唯讀核對63來源、8產物SHA256及6個新增導覽連結", "status": "passed"}
+  ],
+  "workflow_verified": [
+    "JSON／CSV空模板可回讀；單位、來源日期、數值型別、非有限值、重複鍵與未知欄位拒收。",
+    "資料可分批填；false及允許為0的數值不當缺值，空值不取研究假設補齊。",
+    "基準報告／欄位字典雜湊不合則拒套；產品資料必須綁同區機型版次。",
+    "B後巷與各層前後外口條件分開，不跨樓層套用許可、不選定搬轎版。",
+    "主機包絡、四管、天花、側抽淨孔、低負載與同風量靜壓僅算術重算，人工關卡永不自動通過。",
+    "--inputs預設唯讀摘要；--out只能建立新的特定inputs/private子目錄，拒絕覆寫／廣域路徑／來源目錄及外逸symlink。",
+    "--init-input拒絕覆寫既有輸入；輸入內容HTML轉義，不當程式執行。"
+  ],
+  "navigation_hashes": {
+    "Docs/project-status-v1.md": "4df5877e37f3cb836ee8f591213835644d5edee60b1b9c38b9a3a65612ad5b47",
+    "Docs/coordination-review.md": "7b8441d51f1a1ad283565715b19a934aca16a1d1c2c01efa9d806bd1acf3e119",
+    "scripts/README.md": "9707be62e205f82de1e5590f3f106360b220176dd6ab0f228a510d8f82e7dcb2"
+  },
+  "protected_scope": {
+    "owner_direction_recorded": "inputs/references/abc-conditional-planning-owner-20261106.json",
+    "current_work_is_preplanning_only": true,
+    "original_abc_or_3d_edited": false,
+    "protected_controls_unchanged": 149,
+    "b_front_rear_three_states_retained": true,
+    "actual_site_or_product_values_received": 0,
+    "actual_data_integration_performed": false,
+    "automatic_requirement_relaxation": false,
+    "whole_project_parametric_model_completed": false
+  },
+  "not_run": ["browser／HTML目視", "WebGL", "完整pytest", "整套3D重生", "圖像渲染", "外部AI", "市場選品與現場量測"],
+  "limitations": [
+    "本批只為既有新風／機電比較提供條件輸入，不是所有建築專業的自動設計。",
+    "模板的184欄不必一次填完；來源欄是提供者的引用，不是工具已獨立驗證專業資料。",
+    "即使全部數值相容，也不自動選機、定台數、改房間、開孔或採用原圖。",
+    "實際梁牆窗位置變更需另做三維合圖與專業核對；不能按本表自動縮放房屋。",
+    "未執行瀏覽器／畫面驗收；程式檢查不當法規、消防、風水、照護、搬運、產品或施工核可。"
+  ],
+  "approvals": {"adopted": false, "selected_product": null, "professional_approval": "unknown", "actual_integration_performed": false}
+}

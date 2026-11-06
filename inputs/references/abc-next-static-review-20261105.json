@@ -1,0 +1,52 @@
+{
+  "schema": "house-abc-next-static-review-v1",
+  "review_date": "2026-11-05",
+  "reviewer": "Codex",
+  "report_hash": "dfde40d73ebcd01bb0abd0839759b83ffd593a6146ef7f46ec013e53a1a69c6c",
+  "artifact_manifest_sha256": "3efcae57fa82c3486a6bd711e4013b422d0bcd65dac4fba6eb4e4e3c320080b9",
+  "source_hashes": {
+    "inputs/abc-next-improvements.json": "6d0d786815ad838b516ab546da49cda3dd42954d6fa8ea709785eefae0bdc355",
+    "inputs/abc-product-fit-candidates.json": "984385afdde0c3bf11c7ea1a99ddd8e85ab5fd1534631e702424c12d52c1609a",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "house_design/abc_next_improvements.py": "9756b69f651f8431d361ffdc6f678e59edc1c3af0e9d8e9db782091366166568",
+    "house_design/c_coordination.py": "6d2c336496e0f1cabfabce3f3287b28ceecb13088d78f8cb0137d9ce14b689ff",
+    "house_design/contracts.py": "2888419d49e8d8dbe8b8e99f6b8451363cd9020821c7fe3e703ab09779e202c3",
+    "scripts/export_abc_next_improvements.py": "875c13027466776a6e1661dae369e45c823c661c5e0369d8ee95b6535420e701"
+  },
+  "test_file_sha256": "cfc050ce8941e725acb04c0c2a373c8a9e1e41cf47cf1db1afa14ca34677eab3",
+  "checks": {
+    "focused_pytest": {
+      "passed": 17,
+      "failed": 0,
+      "scope": "tests/test_abc_next_improvements.py only"
+    },
+    "ruff": "passed for the three new Python files",
+    "source_and_output_bytes": "passed, 15 generated files",
+    "protected_controls_unchanged": 149,
+    "previous_rendered_sources_unchanged": 141,
+    "static_svg_visual_review": {
+      "drawings": 6,
+      "preview_width_px": 1000,
+      "each_pixels_max": 786000,
+      "method": "PyMuPDF bounded static PNGs; manually viewed all six final images",
+      "result": "readable diagrams and legends; windows and outdoor units present; no observed text clipping at reviewed resolution"
+    }
+  },
+  "reviewed_svg_hashes": {
+    "structured/coordination/abc-next-v1/A01-care-doors.svg": "5b8c646877c4533dcbcf362fc6a9d198f68c4ca310cd3d80af46fcf5407456ff",
+    "structured/coordination/abc-next-v1/B01-rear-coordination.svg": "84715fceb4fc745eae3c2553f23eed204b50c95a62566674c384ae9cf2830d24",
+    "structured/coordination/abc-next-v1/B02-front-coordination.svg": "182dc1d75706c45f5e137afa6af7ac69af1d74dacd1768eed7ccde07a043d378",
+    "structured/coordination/abc-next-v1/C01-guest-hvac.svg": "6037f4d16c505df542c6d69dac8471b83602db4f7fda596357ebfed0d21ad78d",
+    "structured/coordination/abc-next-v1/C02-landscape-pipes.svg": "7a5167b29c09ff77389281338780ca81bea6935feb127093b9c813a98cf82f42",
+    "structured/coordination/abc-next-v1/P01-product-fit.svg": "28074d1c65e123543eec07f0d2ed4df7c5a524eca9b11209e8033252da0e7bcd"
+  },
+  "browser_status": "not-run",
+  "html_visual_status": "not-run; file and anchor links checked separately",
+  "professional_approval": "unknown",
+  "adopted": false,
+  "scope_limits": [
+    "Static vector review is not rendered-browser/WebGL evidence.",
+    "Frame, door, canopy, loading, legal, care, religious and transport conditions remain as listed in report.",
+    "Only the bound bytes and source hashes are covered; a changed source invalidates this record."
+  ]
+}

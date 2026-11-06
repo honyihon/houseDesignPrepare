@@ -1,0 +1,6609 @@
+{
+  "schema": "house-b-claude-crosscheck-report-v1",
+  "date": "2026-11-06",
+  "config": {
+    "schema": "house-b-claude-crosscheck-v1",
+    "source_report": "structured/candidates/kaohsiung-house-options/c-stair-integration.json",
+    "source_report_sha256": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+    "previous_study": "structured/coordination/b-fengshui-strict-v1/review.json",
+    "protected_controls": "inputs/abc-next-protected-controls.json",
+    "response_provenance": "inputs/references/b-claude-response-v2-provenance.json",
+    "response_archive": "inputs/references/b-claude-response-v2-transcript-20261105.md",
+    "options": [
+      "b-rear-split",
+      "b-front-split"
+    ],
+    "adopted": false,
+    "geometry_origin": "Claude回覆的上層四區拓樸／器具／路徑；Codex另列門片預算及條件，不當成Claude已確認整包。",
+    "codex_margin_comparison": {
+      "private_bath_front_shift_mm": 100,
+      "label": "Codex比較：套衛前牆後移100換主臥餘量",
+      "not_sent_back_to_claude_yet": true,
+      "adopted": false
+    },
+    "upper": {
+      "bedroom_polygon_mm": [
+        [
+          4670,
+          11370
+        ],
+        [
+          6000,
+          11370
+        ],
+        [
+          6000,
+          14780
+        ],
+        [
+          3900,
+          14780
+        ],
+        [
+          3900,
+          17630
+        ],
+        [
+          0,
+          17630
+        ],
+        [
+          0,
+          13470
+        ],
+        [
+          2640,
+          13470
+        ],
+        [
+          2640,
+          12970
+        ],
+        [
+          4670,
+          12970
+        ]
+      ],
+      "public_bath_rect_mm": [
+        0,
+        11370,
+        2640,
+        2100
+      ],
+      "dry_room_rect_mm": [
+        2640,
+        11370,
+        2030,
+        1600
+      ],
+      "private_bath_rect_mm": [
+        3900,
+        14780,
+        2100,
+        2850
+      ],
+      "bedroom_fixtures_mm": {
+        "bed": [
+          150,
+          15550,
+          2000,
+          1800
+        ],
+        "wardrobe": [
+          150,
+          13620,
+          600,
+          1800
+        ],
+        "vanity": [
+          2755,
+          13120,
+          1200,
+          500
+        ]
+      },
+      "bedroom_route_points_mm": [
+        [
+          5335,
+          12270
+        ],
+        [
+          5335,
+          14150
+        ],
+        [
+          2670,
+          14150
+        ],
+        [
+          2670,
+          16800
+        ],
+        [
+          3335,
+          16800
+        ],
+        [
+          3335,
+          16900
+        ]
+      ],
+      "bedroom_route_square_mm": 900,
+      "bedroom_entry_x_mm": [
+        4770,
+        5900
+      ],
+      "bedroom_rear_window_x_mm": [
+        750,
+        3150
+      ],
+      "dry_room_entry_x_mm": [
+        2850,
+        3980
+      ],
+      "public_bath": {
+        "fixtures_local_mm": {
+          "basin": [
+            0,
+            0,
+            600,
+            450
+          ],
+          "toilet": [
+            0,
+            1170,
+            450,
+            700
+          ],
+          "shower": [
+            1510,
+            970,
+            900,
+            900
+          ]
+        },
+        "operations_local_mm": {
+          "basin": [
+            0,
+            450,
+            600,
+            700
+          ],
+          "toilet": [
+            0,
+            470,
+            450,
+            700
+          ],
+          "shower": [
+            1510,
+            270,
+            900,
+            700
+          ]
+        },
+        "door_nominal_x_mm": [
+          1320,
+          2450
+        ],
+        "inside_approach_local_mm": [
+          1320,
+          0,
+          900,
+          900
+        ]
+      },
+      "private_bath": {
+        "fixtures_local_mm": {
+          "toilet": [
+            150,
+            0,
+            450,
+            700
+          ],
+          "basin": [
+            1320,
+            0,
+            550,
+            900
+          ],
+          "shower": [
+            970,
+            1030,
+            900,
+            900
+          ]
+        },
+        "operations_local_mm": {
+          "toilet": [
+            150,
+            700,
+            450,
+            700
+          ],
+          "basin": [
+            620,
+            0,
+            700,
+            900
+          ],
+          "shower": [
+            270,
+            1030,
+            700,
+            900
+          ]
+        },
+        "door_nominal_y_mm": [
+          16330,
+          17460
+        ],
+        "inside_approach_absolute_mm": [
+          4015,
+          16445,
+          900,
+          900
+        ]
+      },
+      "bath_layout_inset_mm": 115,
+      "inset_sensitivity_mm": [
+        80,
+        115,
+        150
+      ],
+      "ac_new_x_mm": 3000,
+      "codex_ac_new_center_y_mm": 17365
+    },
+    "original_targets_sqm": {
+      "bedroom_target": 20,
+      "public_bath_target": 5,
+      "public_bath_min": 3.6,
+      "private_bath_target": 6,
+      "private_bath_min": 4.5
+    },
+    "source_claims_to_recheck": {
+      "bedroom_115_sqm": 20.0161,
+      "public_bath_115_sqm": 4.5067,
+      "private_bath_115_sqm": 4.8994,
+      "bathroom_gain_vs_previous_115_sqm": 1.9261
+    },
+    "full_consensus": false,
+    "engineering_approval": "unknown",
+    "previous_study_sha256": "e595361db8281be6daf361251afe0187824c7bcb99d556f930cf90f15bf2f954"
+  },
+  "source_layout_report_sha256": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+  "previous_study_sha256": "e595361db8281be6daf361251afe0187824c7bcb99d556f930cf90f15bf2f954",
+  "response_provenance": {
+    "schema": "house-model-discussion-provenance-v1",
+    "owner_result_path": "/tmp/house-b-claude-8_zbe57t/result.json",
+    "response_archive": "inputs/references/b-claude-response-v2-transcript-20261105.md",
+    "archive_method": "copied-from-complete-prior-turn-tool-output-not-original-temp-file-bytes",
+    "original_files_currently_accessible": false,
+    "current_access_date": "2026-11-06",
+    "original_prompt_file": "Docs/claude-b-fengshui-followup-v2.md",
+    "original_prompt_sha256": "0986dcf9817c59b227369848e94e9c1ba6e41bc0fa5039a1c47f2e4d13254015",
+    "original_stdout_sha256_reported": "0cfc40a1001d6370b5ebac7a86b4a6f0132086760358964fd5f170b2acd9abbe",
+    "prior_turn_checks": {
+      "source": "recorded-exec-output-in-conversation-before-interruption",
+      "prompt_matches_saved_and_current_brief": true,
+      "stdout_hash_matches_result": true,
+      "response_matches_raw_result_text": true,
+      "raw_subtype": "success",
+      "raw_is_error": false,
+      "model_usage_key_observed": "claude-opus-5-5",
+      "elapsed_seconds_reported": 362.591
+    },
+    "current_claim_limit": "只保存先前已完整讀取的回覆內容與當時核對紀錄，不聲稱現在仍可驗證原始stdout／TEMP的bytes。沒有新呼叫或偽造原始JSON。",
+    "response_status": "received-and-under-codex-crosscheck",
+    "full_consensus": false,
+    "adopted": false,
+    "professional_approval": "unknown"
+  },
+  "claim_checks": [
+    {
+      "claim": "bedroom_115_sqm",
+      "claude": 20.0161,
+      "codex": 20.0161,
+      "matches": true
+    },
+    {
+      "claim": "public_bath_115_sqm",
+      "claude": 4.5067,
+      "codex": 4.5067,
+      "matches": true
+    },
+    {
+      "claim": "private_bath_115_sqm",
+      "claude": 4.8994,
+      "codex": 4.8994,
+      "matches": true
+    },
+    {
+      "claim": "bathroom_gain_vs_previous_115_sqm",
+      "claude": 1.9261,
+      "codex": 1.9261,
+      "matches": true
+    }
+  ],
+  "variants": [
+    {
+      "id": "claude-front-dry",
+      "author": "Claude回覆／Codex獨立核算",
+      "rooms": [
+        {
+          "id": "master",
+          "name": "L形主臥",
+          "polygon_mm": [
+            [
+              4670,
+              11370
+            ],
+            [
+              6000,
+              11370
+            ],
+            [
+              6000,
+              14780
+            ],
+            [
+              3900,
+              14780
+            ],
+            [
+              3900,
+              17630
+            ],
+            [
+              0,
+              17630
+            ],
+            [
+              0,
+              13470
+            ],
+            [
+              2640,
+              13470
+            ],
+            [
+              2640,
+              12970
+            ],
+            [
+              4670,
+              12970
+            ]
+          ],
+          "nominal_area_sqm": 22.783,
+          "furniture": [
+            {
+              "id": "bed",
+              "rect_mm": [
+                150,
+                15550,
+                2000,
+                1800
+              ],
+              "operation_mm": [
+                2150,
+                15550,
+                600,
+                1800
+              ]
+            },
+            {
+              "id": "wardrobe",
+              "rect_mm": [
+                150,
+                13620,
+                600,
+                1800
+              ],
+              "operation_mm": [
+                750,
+                13620,
+                600,
+                1800
+              ]
+            },
+            {
+              "id": "vanity",
+              "rect_mm": [
+                2755,
+                13120,
+                1200,
+                500
+              ],
+              "operation_mm": [
+                2755,
+                13620,
+                1200,
+                700
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                4770,
+                11370
+              ],
+              "b": [
+                5900,
+                11370
+              ],
+              "nominal_mm": 1130,
+              "assumed_clear_mm": 900,
+              "operation": "候選門，向房內開；門片／成品／救援仍待核。"
+            },
+            {
+              "a": [
+                3900,
+                16330
+              ],
+              "b": [
+                3900,
+                17460
+              ],
+              "nominal_mm": 1130,
+              "assumed_clear_mm": 900,
+              "hinge": "rear",
+              "operation": "向主臥外開，後端鉸鏈預算，非已選成品。",
+              "parked_leaf_budget_mm": [
+                2770,
+                17365,
+                1130,
+                95
+              ],
+              "swept_rect_mm": [
+                2770,
+                16330,
+                1130,
+                1130
+              ]
+            }
+          ],
+          "window": {
+            "a": [
+              750,
+              17630
+            ],
+            "b": [
+              3150,
+              17630
+            ],
+            "legal": "unknown"
+          },
+          "adopted": false,
+          "hvac_candidate": {
+            "id": "B-AC03",
+            "rect_mm": [
+              2525,
+              17225,
+              950,
+              280
+            ],
+            "bottom_relative_z_mm": 2350,
+            "route": "not-re-engineered",
+            "manual": null
+          }
+        },
+        {
+          "id": "dry-protection",
+          "name": "獨立乾保護室",
+          "polygon_mm": [
+            [
+              2640,
+              11370
+            ],
+            [
+              4670,
+              11370
+            ],
+            [
+              4670,
+              12970
+            ],
+            [
+              2640,
+              12970
+            ]
+          ],
+          "nominal_area_sqm": 3.248,
+          "furniture": [],
+          "doors": [
+            {
+              "a": [
+                2850,
+                11370
+              ],
+              "b": [
+                3980,
+                11370
+              ],
+              "nominal_mm": 1130,
+              "assumed_clear_mm": 900,
+              "operation": "前壁獨立門，向室內開；不穿臥室。"
+            }
+          ],
+          "window": null,
+          "adopted": false
+        },
+        {
+          "id": "public-bath",
+          "name": "左前公衛",
+          "polygon_mm": [
+            [
+              0,
+              11370
+            ],
+            [
+              2640,
+              11370
+            ],
+            [
+              2640,
+              13470
+            ],
+            [
+              0,
+              13470
+            ]
+          ],
+          "nominal_area_sqm": 5.544,
+          "furniture": [
+            {
+              "id": "basin",
+              "rect_mm": [
+                115,
+                11485,
+                600,
+                450
+              ],
+              "operation_mm": [
+                115,
+                11935,
+                600,
+                700
+              ]
+            },
+            {
+              "id": "toilet",
+              "rect_mm": [
+                115,
+                12655,
+                450,
+                700
+              ],
+              "operation_mm": [
+                115,
+                11955,
+                450,
+                700
+              ]
+            },
+            {
+              "id": "shower",
+              "rect_mm": [
+                1625,
+                12455,
+                900,
+                900
+              ],
+              "operation_mm": [
+                1625,
+                11755,
+                900,
+                700
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                1320,
+                11370
+              ],
+              "b": [
+                2450,
+                11370
+              ],
+              "nominal_mm": 1130,
+              "assumed_clear_mm": 900,
+              "hinge": "right",
+              "operation": "向前乾區外開；完整門組與消防待核。",
+              "parked_leaf_budget_mm": [
+                2355,
+                10240,
+                95,
+                1130
+              ],
+              "swept_rect_mm": [
+                1320,
+                10240,
+                1130,
+                1130
+              ]
+            }
+          ],
+          "window": null,
+          "adopted": false,
+          "illustrative_finished_rect_mm": [
+            115,
+            11485,
+            2410,
+            1870
+          ],
+          "inside_approach_mm": [
+            1435,
+            11485,
+            900,
+            900
+          ],
+          "outside_approach_mm": [
+            1435,
+            10355,
+            900,
+            900
+          ],
+          "actual_product_pack": null,
+          "actual_finished_clear_mm": null,
+          "drainage_terminal": null,
+          "screen": {
+            "body_hits": [],
+            "operation_body_hits": [],
+            "inside_arrival_hits": [],
+            "all_listed_inside": true,
+            "inside_arrival_contained": true,
+            "shared_operation_pairs": [
+              [
+                "basin",
+                "toilet"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "private-bath",
+          "name": "套衛",
+          "polygon_mm": [
+            [
+              3900,
+              14780
+            ],
+            [
+              6000,
+              14780
+            ],
+            [
+              6000,
+              17630
+            ],
+            [
+              3900,
+              17630
+            ]
+          ],
+          "nominal_area_sqm": 5.985,
+          "furniture": [
+            {
+              "id": "toilet",
+              "rect_mm": [
+                4165,
+                14895,
+                450,
+                700
+              ],
+              "operation_mm": [
+                4165,
+                15595,
+                450,
+                700
+              ]
+            },
+            {
+              "id": "basin",
+              "rect_mm": [
+                5335,
+                14895,
+                550,
+                900
+              ],
+              "operation_mm": [
+                4635,
+                14895,
+                700,
+                900
+              ]
+            },
+            {
+              "id": "shower",
+              "rect_mm": [
+                4985,
+                15925,
+                900,
+                900
+              ],
+              "operation_mm": [
+                4285,
+                15925,
+                700,
+                900
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                3900,
+                16330
+              ],
+              "b": [
+                3900,
+                17460
+              ],
+              "nominal_mm": 1130,
+              "assumed_clear_mm": 900,
+              "hinge": "rear",
+              "operation": "向主臥外開，後端鉸鏈預算，非已選成品。",
+              "parked_leaf_budget_mm": [
+                2770,
+                17365,
+                1130,
+                95
+              ],
+              "swept_rect_mm": [
+                2770,
+                16330,
+                1130,
+                1130
+              ]
+            }
+          ],
+          "window": {
+            "a": [
+              4750,
+              17630
+            ],
+            "b": [
+              5650,
+              17630
+            ],
+            "legal": "unknown"
+          },
+          "adopted": false,
+          "illustrative_finished_rect_mm": [
+            4015,
+            14895,
+            1870,
+            2620
+          ],
+          "inside_approach_mm": [
+            4015,
+            16445,
+            900,
+            900
+          ],
+          "outside_approach_mm": [
+            2885,
+            16445,
+            900,
+            900
+          ],
+          "actual_product_pack": null,
+          "actual_finished_clear_mm": null,
+          "drainage_terminal": null,
+          "screen": {
+            "body_hits": [],
+            "operation_body_hits": [],
+            "inside_arrival_hits": [],
+            "all_listed_inside": true,
+            "inside_arrival_contained": true,
+            "shared_operation_pairs": [
+              [
+                "toilet",
+                "shower"
+              ]
+            ]
+          }
+        }
+      ],
+      "partition": {
+        "gap_or_outside_sqm": 0.0,
+        "overlap_sqm": 0.0,
+        "status": "listed-geometry-clear"
+      },
+      "wet_projection": [
+        {
+          "id": "public-bath",
+          "over_protected_sqm": 0.0,
+          "over_palanquin_sqm": 0.0,
+          "distance_to_backing_mm": 0.0,
+          "status": "listed-geometry-clear"
+        },
+        {
+          "id": "private-bath",
+          "over_protected_sqm": 0.0,
+          "over_palanquin_sqm": 0.0,
+          "distance_to_backing_mm": 1810.0,
+          "status": "listed-geometry-clear"
+        }
+      ],
+      "bedroom_over_protected_sqm": 0.0,
+      "bedroom_bodies_inside_115": true,
+      "bedroom_operations_inside_115": true,
+      "route": {
+        "points_mm": [
+          [
+            5335,
+            12270
+          ],
+          [
+            5335,
+            14150
+          ],
+          [
+            2670,
+            14150
+          ],
+          [
+            2670,
+            16800
+          ],
+          [
+            3335,
+            16800
+          ],
+          [
+            3335,
+            16900
+          ]
+        ],
+        "sweeps_mm": [
+          [
+            4885.0,
+            11820.0,
+            900,
+            2780
+          ],
+          [
+            2220.0,
+            13700.0,
+            3565,
+            900
+          ],
+          [
+            2220.0,
+            13700.0,
+            900,
+            3550
+          ],
+          [
+            2220.0,
+            16350.0,
+            1565,
+            900
+          ],
+          [
+            2885.0,
+            16350.0,
+            900,
+            1000
+          ]
+        ],
+        "all_inside_115": true,
+        "body_hits": [],
+        "actual_whole_route": "unknown"
+      },
+      "area_sensitivity": [
+        {
+          "inset_each_mm": 80,
+          "bedroom": 20.847,
+          "dry_room": 2.6928,
+          "public_bath": 4.8112,
+          "private_bath": 5.2186,
+          "bedroom_meets_20": true,
+          "public_meets_min": true,
+          "private_meets_min": true,
+          "both_bath_targets": false
+        },
+        {
+          "inset_each_mm": 115,
+          "bedroom": 20.0161,
+          "dry_room": 2.466,
+          "public_bath": 4.5067,
+          "private_bath": 4.8994,
+          "bedroom_meets_20": true,
+          "public_meets_min": true,
+          "private_meets_min": true,
+          "both_bath_targets": false
+        },
+        {
+          "inset_each_mm": 150,
+          "bedroom": 19.195,
+          "dry_room": 2.249,
+          "public_bath": 4.212,
+          "private_bath": 4.59,
+          "bedroom_meets_20": false,
+          "public_meets_min": true,
+          "private_meets_min": true,
+          "both_bath_targets": false
+        },
+        {
+          "inset_each_mm": 116,
+          "bedroom": 19.992504,
+          "dry_room": 2.459664,
+          "public_bath": 4.498144,
+          "private_bath": 4.890424,
+          "bedroom_meets_20": false,
+          "public_meets_min": true,
+          "private_meets_min": true,
+          "both_bath_targets": false
+        }
+      ],
+      "current_inset_case": {
+        "inset_each_mm": 115,
+        "bedroom": 20.0161,
+        "dry_room": 2.466,
+        "public_bath": 4.5067,
+        "private_bath": 4.8994,
+        "bedroom_meets_20": true,
+        "public_meets_min": true,
+        "private_meets_min": true,
+        "both_bath_targets": false
+      },
+      "door_arrivals": [
+        {
+          "room": "public-bath",
+          "outside_arrival_inside_budget": true,
+          "parked_leaf_hits_arrival": false,
+          "swept_rectangle_body_hits": [],
+          "complete_product_and_all_states": "unknown"
+        },
+        {
+          "room": "private-bath",
+          "outside_arrival_inside_budget": true,
+          "parked_leaf_hits_arrival": false,
+          "swept_rectangle_body_hits": [],
+          "complete_product_and_all_states": "unknown"
+        }
+      ],
+      "bed_to_rear_115_gap_mm": 165,
+      "bed_rear_to_open_private_leaf_mm": 15,
+      "bedroom_hvac_contained": true,
+      "bedroom_rear_inscribed_rect_mm": [
+        115,
+        13585,
+        3670,
+        3930
+      ],
+      "bedroom_rear_inscribed_rect_sqm": 14.4231,
+      "rear_inscribed_rect_contained": true,
+      "bedroom_area_quality_note": "20㎡包含狹長入口與轉折／梳妝區；後段可完整內接矩形約14.4231㎡，不能只用總面積認定方正寬敞。",
+      "retained_front_floor2": [
+        {
+          "id": "B:floor-2:living2",
+          "name": "安靜起居｜後區（整廳上方禁睡）",
+          "rect_mm": [
+            0,
+            9100,
+            6000,
+            2270
+          ],
+          "outdoor": false,
+          "features": {
+            "status": "illustrative-pending-professional-review",
+            "geometry_source": "tour_mm",
+            "doors": [],
+            "open_connections": [
+              {
+                "face": "front",
+                "ratio": 0.7,
+                "width_mm": 3600,
+                "neighbor": "B:floor-2:living2-front",
+                "status": "explicit-bounded-proposal-not-verified",
+                "operation": "unconfirmed"
+              },
+              {
+                "face": "rear",
+                "ratio": 0.1,
+                "width_mm": 1200,
+                "neighbor": "B:floor-2:corridor2",
+                "status": "explicit-bounded-proposal-not-verified",
+                "operation": "unconfirmed"
+              }
+            ],
+            "space_group": "b32-living2",
+            "space_role": "living",
+            "window_face": null,
+            "window_ratio": 0.5,
+            "stairs": false,
+            "stair_geometry_verified": false,
+            "access_pending": false,
+            "access_reason": "公共區相鄰／套衛提案；非已驗證通行。梯段、門扇、轉位、雨天及完成面淨空待核。",
+            "hvac": {
+              "indoor": false,
+              "outdoor": false,
+              "evidence": []
+            },
+            "window_pending": "側界可能共壁；只有前後外側才畫候選窗。合法採光／通風及神桌實牆待核。",
+            "hvac_units": [],
+            "fixed_reserved_mm": [],
+            "window_sill_mm": 900,
+            "window_height_mm": 1200,
+            "window_review": {
+              "status": "not-requested",
+              "requested_face": null,
+              "requested_width_mm": 0,
+              "renderable": false,
+              "issues": [],
+              "assumed_jamb_budget_mm": 100,
+              "assumed_opening_buffer_mm": 100,
+              "professional_acceptance": "unknown",
+              "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+            },
+            "window_mm": 0,
+            "reserved_mm": []
+          },
+          "furniture": []
+        },
+        {
+          "id": "B:floor-2:balcony2",
+          "name": "前陽台／室外機候選（合法性待核）",
+          "rect_mm": [
+            0,
+            0,
+            6000,
+            3900
+          ],
+          "outdoor": true,
+          "features": {
+            "status": "illustrative-pending-professional-review",
+            "geometry_source": "tour_mm",
+            "doors": [
+              {
+                "face": "rear",
+                "ratio": 0.566667,
+                "width_mm": 1000,
+                "neighbor": "B:floor-2:living2-front",
+                "status": "explicit-bounded-proposal-not-verified",
+                "operation": "unconfirmed"
+              }
+            ],
+            "open_connections": [],
+            "space_group": "",
+            "space_role": "",
+            "window_face": null,
+            "window_ratio": 0.5,
+            "stairs": false,
+            "stair_geometry_verified": false,
+            "access_pending": false,
+            "access_reason": "公共區相鄰／套衛提案；非已驗證通行。梯段、門扇、轉位、雨天及完成面淨空待核。",
+            "hvac": {
+              "indoor": false,
+              "outdoor": true,
+              "evidence": []
+            },
+            "window_pending": "側界可能共壁；只有前後外側才畫候選窗。合法採光／通風及神桌實牆待核。",
+            "hvac_units": [
+              {
+                "id": "B-AC01",
+                "type": "outdoor",
+                "x_mm": 5470.0,
+                "y_mm": 275,
+                "mount_height_mm": 100,
+                "face": "front",
+                "width_mm": 900,
+                "depth_mm": 350,
+                "height_mm": 800,
+                "route": {
+                  "id": "B-AC01",
+                  "indoor_room": "B:floor-1:shrine-front",
+                  "outdoor_room": "B:floor-2:balcony2",
+                  "status": "unverified-model-and-route",
+                  "facade": "front",
+                  "polyline_mm": [
+                    [
+                      4920.0,
+                      4050,
+                      2350
+                    ],
+                    [
+                      4920.0,
+                      0,
+                      2350
+                    ],
+                    [
+                      5470.0,
+                      0,
+                      2350
+                    ],
+                    [
+                      5470.0,
+                      0,
+                      6350
+                    ],
+                    [
+                      5470.0,
+                      275,
+                      6350
+                    ],
+                    [
+                      5470.0,
+                      275,
+                      4500
+                    ]
+                  ],
+                  "estimated_routed_length_mm": 11725,
+                  "bend_service_allowance_mm": 1000,
+                  "elevation_difference_mm": 2150,
+                  "model": null,
+                  "manual_source": null,
+                  "max_pipe_length_mm": null,
+                  "min_pipe_length_mm": null,
+                  "max_elevation_mm": null,
+                  "additional_refrigerant_g": null,
+                  "compliance": "unknown",
+                  "drainage": "室內機冷凝水另走可檢修重力排水至合法排水點；與冷媒路徑分開核對，不靠室外機位置證明排水。",
+                  "maintenance": "室外機通風／熱回流、防颱固定、避鄰噪音、端子與閥側維修、排水和運入更換待原廠圖核對。",
+                  "note": "折線長度是提案量，不是實測或安裝許可；穿牆／梁／防火、實際彎頭及最短管長仍未知。代表機身尺寸非選定產品。",
+                  "routing_height_note": "設備區高位路徑暫估高2350mm後再降至閥側；屋頂支架、防曬保溫、抗風及實際干涉須機電設計核對。"
+                }
+              },
+              {
+                "id": "B-AC02",
+                "type": "outdoor",
+                "x_mm": 530.0,
+                "y_mm": 275,
+                "mount_height_mm": 100,
+                "face": "front",
+                "width_mm": 900,
+                "depth_mm": 350,
+                "height_mm": 800,
+                "route": {
+                  "id": "B-AC02",
+                  "indoor_room": "B:floor-2:living2-front",
+                  "outdoor_room": "B:floor-2:balcony2",
+                  "status": "unverified-model-and-route",
+                  "facade": "front",
+                  "polyline_mm": [
+                    [
+                      4920.0,
+                      4050,
+                      6350
+                    ],
+                    [
+                      4920.0,
+                      3900,
+                      6350
+                    ],
+                    [
+                      530.0,
+                      3900,
+                      6350
+                    ],
+                    [
+                      530.0,
+                      3900,
+                      6350
+                    ],
+                    [
+                      530.0,
+                      275,
+                      6350
+                    ],
+                    [
+                      530.0,
+                      275,
+                      4500
+                    ]
+                  ],
+                  "estimated_routed_length_mm": 11015,
+                  "bend_service_allowance_mm": 1000,
+                  "elevation_difference_mm": 1850,
+                  "model": null,
+                  "manual_source": null,
+                  "max_pipe_length_mm": null,
+                  "min_pipe_length_mm": null,
+                  "max_elevation_mm": null,
+                  "additional_refrigerant_g": null,
+                  "compliance": "unknown",
+                  "drainage": "室內機冷凝水另走可檢修重力排水至合法排水點；與冷媒路徑分開核對，不靠室外機位置證明排水。",
+                  "maintenance": "室外機通風／熱回流、防颱固定、避鄰噪音、端子與閥側維修、排水和運入更換待原廠圖核對。",
+                  "note": "折線長度是提案量，不是實測或安裝許可；穿牆／梁／防火、實際彎頭及最短管長仍未知。代表機身尺寸非選定產品。",
+                  "routing_height_note": "設備區高位路徑暫估高2350mm後再降至閥側；屋頂支架、防曬保溫、抗風及實際干涉須機電設計核對。"
+                }
+              }
+            ],
+            "fixed_reserved_mm": [
+              {
+                "kind": "hvac-service",
+                "aabb": {
+                  "minX": 5020.0,
+                  "maxX": 5920.0,
+                  "minY": 100,
+                  "maxY": 1450
+                }
+              },
+              {
+                "kind": "hvac-service",
+                "aabb": {
+                  "minX": 80.0,
+                  "maxX": 980.0,
+                  "minY": 100,
+                  "maxY": 1450
+                }
+              }
+            ],
+            "window_sill_mm": 900,
+            "window_height_mm": 1200,
+            "window_review": {
+              "status": "not-applicable-outdoor",
+              "requested_face": null,
+              "requested_width_mm": 0,
+              "renderable": false,
+              "issues": [],
+              "assumed_jamb_budget_mm": 100,
+              "assumed_opening_buffer_mm": 100,
+              "professional_acceptance": "unknown",
+              "note": "戶外區不計室內窗。"
+            },
+            "window_mm": 0,
+            "reserved_mm": [
+              {
+                "kind": "hvac-service",
+                "aabb": {
+                  "minX": 5020.0,
+                  "maxX": 5920.0,
+                  "minY": 100,
+                  "maxY": 1450
+                }
+              },
+              {
+                "kind": "hvac-service",
+                "aabb": {
+                  "minX": 80.0,
+                  "maxX": 980.0,
+                  "minY": 100,
+                  "maxY": 1450
+                }
+              },
+              {
+                "kind": "door-approach",
+                "aabb": {
+                  "minX": 2800.0,
+                  "maxX": 4000.0,
+                  "minY": 3000.0,
+                  "maxY": 3900.0
+                }
+              }
+            ],
+            "kaohsiung_zones": {
+              "status": "comparison-only-not-adopted",
+              "garden_mm": [
+                1100,
+                1500,
+                3800,
+                2400
+              ],
+              "soil_rects_mm": [
+                [
+                  1200,
+                  1600,
+                  3600,
+                  900
+                ]
+              ],
+              "woody_points_mm": [
+                [
+                  1650,
+                  2050
+                ],
+                [
+                  2550,
+                  2050
+                ],
+                [
+                  3450,
+                  2050
+                ],
+                [
+                  4350,
+                  2050
+                ]
+              ],
+              "green_deck_level": "symbolic-flush-finish-no-designed-soil-depth-or-slab-cut",
+              "local_route_mm": [
+                [
+                  3400,
+                  3400
+                ],
+                [
+                  2000,
+                  3400
+                ]
+              ],
+              "service_routes_mm": {},
+              "replaces_inferred_planters": [],
+              "actual_soil_depth_mm": null,
+              "lawful_area_and_cantilever": "unknown",
+              "note": "9.12m²景觀區接前右起居室；左右兩台室外機及其原維修帶均保留。其餘14.28m²為普通陽台／設備待核區，不視為已合法或全數免計。"
+            }
+          },
+          "furniture": []
+        },
+        {
+          "id": "B:floor-2:stair2",
+          "name": "同軸前左樓梯／平台",
+          "rect_mm": [
+            0,
+            3900,
+            2400,
+            5200
+          ],
+          "outdoor": false,
+          "features": {
+            "status": "illustrative-pending-professional-review",
+            "geometry_source": "tour_mm",
+            "doors": [
+              {
+                "face": "right",
+                "ratio": 0.096154,
+                "width_mm": 1000,
+                "neighbor": "B:floor-2:living2-front",
+                "status": "explicit-bounded-proposal-not-verified",
+                "operation": "unconfirmed"
+              }
+            ],
+            "open_connections": [],
+            "space_group": "",
+            "space_role": "",
+            "window_face": null,
+            "window_ratio": 0.5,
+            "stairs": true,
+            "stair_geometry_verified": false,
+            "access_pending": false,
+            "access_reason": "公共區相鄰／套衛提案；非已驗證通行。梯段、門扇、轉位、雨天及完成面淨空待核。",
+            "hvac": {
+              "indoor": false,
+              "outdoor": false,
+              "evidence": []
+            },
+            "window_pending": "側界可能共壁；只有前後外側才畫候選窗。合法採光／通風及神桌實牆待核。",
+            "hvac_units": [],
+            "fixed_reserved_mm": [],
+            "window_sill_mm": 900,
+            "window_height_mm": 1200,
+            "stair_footprint_mm": {
+              "x_mm": 80,
+              "y_mm": 3970,
+              "w_mm": 2200,
+              "h_mm": 5060
+            },
+            "stair_geometry": {
+              "type": "two-flight-u-proposal",
+              "connects_to_next_storey": true,
+              "risers": 18,
+              "riser_mm": 166.67,
+              "tread_mm": 270,
+              "flight_width_mm": 1000,
+              "landing_mm": 1000,
+              "departure_offset_mm": 1000,
+              "middle_landing_mm": 1900,
+              "shared_front_landing": false,
+              "run_mm": 2160,
+              "fits_reserved_box": true,
+              "note": "兩折梯與平台僅初排；完成面淨寬、扶手、結構、梯井、淨高、消防分隔及屋突資格未核。"
+            },
+            "window_review": {
+              "status": "not-requested",
+              "requested_face": null,
+              "requested_width_mm": 0,
+              "renderable": false,
+              "issues": [],
+              "assumed_jamb_budget_mm": 100,
+              "assumed_opening_buffer_mm": 100,
+              "professional_acceptance": "unknown",
+              "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+            },
+            "window_mm": 0,
+            "reserved_mm": [
+              {
+                "kind": "door-approach",
+                "aabb": {
+                  "minX": 1500.0,
+                  "maxX": 2400.0,
+                  "minY": 3800.0,
+                  "maxY": 5000.0
+                }
+              },
+              {
+                "kind": "stairs",
+                "aabb": {
+                  "minX": 80,
+                  "maxX": 2280,
+                  "minY": 3970,
+                  "maxY": 9030
+                }
+              }
+            ]
+          },
+          "furniture": []
+        },
+        {
+          "id": "B:floor-2:living2-front",
+          "name": "安靜起居｜前區（禁作睡眠）",
+          "rect_mm": [
+            2400,
+            3900,
+            3600,
+            5200
+          ],
+          "outdoor": false,
+          "features": {
+            "status": "illustrative-pending-professional-review",
+            "geometry_source": "tour_mm",
+            "doors": [
+              {
+                "face": "left",
+                "ratio": 0.096154,
+                "width_mm": 1000,
+                "neighbor": "B:floor-2:stair2",
+                "status": "explicit-bounded-proposal-not-verified",
+                "operation": "unconfirmed"
+              },
+              {
+                "face": "front",
+                "ratio": 0.277778,
+                "width_mm": 1000,
+                "neighbor": "B:floor-2:balcony2",
+                "status": "explicit-bounded-proposal-not-verified",
+                "operation": "unconfirmed"
+              }
+            ],
+            "open_connections": [
+              {
+                "face": "rear",
+                "ratio": 0.5,
+                "width_mm": 3600,
+                "neighbor": "B:floor-2:living2",
+                "status": "explicit-bounded-proposal-not-verified",
+                "operation": "unconfirmed"
+              }
+            ],
+            "space_group": "b32-living2",
+            "space_role": "living",
+            "window_face": "front",
+            "window_ratio": 0.75,
+            "stairs": false,
+            "stair_geometry_verified": false,
+            "access_pending": false,
+            "access_reason": "公共區相鄰／套衛提案；非已驗證通行。梯段、門扇、轉位、雨天及完成面淨空待核。",
+            "hvac": {
+              "indoor": true,
+              "outdoor": false,
+              "evidence": []
+            },
+            "window_pending": "側界可能共壁；只有前後外側才畫候選窗。合法採光／通風及神桌實牆待核。",
+            "hvac_units": [
+              {
+                "id": "B-AC02",
+                "type": "indoor",
+                "x_mm": 4920.0,
+                "y_mm": 4050,
+                "mount_height_mm": 2350,
+                "face": "front",
+                "width_mm": 950,
+                "depth_mm": 280,
+                "height_mm": 280,
+                "route": {
+                  "id": "B-AC02",
+                  "indoor_room": "B:floor-2:living2-front",
+                  "outdoor_room": "B:floor-2:balcony2",
+                  "status": "unverified-model-and-route",
+                  "facade": "front",
+                  "polyline_mm": [
+                    [
+                      4920.0,
+                      4050,
+                      6350
+                    ],
+                    [
+                      4920.0,
+                      3900,
+                      6350
+                    ],
+                    [
+                      530.0,
+                      3900,
+                      6350
+                    ],
+                    [
+                      530.0,
+                      3900,
+                      6350
+                    ],
+                    [
+                      530.0,
+                      275,
+                      6350
+                    ],
+                    [
+                      530.0,
+                      275,
+                      4500
+                    ]
+                  ],
+                  "estimated_routed_length_mm": 11015,
+                  "bend_service_allowance_mm": 1000,
+                  "elevation_difference_mm": 1850,
+                  "model": null,
+                  "manual_source": null,
+                  "max_pipe_length_mm": null,
+                  "min_pipe_length_mm": null,
+                  "max_elevation_mm": null,
+                  "additional_refrigerant_g": null,
+                  "compliance": "unknown",
+                  "drainage": "室內機冷凝水另走可檢修重力排水至合法排水點；與冷媒路徑分開核對，不靠室外機位置證明排水。",
+                  "maintenance": "室外機通風／熱回流、防颱固定、避鄰噪音、端子與閥側維修、排水和運入更換待原廠圖核對。",
+                  "note": "折線長度是提案量，不是實測或安裝許可；穿牆／梁／防火、實際彎頭及最短管長仍未知。代表機身尺寸非選定產品。",
+                  "routing_height_note": "設備區高位路徑暫估高2350mm後再降至閥側；屋頂支架、防曬保溫、抗風及實際干涉須機電設計核對。"
+                }
+              }
+            ],
+            "fixed_reserved_mm": [],
+            "window_sill_mm": 900,
+            "window_height_mm": 1200,
+            "window_review": {
+              "status": "candidate-geometry-only",
+              "requested_face": "front",
+              "requested_width_mm": 1200,
+              "renderable": true,
+              "issues": [],
+              "assumed_jamb_budget_mm": 100,
+              "assumed_opening_buffer_mm": 100,
+              "professional_acceptance": "unknown",
+              "note": "候選窗已避門洞並留模型窗邊；有效採光、通風、柱梁、窗框與防雨未核。"
+            },
+            "window_mm": 1200,
+            "reserved_mm": [
+              {
+                "kind": "door-approach",
+                "aabb": {
+                  "minX": 2400.0,
+                  "maxX": 3300.0,
+                  "minY": 3800.0,
+                  "maxY": 5000.0
+                }
+              },
+              {
+                "kind": "door-approach",
+                "aabb": {
+                  "minX": 2800.0,
+                  "maxX": 4000.0,
+                  "minY": 3900.0,
+                  "maxY": 4800.0
+                }
+              }
+            ]
+          },
+          "furniture": [
+            {
+              "id": "B:floor-2:living2-front:furniture:table",
+              "label": "茶几",
+              "shape": "table",
+              "rect_mm": [
+                3600.0,
+                6050.0,
+                600.0,
+                1100.0
+              ],
+              "width_mm": 1100.0,
+              "depth_mm": 600.0,
+              "height_mm": 420.0,
+              "placement": {
+                "id": "B:floor-2:living2-front:furniture:table",
+                "center_x_mm": 3900.0,
+                "center_y_mm": 6600.0,
+                "rotation_deg": 90,
+                "wall_anchor": "",
+                "wall_gap_mm": null,
+                "aabb": {
+                  "minX": 3600.0,
+                  "maxX": 4200.0,
+                  "minY": 6050.0,
+                  "maxY": 7150.0
+                },
+                "operation_mm": null,
+                "rear_operation_mm": null,
+                "mount_height_mm": 0.0,
+                "issues": [],
+                "status": "planning-not-measured",
+                "basis": "independent-coordinate-screen-not-rehearsal"
+              }
+            },
+            {
+              "id": "B:floor-2:living2-front:furniture:sofa",
+              "label": "180cm雙人沙發（一般尺寸）",
+              "shape": "sofa",
+              "rect_mm": [
+                4950.0,
+                5700.0,
+                900.0,
+                1800.0
+              ],
+              "width_mm": 1800.0,
+              "depth_mm": 900.0,
+              "height_mm": 850.0,
+              "placement": {
+                "id": "B:floor-2:living2-front:furniture:sofa",
+                "center_x_mm": 5400.0,
+                "center_y_mm": 6600.0,
+                "rotation_deg": 90,
+                "wall_anchor": "right",
+                "wall_gap_mm": 150,
+                "aabb": {
+                  "minX": 4950.0,
+                  "maxX": 5850.0,
+                  "minY": 5700.0,
+                  "maxY": 7500.0
+                },
+                "operation_mm": {
+                  "minX": 4550.0,
+                  "maxX": 4950.0,
+                  "minY": 5700.0,
+                  "maxY": 7500.0
+                },
+                "rear_operation_mm": null,
+                "mount_height_mm": 0.0,
+                "issues": [],
+                "status": "planning-not-measured",
+                "basis": "coordinate-proposal-not-rehearsed"
+              }
+            },
+            {
+              "id": "B:floor-2:living2-front:furniture:tv",
+              "label": "43吋壁掛電視（代表外廓）",
+              "shape": "wall-tv",
+              "rect_mm": [
+                2550.0,
+                6200.0,
+                80.0,
+                1000.0
+              ],
+              "width_mm": 1000.0,
+              "depth_mm": 80.0,
+              "height_mm": 600.0,
+              "placement": {
+                "id": "B:floor-2:living2-front:furniture:tv",
+                "center_x_mm": 2590.0,
+                "center_y_mm": 6700.0,
+                "rotation_deg": 270,
+                "wall_anchor": "left",
+                "wall_gap_mm": 150,
+                "aabb": {
+                  "minX": 2550.0,
+                  "maxX": 2630.0,
+                  "minY": 6200.0,
+                  "maxY": 7200.0
+                },
+                "operation_mm": null,
+                "rear_operation_mm": null,
+                "mount_height_mm": 1400.0,
+                "issues": [],
+                "status": "planning-not-measured",
+                "basis": "coordinate-proposal-not-rehearsed"
+              }
+            }
+          ]
+        }
+      ],
+      "roof_reference": {
+        "id": "floor-4",
+        "base_mm": 10000,
+        "rooms": [
+          {
+            "id": "B:floor-4:stairRF",
+            "name": "同軸梯間屋突候選（合法性待核）",
+            "rect_mm": [
+              0,
+              3900,
+              2400,
+              5200
+            ],
+            "outdoor": false,
+            "features": {
+              "status": "illustrative-pending-professional-review",
+              "geometry_source": "tour_mm",
+              "doors": [
+                {
+                  "face": "right",
+                  "ratio": 0.096154,
+                  "width_mm": 1000,
+                  "neighbor": "B:floor-4:shrine-buffer-front",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                }
+              ],
+              "open_connections": [],
+              "space_group": "",
+              "space_role": "",
+              "window_face": null,
+              "window_ratio": 0.5,
+              "stairs": true,
+              "stair_geometry_verified": false,
+              "access_pending": false,
+              "access_reason": "公共區相鄰／套衛提案；非已驗證通行。梯段、門扇、轉位、雨天及完成面淨空待核。",
+              "hvac": {
+                "indoor": false,
+                "outdoor": false,
+                "evidence": []
+              },
+              "window_pending": "側界可能共壁；只有前後外側才畫候選窗。合法採光／通風及神桌實牆待核。",
+              "hvac_units": [],
+              "fixed_reserved_mm": [],
+              "window_sill_mm": 900,
+              "window_height_mm": 1200,
+              "stair_footprint_mm": {
+                "x_mm": 80,
+                "y_mm": 3970,
+                "w_mm": 2200,
+                "h_mm": 5060
+              },
+              "stair_geometry": {
+                "type": "two-flight-u-proposal",
+                "connects_to_next_storey": false,
+                "risers": 18,
+                "riser_mm": 166.67,
+                "tread_mm": 270,
+                "flight_width_mm": 1000,
+                "landing_mm": 1000,
+                "departure_offset_mm": 1000,
+                "middle_landing_mm": 1900,
+                "shared_front_landing": false,
+                "run_mm": 2160,
+                "fits_reserved_box": true,
+                "note": "兩折梯與平台僅初排；完成面淨寬、扶手、結構、梯井、淨高、消防分隔及屋突資格未核。"
+              },
+              "window_review": {
+                "status": "not-requested",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+              },
+              "window_mm": 0,
+              "reserved_mm": [
+                {
+                  "kind": "door-approach",
+                  "aabb": {
+                    "minX": 1500.0,
+                    "maxX": 2400.0,
+                    "minY": 3800.0,
+                    "maxY": 5000.0
+                  }
+                },
+                {
+                  "kind": "stairs",
+                  "aabb": {
+                    "minX": 80,
+                    "maxX": 2280,
+                    "minY": 3970,
+                    "maxY": 9030
+                  }
+                }
+              ]
+            },
+            "furniture": []
+          },
+          {
+            "id": "B:floor-4:service-rf",
+            "name": "後屋頂室外機／維修候選（承重待核）",
+            "rect_mm": [
+              0,
+              11370,
+              2400,
+              6260
+            ],
+            "outdoor": true,
+            "features": {
+              "status": "illustrative-pending-professional-review",
+              "geometry_source": "tour_mm",
+              "doors": [],
+              "open_connections": [
+                {
+                  "face": "front",
+                  "ratio": 0.5,
+                  "width_mm": 2400,
+                  "neighbor": "B:floor-4:shrine-buffer-rear",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                },
+                {
+                  "face": "right",
+                  "ratio": 0.5,
+                  "width_mm": 6260,
+                  "neighbor": "B:floor-4:rear-roof",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                }
+              ],
+              "space_group": "",
+              "space_role": "",
+              "window_face": null,
+              "window_ratio": 0.5,
+              "stairs": false,
+              "stair_geometry_verified": false,
+              "access_pending": false,
+              "access_reason": "公共區相鄰／套衛提案；非已驗證通行。梯段、門扇、轉位、雨天及完成面淨空待核。",
+              "hvac": {
+                "indoor": false,
+                "outdoor": true,
+                "evidence": []
+              },
+              "window_pending": "側界可能共壁；只有前後外側才畫候選窗。合法採光／通風及神桌實牆待核。",
+              "hvac_units": [
+                {
+                  "id": "B-AC03",
+                  "type": "outdoor",
+                  "x_mm": 1870.0,
+                  "y_mm": 17355,
+                  "mount_height_mm": 100,
+                  "face": "rear",
+                  "width_mm": 900,
+                  "depth_mm": 350,
+                  "height_mm": 800,
+                  "route": {
+                    "id": "B-AC03",
+                    "indoor_room": "B:floor-2:master2",
+                    "outdoor_room": "B:floor-4:service-rf",
+                    "status": "unverified-model-and-route",
+                    "facade": "rear",
+                    "polyline_mm": [
+                      [
+                        4200.0,
+                        17480,
+                        6350
+                      ],
+                      [
+                        4200.0,
+                        17630,
+                        6350
+                      ],
+                      [
+                        1870.0,
+                        17630,
+                        6350
+                      ],
+                      [
+                        1870.0,
+                        17630,
+                        12350
+                      ],
+                      [
+                        1870.0,
+                        17355,
+                        12350
+                      ],
+                      [
+                        1870.0,
+                        17355,
+                        10500
+                      ]
+                    ],
+                    "estimated_routed_length_mm": 11605,
+                    "bend_service_allowance_mm": 1000,
+                    "elevation_difference_mm": 4150,
+                    "model": null,
+                    "manual_source": null,
+                    "max_pipe_length_mm": null,
+                    "min_pipe_length_mm": null,
+                    "max_elevation_mm": null,
+                    "additional_refrigerant_g": null,
+                    "compliance": "unknown",
+                    "drainage": "室內機冷凝水另走可檢修重力排水至合法排水點；與冷媒路徑分開核對，不靠室外機位置證明排水。",
+                    "maintenance": "室外機通風／熱回流、防颱固定、避鄰噪音、端子與閥側維修、排水和運入更換待原廠圖核對。",
+                    "note": "折線長度是提案量，不是實測或安裝許可；穿牆／梁／防火、實際彎頭及最短管長仍未知。代表機身尺寸非選定產品。",
+                    "routing_height_note": "設備區高位路徑暫估高2350mm後再降至閥側；屋頂支架、防曬保溫、抗風及實際干涉須機電設計核對。"
+                  }
+                },
+                {
+                  "id": "B-AC04",
+                  "type": "outdoor",
+                  "x_mm": 530.0,
+                  "y_mm": 17355,
+                  "mount_height_mm": 100,
+                  "face": "rear",
+                  "width_mm": 900,
+                  "depth_mm": 350,
+                  "height_mm": 800,
+                  "route": {
+                    "id": "B-AC04",
+                    "indoor_room": "B:floor-3:guest3",
+                    "outdoor_room": "B:floor-4:service-rf",
+                    "status": "unverified-model-and-route",
+                    "facade": "rear",
+                    "polyline_mm": [
+                      [
+                        4200.0,
+                        17480,
+                        9350
+                      ],
+                      [
+                        4200.0,
+                        17630,
+                        9350
+                      ],
+                      [
+                        530.0,
+                        17630,
+                        9350
+                      ],
+                      [
+                        530.0,
+                        17630,
+                        12350
+                      ],
+                      [
+                        530.0,
+                        17355,
+                        12350
+                      ],
+                      [
+                        530.0,
+                        17355,
+                        10500
+                      ]
+                    ],
+                    "estimated_routed_length_mm": 9945,
+                    "bend_service_allowance_mm": 1000,
+                    "elevation_difference_mm": 1150,
+                    "model": null,
+                    "manual_source": null,
+                    "max_pipe_length_mm": null,
+                    "min_pipe_length_mm": null,
+                    "max_elevation_mm": null,
+                    "additional_refrigerant_g": null,
+                    "compliance": "unknown",
+                    "drainage": "室內機冷凝水另走可檢修重力排水至合法排水點；與冷媒路徑分開核對，不靠室外機位置證明排水。",
+                    "maintenance": "室外機通風／熱回流、防颱固定、避鄰噪音、端子與閥側維修、排水和運入更換待原廠圖核對。",
+                    "note": "折線長度是提案量，不是實測或安裝許可；穿牆／梁／防火、實際彎頭及最短管長仍未知。代表機身尺寸非選定產品。",
+                    "routing_height_note": "設備區高位路徑暫估高2350mm後再降至閥側；屋頂支架、防曬保溫、抗風及實際干涉須機電設計核對。"
+                  }
+                }
+              ],
+              "fixed_reserved_mm": [
+                {
+                  "kind": "hvac-service",
+                  "aabb": {
+                    "minX": 1420.0,
+                    "maxX": 2320.0,
+                    "minY": 16180,
+                    "maxY": 17530
+                  }
+                },
+                {
+                  "kind": "hvac-service",
+                  "aabb": {
+                    "minX": 80.0,
+                    "maxX": 980.0,
+                    "minY": 16180,
+                    "maxY": 17530
+                  }
+                }
+              ],
+              "window_sill_mm": 900,
+              "window_height_mm": 1200,
+              "window_review": {
+                "status": "not-applicable-outdoor",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "戶外區不計室內窗。"
+              },
+              "window_mm": 0,
+              "reserved_mm": [
+                {
+                  "kind": "hvac-service",
+                  "aabb": {
+                    "minX": 1420.0,
+                    "maxX": 2320.0,
+                    "minY": 16180,
+                    "maxY": 17530
+                  }
+                },
+                {
+                  "kind": "hvac-service",
+                  "aabb": {
+                    "minX": 80.0,
+                    "maxX": 980.0,
+                    "minY": 16180,
+                    "maxY": 17530
+                  }
+                }
+              ]
+            },
+            "furniture": []
+          },
+          {
+            "id": "B:floor-4:roof-front",
+            "name": "前屋頂候選（不作已核屋突）",
+            "rect_mm": [
+              0,
+              0,
+              6000,
+              3900
+            ],
+            "outdoor": true,
+            "features": {
+              "status": "illustrative-pending-professional-review",
+              "geometry_source": "tour_mm",
+              "doors": [],
+              "open_connections": [
+                {
+                  "face": "rear",
+                  "ratio": 0.7,
+                  "width_mm": 3600,
+                  "neighbor": "B:floor-4:shrine-buffer-front",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                }
+              ],
+              "space_group": "",
+              "space_role": "",
+              "window_face": null,
+              "window_ratio": 0.5,
+              "stairs": false,
+              "stair_geometry_verified": false,
+              "access_pending": false,
+              "access_reason": "公共區相鄰／套衛提案；非已驗證通行。梯段、門扇、轉位、雨天及完成面淨空待核。",
+              "hvac": {
+                "indoor": false,
+                "outdoor": false,
+                "evidence": []
+              },
+              "window_pending": "側界可能共壁；只有前後外側才畫候選窗。合法採光／通風及神桌實牆待核。",
+              "hvac_units": [],
+              "fixed_reserved_mm": [],
+              "window_sill_mm": 900,
+              "window_height_mm": 1200,
+              "window_review": {
+                "status": "not-applicable-outdoor",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "戶外區不計室內窗。"
+              },
+              "window_mm": 0,
+              "reserved_mm": []
+            },
+            "furniture": []
+          },
+          {
+            "id": "B:floor-4:shrine-buffer-front",
+            "name": "神明堂上方保護區｜前段（不放設備）",
+            "rect_mm": [
+              2400,
+              3900,
+              3600,
+              5200
+            ],
+            "outdoor": true,
+            "features": {
+              "status": "illustrative-pending-professional-review",
+              "geometry_source": "tour_mm",
+              "doors": [
+                {
+                  "face": "left",
+                  "ratio": 0.096154,
+                  "width_mm": 1000,
+                  "neighbor": "B:floor-4:stairRF",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                }
+              ],
+              "open_connections": [
+                {
+                  "face": "front",
+                  "ratio": 0.5,
+                  "width_mm": 3600,
+                  "neighbor": "B:floor-4:roof-front",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                },
+                {
+                  "face": "rear",
+                  "ratio": 0.5,
+                  "width_mm": 3600,
+                  "neighbor": "B:floor-4:shrine-buffer-rear",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                }
+              ],
+              "space_group": "",
+              "space_role": "",
+              "window_face": null,
+              "window_ratio": 0.5,
+              "stairs": false,
+              "stair_geometry_verified": false,
+              "access_pending": false,
+              "access_reason": "公共區相鄰／套衛提案；非已驗證通行。梯段、門扇、轉位、雨天及完成面淨空待核。",
+              "hvac": {
+                "indoor": false,
+                "outdoor": false,
+                "evidence": []
+              },
+              "window_pending": "側界可能共壁；只有前後外側才畫候選窗。合法採光／通風及神桌實牆待核。",
+              "hvac_units": [],
+              "fixed_reserved_mm": [],
+              "window_sill_mm": 900,
+              "window_height_mm": 1200,
+              "window_review": {
+                "status": "not-applicable-outdoor",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "戶外區不計室內窗。"
+              },
+              "window_mm": 0,
+              "reserved_mm": [
+                {
+                  "kind": "door-approach",
+                  "aabb": {
+                    "minX": 2400.0,
+                    "maxX": 3300.0,
+                    "minY": 3800.0,
+                    "maxY": 5000.0
+                  }
+                }
+              ]
+            },
+            "furniture": []
+          },
+          {
+            "id": "B:floor-4:shrine-buffer-rear",
+            "name": "神明堂上方保護區｜後段（不放設備）",
+            "rect_mm": [
+              0,
+              9100,
+              6000,
+              2270
+            ],
+            "outdoor": true,
+            "features": {
+              "status": "illustrative-pending-professional-review",
+              "geometry_source": "tour_mm",
+              "doors": [],
+              "open_connections": [
+                {
+                  "face": "front",
+                  "ratio": 0.7,
+                  "width_mm": 3600,
+                  "neighbor": "B:floor-4:shrine-buffer-front",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                },
+                {
+                  "face": "rear",
+                  "ratio": 0.2,
+                  "width_mm": 2400,
+                  "neighbor": "B:floor-4:service-rf",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                },
+                {
+                  "face": "rear",
+                  "ratio": 0.7,
+                  "width_mm": 3600,
+                  "neighbor": "B:floor-4:rear-roof",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                }
+              ],
+              "space_group": "",
+              "space_role": "",
+              "window_face": null,
+              "window_ratio": 0.5,
+              "stairs": false,
+              "stair_geometry_verified": false,
+              "access_pending": false,
+              "access_reason": "公共區相鄰／套衛提案；非已驗證通行。梯段、門扇、轉位、雨天及完成面淨空待核。",
+              "hvac": {
+                "indoor": false,
+                "outdoor": false,
+                "evidence": []
+              },
+              "window_pending": "側界可能共壁；只有前後外側才畫候選窗。合法採光／通風及神桌實牆待核。",
+              "hvac_units": [],
+              "fixed_reserved_mm": [],
+              "window_sill_mm": 900,
+              "window_height_mm": 1200,
+              "window_review": {
+                "status": "not-applicable-outdoor",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "戶外區不計室內窗。"
+              },
+              "window_mm": 0,
+              "reserved_mm": []
+            },
+            "furniture": []
+          },
+          {
+            "id": "B:floor-4:rear-roof",
+            "name": "屋頂設備需求待排（非可自由加蓋）",
+            "rect_mm": [
+              2400,
+              11370,
+              3600,
+              6260
+            ],
+            "outdoor": true,
+            "features": {
+              "status": "illustrative-pending-professional-review",
+              "geometry_source": "tour_mm",
+              "doors": [],
+              "open_connections": [
+                {
+                  "face": "front",
+                  "ratio": 0.5,
+                  "width_mm": 3600,
+                  "neighbor": "B:floor-4:shrine-buffer-rear",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                },
+                {
+                  "face": "left",
+                  "ratio": 0.5,
+                  "width_mm": 6260,
+                  "neighbor": "B:floor-4:service-rf",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                }
+              ],
+              "space_group": "",
+              "space_role": "",
+              "window_face": null,
+              "window_ratio": 0.5,
+              "stairs": false,
+              "stair_geometry_verified": false,
+              "access_pending": false,
+              "access_reason": "公共區相鄰／套衛提案；非已驗證通行。梯段、門扇、轉位、雨天及完成面淨空待核。",
+              "hvac": {
+                "indoor": false,
+                "outdoor": false,
+                "evidence": []
+              },
+              "window_pending": "側界可能共壁；只有前後外側才畫候選窗。合法採光／通風及神桌實牆待核。",
+              "hvac_units": [],
+              "fixed_reserved_mm": [],
+              "window_sill_mm": 900,
+              "window_height_mm": 1200,
+              "window_review": {
+                "status": "not-applicable-outdoor",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "戶外區不計室內窗。"
+              },
+              "window_mm": 0,
+              "reserved_mm": []
+            },
+            "furniture": []
+          }
+        ]
+      },
+      "third_floor_rooms": [
+        {
+          "id": "guest",
+          "name": "L形客房",
+          "polygon_mm": [
+            [
+              4670,
+              11370
+            ],
+            [
+              6000,
+              11370
+            ],
+            [
+              6000,
+              14780
+            ],
+            [
+              3900,
+              14780
+            ],
+            [
+              3900,
+              17630
+            ],
+            [
+              0,
+              17630
+            ],
+            [
+              0,
+              13470
+            ],
+            [
+              2640,
+              13470
+            ],
+            [
+              2640,
+              12970
+            ],
+            [
+              4670,
+              12970
+            ]
+          ],
+          "nominal_area_sqm": 22.783,
+          "furniture": [
+            {
+              "id": "bed",
+              "rect_mm": [
+                150,
+                15550,
+                2000,
+                1800
+              ],
+              "operation_mm": [
+                2150,
+                15550,
+                600,
+                1800
+              ]
+            },
+            {
+              "id": "wardrobe",
+              "rect_mm": [
+                150,
+                13620,
+                600,
+                1800
+              ],
+              "operation_mm": [
+                750,
+                13620,
+                600,
+                1800
+              ]
+            },
+            {
+              "id": "vanity",
+              "rect_mm": [
+                2755,
+                13120,
+                1200,
+                500
+              ],
+              "operation_mm": [
+                2755,
+                13620,
+                1200,
+                700
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                4770,
+                11370
+              ],
+              "b": [
+                5900,
+                11370
+              ],
+              "nominal_mm": 1130,
+              "assumed_clear_mm": 900,
+              "operation": "候選門，向房內開；門片／成品／救援仍待核。"
+            },
+            {
+              "a": [
+                3900,
+                16330
+              ],
+              "b": [
+                3900,
+                17460
+              ],
+              "nominal_mm": 1130,
+              "assumed_clear_mm": 900,
+              "hinge": "rear",
+              "operation": "向主臥外開，後端鉸鏈預算，非已選成品。",
+              "parked_leaf_budget_mm": [
+                2770,
+                17365,
+                1130,
+                95
+              ],
+              "swept_rect_mm": [
+                2770,
+                16330,
+                1130,
+                1130
+              ]
+            }
+          ],
+          "window": {
+            "a": [
+              750,
+              17630
+            ],
+            "b": [
+              3150,
+              17630
+            ],
+            "legal": "unknown"
+          },
+          "adopted": false,
+          "hvac_candidate": {
+            "id": "B-AC04",
+            "rect_mm": [
+              2525,
+              17225,
+              950,
+              280
+            ],
+            "bottom_relative_z_mm": 2350,
+            "route": "not-re-engineered",
+            "manual": null
+          }
+        },
+        {
+          "id": "dry-protection",
+          "name": "獨立乾保護室",
+          "polygon_mm": [
+            [
+              2640,
+              11370
+            ],
+            [
+              4670,
+              11370
+            ],
+            [
+              4670,
+              12970
+            ],
+            [
+              2640,
+              12970
+            ]
+          ],
+          "nominal_area_sqm": 3.248,
+          "furniture": [],
+          "doors": [
+            {
+              "a": [
+                2850,
+                11370
+              ],
+              "b": [
+                3980,
+                11370
+              ],
+              "nominal_mm": 1130,
+              "assumed_clear_mm": 900,
+              "operation": "前壁獨立門，向室內開；不穿臥室。"
+            }
+          ],
+          "window": null,
+          "adopted": false
+        },
+        {
+          "id": "public-bath",
+          "name": "左前公衛",
+          "polygon_mm": [
+            [
+              0,
+              11370
+            ],
+            [
+              2640,
+              11370
+            ],
+            [
+              2640,
+              13470
+            ],
+            [
+              0,
+              13470
+            ]
+          ],
+          "nominal_area_sqm": 5.544,
+          "furniture": [
+            {
+              "id": "basin",
+              "rect_mm": [
+                115,
+                11485,
+                600,
+                450
+              ],
+              "operation_mm": [
+                115,
+                11935,
+                600,
+                700
+              ]
+            },
+            {
+              "id": "toilet",
+              "rect_mm": [
+                115,
+                12655,
+                450,
+                700
+              ],
+              "operation_mm": [
+                115,
+                11955,
+                450,
+                700
+              ]
+            },
+            {
+              "id": "shower",
+              "rect_mm": [
+                1625,
+                12455,
+                900,
+                900
+              ],
+              "operation_mm": [
+                1625,
+                11755,
+                900,
+                700
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                1320,
+                11370
+              ],
+              "b": [
+                2450,
+                11370
+              ],
+              "nominal_mm": 1130,
+              "assumed_clear_mm": 900,
+              "hinge": "right",
+              "operation": "向前乾區外開；完整門組與消防待核。",
+              "parked_leaf_budget_mm": [
+                2355,
+                10240,
+                95,
+                1130
+              ],
+              "swept_rect_mm": [
+                1320,
+                10240,
+                1130,
+                1130
+              ]
+            }
+          ],
+          "window": null,
+          "adopted": false,
+          "illustrative_finished_rect_mm": [
+            115,
+            11485,
+            2410,
+            1870
+          ],
+          "inside_approach_mm": [
+            1435,
+            11485,
+            900,
+            900
+          ],
+          "outside_approach_mm": [
+            1435,
+            10355,
+            900,
+            900
+          ],
+          "actual_product_pack": null,
+          "actual_finished_clear_mm": null,
+          "drainage_terminal": null,
+          "screen": {
+            "body_hits": [],
+            "operation_body_hits": [],
+            "inside_arrival_hits": [],
+            "all_listed_inside": true,
+            "inside_arrival_contained": true,
+            "shared_operation_pairs": [
+              [
+                "basin",
+                "toilet"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "rear-dry",
+          "name": "後段乾式預留（不新增套衛）",
+          "polygon_mm": [
+            [
+              3900,
+              14780
+            ],
+            [
+              6000,
+              14780
+            ],
+            [
+              6000,
+              17630
+            ],
+            [
+              3900,
+              17630
+            ]
+          ],
+          "nominal_area_sqm": 5.985,
+          "furniture": [],
+          "doors": [
+            {
+              "a": [
+                3900,
+                16330
+              ],
+              "b": [
+                3900,
+                17460
+              ],
+              "nominal_mm": 1130,
+              "assumed_clear_mm": 900,
+              "hinge": "rear",
+              "operation": "向主臥外開，後端鉸鏈預算，非已選成品。",
+              "parked_leaf_budget_mm": [
+                2770,
+                17365,
+                1130,
+                95
+              ],
+              "swept_rect_mm": [
+                2770,
+                16330,
+                1130,
+                1130
+              ]
+            }
+          ],
+          "window": {
+            "a": [
+              4750,
+              17630
+            ],
+            "b": [
+              5650,
+              17630
+            ],
+            "legal": "unknown"
+          },
+          "adopted": false
+        }
+      ],
+      "targets_changed": false,
+      "all_requirements_met": false,
+      "adopted": false,
+      "fengshui_overall_approval": "unknown",
+      "professional_approval": "unknown",
+      "third_floor": "同房形與左前公衛；右後保持乾式預留，不新增套衛。"
+    },
+    {
+      "id": "codex-margin-100",
+      "author": "Codex新比較，尚未送回Claude確認",
+      "rooms": [
+        {
+          "id": "master",
+          "name": "L形主臥",
+          "polygon_mm": [
+            [
+              4670,
+              11370
+            ],
+            [
+              6000,
+              11370
+            ],
+            [
+              6000,
+              14880
+            ],
+            [
+              3900,
+              14880
+            ],
+            [
+              3900,
+              17630
+            ],
+            [
+              0,
+              17630
+            ],
+            [
+              0,
+              13470
+            ],
+            [
+              2640,
+              13470
+            ],
+            [
+              2640,
+              12970
+            ],
+            [
+              4670,
+              12970
+            ]
+          ],
+          "nominal_area_sqm": 22.993,
+          "furniture": [
+            {
+              "id": "bed",
+              "rect_mm": [
+                150,
+                15550,
+                2000,
+                1800
+              ],
+              "operation_mm": [
+                2150,
+                15550,
+                600,
+                1800
+              ]
+            },
+            {
+              "id": "wardrobe",
+              "rect_mm": [
+                150,
+                13620,
+                600,
+                1800
+              ],
+              "operation_mm": [
+                750,
+                13620,
+                600,
+                1800
+              ]
+            },
+            {
+              "id": "vanity",
+              "rect_mm": [
+                2755,
+                13120,
+                1200,
+                500
+              ],
+              "operation_mm": [
+                2755,
+                13620,
+                1200,
+                700
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                4770,
+                11370
+              ],
+              "b": [
+                5900,
+                11370
+              ],
+              "nominal_mm": 1130,
+              "assumed_clear_mm": 900,
+              "operation": "候選門，向房內開；門片／成品／救援仍待核。"
+            },
+            {
+              "a": [
+                3900,
+                16330
+              ],
+              "b": [
+                3900,
+                17460
+              ],
+              "nominal_mm": 1130,
+              "assumed_clear_mm": 900,
+              "hinge": "rear",
+              "operation": "向主臥外開，後端鉸鏈預算，非已選成品。",
+              "parked_leaf_budget_mm": [
+                2770,
+                17365,
+                1130,
+                95
+              ],
+              "swept_rect_mm": [
+                2770,
+                16330,
+                1130,
+                1130
+              ]
+            }
+          ],
+          "window": {
+            "a": [
+              750,
+              17630
+            ],
+            "b": [
+              3150,
+              17630
+            ],
+            "legal": "unknown"
+          },
+          "adopted": false,
+          "hvac_candidate": {
+            "id": "B-AC03",
+            "rect_mm": [
+              2525,
+              17225,
+              950,
+              280
+            ],
+            "bottom_relative_z_mm": 2350,
+            "route": "not-re-engineered",
+            "manual": null
+          }
+        },
+        {
+          "id": "dry-protection",
+          "name": "獨立乾保護室",
+          "polygon_mm": [
+            [
+              2640,
+              11370
+            ],
+            [
+              4670,
+              11370
+            ],
+            [
+              4670,
+              12970
+            ],
+            [
+              2640,
+              12970
+            ]
+          ],
+          "nominal_area_sqm": 3.248,
+          "furniture": [],
+          "doors": [
+            {
+              "a": [
+                2850,
+                11370
+              ],
+              "b": [
+                3980,
+                11370
+              ],
+              "nominal_mm": 1130,
+              "assumed_clear_mm": 900,
+              "operation": "前壁獨立門，向室內開；不穿臥室。"
+            }
+          ],
+          "window": null,
+          "adopted": false
+        },
+        {
+          "id": "public-bath",
+          "name": "左前公衛",
+          "polygon_mm": [
+            [
+              0,
+              11370
+            ],
+            [
+              2640,
+              11370
+            ],
+            [
+              2640,
+              13470
+            ],
+            [
+              0,
+              13470
+            ]
+          ],
+          "nominal_area_sqm": 5.544,
+          "furniture": [
+            {
+              "id": "basin",
+              "rect_mm": [
+                115,
+                11485,
+                600,
+                450
+              ],
+              "operation_mm": [
+                115,
+                11935,
+                600,
+                700
+              ]
+            },
+            {
+              "id": "toilet",
+              "rect_mm": [
+                115,
+                12655,
+                450,
+                700
+              ],
+              "operation_mm": [
+                115,
+                11955,
+                450,
+                700
+              ]
+            },
+            {
+              "id": "shower",
+              "rect_mm": [
+                1625,
+                12455,
+                900,
+                900
+              ],
+              "operation_mm": [
+                1625,
+                11755,
+                900,
+                700
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                1320,
+                11370
+              ],
+              "b": [
+                2450,
+                11370
+              ],
+              "nominal_mm": 1130,
+              "assumed_clear_mm": 900,
+              "hinge": "right",
+              "operation": "向前乾區外開；完整門組與消防待核。",
+              "parked_leaf_budget_mm": [
+                2355,
+                10240,
+                95,
+                1130
+              ],
+              "swept_rect_mm": [
+                1320,
+                10240,
+                1130,
+                1130
+              ]
+            }
+          ],
+          "window": null,
+          "adopted": false,
+          "illustrative_finished_rect_mm": [
+            115,
+            11485,
+            2410,
+            1870
+          ],
+          "inside_approach_mm": [
+            1435,
+            11485,
+            900,
+            900
+          ],
+          "outside_approach_mm": [
+            1435,
+            10355,
+            900,
+            900
+          ],
+          "actual_product_pack": null,
+          "actual_finished_clear_mm": null,
+          "drainage_terminal": null,
+          "screen": {
+            "body_hits": [],
+            "operation_body_hits": [],
+            "inside_arrival_hits": [],
+            "all_listed_inside": true,
+            "inside_arrival_contained": true,
+            "shared_operation_pairs": [
+              [
+                "basin",
+                "toilet"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "private-bath",
+          "name": "套衛",
+          "polygon_mm": [
+            [
+              3900,
+              14880
+            ],
+            [
+              6000,
+              14880
+            ],
+            [
+              6000,
+              17630
+            ],
+            [
+              3900,
+              17630
+            ]
+          ],
+          "nominal_area_sqm": 5.775,
+          "furniture": [
+            {
+              "id": "toilet",
+              "rect_mm": [
+                4165,
+                14995,
+                450,
+                700
+              ],
+              "operation_mm": [
+                4165,
+                15695,
+                450,
+                700
+              ]
+            },
+            {
+              "id": "basin",
+              "rect_mm": [
+                5335,
+                14995,
+                550,
+                900
+              ],
+              "operation_mm": [
+                4635,
+                14995,
+                700,
+                900
+              ]
+            },
+            {
+              "id": "shower",
+              "rect_mm": [
+                4985,
+                16025,
+                900,
+                900
+              ],
+              "operation_mm": [
+                4285,
+                16025,
+                700,
+                900
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                3900,
+                16330
+              ],
+              "b": [
+                3900,
+                17460
+              ],
+              "nominal_mm": 1130,
+              "assumed_clear_mm": 900,
+              "hinge": "rear",
+              "operation": "向主臥外開，後端鉸鏈預算，非已選成品。",
+              "parked_leaf_budget_mm": [
+                2770,
+                17365,
+                1130,
+                95
+              ],
+              "swept_rect_mm": [
+                2770,
+                16330,
+                1130,
+                1130
+              ]
+            }
+          ],
+          "window": {
+            "a": [
+              4750,
+              17630
+            ],
+            "b": [
+              5650,
+              17630
+            ],
+            "legal": "unknown"
+          },
+          "adopted": false,
+          "illustrative_finished_rect_mm": [
+            4015,
+            14995,
+            1870,
+            2520
+          ],
+          "inside_approach_mm": [
+            4015,
+            16445,
+            900,
+            900
+          ],
+          "outside_approach_mm": [
+            2885,
+            16445,
+            900,
+            900
+          ],
+          "actual_product_pack": null,
+          "actual_finished_clear_mm": null,
+          "drainage_terminal": null,
+          "screen": {
+            "body_hits": [],
+            "operation_body_hits": [],
+            "inside_arrival_hits": [],
+            "all_listed_inside": true,
+            "inside_arrival_contained": true,
+            "shared_operation_pairs": [
+              [
+                "toilet",
+                "shower"
+              ]
+            ]
+          }
+        }
+      ],
+      "partition": {
+        "gap_or_outside_sqm": 0.0,
+        "overlap_sqm": 0.0,
+        "status": "listed-geometry-clear"
+      },
+      "wet_projection": [
+        {
+          "id": "public-bath",
+          "over_protected_sqm": 0.0,
+          "over_palanquin_sqm": 0.0,
+          "distance_to_backing_mm": 0.0,
+          "status": "listed-geometry-clear"
+        },
+        {
+          "id": "private-bath",
+          "over_protected_sqm": 0.0,
+          "over_palanquin_sqm": 0.0,
+          "distance_to_backing_mm": 1910.0,
+          "status": "listed-geometry-clear"
+        }
+      ],
+      "bedroom_over_protected_sqm": 0.0,
+      "bedroom_bodies_inside_115": true,
+      "bedroom_operations_inside_115": true,
+      "route": {
+        "points_mm": [
+          [
+            5335,
+            12270
+          ],
+          [
+            5335,
+            14150
+          ],
+          [
+            2670,
+            14150
+          ],
+          [
+            2670,
+            16800
+          ],
+          [
+            3335,
+            16800
+          ],
+          [
+            3335,
+            16900
+          ]
+        ],
+        "sweeps_mm": [
+          [
+            4885.0,
+            11820.0,
+            900,
+            2780
+          ],
+          [
+            2220.0,
+            13700.0,
+            3565,
+            900
+          ],
+          [
+            2220.0,
+            13700.0,
+            900,
+            3550
+          ],
+          [
+            2220.0,
+            16350.0,
+            1565,
+            900
+          ],
+          [
+            2885.0,
+            16350.0,
+            900,
+            1000
+          ]
+        ],
+        "all_inside_115": true,
+        "body_hits": [],
+        "actual_whole_route": "unknown"
+      },
+      "area_sensitivity": [
+        {
+          "inset_each_mm": 80,
+          "bedroom": 21.057,
+          "dry_room": 2.6928,
+          "public_bath": 4.8112,
+          "private_bath": 5.0246,
+          "bedroom_meets_20": true,
+          "public_meets_min": true,
+          "private_meets_min": true,
+          "both_bath_targets": false
+        },
+        {
+          "inset_each_mm": 115,
+          "bedroom": 20.2261,
+          "dry_room": 2.466,
+          "public_bath": 4.5067,
+          "private_bath": 4.7124,
+          "bedroom_meets_20": true,
+          "public_meets_min": true,
+          "private_meets_min": true,
+          "both_bath_targets": false
+        },
+        {
+          "inset_each_mm": 150,
+          "bedroom": 19.405,
+          "dry_room": 2.249,
+          "public_bath": 4.212,
+          "private_bath": 4.41,
+          "bedroom_meets_20": false,
+          "public_meets_min": true,
+          "private_meets_min": false,
+          "both_bath_targets": false
+        },
+        {
+          "inset_each_mm": 116,
+          "bedroom": 20.202504,
+          "dry_room": 2.459664,
+          "public_bath": 4.498144,
+          "private_bath": 4.703624,
+          "bedroom_meets_20": true,
+          "public_meets_min": true,
+          "private_meets_min": true,
+          "both_bath_targets": false
+        }
+      ],
+      "current_inset_case": {
+        "inset_each_mm": 115,
+        "bedroom": 20.2261,
+        "dry_room": 2.466,
+        "public_bath": 4.5067,
+        "private_bath": 4.7124,
+        "bedroom_meets_20": true,
+        "public_meets_min": true,
+        "private_meets_min": true,
+        "both_bath_targets": false
+      },
+      "door_arrivals": [
+        {
+          "room": "public-bath",
+          "outside_arrival_inside_budget": true,
+          "parked_leaf_hits_arrival": false,
+          "swept_rectangle_body_hits": [],
+          "complete_product_and_all_states": "unknown"
+        },
+        {
+          "room": "private-bath",
+          "outside_arrival_inside_budget": true,
+          "parked_leaf_hits_arrival": false,
+          "swept_rectangle_body_hits": [],
+          "complete_product_and_all_states": "unknown"
+        }
+      ],
+      "bed_to_rear_115_gap_mm": 165,
+      "bed_rear_to_open_private_leaf_mm": 15,
+      "bedroom_hvac_contained": true,
+      "bedroom_rear_inscribed_rect_mm": [
+        115,
+        13585,
+        3670,
+        3930
+      ],
+      "bedroom_rear_inscribed_rect_sqm": 14.4231,
+      "rear_inscribed_rect_contained": true,
+      "bedroom_area_quality_note": "20㎡包含狹長入口與轉折／梳妝區；後段可完整內接矩形約14.4231㎡，不能只用總面積認定方正寬敞。",
+      "retained_front_floor2": [
+        {
+          "id": "B:floor-2:living2",
+          "name": "安靜起居｜後區（整廳上方禁睡）",
+          "rect_mm": [
+            0,
+            9100,
+            6000,
+            2270
+          ],
+          "outdoor": false,
+          "features": {
+            "status": "illustrative-pending-professional-review",
+            "geometry_source": "tour_mm",
+            "doors": [],
+            "open_connections": [
+              {
+                "face": "front",
+                "ratio": 0.7,
+                "width_mm": 3600,
+                "neighbor": "B:floor-2:living2-front",
+                "status": "explicit-bounded-proposal-not-verified",
+                "operation": "unconfirmed"
+              },
+              {
+                "face": "rear",
+                "ratio": 0.1,
+                "width_mm": 1200,
+                "neighbor": "B:floor-2:corridor2",
+                "status": "explicit-bounded-proposal-not-verified",
+                "operation": "unconfirmed"
+              }
+            ],
+            "space_group": "b32-living2",
+            "space_role": "living",
+            "window_face": null,
+            "window_ratio": 0.5,
+            "stairs": false,
+            "stair_geometry_verified": false,
+            "access_pending": false,
+            "access_reason": "公共區相鄰／套衛提案；非已驗證通行。梯段、門扇、轉位、雨天及完成面淨空待核。",
+            "hvac": {
+              "indoor": false,
+              "outdoor": false,
+              "evidence": []
+            },
+            "window_pending": "側界可能共壁；只有前後外側才畫候選窗。合法採光／通風及神桌實牆待核。",
+            "hvac_units": [],
+            "fixed_reserved_mm": [],
+            "window_sill_mm": 900,
+            "window_height_mm": 1200,
+            "window_review": {
+              "status": "not-requested",
+              "requested_face": null,
+              "requested_width_mm": 0,
+              "renderable": false,
+              "issues": [],
+              "assumed_jamb_budget_mm": 100,
+              "assumed_opening_buffer_mm": 100,
+              "professional_acceptance": "unknown",
+              "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+            },
+            "window_mm": 0,
+            "reserved_mm": []
+          },
+          "furniture": []
+        },
+        {
+          "id": "B:floor-2:balcony2",
+          "name": "前陽台／室外機候選（合法性待核）",
+          "rect_mm": [
+            0,
+            0,
+            6000,
+            3900
+          ],
+          "outdoor": true,
+          "features": {
+            "status": "illustrative-pending-professional-review",
+            "geometry_source": "tour_mm",
+            "doors": [
+              {
+                "face": "rear",
+                "ratio": 0.566667,
+                "width_mm": 1000,
+                "neighbor": "B:floor-2:living2-front",
+                "status": "explicit-bounded-proposal-not-verified",
+                "operation": "unconfirmed"
+              }
+            ],
+            "open_connections": [],
+            "space_group": "",
+            "space_role": "",
+            "window_face": null,
+            "window_ratio": 0.5,
+            "stairs": false,
+            "stair_geometry_verified": false,
+            "access_pending": false,
+            "access_reason": "公共區相鄰／套衛提案；非已驗證通行。梯段、門扇、轉位、雨天及完成面淨空待核。",
+            "hvac": {
+              "indoor": false,
+              "outdoor": true,
+              "evidence": []
+            },
+            "window_pending": "側界可能共壁；只有前後外側才畫候選窗。合法採光／通風及神桌實牆待核。",
+            "hvac_units": [
+              {
+                "id": "B-AC01",
+                "type": "outdoor",
+                "x_mm": 5470.0,
+                "y_mm": 275,
+                "mount_height_mm": 100,
+                "face": "front",
+                "width_mm": 900,
+                "depth_mm": 350,
+                "height_mm": 800,
+                "route": {
+                  "id": "B-AC01",
+                  "indoor_room": "B:floor-1:shrine-front",
+                  "outdoor_room": "B:floor-2:balcony2",
+                  "status": "unverified-model-and-route",
+                  "facade": "front",
+                  "polyline_mm": [
+                    [
+                      4920.0,
+                      4050,
+                      2350
+                    ],
+                    [
+                      4920.0,
+                      0,
+                      2350
+                    ],
+                    [
+                      5470.0,
+                      0,
+                      2350
+                    ],
+                    [
+                      5470.0,
+                      0,
+                      6350
+                    ],
+                    [
+                      5470.0,
+                      275,
+                      6350
+                    ],
+                    [
+                      5470.0,
+                      275,
+                      4500
+                    ]
+                  ],
+                  "estimated_routed_length_mm": 11725,
+                  "bend_service_allowance_mm": 1000,
+                  "elevation_difference_mm": 2150,
+                  "model": null,
+                  "manual_source": null,
+                  "max_pipe_length_mm": null,
+                  "min_pipe_length_mm": null,
+                  "max_elevation_mm": null,
+                  "additional_refrigerant_g": null,
+                  "compliance": "unknown",
+                  "drainage": "室內機冷凝水另走可檢修重力排水至合法排水點；與冷媒路徑分開核對，不靠室外機位置證明排水。",
+                  "maintenance": "室外機通風／熱回流、防颱固定、避鄰噪音、端子與閥側維修、排水和運入更換待原廠圖核對。",
+                  "note": "折線長度是提案量，不是實測或安裝許可；穿牆／梁／防火、實際彎頭及最短管長仍未知。代表機身尺寸非選定產品。",
+                  "routing_height_note": "設備區高位路徑暫估高2350mm後再降至閥側；屋頂支架、防曬保溫、抗風及實際干涉須機電設計核對。"
+                }
+              },
+              {
+                "id": "B-AC02",
+                "type": "outdoor",
+                "x_mm": 530.0,
+                "y_mm": 275,
+                "mount_height_mm": 100,
+                "face": "front",
+                "width_mm": 900,
+                "depth_mm": 350,
+                "height_mm": 800,
+                "route": {
+                  "id": "B-AC02",
+                  "indoor_room": "B:floor-2:living2-front",
+                  "outdoor_room": "B:floor-2:balcony2",
+                  "status": "unverified-model-and-route",
+                  "facade": "front",
+                  "polyline_mm": [
+                    [
+                      4920.0,
+                      4050,
+                      6350
+                    ],
+                    [
+                      4920.0,
+                      3900,
+                      6350
+                    ],
+                    [
+                      530.0,
+                      3900,
+                      6350
+                    ],
+                    [
+                      530.0,
+                      3900,
+                      6350
+                    ],
+                    [
+                      530.0,
+                      275,
+                      6350
+                    ],
+                    [
+                      530.0,
+                      275,
+                      4500
+                    ]
+                  ],
+                  "estimated_routed_length_mm": 11015,
+                  "bend_service_allowance_mm": 1000,
+                  "elevation_difference_mm": 1850,
+                  "model": null,
+                  "manual_source": null,
+                  "max_pipe_length_mm": null,
+                  "min_pipe_length_mm": null,
+                  "max_elevation_mm": null,
+                  "additional_refrigerant_g": null,
+                  "compliance": "unknown",
+                  "drainage": "室內機冷凝水另走可檢修重力排水至合法排水點；與冷媒路徑分開核對，不靠室外機位置證明排水。",
+                  "maintenance": "室外機通風／熱回流、防颱固定、避鄰噪音、端子與閥側維修、排水和運入更換待原廠圖核對。",
+                  "note": "折線長度是提案量，不是實測或安裝許可；穿牆／梁／防火、實際彎頭及最短管長仍未知。代表機身尺寸非選定產品。",
+                  "routing_height_note": "設備區高位路徑暫估高2350mm後再降至閥側；屋頂支架、防曬保溫、抗風及實際干涉須機電設計核對。"
+                }
+              }
+            ],
+            "fixed_reserved_mm": [
+              {
+                "kind": "hvac-service",
+                "aabb": {
+                  "minX": 5020.0,
+                  "maxX": 5920.0,
+                  "minY": 100,
+                  "maxY": 1450
+                }
+              },
+              {
+                "kind": "hvac-service",
+                "aabb": {
+                  "minX": 80.0,
+                  "maxX": 980.0,
+                  "minY": 100,
+                  "maxY": 1450
+                }
+              }
+            ],
+            "window_sill_mm": 900,
+            "window_height_mm": 1200,
+            "window_review": {
+              "status": "not-applicable-outdoor",
+              "requested_face": null,
+              "requested_width_mm": 0,
+              "renderable": false,
+              "issues": [],
+              "assumed_jamb_budget_mm": 100,
+              "assumed_opening_buffer_mm": 100,
+              "professional_acceptance": "unknown",
+              "note": "戶外區不計室內窗。"
+            },
+            "window_mm": 0,
+            "reserved_mm": [
+              {
+                "kind": "hvac-service",
+                "aabb": {
+                  "minX": 5020.0,
+                  "maxX": 5920.0,
+                  "minY": 100,
+                  "maxY": 1450
+                }
+              },
+              {
+                "kind": "hvac-service",
+                "aabb": {
+                  "minX": 80.0,
+                  "maxX": 980.0,
+                  "minY": 100,
+                  "maxY": 1450
+                }
+              },
+              {
+                "kind": "door-approach",
+                "aabb": {
+                  "minX": 2800.0,
+                  "maxX": 4000.0,
+                  "minY": 3000.0,
+                  "maxY": 3900.0
+                }
+              }
+            ],
+            "kaohsiung_zones": {
+              "status": "comparison-only-not-adopted",
+              "garden_mm": [
+                1100,
+                1500,
+                3800,
+                2400
+              ],
+              "soil_rects_mm": [
+                [
+                  1200,
+                  1600,
+                  3600,
+                  900
+                ]
+              ],
+              "woody_points_mm": [
+                [
+                  1650,
+                  2050
+                ],
+                [
+                  2550,
+                  2050
+                ],
+                [
+                  3450,
+                  2050
+                ],
+                [
+                  4350,
+                  2050
+                ]
+              ],
+              "green_deck_level": "symbolic-flush-finish-no-designed-soil-depth-or-slab-cut",
+              "local_route_mm": [
+                [
+                  3400,
+                  3400
+                ],
+                [
+                  2000,
+                  3400
+                ]
+              ],
+              "service_routes_mm": {},
+              "replaces_inferred_planters": [],
+              "actual_soil_depth_mm": null,
+              "lawful_area_and_cantilever": "unknown",
+              "note": "9.12m²景觀區接前右起居室；左右兩台室外機及其原維修帶均保留。其餘14.28m²為普通陽台／設備待核區，不視為已合法或全數免計。"
+            }
+          },
+          "furniture": []
+        },
+        {
+          "id": "B:floor-2:stair2",
+          "name": "同軸前左樓梯／平台",
+          "rect_mm": [
+            0,
+            3900,
+            2400,
+            5200
+          ],
+          "outdoor": false,
+          "features": {
+            "status": "illustrative-pending-professional-review",
+            "geometry_source": "tour_mm",
+            "doors": [
+              {
+                "face": "right",
+                "ratio": 0.096154,
+                "width_mm": 1000,
+                "neighbor": "B:floor-2:living2-front",
+                "status": "explicit-bounded-proposal-not-verified",
+                "operation": "unconfirmed"
+              }
+            ],
+            "open_connections": [],
+            "space_group": "",
+            "space_role": "",
+            "window_face": null,
+            "window_ratio": 0.5,
+            "stairs": true,
+            "stair_geometry_verified": false,
+            "access_pending": false,
+            "access_reason": "公共區相鄰／套衛提案；非已驗證通行。梯段、門扇、轉位、雨天及完成面淨空待核。",
+            "hvac": {
+              "indoor": false,
+              "outdoor": false,
+              "evidence": []
+            },
+            "window_pending": "側界可能共壁；只有前後外側才畫候選窗。合法採光／通風及神桌實牆待核。",
+            "hvac_units": [],
+            "fixed_reserved_mm": [],
+            "window_sill_mm": 900,
+            "window_height_mm": 1200,
+            "stair_footprint_mm": {
+              "x_mm": 80,
+              "y_mm": 3970,
+              "w_mm": 2200,
+              "h_mm": 5060
+            },
+            "stair_geometry": {
+              "type": "two-flight-u-proposal",
+              "connects_to_next_storey": true,
+              "risers": 18,
+              "riser_mm": 166.67,
+              "tread_mm": 270,
+              "flight_width_mm": 1000,
+              "landing_mm": 1000,
+              "departure_offset_mm": 1000,
+              "middle_landing_mm": 1900,
+              "shared_front_landing": false,
+              "run_mm": 2160,
+              "fits_reserved_box": true,
+              "note": "兩折梯與平台僅初排；完成面淨寬、扶手、結構、梯井、淨高、消防分隔及屋突資格未核。"
+            },
+            "window_review": {
+              "status": "not-requested",
+              "requested_face": null,
+              "requested_width_mm": 0,
+              "renderable": false,
+              "issues": [],
+              "assumed_jamb_budget_mm": 100,
+              "assumed_opening_buffer_mm": 100,
+              "professional_acceptance": "unknown",
+              "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+            },
+            "window_mm": 0,
+            "reserved_mm": [
+              {
+                "kind": "door-approach",
+                "aabb": {
+                  "minX": 1500.0,
+                  "maxX": 2400.0,
+                  "minY": 3800.0,
+                  "maxY": 5000.0
+                }
+              },
+              {
+                "kind": "stairs",
+                "aabb": {
+                  "minX": 80,
+                  "maxX": 2280,
+                  "minY": 3970,
+                  "maxY": 9030
+                }
+              }
+            ]
+          },
+          "furniture": []
+        },
+        {
+          "id": "B:floor-2:living2-front",
+          "name": "安靜起居｜前區（禁作睡眠）",
+          "rect_mm": [
+            2400,
+            3900,
+            3600,
+            5200
+          ],
+          "outdoor": false,
+          "features": {
+            "status": "illustrative-pending-professional-review",
+            "geometry_source": "tour_mm",
+            "doors": [
+              {
+                "face": "left",
+                "ratio": 0.096154,
+                "width_mm": 1000,
+                "neighbor": "B:floor-2:stair2",
+                "status": "explicit-bounded-proposal-not-verified",
+                "operation": "unconfirmed"
+              },
+              {
+                "face": "front",
+                "ratio": 0.277778,
+                "width_mm": 1000,
+                "neighbor": "B:floor-2:balcony2",
+                "status": "explicit-bounded-proposal-not-verified",
+                "operation": "unconfirmed"
+              }
+            ],
+            "open_connections": [
+              {
+                "face": "rear",
+                "ratio": 0.5,
+                "width_mm": 3600,
+                "neighbor": "B:floor-2:living2",
+                "status": "explicit-bounded-proposal-not-verified",
+                "operation": "unconfirmed"
+              }
+            ],
+            "space_group": "b32-living2",
+            "space_role": "living",
+            "window_face": "front",
+            "window_ratio": 0.75,
+            "stairs": false,
+            "stair_geometry_verified": false,
+            "access_pending": false,
+            "access_reason": "公共區相鄰／套衛提案；非已驗證通行。梯段、門扇、轉位、雨天及完成面淨空待核。",
+            "hvac": {
+              "indoor": true,
+              "outdoor": false,
+              "evidence": []
+            },
+            "window_pending": "側界可能共壁；只有前後外側才畫候選窗。合法採光／通風及神桌實牆待核。",
+            "hvac_units": [
+              {
+                "id": "B-AC02",
+                "type": "indoor",
+                "x_mm": 4920.0,
+                "y_mm": 4050,
+                "mount_height_mm": 2350,
+                "face": "front",
+                "width_mm": 950,
+                "depth_mm": 280,
+                "height_mm": 280,
+                "route": {
+                  "id": "B-AC02",
+                  "indoor_room": "B:floor-2:living2-front",
+                  "outdoor_room": "B:floor-2:balcony2",
+                  "status": "unverified-model-and-route",
+                  "facade": "front",
+                  "polyline_mm": [
+                    [
+                      4920.0,
+                      4050,
+                      6350
+                    ],
+                    [
+                      4920.0,
+                      3900,
+                      6350
+                    ],
+                    [
+                      530.0,
+                      3900,
+                      6350
+                    ],
+                    [
+                      530.0,
+                      3900,
+                      6350
+                    ],
+                    [
+                      530.0,
+                      275,
+                      6350
+                    ],
+                    [
+                      530.0,
+                      275,
+                      4500
+                    ]
+                  ],
+                  "estimated_routed_length_mm": 11015,
+                  "bend_service_allowance_mm": 1000,
+                  "elevation_difference_mm": 1850,
+                  "model": null,
+                  "manual_source": null,
+                  "max_pipe_length_mm": null,
+                  "min_pipe_length_mm": null,
+                  "max_elevation_mm": null,
+                  "additional_refrigerant_g": null,
+                  "compliance": "unknown",
+                  "drainage": "室內機冷凝水另走可檢修重力排水至合法排水點；與冷媒路徑分開核對，不靠室外機位置證明排水。",
+                  "maintenance": "室外機通風／熱回流、防颱固定、避鄰噪音、端子與閥側維修、排水和運入更換待原廠圖核對。",
+                  "note": "折線長度是提案量，不是實測或安裝許可；穿牆／梁／防火、實際彎頭及最短管長仍未知。代表機身尺寸非選定產品。",
+                  "routing_height_note": "設備區高位路徑暫估高2350mm後再降至閥側；屋頂支架、防曬保溫、抗風及實際干涉須機電設計核對。"
+                }
+              }
+            ],
+            "fixed_reserved_mm": [],
+            "window_sill_mm": 900,
+            "window_height_mm": 1200,
+            "window_review": {
+              "status": "candidate-geometry-only",
+              "requested_face": "front",
+              "requested_width_mm": 1200,
+              "renderable": true,
+              "issues": [],
+              "assumed_jamb_budget_mm": 100,
+              "assumed_opening_buffer_mm": 100,
+              "professional_acceptance": "unknown",
+              "note": "候選窗已避門洞並留模型窗邊；有效採光、通風、柱梁、窗框與防雨未核。"
+            },
+            "window_mm": 1200,
+            "reserved_mm": [
+              {
+                "kind": "door-approach",
+                "aabb": {
+                  "minX": 2400.0,
+                  "maxX": 3300.0,
+                  "minY": 3800.0,
+                  "maxY": 5000.0
+                }
+              },
+              {
+                "kind": "door-approach",
+                "aabb": {
+                  "minX": 2800.0,
+                  "maxX": 4000.0,
+                  "minY": 3900.0,
+                  "maxY": 4800.0
+                }
+              }
+            ]
+          },
+          "furniture": [
+            {
+              "id": "B:floor-2:living2-front:furniture:table",
+              "label": "茶几",
+              "shape": "table",
+              "rect_mm": [
+                3600.0,
+                6050.0,
+                600.0,
+                1100.0
+              ],
+              "width_mm": 1100.0,
+              "depth_mm": 600.0,
+              "height_mm": 420.0,
+              "placement": {
+                "id": "B:floor-2:living2-front:furniture:table",
+                "center_x_mm": 3900.0,
+                "center_y_mm": 6600.0,
+                "rotation_deg": 90,
+                "wall_anchor": "",
+                "wall_gap_mm": null,
+                "aabb": {
+                  "minX": 3600.0,
+                  "maxX": 4200.0,
+                  "minY": 6050.0,
+                  "maxY": 7150.0
+                },
+                "operation_mm": null,
+                "rear_operation_mm": null,
+                "mount_height_mm": 0.0,
+                "issues": [],
+                "status": "planning-not-measured",
+                "basis": "independent-coordinate-screen-not-rehearsal"
+              }
+            },
+            {
+              "id": "B:floor-2:living2-front:furniture:sofa",
+              "label": "180cm雙人沙發（一般尺寸）",
+              "shape": "sofa",
+              "rect_mm": [
+                4950.0,
+                5700.0,
+                900.0,
+                1800.0
+              ],
+              "width_mm": 1800.0,
+              "depth_mm": 900.0,
+              "height_mm": 850.0,
+              "placement": {
+                "id": "B:floor-2:living2-front:furniture:sofa",
+                "center_x_mm": 5400.0,
+                "center_y_mm": 6600.0,
+                "rotation_deg": 90,
+                "wall_anchor": "right",
+                "wall_gap_mm": 150,
+                "aabb": {
+                  "minX": 4950.0,
+                  "maxX": 5850.0,
+                  "minY": 5700.0,
+                  "maxY": 7500.0
+                },
+                "operation_mm": {
+                  "minX": 4550.0,
+                  "maxX": 4950.0,
+                  "minY": 5700.0,
+                  "maxY": 7500.0
+                },
+                "rear_operation_mm": null,
+                "mount_height_mm": 0.0,
+                "issues": [],
+                "status": "planning-not-measured",
+                "basis": "coordinate-proposal-not-rehearsed"
+              }
+            },
+            {
+              "id": "B:floor-2:living2-front:furniture:tv",
+              "label": "43吋壁掛電視（代表外廓）",
+              "shape": "wall-tv",
+              "rect_mm": [
+                2550.0,
+                6200.0,
+                80.0,
+                1000.0
+              ],
+              "width_mm": 1000.0,
+              "depth_mm": 80.0,
+              "height_mm": 600.0,
+              "placement": {
+                "id": "B:floor-2:living2-front:furniture:tv",
+                "center_x_mm": 2590.0,
+                "center_y_mm": 6700.0,
+                "rotation_deg": 270,
+                "wall_anchor": "left",
+                "wall_gap_mm": 150,
+                "aabb": {
+                  "minX": 2550.0,
+                  "maxX": 2630.0,
+                  "minY": 6200.0,
+                  "maxY": 7200.0
+                },
+                "operation_mm": null,
+                "rear_operation_mm": null,
+                "mount_height_mm": 1400.0,
+                "issues": [],
+                "status": "planning-not-measured",
+                "basis": "coordinate-proposal-not-rehearsed"
+              }
+            }
+          ]
+        }
+      ],
+      "roof_reference": {
+        "id": "floor-4",
+        "base_mm": 10000,
+        "rooms": [
+          {
+            "id": "B:floor-4:stairRF",
+            "name": "同軸梯間屋突候選（合法性待核）",
+            "rect_mm": [
+              0,
+              3900,
+              2400,
+              5200
+            ],
+            "outdoor": false,
+            "features": {
+              "status": "illustrative-pending-professional-review",
+              "geometry_source": "tour_mm",
+              "doors": [
+                {
+                  "face": "right",
+                  "ratio": 0.096154,
+                  "width_mm": 1000,
+                  "neighbor": "B:floor-4:shrine-buffer-front",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                }
+              ],
+              "open_connections": [],
+              "space_group": "",
+              "space_role": "",
+              "window_face": null,
+              "window_ratio": 0.5,
+              "stairs": true,
+              "stair_geometry_verified": false,
+              "access_pending": false,
+              "access_reason": "公共區相鄰／套衛提案；非已驗證通行。梯段、門扇、轉位、雨天及完成面淨空待核。",
+              "hvac": {
+                "indoor": false,
+                "outdoor": false,
+                "evidence": []
+              },
+              "window_pending": "側界可能共壁；只有前後外側才畫候選窗。合法採光／通風及神桌實牆待核。",
+              "hvac_units": [],
+              "fixed_reserved_mm": [],
+              "window_sill_mm": 900,
+              "window_height_mm": 1200,
+              "stair_footprint_mm": {
+                "x_mm": 80,
+                "y_mm": 3970,
+                "w_mm": 2200,
+                "h_mm": 5060
+              },
+              "stair_geometry": {
+                "type": "two-flight-u-proposal",
+                "connects_to_next_storey": false,
+                "risers": 18,
+                "riser_mm": 166.67,
+                "tread_mm": 270,
+                "flight_width_mm": 1000,
+                "landing_mm": 1000,
+                "departure_offset_mm": 1000,
+                "middle_landing_mm": 1900,
+                "shared_front_landing": false,
+                "run_mm": 2160,
+                "fits_reserved_box": true,
+                "note": "兩折梯與平台僅初排；完成面淨寬、扶手、結構、梯井、淨高、消防分隔及屋突資格未核。"
+              },
+              "window_review": {
+                "status": "not-requested",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+              },
+              "window_mm": 0,
+              "reserved_mm": [
+                {
+                  "kind": "door-approach",
+                  "aabb": {
+                    "minX": 1500.0,
+                    "maxX": 2400.0,
+                    "minY": 3800.0,
+                    "maxY": 5000.0
+                  }
+                },
+                {
+                  "kind": "stairs",
+                  "aabb": {
+                    "minX": 80,
+                    "maxX": 2280,
+                    "minY": 3970,
+                    "maxY": 9030
+                  }
+                }
+              ]
+            },
+            "furniture": []
+          },
+          {
+            "id": "B:floor-4:service-rf",
+            "name": "後屋頂室外機／維修候選（承重待核）",
+            "rect_mm": [
+              0,
+              11370,
+              2400,
+              6260
+            ],
+            "outdoor": true,
+            "features": {
+              "status": "illustrative-pending-professional-review",
+              "geometry_source": "tour_mm",
+              "doors": [],
+              "open_connections": [
+                {
+                  "face": "front",
+                  "ratio": 0.5,
+                  "width_mm": 2400,
+                  "neighbor": "B:floor-4:shrine-buffer-rear",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                },
+                {
+                  "face": "right",
+                  "ratio": 0.5,
+                  "width_mm": 6260,
+                  "neighbor": "B:floor-4:rear-roof",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                }
+              ],
+              "space_group": "",
+              "space_role": "",
+              "window_face": null,
+              "window_ratio": 0.5,
+              "stairs": false,
+              "stair_geometry_verified": false,
+              "access_pending": false,
+              "access_reason": "公共區相鄰／套衛提案；非已驗證通行。梯段、門扇、轉位、雨天及完成面淨空待核。",
+              "hvac": {
+                "indoor": false,
+                "outdoor": true,
+                "evidence": []
+              },
+              "window_pending": "側界可能共壁；只有前後外側才畫候選窗。合法採光／通風及神桌實牆待核。",
+              "hvac_units": [
+                {
+                  "id": "B-AC03",
+                  "type": "outdoor",
+                  "x_mm": 1870.0,
+                  "y_mm": 17355,
+                  "mount_height_mm": 100,
+                  "face": "rear",
+                  "width_mm": 900,
+                  "depth_mm": 350,
+                  "height_mm": 800,
+                  "route": {
+                    "id": "B-AC03",
+                    "indoor_room": "B:floor-2:master2",
+                    "outdoor_room": "B:floor-4:service-rf",
+                    "status": "unverified-model-and-route",
+                    "facade": "rear",
+                    "polyline_mm": [
+                      [
+                        4200.0,
+                        17480,
+                        6350
+                      ],
+                      [
+                        4200.0,
+                        17630,
+                        6350
+                      ],
+                      [
+                        1870.0,
+                        17630,
+                        6350
+                      ],
+                      [
+                        1870.0,
+                        17630,
+                        12350
+                      ],
+                      [
+                        1870.0,
+                        17355,
+                        12350
+                      ],
+                      [
+                        1870.0,
+                        17355,
+                        10500
+                      ]
+                    ],
+                    "estimated_routed_length_mm": 11605,
+                    "bend_service_allowance_mm": 1000,
+                    "elevation_difference_mm": 4150,
+                    "model": null,
+                    "manual_source": null,
+                    "max_pipe_length_mm": null,
+                    "min_pipe_length_mm": null,
+                    "max_elevation_mm": null,
+                    "additional_refrigerant_g": null,
+                    "compliance": "unknown",
+                    "drainage": "室內機冷凝水另走可檢修重力排水至合法排水點；與冷媒路徑分開核對，不靠室外機位置證明排水。",
+                    "maintenance": "室外機通風／熱回流、防颱固定、避鄰噪音、端子與閥側維修、排水和運入更換待原廠圖核對。",
+                    "note": "折線長度是提案量，不是實測或安裝許可；穿牆／梁／防火、實際彎頭及最短管長仍未知。代表機身尺寸非選定產品。",
+                    "routing_height_note": "設備區高位路徑暫估高2350mm後再降至閥側；屋頂支架、防曬保溫、抗風及實際干涉須機電設計核對。"
+                  }
+                },
+                {
+                  "id": "B-AC04",
+                  "type": "outdoor",
+                  "x_mm": 530.0,
+                  "y_mm": 17355,
+                  "mount_height_mm": 100,
+                  "face": "rear",
+                  "width_mm": 900,
+                  "depth_mm": 350,
+                  "height_mm": 800,
+                  "route": {
+                    "id": "B-AC04",
+                    "indoor_room": "B:floor-3:guest3",
+                    "outdoor_room": "B:floor-4:service-rf",
+                    "status": "unverified-model-and-route",
+                    "facade": "rear",
+                    "polyline_mm": [
+                      [
+                        4200.0,
+                        17480,
+                        9350
+                      ],
+                      [
+                        4200.0,
+                        17630,
+                        9350
+                      ],
+                      [
+                        530.0,
+                        17630,
+                        9350
+                      ],
+                      [
+                        530.0,
+                        17630,
+                        12350
+                      ],
+                      [
+                        530.0,
+                        17355,
+                        12350
+                      ],
+                      [
+                        530.0,
+                        17355,
+                        10500
+                      ]
+                    ],
+                    "estimated_routed_length_mm": 9945,
+                    "bend_service_allowance_mm": 1000,
+                    "elevation_difference_mm": 1150,
+                    "model": null,
+                    "manual_source": null,
+                    "max_pipe_length_mm": null,
+                    "min_pipe_length_mm": null,
+                    "max_elevation_mm": null,
+                    "additional_refrigerant_g": null,
+                    "compliance": "unknown",
+                    "drainage": "室內機冷凝水另走可檢修重力排水至合法排水點；與冷媒路徑分開核對，不靠室外機位置證明排水。",
+                    "maintenance": "室外機通風／熱回流、防颱固定、避鄰噪音、端子與閥側維修、排水和運入更換待原廠圖核對。",
+                    "note": "折線長度是提案量，不是實測或安裝許可；穿牆／梁／防火、實際彎頭及最短管長仍未知。代表機身尺寸非選定產品。",
+                    "routing_height_note": "設備區高位路徑暫估高2350mm後再降至閥側；屋頂支架、防曬保溫、抗風及實際干涉須機電設計核對。"
+                  }
+                }
+              ],
+              "fixed_reserved_mm": [
+                {
+                  "kind": "hvac-service",
+                  "aabb": {
+                    "minX": 1420.0,
+                    "maxX": 2320.0,
+                    "minY": 16180,
+                    "maxY": 17530
+                  }
+                },
+                {
+                  "kind": "hvac-service",
+                  "aabb": {
+                    "minX": 80.0,
+                    "maxX": 980.0,
+                    "minY": 16180,
+                    "maxY": 17530
+                  }
+                }
+              ],
+              "window_sill_mm": 900,
+              "window_height_mm": 1200,
+              "window_review": {
+                "status": "not-applicable-outdoor",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "戶外區不計室內窗。"
+              },
+              "window_mm": 0,
+              "reserved_mm": [
+                {
+                  "kind": "hvac-service",
+                  "aabb": {
+                    "minX": 1420.0,
+                    "maxX": 2320.0,
+                    "minY": 16180,
+                    "maxY": 17530
+                  }
+                },
+                {
+                  "kind": "hvac-service",
+                  "aabb": {
+                    "minX": 80.0,
+                    "maxX": 980.0,
+                    "minY": 16180,
+                    "maxY": 17530
+                  }
+                }
+              ]
+            },
+            "furniture": []
+          },
+          {
+            "id": "B:floor-4:roof-front",
+            "name": "前屋頂候選（不作已核屋突）",
+            "rect_mm": [
+              0,
+              0,
+              6000,
+              3900
+            ],
+            "outdoor": true,
+            "features": {
+              "status": "illustrative-pending-professional-review",
+              "geometry_source": "tour_mm",
+              "doors": [],
+              "open_connections": [
+                {
+                  "face": "rear",
+                  "ratio": 0.7,
+                  "width_mm": 3600,
+                  "neighbor": "B:floor-4:shrine-buffer-front",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                }
+              ],
+              "space_group": "",
+              "space_role": "",
+              "window_face": null,
+              "window_ratio": 0.5,
+              "stairs": false,
+              "stair_geometry_verified": false,
+              "access_pending": false,
+              "access_reason": "公共區相鄰／套衛提案；非已驗證通行。梯段、門扇、轉位、雨天及完成面淨空待核。",
+              "hvac": {
+                "indoor": false,
+                "outdoor": false,
+                "evidence": []
+              },
+              "window_pending": "側界可能共壁；只有前後外側才畫候選窗。合法採光／通風及神桌實牆待核。",
+              "hvac_units": [],
+              "fixed_reserved_mm": [],
+              "window_sill_mm": 900,
+              "window_height_mm": 1200,
+              "window_review": {
+                "status": "not-applicable-outdoor",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "戶外區不計室內窗。"
+              },
+              "window_mm": 0,
+              "reserved_mm": []
+            },
+            "furniture": []
+          },
+          {
+            "id": "B:floor-4:shrine-buffer-front",
+            "name": "神明堂上方保護區｜前段（不放設備）",
+            "rect_mm": [
+              2400,
+              3900,
+              3600,
+              5200
+            ],
+            "outdoor": true,
+            "features": {
+              "status": "illustrative-pending-professional-review",
+              "geometry_source": "tour_mm",
+              "doors": [
+                {
+                  "face": "left",
+                  "ratio": 0.096154,
+                  "width_mm": 1000,
+                  "neighbor": "B:floor-4:stairRF",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                }
+              ],
+              "open_connections": [
+                {
+                  "face": "front",
+                  "ratio": 0.5,
+                  "width_mm": 3600,
+                  "neighbor": "B:floor-4:roof-front",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                },
+                {
+                  "face": "rear",
+                  "ratio": 0.5,
+                  "width_mm": 3600,
+                  "neighbor": "B:floor-4:shrine-buffer-rear",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                }
+              ],
+              "space_group": "",
+              "space_role": "",
+              "window_face": null,
+              "window_ratio": 0.5,
+              "stairs": false,
+              "stair_geometry_verified": false,
+              "access_pending": false,
+              "access_reason": "公共區相鄰／套衛提案；非已驗證通行。梯段、門扇、轉位、雨天及完成面淨空待核。",
+              "hvac": {
+                "indoor": false,
+                "outdoor": false,
+                "evidence": []
+              },
+              "window_pending": "側界可能共壁；只有前後外側才畫候選窗。合法採光／通風及神桌實牆待核。",
+              "hvac_units": [],
+              "fixed_reserved_mm": [],
+              "window_sill_mm": 900,
+              "window_height_mm": 1200,
+              "window_review": {
+                "status": "not-applicable-outdoor",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "戶外區不計室內窗。"
+              },
+              "window_mm": 0,
+              "reserved_mm": [
+                {
+                  "kind": "door-approach",
+                  "aabb": {
+                    "minX": 2400.0,
+                    "maxX": 3300.0,
+                    "minY": 3800.0,
+                    "maxY": 5000.0
+                  }
+                }
+              ]
+            },
+            "furniture": []
+          },
+          {
+            "id": "B:floor-4:shrine-buffer-rear",
+            "name": "神明堂上方保護區｜後段（不放設備）",
+            "rect_mm": [
+              0,
+              9100,
+              6000,
+              2270
+            ],
+            "outdoor": true,
+            "features": {
+              "status": "illustrative-pending-professional-review",
+              "geometry_source": "tour_mm",
+              "doors": [],
+              "open_connections": [
+                {
+                  "face": "front",
+                  "ratio": 0.7,
+                  "width_mm": 3600,
+                  "neighbor": "B:floor-4:shrine-buffer-front",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                },
+                {
+                  "face": "rear",
+                  "ratio": 0.2,
+                  "width_mm": 2400,
+                  "neighbor": "B:floor-4:service-rf",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                },
+                {
+                  "face": "rear",
+                  "ratio": 0.7,
+                  "width_mm": 3600,
+                  "neighbor": "B:floor-4:rear-roof",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                }
+              ],
+              "space_group": "",
+              "space_role": "",
+              "window_face": null,
+              "window_ratio": 0.5,
+              "stairs": false,
+              "stair_geometry_verified": false,
+              "access_pending": false,
+              "access_reason": "公共區相鄰／套衛提案；非已驗證通行。梯段、門扇、轉位、雨天及完成面淨空待核。",
+              "hvac": {
+                "indoor": false,
+                "outdoor": false,
+                "evidence": []
+              },
+              "window_pending": "側界可能共壁；只有前後外側才畫候選窗。合法採光／通風及神桌實牆待核。",
+              "hvac_units": [],
+              "fixed_reserved_mm": [],
+              "window_sill_mm": 900,
+              "window_height_mm": 1200,
+              "window_review": {
+                "status": "not-applicable-outdoor",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "戶外區不計室內窗。"
+              },
+              "window_mm": 0,
+              "reserved_mm": []
+            },
+            "furniture": []
+          },
+          {
+            "id": "B:floor-4:rear-roof",
+            "name": "屋頂設備需求待排（非可自由加蓋）",
+            "rect_mm": [
+              2400,
+              11370,
+              3600,
+              6260
+            ],
+            "outdoor": true,
+            "features": {
+              "status": "illustrative-pending-professional-review",
+              "geometry_source": "tour_mm",
+              "doors": [],
+              "open_connections": [
+                {
+                  "face": "front",
+                  "ratio": 0.5,
+                  "width_mm": 3600,
+                  "neighbor": "B:floor-4:shrine-buffer-rear",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                },
+                {
+                  "face": "left",
+                  "ratio": 0.5,
+                  "width_mm": 6260,
+                  "neighbor": "B:floor-4:service-rf",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                }
+              ],
+              "space_group": "",
+              "space_role": "",
+              "window_face": null,
+              "window_ratio": 0.5,
+              "stairs": false,
+              "stair_geometry_verified": false,
+              "access_pending": false,
+              "access_reason": "公共區相鄰／套衛提案；非已驗證通行。梯段、門扇、轉位、雨天及完成面淨空待核。",
+              "hvac": {
+                "indoor": false,
+                "outdoor": false,
+                "evidence": []
+              },
+              "window_pending": "側界可能共壁；只有前後外側才畫候選窗。合法採光／通風及神桌實牆待核。",
+              "hvac_units": [],
+              "fixed_reserved_mm": [],
+              "window_sill_mm": 900,
+              "window_height_mm": 1200,
+              "window_review": {
+                "status": "not-applicable-outdoor",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "戶外區不計室內窗。"
+              },
+              "window_mm": 0,
+              "reserved_mm": []
+            },
+            "furniture": []
+          }
+        ]
+      },
+      "third_floor_rooms": [
+        {
+          "id": "guest",
+          "name": "L形客房",
+          "polygon_mm": [
+            [
+              4670,
+              11370
+            ],
+            [
+              6000,
+              11370
+            ],
+            [
+              6000,
+              14880
+            ],
+            [
+              3900,
+              14880
+            ],
+            [
+              3900,
+              17630
+            ],
+            [
+              0,
+              17630
+            ],
+            [
+              0,
+              13470
+            ],
+            [
+              2640,
+              13470
+            ],
+            [
+              2640,
+              12970
+            ],
+            [
+              4670,
+              12970
+            ]
+          ],
+          "nominal_area_sqm": 22.993,
+          "furniture": [
+            {
+              "id": "bed",
+              "rect_mm": [
+                150,
+                15550,
+                2000,
+                1800
+              ],
+              "operation_mm": [
+                2150,
+                15550,
+                600,
+                1800
+              ]
+            },
+            {
+              "id": "wardrobe",
+              "rect_mm": [
+                150,
+                13620,
+                600,
+                1800
+              ],
+              "operation_mm": [
+                750,
+                13620,
+                600,
+                1800
+              ]
+            },
+            {
+              "id": "vanity",
+              "rect_mm": [
+                2755,
+                13120,
+                1200,
+                500
+              ],
+              "operation_mm": [
+                2755,
+                13620,
+                1200,
+                700
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                4770,
+                11370
+              ],
+              "b": [
+                5900,
+                11370
+              ],
+              "nominal_mm": 1130,
+              "assumed_clear_mm": 900,
+              "operation": "候選門，向房內開；門片／成品／救援仍待核。"
+            },
+            {
+              "a": [
+                3900,
+                16330
+              ],
+              "b": [
+                3900,
+                17460
+              ],
+              "nominal_mm": 1130,
+              "assumed_clear_mm": 900,
+              "hinge": "rear",
+              "operation": "向主臥外開，後端鉸鏈預算，非已選成品。",
+              "parked_leaf_budget_mm": [
+                2770,
+                17365,
+                1130,
+                95
+              ],
+              "swept_rect_mm": [
+                2770,
+                16330,
+                1130,
+                1130
+              ]
+            }
+          ],
+          "window": {
+            "a": [
+              750,
+              17630
+            ],
+            "b": [
+              3150,
+              17630
+            ],
+            "legal": "unknown"
+          },
+          "adopted": false,
+          "hvac_candidate": {
+            "id": "B-AC04",
+            "rect_mm": [
+              2525,
+              17225,
+              950,
+              280
+            ],
+            "bottom_relative_z_mm": 2350,
+            "route": "not-re-engineered",
+            "manual": null
+          }
+        },
+        {
+          "id": "dry-protection",
+          "name": "獨立乾保護室",
+          "polygon_mm": [
+            [
+              2640,
+              11370
+            ],
+            [
+              4670,
+              11370
+            ],
+            [
+              4670,
+              12970
+            ],
+            [
+              2640,
+              12970
+            ]
+          ],
+          "nominal_area_sqm": 3.248,
+          "furniture": [],
+          "doors": [
+            {
+              "a": [
+                2850,
+                11370
+              ],
+              "b": [
+                3980,
+                11370
+              ],
+              "nominal_mm": 1130,
+              "assumed_clear_mm": 900,
+              "operation": "前壁獨立門，向室內開；不穿臥室。"
+            }
+          ],
+          "window": null,
+          "adopted": false
+        },
+        {
+          "id": "public-bath",
+          "name": "左前公衛",
+          "polygon_mm": [
+            [
+              0,
+              11370
+            ],
+            [
+              2640,
+              11370
+            ],
+            [
+              2640,
+              13470
+            ],
+            [
+              0,
+              13470
+            ]
+          ],
+          "nominal_area_sqm": 5.544,
+          "furniture": [
+            {
+              "id": "basin",
+              "rect_mm": [
+                115,
+                11485,
+                600,
+                450
+              ],
+              "operation_mm": [
+                115,
+                11935,
+                600,
+                700
+              ]
+            },
+            {
+              "id": "toilet",
+              "rect_mm": [
+                115,
+                12655,
+                450,
+                700
+              ],
+              "operation_mm": [
+                115,
+                11955,
+                450,
+                700
+              ]
+            },
+            {
+              "id": "shower",
+              "rect_mm": [
+                1625,
+                12455,
+                900,
+                900
+              ],
+              "operation_mm": [
+                1625,
+                11755,
+                900,
+                700
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                1320,
+                11370
+              ],
+              "b": [
+                2450,
+                11370
+              ],
+              "nominal_mm": 1130,
+              "assumed_clear_mm": 900,
+              "hinge": "right",
+              "operation": "向前乾區外開；完整門組與消防待核。",
+              "parked_leaf_budget_mm": [
+                2355,
+                10240,
+                95,
+                1130
+              ],
+              "swept_rect_mm": [
+                1320,
+                10240,
+                1130,
+                1130
+              ]
+            }
+          ],
+          "window": null,
+          "adopted": false,
+          "illustrative_finished_rect_mm": [
+            115,
+            11485,
+            2410,
+            1870
+          ],
+          "inside_approach_mm": [
+            1435,
+            11485,
+            900,
+            900
+          ],
+          "outside_approach_mm": [
+            1435,
+            10355,
+            900,
+            900
+          ],
+          "actual_product_pack": null,
+          "actual_finished_clear_mm": null,
+          "drainage_terminal": null,
+          "screen": {
+            "body_hits": [],
+            "operation_body_hits": [],
+            "inside_arrival_hits": [],
+            "all_listed_inside": true,
+            "inside_arrival_contained": true,
+            "shared_operation_pairs": [
+              [
+                "basin",
+                "toilet"
+              ]
+            ]
+          }
+        },
+        {
+          "id": "rear-dry",
+          "name": "後段乾式預留（不新增套衛）",
+          "polygon_mm": [
+            [
+              3900,
+              14880
+            ],
+            [
+              6000,
+              14880
+            ],
+            [
+              6000,
+              17630
+            ],
+            [
+              3900,
+              17630
+            ]
+          ],
+          "nominal_area_sqm": 5.775,
+          "furniture": [],
+          "doors": [
+            {
+              "a": [
+                3900,
+                16330
+              ],
+              "b": [
+                3900,
+                17460
+              ],
+              "nominal_mm": 1130,
+              "assumed_clear_mm": 900,
+              "hinge": "rear",
+              "operation": "向主臥外開，後端鉸鏈預算，非已選成品。",
+              "parked_leaf_budget_mm": [
+                2770,
+                17365,
+                1130,
+                95
+              ],
+              "swept_rect_mm": [
+                2770,
+                16330,
+                1130,
+                1130
+              ]
+            }
+          ],
+          "window": {
+            "a": [
+              4750,
+              17630
+            ],
+            "b": [
+              5650,
+              17630
+            ],
+            "legal": "unknown"
+          },
+          "adopted": false
+        }
+      ],
+      "targets_changed": false,
+      "all_requirements_met": false,
+      "adopted": false,
+      "fengshui_overall_approval": "unknown",
+      "professional_approval": "unknown",
+      "third_floor": "同房形與左前公衛；右後保持乾式預留，不新增套衛。"
+    }
+  ],
+  "carry_and_drain": [
+    {
+      "option": "b-rear-split",
+      "floor1": {
+        "id": "floor-1",
+        "base_mm": 0,
+        "rooms": [
+          {
+            "id": "B:floor-1:garage",
+            "name": "騎樓／前通行帶（不計車位）",
+            "rect_mm": [
+              0,
+              0,
+              6000,
+              3900
+            ],
+            "outdoor": true,
+            "features": {
+              "doors": [],
+              "window_face": null,
+              "window_ratio": 0.5,
+              "window_review": {
+                "status": "not-applicable-outdoor",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "戶外區不計室內窗。"
+              },
+              "window_mm": 0
+            },
+            "furniture": []
+          },
+          {
+            "id": "B:floor-1:stair1",
+            "name": "前左雙折樓梯／平台（淨高待核）",
+            "rect_mm": [
+              0,
+              3900,
+              2400,
+              5200
+            ],
+            "outdoor": false,
+            "features": {
+              "doors": [
+                {
+                  "face": "right",
+                  "ratio": 0.096154,
+                  "width_mm": 1000,
+                  "neighbor": "B:floor-1:shrine-front",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                },
+                {
+                  "face": "front",
+                  "ratio": 0.5,
+                  "width_mm": 1000,
+                  "neighbor": null,
+                  "status": "external-entry-proposal-not-verified"
+                }
+              ],
+              "window_face": null,
+              "window_ratio": 0.5,
+              "window_review": {
+                "status": "not-requested",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+              },
+              "window_mm": 0
+            },
+            "furniture": []
+          },
+          {
+            "id": "B:floor-1:shrine",
+            "name": "神明堂｜祭拜區／神桌乾背牆",
+            "rect_mm": [
+              0,
+              9100,
+              6000,
+              2270
+            ],
+            "outdoor": false,
+            "features": {
+              "doors": [],
+              "window_face": null,
+              "window_ratio": 0.5,
+              "window_review": {
+                "status": "not-requested",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+              },
+              "window_mm": 0
+            },
+            "furniture": [
+              {
+                "id": "B:floor-1:shrine:furniture:altar",
+                "label": "龍邊神桌",
+                "shape": "altar",
+                "rect_mm": [
+                  2755,
+                  10690,
+                  1800,
+                  600
+                ],
+                "width_mm": 1800.0,
+                "depth_mm": 600.0,
+                "height_mm": 1250.0
+              },
+              {
+                "id": "B:floor-1:shrine:furniture:offering",
+                "label": "活動供桌",
+                "shape": "table",
+                "rect_mm": [
+                  3055,
+                  10190,
+                  1200,
+                  500
+                ],
+                "width_mm": 1200.0,
+                "depth_mm": 500.0,
+                "height_mm": 750.0
+              },
+              {
+                "id": "B:floor-1:shrine:furniture:bench-1",
+                "label": "可移動長凳",
+                "shape": "bench",
+                "rect_mm": [
+                  1080.0,
+                  10220.0,
+                  1400.0,
+                  450.0
+                ],
+                "width_mm": 1400.0,
+                "depth_mm": 450.0,
+                "height_mm": 450.0
+              },
+              {
+                "id": "B:floor-1:shrine:furniture:bench-2",
+                "label": "可移動長凳",
+                "shape": "bench",
+                "rect_mm": [
+                  1080.0,
+                  10805.0,
+                  1400.0,
+                  450.0
+                ],
+                "width_mm": 1400.0,
+                "depth_mm": 450.0,
+                "height_mm": 450.0
+              }
+            ]
+          },
+          {
+            "id": "B:floor-1:shrine-front",
+            "name": "神明堂｜朝街前廳（與祭拜區無隔牆）",
+            "rect_mm": [
+              2400,
+              3900,
+              3600,
+              5200
+            ],
+            "outdoor": false,
+            "features": {
+              "doors": [
+                {
+                  "face": "left",
+                  "ratio": 0.096154,
+                  "width_mm": 1000,
+                  "neighbor": "B:floor-1:stair1",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                },
+                {
+                  "face": "front",
+                  "ratio": 0.3486111111111111,
+                  "width_mm": 1800,
+                  "neighbor": null,
+                  "status": "external-entry-proposal-not-verified",
+                  "label": "朝街同軸祭祀正門（180cm名義）"
+                }
+              ],
+              "window_face": null,
+              "window_ratio": 0.5,
+              "window_review": {
+                "status": "not-requested",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+              },
+              "window_mm": 0
+            },
+            "furniture": []
+          },
+          {
+            "id": "B:floor-1:left-approach",
+            "name": "左側庫房／家務入口",
+            "rect_mm": [
+              0,
+              11370,
+              1360,
+              1600
+            ],
+            "outdoor": false,
+            "features": {
+              "doors": [],
+              "window_face": null,
+              "window_ratio": 0.5,
+              "window_review": {
+                "status": "not-requested",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+              },
+              "window_mm": 0
+            },
+            "furniture": []
+          },
+          {
+            "id": "B:floor-1:storage-front",
+            "name": "左側庫房接段（不計公共衛浴通道）",
+            "rect_mm": [
+              0,
+              12970,
+              1360,
+              1530
+            ],
+            "outdoor": false,
+            "features": {
+              "doors": [],
+              "window_face": null,
+              "window_ratio": 0.5,
+              "window_review": {
+                "status": "not-requested",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+              },
+              "window_mm": 0
+            },
+            "furniture": []
+          },
+          {
+            "id": "B:floor-1:laundry-front",
+            "name": "家務設備凹間（非工作陽台）",
+            "rect_mm": [
+              1360,
+              11370,
+              1280,
+              1600
+            ],
+            "outdoor": false,
+            "features": {
+              "doors": [],
+              "window_face": null,
+              "window_ratio": 0.5,
+              "window_review": {
+                "status": "not-requested",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+              },
+              "window_mm": 0
+            },
+            "furniture": [
+              {
+                "id": "B:floor-1:laundry-front:furniture:washer",
+                "label": "洗衣機",
+                "shape": "appliance",
+                "rect_mm": [
+                  1475.0,
+                  11485.0,
+                  650.0,
+                  650.0
+                ],
+                "width_mm": 650,
+                "depth_mm": 650,
+                "height_mm": 1000
+              }
+            ]
+          },
+          {
+            "id": "B:floor-1:laundry-base",
+            "name": "洗衣／洗槽操作（分時）",
+            "rect_mm": [
+              1360,
+              12970,
+              2960,
+              1530
+            ],
+            "outdoor": false,
+            "features": {
+              "doors": [],
+              "window_face": null,
+              "window_ratio": 0.5,
+              "window_review": {
+                "status": "not-requested",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+              },
+              "window_mm": 0
+            },
+            "furniture": [
+              {
+                "id": "B:floor-1:laundry-base:furniture:utility-sink",
+                "label": "一般600mm洗槽",
+                "shape": "vanity",
+                "rect_mm": [
+                  1475.0,
+                  13785.0,
+                  600.0,
+                  600.0
+                ],
+                "width_mm": 600,
+                "depth_mm": 600,
+                "height_mm": 850
+              },
+              {
+                "id": "B:floor-1:laundry-base:furniture:small-drying-rack",
+                "label": "小型晾衣架／掛衣外廓（選品未定）",
+                "shape": "clothes-rack",
+                "rect_mm": [
+                  3005.0,
+                  13785.0,
+                  1200.0,
+                  600.0
+                ],
+                "width_mm": 1200,
+                "depth_mm": 600,
+                "height_mm": 1600
+              },
+              {
+                "id": "B:floor-1:laundry-base:furniture:dehumidifier",
+                "label": "除濕機",
+                "shape": "appliance",
+                "rect_mm": [
+                  2500.0,
+                  13985.0,
+                  350.0,
+                  300.0
+                ],
+                "width_mm": 350,
+                "depth_mm": 300,
+                "height_mm": 600
+              }
+            ]
+          },
+          {
+            "id": "B:floor-1:altar-backing",
+            "name": "神桌完整乾背牆／法器櫃（右側門）",
+            "rect_mm": [
+              2640,
+              11370,
+              2030,
+              1600
+            ],
+            "outdoor": false,
+            "features": {
+              "doors": [
+                {
+                  "face": "right",
+                  "ratio": 0.5,
+                  "width_mm": 1130,
+                  "neighbor": "B:floor-1:corridor1",
+                  "operation": "hinged-inward-proposal"
+                }
+              ],
+              "window_face": null,
+              "window_ratio": 0.5,
+              "window_review": {
+                "status": "not-requested",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+              },
+              "window_mm": 0
+            },
+            "furniture": [
+              {
+                "id": "B:floor-1:altar-backing:furniture:cabinet",
+                "label": "法器／旗幟櫃",
+                "shape": "cabinet",
+                "rect_mm": [
+                  2755,
+                  11485,
+                  450,
+                  1200
+                ],
+                "width_mm": 1200.0,
+                "depth_mm": 450.0,
+                "height_mm": 2100.0
+              }
+            ]
+          },
+          {
+            "id": "B:floor-1:corridor1",
+            "name": "右側公共乾通道（避開祭祀中軸）",
+            "rect_mm": [
+              4670,
+              11370,
+              1330,
+              1600
+            ],
+            "outdoor": false,
+            "features": {
+              "doors": [
+                {
+                  "face": "left",
+                  "ratio": 0.5,
+                  "width_mm": 1130,
+                  "neighbor": "B:floor-1:altar-backing",
+                  "operation": "hinged-inward-proposal"
+                }
+              ],
+              "window_face": null,
+              "window_ratio": 0.5,
+              "window_review": {
+                "status": "not-requested",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+              },
+              "window_mm": 0
+            },
+            "furniture": []
+          },
+          {
+            "id": "B:floor-1:bath-approach",
+            "name": "公衛獨立到達接段（不穿武轎庫）",
+            "rect_mm": [
+              4320,
+              12970,
+              1680,
+              1530
+            ],
+            "outdoor": false,
+            "features": {
+              "doors": [
+                {
+                  "face": "rear",
+                  "ratio": 0.5952380952380952,
+                  "width_mm": 1130,
+                  "neighbor": "B:floor-1:rear-bath",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "sliding",
+                  "label": "公衛表面拉門（向左停放／救援未核）"
+                }
+              ],
+              "window_face": null,
+              "window_ratio": 0.5,
+              "window_review": {
+                "status": "not-requested",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+              },
+              "window_mm": 0
+            },
+            "furniture": []
+          },
+          {
+            "id": "B:floor-1:rear-bath",
+            "name": "後右有窗公衛（乾轉位／淋浴分區）",
+            "rect_mm": [
+              3330,
+              14500,
+              2670,
+              3130
+            ],
+            "outdoor": false,
+            "features": {
+              "doors": [
+                {
+                  "face": "front",
+                  "ratio": 0.7453183520599251,
+                  "width_mm": 1130,
+                  "neighbor": "B:floor-1:bath-approach",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "sliding",
+                  "label": "公衛表面拉門（向左停放／救援未核）"
+                }
+              ],
+              "window_face": "rear",
+              "window_ratio": 0.2696629213483146,
+              "window_review": {
+                "status": "candidate-geometry-only",
+                "requested_face": "rear",
+                "requested_width_mm": 900,
+                "renderable": true,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "候選窗已避門洞並留模型窗邊；有效採光、通風、柱梁、窗框與防雨未核。後巷有無不等於可開窗；窗權利、鄰地／防火、有效通風與防雨未知，仍須獨立排氣補氣。"
+              },
+              "window_mm": 900
+            },
+            "furniture": [
+              {
+                "id": "B:floor-1:rear-bath:furniture:shower",
+                "label": "無障礙淋浴區",
+                "shape": "shower",
+                "rect_mm": [
+                  4685.0,
+                  16315.0,
+                  1200.0,
+                  1200.0
+                ],
+                "width_mm": 1200.0,
+                "depth_mm": 1200.0,
+                "height_mm": 2000.0
+              },
+              {
+                "id": "B:floor-1:rear-bath:furniture:toilet",
+                "label": "馬桶",
+                "shape": "toilet",
+                "rect_mm": [
+                  3445.0,
+                  14825.0,
+                  700.0,
+                  450.0
+                ],
+                "width_mm": 450.0,
+                "depth_mm": 700.0,
+                "height_mm": 800.0
+              },
+              {
+                "id": "B:floor-1:rear-bath:furniture:basin",
+                "label": "60 cm 一般洗手台",
+                "shape": "vanity",
+                "rect_mm": [
+                  3865.0,
+                  17065.0,
+                  600.0,
+                  450.0
+                ],
+                "width_mm": 600.0,
+                "depth_mm": 450.0,
+                "height_mm": 850.0
+              }
+            ]
+          },
+          {
+            "id": "B:floor-1:storage",
+            "name": "後左武轎庫（本體＋長凳整備）",
+            "rect_mm": [
+              0,
+              14500,
+              3330,
+              3130
+            ],
+            "outdoor": false,
+            "features": {
+              "doors": [
+                {
+                  "face": "rear",
+                  "ratio": 0.34534534534534533,
+                  "width_mm": 1960,
+                  "neighbor": null,
+                  "status": "external-entry-proposal-not-verified"
+                }
+              ],
+              "window_face": null,
+              "window_ratio": 0.5,
+              "window_review": {
+                "status": "not-requested",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+              },
+              "window_mm": 0
+            },
+            "furniture": [
+              {
+                "id": "B:floor-1:storage:furniture:ceremonal",
+                "label": "武轎收納位",
+                "shape": "palanquin",
+                "rect_mm": [
+                  400.0,
+                  15700.0,
+                  1200.0,
+                  1700.0
+                ],
+                "width_mm": 1200.0,
+                "depth_mm": 1700.0,
+                "height_mm": 1800.0
+              }
+            ]
+          }
+        ],
+        "note": "只讀出獨立靜態比較；舊features操作帶不作本輪驗證輸入，依rect與下列明列檢查。"
+      },
+      "rear_entry_nominal_mm": 1960,
+      "left_segment_nominal_mm": 1360,
+      "left_segment_required_for_preferred_rear_entry": false,
+      "front_door_nominal_mm": null,
+      "front_door_clear_if_230_total_mm": null,
+      "front_segment_clear_if_230_total_mm": null,
+      "under_public_bath_intersections": [
+        {
+          "id": "left-approach",
+          "overlap_sqm": 2.176
+        },
+        {
+          "id": "storage-front",
+          "overlap_sqm": 0.68
+        },
+        {
+          "id": "laundry-front",
+          "overlap_sqm": 2.048
+        },
+        {
+          "id": "laundry-base",
+          "overlap_sqm": 0.64
+        }
+      ],
+      "drainage_candidate_zone": "公衛右側下方家務區可研究，實際立管尺寸／位置尚未選定。禁止侵入前門搬轎接段或背櫃保護區。",
+      "selected_stack_mm": null,
+      "actual_full_carried_route": "unknown",
+      "interpretation": "後門直接進後左庫，1360不在此必要路線；不得稱該段已達1500。"
+    },
+    {
+      "option": "b-front-split",
+      "floor1": {
+        "id": "floor-1",
+        "base_mm": 0,
+        "rooms": [
+          {
+            "id": "B:floor-1:garage",
+            "name": "騎樓／前通行帶（不計車位）",
+            "rect_mm": [
+              0,
+              0,
+              6000,
+              3900
+            ],
+            "outdoor": true,
+            "features": {
+              "doors": [],
+              "window_face": null,
+              "window_ratio": 0.5,
+              "window_review": {
+                "status": "not-applicable-outdoor",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "戶外區不計室內窗。"
+              },
+              "window_mm": 0
+            },
+            "furniture": []
+          },
+          {
+            "id": "B:floor-1:stair1",
+            "name": "前左雙折樓梯／平台（淨高待核）",
+            "rect_mm": [
+              0,
+              3900,
+              2400,
+              5200
+            ],
+            "outdoor": false,
+            "features": {
+              "doors": [
+                {
+                  "face": "right",
+                  "ratio": 0.096154,
+                  "width_mm": 1000,
+                  "neighbor": "B:floor-1:shrine-front",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                },
+                {
+                  "face": "front",
+                  "ratio": 0.5,
+                  "width_mm": 1000,
+                  "neighbor": null,
+                  "status": "external-entry-proposal-not-verified"
+                }
+              ],
+              "window_face": null,
+              "window_ratio": 0.5,
+              "window_review": {
+                "status": "not-requested",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+              },
+              "window_mm": 0
+            },
+            "furniture": []
+          },
+          {
+            "id": "B:floor-1:shrine",
+            "name": "神明堂｜祭拜區／神桌乾背牆",
+            "rect_mm": [
+              0,
+              9100,
+              6000,
+              2270
+            ],
+            "outdoor": false,
+            "features": {
+              "doors": [],
+              "window_face": null,
+              "window_ratio": 0.5,
+              "window_review": {
+                "status": "not-requested",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+              },
+              "window_mm": 0
+            },
+            "furniture": [
+              {
+                "id": "B:floor-1:shrine:furniture:altar",
+                "label": "龍邊神桌",
+                "shape": "altar",
+                "rect_mm": [
+                  2755,
+                  10690,
+                  1800,
+                  600
+                ],
+                "width_mm": 1800.0,
+                "depth_mm": 600.0,
+                "height_mm": 1250.0
+              },
+              {
+                "id": "B:floor-1:shrine:furniture:offering",
+                "label": "活動供桌",
+                "shape": "table",
+                "rect_mm": [
+                  3055,
+                  10190,
+                  1200,
+                  500
+                ],
+                "width_mm": 1200.0,
+                "depth_mm": 500.0,
+                "height_mm": 750.0
+              },
+              {
+                "id": "B:floor-1:shrine:furniture:bench-1",
+                "label": "可移動長凳",
+                "shape": "bench",
+                "rect_mm": [
+                  1080.0,
+                  10220.0,
+                  1400.0,
+                  450.0
+                ],
+                "width_mm": 1400.0,
+                "depth_mm": 450.0,
+                "height_mm": 450.0
+              },
+              {
+                "id": "B:floor-1:shrine:furniture:bench-2",
+                "label": "可移動長凳",
+                "shape": "bench",
+                "rect_mm": [
+                  1080.0,
+                  10805.0,
+                  1400.0,
+                  450.0
+                ],
+                "width_mm": 1400.0,
+                "depth_mm": 450.0,
+                "height_mm": 450.0
+              }
+            ]
+          },
+          {
+            "id": "B:floor-1:shrine-front",
+            "name": "神明堂｜朝街前廳（與祭拜區無隔牆）",
+            "rect_mm": [
+              2400,
+              3900,
+              3600,
+              5200
+            ],
+            "outdoor": false,
+            "features": {
+              "doors": [
+                {
+                  "face": "left",
+                  "ratio": 0.096154,
+                  "width_mm": 1000,
+                  "neighbor": "B:floor-1:stair1",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "unconfirmed"
+                },
+                {
+                  "face": "front",
+                  "ratio": 0.3486111111111111,
+                  "width_mm": 1800,
+                  "neighbor": null,
+                  "status": "external-entry-proposal-not-verified",
+                  "label": "朝街同軸祭祀正門（180cm名義）"
+                }
+              ],
+              "window_face": null,
+              "window_ratio": 0.5,
+              "window_review": {
+                "status": "not-requested",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+              },
+              "window_mm": 0
+            },
+            "furniture": []
+          },
+          {
+            "id": "B:floor-1:turn-bay",
+            "name": "前門搬轎轉向接段（不計家務面積）",
+            "rect_mm": [
+              0,
+              11370,
+              2640,
+              300
+            ],
+            "outdoor": false,
+            "features": {
+              "doors": [],
+              "window_face": null,
+              "window_ratio": 0.5,
+              "window_review": {
+                "status": "not-requested",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+              },
+              "window_mm": 0
+            },
+            "furniture": []
+          },
+          {
+            "id": "B:floor-1:left-approach",
+            "name": "左側庫房／家務入口",
+            "rect_mm": [
+              0,
+              11670,
+              1750,
+              1300
+            ],
+            "outdoor": false,
+            "features": {
+              "doors": [
+                {
+                  "face": "rear",
+                  "ratio": 0.5,
+                  "width_mm": 1730,
+                  "neighbor": "B:floor-1:storage-front",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "wide-opening-product-unknown",
+                  "label": "搬轎寬門組（173cm名義／產品未定）"
+                }
+              ],
+              "window_face": null,
+              "window_ratio": 0.5,
+              "window_review": {
+                "status": "not-requested",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+              },
+              "window_mm": 0
+            },
+            "furniture": []
+          },
+          {
+            "id": "B:floor-1:storage-front",
+            "name": "左側庫房接段（不計公共衛浴通道）",
+            "rect_mm": [
+              0,
+              12970,
+              1750,
+              1530
+            ],
+            "outdoor": false,
+            "features": {
+              "doors": [
+                {
+                  "face": "front",
+                  "ratio": 0.5,
+                  "width_mm": 1730,
+                  "neighbor": "B:floor-1:left-approach",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "wide-opening-product-unknown",
+                  "label": "搬轎寬門組（173cm名義／產品未定）"
+                }
+              ],
+              "window_face": null,
+              "window_ratio": 0.5,
+              "window_review": {
+                "status": "not-requested",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+              },
+              "window_mm": 0
+            },
+            "furniture": []
+          },
+          {
+            "id": "B:floor-1:laundry-front",
+            "name": "家務設備凹間（非工作陽台）",
+            "rect_mm": [
+              1750,
+              11670,
+              890,
+              1300
+            ],
+            "outdoor": false,
+            "features": {
+              "doors": [],
+              "window_face": null,
+              "window_ratio": 0.5,
+              "window_review": {
+                "status": "not-requested",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+              },
+              "window_mm": 0
+            },
+            "furniture": []
+          },
+          {
+            "id": "B:floor-1:laundry-base",
+            "name": "洗衣／洗槽操作（分時）",
+            "rect_mm": [
+              1750,
+              12970,
+              3000,
+              1530
+            ],
+            "outdoor": false,
+            "features": {
+              "doors": [
+                {
+                  "face": "right",
+                  "ratio": 0.4444444444444444,
+                  "width_mm": 1130,
+                  "neighbor": "B:floor-1:bath-approach",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "hinged-inward-proposal",
+                  "label": "家務內開門（分時／濕氣隔離未核）"
+                }
+              ],
+              "window_face": null,
+              "window_ratio": 0.5,
+              "window_review": {
+                "status": "not-requested",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+              },
+              "window_mm": 0
+            },
+            "furniture": [
+              {
+                "id": "B:floor-1:laundry-base:furniture:washer",
+                "label": "洗衣機",
+                "shape": "appliance",
+                "rect_mm": [
+                  1865.0,
+                  13085.0,
+                  650.0,
+                  650.0
+                ],
+                "width_mm": 650,
+                "depth_mm": 650,
+                "height_mm": 1000
+              },
+              {
+                "id": "B:floor-1:laundry-base:furniture:utility-sink",
+                "label": "一般600mm洗槽",
+                "shape": "vanity",
+                "rect_mm": [
+                  1915.0,
+                  13785.0,
+                  600.0,
+                  600.0
+                ],
+                "width_mm": 600,
+                "depth_mm": 600,
+                "height_mm": 850
+              }
+            ]
+          },
+          {
+            "id": "B:floor-1:altar-backing",
+            "name": "神桌完整乾背牆／法器櫃（右側門）",
+            "rect_mm": [
+              2640,
+              11370,
+              2030,
+              1600
+            ],
+            "outdoor": false,
+            "features": {
+              "doors": [
+                {
+                  "face": "right",
+                  "ratio": 0.5,
+                  "width_mm": 1130,
+                  "neighbor": "B:floor-1:corridor1",
+                  "operation": "hinged-inward-proposal"
+                }
+              ],
+              "window_face": null,
+              "window_ratio": 0.5,
+              "window_review": {
+                "status": "not-requested",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+              },
+              "window_mm": 0
+            },
+            "furniture": [
+              {
+                "id": "B:floor-1:altar-backing:furniture:cabinet",
+                "label": "法器／旗幟櫃",
+                "shape": "cabinet",
+                "rect_mm": [
+                  2755,
+                  11485,
+                  450,
+                  1200
+                ],
+                "width_mm": 1200.0,
+                "depth_mm": 450.0,
+                "height_mm": 2100.0
+              }
+            ]
+          },
+          {
+            "id": "B:floor-1:corridor1",
+            "name": "右側公共乾通道（避開祭祀中軸）",
+            "rect_mm": [
+              4670,
+              11370,
+              1330,
+              1600
+            ],
+            "outdoor": false,
+            "features": {
+              "doors": [
+                {
+                  "face": "left",
+                  "ratio": 0.5,
+                  "width_mm": 1130,
+                  "neighbor": "B:floor-1:altar-backing",
+                  "operation": "hinged-inward-proposal"
+                }
+              ],
+              "window_face": null,
+              "window_ratio": 0.5,
+              "window_review": {
+                "status": "not-requested",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+              },
+              "window_mm": 0
+            },
+            "furniture": []
+          },
+          {
+            "id": "B:floor-1:bath-approach",
+            "name": "公衛獨立到達接段（不穿武轎庫）",
+            "rect_mm": [
+              4750,
+              12970,
+              1250,
+              1530
+            ],
+            "outdoor": false,
+            "features": {
+              "doors": [
+                {
+                  "face": "rear",
+                  "ratio": 0.5,
+                  "width_mm": 1130,
+                  "neighbor": "B:floor-1:rear-bath",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "sliding",
+                  "label": "公衛表面拉門（向左停放／救援未核）"
+                },
+                {
+                  "face": "left",
+                  "ratio": 0.4444444444444444,
+                  "width_mm": 1130,
+                  "neighbor": "B:floor-1:laundry-base",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "hinged-inward-proposal",
+                  "label": "家務內開門（分時／濕氣隔離未核）"
+                }
+              ],
+              "window_face": null,
+              "window_ratio": 0.5,
+              "window_review": {
+                "status": "not-requested",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+              },
+              "window_mm": 0
+            },
+            "furniture": []
+          },
+          {
+            "id": "B:floor-1:rear-bath",
+            "name": "後右有窗公衛（乾轉位／淋浴分區）",
+            "rect_mm": [
+              3330,
+              14500,
+              2670,
+              3130
+            ],
+            "outdoor": false,
+            "features": {
+              "doors": [
+                {
+                  "face": "front",
+                  "ratio": 0.7659176029962547,
+                  "width_mm": 1130,
+                  "neighbor": "B:floor-1:bath-approach",
+                  "status": "explicit-bounded-proposal-not-verified",
+                  "operation": "sliding",
+                  "label": "公衛表面拉門（向左停放／救援未核）"
+                }
+              ],
+              "window_face": "rear",
+              "window_ratio": 0.2696629213483146,
+              "window_review": {
+                "status": "candidate-geometry-only",
+                "requested_face": "rear",
+                "requested_width_mm": 900,
+                "renderable": true,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "候選窗已避門洞並留模型窗邊；有效採光、通風、柱梁、窗框與防雨未核。後巷有無不等於可開窗；窗權利、鄰地／防火、有效通風與防雨未知，仍須獨立排氣補氣。"
+              },
+              "window_mm": 900
+            },
+            "furniture": [
+              {
+                "id": "B:floor-1:rear-bath:furniture:shower",
+                "label": "無障礙淋浴區",
+                "shape": "shower",
+                "rect_mm": [
+                  4685.0,
+                  16315.0,
+                  1200.0,
+                  1200.0
+                ],
+                "width_mm": 1200.0,
+                "depth_mm": 1200.0,
+                "height_mm": 2000.0
+              },
+              {
+                "id": "B:floor-1:rear-bath:furniture:toilet",
+                "label": "馬桶",
+                "shape": "toilet",
+                "rect_mm": [
+                  3445.0,
+                  14825.0,
+                  700.0,
+                  450.0
+                ],
+                "width_mm": 450.0,
+                "depth_mm": 700.0,
+                "height_mm": 800.0
+              },
+              {
+                "id": "B:floor-1:rear-bath:furniture:basin",
+                "label": "60 cm 一般洗手台",
+                "shape": "vanity",
+                "rect_mm": [
+                  3865.0,
+                  17065.0,
+                  600.0,
+                  450.0
+                ],
+                "width_mm": 600.0,
+                "depth_mm": 450.0,
+                "height_mm": 850.0
+              }
+            ]
+          },
+          {
+            "id": "B:floor-1:storage",
+            "name": "後左武轎庫（本體＋長凳整備）",
+            "rect_mm": [
+              0,
+              14500,
+              3330,
+              3130
+            ],
+            "outdoor": false,
+            "features": {
+              "doors": [],
+              "window_face": null,
+              "window_ratio": 0.5,
+              "window_review": {
+                "status": "not-requested",
+                "requested_face": null,
+                "requested_width_mm": 0,
+                "renderable": false,
+                "issues": [],
+                "assumed_jamb_budget_mm": 100,
+                "assumed_opening_buffer_mm": 100,
+                "professional_acceptance": "unknown",
+                "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+              },
+              "window_mm": 0
+            },
+            "furniture": [
+              {
+                "id": "B:floor-1:storage:furniture:ceremonal",
+                "label": "武轎收納位",
+                "shape": "palanquin",
+                "rect_mm": [
+                  400.0,
+                  15700.0,
+                  1200.0,
+                  1700.0
+                ],
+                "width_mm": 1200.0,
+                "depth_mm": 1700.0,
+                "height_mm": 1800.0
+              }
+            ]
+          }
+        ],
+        "note": "只讀出獨立靜態比較；舊features操作帶不作本輪驗證輸入，依rect與下列明列檢查。"
+      },
+      "rear_entry_nominal_mm": null,
+      "left_segment_nominal_mm": 1750,
+      "left_segment_required_for_preferred_rear_entry": null,
+      "front_door_nominal_mm": 1730,
+      "front_door_clear_if_230_total_mm": 1500,
+      "front_segment_clear_if_230_total_mm": 1520,
+      "under_public_bath_intersections": [
+        {
+          "id": "left-approach",
+          "overlap_sqm": 2.275
+        },
+        {
+          "id": "storage-front",
+          "overlap_sqm": 0.875
+        },
+        {
+          "id": "laundry-front",
+          "overlap_sqm": 1.157
+        },
+        {
+          "id": "laundry-base",
+          "overlap_sqm": 0.445
+        }
+      ],
+      "drainage_candidate_zone": "公衛右側下方家務區可研究，實際立管尺寸／位置尚未選定。禁止侵入前門搬轎接段或背櫃保護區。",
+      "selected_stack_mm": null,
+      "actual_full_carried_route": "unknown",
+      "interpretation": "前門備案需經1750接段與1730名義門；230假設後僅1500，沒有產品／施工餘量。"
+    }
+  ],
+  "agreement_log": [
+    {
+      "id": "AGREE-01",
+      "topic": "前方乾區三入口／四區拓樸",
+      "state": "codex-accepts-received-proposal-for-comparison",
+      "evidence": "四區37.56㎡無重疊／缺漏；完整臥室與濕區退出祭祀／乾背櫃投影。",
+      "adopted": false
+    },
+    {
+      "id": "AGREE-02",
+      "topic": "面積算術與原目標不能偷改",
+      "state": "independently-confirmed",
+      "evidence": "115假設主臥20.0161、公衛4.5067、套衛4.8994；原5＋6仍差1.5939㎡。",
+      "adopted": false
+    },
+    {
+      "id": "AGREE-03",
+      "topic": "兩衛獨立，暫不改共用雙門浴室",
+      "state": "codex-accepts-received-preference",
+      "evidence": "避免把同一濕區算兩次或讓訪客穿主臥；正式配置尚未採用。",
+      "adopted": false
+    },
+    {
+      "id": "CLARIFY-01",
+      "topic": "1360接段的必要路線範圍",
+      "state": "clarification-for-next-discussion",
+      "evidence": "若經過即不足1500，這句同意；後門直接進庫不經1360，不能把它列成後門路線必經瓶頸。",
+      "adopted": false
+    },
+    {
+      "id": "NEW-01",
+      "topic": "套衛前牆後移100換0.21㎡主臥餘量",
+      "state": "not-reviewed-by-claude",
+      "evidence": "Codex比較：115假設20.2261／4.5067／4.7124；仍未達兩衛目標，未採用。",
+      "adopted": false
+    },
+    {
+      "id": "NEW-02",
+      "topic": "主臥含狹長入口／機身回套",
+      "state": "not-reviewed-by-claude",
+      "evidence": "後段可內接14.4231㎡矩形；室內機候選再向內115避免超出假設完成牆。完整鏡面／氣流／路線待核。",
+      "adopted": false
+    },
+    {
+      "id": "OPEN-01",
+      "topic": "公衛立管／完成牆／原面積目標",
+      "state": "unresolved-no-full-consensus",
+      "evidence": "公衛貼保護區名義界線，新增排水未定位；整體尚無施工、宗教或搬運核可。",
+      "adopted": false
+    }
+  ],
+  "protected_controls_unchanged": 149,
+  "shapely_version": "2.1.2",
+  "full_consensus": false,
+  "adopted": false,
+  "all_requirements_met": false,
+  "rendered_qa": "not-run-static-comparison",
+  "religious_and_engineering_approval": "unknown",
+  "previous_study_summary": {
+    "options": 2,
+    "case_115": {
+      "inset_each_mm": 115,
+      "bedroom_sqm": 20.1141,
+      "public_bath_sqm": 3.8709,
+      "private_bath_sqm": 3.6091
+    }
+  },
+  "source_hashes": {
+    "inputs/b-claude-crosscheck.json": "d49320cef10eed1df0ece76c9e0ba17107c9d32630c25da26c48bf2350cc2a7d",
+    "structured/coordination/b-fengshui-strict-v1/review.json": "e595361db8281be6daf361251afe0187824c7bcb99d556f930cf90f15bf2f954",
+    "inputs/references/b-claude-response-v2-provenance.json": "2c7c0cdc880c1d78a910a170edcfdc6b59c20865ae81fd6b041c72816656b32b",
+    "inputs/references/b-claude-response-v2-transcript-20261105.md": "67ad0a230f18b2495ebbbdc7f9c2986bc3a72eaf48eea846af3640a621bf51a7",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "house_design/b_claude_crosscheck.py": "9b157330308ec83bfc91d219d0bd0c632fd0ed0566e85b243209affa9a1daf20",
+    "house_design/b_fengshui_strict.py": "7f73ab7b7d84e7af976357a11cbf5ec78bb9550956b24973361a0a1dc6c6a2ab",
+    "house_design/abc_next_improvements.py": "9756b69f651f8431d361ffdc6f678e59edc1c3af0e9d8e9db782091366166568",
+    "house_design/c_coordination.py": "6d2c336496e0f1cabfabce3f3287b28ceecb13088d78f8cb0137d9ce14b689ff",
+    "house_design/contracts.py": "2888419d49e8d8dbe8b8e99f6b8451363cd9020821c7fe3e703ab09779e202c3",
+    "scripts/export_b_claude_crosscheck.py": "c6bf43bf9b8018f74042ae3f64ef60483d3bde13898c448f2d82cef848890d3f",
+    "scripts/export_b_fengshui_strict.py": "b097e116689af7ae1f074a1482adfb895a44d32f790fabe6386cdeafcb88a67f",
+    "scripts/export_abc_next_improvements.py": "875c13027466776a6e1661dae369e45c823c661c5e0369d8ee95b6535420e701",
+    "inputs/requirements.json": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066",
+    "Docs/claude-b-fengshui-followup-v3.md": "ce877ccd31a13e8757b39abef592ead3b78c6117ff2214d90c2b97f7696ec1ea",
+    "scripts/review_b_fengshui_with_claude.py": "dc6b4b855656cbdee16990857abbb44b1f471a720f6799cd9bdee96f71f58b55"
+  },
+  "report_hash": "8e4b37a7aad8eccd78752c16372ec92a3fa5158d4723d7c6dde49a2486db1656"
+}

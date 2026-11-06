@@ -1,0 +1,149 @@
+{
+  "schema": "house-b-claude-round3-v1",
+  "date": "2026-11-06",
+  "pinned_sources": {
+    "structured/candidates/kaohsiung-house-options/c-stair-integration.json": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+    "structured/coordination/b-claude-crosscheck-v1/review.json": "b2a3604da09beaf1ebb4f8ed50d0525004cf6592ede2bde756eb05ae9ada95a4",
+    "structured/coordination/b-fengshui-strict-v1/review.json": "e595361db8281be6daf361251afe0187824c7bcb99d556f930cf90f15bf2f954",
+    "structured/coordination/b-claude-crosscheck-v1/artifact-manifest.json": "32940e5ac7474e21fbe521a7a99d4c259b2bbaf9fcaa2e33acf67a0a5bad8197",
+    "inputs/b-claude-crosscheck.json": "d49320cef10eed1df0ece76c9e0ba17107c9d32630c25da26c48bf2350cc2a7d",
+    "inputs/references/b-owner-ritual-answers-20261106.json": "736f5a477ce1fbfd8e1bf460ecf49f9043a83635201d1598e3e1842e6460ddb9"
+  },
+  "prior_config": "inputs/b-claude-crosscheck.json",
+  "prior_report": "structured/coordination/b-claude-crosscheck-v1/review.json",
+  "strict_report": "structured/coordination/b-fengshui-strict-v1/review.json",
+  "protected_controls": "inputs/abc-next-protected-controls.json",
+  "response_provenance": "inputs/references/b-claude-round3-provenance-20261106.json",
+  "new01b": {
+    "public_fixtures_local_mm": {
+      "basin": [
+        0,
+        0,
+        600,
+        450
+      ],
+      "toilet": [
+        150,
+        1170,
+        450,
+        700
+      ],
+      "shower": [
+        1310,
+        970,
+        900,
+        900
+      ]
+    },
+    "public_operations_local_mm": {
+      "basin": [
+        0,
+        450,
+        600,
+        700
+      ],
+      "toilet": [
+        150,
+        470,
+        450,
+        700
+      ],
+      "shower": [
+        1310,
+        270,
+        900,
+        700
+      ]
+    },
+    "shaft_local_mm": [
+      2210,
+      1670,
+      200,
+      200
+    ],
+    "no_pipe_strip_local_mm": [
+      2210,
+      970,
+      200,
+      700
+    ]
+  },
+  "codex_front_laundry_repair": {
+    "washer_rect_mm": [
+      2855,
+      13085,
+      650,
+      650
+    ],
+    "washer_operation_mm": [
+      3505,
+      13085,
+      800,
+      650
+    ],
+    "sink_operation_mm": [
+      2515,
+      13785,
+      800,
+      600
+    ],
+    "family_door_swept_rectangle_mm": [
+      3620,
+      13085,
+      1130,
+      1130
+    ]
+  },
+  "codex_right_wall_ac": {
+    "rect_mm": [
+      5595,
+      13575,
+      280,
+      950
+    ],
+    "bottom_relative_z_mm": 2350,
+    "height_mm": 280,
+    "route": null,
+    "manual": null
+  },
+  "door_z_sensitivity_mm": [
+    2100,
+    2300,
+    2400
+  ],
+  "extra_handle_sensitivity_mm": [
+    0,
+    30,
+    55,
+    75
+  ],
+  "owner_questions": [
+    {
+      "id": "B-RITUAL-01",
+      "question": "武轎祭祀時是否必須搬進神明堂？",
+      "answer": false,
+      "impact": "屋主確認不必進神明堂；後門到庫房可獨立研究，不需要把1360接段當祭祀必經線。",
+      "status": "owner-confirmed",
+      "answer_reference": "inputs/references/b-owner-ritual-answers-20261106.json"
+    },
+    {
+      "id": "B-RITUAL-02",
+      "question": "搬轎通道上方是否禁止浴廁與污水管？",
+      "answer": false,
+      "impact": "屋主確認不禁止通道上方浴廁／污水管；仍須機電、防水、檢修及衛生工程核對。",
+      "status": "owner-confirmed",
+      "answer_reference": "inputs/references/b-owner-ritual-answers-20261106.json"
+    },
+    {
+      "id": "B-RITUAL-03",
+      "question": "武轎庫上方是否禁止臥室？",
+      "answer": false,
+      "impact": "屋主確認不禁止庫房上方臥室；仍保留庫房上方不得有浴廁的原規則。",
+      "status": "owner-confirmed",
+      "answer_reference": "inputs/references/b-owner-ritual-answers-20261106.json"
+    }
+  ],
+  "adopted": false,
+  "original_targets_changed": false,
+  "owner_answers_reference": "inputs/references/b-owner-ritual-answers-20261106.json"
+}
