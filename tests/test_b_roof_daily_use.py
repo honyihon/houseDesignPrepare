@@ -11,6 +11,7 @@ from pathlib import Path
 from xml.etree import ElementTree as ET
 
 import pytest
+from historical_support import native_geometry_reference
 from shapely.geometry import Point, Polygon
 
 from house_design.b_roof_daily_use import CONFIG, OUT, build
@@ -141,7 +142,8 @@ def test_known_geometry_regressions_stop_export(monkeypatch, defect):
 
 
 def test_source_bound_outputs_and_blank_decision_forms(report):
-    files = render(report)
+    archived = native_geometry_reference(ROOT/OUT/"review.json", report)
+    files = render(archived)
     assert len(files) == 12 and sum(n.endswith(".svg") for n in files) == 3
     assert all((ROOT/OUT/n).read_bytes() == text.encode() for n, text in files.items())
     assert report["report_hash"] == stable_hash({k: v for k, v in report.items() if k != "report_hash"})

@@ -4,6 +4,7 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+import math
 import re
 from pathlib import Path
 
@@ -84,3 +85,38 @@ def recorded_source_precondition(monkeypatch, module, name):
     recorded = {ROOT / p: h for p, h in report["source_hashes"].items()}
     original = module.sha256_file
     monkeypatch.setattr(module, "sha256_file", lambda p: recorded[p] if p in recorded else original(p))
+
+
+def assert_native_geometry(reference, actual, path=""):
+    """Only allow sub-nanometre numeric libm/GEOS roundoff; all decisions stay exact.
+
+    Coordinates are mm. Windows and Unix sin/cos can differ by one floating-point
+    bit, so native results cannot be expected to produce the archived hash.
+    This is not a design clearance, construction tolerance, or relaxed source seal.
+    """
+    if isinstance(reference, dict):
+        assert isinstance(actual, dict) and reference.keys() == actual.keys(), path
+        for key in reference:
+            assert_native_geometry(reference[key], actual[key], path+"/"+key)
+    elif isinstance(reference, (list, tuple)):
+        assert isinstance(actual, (list, tuple)) and len(reference) == len(actual), path
+        for i, (a, b) in enumerate(zip(reference, actual, strict=True)):
+            assert_native_geometry(a, b, path+"/"+str(i))
+    elif isinstance(reference, float) and isinstance(actual, float):
+        assert math.isfinite(reference) and math.isfinite(actual), path
+        assert abs(reference-actual) <= 1e-9, (path, reference, actual)
+    else:
+        assert type(reference) is type(actual) and reference == actual, (path, reference, actual)
+
+
+def native_geometry_reference(path, actual):
+    """Recheck live source hashes and native math before rendering archived bytes."""
+    from house_design.contracts import stable_hash
+
+    reference = json.loads(Path(path).read_text(encoding="utf-8"))
+    for report in (reference, actual):
+        assert report["report_hash"] == stable_hash({k: v for k, v in report.items() if k != "report_hash"})
+    assert not source_drift(reference), "A native platform difference cannot excuse stale sources"
+    assert_native_geometry({k: v for k, v in reference.items() if k != "report_hash"},
+                           {k: v for k, v in actual.items() if k != "report_hash"})
+    return reference

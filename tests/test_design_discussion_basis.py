@@ -1070,6 +1070,8 @@ def test_ac_display_pass_cannot_transfer_to_changed_or_incomplete_evidence(monke
 
 def test_package_bytes_do_not_depend_on_python_hash_seed():
     code = ("import hashlib,json; from pathlib import Path; "
+        "from house_design.reproducible_export import canonical_zip_metadata; "
+        "context=canonical_zip_metadata(); context.__enter__(); "
         "from house_design.design_discussion_basis import build; "
         "from scripts.export_design_discussion_basis import render; r=Path.cwd(); "
         "print(json.dumps({n:hashlib.sha256(d).hexdigest() for n,d in render(r,build(r)).items()},sort_keys=True))")

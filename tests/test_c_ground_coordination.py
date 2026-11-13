@@ -11,6 +11,7 @@ from pathlib import Path
 from xml.etree import ElementTree as ET
 
 import pytest
+from historical_support import native_geometry_reference
 
 from house_design.c_ground_coordination import CONFIG, OUT, build, physical_hit
 from house_design.contracts import ContractError, stable_hash
@@ -149,7 +150,8 @@ def test_real_regressions_fail_without_rendering(monkeypatch, defect):
 
 
 def test_artifact_hashes_bounded_sheets_local_links_and_reply_blanks(report):
-    files = render(report)
+    archived = native_geometry_reference(ROOT/OUT/"review.json", report)
+    files = render(archived)
     assert len(files) == 9 and sum(n.endswith(".svg") for n in files) == 3
     assert report["report_hash"] == stable_hash({k: v for k, v in report.items() if k != "report_hash"})
     for name, expected in report["source_hashes"].items():

@@ -18,6 +18,9 @@
 # Generated CSVs can contain intentional CRLF and BOM bytes sealed by manifests.
 *.csv    -text
 
+# Extensionless license copies are also byte-sealed members of offline archives.
+structured/**/LICENSE -text
+
 # PowerShell is happier with CRLF on Windows and nothing else reads these.
 *.ps1    text eol=crlf
 

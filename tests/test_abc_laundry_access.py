@@ -10,6 +10,7 @@ from pathlib import Path
 from xml.etree import ElementTree as ET
 
 import pytest
+from historical_support import native_geometry_reference
 from shapely.geometry import shape
 
 from house_design.abc_laundry_access import CONFIG, OUT, PARENT, build, rear_screen, sealed_parent, validate_config
@@ -155,7 +156,8 @@ def test_parent_drift_cannot_inherit_a_previous_pass(monkeypatch, defect):
 
 
 def test_outputs_are_bounded_named_vectors_with_source_matching_artifacts(report):
-    files = render(report)
+    archived = native_geometry_reference(ROOT/OUT/"review.json", report)
+    files = render(archived)
     assert len(files) == 8 and all((ROOT/OUT/n).read_bytes() == text.encode() for n, text in files.items())
     for name in ["front-entry-screen.svg", "rear-entry-conditional.svg", "rear-door-states.svg"]:
         svg = ET.fromstring(files[name])

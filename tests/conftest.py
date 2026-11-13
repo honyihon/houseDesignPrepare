@@ -17,6 +17,15 @@ for path in (ROOT, SCRIPTS):
         sys.path.insert(0, text)
 
 
+@pytest.fixture(scope="session", autouse=True)
+def canonical_export_process():
+    """Exercise the supported canonical ZIP export context on every CI host."""
+    from house_design.reproducible_export import canonical_zip_metadata
+
+    with canonical_zip_metadata():
+        yield
+
+
 @pytest.fixture(autouse=True)
 def isolate_xml_namespace_registry(monkeypatch, request):
     """SVG prefixes must not depend on which other exporter a test imported or ran."""

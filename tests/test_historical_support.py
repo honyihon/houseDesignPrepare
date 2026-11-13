@@ -54,6 +54,19 @@ def test_viewer_loader_only_decodes_json_and_refuses_executable_code(tmp_path):
         archive.saved_payload(path)
 
 
+def test_native_geometry_allows_only_numeric_roundoff_with_identical_structure():
+    archive.assert_native_geometry({"coordinates": [[3134.5569093655627, 0.0]], "clear": False},
+                                   {"coordinates": [(3134.556909365562, 0.0)], "clear": False})
+
+
+@pytest.mark.parametrize("changed", [{"x": 10.000001, "approved": False}, {"x": 10.0, "approved": True},
+                                     {"x": 10.0, "approved": False, "extra": 1},
+                                     {"x": float("nan"), "approved": False}])
+def test_native_geometry_rejects_geometry_decision_structure_or_nonfinite_changes(changed):
+    with pytest.raises(AssertionError):
+        archive.assert_native_geometry({"x": 10.0, "approved": False}, changed)
+
+
 def test_svg_namespace_registry_is_reset_between_tests():
     from xml.etree import ElementTree as ET
 
