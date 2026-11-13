@@ -20,6 +20,7 @@ from house_design.c_balcony_coordination import (
 from house_design.contracts import ContractError
 
 ROOT = Path(__file__).resolve().parents[1]
+SVG_DEFAULT_NAMESPACE = True
 
 
 @pytest.fixture(scope="module")

@@ -10,6 +10,7 @@ from xml.etree import ElementTree as ET
 
 import export_c_integrated_options as export
 import pytest
+from historical_support import assert_historical_sources
 from lib.model3d_placement import overlaps
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -30,7 +31,8 @@ def test_sources_main_b32_requirements_archives_current_and_not_adopted(study):
     assert study["active_design"] == "baseline" and study["status"] == export.STATUS
     assert set(study["professional_status"].values()) == {"unknown"}
     assert all(d["status"] == "pending" for d in study["owner_decisions"])
-    for rel, sha in {**study["source_hashes"], **study["protected_main_hashes"]}.items():
+    assert_historical_sources("c-integrated-options", study)
+    for rel, sha in study["protected_main_hashes"].items():
         assert hashlib.sha256((ROOT / rel).read_bytes()).hexdigest() == sha, rel
     assert any(rel.startswith("inputs/revisions/R000/") for rel in study["protected_main_hashes"])
     assert [o["id"] for o in study["options"]] == [f"c-integrated-{h}" for h in (3000, 3600, 4000)]

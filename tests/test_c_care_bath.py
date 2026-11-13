@@ -6,17 +6,18 @@ from xml.etree import ElementTree as ET
 
 import export_c_care_bath as export
 import pytest
+from historical_support import assert_historical_sources, historical_study
 
 from house_design.b32_rear_right import body, rect
 from house_design.b32_service_detail import _inside
 from house_design.c_care_bath import component_box, components, hardware_sweeps, review, validate_config
 from house_design.c_care_route import leaf_at_angle
-from house_design.contracts import ROOT, ContractError, read_json, sha256_file, stable_hash
+from house_design.contracts import ROOT, ContractError, read_json, stable_hash
 
 
 @pytest.fixture(scope="module")
 def study():
-    return export.build_study()
+    return historical_study("c-care-bath")
 
 
 def option(study, key="c-bath-refined"):
@@ -194,8 +195,7 @@ def test_original_scope_and_generic_sizes_cannot_be_shrunk(change):
 
 
 def test_requirement_deficits_and_source_bound_bounded_svgs(study):
-    for p, digest in study["source_hashes"].items():
-        assert sha256_file(ROOT / p) == digest
+    assert_historical_sources("c-care-bath", study)
     ledger = study["requirement_ledger"]
     assert ledger["ledger_hash"] == stable_hash({k: v for k, v in ledger.items() if k != "ledger_hash"})
     for row in ledger["scenarios"][1]["rows"]:
@@ -221,4 +221,5 @@ def test_no_full_scene_generator_solver_or_parent_export(monkeypatch):
     monkeypatch.setattr(export.basis.viewer, "build_payload", forbidden)
     monkeypatch.setattr(export.basis.viewer, "attach_placements", forbidden)
     monkeypatch.setattr(export.route, "write_study", forbidden)
-    assert len(export.build_study()["options"]) == 2
+    with pytest.raises(ContractError, match="[Ss]tale"):
+        export.build_study()

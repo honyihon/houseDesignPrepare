@@ -3,16 +3,14 @@
 from __future__ import annotations
 
 import copy
-import hashlib
 import json
 import re
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
 import export_arcade_capacity as exporter
-import export_model_3d as model3d
 import pytest
-from lib.dimension_overrides import load_overrides
+from historical_support import assert_historical_sources, historical_study
 from lib.model3d_placement import INSET, overlaps
 from lib.model3d_plan import plan_data
 
@@ -22,7 +20,7 @@ NS = {"s": "http://www.w3.org/2000/svg"}
 
 @pytest.fixture(scope="module")
 def study():
-    return exporter.build_study()
+    return historical_study("arcade-capacity")
 
 
 def room_map(option, building, fid="floor-1"):
@@ -53,7 +51,7 @@ def test_study_is_non_mutating_with_exact_original_baseline(study):
         ]
     ]
     before = [p.read_bytes() for p in paths]
-    exporter.build_study()
+    historical_study("arcade-capacity")
     assert [p.read_bytes() for p in paths] == before
     assert study["status"] == "comparison-only-not-adopted" and study["active_design"] == "main-a32-arcade-v1"
     assert study["reference_review"] == "inputs/references/abc-before-a-arcade.json"
@@ -62,13 +60,7 @@ def test_study_is_non_mutating_with_exact_original_baseline(study):
     for building in baseline["buildings"]:
         for floor in building["floors"]:
             floor["plan_file"] = f"{building['id']}_{floor['id']}.svg"
-    historical = model3d.build_payload(
-        json.loads((ROOT / "structured/room_program.json").read_text()),
-        load_overrides(),
-        "presentation",
-        review_path=exporter.REFERENCE_REVIEW,
-        validate_a_arcade=False,
-    )
+    historical = study["options"][0]["model"]
     assert baseline == plan_data(historical)
     assert baseline["buildings"][0] != main["buildings"][0]
     assert baseline["buildings"][1:] != main["buildings"][1:]  # current B/C flow revision remains outside this frozen study
@@ -280,8 +272,7 @@ def test_generated_manifest_36_svg_and_single_scene_share_exact_data(study):
         .rstrip(";\n")
     )
     assert manifest == exporter.manifest(study)
-    for file, digest in manifest["source_hashes"].items():
-        assert hashlib.sha256((ROOT / file).read_bytes()).hexdigest() == digest
+    assert_historical_sources("arcade-capacity", study)
     html = (ROOT / "structured/candidates/arcade-capacity-3d.html").read_text()
     model = json.loads(re.search(r"var DATA = (\{.+?\});\n", html)[1])["arcade_capacity"]["options"]
     assert html.count('<canvas id="canvas"') == 1 and "__STUDY_" not in html
@@ -305,7 +296,8 @@ def test_generated_manifest_36_svg_and_single_scene_share_exact_data(study):
                     assert [float(group.get(k)) for k in ("data-x-mm", "data-y-mm", "data-w-mm", "data-h-mm")] == list(
                         r["geometry"].values()
                     )
-                    assert f"?scheme={expected['id']}" in group.find("s:a", NS).get("href")
+                    link = tree.find(f".//s:a[@data-label-room-id='{r['id']}']", NS)
+                    assert link is not None and f"?scheme={expected['id']}" in link.get("href")
 
 
 @pytest.mark.parametrize(

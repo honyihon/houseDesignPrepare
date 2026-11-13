@@ -10,6 +10,13 @@
 *.txt    text eol=lf
 *.yaml   text eol=lf
 *.yml    text eol=lf
+*.js     text eol=lf
+*.cjs    text eol=lf
+*.css    text eol=lf
+*.toml   text eol=lf
+
+# Generated CSVs can contain intentional CRLF and BOM bytes sealed by manifests.
+*.csv    -text
 
 # PowerShell is happier with CRLF on Windows and nothing else reads these.
 *.ps1    text eol=crlf
@@ -20,3 +27,6 @@ assets/vendor/** -text
 
 # Recovered historical bytes must retain their exact original SHA-256.
 inputs/revisions/R000/source/plan.json -text
+
+# R001 predecessor HTML is an immutable CRLF archive sealed in its manifest.
+structured/architect_handoffs/R001/legacy-reference/*.html binary

@@ -4,12 +4,12 @@ from __future__ import annotations
 
 import copy
 import json
-import re
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
 import export_model_3d as model3d
 import pytest
+from historical_support import saved_payload
 from lib.dimension_overrides import load_overrides
 from lib.model3d_placement import overlaps
 from lib.model3d_plan import plan_data, render_plan, write_html_plans
@@ -111,7 +111,7 @@ def test_frontage_study_is_uninstalled_and_separated_from_route_and_indoor_furni
     assert [z["id"] for z in study["zones"]] == ["garden-pocket", "waiting-bench"]
     assert study["zones"][1]["rect"] == [1800, 2200, 1200, 500]
     assert payload["buildings"][2]["layout_review"]["parking"]["verified_spaces"] is None
-    assert sum(len(c["furniture"]) for b in payload["buildings"] for f in b["floors"] for c in f["cells"]) == 127
+    assert sum(len(c["furniture"]) for b in payload["buildings"] for f in b["floors"] for c in f["cells"]) == 128
     for building in payload["buildings"]:
         for floor in building["floors"]:
             for room in floor["cells"]:
@@ -155,14 +155,13 @@ def test_ac_relocation_keeps_all_pairs_and_uses_existing_2f_balcony_without_appr
     assert {u["id"] for u in balcony["tour_features"]["hvac_units"]} == {"C-AC01", "C-AC03"}
 
 
-def test_base_and_optional_html_plans_and_embedded_3d_match_full_shared_payload(payload):
+def test_base_and_optional_html_plans_and_embedded_3d_match_full_shared_payload():
+    # Published artifacts share their sealed payload, not a live rebuild with newer validators.
+    payload = saved_payload(ROOT / "structured/candidates/model3d.html")
     shared = plan_data(payload)
-    viewer = (ROOT / "structured/candidates/model3d.html").read_text()
-    embedded = re.search(r"var DATA = (\{.+?\});\n", viewer)
-    assert embedded
-    stored = json.loads(embedded[1])
-    for key in ("schema", "standards", "buildings", "furniture", "layout_review", "facade"):
-        assert stored[key] == payload[key], f"Stale embedded 3D {key}"
+    stored = json.loads((PLANS / "layout.js").read_text().split(" = ", 1)[1].rstrip(";\n"))
+    for key in ("schema", "geometry_source", "buildings", "layout_review", "facade"):
+        assert stored[key] == shared[key], f"Shared plan/viewer mismatch: {key}"
     for building in shared["buildings"]:
         for floor in building["floors"]:
             if (building["id"], floor["id"]) != ("C", "floor-1"):

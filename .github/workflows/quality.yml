@@ -20,7 +20,7 @@ jobs:
           cache: pip
       - run: python -m pip install --upgrade pip
       - run: python -m pip install -e ".[dev]"
-      - run: python -m pytest -q
+      - run: python -m pytest -q --tb=short
       - name: Concept pipeline smoke test
         shell: pwsh
         run: ./scripts/run_full_pipeline.ps1 -Mode concept -PythonExe python
@@ -49,7 +49,7 @@ jobs:
       - run: python -m pip install --upgrade pip
       - run: python -m pip install -e ".[dev,drawings]"
       - name: Enforce branch coverage baseline
-        run: python -m pytest -q --cov=house_design --cov-branch --cov-report=term-missing --cov-fail-under=68
+        run: python -m pytest -q --tb=short --cov=house_design --cov-branch --cov-report=term-missing --cov-fail-under=68
 
   lint:
     runs-on: ubuntu-latest
@@ -74,6 +74,8 @@ jobs:
         with:
           node-version: "24"
           cache: npm
+      - name: Install Python dependencies for browser fixtures
+        run: python -m pip install -e .
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e

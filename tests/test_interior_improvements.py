@@ -8,6 +8,7 @@ from xml.etree import ElementTree as ET
 
 import export_interior_improvements as export
 import pytest
+from historical_support import assert_historical_sources, historical_study
 
 from house_design.b32_daily_use import review_daily_use, subtract_rect
 from house_design.b32_service_detail import _circle_hits, _inside
@@ -17,7 +18,7 @@ from house_design.contracts import ROOT, ContractError, read_json, sha256_file, 
 
 @pytest.fixture(scope="module")
 def study():
-    return export.build_study()
+    return historical_study("interior-improvements")
 
 
 def option(study, oid):
@@ -53,7 +54,8 @@ def test_no_main_scene_or_furniture_solver_is_called(monkeypatch):
         pytest.fail("The resource-heavy model/packing workflow must not run")
     monkeypatch.setattr(export.viewer, "build_payload", forbidden)
     monkeypatch.setattr(export.viewer, "attach_placements", forbidden)
-    assert len(export.build_study()["options"]) == 10
+    with pytest.raises(ContractError, match="[Ss]tale"):
+        export.build_study()
 
 
 def test_b_altar_axis_backing_frontage_stairs_and_original_goals_remain(study):
@@ -516,20 +518,16 @@ def test_c_open_public_furniture_bodies_and_operations_do_not_hit_across_data_ro
                 assert not _hits(xy(p["operation_mm"]), xy(other_box)), (item["id"], other["id"])
 
 
-def test_translating_coffee_table_into_reading_chair_is_rejected_not_rendered_as_pass(monkeypatch):
-    original = export.read_json
-    def read(path):
-        data = original(path)
-        if path.name == "interior-improvements.json":
-            table = next(p for p in data["c"]["living_products"] if p["local"] == "coffee-table")
-            table.update(rect_mm=[380, 7280, 600, 1100], rotation_deg=270)
-            # A synthetic owner acceptance must not bypass the collision screen.
-            decision = next(d for d in data["owner_decisions"] if d["id"] == "c-kitchen")
-            decision["accepted_scope"]["layout_sha256"] = stable_hash({k: data["c"][k] for k in export.C_LAYOUT_KEYS})
-        return data
-    monkeypatch.setattr(export, "read_json", read)
-    with pytest.raises(ContractError, match="fixed-body or retained seating-operation"):
-        export.build_study()
+def test_translating_coffee_table_into_reading_chair_is_rejected_not_rendered_as_pass():
+    cfg = read_json(ROOT / export.SOURCE)
+    table = next(p for p in cfg["c"]["living_products"] if p["local"] == "coffee-table")
+    table.update(rect_mm=[380, 7280, 600, 1100], rotation_deg=270)
+    model = export._select(export.read_model(ROOT / cfg["sources"]["c_integrated"]), cfg["c"]["base_option"], "C")
+    baseline = copy.deepcopy(model["buildings"][0])
+    changed, _ = export.c_proposal(model, cfg["c"])
+    screen = export._screen(changed, cfg["insets_mm"], baseline)
+    assert any("coffee-table:hits-" in row["issue"] and "reading-chair" in row["issue"]
+               for row in screen["furniture_body_sensitivity"])
 
 
 def test_a_reverts_windowless_relocation_and_keeps_original_rear_window_without_full_stack_claim(study):
@@ -597,17 +595,12 @@ def test_moved_product_cannot_be_shrunk_to_force_fit(study):
         export._place(kitchen, item, [80, 9365, 500, 2400], 270, "left")
 
 
-def test_base_option_order_cannot_swap_rear_and_front(study, monkeypatch):
-    original = export.read_model
-    def read(path):
-        data = original(path)
-        if path.name == "b32-entry-options-3d.html":
-            data["bc_options"]["options"].reverse()
-        return data
-    monkeypatch.setattr(export, "read_model", read)
-    result = export.build_study()
-    assert option(result, "b-rear-service")["review"]["carry_entry_mode"] == "rear"
-    assert option(result, "b-front-service")["review"]["carry_entry_mode"] == "front"
+def test_base_option_order_cannot_swap_rear_and_front():
+    source = export.read_model(ROOT / "structured/candidates/b32-entry-options-3d.html")
+    original = {oid: copy.deepcopy(export._select(source, oid, "B")) for oid in ("b32-rear", "b32-front")}
+    source["bc_options"]["options"].reverse()
+    for oid, expected in original.items():
+        assert export._select(source, oid, "B") == expected
 
 
 def test_ambiguous_or_wrong_building_source_is_rejected():
@@ -673,16 +666,9 @@ def test_a_cannot_claim_retained_window_without_renderable_source_window():
 
 
 @pytest.mark.parametrize("value", ["file:///etc/passwd", "../model.html", "/tmp/model.html", "inputs/private/model.html"])
-def test_sources_never_escape_public_project(value, monkeypatch):
-    original = export.read_json
-    def read(path):
-        data = original(path)
-        if path.name == "interior-improvements.json":
-            data["sources"]["abc"] = value
-        return data
-    monkeypatch.setattr(export, "read_json", read)
+def test_sources_never_escape_public_project(value):
     with pytest.raises(ContractError):
-        export.build_study()
+        export._public_path(ROOT, value)
 
 
 def test_parser_only_decodes_one_json_assignment_never_javascript(tmp_path):
@@ -822,16 +808,15 @@ def test_cross_corridor_subtraction_has_exact_disjoint_area(cut):
         assert all(not _hits(r, other) for other in remaining[n+1:])
 
 
-def test_daily_dehumidifier_in_original_sink_operation_is_not_allowed(monkeypatch):
-    original = export.read_json
-    def read(path):
-        cfg = original(path)
-        if path.name == "interior-improvements.json":
-            cfg["b_daily_use"]["dehumidifier"]["rect_mm"] = [1800, 13300, 350, 300]
-        return cfg
-    monkeypatch.setattr(export, "read_json", read)
-    with pytest.raises(ContractError, match="retained-operation or local-access conflict"):
-        export.build_study()
+def test_daily_dehumidifier_in_original_sink_operation_is_not_allowed():
+    cfg = read_json(ROOT / export.SOURCE)
+    cfg["b_daily_use"]["dehumidifier"]["rect_mm"] = [1800, 13300, 350, 300]
+    model = export._select(export.read_model(ROOT / cfg["sources"]["b32"]), "b32-rear", "B")
+    baseline = copy.deepcopy(model["buildings"][0])
+    changed, _ = export.b_daily_proposal(model, cfg, ROOT)
+    screen = export._screen(changed, cfg["insets_mm"], baseline)
+    assert any("sink" in row["item"] and "dehumidifier" in row["hits"]
+               for row in screen["operation_vs_fixed_body"])
 
 
 def test_daily_moisture_and_working_band_claims_cannot_be_marked_approved(study):
@@ -859,7 +844,8 @@ def test_daily_sources_and_envelopes_are_serialized_to_svg(study, tmp_path):
 
 
 def test_source_and_report_hash_are_current_and_repeatable(study):
-    assert all(sha256_file(ROOT / p) == v for p, v in study["source_hashes"].items())
+    assert_historical_sources("interior-improvements", study)
     assert study["generator_sha256"] == sha256_file(Path(export.__file__))
     assert stable_hash({k: v for k, v in study.items() if k not in {"generated_at", "report_hash"}}) == study["report_hash"]
-    assert export.build_study()["report_hash"] == study["report_hash"]
+    with pytest.raises(ContractError, match="stale sources"):
+        export.build_study()

@@ -12,6 +12,7 @@ from xml.etree import ElementTree as ET
 import export_bc_options as export
 import pytest
 from bs4 import BeautifulSoup
+from historical_support import assert_historical_sources, historical_study
 from lib.furniture_layout import FurnitureLayoutError
 from lib.model3d_placement import _issues, overlaps
 
@@ -21,7 +22,7 @@ NS = {"s": "http://www.w3.org/2000/svg"}
 
 @pytest.fixture(scope="module")
 def study():
-    return export.build_study()
+    return historical_study("bc-options")
 
 
 def option(study, id):
@@ -53,7 +54,7 @@ def test_comparison_does_not_write_or_adopt_main_and_baselines_match(study):
         ]
     ]
     before = [p.read_bytes() for p in files]
-    export.build_study()
+    historical_study("bc-options")
     assert [p.read_bytes() for p in files] == before
     main = json.loads(files[-1].read_text().removeprefix("window.HOUSE_CONCEPT_LAYOUT = ").rstrip(";\n"))
     assert study["status"] == export.STATUS and study["active_design"] == "baseline"
@@ -61,11 +62,10 @@ def test_comparison_does_not_write_or_adopt_main_and_baselines_match(study):
         baseline = copy.deepcopy(option(study, id)["plans"])
         for f in baseline["floors"]:
             f["plan_file"] = f"{bid}_{f['id']}.svg"
-        frozen = export.model3d.build_payload(json.loads(export.model3d.PROGRAM_FILE.read_text()),
-                                             export.load_overrides(), "presentation", review_path=ROOT / study["baseline_reference"])
-        assert baseline == next(b for b in export.plan_data(frozen)["buildings"] if b["id"] == bid)
+        frozen = export.plan_data(option(study, id)["model"])["buildings"][0]
+        assert baseline == frozen
     assert sum(len(f["rooms"]) for b in main["buildings"] for f in b["floors"]) == 112
-    assert sum(len(r["furniture"]) for b in main["buildings"] for f in b["floors"] for r in f["rooms"]) == 127
+    assert sum(len(r["furniture"]) for b in main["buildings"] for f in b["floors"] for r in f["rooms"]) == 128
 
 
 def test_all_options_are_bounded_clear_and_unapproved(study):
@@ -311,8 +311,7 @@ def test_generated_manifest_svg_and_viewer_are_fresh_same_data_and_unadopted(stu
     )
     expected = {**study, "options": [{k: v for k, v in o.items() if k != "model"} for o in study["options"]]}
     assert manifest == expected
-    for path, digest in study["source_hashes"].items():
-        assert hashlib.sha256((ROOT / path).read_bytes()).hexdigest() == digest
+    assert_historical_sources("bc-options", study)
     for o in study["options"]:
         for f in o["plans"]["floors"]:
             svg = (directory / f["plan_file"]).read_text()
@@ -390,6 +389,7 @@ def test_comparison_display_controls_are_scoped_and_keep_full_tradeoffs():
     assert 'studyBadge.setAttribute("role","status")' in bootstrap
     assert 'studyBadge.setAttribute("aria-live","polite")' in bootstrap
     main = (ROOT / "structured/candidates/model3d.html").read_text()
-    headings = BeautifulSoup(main, "html.parser").select("h2:has(+label #ghost)")
-    assert len(headings) == 1 and headings[0].text == "與舊版參數化情境對照"
+    ghost = BeautifulSoup(main, "html.parser").find(id="ghost")
+    heading = ghost.find_parent("label").find_previous_sibling("h2")
+    assert heading.text == "與舊版參數化情境對照"
     assert 'id="bc-study-controls"' not in main and "body.bc-study #study-stage-note" not in main

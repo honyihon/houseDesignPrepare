@@ -6,6 +6,7 @@ import sys
 from xml.etree import ElementTree as ET
 
 import pytest
+from historical_support import assert_historical_sources, historical_study
 
 from house_design.b32_services import SOURCE, _covered, _hits, build_service_study, study_svg, write_service_study
 from house_design.cli import main
@@ -41,7 +42,9 @@ def row(case, zone):
 def test_real_snapshot_six_comparisons_stay_below_32_ping_and_never_adopt():
     result = build_service_study()
     assert result["land_ping"] <= 32 and result["frame_mm"] == [6000, 17630]
-    assert result["embedded_source_mismatches"] == []
+    frozen = historical_study("b32-entry-options")
+    drift = assert_historical_sources("b32-entry-options", frozen)["observed_source_drift"]
+    assert result["embedded_source_mismatches"] == list(drift)
     assert len(result["cases"]) == len({c["id"] for c in result["cases"]}) == 6
     assert {c["base_option"] for c in result["cases"]} == {"b32-rear", "b32-front"}
     assert set(result["gates"].values()) == {"unknown"}

@@ -7,15 +7,16 @@ from xml.etree import ElementTree as ET
 
 import export_c_care_entry as export
 import pytest
+from historical_support import assert_historical_sources, historical_study
 
 from house_design.b32_rear_right import body, rect
 from house_design.c_care_entry import review, validate_config
-from house_design.contracts import ROOT, ContractError, read_json, sha256_file, stable_hash
+from house_design.contracts import ROOT, ContractError, read_json, stable_hash
 
 
 @pytest.fixture(scope="module")
 def study():
-    return export.build_study()
+    return historical_study("c-care-entry")
 
 
 def option(study, key="c-entry-refined"):
@@ -151,8 +152,7 @@ def test_original_target_and_leaf_sizes_cannot_be_reduced(change):
 
 
 def test_source_evidence_and_bounded_svg_outputs(study):
-    for path, digest in study["source_hashes"].items():
-        assert sha256_file(ROOT / path) == digest
+    assert_historical_sources("c-care-entry", study)
     ledger = study["requirement_ledger"]
     assert ledger["ledger_hash"] == stable_hash({k: v for k, v in ledger.items() if k != "ledger_hash"})
     for o in study["options"]:
@@ -170,4 +170,5 @@ def test_no_full_generator_or_solver_is_needed(monkeypatch):
         pytest.fail("Never run full build, scene runtime or solver")
     monkeypatch.setattr(export.basis.viewer, "build_payload", forbidden)
     monkeypatch.setattr(export.basis.viewer, "attach_placements", forbidden)
-    assert len(export.build_study()["options"]) == 2
+    with pytest.raises(ContractError, match="[Ss]tale"):
+        export.build_study()

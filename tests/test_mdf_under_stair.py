@@ -89,6 +89,9 @@ def test_backup_repairs_both_side_clearances_without_reducing_care_or_adding_spa
                         normalized["rooms"][key]["profile"] = old["rooms"][key]["profile"]
                     else:
                         normalized["rooms"][key].pop("profile")
+                if bid == "B" and fid == "floor-3":
+                    assert normalized["rooms"]["guest3"].pop("window_mm") == 1800
+                    assert normalized["rooms"]["guest3"].pop("window_ratio") == .272727
                 if bid == "B" and fid == "floor-2":
                     assert normalized["rooms"]["master-bath2"]["kind"] == "bath"
                     normalized["rooms"]["master-bath2"].pop("kind")

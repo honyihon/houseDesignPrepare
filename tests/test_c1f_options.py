@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import copy
-import hashlib
 import json
 import re
 from pathlib import Path
@@ -11,6 +10,7 @@ from xml.etree import ElementTree as ET
 
 import export_c1f_options as study_export
 import pytest
+from historical_support import assert_historical_sources, historical_study
 from lib.model3d_placement import overlaps
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,7 +19,7 @@ NS = {"s": "http://www.w3.org/2000/svg"}
 
 @pytest.fixture(scope="module")
 def study():
-    return study_export.build_study()
+    return historical_study("c1f-options")
 
 
 def test_comparison_does_not_change_any_source_or_main_artifact(study):
@@ -31,18 +31,16 @@ def test_comparison_does_not_change_any_source_or_main_artifact(study):
         ROOT / "structured/candidates/furniture-plans/layout.js",
     ]
     before = [p.read_bytes() for p in paths]
-    study_export.build_study()
+    historical_study("c1f-options")
     assert [p.read_bytes() for p in paths] == before
     assert study["active_design"] == "baseline" and study["status"] == "comparison-only-not-adopted"
     shared = json.loads(paths[-1].read_text().removeprefix("window.HOUSE_CONCEPT_LAYOUT = ").rstrip(";\n"))
     baseline = copy.deepcopy(study["options"][0]["floor"])
     baseline["plan_file"] = "C_floor-1.svg"
-    frozen = study_export.model3d.build_payload(
-        json.loads(study_export.model3d.PROGRAM_FILE.read_text()), study_export.load_overrides(), "presentation",
-        review_path=ROOT / study["baseline_reference"])
-    assert baseline == study_export.plan_data(frozen)["buildings"][2]["floors"][0]
+    frozen = study_export.plan_data(study["options"][0]["model"])["buildings"][0]["floors"][0]
+    assert baseline == frozen
     assert sum(len(f["rooms"]) for b in shared["buildings"] for f in b["floors"]) == 112
-    assert sum(len(r["furniture"]) for b in shared["buildings"] for f in b["floors"] for r in f["rooms"]) == 127
+    assert sum(len(r["furniture"]) for b in shared["buildings"] for f in b["floors"] for r in f["rooms"]) == 128
 
 
 def test_bounded_options_cover_same_frame_and_preserve_core_care_and_frontage(study):
@@ -142,8 +140,7 @@ def test_generated_comparison_svg_manifest_and_3d_are_identical_data(study):
         "house_design/rendering/html_payload.py",
         "assets/vendor/three/three.min.js",
     } <= stored["source_hashes"].keys()
-    for source, digest in stored["source_hashes"].items():
-        assert hashlib.sha256((ROOT / source).read_bytes()).hexdigest() == digest
+    assert_historical_sources("c1f-options", study)
     html = (ROOT / "structured/candidates/c1f-options-3d.html").read_text()
     models = json.loads(re.search(r"var DATA = (\{.+?\});\n", html)[1])["c1f_options"]["options"]
     assert html.count('<canvas id="canvas"') == 1

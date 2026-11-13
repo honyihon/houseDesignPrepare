@@ -7,15 +7,16 @@ from xml.etree import ElementTree as ET
 
 import export_b32_rear_right as export
 import pytest
+from historical_support import assert_historical_sources, historical_study
 
 from house_design.b32_rear_right import body, cultural_screen, rect, review_state, variable_route
 from house_design.b32_services import _hits
-from house_design.contracts import ROOT, ContractError, read_json, sha256_file
+from house_design.contracts import ROOT, ContractError, read_json
 
 
 @pytest.fixture(scope="module")
 def study():
-    return export.build_study()
+    return historical_study("b32-rear-right")
 
 
 def find(study, option, state="daily"):
@@ -44,7 +45,8 @@ def test_no_solver_scene_or_old_study_rebuild(monkeypatch):
     monkeypatch.setattr(export.viewer, "build_payload", forbidden)
     monkeypatch.setattr(export.viewer, "attach_placements", forbidden)
     monkeypatch.setattr(export.interior, "build_study", forbidden)
-    assert len(export.build_study()["options"]) == 2
+    with pytest.raises(ContractError, match="[Ss]tale"):
+        export.build_study()
 
 
 def test_original_frame_partition_and_paired_html_model_states(study):
@@ -217,8 +219,7 @@ def test_original_upper_floors_and_primary_abc_preserved(study):
 
 
 def test_sources_match_and_output_svgs_are_bounded(study):
-    for path, digest in study["source_hashes"].items():
-        assert sha256_file(ROOT / path) == digest
+    assert_historical_sources("b32-rear-right", study)
     for o in study["options"]:
         for s in o["states"]:
             for f in s["plans"]["floors"]:

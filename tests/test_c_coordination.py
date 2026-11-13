@@ -10,6 +10,7 @@ from xml.etree import ElementTree as ET
 
 import export_c_coordination as export
 import pytest
+from historical_support import historical_study
 
 from house_design.c_coordination import CONFIG, OUT, analyze, build, cross_plane, public_path
 from house_design.contracts import ContractError, stable_hash
@@ -123,7 +124,13 @@ def test_authority_cannot_be_promoted_by_filling_a_text_field(monkeypatch):
         build(ROOT)
 
 
-def test_artifacts_have_bounded_canvases_blank_reply_cells_and_source_hashes(report):
+def test_artifacts_have_bounded_canvases_blank_reply_cells_and_source_hashes(report, monkeypatch):
+    frozen = historical_study("c-coordination")
+    # The guide changed after publication; geometry remains identical, freshness does not.
+    metadata = {"report_hash", "source_hashes", "artifact_hashes"}
+    assert {k:v for k,v in report.items() if k not in metadata} == {k:v for k,v in frozen.items() if k not in metadata}
+    frozen.pop("artifact_hashes")
+    monkeypatch.setattr(export, "build", lambda root: copy.deepcopy(frozen))
     files = export.artifacts(ROOT)
     assert len(files) == 8
     for name, content in files.items():

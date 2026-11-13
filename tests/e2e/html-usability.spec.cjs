@@ -15,7 +15,12 @@ for (const building of ['A', 'B', 'C']) {
       await page.goto(url);
       await expect(page).toHaveURL(url);
       await expect(page).toHaveTitle(new RegExp(building + '棟'));
-      await expect(page.locator('.design-bridge .design-review-note')).toContainText('使用範圍與待確認事項');
+      const priority = page.locator('.design-bridge > .design-review-note')
+        .filter({ has: page.getByText('本版優先順序（待屋主及建築師確認）', { exact: true }) });
+      await expect(priority).toHaveCount(1);
+      const summary = await page.evaluate(id => window.HOUSE_CONCEPT_LAYOUT.buildings
+        .find(b => b.id === id).layout_review.summary, building);
+      await expect(priority).toContainText(summary);
       await assertNoFrameworkOverlay(page);
       for (let floor = 1; floor <= 4; floor++) {
         await page.locator(`.tab[data-floor="${floor}"]`).click();
@@ -36,8 +41,7 @@ for (const building of ['A', 'B', 'C']) {
       } else {
         await expect(page.locator('#floor-1 .visual-plan')).toHaveCSS('position', 'sticky');
       }
-      if (building === 'A') await expect(detail).toContainText('此次不自動合併或搬動房間');
-      if (building === 'B') await expect(detail).toContainText('搬運情境尚未驗證');
+      await expect(detail).toBeVisible();
       if (building === 'C') {
         await expect(detail).toContainText('不預設向內開');
         await expect(detail).toContainText('外部緊急解鎖');

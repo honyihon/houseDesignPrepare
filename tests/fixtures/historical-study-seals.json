@@ -1,0 +1,764 @@
+{
+  "schema": "house-ci-historical-study-seals-v1",
+  "basis_commit": "5e448ee616ab8db1b2d8d3fac2b23661f517727b",
+  "scope": "Immutable historical drawings and explicit source drift; not current-source QA or design approval. No production guard is relaxed.",
+  "studies": {
+    "interior-improvements": {
+      "report": "structured/candidates/interior-improvements/review.json",
+      "report_sha256": "3fb602d67aa5e5d1cccd2e7afc86ec1881a25a00a3d8b34e63ac51216da3a5d7",
+      "observed_source_drift": {
+        "scripts/lib/model3d_review.py": {
+          "recorded": "355bba1192a91f2eabeac5ec2a88ece5b7ae76db063eb220e81ff5d4a6c85c4e",
+          "current": "2fcb2709b293b689c7e322f428a3743f9d95aa57ff6f74cfa89ae7219753dbf5"
+        },
+        "scripts/lib/model3d_openings.py": {
+          "recorded": "2cb109bc5d3c86c058e5bb11f28262e48f15d267a6bf951e97275d5b5481a099",
+          "current": "e05f5706ef535033a944b410f646ebd2463772f2e6b7972d3e0e7400ed3b76f7"
+        }
+      },
+      "artifacts": {
+        "structured/candidates/interior-improvements/a-upper-wet-core_floor-1.svg": "1299b1739dbaf3b929e5db1317c14c2af9f0a547282d4999f8b83eeca126ab8c",
+        "structured/candidates/interior-improvements/a-upper-wet-core_floor-2.svg": "aeec53cb667cae0f6ede0257f68d362c7403e96b71292fa29e17bc95782b7250",
+        "structured/candidates/interior-improvements/a-upper-wet-core_floor-3.svg": "3854d429cdc90d9994af16024891786db691fe45fd5d09833750614831e8e88d",
+        "structured/candidates/interior-improvements/a-upper-wet-core_floor-4.svg": "78b441d402789ef1f31694e0adcdc84a432225d0d2bb096cd9074b472a2d5109",
+        "structured/candidates/interior-improvements/b-front-dry-service_floor-1.svg": "7719133ffe3cd34cffee5ea33ba7644445d14ef03c9236e0a80f0a85fa78905b",
+        "structured/candidates/interior-improvements/b-front-dry-service_floor-2.svg": "6d0daffca08a42a6cab6f135a11d97b213502eb29284d6d37482befa214b80cc",
+        "structured/candidates/interior-improvements/b-front-dry-service_floor-3.svg": "e11c7f421a8ce50f2b7fad6f64c435d5f0ce8d6a652fd648061b7a11a71d8272",
+        "structured/candidates/interior-improvements/b-front-dry-service_floor-4.svg": "c00be866f8444762875d46874f605923935401dbc9d02f02750a6bf6da9c7b53",
+        "structured/candidates/interior-improvements/b-front-right-access_floor-1.svg": "d5d7ccb41d581391d51d690a293bcfa5328c40a5d8c18dec6f3c80c5faff7bd0",
+        "structured/candidates/interior-improvements/b-front-right-access_floor-2.svg": "4d93c76167266add737f1094323a88559bfffd68483d28ff74ccfe6205aeb5c9",
+        "structured/candidates/interior-improvements/b-front-right-access_floor-3.svg": "2642701b059931c8e401db3dd6a8ddd25ccb54c096553d4a6db17552cf235800",
+        "structured/candidates/interior-improvements/b-front-right-access_floor-4.svg": "b1c1f370419387f88860e3369c956dc4a30c5ceef76f6c27d44ecca854f74b4f",
+        "structured/candidates/interior-improvements/b-front-service_floor-1.svg": "1b192000741c5ccf57698d928b77ef8133d11fcb4d902efb7bd69b02c2a34d99",
+        "structured/candidates/interior-improvements/b-front-service_floor-2.svg": "a65fe155dfd30553335a2f2ae34279a388a5844d4a09d79c326ee6da81e0331b",
+        "structured/candidates/interior-improvements/b-front-service_floor-3.svg": "7c68be0e6f68a830054c66b0daec221c7c82c8117ca27b0efeee23ef5e35d690",
+        "structured/candidates/interior-improvements/b-front-service_floor-4.svg": "5d9e091cd2ccfb9584f5fedc99c89510ea148a3a0f106b460155a3357dbe4a83",
+        "structured/candidates/interior-improvements/b-front-window_floor-1.svg": "29dab3aab13c03efd279e3169126071244f93d79be98ee550c63c7280038b29a",
+        "structured/candidates/interior-improvements/b-front-window_floor-2.svg": "11d4547c266be82e048c2b6c6e315ce6511590289ee8d69f627db9840c5132f0",
+        "structured/candidates/interior-improvements/b-front-window_floor-3.svg": "eb9fafd620c3f3a74b070f4f2f3b80477bce40b30876f9f7ef9e941c5f38899d",
+        "structured/candidates/interior-improvements/b-front-window_floor-4.svg": "75af148eee34ddad4534c16d115adc570a4318c41d81cface8a2101400e9689d",
+        "structured/candidates/interior-improvements/b-rear-dry-service_floor-1.svg": "c9a62697ecab8b142237a1ac2d7db5aa0bf037ac589bebc0458925296a57ef9f",
+        "structured/candidates/interior-improvements/b-rear-dry-service_floor-2.svg": "103bd6dace309a8f73b5a57b9f055f7fa726043e36708dfbfaa91b1db7d56b5e",
+        "structured/candidates/interior-improvements/b-rear-dry-service_floor-3.svg": "678cb96e6e8e86400e3fbf66a753cd5741acd27175269654730286672dfdb720",
+        "structured/candidates/interior-improvements/b-rear-dry-service_floor-4.svg": "9dbb7ff03cf4362e5b01d67fedb4ee12a1329c8466ab51ae124edb947a273687",
+        "structured/candidates/interior-improvements/b-rear-right-access_floor-1.svg": "6139602e833c81b9c98c2475735cbc38eefc5e1d6cbb9f51d25cdedde08971da",
+        "structured/candidates/interior-improvements/b-rear-right-access_floor-2.svg": "2afc10dafd28a57b22c1e967300e49044319b9dc165f530062dda625824e519a",
+        "structured/candidates/interior-improvements/b-rear-right-access_floor-3.svg": "1c28c81acf6e7ded7701e7a7affe39b4afe5ab5f55402b280b75bbae11605062",
+        "structured/candidates/interior-improvements/b-rear-right-access_floor-4.svg": "b22919b18d4f3ea1788e53511d46f028390aac2c377e9f37f0eaf8a1a200c1b1",
+        "structured/candidates/interior-improvements/b-rear-service_floor-1.svg": "7c6d09d814b70efe695ce7d0943d0434dbf4569d1c74517d4319f2897093ee7f",
+        "structured/candidates/interior-improvements/b-rear-service_floor-2.svg": "b26c73807024c185e6b7eade8eeed15cbdb8761f2a4bcb2e7146b438a2576898",
+        "structured/candidates/interior-improvements/b-rear-service_floor-3.svg": "e6260d85d30c066a73cd928b55a2011e605681ce7bbfb5b2ae2df1af0af4d75d",
+        "structured/candidates/interior-improvements/b-rear-service_floor-4.svg": "e3b28157075243dacb76e6fd923a9d6bd51c055fda5f17d5421d58d73ccff90a",
+        "structured/candidates/interior-improvements/b-rear-window_floor-1.svg": "d35b2254667846802fa27cee445e7017c0c164f2c45c979020fd5c843990bc83",
+        "structured/candidates/interior-improvements/b-rear-window_floor-2.svg": "5f26fabf4312aa8053adefb0f4919256df7bff6bed021d7eb49852d9583c26de",
+        "structured/candidates/interior-improvements/b-rear-window_floor-3.svg": "1ee05e1a1aaf75955f25a7f136fbbf2b377c48b2d5fc906b0bbba0a830e41bab",
+        "structured/candidates/interior-improvements/b-rear-window_floor-4.svg": "53649523caee2cd79071190ff6a4debee858c2a5702971eaf4febfea227d38c5",
+        "structured/candidates/interior-improvements/c-care-laundry_floor-1.svg": "b14fb23702f4d0421bf621b2a99f795ae71cd2bac2631c8177d10375c6f1e959",
+        "structured/candidates/interior-improvements/c-care-laundry_floor-2.svg": "fc01e786230c9066cb318f582ec408ced8261151742d4a742462b80ba6bcd46d",
+        "structured/candidates/interior-improvements/c-care-laundry_floor-3.svg": "845b3cf6f07f48ce3eabb3c74622bb2d6b79d4644510d47d67887d81ccf16a87",
+        "structured/candidates/interior-improvements/c-care-laundry_floor-4.svg": "e15b173f1cea492348e79f90e35855f5b19d6b9cec2d689ed496153b5b4d2931",
+        "structured/candidates/interior-improvements/review.json": "3fb602d67aa5e5d1cccd2e7afc86ec1881a25a00a3d8b34e63ac51216da3a5d7",
+        "structured/candidates/interior-improvements.html": "8dec073670c46a98803218d9e833e342fe6ac2ffc8164324acd1dbb50af6a556",
+        "structured/candidates/interior-improvements-3d.html": "6596bd33286e7c164620d84597e3221361c19f629fa2b35ab8cd41fd847a4cf3"
+      }
+    },
+    "b32-rear-right": {
+      "report": "structured/candidates/b32-rear-right/review.json",
+      "report_sha256": "03723fcd4134bdd32f9a31b5a7c28a7d3b81fc3b293e20717ecfd528008cbd4b",
+      "observed_source_drift": {
+        "scripts/lib/model3d_openings.py": {
+          "recorded": "2cb109bc5d3c86c058e5bb11f28262e48f15d267a6bf951e97275d5b5481a099",
+          "current": "e05f5706ef535033a944b410f646ebd2463772f2e6b7972d3e0e7400ed3b76f7"
+        },
+        "scripts/lib/model3d_review.py": {
+          "recorded": "355bba1192a91f2eabeac5ec2a88ece5b7ae76db063eb220e81ff5d4a6c85c4e",
+          "current": "2fcb2709b293b689c7e322f428a3743f9d95aa57ff6f74cfa89ae7219753dbf5"
+        }
+      },
+      "artifacts": {
+        "structured/candidates/b32-rear-right/front-backup_carry_floor-1.svg": "0028fcb4d2326f4a7c46f3e7e4fda7428fc320e5d973b1f3828d42e625399f10",
+        "structured/candidates/b32-rear-right/front-backup_carry_floor-2.svg": "bd13b57996df8f110ee1fc5452c26680173f0342f6abe887fe5da06ae23fe870",
+        "structured/candidates/b32-rear-right/front-backup_carry_floor-3.svg": "f82056f7b4bf2cf20aee4970537c418a51ea9858428e407e73d344eaec5734ee",
+        "structured/candidates/b32-rear-right/front-backup_carry_floor-4.svg": "e0f5bf3c74341801f6f4ef3f94a8c71f5f488e435436efeed3ddaebcacb61158",
+        "structured/candidates/b32-rear-right/front-backup_daily_floor-1.svg": "85ec825e72d33a55669b2f3bd2e1888db50112652eb7d10d4dbb17db9ecb68ca",
+        "structured/candidates/b32-rear-right/front-backup_daily_floor-2.svg": "7ca614e66d48e5ffcd9b4106a7d58a8094518d4b0c83d22f5f848e0eaa2e51c9",
+        "structured/candidates/b32-rear-right/front-backup_daily_floor-3.svg": "36d47aa7908c78089820f09904342b70cdeaf802c5101384a24b8261183941a1",
+        "structured/candidates/b32-rear-right/front-backup_daily_floor-4.svg": "d4cd150ed3760ab72be36d376e2314a702f17759529c04ce5be1a8ce64f7b212",
+        "structured/candidates/b32-rear-right/front-backup_ritual_floor-1.svg": "7c69e618690dc7b4e27782349da614262c6685188ce1e9bd59af03d347d1e018",
+        "structured/candidates/b32-rear-right/front-backup_ritual_floor-2.svg": "50bc544445ebcc1fc17e07b0681c1ef96ddc5489badf3d3a167c3c6e4be429e1",
+        "structured/candidates/b32-rear-right/front-backup_ritual_floor-3.svg": "87720e0188d5aa618acb4e9adbde48805375d34e7e1393e4e3039177f89d62e9",
+        "structured/candidates/b32-rear-right/front-backup_ritual_floor-4.svg": "3ed9cf88c591686b0247a9d66cca1e778a023275f91db8bf2446ac538e251201",
+        "structured/candidates/b32-rear-right/rear-alley_carry_floor-1.svg": "508a1e79744685298aeb526de4a8838b9f98437cc36edece499ee55bd4fd0d06",
+        "structured/candidates/b32-rear-right/rear-alley_carry_floor-2.svg": "ecba165ac4bb7b83e19e2a8e9a2d484c142cfa884a960319b7babfc238bce8df",
+        "structured/candidates/b32-rear-right/rear-alley_carry_floor-3.svg": "1de673bdfa27926eaa6336a8003dd310dfa4afc24c08c43eeea84e8ccbb0df6c",
+        "structured/candidates/b32-rear-right/rear-alley_carry_floor-4.svg": "29390e3da12538c3ed09b6ba5bf304d3100e2fc1dae5068e44a948c24aa762a6",
+        "structured/candidates/b32-rear-right/rear-alley_daily_floor-1.svg": "0dd51e379454c028a8277a70775ccd07e05b130c694b2b86246c55e01238fb7e",
+        "structured/candidates/b32-rear-right/rear-alley_daily_floor-2.svg": "08a783645be4b11efab7e4ed0e6287902652f6ee80665240bbabf1e502cff6b1",
+        "structured/candidates/b32-rear-right/rear-alley_daily_floor-3.svg": "ed0a9832b5ff36f9025816893792ca2256f47b93c4cade463775bb087c014bee",
+        "structured/candidates/b32-rear-right/rear-alley_daily_floor-4.svg": "99009bd214116640272d1627a9e58acf715b1b5a31d18639f62f8a99ca4963c8",
+        "structured/candidates/b32-rear-right/rear-alley_ritual_floor-1.svg": "068a08fb15f0d315a9872c9e4fdfb7cbc6d66b32c5444b6e64db05a9a81789f5",
+        "structured/candidates/b32-rear-right/rear-alley_ritual_floor-2.svg": "8ef3f0ab890c972d5159239eb32a2711fe4a02275bcde0b3bfb2203ad0d14cab",
+        "structured/candidates/b32-rear-right/rear-alley_ritual_floor-3.svg": "6ed1d0bf8933bc4b4a0f70141fd1e6d6a80909f9c1e6c35f544ab73b6741b0b1",
+        "structured/candidates/b32-rear-right/rear-alley_ritual_floor-4.svg": "9c5f762cc625de737bff58a69409d1216445e57081208c827ce0c200d7ef1591",
+        "structured/candidates/b32-rear-right/review.json": "03723fcd4134bdd32f9a31b5a7c28a7d3b81fc3b293e20717ecfd528008cbd4b",
+        "structured/candidates/b32-rear-right.html": "c84b2dae6e92c39617ee2bf9d8bef140953143abb893ef374585bf494da839c6",
+        "structured/candidates/b32-rear-right-3d.html": "d573666a0b1edf30d8ce66ba236a21bee7dec66e5e79010fb8180d46e4819255"
+      }
+    },
+    "current-design-basis": {
+      "report": "structured/candidates/current-design-basis/review.json",
+      "report_sha256": "80e7e53c58741efad40f05e991ab9801e2c302be1a017e10d61fe3736f7f27f4",
+      "observed_source_drift": {
+        "scripts/lib/model3d_openings.py": {
+          "recorded": "2cb109bc5d3c86c058e5bb11f28262e48f15d267a6bf951e97275d5b5481a099",
+          "current": "e05f5706ef535033a944b410f646ebd2463772f2e6b7972d3e0e7400ed3b76f7"
+        },
+        "scripts/lib/model3d_review.py": {
+          "recorded": "355bba1192a91f2eabeac5ec2a88ece5b7ae76db063eb220e81ff5d4a6c85c4e",
+          "current": "2fcb2709b293b689c7e322f428a3743f9d95aa57ff6f74cfa89ae7219753dbf5"
+        }
+      },
+      "artifacts": {
+        "structured/candidates/current-design-basis/a-current_coordination.svg": "6116204ee57cdddad5a41497eedacd6dcf49ef8d466e936345471dc36f50f0f6",
+        "structured/candidates/current-design-basis/a-current_daily_floor-1.svg": "303d60c3fcea9beaf2ab5f88649a5b065e321432c7c8b53f58eec790366fa621",
+        "structured/candidates/current-design-basis/a-current_daily_floor-2.svg": "3edcd38ce513cb5fb9375ee943497d6b5afd8a5dd63957c5d558bf81505e93fc",
+        "structured/candidates/current-design-basis/a-current_daily_floor-3.svg": "b06e504ca6c6da56ec0f9b59b0501208351df0e95ab3b8eb3fe5a08bf616f174",
+        "structured/candidates/current-design-basis/a-current_daily_floor-4.svg": "4b925bef345461f22e1f68965b9428054e1e7a865951e6747f82f47dd3144964",
+        "structured/candidates/current-design-basis/a-current_section.svg": "b6d70877ad752bb0b38efcd39e3fc5c53b6a5be95b45bb929fd904129b4fa7a2",
+        "structured/candidates/current-design-basis/a-ensuite_coordination.svg": "4a544e54410774d42b26eec8f52fef4a3b757537e62e75f892e05b914bcd0129",
+        "structured/candidates/current-design-basis/a-ensuite_daily_floor-1.svg": "6ec34ef2062c34e66a919141f95280928bb8aad77a04ae1b0eeaefcb33f8c1a5",
+        "structured/candidates/current-design-basis/a-ensuite_daily_floor-2.svg": "09f386e04b4cf0b930210d8ae6a1f7add3d7c78014ee459084cc8c7aaac47d68",
+        "structured/candidates/current-design-basis/a-ensuite_daily_floor-3.svg": "e045d8887b7cae72e205aeb18c767e704128a5189ad71d6294a2539a3ed959dc",
+        "structured/candidates/current-design-basis/a-ensuite_daily_floor-4.svg": "712de0dddf3eaae1558aa4986ea6313524497f1de58b68119f90245c8701c534",
+        "structured/candidates/current-design-basis/a-ensuite_section.svg": "54962d732f7c7615d832ae43d726b4879262acc7867c5fb4e589fe741186acb0",
+        "structured/candidates/current-design-basis/b-front-refined_carry_floor-1.svg": "47710816b3254d6b2308c369e028869f354fe5496b779ee497e0f0f2c12b773c",
+        "structured/candidates/current-design-basis/b-front-refined_carry_floor-2.svg": "64cbbca6c0fbedd34254775cdb52aa0167d5658885bb311a9d33f283d8bc4c86",
+        "structured/candidates/current-design-basis/b-front-refined_carry_floor-3.svg": "bf6dc57c11f81f2101c6067978712886414e8cbf08b9f925134b584e42ee86ca",
+        "structured/candidates/current-design-basis/b-front-refined_carry_floor-4.svg": "7b7e28bc7c1dd6cc5cbfb4182356d5ef0b2652bfceb89753b67f4d6c1e9448c5",
+        "structured/candidates/current-design-basis/b-front-refined_coordination.svg": "c6cae7db6363e3990462acee3ee4a50f69d3018a775d1b4f8b0ea2da828e8938",
+        "structured/candidates/current-design-basis/b-front-refined_daily_floor-1.svg": "19b31b7a18cb8e8ebab751bc88c2e65cecb8d6dbc7f4ad18de9a2d2d31efebe9",
+        "structured/candidates/current-design-basis/b-front-refined_daily_floor-2.svg": "acaa3972da0432ce1665310c5b69f459e2799f500994a74c3fc3a0739fa501d8",
+        "structured/candidates/current-design-basis/b-front-refined_daily_floor-3.svg": "d371523f8a8dfe472ce55c7aef13039a5aef26f15d68a6d7d45762a572ea4069",
+        "structured/candidates/current-design-basis/b-front-refined_daily_floor-4.svg": "0e387fb920ca976b13974e2314b396990051614f2d6b6c496afc849108cf2c70",
+        "structured/candidates/current-design-basis/b-front-refined_ritual_floor-1.svg": "51f20eb56f21f6099c6e3b6cd2d668cf61198775af9ffa2f6566cf8e1fff114e",
+        "structured/candidates/current-design-basis/b-front-refined_ritual_floor-2.svg": "f3141d637781c7365052bd5c5b814d57dc854fa27d9739880abe3f2ad12c47cc",
+        "structured/candidates/current-design-basis/b-front-refined_ritual_floor-3.svg": "97727f7aaea62de13bbbb69b828175140ea9f7929cc410ef34659c8c3c50a3e6",
+        "structured/candidates/current-design-basis/b-front-refined_ritual_floor-4.svg": "69d23ac9b133bb808716dfc76546686e7140cdca1fb4d509f9cb2ccece1afe17",
+        "structured/candidates/current-design-basis/b-front-refined_section.svg": "2b438589f4010f0287682c2075fc9aab08e732031ab11dbce94ace993f6263fe",
+        "structured/candidates/current-design-basis/b-rear-refined_carry_floor-1.svg": "5cc98436c647d70537d3b9b544d588ef0308df6b68f24b61a5be7e2bc1371794",
+        "structured/candidates/current-design-basis/b-rear-refined_carry_floor-2.svg": "1c32730955d95fe36322ef554a28406b69fb9c5a32eedafb1a381bb4bb26f862",
+        "structured/candidates/current-design-basis/b-rear-refined_carry_floor-3.svg": "84f8c1891f450c32be8c294b3b1e3f58f77dc1398643140873ba20a78c1a1d47",
+        "structured/candidates/current-design-basis/b-rear-refined_carry_floor-4.svg": "fde73f90da0a34147dddda7d3d692db8a2a4b3e63465808967065cd496b13387",
+        "structured/candidates/current-design-basis/b-rear-refined_coordination.svg": "7ba0af23265044929f5a3b291d80971d49f39cbeb9d1fdb507dcd2b9b666defa",
+        "structured/candidates/current-design-basis/b-rear-refined_daily_floor-1.svg": "35d8f1580621c20d92cf7748cfd70a1c8094484ca6a252e4ea775821618031aa",
+        "structured/candidates/current-design-basis/b-rear-refined_daily_floor-2.svg": "7302bb2a9273f40872b1636d1d920a15102e45d8a7eaa22d148dcc78c8d6e3ca",
+        "structured/candidates/current-design-basis/b-rear-refined_daily_floor-3.svg": "dba1bcba17d76c47c6ee4786d83d92cd7a5943cf2a3e5197e135f69e90039369",
+        "structured/candidates/current-design-basis/b-rear-refined_daily_floor-4.svg": "aeafe768fce87fbdd475f3915fd337df2d9029c817573a3307c7c07a0fcdcbce",
+        "structured/candidates/current-design-basis/b-rear-refined_ritual_floor-1.svg": "d22950f0cfea41cd1e6a6e4a8b9ee766a36e2a62faf0c192e76f221801f11e12",
+        "structured/candidates/current-design-basis/b-rear-refined_ritual_floor-2.svg": "2d30a53cfc9e7c077f33dddc425d79703cecd3c3292ff3c78b68c76ad30fb68e",
+        "structured/candidates/current-design-basis/b-rear-refined_ritual_floor-3.svg": "4b4fe4fecb67079a13f6f8048f6d48c055c26c382fbd4a0c559a8fdc489a8401",
+        "structured/candidates/current-design-basis/b-rear-refined_ritual_floor-4.svg": "2005fedad8496792c8b1729362b502937a1bb503f7ec5592a32f6fe1b92e58b3",
+        "structured/candidates/current-design-basis/b-rear-refined_section.svg": "cbf592132c712640177597a77f3ad49472439e0293a692a9b8cde6c2978363dc",
+        "structured/candidates/current-design-basis/c-care-refined_coordination.svg": "2f7a3237eee916793880d555c34177e7865931127498bcd8eb3d16b37113a818",
+        "structured/candidates/current-design-basis/c-care-refined_daily_floor-1.svg": "c86805da9923423db255906dc152700effd95648c26216ba2dbacec206f4e194",
+        "structured/candidates/current-design-basis/c-care-refined_daily_floor-2.svg": "3a0c39c080aef63d63f06684d2c65119227e3f4b9c077bf89abc49965c6b30e2",
+        "structured/candidates/current-design-basis/c-care-refined_daily_floor-3.svg": "0a1561eaeaca996502de86aba2bc9ce0ad042e76fbc3951eea2630824782640a",
+        "structured/candidates/current-design-basis/c-care-refined_daily_floor-4.svg": "643fb886d1267665929a43b278320337bd95b0fc38830a2f50296615ae23fc99",
+        "structured/candidates/current-design-basis/c-care-refined_section.svg": "b4048764280942670ca02b2d4a318a288dd06a9a3d1e2d626a33fd02086e7a19",
+        "structured/candidates/current-design-basis/requirement-ledger.json": "4c47c83d2c12f39e5c4d72f53e325d2403f07c3f4c2f33c2aa264dacbc5cc2e9",
+        "structured/candidates/current-design-basis/review.json": "80e7e53c58741efad40f05e991ab9801e2c302be1a017e10d61fe3736f7f27f4",
+        "structured/candidates/current-design-basis.html": "b98a19c2d42fad40475116b3b26b08eb0762867b3644a098aa84fbd600f03eda",
+        "structured/candidates/current-design-basis-3d.html": "a2feff7beabf96646c93c7d1b27a6e670e1acc3338a14caa3ce22837c7b84128"
+      }
+    },
+    "c-care-entry": {
+      "report": "structured/candidates/c-care-entry/review.json",
+      "report_sha256": "492ea30b81365752e82528eaaa10ba9f00df425dd02f260b091709c98f7d0c64",
+      "observed_source_drift": {
+        "scripts/lib/model3d_openings.py": {
+          "recorded": "2cb109bc5d3c86c058e5bb11f28262e48f15d267a6bf951e97275d5b5481a099",
+          "current": "e05f5706ef535033a944b410f646ebd2463772f2e6b7972d3e0e7400ed3b76f7"
+        },
+        "scripts/lib/model3d_review.py": {
+          "recorded": "355bba1192a91f2eabeac5ec2a88ece5b7ae76db063eb220e81ff5d4a6c85c4e",
+          "current": "2fcb2709b293b689c7e322f428a3743f9d95aa57ff6f74cfa89ae7219753dbf5"
+        }
+      },
+      "artifacts": {
+        "structured/candidates/c-care-entry/c-entry-control_daily_detail.svg": "186067ae6502a418f015362c7e4d5d195aaaa32eece49d655e37018f35bac881",
+        "structured/candidates/c-care-entry/c-entry-control_daily_floor-1.svg": "d260106c73132e322e2f8a2848b540221e2abe422ff750a62bfc616424df6b80",
+        "structured/candidates/c-care-entry/c-entry-control_daily_floor-2.svg": "a070cb1ec974d45f1652cfea57037b52356459f935f6d4edf29f0d1e29f14a2d",
+        "structured/candidates/c-care-entry/c-entry-control_daily_floor-3.svg": "d37c8171f4474f932d0848008b0770f0d286b9499bb29d246316557b337c5d86",
+        "structured/candidates/c-care-entry/c-entry-control_daily_floor-4.svg": "5651d1a265360b268b404599deadaf98507876cf2c49e63bba94eb26ff112df5",
+        "structured/candidates/c-care-entry/c-entry-refined_closed_detail.svg": "03a9bc29a0a1af398c8f6c56a1fe4e30c67ff4ffdcb3e4d0445eb6222ccb14bd",
+        "structured/candidates/c-care-entry/c-entry-refined_closed_floor-1.svg": "20908a51bb621de3d84e437a2a49499bc24e077ad600e7004774e49cdb2c2251",
+        "structured/candidates/c-care-entry/c-entry-refined_closed_floor-2.svg": "ce9f7186a3ec2c050d52650c82deeb10bdf5d85e681e78dbfe06f6b64327267a",
+        "structured/candidates/c-care-entry/c-entry-refined_closed_floor-3.svg": "f69e9fc2632c51d22b4d768b16cf05ace1d37d09ecd950d3e78d93055b8496cd",
+        "structured/candidates/c-care-entry/c-entry-refined_closed_floor-4.svg": "d5fa5d6ec0d4d88714c6b4e375b9b5bd34e4f46a3f421752d91cedd911d05c5a",
+        "structured/candidates/c-care-entry/c-entry-refined_open_detail.svg": "838211b8cf2568134e185965e554c7c0bfc305b645966d87ce2e8681f758c8e5",
+        "structured/candidates/c-care-entry/c-entry-refined_open_floor-1.svg": "bff3483e98a454df71a0d566f33f299a6e1c384b321d3824ba1f3775ef2bb6f4",
+        "structured/candidates/c-care-entry/c-entry-refined_open_floor-2.svg": "189b9d08bf5a57ddf7c062c20a9d832f68aa14fef78c99968c6840753f001c59",
+        "structured/candidates/c-care-entry/c-entry-refined_open_floor-3.svg": "5d9636ba2706f0b314a700c4ef07e30431724240aa8993fde671b67836661e2a",
+        "structured/candidates/c-care-entry/c-entry-refined_open_floor-4.svg": "f3b052d1ddc073647a5834dabba5c1ab13eb7a2022e38435be0469f4ea2035db",
+        "structured/candidates/c-care-entry/requirement-ledger.json": "db78c37352518a52221ac4b500abca0ffec058ac0cd21706465f0559a1629dac",
+        "structured/candidates/c-care-entry/review.json": "492ea30b81365752e82528eaaa10ba9f00df425dd02f260b091709c98f7d0c64",
+        "structured/candidates/c-care-entry.html": "bf4c2e4dcf16d611638abac103558bba913fd8257ba46cc42cf18b2eb270daa4",
+        "structured/candidates/c-care-entry-3d.html": "1cde474af955857ab6ab02ccf95e67c6eb874536c3708e607363c5bab86ba0c4"
+      }
+    },
+    "c-care-route": {
+      "report": "structured/candidates/c-care-route/review.json",
+      "report_sha256": "9e314a75dbf34f49c83b33f712b1e82b8e944b9597e97f5cdfa53672b6fdf805",
+      "observed_source_drift": {
+        "scripts/lib/model3d_openings.py": {
+          "recorded": "2cb109bc5d3c86c058e5bb11f28262e48f15d267a6bf951e97275d5b5481a099",
+          "current": "e05f5706ef535033a944b410f646ebd2463772f2e6b7972d3e0e7400ed3b76f7"
+        },
+        "scripts/lib/model3d_review.py": {
+          "recorded": "355bba1192a91f2eabeac5ec2a88ece5b7ae76db063eb220e81ff5d4a6c85c4e",
+          "current": "2fcb2709b293b689c7e322f428a3743f9d95aa57ff6f74cfa89ae7219753dbf5"
+        }
+      },
+      "artifacts": {
+        "structured/candidates/c-care-route/c-route-control_baseline_floor-1.svg": "b801d14f63b4476bd810282e79a079d19d4608e461897aa6a789cafa205b6e6e",
+        "structured/candidates/c-care-route/c-route-control_baseline_floor-2.svg": "72b5d6c34c506b5a54378c33b625f1caa3b72eaeb7373a15c63164388d692f6a",
+        "structured/candidates/c-care-route/c-route-control_baseline_floor-3.svg": "5f285ffe5206d188886ebc068b60fe628a14f7b5f659d05a9d4d8af40f282a89",
+        "structured/candidates/c-care-route/c-route-control_baseline_floor-4.svg": "035b4d0d2731daa6fbeeee2fff6c0d9ec88f950d67badfe83200bda6c4a85c08",
+        "structured/candidates/c-care-route/c-route-refined_bath-closed_floor-1.svg": "403957bbec4f27cfdc76514915c3d7952a012a9d18f4ed1db28c8840f0fadec7",
+        "structured/candidates/c-care-route/c-route-refined_bath-closed_floor-2.svg": "3a9472b1d3aa9787f0103453d6e7b45e51620463a8041dde4fe62e65b68385ea",
+        "structured/candidates/c-care-route/c-route-refined_bath-closed_floor-3.svg": "81822c9f1d0ed7889afdeb45eea9521aa8cc7ffea40f34df3505a5fe0b0ebb9d",
+        "structured/candidates/c-care-route/c-route-refined_bath-closed_floor-4.svg": "b93961e2879ce2490a594b38e9135953e218aa22b0e98bb916a24c09c4289167",
+        "structured/candidates/c-care-route/c-route-refined_bedroom-closed_floor-1.svg": "2a801b48194b8cdf0940daf14704e5de2112f817730df669b5ded83ee9750d8e",
+        "structured/candidates/c-care-route/c-route-refined_bedroom-closed_floor-2.svg": "5e8ff0afe7cb2d43e91347465056230fe9c220a04e8acb1b55fb88af24fe54de",
+        "structured/candidates/c-care-route/c-route-refined_bedroom-closed_floor-3.svg": "a96e5f85e888c08d0c437a103075b60328dc260a2c9777c562b614e5d0d1d5ef",
+        "structured/candidates/c-care-route/c-route-refined_bedroom-closed_floor-4.svg": "5f32081c0dc95f10414eb2385781d775f4fad87ca54bca4c4a814682bbbea8b3",
+        "structured/candidates/c-care-route/c-route-refined_open_floor-1.svg": "a975fa218d68307f46adfbcc82a2c1870f00f8b3eecf0686b86cf670f7627eaf",
+        "structured/candidates/c-care-route/c-route-refined_open_floor-2.svg": "8b6229a459186d8fd37ad63357e77c31fecdc51c77cac75e3dc6b6c4892687cc",
+        "structured/candidates/c-care-route/c-route-refined_open_floor-3.svg": "ca32ab0ecce614294039becffb2393dae86146bf981101bd8650b40fc8b0b586",
+        "structured/candidates/c-care-route/c-route-refined_open_floor-4.svg": "654e9ef380b20a2cb0cb275eca53ce24f57d381a6d4e54da6a7af0aaa4d61a5d",
+        "structured/candidates/c-care-route/c-route-refined_street-closed_floor-1.svg": "f9d1f57bca423ca70f89ba91d94919e7b97e70c5d8451c2a8829a7ebb272876e",
+        "structured/candidates/c-care-route/c-route-refined_street-closed_floor-2.svg": "fdd6687fe1b01719125a2c65ddcc022d647fe609c7676917076ac51c77e5a9d3",
+        "structured/candidates/c-care-route/c-route-refined_street-closed_floor-3.svg": "7c308b4373b8f7f827ef1b262261d5932cfdb9397535d3c2a7c17f3a1176ab36",
+        "structured/candidates/c-care-route/c-route-refined_street-closed_floor-4.svg": "4910185f4132ee0d28f075ce184637da92f41cd2f5b16777f30a65af8990d4dd",
+        "structured/candidates/c-care-route/requirement-ledger.json": "531b55f1efcef4f1754ea8ffa4b0890a4958f2dcb4d624016b58362897fced28",
+        "structured/candidates/c-care-route/review.json": "9e314a75dbf34f49c83b33f712b1e82b8e944b9597e97f5cdfa53672b6fdf805",
+        "structured/candidates/c-care-route.html": "3f37ebf15052ab4544c09106427172ba33bec57529328b233286eaef5e7c98a3",
+        "structured/candidates/c-care-route-3d.html": "d077abe9ebb9a151879a834f5bc3aefee5674aeebf756471f6d42f0d9cf8a51a"
+      }
+    },
+    "c-care-bath": {
+      "report": "structured/candidates/c-care-bath/review.json",
+      "report_sha256": "b49432374677ad8f224a2aded96aecdec6af3047b6a873622e37815fd0052f51",
+      "observed_source_drift": {
+        "scripts/lib/model3d_openings.py": {
+          "recorded": "2cb109bc5d3c86c058e5bb11f28262e48f15d267a6bf951e97275d5b5481a099",
+          "current": "e05f5706ef535033a944b410f646ebd2463772f2e6b7972d3e0e7400ed3b76f7"
+        },
+        "scripts/lib/model3d_review.py": {
+          "recorded": "355bba1192a91f2eabeac5ec2a88ece5b7ae76db063eb220e81ff5d4a6c85c4e",
+          "current": "2fcb2709b293b689c7e322f428a3743f9d95aa57ff6f74cfa89ae7219753dbf5"
+        }
+      },
+      "artifacts": {
+        "structured/candidates/c-care-bath/c-bath-control_baseline_detail.svg": "bd063e5c2bee420dc832878010b09aa4f44ad519077ff5fc1ebada2f945a9997",
+        "structured/candidates/c-care-bath/c-bath-control_baseline_floor-1.svg": "a396290af29c5c79cdffb29cb42e4c988bbf36635cb265114fb5815141562ef8",
+        "structured/candidates/c-care-bath/c-bath-control_baseline_floor-2.svg": "2e00efccd17b32a7f4abbd88a0d8b9e3711b0cb3084adec208525610540cbef6",
+        "structured/candidates/c-care-bath/c-bath-control_baseline_floor-3.svg": "4b7db2f791e32cc36da820937ff6881e9e99ac2ee8779eea3a89be5b32ce4875",
+        "structured/candidates/c-care-bath/c-bath-control_baseline_floor-4.svg": "d9c6ba919328f6aabf41aed27f58bb31e0fc2ec5a495d974b6db3ecc6ccca1e0",
+        "structured/candidates/c-care-bath/c-bath-refined_door-closed_detail.svg": "5fbb7a8580edced522c0f6bb903374a49ebc0c44d279a2c7d500058fc02de191",
+        "structured/candidates/c-care-bath/c-bath-refined_door-closed_floor-1.svg": "02df3899265c4668eca59c3667c55a40e8d62889ae1c940fb982d8b93094733a",
+        "structured/candidates/c-care-bath/c-bath-refined_door-closed_floor-2.svg": "b40b8ac610d33a5b547fee15875ce01a295f38028c988d15bd87137296f5c556",
+        "structured/candidates/c-care-bath/c-bath-refined_door-closed_floor-3.svg": "9bf183aeb55e13cc53aaece4b2c3a2487eff82af96e50265ad4a4272cdb187ee",
+        "structured/candidates/c-care-bath/c-bath-refined_door-closed_floor-4.svg": "49e6fbb58b63a21da3314078e6eb07755954ae5d19f9a33dbdd8a77eb4360b14",
+        "structured/candidates/c-care-bath/c-bath-refined_rail-down_detail.svg": "c60f28f5712a2bd29d33d9d2d283f38dcb5c2a5b523dc810bd525ae6880416f6",
+        "structured/candidates/c-care-bath/c-bath-refined_rail-down_floor-1.svg": "f7bc234cfbe9c4d74d9d2f9de3b09bc61fc74ec1215bac156606151586f485a3",
+        "structured/candidates/c-care-bath/c-bath-refined_rail-down_floor-2.svg": "698edc00e2c329fd8ff12c67933c6da49fb8a744e3f05c6cbd713e70f3137845",
+        "structured/candidates/c-care-bath/c-bath-refined_rail-down_floor-3.svg": "e18139f32e9ab90e7e9c6428ba57ac223e0ae43edcb84e081d40697f65147771",
+        "structured/candidates/c-care-bath/c-bath-refined_rail-down_floor-4.svg": "72d73aa4657c9ea365b0994c9c470c109c17595d7436b2a1bef1b35fa55b71cf",
+        "structured/candidates/c-care-bath/c-bath-refined_shower_detail.svg": "184b9d0b7f72bf861aca8efdb368b82cc627ef1838703d946c68361d630ecccb",
+        "structured/candidates/c-care-bath/c-bath-refined_shower_floor-1.svg": "b93fe6f28a23c95d1a1af186528bab6bb00f497b2329520a9aadc829c7d3c0f4",
+        "structured/candidates/c-care-bath/c-bath-refined_shower_floor-2.svg": "14310f1bb28fe6d5adfd123ab22de46912bf674adf79b843865ae2fa14c42e8e",
+        "structured/candidates/c-care-bath/c-bath-refined_shower_floor-3.svg": "4f76489e8916f3e9e0fed748089e1cbce4dbb8c1350768f0b2a9b8444a6441c6",
+        "structured/candidates/c-care-bath/c-bath-refined_shower_floor-4.svg": "790803a2a1e751092595acd4fa6b569967d35a01075f7905b60ed94da1e6699a",
+        "structured/candidates/c-care-bath/c-bath-refined_transfer_detail.svg": "ca9281895c491fa0d29a38ed54f341e0945b6aa92bd68ac94657d4df0bb9efad",
+        "structured/candidates/c-care-bath/c-bath-refined_transfer_floor-1.svg": "7d034bf27f81ff3dc2b54b65b9e44a17aaf3563b96d1cada809968b409b0840f",
+        "structured/candidates/c-care-bath/c-bath-refined_transfer_floor-2.svg": "595bd777632855873ce457d3552fa1359b1fd4bcae63b48229554a01be3953ea",
+        "structured/candidates/c-care-bath/c-bath-refined_transfer_floor-3.svg": "5ec8c585f0a64d5edb3f2378e66530030d02df5a5070e8d21b688311f9acbb0c",
+        "structured/candidates/c-care-bath/c-bath-refined_transfer_floor-4.svg": "ae6e7c2ff8821e7318336f1ed8ad03b0a5b5690839ae2a928a26d16f389abf59",
+        "structured/candidates/c-care-bath/requirement-ledger.json": "bf74137ce64f45c9a9bd6296a674c442bdecbb6b995ac630e761529b9e549b53",
+        "structured/candidates/c-care-bath/review.json": "b49432374677ad8f224a2aded96aecdec6af3047b6a873622e37815fd0052f51",
+        "structured/candidates/c-care-bath.html": "1895918a5c56ee58604a6a01e24414e50def542f28034878ff7ecec9b4769e7f",
+        "structured/candidates/c-care-bath-3d.html": "f3419bed94999f6848c7c82f7cadf6dbac9e4ec9e27cbe0a5524eca6de880717"
+      }
+    },
+    "c-care-bath-fit": {
+      "report": "structured/candidates/c-care-bath-fit/review.json",
+      "report_sha256": "b89508ab98557b3c7ef79d63799f973d8a3c227c78bd9fe477b01b959bd57c81",
+      "observed_source_drift": {
+        "scripts/lib/model3d_openings.py": {
+          "recorded": "2cb109bc5d3c86c058e5bb11f28262e48f15d267a6bf951e97275d5b5481a099",
+          "current": "e05f5706ef535033a944b410f646ebd2463772f2e6b7972d3e0e7400ed3b76f7"
+        },
+        "scripts/lib/model3d_review.py": {
+          "recorded": "355bba1192a91f2eabeac5ec2a88ece5b7ae76db063eb220e81ff5d4a6c85c4e",
+          "current": "2fcb2709b293b689c7e322f428a3743f9d95aa57ff6f74cfa89ae7219753dbf5"
+        }
+      },
+      "artifacts": {
+        "structured/candidates/c-care-bath-fit/product-checklist.json": "2c30e8b6b47ca0cb033337645d43aafa3a8314025e9b89b6f930174947cb509d",
+        "structured/candidates/c-care-bath-fit/review.json": "b89508ab98557b3c7ef79d63799f973d8a3c227c78bd9fe477b01b959bd57c81",
+        "structured/candidates/c-care-bath-fit.html": "2c77e79e1cde2e08178836ed590ffd5b0c101e0660e4ad8f2308cf674b610698"
+      }
+    },
+    "c-care-bath-door": {
+      "report": "structured/candidates/c-care-bath-door/review.json",
+      "report_sha256": "3df7ca1731f0db3d2b4ee75d2a4effbdfd833e89e200309c722ee1eb3e56795c",
+      "observed_source_drift": {
+        "scripts/lib/model3d_openings.py": {
+          "recorded": "2cb109bc5d3c86c058e5bb11f28262e48f15d267a6bf951e97275d5b5481a099",
+          "current": "e05f5706ef535033a944b410f646ebd2463772f2e6b7972d3e0e7400ed3b76f7"
+        },
+        "scripts/lib/model3d_review.py": {
+          "recorded": "355bba1192a91f2eabeac5ec2a88ece5b7ae76db063eb220e81ff5d4a6c85c4e",
+          "current": "2fcb2709b293b689c7e322f428a3743f9d95aa57ff6f74cfa89ae7219753dbf5"
+        }
+      },
+      "artifacts": {
+        "structured/candidates/c-care-bath-door/requirement-ledger.json": "3f872a87e4d3b550c55413cec93d86c5ae5ffde94eeeebbbb2abf10d5ba10af3",
+        "structured/candidates/c-care-bath-door/review.json": "3df7ca1731f0db3d2b4ee75d2a4effbdfd833e89e200309c722ee1eb3e56795c",
+        "structured/candidates/c-care-bath-door/single-control_closed_detail.svg": "8f7a71dc256691118bdbb9b5050af4e6e5527dfc12557c221a153e67fad2e42d",
+        "structured/candidates/c-care-bath-door/single-control_closed_floor-1.svg": "bdfc6234ba476b128b86cef1c3d461b4f43194ca1ff8dec18672cfbebf329e92",
+        "structured/candidates/c-care-bath-door/single-control_closed_floor-2.svg": "9f2ace43c0e274c313205148adc46c090d1fe045b54ebc6c6e85d6a6dc96d7b6",
+        "structured/candidates/c-care-bath-door/single-control_closed_floor-3.svg": "1d2516cd34740a8dd3350225cefc7f871681c4c871aba8a257edb10b27cdaa4a",
+        "structured/candidates/c-care-bath-door/single-control_closed_floor-4.svg": "698c19e8ae6932d107c97936e72953be14a1c8ef3012b9886067c9d8755abceb",
+        "structured/candidates/c-care-bath-door/single-control_half_detail.svg": "2ba94b1f6bbbe74b05fff694df4ca8feb4ae35cd597b24cf0baee9f4941358cc",
+        "structured/candidates/c-care-bath-door/single-control_half_floor-1.svg": "2cc4a7b4e4c49fdcf6b46ce901462b28bc9e4a611acbfb5e01e1477f590b134b",
+        "structured/candidates/c-care-bath-door/single-control_half_floor-2.svg": "24c62858cba8205369861fec1cdbabf308debbece8ad33c7d608343f2108bd96",
+        "structured/candidates/c-care-bath-door/single-control_half_floor-3.svg": "22dd3dee371ce50fca50aca50c365a0f19c2b0a7d95c73834ef0d205f6bf9b2b",
+        "structured/candidates/c-care-bath-door/single-control_half_floor-4.svg": "9229805acce1766280e7c3c93bea88be1c8dc1175031b3e4fa25a88630fe1b09",
+        "structured/candidates/c-care-bath-door/single-control_open_detail.svg": "dcd4a6b18dee646a708eead9107f4939a629884b405dff8486f28f758ef994e3",
+        "structured/candidates/c-care-bath-door/single-control_open_floor-1.svg": "cd553b732fedb6492c8e3ba7fd376e70991aa634666a7e44e069e6e6f0612dd1",
+        "structured/candidates/c-care-bath-door/single-control_open_floor-2.svg": "d02e3245e21cd713910fa335fa1b41817da18cc29c9e6ff3ed8b83e0c1883f00",
+        "structured/candidates/c-care-bath-door/single-control_open_floor-3.svg": "1637b1c3276e86ff85b67e7911dcba16dd0923dc00be826c7f71c980a0287e7e",
+        "structured/candidates/c-care-bath-door/single-control_open_floor-4.svg": "fbe0e147080c3acb126e657dc5068e69993b8c12ad33d02003f76a4f4f8bee7b",
+        "structured/candidates/c-care-bath-door/track-section.svg": "8952ef1e4195d212a7b099c34e59f8efe0618a755afa7eeac7ffefdc60796404",
+        "structured/candidates/c-care-bath-door/two-panel_closed_detail.svg": "31ff90a4cb379b59f570469b5ccc5b33c84780c3a3d60b8a9b43ababf7106d90",
+        "structured/candidates/c-care-bath-door/two-panel_closed_floor-1.svg": "bb18daa217563776ab591e5f83cd932a326b6bc1a46b8b232537c8ae0e8f4db8",
+        "structured/candidates/c-care-bath-door/two-panel_closed_floor-2.svg": "df988f6407e970f95dcfdea64a25b09900923662db65b2c066d6671bd646d14a",
+        "structured/candidates/c-care-bath-door/two-panel_closed_floor-3.svg": "87e0be84fce1d7f8b7b7805503c5e58edcad46876f4452154939eea0095e1fcf",
+        "structured/candidates/c-care-bath-door/two-panel_closed_floor-4.svg": "2603206a108fda9a555770e11f70abd58fa5b74b5fd9ae6e3deb49b3021b1f02",
+        "structured/candidates/c-care-bath-door/two-panel_half_detail.svg": "37dc23ac60ec980b489f0704ca84ab4d0b1c289b5e72fb628609a902a8ff0fd4",
+        "structured/candidates/c-care-bath-door/two-panel_half_floor-1.svg": "c4556064ca388c2c33f7d5273c8cbc7095da276c6a444c1ebb3a86cc593785aa",
+        "structured/candidates/c-care-bath-door/two-panel_half_floor-2.svg": "952c9dc7ee2ef7bf30dae577d985dc86f7b36e84ce940d7167bf4931b1be50b2",
+        "structured/candidates/c-care-bath-door/two-panel_half_floor-3.svg": "1fa4ef24c36f0766b2e6184937266379890c21da98730497bf29d86ce6bc005d",
+        "structured/candidates/c-care-bath-door/two-panel_half_floor-4.svg": "c624e100ba52afe85dfeca4cc8b42e82c25c72e18c1df4a1d9d9013a5b95b919",
+        "structured/candidates/c-care-bath-door/two-panel_open_detail.svg": "6f77c8915049c46751618eedba0a8ebc281adf26d42ff2d6dded8ecea0747944",
+        "structured/candidates/c-care-bath-door/two-panel_open_floor-1.svg": "ffdf66df1ddbc569f359cae19b81fa3cd653201c1205ddb1f8706694146f6edd",
+        "structured/candidates/c-care-bath-door/two-panel_open_floor-2.svg": "4020aa6d769e63220bbac10fe773a69801c68be149ee98b3117e669e41d47f06",
+        "structured/candidates/c-care-bath-door/two-panel_open_floor-3.svg": "a6c64f08831096fd57f24377bb7b50e883786174bbd3b14441b5e297801c19d6",
+        "structured/candidates/c-care-bath-door/two-panel_open_floor-4.svg": "e088fc63c9631d131567595ab1d3dd1b82873ada0e0c1af086188c17576257e6",
+        "structured/candidates/c-care-bath-door.html": "4fe9b5530727afcf626dd8b5617acc1c6e2c64e2c44bab93d0732c74ecd1fd37",
+        "structured/candidates/c-care-bath-door-3d.html": "ee03548ab9984900b1beba2fa12f54a2f0fb1167eea0c66b7e04e1068e18d327"
+      }
+    },
+    "c-care-bath-layout": {
+      "report": "structured/candidates/c-care-bath-layout/review.json",
+      "report_sha256": "ab2e4b238dc05570749ff1c750f715f643eb50669f6ed5801b931a59d8222581",
+      "observed_source_drift": {
+        "scripts/lib/model3d_openings.py": {
+          "recorded": "2cb109bc5d3c86c058e5bb11f28262e48f15d267a6bf951e97275d5b5481a099",
+          "current": "e05f5706ef535033a944b410f646ebd2463772f2e6b7972d3e0e7400ed3b76f7"
+        },
+        "scripts/lib/model3d_review.py": {
+          "recorded": "355bba1192a91f2eabeac5ec2a88ece5b7ae76db063eb220e81ff5d4a6c85c4e",
+          "current": "2fcb2709b293b689c7e322f428a3743f9d95aa57ff6f74cfa89ae7219753dbf5"
+        }
+      },
+      "artifacts": {
+        "structured/candidates/c-care-bath-layout/door-control_closed_detail.svg": "502f961bc7c1e320cb0dfaaf982d97fc56c86ab8f746e258f94657b82ca556f2",
+        "structured/candidates/c-care-bath-layout/door-control_closed_floor-1.svg": "4734655101410b9a33993553c7e0256239a7dc8d97ed8b6740147b1e8416b3ca",
+        "structured/candidates/c-care-bath-layout/door-control_closed_floor-2.svg": "50711d8640abf1b998c55a55eb792a4504d922eeccdcf2547df46354e49bce41",
+        "structured/candidates/c-care-bath-layout/door-control_closed_floor-3.svg": "e6dc3704d8b2264007ece13029276a88b534a9338448c386dde07049f722289b",
+        "structured/candidates/c-care-bath-layout/door-control_closed_floor-4.svg": "8d1767ece12be91e38946f140d829ab6df77da4317de6ef40de7b1e6c211280c",
+        "structured/candidates/c-care-bath-layout/door-control_half_detail.svg": "cebf66154af3fdb2e73a7e2e875d4d80cb949e0b62e17d1493fb350c6f916536",
+        "structured/candidates/c-care-bath-layout/door-control_half_floor-1.svg": "00de98277840558eb5d1e62dc046ee8b283ca4bacb294d52972843929b533aec",
+        "structured/candidates/c-care-bath-layout/door-control_half_floor-2.svg": "63decba8693451b848fdb967cf596de8fdcdbbbb95a2844e13bd2977412b7efd",
+        "structured/candidates/c-care-bath-layout/door-control_half_floor-3.svg": "0a5359969d2a58c924e81695f5eb70a43fbf9c0fe1157f5a11046499280340db",
+        "structured/candidates/c-care-bath-layout/door-control_half_floor-4.svg": "c1449deb8c025bf58a9ec4d064404f810c0fa515ef6ff0d55b0c87e5ccaff323",
+        "structured/candidates/c-care-bath-layout/door-control_open_detail.svg": "f367260d7d2af70e005e3ee0892bc7d50c51615a47390e2186fd7f8af6d80182",
+        "structured/candidates/c-care-bath-layout/door-control_open_floor-1.svg": "e428f23ff6b7261bc97169a85d337e073bdd6b37e239ef459c4a15728dac9e3e",
+        "structured/candidates/c-care-bath-layout/door-control_open_floor-2.svg": "cd41a0e3610d609a3e4890005ff7220a1476ad3e7a9e1df2f3b99b60396270e2",
+        "structured/candidates/c-care-bath-layout/door-control_open_floor-3.svg": "c8406c9fd215aec8f179f6f17106da1f6f9f0b629709e53dee15fbfdff934299",
+        "structured/candidates/c-care-bath-layout/door-control_open_floor-4.svg": "aa49a9040de02267a39ec3a13e12c717a403b1d9289a36a6723981039307f616",
+        "structured/candidates/c-care-bath-layout/requirement-ledger.json": "48ae4934cb5d2dbcfa81a9f9344b1c814100d1dbb242ed8556740f3f1faba6f2",
+        "structured/candidates/c-care-bath-layout/review.json": "ab2e4b238dc05570749ff1c750f715f643eb50669f6ed5801b931a59d8222581",
+        "structured/candidates/c-care-bath-layout/side-basin_closed_detail.svg": "fe06fb1d61ebc3e613b67472208c319b6eb17a43580d9b71e5cbdc7f40667aed",
+        "structured/candidates/c-care-bath-layout/side-basin_closed_floor-1.svg": "7164997f23df5bfe7c063133563141f336d6329921adb2d95263a8399fa8c918",
+        "structured/candidates/c-care-bath-layout/side-basin_closed_floor-2.svg": "be7853d2f11eba3b14a63f6fb1dbd749a8d9044c340c4a54007848353f957f33",
+        "structured/candidates/c-care-bath-layout/side-basin_closed_floor-3.svg": "0267b8ab8f6730c9de0ea68c46c9f62efa3a8b261b981ede18e8dead2944aa37",
+        "structured/candidates/c-care-bath-layout/side-basin_closed_floor-4.svg": "87e51e898b436b03380cfb196a306106465cedfd9bf91932e0f7b4d9a8b65097",
+        "structured/candidates/c-care-bath-layout/side-basin_half_detail.svg": "13cd7fe6f9b576ac6610706e7ba6dc516bbcf72507f1bfddbe11019f1251b429",
+        "structured/candidates/c-care-bath-layout/side-basin_half_floor-1.svg": "cdf942675020cdd9e2234df27eb02d965a3337221e229b5dabf66cd8612b13c8",
+        "structured/candidates/c-care-bath-layout/side-basin_half_floor-2.svg": "b1a53c49c2637162eff55d500d0cc8d3bf0435d61917d0ddf80a6cc5daf9a062",
+        "structured/candidates/c-care-bath-layout/side-basin_half_floor-3.svg": "d129eb5181df60ebf556c0f18344592cb089cd4313fa3f50d9f8d24ba5684170",
+        "structured/candidates/c-care-bath-layout/side-basin_half_floor-4.svg": "0860f37bcb6b0662a1d711bef7da21f7f17cdca72c6a77b01e7b0406af6117b5",
+        "structured/candidates/c-care-bath-layout/side-basin_open_detail.svg": "f6eea716a55b71cc3f9ee62eb9248b81ab32888ead60ed8582246f26304853f4",
+        "structured/candidates/c-care-bath-layout/side-basin_open_floor-1.svg": "4283863b412a6beb0949271e6d6cdc0f6d143076f86aa6196c61ca5800d2f7d8",
+        "structured/candidates/c-care-bath-layout/side-basin_open_floor-2.svg": "1d13c0e995c1ec24d0043124f9eb0acfdb542a25d28c9905b23981c042d01ef6",
+        "structured/candidates/c-care-bath-layout/side-basin_open_floor-3.svg": "37f2c1506c2e5e734ee63e40423c6751e8ad47ce5e13c4231d80cd4cd130cb25",
+        "structured/candidates/c-care-bath-layout/side-basin_open_floor-4.svg": "f07d2b221bd1ee3df7e6df3cd78117c8b1f55fb2e5e31c14dedf655425125d70",
+        "structured/candidates/c-care-bath-layout.html": "24abb94663836b347fa0c14f33d8b42c183e73731b6da91ead6a34a4edae2baa",
+        "structured/candidates/c-care-bath-layout-3d.html": "4cafc65628b3ac46986bb82928e88f8fa21df40cd6e4c9508914afd194e2b649"
+      }
+    },
+    "c-care-bath-readiness": {
+      "report": "structured/candidates/c-care-bath-readiness/review.json",
+      "report_sha256": "ff718cd9bae99b656e1541cdd110f4b8cdd1122f72ae268f30bb4665b91ef18a",
+      "observed_source_drift": {
+        "scripts/lib/model3d_openings.py": {
+          "recorded": "2cb109bc5d3c86c058e5bb11f28262e48f15d267a6bf951e97275d5b5481a099",
+          "current": "e05f5706ef535033a944b410f646ebd2463772f2e6b7972d3e0e7400ed3b76f7"
+        },
+        "scripts/lib/model3d_review.py": {
+          "recorded": "355bba1192a91f2eabeac5ec2a88ece5b7ae76db063eb220e81ff5d4a6c85c4e",
+          "current": "2fcb2709b293b689c7e322f428a3743f9d95aa57ff6f74cfa89ae7219753dbf5"
+        }
+      },
+      "artifacts": {
+        "structured/candidates/c-care-bath-readiness/product-checklist.json": "b3af4abb146961bf3d23c84b983c810173ade7902a86a6a730e688f2d2afbf94",
+        "structured/candidates/c-care-bath-readiness/review.json": "ff718cd9bae99b656e1541cdd110f4b8cdd1122f72ae268f30bb4665b91ef18a",
+        "structured/candidates/c-care-bath-readiness/summary.md": "22be7ba229b63a149deb4eccdb8e9c734fe32f0bc9a507d097c49b262fd44a7e",
+        "structured/candidates/c-care-bath-readiness/supplier-checklist.csv": "fc4f96142afcb169b2eff3b2ed78d29e3e5a0640bd3d75ab134fc9d88f8c3aa3"
+      }
+    },
+    "preparation-review": {
+      "report": "structured/candidates/preparation-review/layout.js",
+      "report_sha256": "ecb323f6124b7bf3a47bba1216acca1bb55360d0c295805f236a2d4668837704",
+      "observed_source_drift": {
+        "scripts/export_preparation_review.py": {
+          "recorded": "4e9d63529199a2e74511823768a1710f3df44dbad60a25dd44b8ed84771cd149",
+          "current": "ea7d6754025cea76317ca550b5463820467e8de3b62984635e71c167d0f650df"
+        },
+        "scripts/config/residential_defaults_tw.json": {
+          "recorded": "202b762eaf93185f8011e1825a6dd7720c1ea87e4e41cff86da48873a52a0651",
+          "current": "4876b298aaa864f25d11153a9bb68927f8a800af911ff4ab4118204b4675d3b9"
+        },
+        "scripts/lib/architect_metrics.py": {
+          "recorded": "cd6050ba03d1f2ca9f9219d4732d19ac8b660b3523d141819fc20881ba48d277",
+          "current": "21c5474fcbd0a8fb591837ad7b146f93db2910b6cbdfda8579e329ae0e7bb0f9"
+        },
+        "scripts/lib/model3d_openings.py": {
+          "recorded": "2cb109bc5d3c86c058e5bb11f28262e48f15d267a6bf951e97275d5b5481a099",
+          "current": "e05f5706ef535033a944b410f646ebd2463772f2e6b7972d3e0e7400ed3b76f7"
+        },
+        "scripts/lib/model3d_review.py": {
+          "recorded": "355bba1192a91f2eabeac5ec2a88ece5b7ae76db063eb220e81ff5d4a6c85c4e",
+          "current": "2fcb2709b293b689c7e322f428a3743f9d95aa57ff6f74cfa89ae7219753dbf5"
+        },
+        "scripts/lib/spatial_metadata.py": {
+          "recorded": "266ae7f78e7b160cd4c1b079694bdedec8b6241a953a447cc555dc511d8d72f2",
+          "current": "1ec71987d4e69d5e546d7b0d770a2605e7f19b6dde3de4f87e29897e5464a479"
+        }
+      },
+      "artifacts": {
+        "structured/candidates/preparation-review/b-fixed-3000_floor-1.svg": "e16e7ec8a49d35847c8bde6bc4434b200a4d1b6c7769831072dcd41207f65f9f",
+        "structured/candidates/preparation-review/b-fixed-3000_floor-2.svg": "d1b894406a4acb399197247e1d6a3ca5cc85aa0187c1978e86b8dfab77da41f5",
+        "structured/candidates/preparation-review/b-fixed-3000_floor-3.svg": "9b4094c69360feaf645abc006930f88dc764ac7dfcfa593390c4808d6d411730",
+        "structured/candidates/preparation-review/b-fixed-3000_floor-4.svg": "46bbd1c969d47957cfcf10d1554bad4a897692ac6368a39414f34ef1a2b70d48",
+        "structured/candidates/preparation-review/b-fixed-3000_front.svg": "f3afa4f84931d86da52a228334f18484db08c9617b9a0e534a12f099f99759d8",
+        "structured/candidates/preparation-review/b-program-3000_floor-1.svg": "a1b6ba8892bef0036e2f23a51d8283e560426077c1482a1776167bc25ef21179",
+        "structured/candidates/preparation-review/b-program-3000_floor-2.svg": "5e2782fc1f03c6a6e8d8a2aadb6329dfb89aa1f4ceeeb8fd756155c77551fd6a",
+        "structured/candidates/preparation-review/b-program-3000_floor-3.svg": "21b7fa92556aa8f4546c235065bb5a884fc9c5093a099947cd5adef6892ce295",
+        "structured/candidates/preparation-review/b-program-3000_floor-4.svg": "a288bebeabfe549f9fb8529b1b8f97a56a4bc7b7be8ff7ba65b89a6d9bdb6454",
+        "structured/candidates/preparation-review/b-program-3000_front.svg": "31d4b5ba1affbf7200b705f91e1b7ff2e47113963947a67c2aaa35f4a0c30909",
+        "structured/candidates/preparation-review/b-program-3600_floor-1.svg": "14c6661dfc03b494d18f86e01a41ff11d808d37581f1e9244333736cef1d99ba",
+        "structured/candidates/preparation-review/b-program-3600_floor-2.svg": "44e3aed7ce7ef36b70a33a2ef0f2e24cc17e75351c99850455c044e02d5d2933",
+        "structured/candidates/preparation-review/b-program-3600_floor-3.svg": "bd3d73779e00adf3ffa5062968d77849e1b2a61600e88970c950a80aac93a2e5",
+        "structured/candidates/preparation-review/b-program-3600_floor-4.svg": "f19b6c95523bb043dc25bd311302412b87f947983e876eff2f822b85b856fb4a",
+        "structured/candidates/preparation-review/b-program-3600_front.svg": "db94275238775e8100ee0cb4c8656ecf443d961416ef4d6dfe46e96355d58dae",
+        "structured/candidates/preparation-review/b-program-4000_floor-1.svg": "0f1207bbc4f7b206f0cf56c72ad1481d8d7cc216b184e328807e87e51332959b",
+        "structured/candidates/preparation-review/b-program-4000_floor-2.svg": "31ee630580ad0f06b036d9b3336284b9e67ccf4703a4659b3c34e5b65de01455",
+        "structured/candidates/preparation-review/b-program-4000_floor-3.svg": "060baca2be9be6e93d4d0bca49ea60a6bba2acafa54a45ba52c1743ece83fe29",
+        "structured/candidates/preparation-review/b-program-4000_floor-4.svg": "798b783ffd0542f61a5c4ec45bb67c1c61056111508fed84686a62ed1ec21701",
+        "structured/candidates/preparation-review/b-program-4000_front.svg": "a4d8df5bd1444ee2bc96a81caab30df3167bbf796cece31a19d2f6a68e7996d7",
+        "structured/candidates/preparation-review/c-window-3000_floor-1.svg": "af39ca7f22b41821e2dff36b73aa529a804ede31174b51ca3ecb9a7300cd4c10",
+        "structured/candidates/preparation-review/c-window-3000_floor-2.svg": "e25805a458d099bcb77b247e70d0b07ca22f31f1d18281731f5392a8eec17801",
+        "structured/candidates/preparation-review/c-window-3000_floor-3.svg": "dc433b578982b7494151b7b9fa7c751e69bd759140342e2f94aa5478cd176955",
+        "structured/candidates/preparation-review/c-window-3000_floor-4.svg": "266f8d246f60d0ff7c2e41294b61b5466cf216267a9642cf3e6cce6212e37bf5",
+        "structured/candidates/preparation-review/c-window-3000_front.svg": "4c669746975d2a7089db991dcb061456a3eeb643346d2096a069a894a44e394a",
+        "structured/candidates/preparation-review/c-window-3600_floor-1.svg": "ff36cd89ba4d4b8b48ee56a820335e8fad3b93b17686ece96dc2068f98f577db",
+        "structured/candidates/preparation-review/c-window-3600_floor-2.svg": "330f4fcc2852098959cb13933e060343bb6ca5babb0cbb50c263d171a0398640",
+        "structured/candidates/preparation-review/c-window-3600_floor-3.svg": "26880723d597ab2995d64eee8279c4ac7ed762f43dc40aa1c180e1481ae5dcf4",
+        "structured/candidates/preparation-review/c-window-3600_floor-4.svg": "bb22a9b33660bdcecea5d7031fff47ede21b6e5d3d4866394e41928560deeabb",
+        "structured/candidates/preparation-review/c-window-3600_front.svg": "eed7b7a77613eeef34cf563c8fd8342838912d7b0682725fa475371e0b9860c2",
+        "structured/candidates/preparation-review/c-window-4000_floor-1.svg": "641367f452944ef0cb350cf5b1de634dad8f2b1225e270900878470587f5b540",
+        "structured/candidates/preparation-review/c-window-4000_floor-2.svg": "91d415056355e286d51b04d1b570729d8f62e4b4788649d339c55ecd78ae89e1",
+        "structured/candidates/preparation-review/c-window-4000_floor-3.svg": "f8b443b576ea1a3a55443130aa87093b1a020b168e4414bd26af5d3f884715d0",
+        "structured/candidates/preparation-review/c-window-4000_floor-4.svg": "ecb37e01044fa80a66ff916d0b6a3c2a64efcf3a2194bf4ba6beebe96e0e4996",
+        "structured/candidates/preparation-review/c-window-4000_front.svg": "3985ae8a1eadfcb1a89eaa13faf2db64a3e0b7bbb1df2d0d61139f2590bc721b",
+        "structured/candidates/preparation-review/layout.js": "ecb323f6124b7bf3a47bba1216acca1bb55360d0c295805f236a2d4668837704",
+        "structured/candidates/preparation-review.html": "a09d03495663d117c3d876b1a81312ffb24696ba7bc4201036bf636779e81e31",
+        "structured/candidates/preparation-review-3d.html": "e07dcf844c3b8f44365f14f9b35568d4eb0dc7e25e166c143e8ada8147ef0e40"
+      }
+    },
+    "bc-options": {
+      "report": "structured/candidates/bc-options/layout.js",
+      "report_sha256": "c8aab045b3b609f4cdeed937b81e7eef54d35a0d6a3532d9ab6ba9fe299f50fd",
+      "observed_source_drift": {
+        "scripts/lib/architect_metrics.py": {
+          "recorded": "cd6050ba03d1f2ca9f9219d4732d19ac8b660b3523d141819fc20881ba48d277",
+          "current": "21c5474fcbd0a8fb591837ad7b146f93db2910b6cbdfda8579e329ae0e7bb0f9"
+        },
+        "scripts/lib/model3d_openings.py": {
+          "recorded": "2cb109bc5d3c86c058e5bb11f28262e48f15d267a6bf951e97275d5b5481a099",
+          "current": "e05f5706ef535033a944b410f646ebd2463772f2e6b7972d3e0e7400ed3b76f7"
+        },
+        "scripts/lib/model3d_review.py": {
+          "recorded": "355bba1192a91f2eabeac5ec2a88ece5b7ae76db063eb220e81ff5d4a6c85c4e",
+          "current": "2fcb2709b293b689c7e322f428a3743f9d95aa57ff6f74cfa89ae7219753dbf5"
+        },
+        "scripts/lib/spatial_metadata.py": {
+          "recorded": "266ae7f78e7b160cd4c1b079694bdedec8b6241a953a447cc555dc511d8d72f2",
+          "current": "1ec71987d4e69d5e546d7b0d770a2605e7f19b6dde3de4f87e29897e5464a479"
+        }
+      },
+      "artifacts": {
+        "structured/candidates/bc-options/b-baseline_floor-1.svg": "9db0ef7a21b6cf11972bc1222bcbc75716b5a608ebd8dd093ae4e9c4b4ede4bb",
+        "structured/candidates/bc-options/b-baseline_floor-2.svg": "3659af4409514105e7a0bbd1a0c80579ba917eedaa5fa7d0af03314cc44e98cd",
+        "structured/candidates/bc-options/b-baseline_floor-3.svg": "bcbfa2db2d69952aa2c3e4f9138795289de8265d40b03f3f13b15d2eb26bdbfd",
+        "structured/candidates/bc-options/b-baseline_floor-4.svg": "3400c57fbd835e2db7d8bc519a289c586dd317a63ab1c5652d4474fab76a19e6",
+        "structured/candidates/bc-options/b-strict_floor-1.svg": "ba3e653c3fbeba8c254b734c8f180c51155e2d920b264436f8b9efbf09d80569",
+        "structured/candidates/bc-options/b-strict_floor-2.svg": "4d36d75d6d9195d1184379c6455f8be9bad9ccece202c568b0a86acb932a0ed0",
+        "structured/candidates/bc-options/b-strict_floor-3.svg": "f1f1c036374a48e23755d1131588cd75b0479fa082543a4af333c06d0b02fef4",
+        "structured/candidates/bc-options/b-strict_floor-4.svg": "74eeef96bfacef7af700c80e8fb9c74dee41744d6060f62b9eb9191ec18b00a4",
+        "structured/candidates/bc-options/c-baseline_floor-1.svg": "74a74fec5a6fd4a122da803a9c414264fca1cc36374d3869aaac707ca7d47624",
+        "structured/candidates/bc-options/c-baseline_floor-2.svg": "9d0828a7d8881b1eab598f2c218b4e3c1364afdb4482d8e68ace157916197a43",
+        "structured/candidates/bc-options/c-baseline_floor-3.svg": "4adfc453b40adfaed4bc775f8275aeabe27b4e4a0fbc9410b1f32d04477ef5ee",
+        "structured/candidates/bc-options/c-baseline_floor-4.svg": "c35cd9c2938c5e77ef0213ddc93357ee9b126fca87bb2a682e8bde56028e40ca",
+        "structured/candidates/bc-options/c-side-bed_floor-1.svg": "4f8ca8493023b3b9f8c33afb7a97a3e4861901dc5c625d11258dc4ff3c0c1df1",
+        "structured/candidates/bc-options/c-side-bed_floor-2.svg": "44a78facb9ed1bc815ab4801976fdae17ae48091ff7d768f3c4079468ebcd2e6",
+        "structured/candidates/bc-options/c-side-bed_floor-3.svg": "9ac91f83b75d2c99437139c8598085662905a021efa82f91d0cc7d898cb2cdab",
+        "structured/candidates/bc-options/c-side-bed_floor-4.svg": "727efc1e682b8e7e819760acc8ee094bd45a92e8e8cab4364c2be40361d93224",
+        "structured/candidates/bc-options/c-wet-stack_floor-1.svg": "e928a164ebf04c3caf429ffc414ad6ddad1475fcb6d2d8571fd3c735ee0b1e90",
+        "structured/candidates/bc-options/c-wet-stack_floor-2.svg": "56062b544684a749d363d26332e006d0e2baa2c7d2c09122521583c88b3184e0",
+        "structured/candidates/bc-options/c-wet-stack_floor-3.svg": "9fac8db35c49ed3db8ee11e7e9731d9d205e8d7ed5567773c331041650ab2934",
+        "structured/candidates/bc-options/c-wet-stack_floor-4.svg": "f98c22c60e319dfa0dc78f7c7aa9e7bc3368528e79387eeb42aa50f63a4c672e",
+        "structured/candidates/bc-options/layout.js": "c8aab045b3b609f4cdeed937b81e7eef54d35a0d6a3532d9ab6ba9fe299f50fd",
+        "structured/candidates/bc-options.html": "035fe379fe7477ea2ffd8c5d2cfe19bcebf2419b127dab03f0739d692da8b6e7",
+        "structured/candidates/bc-options-3d.html": "66fd767ce064d35418956bcf40b1c3684b9fbab55409b558c867dec8543b1a18"
+      }
+    },
+    "c1f-options": {
+      "report": "structured/candidates/c1f-options/layout.js",
+      "report_sha256": "625d4578de2d74a6ce68777706157fbf6de64f487b93a1e64393ecad6fac4463",
+      "observed_source_drift": {
+        "scripts/lib/model3d_review.py": {
+          "recorded": "355bba1192a91f2eabeac5ec2a88ece5b7ae76db063eb220e81ff5d4a6c85c4e",
+          "current": "2fcb2709b293b689c7e322f428a3743f9d95aa57ff6f74cfa89ae7219753dbf5"
+        },
+        "scripts/config/residential_defaults_tw.json": {
+          "recorded": "202b762eaf93185f8011e1825a6dd7720c1ea87e4e41cff86da48873a52a0651",
+          "current": "4876b298aaa864f25d11153a9bb68927f8a800af911ff4ab4118204b4675d3b9"
+        },
+        "scripts/export_top1_svgs.py": {
+          "recorded": "4dae640808510e09cde2dcda385177d8c11c0a43c2aa132685c1c351417245e0",
+          "current": "b9d77dcb3cd7e16550c1b41103edd0bf5d87fc5943e2669f0bdd05f631ab2c98"
+        }
+      },
+      "artifacts": {
+        "structured/candidates/c1f-options/baseline.svg": "05de63545d2ac1bb30bcf7130df63684d9005f9614fb1b20a2d6498ac3ea3471",
+        "structured/candidates/c1f-options/bath-front.svg": "09b73f06f477cc9c565601e57b629cc45b7ff21aa2b18cd94456ec8811e2f043",
+        "structured/candidates/c1f-options/front-living.svg": "ac56a212bdc401bf54e3e708cf5c2711a29537981e5714e19c629b44d302ff4f",
+        "structured/candidates/c1f-options/layout.js": "625d4578de2d74a6ce68777706157fbf6de64f487b93a1e64393ecad6fac4463",
+        "structured/candidates/c1f-options.html": "a600f1fc86f133b1b636db527fb35e79d0dacc1e6e8f3deb671582d4ad7565aa",
+        "structured/candidates/c1f-options-3d.html": "34905c7371219018af5af880404fa66a9f4eba35690f2fdf65af11312e5d1782"
+      }
+    },
+    "arcade-capacity": {
+      "report": "structured/candidates/arcade-capacity/layout.js",
+      "report_sha256": "af68f1b511309a455560cb338b1cfe15adf4a4f097a1e74732e3ed1aca3fd3bc",
+      "observed_source_drift": {
+        "scripts/export_top1_svgs.py": {
+          "recorded": "4dae640808510e09cde2dcda385177d8c11c0a43c2aa132685c1c351417245e0",
+          "current": "b9d77dcb3cd7e16550c1b41103edd0bf5d87fc5943e2669f0bdd05f631ab2c98"
+        },
+        "scripts/config/residential_defaults_tw.json": {
+          "recorded": "202b762eaf93185f8011e1825a6dd7720c1ea87e4e41cff86da48873a52a0651",
+          "current": "4876b298aaa864f25d11153a9bb68927f8a800af911ff4ab4118204b4675d3b9"
+        },
+        "scripts/lib/architect_metrics.py": {
+          "recorded": "cd6050ba03d1f2ca9f9219d4732d19ac8b660b3523d141819fc20881ba48d277",
+          "current": "21c5474fcbd0a8fb591837ad7b146f93db2910b6cbdfda8579e329ae0e7bb0f9"
+        },
+        "scripts/lib/model3d_openings.py": {
+          "recorded": "2cb109bc5d3c86c058e5bb11f28262e48f15d267a6bf951e97275d5b5481a099",
+          "current": "e05f5706ef535033a944b410f646ebd2463772f2e6b7972d3e0e7400ed3b76f7"
+        },
+        "scripts/lib/model3d_review.py": {
+          "recorded": "355bba1192a91f2eabeac5ec2a88ece5b7ae76db063eb220e81ff5d4a6c85c4e",
+          "current": "2fcb2709b293b689c7e322f428a3743f9d95aa57ff6f74cfa89ae7219753dbf5"
+        },
+        "scripts/lib/spatial_metadata.py": {
+          "recorded": "266ae7f78e7b160cd4c1b079694bdedec8b6241a953a447cc555dc511d8d72f2",
+          "current": "1ec71987d4e69d5e546d7b0d770a2605e7f19b6dde3de4f87e29897e5464a479"
+        }
+      },
+      "artifacts": {
+        "structured/candidates/arcade-capacity/arcade32_A_floor-1.svg": "0cc901cf492bb86b434784ba2ec961df3229d1f051c8bae874310e3baa9a78e5",
+        "structured/candidates/arcade-capacity/arcade32_A_floor-2.svg": "41c64b5efb17ded1e7df6e3b78bc46aede4a85735b0723cbdb389032bd3c3f46",
+        "structured/candidates/arcade-capacity/arcade32_A_floor-3.svg": "1d2785e4446f89dfe312f84fc9cd5fa469a584248513c71b671866e0e1888773",
+        "structured/candidates/arcade-capacity/arcade32_A_floor-4.svg": "6aff3c617fccfaa923dfa77cd7e2ffcf1e0a9e9fb8534e46d0f3206cde405865",
+        "structured/candidates/arcade-capacity/arcade32_B_floor-1.svg": "4b84f93f5929b318da3c1897a6c1b82ab6759802254fa9c76ed8b87814d01f1b",
+        "structured/candidates/arcade-capacity/arcade32_B_floor-2.svg": "6b8e69b6d8896177e402eeec919e1b79e3c6740fe04916e917ca51edd0f9102c",
+        "structured/candidates/arcade-capacity/arcade32_B_floor-3.svg": "855758c6dc23af420d5a5c811146822b50efc6282a4e171906cc2de74e1a8a63",
+        "structured/candidates/arcade-capacity/arcade32_B_floor-4.svg": "6604f5bcc771eeeed984e7d26927367ee2296eefa5f4cd62388e21d1928d84d2",
+        "structured/candidates/arcade-capacity/arcade32_C_floor-1.svg": "2aa7849d8d3167fb16899a05ec99e43b4a77ad13b0b67c79d366d7bff82a457d",
+        "structured/candidates/arcade-capacity/arcade32_C_floor-2.svg": "b1204f25647d23a11eed2feb29942317aab6c43b0345d3c4dd89c81e3ecc07ab",
+        "structured/candidates/arcade-capacity/arcade32_C_floor-3.svg": "35a051480e519a75a0139d18f136271d2805ffa19d05278d629be1c809bf06b0",
+        "structured/candidates/arcade-capacity/arcade32_C_floor-4.svg": "8d11d1038d394229327d175ccaddf850dbc11255fd2923c55d891ae0d42448a1",
+        "structured/candidates/arcade-capacity/baseline_A_floor-1.svg": "e565a01e9bba019877f393ecc079494096bbd9908c70ca1a6fc372c9feebdaed",
+        "structured/candidates/arcade-capacity/baseline_A_floor-2.svg": "6d8e8d9e46ea95dd53bed36975a31e4f8ebbe8bdcab9178aa226728d2c5f8b8b",
+        "structured/candidates/arcade-capacity/baseline_A_floor-3.svg": "e553a3ac0dddf473bc95d9ae76db5398ec8ce185f7fd815f9a97972104452dc2",
+        "structured/candidates/arcade-capacity/baseline_A_floor-4.svg": "23a0f1810f5868d4a04269a28a35872f4993712e4f06ef2c6bdddca0e86a2ca8",
+        "structured/candidates/arcade-capacity/baseline_B_floor-1.svg": "52db098e2b9cd02570ea0946682643fffad31ba9757400258149f4463e9f0589",
+        "structured/candidates/arcade-capacity/baseline_B_floor-2.svg": "1c62bdeb4991905b6b407b5fbd87fd5f637652bc10e31cc71d3a5b744c765625",
+        "structured/candidates/arcade-capacity/baseline_B_floor-3.svg": "2ab257a4e22501af08b97114d6e2edd60faac6fe7a6513cf282de89d5b767c9a",
+        "structured/candidates/arcade-capacity/baseline_B_floor-4.svg": "95228802d20a012c04b7c660228f1b703e38302c8b126a6ffe1f3d4b5ff72a32",
+        "structured/candidates/arcade-capacity/baseline_C_floor-1.svg": "8ab48a4155adbacc42cb077fb63f40aa747dd6487f873c403e51655fc18111b4",
+        "structured/candidates/arcade-capacity/baseline_C_floor-2.svg": "f763c425c7b8ec24004e4e66d04f8b73ccb739ad17b27b2b11524fbc025e5e2c",
+        "structured/candidates/arcade-capacity/baseline_C_floor-3.svg": "088513165a373b502018626fc5e7b7c41187bfc33b37614196af384a9f8e966e",
+        "structured/candidates/arcade-capacity/baseline_C_floor-4.svg": "f1ea505a1718a5c8332d86a35041a29f19590e43717486dfb5f82ba092eaebb4",
+        "structured/candidates/arcade-capacity/layout.js": "af68f1b511309a455560cb338b1cfe15adf4a4f097a1e74732e3ed1aca3fd3bc",
+        "structured/candidates/arcade-capacity/room-first_A_floor-1.svg": "73d051d54bc289aedd8601ecab8f1a64791ddb0e87803b477f60a0f770ca8dde",
+        "structured/candidates/arcade-capacity/room-first_A_floor-2.svg": "6a276537f9497e2bced3832481365854c139295a58cd4597d140777a1d9a0c89",
+        "structured/candidates/arcade-capacity/room-first_A_floor-3.svg": "061ea6c84df8c55a653087b59fddb58b84864977b1f29f5d8809c50224de950b",
+        "structured/candidates/arcade-capacity/room-first_A_floor-4.svg": "203e7b1738c4e538cb0f34718a9778f51f6c6578f22bebd8d19894792acc44c3",
+        "structured/candidates/arcade-capacity/room-first_B_floor-1.svg": "655585eaa13fc8341dd500bd2870ff34caff0291fd291cb1bcb9d0652ac304f4",
+        "structured/candidates/arcade-capacity/room-first_B_floor-2.svg": "27a346acf441543f2198e9bba3f8a6aa15008a23e38517239ed26953c66ee589",
+        "structured/candidates/arcade-capacity/room-first_B_floor-3.svg": "ee4bd4d31e101aad969a2ad0bc2e93a15804009849468433938f0cdc3edbba97",
+        "structured/candidates/arcade-capacity/room-first_B_floor-4.svg": "245d1a4aea974abfd8e9c022cb56302ab46db3704b73c8bf03239bc07bd70537",
+        "structured/candidates/arcade-capacity/room-first_C_floor-1.svg": "1a178bc6de8d75d19058164bbabbecebbfd5af7224f6e5562529ce840885e315",
+        "structured/candidates/arcade-capacity/room-first_C_floor-2.svg": "866603de576bea6a6deaab6d162a9a358c0b5737a7ea96ea2eaa5f23fd96ab3c",
+        "structured/candidates/arcade-capacity/room-first_C_floor-3.svg": "0e759a5f8b73391948328b48753774dd23361b34ebc1a4bf385af53b0c73a3eb",
+        "structured/candidates/arcade-capacity/room-first_C_floor-4.svg": "c044ca792526dc60ab5512f6d2df55652eacc74a6607a4f0a58a8d7030195e52",
+        "structured/candidates/arcade-capacity.html": "22aa94485a631d4e66b1fb57036451b2ccd62b9f148da89b57e9d2711037ffd7",
+        "structured/candidates/arcade-capacity-3d.html": "2f71c355c8743f3a3005c8fe7831a29b9844e741151a2ad9368da6d25dc2f479"
+      }
+    },
+    "b32-entry-options": {
+      "report": "structured/candidates/b32-entry-options/layout.js",
+      "report_sha256": "03f46387cf7fc24c7ce5f7613a9ad7546f3243a2e489d2fe273068f8bae2565a",
+      "observed_source_drift": {
+        "scripts/export_preparation_review.py": {
+          "recorded": "4e9d63529199a2e74511823768a1710f3df44dbad60a25dd44b8ed84771cd149",
+          "current": "ea7d6754025cea76317ca550b5463820467e8de3b62984635e71c167d0f650df"
+        },
+        "scripts/config/residential_defaults_tw.json": {
+          "recorded": "202b762eaf93185f8011e1825a6dd7720c1ea87e4e41cff86da48873a52a0651",
+          "current": "4876b298aaa864f25d11153a9bb68927f8a800af911ff4ab4118204b4675d3b9"
+        },
+        "scripts/lib/architect_metrics.py": {
+          "recorded": "cd6050ba03d1f2ca9f9219d4732d19ac8b660b3523d141819fc20881ba48d277",
+          "current": "21c5474fcbd0a8fb591837ad7b146f93db2910b6cbdfda8579e329ae0e7bb0f9"
+        },
+        "scripts/lib/model3d_openings.py": {
+          "recorded": "2cb109bc5d3c86c058e5bb11f28262e48f15d267a6bf951e97275d5b5481a099",
+          "current": "e05f5706ef535033a944b410f646ebd2463772f2e6b7972d3e0e7400ed3b76f7"
+        },
+        "scripts/lib/model3d_review.py": {
+          "recorded": "355bba1192a91f2eabeac5ec2a88ece5b7ae76db063eb220e81ff5d4a6c85c4e",
+          "current": "2fcb2709b293b689c7e322f428a3743f9d95aa57ff6f74cfa89ae7219753dbf5"
+        },
+        "scripts/lib/spatial_metadata.py": {
+          "recorded": "266ae7f78e7b160cd4c1b079694bdedec8b6241a953a447cc555dc511d8d72f2",
+          "current": "1ec71987d4e69d5e546d7b0d770a2605e7f19b6dde3de4f87e29897e5464a479"
+        }
+      },
+      "viewer_key": "bc_options",
+      "artifacts": {
+        "structured/candidates/b32-entry-options/b32-front_floor-1.svg": "5cdc60a7e1fa0cbdc6cca9b9cf83bc1714e71ada5561237533f62797f971dde3",
+        "structured/candidates/b32-entry-options/b32-front_floor-2.svg": "2dfb9e02bd956613b49033de616c8c54ca596a90cfee1776f2c1a16d9557187c",
+        "structured/candidates/b32-entry-options/b32-front_floor-3.svg": "4b724db4a95c2e6e7abdab3ae26f05ab986053c04d5fc256e858f1ff14b8901e",
+        "structured/candidates/b32-entry-options/b32-front_floor-4.svg": "0ea8056b48e66e1754dd7328088cdcfa5b4dd6c23b58968ba0e14f04620792bc",
+        "structured/candidates/b32-entry-options/b32-rear_floor-1.svg": "1627368945a843becb2da55451f559ec505f2fcc09de1c249d826261c69e56b3",
+        "structured/candidates/b32-entry-options/b32-rear_floor-2.svg": "31e3954c4a8e6cfc268df56d4b0c1f4ee099b73f50d1668daa24b3889a7bca50",
+        "structured/candidates/b32-entry-options/b32-rear_floor-3.svg": "3a8c38e065ad85d0a30c58aed869d3adf4a2f9876366549972e32005eb4c4d3b",
+        "structured/candidates/b32-entry-options/b32-rear_floor-4.svg": "4fc5836b9a954cce4c050b7afc8a3f38d1d7925a5100138e39161abf6240c79c",
+        "structured/candidates/b32-entry-options/layout.js": "03f46387cf7fc24c7ce5f7613a9ad7546f3243a2e489d2fe273068f8bae2565a",
+        "structured/candidates/b32-entry-options.html": "bc56781f297460bbdbc5d50f5c781b9c9e8132234e8b5ff33b05804e74a109fe",
+        "structured/candidates/b32-entry-options-3d.html": "ed1b0b2b6be7e2320875f53799199f59f0c8afc10db5889752567ecb73783978"
+      }
+    },
+    "c-integrated-options": {
+      "report": "structured/candidates/c-integrated-options/layout.js",
+      "report_sha256": "46cc57a2a9b27fed822673c4413a68217397313091beef99b392e99ce1c16ff5",
+      "observed_source_drift": {
+        "scripts/export_preparation_review.py": {
+          "recorded": "4e9d63529199a2e74511823768a1710f3df44dbad60a25dd44b8ed84771cd149",
+          "current": "ea7d6754025cea76317ca550b5463820467e8de3b62984635e71c167d0f650df"
+        },
+        "scripts/config/residential_defaults_tw.json": {
+          "recorded": "202b762eaf93185f8011e1825a6dd7720c1ea87e4e41cff86da48873a52a0651",
+          "current": "4876b298aaa864f25d11153a9bb68927f8a800af911ff4ab4118204b4675d3b9"
+        },
+        "scripts/lib/architect_metrics.py": {
+          "recorded": "cd6050ba03d1f2ca9f9219d4732d19ac8b660b3523d141819fc20881ba48d277",
+          "current": "21c5474fcbd0a8fb591837ad7b146f93db2910b6cbdfda8579e329ae0e7bb0f9"
+        },
+        "scripts/lib/model3d_openings.py": {
+          "recorded": "2cb109bc5d3c86c058e5bb11f28262e48f15d267a6bf951e97275d5b5481a099",
+          "current": "e05f5706ef535033a944b410f646ebd2463772f2e6b7972d3e0e7400ed3b76f7"
+        },
+        "scripts/lib/model3d_review.py": {
+          "recorded": "355bba1192a91f2eabeac5ec2a88ece5b7ae76db063eb220e81ff5d4a6c85c4e",
+          "current": "2fcb2709b293b689c7e322f428a3743f9d95aa57ff6f74cfa89ae7219753dbf5"
+        },
+        "scripts/lib/spatial_metadata.py": {
+          "recorded": "266ae7f78e7b160cd4c1b079694bdedec8b6241a953a447cc555dc511d8d72f2",
+          "current": "1ec71987d4e69d5e546d7b0d770a2605e7f19b6dde3de4f87e29897e5464a479"
+        }
+      },
+      "viewer_key": "bc_options",
+      "artifacts": {
+        "structured/candidates/c-integrated-options/c-integrated-3000_floor-1.svg": "ab9a892b983945599592fb4abd1dc23e181beeb590b3e9755218e731bd8011b4",
+        "structured/candidates/c-integrated-options/c-integrated-3000_floor-2.svg": "3b3be7ed51d67406488213b69b483f3e02650bb370f6d4ddff7e491ee4abbf58",
+        "structured/candidates/c-integrated-options/c-integrated-3000_floor-3.svg": "e196ed6d275f46a75caceee034ceae45523a30b87677b5cd5867bf8f13e156af",
+        "structured/candidates/c-integrated-options/c-integrated-3000_floor-4.svg": "af2a7e3e744f967493364b9c23a8414e2b462b7e112b3a00ec75f66021b0672a",
+        "structured/candidates/c-integrated-options/c-integrated-3000_front.svg": "6413f942217794896f4f3811cc9be1e199dcd4897e6ee390009979dfcdc9b265",
+        "structured/candidates/c-integrated-options/c-integrated-3600_floor-1.svg": "18d71e05f42e724d0cc96d433fe2dec14f3845bf04385620b21531778f78081d",
+        "structured/candidates/c-integrated-options/c-integrated-3600_floor-2.svg": "26c3007a2f9a395f50b14cbd003f4c619ba08537278c94a6aca1009dcf852fae",
+        "structured/candidates/c-integrated-options/c-integrated-3600_floor-3.svg": "fb621145760cb4d4cbe3692319588682b5f59623d48878c1a66ebcfbad346170",
+        "structured/candidates/c-integrated-options/c-integrated-3600_floor-4.svg": "21a052ce7a5a1cec4f763dca20906141cf414b289013bd5d1c23bb55862e2321",
+        "structured/candidates/c-integrated-options/c-integrated-3600_front.svg": "719e5286150df2fcd6244efee992ca15a6d132f7534f2437e57cafc409557ac0",
+        "structured/candidates/c-integrated-options/c-integrated-4000_floor-1.svg": "6d86a0516136786d12f85f751883c0cbc17874d05ab958bdcbdd3e68e36454ad",
+        "structured/candidates/c-integrated-options/c-integrated-4000_floor-2.svg": "e8799d64111d5922e78ab663bab0cdfc591bb70fceb459e33ceaf13e0201a498",
+        "structured/candidates/c-integrated-options/c-integrated-4000_floor-3.svg": "fbda4e764072530395c8b710af018345ed4777551ad47b79f7c2adc0133c6e0c",
+        "structured/candidates/c-integrated-options/c-integrated-4000_floor-4.svg": "624f94cdcff8d9659aff4399f3800fe9820eea8b6a777e26cd3b06ba2f1108a5",
+        "structured/candidates/c-integrated-options/c-integrated-4000_front.svg": "15d2db133173cd0575a4e99579386ba54c312b86b49e776a5b94d80669236397",
+        "structured/candidates/c-integrated-options/layout.js": "46cc57a2a9b27fed822673c4413a68217397313091beef99b392e99ce1c16ff5",
+        "structured/candidates/c-integrated-options.html": "50333ebcb10bab57e8ed60544d8da16acbaf5604379012f86bd2057c31481371",
+        "structured/candidates/c-integrated-options-3d.html": "2912259d3155a1ca1f9bf2703950811b9a7273a9cb3a92596057b422ce3b4b42"
+      }
+    },
+    "c-coordination": {
+      "report": "structured/coordination/c-current-v1/review.json",
+      "report_sha256": "5d60cd05641dffefddc006bc324515cadbd64d57aca02310e7fd9d6e19a56a61",
+      "observed_source_drift": {
+        "Docs/coordination-review.md": {
+          "recorded": "956684f0401a4291e78b5fdf1611ce10da9caca46d89d69d8b4a19a41c71e0f2",
+          "current": "08eace63e5c6c99191ec97206511a3603863211e850870e22026da0c5af0df28"
+        }
+      },
+      "artifacts": {
+        "structured/coordination/c-current-v1/D01-floor-1.svg": "bff857c073dcb6fe8732b640a917415e75577ca68e0f8c8bf1f9ca939116e253",
+        "structured/coordination/c-current-v1/D02-floor-2.svg": "7691ddfd611b7806083c00b1b8785d088430f3423a1a9b40329e587dc1229f1a",
+        "structured/coordination/c-current-v1/D03-sections.svg": "b683271ddc0b9789901c8e3e4799708f90334d9753ab0fea5204816e26e1addf",
+        "structured/coordination/c-current-v1/D04-stair-doors.svg": "f10d452e15fc510392e031cfd86dd62ff52e3025a2528e6357e43f460f145ad8",
+        "structured/coordination/c-current-v1/index.html": "abe47ca690f46836cfb995db9ec803e1568fc6c3f0e4e40ec789f0af27f0179b",
+        "structured/coordination/c-current-v1/penetration-schedule.csv": "bb041a946077d9cfaf2c7ea9f0d367db7c7fb015c7d2a821ba350763a3ed31b1",
+        "structured/coordination/c-current-v1/reply-checklist.csv": "fe7d8a2cd67b3a3aac65333ebd1ab2f2da6c3852c94901d5a29e644ca4c4b4f0",
+        "structured/coordination/c-current-v1/review.json": "5d60cd05641dffefddc006bc324515cadbd64d57aca02310e7fd9d6e19a56a61"
+      }
+    }
+  }
+}

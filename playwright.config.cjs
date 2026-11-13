@@ -1,14 +1,8 @@
-const fs = require('node:fs');
-const path = require('node:path');
 const { defineConfig } = require('@playwright/test');
+const { resolvePython } = require('./tests/e2e/python.cjs');
 
 const port = Number(process.env.PLAYWRIGHT_PORT || 8770);
-const localPython = process.platform === 'win32'
-  ? path.join(__dirname, '.venv', 'Scripts', 'python.exe')
-  : path.join(__dirname, '.venv', 'bin', 'python');
-const python = process.env.PYTHON || (fs.existsSync(localPython)
-  ? localPython
-  : (process.platform === 'win32' ? 'python' : 'python3'));
+const python = resolvePython();
 const quotedPython = `"${python.replace(/"/g, '\\"')}"`;
 
 module.exports = defineConfig({

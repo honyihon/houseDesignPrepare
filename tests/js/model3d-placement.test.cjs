@@ -91,9 +91,9 @@ test('room info retains every shared furniture-use note without selecting a furn
       assert.ok(html.includes('data-furniture-note-id="' + escape(item.id) + '"'), item.id + ' identifiable note');
       assert.ok(html.includes(escape(item.note)), item.id + ' shared note is in the room info');
     }
-    if (room.id === 'A:floor-2:hall2') {
-      assert.ok(html.includes('880mm') && html.includes('280mm') && html.includes('待移') && html.includes('1280mm'),
-        'pending hallway cabinet and continuous passage are explained before any cabinet click');
+    if (room.id === 'A:floor-2:master') {
+      assert.ok(html.includes('原走道櫃') && html.includes('240') && html.includes('不再占公共走道'),
+        'the relocated full-size shallow cabinet is documented in the real storage room');
     }
   }
 });
@@ -301,7 +301,7 @@ test('actual camera closeup fits the shared room at mobile and desktop sizes wit
           corners:boxCorners(box).map(p=>p.project(camera).toArray()),
           visible:pickables.filter(m=>m.visible).map(m=>m.userData.cell.id)};
       };`, { THREE, pickables, furnitureEntries, stage: { clientWidth: width, clientHeight: height },
-        document: { getElementById: () => null } });
+        document: { getElementById: () => null }, DATA: { buildings: [] } });
     const overview = frame(false, 'front');
     const closeup = frame(true, 'front');
     assert.ok(closeup.radius < overview.radius * 0.6, 'room is meaningfully larger on screen');

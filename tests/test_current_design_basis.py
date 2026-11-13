@@ -9,16 +9,17 @@ from xml.etree import ElementTree as ET
 
 import export_current_design_basis as export
 import pytest
+from historical_support import assert_historical_sources, historical_study
 
 from house_design.b32_rear_right import body, rect
 from house_design.b32_service_detail import _inside
-from house_design.contracts import ROOT, ContractError, read_json, sha256_file, stable_hash
+from house_design.contracts import ROOT, ContractError, read_json, stable_hash
 from house_design.current_design_basis import engineering_review, requirement_ledger, validate_config
 
 
 @pytest.fixture(scope="module")
 def study():
-    return export.build_study()
+    return historical_study("current-design-basis")
 
 
 def option(study, oid):
@@ -86,7 +87,8 @@ def test_no_full_rebuild_solver_or_scene(monkeypatch):
     monkeypatch.setattr(export.viewer, "build_payload", forbidden)
     monkeypatch.setattr(export.viewer, "attach_placements", forbidden)
     monkeypatch.setattr(export.interior, "build_study", forbidden)
-    assert len(export.build_study()["options"]) == 5
+    with pytest.raises(ContractError, match="[Ss]tale"):
+        export.build_study()
 
 
 def test_b_upper_full_size_furniture_and_first_floor_preserved(study):
@@ -244,14 +246,20 @@ def test_shrinking_bed_is_rejected(study):
 
 
 def test_source_model_and_plan_report_must_match(monkeypatch):
+    # Isolate the geometry mismatch guard using sealed reports, not a live freshness claim.
+    reports = {"interior-improvements": historical_study("interior-improvements"),
+               "b32-rear-right": historical_study("b32-rear-right")}
+    monkeypatch.setattr(export, "_verified_report", lambda root, path: reports[Path(path).parent.name])
     original = export.interior.read_model
     def altered(path: Path):
         model = original(path)
-        if path.name == "b32-rear-right-3d.html":
-            model["b32_rear_right"]["options"][0]["states"][0]["model"]["buildings"][0]["floors"][0]["cells"][0]["name"] += " altered"
+        if path.name == "interior-improvements-3d.html":
+            source = next(o for o in model["bc_options"]["options"] if o["id"] == "a-upper-wet-core")
+            cell = next(c for c in source["model"]["buildings"][0]["floors"][0]["cells"] if c.get("tour_active"))
+            cell["name"] += " altered"
         return model
     monkeypatch.setattr(export.interior, "read_model", altered)
-    with pytest.raises(ContractError, match="no longer matches"):
+    with pytest.raises(ContractError, match="no longer matches: a-upper-wet-core"):
         export.build_study()
 
 
@@ -276,8 +284,7 @@ def test_outputs_are_bounded_vectors_and_same_source(study):
 
 
 def test_history_primary_and_archives_remain_read_only(study):
-    for path, digest in study["source_hashes"].items():
-        assert sha256_file(ROOT / path) == digest
+    assert_historical_sources("current-design-basis", study)
     assert all(s["review"]["professional_approval"] == "unknown" for o in study["options"] for s in o["states"])
     assert study["requirement_ledger"]["ledger_hash"] == stable_hash({k: v for k, v in study["requirement_ledger"].items() if k != "ledger_hash"})
 

@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import copy
-import json
 import subprocess
 import sys
 from xml.etree import ElementTree as ET
@@ -10,18 +9,23 @@ from xml.etree import ElementTree as ET
 import export_c_care_bath_door as export
 import pytest
 from bs4 import BeautifulSoup
+from historical_support import (
+    assert_historical_sources,
+    historical_state,
+    historical_study,
+)
 from lib.model3d_plan import plan_data
 
 from house_design.b32_rear_right import body, paired, rect
 from house_design.b32_services import _hits
 from house_design.c_care_bath_door import FRACTIONS, SOURCE, STATES, pose, review, translation_sweeps, validate_config
-from house_design.c_care_bath_fit import BASE_REPORT, BASE_VIEWER, _frozen_parent
+from house_design.c_care_bath_fit import BASE_REPORT, BASE_VIEWER
 from house_design.contracts import ROOT, ContractError, read_json, sha256_file, stable_hash
 
 
 @pytest.fixture(scope="module")
 def study():
-    return export.build_study()
+    return historical_study("c-care-bath-door")
 
 
 def states(study, oid="two-panel"):
@@ -58,7 +62,7 @@ def test_scope_counts_and_requirements_approvals_are_not_adopted(study):
 
 
 def test_no_furniture_wall_frame_window_or_upper_floor_changes(study):
-    _, base = _frozen_parent(ROOT)
+    _, base = historical_state("c-care-bath", "c-bath-refined", "transfer")
     old = rooms(base)
     for option in study["options"]:
         for state in option["states"]:
@@ -222,11 +226,11 @@ def test_generated_html_and_bounded_svg_are_source_bound_and_warning_clear(study
                 assert not svg.findall('.//{http://www.w3.org/2000/svg}image')
             svg = ET.parse(ROOT / export.OUT / f'{option["id"]}_{state["id"]}_detail.svg').getroot()
             assert int(svg.get("width")) == 780 and int(svg.get("height")) == 810
-    assert all(sha256_file(ROOT / p) == digest for p, digest in study["source_hashes"].items())
+    assert_historical_sources("c-care-bath-door", study)
 
 
 def test_exporter_only_writes_new_package_not_any_parent(study, tmp_path, monkeypatch):
-    protected = {**study["source_hashes"], BASE_REPORT: sha256_file(ROOT / BASE_REPORT), BASE_VIEWER: sha256_file(ROOT / BASE_VIEWER)}
+    protected = {**{p: sha256_file(ROOT / p) for p in study["source_hashes"]}, BASE_REPORT: sha256_file(ROOT / BASE_REPORT), BASE_VIEWER: sha256_file(ROOT / BASE_VIEWER)}
     render = export.render_viewer
     monkeypatch.setattr(export, "render_viewer", lambda current, unused: render(current, ROOT))
     result = export.write_study(study, tmp_path)
@@ -242,5 +246,7 @@ def test_exporter_only_writes_new_package_not_any_parent(study, tmp_path, monkey
 
 def test_direct_script_works_in_isolated_python_from_other_directory(tmp_path):
     result = subprocess.run([sys.executable, "-I", str(ROOT / "scripts/export_c_care_bath_door.py"), "--check"],
-                            cwd=tmp_path, capture_output=True, text=True, check=True, timeout=5)
-    assert json.loads(result.stdout) == {"options": 2, "states": 6, "rendered_qa": "not-run"}
+                            cwd=tmp_path, capture_output=True, text=True, check=False, timeout=5)
+    assert result.returncode != 0 and "Stale frozen bath source" in result.stderr
+    assert "ModuleNotFoundError" not in result.stderr
+    assert not list(tmp_path.iterdir())

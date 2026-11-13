@@ -30,7 +30,7 @@ def test_facade_is_non_mutating_and_not_a_second_floor_plan(payload):
     assert rebuilt["status"] == "proposal-owner-and-architect-review-pending"
     assert len([f for b in before for f in b["floors"]]) == 12
     assert len([c for b in before for f in b["floors"] for c in f["cells"] if c.get("tour_active")]) == 112
-    assert sum(len(c["furniture"]) for b in before for f in b["floors"] for c in f["cells"]) == 127
+    assert sum(len(c["furniture"]) for b in before for f in b["floors"] for c in f["cells"]) == 128
     assert all(c["compliance"] == "unknown" for b in rebuilt["buildings"] for c in b["components"])
     assert all(b["checks"]["compliance"] == "unknown" for b in rebuilt["buildings"])
     assert all(b["layout_review"]["parking"]["verified_spaces"] is None for b in before)
@@ -105,7 +105,17 @@ def test_exterior_openings_use_source_ratios_widths_and_heights_without_moving_t
 
 def test_bad_source_windows_remain_pending_not_clipped_or_reinvented(payload):
     pending = {o["id"]: o for b in payload["facade"]["buildings"] for o in b["openings"] if not o["rendered"]}
-    assert "overlaps-source-door" in pending["A:floor-1:entry:front:window"]["issues"]
+    # Use a real retained window, then place its centre over the real ritual door.
+    # The former A entry window was removed when entry and living were merged.
+    changed = copy.deepcopy(payload["buildings"])
+    shrine = next(c for c in changed[1]["floors"][0]["cells"] if c["id"] == "B:floor-1:shrine")
+    door = next(d for d in shrine["tour_features"]["doors"] if d["face"] == "front" and d["neighbor"] is None)
+    shrine["tour_features"]["window_ratio"] = door["ratio"]
+    rebuilt = build_facade(changed, payload["standards"])
+    invalid = next(o for b in rebuilt["buildings"] for o in b["openings"]
+                   if o["id"] == "B:floor-1:shrine:front:window")
+    assert not invalid["rendered"] and "overlaps-source-door" in invalid["issues"]
+    assert invalid["source"]["ratio"] == door["ratio"] and invalid["source"]["width_mm"] == shrine["window_mm"]
     b_window = next(o for o in payload["facade"]["buildings"][1]["openings"] if o["id"] == "B:floor-1:shrine:front:window")
     assert b_window["rendered"] and b_window["source"]["width_mm"] == 1000  # explicit ritual-door/window redesign
     c = payload["facade"]["buildings"][2]

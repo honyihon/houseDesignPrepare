@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import copy
-import hashlib
 import json
 import re
 from pathlib import Path
@@ -10,6 +9,7 @@ from xml.etree import ElementTree as ET
 
 import export_preparation_review as export
 import pytest
+from historical_support import assert_historical_sources, historical_study
 from lib.model3d_placement import overlaps
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,7 +19,7 @@ IDS = ["c-window-3000", "c-window-3600", "c-window-4000", "b-fixed-3000",
 
 @pytest.fixture(scope="module")
 def study():
-    return export.build_study()
+    return historical_study("preparation-review")
 
 
 def option(study, key):
@@ -32,7 +32,7 @@ def cells(o):
 
 def test_main_archives_and_sources_are_read_only(study):
     before = {p: export.digest(ROOT / p) for p in export.PROTECTED}
-    export.build_study()
+    historical_study("preparation-review")
     assert before == {p: export.digest(ROOT / p) for p in export.PROTECTED}
     assert study["protected_main_hashes"] == before
     assert study["status"] == export.STATUS and study["active_design"] == "baseline"
@@ -189,8 +189,7 @@ def test_generated_svg_html_3d_parity_and_sources_current(study):
                     assert active[r["id"]]["furniture_placements"]["tour_mm"][item["id"]] == item["placement"]
     assert 'htmlHref="bc-options.html#"' not in source
     assert 'htmlHref="preparation-review.html#"' in source
-    for p, sha in study["source_hashes"].items():
-        assert hashlib.sha256((ROOT / p).read_bytes()).hexdigest() == sha
+    assert_historical_sources("preparation-review", study)
     packet = json.loads((ROOT / "structured/discussions/abc-preparation-meeting.json").read_text())
     assert len(packet["scenarios"]) == 22 and packet["professional_approval"] == "unknown"
     assert all(s["status"] == "unknown" and s["evidence"] is None for s in packet["scenarios"])
@@ -205,12 +204,11 @@ def test_single_run_not_doubled_and_c_public_area_is_not_recredited(study):
         assert all(r["legal_arcade_height"] is None and r["beam_and_stair_headroom"] is None for r in rows)
 
 
-def test_generator_does_not_publish_known_coordinate_defects(monkeypatch):
-    monkeypatch.setattr(export, "body_screen", lambda _: {
-        "fixed_body_failures": [{"issue": "fixed-body-overlap"}], "pending_solver_items": [],
-        "operation_limits": [], "operation_sharing": [],
-    })
-    with pytest.raises(ValueError, match="coordinate defects"):
+def test_stale_comparison_cannot_reach_scene_generation(monkeypatch):
+    def forbidden(*args, **kwargs):
+        pytest.fail("Stale sources must be rejected before rebuilding a scene")
+    monkeypatch.setattr(export.model3d, "build_payload", forbidden)
+    with pytest.raises(ValueError, match="Stale B/C comparison reference"):
         export.build_study()
 
 

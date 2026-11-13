@@ -8,6 +8,12 @@ from xml.etree import ElementTree as ET
 import export_c_care_bath_layout as export
 import pytest
 from bs4 import BeautifulSoup
+from historical_support import (
+    assert_historical_sources,
+    historical_state,
+    historical_study,
+    recorded_source_precondition,
+)
 from lib.model3d_placement import _door_approach
 from lib.model3d_plan import plan_data
 
@@ -29,7 +35,7 @@ from house_design.contracts import ROOT, ContractError, read_json, sha256_file, 
 
 @pytest.fixture(scope="module")
 def study():
-    return export.build_study()
+    return historical_study("c-care-bath-layout")
 
 
 def states(study, oid="side-basin"):
@@ -59,7 +65,7 @@ def test_scope_requirements_and_counts_never_imply_adoption(study):
 
 
 def test_frozen_parent_verified_and_control_geometry_retained(study):
-    parent, baseline = frozen_parent()
+    parent, baseline = historical_state("c-care-bath-door", "two-panel", "open")
     assert study["base_report_hash"] == parent["report_hash"]
     assert study["base_plan_hash"] == stable_hash(baseline["plans"])
     for state in states(study, "door-control"):
@@ -77,6 +83,7 @@ def test_frozen_parent_verified_and_control_geometry_retained(study):
 
 def test_frozen_parent_refuses_stale_source_and_forged_self_hash(monkeypatch):
     import house_design.c_care_bath_layout as module
+    recorded_source_precondition(monkeypatch, module, "c-care-bath-door")
     original = module.read_json
     for mutation in ("source", "report"):
         def altered(path, mutation=mutation):
@@ -89,7 +96,7 @@ def test_frozen_parent_refuses_stale_source_and_forged_self_hash(monkeypatch):
                     data["options"][1]["states"][0]["review"]["door"]["required_clear_mm"] = 700
             return data
         monkeypatch.setattr(module, "read_json", altered)
-        with pytest.raises(ContractError, match="Stale frozen|hash mismatch"):
+        with pytest.raises(ContractError, match="Stale frozen" if mutation == "source" else "hash mismatch"):
             frozen_parent()
 
 
@@ -105,7 +112,7 @@ def test_same_source_html_3d_all_floors_and_paired_1200mm_doors(study):
 
 
 def test_no_room_window_outdoor_band_bed_tv_other_furniture_or_upper_changes(study):
-    _, baseline = frozen_parent()
+    _, baseline = historical_state("c-care-bath-door", "two-panel", "open")
     old = rooms(baseline)
     for option in study["options"]:
         for state in option["states"]:
@@ -163,7 +170,7 @@ def test_all_three_improvements_and_remaining_small_gaps_are_honest(study):
 
 
 def test_alarm_moves_only_as_explicit_candidate_and_old_location_fails_new_operation(study):
-    _, baseline = frozen_parent()
+    _, baseline = historical_state("c-care-bath-door", "two-panel", "open")
     old = rooms(baseline)["elder-bath"]["features"]["care_bath_components"]
     for state in states(study):
         d = state["review"]["layout"]
@@ -178,7 +185,7 @@ def test_alarm_moves_only_as_explicit_candidate_and_old_location_fails_new_opera
 
 
 def test_recompute_only_shared_wall_door_approaches_preserve_bedroom_front_entry(study):
-    _, baseline = frozen_parent()
+    _, baseline = historical_state("c-care-bath-door", "two-panel", "open")
     old = rooms(baseline)["elder"]["features"]["reserved_mm"]
     for state in states(study):
         for key in ("elder", "elder-bath"):
@@ -259,7 +266,7 @@ def test_geometry_reviewer_rejects_unsynchronized_or_shrunken_payload(study, cha
         state["plans"]["floors"][1]["rooms"][0]["geometry"]["w_mm"] += 100
     dc, bc = trial_configs(cfg, read_json(ROOT / "inputs/c-care-bath-door.json"), read_json(ROOT / "inputs/c-care-bath.json"), "side-basin")
     with pytest.raises(ContractError):
-        review(state["plans"], cfg, dc, bc, read_json(ROOT / "inputs/c-care-route.json"), "side-basin", "open", frozen_parent()[1])
+        review(state["plans"], cfg, dc, bc, read_json(ROOT / "inputs/c-care-route.json"), "side-basin", "open", historical_state("c-care-bath-door", "two-panel", "open")[1])
 
 
 def test_saved_html_svg_warning_and_geometry_are_same_source_and_pixel_bounded(study):
@@ -279,11 +286,11 @@ def test_saved_html_svg_warning_and_geometry_are_same_source_and_pixel_bounded(s
             detail = ET.parse(ROOT / export.OUT / f'{option["id"]}_{state["id"]}_detail.svg').getroot()
             assert (detail.get("width"), detail.get("height")) == ("780", "810")
             assert detail.findall('.//{http://www.w3.org/2000/svg}polyline[@data-care-route="basin-arrival"]')
-    assert all(sha256_file(ROOT / p) == digest for p, digest in study["source_hashes"].items())
+    assert_historical_sources("c-care-bath-layout", study)
 
 
 def test_exporter_changes_only_new_comparison_and_preserves_all_frozen_sources(study, tmp_path, monkeypatch):
-    protected = {**study["source_hashes"], BASE_REPORT: sha256_file(ROOT / BASE_REPORT), BASE_VIEWER: sha256_file(ROOT / BASE_VIEWER)}
+    protected = {**{p: sha256_file(ROOT / p) for p in study["source_hashes"]}, BASE_REPORT: sha256_file(ROOT / BASE_REPORT), BASE_VIEWER: sha256_file(ROOT / BASE_VIEWER)}
     render = export.render_viewer
     monkeypatch.setattr(export, "render_viewer", lambda current, unused: render(current, ROOT))
     export.write_study(study, tmp_path)

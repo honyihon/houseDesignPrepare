@@ -3,6 +3,7 @@ const path = require('node:path');
 const { execFileSync } = require('node:child_process');
 const { pathToFileURL } = require('node:url');
 const { test, expect } = require('@playwright/test');
+const { resolvePython } = require('./python.cjs');
 const {
   assertNoFrameworkOverlay,
   expectNoUnexpectedConsole,
@@ -10,10 +11,7 @@ const {
 } = require('./helpers.cjs');
 
 const REPO_ROOT = path.resolve(__dirname, '..', '..');
-const localPython = process.platform === 'win32'
-  ? path.join(REPO_ROOT, '.venv', 'Scripts', 'python.exe')
-  : path.join(REPO_ROOT, '.venv', 'bin', 'python');
-const python = process.env.PYTHON || (fs.existsSync(localPython) ? localPython : (process.platform === 'win32' ? 'python' : 'python3'));
+const python = resolvePython();
 
 test.beforeAll(() => {
   execFileSync(python, [path.join(__dirname, 'prepare_current_model3d.py')], { cwd: REPO_ROOT, stdio: 'pipe' });
@@ -184,7 +182,7 @@ test('whole-floor tour mobile labels and room selection stay readable without hi
   await expect(cElder).toBeVisible();
   await cElder.click();
   await expect(page).toHaveURL(/room=C%3Afloor-1%3Aelder/);
-  await expect(page.locator('.furniture-label:visible')).toHaveCount(2);
+  await expect(page.locator('.furniture-label:visible')).toHaveCount(3);
   expect((await page.evaluate(() => window.__htmlModel3dDebug())).visibleRooms).toHaveLength(11);
   await expect.poll(async () => page.locator('.nav-label:visible, .furniture-label:visible').evaluateAll((elements) => {
     const rects = elements.map(element => element.getBoundingClientRect());
@@ -375,38 +373,38 @@ test('interior default isolates A living room and names recognizable full-size f
   expect(debug.state).toEqual({ building: 'A', floor: 'floor-1', room: 'A:floor-1:living', view: 'front' });
   expect(debug.visibleRooms).toEqual(['A:floor-1:living']);
   expect(debug.geomSource).toBe('declared');
-  expect(debug.furniture.visibleItems).toBe(1);
+  expect(debug.furniture.visibleItems).toBe(2);
   expect(debug.furniture.visibleIssues).toBe(0);
   for (const corner of debug.screenBounds) {
     expect(Math.abs(corner[0])).toBeLessThan(1);
     expect(Math.abs(corner[1])).toBeLessThan(1);
   }
   expect(debug.furniture.shapes.map(({ shape, parts }) => [shape, parts])).toEqual([
-    ['sofa', 7], ['tv-console', 3], ['dining-set', 18],
+    ['sofa', 7], ['wall-tv', 2], ['dining-set', 26], ['cabinet', 5],
   ]);
-  expect(debug.furniture.shapes[0]).toMatchObject({ width: 2400, depth: 900, height: 850 });
+  expect(debug.furniture.shapes[0]).toMatchObject({ width: 1800, depth: 900, height: 850 });
   await expect(page.locator('#grid')).not.toBeChecked();
   await expect(page.locator('#ghost')).not.toBeChecked();
   await expect(page.locator('#openings')).toBeDisabled();
-  await expect(page.locator('.furniture-label:visible')).toHaveCount(1);
+  await expect(page.locator('.furniture-label:visible')).toHaveCount(2);
   await expect(page.locator('#stage-title')).toContainText('非實測房型／正式牆位');
   await page.locator('#furniture-list [data-furniture-id="A:floor-1:living:furniture:sofa"]').click();
   expect((await page.evaluate(() => window.__htmlModel3dDebug())).selectedFurniture)
     .toBe('A:floor-1:living:furniture:sofa');
-  await expect(page.locator('#info')).toContainText('三人沙發 · 2400 × 900 × 850 mm');
+  await expect(page.locator('#info')).toContainText('180cm雙人沙發（一般尺寸） · 1800 × 900 × 850 mm');
   // Selection is still possible for a pending item via the complete list.
   await expect(page.locator('#furniture-list')).toContainText('待調整');
   await page.locator('#furniture-names').uncheck();
   await expect(page.locator('.furniture-label:visible')).toHaveCount(0);
   await page.locator('#furniture-names').check();
-  await expect(page.locator('.furniture-label:visible')).toHaveCount(1);
+  await expect(page.locator('.furniture-label:visible')).toHaveCount(2);
   await page.locator('#geom-source [data-geom="auto"]').click();
   const point = (await page.evaluate(() => window.__htmlModel3dDebug())).furniture.visibleScreenPositions
-    .find((item) => item.id === 'A:floor-1:living:furniture:tv');
+    .find((item) => item.id === 'A:floor-1:living:furniture:shoe-cabinet');
   const canvas = await page.locator('#canvas').boundingBox();
   await page.mouse.click(canvas.x + (point.hitX + 1) * canvas.width / 2, canvas.y + (1 - point.hitY) * canvas.height / 2);
   const picked = await page.evaluate(() => window.__htmlModel3dDebug());
-  expect(picked.selectedFurniture).toBe('A:floor-1:living:furniture:tv');
+  expect(picked.selectedFurniture).toBe('A:floor-1:living:furniture:shoe-cabinet');
   expect(picked.geomSource).toBe('auto');
   await expect(page.locator('#geom-source [data-geom="auto"]')).toHaveClass(/on/);
   await assertNoFrameworkOverlay(page);
@@ -433,31 +431,29 @@ test('every detailed furniture part stays inside the unchanged catalog envelope'
   }
   // Rounded upholstery must retain its full external extent, not shrink to fit.
   const sofa = shapes.find((item) => item.id === 'A:floor-1:living:furniture:sofa');
-  expect(sofa.partBounds[0].max[0] - sofa.partBounds[0].min[0]).toBeCloseTo(2.4, 5);
+  expect(sofa.partBounds[0].max[0] - sofa.partBounds[0].min[0]).toBeCloseTo(1.8, 5);
   const bed = shapes.find((item) => item.id === 'C:floor-3:master3f:furniture:bed');
   expect(bed).toMatchObject({ shape: 'bed', parts: 6, width: 1800, depth: 2000, height: 950 });
   expect(shapes.find((item) => item.shape === 'tank')).toMatchObject({ parts: 2 });
   expectNoUnexpectedConsole(messages);
 });
 
-test('unresolved upstairs furniture stays listed at its real size and conflict display is explicit', async ({ page }) => {
+test('redistributed A upstairs storage keeps full-size capacity and conflict display is explicit', async ({ page }) => {
   const messages = monitorConsole(page);
   await page.goto('/structured/candidates/model3d.html#mode=tour&building=A&floor=floor-2&room=A%3Afloor-2%3Awalkin&view=front');
   const initial = await page.evaluate(() => window.__htmlModel3dDebug());
-  const unresolved=initial.furniture.shapes.filter(i=>i.id.startsWith('A:floor-2:walkin:'));
-  expect(unresolved).toHaveLength(2);
-  expect(unresolved.every(i=>!i.visible && i.width===1800 && i.depth===600)).toBe(true);
-  await expect(page.locator('#furniture-list .furniture-row.issue')).toHaveCount(2);
+  const storage = initial.furniture.shapes.filter(i => i.shape === 'cabinet' && /^A:floor-2:(walkin|master):/.test(i.id));
+  expect(storage.map(i => [i.width, i.depth]).sort()).toEqual([[1800,600],[1800,600],[1800,600],[2400,400]]);
+  expect(storage.every(i => i.visible && !i.collision)).toBe(true);
+  await expect(page.locator('#furniture-list .furniture-row.issue')).toHaveCount(0);
   await expect(page.locator('#furniture-list')).toContainText('1800');
-  await expect(page.locator('#pending-furniture')).toContainText('未展示');
+  await expect(page.locator('#pending-furniture')).toContainText('正式搬運／照護淨空仍待核對');
   await page.locator('#show-conflicts').check();
   const shown = await page.evaluate(() => window.__htmlModel3dDebug());
-  expect(shown.furniture.shapes.filter(i=>i.id.startsWith('A:floor-2:walkin:')).every(i=>i.visible && i.collision)).toBe(true);
-  expect(shown.furniture.shapes.map(({ id, width, depth, height }) => ({ id, width, depth, height })))
-    .toEqual(initial.furniture.shapes.map(({ id, width, depth, height }) => ({ id, width, depth, height })));
+  expect(shown.furniture.shapes.map(({id,width,depth,height})=>({id,width,depth,height})))
+    .toEqual(initial.furniture.shapes.map(({id,width,depth,height})=>({id,width,depth,height})));
   await page.locator('#show-conflicts').uncheck();
-  expect((await page.evaluate(() => window.__htmlModel3dDebug())).furniture.shapes
-    .filter(i=>i.id.startsWith('A:floor-2:walkin:')).every(i=>!i.visible)).toBe(true);
+  expect((await page.evaluate(() => window.__htmlModel3dDebug())).furniture.pendingItems).toEqual([]);
   expectNoUnexpectedConsole(messages);
 });
 
@@ -465,8 +461,8 @@ test('room geometry changes recompute pending furniture without changing its dim
   const messages = monitorConsole(page);
   await page.goto('/structured/candidates/model3d.html#building=C&floor=floor-3&room=C%3Afloor-3%3Amaster3f&view=front');
   const declared = await page.evaluate(() => window.__htmlModel3dDebug());
-  expect(declared.furniture.visibleItems).toBe(3);
-  expect(declared.furniture.pendingItems).toHaveLength(0);
+  expect(declared.furniture.visibleItems).toBe(2);
+  expect(declared.furniture.pendingItems).toEqual(['C:floor-3:master3f:furniture:bed']);
   await page.locator('#geom-source [data-geom="auto"]').click();
   const automatic = await page.evaluate(() => window.__htmlModel3dDebug());
   expect(automatic.furniture.pendingItems.length).toBeGreaterThan(0);
@@ -475,8 +471,8 @@ test('room geometry changes recompute pending furniture without changing its dim
   expect(automatic.furniture.shapes.map(({ width, depth, height }) => [width, depth, height]))
     .toEqual(declared.furniture.shapes.map(({ width, depth, height }) => [width, depth, height]));
   await page.locator('#geom-source [data-geom="declared"]').click();
-  expect((await page.evaluate(() => window.__htmlModel3dDebug())).furniture.pendingItems).toHaveLength(0);
-  await expect(page.locator('#pending-furniture')).toContainText('正式搬運／照護淨空仍待核對');
+  expect((await page.evaluate(() => window.__htmlModel3dDebug())).furniture.pendingItems).toEqual(declared.furniture.pendingItems);
+  await expect(page.locator('#pending-furniture')).toContainText('未展示');
   expectNoUnexpectedConsole(messages);
 });
 
@@ -511,7 +507,7 @@ test('interior mobile room refits without clipping and keeps unresolved count wh
   const messages = monitorConsole(page);
   await page.goto('/structured/candidates/model3d.html#mode=tour&building=A&floor=floor-2&room=A%3Afloor-2%3Awalkin&view=front');
   await page.locator('#mobile-panel-toggle').click();
-  await expect(page.locator('#pending-furniture')).toContainText('未展示');
+  await expect(page.locator('#pending-furniture')).toContainText('正式搬運／照護淨空仍待核對');
   await expect(page.locator('#mobile-panel-toggle')).toHaveAttribute('aria-expanded', 'false');
   await page.goto('/structured/candidates/model3d.html#mode=tour&building=C&floor=floor-1&room=C%3Afloor-1%3Aelder&view=front');
   await page.locator('#mobile-panel-toggle').click();
@@ -519,7 +515,7 @@ test('interior mobile room refits without clipping and keeps unresolved count wh
     const { screenBounds } = await page.evaluate(() => window.__htmlModel3dDebug());
     return screenBounds.every(([x, y]) => Math.abs(x) < 1 && Math.abs(y) < 1);
   }).toBe(true);
-  await expect(page.locator('.furniture-label:visible')).toHaveCount(2);
+  await expect(page.locator('.furniture-label:visible')).toHaveCount(3);
   const labels = await page.locator('.furniture-label:visible').evaluateAll((elements) => elements.map((element) => {
     const rect = element.getBoundingClientRect();
     return { left: rect.left, right: rect.right };
@@ -537,9 +533,9 @@ test('furniture shortcuts select shared concept rooms with all standard-size fur
   const messages = monitorConsole(page);
   await page.goto('/structured/candidates/model3d.html', { waitUntil: 'load' });
   for (const [label, room, count] of [
-    ['A 棟客廳', 'A:floor-1:living', 3],
-    ['B 棟神明堂', 'B:floor-1:shrine', 5],
-    ['B 棟武轎儲藏室', 'B:floor-1:storage', 5],
+    ['A 棟客廳', 'A:floor-1:living', 4],
+    ['B 棟神明堂', 'B:floor-1:shrine', 4],
+    ['B 棟武轎儲藏室', 'B:floor-1:storage', 3],
     ['C 棟孝親房', 'C:floor-1:elder', 3],
   ]) {
     await page.locator('#furniture-start').getByRole('link', { name: label, exact: true }).click();
@@ -558,7 +554,7 @@ test('B palanquin uses the shared physical-item estimate and labels it pending m
   const storagePlan = page.locator('.plan-cell[data-model-room-id="B:floor-1:storage"]');
   const sharedStorage = page.locator('.shared-furniture-plan details[data-model-room-id="B:floor-1:storage"]');
   await sharedStorage.locator('summary').click();
-  await expect(sharedStorage.locator('li[data-furniture-id]')).toHaveCount(5);
+  await expect(sharedStorage.locator('li[data-furniture-id]')).toHaveCount(3);
   await expect(sharedStorage.locator('[data-physical-item-id="B.palanquin.primary"]')).toHaveAttribute('data-measurement-state','pending');
   await expect(storagePlan).toContainText('暫定淨開口150cm');
   await expect(storagePlan).toContainText('直進直出');
@@ -573,10 +569,10 @@ test('B palanquin uses the shared physical-item estimate and labels it pending m
   await expect(page.locator('#info')).toContainText('武轎（收納狀態）：1200 × 1700 × 1800 mm');
   await expect(page.locator('#info')).toContainText('一般尺寸暫估／待實測');
   await expect(page.locator('#info')).toContainText('法器／旗幟櫃');
-  await expect(page.locator('#info')).toContainText('香燭金紙耐燃櫃');
+  await expect(page.locator('#info')).toContainText('除濕機');
   const debug = await page.evaluate(() => window.__htmlModel3dDebug());
   expect(debug.presentation).toBe('tour');
-  expect(debug.furniture.shapes.filter(item => item.id.startsWith('B:floor-1:storage:furniture:') && item.visible)).toHaveLength(5);
+  expect(debug.furniture.shapes.filter(item => item.id.startsWith('B:floor-1:storage:furniture:') && item.visible)).toHaveLength(3);
   const room = debug.tour.rooms.find(r=>r.id==='B:floor-1:storage');
   expect(room.features.carry_path_mm).toEqual({center_x_mm:5200,width_mm:1600});
   expect(room.features.doors[0].width_mm).toBe(1500);
@@ -688,11 +684,11 @@ test('original HTML room and 3D use a reversible deep link', async ({ page }) =>
   await expect(page.locator('#scope-floors [data-floor="floor-1"]')).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('#scope-rooms [data-room="A:floor-1:living"]')).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('#info')).toContainText('客餐廳');
-  await expect(page.locator('#info')).toContainText('三人沙發');
+  await expect(page.locator('#info')).toContainText('180cm雙人沙發');
   await expect(page.locator('#info')).toContainText('依房型推估');
   const shared=await page.evaluate(()=>window.__htmlModel3dDebug());
   expect(shared.presentation).toBe('tour');
-  expect(shared.furniture.shapes.filter(i=>i.id.startsWith('A:floor-1:living:')&&i.visible)).toHaveLength(5);
+  expect(shared.furniture.shapes.filter(i=>i.id.startsWith('A:floor-1:living:')&&i.visible)).toHaveLength(4);
   await expect(page.locator('#info')).toContainText('ABC v2 固定比較框');
   const backLink = page.locator('#info .info-link');
   await expect(backLink).toHaveAttribute('href', /AbuildingView\.html#proposal-room-living$/);
@@ -722,7 +718,7 @@ test('original HTML bridge and deep-linked model work over file protocol', async
     .toBe('A:floor-1:living');
   await page.locator('#view-front').click();
   expect((await page.evaluate(() => window.__htmlModel3dDebug())).presentation).toBe('tour');
-  await expect(page.locator('.furniture-label:visible')).toHaveCount(5);
+  await expect(page.locator('.furniture-label:visible')).toHaveCount(4);
   expect(externalRequests).toEqual([]);
   expectNoUnexpectedConsole(messages);
 });
@@ -749,17 +745,17 @@ test('A elder bedroom restoration keeps care furniture, bathroom and reversible 
   const care = debug.layoutReview.checks.find(c => c.id === 'A-1F-care-functions');
   expect(care.site_legality).toBe('unknown');
   expect(care.professional_accessibility).toBe('unknown');
-  expect(care.routes.elder_to_bath).toEqual(['A:floor-1:flex1', 'A:floor-1:rear-hall1', 'A:floor-1:bath1']);
+  expect(care.routes.elder_to_bath).toEqual(['A:floor-1:flex1', 'A:floor-1:rear-hall1', 'A:floor-1:care-passage', 'A:floor-1:bath1']);
   await page.locator('#info .info-link').click();
   await expect(page).toHaveURL(/AbuildingView\.html#proposal-room-flex1$/);
   await expect(page.locator('#proposal-room-flex1')).toHaveJSProperty('open', true);
   expectNoUnexpectedConsole(messages);
 });
 
-test('upstairs full-size bathrooms and hallway synchronize with A wardrobes and displaced cabinet pending', async ({ page }) => {
+test('upstairs bathrooms and distributed A storage synchronize with current full-size furniture', async ({ page }) => {
   const messages = monitorConsole(page);
   for (const [building, key, count] of [
-    ['A', 'master-bath', 3], ['A', 'hall2', 0], ['B', 'bath2', 3], ['B', 'master-bath2', 3],
+    ['A', 'master-bath', 3], ['A', 'walkin', 1], ['A', 'master', 4], ['B', 'bath2', 3], ['B', 'master-bath2', 3],
   ]) {
     await page.goto(`/${building}buildingView.html#proposal-room-${key}`, { waitUntil: 'load' });
     const roomPanel = page.locator(`#proposal-room-${key}`);
@@ -769,7 +765,8 @@ test('upstairs full-size bathrooms and hallway synchronize with A wardrobes and 
       .find(b => b.id === id).floors.find(f => f.id === 'floor-2'), building);
     const room = floor.rooms.find(r => r.key === key);
     await expect(roomPanel.locator('[data-furniture-id]')).toHaveCount(count);
-    const note = key === 'hall2' ? '容量不減' : '700mm';
+    const storage = ['walkin', 'master'].includes(key);
+    const note = storage ? '不縮小家具' : '700mm';
     await expect(roomPanel).toContainText(note);
     if (['master-bath', 'master-bath2'].includes(key)) await expect(roomPanel).toContainText('門寬暫估800mm');
     await roomPanel.getByRole('link', { name: '在 3D 核對家具', exact: true }).click();
@@ -783,18 +780,20 @@ test('upstairs full-size bathrooms and hallway synchronize with A wardrobes and 
     expect(debug.tour.rooms.find(r => r.id === room.id).geometry).toEqual(room.geometry);
     expect(debug.furniture.pendingItems.slice().sort()).toEqual([]);
     const actual = debug.furniture.shapes.filter(i => i.id.startsWith(room.id + ':furniture:') && i.visible);
-    expect(actual).toHaveLength(key==='hall2'?0:count);
+    expect(actual).toHaveLength(count);
     for (const item of room.furniture) {
       const rendered = debug.furniture.shapes.find(i => i.id === item.id);
       expect([rendered.width, rendered.depth, rendered.height]).toEqual([item.width_mm, item.depth_mm, item.height_mm]);
       expect(rendered.center[0]).toBeCloseTo(item.placement.center_x_mm, 2);
       expect(rendered.center[1]).toBeCloseTo(item.placement.center_y_mm, 2);
-      expect(item.placement.issues).toEqual(key==='hall2'?['circulation']:[]);
-      expect(rendered.visible).toBe(key!=='hall2');
-      expect(item.front_clearance_mm).toBe(key === 'hall2' ? 600 : 700);
-      expect(item.shared_operation_with).toEqual([]);
+      expect(item.placement.issues).toEqual([]);
+      expect(rendered.visible).toBe(true);
+      expect(item.front_clearance_mm).toBe(storage ? 600 : 700);
+      expect(item.shared_operation_with).toEqual(key === 'walkin' ? ['door-approach'] : []);
     }
-    if (key !== 'hall2') expect(actual.map(i => i.shape).sort()).toEqual(['shower', 'toilet', 'vanity']);
+    expect(actual.map(i => i.shape).sort()).toEqual(storage
+      ? (key === 'walkin' ? ['cabinet'] : ['bed', 'cabinet', 'cabinet', 'cabinet'])
+      : ['shower', 'toilet', 'vanity']);
     const notes = await page.locator('#info [data-furniture-note-id]').evaluateAll(elements =>
       elements.map(e => ({ id: e.getAttribute('data-furniture-note-id'), text: e.textContent })));
     expect(notes).toEqual(room.furniture.filter(item => item.note).map(item => ({

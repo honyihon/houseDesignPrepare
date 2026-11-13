@@ -7,6 +7,12 @@ import io
 
 import export_c_care_bath_readiness as export
 import pytest
+from historical_support import (
+    assert_historical_sources,
+    historical_option,
+    historical_study,
+    recorded_source_precondition,
+)
 
 import house_design.c_care_bath_readiness as readiness
 from house_design.c_care_bath_readiness import (
@@ -16,7 +22,6 @@ from house_design.c_care_bath_readiness import (
     PRODUCT_FIELDS,
     PRODUCT_SOURCE,
     SOURCE,
-    build_study,
     frozen_layout,
     product_responses,
     validate_config,
@@ -26,7 +31,7 @@ from house_design.contracts import ROOT, ContractError, read_json, sha256_file, 
 
 @pytest.fixture(scope="module")
 def study():
-    return build_study()
+    return historical_study("c-care-bath-readiness")
 
 
 def test_no_new_geometry_or_clinical_product_approval(study):
@@ -44,12 +49,12 @@ def test_no_new_geometry_or_clinical_product_approval(study):
 
 
 def test_frozen_layout_matches_current_html_model_and_golden_plan(study):
-    parent, option = frozen_layout()
+    parent, option = historical_option("c-care-bath-layout", "side-basin")
     assert study["base_report_hash"] == parent["report_hash"]
     state = next(s for s in option["states"] if s["id"] == "open")
     assert study["base_plan_hash"] == stable_hash(state["plans"]) == read_json(ROOT / SOURCE)["base_plan_hash"]
     assert study["base_plan_hash"] == "59aa1ccee2455b9d3ab0f7c0360d2f3ec2bea992576a91457884c7b71ab57640"
-    assert all(sha256_file(ROOT / p) == h for p, h in study["source_hashes"].items())
+    assert_historical_sources("c-care-bath-readiness", study)
     assert study["report_hash"] == stable_hash({k: v for k, v in study.items() if k not in {"generated_at", "report_hash"}})
 
 
@@ -209,6 +214,7 @@ def test_scope_contract_refuses_smaller_targets_or_wrong_frozen_basis(key, value
 
 @pytest.mark.parametrize("fault", ["stale-source", "forged-hash", "adopted"])
 def test_frozen_parent_refuses_stale_sources_changed_report_or_adoption(monkeypatch, fault):
+    recorded_source_precondition(monkeypatch, readiness, "c-care-bath-layout")
     original = readiness.read_json
     def altered(path):
         data = original(path)
@@ -222,7 +228,8 @@ def test_frozen_parent_refuses_stale_sources_changed_report_or_adoption(monkeypa
                 data["adopted"] = True
         return data
     monkeypatch.setattr(readiness, "read_json", altered)
-    with pytest.raises(ContractError):
+    expected = {"stale-source": "Stale frozen", "forged-hash": "hash mismatch", "adopted": "Missing frozen"}
+    with pytest.raises(ContractError, match=expected[fault]):
         frozen_layout()
 
 
@@ -240,7 +247,7 @@ def test_summary_and_csv_keep_unfilled_measurements_separate_from_discussion_num
 
 
 def test_exporter_only_writes_four_new_files_and_never_regenerates_existing_drawings_or_inputs(study, tmp_path):
-    protected = {**study["source_hashes"], BASE_REPORT: sha256_file(ROOT / BASE_REPORT), BASE_VIEWER: sha256_file(ROOT / BASE_VIEWER)}
+    protected = {**{p: sha256_file(ROOT / p) for p in study["source_hashes"]}, BASE_REPORT: sha256_file(ROOT / BASE_REPORT), BASE_VIEWER: sha256_file(ROOT / BASE_VIEWER)}
     result = export.write_study(study, tmp_path)
     assert result["geometry_changed"] is False and result["browser_required_for_this_pack"] is False
     assert {p.relative_to(tmp_path / OUT).as_posix() for p in tmp_path.rglob("*") if p.is_file()} == {"review.json", "summary.md", "product-checklist.json", "supplier-checklist.csv"}

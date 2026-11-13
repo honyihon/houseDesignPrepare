@@ -4,9 +4,11 @@ const path = require('node:path');
 const fs = require('node:fs');
 const os = require('node:os');
 const { execFileSync } = require('node:child_process');
+const { resolvePython } = require('./python.cjs');
 const root = path.resolve(__dirname, '../..');
+const python = resolvePython();
 const output = fs.mkdtempSync(path.join(os.tmpdir(), 'owner-workspace-qa-'));
-test.beforeAll(() => execFileSync(path.join(root, '.venv/bin/python'), ['-m', 'house_design', 'predesign', 'owner-workspace', '--output-root', output], { cwd: root }));
+test.beforeAll(() => execFileSync(python, ['-m', 'house_design', 'predesign', 'owner-workspace', '--output-root', output], { cwd: root }));
 for (const width of [1440, 390]) {
   test(`offline owner draft roundtrip ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: width === 390 ? 844 : 900 });
@@ -28,7 +30,7 @@ for (const width of [1440, 390]) {
     const draft = JSON.parse(fs.readFileSync(file, 'utf8'));
     expect(draft.rows).toHaveLength(1);
     expect(draft.rows[0].data.answer).toContain('完整生活');
-    const preview = JSON.parse(execFileSync(path.join(root, '.venv/bin/python'), ['-m', 'house_design', 'intake', 'owner-records-import', '--file', file], { cwd: root, encoding: 'utf8' }));
+    const preview = JSON.parse(execFileSync(python, ['-m', 'house_design', 'intake', 'owner-records-import', '--file', file], { cwd: root, encoding: 'utf8' }));
     expect(preview.mode).toBe('preview');
     expect(preview.count).toBe(1);
     await page.locator('#clear').click();
@@ -92,7 +94,6 @@ test('imported answers remain visible and correction is an append-only draft', a
   const workspace = JSON.parse(fs.readFileSync(path.join(output, 'owner-workspace.json'), 'utf8'));
   const file = path.join(fixture, 'test-draft.json');
   fs.writeFileSync(file, JSON.stringify({ schema: 'house-owner-draft-v1', project_id: workspace.project_id, source_hashes: workspace.source_hashes, record_hash: workspace.record_hash, rows: [{ id: 'TEST-record-1', kind: 'answer', target: 'PLAN-HOUSEHOLD-01', data: { answer: 'TEST ONLY / 已保存家庭討論' } }] }));
-  const python = path.join(root, '.venv/bin/python');
   execFileSync(python, ['-m', 'house_design', 'intake', 'owner-records-import', '--root', fixture, '--file', file, '--apply'], { cwd: root });
   execFileSync(python, ['-m', 'house_design', 'predesign', 'owner-workspace', '--root', fixture], { cwd: root });
   await page.goto(pathToFileURL(path.join(fixture, 'structured/predesign/owner-workspace.html')).href);

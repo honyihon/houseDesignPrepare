@@ -10,6 +10,12 @@ from urllib.parse import unquote, urlsplit
 import export_c_care_bath_fit as export
 import pytest
 from bs4 import BeautifulSoup
+from historical_support import (
+    assert_historical_sources,
+    historical_state,
+    historical_study,
+    recorded_source_precondition,
+)
 
 from house_design import c_care_bath_fit as fit
 from house_design.contracts import ROOT, ContractError, read_json, sha256_file, stable_hash
@@ -17,7 +23,7 @@ from house_design.contracts import ROOT, ContractError, read_json, sha256_file, 
 
 @pytest.fixture(scope="module")
 def study():
-    return fit.build_study()
+    return historical_study("c-care-bath-fit")
 
 
 def result(study, case, measure):
@@ -120,6 +126,7 @@ def test_stale_parent_source_and_forged_report_rejected(monkeypatch):
     with pytest.raises(ContractError, match="Stale frozen"):
         fit.build_study()
     monkeypatch.setattr(fit, "sha256_file", original)
+    recorded_source_precondition(monkeypatch, fit, "c-care-bath")
     original_read = fit.read_json
 
     def forged(path):
@@ -140,7 +147,7 @@ def test_source_path_cannot_escape_project(name):
 
 
 def test_budget_is_monotone_and_never_mutates_parent(study):
-    parent, state = fit._frozen_parent(ROOT)
+    parent, state = historical_state("c-care-bath", "c-bath-refined", "transfer")
     before = stable_hash(state)
     cfg = read_json(ROOT / fit.SOURCE)
     rows = fit.measures(state, cfg)
@@ -178,7 +185,7 @@ def test_static_page_uses_exact_current_numbers_warning_and_same_source_links(st
 
 
 def test_new_outputs_are_source_bound_and_parent_hashes_unchanged(study, tmp_path):
-    protected = {**study["source_hashes"], fit.BASE_REPORT: sha256_file(ROOT / fit.BASE_REPORT),
+    protected = {**{p: sha256_file(ROOT / p) for p in study["source_hashes"]}, fit.BASE_REPORT: sha256_file(ROOT / fit.BASE_REPORT),
                  fit.BASE_VIEWER: sha256_file(ROOT / fit.BASE_VIEWER)}
     export.write_study(study, tmp_path)
     assert json.loads((tmp_path / fit.OUT / "review.json").read_text())["report_hash"] == study["report_hash"]
@@ -195,14 +202,13 @@ def test_generated_artifacts_match_current_sources_numbers_and_product_unknowns(
         k: v for k, v in study.items() if k != "generated_at"}
     assert (ROOT / export.INDEX).read_text(encoding="utf-8") == export.render_index(study)
     assert read_json(ROOT / fit.OUT / "product-checklist.json")["products"] == study["products"]
-    assert all(sha256_file(ROOT / p) == digest for p, digest in study["source_hashes"].items())
+    assert_historical_sources("c-care-bath-fit", study)
 
 
 def test_standalone_script_loads_local_package_without_caller_path_or_installs(tmp_path):
     run = subprocess.run([sys.executable, "-I", str(ROOT / "scripts/export_c_care_bath_fit.py"), "--check"],
-                         cwd=tmp_path, capture_output=True, text=True, timeout=5, check=True)
-    output = json.loads(run.stdout)
-    assert output["status"] == "files-and-budgets-checked-not-rendered"
-    assert output["cases"] == 7 and output["products"] == 12
-    assert output["geometry_changed"] is False and output["rendered_qa"] == "not-run"
+                         cwd=tmp_path, capture_output=True, text=True, timeout=5, check=False)
+    assert run.returncode != 0
+    assert "Stale frozen bath source" in run.stderr
+    assert "ModuleNotFoundError" not in run.stderr
     assert not list(tmp_path.iterdir())

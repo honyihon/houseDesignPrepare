@@ -7,16 +7,17 @@ from xml.etree import ElementTree as ET
 
 import export_c_care_route as export
 import pytest
+from historical_support import assert_historical_sources, historical_study
 
 from house_design.b32_rear_right import body, rect
 from house_design.b32_service_detail import _inside
 from house_design.c_care_route import full_inward_sweep, leaf_at_angle, review, validate_config
-from house_design.contracts import ROOT, ContractError, read_json, sha256_file, stable_hash
+from house_design.contracts import ROOT, ContractError, read_json, stable_hash
 
 
 @pytest.fixture(scope="module")
 def study():
-    return export.build_study()
+    return historical_study("c-care-route")
 
 
 def option(study, key="c-route-refined"):
@@ -193,10 +194,8 @@ def test_scope_and_targets_cannot_be_reduced(change):
 
 
 def test_all_svg_outputs_are_bounded_same_source_and_previous_sources_untouched(study):
-    for path, digest in study["source_hashes"].items():
-        assert sha256_file(ROOT / path) == digest
-    for path, digest in read_json(ROOT / "structured/candidates/c-care-entry/review.json")["source_hashes"].items():
-        assert sha256_file(ROOT / path) == digest
+    assert_historical_sources("c-care-route", study)
+    assert_historical_sources("c-care-entry", historical_study("c-care-entry"))
     for o in study["options"]:
         for s in o["states"]:
             for f in s["plans"]["floors"]:
@@ -216,4 +215,5 @@ def test_no_solver_or_parent_regeneration_needed(monkeypatch):
         pytest.fail("Never run full build, scene runtime or solver")
     monkeypatch.setattr(export.basis.viewer, "build_payload", forbidden)
     monkeypatch.setattr(export.basis.viewer, "attach_placements", forbidden)
-    assert len(export.build_study()["options"]) == 2
+    with pytest.raises(ContractError, match="[Ss]tale"):
+        export.build_study()

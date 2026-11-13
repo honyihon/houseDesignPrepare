@@ -5,9 +5,10 @@ const { execFileSync } = require('node:child_process');
 const { pathToFileURL } = require('node:url');
 const { test, expect } = require('@playwright/test');
 const { assertNoFrameworkOverlay, expectNoUnexpectedConsole, monitorConsole } = require('./helpers.cjs');
+const { resolvePython } = require('./python.cjs');
 
 const root = path.resolve(__dirname, '../..');
-const python = process.env.PYTHON || path.join(root, '.venv', process.platform === 'win32' ? 'Scripts/python.exe' : 'bin/python');
+const python = resolvePython();
 let directory;
 test.beforeAll(() => {
   if (process.env.HOUSE_COORDINATION_E2E_DIR) {

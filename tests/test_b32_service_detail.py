@@ -5,6 +5,7 @@ import sys
 from xml.etree import ElementTree as ET
 
 import pytest
+from historical_support import assert_historical_sources, historical_study
 
 from house_design.b32_service_detail import (
     SOURCE,
@@ -42,7 +43,9 @@ def change(root, transform, name=SOURCE):
 
 def test_real_public_sources_are_current_and_studies_never_adopt_or_reduce_original_goals():
     report = build_service_detail()
-    assert report["embedded_source_mismatches"] == []
+    frozen = historical_study("b32-entry-options")
+    drift = assert_historical_sources("b32-entry-options", frozen)["observed_source_drift"]
+    assert report["embedded_source_mismatches"] == list(drift)
     assert report["frame_mm"] == [6000, 17630] and report["land_ping"] <= 32
     assert report["professional_approval"] == "unknown" and report["rendered_qa"] == "not-run"
     assert set(report["gates"].values()) == {"unknown"}
