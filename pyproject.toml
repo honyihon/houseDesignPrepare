@@ -9,8 +9,9 @@ requires-python = ">=3.10"
 dependencies = [
   "beautifulsoup4==4.14.3",
   "reportlab==4.4.10",
-  # Ordinary planning modules use geometry too; it is not limited to drawing imports.
-  "shapely>=2.0,<3",
+  # Used by ordinary planning too. Pin the version recorded in sealed geometry reports;
+  # Shapely version metadata participates in their deterministic report hashes.
+  "shapely==2.1.2",
   # 1.6 pulls rlPyCairo/pycairo, which has no cross-platform wheel for every
   # supported interpreter. 1.5.1 keeps SVG conversion pure Python in CI.
   "svglib==1.5.1",

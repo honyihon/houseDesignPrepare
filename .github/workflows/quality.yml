@@ -4,6 +4,10 @@ on:
   push:
   pull_request:
 
+env:
+  # Chinese project files and subprocess text must use the same encoding on Windows and Linux.
+  PYTHONUTF8: "1"
+
 jobs:
   test:
     strategy:

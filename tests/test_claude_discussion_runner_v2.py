@@ -114,7 +114,8 @@ def test_timeout_stops_only_own_process_group_without_retry(monkeypatch, tmp_pat
 
     monkeypatch.setattr(runner.shutil, "which", lambda name: "/usr/bin/claude")
     monkeypatch.setattr(runner.subprocess, "Popen", FakeProcess)
-    monkeypatch.setattr(runner.os, "killpg", lambda pid, sig: groups.append((pid, sig)))
+    # This fake-process harness exercises the WSL/POSIX group API on Windows CI too.
+    monkeypatch.setattr(runner.os, "killpg", lambda pid, sig: groups.append((pid, sig)), raising=False)
     assert runner.main(["--brief", str(brief), "--model", "claude-exact-id", "--output", str(output)]) == 1
     record = json.loads((output/"result.json").read_text())
     assert record["status"] == "timeout-no-completed-discussion" and record["own_process_group_closed"]

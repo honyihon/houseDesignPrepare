@@ -206,7 +206,7 @@ def test_generated_artifacts_match_current_sources_numbers_and_product_unknowns(
 
 
 def test_standalone_script_loads_local_package_without_caller_path_or_installs(tmp_path):
-    run = subprocess.run([sys.executable, "-I", str(ROOT / "scripts/export_c_care_bath_fit.py"), "--check"],
+    run = subprocess.run([sys.executable, "-X", "utf8", "-I", str(ROOT / "scripts/export_c_care_bath_fit.py"), "--check"],
                          cwd=tmp_path, capture_output=True, text=True, timeout=5, check=False)
     assert run.returncode != 0
     assert "Stale frozen bath source" in run.stderr

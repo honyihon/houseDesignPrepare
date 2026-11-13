@@ -245,7 +245,7 @@ def test_exporter_only_writes_new_package_not_any_parent(study, tmp_path, monkey
 
 
 def test_direct_script_works_in_isolated_python_from_other_directory(tmp_path):
-    result = subprocess.run([sys.executable, "-I", str(ROOT / "scripts/export_c_care_bath_door.py"), "--check"],
+    result = subprocess.run([sys.executable, "-X", "utf8", "-I", str(ROOT / "scripts/export_c_care_bath_door.py"), "--check"],
                             cwd=tmp_path, capture_output=True, text=True, check=False, timeout=5)
     assert result.returncode != 0 and "Stale frozen bath source" in result.stderr
     assert "ModuleNotFoundError" not in result.stderr

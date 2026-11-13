@@ -109,7 +109,7 @@ def test_bad_source_windows_remain_pending_not_clipped_or_reinvented(payload):
     # The former A entry window was removed when entry and living were merged.
     changed = copy.deepcopy(payload["buildings"])
     shrine = next(c for c in changed[1]["floors"][0]["cells"] if c["id"] == "B:floor-1:shrine")
-    door = next(d for d in shrine["tour_features"]["doors"] if d["face"] == "front" and d["neighbor"] is None)
+    door = next(d for d in shrine["tour_features"]["doors"] if d["face"] == "front" and d.get("purpose") == "ritual-entry")
     shrine["tour_features"]["window_ratio"] = door["ratio"]
     rebuilt = build_facade(changed, payload["standards"])
     invalid = next(o for b in rebuilt["buildings"] for o in b["openings"]

@@ -95,6 +95,14 @@ def test_backup_repairs_both_side_clearances_without_reducing_care_or_adding_spa
                 if bid == "B" and fid == "floor-2":
                     assert normalized["rooms"]["master-bath2"]["kind"] == "bath"
                     normalized["rooms"]["master-bath2"].pop("kind")
+                if bid == "C" and fid == "floor-2":
+                    for key, fields in {
+                        "kitchen2f": {"window_mm": 1200, "window_face": "rear",
+                            "window_note": "240cm牆候選改120cm窗，取代超出牆長的舊310cm值；窗框、柱梁及有效採光通風仍待核。"},
+                        "rear-hall": {"window_mm": 600, "window_face": "rear"},
+                    }.items():
+                        for field, value in fields.items():
+                            assert normalized["rooms"][key].pop(field) == value
                 if bid == "C" and fid in {"floor-2", "floor-3"}:
                     living_key = "living2f" if fid == "floor-2" else "master3f"
                     other_key = "guestroom2f" if fid == "floor-2" else "fitness3f"
