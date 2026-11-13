@@ -20,13 +20,14 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-import export_model_3d as model3d
-from lib.dimension_overrides import load_overrides
-from lib.model3d_facade import build_facade, render_elevation
-from lib.model3d_placement import _candidate, _issues, overlaps
-from lib.model3d_plan import plan_data, render_plan
+import export_model_3d as model3d  # noqa: E402
+from lib.dimension_overrides import load_overrides  # noqa: E402
+from lib.model3d_facade import build_facade, render_elevation  # noqa: E402
+from lib.model3d_placement import _candidate, _issues, overlaps  # noqa: E402
+from lib.model3d_plan import plan_data, render_plan  # noqa: E402
 from lib.model3d_space_efficiency import comparison_source_review  # noqa: E402
-from house_design.rendering import encode_html_json
+
+from house_design.rendering import encode_html_json  # noqa: E402
 
 SOURCE = ROOT / "inputs/preparation-review.json"
 SCENARIOS = ROOT / "inputs/abc-use-scenarios.json"
@@ -328,7 +329,7 @@ def c_products(building: dict, core: dict) -> None:
         route = unit["route"]
         route["polyline_mm"][0][1] = unit["y_mm"]
         route["estimated_routed_length_mm"] = sum(math.dist(a, b) for a, b in zip(
-            route["polyline_mm"], route["polyline_mm"][1:])) + route["bend_service_allowance_mm"]
+            route["polyline_mm"], route["polyline_mm"][1:], strict=False)) + route["bend_service_allowance_mm"]
 
 
 def b_products(building: dict) -> None:
@@ -447,8 +448,8 @@ def body_screen(building: dict) -> dict:
                         failures.append({"item": item["id"], "issue": "body-over-" + zone["kind"]})
                     if p.get("operation_mm") and overlaps(p["operation_mm"], bounds):
                         shared.append({"item": item["id"], "issue": "operation-shares-" + zone["kind"], "status": "not-verified-simultaneous-use"})
-        for index, (c, i, p) in enumerate(objects):
-            for d, j, q in objects[index + 1:]:
+        for index, (_c, i, p) in enumerate(objects):
+            for _d, j, q in objects[index + 1:]:
                 z1, z2 = i.get("mount_height_mm", 0), j.get("mount_height_mm", 0)
                 if overlaps(p["aabb"], q["aabb"]) and z1 < z2 + j["height_mm"] and z2 < z1 + i["height_mm"]:
                     failures.append({"items": [i["id"], j["id"]], "issue": "fixed-body-overlap"})

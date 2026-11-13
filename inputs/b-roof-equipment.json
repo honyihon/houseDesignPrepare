@@ -1,0 +1,58 @@
+{
+  "schema": "house-b-roof-equipment-v1",
+  "date": "2026-11-10",
+  "adopted": false,
+  "parent_report": "structured/coordination/b-working-court-v1/review.json",
+  "service_report": "structured/coordination/b-front-service-detail-v1/review.json",
+  "pinned_sources": {
+    "structured/coordination/b-working-court-v1/review.json": "86fd21e80521907005a53fc506fff99b8c7421d709b7ca31e8a07d09e802a790",
+    "structured/coordination/b-working-court-v1/artifact-manifest.json": "b1908bbe5877e51f14eb0fa820b6b132c5513e664332d8c6489cda8154d05d24",
+    "inputs/abc-fresh-air-layout-options.json": "244a19fb3e44c81d6af95e8ee354836ca1f777cd7d2559cd312812ac6cb94ed7",
+    "inputs/abc-fresh-air-detail.json": "7a0967c5cff5eaa507e0a420a9c1e694255562ccdc69f511ae801472649a61ec",
+    "inputs/b-ventilation-detail.json": "523b9c931c4f36caea62072031fe2d3c82cbea852d4ddf33e86827443b3c10f8",
+    "structured/coordination/b-front-service-detail-v1/review.json": "a51324d7699cfba56479f83a5e4eaa24ef5c9d45782c302c79e5fe779d4f2edd"
+  },
+  "protected_controls": "inputs/abc-next-protected-controls.json",
+  "frame_mm": [6000, 17630],
+  "edge_budget_mm": 115,
+  "route_width_mm": 700,
+  "proposed_RF_front_door": {"a": [1150, 3900], "b": [2280, 3900], "hinge": "right", "opens": "inside"},
+  "front_door_swing_budget_mm": [1150, 2770, 1130, 1130],
+  "daily_front_route_mm": [[1715, 3400], [1715, 2500], [3500, 2500]],
+  "front_inspection_route_mm": [[2850, 4400], [5350, 4400], [5350, 1100], [3720, 1100]],
+  "front_slots": [
+    {"id": "representative-slot-1", "rect_mm": [3270, 115, 900, 350], "envelope_mm": [3270, 115, 900, 1350]},
+    {"id": "representative-slot-2", "rect_mm": [4985, 115, 900, 350], "envelope_mm": [4985, 115, 900, 1350]}
+  ],
+  "relocated_existing_units": [
+    {"id": "B-AC03", "rect_mm": [3715, 14085, 900, 350], "envelope_mm": [3715, 13085, 900, 1350]},
+    {"id": "B-AC04", "rect_mm": [4985, 14085, 900, 350], "envelope_mm": [4985, 13085, 900, 1350]}
+  ],
+  "rear_air_zone_mm": [1015, 13700, 1400, 1800],
+  "front_dirty_zone_mm": [115, 1515, 700, 700],
+  "rear_soil_vent_mm": [5485, 15700, 400, 400],
+  "indoor_ERV_rotated_candidate_mm": [4170, 13085, 1600, 1000],
+  "enlargement_each_edge_cases_mm": [0, 100, 200],
+  "options": [
+    {"id": "S1-front-heat-pump", "title": "S1 前熱泵／後水塔，優先核維修", "tank_mm": [3715, 14615, 1500, 2000], "heat_pump_mm": [115, 115, 2000, 1250]},
+    {"id": "S2-rear-wet-pair", "title": "S2 後段水塔＋熱泵，保較大前平台", "tank_mm": [3715, 14500, 1770, 1700], "heat_pump_mm": [3715, 16265, 2000, 1250]}
+  ],
+  "limits": [
+    "沿R1留RF左板帶作獨立設備配置，原R0／R1／R2、Q1／Q2、ABC主3D與兩種搬轎版本不變；本批沒有採用或施工許可。",
+    "水塔／泵浦與熱泵只預留整組位置，分別至少3與2.5㎡；不是選定產品，也不證明水量、重量、固定、防颱、散熱與檢修成立。",
+    "原B-AC03／04研究位置壓新版3F客床投影，本批提案移至後右公共到達上方；原尺寸及身分保留，冷媒、冷凝水、最大管長／高差、振動及窗外聲音全部需重核。",
+    "前兩代表槽只作原三樓設備的替代預留，身分與採購數未定；小移使其留在115mm邊緣預算內，不當新增兩台或替換B-AC03／04。",
+    "三樓天井地面4.123㎡及RF洞2.639㎡沿用R1；水塔／熱泵避完整祭祀、武轎庫與列明床體，管線與支承不因平面避讓就取得家規或結構核可。",
+    "RF前帶名義23.4㎡本來就小於24㎡活動曬衣目標；扣設備、門片及路線後更少。原24㎡目標保留，10㎡下限不是已同意縮平台；不借後保護區或三樓天井補算。",
+    "既有RF側門外是祭祀保護投影，只沿用必要巡檢，不當日常曬衣通路。另比RF前門直出前平台，門與樓梯到達平台、消防／屋突及防雨未核；本批不改各層樓梯。",
+    "後段沒有計日常曬衣面積，通過保護投影只限列明必要巡檢；不為湊24㎡就放寬家規。",
+    "後浴廁空氣區、前污氣出口區與原400污水通氣井分開留，沒有把浴廁空氣、污水通氣、雨水或一般新風接成一管；出口數量與容量、全部支管尚未核定。",
+    "B1香火源頭排氣及過濾補氣仍獨立，屋頂出口未定不當取消，也不混入一般ERV。新風優先沿既有室內分區方向，不將非戶外機硬搬RF。",
+    "舊B2／B3新風1600×1000包絡會碰本輪浴室；另比同尺寸轉回乾區，天花450高度、側抽、架梯和整機拆換仍未知，檢修不得讓唯一通路失效。",
+    "前後OA／EA外口備案保留；熱泵、浴廁污氣與香火可能造成回吸，實際高度、風向、排放權利及廠商距離規定未到，不用平面距離當通過。",
+    "本批只核固定預留包絡與700方塊，水塔／熱泵未有真實機身；試線到預留區邊緣，不當能實際操作、拆整機或承載。",
+    "S2水塔與熱泵僅隔65mm，水塔與原後井零預留間隙；這是包絡緊迫，不是原廠可用間隙，額外100／200mm敏感度需另看。",
+    "條件模板只回算所需完整包絡是否在此預留內，不自動移設備、縮需求、選機、併主圖或把數值相容當專業核可；未知不填0。",
+    "KTV額外100mm後19.2079㎡、前量體新增10.647㎡、P3前排水及天井壓2F乾區防水問題仍保留，屋頂試排不解除它們。"
+  ]
+}

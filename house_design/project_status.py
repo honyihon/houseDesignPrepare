@@ -66,7 +66,7 @@ def read_public_json(root: Path, relative: str) -> dict:
 
 
 def inspect_project(root: Path) -> dict[str, Any]:
-    """Compare declared source hashes only; do not execute package validators."""
+    """Compare declared source/optional artifact hashes; do not execute package validators."""
     index = read_public_json(root, INDEX)
     if index.get("schema") != "house-project-status-index-v1":
         raise ValueError("Unsupported project status index")
@@ -78,11 +78,16 @@ def inspect_project(root: Path) -> dict[str, Any]:
         raise ValueError("Package IDs must be unique nonempty strings")
     if index.get("default_package") not in ids:
         raise ValueError("Default package is not indexed")
+    if any(p.get("check_scope", "current") not in {"current", "history"} for p in packages):
+        raise ValueError("Package check_scope must be current or history")
+    default = next(p for p in packages if p["id"] == index["default_package"])
+    if default.get("check_scope", "current") != "current":
+        raise ValueError("Default package cannot point to archived history")
     cache: dict[str, str] = {}
     results = []
     for package in packages:
         failures, changed, artifacts = [], [], {}
-        for key in ("document", "entry", "viewer", "report"):
+        for key in ("document", "entry", "viewer", "report", "manifest"):
             if package.get(key) is not None:
                 try:
                     artifacts[key] = {"path": package[key], "sha256": digest(root, package[key], cache)}
@@ -113,6 +118,30 @@ def inspect_project(root: Path) -> dict[str, Any]:
                 failures.append({"field": "report", "issue": str(exc)})
         if failures:
             source_state = "source-check-incomplete"
+        artifact_state, artifact_count = "not-declared", 0
+        if package.get("manifest") is not None:
+            try:
+                manifest = read_public_json(root, package["manifest"])
+                if manifest.get("report_hash") != report.get("report_hash") or not manifest.get("report_hash"):
+                    raise ValueError("Artifact manifest/report identity mismatch")
+                declared = manifest.get("artifacts")
+                if not isinstance(declared, dict) or not declared:
+                    raise ValueError("Missing declared artifact hashes")
+                for name, expected in declared.items():
+                    if (not isinstance(name, str) or not name or "/" in name or "\\" in name
+                            or name in {".", ".."} or name.startswith(".")
+                            or not isinstance(expected, str) or len(expected) != 64
+                            or any(c not in "0123456789abcdef" for c in expected)):
+                        raise ValueError("Invalid same-package artifact path or SHA-256")
+                    relative = (PurePosixPath(package["manifest"]).parent/name).as_posix()
+                    actual = digest(root, relative, cache)
+                    artifact_count += 1
+                    if actual != expected:
+                        failures.append({"field": "manifest", "path": relative, "issue": "Declared artifact hash changed"})
+                artifact_state = "artifact-changed" if any(f["field"] == "manifest" for f in failures) else "declared-artifact-hashes-match"
+            except (OSError, ValueError) as exc:
+                artifact_state = "artifact-check-incomplete"
+                failures.append({"field": "manifest", "issue": str(exc)})
         raw_result = None
         raw_state = ("not-required-no-new-viewer" if package.get("role") == "data-only-no-new-viewer"
                      and package.get("viewer") is None else "not-imported")
@@ -125,7 +154,9 @@ def inspect_project(root: Path) -> dict[str, Any]:
                 failures.append({"field": "raw_result", "issue": str(exc)})
         results.append({
             "id": package["id"], "label": package.get("label", package["id"]), "role": package.get("role"),
+            "check_scope": package.get("check_scope", "current"),
             "source_state": source_state, "declared_sources": source_count, "changed_sources": changed,
+            "artifact_state": artifact_state, "declared_artifacts": artifact_count,
             "issues": failures, "artifacts": artifacts, "design_adopted": report.get("adopted", "unknown"),
             "owner_reported_run": package.get("owner_reported_run"),
             "owner_reported_status": package.get("owner_reported_status"),
@@ -136,29 +167,31 @@ def inspect_project(root: Path) -> dict[str, Any]:
     return {"schema": "house-project-status-check-v1", "index_updated_at": index.get("updated_at"),
         "default_package": index["default_package"], "packages": results, "work_items": index.get("work_items", []),
         "sources_hashed": len(cache), "writes_performed": False, "browser_started": False,
-        "scope": "Declared source hashes and file presence only; no report seal, render, product or design approval"}
+        "scope": "Declared source/optional artifact hashes and file presence only; no report seal, render, product or design approval"}
 
 
-def source_checks_current(result: dict) -> bool:
+def source_checks_current(result: dict, *, include_history: bool = False) -> bool:
     return all(not p["issues"] and not p["changed_sources"]
                and (p["role"] == "history-reference" or p["source_state"] == "declared-source-hashes-match")
-               for p in result["packages"])
+               for p in result["packages"] if include_history or p.get("check_scope", "current") == "current")
 
 
 def render_status(result: dict) -> str:
     lines = ["# 專案來源與驗收索引（唯讀）", "",
-        "只查宣告來源雜湊與檔案存在；不驗報告封印、不生成圖、不啟動瀏覽器、不接受QA或採用方案。", "",
-        "| 入口 | 來源狀態 | 已宣告來源數 | 原始QA |", "| --- | --- | ---: | --- |"]
+        "只查宣告來源／有提供的產物雜湊與檔案存在；不驗報告封印、不生成圖、不啟動瀏覽器、不接受QA或採用方案。", "",
+        "--check預設只要求現行規劃來源相符；歷史差異照列，--include-history才一併作為退出碼條件。", "",
+        "| 入口 | 範圍 | 來源狀態 | 已宣告來源數 | 產物狀態 | 原始QA |", "| --- | --- | --- | ---: | --- | --- |"]
     for package in result["packages"]:
         label = package["label"].replace("|", "／")
-        lines.append(f"| {label} | {package['source_state']} | {package['declared_sources']} | {package['raw_result_state']} |")
+        lines.append(f"| {label} | {package.get('check_scope', 'current')} | {package['source_state']} | {package['declared_sources']} | {package.get('artifact_state', 'not-declared')} | {package['raw_result_state']} |")
     if any(p["changed_sources"] or p["issues"] for p in result["packages"]):
         lines += ["", "## 來源差異／待補檔案", ""]
     for package in result["packages"]:
         for changed in package["changed_sources"]:
             lines.append(f"- {package['id']}：來源已改 `{changed['path']}`，舊結果不沿用。")
         for issue in package["issues"]:
-            lines.append(f"- {package['id']}：{issue['field']}：{issue['issue']}")
+            location = " `"+issue["path"]+"`" if issue.get("path") else ""
+            lines.append(f"- {package['id']}：{issue['field']}{location}：{issue['issue']}")
     lines += ["", "屋主回報passed與文件歷史紀錄不等於本次來源驗證；有原始result也仍需專用驗證器與截圖目視。",
         "來源更動先釐清上游重建與鎖定快照，不自動重產、不只更新預期雜湊、不盲跑瀏覽器。"]
     return "\n".join(lines) + "\n"

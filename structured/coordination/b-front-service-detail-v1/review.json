@@ -1,0 +1,5033 @@
+{
+  "schema": "house-b-front-service-detail-report-v1",
+  "date": "2026-11-09",
+  "config": {
+    "schema": "house-b-front-service-detail-v1",
+    "date": "2026-11-09",
+    "adopted": false,
+    "parent_report": "structured/coordination/b-upper-replan-v1/review.json",
+    "parent_option": "front-wet-foyer",
+    "protected_controls": "inputs/abc-next-protected-controls.json",
+    "pinned_sources": {
+      "inputs/b-upper-replan.json": "83621a2af81211b06ff4dc2c9e8557641c1d551b05195605acd7a6ad7b1df3f5",
+      "house_design/b_upper_replan.py": "a251d37dc84bd54b9292b6802180ca7fd66c679a7e43dc714b3fed160dc2e5c5",
+      "scripts/export_b_upper_replan.py": "3a3cc271cf7d9fc20759d4bca17b582ab672f551981c6e8c1c20933192c09a3d",
+      "structured/coordination/b-upper-replan-v1/review.json": "38897b7ca1da091dd62c85ab342abd4d1d1da220ec1dbad9a5f46e6611f4906d",
+      "structured/coordination/b-upper-replan-v1/artifact-manifest.json": "c1fe7bab76b8032224f7ce271671db0f94fb3ef91c702adc355fd1bcd6b8d915"
+    },
+    "shared_shaft_mm": [
+      115,
+      1780,
+      400,
+      400
+    ],
+    "dry_maintenance_mm": [
+      115,
+      2180,
+      700,
+      900
+    ],
+    "public_fixtures": [
+      {
+        "id": "shower",
+        "label": "原900×900淋浴移至前左",
+        "rect_mm": [
+          115,
+          115,
+          900,
+          900
+        ],
+        "operation_mm": [
+          1015,
+          115,
+          700,
+          900
+        ]
+      },
+      {
+        "id": "toilet",
+        "label": "原450×700馬桶轉向、背靠右實牆候選",
+        "rect_mm": [
+          2455,
+          1415,
+          700,
+          450
+        ],
+        "operation_mm": [
+          1755,
+          1165,
+          700,
+          700
+        ]
+      },
+      {
+        "id": "basin",
+        "label": "原600×450面盆",
+        "rect_mm": [
+          2555,
+          115,
+          600,
+          450
+        ],
+        "operation_mm": [
+          2555,
+          565,
+          600,
+          700
+        ]
+      }
+    ],
+    "tea_furniture": [
+      {
+        "id": "tea-counter",
+        "label": "原1500×600濕茶水台移至右牆",
+        "rect_mm": [
+          2555,
+          2135,
+          600,
+          1500
+        ],
+        "operation_mm": [
+          1855,
+          2135,
+          700,
+          1500
+        ]
+      }
+    ],
+    "sliders": [
+      {
+        "id": "bath",
+        "label": "公衛雙扇右疊候選",
+        "a": [
+          1150,
+          1980
+        ],
+        "b": [
+          2280,
+          1980
+        ],
+        "leaf_width_mm": 660,
+        "leaf_thickness_mm": 45,
+        "track_gap_mm": 40,
+        "track_y_mm": [
+          1980,
+          2065
+        ],
+        "closed_x_mm": [
+          1100,
+          1670
+        ],
+        "park_x_mm": [
+          2330,
+          2330
+        ],
+        "frame_budget_each_mm": 115,
+        "clear_target_mm": 900
+      },
+      {
+        "id": "stair",
+        "label": "梯廳／前室雙扇左疊候選",
+        "a": [
+          1150,
+          3900
+        ],
+        "b": [
+          2280,
+          3900
+        ],
+        "leaf_width_mm": 660,
+        "leaf_thickness_mm": 45,
+        "track_gap_mm": 40,
+        "track_y_mm": [
+          3770,
+          3855
+        ],
+        "closed_x_mm": [
+          1100,
+          1670
+        ],
+        "park_x_mm": [
+          440,
+          440
+        ],
+        "frame_budget_each_mm": 115,
+        "clear_target_mm": 900
+      }
+    ],
+    "routes": [
+      {
+        "id": "public-arrival",
+        "width_mm": 900,
+        "points_mm": [
+          [
+            1715,
+            4400
+          ],
+          [
+            1715,
+            3335
+          ],
+          [
+            1715,
+            2585
+          ],
+          [
+            1715,
+            1415
+          ]
+        ],
+        "purpose": "梯廳經可關前室至公衛的一般900方塊；茶水操作與通行分時"
+      },
+      {
+        "id": "public-shower-operation",
+        "width_mm": 700,
+        "points_mm": [
+          [
+            1715,
+            1415
+          ],
+          [
+            1715,
+            665
+          ],
+          [
+            1365,
+            665
+          ]
+        ],
+        "purpose": "公衛內至淋浴操作帶的一般700方塊"
+      },
+      {
+        "id": "dry-maintenance",
+        "width_mm": 700,
+        "points_mm": [
+          [
+            1715,
+            4400
+          ],
+          [
+            1715,
+            2630
+          ],
+          [
+            465,
+            2630
+          ]
+        ],
+        "purpose": "梯廳至管井乾側檢修預留，不穿公衛；工具、拆管與操作高度尚未核"
+      }
+    ],
+    "branch_fixture_ids": [
+      "toilet",
+      "basin",
+      "tea-counter",
+      "shower"
+    ],
+    "open_items": [
+      "前側每層新增12.753㎡室內輪廓沿用P2，須納入正式量體、結構及申照；不能沿用原陽台免計或自行封陽台。",
+      "同一400×400管井跨公衛／前室名義界線；實際牆厚、耐火／防水、管徑、通氣與支承尚未設計，管井不當無損可用面積。",
+      "700×900乾側檢修區、檢修門高度、清掃口密封與整管拆換包絡需原廠／機電圖；檢修口不朝茶水台上方。",
+      "兩組雙扇疊門的660×45葉片、40軌間距及230總框預算僅幾何候選；實際淨寬、把手、止擋、門框補強、操作力、濕區耐久與外救援未核。",
+      "樓梯／前室是否須防火、隔煙、自閉及合格門組由正式消防／建築設計決定；本候選門不能當防火門或關門後已通風。",
+      "短偏移不等於完整排水較短；器具中心折線只是同起算高程敏感度，真實排出口、彎頭、存水彎與立管接入標高尚缺。",
+      "最有利200結構＋150管含支撐＋50檢修假設，完整WC／面盆／茶水線仍低於3500比較目標，不能宣稱騎樓淨高已解決。",
+      "1F落水候選仍占原梯核0.16㎡；必須以實際梁板、梯段／平台、檢修與防火證明不縮樓梯、不擋騎樓，無證據不施工。",
+      "兩衛外窗仍只是朝街／後側合法外口候選；新風、2F／3F公衛各自獨排補氣、乾濕分區、防雨／隱私及所有出口需合圖。",
+      "完整支管與騎樓剖面表只核2F列明器具；3F支管、立管、2F匯流、通氣、同時流量與井內容量均未設計，不借2F敏感度當整棟排水完成。",
+      "P1／P2、原ABC／3D、兩個1F入口各三態與屋頂均保留；3F娛樂僅14.3141㎡及上下層聲學／振動缺口仍在。"
+    ]
+  },
+  "option": "P3",
+  "source_layout_report_sha256": "38897b7ca1da091dd62c85ab342abd4d1d1da220ec1dbad9a5f46e6611f4906d",
+  "floors": [
+    {
+      "id": "floor-2",
+      "rooms": [
+        {
+          "id": "stair",
+          "label": "原同軸樓梯／平台，未改本體",
+          "polygon_mm": [
+            [
+              2400.0,
+              3900.0
+            ],
+            [
+              2400.0,
+              9100.0
+            ],
+            [
+              0.0,
+              9100.0
+            ],
+            [
+              0.0,
+              3900.0
+            ]
+          ],
+          "kind": "dry",
+          "items": [],
+          "shafts_mm": [],
+          "doors": [],
+          "windows_mm": []
+        },
+        {
+          "id": "quiet-living",
+          "label": "安靜起居／閱讀，禁睡及高活動",
+          "polygon_mm": [
+            [
+              6000.0,
+              3900.0
+            ],
+            [
+              2400.0,
+              3900.0
+            ],
+            [
+              2400.0,
+              9100.0
+            ],
+            [
+              0.0,
+              9100.0
+            ],
+            [
+              0.0,
+              11370.0
+            ],
+            [
+              6000.0,
+              11370.0
+            ],
+            [
+              6000.0,
+              9100.0
+            ]
+          ],
+          "kind": "dry",
+          "items": [
+            {
+              "id": "sofa",
+              "label": "原1800×900沙發",
+              "rect_mm": [
+                4950,
+                5700,
+                900,
+                1800
+              ],
+              "operation_mm": [
+                4250,
+                5700,
+                700,
+                1800
+              ]
+            },
+            {
+              "id": "table",
+              "label": "原1100×600茶几",
+              "rect_mm": [
+                3600,
+                6050,
+                600,
+                1100
+              ]
+            },
+            {
+              "id": "tv",
+              "label": "原1000×80電視",
+              "rect_mm": [
+                2550,
+                6200,
+                80,
+                1000
+              ]
+            }
+          ],
+          "shafts_mm": [],
+          "doors": [
+            {
+              "a": [
+                4200,
+                3900
+              ],
+              "b": [
+                5330,
+                3900
+              ],
+              "hinge": "right",
+              "opens": "inside",
+              "swing_rect_mm": [
+                4200,
+                3900,
+                1130,
+                1130
+              ]
+            }
+          ],
+          "windows_mm": []
+        },
+        {
+          "id": "dry-protection",
+          "label": "獨立乾保護室，禁床／濕管設備",
+          "polygon_mm": [
+            [
+              4670.0,
+              11370.0
+            ],
+            [
+              4670.0,
+              12970.0
+            ],
+            [
+              2640.0,
+              12970.0
+            ],
+            [
+              2640.0,
+              11370.0
+            ]
+          ],
+          "kind": "dry",
+          "items": [],
+          "shafts_mm": [],
+          "doors": [
+            {
+              "a": [
+                2850,
+                11370
+              ],
+              "b": [
+                3980,
+                11370
+              ],
+              "hinge": "left",
+              "opens": "inside",
+              "swing_rect_mm": [
+                2850,
+                11370,
+                1130,
+                1130
+              ]
+            }
+          ],
+          "windows_mm": []
+        },
+        {
+          "id": "public-bath",
+          "label": "前側有窗公衛",
+          "polygon_mm": [
+            [
+              3270.0,
+              0.0
+            ],
+            [
+              3270.0,
+              1980.0
+            ],
+            [
+              0.0,
+              1980.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "kind": "wet",
+          "items": [
+            {
+              "id": "shower",
+              "label": "原900×900淋浴移至前左",
+              "rect_mm": [
+                115,
+                115,
+                900,
+                900
+              ],
+              "operation_mm": [
+                1015,
+                115,
+                700,
+                900
+              ]
+            },
+            {
+              "id": "toilet",
+              "label": "原450×700馬桶轉向、背靠右實牆候選",
+              "rect_mm": [
+                2455,
+                1415,
+                700,
+                450
+              ],
+              "operation_mm": [
+                1755,
+                1165,
+                700,
+                700
+              ]
+            },
+            {
+              "id": "basin",
+              "label": "原600×450面盆",
+              "rect_mm": [
+                2555,
+                115,
+                600,
+                450
+              ],
+              "operation_mm": [
+                2555,
+                565,
+                600,
+                700
+              ]
+            }
+          ],
+          "shafts_mm": [
+            [
+              115,
+              1780,
+              400,
+              400
+            ]
+          ],
+          "doors": [],
+          "windows_mm": [
+            [
+              2050,
+              0,
+              1000,
+              0
+            ]
+          ]
+        },
+        {
+          "id": "front-open",
+          "label": "普通露台／景觀候選與獨立設備區",
+          "polygon_mm": [
+            [
+              6000.0,
+              3900.0
+            ],
+            [
+              6000.0,
+              0.0
+            ],
+            [
+              3270.0,
+              0.0
+            ],
+            [
+              3270.0,
+              3900.0
+            ]
+          ],
+          "kind": "dry",
+          "items": [],
+          "shafts_mm": [],
+          "doors": [],
+          "windows_mm": []
+        },
+        {
+          "id": "tea-foyer",
+          "label": "濕茶水前室",
+          "polygon_mm": [
+            [
+              3270.0,
+              1980.0
+            ],
+            [
+              3270.0,
+              3900.0
+            ],
+            [
+              0.0,
+              3900.0
+            ],
+            [
+              0.0,
+              1980.0
+            ]
+          ],
+          "kind": "wet",
+          "items": [
+            {
+              "id": "tea-counter",
+              "label": "原1500×600濕茶水台移至右牆",
+              "rect_mm": [
+                2555,
+                2135,
+                600,
+                1500
+              ],
+              "operation_mm": [
+                1855,
+                2135,
+                700,
+                1500
+              ]
+            }
+          ],
+          "shafts_mm": [
+            [
+              115,
+              1780,
+              400,
+              400
+            ]
+          ],
+          "doors": [],
+          "windows_mm": []
+        },
+        {
+          "id": "master",
+          "label": "主臥乾區（含更衣與入口）",
+          "polygon_mm": [
+            [
+              6000.0,
+              11370.0
+            ],
+            [
+              4670.0,
+              11370.0
+            ],
+            [
+              4670.0,
+              12970.0
+            ],
+            [
+              2640.0,
+              12970.0
+            ],
+            [
+              2640.0,
+              11370.0
+            ],
+            [
+              0.0,
+              11370.0
+            ],
+            [
+              0.0,
+              17630.0
+            ],
+            [
+              3600.0,
+              17630.0
+            ],
+            [
+              3600.0,
+              14500.0
+            ],
+            [
+              6000.0,
+              14500.0
+            ]
+          ],
+          "kind": "bedroom",
+          "items": [
+            {
+              "id": "bed",
+              "label": "原1800×2000床轉向／床頭靠左實牆",
+              "rect_mm": [
+                150,
+                15000,
+                2000,
+                1800
+              ],
+              "operation_mm": [
+                2150,
+                15000,
+                900,
+                1800
+              ]
+            },
+            {
+              "id": "wardrobe",
+              "label": "原1800×600衣櫃",
+              "rect_mm": [
+                250,
+                13100,
+                1800,
+                600
+              ],
+              "operation_mm": [
+                250,
+                13700,
+                1800,
+                700
+              ]
+            },
+            {
+              "id": "vanity",
+              "label": "原1200×500梳妝台轉向",
+              "rect_mm": [
+                150,
+                11600,
+                500,
+                1200
+              ],
+              "operation_mm": [
+                650,
+                11600,
+                700,
+                1200
+              ]
+            }
+          ],
+          "shafts_mm": [],
+          "doors": [
+            {
+              "a": [
+                4770,
+                11370
+              ],
+              "b": [
+                5900,
+                11370
+              ],
+              "hinge": "right",
+              "opens": "inside",
+              "swing_rect_mm": [
+                4770,
+                11370,
+                1130,
+                1130
+              ]
+            }
+          ],
+          "windows_mm": [
+            [
+              750,
+              17630,
+              2400,
+              0
+            ]
+          ]
+        },
+        {
+          "id": "private-bath",
+          "label": "後右有窗套衛",
+          "polygon_mm": [
+            [
+              6000.0,
+              14500.0
+            ],
+            [
+              6000.0,
+              17630.0
+            ],
+            [
+              3600.0,
+              17630.0
+            ],
+            [
+              3600.0,
+              14500.0
+            ]
+          ],
+          "kind": "wet",
+          "items": [
+            {
+              "id": "basin",
+              "label": "原900×550盆櫃轉向",
+              "rect_mm": [
+                5335,
+                14615,
+                550,
+                900
+              ],
+              "operation_mm": [
+                4635,
+                14615,
+                700,
+                900
+              ]
+            },
+            {
+              "id": "toilet",
+              "label": "原450×700馬桶轉向",
+              "rect_mm": [
+                3850,
+                14615,
+                700,
+                450
+              ],
+              "operation_mm": [
+                3850,
+                15065,
+                700,
+                700
+              ]
+            },
+            {
+              "id": "shower",
+              "label": "原900淋浴",
+              "rect_mm": [
+                4985,
+                16615,
+                900,
+                900
+              ],
+              "operation_mm": [
+                4285,
+                16615,
+                700,
+                900
+              ]
+            }
+          ],
+          "shafts_mm": [
+            [
+              5485,
+              15700,
+              400,
+              400
+            ]
+          ],
+          "doors": [
+            {
+              "a": [
+                3600,
+                15100
+              ],
+              "b": [
+                3600,
+                16230
+              ],
+              "hinge": "rear",
+              "opens": "outside-left",
+              "swing_rect_mm": [
+                2470,
+                15100,
+                1130,
+                1130
+              ]
+            }
+          ],
+          "windows_mm": [
+            [
+              4750,
+              17630,
+              900,
+              0
+            ]
+          ]
+        }
+      ],
+      "areas": [
+        {
+          "id": "stair",
+          "label": "原同軸樓梯／平台，未改本體",
+          "nominal_sqm": 12.48,
+          "cases": [
+            {
+              "inset_each_mm": 80,
+              "outline_sqm": 11.2896,
+              "after_reserved_shafts_screens_sqm": 11.2896
+            },
+            {
+              "inset_each_mm": 115,
+              "outline_sqm": 10.7849,
+              "after_reserved_shafts_screens_sqm": 10.7849
+            },
+            {
+              "inset_each_mm": 150,
+              "outline_sqm": 10.29,
+              "after_reserved_shafts_screens_sqm": 10.29
+            }
+          ],
+          "net115_sqm": 10.7849
+        },
+        {
+          "id": "quiet-living",
+          "label": "安靜起居／閱讀，禁睡及高活動",
+          "nominal_sqm": 32.34,
+          "cases": [
+            {
+              "inset_each_mm": 80,
+              "outline_sqm": 30.2104,
+              "after_reserved_shafts_screens_sqm": 30.2104
+            },
+            {
+              "inset_each_mm": 115,
+              "outline_sqm": 29.2948,
+              "after_reserved_shafts_screens_sqm": 29.2948
+            },
+            {
+              "inset_each_mm": 150,
+              "outline_sqm": 28.389,
+              "after_reserved_shafts_screens_sqm": 28.389
+            }
+          ],
+          "net115_sqm": 29.2948
+        },
+        {
+          "id": "dry-protection",
+          "label": "獨立乾保護室，禁床／濕管設備",
+          "nominal_sqm": 3.248,
+          "cases": [
+            {
+              "inset_each_mm": 80,
+              "outline_sqm": 2.6928,
+              "after_reserved_shafts_screens_sqm": 2.6928
+            },
+            {
+              "inset_each_mm": 115,
+              "outline_sqm": 2.466,
+              "after_reserved_shafts_screens_sqm": 2.466
+            },
+            {
+              "inset_each_mm": 150,
+              "outline_sqm": 2.249,
+              "after_reserved_shafts_screens_sqm": 2.249
+            }
+          ],
+          "net115_sqm": 2.466
+        },
+        {
+          "id": "public-bath",
+          "label": "前側有窗公衛",
+          "nominal_sqm": 6.4746,
+          "cases": [
+            {
+              "inset_each_mm": 80,
+              "outline_sqm": 5.6602,
+              "after_reserved_shafts_screens_sqm": 5.6122
+            },
+            {
+              "inset_each_mm": 115,
+              "outline_sqm": 5.32,
+              "after_reserved_shafts_screens_sqm": 5.286
+            },
+            {
+              "inset_each_mm": 150,
+              "outline_sqm": 4.9896,
+              "after_reserved_shafts_screens_sqm": 4.97135
+            }
+          ],
+          "net115_sqm": 5.286
+        },
+        {
+          "id": "front-open",
+          "label": "普通露台／景觀候選與獨立設備區",
+          "nominal_sqm": 10.647,
+          "cases": [
+            {
+              "inset_each_mm": 80,
+              "outline_sqm": 9.6118,
+              "after_reserved_shafts_screens_sqm": 9.6118
+            },
+            {
+              "inset_each_mm": 115,
+              "outline_sqm": 9.175,
+              "after_reserved_shafts_screens_sqm": 9.175
+            },
+            {
+              "inset_each_mm": 150,
+              "outline_sqm": 8.748,
+              "after_reserved_shafts_screens_sqm": 8.748
+            }
+          ],
+          "net115_sqm": 9.175
+        },
+        {
+          "id": "tea-foyer",
+          "label": "濕茶水前室",
+          "nominal_sqm": 6.2784,
+          "cases": [
+            {
+              "inset_each_mm": 80,
+              "outline_sqm": 5.4736,
+              "after_reserved_shafts_screens_sqm": 5.4256
+            },
+            {
+              "inset_each_mm": 115,
+              "outline_sqm": 5.1376,
+              "after_reserved_shafts_screens_sqm": 5.1036
+            },
+            {
+              "inset_each_mm": 150,
+              "outline_sqm": 4.8114,
+              "after_reserved_shafts_screens_sqm": 4.79315
+            }
+          ],
+          "net115_sqm": 5.1036
+        },
+        {
+          "id": "master",
+          "label": "主臥乾區（含更衣與入口）",
+          "nominal_sqm": 26.8,
+          "cases": [
+            {
+              "inset_each_mm": 80,
+              "outline_sqm": 24.608,
+              "after_reserved_shafts_screens_sqm": 24.608
+            },
+            {
+              "inset_each_mm": 115,
+              "outline_sqm": 23.6651,
+              "after_reserved_shafts_screens_sqm": 23.6651
+            },
+            {
+              "inset_each_mm": 150,
+              "outline_sqm": 22.732,
+              "after_reserved_shafts_screens_sqm": 22.732
+            }
+          ],
+          "net115_sqm": 23.6651
+        },
+        {
+          "id": "private-bath",
+          "label": "後右有窗套衛",
+          "nominal_sqm": 7.512,
+          "cases": [
+            {
+              "inset_each_mm": 80,
+              "outline_sqm": 6.6528,
+              "after_reserved_shafts_screens_sqm": 6.4928
+            },
+            {
+              "inset_each_mm": 115,
+              "outline_sqm": 6.293,
+              "after_reserved_shafts_screens_sqm": 6.133
+            },
+            {
+              "inset_each_mm": 150,
+              "outline_sqm": 5.943,
+              "after_reserved_shafts_screens_sqm": 5.797
+            }
+          ],
+          "net115_sqm": 6.133
+        }
+      ],
+      "partition": {
+        "overlaps": [],
+        "unallocated_sqm": 0.0,
+        "outside_frame_sqm": 0.0
+      },
+      "fixtures": {
+        "body_hits": [],
+        "operation_body_hits": [],
+        "operation_shared": [],
+        "not_inside_115": [],
+        "shaft_body_hits": [],
+        "shaft_operation_hits": [],
+        "fully_open_door_body_hits": [],
+        "sampled_swing_body_hits": []
+      },
+      "routes": [
+        {
+          "id": "master-to-ensuite",
+          "width_mm": 900,
+          "points_mm": [
+            [
+              5335,
+              10800
+            ],
+            [
+              5335,
+              12270
+            ],
+            [
+              5335,
+              13700
+            ],
+            [
+              3035,
+              13700
+            ],
+            [
+              3035,
+              15665
+            ],
+            [
+              4165,
+              15665
+            ]
+          ],
+          "purpose": "列明一般身體方塊至套衛，門全開；非輪椅運動學",
+          "within_model_floor": true,
+          "outside_sqm": 0.0,
+          "body_hits": [],
+          "shaft_hits": [],
+          "door_states": [
+            {
+              "angle_deg": 90,
+              "hits": []
+            },
+            {
+              "angle_deg": 45,
+              "hits": [
+                "master:door-0",
+                "private-bath:door-0"
+              ]
+            },
+            {
+              "angle_deg": 0,
+              "hits": [
+                "master:door-0",
+                "private-bath:door-0"
+              ]
+            }
+          ],
+          "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+        },
+        {
+          "id": "master-to-bed-foot",
+          "width_mm": 900,
+          "points_mm": [
+            [
+              5335,
+              10800
+            ],
+            [
+              5335,
+              12270
+            ],
+            [
+              5335,
+              13700
+            ],
+            [
+              3000,
+              13700
+            ],
+            [
+              3000,
+              14450
+            ],
+            [
+              2600,
+              14450
+            ],
+            [
+              2600,
+              15550
+            ]
+          ],
+          "purpose": "列明方塊至床尾；不宣稱整圈雙人照護",
+          "within_model_floor": true,
+          "outside_sqm": 0.0,
+          "body_hits": [],
+          "shaft_hits": [],
+          "door_states": [
+            {
+              "angle_deg": 90,
+              "hits": []
+            },
+            {
+              "angle_deg": 45,
+              "hits": [
+                "master:door-0",
+                "private-bath:door-0"
+              ]
+            },
+            {
+              "angle_deg": 0,
+              "hits": [
+                "master:door-0"
+              ]
+            }
+          ],
+          "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+        },
+        {
+          "id": "ensuite-shower-operation",
+          "width_mm": 700,
+          "points_mm": [
+            [
+              4165,
+              15665
+            ],
+            [
+              4635,
+              16000
+            ],
+            [
+              4635,
+              17065
+            ]
+          ],
+          "purpose": "套衛入口至淋浴操作帶一般方塊，非照護",
+          "within_model_floor": true,
+          "outside_sqm": 0.0,
+          "body_hits": [],
+          "shaft_hits": [],
+          "door_states": [
+            {
+              "angle_deg": 90,
+              "hits": []
+            },
+            {
+              "angle_deg": 45,
+              "hits": []
+            },
+            {
+              "angle_deg": 0,
+              "hits": []
+            }
+          ],
+          "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+        }
+      ],
+      "religious_projection": [
+        {
+          "room": "public-bath",
+          "kind": "wet",
+          "over_shrine_or_backing_sqm": 0.0,
+          "over_palanquin_sqm": 0.0,
+          "prohibited_overlap": false,
+          "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+        },
+        {
+          "room": "tea-foyer",
+          "kind": "wet",
+          "over_shrine_or_backing_sqm": 0.0,
+          "over_palanquin_sqm": 0.0,
+          "prohibited_overlap": false,
+          "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+        },
+        {
+          "room": "master",
+          "kind": "bedroom",
+          "over_shrine_or_backing_sqm": 0.0,
+          "over_palanquin_sqm": 10.4229,
+          "prohibited_overlap": false,
+          "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+        },
+        {
+          "room": "private-bath",
+          "kind": "wet",
+          "over_shrine_or_backing_sqm": 0.0,
+          "over_palanquin_sqm": 0.0,
+          "prohibited_overlap": false,
+          "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+        }
+      ],
+      "windows": [
+        {
+          "room": "public-bath",
+          "rect_mm": [
+            2050,
+            0,
+            1000,
+            0
+          ],
+          "on_room_boundary": true,
+          "legal_effective_opening": "unknown",
+          "side_boundary_assumed_open": false
+        },
+        {
+          "room": "master",
+          "rect_mm": [
+            750,
+            17630,
+            2400,
+            0
+          ],
+          "on_room_boundary": true,
+          "legal_effective_opening": "unknown",
+          "side_boundary_assumed_open": false
+        },
+        {
+          "room": "private-bath",
+          "rect_mm": [
+            4750,
+            17630,
+            900,
+            0
+          ],
+          "on_room_boundary": true,
+          "legal_effective_opening": "unknown",
+          "side_boundary_assumed_open": false
+        }
+      ],
+      "bedroom_largest_axis_rect": {
+        "master": {
+          "rect_mm": [
+            115.0,
+            13085.0,
+            3370.0,
+            4430.0
+          ],
+          "area_sqm": 14.9291,
+          "method": "orthogonal-vertex-grid-enumeration"
+        }
+      },
+      "front": {
+        "routes": [
+          {
+            "id": "public-arrival",
+            "width_mm": 900,
+            "points_mm": [
+              [
+                1715,
+                4400
+              ],
+              [
+                1715,
+                3335
+              ],
+              [
+                1715,
+                2585
+              ],
+              [
+                1715,
+                1415
+              ]
+            ],
+            "purpose": "梯廳經可關前室至公衛的一般900方塊；茶水操作與通行分時",
+            "within_model_floor": true,
+            "body_hits": [],
+            "shaft_hit": false,
+            "operation_shared": [
+              "public-bath:shower",
+              "public-bath:toilet",
+              "tea-foyer:tea-counter"
+            ],
+            "actual_access": "unknown-rectangles-not-person-or-wheelchair-kinematics"
+          },
+          {
+            "id": "public-shower-operation",
+            "width_mm": 700,
+            "points_mm": [
+              [
+                1715,
+                1415
+              ],
+              [
+                1715,
+                665
+              ],
+              [
+                1365,
+                665
+              ]
+            ],
+            "purpose": "公衛內至淋浴操作帶的一般700方塊",
+            "within_model_floor": true,
+            "body_hits": [],
+            "shaft_hit": false,
+            "operation_shared": [
+              "public-bath:shower",
+              "public-bath:toilet"
+            ],
+            "actual_access": "unknown-rectangles-not-person-or-wheelchair-kinematics"
+          },
+          {
+            "id": "dry-maintenance",
+            "width_mm": 700,
+            "points_mm": [
+              [
+                1715,
+                4400
+              ],
+              [
+                1715,
+                2630
+              ],
+              [
+                465,
+                2630
+              ]
+            ],
+            "purpose": "梯廳至管井乾側檢修預留，不穿公衛；工具、拆管與操作高度尚未核",
+            "within_model_floor": true,
+            "body_hits": [],
+            "shaft_hit": false,
+            "operation_shared": [
+              "tea-foyer:tea-counter"
+            ],
+            "actual_access": "unknown-rectangles-not-person-or-wheelchair-kinematics"
+          }
+        ],
+        "door_combinations": [
+          {
+            "states": {
+              "bath": "open",
+              "stair": "open"
+            },
+            "panels": [
+              {
+                "door": "bath",
+                "leaf": 1,
+                "rect_mm": [
+                  2330,
+                  1980,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "bath",
+                "leaf": 2,
+                "rect_mm": [
+                  2330,
+                  2065,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 1,
+                "rect_mm": [
+                  440,
+                  3770,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 2,
+                "rect_mm": [
+                  440,
+                  3855,
+                  660,
+                  45
+                ]
+              }
+            ],
+            "route_blockers": [
+              {
+                "route": "public-arrival",
+                "doors": []
+              },
+              {
+                "route": "public-shower-operation",
+                "doors": []
+              },
+              {
+                "route": "dry-maintenance",
+                "doors": []
+              }
+            ],
+            "body_hits": [],
+            "shaft_hit": false,
+            "maintenance_hit": false,
+            "panel_overlap": false,
+            "clear_widths_mm": {
+              "bath": 900.0,
+              "stair": 900.0
+            },
+            "door_occupancy_in_tea_finish_sqm": 0.0198
+          },
+          {
+            "states": {
+              "bath": "open",
+              "stair": "half"
+            },
+            "panels": [
+              {
+                "door": "bath",
+                "leaf": 1,
+                "rect_mm": [
+                  2330,
+                  1980,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "bath",
+                "leaf": 2,
+                "rect_mm": [
+                  2330,
+                  2065,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 1,
+                "rect_mm": [
+                  770.0,
+                  3770,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 2,
+                "rect_mm": [
+                  1055.0,
+                  3855,
+                  660,
+                  45
+                ]
+              }
+            ],
+            "route_blockers": [
+              {
+                "route": "public-arrival",
+                "doors": [
+                  "stair"
+                ]
+              },
+              {
+                "route": "public-shower-operation",
+                "doors": []
+              },
+              {
+                "route": "dry-maintenance",
+                "doors": [
+                  "stair"
+                ]
+              }
+            ],
+            "body_hits": [],
+            "shaft_hit": false,
+            "maintenance_hit": false,
+            "panel_overlap": false,
+            "clear_widths_mm": {
+              "bath": 900.0,
+              "stair": 450.0
+            },
+            "door_occupancy_in_tea_finish_sqm": 0.0198
+          },
+          {
+            "states": {
+              "bath": "open",
+              "stair": "closed"
+            },
+            "panels": [
+              {
+                "door": "bath",
+                "leaf": 1,
+                "rect_mm": [
+                  2330,
+                  1980,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "bath",
+                "leaf": 2,
+                "rect_mm": [
+                  2330,
+                  2065,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 1,
+                "rect_mm": [
+                  1100,
+                  3770,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 2,
+                "rect_mm": [
+                  1670,
+                  3855,
+                  660,
+                  45
+                ]
+              }
+            ],
+            "route_blockers": [
+              {
+                "route": "public-arrival",
+                "doors": [
+                  "stair"
+                ]
+              },
+              {
+                "route": "public-shower-operation",
+                "doors": []
+              },
+              {
+                "route": "dry-maintenance",
+                "doors": [
+                  "stair"
+                ]
+              }
+            ],
+            "body_hits": [],
+            "shaft_hit": false,
+            "maintenance_hit": false,
+            "panel_overlap": false,
+            "clear_widths_mm": {
+              "bath": 900.0,
+              "stair": 0.0
+            },
+            "door_occupancy_in_tea_finish_sqm": 0.0198
+          },
+          {
+            "states": {
+              "bath": "half",
+              "stair": "open"
+            },
+            "panels": [
+              {
+                "door": "bath",
+                "leaf": 1,
+                "rect_mm": [
+                  1715.0,
+                  1980,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "bath",
+                "leaf": 2,
+                "rect_mm": [
+                  2000.0,
+                  2065,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 1,
+                "rect_mm": [
+                  440,
+                  3770,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 2,
+                "rect_mm": [
+                  440,
+                  3855,
+                  660,
+                  45
+                ]
+              }
+            ],
+            "route_blockers": [
+              {
+                "route": "public-arrival",
+                "doors": [
+                  "bath"
+                ]
+              },
+              {
+                "route": "public-shower-operation",
+                "doors": []
+              },
+              {
+                "route": "dry-maintenance",
+                "doors": []
+              }
+            ],
+            "body_hits": [],
+            "shaft_hit": false,
+            "maintenance_hit": false,
+            "panel_overlap": false,
+            "clear_widths_mm": {
+              "bath": 450.0,
+              "stair": 900.0
+            },
+            "door_occupancy_in_tea_finish_sqm": 0.0198
+          },
+          {
+            "states": {
+              "bath": "half",
+              "stair": "half"
+            },
+            "panels": [
+              {
+                "door": "bath",
+                "leaf": 1,
+                "rect_mm": [
+                  1715.0,
+                  1980,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "bath",
+                "leaf": 2,
+                "rect_mm": [
+                  2000.0,
+                  2065,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 1,
+                "rect_mm": [
+                  770.0,
+                  3770,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 2,
+                "rect_mm": [
+                  1055.0,
+                  3855,
+                  660,
+                  45
+                ]
+              }
+            ],
+            "route_blockers": [
+              {
+                "route": "public-arrival",
+                "doors": [
+                  "bath",
+                  "stair"
+                ]
+              },
+              {
+                "route": "public-shower-operation",
+                "doors": []
+              },
+              {
+                "route": "dry-maintenance",
+                "doors": [
+                  "stair"
+                ]
+              }
+            ],
+            "body_hits": [],
+            "shaft_hit": false,
+            "maintenance_hit": false,
+            "panel_overlap": false,
+            "clear_widths_mm": {
+              "bath": 450.0,
+              "stair": 450.0
+            },
+            "door_occupancy_in_tea_finish_sqm": 0.0198
+          },
+          {
+            "states": {
+              "bath": "half",
+              "stair": "closed"
+            },
+            "panels": [
+              {
+                "door": "bath",
+                "leaf": 1,
+                "rect_mm": [
+                  1715.0,
+                  1980,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "bath",
+                "leaf": 2,
+                "rect_mm": [
+                  2000.0,
+                  2065,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 1,
+                "rect_mm": [
+                  1100,
+                  3770,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 2,
+                "rect_mm": [
+                  1670,
+                  3855,
+                  660,
+                  45
+                ]
+              }
+            ],
+            "route_blockers": [
+              {
+                "route": "public-arrival",
+                "doors": [
+                  "bath",
+                  "stair"
+                ]
+              },
+              {
+                "route": "public-shower-operation",
+                "doors": []
+              },
+              {
+                "route": "dry-maintenance",
+                "doors": [
+                  "stair"
+                ]
+              }
+            ],
+            "body_hits": [],
+            "shaft_hit": false,
+            "maintenance_hit": false,
+            "panel_overlap": false,
+            "clear_widths_mm": {
+              "bath": 450.0,
+              "stair": 0.0
+            },
+            "door_occupancy_in_tea_finish_sqm": 0.0198
+          },
+          {
+            "states": {
+              "bath": "closed",
+              "stair": "open"
+            },
+            "panels": [
+              {
+                "door": "bath",
+                "leaf": 1,
+                "rect_mm": [
+                  1100,
+                  1980,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "bath",
+                "leaf": 2,
+                "rect_mm": [
+                  1670,
+                  2065,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 1,
+                "rect_mm": [
+                  440,
+                  3770,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 2,
+                "rect_mm": [
+                  440,
+                  3855,
+                  660,
+                  45
+                ]
+              }
+            ],
+            "route_blockers": [
+              {
+                "route": "public-arrival",
+                "doors": [
+                  "bath"
+                ]
+              },
+              {
+                "route": "public-shower-operation",
+                "doors": []
+              },
+              {
+                "route": "dry-maintenance",
+                "doors": []
+              }
+            ],
+            "body_hits": [],
+            "shaft_hit": false,
+            "maintenance_hit": false,
+            "panel_overlap": false,
+            "clear_widths_mm": {
+              "bath": 0.0,
+              "stair": 900.0
+            },
+            "door_occupancy_in_tea_finish_sqm": 0.0198
+          },
+          {
+            "states": {
+              "bath": "closed",
+              "stair": "half"
+            },
+            "panels": [
+              {
+                "door": "bath",
+                "leaf": 1,
+                "rect_mm": [
+                  1100,
+                  1980,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "bath",
+                "leaf": 2,
+                "rect_mm": [
+                  1670,
+                  2065,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 1,
+                "rect_mm": [
+                  770.0,
+                  3770,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 2,
+                "rect_mm": [
+                  1055.0,
+                  3855,
+                  660,
+                  45
+                ]
+              }
+            ],
+            "route_blockers": [
+              {
+                "route": "public-arrival",
+                "doors": [
+                  "bath",
+                  "stair"
+                ]
+              },
+              {
+                "route": "public-shower-operation",
+                "doors": []
+              },
+              {
+                "route": "dry-maintenance",
+                "doors": [
+                  "stair"
+                ]
+              }
+            ],
+            "body_hits": [],
+            "shaft_hit": false,
+            "maintenance_hit": false,
+            "panel_overlap": false,
+            "clear_widths_mm": {
+              "bath": 0.0,
+              "stair": 450.0
+            },
+            "door_occupancy_in_tea_finish_sqm": 0.0198
+          },
+          {
+            "states": {
+              "bath": "closed",
+              "stair": "closed"
+            },
+            "panels": [
+              {
+                "door": "bath",
+                "leaf": 1,
+                "rect_mm": [
+                  1100,
+                  1980,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "bath",
+                "leaf": 2,
+                "rect_mm": [
+                  1670,
+                  2065,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 1,
+                "rect_mm": [
+                  1100,
+                  3770,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 2,
+                "rect_mm": [
+                  1670,
+                  3855,
+                  660,
+                  45
+                ]
+              }
+            ],
+            "route_blockers": [
+              {
+                "route": "public-arrival",
+                "doors": [
+                  "bath",
+                  "stair"
+                ]
+              },
+              {
+                "route": "public-shower-operation",
+                "doors": []
+              },
+              {
+                "route": "dry-maintenance",
+                "doors": [
+                  "stair"
+                ]
+              }
+            ],
+            "body_hits": [],
+            "shaft_hit": false,
+            "maintenance_hit": false,
+            "panel_overlap": false,
+            "clear_widths_mm": {
+              "bath": 0.0,
+              "stair": 0.0
+            },
+            "door_occupancy_in_tea_finish_sqm": 0.0198
+          }
+        ],
+        "dry_maintenance_mm": [
+          115,
+          2180,
+          700,
+          900
+        ],
+        "maintenance_inside_tea_finish": true,
+        "maintenance_body_hits": [],
+        "maintenance_shaft_overlap": false,
+        "door_axis_over_toilet_body": false,
+        "sliders_product_fire_smoke_rescue_and_actual_clear": "unknown",
+        "full_panel_translation": {
+          "envelopes": [
+            {
+              "door": "bath",
+              "rect_mm": [
+                1100,
+                1980,
+                1890,
+                45
+              ]
+            },
+            {
+              "door": "bath",
+              "rect_mm": [
+                1670,
+                2065,
+                1320,
+                45
+              ]
+            },
+            {
+              "door": "stair",
+              "rect_mm": [
+                440,
+                3770,
+                1320,
+                45
+              ]
+            },
+            {
+              "door": "stair",
+              "rect_mm": [
+                440,
+                3855,
+                1890,
+                45
+              ]
+            }
+          ],
+          "body_hits": [],
+          "shaft_hit": false,
+          "maintenance_hit": false,
+          "outside_nominal_front_enclosure": false
+        },
+        "shared_shaft_within_enclosure_and_straddles_both_rooms": true,
+        "fixed_body_clearance_to_parked_panels_mm": {
+          "bath_counter": 25.0,
+          "stair_counter": 1461.2494653549065
+        },
+        "fixed_body_clearance_to_full_panel_translation_mm": {
+          "bath_counter": 25.0,
+          "stair_counter": 314.6823795511913
+        },
+        "counter_operation_and_passage_simultaneous": false
+      },
+      "area_ledger": {
+        "unique_physical_shaft_count_per_floor": 1,
+        "room_references": 2,
+        "gross_reserved_shaft_sqm": 0.16,
+        "finish_losses_sqm": {
+          "public-bath": 0.034,
+          "tea-foyer": 0.034
+        },
+        "already_excluded_partition_budget_sqm": 0.092,
+        "not_a_statutory_area_method": true,
+        "areas115_sqm": {
+          "stair": 10.7849,
+          "quiet-living": 29.2948,
+          "dry-protection": 2.466,
+          "public-bath": 5.286,
+          "front-open": 9.175,
+          "tea-foyer": 5.1036,
+          "master": 23.6651,
+          "private-bath": 6.133
+        },
+        "tea_after_worst_modeled_door_occupancy_sqm": 5.0838,
+        "full_panel_translation_reserved_in_tea_finish_sqm": 0.0396,
+        "tea_after_reserved_full_door_travel_sqm": 5.064
+      },
+      "unchanged_rooms_hash": "742b12bac87313ff991f07744171779edb0917dc023febd6d8b1c2759f2621e2"
+    },
+    {
+      "id": "floor-3",
+      "rooms": [
+        {
+          "id": "stair",
+          "label": "原同軸樓梯／平台，未改本體",
+          "polygon_mm": [
+            [
+              2400.0,
+              3900.0
+            ],
+            [
+              2400.0,
+              9100.0
+            ],
+            [
+              0.0,
+              9100.0
+            ],
+            [
+              0.0,
+              3900.0
+            ]
+          ],
+          "kind": "dry",
+          "items": [],
+          "shafts_mm": [],
+          "doors": [],
+          "windows_mm": []
+        },
+        {
+          "id": "quiet-living",
+          "label": "安靜起居／閱讀，禁睡及高活動",
+          "polygon_mm": [
+            [
+              6000.0,
+              3900.0
+            ],
+            [
+              2400.0,
+              3900.0
+            ],
+            [
+              2400.0,
+              9100.0
+            ],
+            [
+              0.0,
+              9100.0
+            ],
+            [
+              0.0,
+              11370.0
+            ],
+            [
+              6000.0,
+              11370.0
+            ],
+            [
+              6000.0,
+              9100.0
+            ]
+          ],
+          "kind": "dry",
+          "items": [
+            {
+              "id": "sofa",
+              "label": "原1800×900沙發",
+              "rect_mm": [
+                4950,
+                5700,
+                900,
+                1800
+              ],
+              "operation_mm": [
+                4250,
+                5700,
+                700,
+                1800
+              ]
+            },
+            {
+              "id": "table",
+              "label": "原1100×600茶几",
+              "rect_mm": [
+                3600,
+                6050,
+                600,
+                1100
+              ]
+            },
+            {
+              "id": "tv",
+              "label": "原1000×80電視",
+              "rect_mm": [
+                2550,
+                6200,
+                80,
+                1000
+              ]
+            }
+          ],
+          "shafts_mm": [],
+          "doors": [
+            {
+              "a": [
+                4200,
+                3900
+              ],
+              "b": [
+                5330,
+                3900
+              ],
+              "hinge": "right",
+              "opens": "inside",
+              "swing_rect_mm": [
+                4200,
+                3900,
+                1130,
+                1130
+              ]
+            }
+          ],
+          "windows_mm": []
+        },
+        {
+          "id": "dry-protection",
+          "label": "獨立乾保護室，禁床／濕管設備",
+          "polygon_mm": [
+            [
+              4670.0,
+              11370.0
+            ],
+            [
+              4670.0,
+              12970.0
+            ],
+            [
+              2640.0,
+              12970.0
+            ],
+            [
+              2640.0,
+              11370.0
+            ]
+          ],
+          "kind": "dry",
+          "items": [],
+          "shafts_mm": [],
+          "doors": [
+            {
+              "a": [
+                2850,
+                11370
+              ],
+              "b": [
+                3980,
+                11370
+              ],
+              "hinge": "left",
+              "opens": "inside",
+              "swing_rect_mm": [
+                2850,
+                11370,
+                1130,
+                1130
+              ]
+            }
+          ],
+          "windows_mm": []
+        },
+        {
+          "id": "public-bath",
+          "label": "前側有窗公衛",
+          "polygon_mm": [
+            [
+              3270.0,
+              0.0
+            ],
+            [
+              3270.0,
+              1980.0
+            ],
+            [
+              0.0,
+              1980.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "kind": "wet",
+          "items": [
+            {
+              "id": "shower",
+              "label": "原900×900淋浴移至前左",
+              "rect_mm": [
+                115,
+                115,
+                900,
+                900
+              ],
+              "operation_mm": [
+                1015,
+                115,
+                700,
+                900
+              ]
+            },
+            {
+              "id": "toilet",
+              "label": "原450×700馬桶轉向、背靠右實牆候選",
+              "rect_mm": [
+                2455,
+                1415,
+                700,
+                450
+              ],
+              "operation_mm": [
+                1755,
+                1165,
+                700,
+                700
+              ]
+            },
+            {
+              "id": "basin",
+              "label": "原600×450面盆",
+              "rect_mm": [
+                2555,
+                115,
+                600,
+                450
+              ],
+              "operation_mm": [
+                2555,
+                565,
+                600,
+                700
+              ]
+            }
+          ],
+          "shafts_mm": [
+            [
+              115,
+              1780,
+              400,
+              400
+            ]
+          ],
+          "doors": [],
+          "windows_mm": [
+            [
+              2050,
+              0,
+              1000,
+              0
+            ]
+          ]
+        },
+        {
+          "id": "front-open",
+          "label": "普通露台／景觀候選與獨立設備區",
+          "polygon_mm": [
+            [
+              6000.0,
+              3900.0
+            ],
+            [
+              6000.0,
+              0.0
+            ],
+            [
+              3270.0,
+              0.0
+            ],
+            [
+              3270.0,
+              3900.0
+            ]
+          ],
+          "kind": "dry",
+          "items": [],
+          "shafts_mm": [],
+          "doors": [],
+          "windows_mm": []
+        },
+        {
+          "id": "tea-foyer",
+          "label": "乾式前室／同軸濕管井，非無濕管室",
+          "polygon_mm": [
+            [
+              3270.0,
+              1980.0
+            ],
+            [
+              3270.0,
+              3900.0
+            ],
+            [
+              0.0,
+              3900.0
+            ],
+            [
+              0.0,
+              1980.0
+            ]
+          ],
+          "kind": "dry",
+          "items": [],
+          "shafts_mm": [
+            [
+              115,
+              1780,
+              400,
+              400
+            ]
+          ],
+          "doors": [],
+          "windows_mm": []
+        },
+        {
+          "id": "guest",
+          "label": "後左客房／乾擋板",
+          "polygon_mm": [
+            [
+              2640.0,
+              11370.0
+            ],
+            [
+              0.0,
+              11370.0
+            ],
+            [
+              0.0,
+              12970.0
+            ],
+            [
+              0.0,
+              17630.0
+            ],
+            [
+              2900.0,
+              17630.0
+            ],
+            [
+              2900.0,
+              12970.0
+            ],
+            [
+              2640.0,
+              12970.0
+            ]
+          ],
+          "kind": "bedroom",
+          "items": [
+            {
+              "id": "bed",
+              "label": "1800×2000客床轉向",
+              "rect_mm": [
+                150,
+                15100,
+                2000,
+                1800
+              ]
+            },
+            {
+              "id": "wardrobe",
+              "label": "1800×600櫃轉向",
+              "rect_mm": [
+                150,
+                13200,
+                600,
+                1800
+              ],
+              "operation_mm": [
+                750,
+                13200,
+                700,
+                1800
+              ]
+            },
+            {
+              "id": "screen",
+              "label": "100mm乾式遮擋板候選",
+              "rect_mm": [
+                115,
+                12970,
+                1685,
+                100
+              ]
+            }
+          ],
+          "shafts_mm": [],
+          "doors": [
+            {
+              "a": [
+                1105,
+                11370
+              ],
+              "b": [
+                2235,
+                11370
+              ],
+              "hinge": "left",
+              "opens": "inside",
+              "swing_rect_mm": [
+                1105,
+                11370,
+                1130,
+                1130
+              ]
+            }
+          ],
+          "windows_mm": [
+            [
+              250,
+              17630,
+              2400,
+              0
+            ]
+          ]
+        },
+        {
+          "id": "ktv-study",
+          "label": "後右娛樂候選（低於20㎡目標）",
+          "polygon_mm": [
+            [
+              6000.0,
+              17630.0
+            ],
+            [
+              6000.0,
+              11370.0
+            ],
+            [
+              4670.0,
+              11370.0
+            ],
+            [
+              4670.0,
+              12970.0
+            ],
+            [
+              2900.0,
+              12970.0
+            ],
+            [
+              2900.0,
+              17630.0
+            ]
+          ],
+          "kind": "high-activity",
+          "items": [
+            {
+              "id": "sofa",
+              "label": "1800×900沙發候選",
+              "rect_mm": [
+                3650,
+                16500,
+                1800,
+                900
+              ],
+              "operation_mm": [
+                3650,
+                15800,
+                1800,
+                700
+              ]
+            },
+            {
+              "id": "table",
+              "label": "1200×600桌候選",
+              "rect_mm": [
+                3950,
+                15000,
+                1200,
+                600
+              ]
+            },
+            {
+              "id": "tv",
+              "label": "1000×80壁掛螢幕候選",
+              "rect_mm": [
+                5750,
+                14200,
+                80,
+                1000
+              ]
+            }
+          ],
+          "shafts_mm": [
+            [
+              5485,
+              15700,
+              400,
+              400
+            ]
+          ],
+          "doors": [
+            {
+              "a": [
+                4770,
+                11370
+              ],
+              "b": [
+                5900,
+                11370
+              ],
+              "hinge": "right",
+              "opens": "inside",
+              "swing_rect_mm": [
+                4770,
+                11370,
+                1130,
+                1130
+              ]
+            }
+          ],
+          "windows_mm": [
+            [
+              3500,
+              17630,
+              2200,
+              0
+            ]
+          ]
+        }
+      ],
+      "areas": [
+        {
+          "id": "stair",
+          "label": "原同軸樓梯／平台，未改本體",
+          "nominal_sqm": 12.48,
+          "cases": [
+            {
+              "inset_each_mm": 80,
+              "outline_sqm": 11.2896,
+              "after_reserved_shafts_screens_sqm": 11.2896
+            },
+            {
+              "inset_each_mm": 115,
+              "outline_sqm": 10.7849,
+              "after_reserved_shafts_screens_sqm": 10.7849
+            },
+            {
+              "inset_each_mm": 150,
+              "outline_sqm": 10.29,
+              "after_reserved_shafts_screens_sqm": 10.29
+            }
+          ],
+          "net115_sqm": 10.7849
+        },
+        {
+          "id": "quiet-living",
+          "label": "安靜起居／閱讀，禁睡及高活動",
+          "nominal_sqm": 32.34,
+          "cases": [
+            {
+              "inset_each_mm": 80,
+              "outline_sqm": 30.2104,
+              "after_reserved_shafts_screens_sqm": 30.2104
+            },
+            {
+              "inset_each_mm": 115,
+              "outline_sqm": 29.2948,
+              "after_reserved_shafts_screens_sqm": 29.2948
+            },
+            {
+              "inset_each_mm": 150,
+              "outline_sqm": 28.389,
+              "after_reserved_shafts_screens_sqm": 28.389
+            }
+          ],
+          "net115_sqm": 29.2948
+        },
+        {
+          "id": "dry-protection",
+          "label": "獨立乾保護室，禁床／濕管設備",
+          "nominal_sqm": 3.248,
+          "cases": [
+            {
+              "inset_each_mm": 80,
+              "outline_sqm": 2.6928,
+              "after_reserved_shafts_screens_sqm": 2.6928
+            },
+            {
+              "inset_each_mm": 115,
+              "outline_sqm": 2.466,
+              "after_reserved_shafts_screens_sqm": 2.466
+            },
+            {
+              "inset_each_mm": 150,
+              "outline_sqm": 2.249,
+              "after_reserved_shafts_screens_sqm": 2.249
+            }
+          ],
+          "net115_sqm": 2.466
+        },
+        {
+          "id": "public-bath",
+          "label": "前側有窗公衛",
+          "nominal_sqm": 6.4746,
+          "cases": [
+            {
+              "inset_each_mm": 80,
+              "outline_sqm": 5.6602,
+              "after_reserved_shafts_screens_sqm": 5.6122
+            },
+            {
+              "inset_each_mm": 115,
+              "outline_sqm": 5.32,
+              "after_reserved_shafts_screens_sqm": 5.286
+            },
+            {
+              "inset_each_mm": 150,
+              "outline_sqm": 4.9896,
+              "after_reserved_shafts_screens_sqm": 4.97135
+            }
+          ],
+          "net115_sqm": 5.286
+        },
+        {
+          "id": "front-open",
+          "label": "普通露台／景觀候選與獨立設備區",
+          "nominal_sqm": 10.647,
+          "cases": [
+            {
+              "inset_each_mm": 80,
+              "outline_sqm": 9.6118,
+              "after_reserved_shafts_screens_sqm": 9.6118
+            },
+            {
+              "inset_each_mm": 115,
+              "outline_sqm": 9.175,
+              "after_reserved_shafts_screens_sqm": 9.175
+            },
+            {
+              "inset_each_mm": 150,
+              "outline_sqm": 8.748,
+              "after_reserved_shafts_screens_sqm": 8.748
+            }
+          ],
+          "net115_sqm": 9.175
+        },
+        {
+          "id": "tea-foyer",
+          "label": "乾式前室／同軸濕管井，非無濕管室",
+          "nominal_sqm": 6.2784,
+          "cases": [
+            {
+              "inset_each_mm": 80,
+              "outline_sqm": 5.4736,
+              "after_reserved_shafts_screens_sqm": 5.4256
+            },
+            {
+              "inset_each_mm": 115,
+              "outline_sqm": 5.1376,
+              "after_reserved_shafts_screens_sqm": 5.1036
+            },
+            {
+              "inset_each_mm": 150,
+              "outline_sqm": 4.8114,
+              "after_reserved_shafts_screens_sqm": 4.79315
+            }
+          ],
+          "net115_sqm": 5.1036
+        },
+        {
+          "id": "guest",
+          "label": "後左客房／乾擋板",
+          "nominal_sqm": 17.738,
+          "cases": [
+            {
+              "inset_each_mm": 80,
+              "outline_sqm": 16.298,
+              "after_reserved_shafts_screens_sqm": 16.1295
+            },
+            {
+              "inset_each_mm": 115,
+              "outline_sqm": 15.6841,
+              "after_reserved_shafts_screens_sqm": 15.5156
+            },
+            {
+              "inset_each_mm": 150,
+              "outline_sqm": 15.08,
+              "after_reserved_shafts_screens_sqm": 14.915
+            }
+          ],
+          "net115_sqm": 15.5156
+        },
+        {
+          "id": "ktv-study",
+          "label": "後右娛樂候選（低於20㎡目標）",
+          "nominal_sqm": 16.574,
+          "cases": [
+            {
+              "inset_each_mm": 80,
+              "outline_sqm": 15.102,
+              "after_reserved_shafts_screens_sqm": 14.942
+            },
+            {
+              "inset_each_mm": 115,
+              "outline_sqm": 14.4741,
+              "after_reserved_shafts_screens_sqm": 14.3141
+            },
+            {
+              "inset_each_mm": 150,
+              "outline_sqm": 13.856,
+              "after_reserved_shafts_screens_sqm": 13.71
+            }
+          ],
+          "net115_sqm": 14.3141
+        }
+      ],
+      "partition": {
+        "overlaps": [],
+        "unallocated_sqm": 0.0,
+        "outside_frame_sqm": 0.0
+      },
+      "fixtures": {
+        "body_hits": [],
+        "operation_body_hits": [],
+        "operation_shared": [],
+        "not_inside_115": [],
+        "shaft_body_hits": [],
+        "shaft_operation_hits": [],
+        "fully_open_door_body_hits": [],
+        "sampled_swing_body_hits": []
+      },
+      "routes": [
+        {
+          "id": "guest-arrival",
+          "width_mm": 700,
+          "points_mm": [
+            [
+              1670,
+              10800
+            ],
+            [
+              1670,
+              12270
+            ],
+            [
+              2175,
+              12270
+            ],
+            [
+              2175,
+              14500
+            ]
+          ],
+          "purpose": "客房乾擋板右繞一般試線；床尾僅635mm，並非700全環繞",
+          "within_model_floor": true,
+          "outside_sqm": 0.0,
+          "body_hits": [],
+          "shaft_hits": [],
+          "door_states": [
+            {
+              "angle_deg": 90,
+              "hits": []
+            },
+            {
+              "angle_deg": 45,
+              "hits": [
+                "guest:door-0"
+              ]
+            },
+            {
+              "angle_deg": 0,
+              "hits": [
+                "guest:door-0"
+              ]
+            }
+          ],
+          "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+        },
+        {
+          "id": "ktv-arrival",
+          "width_mm": 700,
+          "points_mm": [
+            [
+              5335,
+              10800
+            ],
+            [
+              5335,
+              12270
+            ],
+            [
+              5335,
+              13500
+            ],
+            [
+              3500,
+              13500
+            ],
+            [
+              3500,
+              16000
+            ]
+          ],
+          "purpose": "一般家具到達試線；聲學構造及設備未排",
+          "within_model_floor": true,
+          "outside_sqm": 0.0,
+          "body_hits": [],
+          "shaft_hits": [],
+          "door_states": [
+            {
+              "angle_deg": 90,
+              "hits": []
+            },
+            {
+              "angle_deg": 45,
+              "hits": [
+                "ktv-study:door-0"
+              ]
+            },
+            {
+              "angle_deg": 0,
+              "hits": [
+                "ktv-study:door-0"
+              ]
+            }
+          ],
+          "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+        }
+      ],
+      "religious_projection": [
+        {
+          "room": "public-bath",
+          "kind": "wet",
+          "over_shrine_or_backing_sqm": 0.0,
+          "over_palanquin_sqm": 0.0,
+          "prohibited_overlap": false,
+          "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+        },
+        {
+          "room": "guest",
+          "kind": "bedroom",
+          "over_shrine_or_backing_sqm": 0.0,
+          "over_palanquin_sqm": 9.077,
+          "prohibited_overlap": false,
+          "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+        },
+        {
+          "room": "ktv-study",
+          "kind": "high-activity",
+          "over_shrine_or_backing_sqm": 0.0,
+          "over_palanquin_sqm": 1.3459,
+          "prohibited_overlap": false,
+          "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+        }
+      ],
+      "windows": [
+        {
+          "room": "public-bath",
+          "rect_mm": [
+            2050,
+            0,
+            1000,
+            0
+          ],
+          "on_room_boundary": true,
+          "legal_effective_opening": "unknown",
+          "side_boundary_assumed_open": false
+        },
+        {
+          "room": "guest",
+          "rect_mm": [
+            250,
+            17630,
+            2400,
+            0
+          ],
+          "on_room_boundary": true,
+          "legal_effective_opening": "unknown",
+          "side_boundary_assumed_open": false
+        },
+        {
+          "room": "ktv-study",
+          "rect_mm": [
+            3500,
+            17630,
+            2200,
+            0
+          ],
+          "on_room_boundary": true,
+          "legal_effective_opening": "unknown",
+          "side_boundary_assumed_open": false
+        }
+      ],
+      "bedroom_largest_axis_rect": {
+        "guest": {
+          "rect_mm": [
+            115.0,
+            11485.0,
+            2410.0,
+            6030.0
+          ],
+          "area_sqm": 14.5323,
+          "method": "orthogonal-vertex-grid-enumeration"
+        }
+      },
+      "front": {
+        "routes": [
+          {
+            "id": "public-arrival",
+            "width_mm": 900,
+            "points_mm": [
+              [
+                1715,
+                4400
+              ],
+              [
+                1715,
+                3335
+              ],
+              [
+                1715,
+                2585
+              ],
+              [
+                1715,
+                1415
+              ]
+            ],
+            "purpose": "梯廳經可關前室至公衛的一般900方塊；茶水操作與通行分時",
+            "within_model_floor": true,
+            "body_hits": [],
+            "shaft_hit": false,
+            "operation_shared": [
+              "public-bath:shower",
+              "public-bath:toilet"
+            ],
+            "actual_access": "unknown-rectangles-not-person-or-wheelchair-kinematics"
+          },
+          {
+            "id": "public-shower-operation",
+            "width_mm": 700,
+            "points_mm": [
+              [
+                1715,
+                1415
+              ],
+              [
+                1715,
+                665
+              ],
+              [
+                1365,
+                665
+              ]
+            ],
+            "purpose": "公衛內至淋浴操作帶的一般700方塊",
+            "within_model_floor": true,
+            "body_hits": [],
+            "shaft_hit": false,
+            "operation_shared": [
+              "public-bath:shower",
+              "public-bath:toilet"
+            ],
+            "actual_access": "unknown-rectangles-not-person-or-wheelchair-kinematics"
+          },
+          {
+            "id": "dry-maintenance",
+            "width_mm": 700,
+            "points_mm": [
+              [
+                1715,
+                4400
+              ],
+              [
+                1715,
+                2630
+              ],
+              [
+                465,
+                2630
+              ]
+            ],
+            "purpose": "梯廳至管井乾側檢修預留，不穿公衛；工具、拆管與操作高度尚未核",
+            "within_model_floor": true,
+            "body_hits": [],
+            "shaft_hit": false,
+            "operation_shared": [],
+            "actual_access": "unknown-rectangles-not-person-or-wheelchair-kinematics"
+          }
+        ],
+        "door_combinations": [
+          {
+            "states": {
+              "bath": "open",
+              "stair": "open"
+            },
+            "panels": [
+              {
+                "door": "bath",
+                "leaf": 1,
+                "rect_mm": [
+                  2330,
+                  1980,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "bath",
+                "leaf": 2,
+                "rect_mm": [
+                  2330,
+                  2065,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 1,
+                "rect_mm": [
+                  440,
+                  3770,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 2,
+                "rect_mm": [
+                  440,
+                  3855,
+                  660,
+                  45
+                ]
+              }
+            ],
+            "route_blockers": [
+              {
+                "route": "public-arrival",
+                "doors": []
+              },
+              {
+                "route": "public-shower-operation",
+                "doors": []
+              },
+              {
+                "route": "dry-maintenance",
+                "doors": []
+              }
+            ],
+            "body_hits": [],
+            "shaft_hit": false,
+            "maintenance_hit": false,
+            "panel_overlap": false,
+            "clear_widths_mm": {
+              "bath": 900.0,
+              "stair": 900.0
+            },
+            "door_occupancy_in_tea_finish_sqm": 0.0198
+          },
+          {
+            "states": {
+              "bath": "open",
+              "stair": "half"
+            },
+            "panels": [
+              {
+                "door": "bath",
+                "leaf": 1,
+                "rect_mm": [
+                  2330,
+                  1980,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "bath",
+                "leaf": 2,
+                "rect_mm": [
+                  2330,
+                  2065,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 1,
+                "rect_mm": [
+                  770.0,
+                  3770,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 2,
+                "rect_mm": [
+                  1055.0,
+                  3855,
+                  660,
+                  45
+                ]
+              }
+            ],
+            "route_blockers": [
+              {
+                "route": "public-arrival",
+                "doors": [
+                  "stair"
+                ]
+              },
+              {
+                "route": "public-shower-operation",
+                "doors": []
+              },
+              {
+                "route": "dry-maintenance",
+                "doors": [
+                  "stair"
+                ]
+              }
+            ],
+            "body_hits": [],
+            "shaft_hit": false,
+            "maintenance_hit": false,
+            "panel_overlap": false,
+            "clear_widths_mm": {
+              "bath": 900.0,
+              "stair": 450.0
+            },
+            "door_occupancy_in_tea_finish_sqm": 0.0198
+          },
+          {
+            "states": {
+              "bath": "open",
+              "stair": "closed"
+            },
+            "panels": [
+              {
+                "door": "bath",
+                "leaf": 1,
+                "rect_mm": [
+                  2330,
+                  1980,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "bath",
+                "leaf": 2,
+                "rect_mm": [
+                  2330,
+                  2065,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 1,
+                "rect_mm": [
+                  1100,
+                  3770,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 2,
+                "rect_mm": [
+                  1670,
+                  3855,
+                  660,
+                  45
+                ]
+              }
+            ],
+            "route_blockers": [
+              {
+                "route": "public-arrival",
+                "doors": [
+                  "stair"
+                ]
+              },
+              {
+                "route": "public-shower-operation",
+                "doors": []
+              },
+              {
+                "route": "dry-maintenance",
+                "doors": [
+                  "stair"
+                ]
+              }
+            ],
+            "body_hits": [],
+            "shaft_hit": false,
+            "maintenance_hit": false,
+            "panel_overlap": false,
+            "clear_widths_mm": {
+              "bath": 900.0,
+              "stair": 0.0
+            },
+            "door_occupancy_in_tea_finish_sqm": 0.0198
+          },
+          {
+            "states": {
+              "bath": "half",
+              "stair": "open"
+            },
+            "panels": [
+              {
+                "door": "bath",
+                "leaf": 1,
+                "rect_mm": [
+                  1715.0,
+                  1980,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "bath",
+                "leaf": 2,
+                "rect_mm": [
+                  2000.0,
+                  2065,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 1,
+                "rect_mm": [
+                  440,
+                  3770,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 2,
+                "rect_mm": [
+                  440,
+                  3855,
+                  660,
+                  45
+                ]
+              }
+            ],
+            "route_blockers": [
+              {
+                "route": "public-arrival",
+                "doors": [
+                  "bath"
+                ]
+              },
+              {
+                "route": "public-shower-operation",
+                "doors": []
+              },
+              {
+                "route": "dry-maintenance",
+                "doors": []
+              }
+            ],
+            "body_hits": [],
+            "shaft_hit": false,
+            "maintenance_hit": false,
+            "panel_overlap": false,
+            "clear_widths_mm": {
+              "bath": 450.0,
+              "stair": 900.0
+            },
+            "door_occupancy_in_tea_finish_sqm": 0.0198
+          },
+          {
+            "states": {
+              "bath": "half",
+              "stair": "half"
+            },
+            "panels": [
+              {
+                "door": "bath",
+                "leaf": 1,
+                "rect_mm": [
+                  1715.0,
+                  1980,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "bath",
+                "leaf": 2,
+                "rect_mm": [
+                  2000.0,
+                  2065,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 1,
+                "rect_mm": [
+                  770.0,
+                  3770,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 2,
+                "rect_mm": [
+                  1055.0,
+                  3855,
+                  660,
+                  45
+                ]
+              }
+            ],
+            "route_blockers": [
+              {
+                "route": "public-arrival",
+                "doors": [
+                  "bath",
+                  "stair"
+                ]
+              },
+              {
+                "route": "public-shower-operation",
+                "doors": []
+              },
+              {
+                "route": "dry-maintenance",
+                "doors": [
+                  "stair"
+                ]
+              }
+            ],
+            "body_hits": [],
+            "shaft_hit": false,
+            "maintenance_hit": false,
+            "panel_overlap": false,
+            "clear_widths_mm": {
+              "bath": 450.0,
+              "stair": 450.0
+            },
+            "door_occupancy_in_tea_finish_sqm": 0.0198
+          },
+          {
+            "states": {
+              "bath": "half",
+              "stair": "closed"
+            },
+            "panels": [
+              {
+                "door": "bath",
+                "leaf": 1,
+                "rect_mm": [
+                  1715.0,
+                  1980,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "bath",
+                "leaf": 2,
+                "rect_mm": [
+                  2000.0,
+                  2065,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 1,
+                "rect_mm": [
+                  1100,
+                  3770,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 2,
+                "rect_mm": [
+                  1670,
+                  3855,
+                  660,
+                  45
+                ]
+              }
+            ],
+            "route_blockers": [
+              {
+                "route": "public-arrival",
+                "doors": [
+                  "bath",
+                  "stair"
+                ]
+              },
+              {
+                "route": "public-shower-operation",
+                "doors": []
+              },
+              {
+                "route": "dry-maintenance",
+                "doors": [
+                  "stair"
+                ]
+              }
+            ],
+            "body_hits": [],
+            "shaft_hit": false,
+            "maintenance_hit": false,
+            "panel_overlap": false,
+            "clear_widths_mm": {
+              "bath": 450.0,
+              "stair": 0.0
+            },
+            "door_occupancy_in_tea_finish_sqm": 0.0198
+          },
+          {
+            "states": {
+              "bath": "closed",
+              "stair": "open"
+            },
+            "panels": [
+              {
+                "door": "bath",
+                "leaf": 1,
+                "rect_mm": [
+                  1100,
+                  1980,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "bath",
+                "leaf": 2,
+                "rect_mm": [
+                  1670,
+                  2065,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 1,
+                "rect_mm": [
+                  440,
+                  3770,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 2,
+                "rect_mm": [
+                  440,
+                  3855,
+                  660,
+                  45
+                ]
+              }
+            ],
+            "route_blockers": [
+              {
+                "route": "public-arrival",
+                "doors": [
+                  "bath"
+                ]
+              },
+              {
+                "route": "public-shower-operation",
+                "doors": []
+              },
+              {
+                "route": "dry-maintenance",
+                "doors": []
+              }
+            ],
+            "body_hits": [],
+            "shaft_hit": false,
+            "maintenance_hit": false,
+            "panel_overlap": false,
+            "clear_widths_mm": {
+              "bath": 0.0,
+              "stair": 900.0
+            },
+            "door_occupancy_in_tea_finish_sqm": 0.0198
+          },
+          {
+            "states": {
+              "bath": "closed",
+              "stair": "half"
+            },
+            "panels": [
+              {
+                "door": "bath",
+                "leaf": 1,
+                "rect_mm": [
+                  1100,
+                  1980,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "bath",
+                "leaf": 2,
+                "rect_mm": [
+                  1670,
+                  2065,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 1,
+                "rect_mm": [
+                  770.0,
+                  3770,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 2,
+                "rect_mm": [
+                  1055.0,
+                  3855,
+                  660,
+                  45
+                ]
+              }
+            ],
+            "route_blockers": [
+              {
+                "route": "public-arrival",
+                "doors": [
+                  "bath",
+                  "stair"
+                ]
+              },
+              {
+                "route": "public-shower-operation",
+                "doors": []
+              },
+              {
+                "route": "dry-maintenance",
+                "doors": [
+                  "stair"
+                ]
+              }
+            ],
+            "body_hits": [],
+            "shaft_hit": false,
+            "maintenance_hit": false,
+            "panel_overlap": false,
+            "clear_widths_mm": {
+              "bath": 0.0,
+              "stair": 450.0
+            },
+            "door_occupancy_in_tea_finish_sqm": 0.0198
+          },
+          {
+            "states": {
+              "bath": "closed",
+              "stair": "closed"
+            },
+            "panels": [
+              {
+                "door": "bath",
+                "leaf": 1,
+                "rect_mm": [
+                  1100,
+                  1980,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "bath",
+                "leaf": 2,
+                "rect_mm": [
+                  1670,
+                  2065,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 1,
+                "rect_mm": [
+                  1100,
+                  3770,
+                  660,
+                  45
+                ]
+              },
+              {
+                "door": "stair",
+                "leaf": 2,
+                "rect_mm": [
+                  1670,
+                  3855,
+                  660,
+                  45
+                ]
+              }
+            ],
+            "route_blockers": [
+              {
+                "route": "public-arrival",
+                "doors": [
+                  "bath",
+                  "stair"
+                ]
+              },
+              {
+                "route": "public-shower-operation",
+                "doors": []
+              },
+              {
+                "route": "dry-maintenance",
+                "doors": [
+                  "stair"
+                ]
+              }
+            ],
+            "body_hits": [],
+            "shaft_hit": false,
+            "maintenance_hit": false,
+            "panel_overlap": false,
+            "clear_widths_mm": {
+              "bath": 0.0,
+              "stair": 0.0
+            },
+            "door_occupancy_in_tea_finish_sqm": 0.0198
+          }
+        ],
+        "dry_maintenance_mm": [
+          115,
+          2180,
+          700,
+          900
+        ],
+        "maintenance_inside_tea_finish": true,
+        "maintenance_body_hits": [],
+        "maintenance_shaft_overlap": false,
+        "door_axis_over_toilet_body": false,
+        "sliders_product_fire_smoke_rescue_and_actual_clear": "unknown",
+        "full_panel_translation": {
+          "envelopes": [
+            {
+              "door": "bath",
+              "rect_mm": [
+                1100,
+                1980,
+                1890,
+                45
+              ]
+            },
+            {
+              "door": "bath",
+              "rect_mm": [
+                1670,
+                2065,
+                1320,
+                45
+              ]
+            },
+            {
+              "door": "stair",
+              "rect_mm": [
+                440,
+                3770,
+                1320,
+                45
+              ]
+            },
+            {
+              "door": "stair",
+              "rect_mm": [
+                440,
+                3855,
+                1890,
+                45
+              ]
+            }
+          ],
+          "body_hits": [],
+          "shaft_hit": false,
+          "maintenance_hit": false,
+          "outside_nominal_front_enclosure": false
+        },
+        "shared_shaft_within_enclosure_and_straddles_both_rooms": true,
+        "fixed_body_clearance_to_parked_panels_mm": {},
+        "fixed_body_clearance_to_full_panel_translation_mm": {},
+        "counter_operation_and_passage_simultaneous": false
+      },
+      "area_ledger": {
+        "unique_physical_shaft_count_per_floor": 1,
+        "room_references": 2,
+        "gross_reserved_shaft_sqm": 0.16,
+        "finish_losses_sqm": {
+          "public-bath": 0.034,
+          "tea-foyer": 0.034
+        },
+        "already_excluded_partition_budget_sqm": 0.092,
+        "not_a_statutory_area_method": true,
+        "areas115_sqm": {
+          "stair": 10.7849,
+          "quiet-living": 29.2948,
+          "dry-protection": 2.466,
+          "public-bath": 5.286,
+          "front-open": 9.175,
+          "tea-foyer": 5.1036,
+          "guest": 15.5156,
+          "ktv-study": 14.3141
+        },
+        "tea_after_worst_modeled_door_occupancy_sqm": 5.0838,
+        "full_panel_translation_reserved_in_tea_finish_sqm": 0.0396,
+        "tea_after_reserved_full_door_travel_sqm": 5.064
+      },
+      "unchanged_rooms_hash": "107f88bd8af9c956e97b0fa8e079defdd26f6fd81b55e804a077bb1f72f4c702"
+    }
+  ],
+  "drainage": {
+    "assumptions": {
+      "floor2_level_mm": 4000,
+      "required_illustrative_clear_mm": 3500,
+      "illustrative_structure_depths_mm": [
+        200,
+        300,
+        500
+      ],
+      "pipe_support_envelopes_mm": [
+        150,
+        200,
+        250
+      ],
+      "illustrative_slope_denominator": 50,
+      "access_allowance_mm": 50
+    },
+    "rows": [
+      {
+        "option": "P2",
+        "fixture": "toilet",
+        "branch_points_mm": [
+          [
+            1625.0,
+            465.0
+          ],
+          [
+            315.0,
+            465.0
+          ],
+          [
+            315.0,
+            315.0
+          ]
+        ],
+        "offset_points_mm": [
+          [
+            315.0,
+            315.0
+          ],
+          [
+            315.0,
+            4215.0
+          ],
+          [
+            315.0,
+            4215.0
+          ]
+        ],
+        "branch_length_mm": 1460.0,
+        "offset_length_mm": 3900.0,
+        "total_length_mm": 5360.0,
+        "hypothetical_total_fall_mm": 107.2,
+        "centerline_over_protected_footprints": false,
+        "actual_outlet_and_invert_known": false,
+        "pipe_envelope_and_bends_designed": false
+      },
+      {
+        "option": "P2",
+        "fixture": "basin",
+        "branch_points_mm": [
+          [
+            2855.0,
+            340.0
+          ],
+          [
+            315.0,
+            340.0
+          ],
+          [
+            315.0,
+            315.0
+          ]
+        ],
+        "offset_points_mm": [
+          [
+            315.0,
+            315.0
+          ],
+          [
+            315.0,
+            4215.0
+          ],
+          [
+            315.0,
+            4215.0
+          ]
+        ],
+        "branch_length_mm": 2565.0,
+        "offset_length_mm": 3900.0,
+        "total_length_mm": 6465.0,
+        "hypothetical_total_fall_mm": 129.3,
+        "centerline_over_protected_footprints": false,
+        "actual_outlet_and_invert_known": false,
+        "pipe_envelope_and_bends_designed": false
+      },
+      {
+        "option": "P2",
+        "fixture": "tea-counter",
+        "branch_points_mm": [
+          [
+            415.0,
+            2845.0
+          ],
+          [
+            315.0,
+            2845.0
+          ],
+          [
+            315.0,
+            315.0
+          ]
+        ],
+        "offset_points_mm": [
+          [
+            315.0,
+            315.0
+          ],
+          [
+            315.0,
+            4215.0
+          ],
+          [
+            315.0,
+            4215.0
+          ]
+        ],
+        "branch_length_mm": 2630.0,
+        "offset_length_mm": 3900.0,
+        "total_length_mm": 6530.0,
+        "hypothetical_total_fall_mm": 130.6,
+        "centerline_over_protected_footprints": false,
+        "actual_outlet_and_invert_known": false,
+        "pipe_envelope_and_bends_designed": false
+      },
+      {
+        "option": "P2",
+        "fixture": "shower",
+        "branch_points_mm": [
+          [
+            565.0,
+            1415.0
+          ],
+          [
+            315.0,
+            1415.0
+          ],
+          [
+            315.0,
+            315.0
+          ]
+        ],
+        "offset_points_mm": [
+          [
+            315.0,
+            315.0
+          ],
+          [
+            315.0,
+            4215.0
+          ],
+          [
+            315.0,
+            4215.0
+          ]
+        ],
+        "branch_length_mm": 1350.0,
+        "offset_length_mm": 3900.0,
+        "total_length_mm": 5250.0,
+        "hypothetical_total_fall_mm": 105.0,
+        "centerline_over_protected_footprints": false,
+        "actual_outlet_and_invert_known": false,
+        "pipe_envelope_and_bends_designed": false
+      },
+      {
+        "option": "P3",
+        "fixture": "toilet",
+        "branch_points_mm": [
+          [
+            2805.0,
+            1640.0
+          ],
+          [
+            315.0,
+            1640.0
+          ],
+          [
+            315.0,
+            1980.0
+          ]
+        ],
+        "offset_points_mm": [
+          [
+            315.0,
+            1980.0
+          ],
+          [
+            315.0,
+            4215.0
+          ],
+          [
+            315.0,
+            4215.0
+          ]
+        ],
+        "branch_length_mm": 2830.0,
+        "offset_length_mm": 2235.0,
+        "total_length_mm": 5065.0,
+        "hypothetical_total_fall_mm": 101.3,
+        "centerline_over_protected_footprints": false,
+        "actual_outlet_and_invert_known": false,
+        "pipe_envelope_and_bends_designed": false
+      },
+      {
+        "option": "P3",
+        "fixture": "basin",
+        "branch_points_mm": [
+          [
+            2855.0,
+            340.0
+          ],
+          [
+            315.0,
+            340.0
+          ],
+          [
+            315.0,
+            1980.0
+          ]
+        ],
+        "offset_points_mm": [
+          [
+            315.0,
+            1980.0
+          ],
+          [
+            315.0,
+            4215.0
+          ],
+          [
+            315.0,
+            4215.0
+          ]
+        ],
+        "branch_length_mm": 4180.0,
+        "offset_length_mm": 2235.0,
+        "total_length_mm": 6415.0,
+        "hypothetical_total_fall_mm": 128.3,
+        "centerline_over_protected_footprints": false,
+        "actual_outlet_and_invert_known": false,
+        "pipe_envelope_and_bends_designed": false
+      },
+      {
+        "option": "P3",
+        "fixture": "tea-counter",
+        "branch_points_mm": [
+          [
+            2855.0,
+            2885.0
+          ],
+          [
+            315.0,
+            2885.0
+          ],
+          [
+            315.0,
+            1980.0
+          ]
+        ],
+        "offset_points_mm": [
+          [
+            315.0,
+            1980.0
+          ],
+          [
+            315.0,
+            4215.0
+          ],
+          [
+            315.0,
+            4215.0
+          ]
+        ],
+        "branch_length_mm": 3445.0,
+        "offset_length_mm": 2235.0,
+        "total_length_mm": 5680.0,
+        "hypothetical_total_fall_mm": 113.6,
+        "centerline_over_protected_footprints": false,
+        "actual_outlet_and_invert_known": false,
+        "pipe_envelope_and_bends_designed": false
+      },
+      {
+        "option": "P3",
+        "fixture": "shower",
+        "branch_points_mm": [
+          [
+            565.0,
+            565.0
+          ],
+          [
+            315.0,
+            565.0
+          ],
+          [
+            315.0,
+            1980.0
+          ]
+        ],
+        "offset_points_mm": [
+          [
+            315.0,
+            1980.0
+          ],
+          [
+            315.0,
+            4215.0
+          ],
+          [
+            315.0,
+            4215.0
+          ]
+        ],
+        "branch_length_mm": 1665.0,
+        "offset_length_mm": 2235.0,
+        "total_length_mm": 3900.0,
+        "hypothetical_total_fall_mm": 78.0,
+        "centerline_over_protected_footprints": false,
+        "actual_outlet_and_invert_known": false,
+        "pipe_envelope_and_bends_designed": false
+      }
+    ],
+    "full_path_section_sensitivity": [
+      {
+        "option": "P2",
+        "fixture": "toilet",
+        "structure_mm": 200,
+        "pipe_support_mm": 150,
+        "complete_path_remaining_mm": 3492.8,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "toilet",
+        "structure_mm": 200,
+        "pipe_support_mm": 200,
+        "complete_path_remaining_mm": 3442.8,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "toilet",
+        "structure_mm": 200,
+        "pipe_support_mm": 250,
+        "complete_path_remaining_mm": 3392.8,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "toilet",
+        "structure_mm": 300,
+        "pipe_support_mm": 150,
+        "complete_path_remaining_mm": 3392.8,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "toilet",
+        "structure_mm": 300,
+        "pipe_support_mm": 200,
+        "complete_path_remaining_mm": 3342.8,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "toilet",
+        "structure_mm": 300,
+        "pipe_support_mm": 250,
+        "complete_path_remaining_mm": 3292.8,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "toilet",
+        "structure_mm": 500,
+        "pipe_support_mm": 150,
+        "complete_path_remaining_mm": 3192.8,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "toilet",
+        "structure_mm": 500,
+        "pipe_support_mm": 200,
+        "complete_path_remaining_mm": 3142.8,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "toilet",
+        "structure_mm": 500,
+        "pipe_support_mm": 250,
+        "complete_path_remaining_mm": 3092.8,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "basin",
+        "structure_mm": 200,
+        "pipe_support_mm": 150,
+        "complete_path_remaining_mm": 3470.7,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "basin",
+        "structure_mm": 200,
+        "pipe_support_mm": 200,
+        "complete_path_remaining_mm": 3420.7,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "basin",
+        "structure_mm": 200,
+        "pipe_support_mm": 250,
+        "complete_path_remaining_mm": 3370.7,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "basin",
+        "structure_mm": 300,
+        "pipe_support_mm": 150,
+        "complete_path_remaining_mm": 3370.7,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "basin",
+        "structure_mm": 300,
+        "pipe_support_mm": 200,
+        "complete_path_remaining_mm": 3320.7,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "basin",
+        "structure_mm": 300,
+        "pipe_support_mm": 250,
+        "complete_path_remaining_mm": 3270.7,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "basin",
+        "structure_mm": 500,
+        "pipe_support_mm": 150,
+        "complete_path_remaining_mm": 3170.7,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "basin",
+        "structure_mm": 500,
+        "pipe_support_mm": 200,
+        "complete_path_remaining_mm": 3120.7,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "basin",
+        "structure_mm": 500,
+        "pipe_support_mm": 250,
+        "complete_path_remaining_mm": 3070.7,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "tea-counter",
+        "structure_mm": 200,
+        "pipe_support_mm": 150,
+        "complete_path_remaining_mm": 3469.4,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "tea-counter",
+        "structure_mm": 200,
+        "pipe_support_mm": 200,
+        "complete_path_remaining_mm": 3419.4,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "tea-counter",
+        "structure_mm": 200,
+        "pipe_support_mm": 250,
+        "complete_path_remaining_mm": 3369.4,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "tea-counter",
+        "structure_mm": 300,
+        "pipe_support_mm": 150,
+        "complete_path_remaining_mm": 3369.4,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "tea-counter",
+        "structure_mm": 300,
+        "pipe_support_mm": 200,
+        "complete_path_remaining_mm": 3319.4,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "tea-counter",
+        "structure_mm": 300,
+        "pipe_support_mm": 250,
+        "complete_path_remaining_mm": 3269.4,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "tea-counter",
+        "structure_mm": 500,
+        "pipe_support_mm": 150,
+        "complete_path_remaining_mm": 3169.4,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "tea-counter",
+        "structure_mm": 500,
+        "pipe_support_mm": 200,
+        "complete_path_remaining_mm": 3119.4,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "tea-counter",
+        "structure_mm": 500,
+        "pipe_support_mm": 250,
+        "complete_path_remaining_mm": 3069.4,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "shower",
+        "structure_mm": 200,
+        "pipe_support_mm": 150,
+        "complete_path_remaining_mm": 3495.0,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "shower",
+        "structure_mm": 200,
+        "pipe_support_mm": 200,
+        "complete_path_remaining_mm": 3445.0,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "shower",
+        "structure_mm": 200,
+        "pipe_support_mm": 250,
+        "complete_path_remaining_mm": 3395.0,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "shower",
+        "structure_mm": 300,
+        "pipe_support_mm": 150,
+        "complete_path_remaining_mm": 3395.0,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "shower",
+        "structure_mm": 300,
+        "pipe_support_mm": 200,
+        "complete_path_remaining_mm": 3345.0,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "shower",
+        "structure_mm": 300,
+        "pipe_support_mm": 250,
+        "complete_path_remaining_mm": 3295.0,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "shower",
+        "structure_mm": 500,
+        "pipe_support_mm": 150,
+        "complete_path_remaining_mm": 3195.0,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "shower",
+        "structure_mm": 500,
+        "pipe_support_mm": 200,
+        "complete_path_remaining_mm": 3145.0,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P2",
+        "fixture": "shower",
+        "structure_mm": 500,
+        "pipe_support_mm": 250,
+        "complete_path_remaining_mm": 3095.0,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "toilet",
+        "structure_mm": 200,
+        "pipe_support_mm": 150,
+        "complete_path_remaining_mm": 3498.7,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "toilet",
+        "structure_mm": 200,
+        "pipe_support_mm": 200,
+        "complete_path_remaining_mm": 3448.7,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "toilet",
+        "structure_mm": 200,
+        "pipe_support_mm": 250,
+        "complete_path_remaining_mm": 3398.7,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "toilet",
+        "structure_mm": 300,
+        "pipe_support_mm": 150,
+        "complete_path_remaining_mm": 3398.7,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "toilet",
+        "structure_mm": 300,
+        "pipe_support_mm": 200,
+        "complete_path_remaining_mm": 3348.7,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "toilet",
+        "structure_mm": 300,
+        "pipe_support_mm": 250,
+        "complete_path_remaining_mm": 3298.7,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "toilet",
+        "structure_mm": 500,
+        "pipe_support_mm": 150,
+        "complete_path_remaining_mm": 3198.7,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "toilet",
+        "structure_mm": 500,
+        "pipe_support_mm": 200,
+        "complete_path_remaining_mm": 3148.7,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "toilet",
+        "structure_mm": 500,
+        "pipe_support_mm": 250,
+        "complete_path_remaining_mm": 3098.7,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "basin",
+        "structure_mm": 200,
+        "pipe_support_mm": 150,
+        "complete_path_remaining_mm": 3471.7,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "basin",
+        "structure_mm": 200,
+        "pipe_support_mm": 200,
+        "complete_path_remaining_mm": 3421.7,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "basin",
+        "structure_mm": 200,
+        "pipe_support_mm": 250,
+        "complete_path_remaining_mm": 3371.7,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "basin",
+        "structure_mm": 300,
+        "pipe_support_mm": 150,
+        "complete_path_remaining_mm": 3371.7,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "basin",
+        "structure_mm": 300,
+        "pipe_support_mm": 200,
+        "complete_path_remaining_mm": 3321.7,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "basin",
+        "structure_mm": 300,
+        "pipe_support_mm": 250,
+        "complete_path_remaining_mm": 3271.7,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "basin",
+        "structure_mm": 500,
+        "pipe_support_mm": 150,
+        "complete_path_remaining_mm": 3171.7,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "basin",
+        "structure_mm": 500,
+        "pipe_support_mm": 200,
+        "complete_path_remaining_mm": 3121.7,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "basin",
+        "structure_mm": 500,
+        "pipe_support_mm": 250,
+        "complete_path_remaining_mm": 3071.7,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "tea-counter",
+        "structure_mm": 200,
+        "pipe_support_mm": 150,
+        "complete_path_remaining_mm": 3486.4,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "tea-counter",
+        "structure_mm": 200,
+        "pipe_support_mm": 200,
+        "complete_path_remaining_mm": 3436.4,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "tea-counter",
+        "structure_mm": 200,
+        "pipe_support_mm": 250,
+        "complete_path_remaining_mm": 3386.4,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "tea-counter",
+        "structure_mm": 300,
+        "pipe_support_mm": 150,
+        "complete_path_remaining_mm": 3386.4,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "tea-counter",
+        "structure_mm": 300,
+        "pipe_support_mm": 200,
+        "complete_path_remaining_mm": 3336.4,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "tea-counter",
+        "structure_mm": 300,
+        "pipe_support_mm": 250,
+        "complete_path_remaining_mm": 3286.4,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "tea-counter",
+        "structure_mm": 500,
+        "pipe_support_mm": 150,
+        "complete_path_remaining_mm": 3186.4,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "tea-counter",
+        "structure_mm": 500,
+        "pipe_support_mm": 200,
+        "complete_path_remaining_mm": 3136.4,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "tea-counter",
+        "structure_mm": 500,
+        "pipe_support_mm": 250,
+        "complete_path_remaining_mm": 3086.4,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "shower",
+        "structure_mm": 200,
+        "pipe_support_mm": 150,
+        "complete_path_remaining_mm": 3522.0,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": true
+      },
+      {
+        "option": "P3",
+        "fixture": "shower",
+        "structure_mm": 200,
+        "pipe_support_mm": 200,
+        "complete_path_remaining_mm": 3472.0,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "shower",
+        "structure_mm": 200,
+        "pipe_support_mm": 250,
+        "complete_path_remaining_mm": 3422.0,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "shower",
+        "structure_mm": 300,
+        "pipe_support_mm": 150,
+        "complete_path_remaining_mm": 3422.0,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "shower",
+        "structure_mm": 300,
+        "pipe_support_mm": 200,
+        "complete_path_remaining_mm": 3372.0,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "shower",
+        "structure_mm": 300,
+        "pipe_support_mm": 250,
+        "complete_path_remaining_mm": 3322.0,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "shower",
+        "structure_mm": 500,
+        "pipe_support_mm": 150,
+        "complete_path_remaining_mm": 3222.0,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "shower",
+        "structure_mm": 500,
+        "pipe_support_mm": 200,
+        "complete_path_remaining_mm": 3172.0,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      },
+      {
+        "option": "P3",
+        "fixture": "shower",
+        "structure_mm": 500,
+        "pipe_support_mm": 250,
+        "complete_path_remaining_mm": 3122.0,
+        "illustrative_target_mm": 3500,
+        "meets_illustrative_target_only": false
+      }
+    ],
+    "offset_only_cases": [
+      {
+        "option": "P2",
+        "length_mm": 3900.0,
+        "best_case_offset_only_remaining_mm": 3522.0
+      },
+      {
+        "option": "P3",
+        "length_mm": 2235.0,
+        "best_case_offset_only_remaining_mm": 3555.3
+      }
+    ],
+    "section_scope": "listed-2F-fixture-branches-plus-under-2F-offset-only-not-3F-or-whole-building-drainage",
+    "length_method": "fixture-body-centre-placeholder-orthogonal-branches-plus-offset-not-product-outlets",
+    "slope_method": "same-start-invert-uniform-1-to-50-sensitivity-not-prescribed-or-designed-slope",
+    "ground_candidate_mm": [
+      115,
+      4015,
+      400,
+      400
+    ],
+    "ground_candidate_in_original_stair_sqm": 0.16,
+    "ground_stair_void_proven": false,
+    "direct_arcade_drop": "rejected-new-obstruction-in-arcade",
+    "all_gravity_drains_and_vents_designed": false,
+    "front_discharge_constructible": "unknown",
+    "offset_only_can_give_false_positive": true,
+    "beam_slab_actual_level_vent_cleanout_and_terminal": "unknown",
+    "pumps_macerators_or_raised_floors_adopted": false
+  },
+  "inherited_frontage": {
+    "garden_sqm": 7.156,
+    "soil_sqm": 2.52,
+    "soil_ratio": 0.3521520402459475,
+    "service_over_garden_sqm": 0.0,
+    "soil_over_service_sqm": 0.0,
+    "soil_inside_garden": true,
+    "proposed_woody_count": 4,
+    "soil_depth_load_and_eligibility": "unknown",
+    "enclosure_nominal_add_sqm_per_upper_floor": 12.753,
+    "declared_as_exempt_landscape_after_enclosure": false,
+    "outdoor_units_mm": [
+      [
+        3270,
+        100,
+        900,
+        350
+      ],
+      [
+        5020,
+        100,
+        900,
+        350
+      ]
+    ],
+    "outdoor_service_mm": [
+      [
+        3270,
+        100,
+        900,
+        1350
+      ],
+      [
+        5020,
+        100,
+        900,
+        1350
+      ]
+    ],
+    "garden_polygon_mm": [
+      [
+        3270,
+        1450
+      ],
+      [
+        4170,
+        1450
+      ],
+      [
+        4170,
+        900
+      ],
+      [
+        5020,
+        900
+      ],
+      [
+        5020,
+        1450
+      ],
+      [
+        6000,
+        1450
+      ],
+      [
+        6000,
+        3900
+      ],
+      [
+        3270,
+        3900
+      ]
+    ],
+    "soil_rects_mm": [
+      [
+        3370,
+        1700,
+        1800,
+        1400
+      ]
+    ],
+    "outdoor_700_route": {
+      "points_mm": [
+        [
+          4765,
+          4500
+        ],
+        [
+          4765,
+          3550
+        ],
+        [
+          5600,
+          3550
+        ],
+        [
+          5600,
+          1100
+        ],
+        [
+          3720,
+          1100
+        ]
+      ],
+      "width_mm": 700,
+      "inside_model_open_or_living_area": true,
+      "soil_hit": false,
+      "unit_hits": [],
+      "actual_maintenance_and_wheelchair_access": "unknown"
+    },
+    "outdoor_routes_refrigerant_and_service_approval": "unknown"
+  },
+  "inherited_upper_stack": {
+    "third_wet_over_second_master_sqm": 0.0,
+    "third_wet_over_second_bed_body_sqm": 0.0,
+    "third_entertainment_over_second_master_sqm": 9.062,
+    "third_entertainment_over_second_bed_body_sqm": 0.0,
+    "acoustic_and_vibration_approval": "unknown-even-if-not-directly-over-bed"
+  },
+  "unchanged_ground_and_roof_hashes": [
+    {
+      "id": "b-rear-split",
+      "source_states_hash": "9dcdc1260d1f166595d32d45cf70cd236ae888e6ff465e59c384896e3e10848f",
+      "roof_reference_hash": "bf2b55182782666d37117ae0b0c551f8e95308cdc02e9e0364da473133682e63"
+    },
+    {
+      "id": "b-front-split",
+      "source_states_hash": "276d6e4f3d202aefd296ac856aaf0e6180205a93fffb7ad9d3e268a66ba162fd",
+      "roof_reference_hash": "bf2b55182782666d37117ae0b0c551f8e95308cdc02e9e0364da473133682e63"
+    }
+  ],
+  "frame_sqm": 105.78,
+  "frame_land_ping": 31.998450000000002,
+  "protected_controls_unchanged": 149,
+  "primary_abc_or_3d_changed": false,
+  "parent_p1_p2_changed": false,
+  "adopted": false,
+  "all_requirements_met": false,
+  "professional_approval": "unknown",
+  "rendered_qa": "not-run",
+  "actual_site_or_product_data_received": 0,
+  "conclusion": "P3讓乾側檢修及兩組可關門狀態明確，保指定模型面積與原尺寸；完整支管＋偏移仍未解除騎樓淨高及原梯核落水缺口，保留配置方向而不宣稱排水成立。",
+  "source_hashes": {
+    "inputs/b-front-service-detail.json": "48c1b0f31db2d9a6116cd81ba8a4b16ec9d2100c643275f8c553b0d400907e49",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "inputs/b-upper-replan.json": "83621a2af81211b06ff4dc2c9e8557641c1d551b05195605acd7a6ad7b1df3f5",
+    "house_design/b_upper_replan.py": "a251d37dc84bd54b9292b6802180ca7fd66c679a7e43dc714b3fed160dc2e5c5",
+    "scripts/export_b_upper_replan.py": "3a3cc271cf7d9fc20759d4bca17b582ab672f551981c6e8c1c20933192c09a3d",
+    "structured/coordination/b-upper-replan-v1/review.json": "38897b7ca1da091dd62c85ab342abd4d1d1da220ec1dbad9a5f46e6611f4906d",
+    "structured/coordination/b-upper-replan-v1/artifact-manifest.json": "c1fe7bab76b8032224f7ce271671db0f94fb3ef91c702adc355fd1bcd6b8d915",
+    "house_design/b_front_service_detail.py": "0e20c751c385d4e69a3ff679cb5b7890e71575f82fdef8195e49628690175c29",
+    "scripts/export_b_front_service_detail.py": "bf8d07a4a0c316fe69facbe5145b9091f0afd4d73e0a5998f4ba2c83d7a9253e",
+    "Docs/b-front-service-detail-v1.md": "bc04d48a087905f1d9735cb90dfde9da33b200627ce6d47adf3115f5648d280b",
+    "house_design/b_claude_round3.py": "040a7b75fc604dc147b471800ae4c1c8a57935182dcceea26591514b106ec9d0",
+    "house_design/contracts.py": "2888419d49e8d8dbe8b8e99f6b8451363cd9020821c7fe3e703ab09779e202c3",
+    "house_design/project_status.py": "db73eb9b066353cc282e67dc15e4b430d9d4e4d398eafaf7eeec5f98af1acab0",
+    "inputs/requirements.json": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066",
+    "inputs/planning-register.json": "140493058b145071afb472bf927860d48a43a6f4407b9b59e5a86705fbe058b0"
+  },
+  "report_hash": "d4a599ed36f47ded53f46717d860b6a6918f528f1b37106a3ac9f48de237a1c8"
+}

@@ -1,0 +1,57 @@
+{
+  "schema": "house-c-ground-coordination-v1",
+  "date": "2026-11-09",
+  "adopted": false,
+  "main_report": "structured/candidates/kaohsiung-house-options/c-stair-integration.json",
+  "main_viewer": "structured/candidates/kaohsiung-house-options-3d.html",
+  "care_report": "structured/candidates/c-care-bath-layout/review.json",
+  "care_viewer": "structured/candidates/c-care-bath-layout-3d.html",
+  "protected_controls": "inputs/abc-next-protected-controls.json",
+  "pinned_sources": {
+    "structured/candidates/kaohsiung-house-options/c-stair-integration.json": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+    "structured/candidates/kaohsiung-house-options-3d.html": "7eaf45705d3626a650e00414e027c8e9c5bd7f5a7d60eb1b56658f37273712a2",
+    "structured/candidates/c-care-bath-layout/review.json": "ab2e4b238dc05570749ff1c750f715f643eb50669f6ed5801b931a59d8222581",
+    "structured/candidates/c-care-bath-layout-3d.html": "4cafc65628b3ac46986bb82928e88f8fa21df40cd6e4c9508914afd194e2b649",
+    "structured/candidates/c-stair-shared-landing/review.json": "a2485a77b864f3d547f6a4e47872419e88ab132277241b03e8b8c9db2efadf54"
+  },
+  "frame_mm": [6000, 17630],
+  "inset_mm": 115,
+  "room_zones_mm": {
+    "stair1f": [3600, 8960, 2400, 4840],
+    "sliding-door": [2400, 8960, 1200, 3140],
+    "sideyard": [0, 12100, 3600, 1700]
+  },
+  "item_rectangles_mm": {
+    "C:floor-1:dining:furniture:dining-set": [515, 4415, 1800, 1800],
+    "C:floor-1:living:furniture:sofa": [1815, 6620, 900, 1800],
+    "C:floor-1:living:furniture:reading-chair": [115, 6815, 900, 850],
+    "C:floor-1:entrance:furniture:shoe-cabinet": [5535, 6700, 350, 1200],
+    "C:floor-1:sideyard:furniture:rack": [300, 13085, 600, 600],
+    "C:floor-1:elder:furniture:bed": [115, 15995, 1880, 1520],
+    "C:floor-1:elder:furniture:wardrobe": [115, 13915, 1200, 600],
+    "C:floor-1:public-bath:furniture:toilet": [5185, 5135, 700, 450],
+    "C:floor-1:public-bath:furniture:vanity": [5435, 4050, 450, 600]
+  },
+  "street_door": {"pivot_mm": [3825, 3940], "closed_rect_mm": [2775, 3900, 1050, 80], "nominal_opening_mm": [[2700, 3900], [3900, 3900]]},
+  "bedroom_door": {"open_rect_mm": [990, 13590, 1260, 95], "closed_rect_mm": [2220, 13590, 1260, 95], "nominal_opening_mm": [[2250, 13800], [3450, 13800]]},
+  "bath_opening_mm": [[3600, 14575], [3600, 15775]],
+  "routes": [
+    {"id": "arcade-to-bed", "label": "騎樓指定點→新前置門→床側", "width_mm": 900, "points_mm": [[3285, 3000], [3285, 6600], [3500, 6600], [3500, 9160], [3000, 9160], [3000, 12950], [2850, 12950], [2850, 14600], [2650, 14600], [2650, 16700]], "expected_doors": ["street", "front", "bedroom"]},
+    {"id": "bed-to-bath", "label": "床側→照護浴室入口", "width_mm": 900, "points_mm": [[2650, 16700], [2650, 15175], [4250, 15175]], "expected_doors": ["bath"]},
+    {"id": "visitor-to-wc", "label": "客餐→乾前室→訪客公衛（600方塊，非照護）", "width_mm": 600, "points_mm": [[3500, 6400], [4550, 6400], [4550, 5050], [4835, 5050]], "expected_doors": []}
+  ],
+  "limits": [
+    "只輸出獨立完整1F與局部靜態比較；不覆寫主3D、原ABC、B前後兩版或任何正式需求。前置可關門是屋主已確認的方向，完整照護整合仍未採用。",
+    "梯旁走道及後照護前室重新分區只整理同一地面，沒有新增室內面積；24級／270踏面、完整1000平台、原斜梯／板洞待核範圍不縮。",
+    "沿用現行客餐沙發／茶几／閱讀椅位置，避免舊照護版閱讀椅撞新門；孝親房電視移到右牆以避加寬前入口。家具尺寸與件數不減。",
+    "115mm每面完成預算不是實測；另將床、衣櫃、鞋櫃、IDF及公衛器具等原80mm邊距作15～35mm微調，保留全部操作帶，不以舊80mm排法冒充115mm成立。",
+    "四組主路門各全開／半開／關閉共81組獨立幾何狀態；只有相關門全開時列明方塊路線才通，移動中的門須先清空路線。沒有門產品、實際淨寬、防火或外救援核可。",
+    "訪客公衛仍為900mm名義門，在230總框假設只餘670mm；600方塊試線只比較一般訪客，沒有把照護路線900目標降低，也沒有公衛輪椅核可。公衛門片／五金尚缺，不把它列為已完成通路。",
+    "照護浴室保原2.4×3m、三件器具尺寸及八類配件；1500×1800及1500圓仍借淋浴濕地，只按折椅收起／扶手掀起比較，不代表同時照護、洗澡或乾地轉位。",
+    "側牆盆到位仍偏250mm，坐姿可及未知；門組到轉位35mm、板框到右扶手18.5mm仍緊，單項消耗20mm會出現負餘量。",
+    "套衛仍需穿孝親房，公共直達照服偏好未解；板框只是局部剛性板示意，沒有騎樓到床的真人抬抱或全程救援核可。",
+    "保床體上方避浴廁的屋主範圍，不放寬成浴廁可壓床；臥室前段上方仍有浴廁，管線／梁及家規未全核。",
+    "只畫既有前後候選窗，廚房與梯旁不借側界假窗；三棟新風方向與C-AC01室內立管候選保留，關門補排氣、消防、合法外口、冷凝水及檢修需實際機電資料。",
+    "2F／3F／RF、C唯一2F洗衣機、景觀／洗曬與全部空調機位及路線不改；本批不以軟體幾何代替照護、宗教、產品、結構或施工核可。"
+  ]
+}

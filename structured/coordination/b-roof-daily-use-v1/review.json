@@ -1,0 +1,1475 @@
+{
+  "schema": "house-b-roof-daily-use-report-v1",
+  "date": "2026-11-10",
+  "config": {
+    "schema": "house-b-roof-daily-use-v1",
+    "date": "2026-11-10",
+    "adopted": false,
+    "parent_report": "structured/coordination/b-roof-equipment-v1/review.json",
+    "ground_report": "structured/coordination/b-claude-round3-v1/review.json",
+    "pinned_sources": {
+      "structured/coordination/b-roof-equipment-v1/review.json": "17bb6027323fea2b01896aeaa533e62903a60c5c9d5ca9e11e6848155c04cec1",
+      "structured/coordination/b-roof-equipment-v1/artifact-manifest.json": "f37bb8346f9ff487b6f52de5e86ed9fef67c45e6699683f00d2fa8b9065947bb"
+    },
+    "protected_controls": "inputs/abc-next-protected-controls.json",
+    "frame_mm": [
+      6000,
+      17630
+    ],
+    "edge_budget_mm": 115,
+    "door_width_frame_budget_each_mm": 115,
+    "ordinary_route_width_mm": 700,
+    "proposed_front_door": {
+      "a": [
+        1150,
+        3900
+      ],
+      "b": [
+        2280,
+        3900
+      ],
+      "hinge": "left",
+      "opens": "inside"
+    },
+    "arrival_width_cases_mm": [
+      700,
+      800,
+      900
+    ],
+    "door_states_deg": {
+      "open": 90,
+      "half": 45,
+      "closed": 0
+    },
+    "arrival_route_mm": [
+      [
+        1780,
+        4500
+      ],
+      [
+        1715,
+        4500
+      ],
+      [
+        1715,
+        2500
+      ],
+      [
+        3150,
+        2500
+      ]
+    ],
+    "rack_route_mm": [
+      [
+        3150,
+        2500
+      ],
+      [
+        3900,
+        2500
+      ]
+    ],
+    "options": [
+      {
+        "id": "D1-front-heat-pump",
+        "parent_option": "S1-front-heat-pump",
+        "title": "D1 前熱泵：先保設備檢修，折衣與通道分時",
+        "table_route_mm": [
+          [
+            3150,
+            2500
+          ],
+          [
+            3050,
+            2500
+          ],
+          [
+            3050,
+            2315
+          ]
+        ],
+        "furniture": [
+          {
+            "id": "drying-rack",
+            "label": "1800×600移動晾衣架試排",
+            "rect_mm": [
+              4250,
+              1720,
+              600,
+              1800
+            ],
+            "operation_mm": [
+              3550,
+              1720,
+              700,
+              1800
+            ]
+          },
+          {
+            "id": "folding-table",
+            "label": "1200×450折衣桌試排",
+            "rect_mm": [
+              2315,
+              1515,
+              1200,
+              450
+            ],
+            "operation_mm": [
+              2315,
+              1965,
+              1200,
+              700
+            ]
+          }
+        ]
+      },
+      {
+        "id": "D2-rear-wet-pair",
+        "parent_option": "S2-rear-wet-pair",
+        "title": "D2 後熱泵：較好家務動線，後設備包絡緊",
+        "table_route_mm": [
+          [
+            3150,
+            2500
+          ],
+          [
+            1715,
+            2500
+          ],
+          [
+            1715,
+            1000
+          ],
+          [
+            715,
+            1000
+          ]
+        ],
+        "furniture": [
+          {
+            "id": "drying-rack",
+            "label": "同1800×600移動晾衣架試排",
+            "rect_mm": [
+              4250,
+              1720,
+              600,
+              1800
+            ],
+            "operation_mm": [
+              3550,
+              1720,
+              700,
+              1800
+            ]
+          },
+          {
+            "id": "folding-table",
+            "label": "同1200×450折衣桌試排",
+            "rect_mm": [
+              115,
+              115,
+              1200,
+              450
+            ],
+            "operation_mm": [
+              115,
+              565,
+              1200,
+              700
+            ]
+          }
+        ]
+      }
+    ],
+    "decision_paths": [
+      {
+        "id": "functional-front-deck",
+        "title": "先保可用的前平台作比較",
+        "recommendation": "D1偏設備檢修、D2偏日常家務，兩路待真實包絡回套；原24㎡目標仍列缺口，不因圖能用就視為屋主接受縮小。",
+        "owner_choice": null
+      },
+      {
+        "id": "retain24-major-replan",
+        "title": "24㎡若為不可讓步條件",
+        "recommendation": "需把一樓祭祀保護位置、全棟樓梯及上層功能一併交建築師重排研究；沒有提出已完成替代案，不先動一樓、縮客房或取消工作天井。",
+        "owner_choice": null
+      },
+      {
+        "id": "wait-real-buildability",
+        "title": "合法基地與建築量體回套",
+        "recommendation": "本輪仍用原約32地坪框，不往道路／鄰地外伸、不加第二屋頂層，也不預設改風水規則就能解決。實際資料到齊後檢查完整配置。",
+        "owner_choice": null
+      }
+    ],
+    "limits": [
+      "沿S1／S2相同設備與R1天井作獨立日常使用比較，不改原ABC／3D、搬轎兩版、屋頂原快照或原24㎡活動曬衣目標。",
+      "前帶名義外框23.4㎡，扣本輪115mm外緣但不扣設備的樂觀上界21.83945㎡；只證明固定前帶不足24，不證明所有整棟重排都不可能。",
+      "前後可用區被現行祭祀保護投影及梯核分成兩個區塊，後側不能以日常路徑和前側相加。本輪沿現行非日常保護用途，不宣稱所有傳統風水都禁止通行。",
+      "屋頂前門仍是候選；從凍結樓梯右側1000mm到達平台起算，70mm前銜接帶及門檻同標高只作條件假設，實際3F至RF梯段、梁板、扶手與消防未核。",
+      "1130mm名義門洞扣兩邊各115只得900mm預算，不當產品完成淨寬。此門與到達平台中心偏65mm，指定900mm折線會超出保守右側平台15mm；700／800mm算術可通不當輪椅、搬整機或法定值。",
+      "四邊內縮不是實際牆厚／護欄規格，門框、把手、五金、防雨與門檻不可藉算式選定；若要900連續目標，先調整平台／門組再重算，不把名義門洞當全程完成。",
+      "原RF候選前門右鉸鏈全開仍卡指定外側轉彎；本輪同洞改左鉸鏈，門全開、半開、關閉各自核。只有全開的指定700mm日常試線無門片阻擋，半開及關閉不視為可用。室外門防風、避免自動回關或被衣物擋住仍需產品及管理設計。",
+      "晾衣架1800×600與折衣桌1200×450是自行設定的代表包絡，兩案同尺寸，不是已選商品、容量、桿高、晾被或防颱核可；不增洗衣機、地排或濕台。",
+      "D1折衣操作帶與通道共用，應分時；共用不重算專用面積，也不承諾有人折衣時另一人仍可通過。作業及暫放衣籃不得封住唯一門路。D2另擺桌位減少此共用，但後設備仍緊迫。",
+      "兩案家具機身及列明操作帶均避設備完整預留；晾衣與維修在指定平面下不碰列明機身，但熱風、污氣、曬衣污染與真正檢修姿勢仍未知。",
+      "桌架沒有設在前門掃掠或700mm門路上；不從視覺大空白推定可同時聚會、晾被及拆換機器。實際風向、雨天、止滑、排水、照明及室外電安全待核。",
+      "S2後水塔至污水井零間隙、至熱泵預留僅65mm的緊迫仍在；日常動線較好不代表整案較好施工。前後進排氣、香火與新風分系統關卡亦保留。",
+      "本輪不將RF前門、代表家具或日常試線併主3D，不變更66項candidate需求及105項unknown紀錄。家規、法規、結構、產品、通風與施工核可均未知。"
+    ]
+  },
+  "parent_report_hash": "fb2bb12392d6f12629d1fc318433c06f8596abad8ae41cc867abdc7cce4c6775",
+  "parent_equipment_options_hash": "95fe2912fd92cbf93e073b9aa06f6e79a3ba2f7cf014406bc38deeb6bb16ebb6",
+  "options": [
+    {
+      "id": "D1-front-heat-pump",
+      "title": "D1 前熱泵：先保設備檢修，折衣與通道分時",
+      "equipment_option_id": "S1-front-heat-pump",
+      "equipment_reference_hash": "58567316e041f3bdff6b17b706f41fe0a4f7703b5731704e35616e3fead63709",
+      "furniture": [
+        {
+          "id": "drying-rack",
+          "label": "1800×600移動晾衣架試排",
+          "rect_mm": [
+            4250,
+            1720,
+            600,
+            1800
+          ],
+          "operation_mm": [
+            3550,
+            1720,
+            700,
+            1800
+          ]
+        },
+        {
+          "id": "folding-table",
+          "label": "1200×450折衣桌試排",
+          "rect_mm": [
+            2315,
+            1515,
+            1200,
+            450
+          ],
+          "operation_mm": [
+            2315,
+            1965,
+            1200,
+            700
+          ]
+        }
+      ],
+      "equipment_reservations": [
+        {
+          "id": "tank",
+          "label": "水塔／泵浦整組預留",
+          "rect_mm": [
+            3715,
+            14615,
+            1500,
+            2000
+          ],
+          "kind": "wet-equipment",
+          "actual_product": null
+        },
+        {
+          "id": "heat-pump",
+          "label": "熱泵整組預留",
+          "rect_mm": [
+            115,
+            115,
+            2000,
+            1250
+          ],
+          "kind": "wet-equipment",
+          "actual_product": null
+        },
+        {
+          "id": "rear-air-zone",
+          "label": "後浴廁空氣出口區／非污水通氣",
+          "rect_mm": [
+            1015,
+            13700,
+            1400,
+            1800
+          ],
+          "kind": "air-zone",
+          "actual_product": null
+        },
+        {
+          "id": "front-dirty-zone",
+          "label": "前污氣出口協調區",
+          "rect_mm": [
+            115,
+            1515,
+            700,
+            700
+          ],
+          "kind": "air-zone",
+          "actual_product": null
+        },
+        {
+          "id": "rear-soil-vent",
+          "label": "後400污水通氣井投影",
+          "rect_mm": [
+            5485,
+            15700,
+            400,
+            400
+          ],
+          "kind": "pipe-zone",
+          "actual_product": null
+        },
+        {
+          "id": "representative-slot-1",
+          "label": "representative-slot-1含維修預留",
+          "rect_mm": [
+            3270,
+            115,
+            900,
+            1350
+          ],
+          "body_mm": [
+            3270,
+            115,
+            900,
+            350
+          ],
+          "kind": "cooling",
+          "actual_product": null,
+          "new_purchase_count": null
+        },
+        {
+          "id": "representative-slot-2",
+          "label": "representative-slot-2含維修預留",
+          "rect_mm": [
+            4985,
+            115,
+            900,
+            1350
+          ],
+          "body_mm": [
+            4985,
+            115,
+            900,
+            350
+          ],
+          "kind": "cooling",
+          "actual_product": null,
+          "new_purchase_count": null
+        },
+        {
+          "id": "B-AC03",
+          "label": "B-AC03含維修預留",
+          "rect_mm": [
+            3715,
+            13085,
+            900,
+            1350
+          ],
+          "body_mm": [
+            3715,
+            14085,
+            900,
+            350
+          ],
+          "kind": "cooling",
+          "actual_product": null,
+          "new_purchase_count": "existing-ID-relocation-only"
+        },
+        {
+          "id": "B-AC04",
+          "label": "B-AC04含維修預留",
+          "rect_mm": [
+            4985,
+            13085,
+            900,
+            1350
+          ],
+          "body_mm": [
+            4985,
+            14085,
+            900,
+            350
+          ],
+          "kind": "cooling",
+          "actual_product": null,
+          "new_purchase_count": "existing-ID-relocation-only"
+        }
+      ],
+      "routes": [
+        {
+          "id": "arrival-to-front",
+          "points_mm": [
+            [
+              1780,
+              4500
+            ],
+            [
+              1715,
+              4500
+            ],
+            [
+              1715,
+              2500
+            ],
+            [
+              3150,
+              2500
+            ]
+          ],
+          "expected_door": "front",
+          "width_mm": 700,
+          "inside_conditional_floor": true,
+          "fixed_body_hits": [],
+          "over_protected_sqm": 0.0,
+          "shared_operation_ids": [
+            "folding-table"
+          ],
+          "person_motion_or_actual_clearance_approval": "unknown"
+        },
+        {
+          "id": "rack-operation",
+          "points_mm": [
+            [
+              3150,
+              2500
+            ],
+            [
+              3900,
+              2500
+            ]
+          ],
+          "expected_door": null,
+          "width_mm": 700,
+          "inside_conditional_floor": true,
+          "fixed_body_hits": [],
+          "over_protected_sqm": 0.0,
+          "shared_operation_ids": [
+            "drying-rack",
+            "folding-table"
+          ],
+          "person_motion_or_actual_clearance_approval": "unknown"
+        },
+        {
+          "id": "table-operation",
+          "points_mm": [
+            [
+              3150,
+              2500
+            ],
+            [
+              3050,
+              2500
+            ],
+            [
+              3050,
+              2315
+            ]
+          ],
+          "expected_door": null,
+          "width_mm": 700,
+          "inside_conditional_floor": true,
+          "fixed_body_hits": [],
+          "over_protected_sqm": 0.0,
+          "shared_operation_ids": [
+            "folding-table"
+          ],
+          "person_motion_or_actual_clearance_approval": "unknown"
+        }
+      ],
+      "door_states": [
+        {
+          "state": "open",
+          "angle_deg": 90,
+          "fixed_body_hits": [],
+          "route_blockers": {
+            "arrival-to-front": false,
+            "rack-operation": false,
+            "table-operation": false
+          },
+          "leaf_polygon_mm": [
+            [
+              1197.5,
+              2770.0
+            ],
+            [
+              1102.5,
+              2770.0
+            ],
+            [
+              1102.5,
+              3900.0
+            ],
+            [
+              1197.5,
+              3900.0
+            ],
+            [
+              1197.5,
+              2770.0
+            ]
+          ]
+        },
+        {
+          "state": "half",
+          "angle_deg": 45,
+          "fixed_body_hits": [],
+          "route_blockers": {
+            "arrival-to-front": true,
+            "rack-operation": false,
+            "table-operation": false
+          },
+          "leaf_polygon_mm": [
+            [
+              1982.6182348471598,
+              3134.5569093655627
+            ],
+            [
+              1915.4430906344378,
+              3067.38176515284
+            ],
+            [
+              1116.412427893639,
+              3866.412427893639
+            ],
+            [
+              1183.587572106361,
+              3933.587572106361
+            ],
+            [
+              1982.6182348471598,
+              3134.5569093655627
+            ]
+          ]
+        },
+        {
+          "state": "closed",
+          "angle_deg": 0,
+          "fixed_body_hits": [],
+          "route_blockers": {
+            "arrival-to-front": true,
+            "rack-operation": false,
+            "table-operation": false
+          },
+          "leaf_polygon_mm": [
+            [
+              2280.0,
+              3947.5
+            ],
+            [
+              2280.0,
+              3852.5
+            ],
+            [
+              1150.0,
+              3852.5
+            ],
+            [
+              1150.0,
+              3947.5
+            ],
+            [
+              2280.0,
+              3947.5
+            ]
+          ]
+        }
+      ],
+      "arrival_width_cases": [
+        {
+          "width_mm": 700,
+          "inside_conditional_floor": true,
+          "inside_if_source_full_width_landing_confirmed": true,
+          "outside_conditional_floor_sqm": 0.0,
+          "fully_open_door_hit": false,
+          "fixed_body_hits": [],
+          "actual_clearance_or_care_approval": "unknown"
+        },
+        {
+          "width_mm": 800,
+          "inside_conditional_floor": true,
+          "inside_if_source_full_width_landing_confirmed": true,
+          "outside_conditional_floor_sqm": 0.0,
+          "fully_open_door_hit": false,
+          "fixed_body_hits": [],
+          "actual_clearance_or_care_approval": "unknown"
+        },
+        {
+          "width_mm": 900,
+          "inside_conditional_floor": false,
+          "inside_if_source_full_width_landing_confirmed": true,
+          "outside_conditional_floor_sqm": 0.014025,
+          "fully_open_door_hit": false,
+          "fixed_body_hits": [],
+          "actual_clearance_or_care_approval": "unknown"
+        }
+      ],
+      "furniture_body_or_operation_defects": [],
+      "sampled_door_sweep_hits": [],
+      "shared_operation_pairs": [],
+      "arrival_route_shares_folding_operation": true,
+      "simultaneous_two_person_work_and_escape_verified": false,
+      "front_open_outline_before_daily_furniture_sqm": 14.60895,
+      "front_open_outline_after_daily_furniture_sqm": 12.98895,
+      "area_scope": "paper-outline-including-circulation-not-complete-effective-or-legally-approved-area",
+      "original_RF_deck_goal_sqm": 24,
+      "original_RF_deck_goal_met": false,
+      "goal_reduced_or_owner_adopted": false,
+      "old_right_hinged_door_full_open_blocks_arrival_route": true,
+      "wet_laundry_appliance_or_new_drain_added": false,
+      "outdoor_furniture_products_selected": false,
+      "upstream_stairs_products_structure_weather_or_religion_approved": false,
+      "adopted": false
+    },
+    {
+      "id": "D2-rear-wet-pair",
+      "title": "D2 後熱泵：較好家務動線，後設備包絡緊",
+      "equipment_option_id": "S2-rear-wet-pair",
+      "equipment_reference_hash": "cebe0f0b92e52c600f8137b62ee5a0598bb707374950635342c27816b28562d5",
+      "furniture": [
+        {
+          "id": "drying-rack",
+          "label": "同1800×600移動晾衣架試排",
+          "rect_mm": [
+            4250,
+            1720,
+            600,
+            1800
+          ],
+          "operation_mm": [
+            3550,
+            1720,
+            700,
+            1800
+          ]
+        },
+        {
+          "id": "folding-table",
+          "label": "同1200×450折衣桌試排",
+          "rect_mm": [
+            115,
+            115,
+            1200,
+            450
+          ],
+          "operation_mm": [
+            115,
+            565,
+            1200,
+            700
+          ]
+        }
+      ],
+      "equipment_reservations": [
+        {
+          "id": "tank",
+          "label": "水塔／泵浦整組預留",
+          "rect_mm": [
+            3715,
+            14500,
+            1770,
+            1700
+          ],
+          "kind": "wet-equipment",
+          "actual_product": null
+        },
+        {
+          "id": "heat-pump",
+          "label": "熱泵整組預留",
+          "rect_mm": [
+            3715,
+            16265,
+            2000,
+            1250
+          ],
+          "kind": "wet-equipment",
+          "actual_product": null
+        },
+        {
+          "id": "rear-air-zone",
+          "label": "後浴廁空氣出口區／非污水通氣",
+          "rect_mm": [
+            1015,
+            13700,
+            1400,
+            1800
+          ],
+          "kind": "air-zone",
+          "actual_product": null
+        },
+        {
+          "id": "front-dirty-zone",
+          "label": "前污氣出口協調區",
+          "rect_mm": [
+            115,
+            1515,
+            700,
+            700
+          ],
+          "kind": "air-zone",
+          "actual_product": null
+        },
+        {
+          "id": "rear-soil-vent",
+          "label": "後400污水通氣井投影",
+          "rect_mm": [
+            5485,
+            15700,
+            400,
+            400
+          ],
+          "kind": "pipe-zone",
+          "actual_product": null
+        },
+        {
+          "id": "representative-slot-1",
+          "label": "representative-slot-1含維修預留",
+          "rect_mm": [
+            3270,
+            115,
+            900,
+            1350
+          ],
+          "body_mm": [
+            3270,
+            115,
+            900,
+            350
+          ],
+          "kind": "cooling",
+          "actual_product": null,
+          "new_purchase_count": null
+        },
+        {
+          "id": "representative-slot-2",
+          "label": "representative-slot-2含維修預留",
+          "rect_mm": [
+            4985,
+            115,
+            900,
+            1350
+          ],
+          "body_mm": [
+            4985,
+            115,
+            900,
+            350
+          ],
+          "kind": "cooling",
+          "actual_product": null,
+          "new_purchase_count": null
+        },
+        {
+          "id": "B-AC03",
+          "label": "B-AC03含維修預留",
+          "rect_mm": [
+            3715,
+            13085,
+            900,
+            1350
+          ],
+          "body_mm": [
+            3715,
+            14085,
+            900,
+            350
+          ],
+          "kind": "cooling",
+          "actual_product": null,
+          "new_purchase_count": "existing-ID-relocation-only"
+        },
+        {
+          "id": "B-AC04",
+          "label": "B-AC04含維修預留",
+          "rect_mm": [
+            4985,
+            13085,
+            900,
+            1350
+          ],
+          "body_mm": [
+            4985,
+            14085,
+            900,
+            350
+          ],
+          "kind": "cooling",
+          "actual_product": null,
+          "new_purchase_count": "existing-ID-relocation-only"
+        }
+      ],
+      "routes": [
+        {
+          "id": "arrival-to-front",
+          "points_mm": [
+            [
+              1780,
+              4500
+            ],
+            [
+              1715,
+              4500
+            ],
+            [
+              1715,
+              2500
+            ],
+            [
+              3150,
+              2500
+            ]
+          ],
+          "expected_door": "front",
+          "width_mm": 700,
+          "inside_conditional_floor": true,
+          "fixed_body_hits": [],
+          "over_protected_sqm": 0.0,
+          "shared_operation_ids": [],
+          "person_motion_or_actual_clearance_approval": "unknown"
+        },
+        {
+          "id": "rack-operation",
+          "points_mm": [
+            [
+              3150,
+              2500
+            ],
+            [
+              3900,
+              2500
+            ]
+          ],
+          "expected_door": null,
+          "width_mm": 700,
+          "inside_conditional_floor": true,
+          "fixed_body_hits": [],
+          "over_protected_sqm": 0.0,
+          "shared_operation_ids": [
+            "drying-rack"
+          ],
+          "person_motion_or_actual_clearance_approval": "unknown"
+        },
+        {
+          "id": "table-operation",
+          "points_mm": [
+            [
+              3150,
+              2500
+            ],
+            [
+              1715,
+              2500
+            ],
+            [
+              1715,
+              1000
+            ],
+            [
+              715,
+              1000
+            ]
+          ],
+          "expected_door": null,
+          "width_mm": 700,
+          "inside_conditional_floor": true,
+          "fixed_body_hits": [],
+          "over_protected_sqm": 0.0,
+          "shared_operation_ids": [
+            "folding-table"
+          ],
+          "person_motion_or_actual_clearance_approval": "unknown"
+        }
+      ],
+      "door_states": [
+        {
+          "state": "open",
+          "angle_deg": 90,
+          "fixed_body_hits": [],
+          "route_blockers": {
+            "arrival-to-front": false,
+            "rack-operation": false,
+            "table-operation": false
+          },
+          "leaf_polygon_mm": [
+            [
+              1197.5,
+              2770.0
+            ],
+            [
+              1102.5,
+              2770.0
+            ],
+            [
+              1102.5,
+              3900.0
+            ],
+            [
+              1197.5,
+              3900.0
+            ],
+            [
+              1197.5,
+              2770.0
+            ]
+          ]
+        },
+        {
+          "state": "half",
+          "angle_deg": 45,
+          "fixed_body_hits": [],
+          "route_blockers": {
+            "arrival-to-front": true,
+            "rack-operation": false,
+            "table-operation": false
+          },
+          "leaf_polygon_mm": [
+            [
+              1982.6182348471598,
+              3134.5569093655627
+            ],
+            [
+              1915.4430906344378,
+              3067.38176515284
+            ],
+            [
+              1116.412427893639,
+              3866.412427893639
+            ],
+            [
+              1183.587572106361,
+              3933.587572106361
+            ],
+            [
+              1982.6182348471598,
+              3134.5569093655627
+            ]
+          ]
+        },
+        {
+          "state": "closed",
+          "angle_deg": 0,
+          "fixed_body_hits": [],
+          "route_blockers": {
+            "arrival-to-front": true,
+            "rack-operation": false,
+            "table-operation": false
+          },
+          "leaf_polygon_mm": [
+            [
+              2280.0,
+              3947.5
+            ],
+            [
+              2280.0,
+              3852.5
+            ],
+            [
+              1150.0,
+              3852.5
+            ],
+            [
+              1150.0,
+              3947.5
+            ],
+            [
+              2280.0,
+              3947.5
+            ]
+          ]
+        }
+      ],
+      "arrival_width_cases": [
+        {
+          "width_mm": 700,
+          "inside_conditional_floor": true,
+          "inside_if_source_full_width_landing_confirmed": true,
+          "outside_conditional_floor_sqm": 0.0,
+          "fully_open_door_hit": false,
+          "fixed_body_hits": [],
+          "actual_clearance_or_care_approval": "unknown"
+        },
+        {
+          "width_mm": 800,
+          "inside_conditional_floor": true,
+          "inside_if_source_full_width_landing_confirmed": true,
+          "outside_conditional_floor_sqm": 0.0,
+          "fully_open_door_hit": false,
+          "fixed_body_hits": [],
+          "actual_clearance_or_care_approval": "unknown"
+        },
+        {
+          "width_mm": 900,
+          "inside_conditional_floor": false,
+          "inside_if_source_full_width_landing_confirmed": true,
+          "outside_conditional_floor_sqm": 0.014025,
+          "fully_open_door_hit": false,
+          "fixed_body_hits": [],
+          "actual_clearance_or_care_approval": "unknown"
+        }
+      ],
+      "furniture_body_or_operation_defects": [],
+      "sampled_door_sweep_hits": [],
+      "shared_operation_pairs": [],
+      "arrival_route_shares_folding_operation": false,
+      "simultaneous_two_person_work_and_escape_verified": false,
+      "front_open_outline_before_daily_furniture_sqm": 17.10895,
+      "front_open_outline_after_daily_furniture_sqm": 15.48895,
+      "area_scope": "paper-outline-including-circulation-not-complete-effective-or-legally-approved-area",
+      "original_RF_deck_goal_sqm": 24,
+      "original_RF_deck_goal_met": false,
+      "goal_reduced_or_owner_adopted": false,
+      "old_right_hinged_door_full_open_blocks_arrival_route": true,
+      "wet_laundry_appliance_or_new_drain_added": false,
+      "outdoor_furniture_products_selected": false,
+      "upstream_stairs_products_structure_weather_or_religion_approved": false,
+      "adopted": false
+    }
+  ],
+  "stair_source_room": {
+    "id": "B:floor-4:stairRF",
+    "name": "同軸梯間屋突候選（合法性待核）",
+    "rect_mm": [
+      0,
+      3900,
+      2400,
+      5200
+    ],
+    "outdoor": false,
+    "features": {
+      "status": "illustrative-pending-professional-review",
+      "geometry_source": "tour_mm",
+      "doors": [
+        {
+          "face": "right",
+          "ratio": 0.096154,
+          "width_mm": 1000,
+          "neighbor": "B:floor-4:shrine-buffer-front",
+          "status": "explicit-bounded-proposal-not-verified",
+          "operation": "unconfirmed"
+        }
+      ],
+      "open_connections": [],
+      "space_group": "",
+      "space_role": "",
+      "window_face": null,
+      "window_ratio": 0.5,
+      "stairs": true,
+      "stair_geometry_verified": false,
+      "access_pending": false,
+      "access_reason": "公共區相鄰／套衛提案；非已驗證通行。梯段、門扇、轉位、雨天及完成面淨空待核。",
+      "hvac": {
+        "indoor": false,
+        "outdoor": false,
+        "evidence": []
+      },
+      "window_pending": "側界可能共壁；只有前後外側才畫候選窗。合法採光／通風及神桌實牆待核。",
+      "hvac_units": [],
+      "fixed_reserved_mm": [],
+      "window_sill_mm": 900,
+      "window_height_mm": 1200,
+      "stair_footprint_mm": {
+        "x_mm": 80,
+        "y_mm": 3970,
+        "w_mm": 2200,
+        "h_mm": 5060
+      },
+      "stair_geometry": {
+        "type": "two-flight-u-proposal",
+        "connects_to_next_storey": false,
+        "risers": 18,
+        "riser_mm": 166.67,
+        "tread_mm": 270,
+        "flight_width_mm": 1000,
+        "landing_mm": 1000,
+        "departure_offset_mm": 1000,
+        "middle_landing_mm": 1900,
+        "shared_front_landing": false,
+        "run_mm": 2160,
+        "fits_reserved_box": true,
+        "note": "兩折梯與平台僅初排；完成面淨寬、扶手、結構、梯井、淨高、消防分隔及屋突資格未核。"
+      },
+      "window_review": {
+        "status": "not-requested",
+        "requested_face": null,
+        "requested_width_mm": 0,
+        "renderable": false,
+        "issues": [],
+        "assumed_jamb_budget_mm": 100,
+        "assumed_opening_buffer_mm": 100,
+        "professional_acceptance": "unknown",
+        "note": "本段不另畫獨立窗；不把門洞或玻璃門當作已核採光／通風。"
+      },
+      "window_mm": 0,
+      "reserved_mm": [
+        {
+          "kind": "door-approach",
+          "aabb": {
+            "minX": 1500.0,
+            "maxX": 2400.0,
+            "minY": 3800.0,
+            "maxY": 5000.0
+          }
+        },
+        {
+          "kind": "stairs",
+          "aabb": {
+            "minX": 80,
+            "maxX": 2280,
+            "minY": 3970,
+            "maxY": 9030
+          }
+        }
+      ]
+    },
+    "furniture": []
+  },
+  "arrival_platform_mm": [
+    1280,
+    3970,
+    1000,
+    1000
+  ],
+  "original_full_RF_arrival_slab_mm": [
+    80,
+    3970,
+    2200,
+    1000
+  ],
+  "source_full_width_landing_structurally_usable_verified": false,
+  "front_connection_strip_mm": [
+    1280,
+    3900,
+    1000,
+    70
+  ],
+  "nominal_front_door": {
+    "a": [
+      1150,
+      3900
+    ],
+    "b": [
+      2280,
+      3900
+    ],
+    "hinge": "left",
+    "opens": "inside"
+  },
+  "door_nominal_width_mm": 1130,
+  "old_right_hinge_door_control": {
+    "a": [
+      1150,
+      3900
+    ],
+    "b": [
+      2280,
+      3900
+    ],
+    "hinge": "right",
+    "opens": "inside"
+  },
+  "door_clear_budget_after_two_frames_mm": 900,
+  "arrival_platform_vs_door_center_offset_mm": 65.0,
+  "900_route_left_of_conservative_platform_mm": 15.0,
+  "actual_3F_to_RF_stair_flights_levels_or_door_threshold_verified": false,
+  "RF_existing_roof_hash": "bf2b55182782666d37117ae0b0c551f8e95308cdc02e9e0364da473133682e63",
+  "R1_opening_mm": [
+    1100,
+    11470,
+    1300,
+    2030
+  ],
+  "protected_polygons_mm": [
+    [
+      [
+        6000.0,
+        3900.0
+      ],
+      [
+        2400.0,
+        3900.0
+      ],
+      [
+        2400.0,
+        9100.0
+      ],
+      [
+        0.0,
+        9100.0
+      ],
+      [
+        0.0,
+        11370.0
+      ],
+      [
+        6000.0,
+        11370.0
+      ],
+      [
+        6000.0,
+        9100.0
+      ]
+    ],
+    [
+      [
+        4670.0,
+        11370.0
+      ],
+      [
+        4670.0,
+        12970.0
+      ],
+      [
+        2640.0,
+        12970.0
+      ],
+      [
+        2640.0,
+        11370.0
+      ]
+    ]
+  ],
+  "capacity": {
+    "scope": "fixed-frame-stair-and-protection-topology-only-not-global-impossibility",
+    "front_nominal_gross_sqm": 23.4,
+    "front_before_equipment_with_edge_budget_sqm": 21.83945,
+    "front_short_of24_before_equipment_sqm": 2.16055,
+    "disconnected_component_count": 2,
+    "rear_unconnected_area_before_equipment_sqm": 28.86365,
+    "components_mm": [
+      {
+        "outer": [
+          [
+            115.0,
+            115.0
+          ],
+          [
+            115.0,
+            3900.0
+          ],
+          [
+            2400.0,
+            3900.0
+          ],
+          [
+            5885.0,
+            3900.0
+          ],
+          [
+            5885.0,
+            115.0
+          ],
+          [
+            115.0,
+            115.0
+          ]
+        ],
+        "holes": []
+      },
+      {
+        "outer": [
+          [
+            115.0,
+            17515.0
+          ],
+          [
+            5885.0,
+            17515.0
+          ],
+          [
+            5885.0,
+            11370.0
+          ],
+          [
+            4670.0,
+            11370.0
+          ],
+          [
+            4670.0,
+            12970.0
+          ],
+          [
+            2640.0,
+            12970.0
+          ],
+          [
+            2640.0,
+            11370.0
+          ],
+          [
+            2500.0,
+            11370.0
+          ],
+          [
+            2500.0,
+            11470.0
+          ],
+          [
+            2500.0,
+            13500.0
+          ],
+          [
+            2500.0,
+            13600.0
+          ],
+          [
+            1000.0,
+            13600.0
+          ],
+          [
+            1000.0,
+            13500.0
+          ],
+          [
+            1000.0,
+            11470.0
+          ],
+          [
+            1000.0,
+            11370.0
+          ],
+          [
+            115.0,
+            11370.0
+          ],
+          [
+            115.0,
+            17515.0
+          ]
+        ],
+        "holes": []
+      }
+    ],
+    "front_and_rear_daily_areas_added_together": false,
+    "ordinary_route_through_protection_authorized": false,
+    "RF_deck_original_target_sqm": 24,
+    "RF_deck_original_min_sqm": 10,
+    "min10_is_owner_accepted_target": false,
+    "removing_equipment_or_changing_only_front_door_can_solve24": false
+  },
+  "decision_paths": [
+    {
+      "id": "functional-front-deck",
+      "title": "先保可用的前平台作比較",
+      "recommendation": "D1偏設備檢修、D2偏日常家務，兩路待真實包絡回套；原24㎡目標仍列缺口，不因圖能用就視為屋主接受縮小。",
+      "owner_choice": null
+    },
+    {
+      "id": "retain24-major-replan",
+      "title": "24㎡若為不可讓步條件",
+      "recommendation": "需把一樓祭祀保護位置、全棟樓梯及上層功能一併交建築師重排研究；沒有提出已完成替代案，不先動一樓、縮客房或取消工作天井。",
+      "owner_choice": null
+    },
+    {
+      "id": "wait-real-buildability",
+      "title": "合法基地與建築量體回套",
+      "recommendation": "本輪仍用原約32地坪框，不往道路／鄰地外伸、不加第二屋頂層，也不預設改風水規則就能解決。實際資料到齊後檢查完整配置。",
+      "owner_choice": null
+    }
+  ],
+  "original_RF_requirements": [
+    {
+      "id": "B.floor-rf.rf_stair",
+      "title": "梯間屋突",
+      "original_status": "candidate",
+      "target_sqm": 6.0,
+      "min_sqm": 4.5,
+      "complete_effective_area_sqm": null,
+      "fitted_and_approved": false,
+      "scope": "original-requirement-retained-legacy-coordinate-text-not-restored"
+    },
+    {
+      "id": "B.floor-rf.rf_tank",
+      "title": "B 棟水塔／VF800",
+      "original_status": "candidate",
+      "target_sqm": 3.0,
+      "min_sqm": 2.4,
+      "complete_effective_area_sqm": null,
+      "fitted_and_approved": false,
+      "scope": "original-requirement-retained-legacy-coordinate-text-not-restored"
+    },
+    {
+      "id": "B.floor-rf.rf_hp",
+      "title": "熱泵熱水器區",
+      "original_status": "candidate",
+      "target_sqm": 2.5,
+      "min_sqm": 2.0,
+      "complete_effective_area_sqm": null,
+      "fitted_and_approved": false,
+      "scope": "original-requirement-retained-legacy-coordinate-text-not-restored"
+    },
+    {
+      "id": "B.floor-rf.rf_deck",
+      "title": "活動平台／曬衣棚架",
+      "original_status": "candidate",
+      "target_sqm": 24.0,
+      "min_sqm": 10.0,
+      "complete_effective_area_sqm": null,
+      "fitted_and_approved": false,
+      "scope": "original-requirement-retained-legacy-coordinate-text-not-restored"
+    },
+    {
+      "id": "B.floor-rf.rf_shrine_buffer",
+      "title": "神桌上方無設備保護區",
+      "original_status": "candidate",
+      "target_sqm": 29.5,
+      "min_sqm": 20.0,
+      "complete_effective_area_sqm": null,
+      "fitted_and_approved": false,
+      "scope": "original-requirement-retained-legacy-coordinate-text-not-restored"
+    }
+  ],
+  "protected_controls_unchanged": 149,
+  "actual_site_or_product_data_received": 0,
+  "primary_abc_or_3d_changed": false,
+  "adopted": false,
+  "all_original_requirements_met": false,
+  "rendered_qa": "not-run",
+  "professional_approval": "unknown",
+  "conclusion": "固定前帶無法靠移機／改門湊24㎡。D1先保較寬鬆設備但折衣與通道分時；D2日常操作較順但後設備緊迫。兩案補入同尺寸桌架及RF前門三態，700／800試線可在條件地面通，900仍有到達平台偏移缺口。先保完整比較，24㎡及家規不改，待實際資料再取捨。",
+  "source_hashes": {
+    "inputs/b-roof-daily-use.json": "1523cacb493ad739baf8ea5081211039e9c3b8a18bb0895d61014e3e6c45e57d",
+    "structured/coordination/b-roof-equipment-v1/review.json": "17bb6027323fea2b01896aeaa533e62903a60c5c9d5ca9e11e6848155c04cec1",
+    "structured/coordination/b-roof-equipment-v1/artifact-manifest.json": "f37bb8346f9ff487b6f52de5e86ed9fef67c45e6699683f00d2fa8b9065947bb",
+    "inputs/b-roof-equipment.json": "2fd8c130bd7e8c36e31f21f18885267d13d20cbc5d7538f8f3dfe2953565a0ff",
+    "structured/coordination/b-working-court-v1/review.json": "86fd21e80521907005a53fc506fff99b8c7421d709b7ca31e8a07d09e802a790",
+    "structured/coordination/b-working-court-v1/artifact-manifest.json": "b1908bbe5877e51f14eb0fa820b6b132c5513e664332d8c6489cda8154d05d24",
+    "inputs/abc-fresh-air-layout-options.json": "244a19fb3e44c81d6af95e8ee354836ca1f777cd7d2559cd312812ac6cb94ed7",
+    "inputs/abc-fresh-air-detail.json": "7a0967c5cff5eaa507e0a420a9c1e694255562ccdc69f511ae801472649a61ec",
+    "inputs/b-ventilation-detail.json": "523b9c931c4f36caea62072031fe2d3c82cbea852d4ddf33e86827443b3c10f8",
+    "structured/coordination/b-front-service-detail-v1/review.json": "a51324d7699cfba56479f83a5e4eaa24ef5c9d45782c302c79e5fe779d4f2edd",
+    "inputs/b-working-court.json": "ef46a7852138a320e33b7b4131617991167bdaca9a942beb245e81aa6f6ac5eb",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "structured/coordination/b-third-entertainment-v1/review.json": "568509636ce55cb56b21161cf69e91e3eab633806c97e260c2a30a7f6553b08a",
+    "structured/coordination/b-third-entertainment-v1/artifact-manifest.json": "81247bbf44718d66f247c3ab520173e24e3ae38c4102480f83d74b3ee189d4d8",
+    "inputs/b-third-entertainment.json": "07577a0dffe45c74f98ee93c75d0b35f30b75dec187050e3796775d4d73b45c8",
+    "structured/coordination/b-upper-replan-v1/review.json": "38897b7ca1da091dd62c85ab342abd4d1d1da220ec1dbad9a5f46e6611f4906d",
+    "structured/coordination/b-upper-replan-v1/artifact-manifest.json": "c1fe7bab76b8032224f7ce271671db0f94fb3ef91c702adc355fd1bcd6b8d915",
+    "structured/coordination/b-front-service-detail-v1/artifact-manifest.json": "66b708543e5da68e23878d0063034d8ecb0fe693a658431b44160e5881c35234",
+    "inputs/references/b-owner-ritual-answers-20261106.json": "736f5a477ce1fbfd8e1bf460ecf49f9043a83635201d1598e3e1842e6460ddb9",
+    "structured/coordination/b-claude-round3-v1/review.json": "00baf0b3950e2593361e91698e4d72ac33e384edadd6da5a7d31b62e087b6223",
+    "inputs/requirements.json": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066",
+    "inputs/brief/B.json": "63ed4fc045fc6f2cc4021b8bd784cb7cc9fd46789155fc19aa1a55f33016e55a",
+    "inputs/planning-register.json": "140493058b145071afb472bf927860d48a43a6f4407b9b59e5a86705fbe058b0",
+    "house_design/b_third_entertainment.py": "f026a7665c1134dde6c3ec0f01032fdb0eb91d750e1f7af6ead8c845fbd1a5cc",
+    "scripts/export_b_third_entertainment.py": "67aa5888f2149271e9718c1a7cceea92cd6a96767e4fc5d2c5d4383aae713a2f",
+    "house_design/b_upper_replan.py": "a251d37dc84bd54b9292b6802180ca7fd66c679a7e43dc714b3fed160dc2e5c5",
+    "house_design/b_front_service_detail.py": "0e20c751c385d4e69a3ff679cb5b7890e71575f82fdef8195e49628690175c29",
+    "house_design/contracts.py": "2888419d49e8d8dbe8b8e99f6b8451363cd9020821c7fe3e703ab09779e202c3",
+    "house_design/project_status.py": "db73eb9b066353cc282e67dc15e4b430d9d4e4d398eafaf7eeec5f98af1acab0",
+    "scripts/export_b_upper_replan.py": "3a3cc271cf7d9fc20759d4bca17b582ab672f551981c6e8c1c20933192c09a3d",
+    "scripts/export_abc_next_improvements.py": "875c13027466776a6e1661dae369e45c823c661c5e0369d8ee95b6535420e701",
+    "scripts/export_builder_communication.py": "650d696de35bd9a0fb4ce77d7f93078813b8babd4ed5439d59a6966d093ceef1",
+    "Docs/b-third-entertainment-v1.md": "5f69f521386c051ce67b4b24d5cda79186f70f937316d25c64962a745258d513",
+    "house_design/b_working_court.py": "4d9e54078c4fb2f0e708e72386b4a969f9e1ca8c44722da65ceaf1ab9d388a1d",
+    "scripts/export_b_working_court.py": "8c01671c899cb8bc78bcb5d83bcff5a5daa0a9e63e939b5a09da1bd5e361629f",
+    "Docs/b-working-court-v1.md": "7d9b72802381917a52b56b2197574b5f811b267307278428db617cd5ec31d2c2",
+    "house_design/b_roof_equipment.py": "43153d4164568ee8334d462cdd4441d3505e9586b693fef4a753054f6f5f3d29",
+    "scripts/export_b_roof_equipment.py": "b75856a2d235be9e3ac9d4d16733375a1a733949b8ab08f0638abdb94ed02105",
+    "Docs/b-roof-equipment-v1.md": "f2eeaea3227b5a70dac04426d21dd6603f10094452f9048a30eb5ac8eb1af156",
+    "house_design/b_roof_daily_use.py": "55b5282362fcffcd52cf3995a8fd573bb51dc82d75bc3742cf3364f9bc6c6449",
+    "scripts/export_b_roof_daily_use.py": "9171804153333794d0794f916c6993a2b1bcd7f91d49f5e1183be6112dff0fde",
+    "Docs/b-roof-daily-use-v1.md": "257b18c52d1283f08e861d7f012a9509ca1e725847b33ec7bf1f2c58e3decdce"
+  },
+  "report_hash": "885c3ea5f7d08ba72463499dcffa1e427be0c8b03453401b819534fa73b37808"
+}

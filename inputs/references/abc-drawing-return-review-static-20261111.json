@@ -1,0 +1,156 @@
+{
+  "schema": "house-abc-drawing-return-review-static-v1",
+  "date": "2026-11-11",
+  "scope": "Returned drawing receipt and change-impact instructions; extend two existing blank CSV forms and reuse the existing formal drawings workflow. No returned drawings received, imported or approved.",
+  "source_and_artifact_sha256": {
+    "inputs/design-discussion-basis.json": "5af33831a1ad0d4c64c1be9b8195312f706d5ee19e592d112b74cb1cc286eabe",
+    "inputs/project-status.json": "7e830963c6a76f2e34d12bbdc8af7a93ddcfa2d43571bb994d2de88ea7553be6",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "inputs/requirements.json": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066",
+    "inputs/planning-register.json": "140493058b145071afb472bf927860d48a43a6f4407b9b59e5a86705fbe058b0",
+    "house_design/design_discussion_basis.py": "bddcec795e368076b8705e11fff7de7c92c038f38ad2317c946166f3893fe603",
+    "scripts/export_design_discussion_basis.py": "5bd107f44557512a55dac3252272a6063f115c00de0f5564c75d599cf359d888",
+    "tests/test_design_discussion_basis.py": "9e2813731d95e0e1ae83cc969ec4f4873b4abb4cef00a559d78694c9129a0cc1",
+    "tests/test_project_next_steps.py": "dc837be6f8a27553f694645701cfccbbfabdce085a1f70c5f794d3c1de2f0940",
+    "tests/test_builder_communication.py": "5621666ecfa97b6eb72e6ec22321ac9bc367d5d8cb7f1d1f30d97a677b42f032",
+    "tests/test_project_status.py": "73098e7a96b4a2fa514019b39e7445b0af0f0cbd19a8ff29dee5ce660933145b",
+    "tests/test_repository_health.py": "ac385bd69d28d58f89a7e3ae415f1fbafd3196217acc255e5074c1ddad1d51f6",
+    "Docs/abc-drawing-return-review-v1.md": "0cad7eb7966915154b244d79521533d64cb19f5148c38d5d116105afdd6443e1",
+    "Docs/design-discussion-basis-v1.md": "ca30462ffd5eb21c0b23075ef1614ba059d5e630b51db774c73d6fcfa04ce45f",
+    "Docs/project-status-v1.md": "226d0efb423498848fb1503a789b90b9ac64ddd508619eb1eca50a60cd66b49f",
+    "README.md": "2dab26eb72ae5f5848dd9baff782721ffcceaf59b3850bfea946716fe49192a2",
+    "scripts/README.md": "8aad60e23fa15fd6ec10e2ab30e9e21e557a5413fb39dc2e327062cb087859d8",
+    "Docs/architect-r001-handoff.md": "d9b0ff587e07095a6b788d8808643f793906f3b88da16e236b8d5a043ab96ba9",
+    "Docs/review-workflow.md": "e85430776add212dc090e29988a4596ac35dffb42690654a34afaf882bd208a8",
+    "house_design/architect_handoff.py": "62dbac0496a7d3bd0318a7a01d36b819ad4b47e138cbd652c35fff0fe043d764",
+    "house_design/drawings.py": "5a29b885d98c4fc5a5f4d4c2f71cfc947c4c264be0830ace9ccb8fc9accb08ed",
+    "house_design/cli.py": "95a76a73f87f5ed1fed8c02eda3710e8f6c6dda8ca584781dcad5432004e271e",
+    "structured/planning/project-next-steps/review.json": "a6fb758c60a1a78ad9451766a1263a13bb033de2f9918e1545160eec22b6d81b",
+    "structured/planning/project-next-steps/artifact-manifest.json": "43416e9239be9df179c9727b6cbc2a704549695a32f87b3eea62e53adf6d978a",
+    "structured/planning/builder-communication/review.json": "07cab7b73af59e980a082b47e38dc2bf64261da00df59d4971844bdf6b914932",
+    "structured/planning/builder-communication/artifact-manifest.json": "f17ba6344fc84c252d528ebe2f0b5e7615f989dc6a6fbf42f2c5f20240fed2de",
+    "structured/planning/design-discussion-basis/review.json": "48ef94344dfb925a1f322886cdf68dcac0cf461168cba36f2d67ee5233374ef1",
+    "structured/planning/design-discussion-basis/artifact-manifest.json": "6df479f4dd3c6c73e476fc10ca3ab4434b6f0a2fefb847a5e0e4a4f411971e9d",
+    "structured/planning/design-discussion-basis/archive-manifest.json": "0b5a62c229883de2af2b93a774139d18592572dccd245e95fe224056a8731a90",
+    "structured/planning/design-discussion-basis/ABC-discussion-package.zip": "671cfe3eac20f9adb2a9929a6e8bc9d11a1c9e999ee921c550005a8cb33e6a23",
+    "structured/planning/design-discussion-basis/source-index.html": "c33dc2cd0ece5117ec9e4368453fc32b2f1e8eb39f8bf5e10ff34d85818f1012",
+    "structured/planning/design-discussion-basis/index.html": "3cd54e0943683b2e7204cdf92762b85cc43ca3bd324813b8c4f4ee91af818770",
+    "structured/planning/design-discussion-basis/drawing-register.csv": "611038b8b04f86193ec584de8db1076d74413c3053548417b2ca278640f2a1a1",
+    "structured/planning/design-discussion-basis/change-log.csv": "c9bbd4146cbb35980bfdb12448c7c2e177727aeac54854967420d2c5980eb926"
+  },
+  "checks": {
+    "focused_tests": {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q --tb=short -p no:cacheprovider tests/test_design_discussion_basis.py tests/test_project_next_steps.py tests/test_builder_communication.py tests/test_project_status.py tests/test_repository_health.py",
+      "passed": 191,
+      "failed": 0,
+      "elapsed_seconds": 6,
+      "exit_code": 0
+    },
+    "ruff": {
+      "command": "timeout 20s .venv/bin/ruff check house_design/design_discussion_basis.py scripts/export_design_discussion_basis.py tests/test_design_discussion_basis.py",
+      "exit_code": 0
+    },
+    "exports_check": {
+      "scripts": [
+        "export_project_next_steps.py",
+        "export_builder_communication.py",
+        "export_design_discussion_basis.py"
+      ],
+      "individual_timeout_seconds": 20,
+      "all_exit_codes": 0
+    },
+    "repository_health": {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/check_repository_health.py --check",
+      "files": 1699,
+      "public_json_checked": 279,
+      "markdown_checked": 170,
+      "local_links_checked": 1018,
+      "issues": [],
+      "exit_code": 0,
+      "scope": "Before adding this evidence file; bounded inventory, JSON syntax and local Markdown links only"
+    },
+    "git_diff_check": {
+      "command": "timeout 20s git diff --check",
+      "exit_code": 0
+    },
+    "current_index_packages_match": 7,
+    "historical_drift_packages_retained": 5,
+    "packet_source_hashes_verified": 369,
+    "protected_controls_unchanged": 149,
+    "formal_requirement_statuses": {
+      "candidate": 66
+    },
+    "formal_register_statuses": {
+      "unknown": 105
+    },
+    "old_browser_passed_reused": false
+  },
+  "review_guide": {
+    "instructions": 8,
+    "instruction_ids": [
+      "RETURN-01",
+      "RETURN-02",
+      "RETURN-03",
+      "RETURN-04",
+      "RETURN-05",
+      "RETURN-06",
+      "RETURN-07",
+      "RETURN-08"
+    ],
+    "instruction_references_checked": "Existing BC questions, task IDs and SEQ engineering sequence IDs; building intersections validated",
+    "existing_forms_extended": [
+      "drawing-register.csv",
+      "change-log.csv"
+    ],
+    "blank_receipt_rows": 1,
+    "blank_change_rows": 1,
+    "added_columns_each": 8,
+    "all_actual_dates_sources_hashes_scopes_choices_prices_and_approvals_blank": true,
+    "new_actual_files_imported": 0,
+    "new_form_or_importer_created": false,
+    "existing_formal_engine_modified": false,
+    "pdf_only_visual_review_geometry_requires_evidence": true,
+    "matching_hash_only_confirms_designated_bytes_not_correctness_or_approval": true,
+    "formal_model_comparison_limited_to_represented_fields": true,
+    "R000_not_current_authoritative_SVG_or_3d_baseline": true,
+    "R001_R002_commands_are_future_examples_not_existing_returned_revisions": true,
+    "A_designer_builder_interfaces_retained": true,
+    "B_rear_default_and_front_fallback_independent": true,
+    "C_public_WC_care_and_one_2F_washer_retained": true,
+    "three_building_ventilation_and_closed_bedroom_requirements_retained": true
+  },
+  "handoff": {
+    "public_directory": "structured/planning/design-discussion-basis",
+    "private_snapshot_created": "inputs/private/design-discussion-024",
+    "files": 106,
+    "all_private_files_match_public": true,
+    "zip_entries": 104,
+    "zip_sha256": "671cfe3eac20f9adb2a9929a6e8bc9d11a1c9e999ee921c550005a8cb33e6a23",
+    "zip_bytes": 502550,
+    "html_pages": 12,
+    "csv_forms": 18,
+    "svg_drawings": 69,
+    "bc_comparisons": 7,
+    "decision_items": 12,
+    "work_items": 14,
+    "older_snapshots_001_to023_own_artifacts_verified": 23,
+    "older_snapshots_written": false,
+    "old_evidence_overwritten": false
+  },
+  "not_run": [
+    "formal drawings preflight/import/verify/compare commands",
+    "new external AI request",
+    "browser/WebGL",
+    "full pytest",
+    "new geometry or scene generation",
+    "actual private reply/price import",
+    "notifications or meeting invitations",
+    "commit",
+    "push"
+  ],
+  "adopted": false,
+  "primary_abc_or_3d_changed": false,
+  "original_family_rules_changed": false,
+  "professional_approval": "unknown",
+  "construction_release": false
+}

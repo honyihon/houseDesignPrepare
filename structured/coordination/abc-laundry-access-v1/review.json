@@ -1,0 +1,1148 @@
+{
+  "schema": "house-abc-laundry-access-report-v1",
+  "date": "2026-11-13",
+  "config": {
+    "schema": "house-abc-laundry-access-v1",
+    "date": "2026-11-13",
+    "adopted": false,
+    "parent_report": "structured/coordination/abc-ground-laundry-v1/review.json",
+    "parent_sha256": "70d173aee810bf6965a7612b4146c22b5c665a66844b26593381f4248d9dc26a",
+    "parent_report_hash": "4d78d285e0efe2623261cb86418c5a0c1b3585fea693ebdc816f8a79d4cec45e",
+    "owner_reference": "inputs/references/abc-laundry-owner-20261113.json",
+    "finish_assumption_mm": 115,
+    "total_frame_budget_mm": 230,
+    "route_width_mm": 900,
+    "front_counterexample": {
+      "triangle_mm": [
+        [
+          1360,
+          11360
+        ],
+        [
+          2400,
+          12060
+        ],
+        [
+          1360,
+          12060
+        ]
+      ],
+      "proposal_aperture_mm": 1200,
+      "hall_probe_mm": [
+        2700,
+        10900
+      ],
+      "kitchen_probe_mm": [
+        1700,
+        14000
+      ],
+      "note": "斜向重分區可得到較長的標籤邊，但未移MDF與孝親房兩角。即使先忽略廚具和門片、只留外邊界完成預算，900圓形本體的中心可行域仍不相通。這只否決這種門長算法，不表示所有前側重排無解。"
+    },
+    "rear_gate": {
+      "id": "A1-rear-conditional",
+      "label": "A後側條件式直入洗衣陽台",
+      "opening_mm": [
+        [
+          2200,
+          17630
+        ],
+        [
+          3400,
+          17630
+        ]
+      ],
+      "closed_leaf_mm": [
+        2170,
+        17535,
+        1260,
+        95
+      ],
+      "open_leaf_mm": [
+        910,
+        17535,
+        1260,
+        95
+      ],
+      "wall_bridge_depth_mm": 120,
+      "route_points_mm": [
+        [
+          2800,
+          17880
+        ],
+        [
+          2800,
+          16400
+        ]
+      ],
+      "states": [
+        {
+          "id": "open",
+          "label": "全開",
+          "fraction": 1
+        },
+        {
+          "id": "half",
+          "label": "半開",
+          "fraction": 0.5
+        },
+        {
+          "id": "closed",
+          "label": "關閉",
+          "fraction": 0
+        }
+      ],
+      "note": "上吊平移門概念，地面不預設突出軌道。只有全開才比較基地內900試線；門外部分不在模型內，合法後口、共同後巷、坡度、遮雨、防水及產品均未知。"
+    },
+    "recommended_direction": "先保A1原陽台洗衣配置，優先向建商確認A後側是否能作合法平層直入；成立時才深化這個可關門候選。沒有共同後側到達，就保前側分戶小籃／推車取送並回到A整體入口重排，不強迫長輩走未核的窄廚房，也不自行縮孝親房或釋放MDF。",
+    "limits": [
+      "三棟共用一組、C2暫不用保空間、A上層另留機位保持；這一輪不選A主位置、機型或購機。",
+      "原廚房、孝親房、MDF側壁龕備援與完整維修、樓梯、客餐、騎樓、B祭祀搬轎兩版保持；不改主3D或已驗ZIP。",
+      "後門開口在A研究框的後邊界，並不代表已獲開口或共同後巷使用權；B有後巷不等於A／C都可接入。",
+      "路徑包含一段未建模門外引線，只核其裁切在基地內的部分；不核外側輪具轉向、距離、避車、路權、高差或全程可達。",
+      "名義1200門口扣總框230只作970預算；單扇1260×95門板與2520滑動包絡未選商品，不當消防、防盜、操作力、可及或淨高核可。",
+      "門板移動包絡到原乾衣機備位只有20mm，實際五金或接管變大要重排；衣物外廓到門包70mm也不是原廠安全距離。",
+      "全開的基地內試線仍與洗／乾操作帶共享，須分時；不是多人同時洗衣或無障礙簽認。門在移動時人與推車先退出行程。",
+      "獨立後門改善取送方向，不會增加1200小晾架容量或解除原晾衣降下占1500轉位、原設備完成面及維修缺口。",
+      "前側分戶取送只是工作流程備案，不是已核前門照護通路；若長輩要完全自行操作而通路仍不成立，必須重排共用位置。",
+      "斜向前門反例只核一種固定房界；不把它擴大為A或全案無解。廚房是否一定可關門未收到新答覆，仍保原門，不代填偏好。"
+    ],
+    "actual_conditions": {
+      "A_rear_opening_permission": null,
+      "shared_rear_route_rights": null,
+      "ABC_relative_positions": null,
+      "rear_route_finished_width_mm": null,
+      "outside_turning_envelope": null,
+      "level_difference_and_slope": null,
+      "rain_cover_and_wet_floor_design": null,
+      "rear_threshold_and_drainage_detail": null,
+      "door_product_and_full_installation_envelope": null,
+      "open_clear_width_mm": null,
+      "door_operating_force_and_reach": null,
+      "door_anti_lift_lock_and_emergency_opening": null,
+      "wind_rain_fire_and_security_detail": null,
+      "dryer_actual_service_envelope": null,
+      "drying_clothes_actual_envelope": null,
+      "filter_and_HVAC_full_service_access": null,
+      "elder_mobility_and_assistance": null,
+      "kitchen_closeable_preference": null,
+      "front_entry_complete_replan": null
+    }
+  },
+  "parent_report": "structured/coordination/abc-ground-laundry-v1/review.json",
+  "parent_report_sha256": "70d173aee810bf6965a7612b4146c22b5c665a66844b26593381f4248d9dc26a",
+  "parent_report_hash": "4d78d285e0efe2623261cb86418c5a0c1b3585fea693ebdc816f8a79d4cec45e",
+  "parent_sources_verified": 15,
+  "owner_direction": {
+    "schema": "house-abc-laundry-owner-direction-v1",
+    "date": "2026-11-13",
+    "request": "每棟1F因為老人住，考慮曬衣空間，有洗衣機空間最好；三棟1F共用一組，以老人方便洗衣為主。",
+    "clarification": "三棟一樓共用一組 C 二樓既有洗衣機可以先暫時不用 先有空間 其他再想 A棟2F以上也要規劃一個放洗衣機空間",
+    "confirmed": {
+      "shared_group_at_ground_floor": 1,
+      "primary_purpose": "older-residents-no-laundry-stair-carrying",
+      "C_floor2_initial_washer_use": "temporarily-inactive-reserve-space",
+      "A_upper_floor_washer_space_required": true
+    },
+    "not_selected": {
+      "host_building": null,
+      "installed_product": null,
+      "dryer_purchase": null,
+      "site_route": null,
+      "C2_permanent_removal": false,
+      "A_upper_floor": null
+    },
+    "scope": "Latest owner direction for new independent preplanning; retain immutable older studies and formal requirement/register records. This does not retroactively approve any layout or release construction."
+  },
+  "recommendation": "先保A1原陽台洗衣配置，優先向建商確認A後側是否能作合法平層直入；成立時才深化這個可關門候選。沒有共同後側到達，就保前側分戶小籃／推車取送並回到A整體入口重排，不強迫長輩走未核的窄廚房，也不自行縮孝親房或釋放MDF。",
+  "front_entry_screen": {
+    "rooms": [
+      {
+        "id": "mdf",
+        "label": "MDF側壁龕備援（梯下優先待核）",
+        "rect_mm": [
+          0,
+          9880,
+          1360,
+          2180
+        ],
+        "items": [
+          {
+            "id": "A:floor-1:mdf:furniture:rack",
+            "label": "18U 落地機櫃",
+            "rect_mm": [
+              380.0,
+              10810.0,
+              600.0,
+              600.0
+            ]
+          }
+        ]
+      },
+      {
+        "id": "rear-hall1",
+        "label": "後段照護轉位／公共乾區",
+        "rect_mm": [
+          1360,
+          10000,
+          2160,
+          2060
+        ],
+        "items": []
+      },
+      {
+        "id": "kitchen",
+        "label": "一字廚房／直達工作陽台",
+        "rect_mm": [
+          0,
+          12060,
+          2400,
+          3770
+        ],
+        "items": [
+          {
+            "id": "A:floor-1:kitchen:furniture:counter",
+            "label": "240×60 cm 一字廚具候選",
+            "rect_mm": [
+              80.0,
+              12140.0,
+              600.0,
+              2400.0
+            ]
+          },
+          {
+            "id": "A:floor-1:kitchen:furniture:fridge",
+            "label": "75 cm 冰箱",
+            "rect_mm": [
+              1620.0,
+              13004.5,
+              700.0,
+              750.0
+            ]
+          }
+        ]
+      },
+      {
+        "id": "flex1",
+        "label": "孝親房（床＋衣櫃＋照護轉位）",
+        "rect_mm": [
+          2400,
+          12060,
+          3600,
+          3770
+        ],
+        "items": [
+          {
+            "id": "A:floor-1:flex1:furniture:bed",
+            "label": "雙人床",
+            "rect_mm": [
+              2540.0,
+              13870.0,
+              1520.0,
+              1880.0
+            ]
+          },
+          {
+            "id": "A:floor-1:flex1:furniture:wardrobe",
+            "label": "120 cm 衣櫃（替代型）",
+            "rect_mm": [
+              3492.0,
+              12140.0,
+              1200.0,
+              600.0
+            ]
+          }
+        ]
+      }
+    ],
+    "nominal_shared_edge_mm": 1040.0,
+    "optimistic_finished_shared_edge_mm": 810.0,
+    "existing_door_nominal_mm": 900,
+    "existing_door_budget_clear_mm": 670,
+    "triangle_mm": [
+      [
+        1360,
+        11360
+      ],
+      [
+        2400,
+        12060
+      ],
+      [
+        1360,
+        12060
+      ]
+    ],
+    "diagonal_length_mm": 1253.6347,
+    "reclassified_triangle_sqm": 0.364,
+    "free_floor_symmetric_difference_sqm": 0.0,
+    "finished_free_floor": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            3405.0,
+            11945.0
+          ],
+          [
+            3405.0,
+            10115.0
+          ],
+          [
+            1475.0,
+            10115.0
+          ],
+          [
+            1475.0,
+            12175.0
+          ],
+          [
+            115.0,
+            12175.0
+          ],
+          [
+            115.0,
+            15715.0
+          ],
+          [
+            2285.0,
+            15715.0
+          ],
+          [
+            2285.0,
+            11945.0
+          ],
+          [
+            3405.0,
+            11945.0
+          ]
+        ]
+      ]
+    },
+    "circular_body_center_domain": {
+      "type": "MultiPolygon",
+      "coordinates": [
+        [
+          [
+            [
+              1835.0,
+              12444.100941952387
+            ],
+            [
+              1822.8547040132316,
+              12460.47697787364
+            ],
+            [
+              1793.1980515339465,
+              12493.198051533946
+            ],
+            [
+              1760.4769778736404,
+              12522.854704013233
+            ],
+            [
+              1725.006604858821,
+              12549.161325536144
+            ],
+            [
+              1687.128531571699,
+              12571.86456895676
+            ],
+            [
+              1647.2075445642904,
+              12590.745789630078
+            ],
+            [
+              1605.628104764508,
+              12605.623151079493
+            ],
+            [
+              1562.7906449072577,
+              12616.353376181454
+            ],
+            [
+              1519.1077131483023,
+              12622.833127002488
+            ],
+            [
+              1475.0,
+              12625.0
+            ],
+            [
+              565.0,
+              12625.0
+            ],
+            [
+              565.0,
+              15265.0
+            ],
+            [
+              1835.0,
+              15265.0
+            ],
+            [
+              1835.0,
+              12444.100941952387
+            ]
+          ]
+        ],
+        [
+          [
+            [
+              1925.0,
+              11675.899058047613
+            ],
+            [
+              1937.1452959867684,
+              11659.52302212636
+            ],
+            [
+              1966.8019484660535,
+              11626.801948466054
+            ],
+            [
+              1999.5230221263596,
+              11597.145295986767
+            ],
+            [
+              2034.993395141179,
+              11570.838674463854
+            ],
+            [
+              2072.871468428301,
+              11548.13543104324
+            ],
+            [
+              2112.7924554357096,
+              11529.254210369922
+            ],
+            [
+              2154.371895235492,
+              11514.376848920507
+            ],
+            [
+              2197.2093550927425,
+              11503.646623818546
+            ],
+            [
+              2240.892286851698,
+              11497.166872997512
+            ],
+            [
+              2285.0,
+              11495.0
+            ],
+            [
+              2955.0,
+              11495.0
+            ],
+            [
+              2955.0,
+              10565.0
+            ],
+            [
+              1925.0,
+              10565.0
+            ],
+            [
+              1925.0,
+              11675.899058047613
+            ]
+          ]
+        ]
+      ]
+    },
+    "center_domain_components": 2,
+    "probe_components": {
+      "hall": [
+        1
+      ],
+      "kitchen": [
+        0
+      ]
+    },
+    "probes_mm": {
+      "hall": [
+        2700,
+        10900
+      ],
+      "kitchen": [
+        1700,
+        14000
+      ]
+    },
+    "probes_connected": false,
+    "appliances_and_door_leaves_ignored": true,
+    "global_front_replanning_impossible": false,
+    "front_care_route_approved": false,
+    "note": "斜向重分區可得到較長的標籤邊，但未移MDF與孝親房兩角。即使先忽略廚具和門片、只留外邊界完成預算，900圓形本體的中心可行域仍不相通。這只否決這種門長算法，不表示所有前側重排無解。"
+  },
+  "rear_entry_screen": {
+    "opening_nominal_mm": 1200.0,
+    "budget_clear_mm": 970.0,
+    "actual_clear_mm": null,
+    "wall_bridge_rect_mm": [
+      2315.0,
+      17510,
+      970.0,
+      120
+    ],
+    "travel_envelope_rect_mm": [
+      910.0,
+      17535.0,
+      2520.0,
+      95.0
+    ],
+    "travel_body_hits": [],
+    "leaf_travel_body_gaps_mm": {
+      "optional-dryer-bay": 20.0,
+      "lowered-drying-envelope": 70.0
+    },
+    "gaps_are_product_tolerances": false,
+    "route_width_mm": 900,
+    "scoped_route": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            3250.0,
+            15950.0
+          ],
+          [
+            2350.0,
+            15950.0
+          ],
+          [
+            2350.0,
+            17630.0
+          ],
+          [
+            3250.0,
+            17630.0
+          ],
+          [
+            3250.0,
+            16400.0
+          ],
+          [
+            3250.0,
+            15950.0
+          ]
+        ]
+      ]
+    },
+    "outside_route": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            2350.0,
+            17880.0
+          ],
+          [
+            2350.0,
+            18330.0
+          ],
+          [
+            3250.0,
+            18330.0
+          ],
+          [
+            3250.0,
+            17630.0
+          ],
+          [
+            2350.0,
+            17630.0
+          ],
+          [
+            2350.0,
+            17880.0
+          ]
+        ]
+      ]
+    },
+    "scoped_route_sqm": 1.512,
+    "outside_unchecked_route_sqm": 0.63,
+    "scoped_route_inside_finished_assumption": true,
+    "scoped_route_body_hits": [],
+    "shared_operation_bands": [
+      "washer-loading",
+      "dryer-loading"
+    ],
+    "states": [
+      {
+        "id": "open",
+        "label": "全開",
+        "fraction": 1,
+        "leaf_rect_mm": [
+          910,
+          17535,
+          1260,
+          95
+        ],
+        "scoped_route_leaf_overlap_sqm": 0.0,
+        "scoped_route_blocked": false,
+        "whole_route_approved": false
+      },
+      {
+        "id": "half",
+        "label": "半開",
+        "fraction": 0.5,
+        "leaf_rect_mm": [
+          1540.0,
+          17535,
+          1260,
+          95
+        ],
+        "scoped_route_leaf_overlap_sqm": 0.04275,
+        "scoped_route_blocked": true,
+        "whole_route_approved": false
+      },
+      {
+        "id": "closed",
+        "label": "關閉",
+        "fraction": 0,
+        "leaf_rect_mm": [
+          2170,
+          17535,
+          1260,
+          95
+        ],
+        "scoped_route_leaf_overlap_sqm": 0.0855,
+        "scoped_route_blocked": true,
+        "whole_route_approved": false
+      }
+    ],
+    "site_frame_mm": [
+      0,
+      0,
+      6000,
+      17630
+    ],
+    "patio_rects_mm": [
+      [
+        0,
+        15830,
+        6000,
+        1800
+      ]
+    ],
+    "bodies": [
+      {
+        "id": "shared-washer-bay",
+        "label": "共用洗衣安裝預留（含接管預算，非選機）",
+        "rect_mm": [
+          3350,
+          15945,
+          850,
+          750
+        ],
+        "kind": "washer",
+        "facing": "left"
+      },
+      {
+        "id": "optional-dryer-bay",
+        "label": "平放乾衣機備位（可先不買）",
+        "rect_mm": [
+          3350,
+          16765,
+          850,
+          750
+        ],
+        "kind": "reserve",
+        "facing": "left"
+      },
+      {
+        "id": "lowered-drying-envelope",
+        "label": "可升降晾衣含衣物暫估外廓",
+        "rect_mm": [
+          1000,
+          16965,
+          1200,
+          500
+        ],
+        "kind": "drying",
+        "facing": "front"
+      }
+    ],
+    "fixed": [
+      {
+        "id": "hvac-service-0",
+        "kind": "hvac-service",
+        "rect_mm": [
+          4470.0,
+          16180,
+          900.0,
+          1350
+        ]
+      },
+      {
+        "id": "door-approach-1",
+        "kind": "door-approach",
+        "rect_mm": [
+          1200.0,
+          15830.0,
+          1100.0,
+          900.0
+        ]
+      },
+      {
+        "id": "A:floor-1:balcony1:furniture:water-filter",
+        "kind": "existing-filter",
+        "rect_mm": [
+          80.0,
+          15910.0,
+          900.0,
+          650.0
+        ]
+      }
+    ],
+    "operations": [
+      {
+        "id": "washer-loading",
+        "label": "洗衣取放暫估操作帶",
+        "rect_mm": [
+          2250,
+          15945,
+          1100,
+          900
+        ]
+      },
+      {
+        "id": "dryer-loading",
+        "label": "乾衣機備位暫估操作帶",
+        "rect_mm": [
+          2250,
+          16615,
+          1100,
+          900
+        ]
+      },
+      {
+        "id": "drying-loading",
+        "label": "晾衣站位／推車暫估帶",
+        "rect_mm": [
+          1000,
+          16165,
+          1200,
+          800
+        ]
+      }
+    ],
+    "outside_access_rights_verified": false,
+    "threshold_and_door_product_verified": false,
+    "whole_route_or_care_approved": false,
+    "parent_laundry_geometry_changed": false
+  },
+  "C2_space_retained": {
+    "source_item": "C:floor-2:balcony2f:furniture:washer",
+    "rect_mm": [
+      800.0,
+      115.0,
+      650.0,
+      650.0
+    ],
+    "new_direction_use": "temporarily-inactive-reserve-space",
+    "source_model_changed": false,
+    "removed_from_original": false,
+    "new_washer_purchased": false
+  },
+  "A2_reservation_retained": {
+    "id": "A2-reserve",
+    "floor": "floor-2",
+    "room": "balcony2",
+    "label": "A二樓後工作陽台洗衣備位",
+    "route_points_mm": [
+      [
+        2600,
+        16200
+      ],
+      [
+        2600,
+        16400
+      ],
+      [
+        2850,
+        16400
+      ]
+    ],
+    "note": "優先二樓，避免把上層衣物全搬到RF；仍需穿書房，與陽台門前操作有共用，並非公共直達。水電排濕防水與振動由建商／A設計師共同預留，未定實機。",
+    "region_rects_mm": [
+      [
+        0,
+        15630,
+        6000,
+        2000
+      ]
+    ],
+    "bodies": [
+      {
+        "id": "upper-washer-reserve",
+        "label": "上層洗衣安裝預留（暫不放實機）",
+        "rect_mm": [
+          3450,
+          15945,
+          850,
+          750
+        ],
+        "kind": "reserve",
+        "facing": "left"
+      }
+    ],
+    "operations": [
+      {
+        "id": "upper-loading",
+        "label": "備位取放操作預算",
+        "rect_mm": [
+          2250,
+          15945,
+          1200,
+          900
+        ]
+      }
+    ],
+    "fixed": [
+      {
+        "id": "hvac-service-0",
+        "kind": "hvac-service",
+        "rect_mm": [
+          80.0,
+          16180,
+          900.0,
+          1350
+        ]
+      },
+      {
+        "id": "hvac-service-1",
+        "kind": "hvac-service",
+        "rect_mm": [
+          5020.0,
+          16180,
+          900.0,
+          1350
+        ]
+      },
+      {
+        "id": "door-approach-2",
+        "kind": "door-approach",
+        "rect_mm": [
+          2050.0,
+          15630.0,
+          1100.0,
+          900.0
+        ]
+      },
+      {
+        "id": "door-approach-3",
+        "kind": "door-approach",
+        "rect_mm": [
+          4970.0,
+          15630.0,
+          1100.0,
+          900.0
+        ]
+      }
+    ],
+    "screen": {
+      "nominal_region_sqm": 12.0,
+      "finished_region_sqm_assumption": 10.2129,
+      "new_body_outside_finished": [],
+      "operation_outside_finished": [],
+      "body_pair_hits": [],
+      "new_body_fixed_hits": [],
+      "operation_fixed_hits": [],
+      "operation_other_body_hits": [],
+      "operation_shared": [],
+      "operation_door_approach_shared": [
+        {
+          "operation": "upper-loading",
+          "approach": "door-approach-2"
+        }
+      ],
+      "local_route_width_mm": 900,
+      "local_route_inside_finished": true,
+      "local_route_fixed_hits": [],
+      "turn_inside_finished": null,
+      "turn_lowered_body_hits": [],
+      "turn_if_drying_fully_stowed_body_hits": [],
+      "stowed_drying_headroom_and_product_verified": false,
+      "existing_fixed_outside_finished": [
+        "hvac-service-0",
+        "hvac-service-1"
+      ],
+      "whole_route_or_care_approved": false,
+      "product_door_sweeps_verified": false
+    }
+  },
+  "B_source_states_retained": [
+    {
+      "option": "b-rear-split",
+      "state": "daily",
+      "existing_washer_rects_mm": [
+        [
+          1475.0,
+          11485.0,
+          650.0,
+          650.0
+        ]
+      ],
+      "new_shared_laundry_host_adopted": false
+    },
+    {
+      "option": "b-rear-split",
+      "state": "ritual",
+      "existing_washer_rects_mm": [
+        [
+          1475.0,
+          11485.0,
+          650.0,
+          650.0
+        ]
+      ],
+      "new_shared_laundry_host_adopted": false
+    },
+    {
+      "option": "b-rear-split",
+      "state": "carry",
+      "existing_washer_rects_mm": [
+        [
+          1475.0,
+          11485.0,
+          650.0,
+          650.0
+        ]
+      ],
+      "new_shared_laundry_host_adopted": false
+    },
+    {
+      "option": "b-front-split",
+      "state": "daily",
+      "existing_washer_rects_mm": [
+        [
+          2855,
+          13085,
+          650,
+          650
+        ]
+      ],
+      "new_shared_laundry_host_adopted": false
+    },
+    {
+      "option": "b-front-split",
+      "state": "ritual",
+      "existing_washer_rects_mm": [
+        [
+          2855,
+          13085,
+          650,
+          650
+        ]
+      ],
+      "new_shared_laundry_host_adopted": false
+    },
+    {
+      "option": "b-front-split",
+      "state": "carry",
+      "existing_washer_rects_mm": [
+        [
+          2855,
+          13085,
+          650,
+          650
+        ]
+      ],
+      "new_shared_laundry_host_adopted": false
+    }
+  ],
+  "parent_laundry_risks_retained": {
+    "compact": {
+      "nominal_region_sqm": 10.8,
+      "finished_region_sqm_assumption": 9.0589,
+      "new_body_outside_finished": [],
+      "operation_outside_finished": [],
+      "body_pair_hits": [],
+      "new_body_fixed_hits": [],
+      "operation_fixed_hits": [],
+      "operation_other_body_hits": [],
+      "operation_shared": [
+        {
+          "a": "washer-loading",
+          "b": "dryer-loading",
+          "overlap_sqm": 0.253
+        }
+      ],
+      "operation_door_approach_shared": [
+        {
+          "operation": "washer-loading",
+          "approach": "door-approach-1"
+        },
+        {
+          "operation": "dryer-loading",
+          "approach": "door-approach-1"
+        },
+        {
+          "operation": "drying-loading",
+          "approach": "door-approach-1"
+        }
+      ],
+      "local_route_width_mm": 900,
+      "local_route_inside_finished": true,
+      "local_route_fixed_hits": [],
+      "turn_inside_finished": true,
+      "turn_lowered_body_hits": [
+        "lowered-drying-envelope"
+      ],
+      "turn_if_drying_fully_stowed_body_hits": [],
+      "stowed_drying_headroom_and_product_verified": false,
+      "existing_fixed_outside_finished": [
+        "hvac-service-0",
+        "A:floor-1:balcony1:furniture:water-filter"
+      ],
+      "whole_route_or_care_approved": false,
+      "product_door_sweeps_verified": false
+    },
+    "deeper_kitchen_area": {
+      "before_nominal_sqm": 9.048,
+      "after_nominal_sqm": 6.816,
+      "loss_nominal_sqm": 2.232,
+      "new_rect_mm": [
+        0,
+        12060,
+        2400,
+        2840
+      ],
+      "original_fixture_bodies_inside_nominal": true,
+      "finished_kitchen_and_door_sweeps_verified": false
+    },
+    "doors": [
+      {
+        "id": "A1-public-to-kitchen",
+        "nominal_mm": 900,
+        "assumed_clear_mm": 670,
+        "target_mm": 900,
+        "shortfall_mm": 230,
+        "actual_clear_mm": null,
+        "verified": false
+      },
+      {
+        "id": "A1-kitchen-to-balcony",
+        "nominal_mm": 900,
+        "assumed_clear_mm": 670,
+        "target_mm": 900,
+        "shortfall_mm": 230,
+        "actual_clear_mm": null,
+        "verified": false
+      },
+      {
+        "id": "A2-study-to-balcony",
+        "nominal_mm": 900,
+        "assumed_clear_mm": 670,
+        "target_mm": 900,
+        "shortfall_mm": 230,
+        "actual_clear_mm": null,
+        "verified": false
+      }
+    ],
+    "actual_conditions": {
+      "building_order_and_adjacency": null,
+      "common_route_evidence": null,
+      "common_route_length_mm": null,
+      "common_route_finished_clear_mm": null,
+      "common_route_level_difference_mm": null,
+      "covered_route_document": null,
+      "legal_rear_access_each_building": null,
+      "site_wall_column_plan": null,
+      "finished_A1_balcony_rect_mm": null,
+      "A1_kitchen_entry_clear_mm": null,
+      "A1_balcony_door_clear_mm": null,
+      "A2_balcony_door_clear_mm": null,
+      "elder_loading_and_reach_needs": null,
+      "simultaneous_laundry_users": null,
+      "laundry_volume_and_bedding": null,
+      "washer_product_installation_envelope_mm": null,
+      "washer_door_full_sweep_mm": null,
+      "dryer_product_installation_envelope_mm": null,
+      "drying_clothes_envelope_mm": null,
+      "drying_air_and_condensate_design": null,
+      "legal_wastewater_terminal": null,
+      "waterproofing_and_drainage_design": null,
+      "noise_and_vibration_design": null,
+      "electrical_design": null,
+      "water_filter_full_service_envelope": null,
+      "HVAC_full_service_and_replacement_envelope": null
+    },
+    "cross_building_route": {
+      "site_order": null,
+      "adjacent_walls_can_open": null,
+      "distance_mm": null,
+      "front_route": "只研究既有合法通行空間平層取送，需核遮雨、濕滑、門框與高差；不在騎樓裝機、晾衣或停推車。",
+      "rear_route": "僅在A／B／C各後口及共同後巷權利、轉向、門檻和遮雨均核實後比較；不能只憑B回報有後巷就採用。",
+      "if_owner_cannot_travel": "家人／照服以分戶小衣籃或推車平層取送到同一組，長輩不提濕衣上樓；若沒有合法便利的共用到達，先退回整個共享位置研究。",
+      "approved": false
+    }
+  },
+  "actual_conditions": {
+    "A_rear_opening_permission": null,
+    "shared_rear_route_rights": null,
+    "ABC_relative_positions": null,
+    "rear_route_finished_width_mm": null,
+    "outside_turning_envelope": null,
+    "level_difference_and_slope": null,
+    "rain_cover_and_wet_floor_design": null,
+    "rear_threshold_and_drainage_detail": null,
+    "door_product_and_full_installation_envelope": null,
+    "open_clear_width_mm": null,
+    "door_operating_force_and_reach": null,
+    "door_anti_lift_lock_and_emergency_opening": null,
+    "wind_rain_fire_and_security_detail": null,
+    "dryer_actual_service_envelope": null,
+    "drying_clothes_actual_envelope": null,
+    "filter_and_HVAC_full_service_access": null,
+    "elder_mobility_and_assistance": null,
+    "kitchen_closeable_preference": null,
+    "front_entry_complete_replan": null
+  },
+  "actual_conditions_received": 0,
+  "formal_requirement_statuses": {
+    "candidate": 66
+  },
+  "formal_register_statuses": {
+    "unknown": 105
+  },
+  "protected_controls_unchanged": 149,
+  "host_building_adopted": false,
+  "original_ABC_or_3d_changed": false,
+  "accepted_storage_viewers_changed": false,
+  "adopted": false,
+  "professional_approval": "unknown",
+  "rendered_qa": "not-run",
+  "geometry_scope": "fixed-front-counterexample-and-site-clipped-rear-envelope-only-no-exterior-route-or-products",
+  "source_hashes": {
+    "inputs/abc-laundry-access.json": "c017022856a8dc26a211c0db2b673e567ac1d29ef8ea2de7b8abddafafa28f93",
+    "Docs/abc-laundry-access-v1.md": "b56107429da932409aad85cd6997312dfba209602a8baa66eeedf8376967033a",
+    "inputs/references/abc-laundry-owner-20261113.json": "d686ff2722941b3144c8a98a35a7d9a4d942f973572e7b64d6d5ef2a59f838b1",
+    "structured/coordination/abc-ground-laundry-v1/review.json": "70d173aee810bf6965a7612b4146c22b5c665a66844b26593381f4248d9dc26a",
+    "inputs/abc-ground-laundry.json": "2fa269b67db5af4dbd73ded7188621e6edb08cfd7e552d0bc88a07285abc7616",
+    "structured/candidates/kaohsiung-house-options/c-stair-integration.json": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+    "structured/coordination/c-ground-coordination-v1/review.json": "5853f0b1d94a2e9e8f9fca4bf772e50389ec287ace801a01922fadddb3b66c62",
+    "structured/coordination/b-claude-round3-v1/review.json": "00baf0b3950e2593361e91698e4d72ac33e384edadd6da5a7d31b62e087b6223",
+    "structured/coordination/ac-storage-preview-v1/ac-storage-preview.zip": "626dd589d792ee644b78fe744de689fcd72ba84f3999eeb81cb601a96d66f2f9",
+    "structured/coordination/b-upper-storage-3d-v1/b-upper-storage-3d.zip": "578effc31836d9452bdfbc2c7c0d560d7a9e54638f2d87db3185fb0928ba48f2",
+    "structured/coordination/upper-floor-storage-viewer-v1/upper-floor-storage-3d.zip": "678ae172b98d0f066c01331c0748d50eabcfc007b5cbad2208e1e688f71fa0eb",
+    "structured/coordination/b-upper-storage-sync-v1/b-upper-storage-sync.zip": "541bf091e2bdf28dd21b58390d68ec95861e00df926e46b594b43de9b7bb0343",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "inputs/requirements.json": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066",
+    "inputs/planning-register.json": "140493058b145071afb472bf927860d48a43a6f4407b9b59e5a86705fbe058b0",
+    "Docs/abc-ground-laundry-v1.md": "fa60275993c40b7a59708c13be67c34f78ba3f424cfd22932b8340785b7b6713",
+    "house_design/abc_ground_laundry.py": "9e6adfc357d378000cb0e53af9defaa7564016b45b8b25cf35cbdab860c455c8",
+    "scripts/export_abc_ground_laundry.py": "4681882dd663f4bf7d89c1f9b77ea68a063a8d495dc7ad4de98b5890ba4f76c2",
+    "house_design/abc_laundry_access.py": "31d54298d25037db3b2cff616a44b857f180a7f0f4b1fba5c764b8193035ac80",
+    "scripts/export_abc_laundry_access.py": "ed39cd468d3e8eb5d965ae8ffe22e13aff61f21fd3be800d408132dcbbe09281",
+    "house_design/contracts.py": "2888419d49e8d8dbe8b8e99f6b8451363cd9020821c7fe3e703ab09779e202c3",
+    "house_design/project_status.py": "db73eb9b066353cc282e67dc15e4b430d9d4e4d398eafaf7eeec5f98af1acab0",
+    "scripts/export_b_upper_replan.py": "3a3cc271cf7d9fc20759d4bca17b582ab672f551981c6e8c1c20933192c09a3d",
+    "scripts/export_builder_communication.py": "650d696de35bd9a0fb4ce77d7f93078813b8babd4ed5439d59a6966d093ceef1",
+    "scripts/export_abc_next_improvements.py": "875c13027466776a6e1661dae369e45c823c661c5e0369d8ee95b6535420e701"
+  },
+  "report_hash": "cccb8e77b8ff54e162bc27746b1cef493f02e6fd53d43bb19ffe49e41db18730"
+}

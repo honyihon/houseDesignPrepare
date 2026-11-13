@@ -19,6 +19,7 @@ def main() -> int:
     parser.add_argument("--root", type=Path, default=ROOT)
     parser.add_argument("--json", action="store_true", help="Print JSON to stdout; never writes a report")
     parser.add_argument("--check", action="store_true", help="Exit 1 when indexed source checks are incomplete or changed")
+    parser.add_argument("--include-history", action="store_true", help="Also require archived source checks; differences still always printed")
     args = parser.parse_args()
     try:
         result = inspect_project(args.root)
@@ -26,7 +27,7 @@ def main() -> int:
         print(f"Project index unavailable: {exc}", file=sys.stderr)
         return 2
     print(json.dumps(result, ensure_ascii=False, indent=2) if args.json else render_status(result), end="\n")
-    return 1 if args.check and not source_checks_current(result) else 0
+    return 1 if args.check and not source_checks_current(result, include_history=args.include_history) else 0
 
 
 if __name__ == "__main__":

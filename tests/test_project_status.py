@@ -176,9 +176,94 @@ def test_cli_check_exit_codes_and_json_are_source_only(indexed):
 
 def test_project_registry_has_separate_latest_c_scope_and_no_accepted_raw_results():
     index = read_public_json(ROOT, project_status.INDEX)
-    assert index["default_package"] == "current-basis"
+    assert index["default_package"] == "fresh-air-planning"
     by_id = {p["id"]: p for p in index["packages"]}
     assert by_id["c-care-layout"]["role"] == "care-comparison-not-merged-into-current-basis"
     assert by_id["c-care-products"]["viewer"] is None
+    assert by_id["current-basis"]["check_scope"] == "history"
+    assert by_id["kaohsiung-current"]["check_scope"] == "current"
+    assert len(index["packages"]) == 13
     assert all(p["raw_result"] is None for p in index["packages"])
     assert index["authority"] == "navigation-and-work-index-only-not-design-requirement-or-approval"
+
+
+def test_history_staleness_remains_visible_but_does_not_replace_current_scope(indexed):
+    root, index = indexed
+    index["packages"].append({**index["packages"][0], "id": "old", "check_scope": "history",
+        "report": "structured/old/review.json"})
+    write_json(root / "structured/old/review.json", {"adopted": False,
+        "source_hashes": {"inputs/example.json": "0"*64}})
+    write_json(root / project_status.INDEX, index)
+    result = inspect_project(root)
+    assert source_checks_current(result)
+    assert not source_checks_current(result, include_history=True)
+    assert result["packages"][1]["changed_sources"]
+    assert "old：來源已改" in render_status(result)
+
+
+def test_cli_history_scope_is_explicit_not_silently_suppressed(indexed):
+    root, index = indexed
+    index["packages"].append({**index["packages"][0], "id": "old", "check_scope": "history",
+        "report": "structured/old/review.json"})
+    write_json(root / "structured/old/review.json", {"adopted": False,
+        "source_hashes": {"inputs/example.json": "0"*64}})
+    write_json(root / project_status.INDEX, index)
+    command = [sys.executable, "-B", str(ROOT / "scripts/check_project_status.py"), "--root", str(root), "--check", "--json"]
+    current = subprocess.run(command, capture_output=True, text=True, timeout=5, check=False)
+    history = subprocess.run([*command, "--include-history"], capture_output=True, text=True, timeout=5, check=False)
+    assert current.returncode == 0 and history.returncode == 1
+    assert json.loads(current.stdout)["packages"][1]["changed_sources"]
+
+
+def test_default_and_scope_cannot_hide_every_package_in_history(indexed):
+    root, index = indexed
+    index["packages"][0]["check_scope"] = "history"
+    write_json(root / project_status.INDEX, index)
+    with pytest.raises(ValueError, match="Default package"):
+        inspect_project(root)
+    index["packages"][0]["check_scope"] = "anything"
+    write_json(root / project_status.INDEX, index)
+    with pytest.raises(ValueError, match="check_scope"):
+        inspect_project(root)
+
+
+def test_optional_artifact_manifest_is_checked_without_approving_qa(indexed):
+    root, index = indexed
+    report = read_public_json(root, "structured/example/review.json")
+    report["report_hash"] = "fixture-only-not-a-report-seal"
+    write_json(root / "structured/example/review.json", report)
+    expected = hashlib.sha256((root / "structured/example/review.json").read_bytes()).hexdigest()
+    write_json(root / "structured/example/artifact-manifest.json", {"report_hash": report["report_hash"],
+        "artifacts": {"review.json": expected}})
+    index["packages"][0]["manifest"] = "structured/example/artifact-manifest.json"
+    write_json(root / project_status.INDEX, index)
+    result = inspect_project(root)
+    assert result["packages"][0]["artifact_state"] == "declared-artifact-hashes-match"
+    assert source_checks_current(result)
+    assert result["packages"][0]["rendered_qa_acceptance"] == "not-verified-by-this-index"
+    report["extra"] = "changed fixture bytes"
+    write_json(root / "structured/example/review.json", report)
+    result = inspect_project(root)
+    assert result["packages"][0]["artifact_state"] == "artifact-changed"
+    assert not source_checks_current(result)
+
+
+def test_artifact_manifest_cannot_read_parent_or_private_paths(indexed):
+    root, index = indexed
+    report = read_public_json(root, "structured/example/review.json")
+    report["report_hash"] = "synthetic"
+    write_json(root / "structured/example/review.json", report)
+    write_json(root / "structured/example/artifact-manifest.json", {"report_hash": "synthetic",
+        "artifacts": {"../../inputs/private/secret.json": "0"*64}})
+    index["packages"][0]["manifest"] = "structured/example/artifact-manifest.json"
+    write_json(root / project_status.INDEX, index)
+    result = inspect_project(root)
+    assert result["packages"][0]["artifact_state"] == "artifact-check-incomplete"
+    assert not source_checks_current(result)
+
+
+def test_current_repository_keeps_all_current_sources_without_rebuilding():
+    result = inspect_project(ROOT)
+    assert source_checks_current(result)
+    assert len([p for p in result["packages"] if p["check_scope"] == "current"]) == 7
+    assert not source_checks_current(result, include_history=True)

@@ -1,0 +1,799 @@
+{
+  "schema": "house-b-front-drop-stair-report-v1",
+  "date": "2026-11-10",
+  "config": {
+    "schema": "house-b-front-drop-stair-v1",
+    "date": "2026-11-10",
+    "adopted": false,
+    "p4_report": "structured/coordination/b-front-drainage-layout-v1/review.json",
+    "q3_report": "structured/coordination/b-ktv-stair-options-v1/review.json",
+    "ground_report": "structured/coordination/b-claude-round3-v1/review.json",
+    "protected_controls": "inputs/abc-next-protected-controls.json",
+    "pinned_sources": {
+      "structured/coordination/b-front-drainage-layout-v1/review.json": "fb352dcdc1c83aad3b4d4ced66804d328132bd411473b496676f53f849ac7711",
+      "structured/coordination/b-front-drainage-layout-v1/artifact-manifest.json": "79ec65f635322da82de8f7e9c646be793531d937a9a25cafb70d991ff6255635",
+      "structured/coordination/b-ktv-stair-options-v1/review.json": "6116c9df09d442e29e16cc3eabc50aa1cd94b4d512fd3398b9105f1afdc34a7e",
+      "structured/coordination/b-claude-round3-v1/review.json": "00baf0b3950e2593361e91698e4d72ac33e384edadd6da5a7d31b62e087b6223",
+      "structured/coordination/b-claude-round3-v1/artifact-manifest.json": "ad7327b07ef803ab57cf7390f84a3919da4165124a84e33288953981fa591062"
+    },
+    "local_route_width_mm": 700,
+    "local_routes": [
+      {
+        "id": "street-to-left-flight",
+        "label": "街門中心至左跑前的局部平台",
+        "points_mm": [
+          [
+            1200,
+            4400
+          ],
+          [
+            1200,
+            4470
+          ],
+          [
+            580,
+            4470
+          ]
+        ]
+      },
+      {
+        "id": "shrine-side-to-left-flight",
+        "label": "神明堂側門內至左跑前的局部平台",
+        "points_mm": [
+          [
+            1930,
+            4400
+          ],
+          [
+            1780,
+            4400
+          ],
+          [
+            580,
+            4470
+          ]
+        ]
+      }
+    ],
+    "candidates": [
+      {
+        "id": "G0",
+        "label": "原前左入口平台候選",
+        "rect_mm": [
+          115,
+          4015,
+          400,
+          400
+        ]
+      },
+      {
+        "id": "G1",
+        "label": "改右前角，僅作反例",
+        "rect_mm": [
+          1880,
+          4015,
+          400,
+          400
+        ]
+      },
+      {
+        "id": "G2",
+        "label": "中央梯隙放400，僅作反例",
+        "rect_mm": [
+          980,
+          6000,
+          400,
+          400
+        ]
+      },
+      {
+        "id": "G3",
+        "label": "左跑下方落管，僅作反例",
+        "rect_mm": [
+          115,
+          5500,
+          400,
+          400
+        ]
+      }
+    ],
+    "limits": [
+      "本輪只對P4原1F落水候選作局部平台／踏步篩檢，不改ABC／3D、P4或Q3、24級一樓梯及兩種搬轎版；候選未採用，也沒有新核准落水。",
+      "原G0不是已留空井：400×400全部占入口平台0.16㎡，碰兩條700局部試線。這足以否定直接沿用該試線，但不證明所有人體路徑或全棟重排都不可能。",
+      "G1移右角可避街門局部試線，仍碰神明堂側門內到達；不能只看街門就說一樓不受影響，也不預設取消或改側門。",
+      "G2中央僅200mm，不夠400預留，會碰左右踏步投影；G3左跑下方垂直柱亦穿列明踏步高度。踏步／梯梁不是可隨意穿管的空洞。",
+      "400是原整組管井預留，不是400管徑；單一實管或多管配置、隔音防火包覆與檢修尺寸未知，不能任意縮成200或減小坡度取得通過。",
+      "垂直400柱只是假設從1F模型0延伸到P4最有利3504.4mm預算平面，不是實際排水接入高程或管線；與踏步高程相交是需改設計的反例，不是結構穿孔許可。",
+      "街／側門僅依來源名義中心定位，未模擬門片、門框、門檻、實際出入口或扶手；700是在平台內的兩條局部方塊，不當完整700淨寬、照護、搬轎或逃生核可。",
+      "兩個1F版本各三態逐一核G0與列明器具、房界和祭祀／乾背／武轎庫；搬運路線未重演，前版不借後版通路，後巷權利未核。",
+      "保兩跑各1000，中央增至400至少需2400名義梯幅，比原2200多200，還未含管井壁或新結構；照原外緣一起向右加200的名義梯核會侵祭祀前廳1.04㎡，不是可採用小改。",
+      "本輪只排除四個明列位置，沒有全域搜尋所有建築構造。首選是建築師把管井、樓梯／入口平台及真實梁板一起作新建整合設計，不讓現行四候選直接進施工圖。",
+      "前公衛P1或不同濕區拓樸可比較，但P1濕茶水未落位，舊後窗案也有面積缺口；泵、粉碎馬桶、抬地坪與外牆／鄰地管均不作默認解法。",
+      "P4的三條短支管與4.4mm算式餘量仍留作比較，不能抵消1F已知平台衝突；P3／Q3、RF24㎡、聲學、天井防水及全棟排水待核仍保留。"
+    ]
+  },
+  "p4_report_hash": "7942e22e54fc8e0c33b7de181765634eb0ab7fa4bf52900f055cb85f73d7c4e7",
+  "q3_report_hash": "a5e3e758fc5249a2c0768fd3b48d5d7448365c170820ccfbb529ca439ed59de2",
+  "ground_report_hash": "5414953c7dc6105adc17aaefe1fba1e8da40845fff7f3451db28e8a93f25df55",
+  "stair_screen": {
+    "source": {
+      "base_mm": 0,
+      "height_mm": 4000,
+      "footprint": {
+        "x_mm": 80,
+        "y_mm": 3970,
+        "w_mm": 2200,
+        "h_mm": 5060
+      },
+      "geometry": {
+        "type": "two-flight-u-proposal",
+        "connects_to_next_storey": true,
+        "risers": 24,
+        "riser_mm": 166.67,
+        "tread_mm": 270,
+        "flight_width_mm": 1000,
+        "landing_mm": 1000,
+        "departure_offset_mm": 1000,
+        "middle_landing_mm": 1090,
+        "shared_front_landing": false,
+        "run_mm": 2970,
+        "fits_reserved_box": true,
+        "note": "兩折梯與平台僅初排；完成面淨寬、扶手、結構、梯井、淨高、消防分隔及屋突資格未核。"
+      }
+    },
+    "landing_mm": [
+      80,
+      3970,
+      2200,
+      1000
+    ],
+    "local_routes": [
+      {
+        "id": "street-to-left-flight",
+        "label": "街門中心至左跑前的局部平台",
+        "points_mm": [
+          [
+            1200,
+            4400
+          ],
+          [
+            1200,
+            4470
+          ],
+          [
+            580,
+            4470
+          ]
+        ],
+        "width_mm": 700,
+        "inside_original_landing_without_new_shaft": true,
+        "actual_door_or_full_access_approval": "unknown"
+      },
+      {
+        "id": "shrine-side-to-left-flight",
+        "label": "神明堂側門內至左跑前的局部平台",
+        "points_mm": [
+          [
+            1930,
+            4400
+          ],
+          [
+            1780,
+            4400
+          ],
+          [
+            580,
+            4470
+          ]
+        ],
+        "width_mm": 700,
+        "inside_original_landing_without_new_shaft": true,
+        "actual_door_or_full_access_approval": "unknown"
+      }
+    ],
+    "treads": [
+      {
+        "id": "left-1",
+        "rect_mm": [
+          80,
+          4970.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 166.66666666666666
+      },
+      {
+        "id": "right-1",
+        "rect_mm": [
+          1280,
+          7670.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 2166.6666666666665
+      },
+      {
+        "id": "left-2",
+        "rect_mm": [
+          80,
+          5240.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 333.3333333333333
+      },
+      {
+        "id": "right-2",
+        "rect_mm": [
+          1280,
+          7400.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 2333.3333333333335
+      },
+      {
+        "id": "left-3",
+        "rect_mm": [
+          80,
+          5510.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 500.0
+      },
+      {
+        "id": "right-3",
+        "rect_mm": [
+          1280,
+          7130.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 2500.0
+      },
+      {
+        "id": "left-4",
+        "rect_mm": [
+          80,
+          5780.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 666.6666666666666
+      },
+      {
+        "id": "right-4",
+        "rect_mm": [
+          1280,
+          6860.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 2666.6666666666665
+      },
+      {
+        "id": "left-5",
+        "rect_mm": [
+          80,
+          6050.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 833.3333333333333
+      },
+      {
+        "id": "right-5",
+        "rect_mm": [
+          1280,
+          6590.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 2833.333333333333
+      },
+      {
+        "id": "left-6",
+        "rect_mm": [
+          80,
+          6320.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 1000.0
+      },
+      {
+        "id": "right-6",
+        "rect_mm": [
+          1280,
+          6320.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 3000.0
+      },
+      {
+        "id": "left-7",
+        "rect_mm": [
+          80,
+          6590.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 1166.6666666666665
+      },
+      {
+        "id": "right-7",
+        "rect_mm": [
+          1280,
+          6050.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 3166.6666666666665
+      },
+      {
+        "id": "left-8",
+        "rect_mm": [
+          80,
+          6860.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 1333.3333333333333
+      },
+      {
+        "id": "right-8",
+        "rect_mm": [
+          1280,
+          5780.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 3333.333333333333
+      },
+      {
+        "id": "left-9",
+        "rect_mm": [
+          80,
+          7130.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 1500.0
+      },
+      {
+        "id": "right-9",
+        "rect_mm": [
+          1280,
+          5510.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 3500.0
+      },
+      {
+        "id": "left-10",
+        "rect_mm": [
+          80,
+          7400.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 1666.6666666666665
+      },
+      {
+        "id": "right-10",
+        "rect_mm": [
+          1280,
+          5240.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 3666.6666666666665
+      },
+      {
+        "id": "left-11",
+        "rect_mm": [
+          80,
+          7670.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 1833.3333333333333
+      },
+      {
+        "id": "right-11",
+        "rect_mm": [
+          1280,
+          4970.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 3833.333333333333
+      }
+    ],
+    "hypothetical_column_z_mm": [
+      0,
+      3504.4
+    ],
+    "central_gap_mm": [
+      1080,
+      4970,
+      200,
+      2970
+    ],
+    "central_gap_width_mm": 200,
+    "required_reserved_shaft_width_mm": 400,
+    "candidates": [
+      {
+        "id": "G0",
+        "label": "原前左入口平台候選",
+        "rect_mm": [
+          115,
+          4015,
+          400,
+          400
+        ],
+        "inside_nominal_stair_room": true,
+        "landing_overlap_sqm": 0.16,
+        "local_route_hits": [
+          {
+            "route": "street-to-left-flight",
+            "sqm": 0.084075
+          },
+          {
+            "route": "shrine-side-to-left-flight",
+            "sqm": 0.104025
+          }
+        ],
+        "tread_hits_in_hypothetical_vertical_column": [],
+        "status": "conflicts-listed-platform-routes",
+        "adopted": false,
+        "new_structural_hole_or_actual_pipe_route_approved": false
+      },
+      {
+        "id": "G1",
+        "label": "改右前角，僅作反例",
+        "rect_mm": [
+          1880,
+          4015,
+          400,
+          400
+        ],
+        "inside_nominal_stair_room": true,
+        "landing_overlap_sqm": 0.16,
+        "local_route_hits": [
+          {
+            "route": "shrine-side-to-left-flight",
+            "sqm": 0.146
+          }
+        ],
+        "tread_hits_in_hypothetical_vertical_column": [],
+        "status": "conflicts-listed-platform-routes",
+        "adopted": false,
+        "new_structural_hole_or_actual_pipe_route_approved": false
+      },
+      {
+        "id": "G2",
+        "label": "中央梯隙放400，僅作反例",
+        "rect_mm": [
+          980,
+          6000,
+          400,
+          400
+        ],
+        "inside_nominal_stair_room": true,
+        "landing_overlap_sqm": 0.0,
+        "local_route_hits": [],
+        "tread_hits_in_hypothetical_vertical_column": [
+          {
+            "id": "left-4",
+            "top_z_mm": 666.667,
+            "plan_overlap_sqm": 0.005
+          },
+          {
+            "id": "left-5",
+            "top_z_mm": 833.333,
+            "plan_overlap_sqm": 0.027
+          },
+          {
+            "id": "left-6",
+            "top_z_mm": 1000.0,
+            "plan_overlap_sqm": 0.008
+          },
+          {
+            "id": "right-6",
+            "top_z_mm": 3000.0,
+            "plan_overlap_sqm": 0.008
+          },
+          {
+            "id": "right-7",
+            "top_z_mm": 3166.667,
+            "plan_overlap_sqm": 0.027
+          },
+          {
+            "id": "right-8",
+            "top_z_mm": 3333.333,
+            "plan_overlap_sqm": 0.005
+          }
+        ],
+        "status": "intersects-listed-treads",
+        "adopted": false,
+        "new_structural_hole_or_actual_pipe_route_approved": false
+      },
+      {
+        "id": "G3",
+        "label": "左跑下方落管，僅作反例",
+        "rect_mm": [
+          115,
+          5500,
+          400,
+          400
+        ],
+        "inside_nominal_stair_room": true,
+        "landing_overlap_sqm": 0.0,
+        "local_route_hits": [],
+        "tread_hits_in_hypothetical_vertical_column": [
+          {
+            "id": "left-2",
+            "top_z_mm": 333.333,
+            "plan_overlap_sqm": 0.004
+          },
+          {
+            "id": "left-3",
+            "top_z_mm": 500.0,
+            "plan_overlap_sqm": 0.108
+          },
+          {
+            "id": "left-4",
+            "top_z_mm": 666.667,
+            "plan_overlap_sqm": 0.048
+          }
+        ],
+        "status": "intersects-listed-treads",
+        "adopted": false,
+        "new_structural_hole_or_actual_pipe_route_approved": false
+      }
+    ],
+    "all_listed_candidates_conflict": true,
+    "entire_human_route_all_possible_chases_headroom_or_structure_checked": false
+  },
+  "ground_states": [
+    {
+      "option": "b-rear-split",
+      "state": "daily",
+      "floor1_source_hash": "09d63d031cbe94fced1c5f500237b4c376633783cf8e4c31b51e10a6747e1c12",
+      "nominal_stair_room_mm": [
+        0,
+        3900,
+        2400,
+        5200
+      ],
+      "nominal_front_door_center_x_mm": 1200.0,
+      "nominal_side_door_center_y_mm": 4400.001,
+      "G0_over_stair_sqm": 0.16,
+      "G0_over_entrance_landing_sqm": 0.16,
+      "G0_over_arcade_sqm": 0.0,
+      "G0_over_sacred_or_backing_sqm": 0.0,
+      "G0_over_palanquin_storage_sqm": 0.0,
+      "G0_fixed_body_hits": [],
+      "no_furniture_hit_means_free_shaft": false,
+      "ground_geometry_modified": false,
+      "full_carry_route_door_motion_and_care_revalidated": false
+    },
+    {
+      "option": "b-rear-split",
+      "state": "ritual",
+      "floor1_source_hash": "47b857a2dfb48e3ab2d52c78e05fdec6470c91a78934267b2a4f2565d5b8c535",
+      "nominal_stair_room_mm": [
+        0,
+        3900,
+        2400,
+        5200
+      ],
+      "nominal_front_door_center_x_mm": 1200.0,
+      "nominal_side_door_center_y_mm": 4400.001,
+      "G0_over_stair_sqm": 0.16,
+      "G0_over_entrance_landing_sqm": 0.16,
+      "G0_over_arcade_sqm": 0.0,
+      "G0_over_sacred_or_backing_sqm": 0.0,
+      "G0_over_palanquin_storage_sqm": 0.0,
+      "G0_fixed_body_hits": [],
+      "no_furniture_hit_means_free_shaft": false,
+      "ground_geometry_modified": false,
+      "full_carry_route_door_motion_and_care_revalidated": false
+    },
+    {
+      "option": "b-rear-split",
+      "state": "carry",
+      "floor1_source_hash": "09d63d031cbe94fced1c5f500237b4c376633783cf8e4c31b51e10a6747e1c12",
+      "nominal_stair_room_mm": [
+        0,
+        3900,
+        2400,
+        5200
+      ],
+      "nominal_front_door_center_x_mm": 1200.0,
+      "nominal_side_door_center_y_mm": 4400.001,
+      "G0_over_stair_sqm": 0.16,
+      "G0_over_entrance_landing_sqm": 0.16,
+      "G0_over_arcade_sqm": 0.0,
+      "G0_over_sacred_or_backing_sqm": 0.0,
+      "G0_over_palanquin_storage_sqm": 0.0,
+      "G0_fixed_body_hits": [],
+      "no_furniture_hit_means_free_shaft": false,
+      "ground_geometry_modified": false,
+      "full_carry_route_door_motion_and_care_revalidated": false
+    },
+    {
+      "option": "b-front-split",
+      "state": "daily",
+      "floor1_source_hash": "fbe11519633188d7bdc4dd29d1e94b2dbc71d1e6d90f2dcd779a80011c278d0e",
+      "nominal_stair_room_mm": [
+        0,
+        3900,
+        2400,
+        5200
+      ],
+      "nominal_front_door_center_x_mm": 1200.0,
+      "nominal_side_door_center_y_mm": 4400.001,
+      "G0_over_stair_sqm": 0.16,
+      "G0_over_entrance_landing_sqm": 0.16,
+      "G0_over_arcade_sqm": 0.0,
+      "G0_over_sacred_or_backing_sqm": 0.0,
+      "G0_over_palanquin_storage_sqm": 0.0,
+      "G0_fixed_body_hits": [],
+      "no_furniture_hit_means_free_shaft": false,
+      "ground_geometry_modified": false,
+      "full_carry_route_door_motion_and_care_revalidated": false
+    },
+    {
+      "option": "b-front-split",
+      "state": "ritual",
+      "floor1_source_hash": "39ed9cae06fc20a82dd4b0d6d0eb6c11c42fc106122552411816ad10fc75bf61",
+      "nominal_stair_room_mm": [
+        0,
+        3900,
+        2400,
+        5200
+      ],
+      "nominal_front_door_center_x_mm": 1200.0,
+      "nominal_side_door_center_y_mm": 4400.001,
+      "G0_over_stair_sqm": 0.16,
+      "G0_over_entrance_landing_sqm": 0.16,
+      "G0_over_arcade_sqm": 0.0,
+      "G0_over_sacred_or_backing_sqm": 0.0,
+      "G0_over_palanquin_storage_sqm": 0.0,
+      "G0_fixed_body_hits": [],
+      "no_furniture_hit_means_free_shaft": false,
+      "ground_geometry_modified": false,
+      "full_carry_route_door_motion_and_care_revalidated": false
+    },
+    {
+      "option": "b-front-split",
+      "state": "carry",
+      "floor1_source_hash": "39d1140615b0b4a9e945208e8b21eb9558fec57cceaf78f54a0cf641e0c39515",
+      "nominal_stair_room_mm": [
+        0,
+        3900,
+        2400,
+        5200
+      ],
+      "nominal_front_door_center_x_mm": 1200.0,
+      "nominal_side_door_center_y_mm": 4400.001,
+      "G0_over_stair_sqm": 0.16,
+      "G0_over_entrance_landing_sqm": 0.16,
+      "G0_over_arcade_sqm": 0.0,
+      "G0_over_sacred_or_backing_sqm": 0.0,
+      "G0_over_palanquin_storage_sqm": 0.0,
+      "G0_fixed_body_hits": [],
+      "no_furniture_hit_means_free_shaft": false,
+      "ground_geometry_modified": false,
+      "full_carry_route_door_motion_and_care_revalidated": false
+    }
+  ],
+  "width_boundary": {
+    "source_flight_width_mm": 1000,
+    "source_stair_footprint_width_mm": 2200,
+    "source_gap_width_mm": 200,
+    "reserved_shaft_width_mm": 400,
+    "two_flights_plus_shaft_width_before_new_chase_walls_mm": 2400,
+    "minimum_extra_nominal_footprint_width_before_chase_walls_mm": 200,
+    "hypothetical_same_outer_edges_room_widening_mm": [
+      2400,
+      3900,
+      200,
+      5200
+    ],
+    "hypothetical_widening_over_sacred_front_sqm": 1.04,
+    "hypothetical_widening_approved_or_minimum_legal_stair_width_selected": false
+  },
+  "source_P4_minimum_section_budget_mm": 3504.4,
+  "source_P4_positive_section_budget_resolves_ground_conflict": false,
+  "G0_can_continue_as_free_shaft_without_landing_redesign": false,
+  "no_all_global_solutions_possible_claim": true,
+  "recommended_sequence": [
+    "G0不再當原平台內免費落管；保留P4器具方向供完整建築／機電重排，不進施工圖。",
+    "先由建築師同版整合管井、原1000梯寬、入口平台及兩門，結構與機電核梁板／通氣／清掃；不占騎樓或侵祭祀。",
+    "若整合仍不成立，再比較完整濕區拓樸及代價；P1也缺濕茶水，回退不等於全部滿足，不預設泵或抬地坪。",
+    "找不到更好解法時可用獨立Claude討論稿交叉研究；長討論另終端執行，本輪沒有回應或共識。"
+  ],
+  "protected_controls_unchanged": 149,
+  "actual_site_or_product_data_received": 0,
+  "primary_abc_or_3d_changed": false,
+  "adopted": false,
+  "all_original_requirements_met": false,
+  "rendered_qa": "not-run",
+  "professional_approval": "unknown",
+  "conclusion": "原G0占1F入口平台0.16㎡，碰兩條局部試線；G1右角仍擋側門，中央200縫不夠400且G2／G3穿踏步投影。四個明列位置都不能直接套現行梯／門，不代表所有建築整合無解。保P4短支管研究但先做井、平台及梁板整合，不縮梯、不占騎樓、不放寬祭祀，未併主3D。",
+  "source_hashes": {
+    "inputs/b-front-drop-stair.json": "99d4fd07fcd4a8c1443478e90dd8c2410fddd635c5760901becfa635727159a4",
+    "structured/coordination/b-front-drainage-layout-v1/review.json": "fb352dcdc1c83aad3b4d4ced66804d328132bd411473b496676f53f849ac7711",
+    "structured/coordination/b-front-drainage-layout-v1/artifact-manifest.json": "79ec65f635322da82de8f7e9c646be793531d937a9a25cafb70d991ff6255635",
+    "structured/coordination/b-ktv-stair-options-v1/review.json": "6116c9df09d442e29e16cc3eabc50aa1cd94b4d512fd3398b9105f1afdc34a7e",
+    "structured/coordination/b-claude-round3-v1/review.json": "00baf0b3950e2593361e91698e4d72ac33e384edadd6da5a7d31b62e087b6223",
+    "structured/coordination/b-claude-round3-v1/artifact-manifest.json": "ad7327b07ef803ab57cf7390f84a3919da4165124a84e33288953981fa591062",
+    "inputs/b-front-drainage-layout.json": "8b21213448e73e770cfeac1203a41a53ff877890052d5aa1e5c5e35c4078853e",
+    "structured/coordination/b-front-service-detail-v1/review.json": "a51324d7699cfba56479f83a5e4eaa24ef5c9d45782c302c79e5fe779d4f2edd",
+    "structured/coordination/b-front-service-detail-v1/artifact-manifest.json": "66b708543e5da68e23878d0063034d8ecb0fe693a658431b44160e5881c35234",
+    "structured/coordination/b-ktv-stair-options-v1/artifact-manifest.json": "1e3b99e2ee0a4626b93c9aa133098f6fb85ea65d3f148b924c69bea3d6349346",
+    "inputs/b-front-service-detail.json": "48c1b0f31db2d9a6116cd81ba8a4b16ec9d2100c643275f8c553b0d400907e49",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "inputs/b-upper-replan.json": "83621a2af81211b06ff4dc2c9e8557641c1d551b05195605acd7a6ad7b1df3f5",
+    "house_design/b_upper_replan.py": "a251d37dc84bd54b9292b6802180ca7fd66c679a7e43dc714b3fed160dc2e5c5",
+    "scripts/export_b_upper_replan.py": "3a3cc271cf7d9fc20759d4bca17b582ab672f551981c6e8c1c20933192c09a3d",
+    "structured/coordination/b-upper-replan-v1/review.json": "38897b7ca1da091dd62c85ab342abd4d1d1da220ec1dbad9a5f46e6611f4906d",
+    "structured/coordination/b-upper-replan-v1/artifact-manifest.json": "c1fe7bab76b8032224f7ce271671db0f94fb3ef91c702adc355fd1bcd6b8d915",
+    "house_design/b_front_service_detail.py": "0e20c751c385d4e69a3ff679cb5b7890e71575f82fdef8195e49628690175c29",
+    "scripts/export_b_front_service_detail.py": "bf8d07a4a0c316fe69facbe5145b9091f0afd4d73e0a5998f4ba2c83d7a9253e",
+    "Docs/b-front-service-detail-v1.md": "bc04d48a087905f1d9735cb90dfde9da33b200627ce6d47adf3115f5648d280b",
+    "house_design/b_claude_round3.py": "040a7b75fc604dc147b471800ae4c1c8a57935182dcceea26591514b106ec9d0",
+    "house_design/contracts.py": "2888419d49e8d8dbe8b8e99f6b8451363cd9020821c7fe3e703ab09779e202c3",
+    "house_design/project_status.py": "db73eb9b066353cc282e67dc15e4b430d9d4e4d398eafaf7eeec5f98af1acab0",
+    "inputs/requirements.json": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066",
+    "inputs/planning-register.json": "140493058b145071afb472bf927860d48a43a6f4407b9b59e5a86705fbe058b0",
+    "inputs/b-ktv-stair-options.json": "b09976ea14cf0021385e87f742b80b2bb3fc0baac50c5863b2c40bcf4dc6f020",
+    "structured/coordination/b-third-entertainment-v1/review.json": "568509636ce55cb56b21161cf69e91e3eab633806c97e260c2a30a7f6553b08a",
+    "structured/coordination/b-third-entertainment-v1/artifact-manifest.json": "81247bbf44718d66f247c3ab520173e24e3ae38c4102480f83d74b3ee189d4d8",
+    "structured/candidates/kaohsiung-house-options/c-stair-integration.json": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+    "inputs/b-third-entertainment.json": "07577a0dffe45c74f98ee93c75d0b35f30b75dec187050e3796775d4d73b45c8",
+    "inputs/references/b-owner-ritual-answers-20261106.json": "736f5a477ce1fbfd8e1bf460ecf49f9043a83635201d1598e3e1842e6460ddb9",
+    "inputs/brief/B.json": "63ed4fc045fc6f2cc4021b8bd784cb7cc9fd46789155fc19aa1a55f33016e55a",
+    "house_design/b_third_entertainment.py": "f026a7665c1134dde6c3ec0f01032fdb0eb91d750e1f7af6ead8c845fbd1a5cc",
+    "scripts/export_b_third_entertainment.py": "67aa5888f2149271e9718c1a7cceea92cd6a96767e4fc5d2c5d4383aae713a2f",
+    "scripts/export_abc_next_improvements.py": "875c13027466776a6e1661dae369e45c823c661c5e0369d8ee95b6535420e701",
+    "scripts/export_builder_communication.py": "650d696de35bd9a0fb4ce77d7f93078813b8babd4ed5439d59a6966d093ceef1",
+    "Docs/b-third-entertainment-v1.md": "5f69f521386c051ce67b4b24d5cda79186f70f937316d25c64962a745258d513",
+    "house_design/b_ktv_stair_options.py": "aa80873e7072c942f144d29ca5d1e82982e215e353188e3a4b41c3e98b27260d",
+    "scripts/export_b_ktv_stair_options.py": "973fd2ca9472d0b1573d78fe2dc94f65acced4fff120ae54bf2f2cfa0387b617",
+    "Docs/b-ktv-stair-options-v1.md": "e994cd9439f526a99a8d6faea11eb5e90f4fcd01b6383a82f514849b29fc61a2",
+    "house_design/b_front_drainage_layout.py": "5e4dd9fb80d2c1acdd0c756d929220a398c154d9274ba910cb2c9d474bcaf218",
+    "scripts/export_b_front_drainage_layout.py": "999dca33f4b233c7ef7f760e160176d29cce941021a57e3888c04d2f153e124f",
+    "Docs/b-front-drainage-layout-v1.md": "6664d87277208e43b6c8022ca56b92fc207b82feb3d176a7106dbe7dfc215c11",
+    "inputs/b-claude-round3.json": "25c006e1d7741395f53a8ae369ac905f7956ca0a3f8f7d2a94cc1625137fbc6f",
+    "structured/coordination/b-claude-crosscheck-v1/review.json": "b2a3604da09beaf1ebb4f8ed50d0525004cf6592ede2bde756eb05ae9ada95a4",
+    "structured/coordination/b-fengshui-strict-v1/review.json": "e595361db8281be6daf361251afe0187824c7bcb99d556f930cf90f15bf2f954",
+    "structured/coordination/b-claude-crosscheck-v1/artifact-manifest.json": "32940e5ac7474e21fbe521a7a99d4c259b2bbaf9fcaa2e33acf67a0a5bad8197",
+    "inputs/b-claude-crosscheck.json": "d49320cef10eed1df0ece76c9e0ba17107c9d32630c25da26c48bf2350cc2a7d",
+    "inputs/references/b-claude-response-v2-provenance.json": "2c7c0cdc880c1d78a910a170edcfdc6b59c20865ae81fd6b041c72816656b32b",
+    "inputs/references/b-claude-response-v2-transcript-20261105.md": "67ad0a230f18b2495ebbbdc7f9c2986bc3a72eaf48eea846af3640a621bf51a7",
+    "house_design/b_claude_crosscheck.py": "9b157330308ec83bfc91d219d0bd0c632fd0ed0566e85b243209affa9a1daf20",
+    "house_design/b_fengshui_strict.py": "7f73ab7b7d84e7af976357a11cbf5ec78bb9550956b24973361a0a1dc6c6a2ab",
+    "house_design/abc_next_improvements.py": "9756b69f651f8431d361ffdc6f678e59edc1c3af0e9d8e9db782091366166568",
+    "house_design/c_coordination.py": "6d2c336496e0f1cabfabce3f3287b28ceecb13088d78f8cb0137d9ce14b689ff",
+    "scripts/export_b_claude_crosscheck.py": "c6bf43bf9b8018f74042ae3f64ef60483d3bde13898c448f2d82cef848890d3f",
+    "scripts/export_b_fengshui_strict.py": "b097e116689af7ae1f074a1482adfb895a44d32f790fabe6386cdeafcb88a67f",
+    "Docs/claude-b-fengshui-followup-v3.md": "ce877ccd31a13e8757b39abef592ead3b78c6117ff2214d90c2b97f7696ec1ea",
+    "scripts/review_b_fengshui_with_claude.py": "dc6b4b855656cbdee16990857abbb44b1f471a720f6799cd9bdee96f71f58b55",
+    "inputs/references/b-claude-round3-provenance-20261106.json": "215a2f40a924a0f3ddd8a1e5a8dfd4da1807175f79310755ff74f8c2a29b4a64",
+    "inputs/references/b-claude-round3-response-20261106.md": "7ec4b66feb30aed715aaef272678e819e2e685342a64f4c24a5b22c0410d159f",
+    "scripts/export_b_claude_round3.py": "be59ca0ded73f3f6a09e40580191eb2375849f3699b977dde887199e47a45e1d",
+    "Docs/b-claude-round3-v1.md": "a9a6fe163037a967962723738ca1535664fc7a54707f101af50066e0c35c68ff",
+    "house_design/b_front_drop_stair.py": "72f5d172e4d9f00383f94c979ac05b547a3f8b7c6ce8741c8b4411ce7e6061a8",
+    "scripts/export_b_front_drop_stair.py": "5a2b16355993e894b714aa0b115ab64025a23422bc045aaf0549e04a54a2a948",
+    "Docs/b-front-drop-stair-v1.md": "3e913493cbadb9f9d42f1fe43af8ed3d438b72bad518e0d97260e48d7db63bcc",
+    "Docs/claude-b-front-drop-brief-v1.md": "696313f200e9224c9e3cb6019432e45957855d5db4ee42d9c302ffc982b925a4"
+  },
+  "report_hash": "e2dc0bdd6cf5cc308c539d7a991cc72556502bf03a8ba4d8def11200cbc6249a"
+}

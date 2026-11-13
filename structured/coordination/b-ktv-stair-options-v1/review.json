@@ -1,0 +1,3413 @@
+{
+  "schema": "house-b-ktv-stair-options-report-v1",
+  "date": "2026-11-10",
+  "config": {
+    "schema": "house-b-ktv-stair-options-v1",
+    "date": "2026-11-10",
+    "adopted": false,
+    "parent_report": "structured/coordination/b-third-entertainment-v1/review.json",
+    "stair_snapshot": "structured/candidates/kaohsiung-house-options/c-stair-integration.json",
+    "protected_controls": "inputs/abc-next-protected-controls.json",
+    "pinned_sources": {
+      "structured/coordination/b-third-entertainment-v1/review.json": "568509636ce55cb56b21161cf69e91e3eab633806c97e260c2a30a7f6553b08a",
+      "structured/coordination/b-third-entertainment-v1/artifact-manifest.json": "81247bbf44718d66f247c3ab520173e24e3ae38c4102480f83d74b3ee189d4d8",
+      "structured/candidates/kaohsiung-house-options/c-stair-integration.json": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e"
+    },
+    "frame_mm": [
+      6000,
+      17630
+    ],
+    "base_inset_mm": 115,
+    "extra_acoustic_cases_mm": [
+      0,
+      50,
+      100,
+      150,
+      200
+    ],
+    "primary_extra_acoustic_mm": 100,
+    "extension_depth_cases_mm": [
+      0,
+      450,
+      600,
+      800,
+      900
+    ],
+    "primary_extension_depth_mm": 800,
+    "front_left_extension_width_mm": 2400,
+    "minimum_model_middle_landing_mm": 1000,
+    "shaft_extra_wrap_each_mm": 50,
+    "cabinet_rect_mm": [
+      315,
+      2315,
+      600,
+      900
+    ],
+    "cabinet_operation_mm": [
+      915,
+      2315,
+      700,
+      900
+    ],
+    "extra_floor_service_cases_sqm": [
+      0,
+      0.54,
+      1,
+      1.5
+    ],
+    "assumed_slab_thickness_for_local_screen_mm": 200,
+    "front_door": {
+      "a": [
+        950,
+        4700
+      ],
+      "b": [
+        2280,
+        4700
+      ],
+      "hinge": "right",
+      "opens": "inside"
+    },
+    "side_door": {
+      "a": [
+        2400,
+        4770
+      ],
+      "b": [
+        2400,
+        5770
+      ],
+      "hinge": "rear",
+      "opens": "right"
+    },
+    "front_furniture": [
+      {
+        "id": "sofa",
+        "label": "原1800×900沙發保尺寸",
+        "rect_mm": [
+          3000,
+          2600,
+          1800,
+          900
+        ],
+        "operation_mm": [
+          3000,
+          1900,
+          1800,
+          700
+        ]
+      },
+      {
+        "id": "table",
+        "label": "原1200×600桌保尺寸",
+        "rect_mm": [
+          3300,
+          1200,
+          1200,
+          600
+        ]
+      },
+      {
+        "id": "tv",
+        "label": "原1000×80螢幕內退100mm",
+        "rect_mm": [
+          3500,
+          315,
+          1000,
+          80
+        ]
+      }
+    ],
+    "front_route_mm": [
+      [
+        1615,
+        5270
+      ],
+      [
+        1615,
+        2250
+      ],
+      [
+        3500,
+        2250
+      ]
+    ],
+    "side_route_mm": [
+      [
+        1780,
+        5270
+      ],
+      [
+        4000,
+        5270
+      ]
+    ],
+    "arrival_900_route_mm": [
+      [
+        1780,
+        5270
+      ],
+      [
+        1615,
+        5270
+      ],
+      [
+        1615,
+        2250
+      ]
+    ],
+    "second_floor_transfer_route_mm": [
+      [
+        1780,
+        4470
+      ],
+      [
+        580,
+        4470
+      ],
+      [
+        580,
+        5270
+      ]
+    ],
+    "limits": [
+      "Q3只作獨立L形KTV／上層樓梯配置研究，原Q1／Q2、RF R／S／D比較與149控制均保留，未採用或併主3D。",
+      "一樓祭祀、朝街正門、搬轎後門預設／前門備案、武轎庫及一樓樓梯全部保原來源；二樓浴廁／主臥、三樓客房／公衛／天井也保原位置尺寸。",
+      "只改2F→3F及3F→RF兩段樓梯的前後分配：18級、1000梯寬、270踏面與3000來源層高不減，折返平台1900減為1100mm，1000只是本輪比較下限，不是法規核可。",
+      "釋出800×2400名義1.92㎡給三樓KTV左後凹部，不向右侵入完整祭祀保護投影。這是既有梯核的室內功能重分，不增加Q2整層量體；Q2前帶新增10.647㎡的合法量體及本次結構仍須核定。",
+      "二樓不能直接鋪新的全寬矩形平台：會蓋住一樓上來的末段踏步。本案保原前平台，加左側接段，右側原下樓梯洞必須保留。",
+      "局部踏步／樓板200mm厚度只作靜態碰撞及淨高篩檢；沒有梁、扶手、實際板洞、全程頭部運動與防火證據，不宣稱樓梯或逃生通過。上層結構仍可能牽動下層梁柱，不保證一樓施工不受影響。",
+      "KTV四邊115＋額外100mm、原400井再各邊包50mm並另扣0.54㎡機櫃後，才對20㎡目標列帳；不是挑薄隔音材料來過面積，也沒有dB承諾。",
+      "新增可用部分主要是左後入口凹部與通路，原沙發／桌位置保留；20.1889㎡不是無柱20㎡矩形大廳，不代表座位、觀影距離或唱歌人數已增加。",
+      "150／200mm聲學預算、更大機櫃、消音、雙門聲閘或實際梁柱可能再次不足20。原14㎡下限不當屋主已同意縮小，未完成的聲學功能不假稱滿足。",
+      "前KTV門洞由1130比1330mm，215mm兩側完成面預算後900mm；實際隔音門、門框、把手、淨寬、重量與防火性能仍未知，不當已可採購。",
+      "原三樓梯核側門中心4400會落在新KTV邊界，本案改到5270避聲學旁通；側門是否需防火／隔煙、與KTV隔音門各三態相容需專業回覆，不能拿樓梯當已核雙門聲閘。",
+      "原沙發／桌／螢幕尺寸不縮，螢幕內退100mm；新機櫃及操作帶只是預留，操作會共用室內通路，維修時不能堵唯一出入口。",
+      "室內新風仍須專支及消音，KTV關門不能靠門縫或開梯門。500×300浴廁井不塞一般ERV；香火、浴廁污氣與KTV系統不混接。",
+      "RF到達平台隨上層樓梯後移800mm，既有屋頂D1／D2門路及檢修圖不自動繼承；屋頂前門、側門、前室及維修通行須另回套，原24㎡缺口未解。",
+      "Q3不改2F前排水落管與P3騎樓／梯核缺口，不解除天井在2F更衣乾區上方的防水、R1乾衣或RF全部設備問題。",
+      "所有方案只保平面投影避已列神明堂／乾背與床體，不當全案家規、風水、振動或梁位已核。若正式資料不成立，保Q2原樓梯與所有功能目標，不自動採Q3。"
+    ]
+  },
+  "parent_report_hash": "73787cd11a2b56a9db15bcef7082d1a233940d104c5ff5976108a68128bc8e5c",
+  "primary": {
+    "rooms": [
+      {
+        "id": "stair",
+        "label": "3F縮短上層折返平台的樓梯候選",
+        "polygon_mm": [
+          [
+            2400.0,
+            4700.0
+          ],
+          [
+            2400.0,
+            9100.0
+          ],
+          [
+            0.0,
+            9100.0
+          ],
+          [
+            0.0,
+            4700.0
+          ]
+        ],
+        "kind": "dry",
+        "items": [],
+        "shafts_mm": [],
+        "doors": [],
+        "windows_mm": []
+      },
+      {
+        "id": "quiet-living",
+        "label": "安靜起居／閱讀，禁睡及高活動",
+        "polygon_mm": [
+          [
+            6000.0,
+            3900.0
+          ],
+          [
+            2400.0,
+            3900.0
+          ],
+          [
+            2400.0,
+            9100.0
+          ],
+          [
+            0.0,
+            9100.0
+          ],
+          [
+            0.0,
+            11370.0
+          ],
+          [
+            6000.0,
+            11370.0
+          ],
+          [
+            6000.0,
+            9100.0
+          ]
+        ],
+        "kind": "dry",
+        "items": [
+          {
+            "id": "sofa",
+            "label": "原1800×900沙發",
+            "rect_mm": [
+              4950,
+              5700,
+              900,
+              1800
+            ],
+            "operation_mm": [
+              4250,
+              5700,
+              700,
+              1800
+            ]
+          },
+          {
+            "id": "table",
+            "label": "原1100×600茶几",
+            "rect_mm": [
+              3600,
+              6050,
+              600,
+              1100
+            ]
+          },
+          {
+            "id": "tv",
+            "label": "原1000×80電視",
+            "rect_mm": [
+              2550,
+              6200,
+              80,
+              1000
+            ]
+          }
+        ],
+        "shafts_mm": [],
+        "doors": [],
+        "windows_mm": []
+      },
+      {
+        "id": "dry-protection",
+        "label": "獨立乾保護室，禁床／濕管設備",
+        "polygon_mm": [
+          [
+            4670.0,
+            11370.0
+          ],
+          [
+            4670.0,
+            12970.0
+          ],
+          [
+            2640.0,
+            12970.0
+          ],
+          [
+            2640.0,
+            11370.0
+          ]
+        ],
+        "kind": "dry",
+        "items": [],
+        "shafts_mm": [],
+        "doors": [
+          {
+            "a": [
+              2850,
+              11370
+            ],
+            "b": [
+              3980,
+              11370
+            ],
+            "hinge": "left",
+            "opens": "inside",
+            "swing_rect_mm": [
+              2850,
+              11370,
+              1130,
+              1130
+            ]
+          }
+        ],
+        "windows_mm": []
+      },
+      {
+        "id": "front-entertainment",
+        "label": "Q3 L形前側娛樂／階梯代價比較",
+        "polygon_mm": [
+          [
+            6000.0,
+            3900.0
+          ],
+          [
+            6000.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            3900.0
+          ],
+          [
+            0.0,
+            4700.0
+          ],
+          [
+            2400.0,
+            4700.0
+          ],
+          [
+            2400.0,
+            3900.0
+          ]
+        ],
+        "kind": "high-activity",
+        "items": [
+          {
+            "id": "sofa",
+            "label": "原1800×900沙發保尺寸",
+            "rect_mm": [
+              3000,
+              2600,
+              1800,
+              900
+            ],
+            "operation_mm": [
+              3000,
+              1900,
+              1800,
+              700
+            ]
+          },
+          {
+            "id": "table",
+            "label": "原1200×600桌保尺寸",
+            "rect_mm": [
+              3300,
+              1200,
+              1200,
+              600
+            ]
+          },
+          {
+            "id": "tv",
+            "label": "原1000×80螢幕內退100mm",
+            "rect_mm": [
+              3500,
+              315,
+              1000,
+              80
+            ]
+          },
+          {
+            "id": "service-cabinet",
+            "label": "600×900機櫃預留／非選機",
+            "rect_mm": [
+              315,
+              2315,
+              600,
+              900
+            ],
+            "operation_mm": [
+              915,
+              2315,
+              700,
+              900
+            ]
+          }
+        ],
+        "shafts_mm": [
+          [
+            115,
+            1780,
+            400,
+            400
+          ]
+        ],
+        "doors": [
+          {
+            "a": [
+              950,
+              4700
+            ],
+            "b": [
+              2280,
+              4700
+            ],
+            "hinge": "right",
+            "opens": "inside"
+          }
+        ],
+        "windows_mm": [
+          [
+            2050,
+            0,
+            1000,
+            0
+          ]
+        ]
+      },
+      {
+        "id": "guest",
+        "label": "後客房／偏位入口",
+        "polygon_mm": [
+          [
+            2400.0,
+            13500.0
+          ],
+          [
+            0.0,
+            13500.0
+          ],
+          [
+            0.0,
+            14100.0
+          ],
+          [
+            0.0,
+            17630.0
+          ],
+          [
+            3600.0,
+            17630.0
+          ],
+          [
+            3600.0,
+            14100.0
+          ],
+          [
+            2400.0,
+            14100.0
+          ]
+        ],
+        "kind": "bedroom",
+        "items": [
+          {
+            "id": "bed",
+            "label": "原1800×2000客床轉向／床頭靠左",
+            "rect_mm": [
+              150,
+              15550,
+              2000,
+              1800
+            ]
+          },
+          {
+            "id": "wardrobe",
+            "label": "原1800×600櫃轉向",
+            "rect_mm": [
+              115,
+              13615,
+              600,
+              1800
+            ],
+            "operation_mm": [
+              715,
+              13615,
+              700,
+              1800
+            ]
+          }
+        ],
+        "shafts_mm": [],
+        "doors": [],
+        "windows_mm": [
+          [
+            250,
+            17630,
+            2400,
+            0
+          ]
+        ]
+      },
+      {
+        "id": "rear-bath",
+        "label": "後側有窗公衛候選／對齊2F套衛",
+        "polygon_mm": [
+          [
+            6000.0,
+            14500.0
+          ],
+          [
+            6000.0,
+            17630.0
+          ],
+          [
+            3600.0,
+            17630.0
+          ],
+          [
+            3600.0,
+            14500.0
+          ]
+        ],
+        "kind": "wet",
+        "items": [
+          {
+            "id": "basin",
+            "label": "原600×450面盆轉右牆",
+            "rect_mm": [
+              5435,
+              14615,
+              450,
+              600
+            ],
+            "operation_mm": [
+              4735,
+              14615,
+              700,
+              600
+            ]
+          },
+          {
+            "id": "toilet",
+            "label": "原450×700馬桶轉向左牆",
+            "rect_mm": [
+              3715,
+              14615,
+              700,
+              450
+            ],
+            "operation_mm": [
+              4415,
+              14615,
+              700,
+              450
+            ]
+          },
+          {
+            "id": "shower",
+            "label": "原900×900淋浴",
+            "rect_mm": [
+              4985,
+              16615,
+              900,
+              900
+            ],
+            "operation_mm": [
+              4285,
+              16615,
+              700,
+              900
+            ]
+          }
+        ],
+        "shafts_mm": [
+          [
+            5485,
+            15700,
+            400,
+            400
+          ]
+        ],
+        "doors": [],
+        "windows_mm": [
+          [
+            4750,
+            17630,
+            900,
+            0
+          ]
+        ]
+      },
+      {
+        "id": "working-court",
+        "label": "需RF開口的工作天井候選",
+        "polygon_mm": [
+          [
+            2400.0,
+            11370.0
+          ],
+          [
+            2400.0,
+            13500.0
+          ],
+          [
+            0.0,
+            13500.0
+          ],
+          [
+            0.0,
+            11370.0
+          ]
+        ],
+        "kind": "wet",
+        "items": [],
+        "shafts_mm": [],
+        "doors": [
+          {
+            "a": [
+              1150,
+              11370
+            ],
+            "b": [
+              2280,
+              11370
+            ],
+            "hinge": "left",
+            "opens": "inside"
+          }
+        ],
+        "windows_mm": [],
+        "outdoor_status": "requires-new-RF-void-not-approved-work-balcony"
+      },
+      {
+        "id": "rear-access",
+        "label": "公共到達／不重算房間面積",
+        "polygon_mm": [
+          [
+            6000.0,
+            11370.0
+          ],
+          [
+            4670.0,
+            11370.0
+          ],
+          [
+            4670.0,
+            12970.0
+          ],
+          [
+            2640.0,
+            12970.0
+          ],
+          [
+            2640.0,
+            11370.0
+          ],
+          [
+            2400.0,
+            11370.0
+          ],
+          [
+            2400.0,
+            13500.0
+          ],
+          [
+            2400.0,
+            14100.0
+          ],
+          [
+            3600.0,
+            14100.0
+          ],
+          [
+            3600.0,
+            14500.0
+          ],
+          [
+            6000.0,
+            14500.0
+          ]
+        ],
+        "kind": "dry",
+        "items": [],
+        "shafts_mm": [],
+        "doors": [],
+        "windows_mm": []
+      }
+    ],
+    "floor_analysis": {
+      "id": "floor-3",
+      "rooms": [
+        {
+          "id": "stair",
+          "label": "3F縮短上層折返平台的樓梯候選",
+          "polygon_mm": [
+            [
+              2400.0,
+              4700.0
+            ],
+            [
+              2400.0,
+              9100.0
+            ],
+            [
+              0.0,
+              9100.0
+            ],
+            [
+              0.0,
+              4700.0
+            ]
+          ],
+          "kind": "dry",
+          "items": [],
+          "shafts_mm": [],
+          "doors": [],
+          "windows_mm": []
+        },
+        {
+          "id": "quiet-living",
+          "label": "安靜起居／閱讀，禁睡及高活動",
+          "polygon_mm": [
+            [
+              6000.0,
+              3900.0
+            ],
+            [
+              2400.0,
+              3900.0
+            ],
+            [
+              2400.0,
+              9100.0
+            ],
+            [
+              0.0,
+              9100.0
+            ],
+            [
+              0.0,
+              11370.0
+            ],
+            [
+              6000.0,
+              11370.0
+            ],
+            [
+              6000.0,
+              9100.0
+            ]
+          ],
+          "kind": "dry",
+          "items": [
+            {
+              "id": "sofa",
+              "label": "原1800×900沙發",
+              "rect_mm": [
+                4950,
+                5700,
+                900,
+                1800
+              ],
+              "operation_mm": [
+                4250,
+                5700,
+                700,
+                1800
+              ]
+            },
+            {
+              "id": "table",
+              "label": "原1100×600茶几",
+              "rect_mm": [
+                3600,
+                6050,
+                600,
+                1100
+              ]
+            },
+            {
+              "id": "tv",
+              "label": "原1000×80電視",
+              "rect_mm": [
+                2550,
+                6200,
+                80,
+                1000
+              ]
+            }
+          ],
+          "shafts_mm": [],
+          "doors": [],
+          "windows_mm": []
+        },
+        {
+          "id": "dry-protection",
+          "label": "獨立乾保護室，禁床／濕管設備",
+          "polygon_mm": [
+            [
+              4670.0,
+              11370.0
+            ],
+            [
+              4670.0,
+              12970.0
+            ],
+            [
+              2640.0,
+              12970.0
+            ],
+            [
+              2640.0,
+              11370.0
+            ]
+          ],
+          "kind": "dry",
+          "items": [],
+          "shafts_mm": [],
+          "doors": [
+            {
+              "a": [
+                2850,
+                11370
+              ],
+              "b": [
+                3980,
+                11370
+              ],
+              "hinge": "left",
+              "opens": "inside",
+              "swing_rect_mm": [
+                2850,
+                11370,
+                1130,
+                1130
+              ]
+            }
+          ],
+          "windows_mm": []
+        },
+        {
+          "id": "front-entertainment",
+          "label": "Q3 L形前側娛樂／階梯代價比較",
+          "polygon_mm": [
+            [
+              6000.0,
+              3900.0
+            ],
+            [
+              6000.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              3900.0
+            ],
+            [
+              0.0,
+              4700.0
+            ],
+            [
+              2400.0,
+              4700.0
+            ],
+            [
+              2400.0,
+              3900.0
+            ]
+          ],
+          "kind": "high-activity",
+          "items": [
+            {
+              "id": "sofa",
+              "label": "原1800×900沙發保尺寸",
+              "rect_mm": [
+                3000,
+                2600,
+                1800,
+                900
+              ],
+              "operation_mm": [
+                3000,
+                1900,
+                1800,
+                700
+              ]
+            },
+            {
+              "id": "table",
+              "label": "原1200×600桌保尺寸",
+              "rect_mm": [
+                3300,
+                1200,
+                1200,
+                600
+              ]
+            },
+            {
+              "id": "tv",
+              "label": "原1000×80螢幕內退100mm",
+              "rect_mm": [
+                3500,
+                315,
+                1000,
+                80
+              ]
+            },
+            {
+              "id": "service-cabinet",
+              "label": "600×900機櫃預留／非選機",
+              "rect_mm": [
+                315,
+                2315,
+                600,
+                900
+              ],
+              "operation_mm": [
+                915,
+                2315,
+                700,
+                900
+              ]
+            }
+          ],
+          "shafts_mm": [
+            [
+              115,
+              1780,
+              400,
+              400
+            ]
+          ],
+          "doors": [
+            {
+              "a": [
+                950,
+                4700
+              ],
+              "b": [
+                2280,
+                4700
+              ],
+              "hinge": "right",
+              "opens": "inside"
+            }
+          ],
+          "windows_mm": [
+            [
+              2050,
+              0,
+              1000,
+              0
+            ]
+          ]
+        },
+        {
+          "id": "guest",
+          "label": "後客房／偏位入口",
+          "polygon_mm": [
+            [
+              2400.0,
+              13500.0
+            ],
+            [
+              0.0,
+              13500.0
+            ],
+            [
+              0.0,
+              14100.0
+            ],
+            [
+              0.0,
+              17630.0
+            ],
+            [
+              3600.0,
+              17630.0
+            ],
+            [
+              3600.0,
+              14100.0
+            ],
+            [
+              2400.0,
+              14100.0
+            ]
+          ],
+          "kind": "bedroom",
+          "items": [
+            {
+              "id": "bed",
+              "label": "原1800×2000客床轉向／床頭靠左",
+              "rect_mm": [
+                150,
+                15550,
+                2000,
+                1800
+              ]
+            },
+            {
+              "id": "wardrobe",
+              "label": "原1800×600櫃轉向",
+              "rect_mm": [
+                115,
+                13615,
+                600,
+                1800
+              ],
+              "operation_mm": [
+                715,
+                13615,
+                700,
+                1800
+              ]
+            }
+          ],
+          "shafts_mm": [],
+          "doors": [],
+          "windows_mm": [
+            [
+              250,
+              17630,
+              2400,
+              0
+            ]
+          ]
+        },
+        {
+          "id": "rear-bath",
+          "label": "後側有窗公衛候選／對齊2F套衛",
+          "polygon_mm": [
+            [
+              6000.0,
+              14500.0
+            ],
+            [
+              6000.0,
+              17630.0
+            ],
+            [
+              3600.0,
+              17630.0
+            ],
+            [
+              3600.0,
+              14500.0
+            ]
+          ],
+          "kind": "wet",
+          "items": [
+            {
+              "id": "basin",
+              "label": "原600×450面盆轉右牆",
+              "rect_mm": [
+                5435,
+                14615,
+                450,
+                600
+              ],
+              "operation_mm": [
+                4735,
+                14615,
+                700,
+                600
+              ]
+            },
+            {
+              "id": "toilet",
+              "label": "原450×700馬桶轉向左牆",
+              "rect_mm": [
+                3715,
+                14615,
+                700,
+                450
+              ],
+              "operation_mm": [
+                4415,
+                14615,
+                700,
+                450
+              ]
+            },
+            {
+              "id": "shower",
+              "label": "原900×900淋浴",
+              "rect_mm": [
+                4985,
+                16615,
+                900,
+                900
+              ],
+              "operation_mm": [
+                4285,
+                16615,
+                700,
+                900
+              ]
+            }
+          ],
+          "shafts_mm": [
+            [
+              5485,
+              15700,
+              400,
+              400
+            ]
+          ],
+          "doors": [],
+          "windows_mm": [
+            [
+              4750,
+              17630,
+              900,
+              0
+            ]
+          ]
+        },
+        {
+          "id": "working-court",
+          "label": "需RF開口的工作天井候選",
+          "polygon_mm": [
+            [
+              2400.0,
+              11370.0
+            ],
+            [
+              2400.0,
+              13500.0
+            ],
+            [
+              0.0,
+              13500.0
+            ],
+            [
+              0.0,
+              11370.0
+            ]
+          ],
+          "kind": "wet",
+          "items": [],
+          "shafts_mm": [],
+          "doors": [
+            {
+              "a": [
+                1150,
+                11370
+              ],
+              "b": [
+                2280,
+                11370
+              ],
+              "hinge": "left",
+              "opens": "inside"
+            }
+          ],
+          "windows_mm": [],
+          "outdoor_status": "requires-new-RF-void-not-approved-work-balcony"
+        },
+        {
+          "id": "rear-access",
+          "label": "公共到達／不重算房間面積",
+          "polygon_mm": [
+            [
+              6000.0,
+              11370.0
+            ],
+            [
+              4670.0,
+              11370.0
+            ],
+            [
+              4670.0,
+              12970.0
+            ],
+            [
+              2640.0,
+              12970.0
+            ],
+            [
+              2640.0,
+              11370.0
+            ],
+            [
+              2400.0,
+              11370.0
+            ],
+            [
+              2400.0,
+              13500.0
+            ],
+            [
+              2400.0,
+              14100.0
+            ],
+            [
+              3600.0,
+              14100.0
+            ],
+            [
+              3600.0,
+              14500.0
+            ],
+            [
+              6000.0,
+              14500.0
+            ]
+          ],
+          "kind": "dry",
+          "items": [],
+          "shafts_mm": [],
+          "doors": [],
+          "windows_mm": []
+        }
+      ],
+      "areas": [
+        {
+          "id": "stair",
+          "label": "3F縮短上層折返平台的樓梯候選",
+          "nominal_sqm": 10.56,
+          "cases": [
+            {
+              "inset_each_mm": 80,
+              "outline_sqm": 9.4976,
+              "after_reserved_shafts_screens_sqm": 9.4976
+            },
+            {
+              "inset_each_mm": 115,
+              "outline_sqm": 9.0489,
+              "after_reserved_shafts_screens_sqm": 9.0489
+            },
+            {
+              "inset_each_mm": 150,
+              "outline_sqm": 8.61,
+              "after_reserved_shafts_screens_sqm": 8.61
+            }
+          ],
+          "net115_sqm": 9.0489
+        },
+        {
+          "id": "quiet-living",
+          "label": "安靜起居／閱讀，禁睡及高活動",
+          "nominal_sqm": 32.34,
+          "cases": [
+            {
+              "inset_each_mm": 80,
+              "outline_sqm": 30.2104,
+              "after_reserved_shafts_screens_sqm": 30.2104
+            },
+            {
+              "inset_each_mm": 115,
+              "outline_sqm": 29.2948,
+              "after_reserved_shafts_screens_sqm": 29.2948
+            },
+            {
+              "inset_each_mm": 150,
+              "outline_sqm": 28.389,
+              "after_reserved_shafts_screens_sqm": 28.389
+            }
+          ],
+          "net115_sqm": 29.2948
+        },
+        {
+          "id": "dry-protection",
+          "label": "獨立乾保護室，禁床／濕管設備",
+          "nominal_sqm": 3.248,
+          "cases": [
+            {
+              "inset_each_mm": 80,
+              "outline_sqm": 2.6928,
+              "after_reserved_shafts_screens_sqm": 2.6928
+            },
+            {
+              "inset_each_mm": 115,
+              "outline_sqm": 2.466,
+              "after_reserved_shafts_screens_sqm": 2.466
+            },
+            {
+              "inset_each_mm": 150,
+              "outline_sqm": 2.249,
+              "after_reserved_shafts_screens_sqm": 2.249
+            }
+          ],
+          "net115_sqm": 2.466
+        },
+        {
+          "id": "front-entertainment",
+          "label": "Q3 L形前側娛樂／階梯代價比較",
+          "nominal_sqm": 25.32,
+          "cases": [
+            {
+              "inset_each_mm": 80,
+              "outline_sqm": 23.6336,
+              "after_reserved_shafts_screens_sqm": 23.4736
+            },
+            {
+              "inset_each_mm": 115,
+              "outline_sqm": 22.9119,
+              "after_reserved_shafts_screens_sqm": 22.7519
+            },
+            {
+              "inset_each_mm": 150,
+              "outline_sqm": 22.2,
+              "after_reserved_shafts_screens_sqm": 22.054
+            }
+          ],
+          "net115_sqm": 22.7519
+        },
+        {
+          "id": "guest",
+          "label": "後客房／偏位入口",
+          "nominal_sqm": 14.148,
+          "cases": [
+            {
+              "inset_each_mm": 80,
+              "outline_sqm": 12.9368,
+              "after_reserved_shafts_screens_sqm": 12.9368
+            },
+            {
+              "inset_each_mm": 115,
+              "outline_sqm": 12.423,
+              "after_reserved_shafts_screens_sqm": 12.423
+            },
+            {
+              "inset_each_mm": 150,
+              "outline_sqm": 11.919,
+              "after_reserved_shafts_screens_sqm": 11.919
+            }
+          ],
+          "net115_sqm": 12.423
+        },
+        {
+          "id": "rear-bath",
+          "label": "後側有窗公衛候選／對齊2F套衛",
+          "nominal_sqm": 7.512,
+          "cases": [
+            {
+              "inset_each_mm": 80,
+              "outline_sqm": 6.6528,
+              "after_reserved_shafts_screens_sqm": 6.4928
+            },
+            {
+              "inset_each_mm": 115,
+              "outline_sqm": 6.293,
+              "after_reserved_shafts_screens_sqm": 6.133
+            },
+            {
+              "inset_each_mm": 150,
+              "outline_sqm": 5.943,
+              "after_reserved_shafts_screens_sqm": 5.797
+            }
+          ],
+          "net115_sqm": 6.133
+        },
+        {
+          "id": "working-court",
+          "label": "需RF開口的工作天井候選",
+          "nominal_sqm": 5.112,
+          "cases": [
+            {
+              "inset_each_mm": 80,
+              "outline_sqm": 4.4128,
+              "after_reserved_shafts_screens_sqm": 4.4128
+            },
+            {
+              "inset_each_mm": 115,
+              "outline_sqm": 4.123,
+              "after_reserved_shafts_screens_sqm": 4.123
+            },
+            {
+              "inset_each_mm": 150,
+              "outline_sqm": 3.843,
+              "after_reserved_shafts_screens_sqm": 3.843
+            }
+          ],
+          "net115_sqm": 4.123
+        },
+        {
+          "id": "rear-access",
+          "label": "公共到達／不重算房間面積",
+          "nominal_sqm": 7.54,
+          "cases": [
+            {
+              "inset_each_mm": 80,
+              "outline_sqm": 6.2328,
+              "after_reserved_shafts_screens_sqm": 6.2328
+            },
+            {
+              "inset_each_mm": 115,
+              "outline_sqm": 5.677,
+              "after_reserved_shafts_screens_sqm": 5.677
+            },
+            {
+              "inset_each_mm": 150,
+              "outline_sqm": 5.227,
+              "after_reserved_shafts_screens_sqm": 5.227
+            }
+          ],
+          "net115_sqm": 5.677
+        }
+      ],
+      "partition": {
+        "overlaps": [],
+        "unallocated_sqm": 0.0,
+        "outside_frame_sqm": 0.0
+      },
+      "fixtures": {
+        "body_hits": [],
+        "operation_body_hits": [],
+        "operation_shared": [
+          {
+            "a": "rear-bath:basin",
+            "b": "rear-bath:toilet",
+            "sqm": 0.171
+          }
+        ],
+        "not_inside_115": [],
+        "shaft_body_hits": [],
+        "shaft_operation_hits": [],
+        "fully_open_door_body_hits": [],
+        "sampled_swing_body_hits": []
+      },
+      "routes": [],
+      "religious_projection": [
+        {
+          "room": "front-entertainment",
+          "kind": "high-activity",
+          "over_shrine_or_backing_sqm": 0.0,
+          "over_palanquin_sqm": 0.0,
+          "prohibited_overlap": false,
+          "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+        },
+        {
+          "room": "guest",
+          "kind": "bedroom",
+          "over_shrine_or_backing_sqm": 0.0,
+          "over_palanquin_sqm": 10.4229,
+          "prohibited_overlap": false,
+          "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+        },
+        {
+          "room": "rear-bath",
+          "kind": "wet",
+          "over_shrine_or_backing_sqm": 0.0,
+          "over_palanquin_sqm": 0.0,
+          "prohibited_overlap": false,
+          "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+        },
+        {
+          "room": "working-court",
+          "kind": "wet",
+          "over_shrine_or_backing_sqm": 0.0,
+          "over_palanquin_sqm": 0.0,
+          "prohibited_overlap": false,
+          "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+        }
+      ],
+      "windows": [
+        {
+          "room": "front-entertainment",
+          "rect_mm": [
+            2050,
+            0,
+            1000,
+            0
+          ],
+          "on_room_boundary": true,
+          "legal_effective_opening": "unknown",
+          "side_boundary_assumed_open": false
+        },
+        {
+          "room": "guest",
+          "rect_mm": [
+            250,
+            17630,
+            2400,
+            0
+          ],
+          "on_room_boundary": true,
+          "legal_effective_opening": "unknown",
+          "side_boundary_assumed_open": false
+        },
+        {
+          "room": "rear-bath",
+          "rect_mm": [
+            4750,
+            17630,
+            900,
+            0
+          ],
+          "on_room_boundary": true,
+          "legal_effective_opening": "unknown",
+          "side_boundary_assumed_open": false
+        }
+      ],
+      "bedroom_largest_axis_rect": {
+        "guest": {
+          "rect_mm": [
+            115.0,
+            14215.0,
+            3370.0,
+            3300.0
+          ],
+          "area_sqm": 11.121,
+          "method": "orthogonal-vertex-grid-enumeration"
+        }
+      },
+      "front_and_new_side_door_motion_checked_by_explicit_geometry": true
+    },
+    "KTV_inner_polygon_mm": [
+      [
+        5785.0,
+        215.0
+      ],
+      [
+        215.0,
+        215.0
+      ],
+      [
+        215.0,
+        1730.0
+      ],
+      [
+        565.0,
+        1730.0
+      ],
+      [
+        565.0,
+        2230.0
+      ],
+      [
+        215.0,
+        2230.0
+      ],
+      [
+        215.0,
+        4485.0
+      ],
+      [
+        2185.0,
+        4485.0
+      ],
+      [
+        2185.0,
+        3685.0
+      ],
+      [
+        5785.0,
+        3685.0
+      ]
+    ],
+    "KTV_area_after_wrap_and_cabinet_sqm": 20.1889,
+    "KTV_area_before_cabinet_after_wrap_sqm": 20.7289,
+    "KTV_nominal_outline_sqm": 25.32,
+    "front_nominal_add_over_Q2_sqm": 1.92,
+    "additional_whole_floor_enclosed_volume_over_Q2_sqm": 0,
+    "inset_each_face_mm": 215,
+    "shaft_extra_wrap_each_mm": 50,
+    "routes": [
+      {
+        "id": "KTV-seat-operation",
+        "points_mm": [
+          [
+            1615,
+            5270
+          ],
+          [
+            1615,
+            2250
+          ],
+          [
+            3500,
+            2250
+          ]
+        ],
+        "width_mm": 700,
+        "door": "front",
+        "inside_explicit_surface": true,
+        "body_hits": [],
+        "shaft_or_wrap_hit": false,
+        "shared_operations": [
+          "front-entertainment:sofa",
+          "front-entertainment:service-cabinet"
+        ],
+        "actual_person_or_product_clearance": "unknown"
+      },
+      {
+        "id": "quiet-from-landing",
+        "points_mm": [
+          [
+            1780,
+            5270
+          ],
+          [
+            4000,
+            5270
+          ]
+        ],
+        "width_mm": 700,
+        "door": "side",
+        "inside_explicit_surface": true,
+        "body_hits": [],
+        "shaft_or_wrap_hit": false,
+        "shared_operations": [],
+        "actual_person_or_product_clearance": "unknown"
+      },
+      {
+        "id": "KTV-arrival900",
+        "points_mm": [
+          [
+            1780,
+            5270
+          ],
+          [
+            1615,
+            5270
+          ],
+          [
+            1615,
+            2250
+          ]
+        ],
+        "width_mm": 900,
+        "door": "front",
+        "inside_explicit_surface": true,
+        "body_hits": [],
+        "shaft_or_wrap_hit": false,
+        "shared_operations": [
+          "front-entertainment:service-cabinet"
+        ],
+        "actual_person_or_product_clearance": "unknown"
+      }
+    ],
+    "door_states": [
+      {
+        "front": "open",
+        "side": "open",
+        "body_hits": [],
+        "door_pair_hit": false,
+        "route_blockers": {
+          "KTV-seat-operation": [],
+          "quiet-from-landing": [],
+          "KTV-arrival900": []
+        }
+      },
+      {
+        "front": "open",
+        "side": "half",
+        "body_hits": [],
+        "door_pair_hit": false,
+        "route_blockers": {
+          "KTV-seat-operation": [],
+          "quiet-from-landing": [
+            "side"
+          ],
+          "KTV-arrival900": []
+        }
+      },
+      {
+        "front": "open",
+        "side": "closed",
+        "body_hits": [],
+        "door_pair_hit": false,
+        "route_blockers": {
+          "KTV-seat-operation": [],
+          "quiet-from-landing": [
+            "side"
+          ],
+          "KTV-arrival900": []
+        }
+      },
+      {
+        "front": "half",
+        "side": "open",
+        "body_hits": [],
+        "door_pair_hit": false,
+        "route_blockers": {
+          "KTV-seat-operation": [
+            "front"
+          ],
+          "quiet-from-landing": [],
+          "KTV-arrival900": [
+            "front"
+          ]
+        }
+      },
+      {
+        "front": "half",
+        "side": "half",
+        "body_hits": [],
+        "door_pair_hit": false,
+        "route_blockers": {
+          "KTV-seat-operation": [
+            "front"
+          ],
+          "quiet-from-landing": [
+            "side"
+          ],
+          "KTV-arrival900": [
+            "front"
+          ]
+        }
+      },
+      {
+        "front": "half",
+        "side": "closed",
+        "body_hits": [],
+        "door_pair_hit": false,
+        "route_blockers": {
+          "KTV-seat-operation": [
+            "front"
+          ],
+          "quiet-from-landing": [
+            "side"
+          ],
+          "KTV-arrival900": [
+            "front"
+          ]
+        }
+      },
+      {
+        "front": "closed",
+        "side": "open",
+        "body_hits": [],
+        "door_pair_hit": false,
+        "route_blockers": {
+          "KTV-seat-operation": [
+            "front"
+          ],
+          "quiet-from-landing": [],
+          "KTV-arrival900": [
+            "front"
+          ]
+        }
+      },
+      {
+        "front": "closed",
+        "side": "half",
+        "body_hits": [],
+        "door_pair_hit": false,
+        "route_blockers": {
+          "KTV-seat-operation": [
+            "front"
+          ],
+          "quiet-from-landing": [
+            "side"
+          ],
+          "KTV-arrival900": [
+            "front"
+          ]
+        }
+      },
+      {
+        "front": "closed",
+        "side": "closed",
+        "body_hits": [],
+        "door_pair_hit": false,
+        "route_blockers": {
+          "KTV-seat-operation": [
+            "front"
+          ],
+          "quiet-from-landing": [
+            "side"
+          ],
+          "KTV-arrival900": [
+            "front"
+          ]
+        }
+      }
+    ],
+    "sampled_front_and_side_swing_body_hits": [],
+    "side_threshold_candidate_polygon_mm": [
+      [
+        2515.0,
+        4885.0
+      ],
+      [
+        2515.0,
+        5655.0
+      ],
+      [
+        2280.0,
+        5655.0
+      ],
+      [
+        2280.0,
+        4885.0
+      ]
+    ],
+    "front_nominal_aperture_mm": 1330,
+    "front_clear_budget_mm": 900,
+    "acoustic_dB_or_full_airlock_and_silencer_approved": false
+  },
+  "capacity_cases": [
+    {
+      "extension_mm": 0,
+      "extra_acoustic_each_face_mm": 0,
+      "extra_floor_service_sqm": 0,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 20.9509,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1900,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 0,
+      "extra_acoustic_each_face_mm": 0,
+      "extra_floor_service_sqm": 0.54,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 20.4109,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1900,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 0,
+      "extra_acoustic_each_face_mm": 0,
+      "extra_floor_service_sqm": 1,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 19.9509,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1900,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 0,
+      "extra_acoustic_each_face_mm": 0,
+      "extra_floor_service_sqm": 1.5,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 19.4509,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1900,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 0,
+      "extra_acoustic_each_face_mm": 50,
+      "extra_floor_service_sqm": 0,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 20.0419,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1900,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 0,
+      "extra_acoustic_each_face_mm": 50,
+      "extra_floor_service_sqm": 0.54,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 19.5019,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1900,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 0,
+      "extra_acoustic_each_face_mm": 50,
+      "extra_floor_service_sqm": 1,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 19.0419,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1900,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 0,
+      "extra_acoustic_each_face_mm": 50,
+      "extra_floor_service_sqm": 1.5,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 18.5419,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1900,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 0,
+      "extra_acoustic_each_face_mm": 100,
+      "extra_floor_service_sqm": 0,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 19.1529,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1900,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 0,
+      "extra_acoustic_each_face_mm": 100,
+      "extra_floor_service_sqm": 0.54,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 18.6129,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1900,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 0,
+      "extra_acoustic_each_face_mm": 100,
+      "extra_floor_service_sqm": 1,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 18.1529,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1900,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 0,
+      "extra_acoustic_each_face_mm": 100,
+      "extra_floor_service_sqm": 1.5,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 17.6529,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1900,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 0,
+      "extra_acoustic_each_face_mm": 150,
+      "extra_floor_service_sqm": 0,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 18.2839,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1900,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 0,
+      "extra_acoustic_each_face_mm": 150,
+      "extra_floor_service_sqm": 0.54,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 17.7439,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1900,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 0,
+      "extra_acoustic_each_face_mm": 150,
+      "extra_floor_service_sqm": 1,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 17.2839,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1900,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 0,
+      "extra_acoustic_each_face_mm": 150,
+      "extra_floor_service_sqm": 1.5,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 16.7839,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1900,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 0,
+      "extra_acoustic_each_face_mm": 200,
+      "extra_floor_service_sqm": 0,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 17.4349,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1900,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 0,
+      "extra_acoustic_each_face_mm": 200,
+      "extra_floor_service_sqm": 0.54,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 16.8949,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1900,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 0,
+      "extra_acoustic_each_face_mm": 200,
+      "extra_floor_service_sqm": 1,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 16.4349,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1900,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 0,
+      "extra_acoustic_each_face_mm": 200,
+      "extra_floor_service_sqm": 1.5,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 15.9349,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1900,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 450,
+      "extra_acoustic_each_face_mm": 0,
+      "extra_floor_service_sqm": 0,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 21.9274,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1450,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 450,
+      "extra_acoustic_each_face_mm": 0,
+      "extra_floor_service_sqm": 0.54,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 21.3874,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1450,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 450,
+      "extra_acoustic_each_face_mm": 0,
+      "extra_floor_service_sqm": 1,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 20.9274,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1450,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 450,
+      "extra_acoustic_each_face_mm": 0,
+      "extra_floor_service_sqm": 1.5,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 20.4274,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1450,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 450,
+      "extra_acoustic_each_face_mm": 50,
+      "extra_floor_service_sqm": 0,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 20.9734,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1450,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 450,
+      "extra_acoustic_each_face_mm": 50,
+      "extra_floor_service_sqm": 0.54,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 20.4334,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1450,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 450,
+      "extra_acoustic_each_face_mm": 50,
+      "extra_floor_service_sqm": 1,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 19.9734,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1450,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 450,
+      "extra_acoustic_each_face_mm": 50,
+      "extra_floor_service_sqm": 1.5,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 19.4734,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1450,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 450,
+      "extra_acoustic_each_face_mm": 100,
+      "extra_floor_service_sqm": 0,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 20.0394,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1450,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 450,
+      "extra_acoustic_each_face_mm": 100,
+      "extra_floor_service_sqm": 0.54,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 19.4994,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1450,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 450,
+      "extra_acoustic_each_face_mm": 100,
+      "extra_floor_service_sqm": 1,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 19.0394,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1450,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 450,
+      "extra_acoustic_each_face_mm": 100,
+      "extra_floor_service_sqm": 1.5,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 18.5394,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1450,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 450,
+      "extra_acoustic_each_face_mm": 150,
+      "extra_floor_service_sqm": 0,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 19.1254,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1450,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 450,
+      "extra_acoustic_each_face_mm": 150,
+      "extra_floor_service_sqm": 0.54,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 18.5854,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1450,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 450,
+      "extra_acoustic_each_face_mm": 150,
+      "extra_floor_service_sqm": 1,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 18.1254,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1450,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 450,
+      "extra_acoustic_each_face_mm": 150,
+      "extra_floor_service_sqm": 1.5,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 17.6254,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1450,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 450,
+      "extra_acoustic_each_face_mm": 200,
+      "extra_floor_service_sqm": 0,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 18.2314,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1450,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 450,
+      "extra_acoustic_each_face_mm": 200,
+      "extra_floor_service_sqm": 0.54,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 17.6914,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1450,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 450,
+      "extra_acoustic_each_face_mm": 200,
+      "extra_floor_service_sqm": 1,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 17.2314,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1450,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 450,
+      "extra_acoustic_each_face_mm": 200,
+      "extra_floor_service_sqm": 1.5,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 16.7314,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1450,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 600,
+      "extra_acoustic_each_face_mm": 0,
+      "extra_floor_service_sqm": 0,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 22.2529,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1300,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 600,
+      "extra_acoustic_each_face_mm": 0,
+      "extra_floor_service_sqm": 0.54,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 21.7129,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1300,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 600,
+      "extra_acoustic_each_face_mm": 0,
+      "extra_floor_service_sqm": 1,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 21.2529,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1300,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 600,
+      "extra_acoustic_each_face_mm": 0,
+      "extra_floor_service_sqm": 1.5,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 20.7529,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1300,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 600,
+      "extra_acoustic_each_face_mm": 50,
+      "extra_floor_service_sqm": 0,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 21.2839,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1300,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 600,
+      "extra_acoustic_each_face_mm": 50,
+      "extra_floor_service_sqm": 0.54,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 20.7439,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1300,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 600,
+      "extra_acoustic_each_face_mm": 50,
+      "extra_floor_service_sqm": 1,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 20.2839,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1300,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 600,
+      "extra_acoustic_each_face_mm": 50,
+      "extra_floor_service_sqm": 1.5,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 19.7839,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1300,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 600,
+      "extra_acoustic_each_face_mm": 100,
+      "extra_floor_service_sqm": 0,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 20.3349,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1300,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 600,
+      "extra_acoustic_each_face_mm": 100,
+      "extra_floor_service_sqm": 0.54,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 19.7949,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1300,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 600,
+      "extra_acoustic_each_face_mm": 100,
+      "extra_floor_service_sqm": 1,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 19.3349,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1300,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 600,
+      "extra_acoustic_each_face_mm": 100,
+      "extra_floor_service_sqm": 1.5,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 18.8349,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1300,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 600,
+      "extra_acoustic_each_face_mm": 150,
+      "extra_floor_service_sqm": 0,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 19.4059,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1300,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 600,
+      "extra_acoustic_each_face_mm": 150,
+      "extra_floor_service_sqm": 0.54,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 18.8659,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1300,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 600,
+      "extra_acoustic_each_face_mm": 150,
+      "extra_floor_service_sqm": 1,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 18.4059,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1300,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 600,
+      "extra_acoustic_each_face_mm": 150,
+      "extra_floor_service_sqm": 1.5,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 17.9059,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1300,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 600,
+      "extra_acoustic_each_face_mm": 200,
+      "extra_floor_service_sqm": 0,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 18.4969,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1300,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 600,
+      "extra_acoustic_each_face_mm": 200,
+      "extra_floor_service_sqm": 0.54,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 17.9569,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1300,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 600,
+      "extra_acoustic_each_face_mm": 200,
+      "extra_floor_service_sqm": 1,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 17.4969,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1300,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 600,
+      "extra_acoustic_each_face_mm": 200,
+      "extra_floor_service_sqm": 1.5,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 16.9969,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1300,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 800,
+      "extra_acoustic_each_face_mm": 0,
+      "extra_floor_service_sqm": 0,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 22.6869,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1100,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 800,
+      "extra_acoustic_each_face_mm": 0,
+      "extra_floor_service_sqm": 0.54,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 22.1469,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1100,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 800,
+      "extra_acoustic_each_face_mm": 0,
+      "extra_floor_service_sqm": 1,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 21.6869,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1100,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 800,
+      "extra_acoustic_each_face_mm": 0,
+      "extra_floor_service_sqm": 1.5,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 21.1869,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1100,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 800,
+      "extra_acoustic_each_face_mm": 50,
+      "extra_floor_service_sqm": 0,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 21.6979,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1100,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 800,
+      "extra_acoustic_each_face_mm": 50,
+      "extra_floor_service_sqm": 0.54,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 21.1579,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1100,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 800,
+      "extra_acoustic_each_face_mm": 50,
+      "extra_floor_service_sqm": 1,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 20.6979,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1100,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 800,
+      "extra_acoustic_each_face_mm": 50,
+      "extra_floor_service_sqm": 1.5,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 20.1979,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1100,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 800,
+      "extra_acoustic_each_face_mm": 100,
+      "extra_floor_service_sqm": 0,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 20.7289,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1100,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 800,
+      "extra_acoustic_each_face_mm": 100,
+      "extra_floor_service_sqm": 0.54,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 20.1889,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1100,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 800,
+      "extra_acoustic_each_face_mm": 100,
+      "extra_floor_service_sqm": 1,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 19.7289,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1100,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 800,
+      "extra_acoustic_each_face_mm": 100,
+      "extra_floor_service_sqm": 1.5,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 19.2289,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1100,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 800,
+      "extra_acoustic_each_face_mm": 150,
+      "extra_floor_service_sqm": 0,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 19.7799,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1100,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 800,
+      "extra_acoustic_each_face_mm": 150,
+      "extra_floor_service_sqm": 0.54,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 19.2399,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1100,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 800,
+      "extra_acoustic_each_face_mm": 150,
+      "extra_floor_service_sqm": 1,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 18.7799,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1100,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 800,
+      "extra_acoustic_each_face_mm": 150,
+      "extra_floor_service_sqm": 1.5,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 18.2799,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1100,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 800,
+      "extra_acoustic_each_face_mm": 200,
+      "extra_floor_service_sqm": 0,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 18.8509,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1100,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 800,
+      "extra_acoustic_each_face_mm": 200,
+      "extra_floor_service_sqm": 0.54,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 18.3109,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1100,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 800,
+      "extra_acoustic_each_face_mm": 200,
+      "extra_floor_service_sqm": 1,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 17.8509,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1100,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 800,
+      "extra_acoustic_each_face_mm": 200,
+      "extra_floor_service_sqm": 1.5,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 17.3509,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1100,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 900,
+      "extra_acoustic_each_face_mm": 0,
+      "extra_floor_service_sqm": 0,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 22.9039,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1000,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 900,
+      "extra_acoustic_each_face_mm": 0,
+      "extra_floor_service_sqm": 0.54,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 22.3639,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1000,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 900,
+      "extra_acoustic_each_face_mm": 0,
+      "extra_floor_service_sqm": 1,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 21.9039,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1000,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 900,
+      "extra_acoustic_each_face_mm": 0,
+      "extra_floor_service_sqm": 1.5,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 21.4039,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1000,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 900,
+      "extra_acoustic_each_face_mm": 50,
+      "extra_floor_service_sqm": 0,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 21.9049,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1000,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 900,
+      "extra_acoustic_each_face_mm": 50,
+      "extra_floor_service_sqm": 0.54,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 21.3649,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1000,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 900,
+      "extra_acoustic_each_face_mm": 50,
+      "extra_floor_service_sqm": 1,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 20.9049,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1000,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 900,
+      "extra_acoustic_each_face_mm": 50,
+      "extra_floor_service_sqm": 1.5,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 20.4049,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1000,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 900,
+      "extra_acoustic_each_face_mm": 100,
+      "extra_floor_service_sqm": 0,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 20.9259,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1000,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 900,
+      "extra_acoustic_each_face_mm": 100,
+      "extra_floor_service_sqm": 0.54,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 20.3859,
+      "goal20_met_in_area_model": true,
+      "middle_landing_mm": 1000,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 900,
+      "extra_acoustic_each_face_mm": 100,
+      "extra_floor_service_sqm": 1,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 19.9259,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1000,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 900,
+      "extra_acoustic_each_face_mm": 100,
+      "extra_floor_service_sqm": 1.5,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 19.4259,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1000,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 900,
+      "extra_acoustic_each_face_mm": 150,
+      "extra_floor_service_sqm": 0,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 19.9669,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1000,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 900,
+      "extra_acoustic_each_face_mm": 150,
+      "extra_floor_service_sqm": 0.54,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 19.4269,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1000,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 900,
+      "extra_acoustic_each_face_mm": 150,
+      "extra_floor_service_sqm": 1,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 18.9669,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1000,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 900,
+      "extra_acoustic_each_face_mm": 150,
+      "extra_floor_service_sqm": 1.5,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 18.4669,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1000,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 900,
+      "extra_acoustic_each_face_mm": 200,
+      "extra_floor_service_sqm": 0,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 19.0279,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1000,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 900,
+      "extra_acoustic_each_face_mm": 200,
+      "extra_floor_service_sqm": 0.54,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 18.4879,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1000,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 900,
+      "extra_acoustic_each_face_mm": 200,
+      "extra_floor_service_sqm": 1,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 18.0279,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1000,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    },
+    {
+      "extension_mm": 900,
+      "extra_acoustic_each_face_mm": 200,
+      "extra_floor_service_sqm": 1.5,
+      "shaft_wrap_each_mm": 50,
+      "remaining_sqm": 17.5279,
+      "goal20_met_in_area_model": false,
+      "middle_landing_mm": 1000,
+      "middle_landing_meets_model_budget": true,
+      "acoustic_performance_or_legal_approval": "unknown"
+    }
+  ],
+  "upper_stairs": {
+    "original_upper_source": {
+      "base_mm": 4000,
+      "height_mm": 3000,
+      "footprint": {
+        "x_mm": 80,
+        "y_mm": 3970,
+        "w_mm": 2200,
+        "h_mm": 5060
+      },
+      "geometry": {
+        "type": "two-flight-u-proposal",
+        "connects_to_next_storey": true,
+        "risers": 18,
+        "riser_mm": 166.67,
+        "tread_mm": 270,
+        "flight_width_mm": 1000,
+        "landing_mm": 1000,
+        "departure_offset_mm": 1000,
+        "middle_landing_mm": 1900,
+        "shared_front_landing": false,
+        "run_mm": 2160,
+        "fits_reserved_box": true,
+        "note": "兩折梯與平台僅初排；完成面淨寬、扶手、結構、梯井、淨高、消防分隔及屋突資格未核。"
+      }
+    },
+    "primary": {
+      "extension_mm": 800,
+      "middle_landing_mm": 1100,
+      "footprint": {
+        "x_mm": 80,
+        "y_mm": 4770,
+        "w_mm": 2200,
+        "h_mm": 4260
+      },
+      "original_rear_end_mm": 9030,
+      "new_rear_end_mm": 9030,
+      "run_mm": 2160,
+      "riser_count": 18,
+      "riser_mm": 166.66666666666666,
+      "flight_width_mm": 1000,
+      "tread_mm": 270,
+      "floor_landing_mm": [
+        80,
+        4770,
+        2200,
+        1000
+      ],
+      "geometry_depth_sum_mm": 4260,
+      "all_dimensions_are_source_assumptions_not_site_verification": true
+    }
+  },
+  "original_stairs_by_floor": {
+    "floor-1": {
+      "base_mm": 0,
+      "height_mm": 4000,
+      "footprint": {
+        "x_mm": 80,
+        "y_mm": 3970,
+        "w_mm": 2200,
+        "h_mm": 5060
+      },
+      "geometry": {
+        "type": "two-flight-u-proposal",
+        "connects_to_next_storey": true,
+        "risers": 24,
+        "riser_mm": 166.67,
+        "tread_mm": 270,
+        "flight_width_mm": 1000,
+        "landing_mm": 1000,
+        "departure_offset_mm": 1000,
+        "middle_landing_mm": 1090,
+        "shared_front_landing": false,
+        "run_mm": 2970,
+        "fits_reserved_box": true,
+        "note": "兩折梯與平台僅初排；完成面淨寬、扶手、結構、梯井、淨高、消防分隔及屋突資格未核。"
+      }
+    },
+    "floor-2": {
+      "base_mm": 4000,
+      "height_mm": 3000,
+      "footprint": {
+        "x_mm": 80,
+        "y_mm": 3970,
+        "w_mm": 2200,
+        "h_mm": 5060
+      },
+      "geometry": {
+        "type": "two-flight-u-proposal",
+        "connects_to_next_storey": true,
+        "risers": 18,
+        "riser_mm": 166.67,
+        "tread_mm": 270,
+        "flight_width_mm": 1000,
+        "landing_mm": 1000,
+        "departure_offset_mm": 1000,
+        "middle_landing_mm": 1900,
+        "shared_front_landing": false,
+        "run_mm": 2160,
+        "fits_reserved_box": true,
+        "note": "兩折梯與平台僅初排；完成面淨寬、扶手、結構、梯井、淨高、消防分隔及屋突資格未核。"
+      }
+    },
+    "floor-3": {
+      "base_mm": 7000,
+      "height_mm": 3000,
+      "footprint": {
+        "x_mm": 80,
+        "y_mm": 3970,
+        "w_mm": 2200,
+        "h_mm": 5060
+      },
+      "geometry": {
+        "type": "two-flight-u-proposal",
+        "connects_to_next_storey": true,
+        "risers": 18,
+        "riser_mm": 166.67,
+        "tread_mm": 270,
+        "flight_width_mm": 1000,
+        "landing_mm": 1000,
+        "departure_offset_mm": 1000,
+        "middle_landing_mm": 1900,
+        "shared_front_landing": false,
+        "run_mm": 2160,
+        "fits_reserved_box": true,
+        "note": "兩折梯與平台僅初排；完成面淨寬、扶手、結構、梯井、淨高、消防分隔及屋突資格未核。"
+      }
+    },
+    "floor-4": {
+      "base_mm": 10000,
+      "height_mm": 3000,
+      "footprint": {
+        "x_mm": 80,
+        "y_mm": 3970,
+        "w_mm": 2200,
+        "h_mm": 5060
+      },
+      "geometry": {
+        "type": "two-flight-u-proposal",
+        "connects_to_next_storey": false,
+        "risers": 18,
+        "riser_mm": 166.67,
+        "tread_mm": 270,
+        "flight_width_mm": 1000,
+        "landing_mm": 1000,
+        "departure_offset_mm": 1000,
+        "middle_landing_mm": 1900,
+        "shared_front_landing": false,
+        "run_mm": 2160,
+        "fits_reserved_box": true,
+        "note": "兩折梯與平台僅初排；完成面淨寬、扶手、結構、梯井、淨高、消防分隔及屋突資格未核。"
+      }
+    }
+  },
+  "floor2_arrival_screen": {
+    "old_floor2_landing_mm": [
+      80,
+      3970,
+      2200,
+      1000
+    ],
+    "new_floor2_left_connection_mm": [
+      80,
+      4770,
+      1000,
+      1000
+    ],
+    "floor2_landing_polygon_mm": [
+      [
+        2280.0,
+        4970.0
+      ],
+      [
+        2280.0,
+        3970.0
+      ],
+      [
+        80.0,
+        3970.0
+      ],
+      [
+        80.0,
+        4770.0
+      ],
+      [
+        80.0,
+        4970.0
+      ],
+      [
+        80.0,
+        5770.0
+      ],
+      [
+        1080.0,
+        5770.0
+      ],
+      [
+        1080.0,
+        4970.0
+      ]
+    ],
+    "naive_full_width_new_platform_over_incoming_right_steps": [
+      {
+        "step": "right-9",
+        "clearance_under_assumed_slab_mm": 300.0
+      },
+      {
+        "step": "right-10",
+        "clearance_under_assumed_slab_mm": 133.333
+      },
+      {
+        "step": "right-11",
+        "clearance_under_assumed_slab_mm": -33.333
+      }
+    ],
+    "actual_candidate_over_incoming_right_steps": [],
+    "local_previous_left_tread_clearances_with200mm_assumption": [
+      {
+        "step": "left-1",
+        "clearance_under_assumed_slab_mm": 3633.333
+      },
+      {
+        "step": "left-2",
+        "clearance_under_assumed_slab_mm": 3466.667
+      },
+      {
+        "step": "left-3",
+        "clearance_under_assumed_slab_mm": 3300.0
+      }
+    ],
+    "only_local_minimum_clearance_under_assumed_slab_mm": 3300.0,
+    "second_floor_transfer_route_mm": [
+      [
+        1780,
+        4470
+      ],
+      [
+        580,
+        4470
+      ],
+      [
+        580,
+        5270
+      ]
+    ],
+    "transfer_width_mm": 900,
+    "inside_explicit_L_landing_model": true,
+    "full_headroom_structural_or_egress_approval": false,
+    "first_floor_stair_changed": false
+  },
+  "protected_polygons_mm": [
+    [
+      [
+        6000.0,
+        3900.0
+      ],
+      [
+        2400.0,
+        3900.0
+      ],
+      [
+        2400.0,
+        9100.0
+      ],
+      [
+        0.0,
+        9100.0
+      ],
+      [
+        0.0,
+        11370.0
+      ],
+      [
+        6000.0,
+        11370.0
+      ],
+      [
+        6000.0,
+        9100.0
+      ]
+    ],
+    [
+      [
+        4670.0,
+        11370.0
+      ],
+      [
+        4670.0,
+        12970.0
+      ],
+      [
+        2640.0,
+        12970.0
+      ],
+      [
+        2640.0,
+        11370.0
+      ]
+    ]
+  ],
+  "palanquin_rect_mm": [
+    0,
+    14500,
+    3330,
+    3130
+  ],
+  "original_3F_requirement_ledger": [
+    {
+      "id": "B.floor-3.flex_b",
+      "original_status": "candidate",
+      "target_sqm": 14.0,
+      "min_sqm": 10.0,
+      "modeled_value_sqm": 29.2948,
+      "target_met_in_area_model_only": true,
+      "functional_or_legal_requirement_verified": false,
+      "legacy_band_or_service_core_changed": false
+    },
+    {
+      "id": "B.floor-3.ktv",
+      "original_status": "candidate",
+      "target_sqm": 20.0,
+      "min_sqm": 14.0,
+      "modeled_value_sqm": 20.1889,
+      "target_met_in_area_model_only": true,
+      "functional_or_legal_requirement_verified": false,
+      "legacy_band_or_service_core_changed": false
+    },
+    {
+      "id": "B.floor-3.bath_b3",
+      "original_status": "candidate",
+      "target_sqm": 5.0,
+      "min_sqm": 3.2,
+      "modeled_value_sqm": 6.133,
+      "target_met_in_area_model_only": true,
+      "functional_or_legal_requirement_verified": false,
+      "legacy_band_or_service_core_changed": true
+    },
+    {
+      "id": "B.floor-3.guest_b",
+      "original_status": "candidate",
+      "target_sqm": 12.0,
+      "min_sqm": 9.0,
+      "modeled_value_sqm": 12.423,
+      "target_met_in_area_model_only": true,
+      "functional_or_legal_requirement_verified": false,
+      "legacy_band_or_service_core_changed": false
+    },
+    {
+      "id": "B.floor-3.balcony_b3",
+      "original_status": "candidate",
+      "target_sqm": 4.0,
+      "min_sqm": 2.5,
+      "modeled_value_sqm": 4.123,
+      "target_met_in_area_model_only": true,
+      "functional_or_legal_requirement_verified": false,
+      "legacy_band_or_service_core_changed": true
+    }
+  ],
+  "original_frozen_ground_and_roof_controls": [
+    {
+      "id": "b-rear-split",
+      "source_states_hash": "9dcdc1260d1f166595d32d45cf70cd236ae888e6ff465e59c384896e3e10848f",
+      "roof_reference_hash": "bf2b55182782666d37117ae0b0c551f8e95308cdc02e9e0364da473133682e63"
+    },
+    {
+      "id": "b-front-split",
+      "source_states_hash": "276d6e4f3d202aefd296ac856aaf0e6180205a93fffb7ad9d3e268a66ba162fd",
+      "roof_reference_hash": "bf2b55182782666d37117ae0b0c551f8e95308cdc02e9e0364da473133682e63"
+    }
+  ],
+  "retained_guest_bath_sliders": [
+    {
+      "id": "guest",
+      "a": [
+        2420,
+        14100
+      ],
+      "b": [
+        3550,
+        14100
+      ],
+      "leaf_width_mm": 660,
+      "leaf_thickness_mm": 45,
+      "track_y_mm": [
+        14215,
+        14300
+      ],
+      "closed_x_mm": [
+        2370,
+        2940
+      ],
+      "park_x_mm": [
+        1710,
+        1710
+      ]
+    },
+    {
+      "id": "bath",
+      "a": [
+        4435,
+        14500
+      ],
+      "b": [
+        5565,
+        14500
+      ],
+      "leaf_width_mm": 660,
+      "leaf_thickness_mm": 45,
+      "track_y_mm": [
+        14355,
+        14440
+      ],
+      "closed_x_mm": [
+        4385,
+        4955
+      ],
+      "park_x_mm": [
+        3725,
+        3725
+      ]
+    }
+  ],
+  "retained_quiet_rear_opening": {
+    "a": [
+      4770,
+      11370
+    ],
+    "b": [
+      5900,
+      11370
+    ],
+    "operation": "no-leaf-open-passage-candidate-fire-and-structure-pending"
+  },
+  "floor1_stair_and_owner_functions_changed": false,
+  "second_floor_room_boundaries_and_wet_areas_changed": false,
+  "second_and_third_outgoing_stair_geometry_changes_required": true,
+  "RF_arrival_platform_shift_mm": 800,
+  "RF_R_S_D_routes_inherited_as_verified": false,
+  "upstream_P3_front_drainage_resolved": false,
+  "RF24_goal_or_C_care_or_A_space_changed": false,
+  "protected_controls_unchanged": 149,
+  "adopted": false,
+  "primary_abc_or_3d_changed": false,
+  "actual_site_or_product_data_received": 0,
+  "all_original_requirements_met": false,
+  "rendered_qa": "not-run",
+  "professional_approval": "unknown",
+  "conclusion": "Q3釋出上層折返平台前段，L形KTV在115＋100mm／面、原井外包50mm及0.54㎡機櫃後，面積算術可過20；代價是2F／3F樓梯與RF到達必須重設，二樓須保L形接段避免蓋住舊下樓梯。這是有條件的整層比較，不是隔音、梯段或全案已核。Q2原梯與所有需求保留。",
+  "source_hashes": {
+    "inputs/b-ktv-stair-options.json": "b09976ea14cf0021385e87f742b80b2bb3fc0baac50c5863b2c40bcf4dc6f020",
+    "structured/coordination/b-third-entertainment-v1/review.json": "568509636ce55cb56b21161cf69e91e3eab633806c97e260c2a30a7f6553b08a",
+    "structured/coordination/b-third-entertainment-v1/artifact-manifest.json": "81247bbf44718d66f247c3ab520173e24e3ae38c4102480f83d74b3ee189d4d8",
+    "structured/candidates/kaohsiung-house-options/c-stair-integration.json": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+    "inputs/b-third-entertainment.json": "07577a0dffe45c74f98ee93c75d0b35f30b75dec187050e3796775d4d73b45c8",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "structured/coordination/b-upper-replan-v1/review.json": "38897b7ca1da091dd62c85ab342abd4d1d1da220ec1dbad9a5f46e6611f4906d",
+    "structured/coordination/b-upper-replan-v1/artifact-manifest.json": "c1fe7bab76b8032224f7ce271671db0f94fb3ef91c702adc355fd1bcd6b8d915",
+    "structured/coordination/b-front-service-detail-v1/review.json": "a51324d7699cfba56479f83a5e4eaa24ef5c9d45782c302c79e5fe779d4f2edd",
+    "structured/coordination/b-front-service-detail-v1/artifact-manifest.json": "66b708543e5da68e23878d0063034d8ecb0fe693a658431b44160e5881c35234",
+    "inputs/references/b-owner-ritual-answers-20261106.json": "736f5a477ce1fbfd8e1bf460ecf49f9043a83635201d1598e3e1842e6460ddb9",
+    "structured/coordination/b-claude-round3-v1/review.json": "00baf0b3950e2593361e91698e4d72ac33e384edadd6da5a7d31b62e087b6223",
+    "inputs/requirements.json": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066",
+    "inputs/brief/B.json": "63ed4fc045fc6f2cc4021b8bd784cb7cc9fd46789155fc19aa1a55f33016e55a",
+    "inputs/planning-register.json": "140493058b145071afb472bf927860d48a43a6f4407b9b59e5a86705fbe058b0",
+    "house_design/b_third_entertainment.py": "f026a7665c1134dde6c3ec0f01032fdb0eb91d750e1f7af6ead8c845fbd1a5cc",
+    "scripts/export_b_third_entertainment.py": "67aa5888f2149271e9718c1a7cceea92cd6a96767e4fc5d2c5d4383aae713a2f",
+    "house_design/b_upper_replan.py": "a251d37dc84bd54b9292b6802180ca7fd66c679a7e43dc714b3fed160dc2e5c5",
+    "house_design/b_front_service_detail.py": "0e20c751c385d4e69a3ff679cb5b7890e71575f82fdef8195e49628690175c29",
+    "house_design/contracts.py": "2888419d49e8d8dbe8b8e99f6b8451363cd9020821c7fe3e703ab09779e202c3",
+    "house_design/project_status.py": "db73eb9b066353cc282e67dc15e4b430d9d4e4d398eafaf7eeec5f98af1acab0",
+    "scripts/export_b_upper_replan.py": "3a3cc271cf7d9fc20759d4bca17b582ab672f551981c6e8c1c20933192c09a3d",
+    "scripts/export_abc_next_improvements.py": "875c13027466776a6e1661dae369e45c823c661c5e0369d8ee95b6535420e701",
+    "scripts/export_builder_communication.py": "650d696de35bd9a0fb4ce77d7f93078813b8babd4ed5439d59a6966d093ceef1",
+    "Docs/b-third-entertainment-v1.md": "5f69f521386c051ce67b4b24d5cda79186f70f937316d25c64962a745258d513",
+    "house_design/b_ktv_stair_options.py": "aa80873e7072c942f144d29ca5d1e82982e215e353188e3a4b41c3e98b27260d",
+    "scripts/export_b_ktv_stair_options.py": "973fd2ca9472d0b1573d78fe2dc94f65acced4fff120ae54bf2f2cfa0387b617",
+    "Docs/b-ktv-stair-options-v1.md": "e994cd9439f526a99a8d6faea11eb5e90f4fcd01b6383a82f514849b29fc61a2"
+  },
+  "report_hash": "a5e3e758fc5249a2c0768fd3b48d5d7448365c170820ccfbb529ca439ed59de2"
+}

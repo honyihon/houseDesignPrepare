@@ -1,0 +1,183 @@
+{
+  "schema": "house-ac-upper-floor-storage-preview-static-v1",
+  "date": "2026-11-12",
+  "scope": "New offline A/C full-scene storage comparison copies; six cabinet additions across 2F/3F/RF, with unchanged original models as controls. Original ABC and accepted independent storage viewer untouched.",
+  "report_hash": "48719985efe963c83339701319f835dbae9594222549f52c14ce3eb05f38bc6e",
+  "summary": {
+    "buildings": 2,
+    "states": 4,
+    "floors": 16,
+    "storage_cases": 6,
+    "new_cabinets": 6
+  },
+  "source_and_artifact_sha256": {
+    "house_design/ac_storage_preview.py": "2249069bd2c1ba13d9cef6f8b8449675f56d66774f5c79d61e6eb690e43cc6a0",
+    "scripts/export_ac_storage_preview.py": "845aee122e3ec81a114ab921ce87bd65932f8c74eb47cca65fbf1edac09c083b",
+    "scripts/templates/ac-storage-preview.js": "233f488bfcb9ceb0cfb5ef34ab3048fcc3f909fe9f61e5e550563a5ac32d491b",
+    "scripts/check_ac_storage_preview_playwright.cjs": "e037caf3d1f58a69d820c7d03367c6b912d59d88bb546b6655321dcbdac60440",
+    "tests/test_ac_storage_preview.py": "6e944fe1eb5b0441067cbfdfac9e7bbd58f3305033969cb28ff7ee011bc401f5",
+    "tests/js/ac-storage-preview.test.cjs": "80de6332463a248a941fb91c533467742a0930c9a8e9ab527f12ab240ce9ba12",
+    "Docs/ac-upper-floor-storage-preview-v1.md": "d36067020baef00028c04df588f626c7c59022fdf741c8c63fb8119556dc151d",
+    "house_design/design_discussion_basis.py": "79604b1213c9c04e8806bf0e46031896742708878b01f152fcb2777d35bb72d3",
+    "scripts/export_design_discussion_basis.py": "3b3955bcf72530b584770f030601446eaf27beb52653a05e8bd7fd7da6fb3e1c",
+    "tests/test_design_discussion_basis.py": "170e30e47aafbf774b492c554667e2f55251dbb228d9bd3d75686dfab228f92e",
+    "README.md": "84c964117471619ec45176f1ba3b6084700bc9221772e6057bd0dc8d54b409d8",
+    "Docs/project-status-v1.md": "97e6c375d7956c04dab2512a0b18f19f315d200c8c776003b4df45c974019bd5",
+    "Docs/design-discussion-basis-v1.md": "2e0000ba3434543be794c9df62f8275eb7ca675bba2c6eb83952cd83b9556851",
+    "scripts/README.md": "9c07b34b7918d61f29751e500e998bbc9510fff8fae5d7027351c2295674ff26",
+    "inputs/project-status.json": "21cba275a18b58a6a2b585d638980406f9b213df95b652f78030055ea49b7293",
+    "inputs/design-discussion-basis.json": "82f9b0b714f4205db5e97bcc3084a3e3bc0c30dc95bb88356262f3d54a9af0c5",
+    "structured/coordination/ac-storage-preview-v1/plans.html": "71ac7db7eed4bfd181ec8a5e31ae1382aa9253a0dd70e51cc35c01685f23174d",
+    "structured/coordination/ac-storage-preview-v1/ac-storage-preview.zip": "a48e03716c86d75676f41d17099b5af8235b75ebc3d549deedcad5724ed7c43d",
+    "structured/coordination/ac-storage-preview-v1/archive-manifest.json": "d1244503111a361d9524fc0c968f352e2c4ddd9167e271ec3c9d0c8025d5eebb",
+    "structured/coordination/ac-storage-preview-v1/artifact-manifest.json": "23d096044aeb6377dc29be0035ec46dda8caacc683bae0ca2c7a0ee7abfc14e5",
+    "structured/coordination/ac-storage-preview-v1/review.json": "7804b3724218a88fa6bbdaaebe18aa32990e3062d91b2f8d1ac033c68ece07a7",
+    "structured/coordination/ac-storage-preview-v1/index.html": "73a69c66bcb2824196d66d39fb00a731ae4342799ad18bb8c74a7e44e7dba957",
+    "structured/planning/project-next-steps/review.json": "c20f8897f3925212b9ee812355af35c8c29a7d50a39eb9306208783837e31f47",
+    "structured/planning/project-next-steps/artifact-manifest.json": "9743e0acd9732566b2a31d5b10927297d225f9e7f1fa4b42ca41ec7e49e12e41",
+    "structured/planning/builder-communication/review.json": "2e18fba52a415f713d08714735fcf03c4b17478a51fb627781c46b0cd3cd5528",
+    "structured/planning/builder-communication/artifact-manifest.json": "805b6de9d2276cfb7d76793fe9a293cb8ac3660b754af466ac876dc5c5a13d9a",
+    "structured/planning/design-discussion-basis/review.json": "0eeb12a09eba2fee38c183e66d7a7704cfccb03041bfbbdd4123d9f48bf41a83",
+    "structured/planning/design-discussion-basis/artifact-manifest.json": "fec259a70ca2ff6f1e3d040a504440e931ff7743d395b6299f837ace5168cbb6",
+    "structured/planning/design-discussion-basis/archive-manifest.json": "8d81cd7a6fb5e0baf70d91efb625f58df56952de55dbf3b380529a051a594a85",
+    "structured/planning/design-discussion-basis/ABC-discussion-package.zip": "395b0f6e546d707b71c892905630115d53654e550dd34346143da105a6dc58c5"
+  },
+  "checks": {
+    "preview_source_hashes_verified": 25,
+    "packet_source_hashes_verified": 412,
+    "protected_controls_unchanged": 149,
+    "accepted_storage_viewer_sources_unchanged": 30,
+    "accepted_storage_viewer_artifacts_unchanged": 19,
+    "python": {
+      "total_passed": 145,
+      "failed": 0,
+      "runs": [
+        {
+          "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q --tb=short -p no:cacheprovider tests/test_ac_storage_preview.py",
+          "passed": 9,
+          "seconds": 0.98
+        },
+        {
+          "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q --tb=short -p no:cacheprovider tests/test_design_discussion_basis.py tests/test_project_status.py",
+          "passed": 136,
+          "seconds": 7.61
+        }
+      ]
+    },
+    "javascript": {
+      "command": "timeout 20s node --test tests/js/ac-storage-preview.test.cjs",
+      "passed": 4,
+      "failed": 0,
+      "elapsed_ms": 262.69702,
+      "scope": "File preflight, independent model/body evidence counterexamples and syntax compilation of both inline scripts; no scene execution."
+    },
+    "bounded_checks": [
+      {
+        "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m ruff check house_design/ac_storage_preview.py scripts/export_ac_storage_preview.py tests/test_ac_storage_preview.py house_design/design_discussion_basis.py scripts/export_design_discussion_basis.py tests/test_design_discussion_basis.py",
+        "exit_code": 0
+      },
+      {
+        "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_ac_storage_preview.py --check",
+        "exit_code": 0
+      },
+      {
+        "command": "timeout 20s node scripts/check_ac_storage_preview_playwright.cjs --preflight",
+        "exit_code": 0
+      },
+      {
+        "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/check_upper_floor_storage_merge.py",
+        "exit_code": 0
+      },
+      {
+        "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_upper_floor_storage_viewer.py --check",
+        "exit_code": 0
+      },
+      {
+        "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_project_next_steps.py --check",
+        "exit_code": 0
+      },
+      {
+        "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_builder_communication.py --check",
+        "exit_code": 0
+      },
+      {
+        "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_design_discussion_basis.py --check",
+        "exit_code": 0
+      },
+      {
+        "command": "timeout 20s git diff --check",
+        "exit_code": 0
+      }
+    ],
+    "counterexamples": [
+      "Changing an existing item or the selected C stair invalidates a storage-only patch.",
+      "New cabinet resizing, duplicates and changes to existing measured-product summary are rejected.",
+      "A label-only image, missing/wrong mesh dimensions, wrong floor elevation, nonfinite pixels or a body under controls is rejected.",
+      "Nested A/C comparison ZIP and the accepted storage ZIP must match their separate source packages byte-for-byte."
+    ]
+  },
+  "handoff": {
+    "snapshot": "inputs/private/design-discussion-035",
+    "files": 118,
+    "zip_entries": 116,
+    "zip_sha256": "395b0f6e546d707b71c892905630115d53654e550dd34346143da105a6dc58c5",
+    "zip_bytes": 1469935,
+    "preview_files": 24,
+    "preview_zip_entries": 22,
+    "preview_zip_bytes": 667062,
+    "preview_zip_sha256": "a48e03716c86d75676f41d17099b5af8235b75ebc3d549deedcad5724ed7c43d",
+    "same_source_csv_and_svg_preserved": 97,
+    "old_snapshots_001_to034_written": false,
+    "both_embedded_3d_zips_match_separate_packages": true
+  },
+  "implemented": [
+    "A/C original/storage state selection and full-floor/cabinet closeup controls.",
+    "Six new orange cabinets with unchanged proposed body sizes, heights and operation rectangles.",
+    "Exact full-model reversal after removing additions; preserve C stairs, closable gate/HVAC context and the single C 2F washer.",
+    "16 state-specific floor SVGs with visible Chinese equipment legends and working offline navigation.",
+    "Resize fitting maintains cabinet context after mobile panel changes; actual viewport pixels remain pending browser verification.",
+    "Separate source-bound Windows browser CLI with partial failure evidence and no retries."
+  ],
+  "constraints": {
+    "original_main_3d_changed": false,
+    "accepted_storage_viewer_changed": false,
+    "B_not_imported_or_rebased": true,
+    "C3_shared_access_requires_entering_master": true,
+    "B_rear_default_front_fallback_and_both_roof_options_retained": true,
+    "formal_requirement_statuses": {
+      "candidate": 66
+    },
+    "formal_register_statuses": {
+      "unknown": 105
+    },
+    "adopted": false,
+    "professional_approval": "unknown",
+    "construction_release": false
+  },
+  "rendered_qa": {
+    "status": "not-run",
+    "browser_plugin": "absent",
+    "reason": "Owner AGENTS.md reserves browser/WebGL/full-scene QA for a separate terminal.",
+    "manual_command": "node '\\\\wsl.localhost\\Ubuntu\\root\\workspace\\houseDesignPrepare\\scripts\\check_ac_storage_preview_playwright.cjs'",
+    "target_flow": "Choose each of six cabinet floors -> storage/control state -> actual body dimensions/elevations/pixels/full names -> return whole floor -> exercise state dropdown; desktop 1440x1000 and mobile 390x844.",
+    "cases": 24,
+    "screenshots_expected": 36,
+    "owner_worker_timeout_seconds": 120,
+    "automatic_retry": false,
+    "page_identity": "not-run",
+    "blank_page": "not-run",
+    "framework_overlay": "not-run",
+    "console_health": "not-run",
+    "screenshots": "not-run",
+    "interaction_proof": "not-run",
+    "old_independent_storage_passed_reused": false
+  },
+  "not_run": [
+    "Browser/WebGL or new screenshot capture",
+    "Whole-scene runtime/full pytest",
+    "B P4/Q3/RF full-scene merge",
+    "External AI requests",
+    "Commit",
+    "Push"
+  ]
+}

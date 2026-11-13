@@ -1,0 +1,75 @@
+{
+  "schema": "house-abc-laundry-use-v1",
+  "date": "2026-11-13",
+  "adopted": false,
+  "parent_report": "structured/coordination/abc-laundry-access-v1/review.json",
+  "parent_sha256": "35437c6cf61759841d6c3b1640517300c8261bf5bb06c6ce48dbba1ed6e1bc6c",
+  "parent_report_hash": "cccb8e77b8ff54e162bc27746b1cef493f02e6fd53d43bb19ffe49e41db18730",
+  "owner_reference": "inputs/references/abc-laundry-owner-20261113.json",
+  "illustrative_minutes": {
+    "basis": "illustrative-only-not-owner-data-or-product-performance",
+    "available_window": 480,
+    "washer_loading": 15,
+    "washer_program": 90,
+    "washer_unloading_transfer": 15,
+    "dryer_program": 120,
+    "dryer_unloading": 15,
+    "combined_loading": 15,
+    "combined_program": 210,
+    "combined_unloading": 15
+  },
+  "illustrative_scenarios": [
+    {"id": "daily-example", "label": "日常壓力例：三戶各一批", "batches_per_household": 1},
+    {"id": "bedding-example", "label": "床單集中壓力例：三戶各兩批", "batches_per_household": 2}
+  ],
+  "recommendation": "保留一台共用洗衣機＋旁側平放乾衣機備位，先不採購；小晾架作補充，不承諾三戶只靠它全部晾乾。採分戶預約及分散床單日，晴雨兩套流程；實際批數、衣物／床品適用性、乾衣容量、程序時間與可用時段到齊後再比較，不自動加第二組或取消C2／A上層備位。",
+  "use_steps": [
+    ["01", "預約與平層取送", "按戶分時段，小批衣籃取送；動線未核前由家人協助，不要求長輩提濕衣上下樓。"],
+    ["02", "分戶污衣與備品", "各戶容器識別；清潔劑可及、避免地面暫堆。籃車停位尚未核，不把900試線或門行程當停車位。"],
+    ["03", "洗衣與取放", "操作高度、開門、彎腰／坐姿及扶靠依使用者與實機核。換批與清理留時間，特殊洗滌依衣標或照護指示。"],
+    ["04", "晴天晾／雨天乾", "升降架降到可及高度；床品尺寸與承重待核。雨天保乾衣候選及獨立排濕補氣，不靠一般全熱保證除濕。"],
+    ["05", "潔衣分戶收取", "潔衣與污衣容器分開，乾後及時取走；不在門口與操作帶新增固定櫃。操作分時，不把兩機同跑當兩人可同時取放。"],
+    ["06", "還原與維修", "收起晾架、清理濾網／槽體依原廠，還原通行；故障時保分戶平層取送與送洗選項，不把樓上備位當長輩必須上樓的替代。"]
+  ],
+  "engineering_interfaces": [
+    ["LAU-03", "安裝、開門與換機", "原850×750mm各機安裝預算保留；實際機身＋門片＋接管＋散熱＋拆換另核，洗／乾kg容量不同時須重分批。"],
+    ["LAU-04", "雨天濕度與容量", "1200×500mm只是含衣物外廓，不能換算可晾kg；核晾架承重、衣物間距、床單、乾衣機種及排濕／補氣、冷凝水。"],
+    ["LAU-05", "鄰臥室噪音振動", "可用時段與夜間限制待同版聲學／隔振資料，不能用示例8小時自行承諾可連跑或移到夜間。"],
+    ["LAU-06", "給排水、防水與止水", "洗衣污水核合法污水終端，乾衣冷凝水依機型核；地面防水排水及漏水止水不借雨水溝或任意地排。"],
+    ["LAU-07", "電力與設備預埋", "兩機備位不等既有迴路可同時啟動；容量、迴路、接地漏電與插座位置依電氣設計，不拉延長線跨濕地。"],
+    ["LAU-08", "共用管理與A交接", "分戶預約、床品分日、潔污容器、清潔保養及水電費先留討論；建商與A另聘設計師在預埋前對同版接口。"]
+  ],
+  "limits": [
+    "所有批數與分鐘均為壓力示例，未取自屋主人數、實際衣量或產品型錄；不是選機、承諾工時或乾衣完成驗證。",
+    "一批假設可用同一個乾衣程序，實際洗／乾容量或衣標不合就須分批，時程不能沿用；床單例不表示棉被或大型床品可洗烘。",
+    "洗／乾操作帶在原平面重疊；示例令人工操作互斥，可同時運轉不代表多人同時取放或無障礙成立。",
+    "只洗的時間不含晾乾；未有氣候、衣量與排濕資料，晾乾時數及三戶滿足程度均保留未知。",
+    "兩機採固定間隔錯開批次，找出該種排法可行的最小整數分鐘間隔，不聲稱所有排程的全局最短；還需計三棟取送與實際回應延誤。",
+    "不把小晾架降下外廓或未核籃車停位當成可用儲藏；門行程到乾衣備位20mm仍需產品同版重核。",
+    "原A前側瓶頸、後口條件、晾架占轉位、設備完成面／維修、噪音與2.232㎡加深代價仍在；未擴陽台、縮孝親房、釋放MDF或改主3D。",
+    "B後門預設／前門備案及祭祀、搬轎、淋浴保持；新共用流程不穿神明堂，也不推定A／C已有合法共同後路。"
+  ],
+  "actual_conditions": {
+    "daily_batches": null,
+    "peak_bedding_batches": null,
+    "usable_day_window_minutes": null,
+    "washer_dry_load_capacity_kg": null,
+    "dryer_dry_load_capacity_kg": null,
+    "washer_program_minutes": null,
+    "dryer_program_minutes": null,
+    "combined_program_minutes": null,
+    "actual_loading_unloading_minutes": null,
+    "textile_piece_size_and_program_limits": null,
+    "rack_rated_capacity_and_clothes_envelope": null,
+    "air_drying_duration_by_weather": null,
+    "elder_reach_and_assistance": null,
+    "separate_clean_dirty_container_and_cart_parking": null,
+    "shared_access_and_threshold_evidence": null,
+    "door_and_machine_full_service_envelope": null,
+    "noise_vibration_and_operating_hours": null,
+    "electrical_simultaneous_load_design": null,
+    "air_moisture_and_condensate_design": null,
+    "legal_wastewater_and_waterproofing": null,
+    "maintenance_cost_and_responsibility": null
+  }
+}

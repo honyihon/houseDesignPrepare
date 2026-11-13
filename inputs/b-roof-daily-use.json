@@ -1,0 +1,63 @@
+{
+  "schema": "house-b-roof-daily-use-v1",
+  "date": "2026-11-10",
+  "adopted": false,
+  "parent_report": "structured/coordination/b-roof-equipment-v1/review.json",
+  "ground_report": "structured/coordination/b-claude-round3-v1/review.json",
+  "pinned_sources": {
+    "structured/coordination/b-roof-equipment-v1/review.json": "17bb6027323fea2b01896aeaa533e62903a60c5c9d5ca9e11e6848155c04cec1",
+    "structured/coordination/b-roof-equipment-v1/artifact-manifest.json": "f37bb8346f9ff487b6f52de5e86ed9fef67c45e6699683f00d2fa8b9065947bb"
+  },
+  "protected_controls": "inputs/abc-next-protected-controls.json",
+  "frame_mm": [6000, 17630],
+  "edge_budget_mm": 115,
+  "door_width_frame_budget_each_mm": 115,
+  "ordinary_route_width_mm": 700,
+  "proposed_front_door": {"a": [1150, 3900], "b": [2280, 3900], "hinge": "left", "opens": "inside"},
+  "arrival_width_cases_mm": [700, 800, 900],
+  "door_states_deg": {"open": 90, "half": 45, "closed": 0},
+  "arrival_route_mm": [[1780, 4500], [1715, 4500], [1715, 2500], [3150, 2500]],
+  "rack_route_mm": [[3150, 2500], [3900, 2500]],
+  "options": [
+    {
+      "id": "D1-front-heat-pump",
+      "parent_option": "S1-front-heat-pump",
+      "title": "D1 前熱泵：先保設備檢修，折衣與通道分時",
+      "table_route_mm": [[3150, 2500], [3050, 2500], [3050, 2315]],
+      "furniture": [
+        {"id": "drying-rack", "label": "1800×600移動晾衣架試排", "rect_mm": [4250, 1720, 600, 1800], "operation_mm": [3550, 1720, 700, 1800]},
+        {"id": "folding-table", "label": "1200×450折衣桌試排", "rect_mm": [2315, 1515, 1200, 450], "operation_mm": [2315, 1965, 1200, 700]}
+      ]
+    },
+    {
+      "id": "D2-rear-wet-pair",
+      "parent_option": "S2-rear-wet-pair",
+      "title": "D2 後熱泵：較好家務動線，後設備包絡緊",
+      "table_route_mm": [[3150, 2500], [1715, 2500], [1715, 1000], [715, 1000]],
+      "furniture": [
+        {"id": "drying-rack", "label": "同1800×600移動晾衣架試排", "rect_mm": [4250, 1720, 600, 1800], "operation_mm": [3550, 1720, 700, 1800]},
+        {"id": "folding-table", "label": "同1200×450折衣桌試排", "rect_mm": [115, 115, 1200, 450], "operation_mm": [115, 565, 1200, 700]}
+      ]
+    }
+  ],
+  "decision_paths": [
+    {"id": "functional-front-deck", "title": "先保可用的前平台作比較", "recommendation": "D1偏設備檢修、D2偏日常家務，兩路待真實包絡回套；原24㎡目標仍列缺口，不因圖能用就視為屋主接受縮小。", "owner_choice": null},
+    {"id": "retain24-major-replan", "title": "24㎡若為不可讓步條件", "recommendation": "需把一樓祭祀保護位置、全棟樓梯及上層功能一併交建築師重排研究；沒有提出已完成替代案，不先動一樓、縮客房或取消工作天井。", "owner_choice": null},
+    {"id": "wait-real-buildability", "title": "合法基地與建築量體回套", "recommendation": "本輪仍用原約32地坪框，不往道路／鄰地外伸、不加第二屋頂層，也不預設改風水規則就能解決。實際資料到齊後檢查完整配置。", "owner_choice": null}
+  ],
+  "limits": [
+    "沿S1／S2相同設備與R1天井作獨立日常使用比較，不改原ABC／3D、搬轎兩版、屋頂原快照或原24㎡活動曬衣目標。",
+    "前帶名義外框23.4㎡，扣本輪115mm外緣但不扣設備的樂觀上界21.83945㎡；只證明固定前帶不足24，不證明所有整棟重排都不可能。",
+    "前後可用區被現行祭祀保護投影及梯核分成兩個區塊，後側不能以日常路徑和前側相加。本輪沿現行非日常保護用途，不宣稱所有傳統風水都禁止通行。",
+    "屋頂前門仍是候選；從凍結樓梯右側1000mm到達平台起算，70mm前銜接帶及門檻同標高只作條件假設，實際3F至RF梯段、梁板、扶手與消防未核。",
+    "1130mm名義門洞扣兩邊各115只得900mm預算，不當產品完成淨寬。此門與到達平台中心偏65mm，指定900mm折線會超出保守右側平台15mm；700／800mm算術可通不當輪椅、搬整機或法定值。",
+    "四邊內縮不是實際牆厚／護欄規格，門框、把手、五金、防雨與門檻不可藉算式選定；若要900連續目標，先調整平台／門組再重算，不把名義門洞當全程完成。",
+    "原RF候選前門右鉸鏈全開仍卡指定外側轉彎；本輪同洞改左鉸鏈，門全開、半開、關閉各自核。只有全開的指定700mm日常試線無門片阻擋，半開及關閉不視為可用。室外門防風、避免自動回關或被衣物擋住仍需產品及管理設計。",
+    "晾衣架1800×600與折衣桌1200×450是自行設定的代表包絡，兩案同尺寸，不是已選商品、容量、桿高、晾被或防颱核可；不增洗衣機、地排或濕台。",
+    "D1折衣操作帶與通道共用，應分時；共用不重算專用面積，也不承諾有人折衣時另一人仍可通過。作業及暫放衣籃不得封住唯一門路。D2另擺桌位減少此共用，但後設備仍緊迫。",
+    "兩案家具機身及列明操作帶均避設備完整預留；晾衣與維修在指定平面下不碰列明機身，但熱風、污氣、曬衣污染與真正檢修姿勢仍未知。",
+    "桌架沒有設在前門掃掠或700mm門路上；不從視覺大空白推定可同時聚會、晾被及拆換機器。實際風向、雨天、止滑、排水、照明及室外電安全待核。",
+    "S2後水塔至污水井零間隙、至熱泵預留僅65mm的緊迫仍在；日常動線較好不代表整案較好施工。前後進排氣、香火與新風分系統關卡亦保留。",
+    "本輪不將RF前門、代表家具或日常試線併主3D，不變更66項candidate需求及105項unknown紀錄。家規、法規、結構、產品、通風與施工核可均未知。"
+  ]
+}

@@ -1,5 +1,8 @@
 # /export-final-design-html
 
+Historical HTML workflow only. Current work is conditional preplanning, not final design adoption.
+Follow AGENTS.md; missing inputs must be reported, never filled by automatically running the full pipeline.
+
 Export canonical-first discussion HTML copies from the latest pipeline outputs without modifying canonical source HTML.
 
 ## Usage
@@ -35,5 +38,5 @@ python scripts/export_final_design_html.py `
 
 - This command writes only to `structured/final_design_html/`.
 - Canonical files such as `AbuildingView.html`, `BbuildingView.html`, and `CbuildingView.html` are not modified.
-- If required pipeline outputs are missing, run `/workflow-house-all-in-one` first.
+- If required outputs are missing, stop this export and report them; offer the historical workflow command for a separately authorized run, do not automatically start it.
 - The final HTML keeps canonical visual room placement. The selected candidate is recorded as analysis metadata only, not applied as visible room moves.

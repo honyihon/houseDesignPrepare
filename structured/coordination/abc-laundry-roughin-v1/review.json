@@ -1,0 +1,814 @@
+{
+  "schema": "house-abc-laundry-roughin-report-v1",
+  "date": "2026-11-13",
+  "config": {
+    "schema": "house-abc-laundry-roughin-v1",
+    "date": "2026-11-13",
+    "adopted": false,
+    "parent_report": "structured/coordination/abc-laundry-use-v1/review.json",
+    "parent_sha256": "df5c49acba569405b75ba1245e07a698c1e5b8cd4eb1de06c2462e9c91dc31c7",
+    "parent_report_hash": "5c4d2c47ac309a04d9be0d7eb45abaea9bc179fc28d8e531e89621d2eb0f2d74",
+    "builder_plan": "inputs/builder-communication-plan.json",
+    "builder_plan_sha256": "dd3334da200ee8e0a09e83fd8d0d2390d6b0225d3364d51b84123790a18f8595",
+    "recommendation": "先與建商及A設計師保住一樓共用候選、A上層備位和C2恢復使用的空間與可檢修接口。乾衣先研究熱泵／冷凝式，排氣式保條件比較；實際主位置、完整產品與機電圖到齊後再定點位及施工，不先買機、鑽孔或把一般新風當乾衣排濕。",
+    "interfaces": [
+      {
+        "id": "siting",
+        "label": "位置、合法到達與換機",
+        "laundry_ids": [
+          "LAU-01",
+          "LAU-02",
+          "LAU-03"
+        ],
+        "question_ids": [
+          "BC-06",
+          "BC-16"
+        ],
+        "a_interface_ids": [
+          "A-IF-01",
+          "A-IF-10"
+        ],
+        "before": "位置與設備圖定版前",
+        "prepare": "先核A後口／共同後路及門檻；保兩個850×750機器安裝預算與完整換機方向，不能先認A已是共用主位置。",
+        "required": "正式總平面、合法開口、牆柱／完成面、產品門片及換機包絡；A前側810假設瓶頸與後門行程20mm餘量須同版回核。",
+        "proposed_window": "建商／建築及相應專業＋A設計師＋設備安裝者，承作分工待議"
+      },
+      {
+        "id": "water",
+        "label": "給水、止水與漏水處理",
+        "laundry_ids": [
+          "LAU-06"
+        ],
+        "question_ids": [
+          "BC-14"
+        ],
+        "a_interface_ids": [
+          "A-IF-03",
+          "A-IF-10"
+        ],
+        "before": "給水管定位與覆蓋前",
+        "prepare": "洗衣供水與可操作止水閥保檢修；漏水感知／自動止水可列選配，停電時的手動止水另核。熱水需求依機型，不自行增加熱水接頭。",
+        "required": "供水壓力、原廠接管需求、閥件操作範圍、接頭不被機身封死及壓力／漏水檢查紀錄。",
+        "proposed_window": "建商機電＋設備安裝者；A設計師核可及與收口，責任待議"
+      },
+      {
+        "id": "wastewater",
+        "label": "洗衣污水與乾衣冷凝水",
+        "laundry_ids": [
+          "LAU-04",
+          "LAU-06"
+        ],
+        "question_ids": [
+          "BC-14"
+        ],
+        "a_interface_ids": [
+          "A-IF-03",
+          "A-IF-10"
+        ],
+        "before": "污排水、套管與防水定位前",
+        "prepare": "洗衣污水接核定污水系統，與陽台雨水分清；乾衣冷凝水是否直排依機型核，不預設兩條軟管隨便共塞一孔。",
+        "required": "管徑、坡度、接管高度、存水彎／通氣／掃除與防回流的同版圖，合法終端及運轉排水試驗；數值由設計與原廠定。",
+        "proposed_window": "建商給排水設計／施工＋設備安裝者，A設計師核完成面，責任待議"
+      },
+      {
+        "id": "power",
+        "label": "兩機電力與操作可及",
+        "laundry_ids": [
+          "LAU-03",
+          "LAU-07"
+        ],
+        "question_ids": [
+          "BC-15"
+        ],
+        "a_interface_ids": [
+          "A-IF-05",
+          "A-IF-10"
+        ],
+        "before": "配電盤、配管與插座定位前",
+        "prepare": "分別列洗衣／乾衣的電壓、額定與啟動需求，再核同時負載、迴路及接地漏電保護；插座／開關不靠跨濕地延長線。",
+        "required": "同型號供電需求、盤表與配線保護、可及且避濺的點位及測試方法；不預填110／220V、安培、線徑或插座高度。",
+        "proposed_window": "建商電氣設計／施工＋設備安裝者；A設計師核家具及可及，責任待議"
+      },
+      {
+        "id": "air",
+        "label": "乾衣、晾衣的熱濕與補排氣",
+        "laundry_ids": [
+          "LAU-04"
+        ],
+        "question_ids": [
+          "BC-12",
+          "BC-16"
+        ],
+        "a_interface_ids": [
+          "A-IF-04",
+          "A-IF-10"
+        ],
+        "before": "外口、天花與排氣路由定版前",
+        "prepare": "熱泵／冷凝式仍核室內散熱、溫濕度與冷凝水；排氣式另核專用排氣及補氣，乾衣濕熱不接一般ERV、浴廁或油煙共管。",
+        "required": "原廠通風／間距、合法外口、防雨防蟲、進排氣相互影響、完整管長阻力及棉絮清理；沒有資料不先打洞或封天花。",
+        "proposed_window": "建商空調／通風設計＋設備安裝者＋A設計師；外口由相應專業核，責任待議"
+      },
+      {
+        "id": "waterproof",
+        "label": "地面防水、門檻與分區排水",
+        "laundry_ids": [
+          "LAU-02",
+          "LAU-06"
+        ],
+        "question_ids": [
+          "BC-14",
+          "BC-20"
+        ],
+        "a_interface_ids": [
+          "A-IF-03",
+          "A-IF-10"
+        ],
+        "before": "降板、地坪及防水層覆蓋前",
+        "prepare": "止水、防水連續與門口低高差共同設計；機器支承保持原廠要求的水平穩定，不能把地排坡度直接當機腳支承面已成立。",
+        "required": "完成標高、防水與穿管收口、合法地面排水及防倒灌剖面，排水／防水測試；平門檻目標不等已核無障礙。",
+        "proposed_window": "建商建築／給排水與防水工班＋A設計師，保固邊界待議"
+      },
+      {
+        "id": "vibration",
+        "label": "噪音、振動與曬衣固定",
+        "laundry_ids": [
+          "LAU-03",
+          "LAU-04",
+          "LAU-05"
+        ],
+        "question_ids": [
+          "BC-06",
+          "BC-20"
+        ],
+        "a_interface_ids": [
+          "A-IF-08",
+          "A-IF-10"
+        ],
+        "before": "支承、補強及鄰房完成面覆蓋前",
+        "prepare": "核鄰孝親房與A上層投影；機腳調平及隔振依產品／結構，不用一般軟墊或自行墊高作保證。晾架固定及荷重另核。",
+        "required": "樓板支承、脫水工況、噪音振動目標／實測方法及使用時段；升降架承重、可及高度、衣物外廓與暗管避讓。",
+        "proposed_window": "建商相應結構／聲學與施工＋設備安裝者＋A設計師，責任待議"
+      },
+      {
+        "id": "maintenance",
+        "label": "封板、保留機位與交接",
+        "laundry_ids": [
+          "LAU-03",
+          "LAU-08"
+        ],
+        "question_ids": [
+          "BC-17",
+          "BC-20",
+          "BC-22"
+        ],
+        "a_interface_ids": [
+          "A-IF-10",
+          "A-IF-11"
+        ],
+        "before": "封板／櫃體、試運轉及交接前",
+        "prepare": "閥件、插座、濾網與軟管可達，保整機抽換及原淨軟水／冷氣維修；A上層備位與C2恢復使用空間不放固定櫃。",
+        "required": "隱蔽管線照片、實際圖號版次、試驗原始紀錄及保養責任；C2停用口防臭防漏措施由工班核，不封死通氣或公共排水。",
+        "proposed_window": "建商／設備安裝者與A設計師共同交接；承作、價差、工期與保固待議"
+      }
+    ],
+    "dryer_alternatives": [
+      {
+        "id": "heatpump-condensing",
+        "label": "熱泵／冷凝式：先研究",
+        "keep": "平放備位、產品供電與散熱空間；冷凝水直排或集水盒依機型，仍核晾衣區排濕補氣。",
+        "condition": "不因免一般熱風排氣管就稱免通風，先核原廠環境限制、程序／床品與維修；未選機。"
+      },
+      {
+        "id": "electric-vented",
+        "label": "電力排氣式：保條件比較",
+        "keep": "平放備位、足夠供電、合法獨立排氣終端與補氣及棉絮清理路徑。",
+        "condition": "外口／管長阻力／防雨與補氣可行後再比較；本輪未規劃燃氣，未先開孔或將排氣接ERV。"
+      }
+    ],
+    "actual_conditions": {
+      "shared_host_and_legal_site_plan": null,
+      "products_and_installation_revision": null,
+      "finished_wall_column_and_door_plan": null,
+      "washer_supply_pressure_and_valve_location": null,
+      "washer_wastewater_design_and_legal_terminal": null,
+      "dryer_type_and_condensate_detail": null,
+      "electrical_load_panel_and_protection": null,
+      "socket_coordinates_height_and_splash_protection": null,
+      "air_inlet_exhaust_and_moisture_design": null,
+      "door_threshold_levels_and_rain_detail": null,
+      "waterproofing_and_floor_drainage_detail": null,
+      "machine_support_vibration_and_noise_targets": null,
+      "rack_fixing_load_and_reach": null,
+      "machine_opening_service_replacement_envelope": null,
+      "existing_filter_and_HVAC_service_envelope": null,
+      "A_upper_inactive_stub_safeguards": null,
+      "C2_temporary_inactivity_and_reactivation_method": null,
+      "agreed_scope_quote_programme_and_warranty": null,
+      "concealed_work_photos_and_test_records": null,
+      "professional_review_and_drawing_issue": null
+    }
+  },
+  "parent_report": "structured/coordination/abc-laundry-use-v1/review.json",
+  "parent_report_sha256": "df5c49acba569405b75ba1245e07a698c1e5b8cd4eb1de06c2462e9c91dc31c7",
+  "parent_report_hash": "5c4d2c47ac309a04d9be0d7eb45abaea9bc179fc28d8e531e89621d2eb0f2d74",
+  "parent_sources_verified": 30,
+  "owner_direction": {
+    "schema": "house-abc-laundry-owner-direction-v1",
+    "date": "2026-11-13",
+    "request": "每棟1F因為老人住，考慮曬衣空間，有洗衣機空間最好；三棟1F共用一組，以老人方便洗衣為主。",
+    "clarification": "三棟一樓共用一組 C 二樓既有洗衣機可以先暫時不用 先有空間 其他再想 A棟2F以上也要規劃一個放洗衣機空間",
+    "confirmed": {
+      "shared_group_at_ground_floor": 1,
+      "primary_purpose": "older-residents-no-laundry-stair-carrying",
+      "C_floor2_initial_washer_use": "temporarily-inactive-reserve-space",
+      "A_upper_floor_washer_space_required": true
+    },
+    "not_selected": {
+      "host_building": null,
+      "installed_product": null,
+      "dryer_purchase": null,
+      "site_route": null,
+      "C2_permanent_removal": false,
+      "A_upper_floor": null
+    },
+    "scope": "Latest owner direction for new independent preplanning; retain immutable older studies and formal requirement/register records. This does not retroactively approve any layout or release construction."
+  },
+  "recommendation": "先與建商及A設計師保住一樓共用候選、A上層備位和C2恢復使用的空間與可檢修接口。乾衣先研究熱泵／冷凝式，排氣式保條件比較；實際主位置、完整產品與機電圖到齊後再定點位及施工，不先買機、鑽孔或把一般新風當乾衣排濕。",
+  "locations": [
+    {
+      "id": "shared-ground",
+      "label": "1F共用候選／A1原陽台先研究",
+      "mode": "host-not-adopted",
+      "rects_mm": [
+        [
+          3350,
+          15945,
+          850,
+          750
+        ],
+        [
+          3350,
+          16765,
+          850,
+          750
+        ]
+      ],
+      "preserve": "原兩個850×750mm安裝預算、洗曬與門路；先核合法共享到達和完整產品，機位能放不等已選主位置。"
+    },
+    {
+      "id": "A-upper",
+      "label": "A上層備位／先研究A2後陽台",
+      "mode": "reserve-no-machine-decided",
+      "rects_mm": [
+        [
+          3450,
+          15945,
+          850,
+          750
+        ]
+      ],
+      "preserve": "留原備位及水電排水檢修條件，不買機。未啟用的支管／端口安全防漏防臭由設計與工班核；仍須穿書房，門前操作共用。"
+    },
+    {
+      "id": "C2-retain",
+      "label": "C2原機位／暫不用保恢復使用",
+      "mode": "temporarily-inactive-reserve-space",
+      "rects_mm": [
+        [
+          800.0,
+          115.0,
+          650.0,
+          650.0
+        ]
+      ],
+      "preserve": "原650×650mm來源機位及恢復操作空間不放固定櫃。長期停用的止水、端口與存水彎防臭由工班核，保通氣及必要公共排水，不自動拆機。"
+    }
+  ],
+  "retained_space": {
+    "machine_bays_mm": [
+      [
+        3350,
+        15945,
+        850,
+        750
+      ],
+      [
+        3350,
+        16765,
+        850,
+        750
+      ]
+    ],
+    "rack_envelope_mm": [
+      1000,
+      16965,
+      1200,
+      500
+    ],
+    "rack_envelope_is_kg_capacity": false,
+    "cart_parking_adopted": false,
+    "shared_operation_bands": [
+      "washer-loading",
+      "dryer-loading"
+    ],
+    "door_travel_gaps_mm": {
+      "optional-dryer-bay": 20.0,
+      "lowered-drying-envelope": 70.0
+    },
+    "rear_whole_route_approved": false,
+    "C2_space_retained": {
+      "source_item": "C:floor-2:balcony2f:furniture:washer",
+      "rect_mm": [
+        800.0,
+        115.0,
+        650.0,
+        650.0
+      ],
+      "new_direction_use": "temporarily-inactive-reserve-space",
+      "source_model_changed": false,
+      "removed_from_original": false,
+      "new_washer_purchased": false
+    },
+    "A2_reservation_retained": {
+      "id": "A2-reserve",
+      "floor": "floor-2",
+      "room": "balcony2",
+      "label": "A二樓後工作陽台洗衣備位",
+      "route_points_mm": [
+        [
+          2600,
+          16200
+        ],
+        [
+          2600,
+          16400
+        ],
+        [
+          2850,
+          16400
+        ]
+      ],
+      "note": "優先二樓，避免把上層衣物全搬到RF；仍需穿書房，與陽台門前操作有共用，並非公共直達。水電排濕防水與振動由建商／A設計師共同預留，未定實機。",
+      "region_rects_mm": [
+        [
+          0,
+          15630,
+          6000,
+          2000
+        ]
+      ],
+      "bodies": [
+        {
+          "id": "upper-washer-reserve",
+          "label": "上層洗衣安裝預留（暫不放實機）",
+          "rect_mm": [
+            3450,
+            15945,
+            850,
+            750
+          ],
+          "kind": "reserve",
+          "facing": "left"
+        }
+      ],
+      "operations": [
+        {
+          "id": "upper-loading",
+          "label": "備位取放操作預算",
+          "rect_mm": [
+            2250,
+            15945,
+            1200,
+            900
+          ]
+        }
+      ],
+      "fixed": [
+        {
+          "id": "hvac-service-0",
+          "kind": "hvac-service",
+          "rect_mm": [
+            80.0,
+            16180,
+            900.0,
+            1350
+          ]
+        },
+        {
+          "id": "hvac-service-1",
+          "kind": "hvac-service",
+          "rect_mm": [
+            5020.0,
+            16180,
+            900.0,
+            1350
+          ]
+        },
+        {
+          "id": "door-approach-2",
+          "kind": "door-approach",
+          "rect_mm": [
+            2050.0,
+            15630.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "door-approach-3",
+          "kind": "door-approach",
+          "rect_mm": [
+            4970.0,
+            15630.0,
+            1100.0,
+            900.0
+          ]
+        }
+      ],
+      "screen": {
+        "nominal_region_sqm": 12.0,
+        "finished_region_sqm_assumption": 10.2129,
+        "new_body_outside_finished": [],
+        "operation_outside_finished": [],
+        "body_pair_hits": [],
+        "new_body_fixed_hits": [],
+        "operation_fixed_hits": [],
+        "operation_other_body_hits": [],
+        "operation_shared": [],
+        "operation_door_approach_shared": [
+          {
+            "operation": "upper-loading",
+            "approach": "door-approach-2"
+          }
+        ],
+        "local_route_width_mm": 900,
+        "local_route_inside_finished": true,
+        "local_route_fixed_hits": [],
+        "turn_inside_finished": null,
+        "turn_lowered_body_hits": [],
+        "turn_if_drying_fully_stowed_body_hits": [],
+        "stowed_drying_headroom_and_product_verified": false,
+        "existing_fixed_outside_finished": [
+          "hvac-service-0",
+          "hvac-service-1"
+        ],
+        "whole_route_or_care_approved": false,
+        "product_door_sweeps_verified": false
+      }
+    },
+    "B_source_states_retained": [
+      {
+        "option": "b-rear-split",
+        "state": "daily",
+        "existing_washer_rects_mm": [
+          [
+            1475.0,
+            11485.0,
+            650.0,
+            650.0
+          ]
+        ],
+        "new_shared_laundry_host_adopted": false
+      },
+      {
+        "option": "b-rear-split",
+        "state": "ritual",
+        "existing_washer_rects_mm": [
+          [
+            1475.0,
+            11485.0,
+            650.0,
+            650.0
+          ]
+        ],
+        "new_shared_laundry_host_adopted": false
+      },
+      {
+        "option": "b-rear-split",
+        "state": "carry",
+        "existing_washer_rects_mm": [
+          [
+            1475.0,
+            11485.0,
+            650.0,
+            650.0
+          ]
+        ],
+        "new_shared_laundry_host_adopted": false
+      },
+      {
+        "option": "b-front-split",
+        "state": "daily",
+        "existing_washer_rects_mm": [
+          [
+            2855,
+            13085,
+            650,
+            650
+          ]
+        ],
+        "new_shared_laundry_host_adopted": false
+      },
+      {
+        "option": "b-front-split",
+        "state": "ritual",
+        "existing_washer_rects_mm": [
+          [
+            2855,
+            13085,
+            650,
+            650
+          ]
+        ],
+        "new_shared_laundry_host_adopted": false
+      },
+      {
+        "option": "b-front-split",
+        "state": "carry",
+        "existing_washer_rects_mm": [
+          [
+            2855,
+            13085,
+            650,
+            650
+          ]
+        ],
+        "new_shared_laundry_host_adopted": false
+      }
+    ]
+  },
+  "interfaces": [
+    {
+      "id": "siting",
+      "label": "位置、合法到達與換機",
+      "laundry_ids": [
+        "LAU-01",
+        "LAU-02",
+        "LAU-03"
+      ],
+      "question_ids": [
+        "BC-06",
+        "BC-16"
+      ],
+      "a_interface_ids": [
+        "A-IF-01",
+        "A-IF-10"
+      ],
+      "before": "位置與設備圖定版前",
+      "prepare": "先核A後口／共同後路及門檻；保兩個850×750機器安裝預算與完整換機方向，不能先認A已是共用主位置。",
+      "required": "正式總平面、合法開口、牆柱／完成面、產品門片及換機包絡；A前側810假設瓶頸與後門行程20mm餘量須同版回核。",
+      "proposed_window": "建商／建築及相應專業＋A設計師＋設備安裝者，承作分工待議",
+      "actual_reply": null,
+      "agreed_window": null,
+      "professional_approval": "unknown",
+      "construction_release": false
+    },
+    {
+      "id": "water",
+      "label": "給水、止水與漏水處理",
+      "laundry_ids": [
+        "LAU-06"
+      ],
+      "question_ids": [
+        "BC-14"
+      ],
+      "a_interface_ids": [
+        "A-IF-03",
+        "A-IF-10"
+      ],
+      "before": "給水管定位與覆蓋前",
+      "prepare": "洗衣供水與可操作止水閥保檢修；漏水感知／自動止水可列選配，停電時的手動止水另核。熱水需求依機型，不自行增加熱水接頭。",
+      "required": "供水壓力、原廠接管需求、閥件操作範圍、接頭不被機身封死及壓力／漏水檢查紀錄。",
+      "proposed_window": "建商機電＋設備安裝者；A設計師核可及與收口，責任待議",
+      "actual_reply": null,
+      "agreed_window": null,
+      "professional_approval": "unknown",
+      "construction_release": false
+    },
+    {
+      "id": "wastewater",
+      "label": "洗衣污水與乾衣冷凝水",
+      "laundry_ids": [
+        "LAU-04",
+        "LAU-06"
+      ],
+      "question_ids": [
+        "BC-14"
+      ],
+      "a_interface_ids": [
+        "A-IF-03",
+        "A-IF-10"
+      ],
+      "before": "污排水、套管與防水定位前",
+      "prepare": "洗衣污水接核定污水系統，與陽台雨水分清；乾衣冷凝水是否直排依機型核，不預設兩條軟管隨便共塞一孔。",
+      "required": "管徑、坡度、接管高度、存水彎／通氣／掃除與防回流的同版圖，合法終端及運轉排水試驗；數值由設計與原廠定。",
+      "proposed_window": "建商給排水設計／施工＋設備安裝者，A設計師核完成面，責任待議",
+      "actual_reply": null,
+      "agreed_window": null,
+      "professional_approval": "unknown",
+      "construction_release": false
+    },
+    {
+      "id": "power",
+      "label": "兩機電力與操作可及",
+      "laundry_ids": [
+        "LAU-03",
+        "LAU-07"
+      ],
+      "question_ids": [
+        "BC-15"
+      ],
+      "a_interface_ids": [
+        "A-IF-05",
+        "A-IF-10"
+      ],
+      "before": "配電盤、配管與插座定位前",
+      "prepare": "分別列洗衣／乾衣的電壓、額定與啟動需求，再核同時負載、迴路及接地漏電保護；插座／開關不靠跨濕地延長線。",
+      "required": "同型號供電需求、盤表與配線保護、可及且避濺的點位及測試方法；不預填110／220V、安培、線徑或插座高度。",
+      "proposed_window": "建商電氣設計／施工＋設備安裝者；A設計師核家具及可及，責任待議",
+      "actual_reply": null,
+      "agreed_window": null,
+      "professional_approval": "unknown",
+      "construction_release": false
+    },
+    {
+      "id": "air",
+      "label": "乾衣、晾衣的熱濕與補排氣",
+      "laundry_ids": [
+        "LAU-04"
+      ],
+      "question_ids": [
+        "BC-12",
+        "BC-16"
+      ],
+      "a_interface_ids": [
+        "A-IF-04",
+        "A-IF-10"
+      ],
+      "before": "外口、天花與排氣路由定版前",
+      "prepare": "熱泵／冷凝式仍核室內散熱、溫濕度與冷凝水；排氣式另核專用排氣及補氣，乾衣濕熱不接一般ERV、浴廁或油煙共管。",
+      "required": "原廠通風／間距、合法外口、防雨防蟲、進排氣相互影響、完整管長阻力及棉絮清理；沒有資料不先打洞或封天花。",
+      "proposed_window": "建商空調／通風設計＋設備安裝者＋A設計師；外口由相應專業核，責任待議",
+      "actual_reply": null,
+      "agreed_window": null,
+      "professional_approval": "unknown",
+      "construction_release": false
+    },
+    {
+      "id": "waterproof",
+      "label": "地面防水、門檻與分區排水",
+      "laundry_ids": [
+        "LAU-02",
+        "LAU-06"
+      ],
+      "question_ids": [
+        "BC-14",
+        "BC-20"
+      ],
+      "a_interface_ids": [
+        "A-IF-03",
+        "A-IF-10"
+      ],
+      "before": "降板、地坪及防水層覆蓋前",
+      "prepare": "止水、防水連續與門口低高差共同設計；機器支承保持原廠要求的水平穩定，不能把地排坡度直接當機腳支承面已成立。",
+      "required": "完成標高、防水與穿管收口、合法地面排水及防倒灌剖面，排水／防水測試；平門檻目標不等已核無障礙。",
+      "proposed_window": "建商建築／給排水與防水工班＋A設計師，保固邊界待議",
+      "actual_reply": null,
+      "agreed_window": null,
+      "professional_approval": "unknown",
+      "construction_release": false
+    },
+    {
+      "id": "vibration",
+      "label": "噪音、振動與曬衣固定",
+      "laundry_ids": [
+        "LAU-03",
+        "LAU-04",
+        "LAU-05"
+      ],
+      "question_ids": [
+        "BC-06",
+        "BC-20"
+      ],
+      "a_interface_ids": [
+        "A-IF-08",
+        "A-IF-10"
+      ],
+      "before": "支承、補強及鄰房完成面覆蓋前",
+      "prepare": "核鄰孝親房與A上層投影；機腳調平及隔振依產品／結構，不用一般軟墊或自行墊高作保證。晾架固定及荷重另核。",
+      "required": "樓板支承、脫水工況、噪音振動目標／實測方法及使用時段；升降架承重、可及高度、衣物外廓與暗管避讓。",
+      "proposed_window": "建商相應結構／聲學與施工＋設備安裝者＋A設計師，責任待議",
+      "actual_reply": null,
+      "agreed_window": null,
+      "professional_approval": "unknown",
+      "construction_release": false
+    },
+    {
+      "id": "maintenance",
+      "label": "封板、保留機位與交接",
+      "laundry_ids": [
+        "LAU-03",
+        "LAU-08"
+      ],
+      "question_ids": [
+        "BC-17",
+        "BC-20",
+        "BC-22"
+      ],
+      "a_interface_ids": [
+        "A-IF-10",
+        "A-IF-11"
+      ],
+      "before": "封板／櫃體、試運轉及交接前",
+      "prepare": "閥件、插座、濾網與軟管可達，保整機抽換及原淨軟水／冷氣維修；A上層備位與C2恢復使用空間不放固定櫃。",
+      "required": "隱蔽管線照片、實際圖號版次、試驗原始紀錄及保養責任；C2停用口防臭防漏措施由工班核，不封死通氣或公共排水。",
+      "proposed_window": "建商／設備安裝者與A設計師共同交接；承作、價差、工期與保固待議",
+      "actual_reply": null,
+      "agreed_window": null,
+      "professional_approval": "unknown",
+      "construction_release": false
+    }
+  ],
+  "actual_conditions": {
+    "shared_host_and_legal_site_plan": null,
+    "products_and_installation_revision": null,
+    "finished_wall_column_and_door_plan": null,
+    "washer_supply_pressure_and_valve_location": null,
+    "washer_wastewater_design_and_legal_terminal": null,
+    "dryer_type_and_condensate_detail": null,
+    "electrical_load_panel_and_protection": null,
+    "socket_coordinates_height_and_splash_protection": null,
+    "air_inlet_exhaust_and_moisture_design": null,
+    "door_threshold_levels_and_rain_detail": null,
+    "waterproofing_and_floor_drainage_detail": null,
+    "machine_support_vibration_and_noise_targets": null,
+    "rack_fixing_load_and_reach": null,
+    "machine_opening_service_replacement_envelope": null,
+    "existing_filter_and_HVAC_service_envelope": null,
+    "A_upper_inactive_stub_safeguards": null,
+    "C2_temporary_inactivity_and_reactivation_method": null,
+    "agreed_scope_quote_programme_and_warranty": null,
+    "concealed_work_photos_and_test_records": null,
+    "professional_review_and_drawing_issue": null
+  },
+  "actual_conditions_received": 0,
+  "point_coordinates_decided": false,
+  "pipe_sizes_decided": false,
+  "electrical_ratings_decided": false,
+  "dryer_type_selected": null,
+  "exterior_openings_authorized": false,
+  "equipment_purchase_decided": false,
+  "host_building_adopted": false,
+  "original_ABC_or_3d_changed": false,
+  "accepted_storage_viewers_changed": false,
+  "protected_controls_unchanged": 149,
+  "formal_requirement_statuses": {
+    "candidate": 66
+  },
+  "formal_register_statuses": {
+    "unknown": 105
+  },
+  "adopted": false,
+  "professional_approval": "unknown",
+  "construction_release": false,
+  "rendered_qa": "not-run",
+  "source_hashes": {
+    "inputs/abc-laundry-roughin.json": "694f80df97e72fec320f4b55cd03fe4fbc0f21fa6c2fe3776a477dc28023f0d5",
+    "Docs/abc-laundry-roughin-v1.md": "82741f33dd88ba057c4f050249567b4b65454a64129fb90966a2d800c1a692fe",
+    "structured/coordination/abc-laundry-use-v1/review.json": "df5c49acba569405b75ba1245e07a698c1e5b8cd4eb1de06c2462e9c91dc31c7",
+    "inputs/abc-laundry-use.json": "a967c26cb8cf57626eb87e2c5e5aaee106a3ad9b254b924074390f3701155786",
+    "Docs/abc-laundry-use-v1.md": "9b621db7ca97fbebb15d9ab066c4b646063be5385a10982e1438085648b25795",
+    "structured/coordination/abc-laundry-access-v1/review.json": "35437c6cf61759841d6c3b1640517300c8261bf5bb06c6ce48dbba1ed6e1bc6c",
+    "inputs/abc-laundry-access.json": "c017022856a8dc26a211c0db2b673e567ac1d29ef8ea2de7b8abddafafa28f93",
+    "Docs/abc-laundry-access-v1.md": "b56107429da932409aad85cd6997312dfba209602a8baa66eeedf8376967033a",
+    "inputs/references/abc-laundry-owner-20261113.json": "d686ff2722941b3144c8a98a35a7d9a4d942f973572e7b64d6d5ef2a59f838b1",
+    "structured/coordination/abc-ground-laundry-v1/review.json": "70d173aee810bf6965a7612b4146c22b5c665a66844b26593381f4248d9dc26a",
+    "inputs/abc-ground-laundry.json": "2fa269b67db5af4dbd73ded7188621e6edb08cfd7e552d0bc88a07285abc7616",
+    "structured/candidates/kaohsiung-house-options/c-stair-integration.json": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+    "structured/coordination/c-ground-coordination-v1/review.json": "5853f0b1d94a2e9e8f9fca4bf772e50389ec287ace801a01922fadddb3b66c62",
+    "structured/coordination/b-claude-round3-v1/review.json": "00baf0b3950e2593361e91698e4d72ac33e384edadd6da5a7d31b62e087b6223",
+    "structured/coordination/ac-storage-preview-v1/ac-storage-preview.zip": "626dd589d792ee644b78fe744de689fcd72ba84f3999eeb81cb601a96d66f2f9",
+    "structured/coordination/b-upper-storage-3d-v1/b-upper-storage-3d.zip": "578effc31836d9452bdfbc2c7c0d560d7a9e54638f2d87db3185fb0928ba48f2",
+    "structured/coordination/upper-floor-storage-viewer-v1/upper-floor-storage-3d.zip": "678ae172b98d0f066c01331c0748d50eabcfc007b5cbad2208e1e688f71fa0eb",
+    "structured/coordination/b-upper-storage-sync-v1/b-upper-storage-sync.zip": "541bf091e2bdf28dd21b58390d68ec95861e00df926e46b594b43de9b7bb0343",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "inputs/requirements.json": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066",
+    "inputs/planning-register.json": "140493058b145071afb472bf927860d48a43a6f4407b9b59e5a86705fbe058b0",
+    "Docs/abc-ground-laundry-v1.md": "fa60275993c40b7a59708c13be67c34f78ba3f424cfd22932b8340785b7b6713",
+    "house_design/abc_ground_laundry.py": "9e6adfc357d378000cb0e53af9defaa7564016b45b8b25cf35cbdab860c455c8",
+    "scripts/export_abc_ground_laundry.py": "4681882dd663f4bf7d89c1f9b77ea68a063a8d495dc7ad4de98b5890ba4f76c2",
+    "house_design/abc_laundry_access.py": "31d54298d25037db3b2cff616a44b857f180a7f0f4b1fba5c764b8193035ac80",
+    "scripts/export_abc_laundry_access.py": "ed39cd468d3e8eb5d965ae8ffe22e13aff61f21fd3be800d408132dcbbe09281",
+    "house_design/contracts.py": "2888419d49e8d8dbe8b8e99f6b8451363cd9020821c7fe3e703ab09779e202c3",
+    "house_design/project_status.py": "db73eb9b066353cc282e67dc15e4b430d9d4e4d398eafaf7eeec5f98af1acab0",
+    "scripts/export_b_upper_replan.py": "3a3cc271cf7d9fc20759d4bca17b582ab672f551981c6e8c1c20933192c09a3d",
+    "scripts/export_builder_communication.py": "650d696de35bd9a0fb4ce77d7f93078813b8babd4ed5439d59a6966d093ceef1",
+    "scripts/export_abc_next_improvements.py": "875c13027466776a6e1661dae369e45c823c661c5e0369d8ee95b6535420e701",
+    "house_design/abc_laundry_use.py": "26d63d236204ab7f9427c542797bf891a395320aafe4aba597ee027cc4eeabe0",
+    "scripts/export_abc_laundry_use.py": "5cb9a7c05b7451ff1c14ce398c4d9831c09be1acd737a0cfae53fab7fe8c4350",
+    "inputs/builder-communication-plan.json": "dd3334da200ee8e0a09e83fd8d0d2390d6b0225d3364d51b84123790a18f8595",
+    "house_design/abc_laundry_roughin.py": "9eb8a1453d2f32e4e600e47474b163576acc449adbac2c9911038a3206613de8",
+    "scripts/export_abc_laundry_roughin.py": "2a4d27489dd4f223c87ab4fe0e57d6f66b11d095967e2a7e22495599e1ae67a3"
+  },
+  "report_hash": "8cac148356bfb807d3a3ec8883f5ead1426610c99a2bd362bba17c39b6c6938d"
+}

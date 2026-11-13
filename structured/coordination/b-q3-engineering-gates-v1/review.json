@@ -1,0 +1,1315 @@
+{
+  "schema": "house-b-q3-engineering-gates-report-v1",
+  "date": "2026-11-10",
+  "config": {
+    "schema": "house-b-q3-engineering-gates-v1",
+    "date": "2026-11-10",
+    "adopted": false,
+    "parent_report": "structured/coordination/b-q3-roof-coordination-v1/review.json",
+    "pinned_sources": {
+      "structured/coordination/b-q3-roof-coordination-v1/review.json": "432eb25dad0a37d1878a8c20e44675ed376beb86c60a9019d9bb6842d106d954",
+      "structured/coordination/b-q3-roof-coordination-v1/artifact-manifest.json": "f146adc25b67a5287cfd210f3aaa9e9398a28f3e507ecba09779b807f71eafcd"
+    },
+    "protected_controls": "inputs/abc-next-protected-controls.json",
+    "transport_targets": {
+      "tank": "inspect-tank-boundary",
+      "heat-pump": "inspect-heat-pump-boundary",
+      "B-AC03": "inspect-rear-cooling-03",
+      "B-AC04": "inspect-rear-cooling-04"
+    },
+    "width_trial_cases_mm": [
+      700,
+      770,
+      800,
+      900,
+      1000
+    ],
+    "handling_each_side_cases_mm": [
+      0,
+      25,
+      50
+    ],
+    "vertical_cases": [
+      {
+        "id": "H0",
+        "label": "基本預算例，非構造選定",
+        "roof_build_below_RF_plane_mm": 100,
+        "slab_mm": 200,
+        "beam_extra_below_slab_mm": 0,
+        "ceiling_and_services_below_lowest_structure_mm": 250,
+        "KTV_floor_raise_above_3F_plane_mm": 50
+      },
+      {
+        "id": "H1",
+        "label": "消音與管線需多100mm的例子",
+        "roof_build_below_RF_plane_mm": 100,
+        "slab_mm": 200,
+        "beam_extra_below_slab_mm": 0,
+        "ceiling_and_services_below_lowest_structure_mm": 350,
+        "KTV_floor_raise_above_3F_plane_mm": 50
+      },
+      {
+        "id": "H2",
+        "label": "H0再遇梁下突出300mm的局部例子",
+        "roof_build_below_RF_plane_mm": 100,
+        "slab_mm": 200,
+        "beam_extra_below_slab_mm": 300,
+        "ceiling_and_services_below_lowest_structure_mm": 250,
+        "KTV_floor_raise_above_3F_plane_mm": 50
+      },
+      {
+        "id": "H3",
+        "label": "較厚樓板、防水與聲學的保守例子",
+        "roof_build_below_RF_plane_mm": 150,
+        "slab_mm": 250,
+        "beam_extra_below_slab_mm": 300,
+        "ceiling_and_services_below_lowest_structure_mm": 350,
+        "KTV_floor_raise_above_3F_plane_mm": 100
+      }
+    ],
+    "engineering_gates": [
+      {
+        "id": "BQG-01",
+        "topic": "同版平台、前室、梯井與屋突",
+        "roles": "建築師＋結構",
+        "reply": "2200×1000平台、2170×755前室的板邊、厚度、梁柱支承與完整梯井剖面；同核屋突、完成面和防雨，不用整房間實心板封洞。"
+      },
+      {
+        "id": "BQG-02",
+        "topic": "RF至KTV的標高與聲學",
+        "roles": "建築師＋結構＋聲學＋機電",
+        "reply": "先註明模型基準是結構或完成面，再出RF防水／找坡、梁底、KTV地坪／吊頂與消音管線同版剖面；門檻、末級踏步及全程淨高一起重核。"
+      },
+      {
+        "id": "BQG-03",
+        "topic": "水塔、熱泵與冷氣荷重／振動",
+        "roles": "設備商＋結構＋聲學",
+        "reply": "分列滿水重、設備運轉重、支腳／基座受力、維修荷載、防颱與隔振；屋頂平面避床體不代表梁板或結構傳音成立。"
+      },
+      {
+        "id": "BQG-04",
+        "topic": "首裝、巡檢及整機汰換",
+        "roles": "設備商＋建商＋建築師",
+        "reply": "提供含包裝或拆裝後最小運輸模組的寬深高重、持握餘量、可拆依據與完整搬運演練；不能把700巡檢線或整組預留框當成品可搬。"
+      },
+      {
+        "id": "BQG-05",
+        "topic": "外吊備援的完整範圍",
+        "roles": "建商＋吊運廠商＋結構＋建築師",
+        "reply": "若門梯無法換機，另核吊車到達／權利、吊點與落放區、護欄可拆、屋頂承載、防水恢復、費用及後續維修合約；目前未畫核准吊點，也未授權穿越鄰地。"
+      },
+      {
+        "id": "BQG-06",
+        "topic": "KTV關門通風與聲學旁通",
+        "roles": "機電＋聲學＋消防",
+        "reply": "專支、消音器、檢修及新風／回排氣需同版預留，不能靠開梯門；香火、一般新風、浴廁排氣、污水通氣與雨水分系統核對。"
+      },
+      {
+        "id": "BQG-07",
+        "topic": "RF24㎡及三樓工作天井各自列帳",
+        "roles": "建築師＋建商，必要取捨再由屋主決定",
+        "reply": "若24㎡仍為目標，提出完整全棟重排與合法可建量，不能只移機器、借祭祀保護區、室內前室或三樓4㎡天井補算；原目標及較小平台未接受狀態保留。"
+      },
+      {
+        "id": "BQG-08",
+        "topic": "門組、火煙、防雨與救援",
+        "roles": "建築師＋消防＋門廠",
+        "reply": "前900／側770僅扣框預算，需成品完成淨寬、門檻、自閉／逃生、防火隔煙、防雨及開門風壓；不因幾何全開可通就當消防或照護核可。"
+      },
+      {
+        "id": "BQG-09",
+        "topic": "既有未解工程及版本發行",
+        "roles": "建商統籌建築／結構／機電",
+        "reply": "P3前落水、R1天井防水乾衣、屋頂排水與回吸另回覆；同一圖號及來源版本通過後才評併圖，不繼承其他樓梯或舊passed。"
+      }
+    ],
+    "limits": [
+      "本輪只深化Q3／RF工程接口，不改房間、門窗、設備、樓梯或149控制；前門搬轎備案及後門預設完整保留，不併原ABC／3D。",
+      "RF地面、設備向下投影是荷重、振動及穿孔協調範圍，不是把預留框當實機或證明風水、結構、隔音已核。祭祀保護與非日常巡檢用途不放寬。",
+      "垂直四例只是列明層厚的算式，不是法定淨高、實測或選材。3000mm沿模型兩基準面，RF完成面暫維持該基準；未知基準、梁板與找坡需專業回覆。",
+      "層厚不得重複扣算：RF基準到結構板頂的構造向下扣、板厚再扣、梁只加扣突出板底部分、吊頂／服務帶由最低構造下緣再扣。3F地坪只計相對原模型額外抬高。",
+      "若選擇讓RF完成面向上抬而非向下容納找坡／防水，不能仍沿用本表高度與18級樓梯；末級、門檻、防火、防雨及所有梯段須另算。",
+      "前900／側770只是預算；新條件表只比指定運輸姿態在單一洞口的寬度，未核長深高、轉彎、扶手、坡梯、載重、保護區與整段動線。寬度相容永遠不是搬運通過。",
+      "水塔／泵浦與熱泵位置是整組預留，不把1500或2000等框尺寸當型號機身。代表槽沒有採購身分，不新增或重複計台數。",
+      "實際條件只寫新私人回算目錄；空白保null、假值不補零，產品／運輸參考必填，不自動縮物件、旋轉、拆機、搬位、開外吊口或更改需求。",
+      "24㎡固定前帶的樂觀上界21.83945㎡仍不足。假設全寬向後加帶只是顯示與保護區／梯核衝突，不是建議侵入、外挑、增層或證明所有整棟方案不可能。",
+      "KTV20.1889㎡只是指定平面預算，聲學、樓板及通風可再吃面積與高度；新前室與屋頂機器的振動不能靠面積通過掩蓋。"
+    ]
+  },
+  "parent_report_hash": "654ee674a408530032015e1d8200eb0512fdc224767ed8eb34cc8dd55afee0eb",
+  "parent_equipment_and_furniture_hash": "c1c2c26c9ec97c1ce88765315286fe4c40573c3a70988fe59291026f97739442",
+  "vertical_cases": [
+    {
+      "id": "H0",
+      "label": "基本預算例，非構造選定",
+      "roof_build_below_RF_plane_mm": 100,
+      "slab_mm": 200,
+      "beam_extra_below_slab_mm": 0,
+      "ceiling_and_services_below_lowest_structure_mm": 250,
+      "KTV_floor_raise_above_3F_plane_mm": 50,
+      "model_3F_plane_z_mm": 7000,
+      "model_RF_plane_z_mm": 10000,
+      "slab_top_z_mm": 9900,
+      "slab_bottom_z_mm": 9700,
+      "lowest_structure_z_mm": 9700,
+      "KTV_ceiling_z_mm": 9450,
+      "KTV_floor_z_mm": 7050,
+      "remaining_vertical_budget_mm": 2400,
+      "datum_convention": "RF reference plane held; roof layers below it, 3F extra floor above its plane",
+      "legal_minimum_or_actual_material_selected": false,
+      "whole_stair_or_room_height_approved": false
+    },
+    {
+      "id": "H1",
+      "label": "消音與管線需多100mm的例子",
+      "roof_build_below_RF_plane_mm": 100,
+      "slab_mm": 200,
+      "beam_extra_below_slab_mm": 0,
+      "ceiling_and_services_below_lowest_structure_mm": 350,
+      "KTV_floor_raise_above_3F_plane_mm": 50,
+      "model_3F_plane_z_mm": 7000,
+      "model_RF_plane_z_mm": 10000,
+      "slab_top_z_mm": 9900,
+      "slab_bottom_z_mm": 9700,
+      "lowest_structure_z_mm": 9700,
+      "KTV_ceiling_z_mm": 9350,
+      "KTV_floor_z_mm": 7050,
+      "remaining_vertical_budget_mm": 2300,
+      "datum_convention": "RF reference plane held; roof layers below it, 3F extra floor above its plane",
+      "legal_minimum_or_actual_material_selected": false,
+      "whole_stair_or_room_height_approved": false
+    },
+    {
+      "id": "H2",
+      "label": "H0再遇梁下突出300mm的局部例子",
+      "roof_build_below_RF_plane_mm": 100,
+      "slab_mm": 200,
+      "beam_extra_below_slab_mm": 300,
+      "ceiling_and_services_below_lowest_structure_mm": 250,
+      "KTV_floor_raise_above_3F_plane_mm": 50,
+      "model_3F_plane_z_mm": 7000,
+      "model_RF_plane_z_mm": 10000,
+      "slab_top_z_mm": 9900,
+      "slab_bottom_z_mm": 9700,
+      "lowest_structure_z_mm": 9400,
+      "KTV_ceiling_z_mm": 9150,
+      "KTV_floor_z_mm": 7050,
+      "remaining_vertical_budget_mm": 2100,
+      "datum_convention": "RF reference plane held; roof layers below it, 3F extra floor above its plane",
+      "legal_minimum_or_actual_material_selected": false,
+      "whole_stair_or_room_height_approved": false
+    },
+    {
+      "id": "H3",
+      "label": "較厚樓板、防水與聲學的保守例子",
+      "roof_build_below_RF_plane_mm": 150,
+      "slab_mm": 250,
+      "beam_extra_below_slab_mm": 300,
+      "ceiling_and_services_below_lowest_structure_mm": 350,
+      "KTV_floor_raise_above_3F_plane_mm": 100,
+      "model_3F_plane_z_mm": 7000,
+      "model_RF_plane_z_mm": 10000,
+      "slab_top_z_mm": 9850,
+      "slab_bottom_z_mm": 9600,
+      "lowest_structure_z_mm": 9300,
+      "KTV_ceiling_z_mm": 8950,
+      "KTV_floor_z_mm": 7100,
+      "remaining_vertical_budget_mm": 1850,
+      "datum_convention": "RF reference plane held; roof layers below it, 3F extra floor above its plane",
+      "legal_minimum_or_actual_material_selected": false,
+      "whole_stair_or_room_height_approved": false
+    }
+  ],
+  "projection_interfaces": {
+    "RF_required_floor_polygon_mm": [
+      [
+        1265.0,
+        3785.0
+      ],
+      [
+        1265.0,
+        4015.0
+      ],
+      [
+        115.0,
+        4015.0
+      ],
+      [
+        115.0,
+        4770.0
+      ],
+      [
+        80.0,
+        4770.0
+      ],
+      [
+        80.0,
+        5770.0
+      ],
+      [
+        2280.0,
+        5770.0
+      ],
+      [
+        2280.0,
+        4785.0
+      ],
+      [
+        2515.0,
+        4785.0
+      ],
+      [
+        2515.0,
+        4015.0
+      ],
+      [
+        2285.0,
+        4015.0
+      ],
+      [
+        2280.0,
+        4015.0
+      ],
+      [
+        2165.0,
+        4015.0
+      ],
+      [
+        2165.0,
+        3785.0
+      ]
+    ],
+    "KTV_nominal_polygon_mm": [
+      [
+        6000.0,
+        3900.0
+      ],
+      [
+        6000.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        3900.0
+      ],
+      [
+        0.0,
+        4700.0
+      ],
+      [
+        2400.0,
+        4700.0
+      ],
+      [
+        2400.0,
+        3900.0
+      ]
+    ],
+    "RF_floor_over_KTV_nominal_sqm": 1.772225,
+    "RF_floor_over_KTV_inner_sqm": 1.1329,
+    "RF_floor_over_KTV_polygon_mm": [
+      [
+        1265.0,
+        4015.0
+      ],
+      [
+        115.0,
+        4015.0
+      ],
+      [
+        115.0,
+        4700.0
+      ],
+      [
+        2400.0,
+        4700.0
+      ],
+      [
+        2400.0,
+        4015.0
+      ],
+      [
+        2285.0,
+        4015.0
+      ],
+      [
+        2280.0,
+        4015.0
+      ],
+      [
+        2165.0,
+        4015.0
+      ],
+      [
+        2165.0,
+        3785.0
+      ],
+      [
+        1265.0,
+        3785.0
+      ]
+    ],
+    "equipment": [
+      {
+        "option": "Q3-D1-front-heat-pump",
+        "id": "tank",
+        "rect_mm": [
+          3715,
+          14615,
+          1500,
+          2000
+        ],
+        "outline_scope": "whole reservation not product body",
+        "over_KTV_nominal_sqm": 0.0,
+        "below_rooms": [
+          {
+            "id": "rear-bath",
+            "sqm": 3.0
+          }
+        ],
+        "load_noise_waterproofing_piping_or_religious_approval": "unknown"
+      },
+      {
+        "option": "Q3-D1-front-heat-pump",
+        "id": "heat-pump",
+        "rect_mm": [
+          115,
+          115,
+          2000,
+          1250
+        ],
+        "outline_scope": "whole reservation not product body",
+        "over_KTV_nominal_sqm": 2.5,
+        "below_rooms": [
+          {
+            "id": "front-entertainment",
+            "sqm": 2.5
+          }
+        ],
+        "load_noise_waterproofing_piping_or_religious_approval": "unknown"
+      },
+      {
+        "option": "Q3-D1-front-heat-pump",
+        "id": "representative-slot-1",
+        "rect_mm": [
+          3270,
+          115,
+          900,
+          350
+        ],
+        "outline_scope": "source representative body not chosen product",
+        "over_KTV_nominal_sqm": 0.315,
+        "below_rooms": [
+          {
+            "id": "front-entertainment",
+            "sqm": 0.315
+          }
+        ],
+        "load_noise_waterproofing_piping_or_religious_approval": "unknown"
+      },
+      {
+        "option": "Q3-D1-front-heat-pump",
+        "id": "representative-slot-2",
+        "rect_mm": [
+          4985,
+          115,
+          900,
+          350
+        ],
+        "outline_scope": "source representative body not chosen product",
+        "over_KTV_nominal_sqm": 0.315,
+        "below_rooms": [
+          {
+            "id": "front-entertainment",
+            "sqm": 0.315
+          }
+        ],
+        "load_noise_waterproofing_piping_or_religious_approval": "unknown"
+      },
+      {
+        "option": "Q3-D1-front-heat-pump",
+        "id": "B-AC03",
+        "rect_mm": [
+          3715,
+          14085,
+          900,
+          350
+        ],
+        "outline_scope": "source representative body not chosen product",
+        "over_KTV_nominal_sqm": 0.0,
+        "below_rooms": [
+          {
+            "id": "rear-access",
+            "sqm": 0.315
+          }
+        ],
+        "load_noise_waterproofing_piping_or_religious_approval": "unknown"
+      },
+      {
+        "option": "Q3-D1-front-heat-pump",
+        "id": "B-AC04",
+        "rect_mm": [
+          4985,
+          14085,
+          900,
+          350
+        ],
+        "outline_scope": "source representative body not chosen product",
+        "over_KTV_nominal_sqm": 0.0,
+        "below_rooms": [
+          {
+            "id": "rear-access",
+            "sqm": 0.315
+          }
+        ],
+        "load_noise_waterproofing_piping_or_religious_approval": "unknown"
+      },
+      {
+        "option": "Q3-D2-rear-wet-pair",
+        "id": "tank",
+        "rect_mm": [
+          3715,
+          14500,
+          1770,
+          1700
+        ],
+        "outline_scope": "whole reservation not product body",
+        "over_KTV_nominal_sqm": 0.0,
+        "below_rooms": [
+          {
+            "id": "rear-bath",
+            "sqm": 3.009
+          }
+        ],
+        "load_noise_waterproofing_piping_or_religious_approval": "unknown"
+      },
+      {
+        "option": "Q3-D2-rear-wet-pair",
+        "id": "heat-pump",
+        "rect_mm": [
+          3715,
+          16265,
+          2000,
+          1250
+        ],
+        "outline_scope": "whole reservation not product body",
+        "over_KTV_nominal_sqm": 0.0,
+        "below_rooms": [
+          {
+            "id": "rear-bath",
+            "sqm": 2.5
+          }
+        ],
+        "load_noise_waterproofing_piping_or_religious_approval": "unknown"
+      },
+      {
+        "option": "Q3-D2-rear-wet-pair",
+        "id": "representative-slot-1",
+        "rect_mm": [
+          3270,
+          115,
+          900,
+          350
+        ],
+        "outline_scope": "source representative body not chosen product",
+        "over_KTV_nominal_sqm": 0.315,
+        "below_rooms": [
+          {
+            "id": "front-entertainment",
+            "sqm": 0.315
+          }
+        ],
+        "load_noise_waterproofing_piping_or_religious_approval": "unknown"
+      },
+      {
+        "option": "Q3-D2-rear-wet-pair",
+        "id": "representative-slot-2",
+        "rect_mm": [
+          4985,
+          115,
+          900,
+          350
+        ],
+        "outline_scope": "source representative body not chosen product",
+        "over_KTV_nominal_sqm": 0.315,
+        "below_rooms": [
+          {
+            "id": "front-entertainment",
+            "sqm": 0.315
+          }
+        ],
+        "load_noise_waterproofing_piping_or_religious_approval": "unknown"
+      },
+      {
+        "option": "Q3-D2-rear-wet-pair",
+        "id": "B-AC03",
+        "rect_mm": [
+          3715,
+          14085,
+          900,
+          350
+        ],
+        "outline_scope": "source representative body not chosen product",
+        "over_KTV_nominal_sqm": 0.0,
+        "below_rooms": [
+          {
+            "id": "rear-access",
+            "sqm": 0.315
+          }
+        ],
+        "load_noise_waterproofing_piping_or_religious_approval": "unknown"
+      },
+      {
+        "option": "Q3-D2-rear-wet-pair",
+        "id": "B-AC04",
+        "rect_mm": [
+          4985,
+          14085,
+          900,
+          350
+        ],
+        "outline_scope": "source representative body not chosen product",
+        "over_KTV_nominal_sqm": 0.0,
+        "below_rooms": [
+          {
+            "id": "rear-access",
+            "sqm": 0.315
+          }
+        ],
+        "load_noise_waterproofing_piping_or_religious_approval": "unknown"
+      }
+    ],
+    "structural_transmission_and_machine_base_load_verified": false
+  },
+  "capacity_boundary": {
+    "original_target_sqm": 24,
+    "fixed_front_upper_bound_before_equipment_sqm": 21.83945,
+    "optimistic_shortfall_sqm": 2.16055,
+    "finished_width_budget_mm": 5770,
+    "hypothetical_full_width_depth_lower_bound_mm": 4274.445,
+    "hypothetical_rounded_extra_depth_mm": 375,
+    "hypothetical_extra_band_mm": [
+      115,
+      3900,
+      5770,
+      375
+    ],
+    "extra_band_over_protected_sqm": 1.306875,
+    "extra_band_over_stair_enclosure_sqm": 0.856875,
+    "extra_band_not_already_blocked_sqm": 0.0,
+    "full_width_band_is_an_authorized_or_buildable_design": false,
+    "all_global_replans_proven_impossible": false,
+    "RF24_target_reduced_or_met": false,
+    "indoor_vestibule_rear_daily_area_or_3F_court_credited": false
+  },
+  "door_width_trials": [
+    {
+      "door": "front",
+      "aperture_budget_mm": 900,
+      "declared_transport_width_mm": 700,
+      "handling_each_side_mm": 0,
+      "required_width_mm": 700,
+      "margin_mm": 200,
+      "status": "width-only-compatible",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "front",
+      "aperture_budget_mm": 900,
+      "declared_transport_width_mm": 700,
+      "handling_each_side_mm": 25,
+      "required_width_mm": 750,
+      "margin_mm": 150,
+      "status": "width-only-compatible",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "front",
+      "aperture_budget_mm": 900,
+      "declared_transport_width_mm": 700,
+      "handling_each_side_mm": 50,
+      "required_width_mm": 800,
+      "margin_mm": 100,
+      "status": "width-only-compatible",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "front",
+      "aperture_budget_mm": 900,
+      "declared_transport_width_mm": 770,
+      "handling_each_side_mm": 0,
+      "required_width_mm": 770,
+      "margin_mm": 130,
+      "status": "width-only-compatible",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "front",
+      "aperture_budget_mm": 900,
+      "declared_transport_width_mm": 770,
+      "handling_each_side_mm": 25,
+      "required_width_mm": 820,
+      "margin_mm": 80,
+      "status": "width-only-compatible",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "front",
+      "aperture_budget_mm": 900,
+      "declared_transport_width_mm": 770,
+      "handling_each_side_mm": 50,
+      "required_width_mm": 870,
+      "margin_mm": 30,
+      "status": "width-only-compatible",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "front",
+      "aperture_budget_mm": 900,
+      "declared_transport_width_mm": 800,
+      "handling_each_side_mm": 0,
+      "required_width_mm": 800,
+      "margin_mm": 100,
+      "status": "width-only-compatible",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "front",
+      "aperture_budget_mm": 900,
+      "declared_transport_width_mm": 800,
+      "handling_each_side_mm": 25,
+      "required_width_mm": 850,
+      "margin_mm": 50,
+      "status": "width-only-compatible",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "front",
+      "aperture_budget_mm": 900,
+      "declared_transport_width_mm": 800,
+      "handling_each_side_mm": 50,
+      "required_width_mm": 900,
+      "margin_mm": 0,
+      "status": "width-only-compatible",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "front",
+      "aperture_budget_mm": 900,
+      "declared_transport_width_mm": 900,
+      "handling_each_side_mm": 0,
+      "required_width_mm": 900,
+      "margin_mm": 0,
+      "status": "width-only-compatible",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "front",
+      "aperture_budget_mm": 900,
+      "declared_transport_width_mm": 900,
+      "handling_each_side_mm": 25,
+      "required_width_mm": 950,
+      "margin_mm": -50,
+      "status": "reject-declared-width",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "front",
+      "aperture_budget_mm": 900,
+      "declared_transport_width_mm": 900,
+      "handling_each_side_mm": 50,
+      "required_width_mm": 1000,
+      "margin_mm": -100,
+      "status": "reject-declared-width",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "front",
+      "aperture_budget_mm": 900,
+      "declared_transport_width_mm": 1000,
+      "handling_each_side_mm": 0,
+      "required_width_mm": 1000,
+      "margin_mm": -100,
+      "status": "reject-declared-width",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "front",
+      "aperture_budget_mm": 900,
+      "declared_transport_width_mm": 1000,
+      "handling_each_side_mm": 25,
+      "required_width_mm": 1050,
+      "margin_mm": -150,
+      "status": "reject-declared-width",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "front",
+      "aperture_budget_mm": 900,
+      "declared_transport_width_mm": 1000,
+      "handling_each_side_mm": 50,
+      "required_width_mm": 1100,
+      "margin_mm": -200,
+      "status": "reject-declared-width",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "side",
+      "aperture_budget_mm": 770,
+      "declared_transport_width_mm": 700,
+      "handling_each_side_mm": 0,
+      "required_width_mm": 700,
+      "margin_mm": 70,
+      "status": "width-only-compatible",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "side",
+      "aperture_budget_mm": 770,
+      "declared_transport_width_mm": 700,
+      "handling_each_side_mm": 25,
+      "required_width_mm": 750,
+      "margin_mm": 20,
+      "status": "width-only-compatible",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "side",
+      "aperture_budget_mm": 770,
+      "declared_transport_width_mm": 700,
+      "handling_each_side_mm": 50,
+      "required_width_mm": 800,
+      "margin_mm": -30,
+      "status": "reject-declared-width",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "side",
+      "aperture_budget_mm": 770,
+      "declared_transport_width_mm": 770,
+      "handling_each_side_mm": 0,
+      "required_width_mm": 770,
+      "margin_mm": 0,
+      "status": "width-only-compatible",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "side",
+      "aperture_budget_mm": 770,
+      "declared_transport_width_mm": 770,
+      "handling_each_side_mm": 25,
+      "required_width_mm": 820,
+      "margin_mm": -50,
+      "status": "reject-declared-width",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "side",
+      "aperture_budget_mm": 770,
+      "declared_transport_width_mm": 770,
+      "handling_each_side_mm": 50,
+      "required_width_mm": 870,
+      "margin_mm": -100,
+      "status": "reject-declared-width",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "side",
+      "aperture_budget_mm": 770,
+      "declared_transport_width_mm": 800,
+      "handling_each_side_mm": 0,
+      "required_width_mm": 800,
+      "margin_mm": -30,
+      "status": "reject-declared-width",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "side",
+      "aperture_budget_mm": 770,
+      "declared_transport_width_mm": 800,
+      "handling_each_side_mm": 25,
+      "required_width_mm": 850,
+      "margin_mm": -80,
+      "status": "reject-declared-width",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "side",
+      "aperture_budget_mm": 770,
+      "declared_transport_width_mm": 800,
+      "handling_each_side_mm": 50,
+      "required_width_mm": 900,
+      "margin_mm": -130,
+      "status": "reject-declared-width",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "side",
+      "aperture_budget_mm": 770,
+      "declared_transport_width_mm": 900,
+      "handling_each_side_mm": 0,
+      "required_width_mm": 900,
+      "margin_mm": -130,
+      "status": "reject-declared-width",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "side",
+      "aperture_budget_mm": 770,
+      "declared_transport_width_mm": 900,
+      "handling_each_side_mm": 25,
+      "required_width_mm": 950,
+      "margin_mm": -180,
+      "status": "reject-declared-width",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "side",
+      "aperture_budget_mm": 770,
+      "declared_transport_width_mm": 900,
+      "handling_each_side_mm": 50,
+      "required_width_mm": 1000,
+      "margin_mm": -230,
+      "status": "reject-declared-width",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "side",
+      "aperture_budget_mm": 770,
+      "declared_transport_width_mm": 1000,
+      "handling_each_side_mm": 0,
+      "required_width_mm": 1000,
+      "margin_mm": -230,
+      "status": "reject-declared-width",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "side",
+      "aperture_budget_mm": 770,
+      "declared_transport_width_mm": 1000,
+      "handling_each_side_mm": 25,
+      "required_width_mm": 1050,
+      "margin_mm": -280,
+      "status": "reject-declared-width",
+      "actual_product_or_full_route_approved": false
+    },
+    {
+      "door": "side",
+      "aperture_budget_mm": 770,
+      "declared_transport_width_mm": 1000,
+      "handling_each_side_mm": 50,
+      "required_width_mm": 1100,
+      "margin_mm": -330,
+      "status": "reject-declared-width",
+      "actual_product_or_full_route_approved": false
+    }
+  ],
+  "front_door_clear_budget_mm": 900,
+  "side_door_clear_budget_mm": 770,
+  "condition_template": {
+    "schema": "house-b-q3-engineering-conditions-v1",
+    "config_hash": "309f118082cb954de6577dd181001bf67a0d958b9e5864352039707e6bdcc45d",
+    "parent_report_hash": "654ee674a408530032015e1d8200eb0512fdc224767ed8eb34cc8dd55afee0eb",
+    "records": [
+      {
+        "id": "Q3-D1-front-heat-pump:tank",
+        "option": "Q3-D1-front-heat-pump",
+        "equipment": "tank",
+        "inspection_door_reference_not_a_transport_route": "side",
+        "door_budget_mm": 770,
+        "width_mm": null,
+        "depth_mm": null,
+        "height_mm": null,
+        "mass_kg": null,
+        "handling_each_side_mm": null,
+        "reference": ""
+      },
+      {
+        "id": "Q3-D1-front-heat-pump:heat-pump",
+        "option": "Q3-D1-front-heat-pump",
+        "equipment": "heat-pump",
+        "inspection_door_reference_not_a_transport_route": "front",
+        "door_budget_mm": 900,
+        "width_mm": null,
+        "depth_mm": null,
+        "height_mm": null,
+        "mass_kg": null,
+        "handling_each_side_mm": null,
+        "reference": ""
+      },
+      {
+        "id": "Q3-D1-front-heat-pump:B-AC03",
+        "option": "Q3-D1-front-heat-pump",
+        "equipment": "B-AC03",
+        "inspection_door_reference_not_a_transport_route": "side",
+        "door_budget_mm": 770,
+        "width_mm": null,
+        "depth_mm": null,
+        "height_mm": null,
+        "mass_kg": null,
+        "handling_each_side_mm": null,
+        "reference": ""
+      },
+      {
+        "id": "Q3-D1-front-heat-pump:B-AC04",
+        "option": "Q3-D1-front-heat-pump",
+        "equipment": "B-AC04",
+        "inspection_door_reference_not_a_transport_route": "side",
+        "door_budget_mm": 770,
+        "width_mm": null,
+        "depth_mm": null,
+        "height_mm": null,
+        "mass_kg": null,
+        "handling_each_side_mm": null,
+        "reference": ""
+      },
+      {
+        "id": "Q3-D2-rear-wet-pair:tank",
+        "option": "Q3-D2-rear-wet-pair",
+        "equipment": "tank",
+        "inspection_door_reference_not_a_transport_route": "side",
+        "door_budget_mm": 770,
+        "width_mm": null,
+        "depth_mm": null,
+        "height_mm": null,
+        "mass_kg": null,
+        "handling_each_side_mm": null,
+        "reference": ""
+      },
+      {
+        "id": "Q3-D2-rear-wet-pair:heat-pump",
+        "option": "Q3-D2-rear-wet-pair",
+        "equipment": "heat-pump",
+        "inspection_door_reference_not_a_transport_route": "side",
+        "door_budget_mm": 770,
+        "width_mm": null,
+        "depth_mm": null,
+        "height_mm": null,
+        "mass_kg": null,
+        "handling_each_side_mm": null,
+        "reference": ""
+      },
+      {
+        "id": "Q3-D2-rear-wet-pair:B-AC03",
+        "option": "Q3-D2-rear-wet-pair",
+        "equipment": "B-AC03",
+        "inspection_door_reference_not_a_transport_route": "side",
+        "door_budget_mm": 770,
+        "width_mm": null,
+        "depth_mm": null,
+        "height_mm": null,
+        "mass_kg": null,
+        "handling_each_side_mm": null,
+        "reference": ""
+      },
+      {
+        "id": "Q3-D2-rear-wet-pair:B-AC04",
+        "option": "Q3-D2-rear-wet-pair",
+        "equipment": "B-AC04",
+        "inspection_door_reference_not_a_transport_route": "side",
+        "door_budget_mm": 770,
+        "width_mm": null,
+        "depth_mm": null,
+        "height_mm": null,
+        "mass_kg": null,
+        "handling_each_side_mm": null,
+        "reference": ""
+      }
+    ]
+  },
+  "condition_evaluations": [
+    {
+      "id": "Q3-D1-front-heat-pump:tank",
+      "option": "Q3-D1-front-heat-pump",
+      "equipment": "tank",
+      "inspection_door_reference_not_a_transport_route": "side",
+      "door_budget_mm": 770,
+      "width_mm": null,
+      "depth_mm": null,
+      "height_mm": null,
+      "mass_kg": null,
+      "handling_each_side_mm": null,
+      "reference": "",
+      "required_aperture_mm": null,
+      "width_margin_mm": null,
+      "status": "pending",
+      "minimum_transport_orientation_verified": false,
+      "actual_finished_aperture_verified": false,
+      "full_route_turning_depth_height_stairs_load_religion_or_lifting_approved": false
+    },
+    {
+      "id": "Q3-D1-front-heat-pump:heat-pump",
+      "option": "Q3-D1-front-heat-pump",
+      "equipment": "heat-pump",
+      "inspection_door_reference_not_a_transport_route": "front",
+      "door_budget_mm": 900,
+      "width_mm": null,
+      "depth_mm": null,
+      "height_mm": null,
+      "mass_kg": null,
+      "handling_each_side_mm": null,
+      "reference": "",
+      "required_aperture_mm": null,
+      "width_margin_mm": null,
+      "status": "pending",
+      "minimum_transport_orientation_verified": false,
+      "actual_finished_aperture_verified": false,
+      "full_route_turning_depth_height_stairs_load_religion_or_lifting_approved": false
+    },
+    {
+      "id": "Q3-D1-front-heat-pump:B-AC03",
+      "option": "Q3-D1-front-heat-pump",
+      "equipment": "B-AC03",
+      "inspection_door_reference_not_a_transport_route": "side",
+      "door_budget_mm": 770,
+      "width_mm": null,
+      "depth_mm": null,
+      "height_mm": null,
+      "mass_kg": null,
+      "handling_each_side_mm": null,
+      "reference": "",
+      "required_aperture_mm": null,
+      "width_margin_mm": null,
+      "status": "pending",
+      "minimum_transport_orientation_verified": false,
+      "actual_finished_aperture_verified": false,
+      "full_route_turning_depth_height_stairs_load_religion_or_lifting_approved": false
+    },
+    {
+      "id": "Q3-D1-front-heat-pump:B-AC04",
+      "option": "Q3-D1-front-heat-pump",
+      "equipment": "B-AC04",
+      "inspection_door_reference_not_a_transport_route": "side",
+      "door_budget_mm": 770,
+      "width_mm": null,
+      "depth_mm": null,
+      "height_mm": null,
+      "mass_kg": null,
+      "handling_each_side_mm": null,
+      "reference": "",
+      "required_aperture_mm": null,
+      "width_margin_mm": null,
+      "status": "pending",
+      "minimum_transport_orientation_verified": false,
+      "actual_finished_aperture_verified": false,
+      "full_route_turning_depth_height_stairs_load_religion_or_lifting_approved": false
+    },
+    {
+      "id": "Q3-D2-rear-wet-pair:tank",
+      "option": "Q3-D2-rear-wet-pair",
+      "equipment": "tank",
+      "inspection_door_reference_not_a_transport_route": "side",
+      "door_budget_mm": 770,
+      "width_mm": null,
+      "depth_mm": null,
+      "height_mm": null,
+      "mass_kg": null,
+      "handling_each_side_mm": null,
+      "reference": "",
+      "required_aperture_mm": null,
+      "width_margin_mm": null,
+      "status": "pending",
+      "minimum_transport_orientation_verified": false,
+      "actual_finished_aperture_verified": false,
+      "full_route_turning_depth_height_stairs_load_religion_or_lifting_approved": false
+    },
+    {
+      "id": "Q3-D2-rear-wet-pair:heat-pump",
+      "option": "Q3-D2-rear-wet-pair",
+      "equipment": "heat-pump",
+      "inspection_door_reference_not_a_transport_route": "side",
+      "door_budget_mm": 770,
+      "width_mm": null,
+      "depth_mm": null,
+      "height_mm": null,
+      "mass_kg": null,
+      "handling_each_side_mm": null,
+      "reference": "",
+      "required_aperture_mm": null,
+      "width_margin_mm": null,
+      "status": "pending",
+      "minimum_transport_orientation_verified": false,
+      "actual_finished_aperture_verified": false,
+      "full_route_turning_depth_height_stairs_load_religion_or_lifting_approved": false
+    },
+    {
+      "id": "Q3-D2-rear-wet-pair:B-AC03",
+      "option": "Q3-D2-rear-wet-pair",
+      "equipment": "B-AC03",
+      "inspection_door_reference_not_a_transport_route": "side",
+      "door_budget_mm": 770,
+      "width_mm": null,
+      "depth_mm": null,
+      "height_mm": null,
+      "mass_kg": null,
+      "handling_each_side_mm": null,
+      "reference": "",
+      "required_aperture_mm": null,
+      "width_margin_mm": null,
+      "status": "pending",
+      "minimum_transport_orientation_verified": false,
+      "actual_finished_aperture_verified": false,
+      "full_route_turning_depth_height_stairs_load_religion_or_lifting_approved": false
+    },
+    {
+      "id": "Q3-D2-rear-wet-pair:B-AC04",
+      "option": "Q3-D2-rear-wet-pair",
+      "equipment": "B-AC04",
+      "inspection_door_reference_not_a_transport_route": "side",
+      "door_budget_mm": 770,
+      "width_mm": null,
+      "depth_mm": null,
+      "height_mm": null,
+      "mass_kg": null,
+      "handling_each_side_mm": null,
+      "reference": "",
+      "required_aperture_mm": null,
+      "width_margin_mm": null,
+      "status": "pending",
+      "minimum_transport_orientation_verified": false,
+      "actual_finished_aperture_verified": false,
+      "full_route_turning_depth_height_stairs_load_religion_or_lifting_approved": false
+    }
+  ],
+  "numeric_condition_values_received": 0,
+  "condition_document_hash": null,
+  "engineering_gates": [
+    {
+      "id": "BQG-01",
+      "topic": "同版平台、前室、梯井與屋突",
+      "roles": "建築師＋結構",
+      "reply": "2200×1000平台、2170×755前室的板邊、厚度、梁柱支承與完整梯井剖面；同核屋突、完成面和防雨，不用整房間實心板封洞。"
+    },
+    {
+      "id": "BQG-02",
+      "topic": "RF至KTV的標高與聲學",
+      "roles": "建築師＋結構＋聲學＋機電",
+      "reply": "先註明模型基準是結構或完成面，再出RF防水／找坡、梁底、KTV地坪／吊頂與消音管線同版剖面；門檻、末級踏步及全程淨高一起重核。"
+    },
+    {
+      "id": "BQG-03",
+      "topic": "水塔、熱泵與冷氣荷重／振動",
+      "roles": "設備商＋結構＋聲學",
+      "reply": "分列滿水重、設備運轉重、支腳／基座受力、維修荷載、防颱與隔振；屋頂平面避床體不代表梁板或結構傳音成立。"
+    },
+    {
+      "id": "BQG-04",
+      "topic": "首裝、巡檢及整機汰換",
+      "roles": "設備商＋建商＋建築師",
+      "reply": "提供含包裝或拆裝後最小運輸模組的寬深高重、持握餘量、可拆依據與完整搬運演練；不能把700巡檢線或整組預留框當成品可搬。"
+    },
+    {
+      "id": "BQG-05",
+      "topic": "外吊備援的完整範圍",
+      "roles": "建商＋吊運廠商＋結構＋建築師",
+      "reply": "若門梯無法換機，另核吊車到達／權利、吊點與落放區、護欄可拆、屋頂承載、防水恢復、費用及後續維修合約；目前未畫核准吊點，也未授權穿越鄰地。"
+    },
+    {
+      "id": "BQG-06",
+      "topic": "KTV關門通風與聲學旁通",
+      "roles": "機電＋聲學＋消防",
+      "reply": "專支、消音器、檢修及新風／回排氣需同版預留，不能靠開梯門；香火、一般新風、浴廁排氣、污水通氣與雨水分系統核對。"
+    },
+    {
+      "id": "BQG-07",
+      "topic": "RF24㎡及三樓工作天井各自列帳",
+      "roles": "建築師＋建商，必要取捨再由屋主決定",
+      "reply": "若24㎡仍為目標，提出完整全棟重排與合法可建量，不能只移機器、借祭祀保護區、室內前室或三樓4㎡天井補算；原目標及較小平台未接受狀態保留。"
+    },
+    {
+      "id": "BQG-08",
+      "topic": "門組、火煙、防雨與救援",
+      "roles": "建築師＋消防＋門廠",
+      "reply": "前900／側770僅扣框預算，需成品完成淨寬、門檻、自閉／逃生、防火隔煙、防雨及開門風壓；不因幾何全開可通就當消防或照護核可。"
+    },
+    {
+      "id": "BQG-09",
+      "topic": "既有未解工程及版本發行",
+      "roles": "建商統籌建築／結構／機電",
+      "reply": "P3前落水、R1天井防水乾衣、屋頂排水與回吸另回覆；同一圖號及來源版本通過後才評併圖，不繼承其他樓梯或舊passed。"
+    }
+  ],
+  "all_engineering_gate_statuses": "pending",
+  "recommended_sequence": [
+    "先保S1／D1供建商核維修與振動，S2／D2保前平台備案，兩案都不是施工定案。",
+    "建築／結構先核Q3上下平台、RF前室及標高，再讓設備／聲學拿同版剖面核對。",
+    "首裝與全壽命汰換分開回覆；單一門寬相容也要完整轉彎、梯段及重量演練。",
+    "24㎡仍缺，若不能取捨需整棟完整重排；縮平台或改家規需屋主另行決定，現在不改。"
+  ],
+  "protected_controls_unchanged": 149,
+  "actual_site_values_received": 0,
+  "primary_abc_or_3d_changed": false,
+  "new_room_door_or_equipment_geometry_generated": false,
+  "all_original_requirements_met": false,
+  "adopted": false,
+  "rendered_qa": "not-run",
+  "professional_approval": "unknown",
+  "source_hashes": {
+    "inputs/b-q3-engineering-gates.json": "4a317b90ef2436a530c18fca79c7f861a7d78358e6b3170003db6e8dfa9c8c61",
+    "structured/coordination/b-q3-roof-coordination-v1/review.json": "432eb25dad0a37d1878a8c20e44675ed376beb86c60a9019d9bb6842d106d954",
+    "structured/coordination/b-q3-roof-coordination-v1/artifact-manifest.json": "f146adc25b67a5287cfd210f3aaa9e9398a28f3e507ecba09779b807f71eafcd",
+    "inputs/b-q3-roof-coordination.json": "76cc3c2626ef18574f6393301da71f136bd928871a71b3c327f94f748ef0cf23",
+    "structured/coordination/b-ktv-stair-options-v1/review.json": "6116c9df09d442e29e16cc3eabc50aa1cd94b4d512fd3398b9105f1afdc34a7e",
+    "structured/coordination/b-ktv-stair-options-v1/artifact-manifest.json": "1e3b99e2ee0a4626b93c9aa133098f6fb85ea65d3f148b924c69bea3d6349346",
+    "structured/coordination/b-roof-daily-use-v1/review.json": "bdc0e9631be875bfe97b8d7e4bd55aa04770b1955c7347f5f9819f0df2b59a33",
+    "structured/coordination/b-roof-daily-use-v1/artifact-manifest.json": "98f60176faf8fa076c192c0a1ce98864978168a39fb366b62c96c8557d41f5da",
+    "inputs/b-ktv-stair-options.json": "b09976ea14cf0021385e87f742b80b2bb3fc0baac50c5863b2c40bcf4dc6f020",
+    "structured/coordination/b-third-entertainment-v1/review.json": "568509636ce55cb56b21161cf69e91e3eab633806c97e260c2a30a7f6553b08a",
+    "structured/coordination/b-third-entertainment-v1/artifact-manifest.json": "81247bbf44718d66f247c3ab520173e24e3ae38c4102480f83d74b3ee189d4d8",
+    "structured/candidates/kaohsiung-house-options/c-stair-integration.json": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+    "inputs/b-third-entertainment.json": "07577a0dffe45c74f98ee93c75d0b35f30b75dec187050e3796775d4d73b45c8",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "structured/coordination/b-upper-replan-v1/review.json": "38897b7ca1da091dd62c85ab342abd4d1d1da220ec1dbad9a5f46e6611f4906d",
+    "structured/coordination/b-upper-replan-v1/artifact-manifest.json": "c1fe7bab76b8032224f7ce271671db0f94fb3ef91c702adc355fd1bcd6b8d915",
+    "structured/coordination/b-front-service-detail-v1/review.json": "a51324d7699cfba56479f83a5e4eaa24ef5c9d45782c302c79e5fe779d4f2edd",
+    "structured/coordination/b-front-service-detail-v1/artifact-manifest.json": "66b708543e5da68e23878d0063034d8ecb0fe693a658431b44160e5881c35234",
+    "inputs/references/b-owner-ritual-answers-20261106.json": "736f5a477ce1fbfd8e1bf460ecf49f9043a83635201d1598e3e1842e6460ddb9",
+    "structured/coordination/b-claude-round3-v1/review.json": "00baf0b3950e2593361e91698e4d72ac33e384edadd6da5a7d31b62e087b6223",
+    "inputs/requirements.json": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066",
+    "inputs/brief/B.json": "63ed4fc045fc6f2cc4021b8bd784cb7cc9fd46789155fc19aa1a55f33016e55a",
+    "inputs/planning-register.json": "140493058b145071afb472bf927860d48a43a6f4407b9b59e5a86705fbe058b0",
+    "house_design/b_third_entertainment.py": "f026a7665c1134dde6c3ec0f01032fdb0eb91d750e1f7af6ead8c845fbd1a5cc",
+    "scripts/export_b_third_entertainment.py": "67aa5888f2149271e9718c1a7cceea92cd6a96767e4fc5d2c5d4383aae713a2f",
+    "house_design/b_upper_replan.py": "a251d37dc84bd54b9292b6802180ca7fd66c679a7e43dc714b3fed160dc2e5c5",
+    "house_design/b_front_service_detail.py": "0e20c751c385d4e69a3ff679cb5b7890e71575f82fdef8195e49628690175c29",
+    "house_design/contracts.py": "2888419d49e8d8dbe8b8e99f6b8451363cd9020821c7fe3e703ab09779e202c3",
+    "house_design/project_status.py": "db73eb9b066353cc282e67dc15e4b430d9d4e4d398eafaf7eeec5f98af1acab0",
+    "scripts/export_b_upper_replan.py": "3a3cc271cf7d9fc20759d4bca17b582ab672f551981c6e8c1c20933192c09a3d",
+    "scripts/export_abc_next_improvements.py": "875c13027466776a6e1661dae369e45c823c661c5e0369d8ee95b6535420e701",
+    "scripts/export_builder_communication.py": "650d696de35bd9a0fb4ce77d7f93078813b8babd4ed5439d59a6966d093ceef1",
+    "Docs/b-third-entertainment-v1.md": "5f69f521386c051ce67b4b24d5cda79186f70f937316d25c64962a745258d513",
+    "house_design/b_ktv_stair_options.py": "aa80873e7072c942f144d29ca5d1e82982e215e353188e3a4b41c3e98b27260d",
+    "scripts/export_b_ktv_stair_options.py": "973fd2ca9472d0b1573d78fe2dc94f65acced4fff120ae54bf2f2cfa0387b617",
+    "Docs/b-ktv-stair-options-v1.md": "e994cd9439f526a99a8d6faea11eb5e90f4fcd01b6383a82f514849b29fc61a2",
+    "inputs/b-roof-daily-use.json": "1523cacb493ad739baf8ea5081211039e9c3b8a18bb0895d61014e3e6c45e57d",
+    "structured/coordination/b-roof-equipment-v1/review.json": "17bb6027323fea2b01896aeaa533e62903a60c5c9d5ca9e11e6848155c04cec1",
+    "structured/coordination/b-roof-equipment-v1/artifact-manifest.json": "f37bb8346f9ff487b6f52de5e86ed9fef67c45e6699683f00d2fa8b9065947bb",
+    "inputs/b-roof-equipment.json": "2fd8c130bd7e8c36e31f21f18885267d13d20cbc5d7538f8f3dfe2953565a0ff",
+    "structured/coordination/b-working-court-v1/review.json": "86fd21e80521907005a53fc506fff99b8c7421d709b7ca31e8a07d09e802a790",
+    "structured/coordination/b-working-court-v1/artifact-manifest.json": "b1908bbe5877e51f14eb0fa820b6b132c5513e664332d8c6489cda8154d05d24",
+    "inputs/abc-fresh-air-layout-options.json": "244a19fb3e44c81d6af95e8ee354836ca1f777cd7d2559cd312812ac6cb94ed7",
+    "inputs/abc-fresh-air-detail.json": "7a0967c5cff5eaa507e0a420a9c1e694255562ccdc69f511ae801472649a61ec",
+    "inputs/b-ventilation-detail.json": "523b9c931c4f36caea62072031fe2d3c82cbea852d4ddf33e86827443b3c10f8",
+    "inputs/b-working-court.json": "ef46a7852138a320e33b7b4131617991167bdaca9a942beb245e81aa6f6ac5eb",
+    "house_design/b_working_court.py": "4d9e54078c4fb2f0e708e72386b4a969f9e1ca8c44722da65ceaf1ab9d388a1d",
+    "scripts/export_b_working_court.py": "8c01671c899cb8bc78bcb5d83bcff5a5daa0a9e63e939b5a09da1bd5e361629f",
+    "Docs/b-working-court-v1.md": "7d9b72802381917a52b56b2197574b5f811b267307278428db617cd5ec31d2c2",
+    "house_design/b_roof_equipment.py": "43153d4164568ee8334d462cdd4441d3505e9586b693fef4a753054f6f5f3d29",
+    "scripts/export_b_roof_equipment.py": "b75856a2d235be9e3ac9d4d16733375a1a733949b8ab08f0638abdb94ed02105",
+    "Docs/b-roof-equipment-v1.md": "f2eeaea3227b5a70dac04426d21dd6603f10094452f9048a30eb5ac8eb1af156",
+    "house_design/b_roof_daily_use.py": "55b5282362fcffcd52cf3995a8fd573bb51dc82d75bc3742cf3364f9bc6c6449",
+    "scripts/export_b_roof_daily_use.py": "9171804153333794d0794f916c6993a2b1bcd7f91d49f5e1183be6112dff0fde",
+    "Docs/b-roof-daily-use-v1.md": "257b18c52d1283f08e861d7f012a9509ca1e725847b33ec7bf1f2c58e3decdce",
+    "house_design/b_q3_roof_coordination.py": "dc078ef03882484856fa145dd6b4e4fb4c5a059ce1867e5824925aad80da6c1f",
+    "scripts/export_b_q3_roof_coordination.py": "63c6d563adfaf5350464fed6c0a16f2e106927bd23a2668aeb575b1770cf74ea",
+    "Docs/b-q3-roof-coordination-v1.md": "e5ca8cc28994b8f364803c248ad5c790fce214ad0cb314b50ba6a9bfea8b3892",
+    "house_design/b_q3_engineering_gates.py": "2a42030c86f024fd1acecef7b842b3e4426b431a68b3e08a57404f93a061ed6d",
+    "scripts/export_b_q3_engineering_gates.py": "1dc39dfba63fe32ee4847570d2ce035ca820ec6859d4d736f13d344d8758885e",
+    "Docs/b-q3-engineering-gates-v1.md": "069982a82cb336345bd9d82e5116df0f97f51fcce3fa5a1c22c101da7b1dce04"
+  },
+  "report_hash": "d9da1ea5deec1b4ae9d4ea42ce626b26339a4f1f92d1c930bde0263df985c698"
+}

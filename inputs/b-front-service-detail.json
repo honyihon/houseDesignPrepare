@@ -1,0 +1,48 @@
+{
+  "schema": "house-b-front-service-detail-v1",
+  "date": "2026-11-09",
+  "adopted": false,
+  "parent_report": "structured/coordination/b-upper-replan-v1/review.json",
+  "parent_option": "front-wet-foyer",
+  "protected_controls": "inputs/abc-next-protected-controls.json",
+  "pinned_sources": {
+    "inputs/b-upper-replan.json": "83621a2af81211b06ff4dc2c9e8557641c1d551b05195605acd7a6ad7b1df3f5",
+    "house_design/b_upper_replan.py": "a251d37dc84bd54b9292b6802180ca7fd66c679a7e43dc714b3fed160dc2e5c5",
+    "scripts/export_b_upper_replan.py": "3a3cc271cf7d9fc20759d4bca17b582ab672f551981c6e8c1c20933192c09a3d",
+    "structured/coordination/b-upper-replan-v1/review.json": "38897b7ca1da091dd62c85ab342abd4d1d1da220ec1dbad9a5f46e6611f4906d",
+    "structured/coordination/b-upper-replan-v1/artifact-manifest.json": "c1fe7bab76b8032224f7ce271671db0f94fb3ef91c702adc355fd1bcd6b8d915"
+  },
+  "shared_shaft_mm": [115, 1780, 400, 400],
+  "dry_maintenance_mm": [115, 2180, 700, 900],
+  "public_fixtures": [
+    {"id": "shower", "label": "原900×900淋浴移至前左", "rect_mm": [115, 115, 900, 900], "operation_mm": [1015, 115, 700, 900]},
+    {"id": "toilet", "label": "原450×700馬桶轉向、背靠右實牆候選", "rect_mm": [2455, 1415, 700, 450], "operation_mm": [1755, 1165, 700, 700]},
+    {"id": "basin", "label": "原600×450面盆", "rect_mm": [2555, 115, 600, 450], "operation_mm": [2555, 565, 600, 700]}
+  ],
+  "tea_furniture": [
+    {"id": "tea-counter", "label": "原1500×600濕茶水台移至右牆", "rect_mm": [2555, 2135, 600, 1500], "operation_mm": [1855, 2135, 700, 1500]}
+  ],
+  "sliders": [
+    {"id": "bath", "label": "公衛雙扇右疊候選", "a": [1150, 1980], "b": [2280, 1980], "leaf_width_mm": 660, "leaf_thickness_mm": 45, "track_gap_mm": 40, "track_y_mm": [1980, 2065], "closed_x_mm": [1100, 1670], "park_x_mm": [2330, 2330], "frame_budget_each_mm": 115, "clear_target_mm": 900},
+    {"id": "stair", "label": "梯廳／前室雙扇左疊候選", "a": [1150, 3900], "b": [2280, 3900], "leaf_width_mm": 660, "leaf_thickness_mm": 45, "track_gap_mm": 40, "track_y_mm": [3770, 3855], "closed_x_mm": [1100, 1670], "park_x_mm": [440, 440], "frame_budget_each_mm": 115, "clear_target_mm": 900}
+  ],
+  "routes": [
+    {"id": "public-arrival", "width_mm": 900, "points_mm": [[1715, 4400], [1715, 3335], [1715, 2585], [1715, 1415]], "purpose": "梯廳經可關前室至公衛的一般900方塊；茶水操作與通行分時"},
+    {"id": "public-shower-operation", "width_mm": 700, "points_mm": [[1715, 1415], [1715, 665], [1365, 665]], "purpose": "公衛內至淋浴操作帶的一般700方塊"},
+    {"id": "dry-maintenance", "width_mm": 700, "points_mm": [[1715, 4400], [1715, 2630], [465, 2630]], "purpose": "梯廳至管井乾側檢修預留，不穿公衛；工具、拆管與操作高度尚未核"}
+  ],
+  "branch_fixture_ids": ["toilet", "basin", "tea-counter", "shower"],
+  "open_items": [
+    "前側每層新增12.753㎡室內輪廓沿用P2，須納入正式量體、結構及申照；不能沿用原陽台免計或自行封陽台。",
+    "同一400×400管井跨公衛／前室名義界線；實際牆厚、耐火／防水、管徑、通氣與支承尚未設計，管井不當無損可用面積。",
+    "700×900乾側檢修區、檢修門高度、清掃口密封與整管拆換包絡需原廠／機電圖；檢修口不朝茶水台上方。",
+    "兩組雙扇疊門的660×45葉片、40軌間距及230總框預算僅幾何候選；實際淨寬、把手、止擋、門框補強、操作力、濕區耐久與外救援未核。",
+    "樓梯／前室是否須防火、隔煙、自閉及合格門組由正式消防／建築設計決定；本候選門不能當防火門或關門後已通風。",
+    "短偏移不等於完整排水較短；器具中心折線只是同起算高程敏感度，真實排出口、彎頭、存水彎與立管接入標高尚缺。",
+    "最有利200結構＋150管含支撐＋50檢修假設，完整WC／面盆／茶水線仍低於3500比較目標，不能宣稱騎樓淨高已解決。",
+    "1F落水候選仍占原梯核0.16㎡；必須以實際梁板、梯段／平台、檢修與防火證明不縮樓梯、不擋騎樓，無證據不施工。",
+    "兩衛外窗仍只是朝街／後側合法外口候選；新風、2F／3F公衛各自獨排補氣、乾濕分區、防雨／隱私及所有出口需合圖。",
+    "完整支管與騎樓剖面表只核2F列明器具；3F支管、立管、2F匯流、通氣、同時流量與井內容量均未設計，不借2F敏感度當整棟排水完成。",
+    "P1／P2、原ABC／3D、兩個1F入口各三態與屋頂均保留；3F娛樂僅14.3141㎡及上下層聲學／振動缺口仍在。"
+  ]
+}

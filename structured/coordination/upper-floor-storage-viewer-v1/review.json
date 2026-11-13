@@ -1,0 +1,8194 @@
+{
+  "schema": "house-upper-floor-storage-viewer-v1",
+  "date": "2026-11-11",
+  "display_revision": 3,
+  "source_storage_report_sha256": "b451dc7893dd9e50c8271b1a6b3e4104c9a66e1173294684b9dd9886d504a986",
+  "source_storage_report_hash": "a011d8dc173c8c71b606b55284deb716533b7dfcf4593cd04828f95f8fa21981",
+  "cases": [
+    {
+      "id": "A-2F",
+      "building": "A",
+      "floor": "floor-2",
+      "format": "model",
+      "source": "structured/candidates/kaohsiung-house-options/c-stair-integration.json",
+      "option": "a-rear-study",
+      "room": "study",
+      "label": "書房入口側獨立雜物櫃",
+      "rect_mm": [
+        115,
+        11355,
+        900,
+        450
+      ],
+      "operation_mm": [
+        115,
+        11805,
+        900,
+        700
+      ],
+      "height_mm": 1800,
+      "note": "公用走道保持不置櫃；新櫃放書房內，文具、備品與小家電分層，不扣原540cm衣櫃與240cm淺櫃。",
+      "rooms": [
+        {
+          "id": "master",
+          "label": "主臥（兩組衣櫃＋原淺櫃）",
+          "polygon_mm": [
+            [
+              6000.0,
+              1500.0
+            ],
+            [
+              6000.0,
+              4780.0
+            ],
+            [
+              0.0,
+              4780.0
+            ],
+            [
+              0.0,
+              1500.0
+            ],
+            [
+              6000.0,
+              1500.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "A:floor-2:master:furniture:bed",
+              "label": "標準雙人床",
+              "rect_mm": [
+                80.0,
+                1580.0,
+                2000.0,
+                1800.0
+              ],
+              "operation_mm": [
+                2080.0,
+                1580.0,
+                600.0,
+                1800.0
+              ]
+            },
+            {
+              "id": "A:floor-2:master:furniture:wardrobe",
+              "label": "180 cm 衣櫃",
+              "rect_mm": [
+                3420.0,
+                4100.0,
+                1800.0,
+                600.0
+              ],
+              "operation_mm": [
+                3420.0,
+                3500.0,
+                1800.0,
+                600.0
+              ]
+            },
+            {
+              "id": "A:floor-2:master:furniture:wardrobe-right",
+              "label": "180cm衣櫃（原更衣右櫃）",
+              "rect_mm": [
+                80.0,
+                4100.0,
+                1800.0,
+                600.0
+              ],
+              "operation_mm": [
+                80.0,
+                3500.0,
+                1800.0,
+                600.0
+              ]
+            },
+            {
+              "id": "A:floor-2:master:furniture:hall-cabinet",
+              "label": "240cm主臥淺收納櫃（原走道櫃）",
+              "rect_mm": [
+                5520.0,
+                1580.0,
+                400.0,
+                2400.0
+              ],
+              "operation_mm": [
+                4920.0,
+                1580.0,
+                600.0,
+                2400.0
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                2350.002,
+                4780
+              ],
+              "b": [
+                3250.002,
+                4780
+              ]
+            },
+            {
+              "a": [
+                3349.998,
+                1500
+              ],
+              "b": [
+                4249.998,
+                1500
+              ]
+            }
+          ],
+          "windows_mm": [
+            [
+              370.0,
+              1500,
+              1900
+            ]
+          ],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "bedroom"
+        },
+        {
+          "id": "master-bath",
+          "label": "2F共用衛浴（套衛另案）",
+          "polygon_mm": [
+            [
+              4560.0,
+              5880.0
+            ],
+            [
+              4560.0,
+              7980.0
+            ],
+            [
+              2160.0,
+              7980.0
+            ],
+            [
+              2160.0,
+              5880.0
+            ],
+            [
+              4560.0,
+              5880.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "A:floor-2:master-bath:furniture:vanity",
+              "label": "60 cm 一般洗手台",
+              "rect_mm": [
+                2275.2,
+                5960.0,
+                600.0,
+                450.0
+              ],
+              "operation_mm": [
+                2275.2,
+                6410.0,
+                600.0,
+                700.0
+              ]
+            },
+            {
+              "id": "A:floor-2:master-bath:furniture:toilet",
+              "label": "馬桶",
+              "rect_mm": [
+                3027.0,
+                5960.0,
+                450.0,
+                700.0
+              ],
+              "operation_mm": [
+                3027.0,
+                6660.0,
+                450.0,
+                700.0
+              ]
+            },
+            {
+              "id": "A:floor-2:master-bath:furniture:shower",
+              "label": "90 cm 淋浴區",
+              "rect_mm": [
+                3580.0,
+                7000.0,
+                900.0,
+                900.0
+              ],
+              "operation_mm": [
+                2880.0,
+                7000.0,
+                700.0,
+                900.0
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                3609.9992,
+                5880
+              ],
+              "b": [
+                4409.9992,
+                5880
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "bath"
+        },
+        {
+          "id": "walkin",
+          "label": "乾式更衣收納（一組原衣櫃）",
+          "polygon_mm": [
+            [
+              4560.0,
+              7980.0
+            ],
+            [
+              4560.0,
+              9880.0
+            ],
+            [
+              2160.0,
+              9880.0
+            ],
+            [
+              2160.0,
+              7980.0
+            ],
+            [
+              4560.0,
+              7980.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "A:floor-2:walkin:furniture:wardrobe-left",
+              "label": "180cm衣櫃（原更衣左櫃）",
+              "rect_mm": [
+                2460.0,
+                8060.0,
+                1800.0,
+                600.0
+              ],
+              "operation_mm": [
+                2460.0,
+                8660.0,
+                1800.0,
+                600.0
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                4560,
+                8790.0002
+              ],
+              "b": [
+                4560,
+                9690.0002
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "service"
+        },
+        {
+          "id": "hall2",
+          "label": "連續公共走道（保持不置櫃）",
+          "polygon_mm": [
+            [
+              6000.0,
+              4780.0
+            ],
+            [
+              6000.0,
+              11240.0
+            ],
+            [
+              4560.0,
+              11240.0
+            ],
+            [
+              4560.0,
+              4780.0
+            ],
+            [
+              6000.0,
+              4780.0
+            ]
+          ],
+          "items": [],
+          "doors": [
+            {
+              "a": [
+                4560,
+                8789.99692
+              ],
+              "b": [
+                4560,
+                9689.99692
+              ]
+            },
+            {
+              "a": [
+                5030.00016,
+                11240
+              ],
+              "b": [
+                5930.00016,
+                11240
+              ]
+            },
+            {
+              "a": [
+                4560,
+                4779.99794
+              ],
+              "b": [
+                4560,
+                5879.99794
+              ]
+            },
+            {
+              "a": [
+                4560,
+                9880.00102
+              ],
+              "b": [
+                4560,
+                11240.00102
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "other"
+        },
+        {
+          "id": "study",
+          "label": "書房／工作室",
+          "polygon_mm": [
+            [
+              3200.0,
+              11240.0
+            ],
+            [
+              3200.0,
+              15630.0
+            ],
+            [
+              0.0,
+              15630.0
+            ],
+            [
+              0.0,
+              11240.0
+            ],
+            [
+              3200.0,
+              11240.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "A:floor-2:study:furniture:desk",
+              "label": "140 cm 書桌",
+              "rect_mm": [
+                80.0,
+                13086.2,
+                700.0,
+                1400.0
+              ],
+              "operation_mm": [
+                780.0,
+                13086.2,
+                700.0,
+                1400.0
+              ]
+            },
+            {
+              "id": "A:floor-2:study:furniture:shelf",
+              "label": "書櫃／收納櫃",
+              "rect_mm": [
+                2720.0,
+                12220.0,
+                400.0,
+                1800.0
+              ],
+              "operation_mm": [
+                2120.0,
+                12220.0,
+                600.0,
+                1800.0
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                2050.0,
+                11240
+              ],
+              "b": [
+                2950.0,
+                11240
+              ]
+            },
+            {
+              "a": [
+                2150.0,
+                15630
+              ],
+              "b": [
+                3050.0,
+                15630
+              ]
+            }
+          ],
+          "windows_mm": [
+            [
+              370.0,
+              15630,
+              1500
+            ]
+          ],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "other"
+        },
+        {
+          "id": "bedroom2",
+          "label": "次臥（向書房回收寬度）",
+          "polygon_mm": [
+            [
+              6000.0,
+              11240.0
+            ],
+            [
+              6000.0,
+              15630.0
+            ],
+            [
+              3200.0,
+              15630.0
+            ],
+            [
+              3200.0,
+              11240.0
+            ],
+            [
+              6000.0,
+              11240.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "A:floor-2:bedroom2:furniture:bed",
+              "label": "單人床",
+              "rect_mm": [
+                3375.0,
+                11320.0,
+                1050.0,
+                1880.0
+              ],
+              "operation_mm": [
+                3375.0,
+                13200.0,
+                1050.0,
+                600.0
+              ]
+            },
+            {
+              "id": "A:floor-2:bedroom2:furniture:wardrobe",
+              "label": "180 cm 衣櫃",
+              "rect_mm": [
+                5320.0,
+                12842.3,
+                600.0,
+                1800.0
+              ],
+              "operation_mm": [
+                4720.0,
+                12842.3,
+                600.0,
+                1800.0
+              ]
+            },
+            {
+              "id": "A:floor-2:bedroom2:furniture:desk",
+              "label": "120 cm 一般書桌",
+              "rect_mm": [
+                3440.0,
+                14950.0,
+                1200.0,
+                600.0
+              ],
+              "operation_mm": [
+                3440.0,
+                14250.0,
+                1200.0,
+                700.0
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                5030.0008,
+                11240
+              ],
+              "b": [
+                5930.0008,
+                11240
+              ]
+            },
+            {
+              "a": [
+                5069.998799999999,
+                15630
+              ],
+              "b": [
+                5969.998799999999,
+                15630
+              ]
+            }
+          ],
+          "windows_mm": [
+            [
+              3440.0,
+              15630,
+              1200
+            ]
+          ],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "bedroom"
+        },
+        {
+          "id": "balcony2",
+          "label": "後工作／空調維修陽台",
+          "polygon_mm": [
+            [
+              6000.0,
+              15630.0
+            ],
+            [
+              6000.0,
+              17630.0
+            ],
+            [
+              0.0,
+              17630.0
+            ],
+            [
+              0.0,
+              15630.0
+            ],
+            [
+              6000.0,
+              15630.0
+            ]
+          ],
+          "items": [],
+          "doors": [
+            {
+              "a": [
+                2149.998,
+                15630
+              ],
+              "b": [
+                3049.998,
+                15630
+              ]
+            },
+            {
+              "a": [
+                5070.0,
+                15630
+              ],
+              "b": [
+                5970.0,
+                15630
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": true,
+          "kind": "outdoor"
+        },
+        {
+          "id": "front-service",
+          "label": "前側空調維修陽台（待核）",
+          "polygon_mm": [
+            [
+              6000.0,
+              0.0
+            ],
+            [
+              6000.0,
+              1500.0
+            ],
+            [
+              0.0,
+              1500.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              6000.0,
+              0.0
+            ]
+          ],
+          "items": [],
+          "doors": [
+            {
+              "a": [
+                3349.998,
+                1500
+              ],
+              "b": [
+                4249.998,
+                1500
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": true,
+          "kind": "outdoor"
+        },
+        {
+          "id": "stair2",
+          "label": "緊湊雙折梯／共享前平台",
+          "polygon_mm": [
+            [
+              2160.0,
+              5880.0
+            ],
+            [
+              2160.0,
+              9880.0
+            ],
+            [
+              0.0,
+              9880.0
+            ],
+            [
+              0.0,
+              5880.0
+            ],
+            [
+              2160.0,
+              5880.0
+            ]
+          ],
+          "items": [],
+          "doors": [
+            {
+              "a": [
+                80.0,
+                5880
+              ],
+              "b": [
+                2080.0,
+                5880
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "stair"
+        },
+        {
+          "id": "rear-hall",
+          "label": "後段公共乾區（不穿更衣室）",
+          "polygon_mm": [
+            [
+              4560.0,
+              9880.0
+            ],
+            [
+              4560.0,
+              11240.0
+            ],
+            [
+              0.0,
+              11240.0
+            ],
+            [
+              0.0,
+              9880.0
+            ],
+            [
+              4560.0,
+              9880.0
+            ]
+          ],
+          "items": [],
+          "doors": [
+            {
+              "a": [
+                2050.00176,
+                11240
+              ],
+              "b": [
+                2950.00176,
+                11240
+              ]
+            },
+            {
+              "a": [
+                4560,
+                9880.0
+              ],
+              "b": [
+                4560,
+                11240.0
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "other"
+        },
+        {
+          "id": "front-landing",
+          "label": "緊湊公共到達平台（不置物）",
+          "polygon_mm": [
+            [
+              4560.0,
+              4780.0
+            ],
+            [
+              4560.0,
+              5880.0
+            ],
+            [
+              0.0,
+              5880.0
+            ],
+            [
+              0.0,
+              4780.0
+            ],
+            [
+              4560.0,
+              4780.0
+            ]
+          ],
+          "items": [],
+          "doors": [
+            {
+              "a": [
+                2349.9996,
+                4780
+              ],
+              "b": [
+                3249.9996,
+                4780
+              ]
+            },
+            {
+              "a": [
+                3610.00016,
+                5880
+              ],
+              "b": [
+                4410.00016,
+                5880
+              ]
+            },
+            {
+              "a": [
+                4560,
+                4780.0
+              ],
+              "b": [
+                4560,
+                5880.0
+              ]
+            },
+            {
+              "a": [
+                79.99952000000008,
+                5880
+              ],
+              "b": [
+                2079.9995200000003,
+                5880
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "other"
+        }
+      ],
+      "fixed": [
+        {
+          "id": "master:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            2250.0,
+            3880.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "master:reserve:1",
+          "label": "door-approach",
+          "rect_mm": [
+            3250.0,
+            1500.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "A-AC03:indoor",
+          "label": "A-AC03｜冷氣室內機",
+          "rect_mm": [
+            1325.0,
+            1510.0,
+            950,
+            280
+          ]
+        },
+        {
+          "id": "master-bath:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            3510.0,
+            5880.0,
+            1000.0,
+            900.0
+          ]
+        },
+        {
+          "id": "walkin:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            3660.0,
+            8690.0,
+            900.0,
+            1100.0
+          ]
+        },
+        {
+          "id": "hall2:reserve:0",
+          "label": "circulation",
+          "rect_mm": [
+            4640,
+            4860,
+            1280,
+            6300
+          ]
+        },
+        {
+          "id": "hall2:reserve:1",
+          "label": "door-approach",
+          "rect_mm": [
+            4560.0,
+            8690.0,
+            900.0,
+            1100.0
+          ]
+        },
+        {
+          "id": "hall2:reserve:2",
+          "label": "door-approach",
+          "rect_mm": [
+            4930.0,
+            10340.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "study:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            1950.0,
+            11240.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "study:reserve:1",
+          "label": "door-approach",
+          "rect_mm": [
+            2050.0,
+            14730.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "A-AC04:indoor",
+          "label": "A-AC04｜冷氣室內機",
+          "rect_mm": [
+            1125.0,
+            15340.0,
+            950,
+            280
+          ]
+        },
+        {
+          "id": "bedroom2:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            4930.0,
+            11240.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "bedroom2:reserve:1",
+          "label": "door-approach",
+          "rect_mm": [
+            4970.0,
+            14730.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "A-AC05:indoor",
+          "label": "A-AC05｜冷氣室內機",
+          "rect_mm": [
+            3565.0,
+            15340.0,
+            950,
+            280
+          ]
+        },
+        {
+          "id": "balcony2:reserve:0",
+          "label": "hvac-service",
+          "rect_mm": [
+            80.0,
+            16180,
+            900.0,
+            1350
+          ]
+        },
+        {
+          "id": "balcony2:reserve:1",
+          "label": "hvac-service",
+          "rect_mm": [
+            5020.0,
+            16180,
+            900.0,
+            1350
+          ]
+        },
+        {
+          "id": "balcony2:reserve:2",
+          "label": "door-approach",
+          "rect_mm": [
+            2050.0,
+            15630.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "balcony2:reserve:3",
+          "label": "door-approach",
+          "rect_mm": [
+            4970.0,
+            15630.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "A-AC04:outdoor",
+          "label": "A-AC04｜冷氣室外機",
+          "rect_mm": [
+            80.0,
+            17180.0,
+            900,
+            350
+          ]
+        },
+        {
+          "id": "A-AC05:outdoor",
+          "label": "A-AC05｜冷氣室外機",
+          "rect_mm": [
+            5020.0,
+            17180.0,
+            900,
+            350
+          ]
+        },
+        {
+          "id": "front-service:reserve:0",
+          "label": "hvac-service",
+          "rect_mm": [
+            5020.0,
+            100,
+            900.0,
+            1350
+          ]
+        },
+        {
+          "id": "front-service:reserve:1",
+          "label": "hvac-service",
+          "rect_mm": [
+            80.0,
+            100,
+            900.0,
+            1350
+          ]
+        },
+        {
+          "id": "front-service:reserve:2",
+          "label": "door-approach",
+          "rect_mm": [
+            3250.0,
+            600.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "A-AC01:outdoor",
+          "label": "A-AC01｜冷氣室外機",
+          "rect_mm": [
+            5020.0,
+            100.0,
+            900,
+            350
+          ]
+        },
+        {
+          "id": "A-AC03:outdoor",
+          "label": "A-AC03｜冷氣室外機",
+          "rect_mm": [
+            80.0,
+            100.0,
+            900,
+            350
+          ]
+        },
+        {
+          "id": "stair2:reserve:0",
+          "label": "stairs",
+          "rect_mm": [
+            80,
+            5950,
+            2000,
+            3860
+          ]
+        },
+        {
+          "id": "rear-hall:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            1950.0,
+            10340.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "front-landing:reserve:0",
+          "label": "stairs-landing",
+          "rect_mm": [
+            80,
+            4950,
+            2000,
+            930
+          ]
+        },
+        {
+          "id": "front-landing:reserve:1",
+          "label": "door-approach",
+          "rect_mm": [
+            2250.0,
+            4780.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "front-landing:reserve:2",
+          "label": "door-approach",
+          "rect_mm": [
+            3510.0,
+            4980.0,
+            1000.0,
+            900.0
+          ]
+        }
+      ],
+      "routes": [],
+      "review": {
+        "failures": [],
+        "footprint_sqm": 0.405,
+        "additional_floor_footprint_sqm": 0.405,
+        "shared_operation_ids": [],
+        "shared_route_ids": [],
+        "scope": "listed-2D-bodies-reservations-and-routes-only-not-whole-route-or-professional-approval",
+        "actual_height_load_product_door_operation_and_access": "unknown"
+      },
+      "source_floor_hash": "088e8d98aefcd5903665115a5113ceca0b20bf49e673577373632b871376c0dc",
+      "adopted": false,
+      "plan_file": "A-2F.svg",
+      "plan_source": "structured/coordination/upper-floor-storage-v1/A-2F.svg",
+      "plan_sha256": "62594227b7d9d0f0e0b619ea2d07feafde3d52e3e16fcd00a8f0cba09b69b11a",
+      "storage_geometry": {
+        "rect_mm": [
+          115,
+          11355,
+          900,
+          450
+        ],
+        "operation_mm": [
+          115,
+          11805,
+          900,
+          700
+        ],
+        "height_mm": 1800
+      },
+      "surroundings_display": "2D-footprints-only-no-invented-walls-heights-stair-slabs-or-clearances"
+    },
+    {
+      "id": "A-3F",
+      "building": "A",
+      "floor": "floor-3",
+      "format": "model",
+      "source": "structured/candidates/kaohsiung-house-options/c-stair-integration.json",
+      "option": "a-rear-study",
+      "room": "multi",
+      "label": "多用室前側家務收納櫃",
+      "rect_mm": [
+        2275,
+        5995,
+        900,
+        450
+      ],
+      "operation_mm": [
+        2275,
+        6445,
+        900,
+        700
+      ],
+      "height_mm": 1800,
+      "note": "收換季用品與劇院備品，原沙發床、書桌及書櫃保留；實際展床、門片與換氣仍須整組核對。",
+      "rooms": [
+        {
+          "id": "entertainment",
+          "label": "家庭劇院（回收前段走道／隔音待核）",
+          "polygon_mm": [
+            [
+              6000.0,
+              1500.0
+            ],
+            [
+              6000.0,
+              4780.0
+            ],
+            [
+              0.0,
+              4780.0
+            ],
+            [
+              0.0,
+              1500.0
+            ],
+            [
+              6000.0,
+              1500.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "A:floor-3:entertainment:furniture:sofa",
+              "label": "家庭劇院沙發",
+              "rect_mm": [
+                1000.0,
+                1580.0,
+                2800.0,
+                950.0
+              ],
+              "operation_mm": [
+                1000.0,
+                2530.0,
+                2800.0,
+                300.0
+              ]
+            },
+            {
+              "id": "A:floor-3:entertainment:furniture:tv",
+              "label": "55吋壁掛電視（一般外廓）",
+              "rect_mm": [
+                1785.0,
+                4620.0,
+                1230.0,
+                80.0
+              ],
+              "operation_mm": null
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                3400.002,
+                4780
+              ],
+              "b": [
+                4300.002,
+                4780
+              ]
+            },
+            {
+              "a": [
+                4650.0,
+                1500
+              ],
+              "b": [
+                5550.0,
+                1500
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "other"
+        },
+        {
+          "id": "guest",
+          "label": "客房（淨寬待核）",
+          "polygon_mm": [
+            [
+              6000.0,
+              11240.0
+            ],
+            [
+              6000.0,
+              15630.0
+            ],
+            [
+              3560.0,
+              15630.0
+            ],
+            [
+              3560.0,
+              11240.0
+            ],
+            [
+              6000.0,
+              11240.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "A:floor-3:guest:furniture:bed",
+              "label": "單人床",
+              "rect_mm": [
+                3645.0,
+                11320.0,
+                1050.0,
+                1880.0
+              ],
+              "operation_mm": [
+                3645.0,
+                13200.0,
+                1050.0,
+                600.0
+              ]
+            },
+            {
+              "id": "A:floor-3:guest:furniture:wardrobe",
+              "label": "180 cm 衣櫃",
+              "rect_mm": [
+                5320.0,
+                12842.3,
+                600.0,
+                1800.0
+              ],
+              "operation_mm": [
+                4720.0,
+                12842.3,
+                600.0,
+                1800.0
+              ]
+            },
+            {
+              "id": "A:floor-3:guest:furniture:desk",
+              "label": "120 cm 一般書桌",
+              "rect_mm": [
+                3692.0,
+                14950.0,
+                1200.0,
+                600.0
+              ],
+              "operation_mm": [
+                3692.0,
+                14250.0,
+                1200.0,
+                700.0
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                5029.9994,
+                11240
+              ],
+              "b": [
+                5929.9994,
+                11240
+              ]
+            },
+            {
+              "a": [
+                5070.00076,
+                15630
+              ],
+              "b": [
+                5970.00076,
+                15630
+              ]
+            }
+          ],
+          "windows_mm": [
+            [
+              3792.0,
+              15630,
+              1000
+            ]
+          ],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "bedroom"
+        },
+        {
+          "id": "bath3",
+          "label": "3F公衛（保留後側外窗／排濕待核）",
+          "polygon_mm": [
+            [
+              2360.0,
+              13400.0
+            ],
+            [
+              2360.0,
+              15630.0
+            ],
+            [
+              0.0,
+              15630.0
+            ],
+            [
+              0.0,
+              13400.0
+            ],
+            [
+              2360.0,
+              13400.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "A:floor-3:bath3:furniture:vanity",
+              "label": "60 cm 一般洗手台",
+              "rect_mm": [
+                172.0,
+                13480.0,
+                600.0,
+                450.0
+              ],
+              "operation_mm": [
+                172.0,
+                13930.0,
+                600.0,
+                700.0
+              ]
+            },
+            {
+              "id": "A:floor-3:bath3:furniture:toilet",
+              "label": "馬桶",
+              "rect_mm": [
+                1580.0,
+                13580.0,
+                700.0,
+                450.0
+              ],
+              "operation_mm": [
+                880.0,
+                13580.0,
+                700.0,
+                450.0
+              ]
+            },
+            {
+              "id": "A:floor-3:bath3:furniture:shower",
+              "label": "90 cm 淋浴區",
+              "rect_mm": [
+                480.0,
+                14650.0,
+                900.0,
+                900.0
+              ],
+              "operation_mm": [
+                480.0,
+                13950.0,
+                900.0,
+                700.0
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                2360,
+                14150.00091
+              ],
+              "b": [
+                2360,
+                15050.00091
+              ]
+            }
+          ],
+          "windows_mm": [
+            [
+              880.0,
+              15630,
+              600.0
+            ]
+          ],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "bath"
+        },
+        {
+          "id": "multi",
+          "label": "多用途休憩／沙發床區（展床待核）",
+          "polygon_mm": [
+            [
+              4640.0,
+              5880.0
+            ],
+            [
+              4640.0,
+              9880.0
+            ],
+            [
+              2160.0,
+              9880.0
+            ],
+            [
+              2160.0,
+              5880.0
+            ],
+            [
+              4640.0,
+              5880.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "A:floor-3:multi:furniture:sofa-bed",
+              "label": "沙發床",
+              "rect_mm": [
+                2240.0,
+                8000.0,
+                950.0,
+                1800.0
+              ],
+              "operation_mm": [
+                3190.0,
+                8000.0,
+                300.0,
+                1800.0
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                4640,
+                7610.0
+              ],
+              "b": [
+                4640,
+                8510.0
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "other"
+        },
+        {
+          "id": "stair3",
+          "label": "緊湊雙折梯／共享前平台",
+          "polygon_mm": [
+            [
+              2160.0,
+              5880.0
+            ],
+            [
+              2160.0,
+              9880.0
+            ],
+            [
+              0.0,
+              9880.0
+            ],
+            [
+              0.0,
+              5880.0
+            ],
+            [
+              2160.0,
+              5880.0
+            ]
+          ],
+          "items": [],
+          "doors": [
+            {
+              "a": [
+                80.0,
+                5880
+              ],
+              "b": [
+                2080.0,
+                5880
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "stair"
+        },
+        {
+          "id": "terrace3",
+          "label": "後工作／空調維修陽台",
+          "polygon_mm": [
+            [
+              6000.0,
+              15630.0
+            ],
+            [
+              6000.0,
+              17630.0
+            ],
+            [
+              0.0,
+              17630.0
+            ],
+            [
+              0.0,
+              15630.0
+            ],
+            [
+              6000.0,
+              15630.0
+            ]
+          ],
+          "items": [],
+          "doors": [
+            {
+              "a": [
+                2509.998,
+                15630
+              ],
+              "b": [
+                3409.998,
+                15630
+              ]
+            },
+            {
+              "a": [
+                5070.0,
+                15630
+              ],
+              "b": [
+                5970.0,
+                15630
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": true,
+          "kind": "outdoor"
+        },
+        {
+          "id": "front-service",
+          "label": "前側空調維修陽台（待核）",
+          "polygon_mm": [
+            [
+              6000.0,
+              0.0
+            ],
+            [
+              6000.0,
+              1500.0
+            ],
+            [
+              0.0,
+              1500.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              6000.0,
+              0.0
+            ]
+          ],
+          "items": [],
+          "doors": [
+            {
+              "a": [
+                4650.0,
+                1500
+              ],
+              "b": [
+                5550.0,
+                1500
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": true,
+          "kind": "outdoor"
+        },
+        {
+          "id": "front-hall",
+          "label": "前段公共走道",
+          "polygon_mm": [
+            [
+              6000.0,
+              4780.0
+            ],
+            [
+              6000.0,
+              11240.0
+            ],
+            [
+              4640.0,
+              11240.0
+            ],
+            [
+              4640.0,
+              4780.0
+            ],
+            [
+              6000.0,
+              4780.0
+            ]
+          ],
+          "items": [],
+          "doors": [
+            {
+              "a": [
+                4640,
+                7610.0004
+              ],
+              "b": [
+                4640,
+                8510.0004
+              ]
+            },
+            {
+              "a": [
+                5029.99992,
+                11240
+              ],
+              "b": [
+                5929.99992,
+                11240
+              ]
+            },
+            {
+              "a": [
+                4640,
+                4779.99794
+              ],
+              "b": [
+                4640,
+                5879.99794
+              ]
+            },
+            {
+              "a": [
+                4640,
+                9880.00102
+              ],
+              "b": [
+                4640,
+                11240.00102
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "other"
+        },
+        {
+          "id": "rear-hall",
+          "label": "後段公共乾式通道",
+          "polygon_mm": [
+            [
+              4640.0,
+              9880.0
+            ],
+            [
+              4640.0,
+              11240.0
+            ],
+            [
+              0.0,
+              11240.0
+            ],
+            [
+              0.0,
+              9880.0
+            ],
+            [
+              4640.0,
+              9880.0
+            ]
+          ],
+          "items": [],
+          "doors": [
+            {
+              "a": [
+                4640,
+                9880.0
+              ],
+              "b": [
+                4640,
+                11240.0
+              ]
+            },
+            {
+              "a": [
+                600.00144,
+                11240
+              ],
+              "b": [
+                1800.00144,
+                11240
+              ]
+            },
+            {
+              "a": [
+                2359.99984,
+                11240
+              ],
+              "b": [
+                3559.99984,
+                11240
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "other"
+        },
+        {
+          "id": "back-hall",
+          "label": "衛浴公共走道",
+          "polygon_mm": [
+            [
+              3560.0,
+              11240.0
+            ],
+            [
+              3560.0,
+              15630.0
+            ],
+            [
+              2360.0,
+              15630.0
+            ],
+            [
+              2360.0,
+              11240.0
+            ],
+            [
+              3560.0,
+              11240.0
+            ]
+          ],
+          "items": [],
+          "doors": [
+            {
+              "a": [
+                2360,
+                14150.00064
+              ],
+              "b": [
+                2360,
+                15050.00064
+              ]
+            },
+            {
+              "a": [
+                2510.0,
+                15630
+              ],
+              "b": [
+                3410.0,
+                15630
+              ]
+            },
+            {
+              "a": [
+                2360.0,
+                11240
+              ],
+              "b": [
+                3560.0,
+                11240
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "other"
+        },
+        {
+          "id": "front-landing",
+          "label": "緊湊公共到達平台（不置物）",
+          "polygon_mm": [
+            [
+              4640.0,
+              4780.0
+            ],
+            [
+              4640.0,
+              5880.0
+            ],
+            [
+              0.0,
+              5880.0
+            ],
+            [
+              0.0,
+              4780.0
+            ],
+            [
+              4640.0,
+              4780.0
+            ]
+          ],
+          "items": [],
+          "doors": [
+            {
+              "a": [
+                3399.99824,
+                4780
+              ],
+              "b": [
+                4299.99824,
+                4780
+              ]
+            },
+            {
+              "a": [
+                4640,
+                4780.0
+              ],
+              "b": [
+                4640,
+                5880.0
+              ]
+            },
+            {
+              "a": [
+                80.00175999999988,
+                5880
+              ],
+              "b": [
+                2080.00176,
+                5880
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "other"
+        },
+        {
+          "id": "rear-common",
+          "label": "閱讀／工作區（原書桌＋書櫃）",
+          "polygon_mm": [
+            [
+              2360.0,
+              11240.0
+            ],
+            [
+              2360.0,
+              13400.0
+            ],
+            [
+              0.0,
+              13400.0
+            ],
+            [
+              0.0,
+              11240.0
+            ],
+            [
+              2360.0,
+              11240.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "A:floor-3:rear-common:furniture:desk",
+              "label": "120 cm 一般書桌",
+              "rect_mm": [
+                1080.0,
+                12720.0,
+                1200.0,
+                600.0
+              ],
+              "operation_mm": [
+                1080.0,
+                12020.0,
+                1200.0,
+                700.0
+              ]
+            },
+            {
+              "id": "A:floor-3:rear-common:furniture:shelf",
+              "label": "書櫃／收納櫃",
+              "rect_mm": [
+                80.0,
+                11420.0,
+                400.0,
+                1800.0
+              ],
+              "operation_mm": [
+                480.0,
+                11420.0,
+                600.0,
+                1800.0
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                600.001,
+                11240
+              ],
+              "b": [
+                1800.001,
+                11240
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "other"
+        }
+      ],
+      "fixed": [
+        {
+          "id": "entertainment:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            3300.0,
+            3880.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "entertainment:reserve:1",
+          "label": "door-approach",
+          "rect_mm": [
+            4550.0,
+            1500.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "A-AC06:indoor",
+          "label": "A-AC06｜冷氣室內機",
+          "rect_mm": [
+            1325.0,
+            1510.0,
+            950,
+            280
+          ]
+        },
+        {
+          "id": "guest:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            4930.0,
+            11240.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "guest:reserve:1",
+          "label": "door-approach",
+          "rect_mm": [
+            4970.0,
+            14730.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "A-AC07:indoor",
+          "label": "A-AC07｜冷氣室內機",
+          "rect_mm": [
+            3817.0,
+            15340.0,
+            950,
+            280
+          ]
+        },
+        {
+          "id": "bath3:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            1460.0,
+            14050.0,
+            900.0,
+            1100.0
+          ]
+        },
+        {
+          "id": "multi:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            3740.0,
+            7510.0,
+            900.0,
+            1100.0
+          ]
+        },
+        {
+          "id": "stair3:reserve:0",
+          "label": "stairs",
+          "rect_mm": [
+            80,
+            5950,
+            2000,
+            3860
+          ]
+        },
+        {
+          "id": "terrace3:reserve:0",
+          "label": "hvac-service",
+          "rect_mm": [
+            3842.0,
+            16180,
+            900.0,
+            1350
+          ]
+        },
+        {
+          "id": "terrace3:reserve:1",
+          "label": "door-approach",
+          "rect_mm": [
+            2410.0,
+            15630.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "terrace3:reserve:2",
+          "label": "door-approach",
+          "rect_mm": [
+            4970.0,
+            15630.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "A-AC07:outdoor",
+          "label": "A-AC07｜冷氣室外機",
+          "rect_mm": [
+            3842.0,
+            17180.0,
+            900,
+            350
+          ]
+        },
+        {
+          "id": "front-service:reserve:0",
+          "label": "hvac-service",
+          "rect_mm": [
+            1350.0,
+            100,
+            900.0,
+            1350
+          ]
+        },
+        {
+          "id": "front-service:reserve:1",
+          "label": "door-approach",
+          "rect_mm": [
+            4550.0,
+            600.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "A-AC06:outdoor",
+          "label": "A-AC06｜冷氣室外機",
+          "rect_mm": [
+            1350.0,
+            100.0,
+            900,
+            350
+          ]
+        },
+        {
+          "id": "front-hall:reserve:0",
+          "label": "circulation",
+          "rect_mm": [
+            4720,
+            4860,
+            1200,
+            6300
+          ]
+        },
+        {
+          "id": "front-hall:reserve:1",
+          "label": "door-approach",
+          "rect_mm": [
+            4640.0,
+            7510.0,
+            900.0,
+            1100.0
+          ]
+        },
+        {
+          "id": "front-hall:reserve:2",
+          "label": "door-approach",
+          "rect_mm": [
+            4930.0,
+            10340.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "back-hall:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            2360.0,
+            14050.0,
+            900.0,
+            1100.0
+          ]
+        },
+        {
+          "id": "back-hall:reserve:1",
+          "label": "door-approach",
+          "rect_mm": [
+            2410.0,
+            14730.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "front-landing:reserve:0",
+          "label": "stairs-landing",
+          "rect_mm": [
+            80,
+            4950,
+            2000,
+            930
+          ]
+        },
+        {
+          "id": "front-landing:reserve:1",
+          "label": "door-approach",
+          "rect_mm": [
+            3300.0,
+            4780.0,
+            1100.0,
+            900.0
+          ]
+        }
+      ],
+      "routes": [],
+      "review": {
+        "failures": [],
+        "footprint_sqm": 0.405,
+        "additional_floor_footprint_sqm": 0.405,
+        "shared_operation_ids": [],
+        "shared_route_ids": [],
+        "scope": "listed-2D-bodies-reservations-and-routes-only-not-whole-route-or-professional-approval",
+        "actual_height_load_product_door_operation_and_access": "unknown"
+      },
+      "source_floor_hash": "7fa1949bdaf1969cca84127ca9a41863aa1d7ea81988e52cb16788f9d5734df6",
+      "adopted": false,
+      "plan_file": "A-3F.svg",
+      "plan_source": "structured/coordination/upper-floor-storage-v1/A-3F.svg",
+      "plan_sha256": "ae1e322f57e80ec0560361344a1699c58c2ec5610d1562878679e2657fbd609e",
+      "storage_geometry": {
+        "rect_mm": [
+          2275,
+          5995,
+          900,
+          450
+        ],
+        "operation_mm": [
+          2275,
+          6445,
+          900,
+          700
+        ],
+        "height_mm": 1800
+      },
+      "surroundings_display": "2D-footprints-only-no-invented-walls-heights-stair-slabs-or-clearances"
+    },
+    {
+      "id": "A-RF",
+      "building": "A",
+      "floor": "floor-4",
+      "format": "model",
+      "source": "structured/candidates/kaohsiung-house-options/c-stair-integration.json",
+      "option": "a-rear-study",
+      "room": "laundry-rf",
+      "label": "後平台防雨工具櫃",
+      "rect_mm": [
+        115,
+        14500,
+        900,
+        450
+      ],
+      "operation_mm": [
+        115,
+        14950,
+        900,
+        700
+      ],
+      "height_mm": 900,
+      "note": "只放耐候工具／清潔備品；不拿弱電立管當雜物間，不新增屋頂房間。錨定、防水、設備拆換與荷重待核。",
+      "rooms": [
+        {
+          "id": "riser",
+          "label": "弱電立管／乾式檢修區",
+          "polygon_mm": [
+            [
+              6000.0,
+              5880.0
+            ],
+            [
+              6000.0,
+              9880.0
+            ],
+            [
+              2160.0,
+              9880.0
+            ],
+            [
+              2160.0,
+              5880.0
+            ],
+            [
+              6000.0,
+              5880.0
+            ]
+          ],
+          "items": [],
+          "doors": [
+            {
+              "a": [
+                3400.00128,
+                5880
+              ],
+              "b": [
+                4600.00128,
+                5880
+              ]
+            },
+            {
+              "a": [
+                2160.0,
+                9880
+              ],
+              "b": [
+                6000.0,
+                9880
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "other"
+        },
+        {
+          "id": "water-tank",
+          "label": "水塔候選區",
+          "polygon_mm": [
+            [
+              2000.0,
+              11380.0
+            ],
+            [
+              2000.0,
+              14380.0
+            ],
+            [
+              0.0,
+              14380.0
+            ],
+            [
+              0.0,
+              11380.0
+            ],
+            [
+              2000.0,
+              11380.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "A:floor-4:water-tank:furniture:water-tank",
+              "label": "1000L 水塔",
+              "rect_mm": [
+                450.0,
+                12330.0,
+                1100.0,
+                1100.0
+              ],
+              "operation_mm": null
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                550.0,
+                11380
+              ],
+              "b": [
+                1450.0,
+                11380
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": true,
+          "kind": "other"
+        },
+        {
+          "id": "vf800",
+          "label": "加壓候選區",
+          "polygon_mm": [
+            [
+              4000.0,
+              11380.0
+            ],
+            [
+              4000.0,
+              14380.0
+            ],
+            [
+              2000.0,
+              14380.0
+            ],
+            [
+              2000.0,
+              11380.0
+            ],
+            [
+              4000.0,
+              11380.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "A:floor-4:vf800:furniture:pressure-pump",
+              "label": "VF800 恆壓泵",
+              "rect_mm": [
+                2600.0,
+                12580.0,
+                800.0,
+                600.0
+              ],
+              "operation_mm": null
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                2550.0,
+                11380
+              ],
+              "b": [
+                3450.0,
+                11380
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": true,
+          "kind": "other"
+        },
+        {
+          "id": "haier",
+          "label": "熱泵候選區",
+          "polygon_mm": [
+            [
+              6000.0,
+              11380.0
+            ],
+            [
+              6000.0,
+              14380.0
+            ],
+            [
+              4000.0,
+              14380.0
+            ],
+            [
+              4000.0,
+              11380.0
+            ],
+            [
+              6000.0,
+              11380.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "A:floor-4:haier:furniture:heat-pump",
+              "label": "Haier 熱泵熱水器",
+              "rect_mm": [
+                4550.0,
+                12480.0,
+                900.0,
+                800.0
+              ],
+              "operation_mm": null
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                4550.0,
+                11380
+              ],
+              "b": [
+                5450.0,
+                11380
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": true,
+          "kind": "other"
+        },
+        {
+          "id": "solar",
+          "label": "太陽能候選區（結構待核）",
+          "polygon_mm": [
+            [
+              6000.0,
+              0.0
+            ],
+            [
+              6000.0,
+              4500.0
+            ],
+            [
+              0.0,
+              4500.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              6000.0,
+              0.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "A:floor-4:solar:furniture:solar-inverter",
+              "label": "太陽能逆變器",
+              "rect_mm": [
+                1400.0,
+                4070.0,
+                800.0,
+                350.0
+              ],
+              "operation_mm": null
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                2400.0,
+                4500
+              ],
+              "b": [
+                3600.0,
+                4500
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": true,
+          "kind": "service"
+        },
+        {
+          "id": "laundry-rf",
+          "label": "曬衣／設備維修平台（非冷氣集中區）",
+          "polygon_mm": [
+            [
+              6000.0,
+              14380.0
+            ],
+            [
+              6000.0,
+              17630.0
+            ],
+            [
+              0.0,
+              17630.0
+            ],
+            [
+              0.0,
+              14380.0
+            ],
+            [
+              6000.0,
+              14380.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "A:floor-4:laundry-rf:furniture:clothes-rack",
+              "label": "曬衣架",
+              "rect_mm": [
+                1800.0,
+                15705.0,
+                2400.0,
+                600.0
+              ],
+              "operation_mm": null
+            }
+          ],
+          "doors": [],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": true,
+          "kind": "service"
+        },
+        {
+          "id": "stair-rf",
+          "label": "同軸樓梯屋突（合法性待核）",
+          "polygon_mm": [
+            [
+              2160.0,
+              5880.0
+            ],
+            [
+              2160.0,
+              9880.0
+            ],
+            [
+              0.0,
+              9880.0
+            ],
+            [
+              0.0,
+              5880.0
+            ],
+            [
+              2160.0,
+              5880.0
+            ]
+          ],
+          "items": [],
+          "doors": [
+            {
+              "a": [
+                80.0,
+                5880
+              ],
+              "b": [
+                2080.0,
+                5880
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "stair"
+        },
+        {
+          "id": "front-landing",
+          "label": "RF共用到達／維修平台（非第五層）",
+          "polygon_mm": [
+            [
+              6000.0,
+              4500.0
+            ],
+            [
+              6000.0,
+              5880.0
+            ],
+            [
+              0.0,
+              5880.0
+            ],
+            [
+              0.0,
+              4500.0
+            ],
+            [
+              6000.0,
+              4500.0
+            ]
+          ],
+          "items": [],
+          "doors": [
+            {
+              "a": [
+                2400.0,
+                4500
+              ],
+              "b": [
+                3600.0,
+                4500
+              ]
+            },
+            {
+              "a": [
+                80.0,
+                5880
+              ],
+              "b": [
+                2080.0,
+                5880
+              ]
+            },
+            {
+              "a": [
+                3400.002,
+                5880
+              ],
+              "b": [
+                4600.002,
+                5880
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "other"
+        },
+        {
+          "id": "rear-hall",
+          "label": "RF共用設備維修通道",
+          "polygon_mm": [
+            [
+              6000.0,
+              9880.0
+            ],
+            [
+              6000.0,
+              11380.0
+            ],
+            [
+              0.0,
+              11380.0
+            ],
+            [
+              0.0,
+              9880.0
+            ],
+            [
+              6000.0,
+              9880.0
+            ]
+          ],
+          "items": [],
+          "doors": [
+            {
+              "a": [
+                550.0020000000001,
+                11380
+              ],
+              "b": [
+                1450.002,
+                11380
+              ]
+            },
+            {
+              "a": [
+                2550.0,
+                11380
+              ],
+              "b": [
+                3450.0,
+                11380
+              ]
+            },
+            {
+              "a": [
+                4549.998,
+                11380
+              ],
+              "b": [
+                5449.998,
+                11380
+              ]
+            },
+            {
+              "a": [
+                2160.0000000000005,
+                9880
+              ],
+              "b": [
+                6000.0,
+                9880
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "other"
+        }
+      ],
+      "fixed": [
+        {
+          "id": "water-tank:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            450.0,
+            11380.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "vf800:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            2450.0,
+            11380.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "haier:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            4450.0,
+            11380.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "solar:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            2300.0,
+            3600.0,
+            1400.0,
+            900.0
+          ]
+        },
+        {
+          "id": "stair-rf:reserve:0",
+          "label": "stairs",
+          "rect_mm": [
+            80,
+            5950,
+            2000,
+            3860
+          ]
+        },
+        {
+          "id": "front-landing:reserve:0",
+          "label": "stairs-landing",
+          "rect_mm": [
+            80,
+            4950,
+            2000,
+            930
+          ]
+        },
+        {
+          "id": "front-landing:reserve:1",
+          "label": "door-approach",
+          "rect_mm": [
+            2300.0,
+            4500.0,
+            1400.0,
+            900.0
+          ]
+        },
+        {
+          "id": "rear-hall:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            450.0,
+            10480.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "rear-hall:reserve:1",
+          "label": "door-approach",
+          "rect_mm": [
+            2450.0,
+            10480.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "rear-hall:reserve:2",
+          "label": "door-approach",
+          "rect_mm": [
+            4450.0,
+            10480.0,
+            1100.0,
+            900.0
+          ]
+        }
+      ],
+      "routes": [],
+      "review": {
+        "failures": [],
+        "footprint_sqm": 0.405,
+        "additional_floor_footprint_sqm": 0.405,
+        "shared_operation_ids": [],
+        "shared_route_ids": [],
+        "scope": "listed-2D-bodies-reservations-and-routes-only-not-whole-route-or-professional-approval",
+        "actual_height_load_product_door_operation_and_access": "unknown"
+      },
+      "source_floor_hash": "330c400de459651b240f78571e1b12af3ddbc48def841a1d4498c9ba59292b4c",
+      "adopted": false,
+      "plan_file": "A-RF.svg",
+      "plan_source": "structured/coordination/upper-floor-storage-v1/A-RF.svg",
+      "plan_sha256": "7edf851ef4b55b253220bf9d5daed5e4e345762ab51ce73922860830efd1df1a",
+      "storage_geometry": {
+        "rect_mm": [
+          115,
+          14500,
+          900,
+          450
+        ],
+        "operation_mm": [
+          115,
+          14950,
+          900,
+          700
+        ],
+        "height_mm": 900
+      },
+      "surroundings_display": "2D-footprints-only-no-invented-walls-heights-stair-slabs-or-clearances"
+    },
+    {
+      "id": "B-2F",
+      "building": "B",
+      "floor": "floor-2",
+      "format": "p4",
+      "source": "structured/coordination/b-front-drainage-layout-v1/review.json",
+      "room": "quiet-living",
+      "label": "安靜起居側緣乾式雜物櫃",
+      "rect_mm": [
+        115,
+        9700,
+        450,
+        1200
+      ],
+      "operation_mm": [
+        565,
+        9700,
+        700,
+        1200
+      ],
+      "height_mm": 1800,
+      "note": "沿左側牆放輕量乾燥備品；不放濕設備、化學品或震動電器，不占獨立乾背室、主臥與兩衛，不改兩種一樓搬轎分支。",
+      "rooms": [
+        {
+          "id": "stair",
+          "label": "原同軸樓梯／平台，未改本體",
+          "polygon_mm": [
+            [
+              2400.0,
+              3900.0
+            ],
+            [
+              2400.0,
+              9100.0
+            ],
+            [
+              0.0,
+              9100.0
+            ],
+            [
+              0.0,
+              3900.0
+            ]
+          ],
+          "kind": "dry",
+          "items": [],
+          "shafts_mm": [],
+          "doors": [],
+          "windows_mm": []
+        },
+        {
+          "id": "quiet-living",
+          "label": "安靜起居／閱讀，禁睡及高活動",
+          "polygon_mm": [
+            [
+              6000.0,
+              3900.0
+            ],
+            [
+              2400.0,
+              3900.0
+            ],
+            [
+              2400.0,
+              9100.0
+            ],
+            [
+              0.0,
+              9100.0
+            ],
+            [
+              0.0,
+              11370.0
+            ],
+            [
+              6000.0,
+              11370.0
+            ],
+            [
+              6000.0,
+              9100.0
+            ]
+          ],
+          "kind": "dry",
+          "items": [
+            {
+              "id": "sofa",
+              "label": "原1800×900沙發",
+              "rect_mm": [
+                4950,
+                5700,
+                900,
+                1800
+              ],
+              "operation_mm": [
+                4250,
+                5700,
+                700,
+                1800
+              ]
+            },
+            {
+              "id": "table",
+              "label": "原1100×600茶几",
+              "rect_mm": [
+                3600,
+                6050,
+                600,
+                1100
+              ]
+            },
+            {
+              "id": "tv",
+              "label": "原1000×80電視",
+              "rect_mm": [
+                2550,
+                6200,
+                80,
+                1000
+              ]
+            }
+          ],
+          "shafts_mm": [],
+          "doors": [
+            {
+              "a": [
+                4200,
+                3900
+              ],
+              "b": [
+                5330,
+                3900
+              ],
+              "hinge": "right",
+              "opens": "inside",
+              "swing_rect_mm": [
+                4200,
+                3900,
+                1130,
+                1130
+              ]
+            }
+          ],
+          "windows_mm": []
+        },
+        {
+          "id": "dry-protection",
+          "label": "獨立乾保護室，禁床／濕管設備",
+          "polygon_mm": [
+            [
+              4670.0,
+              11370.0
+            ],
+            [
+              4670.0,
+              12970.0
+            ],
+            [
+              2640.0,
+              12970.0
+            ],
+            [
+              2640.0,
+              11370.0
+            ]
+          ],
+          "kind": "dry",
+          "items": [],
+          "shafts_mm": [],
+          "doors": [
+            {
+              "a": [
+                2850,
+                11370
+              ],
+              "b": [
+                3980,
+                11370
+              ],
+              "hinge": "left",
+              "opens": "inside",
+              "swing_rect_mm": [
+                2850,
+                11370,
+                1130,
+                1130
+              ]
+            }
+          ],
+          "windows_mm": []
+        },
+        {
+          "id": "public-bath",
+          "label": "前側有窗公衛",
+          "polygon_mm": [
+            [
+              3270.0,
+              0.0
+            ],
+            [
+              3270.0,
+              1980.0
+            ],
+            [
+              0.0,
+              1980.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "kind": "wet",
+          "items": [
+            {
+              "id": "shower",
+              "label": "原900×900淋浴移後右，向前操作",
+              "rect_mm": [
+                1635,
+                925,
+                900,
+                900
+              ],
+              "operation_mm": [
+                1635,
+                225,
+                900,
+                700
+              ]
+            },
+            {
+              "id": "toilet",
+              "label": "原700×450馬桶移前左，背靠左牆",
+              "rect_mm": [
+                115,
+                115,
+                700,
+                450
+              ],
+              "operation_mm": [
+                815,
+                115,
+                700,
+                700
+              ]
+            },
+            {
+              "id": "basin",
+              "label": "原600×450面盆轉向左牆",
+              "rect_mm": [
+                115,
+                1125,
+                450,
+                600
+              ],
+              "operation_mm": [
+                565,
+                1125,
+                700,
+                600
+              ]
+            }
+          ],
+          "shafts_mm": [
+            [
+              115,
+              1780,
+              400,
+              400
+            ]
+          ],
+          "doors": [],
+          "windows_mm": [
+            [
+              2050,
+              0,
+              1000,
+              0
+            ]
+          ]
+        },
+        {
+          "id": "front-open",
+          "label": "普通露台／景觀候選與獨立設備區",
+          "polygon_mm": [
+            [
+              6000.0,
+              3900.0
+            ],
+            [
+              6000.0,
+              0.0
+            ],
+            [
+              3270.0,
+              0.0
+            ],
+            [
+              3270.0,
+              3900.0
+            ]
+          ],
+          "kind": "dry",
+          "items": [],
+          "shafts_mm": [],
+          "doors": [],
+          "windows_mm": []
+        },
+        {
+          "id": "tea-foyer",
+          "label": "濕茶水前室",
+          "polygon_mm": [
+            [
+              3270.0,
+              1980.0
+            ],
+            [
+              3270.0,
+              3900.0
+            ],
+            [
+              0.0,
+              3900.0
+            ],
+            [
+              0.0,
+              1980.0
+            ]
+          ],
+          "kind": "wet",
+          "items": [
+            {
+              "id": "tea-counter",
+              "label": "原1500×600濕茶水台橫放靠前牆",
+              "rect_mm": [
+                1655,
+                2135,
+                1500,
+                600
+              ],
+              "operation_mm": [
+                1655,
+                2735,
+                1500,
+                700
+              ]
+            }
+          ],
+          "shafts_mm": [
+            [
+              115,
+              1780,
+              400,
+              400
+            ]
+          ],
+          "doors": [],
+          "windows_mm": []
+        },
+        {
+          "id": "master",
+          "label": "主臥乾區（含更衣與入口）",
+          "polygon_mm": [
+            [
+              6000.0,
+              11370.0
+            ],
+            [
+              4670.0,
+              11370.0
+            ],
+            [
+              4670.0,
+              12970.0
+            ],
+            [
+              2640.0,
+              12970.0
+            ],
+            [
+              2640.0,
+              11370.0
+            ],
+            [
+              0.0,
+              11370.0
+            ],
+            [
+              0.0,
+              17630.0
+            ],
+            [
+              3600.0,
+              17630.0
+            ],
+            [
+              3600.0,
+              14500.0
+            ],
+            [
+              6000.0,
+              14500.0
+            ]
+          ],
+          "kind": "bedroom",
+          "items": [
+            {
+              "id": "bed",
+              "label": "原1800×2000床轉向／床頭靠左實牆",
+              "rect_mm": [
+                150,
+                15000,
+                2000,
+                1800
+              ],
+              "operation_mm": [
+                2150,
+                15000,
+                900,
+                1800
+              ]
+            },
+            {
+              "id": "wardrobe",
+              "label": "原1800×600衣櫃",
+              "rect_mm": [
+                250,
+                13100,
+                1800,
+                600
+              ],
+              "operation_mm": [
+                250,
+                13700,
+                1800,
+                700
+              ]
+            },
+            {
+              "id": "vanity",
+              "label": "原1200×500梳妝台轉向",
+              "rect_mm": [
+                150,
+                11600,
+                500,
+                1200
+              ],
+              "operation_mm": [
+                650,
+                11600,
+                700,
+                1200
+              ]
+            }
+          ],
+          "shafts_mm": [],
+          "doors": [
+            {
+              "a": [
+                4770,
+                11370
+              ],
+              "b": [
+                5900,
+                11370
+              ],
+              "hinge": "right",
+              "opens": "inside",
+              "swing_rect_mm": [
+                4770,
+                11370,
+                1130,
+                1130
+              ]
+            }
+          ],
+          "windows_mm": [
+            [
+              750,
+              17630,
+              2400,
+              0
+            ]
+          ]
+        },
+        {
+          "id": "private-bath",
+          "label": "後右有窗套衛",
+          "polygon_mm": [
+            [
+              6000.0,
+              14500.0
+            ],
+            [
+              6000.0,
+              17630.0
+            ],
+            [
+              3600.0,
+              17630.0
+            ],
+            [
+              3600.0,
+              14500.0
+            ]
+          ],
+          "kind": "wet",
+          "items": [
+            {
+              "id": "basin",
+              "label": "原900×550盆櫃轉向",
+              "rect_mm": [
+                5335,
+                14615,
+                550,
+                900
+              ],
+              "operation_mm": [
+                4635,
+                14615,
+                700,
+                900
+              ]
+            },
+            {
+              "id": "toilet",
+              "label": "原450×700馬桶轉向",
+              "rect_mm": [
+                3850,
+                14615,
+                700,
+                450
+              ],
+              "operation_mm": [
+                3850,
+                15065,
+                700,
+                700
+              ]
+            },
+            {
+              "id": "shower",
+              "label": "原900淋浴",
+              "rect_mm": [
+                4985,
+                16615,
+                900,
+                900
+              ],
+              "operation_mm": [
+                4285,
+                16615,
+                700,
+                900
+              ]
+            }
+          ],
+          "shafts_mm": [
+            [
+              5485,
+              15700,
+              400,
+              400
+            ]
+          ],
+          "doors": [
+            {
+              "a": [
+                3600,
+                15100
+              ],
+              "b": [
+                3600,
+                16230
+              ],
+              "hinge": "rear",
+              "opens": "outside-left",
+              "swing_rect_mm": [
+                2470,
+                15100,
+                1130,
+                1130
+              ]
+            }
+          ],
+          "windows_mm": [
+            [
+              4750,
+              17630,
+              900,
+              0
+            ]
+          ]
+        }
+      ],
+      "fixed": [
+        {
+          "id": "public-bath:shaft:0",
+          "label": "管道井預留",
+          "rect_mm": [
+            115,
+            1780,
+            400,
+            400
+          ]
+        },
+        {
+          "id": "tea-foyer:shaft:0",
+          "label": "管道井預留",
+          "rect_mm": [
+            115,
+            1780,
+            400,
+            400
+          ]
+        },
+        {
+          "id": "private-bath:shaft:0",
+          "label": "管道井預留",
+          "rect_mm": [
+            5485,
+            15700,
+            400,
+            400
+          ]
+        },
+        {
+          "id": "quiet-living:door:0",
+          "label": "原門活動包絡",
+          "rect_mm": [
+            4200,
+            3900,
+            1130,
+            1130
+          ]
+        },
+        {
+          "id": "dry-protection:door:0",
+          "label": "原門活動包絡",
+          "rect_mm": [
+            2850,
+            11370,
+            1130,
+            1130
+          ]
+        },
+        {
+          "id": "master:door:0",
+          "label": "原門活動包絡",
+          "rect_mm": [
+            4770,
+            11370,
+            1130,
+            1130
+          ]
+        },
+        {
+          "id": "private-bath:door:0",
+          "label": "原門活動包絡",
+          "rect_mm": [
+            2470,
+            15100,
+            1130,
+            1130
+          ]
+        }
+      ],
+      "routes": [
+        {
+          "id": "master-to-ensuite",
+          "width_mm": 900,
+          "points_mm": [
+            [
+              5335,
+              10800
+            ],
+            [
+              5335,
+              12270
+            ],
+            [
+              5335,
+              13700
+            ],
+            [
+              3035,
+              13700
+            ],
+            [
+              3035,
+              15665
+            ],
+            [
+              4165,
+              15665
+            ]
+          ],
+          "purpose": "列明一般身體方塊至套衛，門全開；非輪椅運動學",
+          "within_model_floor": true,
+          "outside_sqm": 0.0,
+          "body_hits": [],
+          "shaft_hits": [],
+          "door_states": [
+            {
+              "angle_deg": 90,
+              "hits": []
+            },
+            {
+              "angle_deg": 45,
+              "hits": [
+                "master:door-0",
+                "private-bath:door-0"
+              ]
+            },
+            {
+              "angle_deg": 0,
+              "hits": [
+                "master:door-0",
+                "private-bath:door-0"
+              ]
+            }
+          ],
+          "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+        },
+        {
+          "id": "master-to-bed-foot",
+          "width_mm": 900,
+          "points_mm": [
+            [
+              5335,
+              10800
+            ],
+            [
+              5335,
+              12270
+            ],
+            [
+              5335,
+              13700
+            ],
+            [
+              3000,
+              13700
+            ],
+            [
+              3000,
+              14450
+            ],
+            [
+              2600,
+              14450
+            ],
+            [
+              2600,
+              15550
+            ]
+          ],
+          "purpose": "列明方塊至床尾；不宣稱整圈雙人照護",
+          "within_model_floor": true,
+          "outside_sqm": 0.0,
+          "body_hits": [],
+          "shaft_hits": [],
+          "door_states": [
+            {
+              "angle_deg": 90,
+              "hits": []
+            },
+            {
+              "angle_deg": 45,
+              "hits": [
+                "master:door-0",
+                "private-bath:door-0"
+              ]
+            },
+            {
+              "angle_deg": 0,
+              "hits": [
+                "master:door-0"
+              ]
+            }
+          ],
+          "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+        },
+        {
+          "id": "ensuite-shower-operation",
+          "width_mm": 700,
+          "points_mm": [
+            [
+              4165,
+              15665
+            ],
+            [
+              4635,
+              16000
+            ],
+            [
+              4635,
+              17065
+            ]
+          ],
+          "purpose": "套衛入口至淋浴操作帶一般方塊，非照護",
+          "within_model_floor": true,
+          "outside_sqm": 0.0,
+          "body_hits": [],
+          "shaft_hits": [],
+          "door_states": [
+            {
+              "angle_deg": 90,
+              "hits": []
+            },
+            {
+              "angle_deg": 45,
+              "hits": []
+            },
+            {
+              "angle_deg": 0,
+              "hits": []
+            }
+          ],
+          "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+        }
+      ],
+      "review": {
+        "failures": [],
+        "footprint_sqm": 0.54,
+        "additional_floor_footprint_sqm": 0.54,
+        "shared_operation_ids": [],
+        "shared_route_ids": [],
+        "scope": "listed-2D-bodies-reservations-and-routes-only-not-whole-route-or-professional-approval",
+        "actual_height_load_product_door_operation_and_access": "unknown"
+      },
+      "source_floor_hash": "0fed77cad7689f84c595685f5bd1e0f6cb0d0e24a38e47245fb3de8b9a700f1c",
+      "adopted": false,
+      "plan_file": "B-2F.svg",
+      "plan_source": "structured/coordination/upper-floor-storage-v1/B-2F.svg",
+      "plan_sha256": "1bd75596611d7b34ce5a9bffaa7928ef73a5359b038846bdcd55ed94e87cd9a8",
+      "storage_geometry": {
+        "rect_mm": [
+          115,
+          9700,
+          450,
+          1200
+        ],
+        "operation_mm": [
+          565,
+          9700,
+          700,
+          1200
+        ],
+        "height_mm": 1800
+      },
+      "surroundings_display": "2D-footprints-only-no-invented-walls-heights-stair-slabs-or-clearances"
+    },
+    {
+      "id": "B-3F",
+      "building": "B",
+      "floor": "floor-3",
+      "format": "q3",
+      "source": "structured/coordination/b-ktv-stair-options-v1/review.json",
+      "room": "quiet-living",
+      "label": "公共安靜區側緣乾式雜物櫃",
+      "rect_mm": [
+        115,
+        9700,
+        450,
+        1200
+      ],
+      "operation_mm": [
+        565,
+        9700,
+        700,
+        1200
+      ],
+      "height_mm": 1800,
+      "note": "同位置接Q3三樓完整圖，不占KTV聲學面積或設備機櫃，不把神桌乾背保護室拿來堆雜物；原KTV／RF缺口仍保留。",
+      "rooms": [
+        {
+          "id": "stair",
+          "label": "3F縮短上層折返平台的樓梯候選",
+          "polygon_mm": [
+            [
+              2400.0,
+              4700.0
+            ],
+            [
+              2400.0,
+              9100.0
+            ],
+            [
+              0.0,
+              9100.0
+            ],
+            [
+              0.0,
+              4700.0
+            ]
+          ],
+          "kind": "dry",
+          "items": [],
+          "shafts_mm": [],
+          "doors": [],
+          "windows_mm": []
+        },
+        {
+          "id": "quiet-living",
+          "label": "安靜起居／閱讀，禁睡及高活動",
+          "polygon_mm": [
+            [
+              6000.0,
+              3900.0
+            ],
+            [
+              2400.0,
+              3900.0
+            ],
+            [
+              2400.0,
+              9100.0
+            ],
+            [
+              0.0,
+              9100.0
+            ],
+            [
+              0.0,
+              11370.0
+            ],
+            [
+              6000.0,
+              11370.0
+            ],
+            [
+              6000.0,
+              9100.0
+            ]
+          ],
+          "kind": "dry",
+          "items": [
+            {
+              "id": "sofa",
+              "label": "原1800×900沙發",
+              "rect_mm": [
+                4950,
+                5700,
+                900,
+                1800
+              ],
+              "operation_mm": [
+                4250,
+                5700,
+                700,
+                1800
+              ]
+            },
+            {
+              "id": "table",
+              "label": "原1100×600茶几",
+              "rect_mm": [
+                3600,
+                6050,
+                600,
+                1100
+              ]
+            },
+            {
+              "id": "tv",
+              "label": "原1000×80電視",
+              "rect_mm": [
+                2550,
+                6200,
+                80,
+                1000
+              ]
+            }
+          ],
+          "shafts_mm": [],
+          "doors": [],
+          "windows_mm": []
+        },
+        {
+          "id": "dry-protection",
+          "label": "獨立乾保護室，禁床／濕管設備",
+          "polygon_mm": [
+            [
+              4670.0,
+              11370.0
+            ],
+            [
+              4670.0,
+              12970.0
+            ],
+            [
+              2640.0,
+              12970.0
+            ],
+            [
+              2640.0,
+              11370.0
+            ]
+          ],
+          "kind": "dry",
+          "items": [],
+          "shafts_mm": [],
+          "doors": [
+            {
+              "a": [
+                2850,
+                11370
+              ],
+              "b": [
+                3980,
+                11370
+              ],
+              "hinge": "left",
+              "opens": "inside",
+              "swing_rect_mm": [
+                2850,
+                11370,
+                1130,
+                1130
+              ]
+            }
+          ],
+          "windows_mm": []
+        },
+        {
+          "id": "front-entertainment",
+          "label": "Q3 L形前側娛樂／階梯代價比較",
+          "polygon_mm": [
+            [
+              6000.0,
+              3900.0
+            ],
+            [
+              6000.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              3900.0
+            ],
+            [
+              0.0,
+              4700.0
+            ],
+            [
+              2400.0,
+              4700.0
+            ],
+            [
+              2400.0,
+              3900.0
+            ]
+          ],
+          "kind": "high-activity",
+          "items": [
+            {
+              "id": "sofa",
+              "label": "原1800×900沙發保尺寸",
+              "rect_mm": [
+                3000,
+                2600,
+                1800,
+                900
+              ],
+              "operation_mm": [
+                3000,
+                1900,
+                1800,
+                700
+              ]
+            },
+            {
+              "id": "table",
+              "label": "原1200×600桌保尺寸",
+              "rect_mm": [
+                3300,
+                1200,
+                1200,
+                600
+              ]
+            },
+            {
+              "id": "tv",
+              "label": "原1000×80螢幕內退100mm",
+              "rect_mm": [
+                3500,
+                315,
+                1000,
+                80
+              ]
+            },
+            {
+              "id": "service-cabinet",
+              "label": "600×900機櫃預留／非選機",
+              "rect_mm": [
+                315,
+                2315,
+                600,
+                900
+              ],
+              "operation_mm": [
+                915,
+                2315,
+                700,
+                900
+              ]
+            }
+          ],
+          "shafts_mm": [
+            [
+              115,
+              1780,
+              400,
+              400
+            ]
+          ],
+          "doors": [
+            {
+              "a": [
+                950,
+                4700
+              ],
+              "b": [
+                2280,
+                4700
+              ],
+              "hinge": "right",
+              "opens": "inside"
+            }
+          ],
+          "windows_mm": [
+            [
+              2050,
+              0,
+              1000,
+              0
+            ]
+          ]
+        },
+        {
+          "id": "guest",
+          "label": "後客房／偏位入口",
+          "polygon_mm": [
+            [
+              2400.0,
+              13500.0
+            ],
+            [
+              0.0,
+              13500.0
+            ],
+            [
+              0.0,
+              14100.0
+            ],
+            [
+              0.0,
+              17630.0
+            ],
+            [
+              3600.0,
+              17630.0
+            ],
+            [
+              3600.0,
+              14100.0
+            ],
+            [
+              2400.0,
+              14100.0
+            ]
+          ],
+          "kind": "bedroom",
+          "items": [
+            {
+              "id": "bed",
+              "label": "原1800×2000客床轉向／床頭靠左",
+              "rect_mm": [
+                150,
+                15550,
+                2000,
+                1800
+              ]
+            },
+            {
+              "id": "wardrobe",
+              "label": "原1800×600櫃轉向",
+              "rect_mm": [
+                115,
+                13615,
+                600,
+                1800
+              ],
+              "operation_mm": [
+                715,
+                13615,
+                700,
+                1800
+              ]
+            }
+          ],
+          "shafts_mm": [],
+          "doors": [],
+          "windows_mm": [
+            [
+              250,
+              17630,
+              2400,
+              0
+            ]
+          ]
+        },
+        {
+          "id": "rear-bath",
+          "label": "後側有窗公衛候選／對齊2F套衛",
+          "polygon_mm": [
+            [
+              6000.0,
+              14500.0
+            ],
+            [
+              6000.0,
+              17630.0
+            ],
+            [
+              3600.0,
+              17630.0
+            ],
+            [
+              3600.0,
+              14500.0
+            ]
+          ],
+          "kind": "wet",
+          "items": [
+            {
+              "id": "basin",
+              "label": "原600×450面盆轉右牆",
+              "rect_mm": [
+                5435,
+                14615,
+                450,
+                600
+              ],
+              "operation_mm": [
+                4735,
+                14615,
+                700,
+                600
+              ]
+            },
+            {
+              "id": "toilet",
+              "label": "原450×700馬桶轉向左牆",
+              "rect_mm": [
+                3715,
+                14615,
+                700,
+                450
+              ],
+              "operation_mm": [
+                4415,
+                14615,
+                700,
+                450
+              ]
+            },
+            {
+              "id": "shower",
+              "label": "原900×900淋浴",
+              "rect_mm": [
+                4985,
+                16615,
+                900,
+                900
+              ],
+              "operation_mm": [
+                4285,
+                16615,
+                700,
+                900
+              ]
+            }
+          ],
+          "shafts_mm": [
+            [
+              5485,
+              15700,
+              400,
+              400
+            ]
+          ],
+          "doors": [],
+          "windows_mm": [
+            [
+              4750,
+              17630,
+              900,
+              0
+            ]
+          ]
+        },
+        {
+          "id": "working-court",
+          "label": "需RF開口的工作天井候選",
+          "polygon_mm": [
+            [
+              2400.0,
+              11370.0
+            ],
+            [
+              2400.0,
+              13500.0
+            ],
+            [
+              0.0,
+              13500.0
+            ],
+            [
+              0.0,
+              11370.0
+            ]
+          ],
+          "kind": "wet",
+          "items": [],
+          "shafts_mm": [],
+          "doors": [
+            {
+              "a": [
+                1150,
+                11370
+              ],
+              "b": [
+                2280,
+                11370
+              ],
+              "hinge": "left",
+              "opens": "inside"
+            }
+          ],
+          "windows_mm": [],
+          "outdoor_status": "requires-new-RF-void-not-approved-work-balcony"
+        },
+        {
+          "id": "rear-access",
+          "label": "公共到達／不重算房間面積",
+          "polygon_mm": [
+            [
+              6000.0,
+              11370.0
+            ],
+            [
+              4670.0,
+              11370.0
+            ],
+            [
+              4670.0,
+              12970.0
+            ],
+            [
+              2640.0,
+              12970.0
+            ],
+            [
+              2640.0,
+              11370.0
+            ],
+            [
+              2400.0,
+              11370.0
+            ],
+            [
+              2400.0,
+              13500.0
+            ],
+            [
+              2400.0,
+              14100.0
+            ],
+            [
+              3600.0,
+              14100.0
+            ],
+            [
+              3600.0,
+              14500.0
+            ],
+            [
+              6000.0,
+              14500.0
+            ]
+          ],
+          "kind": "dry",
+          "items": [],
+          "shafts_mm": [],
+          "doors": [],
+          "windows_mm": []
+        }
+      ],
+      "fixed": [
+        {
+          "id": "front-entertainment:shaft:0",
+          "label": "管道井預留",
+          "rect_mm": [
+            115,
+            1780,
+            400,
+            400
+          ]
+        },
+        {
+          "id": "rear-bath:shaft:0",
+          "label": "管道井預留",
+          "rect_mm": [
+            5485,
+            15700,
+            400,
+            400
+          ]
+        },
+        {
+          "id": "dry-protection:door:0",
+          "label": "原門活動包絡",
+          "rect_mm": [
+            2850,
+            11370,
+            1130,
+            1130
+          ]
+        }
+      ],
+      "routes": [
+        {
+          "id": "KTV-seat-operation",
+          "points_mm": [
+            [
+              1615,
+              5270
+            ],
+            [
+              1615,
+              2250
+            ],
+            [
+              3500,
+              2250
+            ]
+          ],
+          "width_mm": 700,
+          "door": "front",
+          "inside_explicit_surface": true,
+          "body_hits": [],
+          "shaft_or_wrap_hit": false,
+          "shared_operations": [
+            "front-entertainment:sofa",
+            "front-entertainment:service-cabinet"
+          ],
+          "actual_person_or_product_clearance": "unknown"
+        },
+        {
+          "id": "quiet-from-landing",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              4000,
+              5270
+            ]
+          ],
+          "width_mm": 700,
+          "door": "side",
+          "inside_explicit_surface": true,
+          "body_hits": [],
+          "shaft_or_wrap_hit": false,
+          "shared_operations": [],
+          "actual_person_or_product_clearance": "unknown"
+        },
+        {
+          "id": "KTV-arrival900",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1615,
+              5270
+            ],
+            [
+              1615,
+              2250
+            ]
+          ],
+          "width_mm": 900,
+          "door": "front",
+          "inside_explicit_surface": true,
+          "body_hits": [],
+          "shaft_or_wrap_hit": false,
+          "shared_operations": [
+            "front-entertainment:service-cabinet"
+          ],
+          "actual_person_or_product_clearance": "unknown"
+        }
+      ],
+      "review": {
+        "failures": [],
+        "footprint_sqm": 0.54,
+        "additional_floor_footprint_sqm": 0.54,
+        "shared_operation_ids": [],
+        "shared_route_ids": [],
+        "scope": "listed-2D-bodies-reservations-and-routes-only-not-whole-route-or-professional-approval",
+        "actual_height_load_product_door_operation_and_access": "unknown"
+      },
+      "source_floor_hash": "3bc408f7aca0d5436126dd0651ce7e7dfd191c12592c80c4c8479e32f92daf7c",
+      "adopted": false,
+      "plan_file": "B-3F.svg",
+      "plan_source": "structured/coordination/upper-floor-storage-v1/B-3F.svg",
+      "plan_sha256": "eb7d55492ed1d8d0f8434158f1afaf40153aa04d0ee489d07ff06ed0b49d60fe",
+      "storage_geometry": {
+        "rect_mm": [
+          115,
+          9700,
+          450,
+          1200
+        ],
+        "operation_mm": [
+          565,
+          9700,
+          700,
+          1200
+        ],
+        "height_mm": 1800
+      },
+      "surroundings_display": "2D-footprints-only-no-invented-walls-heights-stair-slabs-or-clearances"
+    },
+    {
+      "id": "B-RF-D1",
+      "building": "B",
+      "floor": "floor-4",
+      "format": "roof",
+      "source": "structured/coordination/b-q3-roof-coordination-v1/review.json",
+      "option": "Q3-D1-front-heat-pump",
+      "room": "front-platform",
+      "label": "折衣桌下防雨收納工作檯",
+      "rect_mm": [
+        2315,
+        1515,
+        1200,
+        450
+      ],
+      "operation_mm": [
+        2315,
+        1965,
+        1200,
+        700
+      ],
+      "height_mm": 900,
+      "reuse_item": "folding-table",
+      "note": "沿D1原折衣桌占地改為帶防雨下櫃的工作檯；原折衣功能、操作帶及分時通行保留，不再吃已不足24㎡的平台。",
+      "rooms": [
+        {
+          "id": "front-platform",
+          "label": "RF前平台／24㎡目標仍未解",
+          "polygon_mm": [
+            [
+              0,
+              0
+            ],
+            [
+              6000,
+              0
+            ],
+            [
+              6000,
+              3900
+            ],
+            [
+              0,
+              3900
+            ]
+          ],
+          "items": [
+            {
+              "id": "drying-rack",
+              "label": "1800×600移動晾衣架試排",
+              "rect_mm": [
+                4250,
+                1720,
+                600,
+                1800
+              ],
+              "operation_mm": [
+                3550,
+                1720,
+                700,
+                1800
+              ]
+            },
+            {
+              "id": "folding-table",
+              "label": "1200×450折衣桌試排",
+              "rect_mm": [
+                2315,
+                1515,
+                1200,
+                450
+              ],
+              "operation_mm": [
+                2315,
+                1965,
+                1200,
+                700
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                1150,
+                3900
+              ],
+              "b": [
+                2280,
+                3900
+              ],
+              "hinge": "left",
+              "opens": "inside"
+            }
+          ],
+          "shafts_mm": [],
+          "outdoor": true,
+          "kind": "outdoor"
+        }
+      ],
+      "fixed": [
+        {
+          "id": "tank",
+          "label": "水塔／泵浦整組預留",
+          "rect_mm": [
+            3715,
+            14615,
+            1500,
+            2000
+          ],
+          "kind": "wet-equipment",
+          "actual_product": null
+        },
+        {
+          "id": "heat-pump",
+          "label": "熱泵整組預留",
+          "rect_mm": [
+            115,
+            115,
+            2000,
+            1250
+          ],
+          "kind": "wet-equipment",
+          "actual_product": null
+        },
+        {
+          "id": "rear-air-zone",
+          "label": "後浴廁空氣出口區／非污水通氣",
+          "rect_mm": [
+            1015,
+            13700,
+            1400,
+            1800
+          ],
+          "kind": "air-zone",
+          "actual_product": null
+        },
+        {
+          "id": "front-dirty-zone",
+          "label": "前污氣出口協調區",
+          "rect_mm": [
+            115,
+            1515,
+            700,
+            700
+          ],
+          "kind": "air-zone",
+          "actual_product": null
+        },
+        {
+          "id": "rear-soil-vent",
+          "label": "後400污水通氣井投影",
+          "rect_mm": [
+            5485,
+            15700,
+            400,
+            400
+          ],
+          "kind": "pipe-zone",
+          "actual_product": null
+        },
+        {
+          "id": "representative-slot-1",
+          "label": "representative-slot-1｜冷氣室外機及維修預留（非新購台數）",
+          "rect_mm": [
+            3270,
+            115,
+            900,
+            1350
+          ],
+          "body_mm": [
+            3270,
+            115,
+            900,
+            350
+          ],
+          "kind": "cooling",
+          "actual_product": null,
+          "new_purchase_count": null
+        },
+        {
+          "id": "representative-slot-2",
+          "label": "representative-slot-2｜冷氣室外機及維修預留（非新購台數）",
+          "rect_mm": [
+            4985,
+            115,
+            900,
+            1350
+          ],
+          "body_mm": [
+            4985,
+            115,
+            900,
+            350
+          ],
+          "kind": "cooling",
+          "actual_product": null,
+          "new_purchase_count": null
+        },
+        {
+          "id": "B-AC03",
+          "label": "B-AC03｜冷氣室外機及維修預留（非新購台數）",
+          "rect_mm": [
+            3715,
+            13085,
+            900,
+            1350
+          ],
+          "body_mm": [
+            3715,
+            14085,
+            900,
+            350
+          ],
+          "kind": "cooling",
+          "actual_product": null,
+          "new_purchase_count": "existing-ID-relocation-only"
+        },
+        {
+          "id": "B-AC04",
+          "label": "B-AC04｜冷氣室外機及維修預留（非新購台數）",
+          "rect_mm": [
+            4985,
+            13085,
+            900,
+            1350
+          ],
+          "body_mm": [
+            4985,
+            14085,
+            900,
+            350
+          ],
+          "kind": "cooling",
+          "actual_product": null,
+          "new_purchase_count": "existing-ID-relocation-only"
+        },
+        {
+          "id": "roof-stair",
+          "label": "樓梯屋突／保留樓梯洞",
+          "rect_mm": [
+            0,
+            3900,
+            2400,
+            5200
+          ]
+        }
+      ],
+      "routes": [
+        {
+          "id": "daily-arrival",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1715,
+              5270
+            ],
+            [
+              1715,
+              2500
+            ],
+            [
+              3150,
+              2500
+            ]
+          ],
+          "width_mm": 700,
+          "door": "front",
+          "use": "daily",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 0.0,
+          "protection_scope": "no-daily-entry-into-protection",
+          "shared_operation_ids": [
+            "folding-table"
+          ],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "rack-operation",
+          "points_mm": [
+            [
+              3150,
+              2500
+            ],
+            [
+              3900,
+              2500
+            ]
+          ],
+          "width_mm": 700,
+          "door": null,
+          "use": "daily",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 0.0,
+          "protection_scope": "no-daily-entry-into-protection",
+          "shared_operation_ids": [
+            "drying-rack",
+            "folding-table"
+          ],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "table-operation",
+          "points_mm": [
+            [
+              3150,
+              2500
+            ],
+            [
+              3050,
+              2500
+            ],
+            [
+              3050,
+              2315
+            ]
+          ],
+          "width_mm": 700,
+          "door": null,
+          "use": "daily",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 0.0,
+          "protection_scope": "no-daily-entry-into-protection",
+          "shared_operation_ids": [
+            "folding-table"
+          ],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "inspect-front-cooling",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1780,
+              4400
+            ],
+            [
+              2850,
+              4400
+            ],
+            [
+              5350,
+              4400
+            ],
+            [
+              5350,
+              1100
+            ],
+            [
+              3720,
+              1100
+            ]
+          ],
+          "width_mm": 700,
+          "door": "side",
+          "use": "necessary-inspection",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 2.415,
+          "protection_scope": "existing-necessary-inspection-premise-not-expanded",
+          "shared_operation_ids": [],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "inspect-rear-left-air",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1780,
+              4400
+            ],
+            [
+              2850,
+              4400
+            ],
+            [
+              5350,
+              4400
+            ],
+            [
+              5350,
+              10700
+            ],
+            [
+              550,
+              10700
+            ],
+            [
+              550,
+              14000
+            ],
+            [
+              665,
+              14000
+            ]
+          ],
+          "width_mm": 700,
+          "door": "side",
+          "use": "necessary-inspection",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 10.304,
+          "protection_scope": "existing-necessary-inspection-premise-not-expanded",
+          "shared_operation_ids": [],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "inspect-rear-cooling-03",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1780,
+              4400
+            ],
+            [
+              2850,
+              4400
+            ],
+            [
+              5350,
+              4400
+            ],
+            [
+              5350,
+              12700
+            ],
+            [
+              4165,
+              12700
+            ],
+            [
+              4165,
+              12735
+            ]
+          ],
+          "width_mm": 700,
+          "door": "side",
+          "use": "necessary-inspection",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 7.4741,
+          "protection_scope": "existing-necessary-inspection-premise-not-expanded",
+          "shared_operation_ids": [],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "inspect-rear-cooling-04",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1780,
+              4400
+            ],
+            [
+              2850,
+              4400
+            ],
+            [
+              5350,
+              4400
+            ],
+            [
+              5350,
+              12700
+            ],
+            [
+              5435,
+              12700
+            ],
+            [
+              5435,
+              12735
+            ]
+          ],
+          "width_mm": 700,
+          "door": "side",
+          "use": "necessary-inspection",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 6.944,
+          "protection_scope": "existing-necessary-inspection-premise-not-expanded",
+          "shared_operation_ids": [],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "inspect-tank-boundary",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1780,
+              4400
+            ],
+            [
+              2850,
+              4400
+            ],
+            [
+              5350,
+              4400
+            ],
+            [
+              5350,
+              12700
+            ],
+            [
+              3365,
+              12700
+            ],
+            [
+              3365,
+              15500
+            ]
+          ],
+          "width_mm": 700,
+          "door": "side",
+          "use": "necessary-inspection",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 7.9701,
+          "protection_scope": "existing-necessary-inspection-premise-not-expanded",
+          "shared_operation_ids": [],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "inspect-heat-pump-boundary",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1715,
+              5270
+            ],
+            [
+              1715,
+              1715
+            ]
+          ],
+          "width_mm": 700,
+          "door": "front",
+          "use": "necessary-inspection",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 0.0,
+          "protection_scope": "existing-necessary-inspection-premise-not-expanded",
+          "shared_operation_ids": [],
+          "actual_human_transport_or_religious_approval": "unknown"
+        }
+      ],
+      "review": {
+        "failures": [],
+        "footprint_sqm": 0.54,
+        "additional_floor_footprint_sqm": 0,
+        "shared_operation_ids": [],
+        "shared_route_ids": [
+          "daily-arrival",
+          "rack-operation",
+          "table-operation"
+        ],
+        "scope": "listed-2D-bodies-reservations-and-routes-only-not-whole-route-or-professional-approval",
+        "actual_height_load_product_door_operation_and_access": "unknown"
+      },
+      "source_floor_hash": "669310c9ad3ada07a83b77fdf50d8f414782e7c7fca481ced44615c9f9402471",
+      "adopted": false,
+      "plan_file": "B-RF-D1.svg",
+      "plan_source": "structured/coordination/upper-floor-storage-v1/B-RF-D1.svg",
+      "plan_sha256": "8238854ecae7ae33bf6ce30d5fda7a5b868b0944e9e6e487e3e988a2bf75cc84",
+      "storage_geometry": {
+        "rect_mm": [
+          2315,
+          1515,
+          1200,
+          450
+        ],
+        "operation_mm": [
+          2315,
+          1965,
+          1200,
+          700
+        ],
+        "height_mm": 900
+      },
+      "surroundings_display": "2D-footprints-only-no-invented-walls-heights-stair-slabs-or-clearances"
+    },
+    {
+      "id": "B-RF-D2",
+      "building": "B",
+      "floor": "floor-4",
+      "format": "roof",
+      "source": "structured/coordination/b-q3-roof-coordination-v1/review.json",
+      "option": "Q3-D2-rear-wet-pair",
+      "room": "front-platform",
+      "label": "折衣桌下防雨收納工作檯",
+      "rect_mm": [
+        115,
+        115,
+        1200,
+        450
+      ],
+      "operation_mm": [
+        115,
+        565,
+        1200,
+        700
+      ],
+      "height_mm": 900,
+      "reuse_item": "folding-table",
+      "note": "D2保留自己的桌位與操作帶，獨立列櫃，不把D1位置借過來；耐候、錨定、荷重與實際桌高另核。",
+      "rooms": [
+        {
+          "id": "front-platform",
+          "label": "RF前平台／24㎡目標仍未解",
+          "polygon_mm": [
+            [
+              0,
+              0
+            ],
+            [
+              6000,
+              0
+            ],
+            [
+              6000,
+              3900
+            ],
+            [
+              0,
+              3900
+            ]
+          ],
+          "items": [
+            {
+              "id": "drying-rack",
+              "label": "同1800×600移動晾衣架試排",
+              "rect_mm": [
+                4250,
+                1720,
+                600,
+                1800
+              ],
+              "operation_mm": [
+                3550,
+                1720,
+                700,
+                1800
+              ]
+            },
+            {
+              "id": "folding-table",
+              "label": "同1200×450折衣桌試排",
+              "rect_mm": [
+                115,
+                115,
+                1200,
+                450
+              ],
+              "operation_mm": [
+                115,
+                565,
+                1200,
+                700
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                1150,
+                3900
+              ],
+              "b": [
+                2280,
+                3900
+              ],
+              "hinge": "left",
+              "opens": "inside"
+            }
+          ],
+          "shafts_mm": [],
+          "outdoor": true,
+          "kind": "outdoor"
+        }
+      ],
+      "fixed": [
+        {
+          "id": "tank",
+          "label": "水塔／泵浦整組預留",
+          "rect_mm": [
+            3715,
+            14500,
+            1770,
+            1700
+          ],
+          "kind": "wet-equipment",
+          "actual_product": null
+        },
+        {
+          "id": "heat-pump",
+          "label": "熱泵整組預留",
+          "rect_mm": [
+            3715,
+            16265,
+            2000,
+            1250
+          ],
+          "kind": "wet-equipment",
+          "actual_product": null
+        },
+        {
+          "id": "rear-air-zone",
+          "label": "後浴廁空氣出口區／非污水通氣",
+          "rect_mm": [
+            1015,
+            13700,
+            1400,
+            1800
+          ],
+          "kind": "air-zone",
+          "actual_product": null
+        },
+        {
+          "id": "front-dirty-zone",
+          "label": "前污氣出口協調區",
+          "rect_mm": [
+            115,
+            1515,
+            700,
+            700
+          ],
+          "kind": "air-zone",
+          "actual_product": null
+        },
+        {
+          "id": "rear-soil-vent",
+          "label": "後400污水通氣井投影",
+          "rect_mm": [
+            5485,
+            15700,
+            400,
+            400
+          ],
+          "kind": "pipe-zone",
+          "actual_product": null
+        },
+        {
+          "id": "representative-slot-1",
+          "label": "representative-slot-1｜冷氣室外機及維修預留（非新購台數）",
+          "rect_mm": [
+            3270,
+            115,
+            900,
+            1350
+          ],
+          "body_mm": [
+            3270,
+            115,
+            900,
+            350
+          ],
+          "kind": "cooling",
+          "actual_product": null,
+          "new_purchase_count": null
+        },
+        {
+          "id": "representative-slot-2",
+          "label": "representative-slot-2｜冷氣室外機及維修預留（非新購台數）",
+          "rect_mm": [
+            4985,
+            115,
+            900,
+            1350
+          ],
+          "body_mm": [
+            4985,
+            115,
+            900,
+            350
+          ],
+          "kind": "cooling",
+          "actual_product": null,
+          "new_purchase_count": null
+        },
+        {
+          "id": "B-AC03",
+          "label": "B-AC03｜冷氣室外機及維修預留（非新購台數）",
+          "rect_mm": [
+            3715,
+            13085,
+            900,
+            1350
+          ],
+          "body_mm": [
+            3715,
+            14085,
+            900,
+            350
+          ],
+          "kind": "cooling",
+          "actual_product": null,
+          "new_purchase_count": "existing-ID-relocation-only"
+        },
+        {
+          "id": "B-AC04",
+          "label": "B-AC04｜冷氣室外機及維修預留（非新購台數）",
+          "rect_mm": [
+            4985,
+            13085,
+            900,
+            1350
+          ],
+          "body_mm": [
+            4985,
+            14085,
+            900,
+            350
+          ],
+          "kind": "cooling",
+          "actual_product": null,
+          "new_purchase_count": "existing-ID-relocation-only"
+        },
+        {
+          "id": "roof-stair",
+          "label": "樓梯屋突／保留樓梯洞",
+          "rect_mm": [
+            0,
+            3900,
+            2400,
+            5200
+          ]
+        }
+      ],
+      "routes": [
+        {
+          "id": "daily-arrival",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1715,
+              5270
+            ],
+            [
+              1715,
+              2500
+            ],
+            [
+              3150,
+              2500
+            ]
+          ],
+          "width_mm": 700,
+          "door": "front",
+          "use": "daily",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 0.0,
+          "protection_scope": "no-daily-entry-into-protection",
+          "shared_operation_ids": [],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "rack-operation",
+          "points_mm": [
+            [
+              3150,
+              2500
+            ],
+            [
+              3900,
+              2500
+            ]
+          ],
+          "width_mm": 700,
+          "door": null,
+          "use": "daily",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 0.0,
+          "protection_scope": "no-daily-entry-into-protection",
+          "shared_operation_ids": [
+            "drying-rack"
+          ],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "table-operation",
+          "points_mm": [
+            [
+              3150,
+              2500
+            ],
+            [
+              1715,
+              2500
+            ],
+            [
+              1715,
+              1000
+            ],
+            [
+              715,
+              1000
+            ]
+          ],
+          "width_mm": 700,
+          "door": null,
+          "use": "daily",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 0.0,
+          "protection_scope": "no-daily-entry-into-protection",
+          "shared_operation_ids": [
+            "folding-table"
+          ],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "inspect-front-cooling",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1780,
+              4400
+            ],
+            [
+              2850,
+              4400
+            ],
+            [
+              5350,
+              4400
+            ],
+            [
+              5350,
+              1100
+            ],
+            [
+              3720,
+              1100
+            ]
+          ],
+          "width_mm": 700,
+          "door": "side",
+          "use": "necessary-inspection",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 2.415,
+          "protection_scope": "existing-necessary-inspection-premise-not-expanded",
+          "shared_operation_ids": [],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "inspect-rear-left-air",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1780,
+              4400
+            ],
+            [
+              2850,
+              4400
+            ],
+            [
+              5350,
+              4400
+            ],
+            [
+              5350,
+              10700
+            ],
+            [
+              550,
+              10700
+            ],
+            [
+              550,
+              14000
+            ],
+            [
+              665,
+              14000
+            ]
+          ],
+          "width_mm": 700,
+          "door": "side",
+          "use": "necessary-inspection",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 10.304,
+          "protection_scope": "existing-necessary-inspection-premise-not-expanded",
+          "shared_operation_ids": [],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "inspect-rear-cooling-03",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1780,
+              4400
+            ],
+            [
+              2850,
+              4400
+            ],
+            [
+              5350,
+              4400
+            ],
+            [
+              5350,
+              12700
+            ],
+            [
+              4165,
+              12700
+            ],
+            [
+              4165,
+              12735
+            ]
+          ],
+          "width_mm": 700,
+          "door": "side",
+          "use": "necessary-inspection",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 7.4741,
+          "protection_scope": "existing-necessary-inspection-premise-not-expanded",
+          "shared_operation_ids": [],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "inspect-rear-cooling-04",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1780,
+              4400
+            ],
+            [
+              2850,
+              4400
+            ],
+            [
+              5350,
+              4400
+            ],
+            [
+              5350,
+              12700
+            ],
+            [
+              5435,
+              12700
+            ],
+            [
+              5435,
+              12735
+            ]
+          ],
+          "width_mm": 700,
+          "door": "side",
+          "use": "necessary-inspection",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 6.944,
+          "protection_scope": "existing-necessary-inspection-premise-not-expanded",
+          "shared_operation_ids": [],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "inspect-tank-boundary",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1780,
+              4400
+            ],
+            [
+              2850,
+              4400
+            ],
+            [
+              5350,
+              4400
+            ],
+            [
+              5350,
+              12700
+            ],
+            [
+              3365,
+              12700
+            ],
+            [
+              3365,
+              15500
+            ]
+          ],
+          "width_mm": 700,
+          "door": "side",
+          "use": "necessary-inspection",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 7.9701,
+          "protection_scope": "existing-necessary-inspection-premise-not-expanded",
+          "shared_operation_ids": [],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "inspect-heat-pump-boundary",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1780,
+              4400
+            ],
+            [
+              2850,
+              4400
+            ],
+            [
+              5350,
+              4400
+            ],
+            [
+              5350,
+              12700
+            ],
+            [
+              3365,
+              12700
+            ],
+            [
+              3365,
+              16890
+            ]
+          ],
+          "width_mm": 700,
+          "door": "side",
+          "use": "necessary-inspection",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 7.9701,
+          "protection_scope": "existing-necessary-inspection-premise-not-expanded",
+          "shared_operation_ids": [],
+          "actual_human_transport_or_religious_approval": "unknown"
+        }
+      ],
+      "review": {
+        "failures": [],
+        "footprint_sqm": 0.54,
+        "additional_floor_footprint_sqm": 0,
+        "shared_operation_ids": [],
+        "shared_route_ids": [
+          "table-operation"
+        ],
+        "scope": "listed-2D-bodies-reservations-and-routes-only-not-whole-route-or-professional-approval",
+        "actual_height_load_product_door_operation_and_access": "unknown"
+      },
+      "source_floor_hash": "b53b1c4d19ff20880b6b3265ee0a1a751dee58f2d5ca6815c1f3254150aee947",
+      "adopted": false,
+      "plan_file": "B-RF-D2.svg",
+      "plan_source": "structured/coordination/upper-floor-storage-v1/B-RF-D2.svg",
+      "plan_sha256": "4306fa2d5fcb8d3fe50f494feac1f48529dda454335e8fddbd4174b243d40469",
+      "storage_geometry": {
+        "rect_mm": [
+          115,
+          115,
+          1200,
+          450
+        ],
+        "operation_mm": [
+          115,
+          565,
+          1200,
+          700
+        ],
+        "height_mm": 900
+      },
+      "surroundings_display": "2D-footprints-only-no-invented-walls-heights-stair-slabs-or-clearances"
+    },
+    {
+      "id": "C-2F",
+      "building": "C",
+      "floor": "floor-2",
+      "format": "model",
+      "source": "structured/candidates/kaohsiung-house-options/c-stair-integration.json",
+      "option": "c-split",
+      "room": "day-reserve",
+      "label": "乾式彈性區家務儲藏櫃",
+      "rect_mm": [
+        115,
+        10300,
+        1200,
+        600
+      ],
+      "operation_mm": [
+        115,
+        10900,
+        1200,
+        800
+      ],
+      "height_mm": 1800,
+      "note": "日常備品、吸塵器與收納箱有獨立位置；不放陽台曬衣、景觀、IDF或樓梯通路，唯一洗衣機仍在2F。",
+      "rooms": [
+        {
+          "id": "balcony2f",
+          "label": "前側陽台／空調維修候選區",
+          "polygon_mm": [
+            [
+              6000.0,
+              0.0
+            ],
+            [
+              6000.0,
+              3900.0
+            ],
+            [
+              0.0,
+              3900.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              6000.0,
+              0.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "C:floor-2:balcony2f:furniture:washer",
+              "label": "洗衣機",
+              "rect_mm": [
+                800.0,
+                115.0,
+                650.0,
+                650.0
+              ],
+              "operation_mm": [
+                800.0,
+                765.0,
+                650.0,
+                600.0
+              ]
+            },
+            {
+              "id": "C:floor-2:balcony2f:furniture:clothes-rack",
+              "label": "曬衣架",
+              "rect_mm": [
+                115.0,
+                1385.0,
+                600.0,
+                2400.0
+              ],
+              "operation_mm": [
+                715.0,
+                1385.0,
+                900.0,
+                2400.0
+              ]
+            },
+            {
+              "id": "C:floor-2:balcony2f:furniture:utility-sink",
+              "label": "獨立預洗槽（給排水待核）",
+              "rect_mm": [
+                1500.0,
+                115.0,
+                600.0,
+                600.0
+              ],
+              "operation_mm": [
+                1500.0,
+                715.0,
+                600.0,
+                800.0
+              ]
+            },
+            {
+              "id": "C:floor-2:balcony2f:furniture:locked-cleaner",
+              "label": "防雨上鎖洗劑櫃（產品待定）",
+              "rect_mm": [
+                2150.0,
+                115.0,
+                600.0,
+                450.0
+              ],
+              "operation_mm": [
+                2150.0,
+                565.0,
+                600.0,
+                600.0
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                4750.0019999999995,
+                3900
+              ],
+              "b": [
+                5650.0019999999995,
+                3900
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": true,
+          "kind": "other"
+        },
+        {
+          "id": "living2f",
+          "label": "二樓起居／前置門前室共用",
+          "polygon_mm": [
+            [
+              6000.0,
+              3900.0
+            ],
+            [
+              6000.0,
+              8960.0
+            ],
+            [
+              2800.0,
+              8960.0
+            ],
+            [
+              2800.0,
+              3900.0
+            ],
+            [
+              6000.0,
+              3900.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "C:floor-2:living2f:furniture:sofa",
+              "label": "三人沙發",
+              "rect_mm": [
+                5020.0,
+                5560.0,
+                900.0,
+                2400.0
+              ],
+              "operation_mm": [
+                4620.0,
+                5560.0,
+                400.0,
+                2400.0
+              ]
+            },
+            {
+              "id": "C:floor-2:living2f:furniture:tv",
+              "label": "電視牆／電視櫃",
+              "rect_mm": [
+                2880.0,
+                5700.0,
+                450.0,
+                1800.0
+              ],
+              "operation_mm": [
+                3330.0,
+                5700.0,
+                600.0,
+                1800.0
+              ]
+            },
+            {
+              "id": "C:floor-2:living2f:furniture:coffee-table",
+              "label": "茶几",
+              "rect_mm": [
+                4000.0,
+                6210.0,
+                600.0,
+                1100.0
+              ],
+              "operation_mm": null
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                2800,
+                4250.00118
+              ],
+              "b": [
+                2800,
+                5150.00118
+              ]
+            },
+            {
+              "a": [
+                4750.0,
+                3900
+              ],
+              "b": [
+                5650.0,
+                3900
+              ]
+            },
+            {
+              "a": [
+                2800,
+                7600.001779999999
+              ],
+              "b": [
+                2800,
+                8960.001779999999
+              ]
+            },
+            {
+              "a": [
+                3720.0,
+                8960
+              ],
+              "b": [
+                5920.0,
+                8960
+              ]
+            }
+          ],
+          "windows_mm": [
+            [
+              3000.0,
+              3900,
+              1200
+            ]
+          ],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "living"
+        },
+        {
+          "id": "guestroom2f",
+          "label": "前左有窗客房（單人床／位置取捨未定）",
+          "polygon_mm": [
+            [
+              2800.0,
+              3900.0
+            ],
+            [
+              2800.0,
+              7600.0
+            ],
+            [
+              0.0,
+              7600.0
+            ],
+            [
+              0.0,
+              3900.0
+            ],
+            [
+              2800.0,
+              3900.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "C:floor-2:guestroom2f:furniture:bed",
+              "label": "單人床",
+              "rect_mm": [
+                80.0,
+                3980.0,
+                1050.0,
+                1880.0
+              ],
+              "operation_mm": [
+                80.0,
+                5860.0,
+                1050.0,
+                600.0
+              ]
+            },
+            {
+              "id": "C:floor-2:guestroom2f:furniture:desk",
+              "label": "140 cm 書桌",
+              "rect_mm": [
+                2020.0,
+                5470.0,
+                700.0,
+                1400.0
+              ],
+              "operation_mm": [
+                1320.0,
+                5470.0,
+                700.0,
+                1400.0
+              ]
+            },
+            {
+              "id": "C:floor-2:guestroom2f:furniture:wardrobe",
+              "label": "180 cm 衣櫃",
+              "rect_mm": [
+                80.0,
+                6920.0,
+                1800.0,
+                600.0
+              ],
+              "operation_mm": [
+                80.0,
+                6320.0,
+                1800.0,
+                600.0
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                2800,
+                4249.9992
+              ],
+              "b": [
+                2800,
+                5149.9992
+              ]
+            }
+          ],
+          "windows_mm": [
+            [
+              1400.0,
+              3900,
+              1200
+            ]
+          ],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "bedroom"
+        },
+        {
+          "id": "stair2f",
+          "label": "同軸樓梯／公共到達",
+          "polygon_mm": [
+            [
+              6000.0,
+              8960.0
+            ],
+            [
+              6000.0,
+              13800.0
+            ],
+            [
+              2400.0,
+              13800.0
+            ],
+            [
+              2400.0,
+              8960.0
+            ],
+            [
+              6000.0,
+              8960.0
+            ]
+          ],
+          "items": [],
+          "doors": [
+            {
+              "a": [
+                2400,
+                9059.99824
+              ],
+              "b": [
+                2400,
+                9959.99824
+              ]
+            },
+            {
+              "a": [
+                2400.0012,
+                13800
+              ],
+              "b": [
+                3600.0012,
+                13800
+              ]
+            },
+            {
+              "a": [
+                3720.0,
+                8960
+              ],
+              "b": [
+                5920.0,
+                8960
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "stair"
+        },
+        {
+          "id": "kitchen2f",
+          "label": "240cm後小廚房（原65cm深／操作分時）",
+          "polygon_mm": [
+            [
+              6000.0,
+              13800.0
+            ],
+            [
+              6000.0,
+              17630.0
+            ],
+            [
+              3600.0,
+              17630.0
+            ],
+            [
+              3600.0,
+              13800.0
+            ],
+            [
+              6000.0,
+              13800.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "C:floor-2:kitchen2f:furniture:counter",
+              "label": "240 cm 流理台",
+              "rect_mm": [
+                3680.0,
+                15150.0,
+                650.0,
+                2400.0
+              ],
+              "operation_mm": [
+                4330.0,
+                15150.0,
+                900.0,
+                2400.0
+              ]
+            },
+            {
+              "id": "C:floor-2:kitchen2f:furniture:fridge",
+              "label": "75 cm 冰箱",
+              "rect_mm": [
+                5220.0,
+                13880.0,
+                700.0,
+                750.0
+              ],
+              "operation_mm": [
+                4620.0,
+                13880.0,
+                600.0,
+                750.0
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                3600,
+                14000.00014
+              ],
+              "b": [
+                3600,
+                14800.00014
+              ]
+            }
+          ],
+          "windows_mm": [
+            [
+              4200.0,
+              17630,
+              1200
+            ]
+          ],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "kitchen"
+        },
+        {
+          "id": "bath2f",
+          "label": "後段公共衛浴（後牆前移20cm比較）",
+          "polygon_mm": [
+            [
+              2400.0,
+              13800.0
+            ],
+            [
+              2400.0,
+              15800.0
+            ],
+            [
+              0.0,
+              15800.0
+            ],
+            [
+              0.0,
+              13800.0
+            ],
+            [
+              2400.0,
+              13800.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "C:floor-2:bath2f:furniture:vanity",
+              "label": "60 cm 一般洗手台",
+              "rect_mm": [
+                1870.0,
+                13880.0,
+                450.0,
+                600.0
+              ],
+              "operation_mm": [
+                1170.0,
+                13880.0,
+                700.0,
+                600.0
+              ]
+            },
+            {
+              "id": "C:floor-2:bath2f:furniture:toilet",
+              "label": "馬桶",
+              "rect_mm": [
+                80.0,
+                15020.0,
+                450.0,
+                700.0
+              ],
+              "operation_mm": [
+                80.0,
+                14320.0,
+                450.0,
+                700.0
+              ]
+            },
+            {
+              "id": "C:floor-2:bath2f:furniture:shower",
+              "label": "90 cm 淋浴區",
+              "rect_mm": [
+                580.0,
+                14820.0,
+                900.0,
+                900.0
+              ],
+              "operation_mm": [
+                580.0,
+                14120.0,
+                900.0,
+                700.0
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                2400,
+                14650.0
+              ],
+              "b": [
+                2400,
+                15550.0
+              ]
+            }
+          ],
+          "windows_mm": [
+            [
+              900.0,
+              15800,
+              600.0
+            ]
+          ],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "bath"
+        },
+        {
+          "id": "rear-hall",
+          "label": "後段公共乾式走道",
+          "polygon_mm": [
+            [
+              3600.0,
+              13800.0
+            ],
+            [
+              3600.0,
+              17630.0
+            ],
+            [
+              2400.0,
+              17630.0
+            ],
+            [
+              2400.0,
+              13800.0
+            ],
+            [
+              3600.0,
+              13800.0
+            ]
+          ],
+          "items": [],
+          "doors": [
+            {
+              "a": [
+                3600,
+                14000.00014
+              ],
+              "b": [
+                3600,
+                14800.00014
+              ]
+            },
+            {
+              "a": [
+                2400,
+                14650.00158
+              ],
+              "b": [
+                2400,
+                15550.00158
+              ]
+            },
+            {
+              "a": [
+                2400,
+                16249.9994
+              ],
+              "b": [
+                2400,
+                17149.9994
+              ]
+            },
+            {
+              "a": [
+                2400.0,
+                13800
+              ],
+              "b": [
+                3600.0,
+                13800
+              ]
+            }
+          ],
+          "windows_mm": [
+            [
+              2700.0,
+              17630,
+              600
+            ]
+          ],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "other"
+        },
+        {
+          "id": "rear-service",
+          "label": "後側空調維修候選區",
+          "polygon_mm": [
+            [
+              2400.0,
+              15800.0
+            ],
+            [
+              2400.0,
+              17630.0
+            ],
+            [
+              0.0,
+              17630.0
+            ],
+            [
+              0.0,
+              15800.0
+            ],
+            [
+              2400.0,
+              15800.0
+            ]
+          ],
+          "items": [],
+          "doors": [
+            {
+              "a": [
+                2400,
+                16249.999489999998
+              ],
+              "b": [
+                2400,
+                17149.99949
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": true,
+          "kind": "outdoor"
+        },
+        {
+          "id": "living-nook",
+          "label": "開放起居延伸／通行（不重複計面積）",
+          "polygon_mm": [
+            [
+              2800.0,
+              7600.0
+            ],
+            [
+              2800.0,
+              8960.0
+            ],
+            [
+              0.0,
+              8960.0
+            ],
+            [
+              0.0,
+              7600.0
+            ],
+            [
+              2800.0,
+              7600.0
+            ]
+          ],
+          "items": [],
+          "doors": [
+            {
+              "a": [
+                2800,
+                7600.0
+              ],
+              "b": [
+                2800,
+                8960.0
+              ]
+            },
+            {
+              "a": [
+                -0.0012000000001535227,
+                8960
+              ],
+              "b": [
+                2399.9988,
+                8960
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "living"
+        },
+        {
+          "id": "day-reserve",
+          "label": "乾式彈性預留（不睡眠／未排設備）",
+          "polygon_mm": [
+            [
+              2400.0,
+              8960.0
+            ],
+            [
+              2400.0,
+              13800.0
+            ],
+            [
+              0.0,
+              13800.0
+            ],
+            [
+              0.0,
+              8960.0
+            ],
+            [
+              2400.0,
+              8960.0
+            ]
+          ],
+          "items": [],
+          "doors": [
+            {
+              "a": [
+                2400,
+                9059.99824
+              ],
+              "b": [
+                2400,
+                9959.99824
+              ]
+            },
+            {
+              "a": [
+                0.0,
+                8960
+              ],
+              "b": [
+                2400.0,
+                8960
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "other"
+        }
+      ],
+      "fixed": [
+        {
+          "id": "balcony2f:reserve:0",
+          "label": "basis-sink-use",
+          "rect_mm": [
+            750,
+            1750,
+            800,
+            800
+          ]
+        },
+        {
+          "id": "balcony2f:reserve:1",
+          "label": "basis-rack-loading",
+          "rect_mm": [
+            1680,
+            1450,
+            2400,
+            900
+          ]
+        },
+        {
+          "id": "balcony2f:reserve:2",
+          "label": "hvac-service",
+          "rect_mm": [
+            5020.0,
+            100,
+            900.0,
+            1350
+          ]
+        },
+        {
+          "id": "balcony2f:reserve:3",
+          "label": "hvac-service",
+          "rect_mm": [
+            2550.0,
+            100,
+            900.0,
+            1350
+          ]
+        },
+        {
+          "id": "balcony2f:reserve:4",
+          "label": "hvac-service",
+          "rect_mm": [
+            80.0,
+            100,
+            900.0,
+            1350
+          ]
+        },
+        {
+          "id": "balcony2f:reserve:5",
+          "label": "door-approach",
+          "rect_mm": [
+            4650.0,
+            3000.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "C-AC01:outdoor",
+          "label": "C-AC01｜冷氣室外機",
+          "rect_mm": [
+            5020.0,
+            100.0,
+            900,
+            350
+          ]
+        },
+        {
+          "id": "C-AC03:outdoor",
+          "label": "C-AC03｜冷氣室外機",
+          "rect_mm": [
+            2850.0,
+            100.0,
+            900,
+            350
+          ]
+        },
+        {
+          "id": "C-AC07:outdoor",
+          "label": "C-AC07｜冷氣室外機",
+          "rect_mm": [
+            3850.0,
+            100.0,
+            900,
+            350
+          ]
+        },
+        {
+          "id": "living2f:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            2800.0,
+            4150.0,
+            900.0,
+            1100.0
+          ]
+        },
+        {
+          "id": "living2f:reserve:1",
+          "label": "door-approach",
+          "rect_mm": [
+            4650.0,
+            3900.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "living2f:reserve:2",
+          "label": "door-approach",
+          "rect_mm": [
+            4650.0,
+            8060.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "C-AC03:indoor",
+          "label": "C-AC03｜冷氣室內機",
+          "rect_mm": [
+            3285.0,
+            3910.0,
+            950,
+            280
+          ]
+        },
+        {
+          "id": "guestroom2f:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            1900.0,
+            4150.0,
+            900.0,
+            1100.0
+          ]
+        },
+        {
+          "id": "C-AC04:indoor",
+          "label": "C-AC04｜冷氣室內機",
+          "rect_mm": [
+            1484.9999999999998,
+            7310.0,
+            950,
+            280
+          ]
+        },
+        {
+          "id": "C-AC07:indoor",
+          "label": "C-AC07｜冷氣室內機",
+          "rect_mm": [
+            365.0,
+            3910.0,
+            950,
+            280
+          ]
+        },
+        {
+          "id": "stair2f:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            2400.0,
+            8960.0,
+            900.0,
+            1100.0
+          ]
+        },
+        {
+          "id": "kitchen2f:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            3600.0,
+            13900.0,
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "id": "bath2f:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            1500.0,
+            14550.0,
+            900.0,
+            1100.0
+          ]
+        },
+        {
+          "id": "rear-hall:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            2700.0,
+            13900.0,
+            900.0,
+            1000.0
+          ]
+        },
+        {
+          "id": "rear-hall:reserve:1",
+          "label": "door-approach",
+          "rect_mm": [
+            2400.0,
+            14550.0,
+            900.0,
+            1100.0
+          ]
+        },
+        {
+          "id": "rear-hall:reserve:2",
+          "label": "door-approach",
+          "rect_mm": [
+            2400.0,
+            16150.0,
+            900.0,
+            1100.0
+          ]
+        },
+        {
+          "id": "rear-service:reserve:0",
+          "label": "hvac-service",
+          "rect_mm": [
+            1420.0,
+            16180,
+            900.0,
+            1350
+          ]
+        },
+        {
+          "id": "rear-service:reserve:1",
+          "label": "hvac-service",
+          "rect_mm": [
+            80.0,
+            16180,
+            900.0,
+            1350
+          ]
+        },
+        {
+          "id": "rear-service:reserve:2",
+          "label": "door-approach",
+          "rect_mm": [
+            1500.0,
+            16150.0,
+            900.0,
+            1100.0
+          ]
+        },
+        {
+          "id": "C-AC02:outdoor",
+          "label": "C-AC02｜冷氣室外機",
+          "rect_mm": [
+            1420.0,
+            17180.0,
+            900,
+            350
+          ]
+        },
+        {
+          "id": "C-AC04:outdoor",
+          "label": "C-AC04｜冷氣室外機",
+          "rect_mm": [
+            80.0,
+            17180.0,
+            900,
+            350
+          ]
+        },
+        {
+          "id": "day-reserve:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            1500.0,
+            8960.0,
+            900.0,
+            1100.0
+          ]
+        }
+      ],
+      "routes": [],
+      "review": {
+        "failures": [],
+        "footprint_sqm": 0.72,
+        "additional_floor_footprint_sqm": 0.72,
+        "shared_operation_ids": [],
+        "shared_route_ids": [],
+        "scope": "listed-2D-bodies-reservations-and-routes-only-not-whole-route-or-professional-approval",
+        "actual_height_load_product_door_operation_and_access": "unknown"
+      },
+      "source_floor_hash": "623d97c7fb99224e5d339d580c9af3970d7d86aa4bda04f8c9769e51879c50d3",
+      "adopted": false,
+      "plan_file": "C-2F.svg",
+      "plan_source": "structured/coordination/upper-floor-storage-v1/C-2F.svg",
+      "plan_sha256": "052d417a3fee682ee1a7a4ca945d495ca203219d07ed923d52b8fe193785d31b",
+      "storage_geometry": {
+        "rect_mm": [
+          115,
+          10300,
+          1200,
+          600
+        ],
+        "operation_mm": [
+          115,
+          10900,
+          1200,
+          800
+        ],
+        "height_mm": 1800
+      },
+      "surroundings_display": "2D-footprints-only-no-invented-walls-heights-stair-slabs-or-clearances"
+    },
+    {
+      "id": "C-3F",
+      "building": "C",
+      "floor": "floor-3",
+      "format": "model",
+      "source": "structured/candidates/kaohsiung-house-options/c-stair-integration.json",
+      "option": "c-split",
+      "room": "master3f",
+      "label": "主臥右前側換季／備品櫃",
+      "rect_mm": [
+        5435,
+        4050,
+        450,
+        1000
+      ],
+      "operation_mm": [
+        4735,
+        4050,
+        700,
+        1000
+      ],
+      "height_mm": 1800,
+      "note": "目前公共走道須淨空，先在主臥右前側設獨立雜物櫃；不縮原衣櫃、不占跑步機安全區，公共取物需進主臥的代價明列。",
+      "rooms": [
+        {
+          "id": "terrace3f",
+          "label": "前側通風／空調維修候選區",
+          "polygon_mm": [
+            [
+              6000.0,
+              0.0
+            ],
+            [
+              6000.0,
+              3900.0
+            ],
+            [
+              0.0,
+              3900.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              6000.0,
+              0.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "C:floor-3:terrace3f:furniture:bench",
+              "label": "戶外休憩椅",
+              "rect_mm": [
+                980.0,
+                3170.0,
+                1400.0,
+                650.0
+              ],
+              "operation_mm": [
+                980.0,
+                2870.0,
+                1400.0,
+                300.0
+              ]
+            },
+            {
+              "id": "C:floor-3:terrace3f:furniture:planter",
+              "label": "植栽槽",
+              "rect_mm": [
+                4080.0,
+                3320.0,
+                1600.0,
+                500.0
+              ],
+              "operation_mm": null
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                3049.998,
+                3900
+              ],
+              "b": [
+                3949.998,
+                3900
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": true,
+          "kind": "bedroom"
+        },
+        {
+          "id": "master3f",
+          "label": "前側主臥（4m樓高案面積取捨）",
+          "polygon_mm": [
+            [
+              6000.0,
+              3900.0
+            ],
+            [
+              6000.0,
+              7600.0
+            ],
+            [
+              0.0,
+              7600.0
+            ],
+            [
+              0.0,
+              3900.0
+            ],
+            [
+              6000.0,
+              3900.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "C:floor-3:master3f:furniture:bed",
+              "label": "標準雙人床",
+              "rect_mm": [
+                80.0,
+                4800.0,
+                2000.0,
+                1800.0
+              ],
+              "operation_mm": [
+                2080.0,
+                4800.0,
+                600.0,
+                1800.0
+              ]
+            },
+            {
+              "id": "C:floor-3:master3f:furniture:wardrobe",
+              "label": "180 cm 衣櫃",
+              "rect_mm": [
+                2820.0,
+                6920.0,
+                1800.0,
+                600.0
+              ],
+              "operation_mm": [
+                2820.0,
+                6320.0,
+                1800.0,
+                600.0
+              ]
+            },
+            {
+              "id": "C:floor-3:master3f:furniture:vanity",
+              "label": "梳妝台",
+              "rect_mm": [
+                5420.0,
+                5300.0,
+                500.0,
+                1200.0
+              ],
+              "operation_mm": [
+                4720.0,
+                5300.0,
+                700.0,
+                1200.0
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                4750.0019999999995,
+                7600
+              ],
+              "b": [
+                5650.0019999999995,
+                7600
+              ]
+            },
+            {
+              "a": [
+                3049.998,
+                3900
+              ],
+              "b": [
+                3949.998,
+                3900
+              ]
+            }
+          ],
+          "windows_mm": [
+            [
+              150.0,
+              3900,
+              2100
+            ]
+          ],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "bedroom"
+        },
+        {
+          "id": "fitness3f",
+          "label": "加深運動區（原廠／隔振仍待核）",
+          "polygon_mm": [
+            [
+              2400.0,
+              7600.0
+            ],
+            [
+              2400.0,
+              13800.0
+            ],
+            [
+              0.0,
+              13800.0
+            ],
+            [
+              0.0,
+              7600.0
+            ],
+            [
+              2400.0,
+              7600.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "C:floor-3:fitness3f:furniture:treadmill",
+              "label": "跑步機",
+              "rect_mm": [
+                580.0,
+                7830.0,
+                900.0,
+                2000.0
+              ],
+              "operation_mm": null
+            },
+            {
+              "id": "C:floor-3:fitness3f:furniture:yoga-mat",
+              "label": "瑜伽墊",
+              "rect_mm": [
+                80.0,
+                11920.0,
+                700.0,
+                1800.0
+              ],
+              "operation_mm": null
+            },
+            {
+              "id": "C:floor-3:fitness3f:furniture:dumbbell-rack",
+              "label": "啞鈴架",
+              "rect_mm": [
+                1120.0,
+                13220.0,
+                1200.0,
+                500.0
+              ],
+              "operation_mm": [
+                1120.0,
+                12520.0,
+                1200.0,
+                700.0
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                2400,
+                7829.9974
+              ],
+              "b": [
+                2400,
+                8729.9974
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "other"
+        },
+        {
+          "id": "stair3f",
+          "label": "正式樓梯／乾式梯廳",
+          "polygon_mm": [
+            [
+              6000.0,
+              8960.0
+            ],
+            [
+              6000.0,
+              13800.0
+            ],
+            [
+              2400.0,
+              13800.0
+            ],
+            [
+              2400.0,
+              8960.0
+            ],
+            [
+              6000.0,
+              8960.0
+            ]
+          ],
+          "items": [],
+          "doors": [
+            {
+              "a": [
+                4750.0008,
+                8960
+              ],
+              "b": [
+                5650.0008,
+                8960
+              ]
+            },
+            {
+              "a": [
+                2500.0012,
+                13800
+              ],
+              "b": [
+                3500.0012,
+                13800
+              ]
+            }
+          ],
+          "windows_mm": [
+            [
+              3900.0,
+              13800,
+              600.0
+            ]
+          ],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "stair"
+        },
+        {
+          "id": "bath3f",
+          "label": "後段衛浴（對齊2F、後牆前移20cm比較）",
+          "polygon_mm": [
+            [
+              2400.0,
+              13800.0
+            ],
+            [
+              2400.0,
+              15800.0
+            ],
+            [
+              0.0,
+              15800.0
+            ],
+            [
+              0.0,
+              13800.0
+            ],
+            [
+              2400.0,
+              13800.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "C:floor-3:bath3f:furniture:vanity",
+              "label": "60 cm 一般洗手台",
+              "rect_mm": [
+                1870.0,
+                13880.0,
+                450.0,
+                600.0
+              ],
+              "operation_mm": [
+                1170.0,
+                13880.0,
+                700.0,
+                600.0
+              ]
+            },
+            {
+              "id": "C:floor-3:bath3f:furniture:toilet",
+              "label": "馬桶",
+              "rect_mm": [
+                80.0,
+                15020.0,
+                450.0,
+                700.0
+              ],
+              "operation_mm": [
+                80.0,
+                14320.0,
+                450.0,
+                700.0
+              ]
+            },
+            {
+              "id": "C:floor-3:bath3f:furniture:shower",
+              "label": "90 cm 淋浴區",
+              "rect_mm": [
+                580.0,
+                14820.0,
+                900.0,
+                900.0
+              ],
+              "operation_mm": [
+                580.0,
+                14120.0,
+                900.0,
+                700.0
+              ]
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                2400,
+                14650.0
+              ],
+              "b": [
+                2400,
+                15550.0
+              ]
+            }
+          ],
+          "windows_mm": [
+            [
+              900.0,
+              15800,
+              600.0
+            ]
+          ],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "bath"
+        },
+        {
+          "id": "front-hall",
+          "label": "公共橫向通道（不穿主臥）",
+          "polygon_mm": [
+            [
+              6000.0,
+              7600.0
+            ],
+            [
+              6000.0,
+              8960.0
+            ],
+            [
+              2400.0,
+              8960.0
+            ],
+            [
+              2400.0,
+              7600.0
+            ],
+            [
+              6000.0,
+              7600.0
+            ]
+          ],
+          "items": [],
+          "doors": [
+            {
+              "a": [
+                4750.0008,
+                7600
+              ],
+              "b": [
+                5650.0008,
+                7600
+              ]
+            },
+            {
+              "a": [
+                4750.0008,
+                8960
+              ],
+              "b": [
+                5650.0008,
+                8960
+              ]
+            },
+            {
+              "a": [
+                2400,
+                7830.0
+              ],
+              "b": [
+                2400,
+                8730.0
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "other"
+        },
+        {
+          "id": "rear-hall",
+          "label": "後段通行／維修預留",
+          "polygon_mm": [
+            [
+              6000.0,
+              13800.0
+            ],
+            [
+              6000.0,
+              17630.0
+            ],
+            [
+              2400.0,
+              17630.0
+            ],
+            [
+              2400.0,
+              13800.0
+            ],
+            [
+              6000.0,
+              13800.0
+            ]
+          ],
+          "items": [],
+          "doors": [
+            {
+              "a": [
+                2500.0012,
+                13800
+              ],
+              "b": [
+                3500.0012,
+                13800
+              ]
+            },
+            {
+              "a": [
+                2400,
+                14650.00158
+              ],
+              "b": [
+                2400,
+                15550.00158
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": true,
+          "kind": "outdoor"
+        },
+        {
+          "id": "rear-service",
+          "label": "後側空調維修候選區",
+          "polygon_mm": [
+            [
+              2400.0,
+              15800.0
+            ],
+            [
+              2400.0,
+              17630.0
+            ],
+            [
+              0.0,
+              17630.0
+            ],
+            [
+              0.0,
+              15800.0
+            ],
+            [
+              2400.0,
+              15800.0
+            ]
+          ],
+          "items": [],
+          "doors": [],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": true,
+          "kind": "outdoor"
+        }
+      ],
+      "fixed": [
+        {
+          "id": "terrace3f:reserve:0",
+          "label": "hvac-service",
+          "rect_mm": [
+            1350.0,
+            100,
+            900.0,
+            1350
+          ]
+        },
+        {
+          "id": "terrace3f:reserve:1",
+          "label": "door-approach",
+          "rect_mm": [
+            2950.0,
+            3000.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "C-AC05:outdoor",
+          "label": "C-AC05｜冷氣室外機",
+          "rect_mm": [
+            1350.0,
+            100.0,
+            900,
+            350
+          ]
+        },
+        {
+          "id": "master3f:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            4650.0,
+            6700.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "master3f:reserve:1",
+          "label": "door-approach",
+          "rect_mm": [
+            2950.0,
+            3900.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "C-AC05:indoor",
+          "label": "C-AC05｜冷氣室內機",
+          "rect_mm": [
+            1325.0,
+            3910.0,
+            950,
+            280
+          ]
+        },
+        {
+          "id": "fitness3f:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            1500.0,
+            7730.0,
+            900.0,
+            1100.0
+          ]
+        },
+        {
+          "id": "C-AC06:indoor",
+          "label": "C-AC06｜冷氣室內機",
+          "rect_mm": [
+            1205.0,
+            13510.0,
+            950,
+            280
+          ]
+        },
+        {
+          "id": "stair3f:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            2400.0,
+            12900.0,
+            1200.0,
+            900.0
+          ]
+        },
+        {
+          "id": "bath3f:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            1500.0,
+            14550.0,
+            900.0,
+            1100.0
+          ]
+        },
+        {
+          "id": "front-hall:reserve:0",
+          "label": "circulation",
+          "rect_mm": [
+            2480,
+            7680,
+            3440,
+            1200
+          ]
+        },
+        {
+          "id": "front-hall:reserve:1",
+          "label": "door-approach",
+          "rect_mm": [
+            4650.0,
+            7600.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "front-hall:reserve:2",
+          "label": "door-approach",
+          "rect_mm": [
+            4650.0,
+            8060.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "front-hall:reserve:3",
+          "label": "door-approach",
+          "rect_mm": [
+            2400.0,
+            7730.0,
+            900.0,
+            1100.0
+          ]
+        },
+        {
+          "id": "rear-hall:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            2400.0,
+            13800.0,
+            1200.0,
+            900.0
+          ]
+        },
+        {
+          "id": "rear-hall:reserve:1",
+          "label": "door-approach",
+          "rect_mm": [
+            2400.0,
+            14550.0,
+            900.0,
+            1100.0
+          ]
+        },
+        {
+          "id": "rear-service:reserve:0",
+          "label": "hvac-service",
+          "rect_mm": [
+            1230.0,
+            16180,
+            900.0,
+            1350
+          ]
+        },
+        {
+          "id": "C-AC06:outdoor",
+          "label": "C-AC06｜冷氣室外機",
+          "rect_mm": [
+            1230.0,
+            17180.0,
+            900,
+            350
+          ]
+        }
+      ],
+      "routes": [],
+      "review": {
+        "failures": [],
+        "footprint_sqm": 0.45,
+        "additional_floor_footprint_sqm": 0.45,
+        "shared_operation_ids": [],
+        "shared_route_ids": [],
+        "scope": "listed-2D-bodies-reservations-and-routes-only-not-whole-route-or-professional-approval",
+        "actual_height_load_product_door_operation_and_access": "unknown"
+      },
+      "source_floor_hash": "75e9fac9da77ce5e3307bb928cf24b239b707869e9b9faefcbb7793a22c6928d",
+      "adopted": false,
+      "plan_file": "C-3F.svg",
+      "plan_source": "structured/coordination/upper-floor-storage-v1/C-3F.svg",
+      "plan_sha256": "7e9f576236f2fae0bbc0c1d676d7dab1a190f5f6826d055e83fd73d2b323b64a",
+      "storage_geometry": {
+        "rect_mm": [
+          5435,
+          4050,
+          450,
+          1000
+        ],
+        "operation_mm": [
+          4735,
+          4050,
+          700,
+          1000
+        ],
+        "height_mm": 1800
+      },
+      "surroundings_display": "2D-footprints-only-no-invented-walls-heights-stair-slabs-or-clearances"
+    },
+    {
+      "id": "C-RF",
+      "building": "C",
+      "floor": "floor-4",
+      "format": "model",
+      "source": "structured/candidates/kaohsiung-house-options/c-stair-integration.json",
+      "option": "c-split",
+      "room": "platform",
+      "label": "前平台防雨工具櫃",
+      "rect_mm": [
+        115,
+        6000,
+        900,
+        450
+      ],
+      "operation_mm": [
+        115,
+        6450,
+        900,
+        700
+      ],
+      "height_mm": 900,
+      "note": "不占屋突樓梯與乾式弱電維修區，原晾衣架保留；只存耐候備品，不能當室內乾衣／棉被儲藏室。",
+      "rooms": [
+        {
+          "id": "stair-rf",
+          "label": "同軸樓梯屋突（合法性待核）",
+          "polygon_mm": [
+            [
+              6000.0,
+              8960.0
+            ],
+            [
+              6000.0,
+              13800.0
+            ],
+            [
+              2400.0,
+              13800.0
+            ],
+            [
+              2400.0,
+              8960.0
+            ],
+            [
+              6000.0,
+              8960.0
+            ]
+          ],
+          "items": [],
+          "doors": [
+            {
+              "a": [
+                2400,
+                9600.00188
+              ],
+              "b": [
+                2400,
+                10500.00188
+              ]
+            },
+            {
+              "a": [
+                2500.0012,
+                8960
+              ],
+              "b": [
+                3500.0012,
+                8960
+              ]
+            },
+            {
+              "a": [
+                2500.0012,
+                13800
+              ],
+              "b": [
+                3500.0012,
+                13800
+              ]
+            }
+          ],
+          "windows_mm": [
+            [
+              3900.0,
+              13800,
+              600.0
+            ]
+          ],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "stair"
+        },
+        {
+          "id": "riser-rf",
+          "label": "弱電立管／乾式維修區",
+          "polygon_mm": [
+            [
+              2400.0,
+              8960.0
+            ],
+            [
+              2400.0,
+              13800.0
+            ],
+            [
+              0.0,
+              13800.0
+            ],
+            [
+              0.0,
+              8960.0
+            ],
+            [
+              2400.0,
+              8960.0
+            ]
+          ],
+          "items": [],
+          "doors": [
+            {
+              "a": [
+                2400,
+                9600.00188
+              ],
+              "b": [
+                2400,
+                10500.00188
+              ]
+            }
+          ],
+          "windows_mm": [
+            [
+              700.0,
+              13800,
+              1000.0
+            ]
+          ],
+          "shafts_mm": [],
+          "outdoor": false,
+          "kind": "other"
+        },
+        {
+          "id": "water-tank",
+          "label": "水塔候選區",
+          "polygon_mm": [
+            [
+              2000.0,
+              13800.0
+            ],
+            [
+              2000.0,
+              16300.0
+            ],
+            [
+              0.0,
+              16300.0
+            ],
+            [
+              0.0,
+              13800.0
+            ],
+            [
+              2000.0,
+              13800.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "C:floor-4:water-tank:furniture:water-tank",
+              "label": "1000L 水塔",
+              "rect_mm": [
+                450.0,
+                14500.0,
+                1100.0,
+                1100.0
+              ],
+              "operation_mm": null
+            }
+          ],
+          "doors": [],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": true,
+          "kind": "other"
+        },
+        {
+          "id": "pump",
+          "label": "加壓候選區",
+          "polygon_mm": [
+            [
+              4000.0,
+              13800.0
+            ],
+            [
+              4000.0,
+              16300.0
+            ],
+            [
+              2000.0,
+              16300.0
+            ],
+            [
+              2000.0,
+              13800.0
+            ],
+            [
+              4000.0,
+              13800.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "C:floor-4:pump:furniture:pressure-pump",
+              "label": "VF800 恆壓泵",
+              "rect_mm": [
+                2600.0,
+                14750.0,
+                800.0,
+                600.0
+              ],
+              "operation_mm": null
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                2500.0,
+                13800
+              ],
+              "b": [
+                3500.0,
+                13800
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": true,
+          "kind": "other"
+        },
+        {
+          "id": "heatpump",
+          "label": "熱泵候選區",
+          "polygon_mm": [
+            [
+              6000.0,
+              13800.0
+            ],
+            [
+              6000.0,
+              16300.0
+            ],
+            [
+              4000.0,
+              16300.0
+            ],
+            [
+              4000.0,
+              13800.0
+            ],
+            [
+              6000.0,
+              13800.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "C:floor-4:heatpump:furniture:heat-pump",
+              "label": "Haier 熱泵熱水器",
+              "rect_mm": [
+                4550.0,
+                14650.0,
+                900.0,
+                800.0
+              ],
+              "operation_mm": null
+            }
+          ],
+          "doors": [],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": true,
+          "kind": "other"
+        },
+        {
+          "id": "platform",
+          "label": "屋頂平台（非冷氣集中區）",
+          "polygon_mm": [
+            [
+              6000.0,
+              0.0
+            ],
+            [
+              6000.0,
+              8960.0
+            ],
+            [
+              0.0,
+              8960.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              6000.0,
+              0.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "C:floor-4:platform:furniture:clothes-rack",
+              "label": "曬衣架",
+              "rect_mm": [
+                1800.0,
+                4180.0,
+                2400.0,
+                600.0
+              ],
+              "operation_mm": null
+            }
+          ],
+          "doors": [
+            {
+              "a": [
+                2500.0,
+                8960
+              ],
+              "b": [
+                3500.0,
+                8960
+              ]
+            }
+          ],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": true,
+          "kind": "other"
+        },
+        {
+          "id": "laundry-rf",
+          "label": "曬衣候選區（維修動線待核）",
+          "polygon_mm": [
+            [
+              6000.0,
+              16300.0
+            ],
+            [
+              6000.0,
+              17630.0
+            ],
+            [
+              0.0,
+              17630.0
+            ],
+            [
+              0.0,
+              16300.0
+            ],
+            [
+              6000.0,
+              16300.0
+            ]
+          ],
+          "items": [
+            {
+              "id": "C:floor-4:laundry-rf:furniture:clothes-rack",
+              "label": "曬衣架",
+              "rect_mm": [
+                1800.0,
+                16665.0,
+                2400.0,
+                600.0
+              ],
+              "operation_mm": null
+            }
+          ],
+          "doors": [],
+          "windows_mm": [],
+          "shafts_mm": [],
+          "outdoor": true,
+          "kind": "other"
+        }
+      ],
+      "fixed": [
+        {
+          "id": "stair-rf:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            2400.0,
+            9500.0,
+            900.0,
+            1100.0
+          ]
+        },
+        {
+          "id": "stair-rf:reserve:1",
+          "label": "door-approach",
+          "rect_mm": [
+            2400.0,
+            12900.0,
+            1200.0,
+            900.0
+          ]
+        },
+        {
+          "id": "riser-rf:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            1500.0,
+            9500.0,
+            900.0,
+            1100.0
+          ]
+        },
+        {
+          "id": "pump:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            2400.0,
+            13800.0,
+            1200.0,
+            900.0
+          ]
+        },
+        {
+          "id": "platform:reserve:0",
+          "label": "door-approach",
+          "rect_mm": [
+            2400.0,
+            8060.0,
+            1200.0,
+            900.0
+          ]
+        }
+      ],
+      "routes": [],
+      "review": {
+        "failures": [],
+        "footprint_sqm": 0.405,
+        "additional_floor_footprint_sqm": 0.405,
+        "shared_operation_ids": [],
+        "shared_route_ids": [],
+        "scope": "listed-2D-bodies-reservations-and-routes-only-not-whole-route-or-professional-approval",
+        "actual_height_load_product_door_operation_and_access": "unknown"
+      },
+      "source_floor_hash": "457db7ae5c1b523e375e4d3253b79e265b0bd90908daa7e1d729211eb5df09b0",
+      "adopted": false,
+      "plan_file": "C-RF.svg",
+      "plan_source": "structured/coordination/upper-floor-storage-v1/C-RF.svg",
+      "plan_sha256": "e3f9aea352605191967507be9523554513b2f266267ea1782bf7625b12a6658d",
+      "storage_geometry": {
+        "rect_mm": [
+          115,
+          6000,
+          900,
+          450
+        ],
+        "operation_mm": [
+          115,
+          6450,
+          900,
+          700
+        ],
+        "height_mm": 900
+      },
+      "surroundings_display": "2D-footprints-only-no-invented-walls-heights-stair-slabs-or-clearances"
+    }
+  ],
+  "distinct_floors": 9,
+  "case_count": 10,
+  "default_case": "A-2F",
+  "primary_3d_changed": false,
+  "display_scope": "storage-height-only-with-exact-source-floor-and-object-footprints",
+  "original_surrounding_furniture_heights_or_walls_invented": false,
+  "two_independent_B_roof_cases_retained": true,
+  "old_QA_reused": false,
+  "browser_plugin": "absent",
+  "rendered_qa": "not-run-owner-separate-terminal-required",
+  "professional_approval": "unknown",
+  "adopted": false,
+  "protected_controls_unchanged": 149,
+  "source_hashes": {
+    "structured/coordination/upper-floor-storage-v1/review.json": "b451dc7893dd9e50c8271b1a6b3e4104c9a66e1173294684b9dd9886d504a986",
+    "structured/coordination/upper-floor-storage-v1/artifact-manifest.json": "cfd6f64892bcf7a17cfd44f123878d74888474e0790eaa5dc2a67b4b8d833abf",
+    "house_design/upper_floor_storage_viewer.py": "741f2702d3fa400eaeee444ff7d4dbc75ae745549469e9c0f6f833c7090f7a82",
+    "scripts/export_upper_floor_storage_viewer.py": "b8a2f289ed60cca26fc7e4256450f9b6d84b7912b16a71ab405a2167a0b512d1",
+    "scripts/templates/upper-floor-storage-viewer.html": "de70b9e33700f9bc3de1966a35f8ce5f486b7a0501ddf9316338c7671551251e",
+    "scripts/templates/upper-floor-storage-viewer.js": "64fdb8099f75c64b539d9b1a00b40d03d518a2643fb9ea9ca536321054180ebf",
+    "scripts/check_storage_3d_playwright.cjs": "b0987f457ab8d06785097cd60719861fffe1832a14e078f2095a11943cfc50e1",
+    "assets/vendor/three/three.min.js": "170c6789f43217c96b3170f4b42fafe135de7f7cd48497a4218f9757ee1d49fa",
+    "assets/vendor/three/LICENSE": "852e0e8699169bf9f6fdc6bda3e682d078dcbc738b5d33e74df594721bff271d",
+    "assets/vendor/three/VERSION.txt": "b53092316ba2151657f6e9fc39bafec63c7ddb24b41fb236c2a982d936e97ba7",
+    "Docs/abc-upper-floor-storage-3d-v1.md": "76ddd2c6031e60f7dad93647e85d392e56375c7dc6a70b71d3dd9775b9920147",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "inputs/upper-floor-storage.json": "8218693505667bf3425590e36cee3b7d1ce3dae6d8db5cc8309b6567d142fc97",
+    "house_design/upper_floor_storage.py": "edb5744b685a0df71cf720e3682479dacfee570154609bc67e8e79759882d45d",
+    "scripts/export_upper_floor_storage.py": "fc8f2f5d0cca207720eedfd5cc244c433aca419e642844755ed55ae732e4df3e",
+    "Docs/abc-upper-floor-storage-v1.md": "cf53110b3e0fddcbe7bcccadd2ae9246392871ec58c910451fe63e18046a1dbd",
+    "structured/candidates/kaohsiung-house-options/c-stair-integration.json": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+    "structured/coordination/b-front-drainage-layout-v1/review.json": "fb352dcdc1c83aad3b4d4ced66804d328132bd411473b496676f53f849ac7711",
+    "structured/coordination/b-ktv-stair-options-v1/review.json": "6116c9df09d442e29e16cc3eabc50aa1cd94b4d512fd3398b9105f1afdc34a7e",
+    "structured/coordination/b-q3-roof-coordination-v1/review.json": "432eb25dad0a37d1878a8c20e44675ed376beb86c60a9019d9bb6842d106d954",
+    "structured/coordination/upper-floor-storage-v1/A-2F.svg": "62594227b7d9d0f0e0b619ea2d07feafde3d52e3e16fcd00a8f0cba09b69b11a",
+    "structured/coordination/upper-floor-storage-v1/A-3F.svg": "ae1e322f57e80ec0560361344a1699c58c2ec5610d1562878679e2657fbd609e",
+    "structured/coordination/upper-floor-storage-v1/A-RF.svg": "7edf851ef4b55b253220bf9d5daed5e4e345762ab51ce73922860830efd1df1a",
+    "structured/coordination/upper-floor-storage-v1/B-2F.svg": "1bd75596611d7b34ce5a9bffaa7928ef73a5359b038846bdcd55ed94e87cd9a8",
+    "structured/coordination/upper-floor-storage-v1/B-3F.svg": "eb7d55492ed1d8d0f8434158f1afaf40153aa04d0ee489d07ff06ed0b49d60fe",
+    "structured/coordination/upper-floor-storage-v1/B-RF-D1.svg": "8238854ecae7ae33bf6ce30d5fda7a5b868b0944e9e6e487e3e988a2bf75cc84",
+    "structured/coordination/upper-floor-storage-v1/B-RF-D2.svg": "4306fa2d5fcb8d3fe50f494feac1f48529dda454335e8fddbd4174b243d40469",
+    "structured/coordination/upper-floor-storage-v1/C-2F.svg": "052d417a3fee682ee1a7a4ca945d495ca203219d07ed923d52b8fe193785d31b",
+    "structured/coordination/upper-floor-storage-v1/C-3F.svg": "7e9f576236f2fae0bbc0c1d676d7dab1a190f5f6826d055e83fd73d2b323b64a",
+    "structured/coordination/upper-floor-storage-v1/C-RF.svg": "e3f9aea352605191967507be9523554513b2f266267ea1782bf7625b12a6658d"
+  },
+  "report_hash": "fe31ce2cfd602c0546ebc37b7889efab9934084fec35d423d87d1ba3f8dd7c0d"
+}

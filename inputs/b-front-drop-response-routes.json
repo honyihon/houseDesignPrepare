@@ -1,0 +1,202 @@
+{
+  "schema": "house-b-front-drop-response-routes-v1",
+  "date": "2026-11-11",
+  "adopted": false,
+  "intake_report": "structured/coordination/b-front-drop-conditions-v1/review.json",
+  "pinned_sources": {
+    "structured/coordination/b-front-drop-conditions-v1/review.json": "7fbbdaba3f4682485adea8f079da677547afe2bce4c84be9bbfad5838340eb0f"
+  },
+  "sequence_id": "SEQ-04",
+  "comparison_id": "BC-CMP-01",
+  "task_id": "B-WET-001",
+  "response_routes": [
+    {
+      "id": "BFR-01",
+      "trigger_code": "terminal-not-available",
+      "priority": 1,
+      "title": "前接管／權利未取得可用依據",
+      "gate_ids": [
+        "BFD-01"
+      ],
+      "next_action": "先由建商統籌權利、接管位置／高程與完整替代路線；保留前濕區研究，不鎖定埋管或套管。",
+      "retained": "原家規、神桌、前後搬轎與面積目標保留。G4D、重排、G5都不能單靠換名解除共同終端問題。",
+      "not_authorized": "不默認地下穿祭祀、占騎樓、泵送或抬地坪；not-available是宣告待件，不證明全域無解。",
+      "quote_scope_ids": [
+        "BFC-01",
+        "BFC-05"
+      ],
+      "owner_decision_when": "正式權利與接管條件核清，仍須在完整合法替代案之間取捨時；現在不要求放寬。"
+    },
+    {
+      "id": "BFR-02",
+      "trigger_code": "terminal-arithmetic-conflict",
+      "priority": 2,
+      "title": "宣告埋管段的落差不足",
+      "gate_ids": [
+        "BFD-01",
+        "BFD-05"
+      ],
+      "next_action": "先核管內底基準、完整轉折與分段坡度；確有不足再研究合法接入或完整路線替代。",
+      "retained": "保上游及後端家規，不從上方管頂推地下管內底，也不把5190直線下界當實際線長。",
+      "not_authorized": "不自動放平坡、加泵、深挖穿地梁或授權排放。局部算式衝突不是全棟無解。",
+      "quote_scope_ids": [
+        "BFC-01",
+        "BFC-05"
+      ],
+      "owner_decision_when": "同版完整替代有權責單位及專業依據、費用工期已列明後。"
+    },
+    {
+      "id": "BFR-03",
+      "trigger_code": "upstream-conflict",
+      "priority": 3,
+      "title": "騎樓／上游包絡不足",
+      "gate_ids": [
+        "BFD-02",
+        "BFD-05",
+        "BFD-06"
+      ],
+      "next_action": "同版核上游真實排口與構造；先比較前段器具、支管／合流及通氣拓樸，必要時研究前濕區重排。",
+      "retained": "局部梯下落差不能改善上游；公衛／套衛外窗、面積與可關茶水前室目標保留，Q3前KTV本來已乾。",
+      "not_authorized": "不選薄板、小管、低淨高或取消不存在的KTV污水湊通過；G5也不自動解除這一段。",
+      "quote_scope_ids": [
+        "BFC-01",
+        "BFC-03",
+        "BFC-06"
+      ],
+      "owner_decision_when": "具體重排保住原目標後仍有明確代價，才交屋主比較；尚未有完成替代圖。"
+    },
+    {
+      "id": "BFR-04",
+      "trigger_code": "drop-interval-conflict",
+      "priority": 4,
+      "title": "梯下落差上下限無交集",
+      "gate_ids": [
+        "BFD-03",
+        "BFD-04",
+        "BFD-05"
+      ],
+      "next_action": "先核管件總成、實體頂底與檢修是否重複扣帳，再研究G4D局部家族；仍不容則前濕區重排，全梯鏡像最後。",
+      "retained": "原梯寬／級數／踏面、門與平台不減；d500／600皆不是預設選用，實際條件要同時滿足上方與下方。",
+      "not_authorized": "不因往下降能避梯底就自動壓低天花，不直接採G5或縮功能。",
+      "quote_scope_ids": [
+        "BFC-01",
+        "BFC-02",
+        "BFC-03",
+        "BFC-04"
+      ],
+      "owner_decision_when": "各完整同版案的功能、結構、管道、費用與工期可比較時；目前只是研究方向。"
+    },
+    {
+      "id": "BFR-05",
+      "trigger_code": "plan-envelope-conflict",
+      "priority": 5,
+      "title": "成品外框侵平台／保護或超原梯核",
+      "gate_ids": [
+        "BFD-04",
+        "BFD-06",
+        "BFD-07"
+      ],
+      "next_action": "由機電、門組與建築核完整外包及動作；比較局部總成／位置時同步重核新後緣梯底，不只修平面。",
+      "retained": "原平台、兩門、神桌／乾背與武轎庫保護、前後兩搬轎版本保留；相切不等於有施工餘量。",
+      "not_authorized": "不吞掉幾毫米平台、不自動移井或向上穿梯，不以局部方塊試線代替全程搬運。",
+      "quote_scope_ids": [
+        "BFC-01",
+        "BFC-02",
+        "BFC-06"
+      ],
+      "owner_decision_when": "完成包絡與兩版動作重核後仍需實際功能取捨時。"
+    },
+    {
+      "id": "BFR-06",
+      "trigger_code": "all-local-arithmetic-compatible",
+      "priority": 6,
+      "title": "四組局部數字相容，仍要整體核對",
+      "gate_ids": [
+        "BFD-01",
+        "BFD-02",
+        "BFD-03",
+        "BFD-04",
+        "BFD-05",
+        "BFD-06",
+        "BFD-07",
+        "BFD-08"
+      ],
+      "next_action": "沿原五步回覆流程核同版完整路線、水力通氣、權利、防火、清掃與搬運，再列費用／工期及施工圖發行條件。",
+      "retained": "只是宣告局部算式相容，RF24、Q3聲學及R1防水仍另案；屋主選擇、專業審查與發行分開。",
+      "not_authorized": "不標整案合格、不自動選d、不採購、不發行或併主3D。",
+      "quote_scope_ids": [
+        "BFC-01",
+        "BFC-02",
+        "BFC-06"
+      ],
+      "owner_decision_when": "完整方案與核對依據齊備才記屋主選擇，本工具不接受口頭可以代替。"
+    },
+    {
+      "id": "BFR-07",
+      "trigger_code": "partial-data",
+      "priority": 7,
+      "title": "尚有資料未到，保留未知",
+      "gate_ids": [
+        "BFD-01",
+        "BFD-02",
+        "BFD-03",
+        "BFD-04",
+        "BFD-05",
+        "BFD-06",
+        "BFD-07",
+        "BFD-08"
+      ],
+      "next_action": "逐組列缺欄與所需來源；可獨立做其他研究，不因資料未到要求屋主先讓步或立即補實測。",
+      "retained": "未知仍null，保留原研究及兩種搬轎版；不同圖號／標高基準不可混算。",
+      "not_authorized": "不把缺資料叫設計失敗，也不把未知當0或已通過。",
+      "quote_scope_ids": [
+        "BFC-01"
+      ],
+      "owner_decision_when": "沒有需要現在作的抽象取捨；等具體同版方案與完整代價。"
+    }
+  ],
+  "quote_scopes": [
+    {
+      "id": "BFC-01",
+      "kind": "common",
+      "title": "共通條件與同版核對",
+      "scope": "合法接管／權利、基地與標高、梁板／梯底及既有介面確認，統一版本與責任窗口。",
+      "pricing_rule": "共通工作只列一次；若已含在原契約，註明已含／折抵，不與替代案重複報價。"
+    },
+    {
+      "id": "BFC-02",
+      "kind": "exclusive-alternative",
+      "title": "G4D家族局部深化",
+      "scope": "有效落差與管件合流、支架包覆、通氣清掃、門／平台及檢修介面；不預選落差或機型。",
+      "pricing_rule": "在完整可核版本內報相對共通基準的差額；不與BFC-03／04當同時施作。"
+    },
+    {
+      "id": "BFC-03",
+      "kind": "exclusive-alternative",
+      "title": "前段濕區重排研究",
+      "scope": "2F公衛、茶水、井與乾檢修、門活動；必要時連核主臥／套衛、Q3保留井與RF通氣，不先縮原目標。",
+      "pricing_rule": "獨立完整方案才比較；先列研究設計費，施工價待圖，不把目前方向當已可蓋。"
+    },
+    {
+      "id": "BFC-04",
+      "kind": "exclusive-alternative",
+      "title": "G5全梯鏡像重大研究",
+      "scope": "1F至RF樓梯、到達／平台、門、結構、房間介面及全棟機電重核；神桌背牆規矩仍須守。",
+      "pricing_rule": "保留最後比較方向，尚無完整圖；不能因原水平管較短就估成一定較便宜。"
+    },
+    {
+      "id": "BFC-05",
+      "kind": "conditional-additional-scope",
+      "title": "合法終端／完整路線替代",
+      "scope": "權利、接入高程、地梁／覆土、清掃與復舊等完整路線；不預設前／後已有合法出口。",
+      "pricing_rule": "依實際合法路徑另列；說明與BFC-01已含項，未知量及價格留白，不批准開挖。"
+    },
+    {
+      "id": "BFC-06",
+      "kind": "verification-and-handoff",
+      "title": "樣品、足尺／搬運及工程交接",
+      "scope": "管件與門組成品資料、清掃抽換、兩版搬轎／施工動作、測試紀錄、防漏噪音與保固交接。",
+      "pricing_rule": "首裝、檢修與整機／管件汰換分列；說明由誰負責及是否已含，不以局部測試代全程。"
+    }
+  ]
+}

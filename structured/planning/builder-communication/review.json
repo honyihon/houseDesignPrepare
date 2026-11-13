@@ -1,0 +1,1387 @@
+{
+  "schema": "house-builder-communication-report-v1",
+  "date": "2026-11-13",
+  "authority": "communication-preparation-only-not-contract-design-adoption-or-approval",
+  "plan": {
+    "schema": "house-builder-communication-plan-v1",
+    "date": "2026-11-13",
+    "authority": "communication-preparation-only-not-contract-design-adoption-or-approval",
+    "owner_direction": {
+      "quote": "基本上我需要到時候與建商溝通要一個很順的流程 與建商討論的 都要提前先想好 另A棟 會與 裝潢設計師那邊另外討論",
+      "a_interior": "A棟裝潢由屋主另與裝潢設計師討論；需提早與建商、建築師及機電合圖。",
+      "scope_boundary": "這是溝通分流，不是建商已排除A棟衛浴、水電、防水或裝修工程的合約約定；B／C裝潢承作方也未定。",
+      "actual_site_data_received": false
+    },
+    "building_brief": [
+      {
+        "building": "A",
+        "known_use": "已述1F常睡2人、2F常睡2人，共4人；3F人數與頻率未指定，原用途保留。",
+        "early_topics": "孝親照護、公衛、主臥收納與套衛取捨；裝潢另與設計師談，建築機電預埋前共同核對。"
+      },
+      {
+        "building": "B",
+        "known_use": "1F祭祀有燒香，峰值人數待核；2F常睡2人，3F人數未指定。",
+        "early_topics": "朝街祭祀正門、乾背牆及上下投影；後門搬轎預設與前門備案、武轎儲放、淋浴和上層浴廁面積／外窗。"
+      },
+      {
+        "building": "C",
+        "known_use": "已述1F常睡2人、2F常睡1人，共3人；3F主臥及運動用途保留，人數未指定。",
+        "early_topics": "客餐共享、訪客獨立公衛、孝親照護與可關前室；C2F洗衣機暫不用但保空間，景觀與冷氣維修不擠掉；三棟1F共用洗衣另研。"
+      }
+    ],
+    "shared_brief": "已述常住合計9人，不是設計尖峰；3F活動、訪客和B祭祀不能填0人。三棟都要全熱交換或至少過濾機械新風，睡房關門也要有效分配與排出；3F若已日常使用，對應新風一期啟用。最新洗衣方向為三棟1F共用一組、C2F暫不用但保空間、A上層另預留機位；先核合法平層遮雨取送、實際門組與雨天乾衣，未選共享主位置或商品。這份摘要非完整需求，未列功能仍沿原需求／情境清單。",
+    "operating_rules": [
+      "先講生活目標與不能默默放寬的條件，再談同一版圖面和成本；第一次不逐填184欄新風資料。",
+      "每次會議只使用寫明棟別、方案、狀態、日期、圖號及版次的圖；B後門預設／前門備案各算完整案，報價不相加。",
+      "約32地坪是土地目標，騎樓、退縮、法定空地、牆柱、管井須另核；不能當每層32坪室內可用。",
+      "建商回覆、屋主選擇、專業審查、施工圖發行分開記錄；口頭說可以或3D看起來放得下都不直接放行。",
+      "A設計師在隔間、預埋及管道尺寸鎖定前介入；如果尚未委任，建商先交可延後項目、保留條件與最後決定時間。",
+      "缺資料可先議定欄位、負責窗口及回覆期限；只有依賴該資料的工程項目暫不鎖定，不阻擋其他預先規劃。",
+      "變更一律列受影響圖面、功能、費用、工期與保固介面；舊版標示停用，正式核定依雙方合約與依法執業分工。",
+      "回覆表複製到新的inputs/private子目錄再填；公開產物只留空白範本，不存姓名、報價或私人聯絡方式。"
+    ],
+    "first_meeting": {
+      "duration": "建議60分鐘，可依對方議程調整",
+      "agenda": [
+        {
+          "minutes": "0–10",
+          "topic": "確認合作模式、建築師／建商窗口與A裝潢另談的介面"
+        },
+        {
+          "minutes": "10–25",
+          "topic": "確認實際基地／可建量、騎樓及後巷資料由誰提供"
+        },
+        {
+          "minutes": "25–40",
+          "topic": "ABC各自的生活目標、B祭祀搬轎雙版、C照護與公共空間"
+        },
+        {
+          "minutes": "40–50",
+          "topic": "全熱新風／排氣與預埋、標配／加價／折抵的答覆方式"
+        },
+        {
+          "minutes": "50–60",
+          "topic": "整理未答題、資料清單、窗口、回覆期限及第二次會議議程"
+        }
+      ],
+      "question_ids": [
+        "BC-01",
+        "BC-02",
+        "BC-03",
+        "BC-04",
+        "BC-05"
+      ],
+      "opening_message": "我們先做ABC三棟的預先規劃，希望先確認可建條件、工程範圍與預埋介面。每棟約32地坪只是目標，請以正式基地及法規計算；A棟裝潢會另與設計師討論，請在隔間和水電預埋前共同核對。B保留後門搬轎預設及沒有後巷時的前門備案；三棟都規劃全熱交換或至少過濾新風。請先回覆附件問題，標示可做、需補資料或需取捨，並附依據、負責窗口與回覆日期；本次比較圖不作施工依據。",
+      "finish_with": [
+        "雙方窗口與回覆時間",
+        "缺件清單及提供人",
+        "工程範圍草表",
+        "下一次要看的同版圖面",
+        "A設計師何時一起核對"
+      ]
+    },
+    "stages": [
+      {
+        "id": "S01",
+        "title": "合作範圍與基地可行性",
+        "timing": "首次接洽；基地未定也能先討論資料格式與淘汰條件",
+        "participants": "屋主、建商；基地／法規由建築師及相關專業確認；A設計師可先看介面",
+        "task_ids": [
+          "MEP-SITE-001",
+          "NAV-001"
+        ],
+        "prepare": [
+          "一頁開場、現行比較入口與ABC生活目標",
+          "基地待件清單；約32地坪不等於可建量",
+          "A另談裝潢及B／C承作範圍未定的說明"
+        ],
+        "deliver": [
+          "建築師／建商／機電／裝潢的聯絡窗口與回覆日",
+          "基地界址、道路建築線、騎樓退縮與可建面積的資料清單／計算責任",
+          "標配、客變、另包及報價計價方式的草表"
+        ],
+        "hold": "正式可建量／界址／開口權利未核，不以概念圖承諾滿足32坪或簽死面積；可先完成問題與分工表。"
+      },
+      {
+        "id": "S02",
+        "title": "同版格局、樓梯、濕區與開口",
+        "timing": "初步平面／量體確認前；影響柱梁及立面的項目先談",
+        "participants": "屋主、建築師、建商、結構／機電、A設計師",
+        "task_ids": [
+          "A-CARE-001",
+          "A-SUITE-001",
+          "B-CARRY-001",
+          "B-WET-001",
+          "C-CARE-001",
+          "WIN-001"
+        ],
+        "prepare": [
+          "帶選定討論版的平面、剖面及家具操作範圍；原圖仍是比較",
+          "B前後兩案及C整棟／照護局部續版分開對照",
+          "A主臥、收納、套衛取捨由設計師一起評估，不先縮需求"
+        ],
+        "deliver": [
+          "同一版牆柱、樓梯、洞口、淨面積、層高及管井表",
+          "B神桌乾保護上下投影、正門朝街與含桿人員的搬運路線；後巷權利另核",
+          "C訪客公衛、床側至浴室及可關前室的連續路線；A照護／套衛接口"
+        ],
+        "hold": "未解的面積／外窗／家規／照護衝突逐項列價差與替代案；沒同意前不關閉備案、不把局部最大尺寸拼成整棟通過。"
+      },
+      {
+        "id": "S03",
+        "title": "A設計師聯席與機電預留合圖",
+        "timing": "套管及水電預埋、排水、隔間放樣、樓板降板及天花施工鎖定前；以工程排程核最後決定日",
+        "participants": "屋主、建商、建築師、機電／空調／新風廠商、A設計師；B／C裝潢窗口待議",
+        "task_ids": [
+          "PLAN-001",
+          "MEP-SITE-001",
+          "A-CARE-001",
+          "C-PRODUCT-001",
+          "C-HVAC-001"
+        ],
+        "prepare": [
+          "A介面矩陣及完成面／設備最大包絡",
+          "ABC全熱／新風、冷氣、浴廁／香火／油煙獨立原則",
+          "列未選型設備的保留尺寸及哪些項目不能只靠預留"
+        ],
+        "deliver": [
+          "同版梁板／門窗／天花與管線綜合剖面，註檢修與拆機路線",
+          "配電／給排水／防水／弱電的施工界面和產品所需預埋資料",
+          "A建商、設計師、廠商逐列確認分工、圖面提供者、期限及保固介面"
+        ],
+        "hold": "不得先施工再讓A設計師補救；未選產品的保留尺寸須經相應專業核算，梁柱開孔不得由裝潢自行決定。"
+      },
+      {
+        "id": "S04",
+        "title": "同範圍報價與客變核定",
+        "timing": "分階段發包／採購前，與S02～S03可反覆核對",
+        "participants": "屋主、建商、A設計師、各承作廠商",
+        "task_ids": [
+          "PROD-001",
+          "C-PRODUCT-001",
+          "B-WET-001",
+          "C-HVAC-001"
+        ],
+        "prepare": [
+          "標配／升級／另包／預留及折抵清單",
+          "B兩版分開、設備候選不全加、八機位不等於買八台",
+          "高CP易清潔衛浴候選；C照護不可直接套一般組合"
+        ],
+        "deliver": [
+          "型號、實際尺寸、數量、材料與工資、配件、電源、吊運、測試、稅金、保固及不含項",
+          "替代品送審與缺貨改型流程；預留項及不得省略的驗證",
+          "每筆變更的原價／折抵／追加、總差額、有效期與工期影響"
+        ],
+        "hold": "完整範圍、圖面版次及未列項未核清前不把低總價當同規格；採購按正式核定，不由本包或歷史價格自動下單。"
+      },
+      {
+        "id": "S05",
+        "title": "預埋與封板前檢查",
+        "timing": "依工序分批：埋管／灌漿前、防水覆蓋前、天花封板前，不只安排一次",
+        "participants": "屋主、建商監工、設計／機電相關人員、A設計師及責任廠商",
+        "task_ids": [
+          "MEP-SITE-001",
+          "PLAN-001",
+          "QA-001"
+        ],
+        "prepare": [
+          "已發行施工版與變更對照，列本批預埋／覆蓋點",
+          "A套管、地坪、暗架、配線及檢修口逐項核",
+          "試驗方法、判定依據、拍照位置及誰見證先約定"
+        ],
+        "deliver": [
+          "帶尺寸／位置／日期的隱蔽工程照片及管線定位圖",
+          "給排水／防水、排風／新風／冷凝水、配電等依工程階段的試驗紀錄",
+          "缺失、責任窗口、改善日期、覆查結果及相應圖面更新"
+        ],
+        "hold": "依已約定的檢查機制及合約處理該工項，必要的試驗／覆查未完成前不先覆蓋；軟體或照片不能代替專業判定。"
+      },
+      {
+        "id": "S06",
+        "title": "交屋、調試與兩套保固介面",
+        "timing": "系統調試／交屋與契約約定的複驗節點",
+        "participants": "屋主、建商、設計／機電與設備廠商；A設計師一起核交屋現況",
+        "task_ids": [
+          "QA-001",
+          "PLAN-001",
+          "MEP-SITE-001",
+          "C-CARE-001"
+        ],
+        "prepare": [
+          "依採用版逐棟逐系統清點，保留未完成項",
+          "新風濾網／平衡、B燒香補排氣與浴廁獨排情境",
+          "A建商交付與後續裝潢進場的現況點交"
+        ],
+        "deliver": [
+          "竣工圖與最後變更、產品型號／序號／手冊／保固／維修窗口",
+          "依設計工作點的實測調試、排水與防水等驗收紀錄及缺失複驗",
+          "A進場保護、後續開孔／移管申請與建商／裝潢保固責任確認；操作維護教學"
+        ],
+        "hold": "交付文件、未完成清單、複驗及工程核可各自記錄；不要只看3D一致或瀏覽器passed就當施工、照護或風水核可。"
+      }
+    ],
+    "questions": [
+      {
+        "id": "BC-01",
+        "stage": "S01",
+        "buildings": [
+          "A",
+          "B",
+          "C"
+        ],
+        "title": "基地／可建量怎麼算",
+        "ask": "請按正式界址與道路條件列騎樓、退縮、建蔽容積、牆柱管井及每層可用淨面積；後巷通行權與後牆開窗／排氣開孔能否各自成立？若未有基地，先列應補文件。",
+        "evidence": "正式基地與法規依據、面積表、提供人及待補件；不能只回32坪可以。",
+        "task_ids": [
+          "MEP-SITE-001",
+          "WIN-001"
+        ]
+      },
+      {
+        "id": "BC-02",
+        "stage": "S01",
+        "buildings": [
+          "A",
+          "B",
+          "C"
+        ],
+        "title": "誰設計、誰施工、誰保固",
+        "ask": "建築師、結構、機電、建商、A裝潢及B／C裝修各由誰負責？標配、客變、另包和不承作項目請逐列標示；哪些必須建商在前期完成？",
+        "evidence": "未議定項可留待議，附責任窗口、圖面提供者、期限及保固銜接草表。",
+        "task_ids": [
+          "MEP-SITE-001",
+          "PLAN-001"
+        ]
+      },
+      {
+        "id": "BC-03",
+        "stage": "S01",
+        "buildings": [
+          "A"
+        ],
+        "title": "A設計師何時共同核對",
+        "ask": "A會另與裝潢設計師討論。請列隔間、降板、排水、套管、門窗、天花及電箱鎖定的最後日期；可否安排預埋前聯席，哪些可延後、如何保留？",
+        "evidence": "相對施工節點與最後決定日期；A介面矩陣逐列回覆，不預設建商已排除衛浴或水電。",
+        "task_ids": [
+          "A-CARE-001",
+          "A-SUITE-001",
+          "MEP-SITE-001"
+        ]
+      },
+      {
+        "id": "BC-04",
+        "stage": "S01",
+        "buildings": [
+          "A",
+          "B",
+          "C"
+        ],
+        "title": "哪幾版用來討論",
+        "ask": "請指定本次棟別／樓層／方案／狀態／圖號／版次。B先以後巷搬轎，無後巷時保留獨立前門版；C照護局部續版未全部併入，不能拼用尺寸。",
+        "evidence": "當次圖面目錄與會議紀錄附件，未核定項及舊版使用限制。",
+        "task_ids": [
+          "NAV-001",
+          "B-CARRY-001",
+          "C-CARE-001"
+        ]
+      },
+      {
+        "id": "BC-05",
+        "stage": "S01",
+        "buildings": [
+          "A",
+          "B",
+          "C"
+        ],
+        "title": "回覆和估價如何一致",
+        "ask": "請用同範圍報價，分標配、折抵、追加與另包；每個未答問題回報提供人及期限。變更的價格、工期、保固與圖面怎麼共同確認？",
+        "evidence": "回覆／報價／變更表樣式；第一次可先給概算範圍和估價假設。",
+        "task_ids": [
+          "PROD-001",
+          "PLAN-001"
+        ]
+      },
+      {
+        "id": "BC-06",
+        "stage": "S02",
+        "buildings": [
+          "A"
+        ],
+        "title": "A生活與裝潢格局",
+        "ask": "請與A設計師按家具操作、照護入口、主臥與收納檢查平面；套衛不先犧牲主臥。A上層須留洗衣機位，另優先比較A1原後陽台共用洗衣、不減廚房，跨棟到達與門淨寬先核；加深灣少廚房2.232㎡尚未接受。",
+        "evidence": "同版家具圖、門扇全開／半開、剖面與面積對照；取捨回屋主。",
+        "task_ids": [
+          "A-CARE-001",
+          "A-SUITE-001"
+        ]
+      },
+      {
+        "id": "BC-07",
+        "stage": "S02",
+        "buildings": [
+          "B"
+        ],
+        "title": "B家規與上下層乾區",
+        "ask": "保留神桌朝道路／騎樓且正前方開門、神桌背牆與上下投影保護。請套同一版上下層濕區／管道，列未解衝突；新答覆不能被舊主案蓋過。",
+        "evidence": "神桌投影／背牆／門軸及上下管道圖；家規另由家中核，不由建商代認證。",
+        "task_ids": [
+          "B-CARRY-001",
+          "B-WET-001"
+        ]
+      },
+      {
+        "id": "BC-08",
+        "stage": "S02",
+        "buildings": [
+          "B"
+        ],
+        "title": "B後巷預設與前門備案",
+        "ask": "請分兩個完整版本核巷道權利、門淨寬高、搬轎含桿、人員、轉彎、地坪及儲放空間；日常／祭祀／搬運狀態分開，前版不能只靠後版動線。",
+        "evidence": "實物尺寸和足尺搬運驗證計畫、前後獨立圖、儲放與搬運門組，後巷存在不等於合法通行。",
+        "task_ids": [
+          "B-CARRY-001"
+        ]
+      },
+      {
+        "id": "BC-09",
+        "stage": "S02",
+        "buildings": [
+          "B"
+        ],
+        "title": "B上層浴廁面積與外窗",
+        "ask": "原主臥20、公衛5、套衛6㎡目標與外窗偏好仍保留。請按真實牆柱管井列同時滿足程度；若做不到，列完整代價，不直接用獨排替代有窗或縮面積。",
+        "evidence": "淨面積／開窗合法性、上層排水、防水剖面與完整替代案。",
+        "task_ids": [
+          "B-WET-001",
+          "WIN-001"
+        ]
+      },
+      {
+        "id": "BC-10",
+        "stage": "S02",
+        "buildings": [
+          "C"
+        ],
+        "title": "C公共生活與獨立公衛",
+        "ask": "請保留訪客不穿孝親房的公衛與客餐共享方向，檢查桌椅、冰箱、廚房和通路同時操作；C2F既有洗衣機先暫不用，但機位與日後使用空間保留，三棟1F共用一組另研，不擠照護通路。",
+        "evidence": "同版家具／設備與通行操作圖，公共面積和家務動線，不把分時操作當全時不衝突。",
+        "task_ids": [
+          "C-CARE-001",
+          "C-HVAC-001"
+        ]
+      },
+      {
+        "id": "BC-11",
+        "stage": "S02",
+        "buildings": [
+          "C"
+        ],
+        "title": "C照護連續路線與樓梯前室",
+        "ask": "把騎樓到床側到浴室、前室關門及救援連續核對；床體上方避浴廁，門組／盆／扶手用真實包絡。可關前室須同核消防、門扇及樓梯平台。",
+        "evidence": "完成面淨寬、轉位、坐姿可及／倒地外救援及剖面；局部續版與整棟先同版。",
+        "task_ids": [
+          "C-CARE-001",
+          "C-PRODUCT-001"
+        ]
+      },
+      {
+        "id": "BC-12",
+        "stage": "S03",
+        "buildings": [
+          "A",
+          "B",
+          "C"
+        ],
+        "title": "全熱／新風與獨立排氣",
+        "ask": "三棟分系統，全熱優先至少過濾機械新風；浴廁、油煙、B香火各獨排補氣。請按現有常住及使用樓層、祭祀峰值待核計算，不以機位數定採購台數。",
+        "evidence": "分區風量、實際工作點、風壓曲線、噪音、濾網、結露／排水與關門補氣；B源頭排煙另圖。",
+        "task_ids": [
+          "PLAN-001",
+          "MEP-SITE-001"
+        ]
+      },
+      {
+        "id": "BC-13",
+        "stage": "S03",
+        "buildings": [
+          "A",
+          "B",
+          "C"
+        ],
+        "title": "梁板天花、外口與維修",
+        "ask": "請合併梁、窗頭、冷氣、新風和排水剖面；前後外口各核合法性、短路／廢氣／鄰地；預留濾網、馬達和整機拆換路線。A設計師須同看淨高與檢修口。",
+        "evidence": "同版三維或剖面、孔洞／管井／防火處理及檢修尺寸，不任意穿梁或加塞浴廁井。",
+        "task_ids": [
+          "PLAN-001",
+          "MEP-SITE-001"
+        ]
+      },
+      {
+        "id": "BC-14",
+        "stage": "S03",
+        "buildings": [
+          "A",
+          "B",
+          "C"
+        ],
+        "title": "給排水、防水與門檻",
+        "ask": "污水、雨水、冷凝水分清，列降板、排水坡、存水彎／通氣、掃除與防逆流；浴室零高差與防水收口同核。共用1F洗衣及A上層備位須核止水、防水、合法污水終端，不假設陽台雨水地排可直接接。",
+        "evidence": "各系統至合法終端的剖面、防水試驗及維修方案，不能只畫點位。",
+        "task_ids": [
+          "MEP-SITE-001",
+          "C-PRODUCT-001"
+        ]
+      },
+      {
+        "id": "BC-15",
+        "stage": "S03",
+        "buildings": [
+          "A",
+          "B",
+          "C"
+        ],
+        "title": "電力、弱電與安全預留",
+        "ask": "按設備負載核電力／專回／接地及漏電保護，列網路、AP、MDF乾燥散熱檢修；有未來充電或屋頂設備需求時另核容量與法規，不先假設已有核准車位。",
+        "evidence": "盤表、設備點位／管路與測試要求，A開關照明及家具配置與設計師對位。",
+        "task_ids": [
+          "MEP-SITE-001",
+          "PLAN-001"
+        ]
+      },
+      {
+        "id": "BC-16",
+        "stage": "S03",
+        "buildings": [
+          "A",
+          "B",
+          "C"
+        ],
+        "title": "外窗、屋頂與高雄厝介面",
+        "ask": "請核合法外窗、防雨防蟲、遮陽、屋頂／陽台景觀土重、防水溢流與維修；若申請高雄厝相關資格，請明列實際適用規定及證明，不以概念圖判符合。",
+        "evidence": "建築／結構／能源等相應專業圖與資格證據，後巷權利與外口另核。",
+        "task_ids": [
+          "MEP-SITE-001",
+          "WIN-001",
+          "C-HVAC-001"
+        ]
+      },
+      {
+        "id": "BC-17",
+        "stage": "S03",
+        "buildings": [
+          "C"
+        ],
+        "title": "C冷氣、景觀和洗衣預留",
+        "ask": "客房單機優先研究但原雙預留未刪；C-AC01繞線與景觀、洗曬、C2F原機位同核。原機暫不用、保空間不放固定櫃；共用1F另研，不能借別系列型錄限長。",
+        "evidence": "同版配對機、負荷、冷媒管長高差、冷凝坡、樹冠／土重與拆機路線。",
+        "task_ids": [
+          "C-HVAC-001"
+        ]
+      },
+      {
+        "id": "BC-18",
+        "stage": "S04",
+        "buildings": [
+          "A",
+          "B",
+          "C"
+        ],
+        "title": "易清潔衛浴與商品安裝",
+        "ask": "馬桶優先平順包覆、易清潔外形；請報完整組含安裝。核管距、最大投影、維修和配件；C照護用同版真實商品和支承，不能套普通衛浴通過。",
+        "evidence": "原廠完整尺寸圖、標配折抵、替代品條件、安裝範圍與現行有效報價；A由設計師與建商同核。",
+        "task_ids": [
+          "PROD-001",
+          "C-PRODUCT-001"
+        ]
+      },
+      {
+        "id": "BC-19",
+        "stage": "S04",
+        "buildings": [
+          "A",
+          "B",
+          "C"
+        ],
+        "title": "每次變更的完整影響",
+        "ask": "請將替代或客變關聯到原問題ID與圖號，列功能／淨尺寸／價格／工期／保固和上下層影響；不同B版本分開計，不把所有設備候選相加。",
+        "evidence": "書面差額和受影響圖面／責任方，屋主決定與施工圖發行分別記錄。",
+        "task_ids": [
+          "PLAN-001",
+          "PROD-001"
+        ]
+      },
+      {
+        "id": "BC-20",
+        "stage": "S05",
+        "buildings": [
+          "A",
+          "B",
+          "C"
+        ],
+        "title": "哪些工項覆蓋前要看",
+        "ask": "請按埋管／灌漿、防水及封板等工序列通知時間、試驗／見證方法、照片及不符處理；A後續櫃體或裝修是否會蓋住維修點？",
+        "evidence": "分批檢查表與缺失覆查；隱蔽管線位置、完成面尺寸和試驗依據可追溯。",
+        "task_ids": [
+          "MEP-SITE-001",
+          "QA-001"
+        ]
+      },
+      {
+        "id": "BC-21",
+        "stage": "S06",
+        "buildings": [
+          "A",
+          "B",
+          "C"
+        ],
+        "title": "調試、交付與維護",
+        "ask": "請列各系統實測、型號手冊、竣工圖、保固及教學；全熱／新風需風量平衡與濾網更換，B香火各狀態核補排氣；缺失怎麼複驗？",
+        "evidence": "同版調試報告、完整設備清單及未完成項，不能只用出廠證明或3D截圖。",
+        "task_ids": [
+          "QA-001",
+          "MEP-SITE-001"
+        ]
+      },
+      {
+        "id": "BC-22",
+        "stage": "S06",
+        "buildings": [
+          "A"
+        ],
+        "title": "A裝潢進場與保固銜接",
+        "ask": "請會同A設計師點交現況與已測工程，列後續保護、開孔移管、損壞修復及保固邊界；裝修前發現的缺失如何區分處理？",
+        "evidence": "A交接現況、照片／測試及雙方書面約定；不是本表自行免除任何一方責任。",
+        "task_ids": [
+          "MEP-SITE-001",
+          "QA-001"
+        ]
+      }
+    ],
+    "a_interfaces": [
+      {
+        "id": "A-IF-01",
+        "stage": "S01",
+        "topic": "承作與圖面權責",
+        "builder": "提出標配／客變／另包、不含項、各工序日期與窗口",
+        "designer": "提出設計範圍、成果清單、出圖時程及需建商配合事項",
+        "joint": "逐列商定設計／施工／供料／測試／保固，不預設A水電或衛浴由裝潢全包",
+        "evidence": "範圍草表、圖面目錄及工序決定日"
+      },
+      {
+        "id": "A-IF-02",
+        "stage": "S02",
+        "topic": "格局、結構與門窗",
+        "builder": "提供建築師同版梁柱、牆、樓梯、門窗、標高及完成面",
+        "designer": "提供家具動線、門扇、收納和公衛／套衛比較",
+        "joint": "核主臥／收納／照護目標及可改隔間；涉及結構由相應專業核定",
+        "evidence": "尺寸平面＋剖面＋版次及取捨表"
+      },
+      {
+        "id": "A-IF-03",
+        "stage": "S03",
+        "topic": "衛浴降板、防水及排水",
+        "builder": "提供建築／機電降板、排水通氣、套管及防水施作條件",
+        "designer": "提出完成地坪、零高差、設備與貼面厚度、排水／門檻收口",
+        "joint": "同核防水連續、坡度、檢修、鄰房標高及保固分界；A1共享洗衣候選及A上層備位的止水／污水／防水一併預留，不先鋪完才處理",
+        "evidence": "濕區剖面、排水定位與防水試驗計畫"
+      },
+      {
+        "id": "A-IF-04",
+        "stage": "S03",
+        "topic": "冷氣、新風與天花",
+        "builder": "提供梁窗與電力／排水／外口、設備及管線預留條件",
+        "designer": "提出天花分區淨高、照明櫃體與可見檢修口安排",
+        "joint": "核工作點、噪音、保溫、防結露、關門補氣及整機抽換；浴廁／油煙獨排",
+        "evidence": "綜合剖面、機型包絡／濾網與拆機尺寸"
+      },
+      {
+        "id": "A-IF-05",
+        "stage": "S03",
+        "topic": "配電、插座與照明",
+        "builder": "提供容量、配電盤、專回／接地保護與預埋管線",
+        "designer": "提出家具家電定位、照明／開關與使用高度",
+        "joint": "盤表與點位逐一對圖，核家具遮擋、漏電保護及後續測試",
+        "evidence": "電力／照明圖、盤表與供電需求"
+      },
+      {
+        "id": "A-IF-06",
+        "stage": "S03",
+        "topic": "弱電、MDF與網路",
+        "builder": "提供進線、分戶管路及穿線／接地條件",
+        "designer": "提出MDF／AP點、櫃門散熱與維修開啟範圍",
+        "joint": "梯下MDF核淨高／防潮／散熱、穿線與檢修；不得與濕管衝突",
+        "evidence": "弱電圖、機櫃包絡、通風及抽換方式"
+      },
+      {
+        "id": "A-IF-07",
+        "stage": "S03",
+        "topic": "門組、照護與救援",
+        "builder": "提供真實門框五金、地坪及洞口完成淨尺寸",
+        "designer": "提供家具、把手操作及照護路線需求",
+        "joint": "兩門1200名義洞口只是比較，核連續淨通路、轉位、救援及門檻",
+        "evidence": "同版門組圖、完成面路線與足尺驗證計畫"
+      },
+      {
+        "id": "A-IF-08",
+        "stage": "S03",
+        "topic": "櫃體固定與牆內補強",
+        "builder": "提供牆體材質、承重限制及可預埋補強方式",
+        "designer": "提供吊櫃／扶手／設備固定荷載與安裝位置",
+        "joint": "相應專業核補強與防水／暗管避讓，禁止任意鑿結構",
+        "evidence": "固定／補強圖、荷載及預埋點位"
+      },
+      {
+        "id": "A-IF-09",
+        "stage": "S03",
+        "topic": "產品、標配折抵與責任",
+        "builder": "列完整標配、取消折抵、追加、安裝測試與保固條款",
+        "designer": "列選品候選及同版尺寸／原廠安裝要求",
+        "joint": "完整一組同範圍比價可續至S04；影響管距、降板或補強的同版安裝尺寸須在相應預埋前核清，未定型號不先鎖排水與配件",
+        "evidence": "型錄版次、完整報價、採購與替代品送審"
+      },
+      {
+        "id": "A-IF-10",
+        "stage": "S05",
+        "topic": "隱蔽工程、檢修與封板",
+        "builder": "依約通知檢查並交管線定位照片及試驗紀錄",
+        "designer": "核天花／櫃體不封死閥件、接線盒與設備抽換路線",
+        "joint": "依工序處理缺失並更新實際圖，必要檢查前不先覆蓋",
+        "evidence": "埋管／防水／封板分批檢查與覆查紀錄"
+      },
+      {
+        "id": "A-IF-11",
+        "stage": "S06",
+        "topic": "現況點交與保固銜接",
+        "builder": "交竣工／產品／試驗／保固及裝潢進場條件",
+        "designer": "提出保護、後續移管／開孔與裝修驗收方式",
+        "joint": "記錄原有缺失、後續變更及各方修復聯繫，不以本表代替合約",
+        "evidence": "A現況點交、缺失、保護與保固分界確認"
+      }
+    ],
+    "quote_packages": [
+      {
+        "id": "Q-01",
+        "buildings": "ABC",
+        "topic": "基地／建築、結構、騎樓與門窗",
+        "boundary": "區分設計／申請／施工，核可建量、後巷及合法開口；不報假設每層32坪"
+      },
+      {
+        "id": "Q-02",
+        "buildings": "A",
+        "topic": "建商交付與裝潢介面",
+        "boundary": "標配／取消折抵／另包／保留，各工項由誰供料施工及保固待雙方議定"
+      },
+      {
+        "id": "Q-03",
+        "buildings": "B",
+        "topic": "後門搬轎預設完整案",
+        "boundary": "獨立計價；含儲放／門組及實物動線驗證，後巷權利另核"
+      },
+      {
+        "id": "Q-04",
+        "buildings": "B",
+        "topic": "無後巷前門備案完整案",
+        "boundary": "獨立計價，不能加到Q-03當總價；不依賴後門版才能運作"
+      },
+      {
+        "id": "Q-05",
+        "buildings": "C",
+        "topic": "整棟與照護續版合圖",
+        "boundary": "公衛／床側／浴室／前室及同版產品／門組，先列未整合和核對成本"
+      },
+      {
+        "id": "Q-06",
+        "buildings": "ABC",
+        "topic": "一般衛浴完整組與照護另列",
+        "boundary": "易清潔包覆式馬桶、面盆、龍頭、淋浴與完整安裝，C照護配件另核"
+      },
+      {
+        "id": "Q-07",
+        "buildings": "ABC",
+        "topic": "全熱或過濾新風",
+        "boundary": "兩種系統方案各報完整範圍；8機位非8台；含風管／濾網／電源／檢修／平衡調試"
+      },
+      {
+        "id": "Q-08",
+        "buildings": "B",
+        "topic": "香火源頭排氣與補氣",
+        "boundary": "與一般ERV、浴廁及油煙分開；含補氣／控制／噪音及各情境調試"
+      },
+      {
+        "id": "Q-09",
+        "buildings": "ABC",
+        "topic": "冷氣與各獨立排氣",
+        "boundary": "核配對機、實際負荷、管長高差／冷凝水與檢修，C單雙機候選不相加"
+      },
+      {
+        "id": "Q-10",
+        "buildings": "ABC",
+        "topic": "配電、弱電及未來預留",
+        "boundary": "容量／盤表／專回／MDF／AP；充電等未來項按需求與合法條件另核，不預設已核車位"
+      },
+      {
+        "id": "Q-11",
+        "buildings": "ABC",
+        "topic": "屋頂／陽台景觀與排水",
+        "boundary": "含荷載、防水、溢流、維修及實際申請資格，不用高雄厝概念替代法規核可"
+      },
+      {
+        "id": "Q-12",
+        "buildings": "ABC",
+        "topic": "檢查、調試與交付",
+        "boundary": "列測試／見證／竣工圖／教學／保固及缺失複驗是否含價，不重複計費"
+      }
+    ],
+    "references": [
+      {
+        "path": "Docs/abc-ground-laundry-v1.md",
+        "label": "最新共用1F洗衣、C2暫不用保空間與A上層備位"
+      },
+      {
+        "path": "structured/candidates/kaohsiung-house-options.html",
+        "label": "現行ABC平面比較"
+      },
+      {
+        "path": "structured/candidates/kaohsiung-house-options-3d.html",
+        "label": "現行ABC 3D比較"
+      },
+      {
+        "path": "structured/planning/project-next-steps/index.html",
+        "label": "14項跨專業議題"
+      },
+      {
+        "path": "structured/coordination/abc-fresh-air-planning-v1/index.html",
+        "label": "新風條件欄位，後續分批填"
+      },
+      {
+        "path": "Docs/architect-r001-handoff.md",
+        "label": "正式建築師圖面交付流程"
+      },
+      {
+        "path": "Docs/review-workflow.md",
+        "label": "正式版次與核對流程"
+      },
+      {
+        "path": "Docs/abc-fresh-air-v1.md",
+        "label": "已確認常住人數與新風原則"
+      },
+      {
+        "path": "Docs/planning-register.md",
+        "label": "完整需求與生活情境防漏項"
+      }
+    ]
+  },
+  "task_references": [
+    {
+      "id": "NAV-001",
+      "title": "統一現行入口與歷史對照；保留各比較案邊界",
+      "recommendation": "維持目前入口與歷史來源分流；不將整理完成誤當設計採用。",
+      "requirement_references": [],
+      "register_references": [],
+      "source_documents": [
+        "Docs/project-status-v1.md",
+        "Docs/project-reorganization-v1.md"
+      ]
+    },
+    {
+      "id": "PLAN-001",
+      "title": "條件式預先規劃：實際資料到齊後再統一合圖，不自動採用",
+      "recommendation": "先以既有184欄新風條件接口作分批套入；其他專業仍走原需求／情境清單，不宣稱全棟已自動化。",
+      "requirement_references": [],
+      "register_references": [
+        {
+          "id": "PLAN-STRUCTURE-01",
+          "status": "unknown"
+        },
+        {
+          "id": "PLAN-DELIVERY-01",
+          "status": "unknown"
+        }
+      ],
+      "source_documents": [
+        "Docs/abc-conditional-planning-v1.md",
+        "Docs/abc-laundry-roughin-v1.md",
+        "Docs/abc-laundry-use-v1.md",
+        "Docs/abc-laundry-access-v1.md",
+        "Docs/abc-ground-laundry-v1.md",
+        "inputs/references/abc-laundry-owner-20261113.json",
+        "Docs/abc-fresh-air-detail-v1.md",
+        "Docs/abc-meeting-followup-v1.md",
+        "Docs/abc-drawing-return-review-v1.md",
+        "Docs/abc-quote-review-v1.md",
+        "Docs/abc-inspection-handoff-v1.md",
+        "Docs/abc-upper-floor-storage-v1.md",
+        "Docs/abc-upper-floor-storage-3d-v1.md",
+        "Docs/abc-upper-floor-storage-3d-qa-v1.md",
+        "Docs/abc-upper-floor-storage-merge-v1.md",
+        "Docs/ac-upper-floor-storage-preview-v1.md",
+        "Docs/b-upper-storage-3d-qa-v1.md",
+        "Docs/b-upper-storage-3d-v1.md",
+        "Docs/b-upper-storage-sync-v1.md",
+        "Docs/ac-upper-floor-storage-qa-v1.md",
+        "inputs/references/ac-storage-rendered-review-20261112.json"
+      ]
+    },
+    {
+      "id": "WIN-001",
+      "title": "開窗原始意圖與有效繪圖狀態分離",
+      "recommendation": "留原開窗偏好與有效開窗證據分離；不因舊圖來源過期就改hash或刪掉外窗目標。",
+      "requirement_references": [],
+      "register_references": [
+        {
+          "id": "PLAN-COMFORT-03",
+          "status": "unknown"
+        }
+      ],
+      "source_documents": [
+        "Docs/project-reorganization-v1.md",
+        "Docs/kaohsiung-house-compliance-v1.md"
+      ]
+    },
+    {
+      "id": "QA-001",
+      "title": "回收原始QA證據；來源更動先處理重建，不盲跑瀏覽器",
+      "recommendation": "只驗真正改過且要採用的版本；歷史passed不可借用，暫不要求重跑所有畫面。",
+      "requirement_references": [],
+      "register_references": [
+        {
+          "id": "PLAN-DELIVERY-02",
+          "status": "unknown"
+        },
+        {
+          "id": "PLAN-DELIVERY-03",
+          "status": "unknown"
+        }
+      ],
+      "source_documents": [
+        "Docs/qa-evidence-index-v1.md",
+        "scripts/README.md"
+      ]
+    },
+    {
+      "id": "PROD-001",
+      "title": "一般衛浴三組候選，不寫入正式選品或圖面",
+      "recommendation": "一般衛浴保留易清潔包覆外形及三組歷史候選；照護衛浴不能直接套普通組合，未指定採購型號。",
+      "requirement_references": [],
+      "register_references": [
+        {
+          "id": "PLAN-OUTAGE-01",
+          "status": "unknown"
+        },
+        {
+          "id": "PLAN-DELIVERY-01",
+          "status": "unknown"
+        }
+      ],
+      "source_documents": [
+        "Docs/abc-standard-bath-shortlist-v3.md",
+        "Docs/abc-next-improvements-v1.md"
+      ]
+    },
+    {
+      "id": "A-CARE-001",
+      "title": "A一樓照護門組、完整動線及完成面預算",
+      "recommendation": "先保留A2兩道1200名義洞口的獨立小改研究；不把名義1200當900完成淨寬核可，不直接併入主案。",
+      "requirement_references": [
+        {
+          "id": "A.floor-1.elder",
+          "status": "candidate"
+        },
+        {
+          "id": "A.floor-1.bath1",
+          "status": "candidate"
+        }
+      ],
+      "register_references": [
+        {
+          "id": "PLAN-ACCESSIBILITY-01",
+          "status": "unknown"
+        },
+        {
+          "id": "PLAN-ACCESSIBILITY-02",
+          "status": "unknown"
+        },
+        {
+          "id": "SPACE-A.floor-1.elder",
+          "status": "unknown"
+        },
+        {
+          "id": "SPACE-A.floor-1.bath1",
+          "status": "unknown"
+        }
+      ],
+      "source_documents": [
+        "Docs/abc-next-improvements-v1.md",
+        "Docs/a-care-and-c-products-next-v1.md"
+      ]
+    },
+    {
+      "id": "A-SUITE-001",
+      "title": "A二樓主臥套衛與原公衛、面積、收納取捨",
+      "recommendation": "暫保共用公衛、主臥與收納控制；不直接採用把主臥壓至約12.13㎡且移收納的舊套衛比較。",
+      "requirement_references": [
+        {
+          "id": "A.floor-2.master",
+          "status": "candidate"
+        },
+        {
+          "id": "A.floor-2.master_bath",
+          "status": "candidate"
+        },
+        {
+          "id": "A.floor-2.bath2",
+          "status": "candidate"
+        },
+        {
+          "id": "A.floor-2.closet",
+          "status": "candidate"
+        }
+      ],
+      "register_references": [
+        {
+          "id": "SPACE-A.floor-2.master",
+          "status": "unknown"
+        },
+        {
+          "id": "SPACE-A.floor-2.master_bath",
+          "status": "unknown"
+        },
+        {
+          "id": "SPACE-A.floor-2.bath2",
+          "status": "unknown"
+        },
+        {
+          "id": "SPACE-A.floor-2.closet",
+          "status": "unknown"
+        }
+      ],
+      "source_documents": [
+        "Docs/current-design-basis-v1.md",
+        "Docs/abc-next-improvements-v1.md"
+      ]
+    },
+    {
+      "id": "B-CARRY-001",
+      "title": "B實物搬轎、後巷／後窗及機電缺口，保留前門備案",
+      "recommendation": "後門到後左庫優先、前門獨立備案保留；兩版各核日常／祭祀／搬運，不混用通道。",
+      "requirement_references": [
+        {
+          "id": "B.floor-1.palanquin",
+          "status": "candidate"
+        },
+        {
+          "id": "B.floor-1.shrine",
+          "status": "candidate"
+        }
+      ],
+      "register_references": [
+        {
+          "id": "PLAN-STORAGE-01",
+          "status": "unknown"
+        },
+        {
+          "id": "PLAN-PARKING-02",
+          "status": "unknown"
+        },
+        {
+          "id": "PLAN-RITUAL-03",
+          "status": "unknown"
+        },
+        {
+          "id": "SPACE-B.floor-1.palanquin",
+          "status": "unknown"
+        }
+      ],
+      "source_documents": [
+        "Docs/b-claude-round3-v1.md",
+        "inputs/references/b-owner-ritual-answers-20261106.json",
+        "Docs/b32-rear-right-v1.md"
+      ]
+    },
+    {
+      "id": "C-PRODUCT-001",
+      "title": "C四類商品16項資料及安全足尺驗證",
+      "recommendation": "完整盆／門／扶手／座椅與照護配件資料先列接口，未取得商品與安全演練前，不把候選五金當完整照護門。",
+      "requirement_references": [
+        {
+          "id": "C.floor-1.elder_bath",
+          "status": "candidate"
+        }
+      ],
+      "register_references": [
+        {
+          "id": "PLAN-ACCESSIBILITY-01",
+          "status": "unknown"
+        },
+        {
+          "id": "PLAN-ACCESSIBILITY-02",
+          "status": "unknown"
+        },
+        {
+          "id": "SPACE-C.floor-1.elder_bath",
+          "status": "unknown"
+        }
+      ],
+      "source_documents": [
+        "Docs/c-care-bath-readiness-v1.md",
+        "Docs/a-care-and-c-products-next-v1.md",
+        "Docs/c-care-bath-layout-v1.md"
+      ]
+    },
+    {
+      "id": "MEP-SITE-001",
+      "title": "三棟基地、停車、屋頂與機電工程整合",
+      "recommendation": "把32地坪含騎樓、基地界址、梁板、屋頂／景觀荷重、合法排水與空調／新風視為同一組待資料介面；不以概念外框當可建量。",
+      "requirement_references": [],
+      "register_references": [
+        {
+          "id": "PLAN-PARKING-01",
+          "status": "unknown"
+        },
+        {
+          "id": "PLAN-STRUCTURE-01",
+          "status": "unknown"
+        },
+        {
+          "id": "PLAN-STRUCTURE-02",
+          "status": "unknown"
+        },
+        {
+          "id": "PLAN-STRUCTURE-03",
+          "status": "unknown"
+        },
+        {
+          "id": "PLAN-WATERPROOF-01",
+          "status": "unknown"
+        },
+        {
+          "id": "PLAN-WATERPROOF-02",
+          "status": "unknown"
+        },
+        {
+          "id": "PLAN-SHARED-02",
+          "status": "unknown"
+        },
+        {
+          "id": "PLAN-OUTAGE-04",
+          "status": "unknown"
+        }
+      ],
+      "source_documents": [
+        "Docs/pre-land-evidence-workflow.md",
+        "Docs/kaohsiung-house-compliance-v1.md",
+        "Docs/c-coordination-review-v1.md",
+        "Docs/abc-fresh-air-detail-v1.md"
+      ]
+    },
+    {
+      "id": "B-WET-001",
+      "title": "B上層浴廁／娛樂、RF家務與祭祀保護的完整取捨",
+      "recommendation": "保祭祀乾區、主臥20／公衛5／套衛6、KTV20／戶外4及RF24㎡原目標。Q3指定井包／機櫃後20.1889㎡仍須改上層梯；RF另用新完整平台與前室接原候選側門，前熱泵巡檢改前門避桌架，兩案18門態重算。前900／側770僅預算，樓板／屋突／成品、聲學加厚及所有工程仍待核；Q2原梯及24㎡、天井與P3排水缺口保留。",
+      "requirement_references": [
+        {
+          "id": "B.floor-2.master_b",
+          "status": "candidate"
+        },
+        {
+          "id": "B.floor-2.bath_g",
+          "status": "candidate"
+        },
+        {
+          "id": "B.floor-2.master_bath",
+          "status": "candidate"
+        },
+        {
+          "id": "B.floor-3.flex_b",
+          "status": "candidate"
+        },
+        {
+          "id": "B.floor-3.ktv",
+          "status": "candidate"
+        },
+        {
+          "id": "B.floor-3.bath_b3",
+          "status": "candidate"
+        },
+        {
+          "id": "B.floor-3.guest_b",
+          "status": "candidate"
+        },
+        {
+          "id": "B.floor-3.balcony_b3",
+          "status": "candidate"
+        },
+        {
+          "id": "B.floor-rf.rf_deck",
+          "status": "candidate"
+        },
+        {
+          "id": "B.floor-rf.rf_stair",
+          "status": "candidate"
+        }
+      ],
+      "register_references": [
+        {
+          "id": "SPACE-B.floor-2.master_b",
+          "status": "unknown"
+        },
+        {
+          "id": "SPACE-B.floor-2.bath_g",
+          "status": "unknown"
+        },
+        {
+          "id": "SPACE-B.floor-2.master_bath",
+          "status": "unknown"
+        },
+        {
+          "id": "SPACE-B.floor-3.flex_b",
+          "status": "unknown"
+        },
+        {
+          "id": "SPACE-B.floor-3.ktv",
+          "status": "unknown"
+        },
+        {
+          "id": "SPACE-B.floor-3.bath_b3",
+          "status": "unknown"
+        },
+        {
+          "id": "SPACE-B.floor-3.guest_b",
+          "status": "unknown"
+        },
+        {
+          "id": "SPACE-B.floor-3.balcony_b3",
+          "status": "unknown"
+        },
+        {
+          "id": "SPACE-B.floor-rf.rf_deck",
+          "status": "unknown"
+        },
+        {
+          "id": "SPACE-B.floor-rf.rf_stair",
+          "status": "unknown"
+        },
+        {
+          "id": "PLAN-RITUAL-03",
+          "status": "unknown"
+        },
+        {
+          "id": "PLAN-COMFORT-03",
+          "status": "unknown"
+        }
+      ],
+      "source_documents": [
+        "Docs/b-front-drop-response-routes-v1.md",
+        "Docs/b-front-drop-builder-interface-v1.md",
+        "Docs/b-front-drop-claude-crosscheck-v2.md",
+        "Docs/b-front-drop-claude-crosscheck-v1.md",
+        "Docs/claude-b-front-drop-followup-v2.md",
+        "Docs/b-front-drop-stair-v1.md",
+        "Docs/b-front-drainage-layout-v1.md",
+        "Docs/b-review-route-v1.md",
+        "Docs/b-q3-engineering-gates-v1.md",
+        "Docs/b-q3-roof-coordination-v1.md",
+        "Docs/b-ktv-stair-options-v1.md",
+        "Docs/b-roof-daily-use-v1.md",
+        "Docs/b-roof-equipment-v1.md",
+        "Docs/b-working-court-v1.md",
+        "Docs/b-third-entertainment-v1.md",
+        "Docs/b-front-service-detail-v1.md",
+        "Docs/b-upper-replan-v1.md",
+        "Docs/b-claude-round3-v1.md",
+        "Docs/b-bath-ventilation-v1.md",
+        "Docs/b-ventilation-detail-v1.md"
+      ]
+    },
+    {
+      "id": "C-CARE-001",
+      "title": "C整棟樓梯／前室與局部照護續版的同版整合",
+      "recommendation": "新完整1F獨立比較已把現行樓梯／可關前室、梯旁走道、孝親入口及側盆／雙片浴室門對位；18件尺寸保留、81門態列明，原3D不改。盆偏250、濕地分時、18.5mm緊餘量與產品／救援仍未核，不借各版最寬數字替代新一輪核算，不宣稱完整照護通過。",
+      "requirement_references": [
+        {
+          "id": "C.floor-1.elder",
+          "status": "candidate"
+        },
+        {
+          "id": "C.floor-1.elder_bath",
+          "status": "candidate"
+        }
+      ],
+      "register_references": [
+        {
+          "id": "PLAN-ACCESSIBILITY-01",
+          "status": "unknown"
+        },
+        {
+          "id": "PLAN-ACCESSIBILITY-02",
+          "status": "unknown"
+        },
+        {
+          "id": "PLAN-STRUCTURE-04",
+          "status": "unknown"
+        },
+        {
+          "id": "SPACE-C.floor-1.elder",
+          "status": "unknown"
+        },
+        {
+          "id": "SPACE-C.floor-1.elder_bath",
+          "status": "unknown"
+        }
+      ],
+      "source_documents": [
+        "Docs/c-ground-coordination-v1.md",
+        "Docs/c-stair-shared-landing-v1.md",
+        "Docs/c-care-bath-layout-v1.md",
+        "Docs/current-design-basis-v1.md"
+      ]
+    },
+    {
+      "id": "C-HVAC-001",
+      "title": "C客房單雙機服務與景觀／冷媒／冷凝水界面",
+      "recommendation": "客房單機服務優先研究但不先刪原雙預留；景觀與洗曬維持，P2左繞只保留比較，不假定某系列冷媒管長一定足夠。",
+      "requirement_references": [
+        {
+          "id": "C.floor-2.guest2",
+          "status": "candidate"
+        },
+        {
+          "id": "C.floor-2.balcony_c2",
+          "status": "candidate"
+        }
+      ],
+      "register_references": [
+        {
+          "id": "PLAN-COMFORT-01",
+          "status": "unknown"
+        },
+        {
+          "id": "PLAN-COMFORT-02",
+          "status": "unknown"
+        },
+        {
+          "id": "PLAN-WATERPROOF-01",
+          "status": "unknown"
+        },
+        {
+          "id": "SPACE-C.floor-2.guest2",
+          "status": "unknown"
+        },
+        {
+          "id": "SPACE-C.floor-2.balcony_c2",
+          "status": "unknown"
+        }
+      ],
+      "source_documents": [
+        "Docs/abc-next-improvements-v1.md",
+        "Docs/c-balcony-coordination-v1.md",
+        "Docs/c-ac01-route-study-v1.md"
+      ]
+    }
+  ],
+  "summary": {
+    "stages": 6,
+    "questions": 22,
+    "a_interfaces": 11,
+    "quote_packages": 12,
+    "first_meeting_questions": 5,
+    "formal_requirement_statuses": {
+      "candidate": 66
+    },
+    "formal_register_statuses": {
+      "unknown": 105
+    }
+  },
+  "protected_controls_unchanged": 149,
+  "builder_responses_received": 0,
+  "actual_conditions_received_here": 0,
+  "contractual_responsibilities_agreed": false,
+  "formal_requirements_or_register_written": false,
+  "design_or_primary_3d_changed": false,
+  "adopted": false,
+  "professional_approval": "unknown",
+  "browser_qa": "not-run",
+  "source_hashes": {
+    "inputs/builder-communication-plan.json": "dd3334da200ee8e0a09e83fd8d0d2390d6b0225d3364d51b84123790a18f8595",
+    "inputs/project-status.json": "6c3cbde5d7aeabf230408b58f1d53da67da8f483925ca2e00183442e0569d770",
+    "inputs/requirements.json": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066",
+    "inputs/planning-register.json": "140493058b145071afb472bf927860d48a43a6f4407b9b59e5a86705fbe058b0",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "house_design/builder_communication.py": "e98b52234a470eb4f6be0a56b3a8d4a29f0495571c754405ceb49d7bcbefeabc",
+    "scripts/export_builder_communication.py": "650d696de35bd9a0fb4ce77d7f93078813b8babd4ed5439d59a6966d093ceef1",
+    "house_design/project_next_steps.py": "0b75abe12f687a86dd9b4adf3a986e16945d427fd14225495d1bfd4daef67bd5",
+    "house_design/project_status.py": "db73eb9b066353cc282e67dc15e4b430d9d4e4d398eafaf7eeec5f98af1acab0",
+    "house_design/contracts.py": "2888419d49e8d8dbe8b8e99f6b8451363cd9020821c7fe3e703ab09779e202c3",
+    "scripts/export_abc_next_improvements.py": "875c13027466776a6e1661dae369e45c823c661c5e0369d8ee95b6535420e701",
+    "Docs/builder-communication-v1.md": "70d823ac49a958ab71403fabfe96a63bdefaa56f672dca275ed9075f511155bd",
+    "Docs/project-status-v1.md": "de1bb14bf8ea80d98cef5fa20d77a1dc16eea53f840c4b1a97d0e5f4fbffacbd",
+    "Docs/project-reorganization-v1.md": "d7460103d274505cf96cb080fe73c8a48458888bbb48f05bfd8c6cab47022876",
+    "Docs/abc-conditional-planning-v1.md": "8220a9e1483b4075c999b754677f97dc7fe1755d2ae2439c5652c8ceba444f6b",
+    "Docs/abc-laundry-roughin-v1.md": "82741f33dd88ba057c4f050249567b4b65454a64129fb90966a2d800c1a692fe",
+    "Docs/abc-laundry-use-v1.md": "9b621db7ca97fbebb15d9ab066c4b646063be5385a10982e1438085648b25795",
+    "Docs/abc-laundry-access-v1.md": "b56107429da932409aad85cd6997312dfba209602a8baa66eeedf8376967033a",
+    "Docs/abc-ground-laundry-v1.md": "fa60275993c40b7a59708c13be67c34f78ba3f424cfd22932b8340785b7b6713",
+    "inputs/references/abc-laundry-owner-20261113.json": "d686ff2722941b3144c8a98a35a7d9a4d942f973572e7b64d6d5ef2a59f838b1",
+    "Docs/abc-fresh-air-detail-v1.md": "896041fc2ba0b54228d7ead990ad80e10d2a8e877b731aa3e618b5c6a25d7d93",
+    "Docs/abc-meeting-followup-v1.md": "b5c5d94f9744dec494b054167f59ead74e6ee486e06954d78d8f91ea2c723306",
+    "Docs/abc-drawing-return-review-v1.md": "0cad7eb7966915154b244d79521533d64cb19f5148c38d5d116105afdd6443e1",
+    "Docs/abc-quote-review-v1.md": "38e0f7de53e6f1f1505e37960ec549ab937e02d0c776bcae8b6898cd790369b3",
+    "Docs/abc-inspection-handoff-v1.md": "82f7020e101d0d8e70794e74c0444d347c40a3fb1615efb877b5d2b375ccee25",
+    "Docs/abc-upper-floor-storage-v1.md": "cf53110b3e0fddcbe7bcccadd2ae9246392871ec58c910451fe63e18046a1dbd",
+    "Docs/abc-upper-floor-storage-3d-v1.md": "76ddd2c6031e60f7dad93647e85d392e56375c7dc6a70b71d3dd9775b9920147",
+    "Docs/abc-upper-floor-storage-3d-qa-v1.md": "a757ed36d9cf2bf157a451743d5c6f1a0b0566ba25084e97cf16ef0b723ba07c",
+    "Docs/abc-upper-floor-storage-merge-v1.md": "60583980ef95baa7f9ea531557aa1ae1aca23034069903b02a45ed8cd1a8b2e4",
+    "Docs/ac-upper-floor-storage-preview-v1.md": "8050465da7366422c1543a4bf464396e69db2bacd7ce05b88c12fb8d122526c3",
+    "Docs/b-upper-storage-3d-qa-v1.md": "57f909556744c73b9b088c552caa1656d40a5f43f82c9e6aa9b2b434a8417d9f",
+    "Docs/b-upper-storage-3d-v1.md": "50220b48129726a83304521affe1d31f434f9dc443054a9066c86b6e00da5733",
+    "Docs/b-upper-storage-sync-v1.md": "70e2ca985edc198fca0c575cebea57fb063edba24e637271345cbaf525574bdf",
+    "Docs/ac-upper-floor-storage-qa-v1.md": "799a6d3f77ac26d07a754565ae3df647bafc92dea2677cc0b5dbad44c5229ee3",
+    "inputs/references/ac-storage-rendered-review-20261112.json": "89b1aaf1bd61d114b6587f33e54826f5f7ebf09cf838ae9d5f0280187586cc3e",
+    "Docs/kaohsiung-house-compliance-v1.md": "cd41d4d3e53afbe5f829d2afdf3aaf3e057ee56d76f28fbcb6573385b9ddfc98",
+    "Docs/qa-evidence-index-v1.md": "258141383cddfc7498b202fad4eb245ccb3fb2feda644d8f06aae8cec5a5f2cf",
+    "scripts/README.md": "a745edbf65f80c872395d8f7eddd86fe0cbd65efdee49f8911772f184fc2f258",
+    "Docs/abc-standard-bath-shortlist-v3.md": "e31182586833203aa62640a53e982dc8446da32f183840dc74a63231440ec27b",
+    "Docs/abc-next-improvements-v1.md": "fd922c31ce24f80622ea1c40f11be09fca678ce5ce3b356fd3d5c02f83da99c3",
+    "Docs/a-care-and-c-products-next-v1.md": "3fc8283d72e05bf4db8e5d88788315247e75f8ac5825faf195b37258a3f91b57",
+    "Docs/current-design-basis-v1.md": "c9dc0982a6c14dade78616d819a45047d78c2a71e3140f7c89a69005653d0fdb",
+    "Docs/b-claude-round3-v1.md": "a9a6fe163037a967962723738ca1535664fc7a54707f101af50066e0c35c68ff",
+    "inputs/references/b-owner-ritual-answers-20261106.json": "736f5a477ce1fbfd8e1bf460ecf49f9043a83635201d1598e3e1842e6460ddb9",
+    "Docs/b32-rear-right-v1.md": "027663da207bae04cfe1f6fa4c5e374d25883b766a05e8620c20a1a1bf193466",
+    "Docs/c-care-bath-readiness-v1.md": "875d670e340ba29d24b2278a60cb4f7c0c3d09c189e9f5b6b4886b37ea28cc40",
+    "Docs/c-care-bath-layout-v1.md": "18087444c40ed57f193eed95193ebc044929de0240f8db25d524f61f29d824fe",
+    "Docs/pre-land-evidence-workflow.md": "6d8ea82178c582655de0af27381dea2698efb3a1093cb90eb1a9cafb6ba2576a",
+    "Docs/c-coordination-review-v1.md": "39dd2f85d145dfa187a6da24baa521bda25472dfc6b4f97196ad3fabfff588eb",
+    "Docs/b-front-drop-response-routes-v1.md": "ee4e14027f2068aa0a5456ade5f9daf8d2a558310dd0040808cb56c2428df3fc",
+    "Docs/b-front-drop-builder-interface-v1.md": "83fe0296744b1a62e3546f1a3158096bf0c951e6f26ae586e39440329d026061",
+    "Docs/b-front-drop-claude-crosscheck-v2.md": "19452fd64b52c46b0df8d55cec84f5cee1868c6bf7249ec46344a1f498aed561",
+    "Docs/b-front-drop-claude-crosscheck-v1.md": "a559b3822f016e56d22e2081b0386fec7035b7a602613520e00e9cf0974e3bfe",
+    "Docs/claude-b-front-drop-followup-v2.md": "198843216d0c3678232bc7d1794d58a82a703956066b991c4af3870dd800a23b",
+    "Docs/b-front-drop-stair-v1.md": "3e913493cbadb9f9d42f1fe43af8ed3d438b72bad518e0d97260e48d7db63bcc",
+    "Docs/b-front-drainage-layout-v1.md": "6664d87277208e43b6c8022ca56b92fc207b82feb3d176a7106dbe7dfc215c11",
+    "Docs/b-review-route-v1.md": "e895485250ad68b7950944657f63ca6a02603b719208bad6606c3fffb8c9b230",
+    "Docs/b-q3-engineering-gates-v1.md": "069982a82cb336345bd9d82e5116df0f97f51fcce3fa5a1c22c101da7b1dce04",
+    "Docs/b-q3-roof-coordination-v1.md": "e5ca8cc28994b8f364803c248ad5c790fce214ad0cb314b50ba6a9bfea8b3892",
+    "Docs/b-ktv-stair-options-v1.md": "e994cd9439f526a99a8d6faea11eb5e90f4fcd01b6383a82f514849b29fc61a2",
+    "Docs/b-roof-daily-use-v1.md": "257b18c52d1283f08e861d7f012a9509ca1e725847b33ec7bf1f2c58e3decdce",
+    "Docs/b-roof-equipment-v1.md": "f2eeaea3227b5a70dac04426d21dd6603f10094452f9048a30eb5ac8eb1af156",
+    "Docs/b-working-court-v1.md": "7d9b72802381917a52b56b2197574b5f811b267307278428db617cd5ec31d2c2",
+    "Docs/b-third-entertainment-v1.md": "5f69f521386c051ce67b4b24d5cda79186f70f937316d25c64962a745258d513",
+    "Docs/b-front-service-detail-v1.md": "bc04d48a087905f1d9735cb90dfde9da33b200627ce6d47adf3115f5648d280b",
+    "Docs/b-upper-replan-v1.md": "9b42184fbfeb05c3ffcfb45dbff7886b3d700d39ffc7185f0827c21ea5f5652a",
+    "Docs/b-bath-ventilation-v1.md": "bdc6c635a7c5850c446288c77db22d8b2bf9ea790486ea357489fe46a9606e73",
+    "Docs/b-ventilation-detail-v1.md": "806a9f37f045e3c2e324c284e995131fc427885a7c0871c2c43fdb859327551d",
+    "Docs/c-ground-coordination-v1.md": "e9b5a6ce7997bd4b6dcfef836890725e5b48d76e99e46e09038c695c87a337f3",
+    "Docs/c-stair-shared-landing-v1.md": "6ff7ef49fd2981a0f5dfcfdeeb37e80a0c7370abe2197fe69f6e4a69d1be6eec",
+    "Docs/c-balcony-coordination-v1.md": "404d7849d9a1a7049cfa1964d191c5493173f461a148f7a120383c64eb71136f",
+    "Docs/c-ac01-route-study-v1.md": "505cde36873ee90b455284fe103747b19e0baba32ed7c019fec2ab35747bde50",
+    "structured/candidates/kaohsiung-house-options.html": "971b186ca01cd3d5010758723f60412dad0e932e4ac459c4cbe128a48343eb18",
+    "structured/candidates/kaohsiung-house-options-3d.html": "7eaf45705d3626a650e00414e027c8e9c5bd7f5a7d60eb1b56658f37273712a2",
+    "structured/planning/project-next-steps/index.html": "89494d24eb0d6b44f47886acc994118508a5b7ad79c26bfe070806e64c1136c8",
+    "structured/coordination/abc-fresh-air-planning-v1/index.html": "3179f2e25e9173906547fad56b718a366d62e0f54d6e77e7715a983724b87362",
+    "Docs/architect-r001-handoff.md": "d9b0ff587e07095a6b788d8808643f793906f3b88da16e236b8d5a043ab96ba9",
+    "Docs/review-workflow.md": "e85430776add212dc090e29988a4596ac35dffb42690654a34afaf882bd208a8",
+    "Docs/abc-fresh-air-v1.md": "ca3d28d1e0b10fc82d555222845f29355561417e476002ba68181e7b49e1c407",
+    "Docs/planning-register.md": "eca42a99e7a18b07c4d0aad8550528fc24b2c6c6d5e0aaf4149babc3440fba32"
+  },
+  "report_hash": "32da47ae5b5132908b6a4ac7848efe087c1ff3a092339c355202646556e9c3db"
+}

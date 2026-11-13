@@ -1,0 +1,1306 @@
+{
+  "schema": "house-abc-laundry-use-report-v1",
+  "date": "2026-11-13",
+  "config": {
+    "schema": "house-abc-laundry-use-v1",
+    "date": "2026-11-13",
+    "adopted": false,
+    "parent_report": "structured/coordination/abc-laundry-access-v1/review.json",
+    "parent_sha256": "35437c6cf61759841d6c3b1640517300c8261bf5bb06c6ce48dbba1ed6e1bc6c",
+    "parent_report_hash": "cccb8e77b8ff54e162bc27746b1cef493f02e6fd53d43bb19ffe49e41db18730",
+    "owner_reference": "inputs/references/abc-laundry-owner-20261113.json",
+    "illustrative_minutes": {
+      "basis": "illustrative-only-not-owner-data-or-product-performance",
+      "available_window": 480,
+      "washer_loading": 15,
+      "washer_program": 90,
+      "washer_unloading_transfer": 15,
+      "dryer_program": 120,
+      "dryer_unloading": 15,
+      "combined_loading": 15,
+      "combined_program": 210,
+      "combined_unloading": 15
+    },
+    "illustrative_scenarios": [
+      {
+        "id": "daily-example",
+        "label": "日常壓力例：三戶各一批",
+        "batches_per_household": 1
+      },
+      {
+        "id": "bedding-example",
+        "label": "床單集中壓力例：三戶各兩批",
+        "batches_per_household": 2
+      }
+    ],
+    "recommendation": "保留一台共用洗衣機＋旁側平放乾衣機備位，先不採購；小晾架作補充，不承諾三戶只靠它全部晾乾。採分戶預約及分散床單日，晴雨兩套流程；實際批數、衣物／床品適用性、乾衣容量、程序時間與可用時段到齊後再比較，不自動加第二組或取消C2／A上層備位。",
+    "use_steps": [
+      [
+        "01",
+        "預約與平層取送",
+        "按戶分時段，小批衣籃取送；動線未核前由家人協助，不要求長輩提濕衣上下樓。"
+      ],
+      [
+        "02",
+        "分戶污衣與備品",
+        "各戶容器識別；清潔劑可及、避免地面暫堆。籃車停位尚未核，不把900試線或門行程當停車位。"
+      ],
+      [
+        "03",
+        "洗衣與取放",
+        "操作高度、開門、彎腰／坐姿及扶靠依使用者與實機核。換批與清理留時間，特殊洗滌依衣標或照護指示。"
+      ],
+      [
+        "04",
+        "晴天晾／雨天乾",
+        "升降架降到可及高度；床品尺寸與承重待核。雨天保乾衣候選及獨立排濕補氣，不靠一般全熱保證除濕。"
+      ],
+      [
+        "05",
+        "潔衣分戶收取",
+        "潔衣與污衣容器分開，乾後及時取走；不在門口與操作帶新增固定櫃。操作分時，不把兩機同跑當兩人可同時取放。"
+      ],
+      [
+        "06",
+        "還原與維修",
+        "收起晾架、清理濾網／槽體依原廠，還原通行；故障時保分戶平層取送與送洗選項，不把樓上備位當長輩必須上樓的替代。"
+      ]
+    ],
+    "engineering_interfaces": [
+      [
+        "LAU-03",
+        "安裝、開門與換機",
+        "原850×750mm各機安裝預算保留；實際機身＋門片＋接管＋散熱＋拆換另核，洗／乾kg容量不同時須重分批。"
+      ],
+      [
+        "LAU-04",
+        "雨天濕度與容量",
+        "1200×500mm只是含衣物外廓，不能換算可晾kg；核晾架承重、衣物間距、床單、乾衣機種及排濕／補氣、冷凝水。"
+      ],
+      [
+        "LAU-05",
+        "鄰臥室噪音振動",
+        "可用時段與夜間限制待同版聲學／隔振資料，不能用示例8小時自行承諾可連跑或移到夜間。"
+      ],
+      [
+        "LAU-06",
+        "給排水、防水與止水",
+        "洗衣污水核合法污水終端，乾衣冷凝水依機型核；地面防水排水及漏水止水不借雨水溝或任意地排。"
+      ],
+      [
+        "LAU-07",
+        "電力與設備預埋",
+        "兩機備位不等既有迴路可同時啟動；容量、迴路、接地漏電與插座位置依電氣設計，不拉延長線跨濕地。"
+      ],
+      [
+        "LAU-08",
+        "共用管理與A交接",
+        "分戶預約、床品分日、潔污容器、清潔保養及水電費先留討論；建商與A另聘設計師在預埋前對同版接口。"
+      ]
+    ],
+    "limits": [
+      "所有批數與分鐘均為壓力示例，未取自屋主人數、實際衣量或產品型錄；不是選機、承諾工時或乾衣完成驗證。",
+      "一批假設可用同一個乾衣程序，實際洗／乾容量或衣標不合就須分批，時程不能沿用；床單例不表示棉被或大型床品可洗烘。",
+      "洗／乾操作帶在原平面重疊；示例令人工操作互斥，可同時運轉不代表多人同時取放或無障礙成立。",
+      "只洗的時間不含晾乾；未有氣候、衣量與排濕資料，晾乾時數及三戶滿足程度均保留未知。",
+      "兩機採固定間隔錯開批次，找出該種排法可行的最小整數分鐘間隔，不聲稱所有排程的全局最短；還需計三棟取送與實際回應延誤。",
+      "不把小晾架降下外廓或未核籃車停位當成可用儲藏；門行程到乾衣備位20mm仍需產品同版重核。",
+      "原A前側瓶頸、後口條件、晾架占轉位、設備完成面／維修、噪音與2.232㎡加深代價仍在；未擴陽台、縮孝親房、釋放MDF或改主3D。",
+      "B後門預設／前門備案及祭祀、搬轎、淋浴保持；新共用流程不穿神明堂，也不推定A／C已有合法共同後路。"
+    ],
+    "actual_conditions": {
+      "daily_batches": null,
+      "peak_bedding_batches": null,
+      "usable_day_window_minutes": null,
+      "washer_dry_load_capacity_kg": null,
+      "dryer_dry_load_capacity_kg": null,
+      "washer_program_minutes": null,
+      "dryer_program_minutes": null,
+      "combined_program_minutes": null,
+      "actual_loading_unloading_minutes": null,
+      "textile_piece_size_and_program_limits": null,
+      "rack_rated_capacity_and_clothes_envelope": null,
+      "air_drying_duration_by_weather": null,
+      "elder_reach_and_assistance": null,
+      "separate_clean_dirty_container_and_cart_parking": null,
+      "shared_access_and_threshold_evidence": null,
+      "door_and_machine_full_service_envelope": null,
+      "noise_vibration_and_operating_hours": null,
+      "electrical_simultaneous_load_design": null,
+      "air_moisture_and_condensate_design": null,
+      "legal_wastewater_and_waterproofing": null,
+      "maintenance_cost_and_responsibility": null
+    }
+  },
+  "parent_report": "structured/coordination/abc-laundry-access-v1/review.json",
+  "parent_report_sha256": "35437c6cf61759841d6c3b1640517300c8261bf5bb06c6ce48dbba1ed6e1bc6c",
+  "parent_report_hash": "cccb8e77b8ff54e162bc27746b1cef493f02e6fd53d43bb19ffe49e41db18730",
+  "parent_sources_verified": 25,
+  "owner_direction": {
+    "schema": "house-abc-laundry-owner-direction-v1",
+    "date": "2026-11-13",
+    "request": "每棟1F因為老人住，考慮曬衣空間，有洗衣機空間最好；三棟1F共用一組，以老人方便洗衣為主。",
+    "clarification": "三棟一樓共用一組 C 二樓既有洗衣機可以先暫時不用 先有空間 其他再想 A棟2F以上也要規劃一個放洗衣機空間",
+    "confirmed": {
+      "shared_group_at_ground_floor": 1,
+      "primary_purpose": "older-residents-no-laundry-stair-carrying",
+      "C_floor2_initial_washer_use": "temporarily-inactive-reserve-space",
+      "A_upper_floor_washer_space_required": true
+    },
+    "not_selected": {
+      "host_building": null,
+      "installed_product": null,
+      "dryer_purchase": null,
+      "site_route": null,
+      "C2_permanent_removal": false,
+      "A_upper_floor": null
+    },
+    "scope": "Latest owner direction for new independent preplanning; retain immutable older studies and formal requirement/register records. This does not retroactively approve any layout or release construction."
+  },
+  "recommendation": "保留一台共用洗衣機＋旁側平放乾衣機備位，先不採購；小晾架作補充，不承諾三戶只靠它全部晾乾。採分戶預約及分散床單日，晴雨兩套流程；實際批數、衣物／床品適用性、乾衣容量、程序時間與可用時段到齊後再比較，不自動加第二組或取消C2／A上層備位。",
+  "scenarios": [
+    {
+      "id": "daily-example",
+      "label": "日常壓力例：三戶各一批",
+      "batches_per_household": 1,
+      "basis": "hypothetical-not-actual-demand",
+      "households": [
+        "A",
+        "B",
+        "C"
+      ],
+      "batches": 3,
+      "modes": [
+        {
+          "mode": "wash-and-air",
+          "batches": 3,
+          "interval_min": 120,
+          "elapsed_min": 360,
+          "phases": [
+            {
+              "batch": 1,
+              "resource": "washer",
+              "kind": "load",
+              "start_min": 0,
+              "end_min": 15
+            },
+            {
+              "batch": 1,
+              "resource": "washer",
+              "kind": "program",
+              "start_min": 15,
+              "end_min": 105
+            },
+            {
+              "batch": 1,
+              "resource": "washer",
+              "kind": "unload",
+              "start_min": 105,
+              "end_min": 120
+            },
+            {
+              "batch": 2,
+              "resource": "washer",
+              "kind": "load",
+              "start_min": 120,
+              "end_min": 135
+            },
+            {
+              "batch": 2,
+              "resource": "washer",
+              "kind": "program",
+              "start_min": 135,
+              "end_min": 225
+            },
+            {
+              "batch": 2,
+              "resource": "washer",
+              "kind": "unload",
+              "start_min": 225,
+              "end_min": 240
+            },
+            {
+              "batch": 3,
+              "resource": "washer",
+              "kind": "load",
+              "start_min": 240,
+              "end_min": 255
+            },
+            {
+              "batch": 3,
+              "resource": "washer",
+              "kind": "program",
+              "start_min": 255,
+              "end_min": 345
+            },
+            {
+              "batch": 3,
+              "resource": "washer",
+              "kind": "unload",
+              "start_min": 345,
+              "end_min": 360
+            }
+          ],
+          "window_min": 480,
+          "example_overrun_min": 0,
+          "example_batches_in_window": 4,
+          "handling_overlap": false,
+          "completion_scope": "wash-only-not-air-dried",
+          "real_dry_completion_verified": false,
+          "actual_demand_satisfied": null,
+          "global_optimum_claimed": false
+        },
+        {
+          "mode": "separate-dryer",
+          "batches": 3,
+          "interval_min": 150,
+          "elapsed_min": 555,
+          "phases": [
+            {
+              "batch": 1,
+              "resource": "washer",
+              "kind": "load",
+              "start_min": 0,
+              "end_min": 15
+            },
+            {
+              "batch": 1,
+              "resource": "washer",
+              "kind": "program",
+              "start_min": 15,
+              "end_min": 105
+            },
+            {
+              "batch": 1,
+              "resource": "washer",
+              "kind": "transfer",
+              "start_min": 105,
+              "end_min": 120
+            },
+            {
+              "batch": 1,
+              "resource": "dryer",
+              "kind": "program",
+              "start_min": 120,
+              "end_min": 240
+            },
+            {
+              "batch": 1,
+              "resource": "dryer",
+              "kind": "unload",
+              "start_min": 240,
+              "end_min": 255
+            },
+            {
+              "batch": 2,
+              "resource": "washer",
+              "kind": "load",
+              "start_min": 150,
+              "end_min": 165
+            },
+            {
+              "batch": 2,
+              "resource": "washer",
+              "kind": "program",
+              "start_min": 165,
+              "end_min": 255
+            },
+            {
+              "batch": 2,
+              "resource": "washer",
+              "kind": "transfer",
+              "start_min": 255,
+              "end_min": 270
+            },
+            {
+              "batch": 2,
+              "resource": "dryer",
+              "kind": "program",
+              "start_min": 270,
+              "end_min": 390
+            },
+            {
+              "batch": 2,
+              "resource": "dryer",
+              "kind": "unload",
+              "start_min": 390,
+              "end_min": 405
+            },
+            {
+              "batch": 3,
+              "resource": "washer",
+              "kind": "load",
+              "start_min": 300,
+              "end_min": 315
+            },
+            {
+              "batch": 3,
+              "resource": "washer",
+              "kind": "program",
+              "start_min": 315,
+              "end_min": 405
+            },
+            {
+              "batch": 3,
+              "resource": "washer",
+              "kind": "transfer",
+              "start_min": 405,
+              "end_min": 420
+            },
+            {
+              "batch": 3,
+              "resource": "dryer",
+              "kind": "program",
+              "start_min": 420,
+              "end_min": 540
+            },
+            {
+              "batch": 3,
+              "resource": "dryer",
+              "kind": "unload",
+              "start_min": 540,
+              "end_min": 555
+            }
+          ],
+          "window_min": 480,
+          "example_overrun_min": 75,
+          "example_batches_in_window": 2,
+          "handling_overlap": false,
+          "completion_scope": "assumed-one-cycle-per-batch-only",
+          "real_dry_completion_verified": false,
+          "actual_demand_satisfied": null,
+          "global_optimum_claimed": false
+        },
+        {
+          "mode": "combined-machine",
+          "batches": 3,
+          "interval_min": 240,
+          "elapsed_min": 720,
+          "phases": [
+            {
+              "batch": 1,
+              "resource": "combined",
+              "kind": "load",
+              "start_min": 0,
+              "end_min": 15
+            },
+            {
+              "batch": 1,
+              "resource": "combined",
+              "kind": "program",
+              "start_min": 15,
+              "end_min": 225
+            },
+            {
+              "batch": 1,
+              "resource": "combined",
+              "kind": "unload",
+              "start_min": 225,
+              "end_min": 240
+            },
+            {
+              "batch": 2,
+              "resource": "combined",
+              "kind": "load",
+              "start_min": 240,
+              "end_min": 255
+            },
+            {
+              "batch": 2,
+              "resource": "combined",
+              "kind": "program",
+              "start_min": 255,
+              "end_min": 465
+            },
+            {
+              "batch": 2,
+              "resource": "combined",
+              "kind": "unload",
+              "start_min": 465,
+              "end_min": 480
+            },
+            {
+              "batch": 3,
+              "resource": "combined",
+              "kind": "load",
+              "start_min": 480,
+              "end_min": 495
+            },
+            {
+              "batch": 3,
+              "resource": "combined",
+              "kind": "program",
+              "start_min": 495,
+              "end_min": 705
+            },
+            {
+              "batch": 3,
+              "resource": "combined",
+              "kind": "unload",
+              "start_min": 705,
+              "end_min": 720
+            }
+          ],
+          "window_min": 480,
+          "example_overrun_min": 240,
+          "example_batches_in_window": 2,
+          "handling_overlap": false,
+          "completion_scope": "assumed-one-cycle-per-batch-only",
+          "real_dry_completion_verified": false,
+          "actual_demand_satisfied": null,
+          "global_optimum_claimed": false
+        }
+      ]
+    },
+    {
+      "id": "bedding-example",
+      "label": "床單集中壓力例：三戶各兩批",
+      "batches_per_household": 2,
+      "basis": "hypothetical-not-actual-demand",
+      "households": [
+        "A",
+        "B",
+        "C"
+      ],
+      "batches": 6,
+      "modes": [
+        {
+          "mode": "wash-and-air",
+          "batches": 6,
+          "interval_min": 120,
+          "elapsed_min": 720,
+          "phases": [
+            {
+              "batch": 1,
+              "resource": "washer",
+              "kind": "load",
+              "start_min": 0,
+              "end_min": 15
+            },
+            {
+              "batch": 1,
+              "resource": "washer",
+              "kind": "program",
+              "start_min": 15,
+              "end_min": 105
+            },
+            {
+              "batch": 1,
+              "resource": "washer",
+              "kind": "unload",
+              "start_min": 105,
+              "end_min": 120
+            },
+            {
+              "batch": 2,
+              "resource": "washer",
+              "kind": "load",
+              "start_min": 120,
+              "end_min": 135
+            },
+            {
+              "batch": 2,
+              "resource": "washer",
+              "kind": "program",
+              "start_min": 135,
+              "end_min": 225
+            },
+            {
+              "batch": 2,
+              "resource": "washer",
+              "kind": "unload",
+              "start_min": 225,
+              "end_min": 240
+            },
+            {
+              "batch": 3,
+              "resource": "washer",
+              "kind": "load",
+              "start_min": 240,
+              "end_min": 255
+            },
+            {
+              "batch": 3,
+              "resource": "washer",
+              "kind": "program",
+              "start_min": 255,
+              "end_min": 345
+            },
+            {
+              "batch": 3,
+              "resource": "washer",
+              "kind": "unload",
+              "start_min": 345,
+              "end_min": 360
+            },
+            {
+              "batch": 4,
+              "resource": "washer",
+              "kind": "load",
+              "start_min": 360,
+              "end_min": 375
+            },
+            {
+              "batch": 4,
+              "resource": "washer",
+              "kind": "program",
+              "start_min": 375,
+              "end_min": 465
+            },
+            {
+              "batch": 4,
+              "resource": "washer",
+              "kind": "unload",
+              "start_min": 465,
+              "end_min": 480
+            },
+            {
+              "batch": 5,
+              "resource": "washer",
+              "kind": "load",
+              "start_min": 480,
+              "end_min": 495
+            },
+            {
+              "batch": 5,
+              "resource": "washer",
+              "kind": "program",
+              "start_min": 495,
+              "end_min": 585
+            },
+            {
+              "batch": 5,
+              "resource": "washer",
+              "kind": "unload",
+              "start_min": 585,
+              "end_min": 600
+            },
+            {
+              "batch": 6,
+              "resource": "washer",
+              "kind": "load",
+              "start_min": 600,
+              "end_min": 615
+            },
+            {
+              "batch": 6,
+              "resource": "washer",
+              "kind": "program",
+              "start_min": 615,
+              "end_min": 705
+            },
+            {
+              "batch": 6,
+              "resource": "washer",
+              "kind": "unload",
+              "start_min": 705,
+              "end_min": 720
+            }
+          ],
+          "window_min": 480,
+          "example_overrun_min": 240,
+          "example_batches_in_window": 4,
+          "handling_overlap": false,
+          "completion_scope": "wash-only-not-air-dried",
+          "real_dry_completion_verified": false,
+          "actual_demand_satisfied": null,
+          "global_optimum_claimed": false
+        },
+        {
+          "mode": "separate-dryer",
+          "batches": 6,
+          "interval_min": 150,
+          "elapsed_min": 1005,
+          "phases": [
+            {
+              "batch": 1,
+              "resource": "washer",
+              "kind": "load",
+              "start_min": 0,
+              "end_min": 15
+            },
+            {
+              "batch": 1,
+              "resource": "washer",
+              "kind": "program",
+              "start_min": 15,
+              "end_min": 105
+            },
+            {
+              "batch": 1,
+              "resource": "washer",
+              "kind": "transfer",
+              "start_min": 105,
+              "end_min": 120
+            },
+            {
+              "batch": 1,
+              "resource": "dryer",
+              "kind": "program",
+              "start_min": 120,
+              "end_min": 240
+            },
+            {
+              "batch": 1,
+              "resource": "dryer",
+              "kind": "unload",
+              "start_min": 240,
+              "end_min": 255
+            },
+            {
+              "batch": 2,
+              "resource": "washer",
+              "kind": "load",
+              "start_min": 150,
+              "end_min": 165
+            },
+            {
+              "batch": 2,
+              "resource": "washer",
+              "kind": "program",
+              "start_min": 165,
+              "end_min": 255
+            },
+            {
+              "batch": 2,
+              "resource": "washer",
+              "kind": "transfer",
+              "start_min": 255,
+              "end_min": 270
+            },
+            {
+              "batch": 2,
+              "resource": "dryer",
+              "kind": "program",
+              "start_min": 270,
+              "end_min": 390
+            },
+            {
+              "batch": 2,
+              "resource": "dryer",
+              "kind": "unload",
+              "start_min": 390,
+              "end_min": 405
+            },
+            {
+              "batch": 3,
+              "resource": "washer",
+              "kind": "load",
+              "start_min": 300,
+              "end_min": 315
+            },
+            {
+              "batch": 3,
+              "resource": "washer",
+              "kind": "program",
+              "start_min": 315,
+              "end_min": 405
+            },
+            {
+              "batch": 3,
+              "resource": "washer",
+              "kind": "transfer",
+              "start_min": 405,
+              "end_min": 420
+            },
+            {
+              "batch": 3,
+              "resource": "dryer",
+              "kind": "program",
+              "start_min": 420,
+              "end_min": 540
+            },
+            {
+              "batch": 3,
+              "resource": "dryer",
+              "kind": "unload",
+              "start_min": 540,
+              "end_min": 555
+            },
+            {
+              "batch": 4,
+              "resource": "washer",
+              "kind": "load",
+              "start_min": 450,
+              "end_min": 465
+            },
+            {
+              "batch": 4,
+              "resource": "washer",
+              "kind": "program",
+              "start_min": 465,
+              "end_min": 555
+            },
+            {
+              "batch": 4,
+              "resource": "washer",
+              "kind": "transfer",
+              "start_min": 555,
+              "end_min": 570
+            },
+            {
+              "batch": 4,
+              "resource": "dryer",
+              "kind": "program",
+              "start_min": 570,
+              "end_min": 690
+            },
+            {
+              "batch": 4,
+              "resource": "dryer",
+              "kind": "unload",
+              "start_min": 690,
+              "end_min": 705
+            },
+            {
+              "batch": 5,
+              "resource": "washer",
+              "kind": "load",
+              "start_min": 600,
+              "end_min": 615
+            },
+            {
+              "batch": 5,
+              "resource": "washer",
+              "kind": "program",
+              "start_min": 615,
+              "end_min": 705
+            },
+            {
+              "batch": 5,
+              "resource": "washer",
+              "kind": "transfer",
+              "start_min": 705,
+              "end_min": 720
+            },
+            {
+              "batch": 5,
+              "resource": "dryer",
+              "kind": "program",
+              "start_min": 720,
+              "end_min": 840
+            },
+            {
+              "batch": 5,
+              "resource": "dryer",
+              "kind": "unload",
+              "start_min": 840,
+              "end_min": 855
+            },
+            {
+              "batch": 6,
+              "resource": "washer",
+              "kind": "load",
+              "start_min": 750,
+              "end_min": 765
+            },
+            {
+              "batch": 6,
+              "resource": "washer",
+              "kind": "program",
+              "start_min": 765,
+              "end_min": 855
+            },
+            {
+              "batch": 6,
+              "resource": "washer",
+              "kind": "transfer",
+              "start_min": 855,
+              "end_min": 870
+            },
+            {
+              "batch": 6,
+              "resource": "dryer",
+              "kind": "program",
+              "start_min": 870,
+              "end_min": 990
+            },
+            {
+              "batch": 6,
+              "resource": "dryer",
+              "kind": "unload",
+              "start_min": 990,
+              "end_min": 1005
+            }
+          ],
+          "window_min": 480,
+          "example_overrun_min": 525,
+          "example_batches_in_window": 2,
+          "handling_overlap": false,
+          "completion_scope": "assumed-one-cycle-per-batch-only",
+          "real_dry_completion_verified": false,
+          "actual_demand_satisfied": null,
+          "global_optimum_claimed": false
+        },
+        {
+          "mode": "combined-machine",
+          "batches": 6,
+          "interval_min": 240,
+          "elapsed_min": 1440,
+          "phases": [
+            {
+              "batch": 1,
+              "resource": "combined",
+              "kind": "load",
+              "start_min": 0,
+              "end_min": 15
+            },
+            {
+              "batch": 1,
+              "resource": "combined",
+              "kind": "program",
+              "start_min": 15,
+              "end_min": 225
+            },
+            {
+              "batch": 1,
+              "resource": "combined",
+              "kind": "unload",
+              "start_min": 225,
+              "end_min": 240
+            },
+            {
+              "batch": 2,
+              "resource": "combined",
+              "kind": "load",
+              "start_min": 240,
+              "end_min": 255
+            },
+            {
+              "batch": 2,
+              "resource": "combined",
+              "kind": "program",
+              "start_min": 255,
+              "end_min": 465
+            },
+            {
+              "batch": 2,
+              "resource": "combined",
+              "kind": "unload",
+              "start_min": 465,
+              "end_min": 480
+            },
+            {
+              "batch": 3,
+              "resource": "combined",
+              "kind": "load",
+              "start_min": 480,
+              "end_min": 495
+            },
+            {
+              "batch": 3,
+              "resource": "combined",
+              "kind": "program",
+              "start_min": 495,
+              "end_min": 705
+            },
+            {
+              "batch": 3,
+              "resource": "combined",
+              "kind": "unload",
+              "start_min": 705,
+              "end_min": 720
+            },
+            {
+              "batch": 4,
+              "resource": "combined",
+              "kind": "load",
+              "start_min": 720,
+              "end_min": 735
+            },
+            {
+              "batch": 4,
+              "resource": "combined",
+              "kind": "program",
+              "start_min": 735,
+              "end_min": 945
+            },
+            {
+              "batch": 4,
+              "resource": "combined",
+              "kind": "unload",
+              "start_min": 945,
+              "end_min": 960
+            },
+            {
+              "batch": 5,
+              "resource": "combined",
+              "kind": "load",
+              "start_min": 960,
+              "end_min": 975
+            },
+            {
+              "batch": 5,
+              "resource": "combined",
+              "kind": "program",
+              "start_min": 975,
+              "end_min": 1185
+            },
+            {
+              "batch": 5,
+              "resource": "combined",
+              "kind": "unload",
+              "start_min": 1185,
+              "end_min": 1200
+            },
+            {
+              "batch": 6,
+              "resource": "combined",
+              "kind": "load",
+              "start_min": 1200,
+              "end_min": 1215
+            },
+            {
+              "batch": 6,
+              "resource": "combined",
+              "kind": "program",
+              "start_min": 1215,
+              "end_min": 1425
+            },
+            {
+              "batch": 6,
+              "resource": "combined",
+              "kind": "unload",
+              "start_min": 1425,
+              "end_min": 1440
+            }
+          ],
+          "window_min": 480,
+          "example_overrun_min": 960,
+          "example_batches_in_window": 2,
+          "handling_overlap": false,
+          "completion_scope": "assumed-one-cycle-per-batch-only",
+          "real_dry_completion_verified": false,
+          "actual_demand_satisfied": null,
+          "global_optimum_claimed": false
+        }
+      ]
+    }
+  ],
+  "retained_space": {
+    "machine_bays_mm": [
+      [
+        3350,
+        15945,
+        850,
+        750
+      ],
+      [
+        3350,
+        16765,
+        850,
+        750
+      ]
+    ],
+    "rack_envelope_mm": [
+      1000,
+      16965,
+      1200,
+      500
+    ],
+    "rack_envelope_is_kg_capacity": false,
+    "cart_parking_adopted": false,
+    "shared_operation_bands": [
+      "washer-loading",
+      "dryer-loading"
+    ],
+    "door_travel_gaps_mm": {
+      "optional-dryer-bay": 20.0,
+      "lowered-drying-envelope": 70.0
+    },
+    "rear_whole_route_approved": false,
+    "C2_space_retained": {
+      "source_item": "C:floor-2:balcony2f:furniture:washer",
+      "rect_mm": [
+        800.0,
+        115.0,
+        650.0,
+        650.0
+      ],
+      "new_direction_use": "temporarily-inactive-reserve-space",
+      "source_model_changed": false,
+      "removed_from_original": false,
+      "new_washer_purchased": false
+    },
+    "A2_reservation_retained": {
+      "id": "A2-reserve",
+      "floor": "floor-2",
+      "room": "balcony2",
+      "label": "A二樓後工作陽台洗衣備位",
+      "route_points_mm": [
+        [
+          2600,
+          16200
+        ],
+        [
+          2600,
+          16400
+        ],
+        [
+          2850,
+          16400
+        ]
+      ],
+      "note": "優先二樓，避免把上層衣物全搬到RF；仍需穿書房，與陽台門前操作有共用，並非公共直達。水電排濕防水與振動由建商／A設計師共同預留，未定實機。",
+      "region_rects_mm": [
+        [
+          0,
+          15630,
+          6000,
+          2000
+        ]
+      ],
+      "bodies": [
+        {
+          "id": "upper-washer-reserve",
+          "label": "上層洗衣安裝預留（暫不放實機）",
+          "rect_mm": [
+            3450,
+            15945,
+            850,
+            750
+          ],
+          "kind": "reserve",
+          "facing": "left"
+        }
+      ],
+      "operations": [
+        {
+          "id": "upper-loading",
+          "label": "備位取放操作預算",
+          "rect_mm": [
+            2250,
+            15945,
+            1200,
+            900
+          ]
+        }
+      ],
+      "fixed": [
+        {
+          "id": "hvac-service-0",
+          "kind": "hvac-service",
+          "rect_mm": [
+            80.0,
+            16180,
+            900.0,
+            1350
+          ]
+        },
+        {
+          "id": "hvac-service-1",
+          "kind": "hvac-service",
+          "rect_mm": [
+            5020.0,
+            16180,
+            900.0,
+            1350
+          ]
+        },
+        {
+          "id": "door-approach-2",
+          "kind": "door-approach",
+          "rect_mm": [
+            2050.0,
+            15630.0,
+            1100.0,
+            900.0
+          ]
+        },
+        {
+          "id": "door-approach-3",
+          "kind": "door-approach",
+          "rect_mm": [
+            4970.0,
+            15630.0,
+            1100.0,
+            900.0
+          ]
+        }
+      ],
+      "screen": {
+        "nominal_region_sqm": 12.0,
+        "finished_region_sqm_assumption": 10.2129,
+        "new_body_outside_finished": [],
+        "operation_outside_finished": [],
+        "body_pair_hits": [],
+        "new_body_fixed_hits": [],
+        "operation_fixed_hits": [],
+        "operation_other_body_hits": [],
+        "operation_shared": [],
+        "operation_door_approach_shared": [
+          {
+            "operation": "upper-loading",
+            "approach": "door-approach-2"
+          }
+        ],
+        "local_route_width_mm": 900,
+        "local_route_inside_finished": true,
+        "local_route_fixed_hits": [],
+        "turn_inside_finished": null,
+        "turn_lowered_body_hits": [],
+        "turn_if_drying_fully_stowed_body_hits": [],
+        "stowed_drying_headroom_and_product_verified": false,
+        "existing_fixed_outside_finished": [
+          "hvac-service-0",
+          "hvac-service-1"
+        ],
+        "whole_route_or_care_approved": false,
+        "product_door_sweeps_verified": false
+      }
+    },
+    "B_source_states_retained": [
+      {
+        "option": "b-rear-split",
+        "state": "daily",
+        "existing_washer_rects_mm": [
+          [
+            1475.0,
+            11485.0,
+            650.0,
+            650.0
+          ]
+        ],
+        "new_shared_laundry_host_adopted": false
+      },
+      {
+        "option": "b-rear-split",
+        "state": "ritual",
+        "existing_washer_rects_mm": [
+          [
+            1475.0,
+            11485.0,
+            650.0,
+            650.0
+          ]
+        ],
+        "new_shared_laundry_host_adopted": false
+      },
+      {
+        "option": "b-rear-split",
+        "state": "carry",
+        "existing_washer_rects_mm": [
+          [
+            1475.0,
+            11485.0,
+            650.0,
+            650.0
+          ]
+        ],
+        "new_shared_laundry_host_adopted": false
+      },
+      {
+        "option": "b-front-split",
+        "state": "daily",
+        "existing_washer_rects_mm": [
+          [
+            2855,
+            13085,
+            650,
+            650
+          ]
+        ],
+        "new_shared_laundry_host_adopted": false
+      },
+      {
+        "option": "b-front-split",
+        "state": "ritual",
+        "existing_washer_rects_mm": [
+          [
+            2855,
+            13085,
+            650,
+            650
+          ]
+        ],
+        "new_shared_laundry_host_adopted": false
+      },
+      {
+        "option": "b-front-split",
+        "state": "carry",
+        "existing_washer_rects_mm": [
+          [
+            2855,
+            13085,
+            650,
+            650
+          ]
+        ],
+        "new_shared_laundry_host_adopted": false
+      }
+    ]
+  },
+  "actual_conditions": {
+    "daily_batches": null,
+    "peak_bedding_batches": null,
+    "usable_day_window_minutes": null,
+    "washer_dry_load_capacity_kg": null,
+    "dryer_dry_load_capacity_kg": null,
+    "washer_program_minutes": null,
+    "dryer_program_minutes": null,
+    "combined_program_minutes": null,
+    "actual_loading_unloading_minutes": null,
+    "textile_piece_size_and_program_limits": null,
+    "rack_rated_capacity_and_clothes_envelope": null,
+    "air_drying_duration_by_weather": null,
+    "elder_reach_and_assistance": null,
+    "separate_clean_dirty_container_and_cart_parking": null,
+    "shared_access_and_threshold_evidence": null,
+    "door_and_machine_full_service_envelope": null,
+    "noise_vibration_and_operating_hours": null,
+    "electrical_simultaneous_load_design": null,
+    "air_moisture_and_condensate_design": null,
+    "legal_wastewater_and_waterproofing": null,
+    "maintenance_cost_and_responsibility": null
+  },
+  "actual_conditions_received": 0,
+  "actual_laundry_capacity_sufficient": null,
+  "air_drying_duration_min": null,
+  "protected_controls_unchanged": 149,
+  "formal_requirement_statuses": {
+    "candidate": 66
+  },
+  "formal_register_statuses": {
+    "unknown": 105
+  },
+  "host_building_adopted": false,
+  "original_ABC_or_3d_changed": false,
+  "accepted_storage_viewers_changed": false,
+  "equipment_purchase_decided": false,
+  "adopted": false,
+  "professional_approval": "unknown",
+  "rendered_qa": "not-run",
+  "source_hashes": {
+    "inputs/abc-laundry-use.json": "a967c26cb8cf57626eb87e2c5e5aaee106a3ad9b254b924074390f3701155786",
+    "Docs/abc-laundry-use-v1.md": "9b621db7ca97fbebb15d9ab066c4b646063be5385a10982e1438085648b25795",
+    "structured/coordination/abc-laundry-access-v1/review.json": "35437c6cf61759841d6c3b1640517300c8261bf5bb06c6ce48dbba1ed6e1bc6c",
+    "inputs/abc-laundry-access.json": "c017022856a8dc26a211c0db2b673e567ac1d29ef8ea2de7b8abddafafa28f93",
+    "Docs/abc-laundry-access-v1.md": "b56107429da932409aad85cd6997312dfba209602a8baa66eeedf8376967033a",
+    "inputs/references/abc-laundry-owner-20261113.json": "d686ff2722941b3144c8a98a35a7d9a4d942f973572e7b64d6d5ef2a59f838b1",
+    "structured/coordination/abc-ground-laundry-v1/review.json": "70d173aee810bf6965a7612b4146c22b5c665a66844b26593381f4248d9dc26a",
+    "inputs/abc-ground-laundry.json": "2fa269b67db5af4dbd73ded7188621e6edb08cfd7e552d0bc88a07285abc7616",
+    "structured/candidates/kaohsiung-house-options/c-stair-integration.json": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+    "structured/coordination/c-ground-coordination-v1/review.json": "5853f0b1d94a2e9e8f9fca4bf772e50389ec287ace801a01922fadddb3b66c62",
+    "structured/coordination/b-claude-round3-v1/review.json": "00baf0b3950e2593361e91698e4d72ac33e384edadd6da5a7d31b62e087b6223",
+    "structured/coordination/ac-storage-preview-v1/ac-storage-preview.zip": "626dd589d792ee644b78fe744de689fcd72ba84f3999eeb81cb601a96d66f2f9",
+    "structured/coordination/b-upper-storage-3d-v1/b-upper-storage-3d.zip": "578effc31836d9452bdfbc2c7c0d560d7a9e54638f2d87db3185fb0928ba48f2",
+    "structured/coordination/upper-floor-storage-viewer-v1/upper-floor-storage-3d.zip": "678ae172b98d0f066c01331c0748d50eabcfc007b5cbad2208e1e688f71fa0eb",
+    "structured/coordination/b-upper-storage-sync-v1/b-upper-storage-sync.zip": "541bf091e2bdf28dd21b58390d68ec95861e00df926e46b594b43de9b7bb0343",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "inputs/requirements.json": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066",
+    "inputs/planning-register.json": "140493058b145071afb472bf927860d48a43a6f4407b9b59e5a86705fbe058b0",
+    "Docs/abc-ground-laundry-v1.md": "fa60275993c40b7a59708c13be67c34f78ba3f424cfd22932b8340785b7b6713",
+    "house_design/abc_ground_laundry.py": "9e6adfc357d378000cb0e53af9defaa7564016b45b8b25cf35cbdab860c455c8",
+    "scripts/export_abc_ground_laundry.py": "4681882dd663f4bf7d89c1f9b77ea68a063a8d495dc7ad4de98b5890ba4f76c2",
+    "house_design/abc_laundry_access.py": "31d54298d25037db3b2cff616a44b857f180a7f0f4b1fba5c764b8193035ac80",
+    "scripts/export_abc_laundry_access.py": "ed39cd468d3e8eb5d965ae8ffe22e13aff61f21fd3be800d408132dcbbe09281",
+    "house_design/contracts.py": "2888419d49e8d8dbe8b8e99f6b8451363cd9020821c7fe3e703ab09779e202c3",
+    "house_design/project_status.py": "db73eb9b066353cc282e67dc15e4b430d9d4e4d398eafaf7eeec5f98af1acab0",
+    "scripts/export_b_upper_replan.py": "3a3cc271cf7d9fc20759d4bca17b582ab672f551981c6e8c1c20933192c09a3d",
+    "scripts/export_builder_communication.py": "650d696de35bd9a0fb4ce77d7f93078813b8babd4ed5439d59a6966d093ceef1",
+    "scripts/export_abc_next_improvements.py": "875c13027466776a6e1661dae369e45c823c661c5e0369d8ee95b6535420e701",
+    "house_design/abc_laundry_use.py": "26d63d236204ab7f9427c542797bf891a395320aafe4aba597ee027cc4eeabe0",
+    "scripts/export_abc_laundry_use.py": "5cb9a7c05b7451ff1c14ce398c4d9831c09be1acd737a0cfae53fab7fe8c4350"
+  },
+  "report_hash": "5c4d2c47ac309a04d9be0d7eb45abaea9bc179fc28d8e531e89621d2eb0f2d74"
+}

@@ -1,0 +1,1334 @@
+{
+  "schema": "house-upper-floor-storage-merge-preparation-v1",
+  "date": "2026-11-11",
+  "scope": "Embedded-model/floor-source comparison and unapplied insertion coordinates only; no 3D build or rendering.",
+  "cases": [
+    {
+      "id": "A-2F",
+      "building": "A",
+      "floor": "floor-2",
+      "source": "structured/candidates/kaohsiung-house-options/c-stair-integration.json",
+      "source_option": "a-rear-study",
+      "room": "study",
+      "label": "書房入口側獨立雜物櫃",
+      "note": "公用走道保持不置櫃；新櫃放書房內，文具、備品與小家電分層，不扣原540cm衣櫃與240cm淺櫃。",
+      "source_floor_hash": "088e8d98aefcd5903665115a5113ceca0b20bf49e673577373632b871376c0dc",
+      "comparisons": [
+        {
+          "option": "a-rear-study",
+          "state": "daily",
+          "source_floor_exact": true,
+          "current_floor_hash": "088e8d98aefcd5903665115a5113ceca0b20bf49e673577373632b871376c0dc",
+          "target_room_id_present": true,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "study",
+              "name": "書房／工作室",
+              "overlap_sqm": 0.405
+            }
+          ],
+          "source_room_count": 11,
+          "current_room_count": 11,
+          "source_only_room_ids": [],
+          "current_only_room_ids": [],
+          "same_floor_insertion_candidate": true,
+          "whole_3d_or_product_approval": "unknown"
+        }
+      ],
+      "status": "same-source-insertion-candidate",
+      "source_2d_failures": [],
+      "applied": false
+    },
+    {
+      "id": "A-3F",
+      "building": "A",
+      "floor": "floor-3",
+      "source": "structured/candidates/kaohsiung-house-options/c-stair-integration.json",
+      "source_option": "a-rear-study",
+      "room": "multi",
+      "label": "多用室前側家務收納櫃",
+      "note": "收換季用品與劇院備品，原沙發床、書桌及書櫃保留；實際展床、門片與換氣仍須整組核對。",
+      "source_floor_hash": "7fa1949bdaf1969cca84127ca9a41863aa1d7ea81988e52cb16788f9d5734df6",
+      "comparisons": [
+        {
+          "option": "a-rear-study",
+          "state": "daily",
+          "source_floor_exact": true,
+          "current_floor_hash": "7fa1949bdaf1969cca84127ca9a41863aa1d7ea81988e52cb16788f9d5734df6",
+          "target_room_id_present": true,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "multi",
+              "name": "多用途休憩／沙發床區（展床待核）",
+              "overlap_sqm": 0.405
+            }
+          ],
+          "source_room_count": 12,
+          "current_room_count": 12,
+          "source_only_room_ids": [],
+          "current_only_room_ids": [],
+          "same_floor_insertion_candidate": true,
+          "whole_3d_or_product_approval": "unknown"
+        }
+      ],
+      "status": "same-source-insertion-candidate",
+      "source_2d_failures": [],
+      "applied": false
+    },
+    {
+      "id": "A-RF",
+      "building": "A",
+      "floor": "floor-4",
+      "source": "structured/candidates/kaohsiung-house-options/c-stair-integration.json",
+      "source_option": "a-rear-study",
+      "room": "laundry-rf",
+      "label": "後平台防雨工具櫃",
+      "note": "只放耐候工具／清潔備品；不拿弱電立管當雜物間，不新增屋頂房間。錨定、防水、設備拆換與荷重待核。",
+      "source_floor_hash": "330c400de459651b240f78571e1b12af3ddbc48def841a1d4498c9ba59292b4c",
+      "comparisons": [
+        {
+          "option": "a-rear-study",
+          "state": "daily",
+          "source_floor_exact": true,
+          "current_floor_hash": "330c400de459651b240f78571e1b12af3ddbc48def841a1d4498c9ba59292b4c",
+          "target_room_id_present": true,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "laundry-rf",
+              "name": "曬衣／設備維修平台（非冷氣集中區）",
+              "overlap_sqm": 0.405
+            }
+          ],
+          "source_room_count": 9,
+          "current_room_count": 9,
+          "source_only_room_ids": [],
+          "current_only_room_ids": [],
+          "same_floor_insertion_candidate": true,
+          "whole_3d_or_product_approval": "unknown"
+        }
+      ],
+      "status": "same-source-insertion-candidate",
+      "source_2d_failures": [],
+      "applied": false
+    },
+    {
+      "id": "B-2F",
+      "building": "B",
+      "floor": "floor-2",
+      "source": "structured/coordination/b-front-drainage-layout-v1/review.json",
+      "source_option": null,
+      "room": "quiet-living",
+      "label": "安靜起居側緣乾式雜物櫃",
+      "note": "沿左側牆放輕量乾燥備品；不放濕設備、化學品或震動電器，不占獨立乾背室、主臥與兩衛，不改兩種一樓搬轎分支。",
+      "source_floor_hash": "0fed77cad7689f84c595685f5bd1e0f6cb0d0e24a38e47245fb3de8b9a700f1c",
+      "comparisons": [
+        {
+          "option": "b-rear-split",
+          "state": "daily",
+          "source_floor_exact": false,
+          "current_floor_hash": "822fa052cd7b03409916e2117d30f6be12950f4365745a0d1b07e634d14f5aaa",
+          "target_room_id_present": false,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "living2",
+              "name": "安靜起居｜後區（整廳上方禁睡）",
+              "overlap_sqm": 0.54
+            }
+          ],
+          "source_room_count": 8,
+          "current_room_count": 8,
+          "source_only_room_ids": [
+            "dry-protection",
+            "front-open",
+            "master",
+            "private-bath",
+            "public-bath",
+            "quiet-living",
+            "stair",
+            "tea-foyer"
+          ],
+          "current_only_room_ids": [
+            "balcony2",
+            "bath2",
+            "corridor2",
+            "living2",
+            "living2-front",
+            "master-bath2",
+            "master2",
+            "stair2"
+          ],
+          "same_floor_insertion_candidate": false,
+          "whole_3d_or_product_approval": "unknown"
+        },
+        {
+          "option": "b-rear-split",
+          "state": "ritual",
+          "source_floor_exact": false,
+          "current_floor_hash": "822fa052cd7b03409916e2117d30f6be12950f4365745a0d1b07e634d14f5aaa",
+          "target_room_id_present": false,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "living2",
+              "name": "安靜起居｜後區（整廳上方禁睡）",
+              "overlap_sqm": 0.54
+            }
+          ],
+          "source_room_count": 8,
+          "current_room_count": 8,
+          "source_only_room_ids": [
+            "dry-protection",
+            "front-open",
+            "master",
+            "private-bath",
+            "public-bath",
+            "quiet-living",
+            "stair",
+            "tea-foyer"
+          ],
+          "current_only_room_ids": [
+            "balcony2",
+            "bath2",
+            "corridor2",
+            "living2",
+            "living2-front",
+            "master-bath2",
+            "master2",
+            "stair2"
+          ],
+          "same_floor_insertion_candidate": false,
+          "whole_3d_or_product_approval": "unknown"
+        },
+        {
+          "option": "b-rear-split",
+          "state": "carry",
+          "source_floor_exact": false,
+          "current_floor_hash": "822fa052cd7b03409916e2117d30f6be12950f4365745a0d1b07e634d14f5aaa",
+          "target_room_id_present": false,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "living2",
+              "name": "安靜起居｜後區（整廳上方禁睡）",
+              "overlap_sqm": 0.54
+            }
+          ],
+          "source_room_count": 8,
+          "current_room_count": 8,
+          "source_only_room_ids": [
+            "dry-protection",
+            "front-open",
+            "master",
+            "private-bath",
+            "public-bath",
+            "quiet-living",
+            "stair",
+            "tea-foyer"
+          ],
+          "current_only_room_ids": [
+            "balcony2",
+            "bath2",
+            "corridor2",
+            "living2",
+            "living2-front",
+            "master-bath2",
+            "master2",
+            "stair2"
+          ],
+          "same_floor_insertion_candidate": false,
+          "whole_3d_or_product_approval": "unknown"
+        },
+        {
+          "option": "b-front-split",
+          "state": "daily",
+          "source_floor_exact": false,
+          "current_floor_hash": "822fa052cd7b03409916e2117d30f6be12950f4365745a0d1b07e634d14f5aaa",
+          "target_room_id_present": false,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "living2",
+              "name": "安靜起居｜後區（整廳上方禁睡）",
+              "overlap_sqm": 0.54
+            }
+          ],
+          "source_room_count": 8,
+          "current_room_count": 8,
+          "source_only_room_ids": [
+            "dry-protection",
+            "front-open",
+            "master",
+            "private-bath",
+            "public-bath",
+            "quiet-living",
+            "stair",
+            "tea-foyer"
+          ],
+          "current_only_room_ids": [
+            "balcony2",
+            "bath2",
+            "corridor2",
+            "living2",
+            "living2-front",
+            "master-bath2",
+            "master2",
+            "stair2"
+          ],
+          "same_floor_insertion_candidate": false,
+          "whole_3d_or_product_approval": "unknown"
+        },
+        {
+          "option": "b-front-split",
+          "state": "ritual",
+          "source_floor_exact": false,
+          "current_floor_hash": "822fa052cd7b03409916e2117d30f6be12950f4365745a0d1b07e634d14f5aaa",
+          "target_room_id_present": false,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "living2",
+              "name": "安靜起居｜後區（整廳上方禁睡）",
+              "overlap_sqm": 0.54
+            }
+          ],
+          "source_room_count": 8,
+          "current_room_count": 8,
+          "source_only_room_ids": [
+            "dry-protection",
+            "front-open",
+            "master",
+            "private-bath",
+            "public-bath",
+            "quiet-living",
+            "stair",
+            "tea-foyer"
+          ],
+          "current_only_room_ids": [
+            "balcony2",
+            "bath2",
+            "corridor2",
+            "living2",
+            "living2-front",
+            "master-bath2",
+            "master2",
+            "stair2"
+          ],
+          "same_floor_insertion_candidate": false,
+          "whole_3d_or_product_approval": "unknown"
+        },
+        {
+          "option": "b-front-split",
+          "state": "carry",
+          "source_floor_exact": false,
+          "current_floor_hash": "822fa052cd7b03409916e2117d30f6be12950f4365745a0d1b07e634d14f5aaa",
+          "target_room_id_present": false,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "living2",
+              "name": "安靜起居｜後區（整廳上方禁睡）",
+              "overlap_sqm": 0.54
+            }
+          ],
+          "source_room_count": 8,
+          "current_room_count": 8,
+          "source_only_room_ids": [
+            "dry-protection",
+            "front-open",
+            "master",
+            "private-bath",
+            "public-bath",
+            "quiet-living",
+            "stair",
+            "tea-foyer"
+          ],
+          "current_only_room_ids": [
+            "balcony2",
+            "bath2",
+            "corridor2",
+            "living2",
+            "living2-front",
+            "master-bath2",
+            "master2",
+            "stair2"
+          ],
+          "same_floor_insertion_candidate": false,
+          "whole_3d_or_product_approval": "unknown"
+        }
+      ],
+      "status": "whole-floor-rebase-required",
+      "source_2d_failures": [],
+      "applied": false
+    },
+    {
+      "id": "B-3F",
+      "building": "B",
+      "floor": "floor-3",
+      "source": "structured/coordination/b-ktv-stair-options-v1/review.json",
+      "source_option": null,
+      "room": "quiet-living",
+      "label": "公共安靜區側緣乾式雜物櫃",
+      "note": "同位置接Q3三樓完整圖，不占KTV聲學面積或設備機櫃，不把神桌乾背保護室拿來堆雜物；原KTV／RF缺口仍保留。",
+      "source_floor_hash": "3bc408f7aca0d5436126dd0651ce7e7dfd191c12592c80c4c8479e32f92daf7c",
+      "comparisons": [
+        {
+          "option": "b-rear-split",
+          "state": "daily",
+          "source_floor_exact": false,
+          "current_floor_hash": "7a89dbb53165359c13fce537422274027e03888562665638ba1aa382ac242e67",
+          "target_room_id_present": false,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "quiet-study",
+              "name": "安靜閱讀｜後區（整廳上方禁睡）",
+              "overlap_sqm": 0.54
+            }
+          ],
+          "source_room_count": 8,
+          "current_room_count": 8,
+          "source_only_room_ids": [
+            "dry-protection",
+            "front-entertainment",
+            "guest",
+            "quiet-living",
+            "rear-access",
+            "rear-bath",
+            "stair",
+            "working-court"
+          ],
+          "current_only_room_ids": [
+            "bath3",
+            "buffer3",
+            "corridor3",
+            "guest3",
+            "quiet-study",
+            "quiet-study-front",
+            "stair3",
+            "terrace3"
+          ],
+          "same_floor_insertion_candidate": false,
+          "whole_3d_or_product_approval": "unknown"
+        },
+        {
+          "option": "b-rear-split",
+          "state": "ritual",
+          "source_floor_exact": false,
+          "current_floor_hash": "7a89dbb53165359c13fce537422274027e03888562665638ba1aa382ac242e67",
+          "target_room_id_present": false,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "quiet-study",
+              "name": "安靜閱讀｜後區（整廳上方禁睡）",
+              "overlap_sqm": 0.54
+            }
+          ],
+          "source_room_count": 8,
+          "current_room_count": 8,
+          "source_only_room_ids": [
+            "dry-protection",
+            "front-entertainment",
+            "guest",
+            "quiet-living",
+            "rear-access",
+            "rear-bath",
+            "stair",
+            "working-court"
+          ],
+          "current_only_room_ids": [
+            "bath3",
+            "buffer3",
+            "corridor3",
+            "guest3",
+            "quiet-study",
+            "quiet-study-front",
+            "stair3",
+            "terrace3"
+          ],
+          "same_floor_insertion_candidate": false,
+          "whole_3d_or_product_approval": "unknown"
+        },
+        {
+          "option": "b-rear-split",
+          "state": "carry",
+          "source_floor_exact": false,
+          "current_floor_hash": "7a89dbb53165359c13fce537422274027e03888562665638ba1aa382ac242e67",
+          "target_room_id_present": false,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "quiet-study",
+              "name": "安靜閱讀｜後區（整廳上方禁睡）",
+              "overlap_sqm": 0.54
+            }
+          ],
+          "source_room_count": 8,
+          "current_room_count": 8,
+          "source_only_room_ids": [
+            "dry-protection",
+            "front-entertainment",
+            "guest",
+            "quiet-living",
+            "rear-access",
+            "rear-bath",
+            "stair",
+            "working-court"
+          ],
+          "current_only_room_ids": [
+            "bath3",
+            "buffer3",
+            "corridor3",
+            "guest3",
+            "quiet-study",
+            "quiet-study-front",
+            "stair3",
+            "terrace3"
+          ],
+          "same_floor_insertion_candidate": false,
+          "whole_3d_or_product_approval": "unknown"
+        },
+        {
+          "option": "b-front-split",
+          "state": "daily",
+          "source_floor_exact": false,
+          "current_floor_hash": "7a89dbb53165359c13fce537422274027e03888562665638ba1aa382ac242e67",
+          "target_room_id_present": false,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "quiet-study",
+              "name": "安靜閱讀｜後區（整廳上方禁睡）",
+              "overlap_sqm": 0.54
+            }
+          ],
+          "source_room_count": 8,
+          "current_room_count": 8,
+          "source_only_room_ids": [
+            "dry-protection",
+            "front-entertainment",
+            "guest",
+            "quiet-living",
+            "rear-access",
+            "rear-bath",
+            "stair",
+            "working-court"
+          ],
+          "current_only_room_ids": [
+            "bath3",
+            "buffer3",
+            "corridor3",
+            "guest3",
+            "quiet-study",
+            "quiet-study-front",
+            "stair3",
+            "terrace3"
+          ],
+          "same_floor_insertion_candidate": false,
+          "whole_3d_or_product_approval": "unknown"
+        },
+        {
+          "option": "b-front-split",
+          "state": "ritual",
+          "source_floor_exact": false,
+          "current_floor_hash": "7a89dbb53165359c13fce537422274027e03888562665638ba1aa382ac242e67",
+          "target_room_id_present": false,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "quiet-study",
+              "name": "安靜閱讀｜後區（整廳上方禁睡）",
+              "overlap_sqm": 0.54
+            }
+          ],
+          "source_room_count": 8,
+          "current_room_count": 8,
+          "source_only_room_ids": [
+            "dry-protection",
+            "front-entertainment",
+            "guest",
+            "quiet-living",
+            "rear-access",
+            "rear-bath",
+            "stair",
+            "working-court"
+          ],
+          "current_only_room_ids": [
+            "bath3",
+            "buffer3",
+            "corridor3",
+            "guest3",
+            "quiet-study",
+            "quiet-study-front",
+            "stair3",
+            "terrace3"
+          ],
+          "same_floor_insertion_candidate": false,
+          "whole_3d_or_product_approval": "unknown"
+        },
+        {
+          "option": "b-front-split",
+          "state": "carry",
+          "source_floor_exact": false,
+          "current_floor_hash": "7a89dbb53165359c13fce537422274027e03888562665638ba1aa382ac242e67",
+          "target_room_id_present": false,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "quiet-study",
+              "name": "安靜閱讀｜後區（整廳上方禁睡）",
+              "overlap_sqm": 0.54
+            }
+          ],
+          "source_room_count": 8,
+          "current_room_count": 8,
+          "source_only_room_ids": [
+            "dry-protection",
+            "front-entertainment",
+            "guest",
+            "quiet-living",
+            "rear-access",
+            "rear-bath",
+            "stair",
+            "working-court"
+          ],
+          "current_only_room_ids": [
+            "bath3",
+            "buffer3",
+            "corridor3",
+            "guest3",
+            "quiet-study",
+            "quiet-study-front",
+            "stair3",
+            "terrace3"
+          ],
+          "same_floor_insertion_candidate": false,
+          "whole_3d_or_product_approval": "unknown"
+        }
+      ],
+      "status": "whole-floor-rebase-required",
+      "source_2d_failures": [],
+      "applied": false
+    },
+    {
+      "id": "B-RF-D1",
+      "building": "B",
+      "floor": "floor-4",
+      "source": "structured/coordination/b-q3-roof-coordination-v1/review.json",
+      "source_option": "Q3-D1-front-heat-pump",
+      "room": "front-platform",
+      "label": "折衣桌下防雨收納工作檯",
+      "note": "沿D1原折衣桌占地改為帶防雨下櫃的工作檯；原折衣功能、操作帶及分時通行保留，不再吃已不足24㎡的平台。",
+      "source_floor_hash": "669310c9ad3ada07a83b77fdf50d8f414782e7c7fca481ced44615c9f9402471",
+      "comparisons": [
+        {
+          "option": "b-rear-split",
+          "state": "daily",
+          "source_floor_exact": false,
+          "current_floor_hash": "c6e4d6200bd12698017a414919111d36a1b8d56b45cbe7cf0888c7b729693108",
+          "target_room_id_present": false,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "roof-front",
+              "name": "前屋頂候選（不作已核屋突）",
+              "overlap_sqm": 0.54
+            }
+          ],
+          "source_room_count": 1,
+          "current_room_count": 6,
+          "source_only_room_ids": [
+            "front-platform"
+          ],
+          "current_only_room_ids": [
+            "rear-roof",
+            "roof-front",
+            "service-rf",
+            "shrine-buffer-front",
+            "shrine-buffer-rear",
+            "stairRF"
+          ],
+          "same_floor_insertion_candidate": false,
+          "whole_3d_or_product_approval": "unknown"
+        },
+        {
+          "option": "b-rear-split",
+          "state": "ritual",
+          "source_floor_exact": false,
+          "current_floor_hash": "c6e4d6200bd12698017a414919111d36a1b8d56b45cbe7cf0888c7b729693108",
+          "target_room_id_present": false,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "roof-front",
+              "name": "前屋頂候選（不作已核屋突）",
+              "overlap_sqm": 0.54
+            }
+          ],
+          "source_room_count": 1,
+          "current_room_count": 6,
+          "source_only_room_ids": [
+            "front-platform"
+          ],
+          "current_only_room_ids": [
+            "rear-roof",
+            "roof-front",
+            "service-rf",
+            "shrine-buffer-front",
+            "shrine-buffer-rear",
+            "stairRF"
+          ],
+          "same_floor_insertion_candidate": false,
+          "whole_3d_or_product_approval": "unknown"
+        },
+        {
+          "option": "b-rear-split",
+          "state": "carry",
+          "source_floor_exact": false,
+          "current_floor_hash": "c6e4d6200bd12698017a414919111d36a1b8d56b45cbe7cf0888c7b729693108",
+          "target_room_id_present": false,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "roof-front",
+              "name": "前屋頂候選（不作已核屋突）",
+              "overlap_sqm": 0.54
+            }
+          ],
+          "source_room_count": 1,
+          "current_room_count": 6,
+          "source_only_room_ids": [
+            "front-platform"
+          ],
+          "current_only_room_ids": [
+            "rear-roof",
+            "roof-front",
+            "service-rf",
+            "shrine-buffer-front",
+            "shrine-buffer-rear",
+            "stairRF"
+          ],
+          "same_floor_insertion_candidate": false,
+          "whole_3d_or_product_approval": "unknown"
+        },
+        {
+          "option": "b-front-split",
+          "state": "daily",
+          "source_floor_exact": false,
+          "current_floor_hash": "c6e4d6200bd12698017a414919111d36a1b8d56b45cbe7cf0888c7b729693108",
+          "target_room_id_present": false,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "roof-front",
+              "name": "前屋頂候選（不作已核屋突）",
+              "overlap_sqm": 0.54
+            }
+          ],
+          "source_room_count": 1,
+          "current_room_count": 6,
+          "source_only_room_ids": [
+            "front-platform"
+          ],
+          "current_only_room_ids": [
+            "rear-roof",
+            "roof-front",
+            "service-rf",
+            "shrine-buffer-front",
+            "shrine-buffer-rear",
+            "stairRF"
+          ],
+          "same_floor_insertion_candidate": false,
+          "whole_3d_or_product_approval": "unknown"
+        },
+        {
+          "option": "b-front-split",
+          "state": "ritual",
+          "source_floor_exact": false,
+          "current_floor_hash": "c6e4d6200bd12698017a414919111d36a1b8d56b45cbe7cf0888c7b729693108",
+          "target_room_id_present": false,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "roof-front",
+              "name": "前屋頂候選（不作已核屋突）",
+              "overlap_sqm": 0.54
+            }
+          ],
+          "source_room_count": 1,
+          "current_room_count": 6,
+          "source_only_room_ids": [
+            "front-platform"
+          ],
+          "current_only_room_ids": [
+            "rear-roof",
+            "roof-front",
+            "service-rf",
+            "shrine-buffer-front",
+            "shrine-buffer-rear",
+            "stairRF"
+          ],
+          "same_floor_insertion_candidate": false,
+          "whole_3d_or_product_approval": "unknown"
+        },
+        {
+          "option": "b-front-split",
+          "state": "carry",
+          "source_floor_exact": false,
+          "current_floor_hash": "c6e4d6200bd12698017a414919111d36a1b8d56b45cbe7cf0888c7b729693108",
+          "target_room_id_present": false,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "roof-front",
+              "name": "前屋頂候選（不作已核屋突）",
+              "overlap_sqm": 0.54
+            }
+          ],
+          "source_room_count": 1,
+          "current_room_count": 6,
+          "source_only_room_ids": [
+            "front-platform"
+          ],
+          "current_only_room_ids": [
+            "rear-roof",
+            "roof-front",
+            "service-rf",
+            "shrine-buffer-front",
+            "shrine-buffer-rear",
+            "stairRF"
+          ],
+          "same_floor_insertion_candidate": false,
+          "whole_3d_or_product_approval": "unknown"
+        }
+      ],
+      "status": "whole-floor-rebase-required",
+      "source_2d_failures": [],
+      "applied": false
+    },
+    {
+      "id": "B-RF-D2",
+      "building": "B",
+      "floor": "floor-4",
+      "source": "structured/coordination/b-q3-roof-coordination-v1/review.json",
+      "source_option": "Q3-D2-rear-wet-pair",
+      "room": "front-platform",
+      "label": "折衣桌下防雨收納工作檯",
+      "note": "D2保留自己的桌位與操作帶，獨立列櫃，不把D1位置借過來；耐候、錨定、荷重與實際桌高另核。",
+      "source_floor_hash": "b53b1c4d19ff20880b6b3265ee0a1a751dee58f2d5ca6815c1f3254150aee947",
+      "comparisons": [
+        {
+          "option": "b-rear-split",
+          "state": "daily",
+          "source_floor_exact": false,
+          "current_floor_hash": "c6e4d6200bd12698017a414919111d36a1b8d56b45cbe7cf0888c7b729693108",
+          "target_room_id_present": false,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "roof-front",
+              "name": "前屋頂候選（不作已核屋突）",
+              "overlap_sqm": 0.54
+            }
+          ],
+          "source_room_count": 1,
+          "current_room_count": 6,
+          "source_only_room_ids": [
+            "front-platform"
+          ],
+          "current_only_room_ids": [
+            "rear-roof",
+            "roof-front",
+            "service-rf",
+            "shrine-buffer-front",
+            "shrine-buffer-rear",
+            "stairRF"
+          ],
+          "same_floor_insertion_candidate": false,
+          "whole_3d_or_product_approval": "unknown"
+        },
+        {
+          "option": "b-rear-split",
+          "state": "ritual",
+          "source_floor_exact": false,
+          "current_floor_hash": "c6e4d6200bd12698017a414919111d36a1b8d56b45cbe7cf0888c7b729693108",
+          "target_room_id_present": false,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "roof-front",
+              "name": "前屋頂候選（不作已核屋突）",
+              "overlap_sqm": 0.54
+            }
+          ],
+          "source_room_count": 1,
+          "current_room_count": 6,
+          "source_only_room_ids": [
+            "front-platform"
+          ],
+          "current_only_room_ids": [
+            "rear-roof",
+            "roof-front",
+            "service-rf",
+            "shrine-buffer-front",
+            "shrine-buffer-rear",
+            "stairRF"
+          ],
+          "same_floor_insertion_candidate": false,
+          "whole_3d_or_product_approval": "unknown"
+        },
+        {
+          "option": "b-rear-split",
+          "state": "carry",
+          "source_floor_exact": false,
+          "current_floor_hash": "c6e4d6200bd12698017a414919111d36a1b8d56b45cbe7cf0888c7b729693108",
+          "target_room_id_present": false,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "roof-front",
+              "name": "前屋頂候選（不作已核屋突）",
+              "overlap_sqm": 0.54
+            }
+          ],
+          "source_room_count": 1,
+          "current_room_count": 6,
+          "source_only_room_ids": [
+            "front-platform"
+          ],
+          "current_only_room_ids": [
+            "rear-roof",
+            "roof-front",
+            "service-rf",
+            "shrine-buffer-front",
+            "shrine-buffer-rear",
+            "stairRF"
+          ],
+          "same_floor_insertion_candidate": false,
+          "whole_3d_or_product_approval": "unknown"
+        },
+        {
+          "option": "b-front-split",
+          "state": "daily",
+          "source_floor_exact": false,
+          "current_floor_hash": "c6e4d6200bd12698017a414919111d36a1b8d56b45cbe7cf0888c7b729693108",
+          "target_room_id_present": false,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "roof-front",
+              "name": "前屋頂候選（不作已核屋突）",
+              "overlap_sqm": 0.54
+            }
+          ],
+          "source_room_count": 1,
+          "current_room_count": 6,
+          "source_only_room_ids": [
+            "front-platform"
+          ],
+          "current_only_room_ids": [
+            "rear-roof",
+            "roof-front",
+            "service-rf",
+            "shrine-buffer-front",
+            "shrine-buffer-rear",
+            "stairRF"
+          ],
+          "same_floor_insertion_candidate": false,
+          "whole_3d_or_product_approval": "unknown"
+        },
+        {
+          "option": "b-front-split",
+          "state": "ritual",
+          "source_floor_exact": false,
+          "current_floor_hash": "c6e4d6200bd12698017a414919111d36a1b8d56b45cbe7cf0888c7b729693108",
+          "target_room_id_present": false,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "roof-front",
+              "name": "前屋頂候選（不作已核屋突）",
+              "overlap_sqm": 0.54
+            }
+          ],
+          "source_room_count": 1,
+          "current_room_count": 6,
+          "source_only_room_ids": [
+            "front-platform"
+          ],
+          "current_only_room_ids": [
+            "rear-roof",
+            "roof-front",
+            "service-rf",
+            "shrine-buffer-front",
+            "shrine-buffer-rear",
+            "stairRF"
+          ],
+          "same_floor_insertion_candidate": false,
+          "whole_3d_or_product_approval": "unknown"
+        },
+        {
+          "option": "b-front-split",
+          "state": "carry",
+          "source_floor_exact": false,
+          "current_floor_hash": "c6e4d6200bd12698017a414919111d36a1b8d56b45cbe7cf0888c7b729693108",
+          "target_room_id_present": false,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "roof-front",
+              "name": "前屋頂候選（不作已核屋突）",
+              "overlap_sqm": 0.54
+            }
+          ],
+          "source_room_count": 1,
+          "current_room_count": 6,
+          "source_only_room_ids": [
+            "front-platform"
+          ],
+          "current_only_room_ids": [
+            "rear-roof",
+            "roof-front",
+            "service-rf",
+            "shrine-buffer-front",
+            "shrine-buffer-rear",
+            "stairRF"
+          ],
+          "same_floor_insertion_candidate": false,
+          "whole_3d_or_product_approval": "unknown"
+        }
+      ],
+      "status": "whole-floor-rebase-required",
+      "source_2d_failures": [],
+      "applied": false
+    },
+    {
+      "id": "C-2F",
+      "building": "C",
+      "floor": "floor-2",
+      "source": "structured/candidates/kaohsiung-house-options/c-stair-integration.json",
+      "source_option": "c-split",
+      "room": "day-reserve",
+      "label": "乾式彈性區家務儲藏櫃",
+      "note": "日常備品、吸塵器與收納箱有獨立位置；不放陽台曬衣、景觀、IDF或樓梯通路，唯一洗衣機仍在2F。",
+      "source_floor_hash": "623d97c7fb99224e5d339d580c9af3970d7d86aa4bda04f8c9769e51879c50d3",
+      "comparisons": [
+        {
+          "option": "c-split",
+          "state": "daily",
+          "source_floor_exact": true,
+          "current_floor_hash": "623d97c7fb99224e5d339d580c9af3970d7d86aa4bda04f8c9769e51879c50d3",
+          "target_room_id_present": true,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "day-reserve",
+              "name": "乾式彈性預留（不睡眠／未排設備）",
+              "overlap_sqm": 0.72
+            }
+          ],
+          "source_room_count": 10,
+          "current_room_count": 10,
+          "source_only_room_ids": [],
+          "current_only_room_ids": [],
+          "same_floor_insertion_candidate": true,
+          "whole_3d_or_product_approval": "unknown"
+        }
+      ],
+      "status": "same-source-insertion-candidate",
+      "source_2d_failures": [],
+      "applied": false
+    },
+    {
+      "id": "C-3F",
+      "building": "C",
+      "floor": "floor-3",
+      "source": "structured/candidates/kaohsiung-house-options/c-stair-integration.json",
+      "source_option": "c-split",
+      "room": "master3f",
+      "label": "主臥右前側換季／備品櫃",
+      "note": "目前公共走道須淨空，先在主臥右前側設獨立雜物櫃；不縮原衣櫃、不占跑步機安全區，公共取物需進主臥的代價明列。",
+      "source_floor_hash": "75e9fac9da77ce5e3307bb928cf24b239b707869e9b9faefcbb7793a22c6928d",
+      "comparisons": [
+        {
+          "option": "c-split",
+          "state": "daily",
+          "source_floor_exact": true,
+          "current_floor_hash": "75e9fac9da77ce5e3307bb928cf24b239b707869e9b9faefcbb7793a22c6928d",
+          "target_room_id_present": true,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "master3f",
+              "name": "前側主臥（4m樓高案面積取捨）",
+              "overlap_sqm": 0.45
+            }
+          ],
+          "source_room_count": 8,
+          "current_room_count": 8,
+          "source_only_room_ids": [],
+          "current_only_room_ids": [],
+          "same_floor_insertion_candidate": true,
+          "whole_3d_or_product_approval": "unknown"
+        }
+      ],
+      "status": "same-source-insertion-candidate",
+      "source_2d_failures": [],
+      "applied": false
+    },
+    {
+      "id": "C-RF",
+      "building": "C",
+      "floor": "floor-4",
+      "source": "structured/candidates/kaohsiung-house-options/c-stair-integration.json",
+      "source_option": "c-split",
+      "room": "platform",
+      "label": "前平台防雨工具櫃",
+      "note": "不占屋突樓梯與乾式弱電維修區，原晾衣架保留；只存耐候備品，不能當室內乾衣／棉被儲藏室。",
+      "source_floor_hash": "457db7ae5c1b523e375e4d3253b79e265b0bd90908daa7e1d729211eb5df09b0",
+      "comparisons": [
+        {
+          "option": "c-split",
+          "state": "daily",
+          "source_floor_exact": true,
+          "current_floor_hash": "457db7ae5c1b523e375e4d3253b79e265b0bd90908daa7e1d729211eb5df09b0",
+          "target_room_id_present": true,
+          "current_rooms_under_cabinet": [
+            {
+              "id": "platform",
+              "name": "屋頂平台（非冷氣集中區）",
+              "overlap_sqm": 0.405
+            }
+          ],
+          "source_room_count": 7,
+          "current_room_count": 7,
+          "source_only_room_ids": [],
+          "current_only_room_ids": [],
+          "same_floor_insertion_candidate": true,
+          "whole_3d_or_product_approval": "unknown"
+        }
+      ],
+      "status": "same-source-insertion-candidate",
+      "source_2d_failures": [],
+      "applied": false
+    }
+  ],
+  "unapplied_insertions": [
+    {
+      "case": "A-2F",
+      "option": "a-rear-study",
+      "state": "daily",
+      "floor": "floor-2",
+      "host_room_id": "A:floor-2:study",
+      "proposed_item_id": "A:floor-2:study:upper-floor-storage",
+      "label": "書房入口側獨立雜物櫃",
+      "rect_mm": [
+        115,
+        11355,
+        900,
+        450
+      ],
+      "operation_mm": [
+        115,
+        11805,
+        900,
+        700
+      ],
+      "height_mm": 1800,
+      "host_local_rect_mm": [
+        115,
+        115,
+        900,
+        450
+      ],
+      "expected_source_floor_hash": "088e8d98aefcd5903665115a5113ceca0b20bf49e673577373632b871376c0dc",
+      "existing_furniture_ids_to_preserve": [
+        "A:floor-2:study:furniture:desk",
+        "A:floor-2:study:furniture:shelf"
+      ],
+      "applied": false
+    },
+    {
+      "case": "A-3F",
+      "option": "a-rear-study",
+      "state": "daily",
+      "floor": "floor-3",
+      "host_room_id": "A:floor-3:multi",
+      "proposed_item_id": "A:floor-3:multi:upper-floor-storage",
+      "label": "多用室前側家務收納櫃",
+      "rect_mm": [
+        2275,
+        5995,
+        900,
+        450
+      ],
+      "operation_mm": [
+        2275,
+        6445,
+        900,
+        700
+      ],
+      "height_mm": 1800,
+      "host_local_rect_mm": [
+        115,
+        115,
+        900,
+        450
+      ],
+      "expected_source_floor_hash": "7fa1949bdaf1969cca84127ca9a41863aa1d7ea81988e52cb16788f9d5734df6",
+      "existing_furniture_ids_to_preserve": [
+        "A:floor-3:multi:furniture:sofa-bed"
+      ],
+      "applied": false
+    },
+    {
+      "case": "A-RF",
+      "option": "a-rear-study",
+      "state": "daily",
+      "floor": "floor-4",
+      "host_room_id": "A:floor-4:laundry-rf",
+      "proposed_item_id": "A:floor-4:laundry-rf:upper-floor-storage",
+      "label": "後平台防雨工具櫃",
+      "rect_mm": [
+        115,
+        14500,
+        900,
+        450
+      ],
+      "operation_mm": [
+        115,
+        14950,
+        900,
+        700
+      ],
+      "height_mm": 900,
+      "host_local_rect_mm": [
+        115,
+        120,
+        900,
+        450
+      ],
+      "expected_source_floor_hash": "330c400de459651b240f78571e1b12af3ddbc48def841a1d4498c9ba59292b4c",
+      "existing_furniture_ids_to_preserve": [
+        "A:floor-4:laundry-rf:furniture:clothes-rack"
+      ],
+      "applied": false
+    },
+    {
+      "case": "C-2F",
+      "option": "c-split",
+      "state": "daily",
+      "floor": "floor-2",
+      "host_room_id": "C:floor-2:day-reserve",
+      "proposed_item_id": "C:floor-2:day-reserve:upper-floor-storage",
+      "label": "乾式彈性區家務儲藏櫃",
+      "rect_mm": [
+        115,
+        10300,
+        1200,
+        600
+      ],
+      "operation_mm": [
+        115,
+        10900,
+        1200,
+        800
+      ],
+      "height_mm": 1800,
+      "host_local_rect_mm": [
+        115,
+        1340,
+        1200,
+        600
+      ],
+      "expected_source_floor_hash": "623d97c7fb99224e5d339d580c9af3970d7d86aa4bda04f8c9769e51879c50d3",
+      "existing_furniture_ids_to_preserve": [],
+      "applied": false
+    },
+    {
+      "case": "C-3F",
+      "option": "c-split",
+      "state": "daily",
+      "floor": "floor-3",
+      "host_room_id": "C:floor-3:master3f",
+      "proposed_item_id": "C:floor-3:master3f:upper-floor-storage",
+      "label": "主臥右前側換季／備品櫃",
+      "rect_mm": [
+        5435,
+        4050,
+        450,
+        1000
+      ],
+      "operation_mm": [
+        4735,
+        4050,
+        700,
+        1000
+      ],
+      "height_mm": 1800,
+      "host_local_rect_mm": [
+        5435,
+        150,
+        450,
+        1000
+      ],
+      "expected_source_floor_hash": "75e9fac9da77ce5e3307bb928cf24b239b707869e9b9faefcbb7793a22c6928d",
+      "existing_furniture_ids_to_preserve": [
+        "C:floor-3:master3f:furniture:bed",
+        "C:floor-3:master3f:furniture:wardrobe",
+        "C:floor-3:master3f:furniture:vanity"
+      ],
+      "applied": false
+    },
+    {
+      "case": "C-RF",
+      "option": "c-split",
+      "state": "daily",
+      "floor": "floor-4",
+      "host_room_id": "C:floor-4:platform",
+      "proposed_item_id": "C:floor-4:platform:upper-floor-storage",
+      "label": "前平台防雨工具櫃",
+      "rect_mm": [
+        115,
+        6000,
+        900,
+        450
+      ],
+      "operation_mm": [
+        115,
+        6450,
+        900,
+        700
+      ],
+      "height_mm": 900,
+      "host_local_rect_mm": [
+        115,
+        6000,
+        900,
+        450
+      ],
+      "expected_source_floor_hash": "457db7ae5c1b523e375e4d3253b79e265b0bd90908daa7e1d729211eb5df09b0",
+      "existing_furniture_ids_to_preserve": [
+        "C:floor-4:platform:furniture:clothes-rack"
+      ],
+      "applied": false
+    }
+  ],
+  "summary": {
+    "storage_cases": 10,
+    "floor_state_comparisons": 30,
+    "same_source_candidates": 6,
+    "whole_floor_rebase_required": 4,
+    "unapplied_insertions": 6
+  },
+  "B_entry_options_retained": [
+    "b-rear-split",
+    "b-front-split"
+  ],
+  "B_default_entry": "rear",
+  "B_roof_storage_cases_retained": [
+    "B-RF-D1",
+    "B-RF-D2"
+  ],
+  "same_xy_fit_does_not_authorize_merging_different_floor_versions": true,
+  "main_3d_changed": false,
+  "storage_viewer_changed": false,
+  "browser_or_full_scene_started": false,
+  "protected_controls_unchanged": 149,
+  "adopted": false,
+  "professional_approval": "unknown",
+  "construction_release": false,
+  "source_hashes": {
+    "structured/coordination/upper-floor-storage-v1/review.json": "b451dc7893dd9e50c8271b1a6b3e4104c9a66e1173294684b9dd9886d504a986",
+    "structured/candidates/kaohsiung-house-options/c-stair-integration.json": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+    "structured/candidates/kaohsiung-house-options-3d.html": "7eaf45705d3626a650e00414e027c8e9c5bd7f5a7d60eb1b56658f37273712a2",
+    "inputs/references/upper-floor-storage-rendered-review-20261111.json": "49a33a95e68b6993d2e704322c4dcb65b7e409f4dc7f758175471a4f22d180b0",
+    "Docs/abc-upper-floor-storage-merge-v1.md": "60583980ef95baa7f9ea531557aa1ae1aca23034069903b02a45ed8cd1a8b2e4",
+    "scripts/check_upper_floor_storage_merge.py": "93a7ac7c51ce007bd5274dd7d6c3c656ccc21bbaa862b92ae3c925fd04238011",
+    "house_design/upper_floor_storage.py": "edb5744b685a0df71cf720e3682479dacfee570154609bc67e8e79759882d45d",
+    "scripts/lib/model3d_plan.py": "90fc8b31396f4ccae9b7f6e8c6be0aa6249c12255005c6b09c70e63840d4027c",
+    "inputs/upper-floor-storage.json": "8218693505667bf3425590e36cee3b7d1ce3dae6d8db5cc8309b6567d142fc97",
+    "scripts/export_upper_floor_storage.py": "fc8f2f5d0cca207720eedfd5cc244c433aca419e642844755ed55ae732e4df3e",
+    "Docs/abc-upper-floor-storage-v1.md": "cf53110b3e0fddcbe7bcccadd2ae9246392871ec58c910451fe63e18046a1dbd",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "structured/coordination/b-front-drainage-layout-v1/review.json": "fb352dcdc1c83aad3b4d4ced66804d328132bd411473b496676f53f849ac7711",
+    "structured/coordination/b-ktv-stair-options-v1/review.json": "6116c9df09d442e29e16cc3eabc50aa1cd94b4d512fd3398b9105f1afdc34a7e",
+    "structured/coordination/b-q3-roof-coordination-v1/review.json": "432eb25dad0a37d1878a8c20e44675ed376beb86c60a9019d9bb6842d106d954"
+  },
+  "report_hash": "c44da986b2d0919e8e94565e4c2f511367b4e5f2143057590f37d81c17c25ba0"
+}

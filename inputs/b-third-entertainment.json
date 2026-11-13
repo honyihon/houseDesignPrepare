@@ -1,0 +1,73 @@
+{
+  "schema": "house-b-third-entertainment-v1",
+  "date": "2026-11-10",
+  "adopted": false,
+  "upper_report": "structured/coordination/b-upper-replan-v1/review.json",
+  "service_report": "structured/coordination/b-front-service-detail-v1/review.json",
+  "ground_report": "structured/coordination/b-claude-round3-v1/review.json",
+  "protected_controls": "inputs/abc-next-protected-controls.json",
+  "pinned_sources": {
+    "structured/coordination/b-upper-replan-v1/review.json": "38897b7ca1da091dd62c85ab342abd4d1d1da220ec1dbad9a5f46e6611f4906d",
+    "structured/coordination/b-upper-replan-v1/artifact-manifest.json": "c1fe7bab76b8032224f7ce271671db0f94fb3ef91c702adc355fd1bcd6b8d915",
+    "structured/coordination/b-front-service-detail-v1/review.json": "a51324d7699cfba56479f83a5e4eaa24ef5c9d45782c302c79e5fe779d4f2edd",
+    "structured/coordination/b-front-service-detail-v1/artifact-manifest.json": "66b708543e5da68e23878d0063034d8ecb0fe693a658431b44160e5881c35234",
+    "inputs/references/b-owner-ritual-answers-20261106.json": "736f5a477ce1fbfd8e1bf460ecf49f9043a83635201d1598e3e1842e6460ddb9"
+  },
+  "frame_mm": [6000, 17630],
+  "inset_mm": 115,
+  "additional_acoustic_insets_mm": [0, 50, 100, 150, 200],
+  "primary_extra_inset_mm": 100,
+  "front_room_mm": [0, 0, 6000, 3900],
+  "working_court_mm": [0, 11370, 2400, 2130],
+  "guest_parts_mm": [[0, 14100, 3600, 3530], [0, 13500, 2400, 600]],
+  "rear_bath_mm": [3600, 14500, 2400, 3130],
+  "front_furniture": [
+    {"id": "sofa", "label": "原1800×900候選沙發", "rect_mm": [3000, 2600, 1800, 900], "operation_mm": [3000, 1900, 1800, 700]},
+    {"id": "table", "label": "原1200×600候選桌", "rect_mm": [3300, 1200, 1200, 600]},
+    {"id": "tv", "label": "原1000×80螢幕候選／前牆", "rect_mm": [3500, 215, 1000, 80]}
+  ],
+  "guest_furniture": [
+    {"id": "bed", "label": "原1800×2000客床轉向／床頭靠左", "rect_mm": [150, 15550, 2000, 1800]},
+    {"id": "wardrobe", "label": "原1800×600櫃轉向", "rect_mm": [115, 13615, 600, 1800], "operation_mm": [715, 13615, 700, 1800]}
+  ],
+  "bath_fixtures": [
+    {"id": "basin", "label": "原600×450面盆轉右牆", "rect_mm": [5435, 14615, 450, 600], "operation_mm": [4735, 14615, 700, 600]},
+    {"id": "toilet", "label": "原450×700馬桶轉向左牆", "rect_mm": [3715, 14615, 700, 450], "operation_mm": [4415, 14615, 700, 450]},
+    {"id": "shower", "label": "原900×900淋浴", "rect_mm": [4985, 16615, 900, 900], "operation_mm": [4285, 16615, 700, 900]}
+  ],
+  "front_entry": {"a": [1150, 3900], "b": [2280, 3900], "hinge": "right", "opens": "inside"},
+  "court_entry": {"a": [1150, 11370], "b": [2280, 11370], "hinge": "left", "opens": "inside"},
+  "sliders": [
+    {"id": "guest", "a": [2420, 14100], "b": [3550, 14100], "leaf_width_mm": 660, "leaf_thickness_mm": 45, "track_y_mm": [14215, 14300], "closed_x_mm": [2370, 2940], "park_x_mm": [1710, 1710]},
+    {"id": "bath", "a": [4435, 14500], "b": [5565, 14500], "leaf_width_mm": 660, "leaf_thickness_mm": 45, "track_y_mm": [14355, 14440], "closed_x_mm": [4385, 4955], "park_x_mm": [3725, 3725]}
+  ],
+  "routes": [
+    {"id": "front-entertainment", "width_mm": 700, "points_mm": [[1715, 4400], [1715, 2250], [3500, 2250]], "expected_door": "front"},
+    {"id": "guest-arrival", "width_mm": 700, "points_mm": [[5335, 10800], [5335, 12270], [5335, 13535], [2985, 13535], [2985, 15100], [2600, 15100], [2600, 16450]], "expected_door": "guest"},
+    {"id": "guest-wardrobe", "width_mm": 700, "points_mm": [[2985, 15100], [1800, 15100], [1800, 15065], [1065, 15065]], "expected_door": null},
+    {"id": "rear-public-bath", "width_mm": 700, "points_mm": [[5335, 10800], [5335, 13935], [5000, 13935], [5000, 15325]], "expected_door": "bath"},
+    {"id": "shower-operation", "width_mm": 700, "points_mm": [[5000, 15325], [5000, 16265], [4635, 16265], [4635, 17065]], "expected_door": null},
+    {"id": "public-to-working-court", "width_mm": 700, "points_mm": [[1715, 10800], [1715, 12800]], "expected_door": "court"}
+  ],
+  "rf_candidate_slots_mm": [[3270, 100, 900, 350], [5020, 100, 900, 350]],
+  "rf_service_mm": [[3270, 100, 900, 1350], [5020, 100, 900, 1350]],
+  "rf_guard_budget_mm": 100,
+  "limits": [
+    "Q1保留現行後段，適合先比安靜閱讀／低音量劇院；不代表夜間聲學通過，也沒有取消原20㎡KTV需求。",
+    "Q2前側娛樂、後客房／公衛與工作天井只是獨立配置研究，未採用、未併主3D；原ABC、P1／P2／P3、兩個1F搬轎入口各三態及RF快照保留。",
+    "KTV20／客房12／3F公衛5／工作陽台4㎡及前側彈性14㎡原目標均列帳，未因研究方向改正式需求或把KTV14下限當20目標。",
+    "Q2三樓前側由12.753增為23.400㎡名義室內量體，增加10.647㎡；約32地坪外框不等於合法可建量，也不是日後可自行封陽台。",
+    "前側整塊娛樂須取消本層原景觀／設備配置，兩個代表機位另比RF前側；它們不是已確認兩台新機，也不重複加購或默認取代現有B-AC03／04。",
+    "後工作天井名義5.112㎡、115假設4.123㎡，需RF局部開口及護欄／防水／排水；因此是屋頂需改的條件案，不能說原RF完全不用動或已核工作陽台。",
+    "工作天井由公共起居區直接進入，不穿客房；1130名義外門、門檻防雨及實際完成淨寬未核，晾衣架與家務操作仍需另排。",
+    "RF天井會截斷原後機位區的直行入口，另列繞行700方塊；不含實際屋突門片、梯段、雨天防滑及整機搬運。所有原屋頂設備需求仍保留，未排滿不當空間已足。",
+    "額外0／50／100／150／200mm四面內縮只是聲學空間敏感度，沒有dB、隔音等級或產品；不能挑50mm就宣稱能唱歌，也不能將最薄案例當完工面積。",
+    "2F前管井仍須穿3F，Q2在娛樂室留同一400×400；不能因3F公衛移後就刪2F通氣井或宣稱P3騎樓排水缺口解除。",
+    "前KTV比後段少壓樓下主臥，但前外窗、梯核門、天花地坪及風管仍傳聲；使用時的窗門、消音與新風工作點須聲學／建築／機電同核，沒有低頻或鄰房噪音承諾。",
+    "兩個濕系統不混接：公衛污廢水／通氣與工作天井雨水分開核，400井預算不等於能容納全部管線。實際高程、降板、合法終端與2F／1F影響未知。",
+    "3F後公衛對齊2F套衛輪廓，避免新增浴廁壓主臥乾區；工作天井仍在2F部分梳妝／更衣乾區上方，需核防水、雨水及漏水維護，不能只因未壓床就說風水或防水成立。",
+    "神明堂／乾背櫃完整投影不放床、浴廁或娛樂；工作天井亦避武轎庫。明列平面避讓不當全案家規／風水核可，管線、穿孔及振動仍未核。",
+    "客床1800×2000、衣櫃1800×600、娛樂沙發／桌／螢幕及三件衛浴尺寸保留；不保證原器材全容納、座位數或實際門淨寬。",
+    "新增室內量體、屋頂機位／天井、聲學構造及關門新風都需正式資料；目前不要求屋主立刻接受縮KTV、取消陽台或搬到A／C。"
+  ]
+}

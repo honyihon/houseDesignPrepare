@@ -1,0 +1,127 @@
+{
+  "schema": "house-abc-laundry-access-v1",
+  "date": "2026-11-13",
+  "adopted": false,
+  "parent_report": "structured/coordination/abc-ground-laundry-v1/review.json",
+  "parent_sha256": "70d173aee810bf6965a7612b4146c22b5c665a66844b26593381f4248d9dc26a",
+  "parent_report_hash": "4d78d285e0efe2623261cb86418c5a0c1b3585fea693ebdc816f8a79d4cec45e",
+  "owner_reference": "inputs/references/abc-laundry-owner-20261113.json",
+  "finish_assumption_mm": 115,
+  "total_frame_budget_mm": 230,
+  "route_width_mm": 900,
+  "front_counterexample": {
+    "triangle_mm": [
+      [
+        1360,
+        11360
+      ],
+      [
+        2400,
+        12060
+      ],
+      [
+        1360,
+        12060
+      ]
+    ],
+    "proposal_aperture_mm": 1200,
+    "hall_probe_mm": [
+      2700,
+      10900
+    ],
+    "kitchen_probe_mm": [
+      1700,
+      14000
+    ],
+    "note": "斜向重分區可得到較長的標籤邊，但未移MDF與孝親房兩角。即使先忽略廚具和門片、只留外邊界完成預算，900圓形本體的中心可行域仍不相通。這只否決這種門長算法，不表示所有前側重排無解。"
+  },
+  "rear_gate": {
+    "id": "A1-rear-conditional",
+    "label": "A後側條件式直入洗衣陽台",
+    "opening_mm": [
+      [
+        2200,
+        17630
+      ],
+      [
+        3400,
+        17630
+      ]
+    ],
+    "closed_leaf_mm": [
+      2170,
+      17535,
+      1260,
+      95
+    ],
+    "open_leaf_mm": [
+      910,
+      17535,
+      1260,
+      95
+    ],
+    "wall_bridge_depth_mm": 120,
+    "route_points_mm": [
+      [
+        2800,
+        17880
+      ],
+      [
+        2800,
+        16400
+      ]
+    ],
+    "states": [
+      {
+        "id": "open",
+        "label": "全開",
+        "fraction": 1
+      },
+      {
+        "id": "half",
+        "label": "半開",
+        "fraction": 0.5
+      },
+      {
+        "id": "closed",
+        "label": "關閉",
+        "fraction": 0
+      }
+    ],
+    "note": "上吊平移門概念，地面不預設突出軌道。只有全開才比較基地內900試線；門外部分不在模型內，合法後口、共同後巷、坡度、遮雨、防水及產品均未知。"
+  },
+  "recommended_direction": "先保A1原陽台洗衣配置，優先向建商確認A後側是否能作合法平層直入；成立時才深化這個可關門候選。沒有共同後側到達，就保前側分戶小籃／推車取送並回到A整體入口重排，不強迫長輩走未核的窄廚房，也不自行縮孝親房或釋放MDF。",
+  "limits": [
+    "三棟共用一組、C2暫不用保空間、A上層另留機位保持；這一輪不選A主位置、機型或購機。",
+    "原廚房、孝親房、MDF側壁龕備援與完整維修、樓梯、客餐、騎樓、B祭祀搬轎兩版保持；不改主3D或已驗ZIP。",
+    "後門開口在A研究框的後邊界，並不代表已獲開口或共同後巷使用權；B有後巷不等於A／C都可接入。",
+    "路徑包含一段未建模門外引線，只核其裁切在基地內的部分；不核外側輪具轉向、距離、避車、路權、高差或全程可達。",
+    "名義1200門口扣總框230只作970預算；單扇1260×95門板與2520滑動包絡未選商品，不當消防、防盜、操作力、可及或淨高核可。",
+    "門板移動包絡到原乾衣機備位只有20mm，實際五金或接管變大要重排；衣物外廓到門包70mm也不是原廠安全距離。",
+    "全開的基地內試線仍與洗／乾操作帶共享，須分時；不是多人同時洗衣或無障礙簽認。門在移動時人與推車先退出行程。",
+    "獨立後門改善取送方向，不會增加1200小晾架容量或解除原晾衣降下占1500轉位、原設備完成面及維修缺口。",
+    "前側分戶取送只是工作流程備案，不是已核前門照護通路；若長輩要完全自行操作而通路仍不成立，必須重排共用位置。",
+    "斜向前門反例只核一種固定房界；不把它擴大為A或全案無解。廚房是否一定可關門未收到新答覆，仍保原門，不代填偏好。"
+  ],
+  "actual_conditions": {
+    "A_rear_opening_permission": null,
+    "shared_rear_route_rights": null,
+    "ABC_relative_positions": null,
+    "rear_route_finished_width_mm": null,
+    "outside_turning_envelope": null,
+    "level_difference_and_slope": null,
+    "rain_cover_and_wet_floor_design": null,
+    "rear_threshold_and_drainage_detail": null,
+    "door_product_and_full_installation_envelope": null,
+    "open_clear_width_mm": null,
+    "door_operating_force_and_reach": null,
+    "door_anti_lift_lock_and_emergency_opening": null,
+    "wind_rain_fire_and_security_detail": null,
+    "dryer_actual_service_envelope": null,
+    "drying_clothes_actual_envelope": null,
+    "filter_and_HVAC_full_service_access": null,
+    "elder_mobility_and_assistance": null,
+    "kitchen_closeable_preference": null,
+    "front_entry_complete_replan": null
+  }
+}

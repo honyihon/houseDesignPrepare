@@ -1,0 +1,111 @@
+{
+  "schema": "house-b-front-service-detail-static-review-v1",
+  "date": "2026-11-09",
+  "scope": "P3 front-service overlay, independent from frozen P1/P2 and primary ABC/3D; file/planar geometry only",
+  "report_hash": "d4a599ed36f47ded53f46717d860b6a6918f528f1b37106a3ac9f48de237a1c8",
+  "source_and_artifact_sha256": {
+    "inputs/b-front-service-detail.json": "48c1b0f31db2d9a6116cd81ba8a4b16ec9d2100c643275f8c553b0d400907e49",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "inputs/b-upper-replan.json": "83621a2af81211b06ff4dc2c9e8557641c1d551b05195605acd7a6ad7b1df3f5",
+    "house_design/b_upper_replan.py": "a251d37dc84bd54b9292b6802180ca7fd66c679a7e43dc714b3fed160dc2e5c5",
+    "scripts/export_b_upper_replan.py": "3a3cc271cf7d9fc20759d4bca17b582ab672f551981c6e8c1c20933192c09a3d",
+    "structured/coordination/b-upper-replan-v1/review.json": "38897b7ca1da091dd62c85ab342abd4d1d1da220ec1dbad9a5f46e6611f4906d",
+    "structured/coordination/b-upper-replan-v1/artifact-manifest.json": "c1fe7bab76b8032224f7ce271671db0f94fb3ef91c702adc355fd1bcd6b8d915",
+    "house_design/b_front_service_detail.py": "0e20c751c385d4e69a3ff679cb5b7890e71575f82fdef8195e49628690175c29",
+    "scripts/export_b_front_service_detail.py": "bf8d07a4a0c316fe69facbe5145b9091f0afd4d73e0a5998f4ba2c83d7a9253e",
+    "Docs/b-front-service-detail-v1.md": "bc04d48a087905f1d9735cb90dfde9da33b200627ce6d47adf3115f5648d280b",
+    "house_design/b_claude_round3.py": "040a7b75fc604dc147b471800ae4c1c8a57935182dcceea26591514b106ec9d0",
+    "house_design/contracts.py": "2888419d49e8d8dbe8b8e99f6b8451363cd9020821c7fe3e703ab09779e202c3",
+    "house_design/project_status.py": "db73eb9b066353cc282e67dc15e4b430d9d4e4d398eafaf7eeec5f98af1acab0",
+    "inputs/requirements.json": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066",
+    "inputs/planning-register.json": "140493058b145071afb472bf927860d48a43a6f4407b9b59e5a86705fbe058b0",
+    "tests/test_b_front_service_detail.py": "9ec645d13a40438318cdd53e5295ce1a4d54fed80d06ab17ff4c5860b154333a",
+    "tests/test_b_upper_replan.py": "403e8bab3a6d831da7ea3d7eab07b52be2444e7aae0c94458db13bfb97de64ea",
+    "tests/test_design_discussion_basis.py": "2684e0671d9762e388720fe5693c46ebb1d67496030090ed2c84e6bbe47e360a",
+    "tests/test_builder_communication.py": "5621666ecfa97b6eb72e6ec22321ac9bc367d5d8cb7f1d1f30d97a677b42f032",
+    "tests/test_project_next_steps.py": "dc837be6f8a27553f694645701cfccbbfabdce085a1f70c5f794d3c1de2f0940",
+    "tests/test_project_status.py": "73098e7a96b4a2fa514019b39e7445b0af0f0cbd19a8ff29dee5ce660933145b",
+    "tests/test_repository_health.py": "ac385bd69d28d58f89a7e3ae415f1fbafd3196217acc255e5074c1ddad1d51f6",
+    "inputs/project-status.json": "2190ab10f5d4ed8b97515833950986f3fb5bc028a403ff6c528720f1e9c05fad",
+    "inputs/design-discussion-basis.json": "cf92d48a0550c6b19bd6b743ffed77abb6c185c8065904e575643b34a07f2204",
+    "README.md": "936d50c4783a7a647f6a1e6f768e2862ee4bd5347942c30c64e2a50f8ab477c4",
+    "Docs/project-status-v1.md": "07fd2ab0b21fc7ad662f80d651c04c79b9d4406550e5a7277bb91b802c0cfe3a",
+    "Docs/design-discussion-basis-v1.md": "23485ac50bc74e19ba6f6e2ffe05a5ae757a04c2e7d26f44c136b107c14c2344",
+    "scripts/README.md": "81cd179a14a6705fa5373b18f418d1342298d5d3d4baef41945f7a8b10cb2a98",
+    "structured/coordination/b-front-service-detail-v1/review.json": "a51324d7699cfba56479f83a5e4eaa24ef5c9d45782c302c79e5fe779d4f2edd",
+    "structured/coordination/b-front-service-detail-v1/artifact-manifest.json": "66b708543e5da68e23878d0063034d8ecb0fe693a658431b44160e5881c35234",
+    "structured/planning/design-discussion-basis/review.json": "32f49fcf627cd227236371ccc55098c5a46cf33f45fd6459f6331b3bee2ffb73",
+    "structured/planning/design-discussion-basis/artifact-manifest.json": "ecfde10cee4828c6b66af867ecd299f2dae0367d652459f6f70b424d30a33118",
+    "structured/planning/design-discussion-basis/archive-manifest.json": "d4ce01702f4f3ab945905839f565707a81f47b316f9a9218bbe8178c8fee1d9b"
+  },
+  "checks": {
+    "focused_tests": {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q --tb=short -p no:cacheprovider tests/test_b_front_service_detail.py tests/test_b_upper_replan.py tests/test_design_discussion_basis.py tests/test_builder_communication.py tests/test_project_next_steps.py tests/test_project_status.py tests/test_repository_health.py",
+      "exit_code": 0,
+      "passed": 166,
+      "failed": 0,
+      "elapsed_seconds": 6.45
+    },
+    "ruff": {
+      "command": "timeout 20s .venv/bin/ruff check house_design scripts tests",
+      "exit_code": 0
+    },
+    "exports_check": {
+      "scripts": [
+        "export_b_upper_replan.py",
+        "export_b_front_service_detail.py",
+        "export_project_next_steps.py",
+        "export_builder_communication.py",
+        "export_design_discussion_basis.py"
+      ],
+      "mode": "--check, individual timeout 20s",
+      "all_exit_codes": 0
+    },
+    "repository_health": {
+      "issues": 0,
+      "public_json_checked": 206,
+      "markdown_checked": 146,
+      "local_links_checked": 846
+    },
+    "project_source_index": {
+      "current_declared_sources_match": 7,
+      "historical_drift_retained": true,
+      "historical_qa_reused": false
+    },
+    "protected_controls_unchanged": 149,
+    "parent_p1_p2_frozen": true,
+    "door_combinations_per_floor": 9,
+    "full_panel_translation_and_containment_checked": true,
+    "discussion_packet": {
+      "drawings": 32,
+      "files": 60,
+      "archive_entries": 58,
+      "archive_sha256": "7b4580fac8bad1d2d1cace41f61cb809cc311de9398d35c456b14aeb78415f7d",
+      "new_private_copy": "design-discussion-005",
+      "new_copy_matches_public_files": true,
+      "prior_private_copies_overwritten": false
+    }
+  },
+  "findings": {
+    "public_115_sqm": 5.286,
+    "tea_115_sqm": 5.1036,
+    "tea_after_conservative_full_panel_translation_sqm": 5.064,
+    "bath_parked_panel_to_counter_mm": 25,
+    "complete_gravity_drainage": "unresolved",
+    "best_illustrative_complete_WC_clear_mm": 3498.7,
+    "illustrative_target_mm": 3500,
+    "original_stair_shaft_intrusion_sqm": 0.16,
+    "actual_ground_stair_void_proven": false,
+    "new_enclosed_footprint_sqm_per_upper_floor": 12.753,
+    "legal_enclosed_volume_and_structure": "unknown",
+    "drainage_section_scope": "listed 2F branches plus under-2F offset; 3F and whole-building drainage not designed"
+  },
+  "rendered_qa": "not-run",
+  "browser_or_webgl_started": false,
+  "svg_rasterized": false,
+  "external_ai_invoked": false,
+  "actual_site_or_product_data_received": 0,
+  "adopted": false,
+  "professional_or_religious_approval": "unknown",
+  "commit_or_push_performed": false
+}

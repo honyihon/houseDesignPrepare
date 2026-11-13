@@ -1,0 +1,136 @@
+{
+  "schema": "house-design-discussion-quick-read-static-v1",
+  "date": "2026-11-11",
+  "scope": "Reorganize the existing static handout index into an ABC quick-read section, a discussion-stage reading order and native details for the full floor table and existing forms. Source text reused from original agenda/brief/comparisons; no new summary input, design or workflow.",
+  "source_and_artifact_sha256": {
+    "inputs/design-discussion-basis.json": "c77dee3360d13d75cab61a540817d1e09a6717b1b9dcaed68b4da09017a50b67",
+    "inputs/project-status.json": "1fb414dafee68b5ba004bafdb1018cf1fcdc02939b45a89ea4ae88c36ed9a839",
+    "inputs/abc-coordination-agenda.json": "6256a19c4a4b7d01794f85130791ebf6dec9ccec37862054eaffbad4128f7cd2",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "inputs/requirements.json": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066",
+    "inputs/planning-register.json": "140493058b145071afb472bf927860d48a43a6f4407b9b59e5a86705fbe058b0",
+    "house_design/design_discussion_basis.py": "c778e683a70df6389665602b3e27ddf84da36dcf7f6afb78b46ad8e99a5bb24a",
+    "scripts/export_design_discussion_basis.py": "983da0e6662edf0f0c47a354514ab3dd3bfaf6954f998d21a3c32aa4f7c95b3f",
+    "tests/test_design_discussion_basis.py": "a237f8153920fcf526ad90ec70455314c52ffa23d739550aa27dd65fc68fe9ec",
+    "tests/test_repository_health.py": "ac385bd69d28d58f89a7e3ae415f1fbafd3196217acc255e5074c1ddad1d51f6",
+    "Docs/design-discussion-basis-v1.md": "eaad1ec1c1dd3441d961f664a34242dc355102a3a9e77af8f3bd24389f665dc0",
+    "Docs/project-status-v1.md": "f082fc53c122cc1f25cbf136aff451989891cdd1c239c0020bf1a88304c4548c",
+    "README.md": "b2468250deed7fb73ede586e713d62af20319a83af37530ca9663afc94517904",
+    "scripts/README.md": "e7f687b048d21a9972ec075c1e4a7d6935381b00fd49930c68814e5c62455cdd",
+    "structured/planning/project-next-steps/review.json": "3abab50bb75cb07b41b7b66a5ff6ead729af4c5cde286323836608eb27a93e5d",
+    "structured/planning/project-next-steps/artifact-manifest.json": "944d15c5b5660d71835ef7178ddf9500802d704fe358971a876b1bcb8d1ff777",
+    "structured/planning/builder-communication/review.json": "660fe2246829d7a68c4297dbb8fce031a426ff9aedb8e4b65376ff90e452b6e9",
+    "structured/planning/builder-communication/artifact-manifest.json": "c17e70754beb86ff3d29f459b78a15d3590b71cec02cfa729bf629400032081c",
+    "structured/planning/design-discussion-basis/review.json": "74d8c1dbcf07951f33872f4e1a757d26cb339bb52a054b71f25a14110ad21556",
+    "structured/planning/design-discussion-basis/artifact-manifest.json": "1504c5ff32913d97b9624495a66efd5dfad69cd7f63232187896cae9b5a6d4b5",
+    "structured/planning/design-discussion-basis/archive-manifest.json": "6b2dd1ed74af645e8de3f15448e9340d31deddac824f123a9fc93ca02dc951ee",
+    "structured/planning/design-discussion-basis/ABC-discussion-package.zip": "44ead40169a320cd50dee190165b04dba97b26a5a0b25aa75d07639d42fc44f7",
+    "structured/planning/design-discussion-basis/index.html": "49aa21022e19fb463235a890a18bc9eb3be31ce539c4422e9d5b8f0eca6218fe",
+    "structured/planning/design-discussion-basis/README.md": "0d3c211289c15bc745ac602271bedc1498e11c4efa274e44330e386238f9cfaa"
+  },
+  "checks": {
+    "focused_tests": {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q --tb=short -p no:cacheprovider tests/test_design_discussion_basis.py tests/test_repository_health.py",
+      "passed": 117,
+      "failed": 0,
+      "elapsed_seconds": 5.92,
+      "exit_code": 0
+    },
+    "ruff": {
+      "command": "timeout 20s .venv/bin/ruff check scripts/export_design_discussion_basis.py",
+      "exit_code": 0
+    },
+    "exports_check": {
+      "scripts": [
+        "export_project_next_steps.py",
+        "export_builder_communication.py",
+        "export_design_discussion_basis.py"
+      ],
+      "individual_timeout_seconds": 20,
+      "all_exit_codes": 0
+    },
+    "repository_health": {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/check_repository_health.py --check",
+      "files": 1704,
+      "public_json_checked": 282,
+      "markdown_checked": 172,
+      "local_links_checked": 1058,
+      "issues": [],
+      "exit_code": 0,
+      "scope": "Before adding this evidence file; bounded inventory, JSON syntax and local Markdown links only"
+    },
+    "git_diff_check": {
+      "command": "timeout 20s git diff --check",
+      "exit_code": 0
+    },
+    "packet_source_hashes_verified": 371,
+    "protected_controls_unchanged": 149,
+    "current_index_packages_match": 7,
+    "historical_drift_packages_retained": 5,
+    "formal_requirement_statuses": {
+      "candidate": 66
+    },
+    "formal_register_statuses": {
+      "unknown": 105
+    },
+    "old_browser_passed_reused": false
+  },
+  "quick_read": {
+    "buildings": [
+      "A",
+      "B",
+      "C"
+    ],
+    "priority_attachment_links": 8,
+    "preserve_goals_and_requested_reply_text_exactly_reused_from_original_agenda": true,
+    "A_unaccepted_suite_tradeoff_and_basis_reused_from_original_brief": true,
+    "B_fixed_band_RF_shortfall_values_reused_from_existing_report": true,
+    "C_care_tradeoffs_reused_from_existing_comparison": true,
+    "three_building_goals_pending_requests_and_key_tradeoffs_outside_details": true,
+    "outside_details_check_scope": "Static HTML structure only, no viewport or screenshot verification",
+    "B_background_and_C_unmerged_comparison_labels_retained": true,
+    "all_floor_rows_and_forms_retained_under_native_details": true,
+    "six_existing_discussion_stage_links_not_new_workflow": true,
+    "existing_life_walkthrough_feedback_form_reused": true,
+    "new_summary_input": false,
+    "new_requirements": false,
+    "new_forms": 0,
+    "discussion_basis_input_unchanged_from_026": true,
+    "all_existing_csv_and_svg_unchanged_from_026": 87,
+    "no_geometry_scale_or_furniture_changes": true
+  },
+  "handoff": {
+    "public_directory": "structured/planning/design-discussion-basis",
+    "private_snapshot_created": "inputs/private/design-discussion-027",
+    "files": 106,
+    "zip_entries": 104,
+    "zip_sha256": "44ead40169a320cd50dee190165b04dba97b26a5a0b25aa75d07639d42fc44f7",
+    "zip_bytes": 517875,
+    "all_private_files_match_public": true,
+    "html_pages": 12,
+    "csv_forms": 18,
+    "svg_drawings": 69,
+    "bc_comparisons": 7,
+    "decision_items": 12,
+    "work_items": 14,
+    "older_snapshots_001_to026_own_artifacts_verified": 26,
+    "older_snapshots_written": false,
+    "old_evidence_overwritten": false
+  },
+  "not_run": [
+    "browser/WebGL or viewport/screenshot QA",
+    "full pytest",
+    "new geometry or scene generation",
+    "formal drawing import",
+    "actual owner choices/feedback or private reply import",
+    "external AI request",
+    "notifications or invitations",
+    "commit",
+    "push"
+  ],
+  "adopted": false,
+  "primary_abc_or_3d_changed": false,
+  "original_family_rules_changed": false,
+  "professional_approval": "unknown",
+  "construction_release": false
+}

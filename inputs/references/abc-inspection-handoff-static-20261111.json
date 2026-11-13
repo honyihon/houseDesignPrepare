@@ -1,0 +1,152 @@
+{
+  "schema": "house-abc-inspection-handoff-static-v1",
+  "date": "2026-11-11",
+  "scope": "Nine hidden-work, commissioning and A interior-handoff planning reminders integrated into existing SEQ-11/12 workflow, with eight blank columns added to the original inspection CSV. No actual inspection records or technical acceptance thresholds.",
+  "source_and_artifact_sha256": {
+    "inputs/design-discussion-basis.json": "c77dee3360d13d75cab61a540817d1e09a6717b1b9dcaed68b4da09017a50b67",
+    "inputs/project-status.json": "1fb414dafee68b5ba004bafdb1018cf1fcdc02939b45a89ea4ae88c36ed9a839",
+    "inputs/builder-communication-plan.json": "13270205de158fb4302f7cd3cb80539900e89c405504532d1f43fa9bc1cd5fd4",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "inputs/requirements.json": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066",
+    "inputs/planning-register.json": "140493058b145071afb472bf927860d48a43a6f4407b9b59e5a86705fbe058b0",
+    "house_design/design_discussion_basis.py": "c778e683a70df6389665602b3e27ddf84da36dcf7f6afb78b46ad8e99a5bb24a",
+    "scripts/export_design_discussion_basis.py": "1e1d4d6e38e1e6b042fa5205f40b3151fa4da5bca7616b4a14f1bc23348acfdb",
+    "tests/test_design_discussion_basis.py": "a237f8153920fcf526ad90ec70455314c52ffa23d739550aa27dd65fc68fe9ec",
+    "tests/test_project_next_steps.py": "dc837be6f8a27553f694645701cfccbbfabdce085a1f70c5f794d3c1de2f0940",
+    "tests/test_builder_communication.py": "5621666ecfa97b6eb72e6ec22321ac9bc367d5d8cb7f1d1f30d97a677b42f032",
+    "tests/test_project_status.py": "73098e7a96b4a2fa514019b39e7445b0af0f0cbd19a8ff29dee5ce660933145b",
+    "tests/test_repository_health.py": "ac385bd69d28d58f89a7e3ae415f1fbafd3196217acc255e5074c1ddad1d51f6",
+    "Docs/abc-inspection-handoff-v1.md": "82f7020e101d0d8e70794e74c0444d347c40a3fb1615efb877b5d2b375ccee25",
+    "Docs/design-discussion-basis-v1.md": "6071138c37cf505d9419dfb41f8915d271e96790de9239109675906881061a14",
+    "Docs/project-status-v1.md": "550555ef677e0d0b6e337d5c02d0a3a75ce5f244ea7fe22e70e649ce8acb713a",
+    "README.md": "bdaeba1586528d2923f6abb5014216e9a851dbcc994af365eee10878e5bb7cbc",
+    "scripts/README.md": "53cf1475c9ee1f3b8da5f3c359c3455cdb23d09e662cb27d09a8914500634fa2",
+    "structured/planning/project-next-steps/review.json": "73567d5353ac28412f7c6d344d7873418634456dcb02ed0038d851a3d6170df6",
+    "structured/planning/project-next-steps/artifact-manifest.json": "db09defd741bde0d4084e3a239d4d3b966ba07c7bc3a80bf799801a3e13fa316",
+    "structured/planning/builder-communication/review.json": "d4ad71e250308a34f6905a8d35b79f8cf565e567cb01106dd08a609cf609dda8",
+    "structured/planning/builder-communication/artifact-manifest.json": "bc4aca31e2b2cbb8b5057824e2e576035cc3b3326fd6749e6e2baae822393d29",
+    "structured/planning/design-discussion-basis/review.json": "c1d92cc26a5e8cce5f1d060416ebe6061a6c9fa2b6160be4682cbc8bf2c05fda",
+    "structured/planning/design-discussion-basis/artifact-manifest.json": "c88789fb7bb6f36dddd9fbbc8133e4b18e3d1743823cc2462beb1497cfe52de0",
+    "structured/planning/design-discussion-basis/archive-manifest.json": "746671e468a6afda8bf0b1a49c6b0adb06c6caac0072b3c8d9c8996b970fd2ea",
+    "structured/planning/design-discussion-basis/ABC-discussion-package.zip": "41d5bf3926e8beab938d03357cf02336f4acfcafc1ce82de8f9431b07757726f",
+    "structured/planning/design-discussion-basis/decision-sequence.html": "4f8d89a07f9a97aee3e25e910c910eb5ddee56c2b50d408c4c30471270d763b5",
+    "structured/planning/design-discussion-basis/index.html": "c6303f3d261499c19aca0648e76a861851cfbe0d32db5168bda9006663ad8e57",
+    "structured/planning/design-discussion-basis/inspection-log.csv": "d604afe6be0b1f95f12dbd457c613a9e505f1ddc7010b761865bc4183695bcb7"
+  },
+  "checks": {
+    "focused_tests": {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q --tb=short -p no:cacheprovider tests/test_design_discussion_basis.py tests/test_project_next_steps.py tests/test_builder_communication.py tests/test_project_status.py tests/test_repository_health.py",
+      "passed": 191,
+      "failed": 0,
+      "elapsed_seconds": 12.04,
+      "exit_code": 0
+    },
+    "ruff": {
+      "command": "timeout 20s .venv/bin/ruff check house_design/design_discussion_basis.py scripts/export_design_discussion_basis.py tests/test_design_discussion_basis.py",
+      "exit_code": 0
+    },
+    "exports_check": {
+      "scripts": [
+        "export_project_next_steps.py",
+        "export_builder_communication.py",
+        "export_design_discussion_basis.py"
+      ],
+      "individual_timeout_seconds": 20,
+      "all_exit_codes": 0
+    },
+    "repository_health": {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/check_repository_health.py --check",
+      "files": 1703,
+      "public_json_checked": 281,
+      "markdown_checked": 172,
+      "local_links_checked": 1047,
+      "issues": [],
+      "exit_code": 0,
+      "scope": "Before adding this evidence file; bounded inventory, JSON syntax and local Markdown links only"
+    },
+    "git_diff_check": {
+      "command": "timeout 20s git diff --check",
+      "exit_code": 0
+    },
+    "packet_source_hashes_verified": 371,
+    "protected_controls_unchanged": 149,
+    "current_index_packages_match": 7,
+    "historical_drift_packages_retained": 5,
+    "formal_requirement_statuses": {
+      "candidate": 66
+    },
+    "formal_register_statuses": {
+      "unknown": 105
+    },
+    "old_browser_passed_reused": false
+  },
+  "inspection_guide": {
+    "reminders": 9,
+    "reminder_ids": [
+      "INS-01",
+      "INS-02",
+      "INS-03",
+      "INS-04",
+      "INS-05",
+      "INS-06",
+      "INS-07",
+      "INS-08",
+      "INS-09"
+    ],
+    "existing_form_extended": "inspection-log.csv",
+    "new_forms": 0,
+    "added_columns": 8,
+    "actual_inspection_rows_blank": 1,
+    "actual_inspections": 0,
+    "notification_times_participants_results_and_acceptance_values_blank": true,
+    "methods_and_thresholds_require_actual_design_products_standards_and_professional_basis": true,
+    "complete_batch_scope_and_uninspected_areas_have_separate_fields": true,
+    "original_values_units_conditions_time_and_applicable_instruments_requested": true,
+    "photos_received_reports_and_hashes_are_not_acceptance": true,
+    "defects_changes_and_rechecks_keep_original_results": true,
+    "no_automatic_release_signature_verification_or_liability_assignment": true,
+    "B_acoustic_layers_and_penetrations_review_requested_before_closure_and_performance_separate": true,
+    "B_family_rules_rear_default_and_front_fallback_retained": true,
+    "C_care_public_WC_front_room_and_one_2F_washer_retained": true,
+    "A_existing_condition_and_post_interior_change_rechecks_separate": true,
+    "air_systems_remain_independent_and_incense_exhaust_separate": true,
+    "actual_inspection_or_private_files_imported": 0,
+    "new_actual_inspection_validator_created": false
+  },
+  "handoff": {
+    "public_directory": "structured/planning/design-discussion-basis",
+    "private_snapshot_created": "inputs/private/design-discussion-026",
+    "files": 106,
+    "zip_entries": 104,
+    "zip_sha256": "41d5bf3926e8beab938d03357cf02336f4acfcafc1ce82de8f9431b07757726f",
+    "zip_bytes": 516195,
+    "all_private_files_match_public": true,
+    "html_pages": 12,
+    "csv_forms": 18,
+    "svg_drawings": 69,
+    "bc_comparisons": 7,
+    "decision_items": 12,
+    "work_items": 14,
+    "older_snapshots_001_to025_own_artifacts_verified": 25,
+    "older_snapshots_written": false,
+    "old_evidence_overwritten": false
+  },
+  "not_run": [
+    "browser/WebGL",
+    "full pytest",
+    "new geometry or scene generation",
+    "formal drawing import",
+    "actual inspections or tests on site",
+    "actual private inspection/reply import",
+    "external AI request",
+    "contractor contact or notification",
+    "purchase or payment",
+    "commit",
+    "push"
+  ],
+  "adopted": false,
+  "primary_abc_or_3d_changed": false,
+  "original_family_rules_changed": false,
+  "professional_approval": "unknown",
+  "construction_release": false
+}

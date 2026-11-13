@@ -1,0 +1,254 @@
+{
+  "schema": "house-upper-floor-storage-v1",
+  "date": "2026-11-11",
+  "owner_request": "2F以上每層至少有一個小空間儲物；圖上不能只有編號而無品名。",
+  "planning_scope": "每層獨立雜物櫃，2F／3F室內、RF另列防雨工具櫃；不是另砌儲藏室。新尺寸為提案，原衣櫃容量及家具尺寸不抵扣。",
+  "pinned_sources": {
+    "structured/candidates/kaohsiung-house-options/c-stair-integration.json": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+    "structured/coordination/b-front-drainage-layout-v1/review.json": "fb352dcdc1c83aad3b4d4ced66804d328132bd411473b496676f53f849ac7711",
+    "structured/coordination/b-ktv-stair-options-v1/review.json": "6116c9df09d442e29e16cc3eabc50aa1cd94b4d512fd3398b9105f1afdc34a7e",
+    "structured/coordination/b-q3-roof-coordination-v1/review.json": "432eb25dad0a37d1878a8c20e44675ed376beb86c60a9019d9bb6842d106d954"
+  },
+  "cases": [
+    {
+      "id": "A-2F",
+      "building": "A",
+      "floor": "floor-2",
+      "format": "model",
+      "source": "structured/candidates/kaohsiung-house-options/c-stair-integration.json",
+      "option": "a-rear-study",
+      "room": "study",
+      "label": "書房入口側獨立雜物櫃",
+      "rect_mm": [
+        115,
+        11355,
+        900,
+        450
+      ],
+      "operation_mm": [
+        115,
+        11805,
+        900,
+        700
+      ],
+      "height_mm": 1800,
+      "note": "公用走道保持不置櫃；新櫃放書房內，文具、備品與小家電分層，不扣原540cm衣櫃與240cm淺櫃。"
+    },
+    {
+      "id": "A-3F",
+      "building": "A",
+      "floor": "floor-3",
+      "format": "model",
+      "source": "structured/candidates/kaohsiung-house-options/c-stair-integration.json",
+      "option": "a-rear-study",
+      "room": "multi",
+      "label": "多用室前側家務收納櫃",
+      "rect_mm": [
+        2275,
+        5995,
+        900,
+        450
+      ],
+      "operation_mm": [
+        2275,
+        6445,
+        900,
+        700
+      ],
+      "height_mm": 1800,
+      "note": "收換季用品與劇院備品，原沙發床、書桌及書櫃保留；實際展床、門片與換氣仍須整組核對。"
+    },
+    {
+      "id": "A-RF",
+      "building": "A",
+      "floor": "floor-4",
+      "format": "model",
+      "source": "structured/candidates/kaohsiung-house-options/c-stair-integration.json",
+      "option": "a-rear-study",
+      "room": "laundry-rf",
+      "label": "後平台防雨工具櫃",
+      "rect_mm": [
+        115,
+        14500,
+        900,
+        450
+      ],
+      "operation_mm": [
+        115,
+        14950,
+        900,
+        700
+      ],
+      "height_mm": 900,
+      "note": "只放耐候工具／清潔備品；不拿弱電立管當雜物間，不新增屋頂房間。錨定、防水、設備拆換與荷重待核。"
+    },
+    {
+      "id": "B-2F",
+      "building": "B",
+      "floor": "floor-2",
+      "format": "p4",
+      "source": "structured/coordination/b-front-drainage-layout-v1/review.json",
+      "room": "quiet-living",
+      "label": "安靜起居側緣乾式雜物櫃",
+      "rect_mm": [
+        115,
+        9700,
+        450,
+        1200
+      ],
+      "operation_mm": [
+        565,
+        9700,
+        700,
+        1200
+      ],
+      "height_mm": 1800,
+      "note": "沿左側牆放輕量乾燥備品；不放濕設備、化學品或震動電器，不占獨立乾背室、主臥與兩衛，不改兩種一樓搬轎分支。"
+    },
+    {
+      "id": "B-3F",
+      "building": "B",
+      "floor": "floor-3",
+      "format": "q3",
+      "source": "structured/coordination/b-ktv-stair-options-v1/review.json",
+      "room": "quiet-living",
+      "label": "公共安靜區側緣乾式雜物櫃",
+      "rect_mm": [
+        115,
+        9700,
+        450,
+        1200
+      ],
+      "operation_mm": [
+        565,
+        9700,
+        700,
+        1200
+      ],
+      "height_mm": 1800,
+      "note": "同位置接Q3三樓完整圖，不占KTV聲學面積或設備機櫃，不把神桌乾背保護室拿來堆雜物；原KTV／RF缺口仍保留。"
+    },
+    {
+      "id": "B-RF-D1",
+      "building": "B",
+      "floor": "floor-4",
+      "format": "roof",
+      "source": "structured/coordination/b-q3-roof-coordination-v1/review.json",
+      "option": "Q3-D1-front-heat-pump",
+      "room": "front-platform",
+      "label": "折衣桌下防雨收納工作檯",
+      "rect_mm": [
+        2315,
+        1515,
+        1200,
+        450
+      ],
+      "operation_mm": [
+        2315,
+        1965,
+        1200,
+        700
+      ],
+      "height_mm": 900,
+      "reuse_item": "folding-table",
+      "note": "沿D1原折衣桌占地改為帶防雨下櫃的工作檯；原折衣功能、操作帶及分時通行保留，不再吃已不足24㎡的平台。"
+    },
+    {
+      "id": "B-RF-D2",
+      "building": "B",
+      "floor": "floor-4",
+      "format": "roof",
+      "source": "structured/coordination/b-q3-roof-coordination-v1/review.json",
+      "option": "Q3-D2-rear-wet-pair",
+      "room": "front-platform",
+      "label": "折衣桌下防雨收納工作檯",
+      "rect_mm": [
+        115,
+        115,
+        1200,
+        450
+      ],
+      "operation_mm": [
+        115,
+        565,
+        1200,
+        700
+      ],
+      "height_mm": 900,
+      "reuse_item": "folding-table",
+      "note": "D2保留自己的桌位與操作帶，獨立列櫃，不把D1位置借過來；耐候、錨定、荷重與實際桌高另核。"
+    },
+    {
+      "id": "C-2F",
+      "building": "C",
+      "floor": "floor-2",
+      "format": "model",
+      "source": "structured/candidates/kaohsiung-house-options/c-stair-integration.json",
+      "option": "c-split",
+      "room": "day-reserve",
+      "label": "乾式彈性區家務儲藏櫃",
+      "rect_mm": [
+        115,
+        10300,
+        1200,
+        600
+      ],
+      "operation_mm": [
+        115,
+        10900,
+        1200,
+        800
+      ],
+      "height_mm": 1800,
+      "note": "日常備品、吸塵器與收納箱有獨立位置；不放陽台曬衣、景觀、IDF或樓梯通路，唯一洗衣機仍在2F。"
+    },
+    {
+      "id": "C-3F",
+      "building": "C",
+      "floor": "floor-3",
+      "format": "model",
+      "source": "structured/candidates/kaohsiung-house-options/c-stair-integration.json",
+      "option": "c-split",
+      "room": "master3f",
+      "label": "主臥右前側換季／備品櫃",
+      "rect_mm": [
+        5435,
+        4050,
+        450,
+        1000
+      ],
+      "operation_mm": [
+        4735,
+        4050,
+        700,
+        1000
+      ],
+      "height_mm": 1800,
+      "note": "目前公共走道須淨空，先在主臥右前側設獨立雜物櫃；不縮原衣櫃、不占跑步機安全區，公共取物需進主臥的代價明列。"
+    },
+    {
+      "id": "C-RF",
+      "building": "C",
+      "floor": "floor-4",
+      "format": "model",
+      "source": "structured/candidates/kaohsiung-house-options/c-stair-integration.json",
+      "option": "c-split",
+      "room": "platform",
+      "label": "前平台防雨工具櫃",
+      "rect_mm": [
+        115,
+        6000,
+        900,
+        450
+      ],
+      "operation_mm": [
+        115,
+        6450,
+        900,
+        700
+      ],
+      "height_mm": 900,
+      "note": "不占屋突樓梯與乾式弱電維修區，原晾衣架保留；只存耐候備品，不能當室內乾衣／棉被儲藏室。"
+    }
+  ]
+}

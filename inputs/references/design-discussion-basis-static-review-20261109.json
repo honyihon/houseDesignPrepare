@@ -1,0 +1,116 @@
+{
+  "schema": "house-design-discussion-static-review-v1",
+  "date": "2026-11-09",
+  "scope": "Six preplanning deliverables in a static handoff; no layout/scene generation, browser, external AI, professional approval or delivery to others.",
+  "report": "structured/planning/design-discussion-basis/review.json",
+  "report_hash": "f7605b751406c9cefb797a0751b54c9b25e5dd59489426d681506867daaf1217",
+  "source_report_sha256": "131c0791ef88a45a22b756f05b36d55e4404c2bb650f48744c4824178fb0793d",
+  "artifact_manifest_sha256": "649b667e8284f50092ed82bdbe51e9fc4c0a2e4b28480592522b688bc594a298",
+  "archive_sha256": "3c5ed13f8ef84f8956e2a582f51366015c935b38bb70c8e499d6ce6b3956857d",
+  "test_source_hashes": {
+    "tests/test_design_discussion_basis.py": "47b05b22504e7a3f3103c9b4568e0a26f01fc7a70604862eb4609b75b29c19bc",
+    "tests/test_builder_communication.py": "5621666ecfa97b6eb72e6ec22321ac9bc367d5d8cb7f1d1f30d97a677b42f032",
+    "tests/test_project_next_steps.py": "dc837be6f8a27553f694645701cfccbbfabdce085a1f70c5f794d3c1de2f0940",
+    "tests/test_project_status.py": "73098e7a96b4a2fa514019b39e7445b0af0f0cbd19a8ff29dee5ce660933145b",
+    "tests/test_repository_health.py": "ac385bd69d28d58f89a7e3ae415f1fbafd3196217acc255e5074c1ddad1d51f6"
+  },
+  "source_bindings": 203,
+  "private_archive_matches": true,
+  "summary": {
+    "floor_versions": 12,
+    "vector_drawing_copies": 25,
+    "a_brief_topics": 11,
+    "bc_comparison_topics": 4,
+    "walkthroughs": 28,
+    "long_term_system_groups": 7,
+    "csv_templates": 11,
+    "artifacts": 49,
+    "zip_bytes": 229091,
+    "paper_observations": 28
+  },
+  "checks": [
+    {
+      "name": "current-targeted-static-and-integration-tests",
+      "status": "passed",
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q --tb=short -p no:cacheprovider tests/test_design_discussion_basis.py tests/test_builder_communication.py tests/test_project_next_steps.py tests/test_project_status.py tests/test_repository_health.py",
+      "exit_code": 0,
+      "result": "116 passed in 3.37s; 34 new-package checks plus 82 existing builder/navigation checks. Covers independent ZIP extraction/local links, unchanged vector geometry, paper-observation source coverage, blanks/approval boundaries, no-overwrite private copies and two independent hash seeds."
+    },
+    {
+      "name": "python-ruff",
+      "status": "passed",
+      "command": "timeout 20s .venv/bin/ruff check house_design scripts tests",
+      "exit_code": 0,
+      "result": "All checks passed."
+    },
+    {
+      "name": "discussion-final-package-check",
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_design_discussion_basis.py --check",
+      "status": "passed",
+      "exit_code": 0,
+      "result": "{\"status\": \"checked\", \"floors\": 12, \"drawings\": 25, \"a_topics\": 11, \"bc_comparisons\": 4, \"walkthroughs\": 28, \"systems\": 7, \"formal_requirement_statuses\": {\"candidate\": 66}, \"formal_register_statuses\": {\"unknown\": 105}, \"artifacts\": 49, \"zip_bytes\": 229091, \"protected_controls\": 149, \"adopted\": false, \"browser\": \"not-run\", \"path\": \"/root/workspace/houseDesignPrepare/structured/planning/design-discussion-basis\"}\n"
+    },
+    {
+      "name": "discussion-builder-check",
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_builder_communication.py --check",
+      "status": "passed",
+      "exit_code": 0,
+      "result": "{\"status\": \"checked\", \"artifacts\": 12, \"stages\": 6, \"questions\": 22, \"a_interfaces\": 11, \"quote_packages\": 12, \"first_meeting_questions\": 5, \"formal_requirement_statuses\": {\"candidate\": 66}, \"formal_register_statuses\": {\"unknown\": 105}, \"protected_controls\": 149, \"browser\": \"not-run\"}\n"
+    },
+    {
+      "name": "discussion-next-steps-check",
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_project_next_steps.py --check",
+      "status": "passed",
+      "exit_code": 0,
+      "result": "{\"status\": \"checked\", \"artifacts\": 5, \"navigation_tasks\": 14, \"formal_requirement_changes\": 0, \"formal_register_changes\": 0, \"actual_conditions_received\": 0, \"protected_controls\": 149, \"adopted\": false, \"browser\": \"not-run\"}\n"
+    },
+    {
+      "name": "discussion-index-check",
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/check_project_status.py --check",
+      "status": "passed",
+      "exit_code": 0,
+      "result": "# 專案來源與驗收索引（唯讀）\n\n只查宣告來源／有提供的產物雜湊與檔案存在；不驗報告封印、不生成圖、不啟動瀏覽器、不接受QA或採用方案。\n\n--check預設只要求現行規劃來源相符；歷史差異照列，--include-history才一併作為退出碼條件。\n\n| 入口 | 範圍 | 來源狀態 | 已宣告來源數 | 產物狀態 | 原始QA |\n| --- | --- | --- | ---: | --- | --- |\n| 目前工作：ABC條件式預先規劃（實際資料未到） | current | declared-source-hashes-match | 63 | declared-artifact-hashes-match | not-required-no-new-viewer |\n| 目前看圖：ABC高雄厝比較／C樓梯及冷氣候選整合 | current | declared-source-hashes-match | 84 | not-declared | not-imported |\n| ABC新風路由／前後外口／檢修剖面比較 | current | declared-source-hashes-match | 57 | declared-artifact-hashes-match | not-required-no-new-viewer |\n| ABC新風機位／管井／同範圍報價準備 | current | declared-source-hashes-match | 51 | declared-artifact-hashes-match | not-required-no-new-viewer |\n| ABC機械新風已述人數與九層分區基準 | current | declared-source-hashes-match | 46 | declared-artifact-hashes-match | not-required-no-new-viewer |\n| B祭祀家規深化後的獨立排氣／關門補氣 | current | declared-source-hashes-match | 39 | declared-artifact-hashes-match | not-required-no-new-viewer |\n| B與Claude第三輪：家規／面積／前後搬轎兩版 | current | declared-source-hashes-match | 26 | declared-artifact-hashes-match | not-required-no-new-viewer |\n| C概念合圖快照（導覽文件變動後須重新核對） | history | source-changed-rebuild-required | 100 | not-declared | not-imported |\n| 2026-10-20 ABC整棟基準歷史對照（非最新入口） | history | source-changed-rebuild-required | 57 | not-declared | not-imported |\n| B一樓後巷優先／前門備案對照 | history | source-changed-rebuild-required | 38 | not-declared | not-imported |\n| C照護續版：側牆盆／兩片門比較 | history | source-changed-rebuild-required | 99 | not-declared | not-imported |\n| C照護選品與安全足尺準備 | history | source-changed-rebuild-required | 105 | not-declared | not-required-no-new-viewer |\n| 原ABC共用配置（歷史對照，舊B非推薦採用） | history | snapshot-only-no-source-manifest | 0 | not-declared | not-imported |\n\n## 來源差異／待補檔案\n\n- c-coordination-history：來源已改 `Docs/coordination-review.md`，舊結果不沿用。\n- current-basis：來源已改 `scripts/lib/model3d_openings.py`，舊結果不沿用。\n- current-basis：來源已改 `scripts/lib/model3d_review.py`，舊結果不沿用。\n- b-rear-right：來源已改 `scripts/lib/model3d_openings.py`，舊結果不沿用。\n- b-rear-right：來源已改 `scripts/lib/model3d_review.py`，舊結果不沿用。\n- c-care-layout：來源已改 `scripts/lib/model3d_openings.py`，舊結果不沿用。\n- c-care-layout：來源已改 `scripts/lib/model3d_review.py`，舊結果不沿用。\n- c-care-products：來源已改 `scripts/lib/model3d_openings.py`，舊結果不沿用。\n- c-care-products：來源已改 `scripts/lib/model3d_review.py`，舊結果不沿用。\n\n屋主回報passed與文件歷史紀錄不等於本次來源驗證；有原始result也仍需專用驗證器與截圖目視。\n來源更動先釐清上游重建與鎖定快照，不自動重產、不只更新預期雜湊、不盲跑瀏覽器。\n\n"
+    },
+    {
+      "name": "discussion-final-health-check",
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/check_repository_health.py --check",
+      "status": "passed",
+      "exit_code": 0,
+      "result": "{\"files\": 1352, \"JSON_syntax_checked\": 198, \"markdown_checked\": 144, \"local_links_checked\": 819, \"issues\": [], \"duplicate_groups_kept\": 8, \"informational\": [], \"writes_performed\": false, \"browser_started\": false}\n"
+    },
+    {
+      "name": "private-share-copy",
+      "status": "current-copy-created",
+      "relative_directory": "inputs/private/design-discussion-002",
+      "archive_matches_public_package": true,
+      "prior_private_copies_not_modified": true
+    }
+  ],
+  "intermediate_issue_corrected": "A set iteration produced different source-list ordering across processes. Sorting package IDs made serialized report/ZIP bytes reproducible; two hash-seed subprocesses verify the fix.",
+  "historical_limits": [
+    "B latest local research remains separate from main 3D; C care side-basin study remains unmerged and historical source drift is disclosed.",
+    "No old expected hashes were rewritten or old scenes regenerated. Earlier rendered or professional claims are not carried forward."
+  ],
+  "protected_controls_unchanged": 149,
+  "original_formal_requirement_statuses": {
+    "candidate": 66
+  },
+  "original_register_statuses": {
+    "unknown": 105
+  },
+  "new_measured_values_received": 0,
+  "owner_or_builder_responses_received_here": 0,
+  "layout_or_primary_3d_changed": false,
+  "formal_requirements_or_register_written": false,
+  "adopted": false,
+  "browser_qa": "not-run",
+  "professional_approval": "unknown",
+  "external_messages_sent": 0,
+  "commit_or_push_performed": false,
+  "paper_review_method": "Source-backed observations of existing studies and static plans; no new geometry computation, runtime, physical rehearsal or approval.",
+  "earlier_draft": {
+    "report_hash": "b9916cc558a33429d3ba147f517be34c3e440830346e822efcad16b8a86b2603",
+    "archive_sha256": "957cda1e9c76b453225883f48a21ce4a1ba50b8c73d57ea0b60ccb646679e840",
+    "note": "Initial draft before concrete paper observations was preserved as an earlier private snapshot; current share copy is 002."
+  }
+}

@@ -1,0 +1,5817 @@
+{
+  "schema": "house-b-upper-replan-report-v1",
+  "date": "2026-11-09",
+  "config": {
+    "schema": "house-b-upper-replan-v1",
+    "date": "2026-11-09",
+    "adopted": false,
+    "source_report": "structured/coordination/b-claude-round3-v1/review.json",
+    "strict_report": "structured/coordination/b-fengshui-strict-v1/review.json",
+    "protected_controls": "inputs/abc-next-protected-controls.json",
+    "pinned_sources": {
+      "structured/coordination/b-claude-round3-v1/review.json": "00baf0b3950e2593361e91698e4d72ac33e384edadd6da5a7d31b62e087b6223",
+      "structured/coordination/b-claude-round3-v1/artifact-manifest.json": "ad7327b07ef803ab57cf7390f84a3919da4165124a84e33288953981fa591062",
+      "structured/coordination/b-fengshui-strict-v1/review.json": "e595361db8281be6daf361251afe0187824c7bcb99d556f930cf90f15bf2f954",
+      "inputs/references/b-owner-ritual-answers-20261106.json": "736f5a477ce1fbfd8e1bf460ecf49f9043a83635201d1598e3e1842e6460ddb9"
+    },
+    "frame_mm": [
+      6000,
+      17630
+    ],
+    "arcade_depth_mm": 3900,
+    "illustrative_insets_mm": [
+      80,
+      115,
+      150
+    ],
+    "primary_inset_mm": 115,
+    "shaft_budget_mm": [
+      400,
+      400
+    ],
+    "unchanged_ground_options": [
+      "b-rear-split",
+      "b-front-split"
+    ],
+    "unchanged_ground_states": [
+      "daily",
+      "ritual",
+      "carry"
+    ],
+    "goal_basis": "原主臥20㎡、公衛5㎡、套衛6㎡；另保起居28、茶水5、景觀7、3F客房12／KTV20目標及原下限。面積用名義輪廓每面內縮作敏感度，非實測。",
+    "floors": {
+      "common": {
+        "stair_rect_mm": [
+          0,
+          3900,
+          2400,
+          5200
+        ],
+        "living_parts_mm": [
+          [
+            2400,
+            3900,
+            3600,
+            5200
+          ],
+          [
+            0,
+            9100,
+            6000,
+            2270
+          ]
+        ],
+        "rear_rect_mm": [
+          0,
+          11370,
+          6000,
+          6260
+        ],
+        "dry_rect_mm": [
+          2640,
+          11370,
+          2030,
+          1600
+        ],
+        "private_bath_rect_mm": [
+          3600,
+          14500,
+          2400,
+          3130
+        ],
+        "private_shaft_mm": [
+          5485,
+          15700,
+          400,
+          400
+        ],
+        "master_furniture": [
+          {
+            "id": "bed",
+            "label": "原1800×2000床轉向／床頭靠左實牆",
+            "rect_mm": [
+              150,
+              15000,
+              2000,
+              1800
+            ],
+            "operation_mm": [
+              2150,
+              15000,
+              900,
+              1800
+            ]
+          },
+          {
+            "id": "wardrobe",
+            "label": "原1800×600衣櫃",
+            "rect_mm": [
+              250,
+              13100,
+              1800,
+              600
+            ],
+            "operation_mm": [
+              250,
+              13700,
+              1800,
+              700
+            ]
+          },
+          {
+            "id": "vanity",
+            "label": "原1200×500梳妝台轉向",
+            "rect_mm": [
+              150,
+              11600,
+              500,
+              1200
+            ],
+            "operation_mm": [
+              650,
+              11600,
+              700,
+              1200
+            ]
+          }
+        ],
+        "private_fixtures": [
+          {
+            "id": "basin",
+            "label": "原900×550盆櫃轉向",
+            "rect_mm": [
+              5335,
+              14615,
+              550,
+              900
+            ],
+            "operation_mm": [
+              4635,
+              14615,
+              700,
+              900
+            ]
+          },
+          {
+            "id": "toilet",
+            "label": "原450×700馬桶轉向",
+            "rect_mm": [
+              3850,
+              14615,
+              700,
+              450
+            ],
+            "operation_mm": [
+              3850,
+              15065,
+              700,
+              700
+            ]
+          },
+          {
+            "id": "shower",
+            "label": "原900淋浴",
+            "rect_mm": [
+              4985,
+              16615,
+              900,
+              900
+            ],
+            "operation_mm": [
+              4285,
+              16615,
+              700,
+              900
+            ]
+          }
+        ],
+        "living_furniture": [
+          {
+            "id": "sofa",
+            "label": "原1800×900沙發",
+            "rect_mm": [
+              4950,
+              5700,
+              900,
+              1800
+            ],
+            "operation_mm": [
+              4250,
+              5700,
+              700,
+              1800
+            ]
+          },
+          {
+            "id": "table",
+            "label": "原1100×600茶几",
+            "rect_mm": [
+              3600,
+              6050,
+              600,
+              1100
+            ]
+          },
+          {
+            "id": "tv",
+            "label": "原1000×80電視",
+            "rect_mm": [
+              2550,
+              6200,
+              80,
+              1000
+            ]
+          }
+        ],
+        "master_entry": {
+          "a": [
+            4770,
+            11370
+          ],
+          "b": [
+            5900,
+            11370
+          ],
+          "hinge": "right",
+          "opens": "inside",
+          "swing_rect_mm": [
+            4770,
+            11370,
+            1130,
+            1130
+          ]
+        },
+        "private_door": {
+          "a": [
+            3600,
+            15100
+          ],
+          "b": [
+            3600,
+            16230
+          ],
+          "hinge": "rear",
+          "opens": "outside-left",
+          "swing_rect_mm": [
+            2470,
+            15100,
+            1130,
+            1130
+          ]
+        },
+        "dry_door": {
+          "a": [
+            2850,
+            11370
+          ],
+          "b": [
+            3980,
+            11370
+          ],
+          "hinge": "left",
+          "opens": "inside",
+          "swing_rect_mm": [
+            2850,
+            11370,
+            1130,
+            1130
+          ]
+        },
+        "master_rear_window_mm": [
+          750,
+          17630,
+          2400,
+          0
+        ],
+        "private_rear_window_mm": [
+          4750,
+          17630,
+          900,
+          0
+        ],
+        "routes": [
+          {
+            "id": "master-to-ensuite",
+            "width_mm": 900,
+            "points_mm": [
+              [
+                5335,
+                10800
+              ],
+              [
+                5335,
+                12270
+              ],
+              [
+                5335,
+                13700
+              ],
+              [
+                3035,
+                13700
+              ],
+              [
+                3035,
+                15665
+              ],
+              [
+                4165,
+                15665
+              ]
+            ],
+            "purpose": "列明一般身體方塊至套衛，門全開；非輪椅運動學"
+          },
+          {
+            "id": "master-to-bed-foot",
+            "width_mm": 900,
+            "points_mm": [
+              [
+                5335,
+                10800
+              ],
+              [
+                5335,
+                12270
+              ],
+              [
+                5335,
+                13700
+              ],
+              [
+                3000,
+                13700
+              ],
+              [
+                3000,
+                14450
+              ],
+              [
+                2600,
+                14450
+              ],
+              [
+                2600,
+                15550
+              ]
+            ],
+            "purpose": "列明方塊至床尾；不宣稱整圈雙人照護"
+          }
+        ],
+        "third_guest_split_x_mm": 2900,
+        "third_guest_furniture": [
+          {
+            "id": "bed",
+            "label": "1800×2000客床轉向",
+            "rect_mm": [
+              150,
+              15100,
+              2000,
+              1800
+            ]
+          },
+          {
+            "id": "wardrobe",
+            "label": "1800×600櫃轉向",
+            "rect_mm": [
+              150,
+              13200,
+              600,
+              1800
+            ],
+            "operation_mm": [
+              750,
+              13200,
+              700,
+              1800
+            ]
+          },
+          {
+            "id": "screen",
+            "label": "100mm乾式遮擋板候選",
+            "rect_mm": [
+              115,
+              12970,
+              1685,
+              100
+            ]
+          }
+        ],
+        "third_ktv_furniture": [
+          {
+            "id": "sofa",
+            "label": "1800×900沙發候選",
+            "rect_mm": [
+              3650,
+              16500,
+              1800,
+              900
+            ],
+            "operation_mm": [
+              3650,
+              15800,
+              1800,
+              700
+            ]
+          },
+          {
+            "id": "table",
+            "label": "1200×600桌候選",
+            "rect_mm": [
+              3950,
+              15000,
+              1200,
+              600
+            ]
+          },
+          {
+            "id": "tv",
+            "label": "1000×80壁掛螢幕候選",
+            "rect_mm": [
+              5750,
+              14200,
+              80,
+              1000
+            ]
+          }
+        ],
+        "third_guest_door": {
+          "a": [
+            1105,
+            11370
+          ],
+          "b": [
+            2235,
+            11370
+          ],
+          "hinge": "left",
+          "opens": "inside",
+          "swing_rect_mm": [
+            1105,
+            11370,
+            1130,
+            1130
+          ]
+        },
+        "third_ktv_door": {
+          "a": [
+            4770,
+            11370
+          ],
+          "b": [
+            5900,
+            11370
+          ],
+          "hinge": "right",
+          "opens": "inside",
+          "swing_rect_mm": [
+            4770,
+            11370,
+            1130,
+            1130
+          ]
+        },
+        "third_guest_window_mm": [
+          250,
+          17630,
+          2400,
+          0
+        ],
+        "third_ktv_window_mm": [
+          3500,
+          17630,
+          2200,
+          0
+        ],
+        "third_routes": [
+          {
+            "id": "guest-arrival",
+            "width_mm": 700,
+            "points_mm": [
+              [
+                1670,
+                10800
+              ],
+              [
+                1670,
+                12270
+              ],
+              [
+                2175,
+                12270
+              ],
+              [
+                2175,
+                14500
+              ]
+            ],
+            "purpose": "客房乾擋板右繞一般試線；床尾僅635mm，並非700全環繞"
+          },
+          {
+            "id": "ktv-arrival",
+            "width_mm": 700,
+            "points_mm": [
+              [
+                5335,
+                10800
+              ],
+              [
+                5335,
+                12270
+              ],
+              [
+                5335,
+                13500
+              ],
+              [
+                3500,
+                13500
+              ],
+              [
+                3500,
+                16000
+              ]
+            ],
+            "purpose": "一般家具到達試線；聲學構造及設備未排"
+          }
+        ]
+      },
+      "options": [
+        {
+          "id": "front-bath-only",
+          "label": "P1｜只前置公衛，少占前陽台",
+          "enclosure_rect_mm": [
+            0,
+            1500,
+            2700,
+            2400
+          ],
+          "public_rect_mm": [
+            0,
+            1500,
+            2700,
+            2400
+          ],
+          "public_shaft_mm": [
+            115,
+            1615,
+            400,
+            400
+          ],
+          "public_fixtures": [
+            {
+              "id": "shower",
+              "label": "900淋浴",
+              "rect_mm": [
+                115,
+                2885,
+                900,
+                900
+              ],
+              "operation_mm": [
+                1015,
+                2885,
+                700,
+                900
+              ]
+            },
+            {
+              "id": "toilet",
+              "label": "450×700馬桶",
+              "rect_mm": [
+                1300,
+                1615,
+                450,
+                700
+              ],
+              "operation_mm": [
+                1300,
+                2315,
+                450,
+                700
+              ]
+            },
+            {
+              "id": "basin",
+              "label": "600×450面盆",
+              "rect_mm": [
+                1985,
+                1615,
+                600,
+                450
+              ],
+              "operation_mm": [
+                1985,
+                2065,
+                600,
+                700
+              ]
+            }
+          ],
+          "public_door": {
+            "a": [
+              1200,
+              3900
+            ],
+            "b": [
+              2330,
+              3900
+            ],
+            "hinge": "right",
+            "opens": "inside",
+            "swing_rect_mm": [
+              1200,
+              2770,
+              1130,
+              1130
+            ]
+          },
+          "public_window_mm": [
+            1300,
+            1500,
+            1100,
+            0
+          ],
+          "tea_rect_mm": null,
+          "tea_furniture": [],
+          "garden_polygon_mm": [
+            [
+              2700,
+              1500
+            ],
+            [
+              6000,
+              1500
+            ],
+            [
+              6000,
+              3900
+            ],
+            [
+              2700,
+              3900
+            ]
+          ],
+          "soil_rects_mm": [
+            [
+              2800,
+              1700,
+              2100,
+              1400
+            ]
+          ],
+          "outdoor_units_mm": [
+            [
+              80,
+              100,
+              900,
+              350
+            ],
+            [
+              5020,
+              100,
+              900,
+              350
+            ]
+          ],
+          "outdoor_service_mm": [
+            [
+              80,
+              100,
+              900,
+              1350
+            ],
+            [
+              5020,
+              100,
+              900,
+              1350
+            ]
+          ],
+          "balcony_door": {
+            "a": [
+              4200,
+              3900
+            ],
+            "b": [
+              5330,
+              3900
+            ],
+            "hinge": "right",
+            "opens": "inside",
+            "swing_rect_mm": [
+              4200,
+              3900,
+              1130,
+              1130
+            ]
+          },
+          "routes": [
+            {
+              "id": "public-arrival",
+              "width_mm": 900,
+              "points_mm": [
+                [
+                  1765,
+                  4400
+                ],
+                [
+                  1765,
+                  3335
+                ]
+              ],
+              "purpose": "從既有前平台到公衛；平台／成品門需核，半開不沿用全開結果"
+            }
+          ],
+          "conclusion": "面積／外窗可比，但原5㎡含給排水茶水區仍未落位；不把乾泡茶改名當原濕茶水已滿足。"
+        },
+        {
+          "id": "front-wet-foyer",
+          "label": "P2｜前公衛＋濕茶水前室，優先核可建量",
+          "enclosure_rect_mm": [
+            0,
+            0,
+            3270,
+            3900
+          ],
+          "public_rect_mm": [
+            0,
+            0,
+            3270,
+            1980
+          ],
+          "public_shaft_mm": [
+            115,
+            115,
+            400,
+            400
+          ],
+          "public_fixtures": [
+            {
+              "id": "shower",
+              "label": "900淋浴",
+              "rect_mm": [
+                115,
+                965,
+                900,
+                900
+              ],
+              "operation_mm": [
+                1015,
+                965,
+                700,
+                900
+              ]
+            },
+            {
+              "id": "toilet",
+              "label": "450×700馬桶",
+              "rect_mm": [
+                1400,
+                115,
+                450,
+                700
+              ],
+              "operation_mm": [
+                1400,
+                815,
+                450,
+                700
+              ]
+            },
+            {
+              "id": "basin",
+              "label": "600×450面盆",
+              "rect_mm": [
+                2555,
+                115,
+                600,
+                450
+              ],
+              "operation_mm": [
+                2555,
+                565,
+                600,
+                700
+              ]
+            }
+          ],
+          "public_door": {
+            "a": [
+              2020,
+              1980
+            ],
+            "b": [
+              3150,
+              1980
+            ],
+            "hinge": "right",
+            "opens": "outside",
+            "swing_rect_mm": [
+              2020,
+              1980,
+              1130,
+              1130
+            ]
+          },
+          "public_window_mm": [
+            2050,
+            0,
+            1000,
+            0
+          ],
+          "tea_rect_mm": [
+            0,
+            1980,
+            3270,
+            1920
+          ],
+          "tea_furniture": [
+            {
+              "id": "tea-counter",
+              "label": "1500×600茶水台候選，含給排水",
+              "rect_mm": [
+                115,
+                2095,
+                600,
+                1500
+              ],
+              "operation_mm": [
+                715,
+                2095,
+                700,
+                1500
+              ]
+            }
+          ],
+          "tea_opening_mm": [
+            [
+              1150,
+              3900
+            ],
+            [
+              2280,
+              3900
+            ]
+          ],
+          "garden_polygon_mm": [
+            [
+              3270,
+              1450
+            ],
+            [
+              4170,
+              1450
+            ],
+            [
+              4170,
+              900
+            ],
+            [
+              5020,
+              900
+            ],
+            [
+              5020,
+              1450
+            ],
+            [
+              6000,
+              1450
+            ],
+            [
+              6000,
+              3900
+            ],
+            [
+              3270,
+              3900
+            ]
+          ],
+          "soil_rects_mm": [
+            [
+              3370,
+              1700,
+              1800,
+              1400
+            ]
+          ],
+          "outdoor_units_mm": [
+            [
+              3270,
+              100,
+              900,
+              350
+            ],
+            [
+              5020,
+              100,
+              900,
+              350
+            ]
+          ],
+          "outdoor_service_mm": [
+            [
+              3270,
+              100,
+              900,
+              1350
+            ],
+            [
+              5020,
+              100,
+              900,
+              1350
+            ]
+          ],
+          "balcony_door": {
+            "a": [
+              4200,
+              3900
+            ],
+            "b": [
+              5330,
+              3900
+            ],
+            "hinge": "right",
+            "opens": "inside",
+            "swing_rect_mm": [
+              4200,
+              3900,
+              1130,
+              1130
+            ]
+          },
+          "routes": [
+            {
+              "id": "public-arrival",
+              "width_mm": 900,
+              "points_mm": [
+                [
+                  1715,
+                  4400
+                ],
+                [
+                  1715,
+                  3335
+                ],
+                [
+                  2585,
+                  3335
+                ],
+                [
+                  2585,
+                  2585
+                ],
+                [
+                  2585,
+                  1415
+                ]
+              ],
+              "purpose": "無門片的茶水前室入口比較；是否需要防火／隔煙門及實際門態尚未核"
+            }
+          ],
+          "conclusion": "指定115mm假設與0.16㎡管井預算下，20／5／6㎡及茶水5㎡有幾何餘量；代價是前側新增12.753㎡室內輪廓、陽台與室外機重排，合法性／前排水仍未核。"
+        }
+      ]
+    },
+    "drainage": {
+      "rear_shaft_mm": [
+        5485,
+        15700,
+        400,
+        400
+      ],
+      "front_direct_drop_status": "rejected-new-obstruction-in-arcade",
+      "front_offset_ground_candidate_mm": [
+        115,
+        4015,
+        400,
+        400
+      ],
+      "front_offset_status": "unverified-within-stair-core-not-a-free-shaft",
+      "front_offset_plan_points_mm": [
+        [
+          315,
+          315
+        ],
+        [
+          315,
+          4215
+        ]
+      ],
+      "arcade_section": {
+        "floor2_level_mm": 4000,
+        "required_illustrative_clear_mm": 3500,
+        "illustrative_structure_depths_mm": [
+          200,
+          300,
+          500
+        ],
+        "pipe_support_envelopes_mm": [
+          150,
+          200,
+          250
+        ],
+        "illustrative_slope_denominator": 50,
+        "access_allowance_mm": 50
+      },
+      "notes": [
+        "前側不是新增落地管井可任意占騎樓；直落400×400示例明列拒絕。",
+        "偏移到1F既有梯核只是候選位置，會碰原樓梯預留，須證明整體梁板／梯下／檢修與防火不縮淨寬；未取得證據，不宣稱已排水可施工。",
+        "後右井在1F公衛內；列明本體避讓不等於未碰1F照護／迴轉，地坪降板及全部橫管未核。",
+        "生活污廢水、通氣、雨水、冷凝水與香火排氣分開；終端、清掃與通氣出口未定。"
+      ]
+    },
+    "open_items": [
+      "前側新室內須在建築師的正式量體／申照中成立，不能把陽台免計面積繼續算給新室內，亦非交屋後自行封陽台。",
+      "前部新增樓地板／牆及濕區荷重、梁板降板、地震、防火／防水與騎樓梁下淨高須整體核定。",
+      "側界不畫假窗；朝街及後側外窗都只作合法外口候選，完成開啟面積／防雨／隱私與獨立排氣補氣另核。",
+      "1F後／前各三態及RF保護範圍保留，這輪不移神桌、不改樓梯本體、不增加占騎樓的構造。",
+      "3F後右KTV候選雖避名義神明堂／乾背櫃，僅達14㎡下限且低於20㎡目標；與客房、法器櫃的隔音／振動及構造厚度未核，不能當原KTV需求完整解決。",
+      "整棟新風、冷氣工作點與冷凝水、屋頂通氣及新增室內區的負荷尚未合圖；P2左側室外機改位，原冷媒線不可沿用。",
+      "指定700／900矩形試線、全開／半開／關閉門片只作幾何篩查；不等於人體運動學、照護、消防或風水核可。"
+    ]
+  },
+  "frame_sqm": 105.78,
+  "frame_land_ping": 31.998450000000002,
+  "source_layout_report_sha256": "00baf0b3950e2593361e91698e4d72ac33e384edadd6da5a7d31b62e087b6223",
+  "protected_polygons_mm": [
+    [
+      [
+        6000.0,
+        3900.0
+      ],
+      [
+        2400.0,
+        3900.0
+      ],
+      [
+        2400.0,
+        9100.0
+      ],
+      [
+        0.0,
+        9100.0
+      ],
+      [
+        0.0,
+        11370.0
+      ],
+      [
+        6000.0,
+        11370.0
+      ],
+      [
+        6000.0,
+        9100.0
+      ]
+    ],
+    [
+      [
+        4670.0,
+        11370.0
+      ],
+      [
+        4670.0,
+        12970.0
+      ],
+      [
+        2640.0,
+        12970.0
+      ],
+      [
+        2640.0,
+        11370.0
+      ]
+    ]
+  ],
+  "palanquin_rect_mm": [
+    0,
+    14500,
+    3330,
+    3130
+  ],
+  "options": [
+    {
+      "id": "front-bath-only",
+      "label": "P1｜只前置公衛，少占前陽台",
+      "floors": [
+        {
+          "id": "floor-2",
+          "rooms": [
+            {
+              "id": "stair",
+              "label": "原同軸樓梯／平台，未改本體",
+              "polygon_mm": [
+                [
+                  2400.0,
+                  3900.0
+                ],
+                [
+                  2400.0,
+                  9100.0
+                ],
+                [
+                  0.0,
+                  9100.0
+                ],
+                [
+                  0.0,
+                  3900.0
+                ]
+              ],
+              "kind": "dry",
+              "items": [],
+              "shafts_mm": [],
+              "doors": [],
+              "windows_mm": []
+            },
+            {
+              "id": "quiet-living",
+              "label": "安靜起居／閱讀，禁睡及高活動",
+              "polygon_mm": [
+                [
+                  6000.0,
+                  3900.0
+                ],
+                [
+                  2400.0,
+                  3900.0
+                ],
+                [
+                  2400.0,
+                  9100.0
+                ],
+                [
+                  0.0,
+                  9100.0
+                ],
+                [
+                  0.0,
+                  11370.0
+                ],
+                [
+                  6000.0,
+                  11370.0
+                ],
+                [
+                  6000.0,
+                  9100.0
+                ]
+              ],
+              "kind": "dry",
+              "items": [
+                {
+                  "id": "sofa",
+                  "label": "原1800×900沙發",
+                  "rect_mm": [
+                    4950,
+                    5700,
+                    900,
+                    1800
+                  ],
+                  "operation_mm": [
+                    4250,
+                    5700,
+                    700,
+                    1800
+                  ]
+                },
+                {
+                  "id": "table",
+                  "label": "原1100×600茶几",
+                  "rect_mm": [
+                    3600,
+                    6050,
+                    600,
+                    1100
+                  ]
+                },
+                {
+                  "id": "tv",
+                  "label": "原1000×80電視",
+                  "rect_mm": [
+                    2550,
+                    6200,
+                    80,
+                    1000
+                  ]
+                }
+              ],
+              "shafts_mm": [],
+              "doors": [
+                {
+                  "a": [
+                    4200,
+                    3900
+                  ],
+                  "b": [
+                    5330,
+                    3900
+                  ],
+                  "hinge": "right",
+                  "opens": "inside",
+                  "swing_rect_mm": [
+                    4200,
+                    3900,
+                    1130,
+                    1130
+                  ]
+                }
+              ],
+              "windows_mm": []
+            },
+            {
+              "id": "dry-protection",
+              "label": "獨立乾保護室，禁床／濕管設備",
+              "polygon_mm": [
+                [
+                  4670.0,
+                  11370.0
+                ],
+                [
+                  4670.0,
+                  12970.0
+                ],
+                [
+                  2640.0,
+                  12970.0
+                ],
+                [
+                  2640.0,
+                  11370.0
+                ]
+              ],
+              "kind": "dry",
+              "items": [],
+              "shafts_mm": [],
+              "doors": [
+                {
+                  "a": [
+                    2850,
+                    11370
+                  ],
+                  "b": [
+                    3980,
+                    11370
+                  ],
+                  "hinge": "left",
+                  "opens": "inside",
+                  "swing_rect_mm": [
+                    2850,
+                    11370,
+                    1130,
+                    1130
+                  ]
+                }
+              ],
+              "windows_mm": []
+            },
+            {
+              "id": "public-bath",
+              "label": "前側有窗公衛",
+              "polygon_mm": [
+                [
+                  2700.0,
+                  1500.0
+                ],
+                [
+                  2700.0,
+                  3900.0
+                ],
+                [
+                  0.0,
+                  3900.0
+                ],
+                [
+                  0.0,
+                  1500.0
+                ]
+              ],
+              "kind": "wet",
+              "items": [
+                {
+                  "id": "shower",
+                  "label": "900淋浴",
+                  "rect_mm": [
+                    115,
+                    2885,
+                    900,
+                    900
+                  ],
+                  "operation_mm": [
+                    1015,
+                    2885,
+                    700,
+                    900
+                  ]
+                },
+                {
+                  "id": "toilet",
+                  "label": "450×700馬桶",
+                  "rect_mm": [
+                    1300,
+                    1615,
+                    450,
+                    700
+                  ],
+                  "operation_mm": [
+                    1300,
+                    2315,
+                    450,
+                    700
+                  ]
+                },
+                {
+                  "id": "basin",
+                  "label": "600×450面盆",
+                  "rect_mm": [
+                    1985,
+                    1615,
+                    600,
+                    450
+                  ],
+                  "operation_mm": [
+                    1985,
+                    2065,
+                    600,
+                    700
+                  ]
+                }
+              ],
+              "shafts_mm": [
+                [
+                  115,
+                  1615,
+                  400,
+                  400
+                ]
+              ],
+              "doors": [
+                {
+                  "a": [
+                    1200,
+                    3900
+                  ],
+                  "b": [
+                    2330,
+                    3900
+                  ],
+                  "hinge": "right",
+                  "opens": "inside",
+                  "swing_rect_mm": [
+                    1200,
+                    2770,
+                    1130,
+                    1130
+                  ]
+                }
+              ],
+              "windows_mm": [
+                [
+                  1300,
+                  1500,
+                  1100,
+                  0
+                ]
+              ]
+            },
+            {
+              "id": "front-open",
+              "label": "普通露台／景觀候選與獨立設備區",
+              "polygon_mm": [
+                [
+                  6000.0,
+                  3900.0
+                ],
+                [
+                  6000.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  1500.0
+                ],
+                [
+                  2700.0,
+                  1500.0
+                ],
+                [
+                  2700.0,
+                  3900.0
+                ]
+              ],
+              "kind": "dry",
+              "items": [],
+              "shafts_mm": [],
+              "doors": [],
+              "windows_mm": []
+            },
+            {
+              "id": "master",
+              "label": "主臥乾區（含更衣與入口）",
+              "polygon_mm": [
+                [
+                  6000.0,
+                  11370.0
+                ],
+                [
+                  4670.0,
+                  11370.0
+                ],
+                [
+                  4670.0,
+                  12970.0
+                ],
+                [
+                  2640.0,
+                  12970.0
+                ],
+                [
+                  2640.0,
+                  11370.0
+                ],
+                [
+                  0.0,
+                  11370.0
+                ],
+                [
+                  0.0,
+                  17630.0
+                ],
+                [
+                  3600.0,
+                  17630.0
+                ],
+                [
+                  3600.0,
+                  14500.0
+                ],
+                [
+                  6000.0,
+                  14500.0
+                ]
+              ],
+              "kind": "bedroom",
+              "items": [
+                {
+                  "id": "bed",
+                  "label": "原1800×2000床轉向／床頭靠左實牆",
+                  "rect_mm": [
+                    150,
+                    15000,
+                    2000,
+                    1800
+                  ],
+                  "operation_mm": [
+                    2150,
+                    15000,
+                    900,
+                    1800
+                  ]
+                },
+                {
+                  "id": "wardrobe",
+                  "label": "原1800×600衣櫃",
+                  "rect_mm": [
+                    250,
+                    13100,
+                    1800,
+                    600
+                  ],
+                  "operation_mm": [
+                    250,
+                    13700,
+                    1800,
+                    700
+                  ]
+                },
+                {
+                  "id": "vanity",
+                  "label": "原1200×500梳妝台轉向",
+                  "rect_mm": [
+                    150,
+                    11600,
+                    500,
+                    1200
+                  ],
+                  "operation_mm": [
+                    650,
+                    11600,
+                    700,
+                    1200
+                  ]
+                }
+              ],
+              "shafts_mm": [],
+              "doors": [
+                {
+                  "a": [
+                    4770,
+                    11370
+                  ],
+                  "b": [
+                    5900,
+                    11370
+                  ],
+                  "hinge": "right",
+                  "opens": "inside",
+                  "swing_rect_mm": [
+                    4770,
+                    11370,
+                    1130,
+                    1130
+                  ]
+                }
+              ],
+              "windows_mm": [
+                [
+                  750,
+                  17630,
+                  2400,
+                  0
+                ]
+              ]
+            },
+            {
+              "id": "private-bath",
+              "label": "後右有窗套衛",
+              "polygon_mm": [
+                [
+                  6000.0,
+                  14500.0
+                ],
+                [
+                  6000.0,
+                  17630.0
+                ],
+                [
+                  3600.0,
+                  17630.0
+                ],
+                [
+                  3600.0,
+                  14500.0
+                ]
+              ],
+              "kind": "wet",
+              "items": [
+                {
+                  "id": "basin",
+                  "label": "原900×550盆櫃轉向",
+                  "rect_mm": [
+                    5335,
+                    14615,
+                    550,
+                    900
+                  ],
+                  "operation_mm": [
+                    4635,
+                    14615,
+                    700,
+                    900
+                  ]
+                },
+                {
+                  "id": "toilet",
+                  "label": "原450×700馬桶轉向",
+                  "rect_mm": [
+                    3850,
+                    14615,
+                    700,
+                    450
+                  ],
+                  "operation_mm": [
+                    3850,
+                    15065,
+                    700,
+                    700
+                  ]
+                },
+                {
+                  "id": "shower",
+                  "label": "原900淋浴",
+                  "rect_mm": [
+                    4985,
+                    16615,
+                    900,
+                    900
+                  ],
+                  "operation_mm": [
+                    4285,
+                    16615,
+                    700,
+                    900
+                  ]
+                }
+              ],
+              "shafts_mm": [
+                [
+                  5485,
+                  15700,
+                  400,
+                  400
+                ]
+              ],
+              "doors": [
+                {
+                  "a": [
+                    3600,
+                    15100
+                  ],
+                  "b": [
+                    3600,
+                    16230
+                  ],
+                  "hinge": "rear",
+                  "opens": "outside-left",
+                  "swing_rect_mm": [
+                    2470,
+                    15100,
+                    1130,
+                    1130
+                  ]
+                }
+              ],
+              "windows_mm": [
+                [
+                  4750,
+                  17630,
+                  900,
+                  0
+                ]
+              ]
+            }
+          ],
+          "areas": [
+            {
+              "id": "stair",
+              "label": "原同軸樓梯／平台，未改本體",
+              "nominal_sqm": 12.48,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 11.2896,
+                  "after_reserved_shafts_screens_sqm": 11.2896
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 10.7849,
+                  "after_reserved_shafts_screens_sqm": 10.7849
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 10.29,
+                  "after_reserved_shafts_screens_sqm": 10.29
+                }
+              ],
+              "net115_sqm": 10.7849
+            },
+            {
+              "id": "quiet-living",
+              "label": "安靜起居／閱讀，禁睡及高活動",
+              "nominal_sqm": 32.34,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 30.2104,
+                  "after_reserved_shafts_screens_sqm": 30.2104
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 29.2948,
+                  "after_reserved_shafts_screens_sqm": 29.2948
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 28.389,
+                  "after_reserved_shafts_screens_sqm": 28.389
+                }
+              ],
+              "net115_sqm": 29.2948
+            },
+            {
+              "id": "dry-protection",
+              "label": "獨立乾保護室，禁床／濕管設備",
+              "nominal_sqm": 3.248,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 2.6928,
+                  "after_reserved_shafts_screens_sqm": 2.6928
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 2.466,
+                  "after_reserved_shafts_screens_sqm": 2.466
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 2.249,
+                  "after_reserved_shafts_screens_sqm": 2.249
+                }
+              ],
+              "net115_sqm": 2.466
+            },
+            {
+              "id": "public-bath",
+              "label": "前側有窗公衛",
+              "nominal_sqm": 6.48,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 5.6896,
+                  "after_reserved_shafts_screens_sqm": 5.5296
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 5.3599,
+                  "after_reserved_shafts_screens_sqm": 5.1999
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 5.04,
+                  "after_reserved_shafts_screens_sqm": 4.906775
+                }
+              ],
+              "net115_sqm": 5.1999
+            },
+            {
+              "id": "front-open",
+              "label": "普通露台／景觀候選與獨立設備區",
+              "nominal_sqm": 16.92,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 15.3616,
+                  "after_reserved_shafts_screens_sqm": 15.3616
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 14.6959,
+                  "after_reserved_shafts_screens_sqm": 14.6959
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 14.04,
+                  "after_reserved_shafts_screens_sqm": 14.04
+                }
+              ],
+              "net115_sqm": 14.6959
+            },
+            {
+              "id": "master",
+              "label": "主臥乾區（含更衣與入口）",
+              "nominal_sqm": 26.8,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 24.608,
+                  "after_reserved_shafts_screens_sqm": 24.608
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 23.6651,
+                  "after_reserved_shafts_screens_sqm": 23.6651
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 22.732,
+                  "after_reserved_shafts_screens_sqm": 22.732
+                }
+              ],
+              "net115_sqm": 23.6651
+            },
+            {
+              "id": "private-bath",
+              "label": "後右有窗套衛",
+              "nominal_sqm": 7.512,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 6.6528,
+                  "after_reserved_shafts_screens_sqm": 6.4928
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 6.293,
+                  "after_reserved_shafts_screens_sqm": 6.133
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 5.943,
+                  "after_reserved_shafts_screens_sqm": 5.797
+                }
+              ],
+              "net115_sqm": 6.133
+            }
+          ],
+          "partition": {
+            "overlaps": [],
+            "unallocated_sqm": 0.0,
+            "outside_frame_sqm": 0.0
+          },
+          "fixtures": {
+            "body_hits": [],
+            "operation_body_hits": [],
+            "operation_shared": [
+              {
+                "a": "public-bath:shower",
+                "b": "public-bath:toilet",
+                "sqm": 0.05395
+              }
+            ],
+            "not_inside_115": [],
+            "shaft_body_hits": [],
+            "shaft_operation_hits": [],
+            "fully_open_door_body_hits": [],
+            "sampled_swing_body_hits": []
+          },
+          "routes": [
+            {
+              "id": "master-to-ensuite",
+              "width_mm": 900,
+              "points_mm": [
+                [
+                  5335,
+                  10800
+                ],
+                [
+                  5335,
+                  12270
+                ],
+                [
+                  5335,
+                  13700
+                ],
+                [
+                  3035,
+                  13700
+                ],
+                [
+                  3035,
+                  15665
+                ],
+                [
+                  4165,
+                  15665
+                ]
+              ],
+              "purpose": "列明一般身體方塊至套衛，門全開；非輪椅運動學",
+              "within_model_floor": true,
+              "outside_sqm": 0.0,
+              "body_hits": [],
+              "shaft_hits": [],
+              "door_states": [
+                {
+                  "angle_deg": 90,
+                  "hits": []
+                },
+                {
+                  "angle_deg": 45,
+                  "hits": [
+                    "master:door-0",
+                    "private-bath:door-0"
+                  ]
+                },
+                {
+                  "angle_deg": 0,
+                  "hits": [
+                    "master:door-0",
+                    "private-bath:door-0"
+                  ]
+                }
+              ],
+              "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+            },
+            {
+              "id": "master-to-bed-foot",
+              "width_mm": 900,
+              "points_mm": [
+                [
+                  5335,
+                  10800
+                ],
+                [
+                  5335,
+                  12270
+                ],
+                [
+                  5335,
+                  13700
+                ],
+                [
+                  3000,
+                  13700
+                ],
+                [
+                  3000,
+                  14450
+                ],
+                [
+                  2600,
+                  14450
+                ],
+                [
+                  2600,
+                  15550
+                ]
+              ],
+              "purpose": "列明方塊至床尾；不宣稱整圈雙人照護",
+              "within_model_floor": true,
+              "outside_sqm": 0.0,
+              "body_hits": [],
+              "shaft_hits": [],
+              "door_states": [
+                {
+                  "angle_deg": 90,
+                  "hits": []
+                },
+                {
+                  "angle_deg": 45,
+                  "hits": [
+                    "master:door-0",
+                    "private-bath:door-0"
+                  ]
+                },
+                {
+                  "angle_deg": 0,
+                  "hits": [
+                    "master:door-0"
+                  ]
+                }
+              ],
+              "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+            },
+            {
+              "id": "public-arrival",
+              "width_mm": 900,
+              "points_mm": [
+                [
+                  1765,
+                  4400
+                ],
+                [
+                  1765,
+                  3335
+                ]
+              ],
+              "purpose": "從既有前平台到公衛；平台／成品門需核，半開不沿用全開結果",
+              "within_model_floor": true,
+              "outside_sqm": 0.0,
+              "body_hits": [],
+              "shaft_hits": [],
+              "door_states": [
+                {
+                  "angle_deg": 90,
+                  "hits": []
+                },
+                {
+                  "angle_deg": 45,
+                  "hits": [
+                    "public-bath:door-0"
+                  ]
+                },
+                {
+                  "angle_deg": 0,
+                  "hits": [
+                    "public-bath:door-0"
+                  ]
+                }
+              ],
+              "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+            },
+            {
+              "id": "ensuite-shower-operation",
+              "width_mm": 700,
+              "points_mm": [
+                [
+                  4165,
+                  15665
+                ],
+                [
+                  4635,
+                  16000
+                ],
+                [
+                  4635,
+                  17065
+                ]
+              ],
+              "purpose": "套衛入口至淋浴操作帶一般方塊，非照護",
+              "within_model_floor": true,
+              "outside_sqm": 0.0,
+              "body_hits": [],
+              "shaft_hits": [],
+              "door_states": [
+                {
+                  "angle_deg": 90,
+                  "hits": []
+                },
+                {
+                  "angle_deg": 45,
+                  "hits": []
+                },
+                {
+                  "angle_deg": 0,
+                  "hits": []
+                }
+              ],
+              "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+            },
+            {
+              "id": "public-shower-operation",
+              "width_mm": 700,
+              "points_mm": [
+                [
+                  1765,
+                  3335
+                ],
+                [
+                  1365,
+                  3335
+                ]
+              ],
+              "purpose": "前公衛至淋浴操作帶一般方塊",
+              "within_model_floor": true,
+              "outside_sqm": 0.0,
+              "body_hits": [],
+              "shaft_hits": [],
+              "door_states": [
+                {
+                  "angle_deg": 90,
+                  "hits": []
+                },
+                {
+                  "angle_deg": 45,
+                  "hits": [
+                    "public-bath:door-0"
+                  ]
+                },
+                {
+                  "angle_deg": 0,
+                  "hits": []
+                }
+              ],
+              "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+            }
+          ],
+          "religious_projection": [
+            {
+              "room": "public-bath",
+              "kind": "wet",
+              "over_shrine_or_backing_sqm": 0.0,
+              "over_palanquin_sqm": 0.0,
+              "prohibited_overlap": false,
+              "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+            },
+            {
+              "room": "master",
+              "kind": "bedroom",
+              "over_shrine_or_backing_sqm": 0.0,
+              "over_palanquin_sqm": 10.4229,
+              "prohibited_overlap": false,
+              "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+            },
+            {
+              "room": "private-bath",
+              "kind": "wet",
+              "over_shrine_or_backing_sqm": 0.0,
+              "over_palanquin_sqm": 0.0,
+              "prohibited_overlap": false,
+              "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+            }
+          ],
+          "windows": [
+            {
+              "room": "public-bath",
+              "rect_mm": [
+                1300,
+                1500,
+                1100,
+                0
+              ],
+              "on_room_boundary": true,
+              "legal_effective_opening": "unknown",
+              "side_boundary_assumed_open": false
+            },
+            {
+              "room": "master",
+              "rect_mm": [
+                750,
+                17630,
+                2400,
+                0
+              ],
+              "on_room_boundary": true,
+              "legal_effective_opening": "unknown",
+              "side_boundary_assumed_open": false
+            },
+            {
+              "room": "private-bath",
+              "rect_mm": [
+                4750,
+                17630,
+                900,
+                0
+              ],
+              "on_room_boundary": true,
+              "legal_effective_opening": "unknown",
+              "side_boundary_assumed_open": false
+            }
+          ],
+          "bedroom_largest_axis_rect": {
+            "master": {
+              "rect_mm": [
+                115.0,
+                13085.0,
+                3370.0,
+                4430.0
+              ],
+              "area_sqm": 14.9291,
+              "method": "orthogonal-vertex-grid-enumeration"
+            }
+          }
+        },
+        {
+          "id": "floor-3",
+          "rooms": [
+            {
+              "id": "stair",
+              "label": "原同軸樓梯／平台，未改本體",
+              "polygon_mm": [
+                [
+                  2400.0,
+                  3900.0
+                ],
+                [
+                  2400.0,
+                  9100.0
+                ],
+                [
+                  0.0,
+                  9100.0
+                ],
+                [
+                  0.0,
+                  3900.0
+                ]
+              ],
+              "kind": "dry",
+              "items": [],
+              "shafts_mm": [],
+              "doors": [],
+              "windows_mm": []
+            },
+            {
+              "id": "quiet-living",
+              "label": "安靜起居／閱讀，禁睡及高活動",
+              "polygon_mm": [
+                [
+                  6000.0,
+                  3900.0
+                ],
+                [
+                  2400.0,
+                  3900.0
+                ],
+                [
+                  2400.0,
+                  9100.0
+                ],
+                [
+                  0.0,
+                  9100.0
+                ],
+                [
+                  0.0,
+                  11370.0
+                ],
+                [
+                  6000.0,
+                  11370.0
+                ],
+                [
+                  6000.0,
+                  9100.0
+                ]
+              ],
+              "kind": "dry",
+              "items": [
+                {
+                  "id": "sofa",
+                  "label": "原1800×900沙發",
+                  "rect_mm": [
+                    4950,
+                    5700,
+                    900,
+                    1800
+                  ],
+                  "operation_mm": [
+                    4250,
+                    5700,
+                    700,
+                    1800
+                  ]
+                },
+                {
+                  "id": "table",
+                  "label": "原1100×600茶几",
+                  "rect_mm": [
+                    3600,
+                    6050,
+                    600,
+                    1100
+                  ]
+                },
+                {
+                  "id": "tv",
+                  "label": "原1000×80電視",
+                  "rect_mm": [
+                    2550,
+                    6200,
+                    80,
+                    1000
+                  ]
+                }
+              ],
+              "shafts_mm": [],
+              "doors": [
+                {
+                  "a": [
+                    4200,
+                    3900
+                  ],
+                  "b": [
+                    5330,
+                    3900
+                  ],
+                  "hinge": "right",
+                  "opens": "inside",
+                  "swing_rect_mm": [
+                    4200,
+                    3900,
+                    1130,
+                    1130
+                  ]
+                }
+              ],
+              "windows_mm": []
+            },
+            {
+              "id": "dry-protection",
+              "label": "獨立乾保護室，禁床／濕管設備",
+              "polygon_mm": [
+                [
+                  4670.0,
+                  11370.0
+                ],
+                [
+                  4670.0,
+                  12970.0
+                ],
+                [
+                  2640.0,
+                  12970.0
+                ],
+                [
+                  2640.0,
+                  11370.0
+                ]
+              ],
+              "kind": "dry",
+              "items": [],
+              "shafts_mm": [],
+              "doors": [
+                {
+                  "a": [
+                    2850,
+                    11370
+                  ],
+                  "b": [
+                    3980,
+                    11370
+                  ],
+                  "hinge": "left",
+                  "opens": "inside",
+                  "swing_rect_mm": [
+                    2850,
+                    11370,
+                    1130,
+                    1130
+                  ]
+                }
+              ],
+              "windows_mm": []
+            },
+            {
+              "id": "public-bath",
+              "label": "前側有窗公衛",
+              "polygon_mm": [
+                [
+                  2700.0,
+                  1500.0
+                ],
+                [
+                  2700.0,
+                  3900.0
+                ],
+                [
+                  0.0,
+                  3900.0
+                ],
+                [
+                  0.0,
+                  1500.0
+                ]
+              ],
+              "kind": "wet",
+              "items": [
+                {
+                  "id": "shower",
+                  "label": "900淋浴",
+                  "rect_mm": [
+                    115,
+                    2885,
+                    900,
+                    900
+                  ],
+                  "operation_mm": [
+                    1015,
+                    2885,
+                    700,
+                    900
+                  ]
+                },
+                {
+                  "id": "toilet",
+                  "label": "450×700馬桶",
+                  "rect_mm": [
+                    1300,
+                    1615,
+                    450,
+                    700
+                  ],
+                  "operation_mm": [
+                    1300,
+                    2315,
+                    450,
+                    700
+                  ]
+                },
+                {
+                  "id": "basin",
+                  "label": "600×450面盆",
+                  "rect_mm": [
+                    1985,
+                    1615,
+                    600,
+                    450
+                  ],
+                  "operation_mm": [
+                    1985,
+                    2065,
+                    600,
+                    700
+                  ]
+                }
+              ],
+              "shafts_mm": [
+                [
+                  115,
+                  1615,
+                  400,
+                  400
+                ]
+              ],
+              "doors": [
+                {
+                  "a": [
+                    1200,
+                    3900
+                  ],
+                  "b": [
+                    2330,
+                    3900
+                  ],
+                  "hinge": "right",
+                  "opens": "inside",
+                  "swing_rect_mm": [
+                    1200,
+                    2770,
+                    1130,
+                    1130
+                  ]
+                }
+              ],
+              "windows_mm": [
+                [
+                  1300,
+                  1500,
+                  1100,
+                  0
+                ]
+              ]
+            },
+            {
+              "id": "front-open",
+              "label": "普通露台／景觀候選與獨立設備區",
+              "polygon_mm": [
+                [
+                  6000.0,
+                  3900.0
+                ],
+                [
+                  6000.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  0.0
+                ],
+                [
+                  0.0,
+                  1500.0
+                ],
+                [
+                  2700.0,
+                  1500.0
+                ],
+                [
+                  2700.0,
+                  3900.0
+                ]
+              ],
+              "kind": "dry",
+              "items": [],
+              "shafts_mm": [],
+              "doors": [],
+              "windows_mm": []
+            },
+            {
+              "id": "guest",
+              "label": "後左客房／乾擋板",
+              "polygon_mm": [
+                [
+                  2640.0,
+                  11370.0
+                ],
+                [
+                  0.0,
+                  11370.0
+                ],
+                [
+                  0.0,
+                  12970.0
+                ],
+                [
+                  0.0,
+                  17630.0
+                ],
+                [
+                  2900.0,
+                  17630.0
+                ],
+                [
+                  2900.0,
+                  12970.0
+                ],
+                [
+                  2640.0,
+                  12970.0
+                ]
+              ],
+              "kind": "bedroom",
+              "items": [
+                {
+                  "id": "bed",
+                  "label": "1800×2000客床轉向",
+                  "rect_mm": [
+                    150,
+                    15100,
+                    2000,
+                    1800
+                  ]
+                },
+                {
+                  "id": "wardrobe",
+                  "label": "1800×600櫃轉向",
+                  "rect_mm": [
+                    150,
+                    13200,
+                    600,
+                    1800
+                  ],
+                  "operation_mm": [
+                    750,
+                    13200,
+                    700,
+                    1800
+                  ]
+                },
+                {
+                  "id": "screen",
+                  "label": "100mm乾式遮擋板候選",
+                  "rect_mm": [
+                    115,
+                    12970,
+                    1685,
+                    100
+                  ]
+                }
+              ],
+              "shafts_mm": [],
+              "doors": [
+                {
+                  "a": [
+                    1105,
+                    11370
+                  ],
+                  "b": [
+                    2235,
+                    11370
+                  ],
+                  "hinge": "left",
+                  "opens": "inside",
+                  "swing_rect_mm": [
+                    1105,
+                    11370,
+                    1130,
+                    1130
+                  ]
+                }
+              ],
+              "windows_mm": [
+                [
+                  250,
+                  17630,
+                  2400,
+                  0
+                ]
+              ]
+            },
+            {
+              "id": "ktv-study",
+              "label": "後右娛樂候選（低於20㎡目標）",
+              "polygon_mm": [
+                [
+                  6000.0,
+                  17630.0
+                ],
+                [
+                  6000.0,
+                  11370.0
+                ],
+                [
+                  4670.0,
+                  11370.0
+                ],
+                [
+                  4670.0,
+                  12970.0
+                ],
+                [
+                  2900.0,
+                  12970.0
+                ],
+                [
+                  2900.0,
+                  17630.0
+                ]
+              ],
+              "kind": "high-activity",
+              "items": [
+                {
+                  "id": "sofa",
+                  "label": "1800×900沙發候選",
+                  "rect_mm": [
+                    3650,
+                    16500,
+                    1800,
+                    900
+                  ],
+                  "operation_mm": [
+                    3650,
+                    15800,
+                    1800,
+                    700
+                  ]
+                },
+                {
+                  "id": "table",
+                  "label": "1200×600桌候選",
+                  "rect_mm": [
+                    3950,
+                    15000,
+                    1200,
+                    600
+                  ]
+                },
+                {
+                  "id": "tv",
+                  "label": "1000×80壁掛螢幕候選",
+                  "rect_mm": [
+                    5750,
+                    14200,
+                    80,
+                    1000
+                  ]
+                }
+              ],
+              "shafts_mm": [
+                [
+                  5485,
+                  15700,
+                  400,
+                  400
+                ]
+              ],
+              "doors": [
+                {
+                  "a": [
+                    4770,
+                    11370
+                  ],
+                  "b": [
+                    5900,
+                    11370
+                  ],
+                  "hinge": "right",
+                  "opens": "inside",
+                  "swing_rect_mm": [
+                    4770,
+                    11370,
+                    1130,
+                    1130
+                  ]
+                }
+              ],
+              "windows_mm": [
+                [
+                  3500,
+                  17630,
+                  2200,
+                  0
+                ]
+              ]
+            }
+          ],
+          "areas": [
+            {
+              "id": "stair",
+              "label": "原同軸樓梯／平台，未改本體",
+              "nominal_sqm": 12.48,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 11.2896,
+                  "after_reserved_shafts_screens_sqm": 11.2896
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 10.7849,
+                  "after_reserved_shafts_screens_sqm": 10.7849
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 10.29,
+                  "after_reserved_shafts_screens_sqm": 10.29
+                }
+              ],
+              "net115_sqm": 10.7849
+            },
+            {
+              "id": "quiet-living",
+              "label": "安靜起居／閱讀，禁睡及高活動",
+              "nominal_sqm": 32.34,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 30.2104,
+                  "after_reserved_shafts_screens_sqm": 30.2104
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 29.2948,
+                  "after_reserved_shafts_screens_sqm": 29.2948
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 28.389,
+                  "after_reserved_shafts_screens_sqm": 28.389
+                }
+              ],
+              "net115_sqm": 29.2948
+            },
+            {
+              "id": "dry-protection",
+              "label": "獨立乾保護室，禁床／濕管設備",
+              "nominal_sqm": 3.248,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 2.6928,
+                  "after_reserved_shafts_screens_sqm": 2.6928
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 2.466,
+                  "after_reserved_shafts_screens_sqm": 2.466
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 2.249,
+                  "after_reserved_shafts_screens_sqm": 2.249
+                }
+              ],
+              "net115_sqm": 2.466
+            },
+            {
+              "id": "public-bath",
+              "label": "前側有窗公衛",
+              "nominal_sqm": 6.48,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 5.6896,
+                  "after_reserved_shafts_screens_sqm": 5.5296
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 5.3599,
+                  "after_reserved_shafts_screens_sqm": 5.1999
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 5.04,
+                  "after_reserved_shafts_screens_sqm": 4.906775
+                }
+              ],
+              "net115_sqm": 5.1999
+            },
+            {
+              "id": "front-open",
+              "label": "普通露台／景觀候選與獨立設備區",
+              "nominal_sqm": 16.92,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 15.3616,
+                  "after_reserved_shafts_screens_sqm": 15.3616
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 14.6959,
+                  "after_reserved_shafts_screens_sqm": 14.6959
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 14.04,
+                  "after_reserved_shafts_screens_sqm": 14.04
+                }
+              ],
+              "net115_sqm": 14.6959
+            },
+            {
+              "id": "guest",
+              "label": "後左客房／乾擋板",
+              "nominal_sqm": 17.738,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 16.298,
+                  "after_reserved_shafts_screens_sqm": 16.1295
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 15.6841,
+                  "after_reserved_shafts_screens_sqm": 15.5156
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 15.08,
+                  "after_reserved_shafts_screens_sqm": 14.915
+                }
+              ],
+              "net115_sqm": 15.5156
+            },
+            {
+              "id": "ktv-study",
+              "label": "後右娛樂候選（低於20㎡目標）",
+              "nominal_sqm": 16.574,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 15.102,
+                  "after_reserved_shafts_screens_sqm": 14.942
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 14.4741,
+                  "after_reserved_shafts_screens_sqm": 14.3141
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 13.856,
+                  "after_reserved_shafts_screens_sqm": 13.71
+                }
+              ],
+              "net115_sqm": 14.3141
+            }
+          ],
+          "partition": {
+            "overlaps": [],
+            "unallocated_sqm": 0.0,
+            "outside_frame_sqm": 0.0
+          },
+          "fixtures": {
+            "body_hits": [],
+            "operation_body_hits": [],
+            "operation_shared": [
+              {
+                "a": "public-bath:shower",
+                "b": "public-bath:toilet",
+                "sqm": 0.05395
+              }
+            ],
+            "not_inside_115": [],
+            "shaft_body_hits": [],
+            "shaft_operation_hits": [],
+            "fully_open_door_body_hits": [],
+            "sampled_swing_body_hits": []
+          },
+          "routes": [
+            {
+              "id": "guest-arrival",
+              "width_mm": 700,
+              "points_mm": [
+                [
+                  1670,
+                  10800
+                ],
+                [
+                  1670,
+                  12270
+                ],
+                [
+                  2175,
+                  12270
+                ],
+                [
+                  2175,
+                  14500
+                ]
+              ],
+              "purpose": "客房乾擋板右繞一般試線；床尾僅635mm，並非700全環繞",
+              "within_model_floor": true,
+              "outside_sqm": 0.0,
+              "body_hits": [],
+              "shaft_hits": [],
+              "door_states": [
+                {
+                  "angle_deg": 90,
+                  "hits": []
+                },
+                {
+                  "angle_deg": 45,
+                  "hits": [
+                    "guest:door-0"
+                  ]
+                },
+                {
+                  "angle_deg": 0,
+                  "hits": [
+                    "guest:door-0"
+                  ]
+                }
+              ],
+              "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+            },
+            {
+              "id": "ktv-arrival",
+              "width_mm": 700,
+              "points_mm": [
+                [
+                  5335,
+                  10800
+                ],
+                [
+                  5335,
+                  12270
+                ],
+                [
+                  5335,
+                  13500
+                ],
+                [
+                  3500,
+                  13500
+                ],
+                [
+                  3500,
+                  16000
+                ]
+              ],
+              "purpose": "一般家具到達試線；聲學構造及設備未排",
+              "within_model_floor": true,
+              "outside_sqm": 0.0,
+              "body_hits": [],
+              "shaft_hits": [],
+              "door_states": [
+                {
+                  "angle_deg": 90,
+                  "hits": []
+                },
+                {
+                  "angle_deg": 45,
+                  "hits": [
+                    "ktv-study:door-0"
+                  ]
+                },
+                {
+                  "angle_deg": 0,
+                  "hits": [
+                    "ktv-study:door-0"
+                  ]
+                }
+              ],
+              "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+            },
+            {
+              "id": "public-arrival",
+              "width_mm": 900,
+              "points_mm": [
+                [
+                  1765,
+                  4400
+                ],
+                [
+                  1765,
+                  3335
+                ]
+              ],
+              "purpose": "從既有前平台到公衛；平台／成品門需核，半開不沿用全開結果",
+              "within_model_floor": true,
+              "outside_sqm": 0.0,
+              "body_hits": [],
+              "shaft_hits": [],
+              "door_states": [
+                {
+                  "angle_deg": 90,
+                  "hits": []
+                },
+                {
+                  "angle_deg": 45,
+                  "hits": [
+                    "public-bath:door-0"
+                  ]
+                },
+                {
+                  "angle_deg": 0,
+                  "hits": [
+                    "public-bath:door-0"
+                  ]
+                }
+              ],
+              "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+            },
+            {
+              "id": "public-shower-operation",
+              "width_mm": 700,
+              "points_mm": [
+                [
+                  1765,
+                  3335
+                ],
+                [
+                  1365,
+                  3335
+                ]
+              ],
+              "purpose": "前公衛至淋浴操作帶一般方塊",
+              "within_model_floor": true,
+              "outside_sqm": 0.0,
+              "body_hits": [],
+              "shaft_hits": [],
+              "door_states": [
+                {
+                  "angle_deg": 90,
+                  "hits": []
+                },
+                {
+                  "angle_deg": 45,
+                  "hits": [
+                    "public-bath:door-0"
+                  ]
+                },
+                {
+                  "angle_deg": 0,
+                  "hits": []
+                }
+              ],
+              "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+            }
+          ],
+          "religious_projection": [
+            {
+              "room": "public-bath",
+              "kind": "wet",
+              "over_shrine_or_backing_sqm": 0.0,
+              "over_palanquin_sqm": 0.0,
+              "prohibited_overlap": false,
+              "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+            },
+            {
+              "room": "guest",
+              "kind": "bedroom",
+              "over_shrine_or_backing_sqm": 0.0,
+              "over_palanquin_sqm": 9.077,
+              "prohibited_overlap": false,
+              "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+            },
+            {
+              "room": "ktv-study",
+              "kind": "high-activity",
+              "over_shrine_or_backing_sqm": 0.0,
+              "over_palanquin_sqm": 1.3459,
+              "prohibited_overlap": false,
+              "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+            }
+          ],
+          "windows": [
+            {
+              "room": "public-bath",
+              "rect_mm": [
+                1300,
+                1500,
+                1100,
+                0
+              ],
+              "on_room_boundary": true,
+              "legal_effective_opening": "unknown",
+              "side_boundary_assumed_open": false
+            },
+            {
+              "room": "guest",
+              "rect_mm": [
+                250,
+                17630,
+                2400,
+                0
+              ],
+              "on_room_boundary": true,
+              "legal_effective_opening": "unknown",
+              "side_boundary_assumed_open": false
+            },
+            {
+              "room": "ktv-study",
+              "rect_mm": [
+                3500,
+                17630,
+                2200,
+                0
+              ],
+              "on_room_boundary": true,
+              "legal_effective_opening": "unknown",
+              "side_boundary_assumed_open": false
+            }
+          ],
+          "bedroom_largest_axis_rect": {
+            "guest": {
+              "rect_mm": [
+                115.0,
+                11485.0,
+                2410.0,
+                6030.0
+              ],
+              "area_sqm": 14.5323,
+              "method": "orthogonal-vertex-grid-enumeration"
+            }
+          }
+        }
+      ],
+      "frontage": {
+        "garden_sqm": 7.92,
+        "soil_sqm": 2.94,
+        "soil_ratio": 0.3712121212121212,
+        "service_over_garden_sqm": 0.0,
+        "soil_over_service_sqm": 0.0,
+        "soil_inside_garden": true,
+        "proposed_woody_count": 4,
+        "soil_depth_load_and_eligibility": "unknown",
+        "enclosure_nominal_add_sqm_per_upper_floor": 6.48,
+        "declared_as_exempt_landscape_after_enclosure": false,
+        "outdoor_units_mm": [
+          [
+            80,
+            100,
+            900,
+            350
+          ],
+          [
+            5020,
+            100,
+            900,
+            350
+          ]
+        ],
+        "outdoor_service_mm": [
+          [
+            80,
+            100,
+            900,
+            1350
+          ],
+          [
+            5020,
+            100,
+            900,
+            1350
+          ]
+        ],
+        "garden_polygon_mm": [
+          [
+            2700,
+            1500
+          ],
+          [
+            6000,
+            1500
+          ],
+          [
+            6000,
+            3900
+          ],
+          [
+            2700,
+            3900
+          ]
+        ],
+        "soil_rects_mm": [
+          [
+            2800,
+            1700,
+            2100,
+            1400
+          ]
+        ],
+        "outdoor_700_route": {
+          "points_mm": [
+            [
+              4765,
+              4500
+            ],
+            [
+              4765,
+              3550
+            ],
+            [
+              5600,
+              3550
+            ],
+            [
+              5600,
+              1100
+            ],
+            [
+              530,
+              1100
+            ]
+          ],
+          "width_mm": 700,
+          "inside_model_open_or_living_area": true,
+          "soil_hit": false,
+          "unit_hits": [],
+          "actual_maintenance_and_wheelchair_access": "unknown"
+        },
+        "outdoor_routes_refrigerant_and_service_approval": "unknown"
+      },
+      "goals": [
+        {
+          "id": "master",
+          "value_sqm": 23.6651,
+          "target_sqm": 20,
+          "target_met_in_115_model": true
+        },
+        {
+          "id": "public-bath",
+          "value_sqm": 5.1999,
+          "target_sqm": 5,
+          "target_met_in_115_model": true
+        },
+        {
+          "id": "private-bath",
+          "value_sqm": 6.133,
+          "target_sqm": 6,
+          "target_met_in_115_model": true
+        },
+        {
+          "id": "quiet-living",
+          "value_sqm": 29.2948,
+          "target_sqm": 28,
+          "target_met_in_115_model": true
+        },
+        {
+          "id": "tea-foyer",
+          "value_sqm": 0,
+          "target_sqm": 5,
+          "target_met_in_115_model": false
+        },
+        {
+          "id": "garden",
+          "value_sqm": 7.92,
+          "target_sqm": 7,
+          "target_met_in_115_model": true
+        },
+        {
+          "id": "third-guest",
+          "value_sqm": 15.5156,
+          "target_sqm": 12,
+          "target_met_in_115_model": true
+        },
+        {
+          "id": "third-ktv",
+          "value_sqm": 14.3141,
+          "target_sqm": 20,
+          "target_met_in_115_model": false
+        }
+      ],
+      "upper_stack": {
+        "third_wet_over_second_master_sqm": 0.0,
+        "third_wet_over_second_bed_body_sqm": 0.0,
+        "third_entertainment_over_second_master_sqm": 9.062,
+        "third_entertainment_over_second_bed_body_sqm": 0.0,
+        "acoustic_and_vibration_approval": "unknown-even-if-not-directly-over-bed"
+      },
+      "third_ktv_meets_14_min_in_model": true,
+      "conclusion": "面積／外窗可比，但原5㎡含給排水茶水區仍未落位；不把乾泡茶改名當原濕茶水已滿足。",
+      "adopted": false,
+      "buildable": "unknown",
+      "all_requirements_met": false
+    },
+    {
+      "id": "front-wet-foyer",
+      "label": "P2｜前公衛＋濕茶水前室，優先核可建量",
+      "floors": [
+        {
+          "id": "floor-2",
+          "rooms": [
+            {
+              "id": "stair",
+              "label": "原同軸樓梯／平台，未改本體",
+              "polygon_mm": [
+                [
+                  2400.0,
+                  3900.0
+                ],
+                [
+                  2400.0,
+                  9100.0
+                ],
+                [
+                  0.0,
+                  9100.0
+                ],
+                [
+                  0.0,
+                  3900.0
+                ]
+              ],
+              "kind": "dry",
+              "items": [],
+              "shafts_mm": [],
+              "doors": [],
+              "windows_mm": []
+            },
+            {
+              "id": "quiet-living",
+              "label": "安靜起居／閱讀，禁睡及高活動",
+              "polygon_mm": [
+                [
+                  6000.0,
+                  3900.0
+                ],
+                [
+                  2400.0,
+                  3900.0
+                ],
+                [
+                  2400.0,
+                  9100.0
+                ],
+                [
+                  0.0,
+                  9100.0
+                ],
+                [
+                  0.0,
+                  11370.0
+                ],
+                [
+                  6000.0,
+                  11370.0
+                ],
+                [
+                  6000.0,
+                  9100.0
+                ]
+              ],
+              "kind": "dry",
+              "items": [
+                {
+                  "id": "sofa",
+                  "label": "原1800×900沙發",
+                  "rect_mm": [
+                    4950,
+                    5700,
+                    900,
+                    1800
+                  ],
+                  "operation_mm": [
+                    4250,
+                    5700,
+                    700,
+                    1800
+                  ]
+                },
+                {
+                  "id": "table",
+                  "label": "原1100×600茶几",
+                  "rect_mm": [
+                    3600,
+                    6050,
+                    600,
+                    1100
+                  ]
+                },
+                {
+                  "id": "tv",
+                  "label": "原1000×80電視",
+                  "rect_mm": [
+                    2550,
+                    6200,
+                    80,
+                    1000
+                  ]
+                }
+              ],
+              "shafts_mm": [],
+              "doors": [
+                {
+                  "a": [
+                    4200,
+                    3900
+                  ],
+                  "b": [
+                    5330,
+                    3900
+                  ],
+                  "hinge": "right",
+                  "opens": "inside",
+                  "swing_rect_mm": [
+                    4200,
+                    3900,
+                    1130,
+                    1130
+                  ]
+                }
+              ],
+              "windows_mm": []
+            },
+            {
+              "id": "dry-protection",
+              "label": "獨立乾保護室，禁床／濕管設備",
+              "polygon_mm": [
+                [
+                  4670.0,
+                  11370.0
+                ],
+                [
+                  4670.0,
+                  12970.0
+                ],
+                [
+                  2640.0,
+                  12970.0
+                ],
+                [
+                  2640.0,
+                  11370.0
+                ]
+              ],
+              "kind": "dry",
+              "items": [],
+              "shafts_mm": [],
+              "doors": [
+                {
+                  "a": [
+                    2850,
+                    11370
+                  ],
+                  "b": [
+                    3980,
+                    11370
+                  ],
+                  "hinge": "left",
+                  "opens": "inside",
+                  "swing_rect_mm": [
+                    2850,
+                    11370,
+                    1130,
+                    1130
+                  ]
+                }
+              ],
+              "windows_mm": []
+            },
+            {
+              "id": "public-bath",
+              "label": "前側有窗公衛",
+              "polygon_mm": [
+                [
+                  3270.0,
+                  0.0
+                ],
+                [
+                  3270.0,
+                  1980.0
+                ],
+                [
+                  0.0,
+                  1980.0
+                ],
+                [
+                  0.0,
+                  0.0
+                ]
+              ],
+              "kind": "wet",
+              "items": [
+                {
+                  "id": "shower",
+                  "label": "900淋浴",
+                  "rect_mm": [
+                    115,
+                    965,
+                    900,
+                    900
+                  ],
+                  "operation_mm": [
+                    1015,
+                    965,
+                    700,
+                    900
+                  ]
+                },
+                {
+                  "id": "toilet",
+                  "label": "450×700馬桶",
+                  "rect_mm": [
+                    1400,
+                    115,
+                    450,
+                    700
+                  ],
+                  "operation_mm": [
+                    1400,
+                    815,
+                    450,
+                    700
+                  ]
+                },
+                {
+                  "id": "basin",
+                  "label": "600×450面盆",
+                  "rect_mm": [
+                    2555,
+                    115,
+                    600,
+                    450
+                  ],
+                  "operation_mm": [
+                    2555,
+                    565,
+                    600,
+                    700
+                  ]
+                }
+              ],
+              "shafts_mm": [
+                [
+                  115,
+                  115,
+                  400,
+                  400
+                ]
+              ],
+              "doors": [
+                {
+                  "a": [
+                    2020,
+                    1980
+                  ],
+                  "b": [
+                    3150,
+                    1980
+                  ],
+                  "hinge": "right",
+                  "opens": "outside",
+                  "swing_rect_mm": [
+                    2020,
+                    1980,
+                    1130,
+                    1130
+                  ]
+                }
+              ],
+              "windows_mm": [
+                [
+                  2050,
+                  0,
+                  1000,
+                  0
+                ]
+              ]
+            },
+            {
+              "id": "front-open",
+              "label": "普通露台／景觀候選與獨立設備區",
+              "polygon_mm": [
+                [
+                  6000.0,
+                  3900.0
+                ],
+                [
+                  6000.0,
+                  0.0
+                ],
+                [
+                  3270.0,
+                  0.0
+                ],
+                [
+                  3270.0,
+                  3900.0
+                ]
+              ],
+              "kind": "dry",
+              "items": [],
+              "shafts_mm": [],
+              "doors": [],
+              "windows_mm": []
+            },
+            {
+              "id": "tea-foyer",
+              "label": "濕茶水前室",
+              "polygon_mm": [
+                [
+                  3270.0,
+                  1980.0
+                ],
+                [
+                  3270.0,
+                  3900.0
+                ],
+                [
+                  0.0,
+                  3900.0
+                ],
+                [
+                  0.0,
+                  1980.0
+                ]
+              ],
+              "kind": "wet",
+              "items": [
+                {
+                  "id": "tea-counter",
+                  "label": "1500×600茶水台候選，含給排水",
+                  "rect_mm": [
+                    115,
+                    2095,
+                    600,
+                    1500
+                  ],
+                  "operation_mm": [
+                    715,
+                    2095,
+                    700,
+                    1500
+                  ]
+                }
+              ],
+              "shafts_mm": [],
+              "doors": [],
+              "windows_mm": []
+            },
+            {
+              "id": "master",
+              "label": "主臥乾區（含更衣與入口）",
+              "polygon_mm": [
+                [
+                  6000.0,
+                  11370.0
+                ],
+                [
+                  4670.0,
+                  11370.0
+                ],
+                [
+                  4670.0,
+                  12970.0
+                ],
+                [
+                  2640.0,
+                  12970.0
+                ],
+                [
+                  2640.0,
+                  11370.0
+                ],
+                [
+                  0.0,
+                  11370.0
+                ],
+                [
+                  0.0,
+                  17630.0
+                ],
+                [
+                  3600.0,
+                  17630.0
+                ],
+                [
+                  3600.0,
+                  14500.0
+                ],
+                [
+                  6000.0,
+                  14500.0
+                ]
+              ],
+              "kind": "bedroom",
+              "items": [
+                {
+                  "id": "bed",
+                  "label": "原1800×2000床轉向／床頭靠左實牆",
+                  "rect_mm": [
+                    150,
+                    15000,
+                    2000,
+                    1800
+                  ],
+                  "operation_mm": [
+                    2150,
+                    15000,
+                    900,
+                    1800
+                  ]
+                },
+                {
+                  "id": "wardrobe",
+                  "label": "原1800×600衣櫃",
+                  "rect_mm": [
+                    250,
+                    13100,
+                    1800,
+                    600
+                  ],
+                  "operation_mm": [
+                    250,
+                    13700,
+                    1800,
+                    700
+                  ]
+                },
+                {
+                  "id": "vanity",
+                  "label": "原1200×500梳妝台轉向",
+                  "rect_mm": [
+                    150,
+                    11600,
+                    500,
+                    1200
+                  ],
+                  "operation_mm": [
+                    650,
+                    11600,
+                    700,
+                    1200
+                  ]
+                }
+              ],
+              "shafts_mm": [],
+              "doors": [
+                {
+                  "a": [
+                    4770,
+                    11370
+                  ],
+                  "b": [
+                    5900,
+                    11370
+                  ],
+                  "hinge": "right",
+                  "opens": "inside",
+                  "swing_rect_mm": [
+                    4770,
+                    11370,
+                    1130,
+                    1130
+                  ]
+                }
+              ],
+              "windows_mm": [
+                [
+                  750,
+                  17630,
+                  2400,
+                  0
+                ]
+              ]
+            },
+            {
+              "id": "private-bath",
+              "label": "後右有窗套衛",
+              "polygon_mm": [
+                [
+                  6000.0,
+                  14500.0
+                ],
+                [
+                  6000.0,
+                  17630.0
+                ],
+                [
+                  3600.0,
+                  17630.0
+                ],
+                [
+                  3600.0,
+                  14500.0
+                ]
+              ],
+              "kind": "wet",
+              "items": [
+                {
+                  "id": "basin",
+                  "label": "原900×550盆櫃轉向",
+                  "rect_mm": [
+                    5335,
+                    14615,
+                    550,
+                    900
+                  ],
+                  "operation_mm": [
+                    4635,
+                    14615,
+                    700,
+                    900
+                  ]
+                },
+                {
+                  "id": "toilet",
+                  "label": "原450×700馬桶轉向",
+                  "rect_mm": [
+                    3850,
+                    14615,
+                    700,
+                    450
+                  ],
+                  "operation_mm": [
+                    3850,
+                    15065,
+                    700,
+                    700
+                  ]
+                },
+                {
+                  "id": "shower",
+                  "label": "原900淋浴",
+                  "rect_mm": [
+                    4985,
+                    16615,
+                    900,
+                    900
+                  ],
+                  "operation_mm": [
+                    4285,
+                    16615,
+                    700,
+                    900
+                  ]
+                }
+              ],
+              "shafts_mm": [
+                [
+                  5485,
+                  15700,
+                  400,
+                  400
+                ]
+              ],
+              "doors": [
+                {
+                  "a": [
+                    3600,
+                    15100
+                  ],
+                  "b": [
+                    3600,
+                    16230
+                  ],
+                  "hinge": "rear",
+                  "opens": "outside-left",
+                  "swing_rect_mm": [
+                    2470,
+                    15100,
+                    1130,
+                    1130
+                  ]
+                }
+              ],
+              "windows_mm": [
+                [
+                  4750,
+                  17630,
+                  900,
+                  0
+                ]
+              ]
+            }
+          ],
+          "areas": [
+            {
+              "id": "stair",
+              "label": "原同軸樓梯／平台，未改本體",
+              "nominal_sqm": 12.48,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 11.2896,
+                  "after_reserved_shafts_screens_sqm": 11.2896
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 10.7849,
+                  "after_reserved_shafts_screens_sqm": 10.7849
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 10.29,
+                  "after_reserved_shafts_screens_sqm": 10.29
+                }
+              ],
+              "net115_sqm": 10.7849
+            },
+            {
+              "id": "quiet-living",
+              "label": "安靜起居／閱讀，禁睡及高活動",
+              "nominal_sqm": 32.34,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 30.2104,
+                  "after_reserved_shafts_screens_sqm": 30.2104
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 29.2948,
+                  "after_reserved_shafts_screens_sqm": 29.2948
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 28.389,
+                  "after_reserved_shafts_screens_sqm": 28.389
+                }
+              ],
+              "net115_sqm": 29.2948
+            },
+            {
+              "id": "dry-protection",
+              "label": "獨立乾保護室，禁床／濕管設備",
+              "nominal_sqm": 3.248,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 2.6928,
+                  "after_reserved_shafts_screens_sqm": 2.6928
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 2.466,
+                  "after_reserved_shafts_screens_sqm": 2.466
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 2.249,
+                  "after_reserved_shafts_screens_sqm": 2.249
+                }
+              ],
+              "net115_sqm": 2.466
+            },
+            {
+              "id": "public-bath",
+              "label": "前側有窗公衛",
+              "nominal_sqm": 6.4746,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 5.6602,
+                  "after_reserved_shafts_screens_sqm": 5.5002
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 5.32,
+                  "after_reserved_shafts_screens_sqm": 5.16
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 4.9896,
+                  "after_reserved_shafts_screens_sqm": 4.856375
+                }
+              ],
+              "net115_sqm": 5.16
+            },
+            {
+              "id": "front-open",
+              "label": "普通露台／景觀候選與獨立設備區",
+              "nominal_sqm": 10.647,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 9.6118,
+                  "after_reserved_shafts_screens_sqm": 9.6118
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 9.175,
+                  "after_reserved_shafts_screens_sqm": 9.175
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 8.748,
+                  "after_reserved_shafts_screens_sqm": 8.748
+                }
+              ],
+              "net115_sqm": 9.175
+            },
+            {
+              "id": "tea-foyer",
+              "label": "濕茶水前室",
+              "nominal_sqm": 6.2784,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 5.4736,
+                  "after_reserved_shafts_screens_sqm": 5.4736
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 5.1376,
+                  "after_reserved_shafts_screens_sqm": 5.1376
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 4.8114,
+                  "after_reserved_shafts_screens_sqm": 4.8114
+                }
+              ],
+              "net115_sqm": 5.1376
+            },
+            {
+              "id": "master",
+              "label": "主臥乾區（含更衣與入口）",
+              "nominal_sqm": 26.8,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 24.608,
+                  "after_reserved_shafts_screens_sqm": 24.608
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 23.6651,
+                  "after_reserved_shafts_screens_sqm": 23.6651
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 22.732,
+                  "after_reserved_shafts_screens_sqm": 22.732
+                }
+              ],
+              "net115_sqm": 23.6651
+            },
+            {
+              "id": "private-bath",
+              "label": "後右有窗套衛",
+              "nominal_sqm": 7.512,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 6.6528,
+                  "after_reserved_shafts_screens_sqm": 6.4928
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 6.293,
+                  "after_reserved_shafts_screens_sqm": 6.133
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 5.943,
+                  "after_reserved_shafts_screens_sqm": 5.797
+                }
+              ],
+              "net115_sqm": 6.133
+            }
+          ],
+          "partition": {
+            "overlaps": [],
+            "unallocated_sqm": 0.0,
+            "outside_frame_sqm": 0.0
+          },
+          "fixtures": {
+            "body_hits": [],
+            "operation_body_hits": [],
+            "operation_shared": [
+              {
+                "a": "public-bath:shower",
+                "b": "public-bath:toilet",
+                "sqm": 0.17325
+              }
+            ],
+            "not_inside_115": [],
+            "shaft_body_hits": [],
+            "shaft_operation_hits": [],
+            "fully_open_door_body_hits": [],
+            "sampled_swing_body_hits": []
+          },
+          "routes": [
+            {
+              "id": "master-to-ensuite",
+              "width_mm": 900,
+              "points_mm": [
+                [
+                  5335,
+                  10800
+                ],
+                [
+                  5335,
+                  12270
+                ],
+                [
+                  5335,
+                  13700
+                ],
+                [
+                  3035,
+                  13700
+                ],
+                [
+                  3035,
+                  15665
+                ],
+                [
+                  4165,
+                  15665
+                ]
+              ],
+              "purpose": "列明一般身體方塊至套衛，門全開；非輪椅運動學",
+              "within_model_floor": true,
+              "outside_sqm": 0.0,
+              "body_hits": [],
+              "shaft_hits": [],
+              "door_states": [
+                {
+                  "angle_deg": 90,
+                  "hits": []
+                },
+                {
+                  "angle_deg": 45,
+                  "hits": [
+                    "master:door-0",
+                    "private-bath:door-0"
+                  ]
+                },
+                {
+                  "angle_deg": 0,
+                  "hits": [
+                    "master:door-0",
+                    "private-bath:door-0"
+                  ]
+                }
+              ],
+              "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+            },
+            {
+              "id": "master-to-bed-foot",
+              "width_mm": 900,
+              "points_mm": [
+                [
+                  5335,
+                  10800
+                ],
+                [
+                  5335,
+                  12270
+                ],
+                [
+                  5335,
+                  13700
+                ],
+                [
+                  3000,
+                  13700
+                ],
+                [
+                  3000,
+                  14450
+                ],
+                [
+                  2600,
+                  14450
+                ],
+                [
+                  2600,
+                  15550
+                ]
+              ],
+              "purpose": "列明方塊至床尾；不宣稱整圈雙人照護",
+              "within_model_floor": true,
+              "outside_sqm": 0.0,
+              "body_hits": [],
+              "shaft_hits": [],
+              "door_states": [
+                {
+                  "angle_deg": 90,
+                  "hits": []
+                },
+                {
+                  "angle_deg": 45,
+                  "hits": [
+                    "master:door-0",
+                    "private-bath:door-0"
+                  ]
+                },
+                {
+                  "angle_deg": 0,
+                  "hits": [
+                    "master:door-0"
+                  ]
+                }
+              ],
+              "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+            },
+            {
+              "id": "public-arrival",
+              "width_mm": 900,
+              "points_mm": [
+                [
+                  1715,
+                  4400
+                ],
+                [
+                  1715,
+                  3335
+                ],
+                [
+                  2585,
+                  3335
+                ],
+                [
+                  2585,
+                  2585
+                ],
+                [
+                  2585,
+                  1415
+                ]
+              ],
+              "purpose": "無門片的茶水前室入口比較；是否需要防火／隔煙門及實際門態尚未核",
+              "within_model_floor": true,
+              "outside_sqm": 0.0,
+              "body_hits": [],
+              "shaft_hits": [],
+              "door_states": [
+                {
+                  "angle_deg": 90,
+                  "hits": []
+                },
+                {
+                  "angle_deg": 45,
+                  "hits": [
+                    "public-bath:door-0"
+                  ]
+                },
+                {
+                  "angle_deg": 0,
+                  "hits": [
+                    "public-bath:door-0"
+                  ]
+                }
+              ],
+              "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+            },
+            {
+              "id": "ensuite-shower-operation",
+              "width_mm": 700,
+              "points_mm": [
+                [
+                  4165,
+                  15665
+                ],
+                [
+                  4635,
+                  16000
+                ],
+                [
+                  4635,
+                  17065
+                ]
+              ],
+              "purpose": "套衛入口至淋浴操作帶一般方塊，非照護",
+              "within_model_floor": true,
+              "outside_sqm": 0.0,
+              "body_hits": [],
+              "shaft_hits": [],
+              "door_states": [
+                {
+                  "angle_deg": 90,
+                  "hits": []
+                },
+                {
+                  "angle_deg": 45,
+                  "hits": []
+                },
+                {
+                  "angle_deg": 0,
+                  "hits": []
+                }
+              ],
+              "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+            },
+            {
+              "id": "public-shower-operation",
+              "width_mm": 700,
+              "points_mm": [
+                [
+                  2585,
+                  1415
+                ],
+                [
+                  1365,
+                  1415
+                ]
+              ],
+              "purpose": "前公衛至淋浴操作帶一般方塊",
+              "within_model_floor": true,
+              "outside_sqm": 0.0,
+              "body_hits": [],
+              "shaft_hits": [],
+              "door_states": [
+                {
+                  "angle_deg": 90,
+                  "hits": []
+                },
+                {
+                  "angle_deg": 45,
+                  "hits": []
+                },
+                {
+                  "angle_deg": 0,
+                  "hits": []
+                }
+              ],
+              "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+            }
+          ],
+          "religious_projection": [
+            {
+              "room": "public-bath",
+              "kind": "wet",
+              "over_shrine_or_backing_sqm": 0.0,
+              "over_palanquin_sqm": 0.0,
+              "prohibited_overlap": false,
+              "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+            },
+            {
+              "room": "tea-foyer",
+              "kind": "wet",
+              "over_shrine_or_backing_sqm": 0.0,
+              "over_palanquin_sqm": 0.0,
+              "prohibited_overlap": false,
+              "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+            },
+            {
+              "room": "master",
+              "kind": "bedroom",
+              "over_shrine_or_backing_sqm": 0.0,
+              "over_palanquin_sqm": 10.4229,
+              "prohibited_overlap": false,
+              "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+            },
+            {
+              "room": "private-bath",
+              "kind": "wet",
+              "over_shrine_or_backing_sqm": 0.0,
+              "over_palanquin_sqm": 0.0,
+              "prohibited_overlap": false,
+              "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+            }
+          ],
+          "windows": [
+            {
+              "room": "public-bath",
+              "rect_mm": [
+                2050,
+                0,
+                1000,
+                0
+              ],
+              "on_room_boundary": true,
+              "legal_effective_opening": "unknown",
+              "side_boundary_assumed_open": false
+            },
+            {
+              "room": "master",
+              "rect_mm": [
+                750,
+                17630,
+                2400,
+                0
+              ],
+              "on_room_boundary": true,
+              "legal_effective_opening": "unknown",
+              "side_boundary_assumed_open": false
+            },
+            {
+              "room": "private-bath",
+              "rect_mm": [
+                4750,
+                17630,
+                900,
+                0
+              ],
+              "on_room_boundary": true,
+              "legal_effective_opening": "unknown",
+              "side_boundary_assumed_open": false
+            }
+          ],
+          "bedroom_largest_axis_rect": {
+            "master": {
+              "rect_mm": [
+                115.0,
+                13085.0,
+                3370.0,
+                4430.0
+              ],
+              "area_sqm": 14.9291,
+              "method": "orthogonal-vertex-grid-enumeration"
+            }
+          }
+        },
+        {
+          "id": "floor-3",
+          "rooms": [
+            {
+              "id": "stair",
+              "label": "原同軸樓梯／平台，未改本體",
+              "polygon_mm": [
+                [
+                  2400.0,
+                  3900.0
+                ],
+                [
+                  2400.0,
+                  9100.0
+                ],
+                [
+                  0.0,
+                  9100.0
+                ],
+                [
+                  0.0,
+                  3900.0
+                ]
+              ],
+              "kind": "dry",
+              "items": [],
+              "shafts_mm": [],
+              "doors": [],
+              "windows_mm": []
+            },
+            {
+              "id": "quiet-living",
+              "label": "安靜起居／閱讀，禁睡及高活動",
+              "polygon_mm": [
+                [
+                  6000.0,
+                  3900.0
+                ],
+                [
+                  2400.0,
+                  3900.0
+                ],
+                [
+                  2400.0,
+                  9100.0
+                ],
+                [
+                  0.0,
+                  9100.0
+                ],
+                [
+                  0.0,
+                  11370.0
+                ],
+                [
+                  6000.0,
+                  11370.0
+                ],
+                [
+                  6000.0,
+                  9100.0
+                ]
+              ],
+              "kind": "dry",
+              "items": [
+                {
+                  "id": "sofa",
+                  "label": "原1800×900沙發",
+                  "rect_mm": [
+                    4950,
+                    5700,
+                    900,
+                    1800
+                  ],
+                  "operation_mm": [
+                    4250,
+                    5700,
+                    700,
+                    1800
+                  ]
+                },
+                {
+                  "id": "table",
+                  "label": "原1100×600茶几",
+                  "rect_mm": [
+                    3600,
+                    6050,
+                    600,
+                    1100
+                  ]
+                },
+                {
+                  "id": "tv",
+                  "label": "原1000×80電視",
+                  "rect_mm": [
+                    2550,
+                    6200,
+                    80,
+                    1000
+                  ]
+                }
+              ],
+              "shafts_mm": [],
+              "doors": [
+                {
+                  "a": [
+                    4200,
+                    3900
+                  ],
+                  "b": [
+                    5330,
+                    3900
+                  ],
+                  "hinge": "right",
+                  "opens": "inside",
+                  "swing_rect_mm": [
+                    4200,
+                    3900,
+                    1130,
+                    1130
+                  ]
+                }
+              ],
+              "windows_mm": []
+            },
+            {
+              "id": "dry-protection",
+              "label": "獨立乾保護室，禁床／濕管設備",
+              "polygon_mm": [
+                [
+                  4670.0,
+                  11370.0
+                ],
+                [
+                  4670.0,
+                  12970.0
+                ],
+                [
+                  2640.0,
+                  12970.0
+                ],
+                [
+                  2640.0,
+                  11370.0
+                ]
+              ],
+              "kind": "dry",
+              "items": [],
+              "shafts_mm": [],
+              "doors": [
+                {
+                  "a": [
+                    2850,
+                    11370
+                  ],
+                  "b": [
+                    3980,
+                    11370
+                  ],
+                  "hinge": "left",
+                  "opens": "inside",
+                  "swing_rect_mm": [
+                    2850,
+                    11370,
+                    1130,
+                    1130
+                  ]
+                }
+              ],
+              "windows_mm": []
+            },
+            {
+              "id": "public-bath",
+              "label": "前側有窗公衛",
+              "polygon_mm": [
+                [
+                  3270.0,
+                  0.0
+                ],
+                [
+                  3270.0,
+                  1980.0
+                ],
+                [
+                  0.0,
+                  1980.0
+                ],
+                [
+                  0.0,
+                  0.0
+                ]
+              ],
+              "kind": "wet",
+              "items": [
+                {
+                  "id": "shower",
+                  "label": "900淋浴",
+                  "rect_mm": [
+                    115,
+                    965,
+                    900,
+                    900
+                  ],
+                  "operation_mm": [
+                    1015,
+                    965,
+                    700,
+                    900
+                  ]
+                },
+                {
+                  "id": "toilet",
+                  "label": "450×700馬桶",
+                  "rect_mm": [
+                    1400,
+                    115,
+                    450,
+                    700
+                  ],
+                  "operation_mm": [
+                    1400,
+                    815,
+                    450,
+                    700
+                  ]
+                },
+                {
+                  "id": "basin",
+                  "label": "600×450面盆",
+                  "rect_mm": [
+                    2555,
+                    115,
+                    600,
+                    450
+                  ],
+                  "operation_mm": [
+                    2555,
+                    565,
+                    600,
+                    700
+                  ]
+                }
+              ],
+              "shafts_mm": [
+                [
+                  115,
+                  115,
+                  400,
+                  400
+                ]
+              ],
+              "doors": [
+                {
+                  "a": [
+                    2020,
+                    1980
+                  ],
+                  "b": [
+                    3150,
+                    1980
+                  ],
+                  "hinge": "right",
+                  "opens": "outside",
+                  "swing_rect_mm": [
+                    2020,
+                    1980,
+                    1130,
+                    1130
+                  ]
+                }
+              ],
+              "windows_mm": [
+                [
+                  2050,
+                  0,
+                  1000,
+                  0
+                ]
+              ]
+            },
+            {
+              "id": "front-open",
+              "label": "普通露台／景觀候選與獨立設備區",
+              "polygon_mm": [
+                [
+                  6000.0,
+                  3900.0
+                ],
+                [
+                  6000.0,
+                  0.0
+                ],
+                [
+                  3270.0,
+                  0.0
+                ],
+                [
+                  3270.0,
+                  3900.0
+                ]
+              ],
+              "kind": "dry",
+              "items": [],
+              "shafts_mm": [],
+              "doors": [],
+              "windows_mm": []
+            },
+            {
+              "id": "tea-foyer",
+              "label": "乾式前室／工作預留",
+              "polygon_mm": [
+                [
+                  3270.0,
+                  1980.0
+                ],
+                [
+                  3270.0,
+                  3900.0
+                ],
+                [
+                  0.0,
+                  3900.0
+                ],
+                [
+                  0.0,
+                  1980.0
+                ]
+              ],
+              "kind": "dry",
+              "items": [],
+              "shafts_mm": [],
+              "doors": [],
+              "windows_mm": []
+            },
+            {
+              "id": "guest",
+              "label": "後左客房／乾擋板",
+              "polygon_mm": [
+                [
+                  2640.0,
+                  11370.0
+                ],
+                [
+                  0.0,
+                  11370.0
+                ],
+                [
+                  0.0,
+                  12970.0
+                ],
+                [
+                  0.0,
+                  17630.0
+                ],
+                [
+                  2900.0,
+                  17630.0
+                ],
+                [
+                  2900.0,
+                  12970.0
+                ],
+                [
+                  2640.0,
+                  12970.0
+                ]
+              ],
+              "kind": "bedroom",
+              "items": [
+                {
+                  "id": "bed",
+                  "label": "1800×2000客床轉向",
+                  "rect_mm": [
+                    150,
+                    15100,
+                    2000,
+                    1800
+                  ]
+                },
+                {
+                  "id": "wardrobe",
+                  "label": "1800×600櫃轉向",
+                  "rect_mm": [
+                    150,
+                    13200,
+                    600,
+                    1800
+                  ],
+                  "operation_mm": [
+                    750,
+                    13200,
+                    700,
+                    1800
+                  ]
+                },
+                {
+                  "id": "screen",
+                  "label": "100mm乾式遮擋板候選",
+                  "rect_mm": [
+                    115,
+                    12970,
+                    1685,
+                    100
+                  ]
+                }
+              ],
+              "shafts_mm": [],
+              "doors": [
+                {
+                  "a": [
+                    1105,
+                    11370
+                  ],
+                  "b": [
+                    2235,
+                    11370
+                  ],
+                  "hinge": "left",
+                  "opens": "inside",
+                  "swing_rect_mm": [
+                    1105,
+                    11370,
+                    1130,
+                    1130
+                  ]
+                }
+              ],
+              "windows_mm": [
+                [
+                  250,
+                  17630,
+                  2400,
+                  0
+                ]
+              ]
+            },
+            {
+              "id": "ktv-study",
+              "label": "後右娛樂候選（低於20㎡目標）",
+              "polygon_mm": [
+                [
+                  6000.0,
+                  17630.0
+                ],
+                [
+                  6000.0,
+                  11370.0
+                ],
+                [
+                  4670.0,
+                  11370.0
+                ],
+                [
+                  4670.0,
+                  12970.0
+                ],
+                [
+                  2900.0,
+                  12970.0
+                ],
+                [
+                  2900.0,
+                  17630.0
+                ]
+              ],
+              "kind": "high-activity",
+              "items": [
+                {
+                  "id": "sofa",
+                  "label": "1800×900沙發候選",
+                  "rect_mm": [
+                    3650,
+                    16500,
+                    1800,
+                    900
+                  ],
+                  "operation_mm": [
+                    3650,
+                    15800,
+                    1800,
+                    700
+                  ]
+                },
+                {
+                  "id": "table",
+                  "label": "1200×600桌候選",
+                  "rect_mm": [
+                    3950,
+                    15000,
+                    1200,
+                    600
+                  ]
+                },
+                {
+                  "id": "tv",
+                  "label": "1000×80壁掛螢幕候選",
+                  "rect_mm": [
+                    5750,
+                    14200,
+                    80,
+                    1000
+                  ]
+                }
+              ],
+              "shafts_mm": [
+                [
+                  5485,
+                  15700,
+                  400,
+                  400
+                ]
+              ],
+              "doors": [
+                {
+                  "a": [
+                    4770,
+                    11370
+                  ],
+                  "b": [
+                    5900,
+                    11370
+                  ],
+                  "hinge": "right",
+                  "opens": "inside",
+                  "swing_rect_mm": [
+                    4770,
+                    11370,
+                    1130,
+                    1130
+                  ]
+                }
+              ],
+              "windows_mm": [
+                [
+                  3500,
+                  17630,
+                  2200,
+                  0
+                ]
+              ]
+            }
+          ],
+          "areas": [
+            {
+              "id": "stair",
+              "label": "原同軸樓梯／平台，未改本體",
+              "nominal_sqm": 12.48,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 11.2896,
+                  "after_reserved_shafts_screens_sqm": 11.2896
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 10.7849,
+                  "after_reserved_shafts_screens_sqm": 10.7849
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 10.29,
+                  "after_reserved_shafts_screens_sqm": 10.29
+                }
+              ],
+              "net115_sqm": 10.7849
+            },
+            {
+              "id": "quiet-living",
+              "label": "安靜起居／閱讀，禁睡及高活動",
+              "nominal_sqm": 32.34,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 30.2104,
+                  "after_reserved_shafts_screens_sqm": 30.2104
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 29.2948,
+                  "after_reserved_shafts_screens_sqm": 29.2948
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 28.389,
+                  "after_reserved_shafts_screens_sqm": 28.389
+                }
+              ],
+              "net115_sqm": 29.2948
+            },
+            {
+              "id": "dry-protection",
+              "label": "獨立乾保護室，禁床／濕管設備",
+              "nominal_sqm": 3.248,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 2.6928,
+                  "after_reserved_shafts_screens_sqm": 2.6928
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 2.466,
+                  "after_reserved_shafts_screens_sqm": 2.466
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 2.249,
+                  "after_reserved_shafts_screens_sqm": 2.249
+                }
+              ],
+              "net115_sqm": 2.466
+            },
+            {
+              "id": "public-bath",
+              "label": "前側有窗公衛",
+              "nominal_sqm": 6.4746,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 5.6602,
+                  "after_reserved_shafts_screens_sqm": 5.5002
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 5.32,
+                  "after_reserved_shafts_screens_sqm": 5.16
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 4.9896,
+                  "after_reserved_shafts_screens_sqm": 4.856375
+                }
+              ],
+              "net115_sqm": 5.16
+            },
+            {
+              "id": "front-open",
+              "label": "普通露台／景觀候選與獨立設備區",
+              "nominal_sqm": 10.647,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 9.6118,
+                  "after_reserved_shafts_screens_sqm": 9.6118
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 9.175,
+                  "after_reserved_shafts_screens_sqm": 9.175
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 8.748,
+                  "after_reserved_shafts_screens_sqm": 8.748
+                }
+              ],
+              "net115_sqm": 9.175
+            },
+            {
+              "id": "tea-foyer",
+              "label": "乾式前室／工作預留",
+              "nominal_sqm": 6.2784,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 5.4736,
+                  "after_reserved_shafts_screens_sqm": 5.4736
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 5.1376,
+                  "after_reserved_shafts_screens_sqm": 5.1376
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 4.8114,
+                  "after_reserved_shafts_screens_sqm": 4.8114
+                }
+              ],
+              "net115_sqm": 5.1376
+            },
+            {
+              "id": "guest",
+              "label": "後左客房／乾擋板",
+              "nominal_sqm": 17.738,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 16.298,
+                  "after_reserved_shafts_screens_sqm": 16.1295
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 15.6841,
+                  "after_reserved_shafts_screens_sqm": 15.5156
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 15.08,
+                  "after_reserved_shafts_screens_sqm": 14.915
+                }
+              ],
+              "net115_sqm": 15.5156
+            },
+            {
+              "id": "ktv-study",
+              "label": "後右娛樂候選（低於20㎡目標）",
+              "nominal_sqm": 16.574,
+              "cases": [
+                {
+                  "inset_each_mm": 80,
+                  "outline_sqm": 15.102,
+                  "after_reserved_shafts_screens_sqm": 14.942
+                },
+                {
+                  "inset_each_mm": 115,
+                  "outline_sqm": 14.4741,
+                  "after_reserved_shafts_screens_sqm": 14.3141
+                },
+                {
+                  "inset_each_mm": 150,
+                  "outline_sqm": 13.856,
+                  "after_reserved_shafts_screens_sqm": 13.71
+                }
+              ],
+              "net115_sqm": 14.3141
+            }
+          ],
+          "partition": {
+            "overlaps": [],
+            "unallocated_sqm": 0.0,
+            "outside_frame_sqm": 0.0
+          },
+          "fixtures": {
+            "body_hits": [],
+            "operation_body_hits": [],
+            "operation_shared": [
+              {
+                "a": "public-bath:shower",
+                "b": "public-bath:toilet",
+                "sqm": 0.17325
+              }
+            ],
+            "not_inside_115": [],
+            "shaft_body_hits": [],
+            "shaft_operation_hits": [],
+            "fully_open_door_body_hits": [],
+            "sampled_swing_body_hits": []
+          },
+          "routes": [
+            {
+              "id": "guest-arrival",
+              "width_mm": 700,
+              "points_mm": [
+                [
+                  1670,
+                  10800
+                ],
+                [
+                  1670,
+                  12270
+                ],
+                [
+                  2175,
+                  12270
+                ],
+                [
+                  2175,
+                  14500
+                ]
+              ],
+              "purpose": "客房乾擋板右繞一般試線；床尾僅635mm，並非700全環繞",
+              "within_model_floor": true,
+              "outside_sqm": 0.0,
+              "body_hits": [],
+              "shaft_hits": [],
+              "door_states": [
+                {
+                  "angle_deg": 90,
+                  "hits": []
+                },
+                {
+                  "angle_deg": 45,
+                  "hits": [
+                    "guest:door-0"
+                  ]
+                },
+                {
+                  "angle_deg": 0,
+                  "hits": [
+                    "guest:door-0"
+                  ]
+                }
+              ],
+              "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+            },
+            {
+              "id": "ktv-arrival",
+              "width_mm": 700,
+              "points_mm": [
+                [
+                  5335,
+                  10800
+                ],
+                [
+                  5335,
+                  12270
+                ],
+                [
+                  5335,
+                  13500
+                ],
+                [
+                  3500,
+                  13500
+                ],
+                [
+                  3500,
+                  16000
+                ]
+              ],
+              "purpose": "一般家具到達試線；聲學構造及設備未排",
+              "within_model_floor": true,
+              "outside_sqm": 0.0,
+              "body_hits": [],
+              "shaft_hits": [],
+              "door_states": [
+                {
+                  "angle_deg": 90,
+                  "hits": []
+                },
+                {
+                  "angle_deg": 45,
+                  "hits": [
+                    "ktv-study:door-0"
+                  ]
+                },
+                {
+                  "angle_deg": 0,
+                  "hits": [
+                    "ktv-study:door-0"
+                  ]
+                }
+              ],
+              "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+            },
+            {
+              "id": "public-arrival",
+              "width_mm": 900,
+              "points_mm": [
+                [
+                  1715,
+                  4400
+                ],
+                [
+                  1715,
+                  3335
+                ],
+                [
+                  2585,
+                  3335
+                ],
+                [
+                  2585,
+                  2585
+                ],
+                [
+                  2585,
+                  1415
+                ]
+              ],
+              "purpose": "無門片的茶水前室入口比較；是否需要防火／隔煙門及實際門態尚未核",
+              "within_model_floor": true,
+              "outside_sqm": 0.0,
+              "body_hits": [],
+              "shaft_hits": [],
+              "door_states": [
+                {
+                  "angle_deg": 90,
+                  "hits": []
+                },
+                {
+                  "angle_deg": 45,
+                  "hits": [
+                    "public-bath:door-0"
+                  ]
+                },
+                {
+                  "angle_deg": 0,
+                  "hits": [
+                    "public-bath:door-0"
+                  ]
+                }
+              ],
+              "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+            },
+            {
+              "id": "public-shower-operation",
+              "width_mm": 700,
+              "points_mm": [
+                [
+                  2585,
+                  1415
+                ],
+                [
+                  1365,
+                  1415
+                ]
+              ],
+              "purpose": "前公衛至淋浴操作帶一般方塊",
+              "within_model_floor": true,
+              "outside_sqm": 0.0,
+              "body_hits": [],
+              "shaft_hits": [],
+              "door_states": [
+                {
+                  "angle_deg": 90,
+                  "hits": []
+                },
+                {
+                  "angle_deg": 45,
+                  "hits": []
+                },
+                {
+                  "angle_deg": 0,
+                  "hits": []
+                }
+              ],
+              "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+            }
+          ],
+          "religious_projection": [
+            {
+              "room": "public-bath",
+              "kind": "wet",
+              "over_shrine_or_backing_sqm": 0.0,
+              "over_palanquin_sqm": 0.0,
+              "prohibited_overlap": false,
+              "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+            },
+            {
+              "room": "guest",
+              "kind": "bedroom",
+              "over_shrine_or_backing_sqm": 0.0,
+              "over_palanquin_sqm": 9.077,
+              "prohibited_overlap": false,
+              "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+            },
+            {
+              "room": "ktv-study",
+              "kind": "high-activity",
+              "over_shrine_or_backing_sqm": 0.0,
+              "over_palanquin_sqm": 1.3459,
+              "prohibited_overlap": false,
+              "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+            }
+          ],
+          "windows": [
+            {
+              "room": "public-bath",
+              "rect_mm": [
+                2050,
+                0,
+                1000,
+                0
+              ],
+              "on_room_boundary": true,
+              "legal_effective_opening": "unknown",
+              "side_boundary_assumed_open": false
+            },
+            {
+              "room": "guest",
+              "rect_mm": [
+                250,
+                17630,
+                2400,
+                0
+              ],
+              "on_room_boundary": true,
+              "legal_effective_opening": "unknown",
+              "side_boundary_assumed_open": false
+            },
+            {
+              "room": "ktv-study",
+              "rect_mm": [
+                3500,
+                17630,
+                2200,
+                0
+              ],
+              "on_room_boundary": true,
+              "legal_effective_opening": "unknown",
+              "side_boundary_assumed_open": false
+            }
+          ],
+          "bedroom_largest_axis_rect": {
+            "guest": {
+              "rect_mm": [
+                115.0,
+                11485.0,
+                2410.0,
+                6030.0
+              ],
+              "area_sqm": 14.5323,
+              "method": "orthogonal-vertex-grid-enumeration"
+            }
+          }
+        }
+      ],
+      "frontage": {
+        "garden_sqm": 7.156,
+        "soil_sqm": 2.52,
+        "soil_ratio": 0.3521520402459475,
+        "service_over_garden_sqm": 0.0,
+        "soil_over_service_sqm": 0.0,
+        "soil_inside_garden": true,
+        "proposed_woody_count": 4,
+        "soil_depth_load_and_eligibility": "unknown",
+        "enclosure_nominal_add_sqm_per_upper_floor": 12.753,
+        "declared_as_exempt_landscape_after_enclosure": false,
+        "outdoor_units_mm": [
+          [
+            3270,
+            100,
+            900,
+            350
+          ],
+          [
+            5020,
+            100,
+            900,
+            350
+          ]
+        ],
+        "outdoor_service_mm": [
+          [
+            3270,
+            100,
+            900,
+            1350
+          ],
+          [
+            5020,
+            100,
+            900,
+            1350
+          ]
+        ],
+        "garden_polygon_mm": [
+          [
+            3270,
+            1450
+          ],
+          [
+            4170,
+            1450
+          ],
+          [
+            4170,
+            900
+          ],
+          [
+            5020,
+            900
+          ],
+          [
+            5020,
+            1450
+          ],
+          [
+            6000,
+            1450
+          ],
+          [
+            6000,
+            3900
+          ],
+          [
+            3270,
+            3900
+          ]
+        ],
+        "soil_rects_mm": [
+          [
+            3370,
+            1700,
+            1800,
+            1400
+          ]
+        ],
+        "outdoor_700_route": {
+          "points_mm": [
+            [
+              4765,
+              4500
+            ],
+            [
+              4765,
+              3550
+            ],
+            [
+              5600,
+              3550
+            ],
+            [
+              5600,
+              1100
+            ],
+            [
+              3720,
+              1100
+            ]
+          ],
+          "width_mm": 700,
+          "inside_model_open_or_living_area": true,
+          "soil_hit": false,
+          "unit_hits": [],
+          "actual_maintenance_and_wheelchair_access": "unknown"
+        },
+        "outdoor_routes_refrigerant_and_service_approval": "unknown"
+      },
+      "goals": [
+        {
+          "id": "master",
+          "value_sqm": 23.6651,
+          "target_sqm": 20,
+          "target_met_in_115_model": true
+        },
+        {
+          "id": "public-bath",
+          "value_sqm": 5.16,
+          "target_sqm": 5,
+          "target_met_in_115_model": true
+        },
+        {
+          "id": "private-bath",
+          "value_sqm": 6.133,
+          "target_sqm": 6,
+          "target_met_in_115_model": true
+        },
+        {
+          "id": "quiet-living",
+          "value_sqm": 29.2948,
+          "target_sqm": 28,
+          "target_met_in_115_model": true
+        },
+        {
+          "id": "tea-foyer",
+          "value_sqm": 5.1376,
+          "target_sqm": 5,
+          "target_met_in_115_model": true
+        },
+        {
+          "id": "garden",
+          "value_sqm": 7.156,
+          "target_sqm": 7,
+          "target_met_in_115_model": true
+        },
+        {
+          "id": "third-guest",
+          "value_sqm": 15.5156,
+          "target_sqm": 12,
+          "target_met_in_115_model": true
+        },
+        {
+          "id": "third-ktv",
+          "value_sqm": 14.3141,
+          "target_sqm": 20,
+          "target_met_in_115_model": false
+        }
+      ],
+      "upper_stack": {
+        "third_wet_over_second_master_sqm": 0.0,
+        "third_wet_over_second_bed_body_sqm": 0.0,
+        "third_entertainment_over_second_master_sqm": 9.062,
+        "third_entertainment_over_second_bed_body_sqm": 0.0,
+        "acoustic_and_vibration_approval": "unknown-even-if-not-directly-over-bed"
+      },
+      "third_ktv_meets_14_min_in_model": true,
+      "conclusion": "指定115mm假設與0.16㎡管井預算下，20／5／6㎡及茶水5㎡有幾何餘量；代價是前側新增12.753㎡室內輪廓、陽台與室外機重排，合法性／前排水仍未核。",
+      "adopted": false,
+      "buildable": "unknown",
+      "all_requirements_met": false
+    }
+  ],
+  "drainage": {
+    "rear_shaft_mm": [
+      5485,
+      15700,
+      400,
+      400
+    ],
+    "front_direct_drop_status": "rejected-new-obstruction-in-arcade",
+    "front_offset_ground_candidate_mm": [
+      115,
+      4015,
+      400,
+      400
+    ],
+    "front_offset_status": "unverified-within-stair-core-not-a-free-shaft",
+    "front_offset_plan_points_mm": [
+      [
+        315,
+        315
+      ],
+      [
+        315,
+        4215
+      ]
+    ],
+    "arcade_section": {
+      "floor2_level_mm": 4000,
+      "required_illustrative_clear_mm": 3500,
+      "illustrative_structure_depths_mm": [
+        200,
+        300,
+        500
+      ],
+      "pipe_support_envelopes_mm": [
+        150,
+        200,
+        250
+      ],
+      "illustrative_slope_denominator": 50,
+      "access_allowance_mm": 50
+    },
+    "notes": [
+      "前側不是新增落地管井可任意占騎樓；直落400×400示例明列拒絕。",
+      "偏移到1F既有梯核只是候選位置，會碰原樓梯預留，須證明整體梁板／梯下／檢修與防火不縮淨寬；未取得證據，不宣稱已排水可施工。",
+      "後右井在1F公衛內；列明本體避讓不等於未碰1F照護／迴轉，地坪降板及全部橫管未核。",
+      "生活污廢水、通氣、雨水、冷凝水與香火排氣分開；終端、清掃與通氣出口未定。"
+    ],
+    "offset_length_mm": 3900.0,
+    "section_applies_to": "front-wet-foyer",
+    "option_offset_lengths_mm": {
+      "front-bath-only": 2400.0,
+      "front-wet-foyer": 3900.0
+    },
+    "section_sensitivity": [
+      {
+        "structure_mm": 200,
+        "pipe_support_mm": 150,
+        "hypothetical_fall_mm": 78.0,
+        "remaining_clear_mm": 3522.0,
+        "target_mm": 3500
+      },
+      {
+        "structure_mm": 200,
+        "pipe_support_mm": 200,
+        "hypothetical_fall_mm": 78.0,
+        "remaining_clear_mm": 3472.0,
+        "target_mm": 3500
+      },
+      {
+        "structure_mm": 200,
+        "pipe_support_mm": 250,
+        "hypothetical_fall_mm": 78.0,
+        "remaining_clear_mm": 3422.0,
+        "target_mm": 3500
+      },
+      {
+        "structure_mm": 300,
+        "pipe_support_mm": 150,
+        "hypothetical_fall_mm": 78.0,
+        "remaining_clear_mm": 3422.0,
+        "target_mm": 3500
+      },
+      {
+        "structure_mm": 300,
+        "pipe_support_mm": 200,
+        "hypothetical_fall_mm": 78.0,
+        "remaining_clear_mm": 3372.0,
+        "target_mm": 3500
+      },
+      {
+        "structure_mm": 300,
+        "pipe_support_mm": 250,
+        "hypothetical_fall_mm": 78.0,
+        "remaining_clear_mm": 3322.0,
+        "target_mm": 3500
+      },
+      {
+        "structure_mm": 500,
+        "pipe_support_mm": 150,
+        "hypothetical_fall_mm": 78.0,
+        "remaining_clear_mm": 3222.0,
+        "target_mm": 3500
+      },
+      {
+        "structure_mm": 500,
+        "pipe_support_mm": 200,
+        "hypothetical_fall_mm": 78.0,
+        "remaining_clear_mm": 3172.0,
+        "target_mm": 3500
+      },
+      {
+        "structure_mm": 500,
+        "pipe_support_mm": 250,
+        "hypothetical_fall_mm": 78.0,
+        "remaining_clear_mm": 3122.0,
+        "target_mm": 3500
+      }
+    ],
+    "ground_options": [
+      {
+        "id": "b-rear-split",
+        "states": [
+          {
+            "state": "daily",
+            "rear_shaft_in_bath_nominal": true,
+            "rear_shaft_fixed_body_hits": [],
+            "ground_care_route_and_turning": "unknown-not-revalidated",
+            "floor1_source_unchanged": true
+          },
+          {
+            "state": "ritual",
+            "rear_shaft_in_bath_nominal": true,
+            "rear_shaft_fixed_body_hits": [],
+            "ground_care_route_and_turning": "unknown-not-revalidated",
+            "floor1_source_unchanged": true
+          },
+          {
+            "state": "carry",
+            "rear_shaft_in_bath_nominal": true,
+            "rear_shaft_fixed_body_hits": [],
+            "ground_care_route_and_turning": "unknown-not-revalidated",
+            "floor1_source_unchanged": true
+          }
+        ],
+        "source_states_hash": "9dcdc1260d1f166595d32d45cf70cd236ae888e6ff465e59c384896e3e10848f",
+        "roof_reference_hash": "bf2b55182782666d37117ae0b0c551f8e95308cdc02e9e0364da473133682e63",
+        "rear_legal_access": "unknown",
+        "front_downpipe_over_stair_reserved_box": 0.16
+      },
+      {
+        "id": "b-front-split",
+        "states": [
+          {
+            "state": "daily",
+            "rear_shaft_in_bath_nominal": true,
+            "rear_shaft_fixed_body_hits": [],
+            "ground_care_route_and_turning": "unknown-not-revalidated",
+            "floor1_source_unchanged": true
+          },
+          {
+            "state": "ritual",
+            "rear_shaft_in_bath_nominal": true,
+            "rear_shaft_fixed_body_hits": [],
+            "ground_care_route_and_turning": "unknown-not-revalidated",
+            "floor1_source_unchanged": true
+          },
+          {
+            "state": "carry",
+            "rear_shaft_in_bath_nominal": true,
+            "rear_shaft_fixed_body_hits": [],
+            "ground_care_route_and_turning": "unknown-not-revalidated",
+            "floor1_source_unchanged": true
+          }
+        ],
+        "source_states_hash": "276d6e4f3d202aefd296ac856aaf0e6180205a93fffb7ad9d3e268a66ba162fd",
+        "roof_reference_hash": "bf2b55182782666d37117ae0b0c551f8e95308cdc02e9e0364da473133682e63",
+        "rear_legal_access": "unknown",
+        "front_downpipe_over_stair_reserved_box": 0.16
+      }
+    ],
+    "front_discharge_constructible": false,
+    "all_gravity_drains_and_vents_designed": false,
+    "summary": "前排水是先決工程缺口；樓梯內候選不代表已留空，直落騎樓被拒。假設只有部分剖面能達目標，梁板及消防未知。"
+  },
+  "old_rear_bound": {
+    "rear_nominal_sqm": 37.56,
+    "fixed_dry_gross_sqm": 3.248,
+    "available_sqm": 34.312000000000005,
+    "minimum_gross_by_target_sqm": {
+      "20": 22.110082539299814,
+      "5": 6.081491269649904,
+      "6": 7.17966528168026
+    },
+    "minimum_gross_sum_sqm": 35.37123909062998,
+    "minimum_shortfall_sqm": 1.0592390906299727,
+    "assumptions": "固定後段37.56㎡、獨立乾室3.248㎡、三房各自每面115mm直角內縮；不計重疊牆帶的其他口徑。",
+    "scope": "此獨立內縮模型內的必要面積界；不是現地無法建造的通用證明，不能套用其他牆線或外框。"
+  },
+  "old_targets_and_values": {
+    "targets": {
+      "bedroom_target": 20,
+      "public_bath_target": 5,
+      "public_bath_min": 3.6,
+      "private_bath_target": 6,
+      "private_bath_min": 4.5
+    },
+    "case": {
+      "inset_each_mm": 115,
+      "bedroom": 20.2261,
+      "dry_room": 2.466,
+      "public_bath": 4.5067,
+      "private_bath": 4.7124,
+      "bedroom_meets_20": true,
+      "public_meets_min": true,
+      "private_meets_min": true,
+      "both_bath_targets": false
+    },
+    "public_after_shaft": {
+      "outline_finished_estimate_sqm": 4.5067,
+      "shaft_deduction_sqm": 0.04,
+      "after_shaft_estimate_sqm": 4.4667,
+      "method": "115-per-side-outline-estimate-minus-dedicated-shaft-only",
+      "actual_finished_survey": null,
+      "original_target_sqm": 5,
+      "original_min_sqm": 3.6
+    }
+  },
+  "protected_controls_unchanged": 149,
+  "primary_abc_or_3d_changed": false,
+  "new_geometry_is_independent_comparison": true,
+  "rendered_qa": "not-run",
+  "adopted": false,
+  "professional_approval": "unknown",
+  "all_requirements_met": false,
+  "actual_site_or_product_data_received": 0,
+  "preferred_research_option": "front-wet-foyer",
+  "research_preference_is_not_owner_adoption": true,
+  "source_hashes": {
+    "inputs/b-upper-replan.json": "83621a2af81211b06ff4dc2c9e8557641c1d551b05195605acd7a6ad7b1df3f5",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "structured/coordination/b-claude-round3-v1/review.json": "00baf0b3950e2593361e91698e4d72ac33e384edadd6da5a7d31b62e087b6223",
+    "structured/coordination/b-claude-round3-v1/artifact-manifest.json": "ad7327b07ef803ab57cf7390f84a3919da4165124a84e33288953981fa591062",
+    "structured/coordination/b-fengshui-strict-v1/review.json": "e595361db8281be6daf361251afe0187824c7bcb99d556f930cf90f15bf2f954",
+    "inputs/references/b-owner-ritual-answers-20261106.json": "736f5a477ce1fbfd8e1bf460ecf49f9043a83635201d1598e3e1842e6460ddb9",
+    "inputs/requirements.json": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066",
+    "inputs/planning-register.json": "140493058b145071afb472bf927860d48a43a6f4407b9b59e5a86705fbe058b0",
+    "inputs/brief/B.json": "63ed4fc045fc6f2cc4021b8bd784cb7cc9fd46789155fc19aa1a55f33016e55a",
+    "house_design/b_upper_replan.py": "a251d37dc84bd54b9292b6802180ca7fd66c679a7e43dc714b3fed160dc2e5c5",
+    "scripts/export_b_upper_replan.py": "3a3cc271cf7d9fc20759d4bca17b582ab672f551981c6e8c1c20933192c09a3d",
+    "house_design/b_claude_round3.py": "040a7b75fc604dc147b471800ae4c1c8a57935182dcceea26591514b106ec9d0",
+    "scripts/export_abc_next_improvements.py": "875c13027466776a6e1661dae369e45c823c661c5e0369d8ee95b6535420e701",
+    "Docs/b-upper-replan-v1.md": "9b42184fbfeb05c3ffcfb45dbff7886b3d700d39ffc7185f0827c21ea5f5652a"
+  },
+  "report_hash": "51f8f16f8f30c82b82c9fe779fdd8874e155dad5292fbee1bd3827328c962f6a"
+}

@@ -1,0 +1,140 @@
+{
+  "schema": "house-abc-quote-review-static-v1",
+  "date": "2026-11-11",
+  "scope": "Same-scope quote review instructions in existing SEQ-10 page, twelve original quote-topic overlap notes and eight additional blank columns in the existing quote CSV; no actual quotations imported or totals calculated.",
+  "source_and_artifact_sha256": {
+    "inputs/design-discussion-basis.json": "62caa6b8b494c4cbbfdb327cb4409ff8d8cc4db180006345566688c4de49af03",
+    "inputs/project-status.json": "f564060cb026f0da41bfa831e7038dd91404e20481f9023b3c07e50ec316dd15",
+    "inputs/builder-communication-plan.json": "13270205de158fb4302f7cd3cb80539900e89c405504532d1f43fa9bc1cd5fd4",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "inputs/requirements.json": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066",
+    "inputs/planning-register.json": "140493058b145071afb472bf927860d48a43a6f4407b9b59e5a86705fbe058b0",
+    "house_design/design_discussion_basis.py": "e99d6ef6c3077194cc4a1de69a45114a5bda6ebfd5f9046ac8791e3bcef60a42",
+    "scripts/export_design_discussion_basis.py": "7a23cfd11f84af408f11a332bbe99f1756d5c38b1d631cd553717873d70524e1",
+    "tests/test_design_discussion_basis.py": "8ec5cb259ac9d9b62363c01f6c5a6d6a68123d236ad0ad4aab58aa82aceaea3f",
+    "tests/test_project_next_steps.py": "dc837be6f8a27553f694645701cfccbbfabdce085a1f70c5f794d3c1de2f0940",
+    "tests/test_builder_communication.py": "5621666ecfa97b6eb72e6ec22321ac9bc367d5d8cb7f1d1f30d97a677b42f032",
+    "tests/test_project_status.py": "73098e7a96b4a2fa514019b39e7445b0af0f0cbd19a8ff29dee5ce660933145b",
+    "tests/test_repository_health.py": "ac385bd69d28d58f89a7e3ae415f1fbafd3196217acc255e5074c1ddad1d51f6",
+    "Docs/abc-quote-review-v1.md": "38e0f7de53e6f1f1505e37960ec549ab937e02d0c776bcae8b6898cd790369b3",
+    "Docs/design-discussion-basis-v1.md": "f2544e808e8af25e7fc3cbf6c282d7b988ebf9e67ed8f04e3a3d6c2959b154dd",
+    "Docs/project-status-v1.md": "8b185795797b2ecea4543b98e0a64d43ce0e710584e22f89d88531d5c042a77f",
+    "README.md": "01f2cbb5005db9b1ec40a0f9d89c55f3fb3a8dcdc6478a2df8072f5c6bdecdb1",
+    "scripts/README.md": "25cdfa2741bbb0b05137e1f5a981b2ec690dd20dbd596364ac383a7a3f74de22",
+    "structured/planning/project-next-steps/review.json": "ea465cb0c34e901cefdee9b1ce3c750a55837c32d4ea6bb482a80938b3c465f1",
+    "structured/planning/project-next-steps/artifact-manifest.json": "2f8b6c969880fbce7e5bfa14fa8777dd12c1947f6397c689e0671e1a02c517ed",
+    "structured/planning/builder-communication/review.json": "549bb4aad6f07bb2f87f734ba15b6ca4ffd8cd1aaaecc3356185bb106ce655a8",
+    "structured/planning/builder-communication/artifact-manifest.json": "41e476fd7c97aaaf4b93feeff958c5ca07aeaaf27e83ea6e6f9a2461e35008ce",
+    "structured/planning/design-discussion-basis/review.json": "b3bf8847e90950583e1edfa5e7f0fe49708ab18006dad6f53abbf77985cea4f4",
+    "structured/planning/design-discussion-basis/artifact-manifest.json": "82580720f4264e884b0cc463925e9dcb7b9e50c8c1f1b6d45ec66ea903e30e1f",
+    "structured/planning/design-discussion-basis/archive-manifest.json": "fadd4f6aba7c2f4fe02ba83e444b544a4e21b119d2b83eafab10c14a4daf7081",
+    "structured/planning/design-discussion-basis/ABC-discussion-package.zip": "21c67346d01bf4e62bcde775f0aad878354fb269050a72dab73ffa29415d1829",
+    "structured/planning/design-discussion-basis/decision-sequence.html": "c41e8d7e2f0553efbceecd098e4f093df4d6abb763d048f43eabc0bc61acc213",
+    "structured/planning/design-discussion-basis/index.html": "9b7e63267d24ada10f991eed0c7cb4b6c3c239f663839336ebbe649e6287d750",
+    "structured/planning/design-discussion-basis/same-scope-quotes.csv": "ce29926f046e9e251d002aaa83b095c19d84d97f4f63ccc7cc606985f8c2cbaa"
+  },
+  "checks": {
+    "focused_tests": {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q --tb=short -p no:cacheprovider tests/test_design_discussion_basis.py tests/test_project_next_steps.py tests/test_builder_communication.py tests/test_project_status.py tests/test_repository_health.py",
+      "passed": 191,
+      "failed": 0,
+      "elapsed_seconds": 8.32,
+      "exit_code": 0
+    },
+    "ruff": {
+      "command": "timeout 20s .venv/bin/ruff check house_design/design_discussion_basis.py scripts/export_design_discussion_basis.py tests/test_design_discussion_basis.py",
+      "exit_code": 0
+    },
+    "exports_check": {
+      "scripts": [
+        "export_project_next_steps.py",
+        "export_builder_communication.py",
+        "export_design_discussion_basis.py"
+      ],
+      "individual_timeout_seconds": 20,
+      "all_exit_codes": 0
+    },
+    "repository_health": {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/check_repository_health.py --check",
+      "files": 1701,
+      "public_json_checked": 280,
+      "markdown_checked": 171,
+      "local_links_checked": 1032,
+      "issues": [],
+      "exit_code": 0,
+      "scope": "Before adding this evidence file; bounded inventory, JSON syntax and local Markdown links only"
+    },
+    "git_diff_check": {
+      "command": "timeout 20s git diff --check",
+      "exit_code": 0
+    },
+    "packet_source_hashes_verified": 370,
+    "protected_controls_unchanged": 149,
+    "current_index_packages_match": 7,
+    "historical_drift_packages_retained": 5,
+    "formal_requirement_statuses": {
+      "candidate": 66
+    },
+    "formal_register_statuses": {
+      "unknown": 105
+    },
+    "old_browser_passed_reused": false
+  },
+  "quote_review": {
+    "steps": 6,
+    "existing_quote_topics": 12,
+    "new_quote_topics": 0,
+    "added_columns": 8,
+    "actual_quote_rows_blank": 12,
+    "actual_quote_files_imported": 0,
+    "each_vendor_option_and_quote_revision_needs_distinct_row": true,
+    "quote_topics_are_not_nonoverlapping_bill_of_quantities": true,
+    "base_total_delta_and_replacement_total_distinguished": true,
+    "net_credit_not_subtracted_twice": true,
+    "mutually_exclusive_B_entries_and_system_options_not_added": true,
+    "duplicate_work_and_shared_cost_allocation_need_explicit_basis": true,
+    "A_builder_and_designer_scope_and_credit_not_assumed": true,
+    "B_default_rear_and_fallback_front_and_family_rules_retained": true,
+    "C_care_public_WC_and_one_2F_washer_retained": true,
+    "actual_prices_payment_ratios_and_choices_blank": true,
+    "automatic_total": null,
+    "automatic_vendor_selection": null,
+    "new_form_or_quote_importer_created": false
+  },
+  "handoff": {
+    "public_directory": "structured/planning/design-discussion-basis",
+    "private_snapshot_created": "inputs/private/design-discussion-025",
+    "files": 106,
+    "zip_entries": 104,
+    "zip_sha256": "21c67346d01bf4e62bcde775f0aad878354fb269050a72dab73ffa29415d1829",
+    "zip_bytes": 508899,
+    "all_private_files_match_public": true,
+    "html_pages": 12,
+    "csv_forms": 18,
+    "svg_drawings": 69,
+    "bc_comparisons": 7,
+    "decision_items": 12,
+    "work_items": 14,
+    "older_snapshots_001_to024_own_artifacts_verified": 24,
+    "older_snapshots_written": false,
+    "old_evidence_overwritten": false
+  },
+  "not_run": [
+    "browser/WebGL",
+    "full pytest",
+    "new geometry or scene generation",
+    "formal drawing import",
+    "actual quote/private reply import",
+    "external AI request",
+    "vendor contact or quote requests",
+    "purchase or payment",
+    "notifications or meeting invitations",
+    "commit",
+    "push"
+  ],
+  "adopted": false,
+  "primary_abc_or_3d_changed": false,
+  "original_family_rules_changed": false,
+  "professional_approval": "unknown",
+  "construction_release": false
+}

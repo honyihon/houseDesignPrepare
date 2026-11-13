@@ -120,7 +120,7 @@ def test_c_real_window_visitor_path_bed_projection_and_unshrunk_products(study, 
         assert not any(overlaps(turn, wall) for r in allowed for wall in export.wall_strips(r))
     unit = c["C:floor-1:living-right"]["tour_features"]["hvac_units"][0]
     route = unit["route"]
-    assert route["estimated_routed_length_mm"] == pytest.approx(sum(export.math.dist(a, b) for a, b in zip(route["polyline_mm"], route["polyline_mm"][1:])) + route["bend_service_allowance_mm"])
+    assert route["estimated_routed_length_mm"] == pytest.approx(sum(export.math.dist(a, b) for a, b in zip(route["polyline_mm"], route["polyline_mm"][1:], strict=False)) + route["bend_service_allowance_mm"])
     assert route["compliance"] == "unknown"
 
 
@@ -197,7 +197,7 @@ def test_generated_svg_html_3d_parity_and_sources_current(study):
 
 
 def test_single_run_not_doubled_and_c_public_area_is_not_recredited(study):
-    for bid, prefix in [("C", "c-window"), ("B", "b-program")]:
+    for _bid, prefix in [("C", "c-window"), ("B", "b-program")]:
         rows = [r for r in export.sensitivity(study) if r["option"].startswith(prefix)]
         assert [r["parallel_flight_run_mm"] for r in rows] == [2160, 2700, 2970]
         assert rows[1]["well_depth_mm"] - rows[0]["well_depth_mm"] == 540

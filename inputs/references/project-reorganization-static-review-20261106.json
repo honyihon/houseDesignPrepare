@@ -1,0 +1,459 @@
+{
+  "schema": "house-project-reorganization-static-review-v1",
+  "date": "2026-11-06",
+  "status": "bounded-review-completed-not-design-approval",
+  "baseline_commit": "81996e1c3da40b3281b97e623a132c8ad10613d4",
+  "scope": "公開專案維護／導覽／來源盤點；非完整設計、安全、法規或產品審查。",
+  "file_hashes": {
+    ".claude/commands/export-final-design-html.md": "47ef3af88363540a81acc15248213c347434ad93245a349c48548d1dcfb69252",
+    ".claude/commands/workflow-house-all-in-one.md": "7f8412fde3b3dce0ac7fbfc7ef83b5a9f542f033d1a2dcff7dcc30b9500cdc01",
+    ".gitignore": "74f6e7d6009babd81afcd60cb460fc18d90e5cd918bfc17ead24b22de17ccaf7",
+    "CLAUDE.md": "0ae7855a3597230dbce6a6dd9a0e3101e5fe6a0a772de1193a73c32d373b0e3d",
+    "Docs/coordination-review.md": "08eace63e5c6c99191ec97206511a3603863211e850870e22026da0c5af0df28",
+    "Docs/project-status-v1.md": "f06a0d4131771b19ca2a5805035bee747a67a2a3b6459a0bdf4b138a39de62d8",
+    "README.md": "c2757e8908f3e389bc2098c32d5a659088ed150e217535b1bc343b57c988da14",
+    "house_design/project_status.py": "db73eb9b066353cc282e67dc15e4b430d9d4e4d398eafaf7eeec5f98af1acab0",
+    "inputs/project-status.json": "1808b042eba3f07023d00431d0053236f7b44835e82587a9d2b4102322360282",
+    "scripts/README.md": "4f7c44b2a686fb0ff9a4e8a9e9fa6e2a323d7ad1d3aa5b4e08d542c624627207",
+    "scripts/check_project_status.py": "691cd09be04397a13a5491a9b12ee78136fd0ae2c04a2b268f3293a8e20ec03c",
+    "scripts/export_preparation_review.py": "ea7d6754025cea76317ca550b5463820467e8de3b62984635e71c167d0f650df",
+    "tests/test_preparation_review.py": "c0f6ad138c981ca0593cb5f2ef9059fd66614f82572855d0312f21b94c874d43",
+    "tests/test_project_status.py": "73098e7a96b4a2fa514019b39e7445b0af0f0cbd19a8ff29dee5ce660933145b",
+    ".claude/settings.example.json": "f71ee85875e43c5157ba50538cfdb9b96b38f8a9caf2986dc3d8769f726daf72",
+    "Docs/archive/README.md": "ef9b256b229e12b09d667c6ccee381506483634a50c80a1a42177cb0ea4dfaea",
+    "Docs/archive/coordination-review-before-reorganization-20261106.md": "4e776e2707a92641b348b25736d202e2d125b32902da12ae400029eb19b4b162",
+    "Docs/archive/project-status-before-reorganization-20261106.md": "005f13db49d1d9dee579e5c388106e5d575151d023c80103f79b94be2598c1ce",
+    "Docs/archive/readme-before-reorganization-20261106.md": "edffecd05b2d43218197bee6982d8b57e5e103c0d7b1c37ea50dbfca1d22c040",
+    "Docs/archive/scripts-readme-before-reorganization-20261106.md": "97c5f69ab247464726bef5ccde21c1db0cb6a56cd6125bcb2f031000e8a0bd3f",
+    "Docs/project-reorganization-v1.md": "d7460103d274505cf96cb080fe73c8a48458888bbb48f05bfd8c6cab47022876",
+    "scripts/check_repository_health.py": "fae5ced7c5195e31da94ce2c5d648535b27a9bfcbc8b2c88a9a8faa6b8d9c01f",
+    "tests/test_repository_health.py": "ac385bd69d28d58f89a7e3ae415f1fbafd3196217acc255e5074c1ddad1d51f6"
+  },
+  "file_hash_binding": "綁定這輪23個新增／修改的公開檔案；不含本紀錄自身，亦不讀取／發布本機權限內容。來源改變後需重核。",
+  "inventory": {
+    "files": 1269,
+    "public_json_syntax_checked": 186,
+    "markdown_checked": 138,
+    "local_links_checked": 747,
+    "issues": [],
+    "duplicate_groups_kept": [
+      {
+        "bytes_each": 3021,
+        "paths": [
+          "structured/service-study/b32-front-compact-service.svg",
+          "structured/service-study/b32-rear-compact-service.svg"
+        ],
+        "action": "keep-until-generator-and-evidence-references-reviewed"
+      },
+      {
+        "bytes_each": 3021,
+        "paths": [
+          "structured/service-study/b32-front-storage-first.svg",
+          "structured/service-study/b32-rear-storage-first.svg"
+        ],
+        "action": "keep-until-generator-and-evidence-references-reviewed"
+      },
+      {
+        "bytes_each": 3021,
+        "paths": [
+          "structured/service-study/b32-front-wide-service.svg",
+          "structured/service-study/b32-rear-wide-service.svg"
+        ],
+        "action": "keep-until-generator-and-evidence-references-reviewed"
+      },
+      {
+        "bytes_each": 11189,
+        "paths": [
+          "scripts/templates/c1f-options.html",
+          "structured/candidates/c1f-options.html"
+        ],
+        "action": "keep-until-generator-and-evidence-references-reviewed"
+      },
+      {
+        "bytes_each": 15399,
+        "paths": [
+          "scripts/templates/arcade-capacity.html",
+          "structured/candidates/arcade-capacity.html"
+        ],
+        "action": "keep-until-generator-and-evidence-references-reviewed"
+      }
+    ]
+  },
+  "status_index": {
+    "default_package": "fresh-air-planning",
+    "sources_hashed": 273,
+    "current": [
+      {
+        "id": "fresh-air-planning",
+        "source_state": "declared-source-hashes-match",
+        "artifact_state": "declared-artifact-hashes-match",
+        "issues": []
+      },
+      {
+        "id": "kaohsiung-current",
+        "source_state": "declared-source-hashes-match",
+        "artifact_state": "not-declared",
+        "issues": []
+      },
+      {
+        "id": "fresh-air-detail",
+        "source_state": "declared-source-hashes-match",
+        "artifact_state": "declared-artifact-hashes-match",
+        "issues": []
+      },
+      {
+        "id": "fresh-air-layout",
+        "source_state": "declared-source-hashes-match",
+        "artifact_state": "declared-artifact-hashes-match",
+        "issues": []
+      },
+      {
+        "id": "fresh-air-basis",
+        "source_state": "declared-source-hashes-match",
+        "artifact_state": "declared-artifact-hashes-match",
+        "issues": []
+      },
+      {
+        "id": "b-ventilation-detail",
+        "source_state": "declared-source-hashes-match",
+        "artifact_state": "declared-artifact-hashes-match",
+        "issues": []
+      },
+      {
+        "id": "b-claude-round3",
+        "source_state": "declared-source-hashes-match",
+        "artifact_state": "declared-artifact-hashes-match",
+        "issues": []
+      }
+    ],
+    "history": [
+      {
+        "id": "c-coordination-history",
+        "source_state": "source-changed-rebuild-required",
+        "changed_sources": [
+          "Docs/coordination-review.md"
+        ]
+      },
+      {
+        "id": "current-basis",
+        "source_state": "source-changed-rebuild-required",
+        "changed_sources": [
+          "scripts/lib/model3d_openings.py",
+          "scripts/lib/model3d_review.py"
+        ]
+      },
+      {
+        "id": "b-rear-right",
+        "source_state": "source-changed-rebuild-required",
+        "changed_sources": [
+          "scripts/lib/model3d_openings.py",
+          "scripts/lib/model3d_review.py"
+        ]
+      },
+      {
+        "id": "c-care-layout",
+        "source_state": "source-changed-rebuild-required",
+        "changed_sources": [
+          "scripts/lib/model3d_openings.py",
+          "scripts/lib/model3d_review.py"
+        ]
+      },
+      {
+        "id": "c-care-products",
+        "source_state": "source-changed-rebuild-required",
+        "changed_sources": [
+          "scripts/lib/model3d_openings.py",
+          "scripts/lib/model3d_review.py"
+        ]
+      },
+      {
+        "id": "legacy-abc",
+        "source_state": "snapshot-only-no-source-manifest",
+        "changed_sources": []
+      }
+    ]
+  },
+  "snapshot_source_inventory": {
+    "manifests_with_paths": 44,
+    "matching": 29,
+    "changed": [
+      {
+        "file": "structured/candidates/b32-rear-right/review.json",
+        "declared_sources": 38,
+        "mismatched_sources": [
+          "scripts/lib/model3d_openings.py",
+          "scripts/lib/model3d_review.py"
+        ]
+      },
+      {
+        "file": "structured/candidates/c-care-bath-door/review.json",
+        "declared_sources": 91,
+        "mismatched_sources": [
+          "scripts/lib/model3d_openings.py",
+          "scripts/lib/model3d_review.py"
+        ]
+      },
+      {
+        "file": "structured/candidates/c-care-bath-fit/review.json",
+        "declared_sources": 89,
+        "mismatched_sources": [
+          "scripts/lib/model3d_openings.py",
+          "scripts/lib/model3d_review.py"
+        ]
+      },
+      {
+        "file": "structured/candidates/c-care-bath-layout/review.json",
+        "declared_sources": 99,
+        "mismatched_sources": [
+          "scripts/lib/model3d_openings.py",
+          "scripts/lib/model3d_review.py"
+        ]
+      },
+      {
+        "file": "structured/candidates/c-care-bath-readiness/review.json",
+        "declared_sources": 105,
+        "mismatched_sources": [
+          "scripts/lib/model3d_openings.py",
+          "scripts/lib/model3d_review.py"
+        ]
+      },
+      {
+        "file": "structured/candidates/c-care-bath/review.json",
+        "declared_sources": 82,
+        "mismatched_sources": [
+          "scripts/lib/model3d_openings.py",
+          "scripts/lib/model3d_review.py"
+        ]
+      },
+      {
+        "file": "structured/candidates/c-care-entry/review.json",
+        "declared_sources": 65,
+        "mismatched_sources": [
+          "scripts/lib/model3d_openings.py",
+          "scripts/lib/model3d_review.py"
+        ]
+      },
+      {
+        "file": "structured/candidates/c-care-route/review.json",
+        "declared_sources": 73,
+        "mismatched_sources": [
+          "scripts/lib/model3d_openings.py",
+          "scripts/lib/model3d_review.py"
+        ]
+      },
+      {
+        "file": "structured/candidates/current-design-basis/review.json",
+        "declared_sources": 57,
+        "mismatched_sources": [
+          "scripts/lib/model3d_openings.py",
+          "scripts/lib/model3d_review.py"
+        ]
+      },
+      {
+        "file": "structured/candidates/interior-improvements/review.json",
+        "declared_sources": 35,
+        "mismatched_sources": [
+          "scripts/lib/model3d_review.py",
+          "scripts/lib/model3d_openings.py"
+        ]
+      },
+      {
+        "file": "structured/coordination/c-current-v1/review.json",
+        "declared_sources": 100,
+        "mismatched_sources": [
+          "Docs/coordination-review.md"
+        ]
+      },
+      {
+        "file": "structured/discussions/abc-preparation-meeting.json",
+        "declared_sources": 47,
+        "mismatched_sources": [
+          "scripts/export_preparation_review.py",
+          "scripts/lib/model3d_openings.py",
+          "scripts/lib/model3d_review.py"
+        ]
+      },
+      {
+        "file": "structured/reconciliation/requirement-ledger.json",
+        "declared_sources": 60,
+        "mismatched_sources": [
+          "scripts/export_preparation_review.py",
+          "scripts/lib/model3d_openings.py",
+          "scripts/lib/model3d_review.py"
+        ]
+      },
+      {
+        "file": "structured/service-detail/b32-service-detail.json",
+        "declared_sources": 52,
+        "mismatched_sources": [
+          "scripts/export_preparation_review.py",
+          "scripts/lib/model3d_openings.py",
+          "scripts/lib/model3d_review.py"
+        ]
+      },
+      {
+        "file": "structured/service-study/b32-services.json",
+        "declared_sources": 51,
+        "mismatched_sources": [
+          "scripts/export_preparation_review.py",
+          "scripts/lib/model3d_openings.py",
+          "scripts/lib/model3d_review.py"
+        ]
+      }
+    ],
+    "specialized_resolver_required": [
+      {
+        "file": "structured/predesign/consistency-review.json",
+        "reason": "logical-source-keys-require-package-specific-resolver"
+      },
+      {
+        "file": "structured/predesign/owner-workspace.json",
+        "reason": "logical-source-keys-require-package-specific-resolver"
+      }
+    ],
+    "unique_source_paths_checked": 254
+  },
+  "checks": [
+    {
+      "command": "timeout 20s .venv/bin/ruff check house_design scripts tests --output-format concise",
+      "status": "passed",
+      "scope": "全Python靜態規則，不執行完整pytest或場景。",
+      "initial_findings_fixed": 12
+    },
+    {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_project_status.py tests/test_repository_health.py tests/test_workflow_contracts.py",
+      "status": "passed",
+      "tests_passed": 44,
+      "reported_seconds": 0.82
+    },
+    {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_abc_fresh_air_planning.py",
+      "status": "passed",
+      "tests_passed": 44,
+      "reported_seconds": 0.84,
+      "scope": "單一既有條件流程回歸，小範圍，不是全套pytest。"
+    },
+    {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_abc_fresh_air_planning.py --check",
+      "status": "passed",
+      "actual_values_received": 0,
+      "engineering_checks": {
+        "pending": 101
+      },
+      "protected_controls": 149
+    },
+    {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/check_repository_health.py --check",
+      "status": "passed",
+      "public_json_syntax_checked": 186,
+      "markdown_files": 138,
+      "local_links": 747,
+      "issues": 0
+    },
+    {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/check_project_status.py --check",
+      "status": "passed",
+      "scope": "7個現行包宣告來源相符；6個歷史仍列出差異，不修改舊hash。6個現行包另有manifest且位元組相符；看圖包本索引只檢查來源。"
+    },
+    {
+      "method": "20秒內Node vm.Script僅解析51個CommonJS檔案",
+      "status": "passed",
+      "executed": false,
+      "syntax_errors": 0
+    },
+    {
+      "method": "20秒內Node唯讀盤點全庫44份檔案路徑source_hashes，2份邏輯鍵另列專用解析器",
+      "status": "completed-with-historical-differences",
+      "matching": 29,
+      "changed": 15,
+      "missing_file_claim_for_logical_aliases": false
+    },
+    {
+      "command": "timeout 20s git diff --check",
+      "status": "passed"
+    },
+    {
+      "method": "逐件比對149份受保護來源；既有本機權限檔與81996e1比較（只正規化CRLF）",
+      "status": "passed",
+      "protected_controls_checked": 149,
+      "protected_control_mismatches": [],
+      "local_permission_content_preserved": true
+    }
+  ],
+  "navigation_line_counts": {
+    "README.md": {
+      "before_lines": 172,
+      "after_lines": 49
+    },
+    "scripts/README.md": {
+      "before_lines": 774,
+      "after_lines": 65
+    },
+    "Docs/project-status-v1.md": {
+      "before_lines": 110,
+      "after_lines": 47
+    },
+    "Docs/coordination-review.md": {
+      "before_lines": 102,
+      "after_lines": 80
+    }
+  },
+  "cleanup": {
+    "diagrams_deleted": 0,
+    "diagrams_or_design_json_edited": 0,
+    "source_snapshots_deleted": 0,
+    "duplicate_groups_kept": 5,
+    "reason": "模板與產物、獨立前後方案局部圖有角色及引用，不能只因位元組相同就刪除。",
+    "archived_documents": [
+      {
+        "original": "README.md",
+        "archive": "Docs/archive/readme-before-reorganization-20261106.md"
+      },
+      {
+        "original": "scripts/README.md",
+        "archive": "Docs/archive/scripts-readme-before-reorganization-20261106.md"
+      },
+      {
+        "original": "Docs/project-status-v1.md",
+        "archive": "Docs/archive/project-status-before-reorganization-20261106.md"
+      },
+      {
+        "original": "Docs/coordination-review.md",
+        "archive": "Docs/archive/coordination-review-before-reorganization-20261106.md"
+      }
+    ],
+    "removed_from_git_index": ".claude/settings.local.json",
+    "local_permission_file_still_on_disk": true,
+    "local_permission_file_git_tracked": false,
+    "recovery": "歸檔已保留內容；原導覽及本機設定舊版亦可從81996e1查看／恢復。",
+    "generated_private_files_or_caches_removed": false
+  },
+  "protected_scope": {
+    "original_abc_and_current_3d_changed": false,
+    "primary_layout_or_requirements_adopted": false,
+    "source_expected_hashes_rewritten": false,
+    "current_source_controls_unchanged": 149,
+    "b_rear_front_options_retained": true,
+    "c_closable_partitions_and_single_2f_washer_retained": true,
+    "full_3d_or_historical_output_regenerated": false,
+    "committed_or_pushed_this_reorganization": false
+  },
+  "limitations": [
+    "全庫盤點與靜態檢查不等於所有程式語意、每層平面或每個生活情境已驗收。",
+    "46份宣告來源中44份可按檔案路徑比對；15份歷史差異保留，2份邏輯鍵需專用解析器，沒有改成通過。",
+    "修過preparation匯出器的靜態寫法，原歷史衍生快照有來源差異，未重產或更新預期雜湊。",
+    "現在輸入仍0個實際工程條件；數值／資料／專業待核不因整理而升為已確認。",
+    "圖面中B浴廁面積／外窗、A套衛取捨、基地及梁板、家規／照護／實物搬運等缺口依專題繼續保留。",
+    "原圖、比較／前後備案、正式版次、QA證據及私人檔均未刪除；只退出版控本機CLI權限檔。",
+    "HTML／瀏覽器畫面未驗，不能將此次文件檢查當作畫面passed。"
+  ],
+  "not_run": [
+    "瀏覽器／WebGL",
+    "全套pytest／coverage",
+    "整套3D場景runtime或重生",
+    "大量或高解析轉圖",
+    "外部AI討論",
+    "選品／法規新研究",
+    "法規、結構、消防、風水、照護或施工簽證"
+  ]
+}

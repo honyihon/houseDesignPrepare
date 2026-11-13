@@ -1,0 +1,1420 @@
+{
+  "schema": "house-b-front-drop-claude-report-v1",
+  "date": "2026-11-10",
+  "config": {
+    "schema": "house-b-front-drop-claude-options-v1",
+    "date": "2026-11-10",
+    "adopted": false,
+    "parent_report": "structured/coordination/b-front-drop-stair-v1/review.json",
+    "provenance": "inputs/references/b-front-drop-claude-round1-20261110.json",
+    "response": "inputs/references/b-front-drop-claude-round1-20261110.md",
+    "pinned_sources": {
+      "structured/coordination/b-front-drop-stair-v1/review.json": "420c80017812b34f76105ffd2b642124b8853f448d41ded219c3c246a93478ca",
+      "structured/coordination/b-front-drop-stair-v1/artifact-manifest.json": "3ebf51748254d10232418339218abc67009dfbabc97883f18cdb618fbe4d4a85",
+      "inputs/references/b-front-drop-claude-round1-20261110.md": "6e51137c069d62837cb09b08dcbc8dcb641257ee2575f6b0a07479f57c5c5c90"
+    },
+    "normal_stair_waist_cases_mm": [
+      150,
+      200,
+      250,
+      300
+    ],
+    "extra_fitting_above_original_package_cases_mm": [
+      0,
+      25,
+      50
+    ],
+    "separate_gap_above_package_to_soffit_mm": 50,
+    "chase_outward_growth_cases_mm": [
+      0,
+      25,
+      50
+    ],
+    "candidates": [
+      {
+        "id": "G4",
+        "origin": "Claude第一輪",
+        "label": "原梯回程下落管，未增加室內落差",
+        "shaft_mm": [
+          1280,
+          4990,
+          400,
+          400
+        ],
+        "header_route_mm": [
+          [
+            315,
+            1980
+          ],
+          [
+            315,
+            3900
+          ],
+          [
+            1480,
+            3900
+          ],
+          [
+            1480,
+            5190
+          ]
+        ],
+        "interior_vertical_drop_mm": 0,
+        "drop_point_mm": null,
+        "mirror_first_floor_stair": false
+      },
+      {
+        "id": "G4D",
+        "origin": "Codex交叉核算後提案，待Claude第二輪",
+        "label": "原梯保留，室內平台上方先落500再接梯下",
+        "shaft_mm": [
+          1280,
+          4990,
+          400,
+          400
+        ],
+        "header_route_mm": [
+          [
+            315,
+            1980
+          ],
+          [
+            315,
+            3900
+          ],
+          [
+            315,
+            4700
+          ],
+          [
+            1480,
+            4700
+          ],
+          [
+            1480,
+            5190
+          ]
+        ],
+        "interior_vertical_drop_mm": 500,
+        "drop_point_mm": [
+          315,
+          4700
+        ],
+        "mirror_first_floor_stair": false
+      },
+      {
+        "id": "G5",
+        "origin": "Claude第一輪",
+        "label": "全梯鏡像的比較方向，未作全棟重排",
+        "shaft_mm": [
+          115,
+          4990,
+          400,
+          400
+        ],
+        "header_route_mm": [
+          [
+            315,
+            1980
+          ],
+          [
+            315,
+            3900
+          ],
+          [
+            315,
+            5190
+          ]
+        ],
+        "interior_vertical_drop_mm": 0,
+        "drop_point_mm": null,
+        "mirror_first_floor_stair": true
+      }
+    ],
+    "claim_review": [
+      {
+        "id": "CC-01",
+        "topic": "原四線與G4／G5延長線算式",
+        "assessment": "同口徑複算一致",
+        "correction": "只對P4器具中心假排口及同起算、統一1:50模型成立，不是實際管線。"
+      },
+      {
+        "id": "CC-02",
+        "topic": "騎樓與室內分段檢討",
+        "assessment": "方向可保留，適用淨高待核",
+        "correction": "到y3900茶水線4465／假預算3510.7，較全末端不同；3500是比較值，實際各區要求未確認。"
+      },
+      {
+        "id": "CC-03",
+        "topic": "y3900、y4970必定有梁",
+        "assessment": "缺少真實結構證據",
+        "correction": "目前只知騎樓／室內與平台／梯段界線；有無梁、梁底及可穿越位置均未知，不能描述成已知梁。"
+      },
+      {
+        "id": "CC-04",
+        "topic": "三樓KTV取消污水可減量",
+        "assessment": "與現行Q3資料不符",
+        "correction": "Q3前KTV只有沙發／桌／螢幕／機櫃，已無濕茶水；前井預留不代表有3F污水接入，不增加不存在的負荷，也不取消2F通氣。"
+      },
+      {
+        "id": "CC-05",
+        "topic": "G4在高回程下，地面看似空閒",
+        "assessment": "值得補核，原高程不足",
+        "correction": "400外框比平台後緣只退20；還要比較整組管線頂部與最不利後緣梯底，不只比柱中心或踏面頂。"
+      },
+      {
+        "id": "CC-06",
+        "topic": "G5鏡像保原階數便可沿用",
+        "assessment": "重大改梯方向，未完成設計",
+        "correction": "本輪只鏡像1F踏步投影作反例，2F到達、Q3及RF全部門梯與淨高要重核；不能繼承舊通行或原梯結果。"
+      },
+      {
+        "id": "CC-07",
+        "topic": "污水在一般通路上方需重新決定",
+        "assessment": "不新增一律禁止或默認許可",
+        "correction": "屋主先前只明示搬轎通道上方不禁止污水；本提案避祭祀／乾背投影，不延伸成保護區可穿。一般樓梯上方仍核實際設計及家中規矩，不因模型猜測強迫現在選擇。"
+      },
+      {
+        "id": "CC-08",
+        "topic": "前後合法終端及地下通行",
+        "assessment": "必要先決條件",
+        "correction": "地下前出路只有幾何下界5190／假坡103.8，接管權利／深度／覆土／地梁未知；後出路不能默認地下可穿祭祀。"
+      },
+      {
+        "id": "CC-09",
+        "topic": "兩種搬轎版不受影響",
+        "assessment": "只能說來源格局未改",
+        "correction": "搬轎前門是神明堂朝街門，不是樓梯街門；本輪沒有重演含桿人員、施工期間或全程運動，不把不改圖說成無影響。"
+      },
+      {
+        "id": "CC-10",
+        "topic": "4.4mm的餘量",
+        "assessment": "數值換算一致，不能放行",
+        "correction": "同1:50可抵220mm額外水平長，或任一新增厚度5mm即失守；不得據此選薄梁、小管或放平坡。"
+      }
+    ],
+    "limits": [
+      "Claude第一輪回應已驗prompt／stdout／response雜湊並保存公開研究副本；結果摘要未標示模型名，不從用量資料推定回答模型。只有數字及問題範圍部分一致，沒有完整解法、全共識或採用。",
+      "G4／G5是Claude提議，G4D是Codex新增條件候選，尚未取得Claude第二輪回應。新管線只是獨立預先規劃，不改原ABC／3D、P4／Q3、兩種搬轎版及149控制。",
+      "原G0～G3仍不能直接套用，不代表回程梯下也無解；G4柱比平台後緣僅退20mm，超出400外框的包覆／五金增量25會碰平台。400是整組預留，不是實管直徑。",
+      "梯底只以24級／4m、270踏面之示意鼻線減法向板厚／cos比較，未提供真正梯板、台階構造、梯梁或平台梁；這是列明假設，不是實際可用高度。",
+      "管線應比管含支撐包絡頂部；原預算式的3504.4等數字包含管包絡與下方檢修，不能拿來當管頂。整組400前緣進管較中心再高4mm，採較高頂包絡核最不利後緣。",
+      "G4原案在150～300梯板例的管頂都高於後緣梯底，不能直接當已能進管。G4D只在室內平台上方新增500垂直落差，不向上泵、不抬地坪也不減梯寬；水力、通氣、清掃與降落處防火／噪音仍未設計。",
+      "50mm上方安裝間隔與原下方50mm檢修是不同面，不能重複充作同一餘量；另列0／25／50超出原包絡的接頭增量，不當原廠要求已知或真的不用額外接頭。",
+      "500垂直落差不當水平1:50坡度折算。新室內包管會降低平台上方空間；各區淨高要求未知，沒有把騎樓3500比較值套成全室法規，也不因管頂可避梯底就判通行／消防通過。",
+      "G4D不改善騎樓段：到y3900最有利預算3510.7mm，另需25仍降至3485.7；有無梁與管線是否能穿越此構造界線仍需正式剖面。",
+      "G5需要整棟樓梯／門／屋突重排，本輪只有1F鏡像剖面比較，未重設平台、門片、扶手或上層；70mm側門邊與起跑距離不當已可用。",
+      "所有新列管線包絡避已列祭祀／乾背與武轎庫投影；這不批准梁位、噪音、濕管穿孔、一般行走線上方家規或地下通行。搬運例外不延伸成神明堂地下可穿。",
+      "優先條件為合法前側終端與接管深度；5190mm只是落點至道路邊界直線下界。地下覆土、地梁套管、清掃、防水、權利、回填與修復全未知，不批准開挖或排放。",
+      "若只能後出，y9100～11370全寬保護帶至少2270mm不可默認地下豁免。資料到齊再決定必要取捨，現在不要求屋主放寬家規或取消功能。",
+      "Q3三樓前KTV本來沒有濕茶水，不藉取消不存在的污水取得解方；後公衛／工作天井、RF24㎡、聲學與全棟通氣排水仍未解。"
+    ]
+  },
+  "provenance": {
+    "schema": "house-b-front-drop-claude-provenance-v1",
+    "date": "2026-11-10",
+    "source": "owner-run tool-free Claude Code first response; private logs retained without publication",
+    "status": "response-imported-for-codex-crosscheck-not-consensus",
+    "prompt_file": "Docs/claude-b-front-drop-brief-v1.md",
+    "prompt_sha256": "696313f200e9224c9e3cb6019432e45957855d5db4ee42d9c302ffc982b925a4",
+    "raw_stdout_sha256": "669223f4944ee3aa51444b8f38bda2f51473bb35064989b75c038b59549bc149",
+    "private_result_sha256": "0e70e4154151f893892af0aeac1bfb4e7dbf6c8bed74f6063226e0b58b3e68fa",
+    "response_file": "inputs/references/b-front-drop-claude-round1-20261110.md",
+    "response_sha256": "6e51137c069d62837cb09b08dcbc8dcb641257ee2575f6b0a07479f57c5c5c90",
+    "cli": "Claude Code",
+    "model_reported": null,
+    "recorded_tools_enabled": false,
+    "recorded_mcp_enabled": false,
+    "recorded_hooks_enabled": false,
+    "exit_code": 0,
+    "elapsed_seconds": 300.387,
+    "consensus": false,
+    "professional_approval": "unknown"
+  },
+  "parent_report_hash": "e2dc0bdd6cf5cc308c539d7a991cc72556502bf03a8ba4d8def11200cbc6249a",
+  "claim_review": [
+    {
+      "id": "CC-01",
+      "topic": "原四線與G4／G5延長線算式",
+      "assessment": "同口徑複算一致",
+      "correction": "只對P4器具中心假排口及同起算、統一1:50模型成立，不是實際管線。"
+    },
+    {
+      "id": "CC-02",
+      "topic": "騎樓與室內分段檢討",
+      "assessment": "方向可保留，適用淨高待核",
+      "correction": "到y3900茶水線4465／假預算3510.7，較全末端不同；3500是比較值，實際各區要求未確認。"
+    },
+    {
+      "id": "CC-03",
+      "topic": "y3900、y4970必定有梁",
+      "assessment": "缺少真實結構證據",
+      "correction": "目前只知騎樓／室內與平台／梯段界線；有無梁、梁底及可穿越位置均未知，不能描述成已知梁。"
+    },
+    {
+      "id": "CC-04",
+      "topic": "三樓KTV取消污水可減量",
+      "assessment": "與現行Q3資料不符",
+      "correction": "Q3前KTV只有沙發／桌／螢幕／機櫃，已無濕茶水；前井預留不代表有3F污水接入，不增加不存在的負荷，也不取消2F通氣。"
+    },
+    {
+      "id": "CC-05",
+      "topic": "G4在高回程下，地面看似空閒",
+      "assessment": "值得補核，原高程不足",
+      "correction": "400外框比平台後緣只退20；還要比較整組管線頂部與最不利後緣梯底，不只比柱中心或踏面頂。"
+    },
+    {
+      "id": "CC-06",
+      "topic": "G5鏡像保原階數便可沿用",
+      "assessment": "重大改梯方向，未完成設計",
+      "correction": "本輪只鏡像1F踏步投影作反例，2F到達、Q3及RF全部門梯與淨高要重核；不能繼承舊通行或原梯結果。"
+    },
+    {
+      "id": "CC-07",
+      "topic": "污水在一般通路上方需重新決定",
+      "assessment": "不新增一律禁止或默認許可",
+      "correction": "屋主先前只明示搬轎通道上方不禁止污水；本提案避祭祀／乾背投影，不延伸成保護區可穿。一般樓梯上方仍核實際設計及家中規矩，不因模型猜測強迫現在選擇。"
+    },
+    {
+      "id": "CC-08",
+      "topic": "前後合法終端及地下通行",
+      "assessment": "必要先決條件",
+      "correction": "地下前出路只有幾何下界5190／假坡103.8，接管權利／深度／覆土／地梁未知；後出路不能默認地下可穿祭祀。"
+    },
+    {
+      "id": "CC-09",
+      "topic": "兩種搬轎版不受影響",
+      "assessment": "只能說來源格局未改",
+      "correction": "搬轎前門是神明堂朝街門，不是樓梯街門；本輪沒有重演含桿人員、施工期間或全程運動，不把不改圖說成無影響。"
+    },
+    {
+      "id": "CC-10",
+      "topic": "4.4mm的餘量",
+      "assessment": "數值換算一致，不能放行",
+      "correction": "同1:50可抵220mm額外水平長，或任一新增厚度5mm即失守；不得據此選薄梁、小管或放平坡。"
+    }
+  ],
+  "options": [
+    {
+      "id": "G4",
+      "origin": "Claude第一輪",
+      "label": "原梯回程下落管，未增加室內落差",
+      "shaft_mm": [
+        1280,
+        4990,
+        400,
+        400
+      ],
+      "header_route_mm": [
+        [
+          315,
+          1980
+        ],
+        [
+          315,
+          3900
+        ],
+        [
+          1480,
+          3900
+        ],
+        [
+          1480,
+          5190
+        ]
+      ],
+      "interior_vertical_drop_mm": 0,
+      "drop_point_mm": null,
+      "mirror_first_floor_stair": false,
+      "offset_length_mm": 4375.0,
+      "fixture_rows": [
+        {
+          "fixture": "toilet",
+          "P4_branch_length_mm": 1790.0,
+          "new_header_length_mm": 4375.0,
+          "total_horizontal_length_mm": 6165.0,
+          "horizontal_fall_mm": 123.3,
+          "additional_vertical_drop_mm": 0,
+          "pipe_package_top_at_riser_center_budget_mm": 3676.7,
+          "conservative_400_chase_top_before_fitting_growth_mm": 3680.7,
+          "lowest_budget_including_original_pipe_support_and_access_mm": 3476.7,
+          "actual_outlet_invert_and_products_known": false
+        },
+        {
+          "fixture": "basin",
+          "P4_branch_length_mm": 580.0,
+          "new_header_length_mm": 4375.0,
+          "total_horizontal_length_mm": 4955.0,
+          "horizontal_fall_mm": 99.1,
+          "additional_vertical_drop_mm": 0,
+          "pipe_package_top_at_riser_center_budget_mm": 3700.9,
+          "conservative_400_chase_top_before_fitting_growth_mm": 3704.9,
+          "lowest_budget_including_original_pipe_support_and_access_mm": 3500.9,
+          "actual_outlet_invert_and_products_known": false
+        },
+        {
+          "fixture": "tea-counter",
+          "P4_branch_length_mm": 2545.0,
+          "new_header_length_mm": 4375.0,
+          "total_horizontal_length_mm": 6920.0,
+          "horizontal_fall_mm": 138.4,
+          "additional_vertical_drop_mm": 0,
+          "pipe_package_top_at_riser_center_budget_mm": 3661.6,
+          "conservative_400_chase_top_before_fitting_growth_mm": 3665.6,
+          "lowest_budget_including_original_pipe_support_and_access_mm": 3461.6,
+          "actual_outlet_invert_and_products_known": false
+        },
+        {
+          "fixture": "shower",
+          "P4_branch_length_mm": 2375.0,
+          "new_header_length_mm": 4375.0,
+          "total_horizontal_length_mm": 6750.0,
+          "horizontal_fall_mm": 135.0,
+          "additional_vertical_drop_mm": 0,
+          "pipe_package_top_at_riser_center_budget_mm": 3665.0,
+          "conservative_400_chase_top_before_fitting_growth_mm": 3669.0,
+          "lowest_budget_including_original_pipe_support_and_access_mm": 3465.0,
+          "actual_outlet_invert_and_products_known": false
+        }
+      ],
+      "soffit_cases": [
+        {
+          "normal_stair_waist_mm": 150,
+          "front_optimistic_soffit_mm": 3644.711,
+          "rear_optimistic_soffit_mm": 3397.798,
+          "extra_fitting_above_original_package_mm": 0,
+          "highest_chase_top_budget_mm": 3704.9,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -357.102,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 150,
+          "front_optimistic_soffit_mm": 3644.711,
+          "rear_optimistic_soffit_mm": 3397.798,
+          "extra_fitting_above_original_package_mm": 25,
+          "highest_chase_top_budget_mm": 3729.9,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -382.102,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 150,
+          "front_optimistic_soffit_mm": 3644.711,
+          "rear_optimistic_soffit_mm": 3397.798,
+          "extra_fitting_above_original_package_mm": 50,
+          "highest_chase_top_budget_mm": 3754.9,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -407.102,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 200,
+          "front_optimistic_soffit_mm": 3585.952,
+          "rear_optimistic_soffit_mm": 3339.039,
+          "extra_fitting_above_original_package_mm": 0,
+          "highest_chase_top_budget_mm": 3704.9,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -415.861,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 200,
+          "front_optimistic_soffit_mm": 3585.952,
+          "rear_optimistic_soffit_mm": 3339.039,
+          "extra_fitting_above_original_package_mm": 25,
+          "highest_chase_top_budget_mm": 3729.9,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -440.861,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 200,
+          "front_optimistic_soffit_mm": 3585.952,
+          "rear_optimistic_soffit_mm": 3339.039,
+          "extra_fitting_above_original_package_mm": 50,
+          "highest_chase_top_budget_mm": 3754.9,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -465.861,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 250,
+          "front_optimistic_soffit_mm": 3527.194,
+          "rear_optimistic_soffit_mm": 3280.28,
+          "extra_fitting_above_original_package_mm": 0,
+          "highest_chase_top_budget_mm": 3704.9,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -474.62,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 250,
+          "front_optimistic_soffit_mm": 3527.194,
+          "rear_optimistic_soffit_mm": 3280.28,
+          "extra_fitting_above_original_package_mm": 25,
+          "highest_chase_top_budget_mm": 3729.9,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -499.62,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 250,
+          "front_optimistic_soffit_mm": 3527.194,
+          "rear_optimistic_soffit_mm": 3280.28,
+          "extra_fitting_above_original_package_mm": 50,
+          "highest_chase_top_budget_mm": 3754.9,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -524.62,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 300,
+          "front_optimistic_soffit_mm": 3468.435,
+          "rear_optimistic_soffit_mm": 3221.521,
+          "extra_fitting_above_original_package_mm": 0,
+          "highest_chase_top_budget_mm": 3704.9,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -533.379,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 300,
+          "front_optimistic_soffit_mm": 3468.435,
+          "rear_optimistic_soffit_mm": 3221.521,
+          "extra_fitting_above_original_package_mm": 25,
+          "highest_chase_top_budget_mm": 3729.9,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -558.379,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 300,
+          "front_optimistic_soffit_mm": 3468.435,
+          "rear_optimistic_soffit_mm": 3221.521,
+          "extra_fitting_above_original_package_mm": 50,
+          "highest_chase_top_budget_mm": 3754.9,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -583.379,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        }
+      ],
+      "nominal_shaft_plan_over_original_landing_sqm": 0.0,
+      "shaft_front_to_original_platform_rear_mm": 20,
+      "same_original_stair_local_route_hits": [],
+      "mirror_route_and_all_upper_stairs_require_new_design": false,
+      "existing_Q3_RF_results_inherited_as_approval": false,
+      "chase_growth_cases": [
+        {
+          "extra_outward_growth_each_face_mm": 0,
+          "landing_overlap_sqm": 0.0,
+          "body_size_or_growth_selected_as_product": false
+        },
+        {
+          "extra_outward_growth_each_face_mm": 25,
+          "landing_overlap_sqm": 0.00225,
+          "body_size_or_growth_selected_as_product": false
+        },
+        {
+          "extra_outward_growth_each_face_mm": 50,
+          "landing_overlap_sqm": 0.015,
+          "body_size_or_growth_selected_as_product": false
+        }
+      ],
+      "ground_arcade_floor_obstruction_sqm": 0.0,
+      "overhead_pipe_plan_over_arcade_sqm": 1.081,
+      "pipe_plan_over_sacred_backing_storage_sqm": 0,
+      "whole_landing_door_care_palanquin_or_fire_clearance_approved": false,
+      "indoor_required_clear_height_mm": null,
+      "adopted": false
+    },
+    {
+      "id": "G4D",
+      "origin": "Codex交叉核算後提案，待Claude第二輪",
+      "label": "原梯保留，室內平台上方先落500再接梯下",
+      "shaft_mm": [
+        1280,
+        4990,
+        400,
+        400
+      ],
+      "header_route_mm": [
+        [
+          315,
+          1980
+        ],
+        [
+          315,
+          3900
+        ],
+        [
+          315,
+          4700
+        ],
+        [
+          1480,
+          4700
+        ],
+        [
+          1480,
+          5190
+        ]
+      ],
+      "interior_vertical_drop_mm": 500,
+      "drop_point_mm": [
+        315,
+        4700
+      ],
+      "mirror_first_floor_stair": false,
+      "offset_length_mm": 4375.0,
+      "fixture_rows": [
+        {
+          "fixture": "toilet",
+          "P4_branch_length_mm": 1790.0,
+          "new_header_length_mm": 4375.0,
+          "total_horizontal_length_mm": 6165.0,
+          "horizontal_fall_mm": 123.3,
+          "additional_vertical_drop_mm": 500,
+          "pipe_package_top_at_riser_center_budget_mm": 3176.7,
+          "conservative_400_chase_top_before_fitting_growth_mm": 3180.7,
+          "lowest_budget_including_original_pipe_support_and_access_mm": 2976.7,
+          "actual_outlet_invert_and_products_known": false
+        },
+        {
+          "fixture": "basin",
+          "P4_branch_length_mm": 580.0,
+          "new_header_length_mm": 4375.0,
+          "total_horizontal_length_mm": 4955.0,
+          "horizontal_fall_mm": 99.1,
+          "additional_vertical_drop_mm": 500,
+          "pipe_package_top_at_riser_center_budget_mm": 3200.9,
+          "conservative_400_chase_top_before_fitting_growth_mm": 3204.9,
+          "lowest_budget_including_original_pipe_support_and_access_mm": 3000.9,
+          "actual_outlet_invert_and_products_known": false
+        },
+        {
+          "fixture": "tea-counter",
+          "P4_branch_length_mm": 2545.0,
+          "new_header_length_mm": 4375.0,
+          "total_horizontal_length_mm": 6920.0,
+          "horizontal_fall_mm": 138.4,
+          "additional_vertical_drop_mm": 500,
+          "pipe_package_top_at_riser_center_budget_mm": 3161.6,
+          "conservative_400_chase_top_before_fitting_growth_mm": 3165.6,
+          "lowest_budget_including_original_pipe_support_and_access_mm": 2961.6,
+          "actual_outlet_invert_and_products_known": false
+        },
+        {
+          "fixture": "shower",
+          "P4_branch_length_mm": 2375.0,
+          "new_header_length_mm": 4375.0,
+          "total_horizontal_length_mm": 6750.0,
+          "horizontal_fall_mm": 135.0,
+          "additional_vertical_drop_mm": 500,
+          "pipe_package_top_at_riser_center_budget_mm": 3165.0,
+          "conservative_400_chase_top_before_fitting_growth_mm": 3169.0,
+          "lowest_budget_including_original_pipe_support_and_access_mm": 2965.0,
+          "actual_outlet_invert_and_products_known": false
+        }
+      ],
+      "soffit_cases": [
+        {
+          "normal_stair_waist_mm": 150,
+          "front_optimistic_soffit_mm": 3644.711,
+          "rear_optimistic_soffit_mm": 3397.798,
+          "extra_fitting_above_original_package_mm": 0,
+          "highest_chase_top_budget_mm": 3204.9,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": 142.898,
+          "fits_assumed_soffit_budget_only": true,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 150,
+          "front_optimistic_soffit_mm": 3644.711,
+          "rear_optimistic_soffit_mm": 3397.798,
+          "extra_fitting_above_original_package_mm": 25,
+          "highest_chase_top_budget_mm": 3229.9,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": 117.898,
+          "fits_assumed_soffit_budget_only": true,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 150,
+          "front_optimistic_soffit_mm": 3644.711,
+          "rear_optimistic_soffit_mm": 3397.798,
+          "extra_fitting_above_original_package_mm": 50,
+          "highest_chase_top_budget_mm": 3254.9,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": 92.898,
+          "fits_assumed_soffit_budget_only": true,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 200,
+          "front_optimistic_soffit_mm": 3585.952,
+          "rear_optimistic_soffit_mm": 3339.039,
+          "extra_fitting_above_original_package_mm": 0,
+          "highest_chase_top_budget_mm": 3204.9,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": 84.139,
+          "fits_assumed_soffit_budget_only": true,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 200,
+          "front_optimistic_soffit_mm": 3585.952,
+          "rear_optimistic_soffit_mm": 3339.039,
+          "extra_fitting_above_original_package_mm": 25,
+          "highest_chase_top_budget_mm": 3229.9,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": 59.139,
+          "fits_assumed_soffit_budget_only": true,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 200,
+          "front_optimistic_soffit_mm": 3585.952,
+          "rear_optimistic_soffit_mm": 3339.039,
+          "extra_fitting_above_original_package_mm": 50,
+          "highest_chase_top_budget_mm": 3254.9,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": 34.139,
+          "fits_assumed_soffit_budget_only": true,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 250,
+          "front_optimistic_soffit_mm": 3527.194,
+          "rear_optimistic_soffit_mm": 3280.28,
+          "extra_fitting_above_original_package_mm": 0,
+          "highest_chase_top_budget_mm": 3204.9,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": 25.38,
+          "fits_assumed_soffit_budget_only": true,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 250,
+          "front_optimistic_soffit_mm": 3527.194,
+          "rear_optimistic_soffit_mm": 3280.28,
+          "extra_fitting_above_original_package_mm": 25,
+          "highest_chase_top_budget_mm": 3229.9,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": 0.38,
+          "fits_assumed_soffit_budget_only": true,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 250,
+          "front_optimistic_soffit_mm": 3527.194,
+          "rear_optimistic_soffit_mm": 3280.28,
+          "extra_fitting_above_original_package_mm": 50,
+          "highest_chase_top_budget_mm": 3254.9,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -24.62,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 300,
+          "front_optimistic_soffit_mm": 3468.435,
+          "rear_optimistic_soffit_mm": 3221.521,
+          "extra_fitting_above_original_package_mm": 0,
+          "highest_chase_top_budget_mm": 3204.9,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -33.379,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 300,
+          "front_optimistic_soffit_mm": 3468.435,
+          "rear_optimistic_soffit_mm": 3221.521,
+          "extra_fitting_above_original_package_mm": 25,
+          "highest_chase_top_budget_mm": 3229.9,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -58.379,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 300,
+          "front_optimistic_soffit_mm": 3468.435,
+          "rear_optimistic_soffit_mm": 3221.521,
+          "extra_fitting_above_original_package_mm": 50,
+          "highest_chase_top_budget_mm": 3254.9,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -83.379,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        }
+      ],
+      "nominal_shaft_plan_over_original_landing_sqm": 0.0,
+      "shaft_front_to_original_platform_rear_mm": 20,
+      "same_original_stair_local_route_hits": [],
+      "mirror_route_and_all_upper_stairs_require_new_design": false,
+      "existing_Q3_RF_results_inherited_as_approval": false,
+      "chase_growth_cases": [
+        {
+          "extra_outward_growth_each_face_mm": 0,
+          "landing_overlap_sqm": 0.0,
+          "body_size_or_growth_selected_as_product": false
+        },
+        {
+          "extra_outward_growth_each_face_mm": 25,
+          "landing_overlap_sqm": 0.00225,
+          "body_size_or_growth_selected_as_product": false
+        },
+        {
+          "extra_outward_growth_each_face_mm": 50,
+          "landing_overlap_sqm": 0.015,
+          "body_size_or_growth_selected_as_product": false
+        }
+      ],
+      "ground_arcade_floor_obstruction_sqm": 0.0,
+      "overhead_pipe_plan_over_arcade_sqm": 0.848,
+      "pipe_plan_over_sacred_backing_storage_sqm": 0,
+      "whole_landing_door_care_palanquin_or_fire_clearance_approved": false,
+      "indoor_required_clear_height_mm": null,
+      "adopted": false
+    },
+    {
+      "id": "G5",
+      "origin": "Claude第一輪",
+      "label": "全梯鏡像的比較方向，未作全棟重排",
+      "shaft_mm": [
+        115,
+        4990,
+        400,
+        400
+      ],
+      "header_route_mm": [
+        [
+          315,
+          1980
+        ],
+        [
+          315,
+          3900
+        ],
+        [
+          315,
+          5190
+        ]
+      ],
+      "interior_vertical_drop_mm": 0,
+      "drop_point_mm": null,
+      "mirror_first_floor_stair": true,
+      "offset_length_mm": 3210.0,
+      "fixture_rows": [
+        {
+          "fixture": "toilet",
+          "P4_branch_length_mm": 1790.0,
+          "new_header_length_mm": 3210.0,
+          "total_horizontal_length_mm": 5000.0,
+          "horizontal_fall_mm": 100.0,
+          "additional_vertical_drop_mm": 0,
+          "pipe_package_top_at_riser_center_budget_mm": 3700.0,
+          "conservative_400_chase_top_before_fitting_growth_mm": 3704.0,
+          "lowest_budget_including_original_pipe_support_and_access_mm": 3500.0,
+          "actual_outlet_invert_and_products_known": false
+        },
+        {
+          "fixture": "basin",
+          "P4_branch_length_mm": 580.0,
+          "new_header_length_mm": 3210.0,
+          "total_horizontal_length_mm": 3790.0,
+          "horizontal_fall_mm": 75.8,
+          "additional_vertical_drop_mm": 0,
+          "pipe_package_top_at_riser_center_budget_mm": 3724.2,
+          "conservative_400_chase_top_before_fitting_growth_mm": 3728.2,
+          "lowest_budget_including_original_pipe_support_and_access_mm": 3524.2,
+          "actual_outlet_invert_and_products_known": false
+        },
+        {
+          "fixture": "tea-counter",
+          "P4_branch_length_mm": 2545.0,
+          "new_header_length_mm": 3210.0,
+          "total_horizontal_length_mm": 5755.0,
+          "horizontal_fall_mm": 115.1,
+          "additional_vertical_drop_mm": 0,
+          "pipe_package_top_at_riser_center_budget_mm": 3684.9,
+          "conservative_400_chase_top_before_fitting_growth_mm": 3688.9,
+          "lowest_budget_including_original_pipe_support_and_access_mm": 3484.9,
+          "actual_outlet_invert_and_products_known": false
+        },
+        {
+          "fixture": "shower",
+          "P4_branch_length_mm": 2375.0,
+          "new_header_length_mm": 3210.0,
+          "total_horizontal_length_mm": 5585.0,
+          "horizontal_fall_mm": 111.7,
+          "additional_vertical_drop_mm": 0,
+          "pipe_package_top_at_riser_center_budget_mm": 3688.3,
+          "conservative_400_chase_top_before_fitting_growth_mm": 3692.3,
+          "lowest_budget_including_original_pipe_support_and_access_mm": 3488.3,
+          "actual_outlet_invert_and_products_known": false
+        }
+      ],
+      "soffit_cases": [
+        {
+          "normal_stair_waist_mm": 150,
+          "front_optimistic_soffit_mm": 3644.711,
+          "rear_optimistic_soffit_mm": 3397.798,
+          "extra_fitting_above_original_package_mm": 0,
+          "highest_chase_top_budget_mm": 3728.2,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -380.402,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 150,
+          "front_optimistic_soffit_mm": 3644.711,
+          "rear_optimistic_soffit_mm": 3397.798,
+          "extra_fitting_above_original_package_mm": 25,
+          "highest_chase_top_budget_mm": 3753.2,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -405.402,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 150,
+          "front_optimistic_soffit_mm": 3644.711,
+          "rear_optimistic_soffit_mm": 3397.798,
+          "extra_fitting_above_original_package_mm": 50,
+          "highest_chase_top_budget_mm": 3778.2,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -430.402,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 200,
+          "front_optimistic_soffit_mm": 3585.952,
+          "rear_optimistic_soffit_mm": 3339.039,
+          "extra_fitting_above_original_package_mm": 0,
+          "highest_chase_top_budget_mm": 3728.2,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -439.161,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 200,
+          "front_optimistic_soffit_mm": 3585.952,
+          "rear_optimistic_soffit_mm": 3339.039,
+          "extra_fitting_above_original_package_mm": 25,
+          "highest_chase_top_budget_mm": 3753.2,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -464.161,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 200,
+          "front_optimistic_soffit_mm": 3585.952,
+          "rear_optimistic_soffit_mm": 3339.039,
+          "extra_fitting_above_original_package_mm": 50,
+          "highest_chase_top_budget_mm": 3778.2,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -489.161,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 250,
+          "front_optimistic_soffit_mm": 3527.194,
+          "rear_optimistic_soffit_mm": 3280.28,
+          "extra_fitting_above_original_package_mm": 0,
+          "highest_chase_top_budget_mm": 3728.2,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -497.92,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 250,
+          "front_optimistic_soffit_mm": 3527.194,
+          "rear_optimistic_soffit_mm": 3280.28,
+          "extra_fitting_above_original_package_mm": 25,
+          "highest_chase_top_budget_mm": 3753.2,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -522.92,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 250,
+          "front_optimistic_soffit_mm": 3527.194,
+          "rear_optimistic_soffit_mm": 3280.28,
+          "extra_fitting_above_original_package_mm": 50,
+          "highest_chase_top_budget_mm": 3778.2,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -547.92,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 300,
+          "front_optimistic_soffit_mm": 3468.435,
+          "rear_optimistic_soffit_mm": 3221.521,
+          "extra_fitting_above_original_package_mm": 0,
+          "highest_chase_top_budget_mm": 3728.2,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -556.679,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 300,
+          "front_optimistic_soffit_mm": 3468.435,
+          "rear_optimistic_soffit_mm": 3221.521,
+          "extra_fitting_above_original_package_mm": 25,
+          "highest_chase_top_budget_mm": 3753.2,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -581.679,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        },
+        {
+          "normal_stair_waist_mm": 300,
+          "front_optimistic_soffit_mm": 3468.435,
+          "rear_optimistic_soffit_mm": 3221.521,
+          "extra_fitting_above_original_package_mm": 50,
+          "highest_chase_top_budget_mm": 3778.2,
+          "separate_gap_above_package_mm": 50,
+          "margin_after_separate_gap_mm": -606.679,
+          "fits_assumed_soffit_budget_only": false,
+          "actual_stair_pipe_access_fire_or_religious_approval": false
+        }
+      ],
+      "nominal_shaft_plan_over_original_landing_sqm": 0.0,
+      "shaft_front_to_original_platform_rear_mm": 20,
+      "same_original_stair_local_route_hits": null,
+      "mirror_route_and_all_upper_stairs_require_new_design": true,
+      "existing_Q3_RF_results_inherited_as_approval": false,
+      "chase_growth_cases": [
+        {
+          "extra_outward_growth_each_face_mm": 0,
+          "landing_overlap_sqm": 0.0,
+          "body_size_or_growth_selected_as_product": false
+        },
+        {
+          "extra_outward_growth_each_face_mm": 25,
+          "landing_overlap_sqm": 0.00225,
+          "body_size_or_growth_selected_as_product": false
+        },
+        {
+          "extra_outward_growth_each_face_mm": 50,
+          "landing_overlap_sqm": 0.01455,
+          "body_size_or_growth_selected_as_product": false
+        }
+      ],
+      "ground_arcade_floor_obstruction_sqm": 0.0,
+      "overhead_pipe_plan_over_arcade_sqm": 0.848,
+      "pipe_plan_over_sacred_backing_storage_sqm": 0,
+      "whole_landing_door_care_palanquin_or_fire_clearance_approved": false,
+      "indoor_required_clear_height_mm": null,
+      "adopted": false
+    }
+  ],
+  "original_landing_mm": [
+    80,
+    3970,
+    2200,
+    1000
+  ],
+  "original_stair_source": {
+    "base_mm": 0,
+    "height_mm": 4000,
+    "footprint": {
+      "x_mm": 80,
+      "y_mm": 3970,
+      "w_mm": 2200,
+      "h_mm": 5060
+    },
+    "geometry": {
+      "type": "two-flight-u-proposal",
+      "connects_to_next_storey": true,
+      "risers": 24,
+      "riser_mm": 166.67,
+      "tread_mm": 270,
+      "flight_width_mm": 1000,
+      "landing_mm": 1000,
+      "departure_offset_mm": 1000,
+      "middle_landing_mm": 1090,
+      "shared_front_landing": false,
+      "run_mm": 2970,
+      "fits_reserved_box": true,
+      "note": "兩折梯與平台僅初排；完成面淨寬、扶手、結構、梯井、淨高、消防分隔及屋突資格未核。"
+    }
+  },
+  "original_first_floor_treads": [
+    {
+      "id": "left-1",
+      "rect_mm": [
+        80,
+        4970.0,
+        1000,
+        270.0
+      ],
+      "top_z_mm": 166.66666666666666
+    },
+    {
+      "id": "right-1",
+      "rect_mm": [
+        1280,
+        7670.0,
+        1000,
+        270.0
+      ],
+      "top_z_mm": 2166.6666666666665
+    },
+    {
+      "id": "left-2",
+      "rect_mm": [
+        80,
+        5240.0,
+        1000,
+        270.0
+      ],
+      "top_z_mm": 333.3333333333333
+    },
+    {
+      "id": "right-2",
+      "rect_mm": [
+        1280,
+        7400.0,
+        1000,
+        270.0
+      ],
+      "top_z_mm": 2333.3333333333335
+    },
+    {
+      "id": "left-3",
+      "rect_mm": [
+        80,
+        5510.0,
+        1000,
+        270.0
+      ],
+      "top_z_mm": 500.0
+    },
+    {
+      "id": "right-3",
+      "rect_mm": [
+        1280,
+        7130.0,
+        1000,
+        270.0
+      ],
+      "top_z_mm": 2500.0
+    },
+    {
+      "id": "left-4",
+      "rect_mm": [
+        80,
+        5780.0,
+        1000,
+        270.0
+      ],
+      "top_z_mm": 666.6666666666666
+    },
+    {
+      "id": "right-4",
+      "rect_mm": [
+        1280,
+        6860.0,
+        1000,
+        270.0
+      ],
+      "top_z_mm": 2666.6666666666665
+    },
+    {
+      "id": "left-5",
+      "rect_mm": [
+        80,
+        6050.0,
+        1000,
+        270.0
+      ],
+      "top_z_mm": 833.3333333333333
+    },
+    {
+      "id": "right-5",
+      "rect_mm": [
+        1280,
+        6590.0,
+        1000,
+        270.0
+      ],
+      "top_z_mm": 2833.333333333333
+    },
+    {
+      "id": "left-6",
+      "rect_mm": [
+        80,
+        6320.0,
+        1000,
+        270.0
+      ],
+      "top_z_mm": 1000.0
+    },
+    {
+      "id": "right-6",
+      "rect_mm": [
+        1280,
+        6320.0,
+        1000,
+        270.0
+      ],
+      "top_z_mm": 3000.0
+    },
+    {
+      "id": "left-7",
+      "rect_mm": [
+        80,
+        6590.0,
+        1000,
+        270.0
+      ],
+      "top_z_mm": 1166.6666666666665
+    },
+    {
+      "id": "right-7",
+      "rect_mm": [
+        1280,
+        6050.0,
+        1000,
+        270.0
+      ],
+      "top_z_mm": 3166.6666666666665
+    },
+    {
+      "id": "left-8",
+      "rect_mm": [
+        80,
+        6860.0,
+        1000,
+        270.0
+      ],
+      "top_z_mm": 1333.3333333333333
+    },
+    {
+      "id": "right-8",
+      "rect_mm": [
+        1280,
+        5780.0,
+        1000,
+        270.0
+      ],
+      "top_z_mm": 3333.333333333333
+    },
+    {
+      "id": "left-9",
+      "rect_mm": [
+        80,
+        7130.0,
+        1000,
+        270.0
+      ],
+      "top_z_mm": 1500.0
+    },
+    {
+      "id": "right-9",
+      "rect_mm": [
+        1280,
+        5510.0,
+        1000,
+        270.0
+      ],
+      "top_z_mm": 3500.0
+    },
+    {
+      "id": "left-10",
+      "rect_mm": [
+        80,
+        7400.0,
+        1000,
+        270.0
+      ],
+      "top_z_mm": 1666.6666666666665
+    },
+    {
+      "id": "right-10",
+      "rect_mm": [
+        1280,
+        5240.0,
+        1000,
+        270.0
+      ],
+      "top_z_mm": 3666.6666666666665
+    },
+    {
+      "id": "left-11",
+      "rect_mm": [
+        80,
+        7670.0,
+        1000,
+        270.0
+      ],
+      "top_z_mm": 1833.3333333333333
+    },
+    {
+      "id": "right-11",
+      "rect_mm": [
+        1280,
+        4970.0,
+        1000,
+        270.0
+      ],
+      "top_z_mm": 3833.333333333333
+    }
+  ],
+  "arcade_to_indoor_boundary_cases": [
+    {
+      "fixture": "toilet",
+      "branch_plus_header_to_y3900_mm": 3710.0,
+      "illustrative_remaining_budget_mm": 3525.8
+    },
+    {
+      "fixture": "basin",
+      "branch_plus_header_to_y3900_mm": 2500.0,
+      "illustrative_remaining_budget_mm": 3550.0
+    },
+    {
+      "fixture": "tea-counter",
+      "branch_plus_header_to_y3900_mm": 4465.0,
+      "illustrative_remaining_budget_mm": 3510.7
+    },
+    {
+      "fixture": "shower",
+      "branch_plus_header_to_y3900_mm": 4295.0,
+      "illustrative_remaining_budget_mm": 3514.1
+    }
+  ],
+  "arcade_minimum_illustrative_budget_mm": 3510.7,
+  "arcade_extra25_illustrative_budget_mm": 3485.7,
+  "y3900_or_y4970_beam_presence_or_bottom_known": false,
+  "Q3_front_KTV_items": [
+    "sofa",
+    "table",
+    "tv",
+    "service-cabinet"
+  ],
+  "Q3_front_KTV_wet_fixture_present": false,
+  "new_front_3F_wastewater_load_assumed": false,
+  "front_underground_path_lower_bound_mm": 5190,
+  "front_underground_illustrative_fall_mm": 103.8,
+  "front_legal_connection_depth_cover_foundation_or_excavation_approved": false,
+  "rear_route_full_width_protected_band_y_mm": [
+    9100,
+    11370
+  ],
+  "buried_sacred_crossing_exemption_authorized": false,
+  "first_round_numeric_agreements_only": true,
+  "second_round_status": "not-run-awaiting-owner-separate-terminal",
+  "recommended_next": "先請Claude第二輪核G4D的500落差與整組管頂／梯底算式，再由建築／機電／結構核合法前終端、騎樓及平台界線、梯板與通氣清掃；G5保重大備案。未有全案可採用解法。",
+  "consensus": false,
+  "protected_controls_unchanged": 149,
+  "actual_site_or_product_data_received": 0,
+  "primary_abc_or_3d_changed": false,
+  "adopted": false,
+  "all_original_requirements_met": false,
+  "rendered_qa": "not-run",
+  "professional_approval": "unknown",
+  "source_hashes": {
+    "inputs/b-front-drop-claude-options.json": "372cca8eb782237a3fcb53be1fd339d6f25bf5901d00f745dc95ec50f4780aee",
+    "inputs/references/b-front-drop-claude-round1-20261110.json": "b0185113b171087ae39866e7c5b1ecb01f31378d3c66bb24ba909d01b91d90f8",
+    "inputs/references/b-front-drop-claude-round1-20261110.md": "6e51137c069d62837cb09b08dcbc8dcb641257ee2575f6b0a07479f57c5c5c90",
+    "structured/coordination/b-front-drop-stair-v1/review.json": "420c80017812b34f76105ffd2b642124b8853f448d41ded219c3c246a93478ca",
+    "structured/coordination/b-front-drop-stair-v1/artifact-manifest.json": "3ebf51748254d10232418339218abc67009dfbabc97883f18cdb618fbe4d4a85",
+    "inputs/b-front-drop-stair.json": "99d4fd07fcd4a8c1443478e90dd8c2410fddd635c5760901becfa635727159a4",
+    "structured/coordination/b-front-drainage-layout-v1/review.json": "fb352dcdc1c83aad3b4d4ced66804d328132bd411473b496676f53f849ac7711",
+    "structured/coordination/b-front-drainage-layout-v1/artifact-manifest.json": "79ec65f635322da82de8f7e9c646be793531d937a9a25cafb70d991ff6255635",
+    "structured/coordination/b-ktv-stair-options-v1/review.json": "6116c9df09d442e29e16cc3eabc50aa1cd94b4d512fd3398b9105f1afdc34a7e",
+    "structured/coordination/b-claude-round3-v1/review.json": "00baf0b3950e2593361e91698e4d72ac33e384edadd6da5a7d31b62e087b6223",
+    "structured/coordination/b-claude-round3-v1/artifact-manifest.json": "ad7327b07ef803ab57cf7390f84a3919da4165124a84e33288953981fa591062",
+    "inputs/b-front-drainage-layout.json": "8b21213448e73e770cfeac1203a41a53ff877890052d5aa1e5c5e35c4078853e",
+    "structured/coordination/b-front-service-detail-v1/review.json": "a51324d7699cfba56479f83a5e4eaa24ef5c9d45782c302c79e5fe779d4f2edd",
+    "structured/coordination/b-front-service-detail-v1/artifact-manifest.json": "66b708543e5da68e23878d0063034d8ecb0fe693a658431b44160e5881c35234",
+    "structured/coordination/b-ktv-stair-options-v1/artifact-manifest.json": "1e3b99e2ee0a4626b93c9aa133098f6fb85ea65d3f148b924c69bea3d6349346",
+    "inputs/b-front-service-detail.json": "48c1b0f31db2d9a6116cd81ba8a4b16ec9d2100c643275f8c553b0d400907e49",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "inputs/b-upper-replan.json": "83621a2af81211b06ff4dc2c9e8557641c1d551b05195605acd7a6ad7b1df3f5",
+    "house_design/b_upper_replan.py": "a251d37dc84bd54b9292b6802180ca7fd66c679a7e43dc714b3fed160dc2e5c5",
+    "scripts/export_b_upper_replan.py": "3a3cc271cf7d9fc20759d4bca17b582ab672f551981c6e8c1c20933192c09a3d",
+    "structured/coordination/b-upper-replan-v1/review.json": "38897b7ca1da091dd62c85ab342abd4d1d1da220ec1dbad9a5f46e6611f4906d",
+    "structured/coordination/b-upper-replan-v1/artifact-manifest.json": "c1fe7bab76b8032224f7ce271671db0f94fb3ef91c702adc355fd1bcd6b8d915",
+    "house_design/b_front_service_detail.py": "0e20c751c385d4e69a3ff679cb5b7890e71575f82fdef8195e49628690175c29",
+    "scripts/export_b_front_service_detail.py": "bf8d07a4a0c316fe69facbe5145b9091f0afd4d73e0a5998f4ba2c83d7a9253e",
+    "Docs/b-front-service-detail-v1.md": "bc04d48a087905f1d9735cb90dfde9da33b200627ce6d47adf3115f5648d280b",
+    "house_design/b_claude_round3.py": "040a7b75fc604dc147b471800ae4c1c8a57935182dcceea26591514b106ec9d0",
+    "house_design/contracts.py": "2888419d49e8d8dbe8b8e99f6b8451363cd9020821c7fe3e703ab09779e202c3",
+    "house_design/project_status.py": "db73eb9b066353cc282e67dc15e4b430d9d4e4d398eafaf7eeec5f98af1acab0",
+    "inputs/requirements.json": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066",
+    "inputs/planning-register.json": "140493058b145071afb472bf927860d48a43a6f4407b9b59e5a86705fbe058b0",
+    "inputs/b-ktv-stair-options.json": "b09976ea14cf0021385e87f742b80b2bb3fc0baac50c5863b2c40bcf4dc6f020",
+    "structured/coordination/b-third-entertainment-v1/review.json": "568509636ce55cb56b21161cf69e91e3eab633806c97e260c2a30a7f6553b08a",
+    "structured/coordination/b-third-entertainment-v1/artifact-manifest.json": "81247bbf44718d66f247c3ab520173e24e3ae38c4102480f83d74b3ee189d4d8",
+    "structured/candidates/kaohsiung-house-options/c-stair-integration.json": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+    "inputs/b-third-entertainment.json": "07577a0dffe45c74f98ee93c75d0b35f30b75dec187050e3796775d4d73b45c8",
+    "inputs/references/b-owner-ritual-answers-20261106.json": "736f5a477ce1fbfd8e1bf460ecf49f9043a83635201d1598e3e1842e6460ddb9",
+    "inputs/brief/B.json": "63ed4fc045fc6f2cc4021b8bd784cb7cc9fd46789155fc19aa1a55f33016e55a",
+    "house_design/b_third_entertainment.py": "f026a7665c1134dde6c3ec0f01032fdb0eb91d750e1f7af6ead8c845fbd1a5cc",
+    "scripts/export_b_third_entertainment.py": "67aa5888f2149271e9718c1a7cceea92cd6a96767e4fc5d2c5d4383aae713a2f",
+    "scripts/export_abc_next_improvements.py": "875c13027466776a6e1661dae369e45c823c661c5e0369d8ee95b6535420e701",
+    "scripts/export_builder_communication.py": "650d696de35bd9a0fb4ce77d7f93078813b8babd4ed5439d59a6966d093ceef1",
+    "Docs/b-third-entertainment-v1.md": "5f69f521386c051ce67b4b24d5cda79186f70f937316d25c64962a745258d513",
+    "house_design/b_ktv_stair_options.py": "aa80873e7072c942f144d29ca5d1e82982e215e353188e3a4b41c3e98b27260d",
+    "scripts/export_b_ktv_stair_options.py": "973fd2ca9472d0b1573d78fe2dc94f65acced4fff120ae54bf2f2cfa0387b617",
+    "Docs/b-ktv-stair-options-v1.md": "e994cd9439f526a99a8d6faea11eb5e90f4fcd01b6383a82f514849b29fc61a2",
+    "house_design/b_front_drainage_layout.py": "5e4dd9fb80d2c1acdd0c756d929220a398c154d9274ba910cb2c9d474bcaf218",
+    "scripts/export_b_front_drainage_layout.py": "999dca33f4b233c7ef7f760e160176d29cce941021a57e3888c04d2f153e124f",
+    "Docs/b-front-drainage-layout-v1.md": "6664d87277208e43b6c8022ca56b92fc207b82feb3d176a7106dbe7dfc215c11",
+    "inputs/b-claude-round3.json": "25c006e1d7741395f53a8ae369ac905f7956ca0a3f8f7d2a94cc1625137fbc6f",
+    "structured/coordination/b-claude-crosscheck-v1/review.json": "b2a3604da09beaf1ebb4f8ed50d0525004cf6592ede2bde756eb05ae9ada95a4",
+    "structured/coordination/b-fengshui-strict-v1/review.json": "e595361db8281be6daf361251afe0187824c7bcb99d556f930cf90f15bf2f954",
+    "structured/coordination/b-claude-crosscheck-v1/artifact-manifest.json": "32940e5ac7474e21fbe521a7a99d4c259b2bbaf9fcaa2e33acf67a0a5bad8197",
+    "inputs/b-claude-crosscheck.json": "d49320cef10eed1df0ece76c9e0ba17107c9d32630c25da26c48bf2350cc2a7d",
+    "inputs/references/b-claude-response-v2-provenance.json": "2c7c0cdc880c1d78a910a170edcfdc6b59c20865ae81fd6b041c72816656b32b",
+    "inputs/references/b-claude-response-v2-transcript-20261105.md": "67ad0a230f18b2495ebbbdc7f9c2986bc3a72eaf48eea846af3640a621bf51a7",
+    "house_design/b_claude_crosscheck.py": "9b157330308ec83bfc91d219d0bd0c632fd0ed0566e85b243209affa9a1daf20",
+    "house_design/b_fengshui_strict.py": "7f73ab7b7d84e7af976357a11cbf5ec78bb9550956b24973361a0a1dc6c6a2ab",
+    "house_design/abc_next_improvements.py": "9756b69f651f8431d361ffdc6f678e59edc1c3af0e9d8e9db782091366166568",
+    "house_design/c_coordination.py": "6d2c336496e0f1cabfabce3f3287b28ceecb13088d78f8cb0137d9ce14b689ff",
+    "scripts/export_b_claude_crosscheck.py": "c6bf43bf9b8018f74042ae3f64ef60483d3bde13898c448f2d82cef848890d3f",
+    "scripts/export_b_fengshui_strict.py": "b097e116689af7ae1f074a1482adfb895a44d32f790fabe6386cdeafcb88a67f",
+    "Docs/claude-b-fengshui-followup-v3.md": "ce877ccd31a13e8757b39abef592ead3b78c6117ff2214d90c2b97f7696ec1ea",
+    "scripts/review_b_fengshui_with_claude.py": "dc6b4b855656cbdee16990857abbb44b1f471a720f6799cd9bdee96f71f58b55",
+    "inputs/references/b-claude-round3-provenance-20261106.json": "215a2f40a924a0f3ddd8a1e5a8dfd4da1807175f79310755ff74f8c2a29b4a64",
+    "inputs/references/b-claude-round3-response-20261106.md": "7ec4b66feb30aed715aaef272678e819e2e685342a64f4c24a5b22c0410d159f",
+    "scripts/export_b_claude_round3.py": "be59ca0ded73f3f6a09e40580191eb2375849f3699b977dde887199e47a45e1d",
+    "Docs/b-claude-round3-v1.md": "a9a6fe163037a967962723738ca1535664fc7a54707f101af50066e0c35c68ff",
+    "house_design/b_front_drop_stair.py": "72f5d172e4d9f00383f94c979ac05b547a3f8b7c6ce8741c8b4411ce7e6061a8",
+    "scripts/export_b_front_drop_stair.py": "5a2b16355993e894b714aa0b115ab64025a23422bc045aaf0549e04a54a2a948",
+    "Docs/b-front-drop-stair-v1.md": "3e913493cbadb9f9d42f1fe43af8ed3d438b72bad518e0d97260e48d7db63bcc",
+    "Docs/claude-b-front-drop-brief-v1.md": "696313f200e9224c9e3cb6019432e45957855d5db4ee42d9c302ffc982b925a4",
+    "house_design/b_front_drop_claude.py": "3c40f654ba88f3aa2d2d18b1b3749f3c3cb87c2c15b40a4c2cfde2538e75b566",
+    "scripts/export_b_front_drop_claude.py": "22791815d04f66eac4390ad0eb3dcaadc83d31c974b280f621f83b62db996624",
+    "Docs/b-front-drop-claude-crosscheck-v1.md": "a559b3822f016e56d22e2081b0386fec7035b7a602613520e00e9cf0974e3bfe",
+    "Docs/claude-b-front-drop-followup-v2.md": "198843216d0c3678232bc7d1794d58a82a703956066b991c4af3870dd800a23b"
+  },
+  "report_hash": "ab6ef44605ff271d830d70ecf51fb451581cb3fb3fc5e30bfd12415e6f295c59"
+}

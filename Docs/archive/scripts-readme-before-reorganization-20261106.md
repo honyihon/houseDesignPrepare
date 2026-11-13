@@ -1,0 +1,778 @@
+# 歷史導覽歸檔（2026-11-06重整前）
+
+原位置：scripts/README.md。以下「最新」只指當時日期；指令仍以專案根目錄執行。現在請先看[目前專案狀態](../project-status-v1.md)。這是導覽備份，不改原圖或證據。
+
+# House Design Workflows
+
+## ABC條件式預先規劃（2026-11-06，最新工作方式）
+
+[條件表／影響清單／前後備案](../../scripts/../structured/coordination/abc-fresh-air-planning-v1/index.html)／[填寫及日後套入方式](../../scripts/../Docs/abc-conditional-planning-v1.md)。屋主要求等實際資料再統一套用，當前只做預先規劃；先為新風／機電提供184欄JSON／CSV及101項條件比較，均保持待資料。可分批填值，不把空白當0、不用假設當量測；每欄檢查單位／來源／日期，產品數據綁定機型版次，舊基準拒收。`--inputs`預設只讀摘要，只有`--out`指定新的`inputs/private/`子目錄才保存獨立結果；拒絕覆寫既有輸入／結果或原ABC／3D。B後巷與逐層前後外口獨立，原149控制及需求不變，不自動採用或取得專業核可。
+
+以下逐條20秒內，只檢查本批檔案與小範圍測試：
+
+```bash
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_abc_fresh_air_planning.py --check
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_abc_fresh_air_planning.py
+```
+
+不在背景啟動瀏覽器／WebGL、整套pytest或外部AI；初始化及實際資料重算指令見上述說明，現在無須先填資料。
+
+## ABC新風關門支路／室外口／檢修剖面（2026-11-06，前批）
+
+[三棟支路與剖面](../../scripts/../structured/coordination/abc-fresh-air-detail-v1/index.html)／[代價與商品核對限制](../../scripts/../Docs/abc-fresh-air-detail-v1.md)／[建商八列回覆](../../scripts/../structured/coordination/abc-fresh-air-detail-v1/contractor-response.csv)。24乾區標籤獨立送回風、B右側乾頸部接前區、B外口前後兩案。四管不能共塞500×300，另比950×300／500×500；名義拆板另扣框料及手部。13件純靜態輸出，所有Z／合法開孔／低速性能／全機運出未核，不改原3D、149控制或B前後搬轎兩版三態，不選購或宣稱採用。
+
+每條分別20秒，只做新包檔案／小測試，不啟動瀏覽器、WebGL或完整3D：
+
+```bash
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_abc_fresh_air_detail.py --check
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_abc_fresh_air_detail.py
+```
+
+## ABC全熱／新風機位、檢修與管井（2026-11-06，前批）
+
+[三棟預留比較](../../scripts/../structured/coordination/abc-fresh-air-layout-v1/index.html)／[尺寸與未解](../../scripts/../Docs/abc-fresh-air-layout-v1.md)／[九列等範圍報價空表](../../scripts/../structured/coordination/abc-fresh-air-layout-v1/builder-quotes.csv)。8處機位不等於8台，5條局部送回風管帶不代表完整四管已排。常用層分區僅條件式優先，三個中央管井試點不留，但其他集中方案可另比。C1機位與管帶避樓梯、鞋櫃及可關隔間；B前起居接通、關門各房分支、OA／EA終端、梁底與抽換尚待設計。三樓有既定用途須同期啟用通風，不以未知人數當0。沒有選機、填價格、採用或改原3D，149份控制及B前後門保留。
+
+以下逐一執行，每條20秒內；不啟動瀏覽器、WebGL、全套測試或外部AI：
+
+```bash
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_abc_fresh_air_layout.py --check
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_abc_fresh_air_layout.py
+```
+
+## ABC全熱／新風分區基準（2026-11-06，需求基準）
+
+[三棟分區圖](../../scripts/../structured/coordination/abc-fresh-air-v1/index.html)／[已述人數與建商回覆](../../scripts/../Docs/abc-fresh-air-v1.md)。屋主已確認三棟ERV優先、最低機械室外新風；A1／A2各2人，B2為2人、B1香火另核，C1為2人／C2為1人。新增九層服務分區、關門回風、三樓預留與每棟中央／常用層小機兩案。通風確認不等於格局／機型／無窗公衛採用；台數、風量及物理路線待核，原3D與149控制不改。
+
+每條分別20秒，只做新包檔案／小測試，不啟動瀏覽器、WebGL或完整3D：
+
+```bash
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_abc_fresh_air.py --check
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_abc_fresh_air.py
+```
+
+## B關門補氣／檢修／屋頂工程深化（2026-11-06，上一批）
+
+[三張深化圖](../../scripts/../structured/coordination/b-ventilation-detail-v1/index.html)／[八項建商回覆空表](../../scripts/../structured/coordination/b-ventilation-detail-v1/builder-response.csv)／[說明](../../scripts/../Docs/b-ventilation-detail-v1.md)。調整濕區抽氣口與RF兩個終端，另核關門補氣、主臥豎道維修、包覆厚度、直管與梁底及指定假設壓損。型號、實物尺寸、價格及核定工作點保持未知，原無窗偏好未答覆，不能把繼續作業當成採用；原一樓、3D與149控制不改。
+
+每條分別20秒，只檢這一小包，不啟動瀏覽器或完整3D：
+
+```bash
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_b_ventilation_detail.py --check
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_b_ventilation_detail.py
+```
+
+## B二三樓公衛外窗／獨立排氣比較（2026-11-06，上一批）
+
+[兩案三張圖](../../scripts/../structured/coordination/b-bath-ventilation-v1/index.html)／[面積、門床與工程代價](../../scripts/../Docs/b-bath-ventilation-v1.md)。保房間位置案新增獨立500×300mm排氣豎道，主臥估20.0761㎡；床櫃換位避套衛門正向投影，機盒改前臂上方候選。後窗公衛重排估16.0889㎡且門朝床未解，不列可採用案。原一樓、前後門三態、原3D及149份控制不改；新方案未送Claude、沒有瀏覽器或專業核可。
+
+每條單獨20秒內，只檢這個新包：
+
+```bash
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_b_bath_ventilation.py --check
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_b_bath_ventilation.py
+```
+
+## B與Claude第三輪深化（2026-11-06，上一批）
+
+[三張深化圖與比較表](../../scripts/../structured/coordination/b-claude-round3-v1/index.html)／[尺寸、家規及代價](../../scripts/../Docs/b-claude-round3-v1.md)。已收到第三輪原response並核對來源，Claude同意100mm研究基線；屋主三項家規已確認。新增公衛器具／200管井、前門洗衣機移位及右牆機盒候選。原5／6㎡兩衛目標仍未達，公衛缺直接外窗，149份控制與原3D不改。這輪不自動再呼叫Claude或啟動瀏覽器。
+
+只做本包輕量檢查，每條分別20秒內：
+
+```bash
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_b_claude_round3.py --check
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_b_claude_round3.py
+```
+
+下面兩節及其中Claude長命令保留歷史，不是要求重新執行。新包獨立產生，沒有更新舊包雜湊來冒充重驗。
+
+## B與Claude回覆交叉核對（2026-11-06，上輪歷史）
+
+[新拓樸三圖與核對入口](../../scripts/../structured/coordination/b-claude-crosscheck-v1/index.html)／[面積及管道代價](../../scripts/../Docs/b-claude-crosscheck-v1.md)。取得Claude「前方乾區三入口」回覆，獨立重算四區面積、本體、700操作、900局部到達與投影；另列套衛前牆後移100mm比較，尚未送回Claude確認。原20／5／6目標、前後搬轎兩版與149份控制維持，沒有新採用或瀏覽器passed。
+
+```bash
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_b_claude_crosscheck.py --check
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_b_claude_crosscheck.py
+```
+
+原TEMP回覆本回合不可讀，已保存上回完整工具回傳與當時hash核對的取得方式，不偽造原始stdout。第三輪較長討論仍交屋主獨立WSL終端，這次明確存至既有gitignore排除的專案私有目錄：
+
+```bash
+python3 scripts/review_b_fengshui_with_claude.py \
+  --brief Docs/claude-b-fengshui-followup-v3.md \
+  --timeout 900 \
+  --output inputs/private/b-claude-round3-20261106
+```
+
+`--output`必須為新建／空目錄，不覆寫舊回覆。此15分鐘上限只適用屋主獨立終端，不是代理20秒上限例外。CLI工具全停用，不執行讀寫專案命令；回覆須再由Codex核對，不直接採用或判風水／施工通過。
+
+## B嚴格祭祀與Claude Code只讀討論（2026-11-05）
+
+[四張圖與兩版六態](../../scripts/../structured/coordination/b-fengshui-strict-v1/index.html)／[代價及未解](../../scripts/../Docs/b-fengshui-strict-study-v1.md)。L形房退出整廳／背櫃、上層濕區移後右，保原家具；套衛面積仍不足，未採用或更新原3D。16項局部測試與小型靜態輸出不替代法規／風水／搬運簽證。
+
+```bash
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_b_fengshui_strict.py --check
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_b_fengshui_strict.py
+```
+
+Claude首輪17秒逾時且本次程序已關閉，沒有自動重試／回覆／共識。耗時雲端討論只給屋主另WSL終端執行，工具與MCP全停用，不改設計或登入設定：
+
+```bash
+python3 scripts/review_b_fengshui_with_claude.py --brief Docs/claude-b-fengshui-followup-v2.md --timeout 900
+```
+
+該命令最長15分鐘只適用屋主獨立終端，不是代理可延長20秒上限的例外；輸出新暫存目錄，回傳Result路徑後再由Codex核對。第二稿明列主臥／套衛面積、所有器具、家規與未知，未用「Claude已認同」替代完整討論。
+
+## ABC五項獨立深化（2026-11-05）
+
+[入口：六張圖、產品回套及完整詢價空表](../../scripts/../structured/coordination/abc-next-v1/index.html)／[建議與代價](../../scripts/../Docs/abc-next-improvements-v1.md)。五項包含A1門洞／乾區、B前後兩版整棟濕區與立管、C客房單雙機、景觀冷媒三案，以及ABC逐房衛浴／門／冷氣候選。A2、兩版立管與P2左繞均是比較，未併原3D或填正式商品回覆。
+
+每次20秒、依序執行；只序列化靜態圖表，沒有瀏覽器、WebGL、完整場景或全套測試：
+
+```bash
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_abc_next_improvements.py --check
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_abc_next_improvements.py
+```
+
+新增比較來源有改才去掉`--check`重產15件；來源主圖SHA或149份保留控制不同時停止重新評估，不改預期SHA湊通過。本批不要求重跑原3D；新增比較沒有沿用舊畫面passed。
+
+## C棟概念合圖（2026-11-05）
+
+[合圖入口](../../scripts/../structured/coordination/c-current-v1/index.html)／[判讀、代價與正式資料需求](../../scripts/../Docs/c-coordination-review-v1.md)：四張SVG整合一、二樓建築、門窗、家具、樓梯、冷媒及冷凝水方向，另有3處穿越表、12項廠商回覆表與來源JSON。結構梁柱／鋼筋、實機及合法排水終端仍缺，不把概念尺寸當已核施工圖；原3D與`NM2w2A`綁定的來源不改。
+
+以下逐條執行，各20秒，只作資料／向量檢查，不啟動瀏覽器或完整場景：
+
+```bash
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_c_coordination.py --check
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_c_coordination.py
+```
+
+只在本包來源變更後用`export_c_coordination.py`去掉`--check`重產8份靜態產物。正式梁板資料抵達時須先重新對位、補來源與覆核，不能只在CSV填「通過」就當合圖完成。本包不新增Windows／WebGL驗收任務。
+
+## C冷氣室內立管候選已同步原3D（2026-11-05）
+
+最新見[C-AC01尺寸、代價及未解](../../scripts/../Docs/c-ac01-route-study-v1.md)與[兩層平面／剖面](../../scripts/../structured/candidates/kaohsiung-house-options/c-ac01-route-study.svg)。原室內機會跨新前置牆，現移至乾式前室右壁；室內立管候選避開沙發及門口，從二樓門窗間牆帶穿出，估長15.495m。200×200mm協調帶占二樓0.04㎡，未核穿板、梁窗、支架、樹冠、機型及排水，不是已採用管井。
+
+沿用下方局部整合／預檢及Windows命令。新版本顯示`C integration revision: 2`、`C stair display revision: 2`及`C-AC01 routing revision: 1`，QA revision 3。已核對屋主`NM2w2A`：759項通過、141份來源相符、36張圖齊全，新增4張空調圖已目視；10組樓梯與4組空調證據完整，session已關閉。[結果與限制](../../scripts/../Docs/c-ac01-route-study-v1.md#windows結果與新增畫面核對2026-11-05)另列特寫範圍，未宣稱所有管段可見或工程核可。下方`OGEElh`只作歷史。
+
+## C樓梯與前置門整合紀錄（2026-11-05）
+
+[原ABC高雄厝3D入口](../../scripts/../structured/candidates/kaohsiung-house-options-3d.html)與[同步平面](../../scripts/../structured/candidates/kaohsiung-house-options.html)已更新`c-split`：1F4m／24級／270mm踏面、完整1000mm共享平台、前置可關門及二樓側門獨立開關。A／B、C控制案與C原49件家具保留，詳見[C樓梯整合](../../scripts/../Docs/c-stair-shared-landing-v1.md)。產品、淨寬、結構、消防及低位冷媒跨騎樓段仍待核；舊`JgwtIq`不適用本版。
+
+同日展示v2修正`zkWA7a`所見的梯井完整底板材質被還原問題：隱藏處理改至每次材質更新之後，小回歸直接使用產出頁面的材質函式；未通過狀態保留原始材質證據。當時格局不變、QA revision 2；已核對屋主`OGEElh`的754項通過、137份來源相符、32張截圖目視及10份樓梯／門態證據完整，session已關閉。[當時結果與範圍](../../scripts/../Docs/c-stair-shared-landing-v1.md#展示v2-windows結果2026-11-05)只對應空調候選修改前來源。
+
+本輪局部序列化只讀凍結快照，不啟動完整場景；每條限20秒，逐條執行：
+
+```bash
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/merge_c_stair_into_3d.py --check
+timeout 20s node scripts/check_kaohsiung_options_playwright.cjs --preflight
+```
+
+若修改本輪來源，用同一局部命令去掉`--check`更新整合產物；若也修改細排／協調來源，先分別執行`export_c_balcony_coordination.py`、`export_c_stair_landing.py`，每次同樣限20秒。不用原`export_kaohsiung_options.py`寫出當前入口，避免覆蓋新整合頁；其原報告與兩份原HTML封存仍保持原bytes。
+
+代理不自動執行瀏覽器。當前已取得`NM2w2A`，來源不變時無需重跑；後續改動時，由屋主另開Windows PowerShell重驗：
+
+```powershell
+node '\\wsl.localhost\Ubuntu\root\workspace\houseDesignPrepare\scripts\check_kaohsiung_options_playwright.cjs'
+```
+
+原命令自動轉到C整合驗收，預期5案／9態／36層／334區／340件；當前revision與36張圖範圍以上節空調候選為準。生成報告的`not-run`保留生成時原值，後取得的結果另記上述文件。Browser plugin not available，依屋主資源分流規則不在代理環境啟動瀏覽器。
+
+## 唯讀盤點與歷史維護（2026-10-27）
+
+先看[專案入口與待辦](../../scripts/../Docs/project-status-v1.md)、[QA證據／上游更新索引](../../scripts/../Docs/qa-evidence-index-v1.md)與[一般衛浴三組候選](../../scripts/../Docs/abc-standard-bath-shortlist-v3.md)。ABC基準與後續C照護續版仍分案，所有採用／專業條件不變。
+
+```bash
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/check_project_status.py
+timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/check_project_status.py --check --json
+```
+
+不寫檔、不啟動生成器或瀏覽器；`--check`遇來源變更預期exit 1。共享開窗重評估已修來源，但既有HTML／SVG／3D與報告未重產，因此下方歷史末端preflight可能被舊上游雜湊攔截。不要反覆重跑、修改預期hash或沿用舊passed；先按QA索引確認重建範圍，完整產圖仍交屋主另終端。純文件／索引維護不新增畫面驗收任務。
+
+## 目前討論基準／局部整棟深化（2026-10-20）
+
+[新版入口與取捨](../../scripts/../Docs/current-design-basis-v1.md)：五個獨立版本／九個狀態，A套衛取捨、B後巷優先／前門備案上層家具、C已接受廚房與單機家務；原ABC、舊比較、需求及封存不覆寫。輸出112列最新需求對帳、同源HTML／SVG／3D與濕區／機電關係示意，未採用／專業未核。
+
+以下各自20秒上限、逐項執行；只做既有快照局部修改與向量序列化／小範圍測試，不啟動場景或瀏覽器：
+
+```bash
+timeout 20s .venv/bin/python scripts/export_current_design_basis.py
+timeout 20s .venv/bin/python -m pytest -q tests/test_current_design_basis.py
+timeout 20s node tests/js/current-design-playwright.test.cjs
+timeout 20s node scripts/check_current_design_playwright.cjs --preflight
+```
+
+畫面驗收交由屋主另開Windows PowerShell執行，一次一項，不背景重跑：
+
+```powershell
+node '\\wsl.localhost\Ubuntu\root\workspace\houseDesignPrepare\scripts\check_current_design_playwright.cjs'
+```
+
+預期`5 options / 9 states / 36 floors / 340 rooms / 341 items`，是比較快照加總，不是新增實物件數。原B一樓展示v2的Lnm9eK結果只保留為其自身證據，不套用到本包；新版仍須來源一致的Windows結果及目視。
+
+## ABC合理性續修／C三層整合比較（2026-10-15）
+
+本輪修候選窗跨門／越牆、A3維修入口與B32客房後窗。C新增未採用的[三層整合比較](../../scripts/../structured/candidates/c-integrated-options.html)：有窗公衛、側牆床、前客房與運動討論外廓連動；3／3.6／4m三案，合計12層／117區／141件，與ABC主案12／112／128分開。[改動、面積缺口、前修風險與待決](../../scripts/../Docs/abc-rationality-followup-v1.md)不能省略。
+
+生成需按順序逐項執行，每項限20秒，不並行；逾時即停止本次嘗試：
+
+```bash
+timeout 20s .venv/bin/python scripts/export_model_3d.py
+timeout 20s .venv/bin/python scripts/export_c1f_options.py
+timeout 20s .venv/bin/python scripts/export_bc_options.py
+timeout 20s .venv/bin/python scripts/export_arcade_capacity.py
+timeout 20s .venv/bin/python scripts/export_preparation_review.py
+timeout 20s .venv/bin/python scripts/export_b32_entry_options.py
+timeout 20s .venv/bin/python scripts/export_c_integrated_options.py
+```
+
+新增Windows畫面驗收：`node '\\wsl.localhost\Ubuntu\root\workspace\houseDesignPrepare\scripts\check_c_integrated_playwright.cjs'`。與主案、B32分開一次只跑一項；`--preflight`僅檔案檢查，不啟動瀏覽器。C比較不改ABC、B32、原需求或封存；窗與運動虛框初篩不代表採光、排濕、承重、隔振與家規全部通過。
+
+入口／手機展示續修不改格局：B32新增entry access revision 1，依實際成對門洞、側緣暫留與同室衛浴接縫檢查入口；QA revision 3新增8組房間資訊操作，至少18張截圖。C display／QA revision 2新增三組390×844本體投影角點及最小像素檢查（主要設備／床40／96px，其餘12／28px），不能以標籤或自報相機分數代替。`aQLPKX`、`cWpT6z`、`4J5w7M`是此續修前的結果，不能沿用；仍以Windows目視確認遮擋與可讀性。
+
+僅檔案／座標／投影數學的輕量回歸（逐項執行，各20秒上限；不啟動WebGL）：
+
+```bash
+timeout 20s .venv/bin/python -m pytest -q tests/test_b32_entry_access.py
+timeout 20s node tests/js/b32-entry-access.test.cjs
+timeout 20s node tests/js/model3d-readable-camera.test.cjs
+timeout 20s node tests/js/c-integrated-playwright.test.cjs
+```
+
+## 資源安全：重型驗收另開終端機執行
+
+目前主案[A收納／乾區續修](../../scripts/../Docs/a-storage-dry-zone-v2.md)為12層／112區／128件，增加的是1件書櫃；下列舊案章節的127件為當時主案，比較案本身沒有採用新布局。先跑Windows主案CLI，不自動並行全套測試。
+
+2026-10-15只修平面房名／冷氣符號與代碼的避讓，A二樓前陽台房名排入兩機之間。房間、家具與設備座標不變；比較圖依共用繪圖器更新，不採用。Windows CLI新增原生SVG實際字框檢查（含白邊）、兩台完整代碼及設備原位置／尺寸查核；`snbl6T`是修改前passed，不可沿用作新版目視或渲染通過。
+
+屋主要求：卡住、逾時或耗資源的檢查不要在代理背景反覆重跑、影響正常修改。代理只做有20秒上限的檔案／語法／小範圍檢查；瀏覽器、全套測試、整套3D場景及大型轉图預設交屋主另外執行，且一次只跑一項。詳細規則見[AGENTS.md](../../scripts/../AGENTS.md)。
+
+新版主案渲染先在另一個 **Windows PowerShell** 執行：
+
+```powershell
+node '\\wsl.localhost\Ubuntu\root\workspace\houseDesignPrepare\scripts\check_windows_playwright.cjs'
+```
+
+若要補完整程式驗收，再另開 **WSL 終端機** 逐項執行；逾時即列未完成，不自动重試：
+
+```bash
+cd /root/workspace/houseDesignPrepare
+timeout 300s .venv/bin/pytest -q --tb=short
+timeout 90s node --max-old-space-size=384 tests/js/model3d-facade-runtime.test.cjs
+```
+
+需要停下時使用該終端機的 `Ctrl+C`。不要與Windows瀏覽器驗收同時跑；exit 124是逾時，不是通過。無結果或被中止的執行也不算通過，渲染passed仍需目視。
+
+## B 32地坪：後門搬轎預案／前門備案（未採用）
+
+`python3 scripts/export_b32_entry_options.py` 只產出獨立的 `structured/candidates/b32-entry-options*`，不改ABC主案或既有七案。兩案、八層、64分區、60件為比較合計；主案仍12／112／127。後方通路、通行權與實物搬運未知；B不超32地坪，37.3坪舊圖不是本輪可採候選。詳見[比較契約](../../scripts/../Docs/b32-entry-options-v1.md)。
+
+```bash
+.venv/bin/pytest -q tests/test_b32_entry_options.py
+node --test tests/js/b32-entry-playwright.test.cjs tests/js/b32-plan-viewer.test.cjs
+node scripts/check_b32_entry_playwright.cjs --preflight
+```
+
+Windows PowerShell執行 `node '\\wsl.localhost\Ubuntu\root\workspace\houseDesignPrepare\scripts\check_b32_entry_playwright.cjs'`。沿用已安裝的Playwright CLI／Edge；結果在新TEMP，不安裝、不採用、不把舊七案passed套用新圖。前門備案的收納位置與通行暫留不同，不能只保留一個後門案並宣稱前門也已驗證可搬。
+
+平面展示v2加入獨立放大、縮小、讀字／整層還原與原生捲動；配置仍v1、八張SVG幾何不變。CLI會顯示 `B32 display revision: 2`，包含兩案×桌機／手機直橫六組閱讀操作；入口續修後為QA revision 3、至少18張截圖。`o1kJdw`的v1 passed保留作歷史證據，不涵蓋新介面。
+
+## ABC 前期整合比較／會談補充（未採用）
+
+`python3 scripts/export_preparation_review.py` 只輸出新的 `structured/candidates/preparation-review*` 與 `structured/discussions/abc-preparation-meeting.*`，原 ABC 主案／需求／封存對話受雜湊保護。七案、28 層、281 區、284 件是比較間合計；主案仍 12 層／112 區／127 件。v2 更新 B 搬轎／神明堂連動、C 門前操作與客餐家具，不改固定32坪B缺口對照；範圍與未解需求見[動線修正版 v2](../../scripts/../Docs/abc-preparation-review-v2.md)，v1驗收不可當成v2渲染通過。
+
+```bash
+.venv/bin/python -m pytest tests/test_preparation_review.py -q
+node --test tests/js/preparation-playwright.test.cjs
+node scripts/check_preparation_playwright.cjs --preflight
+```
+
+新頁渲染須在 Windows PowerShell 執行 `node '\\wsl.localhost\Ubuntu\root\workspace\houseDesignPrepare\scripts\check_preparation_playwright.cjs'`；不只跑舊主案 QA。沿用已安裝的 Playwright CLI／Edge，不安裝、不採用、不修改來源；新 TEMP 目錄存結果與截圖，passed 仍需目視及專業查核。
+
+## Current parcel and drawing review
+
+The confirmed 32 ping is **each parcel's land area**, not each floor's building
+area. The current workflow keeps missing zoning, road, coverage, FAR and setback
+facts as `unknown`; unknown is never rendered as a pass.
+
+```bash
+python3 -m house_design intake validate
+python3 -m house_design drawings import --revision R001 --label "初步設計" \
+  --pdf path/to/drawings.pdf --ifc path/to/model.ifc
+python3 -m house_design review run --revision R001 --previous R000
+```
+
+Use `--dxf model.dxf --mapping mapping.json` when IFC is unavailable. DWG must
+be exported to DXF. Outputs are written to `structured/reviews/<revision>/` as
+JSON, Markdown, a printable PDF and a self-contained offline dashboard.
+
+All rooms and equipment imported from the old briefs are `candidate` until the
+owner explicitly changes them to `confirmed` or `rejected` in
+`inputs/requirements.json`.
+
+Large existing objects are recorded once in `inputs/physical-items.json`.
+`intake validate` checks the register, and `intake physical-item-measure`
+appends a complete measured width/depth/height set without discarding the
+planning estimate or earlier measurements.
+
+## 每筆32地坪含騎樓容量比較（未採用）
+
+情境來源為 `inputs/abc-arcade-capacity.json`，以`inputs/references/abc-before-a-arcade.json`固定舊骨架／32坪限制／加深對照，皆為歷史未採用方案。現A主案已改[32坪含騎樓](../../scripts/../Docs/a-32ping-arcade-layout-v1.md)，12 floors／112 rooms／127 items；B／C配置未改。修改情境或其來源後執行：
+
+```bash
+.venv/bin/python scripts/export_arcade_capacity.py
+.venv/bin/pytest -q tests/test_arcade_capacity.py
+node scripts/check_windows_playwright.cjs --preflight
+```
+
+入口：[容量比較](../../scripts/../structured/candidates/arcade-capacity.html)／[獨立3D](../../scripts/../structured/candidates/arcade-capacity-3d.html?scheme=arcade32#mode=tour&building=A&floor=floor-1&view=front)。36張平面SVG、manifest與3D同源；只重分配房間，不縮市售代表產品。1F暫估4m層高、同軸共同梯井、冷氣與立面同步，法規及專業狀態保持unknown。[結果與產圖契約](../../scripts/../Docs/abc-32ping-arcade-v1.md)列A／C衝突、B未解需求及每筆面積敏感度。
+
+CLI保留主案及C公衛／採光流程，涵蓋三案 × ABC × 四層HTML／3D、返回同案／棟／層、無效連結與手機重載／重設／橫向。容量初版`0mTIes`已核對4598項／114份當時來源雜湊／71張分級目視截圖。後續手機取景續修加入360／390／430px按鈕尺寸及單行文字、實際overlay安全區、至少60%單一軸占比／16px家具本體投影／橫向整層40%寬度檢查；當時預期114份來源雜湊、72張截圖。本輪A騎樓主案改為115份來源雜湊，新增騎樓與A客餐廳手機直向／橫向特寫，舊版張數不適用。新版渲染與目視待Windows重跑，不能沿用0mTIes或sAmDnF；細節見[取景續修契約](../../scripts/../Docs/abc-32ping-arcade-v1.md#手機取景續修僅展示)及[A騎樓主案](../../scripts/../Docs/a-32ping-arcade-layout-v1.md)。
+
+## Windows 原生 Playwright CLI 驗收
+
+新增[B嚴格家規／C照護改善比較](../../scripts/../Docs/bc-constraints-review-v1.md)：執行 `.venv/bin/python scripts/export_bc_options.py` 產生五案、20張平面及單棟比較3D。ABC主案仍12 floors／112 rooms／127 items；B全層樓梯重排未採用，C客房待排衣櫃不算已容納。sXV7ej是新增比較前的驗收，新版需以原Windows命令重跑。
+
+現行[風水小改與待決最佳方案](../../scripts/../Docs/fengshui-minimal-v1.md)增加A爐台／洗槽真正元件位置、B二／三樓神桌投影與C三樓側牆床檢查，另截四個桌面房間特寫。主案仍12 floors／112 rooms／127 items；B1及C1待決方案未採用。TBqvyB是改版前證據，新版必須重跑下方原命令，不宣稱風水／照護核可。
+
+2026-10-12新增[B／C一樓動線續版](../../scripts/../Docs/bc-1f-flow-v1.md)：B神桌中軸180cm祭祀門、側門搬轎四段線與三個桌面特寫；C三區全寬開放、實牆電視與配管重算。主案仍12 floors／112 rooms／127 items；FYY4NW只適用改版前，請以原命令重跑，新截圖與專業條件不得沿用舊passed。
+
+2026-10-12 [A MDF續修](../../scripts/../Docs/a-mdf-under-stair-v1.md)：新增共用平面候選虛框、敏感度剖面、3D可逆開關與手機驗收。備援補齊前後／左右維修，未新增第二台機櫃或認列原位釋放；預檢仍12／112／127。`house-design-cli-T1uj2e`的5133項／115份來源／75張截圖是此次續修前證據，新版須重跑，不覆寫舊報告。
+
+正式入口是 `scripts/check_windows_playwright.cjs`，不要再使用會消失的
+`/tmp/house-windows-cli-check.cjs`。腳本預設檢查自身所在的專案，不硬編碼
+WSL 發行版或 Desktop 舊目錄。需先備妥 Windows Node.js 20+、Edge（或 Chrome）
+及專案 `node_modules`；不會自動安裝、要求系統管理員或更動安全設定。
+
+在 **Windows PowerShell** 執行；下面的 `Ubuntu` 必須是實際存放最新專案的
+WSL 發行版，可用 `wsl -l -q` 確認：
+
+```powershell
+$qa = '\\wsl.localhost\Ubuntu\root\workspace\houseDesignPrepare\scripts\check_windows_playwright.cjs'
+Test-Path -LiteralPath $qa
+node $qa --preflight
+node $qa
+```
+
+若 `Test-Path` 為 `False`，先確認發行版及專案位置，不要直接執行 `node`。
+如果腳本另存到 Windows，可指定 `--project '最新專案的完整路徑'`；只有三份
+HTML 的舊 `D:\Desktop\houseDesign` 不會通過預檢。需要 Chrome 時加上
+`--browser=chrome`。缺少專案依賴時另行在最新專案執行 `npm ci`；這只準備
+Playwright 程式套件，不代表瀏覽器驗收通過。
+
+`--preflight` 只檢查檔案，不啟動瀏覽器。完整驗收使用單一無頭瀏覽器／頁面，
+依序檢查三棟十二層 HTML→3D 連結、共用尺寸與擺位、待調整家具清單、
+固定比較框、停車取捨、雙折梯與冷氣配對／未核狀態、梯廳分區及牆面切換，
+以及 1440×900／390×844 畫面的互動與標籤；不啟動 Python server、錄影或 trace。
+另外檢查室內／外屬性、戶外家具類型及手機房間特寫／返回整層，不把標籤不重疊誤認為房內細節已清楚。
+HTML 預設頁不一定是 1F；驗收會先點各層分頁並確認面板可見，再載入延遲
+圖片，最後返回 1F 才點其 3D 連結，不強制顯示原本隱藏的樓層。
+房間標籤以完整 `data-room`（棟別／樓層／房間）定位，並確認唯一且可見；
+A、C 都有孝親房，不能只用共用文字找按鈕，也不以第一個匹配或強制點擊略過錯誤。
+所有結果、CLI 紀錄及截圖都存入印出的 Windows `QA output folder`，不寫回
+專案。驗收前後比對來源雜湊，來源中途變動、啟動失敗或缺結果都不判通過。
+2026-10-14修正SVG獨立房名層的驗收定位，以及純SVG失敗後CLI快照掩蓋原錯誤的問題；錯誤回報保留原網址／截圖，不重試、不降低判定。[894MkV未完成紀錄](../../scripts/../Docs/a-storage-dry-zone-v2.md#2026-10-14-windows未完成結果與驗收器修正)不能當作通過；新版請用上方Windows命令重驗，預檢12／112／128。房屋配置沒有因這次修驗收而更動。
+本版預檢應為 **12 floors、112 rooms、128 items**；A主案騎樓、1200mm照護通道、4m名義一樓與共用前平台另做獨立檢查。會截取各樓層、A孝親房／一樓公衛、A／B二樓共用圖與衛浴／走道特寫，以及手機整層／特寫。樓上檢查三間衛浴700mm操作帶、馬桶側邊間距，以及屋主同意的A兩組更衣櫃分散／240cm淺櫃搬移；保留全部原尺寸與總收納量、公共1280mm暫留、私人更衣操作分時但未核。依當前同源pending清單判斷，不沿用舊版3件待排數字；下列27張及兩件待排等為歷史流程，不只比對兩張圖是否一樣。
+
+提交1e38934的C續版另加HTML基本圖／庭院比較、餐廳／客廳／廚房特寫、3D前院虛框及手機客廳／前院；共44張、31份來源雜湊。獨立查面積、正常產品、照護暫留帶、TV同軸與未知前院，不只查兩張圖是否一樣，詳見[C一樓續版](../../scripts/../Docs/c-1f-space-use-v3.md)。
+
+2026-10-07已核對 `house-design-cli-QEFdQU`：Windows Edge的2682項檢查通過，31份來源SHA-256與提交1e38934當時檔案一致，44張截圖已目視複查；12 floors／105 rooms／129 items，session已關閉。無pageerror或非預期錯誤，僅8次既有Three.js棄用warning。原始結果與截圖仍在Windows TEMP，詳細證據見[歷史驗收](../../scripts/../Docs/c-1f-space-use-v3.md#歷史-windows-驗收)。這份passed不適用本輪新增比較及共用viewer／HTML bridge／CLI改動。
+
+2026-10-08新增[C一樓公衛／採光三案比較](../../scripts/../Docs/c-1f-bath-daylight-v1.md)：HTML實際選案、同方案SVG／3D、兩案公衛特寫、3D切換返回現況、手機重載／重設／收合及橫向特寫；最後返回ABC主案，確認未採用替代案。普通設備、孝親房床／衣櫃、前帶／樓梯、150cm暫留、門圖、候選窗、鞋櫃未容納與冷氣量另做獨立查核，不以兩張圖一起錯就判通過。主案預檢12／105／129；`house-design-cli-sAmDnF` 已核對**3275項自動檢查通過、64份來源雜湊與當時檔案吻合、56張截圖全部目視複查**，Windows Edge、1440 × 900／390 × 844／844 × 390。無pageerror或非預期錯誤，19次既有Three.js棄用warning，session已關閉。橫向公衛與含冷氣管路的C客廳特寫仍偏小，不能將passed當成全面可讀性驗收；詳細證據與待辦見[該輪Windows驗收](../../scripts/../Docs/c-1f-bath-daylight-v1.md#本輪-windows-驗收)。後續容量比較已改bridge／CLI，這份報告是歷史證據，須用上方原命令重新驗收，無需另裝Browser插件。
+
+照片風格外觀v1保留上述27張，另加HTML立面、三棟各自正面／斜角、三棟合看及手機外觀，共36張。來源雜湊從25份增為30份，包含外觀JSON、原照片及三份立面SVG；預檢也核照片記錄的SHA-256。實際檢查HTML→全層外觀、正面／斜角、棟別／樓層切換、分享重載、手機返回室內，以及原剖視、展開、牆面、房間特寫與家具pending還原。外觀開口／装飾衝突保留待確認，17組室外機座標沿共用來源，不把美觀當成合規。
+外觀v1的house-design-cli-lgBJsy已核對2603項／36張，是C重排前報告，不能替新版背書。本環境socket與Chromium受限制；QEFdQU是提交1e38934的Windows證據，sAmDnF只適用容量比較前來源，0mTIes只適用手機取景續修前來源，g2jEnZ只適用新A重排前來源，不代表Linux HTTP e2e也已執行。研究來源見[ABC外觀提案](../../scripts/../Docs/abc-facade-v1.md)；下列27／36／44／56／71張及126／129件為歷史流程，最新CLI主案127件，Windows與新截圖目視仍待重跑。
+自動剖視驗收以設備本體五個取樣點檢查牆／門窗框／梯段遮擋，並實際旋轉、切完整牆高、返回整層與手機重載。剖視不得改HTML幾何、家具尺寸／位置或pending清單，也不得裁去冷氣／家具本體。取樣不等於像素可見或家具互不遮擋，仍須看截圖。
+另獨立檢查 A 孝親房的床與衣櫃、150cm轉位、90cm滑門、一樓淋浴／馬桶／洗手台與公共夜間如廁路徑，不能只因兩張圖一起漏房仍一致就判通過。來源雜湊也包含需求表與CLI腳本自身。
+2026-10-06 的照護回補版 `house-design-cli-WHIoXY` 已核對：Windows Edge 1799項檢查通過，
+25個受驗收來源雜湊與當時版本一致，18張截圖已目視複查；手機選房、特寫、
+重載還原與返回整層均完成。這是樓上重排前的歷史證據；本續版改過來源、viewer及CLI，須重新執行並目視複查，不能沿用舊passed。仍有兩組衣櫃與其他未解需求，不因CLI passed就視為全棟可施工。
+`house-design-cli-kgqbHV` 是樓上續版的部分failed報告：430項已記錄檢查通過，A二樓走道特寫的使用限制檢查失敗。原因是3D房間資訊未輸出共同資料的家具備註，並非將尺寸或擺位驗成失敗；B／C與手機流程尚未跑到。已補房間／逐件限制及對應來源比對，仍保留原走道分時使用斷言。新版四張樓上特寫會先捲動至房間資訊，讓截圖包含限制說明；需重新跑完，不沿用部分報告當passed。
+其後 `house-design-cli-EHN6RW` 的1877項自動檢查、25個當時來源雜湊及24張截圖已核對；走道限制正常顯示，但A二樓衛浴本體仍被鄰房高牆遮擋。此報告是最新自動剖視改動前的歷史證據，不代表27張截圖版已通過；須重新執行相同Windows命令。
+自動剖視版 `house-design-cli-FGNn3E` 為1924項通過／1項失敗：末段手機A衛浴檢查誤將2F房間數寫為9，共用資料實際是10；先前整層房間ID／尺寸、兩組衣櫃pending及手機衛浴本體視線均通過。已改用共用房間ID集合比對，保留兩座特定衣櫃的1800 × 600 × 2200mm尺寸與隱藏狀態檢查，不改房屋圖。手機收合改為讀取狀態後設定，避免同頁hash切換把已收合面板反向展開，並等待畫布resize。這份failed仍是部分證據，修正後須重新執行相同命令；預期27張不變。
+詳細證據與限制見 [ABC 合理性提案](../../scripts/../Docs/abc-layout-rationality-v2.md#未解與驗證)。
+105 rooms／126 items 的 `house-design-cli-yh8nGv` 在手機選房前已完成1785項檢查，
+但舊文字定位同時匹配A、C孝親房而中斷；屬部分證據，不是完整通過。
+定位修正後已由上述新報告完成重跑，舊failed報告不能替代新報告。
+106 rooms／126 items 的 `house-design-cli-hzNQgd` 是回補前報告，不適用目前 A 照護回補版。
+106 rooms／128 items 報告對應截圖修正前版本，不能驗證目前已移除露台室內家具及修正造型的版本。
+舊版 92 rooms／157 items 的通過報告不能驗證 ABC v2。
+只關閉本次命名 session，不影響其他瀏覽器 session。
+
+`passed` 只代表自動瀏覽器檢查通過，仍須看截圖；不是家具動線、建築容量、
+法規或風水核定。回傳 `result.json`、錯誤紀錄或輸出目錄，才能繼續人工檢視。
+
+## Historical HTML layout extraction
+
+## Purpose
+
+Convert the static building HTML pages into structured JSON files for downstream automation
+(layout scoring, auto-plan generation, prompt input, etc.).
+
+## Input Files
+
+- `AbuildingView.html`
+- `BbuildingView.html`
+- `CbuildingView.html`
+- `storage.html`
+
+## Output Directory
+
+- `structured/`
+  - `AbuildingView.structured.json`
+  - `BbuildingView.structured.json`
+  - `CbuildingView.structured.json`
+  - `storage.structured.json`
+  - `index.json`
+
+## Run
+
+```bash
+python scripts/extract_layout_data.py
+python scripts/build_room_program.py
+python scripts/evaluate_architect_metrics.py
+python scripts/generate_layout_candidates.py
+python scripts/render_candidate_viewer.py
+python scripts/export_top1_svgs.py
+python scripts/export_print_bundle_pdf.py
+```
+
+## One-Click Run (PowerShell)
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1
+```
+
+## Incremental CLI
+
+The package entrypoint hashes each step's command and inputs. Unchanged steps
+with existing outputs are skipped automatically:
+
+```bash
+python -m house_design pipeline --mode concept
+python -m house_design pipeline --mode draft --from-step candidates --to-step svg
+python -m house_design pipeline --mode release --force
+```
+
+Options:
+
+- `--force`: ignore the local cache and rerun the selected range.
+- `--from-step` / `--to-step`: run only part of the pipeline.
+- `--selection`, `--style`, `--paper`, `--output`: control generated artifacts.
+
+The local cache is stored in `.house-design-cache.json` and is not committed.
+Cache records include output hashes; SVG files listed by the manifest are
+checked individually, and PDF fingerprints include SVG contents.
+The PowerShell entrypoint remains available for compatibility and expert workflows.
+
+Common options:
+
+```powershell
+# Export A4 bundle
+powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 -Paper a4 -Output structured/candidates/print_bundle_a4.pdf
+
+# Fast concept iteration (no PDF, safe auto selection=baseline)
+powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 -Mode concept
+
+# Draft bundle (default mode, auto selection=baseline)
+powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 -Mode draft
+
+# Historical release gate (full export + validation; not IFC import or professional approval)
+powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 -Mode ifc
+
+# Force specific candidate selection
+powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 -Selection best
+
+# Use a specific Python executable
+powershell -ExecutionPolicy Bypass -File scripts/run_full_pipeline.ps1 -PythonExe py
+```
+
+## One-Click Expert Workflow (A/B/C + 5 Experts)
+
+This is the all-in-one entrypoint for:
+- requirement normalization
+- expert hard gates (regulation/accessibility)
+- HTML consistency checks
+- pipeline export
+- validation
+- report + task-board update
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_full_expert_workflow.ps1 `
+  -Request inputs/design_request.md `
+  -Mode draft `
+  -Buildings A,B,C `
+  -Selection auto
+```
+
+Interface:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_full_expert_workflow.ps1 `
+  -Request <path/to/request.md> `
+  -Mode <concept|draft|ifc> `
+  -Buildings <A,B,C> `
+  -Selection <auto|baseline|best> `
+  -Paper <a3|a4> `
+  -Output <output/pdf/path> `
+  -PythonExe <python>
+```
+
+Key outputs:
+- `structured/expert_review/report.json`
+- `structured/expert_review/report.md`
+- `structured/expert_review/request_normalized.json`
+- `structured/expert_review/html_consistency.json`
+- `structured/expert_review/domain_checklist.json`
+- `structured/expert_review/domain_checklist.md`
+- `structured/historical/html-workflow-task-board.md`（只記錄前身 HTML workflow）
+
+## Dependency
+
+```bash
+python -m pip install --user beautifulsoup4
+python -m pip install --user reportlab svglib
+```
+
+## Output for Step 2
+
+After running `build_room_program.py`, you'll get:
+
+- `structured/room_program.json`
+
+This file unifies all buildings into one normalized schema:
+- building/floor hierarchy
+- room list with area parsing (`坪`, `m × m`)
+- plan-cell mapping to rooms
+- tables/checklists/section bullets converted into constraints
+
+## Output for Architect Metrics
+
+After running `evaluate_architect_metrics.py`, you'll get:
+
+- `structured/architect_metrics/metrics.json`
+- `structured/architect_metrics/report.md`
+
+This advisory layer adds concept-level daylight, door width, floor area, egress proxy, and structure-review metadata. It does not replace Taiwan code, daylight, ventilation, egress, or structural professional calculations.
+
+## Output for Step 3
+
+After running `generate_layout_candidates.py`, you'll get:
+
+- `structured/candidates/layout_candidates.json`
+- `structured/candidates/summary.md`
+
+Each evaluated floor includes:
+- `baseline`, `circulation`, `daylight`, `mep` candidates
+- per-candidate scores (`circulation`, `daylight`, `mep`, `utilization`, `total`)
+- room-slot assignment details and unplaced/unassigned lists
+- daylight fit from `structured/architect_metrics/metrics.json` when available, with fallback to the original outdoor-slot heuristic
+
+## Output for Step 4
+
+After running `render_candidate_viewer.py`, you'll get:
+
+- `structured/candidates/viewer.html`
+
+This page provides:
+- floor selection
+- candidate switching (ranked list)
+- slot-to-room visual mapping
+- score bars and rationale / unplaced room summaries
+
+## Output for Step 5
+
+After running `export_top1_svgs.py`, you'll get:
+
+- `structured/candidates/svg/*.svg` (one Top1 SVG per evaluated floor)
+- `structured/candidates/svg/manifest.json`
+- `structured/candidates/svg/index.html`
+
+This is suitable for sharing with designers/contractors as static deliverables.
+SVG filenames are stable: `<building>_<floor>.svg`. The manifest records `candidate_selection`, `requested_selection`, `resolved_selection`, and each export's `selected_candidate_id` / `selected_strategy`, so candidate strategy changes should not churn filenames.
+Round-2 annotations are included by default:
+- window symbols (`WIN:`)
+- dimension chains (`DIM:`)
+- material legend (`LEGEND:`)
+- elevation index (`ELEV:A-A`, `ELEV:B-B`)
+- north arrow (`N↑`)
+
+Default export mode uses `baseline` candidate mapping (closer to original floor plan intent).
+To export heuristic best-score mapping instead:
+
+```bash
+python scripts/export_top1_svgs.py --selection best
+```
+
+## Output for Step 6
+
+After running `export_print_bundle_pdf.py`, you'll get:
+
+- `structured/candidates/print_bundle.pdf`
+
+By default, this PDF is exported in A3 landscape and includes:
+- cover page
+- table of contents
+- one floor layout per page (from `structured/candidates/svg/manifest.json`)
+
+Optional arguments:
+- `--paper a4` to output A4 landscape
+- `--output <path>` to change destination file
+- `--manifest <path>` to use a different SVG manifest
+
+## Quality Gate
+
+You can run validation manually:
+
+```bash
+python scripts/validate_layout_bundle.py
+```
+
+Checks include:
+- `room_program.json` metadata / notes coverage
+- exported SVG file existence
+- required drawing markers (`ENT`, `DW:`, `WIN:`, `DIM:`, `LEGEND:`, `ELEV:`)
+
+## Spatial Metadata Contract
+
+Directional metadata is optional and backward-compatible:
+
+- `.floor-plan`: `data-front-side`, `data-rear-side`, `data-site-orientation-note`
+- `.plan-cell`: `data-zone`, `data-facing`, `data-outdoor-role`
+
+`top/right/bottom/left` refer to the HTML visual grid, not geographic north. `data-north-deg` remains the geographic orientation input.
+
+Extraction emits `house-design-structured-v3` when spatial metadata support is active. Downstream scripts accept both `house-design-structured-v2` and `house-design-structured-v3` during migration.
+
+Room-program records expose `record_type=floor|section`. Metrics and candidate
+generation report non-floor sections separately instead of treating overview
+or specification content as skipped floors.
+
+SVG validation parses XML and checks rendered `data-marker` groups for
+entrances, doors, windows, and optional elevation indices. Marker strings in
+`<metadata>` do not satisfy drawing validation.
+
+## Shared Defaults Config
+
+Default assumptions are centralized in:
+
+- `scripts/config/residential_defaults_tw.json`
+
+This file drives:
+- wall / door / furniture defaults
+- px-per-mm conversion
+- drawing validation markers
+
+## Improve Precision from Source HTML
+
+You can make final SVG/PDF much closer to real drawings by adding geometry attributes in original HTML.
+
+Supported attributes:
+- floor: `.floor-plan`
+  - `data-floor-width-mm`, `data-floor-depth-mm`, `data-north-deg`, `data-geometry-source`
+- plan cell: `.plan-cell`
+  - `data-x-mm`, `data-y-mm`, `data-w-mm`, `data-h-mm`
+  - `data-door-mm`, `data-window-mm`
+  - `data-entry="true"` for main entrance
+  - `data-material` (optional material hint)
+- room: `.room`
+  - `data-x-mm`, `data-y-mm`, `data-w-mm`, `data-h-mm`
+  - `data-target-cell="slot-<n>"` (optional binding hint)
+
+Example:
+
+```html
+<div class="floor-plan" id="floor-1" data-floor-width-mm="11000" data-floor-depth-mm="7800" data-north-deg="0">
+  <div class="plan-cell" data-x-mm="3600" data-y-mm="1200" data-w-mm="7400" data-h-mm="1300"
+       data-door-mm="900" data-window-mm="1800">...</div>
+</div>
+```
+
+When all cells on a floor provide `x/y/w/h` (mm), export enters `blueprint-precise-mm` mode.
+
+## Prompt Templates
+
+For daily HTML-design revisions that must convert to realistic plan drawings, use:
+
+- `scripts/WEB_TO_PLAN_PROMPTS.zh-TW.md`
+- `scripts/WORKFLOW_ALL_IN_ONE_PROMPT.zh-TW.md`
+
+This pack includes:
+- single master prompt for end-to-end execution
+- fixed failure response format
+- fallback prompt when slash command is unavailable
+
+## Troubleshooting
+
+### 1) Rule citation issue (`citation_issues`)
+
+Symptom:
+- `report.json` shows `citation_issues`
+
+Meaning:
+- A `critical` rule is missing one or more of:
+  - `source_doc`
+  - `source_article`
+  - `source_url`
+
+Fix:
+- Update the rule file under `scripts/rules/*.yaml`.
+- Without full citations, that critical rule cannot become a hard gate.
+
+### 2) IFC signoff missing
+
+Symptom:
+- `run_full_expert_workflow.ps1 -Mode ifc` exits `2` because signoff is missing or stale
+
+Fix:
+- Create `structured/expert_review/signoff.yaml` from `structured/expert_review/signoff.template.yaml`
+- Set:
+  - `decision: approved`
+  - reviewer metadata
+  - `related_report_hash` copied from the latest `structured/expert_review/report.json`
+  - `related_report_generated_at` copied from the same report
+
+Two-pass IFC flow:
+1. Run `-Mode ifc` once to generate the latest report.
+2. Review `structured/expert_review/report.md`.
+3. Copy `report_hash` into `signoff.yaml` as `related_report_hash`.
+4. Rerun `-Mode ifc`.
+
+### 3) HTML mapping mismatch (`highlightRoom` / `room-id`)
+
+Symptom:
+- `html_consistency.json` contains `ROOM_TARGET_MISMATCH`
+
+Fix:
+- Ensure each `onclick="highlightRoom('xxx', this)"` matches `id="room-xxx"`.
+- Keep DOM skeleton unchanged:
+  - `.floor-plan > .plan-grid-visual > .plan-row > .plan-cell`
+
+## Claude Code MCP (WSL)
+
+Project-level MCP config is in:
+- `.mcp.json`
+
+Included MCP servers:
+- `playwright` (browser navigation/scraping)
+- `brave-search` (web search API)
+
+### WSL setup
+
+1. Prepare env vars:
+
+```bash
+cp .env.mcp.example .env.mcp
+# edit .env.mcp and set BRAVE_API_KEY
+source .env.mcp
+```
+
+2. Start Claude Code from this project root so it picks up `.mcp.json`.
+
+3. Verify in Claude Code:
+- MCP server list should include `playwright` and `brave-search`.
+- Ask Claude to run a quick web lookup (for example a recent regulation update) and cite sources.
+
+### Notes
+
+- If `BRAVE_API_KEY` is missing, `brave-search` may fail to start; `playwright` can still be used for manual web browsing tasks.
+- This repo keeps MCP settings at project scope (no global machine-level config required).

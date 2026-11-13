@@ -1,0 +1,144 @@
+{
+  "schema": "house-upper-floor-storage-static-review-v1",
+  "date": "2026-11-11",
+  "scope": "Owner-requested dedicated storage for ABC floors 2F/3F/RF and visible Chinese item names in new storage drawings and existing handout copies. New static geometry study; not yet merged into main 3D.",
+  "source_and_artifact_sha256": {
+    "inputs/upper-floor-storage.json": "8218693505667bf3425590e36cee3b7d1ce3dae6d8db5cc8309b6567d142fc97",
+    "house_design/upper_floor_storage.py": "edb5744b685a0df71cf720e3682479dacfee570154609bc67e8e79759882d45d",
+    "house_design/plan_readability.py": "db725fc882065df28b389f8e6eae76782a31ccf5d0d3e7a947ff378ed2c51176",
+    "scripts/export_upper_floor_storage.py": "fc8f2f5d0cca207720eedfd5cc244c433aca419e642844755ed55ae732e4df3e",
+    "tests/test_upper_floor_storage.py": "b3979101ef27e2c9ecd110ebed941383204eb687892abd9e3e95d09af335caad",
+    "tests/test_design_discussion_basis.py": "672495cecf6382e839b329cb8e08f2a6bff371536d9e5607f591eb7f4cd7130b",
+    "house_design/design_discussion_basis.py": "0d0b0b03f0d1eb150312d6269ea0abd3e5efca46ef81b8cb85070b87a7093ce7",
+    "scripts/export_design_discussion_basis.py": "22602cb35cae0252944c571c0e000fc59b13d82477f6134fa345d12c4fa90e1e",
+    "inputs/design-discussion-basis.json": "670f90810d834662e4ecc3b23dd2b74e10684a3c39f5b1b3666201c82169e566",
+    "inputs/project-status.json": "76717ca7ddd5e43ac2948dae2bf7e3a08e794f6730946f72ae7605a0c55400a7",
+    "Docs/abc-upper-floor-storage-v1.md": "cf53110b3e0fddcbe7bcccadd2ae9246392871ec58c910451fe63e18046a1dbd",
+    "Docs/design-discussion-basis-v1.md": "dca2f94b186c9e83b8c6de8fa54ea8d7a8dd7eff449a056cd0cc4b0c30f4cb0f",
+    "Docs/project-status-v1.md": "182ea082191e5dba939796f601b421ffef377b3c2b57d0681bb7d53c6e5fec32",
+    "README.md": "fa2acd3d6bf440877b7fb7baf656fe7a28971d7b9ab8358c6937e2764cd54f2a",
+    "scripts/README.md": "5b661dba7e69870a57d4c5a82de866aca5f1b5f2c4aeb3adf2f3f157f8ba1db7",
+    "structured/coordination/upper-floor-storage-v1/review.json": "b451dc7893dd9e50c8271b1a6b3e4104c9a66e1173294684b9dd9886d504a986",
+    "structured/coordination/upper-floor-storage-v1/artifact-manifest.json": "cfd6f64892bcf7a17cfd44f123878d74888474e0790eaa5dc2a67b4b8d833abf",
+    "structured/coordination/upper-floor-storage-v1/index.html": "324a5e1338931b7abce875c481a824043f888c8bdd031ec199c4d96e13b8b8dd",
+    "structured/coordination/upper-floor-storage-v1/storage-schedule.csv": "a2d917f1e73e7a503724c69a5364dc18720b3c77750f7277ff7932720c7cc9d4",
+    "structured/planning/project-next-steps/review.json": "c87c60350c4d4821a3084a2902396760a8be8eec9cfe3991c30f0b29740b61f9",
+    "structured/planning/project-next-steps/artifact-manifest.json": "cc8913efc38d6ffdb33055e43df25376ee0dd4efb6b81e6ccc1329bca69a893c",
+    "structured/planning/builder-communication/review.json": "97253aa6217498d8f37a4fc5cb5d1070f6dfec5c714930cf5a157598496c1912",
+    "structured/planning/builder-communication/artifact-manifest.json": "3f969aa02d96a87e58e89b98c7ca1a13c05c96768a95efa25a66c412c6c331d3",
+    "structured/planning/design-discussion-basis/review.json": "14dcc15f9a1ff51941cc4f32e5ef3d7f9517d12d26aab5e3b4b556ec144c9ba1",
+    "structured/planning/design-discussion-basis/artifact-manifest.json": "89e3085688d10423e3eed6902c516c3815b1b9121858569963db298c4f9d582d",
+    "structured/planning/design-discussion-basis/archive-manifest.json": "d029f0d0d99f3ff0d33302291caf03ffc08e3d3a7c2b8778e610723ae7e6323f",
+    "structured/planning/design-discussion-basis/ABC-discussion-package.zip": "428ab834c6bea2c9112b10d5372aa3fe71b15cc70f5a525321bc3dcd0884f977"
+  },
+  "checks": {
+    "focused_tests": {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q --tb=short -p no:cacheprovider tests/test_upper_floor_storage.py tests/test_design_discussion_basis.py tests/test_project_next_steps.py tests/test_builder_communication.py tests/test_project_status.py tests/test_repository_health.py",
+      "passed": 199,
+      "failed": 0,
+      "elapsed_seconds": 7.92,
+      "exit_code": 0
+    },
+    "ruff": {
+      "command": "timeout 20s .venv/bin/ruff check house_design/plan_readability.py house_design/upper_floor_storage.py scripts/export_upper_floor_storage.py house_design/design_discussion_basis.py scripts/export_design_discussion_basis.py tests/test_upper_floor_storage.py tests/test_design_discussion_basis.py",
+      "exit_code": 0
+    },
+    "exports_check": {
+      "scripts": [
+        "export_upper_floor_storage.py",
+        "export_project_next_steps.py",
+        "export_builder_communication.py",
+        "export_design_discussion_basis.py"
+      ],
+      "individual_timeout_seconds": 20,
+      "all_exit_codes": 0
+    },
+    "repository_health": {
+      "files": 1735,
+      "public_json_checked": 286,
+      "markdown_checked": 173,
+      "local_links_checked": 1067,
+      "issues": [],
+      "exit_code": 0,
+      "scope": "Before adding this evidence file; static syntax and local Markdown link checks only"
+    },
+    "git_diff_check": {
+      "exit_code": 0
+    },
+    "protected_controls_unchanged": 149,
+    "packet_source_hashes_verified": 388,
+    "current_index_packages_match": 7,
+    "historical_drift_packages_retained": 5,
+    "formal_requirement_statuses": {
+      "candidate": 66
+    },
+    "formal_register_statuses": {
+      "unknown": 105
+    },
+    "new_owner_storage_intent_explicitly_recorded": true,
+    "old_browser_passed_reused": false
+  },
+  "storage": {
+    "distinct_upper_floors": 9,
+    "static_floor_variants": 10,
+    "indoor_A_B_C_2F_3F_dedicated_general_storage_not_relabelled_wardrobes": true,
+    "RF_uses_outdoor_weather_resistant_storage_not_new_enclosed_rooms": true,
+    "B_RF_D1_D2_use_their_own_existing_folding_table_footprint_and_operation": true,
+    "B_RF24_goal_still_unresolved": true,
+    "B_2F_3F_storage_in_dry_quiet_room_not_shrine_backing_KTV_or_wet_room": true,
+    "C3_storage_requires_entry_into_master_bedroom_tradeoff_disclosed": true,
+    "furniture_dimensions_original_wardrobe_capacity_and_room_outlines_unchanged": true,
+    "listed_2D_body_operation_room_budget_reserve_and_existing_route_failures": 0,
+    "shared_operation_routes_disclosed_not_simultaneous_approval": true,
+    "actual_products_internal_usable_capacity_height_loads_full_door_sweeps_and_whole_access_unknown": true,
+    "primary_3d_merged": false,
+    "owner_request_not_automatically_written_to_formal_requirement_decision_chain": true
+  },
+  "readability": {
+    "existing_handout_copies_with_visible_legends": 17,
+    "visible_original_item_legend_entries": 222,
+    "new_storage_drawings_with_visible_item_lists": 10,
+    "original_numeric_marker_names_taken_from_existing_titles": true,
+    "HVAC_codes_explicitly_named_indoor_or_outdoor_units": true,
+    "old_copy_geometry_and_text_preserved_before_appended_legend": true,
+    "viewBox_extended_below_original_only_where_legend_added": true,
+    "hover_not_required_for_item_names": true,
+    "original_frozen_SVGs_not_rewritten": true,
+    "viewport_and_visual_QA": "not-run"
+  },
+  "handoff": {
+    "public_directory": "structured/planning/design-discussion-basis",
+    "private_snapshot_created": "inputs/private/design-discussion-028",
+    "files": 116,
+    "zip_entries": 114,
+    "zip_sha256": "428ab834c6bea2c9112b10d5372aa3fe71b15cc70f5a525321bc3dcd0884f977",
+    "zip_bytes": 562403,
+    "all_private_files_match_public": true,
+    "html_pages": 12,
+    "csv_forms": 18,
+    "svg_drawings": 79,
+    "original_drawings": 69,
+    "new_storage_drawings": 10,
+    "bc_comparisons": 7,
+    "decision_items": 12,
+    "work_items": 14,
+    "older_snapshots_001_to027_own_artifacts_verified": 27,
+    "older_snapshots_written": false,
+    "old_evidence_overwritten": false
+  },
+  "not_run": [
+    "browser/WebGL or screenshot QA",
+    "full pytest",
+    "main 3D rebuild or merge",
+    "formal drawing import",
+    "physical storage/door/transport rehearsal",
+    "external AI request",
+    "notifications or invitations",
+    "commit",
+    "push"
+  ],
+  "adopted": false,
+  "original_family_rules_changed": false,
+  "professional_approval": "unknown",
+  "construction_release": false
+}

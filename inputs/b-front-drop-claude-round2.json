@@ -1,0 +1,140 @@
+{
+  "schema": "house-b-front-drop-claude-round2-v1",
+  "date": "2026-11-10",
+  "adopted": false,
+  "parent_report": "structured/coordination/b-front-drop-claude-v1/review.json",
+  "provenance": "inputs/references/b-front-drop-claude-round2-20261110.json",
+  "response": "inputs/references/b-front-drop-claude-round2-20261110.md",
+  "pinned_sources": {
+    "structured/coordination/b-front-drop-claude-v1/review.json": "c86b042428bd3ccc0cd34aad2cd50430e8335560ca58ff1fd4f2076d00b63074",
+    "structured/coordination/b-front-drop-claude-v1/artifact-manifest.json": "944c3139e76ce5420d4e701fb54670e5bf0117e7b15bb8703de1241b21958446",
+    "inputs/references/b-front-drop-claude-round2-20261110.md": "9da8fbe6623c1ff9ab9b67fc734fa3300f18dad18fc7b6426856b3a70990bb56"
+  },
+  "normal_stair_waist_cases_mm": [
+    150,
+    200,
+    250,
+    300
+  ],
+  "extra_upper_fitting_cases_mm": [
+    0,
+    25,
+    50
+  ],
+  "illustrative_drop_cases_mm": [
+    500,
+    550,
+    600
+  ],
+  "horizontal_cross_y_cases_mm": [
+    4500,
+    4700
+  ],
+  "body_growth_cases": [
+    {
+      "id": "nominal",
+      "front_mm": 0,
+      "rear_mm": 0,
+      "side_mm": 0,
+      "shift_back_mm": 0
+    },
+    {
+      "id": "front25-no-shift",
+      "front_mm": 25,
+      "rear_mm": 0,
+      "side_mm": 0,
+      "shift_back_mm": 0
+    },
+    {
+      "id": "front25-shift5",
+      "front_mm": 25,
+      "rear_mm": 0,
+      "side_mm": 0,
+      "shift_back_mm": 5
+    },
+    {
+      "id": "all25-no-shift",
+      "front_mm": 25,
+      "rear_mm": 25,
+      "side_mm": 25,
+      "shift_back_mm": 0
+    },
+    {
+      "id": "all25-shift5",
+      "front_mm": 25,
+      "rear_mm": 25,
+      "side_mm": 25,
+      "shift_back_mm": 5
+    },
+    {
+      "id": "all50-shift30",
+      "front_mm": 50,
+      "rear_mm": 50,
+      "side_mm": 50,
+      "shift_back_mm": 30
+    }
+  ],
+  "actual_required_upper_reserve_mm": null,
+  "actual_required_local_clear_height_mm": null,
+  "actual_extra_lower_fitting_mm": null,
+  "claim_review": [
+    {
+      "id": "R2-01",
+      "topic": "G4D理想路徑與4375水平全長",
+      "assessment": "同意列明幾何與算式",
+      "limit": "500是上下游水平段的有效落差，不是直管下料長；四線是比較中心線，不能當四根實管可重疊。"
+    },
+    {
+      "id": "R2-02",
+      "topic": "固定500及梯底敏感度",
+      "assessment": "同意只部分假設容納",
+      "limit": "t300與250加25的失守／脆弱案例保留；改用落差下限與下方空間上限共同檢核，不能逕選600。"
+    },
+    {
+      "id": "R2-03",
+      "topic": "G4梯下向上直通",
+      "assessment": "新增明確拓樸限制",
+      "limit": "只研究梯下接入後向下落；向上立管不能默認穿梯。2F通氣、Q3保留井及RF出口另走待核路徑。"
+    },
+    {
+      "id": "R2-04",
+      "topic": "2961.6末端中心預算",
+      "assessment": "接受名稱範圍修正",
+      "limit": "不是全室或400整盒最低淨高；若示意管延至後緣再扣4，接頭實際形狀未定。"
+    },
+    {
+      "id": "R2-05",
+      "topic": "上凸、平面外擴、下凸與操作",
+      "assessment": "同意分開記帳",
+      "limit": "上凸25不等於四周外擴25；上方50與下方50也不能代表清掃口已可拆換。"
+    },
+    {
+      "id": "R2-06",
+      "topic": "上游也需要50安裝間隔",
+      "assessment": "補算盆線原井心僅11.6",
+      "limit": "50目前是G4局部假設，若全線也要求50，舊高程模型在此缺38.4；須重核實際排口及構造，不證全域無解。"
+    },
+    {
+      "id": "R2-07",
+      "topic": "y4500橫移與落點微後移",
+      "assessment": "總長與梯底代價可複算",
+      "limit": "橫移y4500仍4375；每後移1梯底餘量約少0.5973，成品後緣外擴另算；不批准碰平台或改門。"
+    },
+    {
+      "id": "R2-08",
+      "topic": "研究排序與家規",
+      "assessment": "局部條件研究優先的方向一致",
+      "limit": "先核合法終端，再G4D家族、前濕區重排、最後G5鏡像；沒有完整可建／可搬運共識，資料未到不要求屋主犧牲家規。"
+    }
+  ],
+  "engineering_questions": [
+    "合法前接管位置／權利／高程、覆土與地梁；若只能後出，完整避保護帶的路線",
+    "同版真實梯板／梯梁及局部構造底面，不以鼻線模型替代",
+    "四線真實排口、合流、水力、有效落差總成與管徑",
+    "2F通氣回保留井至RF，不沿梯下立管向上穿梯",
+    "上凸／前後側外擴／下凸／安裝誤差及清掃抽換各自包絡",
+    "全程分區所需淨高及額外穩定餘量，不把局部50套成全線已滿足",
+    "兩種搬轎版、兩門全程及施工暫時障礙各自核算",
+    "原RF24、Q3聲學、R1防水與全棟機電另案不消失"
+  ]
+}

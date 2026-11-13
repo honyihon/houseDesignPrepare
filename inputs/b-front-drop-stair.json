@@ -1,0 +1,41 @@
+{
+  "schema": "house-b-front-drop-stair-v1",
+  "date": "2026-11-10",
+  "adopted": false,
+  "p4_report": "structured/coordination/b-front-drainage-layout-v1/review.json",
+  "q3_report": "structured/coordination/b-ktv-stair-options-v1/review.json",
+  "ground_report": "structured/coordination/b-claude-round3-v1/review.json",
+  "protected_controls": "inputs/abc-next-protected-controls.json",
+  "pinned_sources": {
+    "structured/coordination/b-front-drainage-layout-v1/review.json": "fb352dcdc1c83aad3b4d4ced66804d328132bd411473b496676f53f849ac7711",
+    "structured/coordination/b-front-drainage-layout-v1/artifact-manifest.json": "79ec65f635322da82de8f7e9c646be793531d937a9a25cafb70d991ff6255635",
+    "structured/coordination/b-ktv-stair-options-v1/review.json": "6116c9df09d442e29e16cc3eabc50aa1cd94b4d512fd3398b9105f1afdc34a7e",
+    "structured/coordination/b-claude-round3-v1/review.json": "00baf0b3950e2593361e91698e4d72ac33e384edadd6da5a7d31b62e087b6223",
+    "structured/coordination/b-claude-round3-v1/artifact-manifest.json": "ad7327b07ef803ab57cf7390f84a3919da4165124a84e33288953981fa591062"
+  },
+  "local_route_width_mm": 700,
+  "local_routes": [
+    {"id": "street-to-left-flight", "label": "街門中心至左跑前的局部平台", "points_mm": [[1200, 4400], [1200, 4470], [580, 4470]]},
+    {"id": "shrine-side-to-left-flight", "label": "神明堂側門內至左跑前的局部平台", "points_mm": [[1930, 4400], [1780, 4400], [580, 4470]]}
+  ],
+  "candidates": [
+    {"id": "G0", "label": "原前左入口平台候選", "rect_mm": [115, 4015, 400, 400]},
+    {"id": "G1", "label": "改右前角，僅作反例", "rect_mm": [1880, 4015, 400, 400]},
+    {"id": "G2", "label": "中央梯隙放400，僅作反例", "rect_mm": [980, 6000, 400, 400]},
+    {"id": "G3", "label": "左跑下方落管，僅作反例", "rect_mm": [115, 5500, 400, 400]}
+  ],
+  "limits": [
+    "本輪只對P4原1F落水候選作局部平台／踏步篩檢，不改ABC／3D、P4或Q3、24級一樓梯及兩種搬轎版；候選未採用，也沒有新核准落水。",
+    "原G0不是已留空井：400×400全部占入口平台0.16㎡，碰兩條700局部試線。這足以否定直接沿用該試線，但不證明所有人體路徑或全棟重排都不可能。",
+    "G1移右角可避街門局部試線，仍碰神明堂側門內到達；不能只看街門就說一樓不受影響，也不預設取消或改側門。",
+    "G2中央僅200mm，不夠400預留，會碰左右踏步投影；G3左跑下方垂直柱亦穿列明踏步高度。踏步／梯梁不是可隨意穿管的空洞。",
+    "400是原整組管井預留，不是400管徑；單一實管或多管配置、隔音防火包覆與檢修尺寸未知，不能任意縮成200或減小坡度取得通過。",
+    "垂直400柱只是假設從1F模型0延伸到P4最有利3504.4mm預算平面，不是實際排水接入高程或管線；與踏步高程相交是需改設計的反例，不是結構穿孔許可。",
+    "街／側門僅依來源名義中心定位，未模擬門片、門框、門檻、實際出入口或扶手；700是在平台內的兩條局部方塊，不當完整700淨寬、照護、搬轎或逃生核可。",
+    "兩個1F版本各三態逐一核G0與列明器具、房界和祭祀／乾背／武轎庫；搬運路線未重演，前版不借後版通路，後巷權利未核。",
+    "保兩跑各1000，中央增至400至少需2400名義梯幅，比原2200多200，還未含管井壁或新結構；照原外緣一起向右加200的名義梯核會侵祭祀前廳1.04㎡，不是可採用小改。",
+    "本輪只排除四個明列位置，沒有全域搜尋所有建築構造。首選是建築師把管井、樓梯／入口平台及真實梁板一起作新建整合設計，不讓現行四候選直接進施工圖。",
+    "前公衛P1或不同濕區拓樸可比較，但P1濕茶水未落位，舊後窗案也有面積缺口；泵、粉碎馬桶、抬地坪與外牆／鄰地管均不作默認解法。",
+    "P4的三條短支管與4.4mm算式餘量仍留作比較，不能抵消1F已知平台衝突；P3／Q3、RF24㎡、聲學、天井防水及全棟排水待核仍保留。"
+  ]
+}

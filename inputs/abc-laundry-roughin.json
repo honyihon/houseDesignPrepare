@@ -1,0 +1,137 @@
+{
+  "schema": "house-abc-laundry-roughin-v1",
+  "date": "2026-11-13",
+  "adopted": false,
+  "parent_report": "structured/coordination/abc-laundry-use-v1/review.json",
+  "parent_sha256": "df5c49acba569405b75ba1245e07a698c1e5b8cd4eb1de06c2462e9c91dc31c7",
+  "parent_report_hash": "5c4d2c47ac309a04d9be0d7eb45abaea9bc179fc28d8e531e89621d2eb0f2d74",
+  "builder_plan": "inputs/builder-communication-plan.json",
+  "builder_plan_sha256": "dd3334da200ee8e0a09e83fd8d0d2390d6b0225d3364d51b84123790a18f8595",
+  "recommendation": "先與建商及A設計師保住一樓共用候選、A上層備位和C2恢復使用的空間與可檢修接口。乾衣先研究熱泵／冷凝式，排氣式保條件比較；實際主位置、完整產品與機電圖到齊後再定點位及施工，不先買機、鑽孔或把一般新風當乾衣排濕。",
+  "interfaces": [
+    {
+      "id": "siting",
+      "label": "位置、合法到達與換機",
+      "laundry_ids": ["LAU-01", "LAU-02", "LAU-03"],
+      "question_ids": ["BC-06", "BC-16"],
+      "a_interface_ids": ["A-IF-01", "A-IF-10"],
+      "before": "位置與設備圖定版前",
+      "prepare": "先核A後口／共同後路及門檻；保兩個850×750機器安裝預算與完整換機方向，不能先認A已是共用主位置。",
+      "required": "正式總平面、合法開口、牆柱／完成面、產品門片及換機包絡；A前側810假設瓶頸與後門行程20mm餘量須同版回核。",
+      "proposed_window": "建商／建築及相應專業＋A設計師＋設備安裝者，承作分工待議"
+    },
+    {
+      "id": "water",
+      "label": "給水、止水與漏水處理",
+      "laundry_ids": ["LAU-06"],
+      "question_ids": ["BC-14"],
+      "a_interface_ids": ["A-IF-03", "A-IF-10"],
+      "before": "給水管定位與覆蓋前",
+      "prepare": "洗衣供水與可操作止水閥保檢修；漏水感知／自動止水可列選配，停電時的手動止水另核。熱水需求依機型，不自行增加熱水接頭。",
+      "required": "供水壓力、原廠接管需求、閥件操作範圍、接頭不被機身封死及壓力／漏水檢查紀錄。",
+      "proposed_window": "建商機電＋設備安裝者；A設計師核可及與收口，責任待議"
+    },
+    {
+      "id": "wastewater",
+      "label": "洗衣污水與乾衣冷凝水",
+      "laundry_ids": ["LAU-04", "LAU-06"],
+      "question_ids": ["BC-14"],
+      "a_interface_ids": ["A-IF-03", "A-IF-10"],
+      "before": "污排水、套管與防水定位前",
+      "prepare": "洗衣污水接核定污水系統，與陽台雨水分清；乾衣冷凝水是否直排依機型核，不預設兩條軟管隨便共塞一孔。",
+      "required": "管徑、坡度、接管高度、存水彎／通氣／掃除與防回流的同版圖，合法終端及運轉排水試驗；數值由設計與原廠定。",
+      "proposed_window": "建商給排水設計／施工＋設備安裝者，A設計師核完成面，責任待議"
+    },
+    {
+      "id": "power",
+      "label": "兩機電力與操作可及",
+      "laundry_ids": ["LAU-03", "LAU-07"],
+      "question_ids": ["BC-15"],
+      "a_interface_ids": ["A-IF-05", "A-IF-10"],
+      "before": "配電盤、配管與插座定位前",
+      "prepare": "分別列洗衣／乾衣的電壓、額定與啟動需求，再核同時負載、迴路及接地漏電保護；插座／開關不靠跨濕地延長線。",
+      "required": "同型號供電需求、盤表與配線保護、可及且避濺的點位及測試方法；不預填110／220V、安培、線徑或插座高度。",
+      "proposed_window": "建商電氣設計／施工＋設備安裝者；A設計師核家具及可及，責任待議"
+    },
+    {
+      "id": "air",
+      "label": "乾衣、晾衣的熱濕與補排氣",
+      "laundry_ids": ["LAU-04"],
+      "question_ids": ["BC-12", "BC-16"],
+      "a_interface_ids": ["A-IF-04", "A-IF-10"],
+      "before": "外口、天花與排氣路由定版前",
+      "prepare": "熱泵／冷凝式仍核室內散熱、溫濕度與冷凝水；排氣式另核專用排氣及補氣，乾衣濕熱不接一般ERV、浴廁或油煙共管。",
+      "required": "原廠通風／間距、合法外口、防雨防蟲、進排氣相互影響、完整管長阻力及棉絮清理；沒有資料不先打洞或封天花。",
+      "proposed_window": "建商空調／通風設計＋設備安裝者＋A設計師；外口由相應專業核，責任待議"
+    },
+    {
+      "id": "waterproof",
+      "label": "地面防水、門檻與分區排水",
+      "laundry_ids": ["LAU-02", "LAU-06"],
+      "question_ids": ["BC-14", "BC-20"],
+      "a_interface_ids": ["A-IF-03", "A-IF-10"],
+      "before": "降板、地坪及防水層覆蓋前",
+      "prepare": "止水、防水連續與門口低高差共同設計；機器支承保持原廠要求的水平穩定，不能把地排坡度直接當機腳支承面已成立。",
+      "required": "完成標高、防水與穿管收口、合法地面排水及防倒灌剖面，排水／防水測試；平門檻目標不等已核無障礙。",
+      "proposed_window": "建商建築／給排水與防水工班＋A設計師，保固邊界待議"
+    },
+    {
+      "id": "vibration",
+      "label": "噪音、振動與曬衣固定",
+      "laundry_ids": ["LAU-03", "LAU-04", "LAU-05"],
+      "question_ids": ["BC-06", "BC-20"],
+      "a_interface_ids": ["A-IF-08", "A-IF-10"],
+      "before": "支承、補強及鄰房完成面覆蓋前",
+      "prepare": "核鄰孝親房與A上層投影；機腳調平及隔振依產品／結構，不用一般軟墊或自行墊高作保證。晾架固定及荷重另核。",
+      "required": "樓板支承、脫水工況、噪音振動目標／實測方法及使用時段；升降架承重、可及高度、衣物外廓與暗管避讓。",
+      "proposed_window": "建商相應結構／聲學與施工＋設備安裝者＋A設計師，責任待議"
+    },
+    {
+      "id": "maintenance",
+      "label": "封板、保留機位與交接",
+      "laundry_ids": ["LAU-03", "LAU-08"],
+      "question_ids": ["BC-17", "BC-20", "BC-22"],
+      "a_interface_ids": ["A-IF-10", "A-IF-11"],
+      "before": "封板／櫃體、試運轉及交接前",
+      "prepare": "閥件、插座、濾網與軟管可達，保整機抽換及原淨軟水／冷氣維修；A上層備位與C2恢復使用空間不放固定櫃。",
+      "required": "隱蔽管線照片、實際圖號版次、試驗原始紀錄及保養責任；C2停用口防臭防漏措施由工班核，不封死通氣或公共排水。",
+      "proposed_window": "建商／設備安裝者與A設計師共同交接；承作、價差、工期與保固待議"
+    }
+  ],
+  "dryer_alternatives": [
+    {
+      "id": "heatpump-condensing",
+      "label": "熱泵／冷凝式：先研究",
+      "keep": "平放備位、產品供電與散熱空間；冷凝水直排或集水盒依機型，仍核晾衣區排濕補氣。",
+      "condition": "不因免一般熱風排氣管就稱免通風，先核原廠環境限制、程序／床品與維修；未選機。"
+    },
+    {
+      "id": "electric-vented",
+      "label": "電力排氣式：保條件比較",
+      "keep": "平放備位、足夠供電、合法獨立排氣終端與補氣及棉絮清理路徑。",
+      "condition": "外口／管長阻力／防雨與補氣可行後再比較；本輪未規劃燃氣，未先開孔或將排氣接ERV。"
+    }
+  ],
+  "actual_conditions": {
+    "shared_host_and_legal_site_plan": null,
+    "products_and_installation_revision": null,
+    "finished_wall_column_and_door_plan": null,
+    "washer_supply_pressure_and_valve_location": null,
+    "washer_wastewater_design_and_legal_terminal": null,
+    "dryer_type_and_condensate_detail": null,
+    "electrical_load_panel_and_protection": null,
+    "socket_coordinates_height_and_splash_protection": null,
+    "air_inlet_exhaust_and_moisture_design": null,
+    "door_threshold_levels_and_rain_detail": null,
+    "waterproofing_and_floor_drainage_detail": null,
+    "machine_support_vibration_and_noise_targets": null,
+    "rack_fixing_load_and_reach": null,
+    "machine_opening_service_replacement_envelope": null,
+    "existing_filter_and_HVAC_service_envelope": null,
+    "A_upper_inactive_stub_safeguards": null,
+    "C2_temporary_inactivity_and_reactivation_method": null,
+    "agreed_scope_quote_programme_and_warranty": null,
+    "concealed_work_photos_and_test_records": null,
+    "professional_review_and_drawing_issue": null
+  }
+}

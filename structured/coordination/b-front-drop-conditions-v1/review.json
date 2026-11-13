@@ -1,0 +1,745 @@
+{
+  "schema": "house-b-front-drop-conditions-report-v1",
+  "date": "2026-11-11",
+  "config": {
+    "schema": "house-b-front-drop-conditions-v1",
+    "date": "2026-11-11",
+    "adopted": false,
+    "parent_report": "structured/coordination/b-front-drop-claude-v2/review.json",
+    "pinned_sources": {
+      "structured/coordination/b-front-drop-claude-v2/review.json": "a4cfefaf071414d0201a9cda4f46abc00c0438282425da007f6553637f99c0d9",
+      "structured/coordination/b-front-drop-claude-v2/artifact-manifest.json": "16903e9876951f6773e7069e9b89917e19df3e96dc1dcb53c82fe0819549b736"
+    },
+    "reference_case": "G4D-original-shaft-platform-and-stair-only",
+    "sequence_id": "SEQ-04",
+    "comparison_id": "BC-CMP-01",
+    "task_id": "B-WET-001",
+    "gates": [
+      {
+        "id": "BFD-01",
+        "topic": "合法接管與完整前出路線",
+        "roles": "建商統籌建築師／給排水設計及相關權責單位",
+        "deliver": "同版標明合法位置、通行／埋管權利、接入高程、覆土與地梁及檢修；未知保留，不以後巷存在當可排放。",
+        "before": "前量體、公衛／茶水及埋管方案鎖定前",
+        "if_unresolved": "暫不鎖定前濕區；沒有合法前終端時先查完整替代，不默認地下穿祭祀。"
+      },
+      {
+        "id": "BFD-02",
+        "topic": "騎樓到室內的上游高度",
+        "roles": "建築／結構與機電",
+        "deliver": "同一標高基準逐段給構造底、管頂及安裝／檢修包絡，尤其y3900界；不能把局部50外推全線。",
+        "before": "梁板、預埋及天花標高鎖定前",
+        "if_unresolved": "回前段濕區／支管拓樸比較，不抬地坪、放平坡或挑薄構造湊通過。"
+      },
+      {
+        "id": "BFD-03",
+        "topic": "梯下落差上下限",
+        "roles": "結構／機電與建築",
+        "deliver": "整個管件外框最不利梯底、有效落差、上下方包絡與完成淨高要求；不只給板厚或管心。",
+        "before": "梯板、前平台及管線開孔鎖定前",
+        "if_unresolved": "先G4D家族完整局部重核，前濕區重排其次，全梯鏡像最後；不直接選500或600。"
+      },
+      {
+        "id": "BFD-04",
+        "topic": "成品外擴與平台／門",
+        "roles": "機電／管件商、建築及門組廠商",
+        "deliver": "上凸、前後左右外擴、下凸、支架／包覆、安裝誤差各列；含兩門及平台完整動作，400不是管徑。",
+        "before": "管件及門組訂貨、平台收口前",
+        "if_unresolved": "退回完整包絡比較，不因只侵入幾毫米就放行，不減梯寬或平台。"
+      },
+      {
+        "id": "BFD-05",
+        "topic": "合流、水力與通氣",
+        "roles": "給排水設計／機電與管件商",
+        "deliver": "四器具真實排口、管徑坡度、合流與落差總成、通氣回保留井至RF及清掃；梯下管不得默認向上穿梯。",
+        "before": "套管、排水與通氣預埋前",
+        "if_unresolved": "不把四條假中心線當重疊實管；另核合規接法，不取消二樓通氣。"
+      },
+      {
+        "id": "BFD-06",
+        "topic": "清掃抽換、防火與防漏噪音",
+        "roles": "建築／消防／機電及施工保固窗口",
+        "deliver": "可拆檢修口、工具操作與汰換空間、防火區劃／封堵、漏水檢測及噪音措施，同版列供料施工與保固。",
+        "before": "防火封堵、包管及天花封板前",
+        "if_unresolved": "保持可檢修的待核介面，不以50mm假空間視為能操作。"
+      },
+      {
+        "id": "BFD-07",
+        "topic": "前後搬轎與施工期間",
+        "roles": "屋主、建商及實際搬運人員",
+        "deliver": "後巷預設與祭祀正門前搬備案各自含桿、人員、轉彎與門片演練；另列施工臨時障礙。",
+        "before": "入口門組、設備及施工動線鎖定前",
+        "if_unresolved": "兩版均保留，不用樓梯街門代替祭祀正門，也不延伸既有家規例外。"
+      },
+      {
+        "id": "BFD-08",
+        "topic": "同範圍估價與變更控制",
+        "roles": "建商統籌建築／結構／機電，屋主確認範圍",
+        "deliver": "局部深化與重排分項列費用、工期、可做／不能做及保固；RF24、Q3聲學及R1防水仍另列，不混為已解。",
+        "before": "報價確認、變更單及施工圖發行前",
+        "if_unresolved": "有具體同版衝突才請屋主選完整方案代價，不從繼續推定讓步或採用。"
+      }
+    ]
+  },
+  "parent_report_hash": "35d879c85857be3f9f43173552d8bb1a11d8fa70edb643ea4b4eca23e8a9361c",
+  "condition_template": {
+    "schema": "house-b-front-drop-actual-conditions-v1",
+    "config_hash": "902e3dddff7ad657a50e66e2fabaee98727d56fbe31bd7822ab3a1b8c77f3bb3",
+    "parent_report_hash": "35d879c85857be3f9f43173552d8bb1a11d8fa70edb643ea4b4eca23e8a9361c",
+    "reference_case": "G4D-original-shaft-platform-and-stair-only",
+    "basis": {
+      "drawing_revision": "",
+      "datum_id": "",
+      "coordinate_note": ""
+    },
+    "groups": [
+      {
+        "id": "local-drop",
+        "reference": "",
+        "values": {
+          "highest_package_top_before_drop_z_mm": null,
+          "lowest_package_bottom_before_drop_z_mm": null,
+          "lowest_soffit_over_complete_box_z_mm": null,
+          "finished_floor_z_mm": null,
+          "upper_installation_gap_mm": null,
+          "extra_upper_fitting_mm": null,
+          "additional_upper_reserve_mm": null,
+          "extra_lower_fitting_mm": null,
+          "operating_space_below_mm": null,
+          "required_finished_clear_height_mm": null
+        }
+      },
+      {
+        "id": "upstream-gap",
+        "reference": "",
+        "values": {
+          "pipe_package_top_z_mm": null,
+          "lowest_structure_z_mm": null,
+          "required_upper_gap_mm": null,
+          "extra_upper_fitting_mm": null,
+          "additional_reserve_mm": null
+        }
+      },
+      {
+        "id": "front-terminal",
+        "reference": "",
+        "values": {
+          "rights_record": null,
+          "connection_record": null,
+          "start_invert_z_mm": null,
+          "connection_invert_z_mm": null,
+          "horizontal_route_mm": null,
+          "slope_denominator": null,
+          "additional_fall_reserve_mm": null
+        }
+      },
+      {
+        "id": "plan-envelope",
+        "reference": "",
+        "values": {
+          "front_growth_mm": null,
+          "rear_growth_mm": null,
+          "left_growth_mm": null,
+          "right_growth_mm": null,
+          "shift_back_mm": null,
+          "required_platform_gap_mm": null
+        }
+      }
+    ]
+  },
+  "received_conditions": {
+    "schema": "house-b-front-drop-actual-conditions-v1",
+    "config_hash": "902e3dddff7ad657a50e66e2fabaee98727d56fbe31bd7822ab3a1b8c77f3bb3",
+    "parent_report_hash": "35d879c85857be3f9f43173552d8bb1a11d8fa70edb643ea4b4eca23e8a9361c",
+    "reference_case": "G4D-original-shaft-platform-and-stair-only",
+    "basis": {
+      "drawing_revision": "",
+      "datum_id": "",
+      "coordinate_note": ""
+    },
+    "groups": [
+      {
+        "id": "local-drop",
+        "reference": "",
+        "values": {
+          "highest_package_top_before_drop_z_mm": null,
+          "lowest_package_bottom_before_drop_z_mm": null,
+          "lowest_soffit_over_complete_box_z_mm": null,
+          "finished_floor_z_mm": null,
+          "upper_installation_gap_mm": null,
+          "extra_upper_fitting_mm": null,
+          "additional_upper_reserve_mm": null,
+          "extra_lower_fitting_mm": null,
+          "operating_space_below_mm": null,
+          "required_finished_clear_height_mm": null
+        }
+      },
+      {
+        "id": "upstream-gap",
+        "reference": "",
+        "values": {
+          "pipe_package_top_z_mm": null,
+          "lowest_structure_z_mm": null,
+          "required_upper_gap_mm": null,
+          "extra_upper_fitting_mm": null,
+          "additional_reserve_mm": null
+        }
+      },
+      {
+        "id": "front-terminal",
+        "reference": "",
+        "values": {
+          "rights_record": null,
+          "connection_record": null,
+          "start_invert_z_mm": null,
+          "connection_invert_z_mm": null,
+          "horizontal_route_mm": null,
+          "slope_denominator": null,
+          "additional_fall_reserve_mm": null
+        }
+      },
+      {
+        "id": "plan-envelope",
+        "reference": "",
+        "values": {
+          "front_growth_mm": null,
+          "rear_growth_mm": null,
+          "left_growth_mm": null,
+          "right_growth_mm": null,
+          "shift_back_mm": null,
+          "required_platform_gap_mm": null
+        }
+      }
+    ]
+  },
+  "condition_document_hash": null,
+  "condition_values_received": 0,
+  "field_guide": [
+    {
+      "group": "local-drop",
+      "field": "highest_package_top_before_drop_z_mm",
+      "label": "落差前整盒最高管頂標高",
+      "unit": "mm",
+      "value_rule": "z",
+      "meaning": "保守包絡頂，不是管心；不含另列的上凸及安裝間隔",
+      "public_default": null
+    },
+    {
+      "group": "local-drop",
+      "field": "lowest_package_bottom_before_drop_z_mm",
+      "label": "落差前整盒最低管底標高",
+      "unit": "mm",
+      "value_rule": "z",
+      "meaning": "實體包絡底，不先扣另列的下凸或下方操作空間",
+      "public_default": null
+    },
+    {
+      "group": "local-drop",
+      "field": "lowest_soffit_over_complete_box_z_mm",
+      "label": "完整外框上方最低構造底",
+      "unit": "mm",
+      "value_rule": "z",
+      "meaning": "覆蓋本次完整外框與全部梁板，不只中心或鼻線推算",
+      "public_default": null
+    },
+    {
+      "group": "local-drop",
+      "field": "finished_floor_z_mm",
+      "label": "相應位置完成地坪標高",
+      "unit": "mm",
+      "value_rule": "z",
+      "meaning": "與管頂、管底及梯底同一標高基準",
+      "public_default": null
+    },
+    {
+      "group": "local-drop",
+      "field": "upper_installation_gap_mm",
+      "label": "上方安裝間隔",
+      "unit": "mm",
+      "value_rule": "nonnegative",
+      "meaning": "實際需求；不與額外穩定餘量互抵",
+      "public_default": null
+    },
+    {
+      "group": "local-drop",
+      "field": "extra_upper_fitting_mm",
+      "label": "超出原包絡的上凸",
+      "unit": "mm",
+      "value_rule": "nonnegative",
+      "meaning": "只填未含在最高管頂的增量，避免重複扣",
+      "public_default": null
+    },
+    {
+      "group": "local-drop",
+      "field": "additional_upper_reserve_mm",
+      "label": "額外穩定餘量M",
+      "unit": "mm",
+      "value_rule": "nonnegative",
+      "meaning": "由專業依據指定，不能將空白當0",
+      "public_default": null
+    },
+    {
+      "group": "local-drop",
+      "field": "extra_lower_fitting_mm",
+      "label": "超出原包絡的下凸",
+      "unit": "mm",
+      "value_rule": "nonnegative",
+      "meaning": "未含在最低管底的增量，與上凸分開",
+      "public_default": null
+    },
+    {
+      "group": "local-drop",
+      "field": "operating_space_below_mm",
+      "label": "管底下方操作空間",
+      "unit": "mm",
+      "value_rule": "nonnegative",
+      "meaning": "需要扣出的檢修／操作包絡，不假定50已足夠",
+      "public_default": null
+    },
+    {
+      "group": "local-drop",
+      "field": "required_finished_clear_height_mm",
+      "label": "相應位置所需完成淨高",
+      "unit": "mm",
+      "value_rule": "positive",
+      "meaning": "同口徑要求及依據；工具不預填法規值",
+      "public_default": null
+    },
+    {
+      "group": "upstream-gap",
+      "field": "pipe_package_top_z_mm",
+      "label": "指定上游點管包絡頂標高",
+      "unit": "mm",
+      "value_rule": "z",
+      "meaning": "同版實際包絡；不能借梯下末端數字",
+      "public_default": null
+    },
+    {
+      "group": "upstream-gap",
+      "field": "lowest_structure_z_mm",
+      "label": "指定上游點最低構造底",
+      "unit": "mm",
+      "value_rule": "z",
+      "meaning": "與管頂同一點／段與標高基準",
+      "public_default": null
+    },
+    {
+      "group": "upstream-gap",
+      "field": "required_upper_gap_mm",
+      "label": "此點所需上方間隔",
+      "unit": "mm",
+      "value_rule": "nonnegative",
+      "meaning": "局部50不是全線已足夠的證明",
+      "public_default": null
+    },
+    {
+      "group": "upstream-gap",
+      "field": "extra_upper_fitting_mm",
+      "label": "未含在管頂的上凸",
+      "unit": "mm",
+      "value_rule": "nonnegative",
+      "meaning": "已含包絡者此增量明填0並附依據",
+      "public_default": null
+    },
+    {
+      "group": "upstream-gap",
+      "field": "additional_reserve_mm",
+      "label": "此點額外餘量",
+      "unit": "mm",
+      "value_rule": "nonnegative",
+      "meaning": "未知保留null，不猜0",
+      "public_default": null
+    },
+    {
+      "group": "front-terminal",
+      "field": "rights_record",
+      "label": "通行／埋管權利文件狀態",
+      "unit": "document-status",
+      "value_rule": "record",
+      "meaning": "documented只代表有文件待專業核，不是本工具授權",
+      "public_default": null
+    },
+    {
+      "group": "front-terminal",
+      "field": "connection_record",
+      "label": "接管位置／權責文件狀態",
+      "unit": "document-status",
+      "value_rule": "record",
+      "meaning": "documented或not-available，未知維持null",
+      "public_default": null
+    },
+    {
+      "group": "front-terminal",
+      "field": "start_invert_z_mm",
+      "label": "指定埋管段起點管內底標高",
+      "unit": "mm",
+      "value_rule": "z",
+      "meaning": "由給排水圖提供，不從上方管頂自動換算",
+      "public_default": null
+    },
+    {
+      "group": "front-terminal",
+      "field": "connection_invert_z_mm",
+      "label": "指定接入點管內底標高",
+      "unit": "mm",
+      "value_rule": "z",
+      "meaning": "同一標高基準，包含正負標高",
+      "public_default": null
+    },
+    {
+      "group": "front-terminal",
+      "field": "horizontal_route_mm",
+      "label": "同坡指定段完整水平長",
+      "unit": "mm",
+      "value_rule": "positive",
+      "meaning": "包含平面轉折，不拿5190直線下界當實際線長",
+      "public_default": null
+    },
+    {
+      "group": "front-terminal",
+      "field": "slope_denominator",
+      "label": "指定等坡段1:n的n",
+      "unit": "1:n denominator",
+      "value_rule": "positive",
+      "meaning": "由設計回覆，不預填50或認證坡度合規",
+      "public_default": null
+    },
+    {
+      "group": "front-terminal",
+      "field": "additional_fall_reserve_mm",
+      "label": "額外落差預留",
+      "unit": "mm",
+      "value_rule": "nonnegative",
+      "meaning": "明列未納入標高的落差／誤差；不同坡段需另案",
+      "public_default": null
+    },
+    {
+      "group": "plan-envelope",
+      "field": "front_growth_mm",
+      "label": "400框前向外擴",
+      "unit": "mm",
+      "value_rule": "nonnegative",
+      "meaning": "只與原研究框比，並非基地實測位置",
+      "public_default": null
+    },
+    {
+      "group": "plan-envelope",
+      "field": "rear_growth_mm",
+      "label": "400框後向外擴",
+      "unit": "mm",
+      "value_rule": "nonnegative",
+      "meaning": "後緣梯底需按完整外框另取",
+      "public_default": null
+    },
+    {
+      "group": "plan-envelope",
+      "field": "left_growth_mm",
+      "label": "400框左向外擴",
+      "unit": "mm",
+      "value_rule": "nonnegative",
+      "meaning": "與上凸、右擴分開",
+      "public_default": null
+    },
+    {
+      "group": "plan-envelope",
+      "field": "right_growth_mm",
+      "label": "400框右向外擴",
+      "unit": "mm",
+      "value_rule": "nonnegative",
+      "meaning": "不得侵入既有保護投影",
+      "public_default": null
+    },
+    {
+      "group": "plan-envelope",
+      "field": "shift_back_mm",
+      "label": "相對原研究框名義後移",
+      "unit": "mm",
+      "value_rule": "nonnegative",
+      "meaning": "只回算宣告值，不自動移井或接主3D",
+      "public_default": null
+    },
+    {
+      "group": "plan-envelope",
+      "field": "required_platform_gap_mm",
+      "label": "平台邊另需間隔",
+      "unit": "mm",
+      "value_rule": "nonnegative",
+      "meaning": "相切不等於有施工餘量；有依據才明填0",
+      "public_default": null
+    }
+  ],
+  "condition_evaluations": [
+    {
+      "id": "local-drop",
+      "missing_fields": [
+        "highest_package_top_before_drop_z_mm",
+        "lowest_package_bottom_before_drop_z_mm",
+        "lowest_soffit_over_complete_box_z_mm",
+        "finished_floor_z_mm",
+        "upper_installation_gap_mm",
+        "extra_upper_fitting_mm",
+        "additional_upper_reserve_mm",
+        "extra_lower_fitting_mm",
+        "operating_space_below_mm",
+        "required_finished_clear_height_mm"
+      ],
+      "status": "pending",
+      "dimension_or_interval_compatible_only": null,
+      "whole_route_or_professional_approval": "unknown",
+      "may_release_work": false,
+      "minimum_effective_drop_mm": null,
+      "maximum_effective_drop_mm": null,
+      "interval_width_mm": null,
+      "selected_drop_mm": null
+    },
+    {
+      "id": "upstream-gap",
+      "missing_fields": [
+        "pipe_package_top_z_mm",
+        "lowest_structure_z_mm",
+        "required_upper_gap_mm",
+        "extra_upper_fitting_mm",
+        "additional_reserve_mm"
+      ],
+      "status": "pending",
+      "dimension_or_interval_compatible_only": null,
+      "whole_route_or_professional_approval": "unknown",
+      "may_release_work": false,
+      "margin_mm": null
+    },
+    {
+      "id": "front-terminal",
+      "missing_fields": [
+        "rights_record",
+        "connection_record",
+        "start_invert_z_mm",
+        "connection_invert_z_mm",
+        "horizontal_route_mm",
+        "slope_denominator",
+        "additional_fall_reserve_mm"
+      ],
+      "status": "pending",
+      "dimension_or_interval_compatible_only": null,
+      "whole_route_or_professional_approval": "unknown",
+      "may_release_work": false,
+      "margin_mm": null
+    },
+    {
+      "id": "plan-envelope",
+      "missing_fields": [
+        "front_growth_mm",
+        "rear_growth_mm",
+        "left_growth_mm",
+        "right_growth_mm",
+        "shift_back_mm",
+        "required_platform_gap_mm"
+      ],
+      "status": "pending",
+      "dimension_or_interval_compatible_only": null,
+      "whole_route_or_professional_approval": "unknown",
+      "may_release_work": false,
+      "margin_mm": null
+    }
+  ],
+  "engineering_gates": [
+    {
+      "id": "BFD-01",
+      "topic": "合法接管與完整前出路線",
+      "roles": "建商統籌建築師／給排水設計及相關權責單位",
+      "deliver": "同版標明合法位置、通行／埋管權利、接入高程、覆土與地梁及檢修；未知保留，不以後巷存在當可排放。",
+      "before": "前量體、公衛／茶水及埋管方案鎖定前",
+      "if_unresolved": "暫不鎖定前濕區；沒有合法前終端時先查完整替代，不默認地下穿祭祀。",
+      "received_reply": null,
+      "owner_choice": null,
+      "professional_review": "unknown",
+      "construction_release": false
+    },
+    {
+      "id": "BFD-02",
+      "topic": "騎樓到室內的上游高度",
+      "roles": "建築／結構與機電",
+      "deliver": "同一標高基準逐段給構造底、管頂及安裝／檢修包絡，尤其y3900界；不能把局部50外推全線。",
+      "before": "梁板、預埋及天花標高鎖定前",
+      "if_unresolved": "回前段濕區／支管拓樸比較，不抬地坪、放平坡或挑薄構造湊通過。",
+      "received_reply": null,
+      "owner_choice": null,
+      "professional_review": "unknown",
+      "construction_release": false
+    },
+    {
+      "id": "BFD-03",
+      "topic": "梯下落差上下限",
+      "roles": "結構／機電與建築",
+      "deliver": "整個管件外框最不利梯底、有效落差、上下方包絡與完成淨高要求；不只給板厚或管心。",
+      "before": "梯板、前平台及管線開孔鎖定前",
+      "if_unresolved": "先G4D家族完整局部重核，前濕區重排其次，全梯鏡像最後；不直接選500或600。",
+      "received_reply": null,
+      "owner_choice": null,
+      "professional_review": "unknown",
+      "construction_release": false
+    },
+    {
+      "id": "BFD-04",
+      "topic": "成品外擴與平台／門",
+      "roles": "機電／管件商、建築及門組廠商",
+      "deliver": "上凸、前後左右外擴、下凸、支架／包覆、安裝誤差各列；含兩門及平台完整動作，400不是管徑。",
+      "before": "管件及門組訂貨、平台收口前",
+      "if_unresolved": "退回完整包絡比較，不因只侵入幾毫米就放行，不減梯寬或平台。",
+      "received_reply": null,
+      "owner_choice": null,
+      "professional_review": "unknown",
+      "construction_release": false
+    },
+    {
+      "id": "BFD-05",
+      "topic": "合流、水力與通氣",
+      "roles": "給排水設計／機電與管件商",
+      "deliver": "四器具真實排口、管徑坡度、合流與落差總成、通氣回保留井至RF及清掃；梯下管不得默認向上穿梯。",
+      "before": "套管、排水與通氣預埋前",
+      "if_unresolved": "不把四條假中心線當重疊實管；另核合規接法，不取消二樓通氣。",
+      "received_reply": null,
+      "owner_choice": null,
+      "professional_review": "unknown",
+      "construction_release": false
+    },
+    {
+      "id": "BFD-06",
+      "topic": "清掃抽換、防火與防漏噪音",
+      "roles": "建築／消防／機電及施工保固窗口",
+      "deliver": "可拆檢修口、工具操作與汰換空間、防火區劃／封堵、漏水檢測及噪音措施，同版列供料施工與保固。",
+      "before": "防火封堵、包管及天花封板前",
+      "if_unresolved": "保持可檢修的待核介面，不以50mm假空間視為能操作。",
+      "received_reply": null,
+      "owner_choice": null,
+      "professional_review": "unknown",
+      "construction_release": false
+    },
+    {
+      "id": "BFD-07",
+      "topic": "前後搬轎與施工期間",
+      "roles": "屋主、建商及實際搬運人員",
+      "deliver": "後巷預設與祭祀正門前搬備案各自含桿、人員、轉彎與門片演練；另列施工臨時障礙。",
+      "before": "入口門組、設備及施工動線鎖定前",
+      "if_unresolved": "兩版均保留，不用樓梯街門代替祭祀正門，也不延伸既有家規例外。",
+      "received_reply": null,
+      "owner_choice": null,
+      "professional_review": "unknown",
+      "construction_release": false
+    },
+    {
+      "id": "BFD-08",
+      "topic": "同範圍估價與變更控制",
+      "roles": "建商統籌建築／結構／機電，屋主確認範圍",
+      "deliver": "局部深化與重排分項列費用、工期、可做／不能做及保固；RF24、Q3聲學及R1防水仍另列，不混為已解。",
+      "before": "報價確認、變更單及施工圖發行前",
+      "if_unresolved": "有具體同版衝突才請屋主選完整方案代價，不從繼續推定讓步或採用。",
+      "received_reply": null,
+      "owner_choice": null,
+      "professional_review": "unknown",
+      "construction_release": false
+    }
+  ],
+  "any_declared_conflict": false,
+  "local_arithmetic_is_not_whole_design_approval": true,
+  "automatic_next_layout_selection": null,
+  "protected_controls_unchanged": 149,
+  "primary_abc_or_3d_changed": false,
+  "original_family_rules_changed": false,
+  "adopted": false,
+  "full_design_consensus": false,
+  "professional_approval": "unknown",
+  "rendered_qa": "not-run",
+  "source_hashes": {
+    "inputs/b-front-drop-conditions.json": "ab443b8e293c97005a54672df0073616a34c6c2b5ec652e8b9ea8643f7203869",
+    "structured/coordination/b-front-drop-claude-v2/review.json": "a4cfefaf071414d0201a9cda4f46abc00c0438282425da007f6553637f99c0d9",
+    "structured/coordination/b-front-drop-claude-v2/artifact-manifest.json": "16903e9876951f6773e7069e9b89917e19df3e96dc1dcb53c82fe0819549b736",
+    "inputs/b-front-drop-claude-round2.json": "09e370da3ca80afe19e6006fab4019e5a7086d9004c0a272e885a1e5611bc3e6",
+    "inputs/references/b-front-drop-claude-round2-20261110.json": "d88f246cde080f8122c636786f6c381d6412ed17e1b53099c4fd270d6d105c43",
+    "inputs/references/b-front-drop-claude-round2-20261110.md": "9da8fbe6623c1ff9ab9b67fc734fa3300f18dad18fc7b6426856b3a70990bb56",
+    "structured/coordination/b-front-drop-claude-v1/review.json": "c86b042428bd3ccc0cd34aad2cd50430e8335560ca58ff1fd4f2076d00b63074",
+    "structured/coordination/b-front-drop-claude-v1/artifact-manifest.json": "944c3139e76ce5420d4e701fb54670e5bf0117e7b15bb8703de1241b21958446",
+    "inputs/b-front-drop-claude-options.json": "372cca8eb782237a3fcb53be1fd339d6f25bf5901d00f745dc95ec50f4780aee",
+    "inputs/references/b-front-drop-claude-round1-20261110.json": "b0185113b171087ae39866e7c5b1ecb01f31378d3c66bb24ba909d01b91d90f8",
+    "inputs/references/b-front-drop-claude-round1-20261110.md": "6e51137c069d62837cb09b08dcbc8dcb641257ee2575f6b0a07479f57c5c5c90",
+    "structured/coordination/b-front-drop-stair-v1/review.json": "420c80017812b34f76105ffd2b642124b8853f448d41ded219c3c246a93478ca",
+    "structured/coordination/b-front-drop-stair-v1/artifact-manifest.json": "3ebf51748254d10232418339218abc67009dfbabc97883f18cdb618fbe4d4a85",
+    "inputs/b-front-drop-stair.json": "99d4fd07fcd4a8c1443478e90dd8c2410fddd635c5760901becfa635727159a4",
+    "structured/coordination/b-front-drainage-layout-v1/review.json": "fb352dcdc1c83aad3b4d4ced66804d328132bd411473b496676f53f849ac7711",
+    "structured/coordination/b-front-drainage-layout-v1/artifact-manifest.json": "79ec65f635322da82de8f7e9c646be793531d937a9a25cafb70d991ff6255635",
+    "structured/coordination/b-ktv-stair-options-v1/review.json": "6116c9df09d442e29e16cc3eabc50aa1cd94b4d512fd3398b9105f1afdc34a7e",
+    "structured/coordination/b-claude-round3-v1/review.json": "00baf0b3950e2593361e91698e4d72ac33e384edadd6da5a7d31b62e087b6223",
+    "structured/coordination/b-claude-round3-v1/artifact-manifest.json": "ad7327b07ef803ab57cf7390f84a3919da4165124a84e33288953981fa591062",
+    "inputs/b-front-drainage-layout.json": "8b21213448e73e770cfeac1203a41a53ff877890052d5aa1e5c5e35c4078853e",
+    "structured/coordination/b-front-service-detail-v1/review.json": "a51324d7699cfba56479f83a5e4eaa24ef5c9d45782c302c79e5fe779d4f2edd",
+    "structured/coordination/b-front-service-detail-v1/artifact-manifest.json": "66b708543e5da68e23878d0063034d8ecb0fe693a658431b44160e5881c35234",
+    "structured/coordination/b-ktv-stair-options-v1/artifact-manifest.json": "1e3b99e2ee0a4626b93c9aa133098f6fb85ea65d3f148b924c69bea3d6349346",
+    "inputs/b-front-service-detail.json": "48c1b0f31db2d9a6116cd81ba8a4b16ec9d2100c643275f8c553b0d400907e49",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "inputs/b-upper-replan.json": "83621a2af81211b06ff4dc2c9e8557641c1d551b05195605acd7a6ad7b1df3f5",
+    "house_design/b_upper_replan.py": "a251d37dc84bd54b9292b6802180ca7fd66c679a7e43dc714b3fed160dc2e5c5",
+    "scripts/export_b_upper_replan.py": "3a3cc271cf7d9fc20759d4bca17b582ab672f551981c6e8c1c20933192c09a3d",
+    "structured/coordination/b-upper-replan-v1/review.json": "38897b7ca1da091dd62c85ab342abd4d1d1da220ec1dbad9a5f46e6611f4906d",
+    "structured/coordination/b-upper-replan-v1/artifact-manifest.json": "c1fe7bab76b8032224f7ce271671db0f94fb3ef91c702adc355fd1bcd6b8d915",
+    "house_design/b_front_service_detail.py": "0e20c751c385d4e69a3ff679cb5b7890e71575f82fdef8195e49628690175c29",
+    "scripts/export_b_front_service_detail.py": "bf8d07a4a0c316fe69facbe5145b9091f0afd4d73e0a5998f4ba2c83d7a9253e",
+    "Docs/b-front-service-detail-v1.md": "bc04d48a087905f1d9735cb90dfde9da33b200627ce6d47adf3115f5648d280b",
+    "house_design/b_claude_round3.py": "040a7b75fc604dc147b471800ae4c1c8a57935182dcceea26591514b106ec9d0",
+    "house_design/contracts.py": "2888419d49e8d8dbe8b8e99f6b8451363cd9020821c7fe3e703ab09779e202c3",
+    "house_design/project_status.py": "db73eb9b066353cc282e67dc15e4b430d9d4e4d398eafaf7eeec5f98af1acab0",
+    "inputs/requirements.json": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066",
+    "inputs/planning-register.json": "140493058b145071afb472bf927860d48a43a6f4407b9b59e5a86705fbe058b0",
+    "inputs/b-ktv-stair-options.json": "b09976ea14cf0021385e87f742b80b2bb3fc0baac50c5863b2c40bcf4dc6f020",
+    "structured/coordination/b-third-entertainment-v1/review.json": "568509636ce55cb56b21161cf69e91e3eab633806c97e260c2a30a7f6553b08a",
+    "structured/coordination/b-third-entertainment-v1/artifact-manifest.json": "81247bbf44718d66f247c3ab520173e24e3ae38c4102480f83d74b3ee189d4d8",
+    "structured/candidates/kaohsiung-house-options/c-stair-integration.json": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+    "inputs/b-third-entertainment.json": "07577a0dffe45c74f98ee93c75d0b35f30b75dec187050e3796775d4d73b45c8",
+    "inputs/references/b-owner-ritual-answers-20261106.json": "736f5a477ce1fbfd8e1bf460ecf49f9043a83635201d1598e3e1842e6460ddb9",
+    "inputs/brief/B.json": "63ed4fc045fc6f2cc4021b8bd784cb7cc9fd46789155fc19aa1a55f33016e55a",
+    "house_design/b_third_entertainment.py": "f026a7665c1134dde6c3ec0f01032fdb0eb91d750e1f7af6ead8c845fbd1a5cc",
+    "scripts/export_b_third_entertainment.py": "67aa5888f2149271e9718c1a7cceea92cd6a96767e4fc5d2c5d4383aae713a2f",
+    "scripts/export_abc_next_improvements.py": "875c13027466776a6e1661dae369e45c823c661c5e0369d8ee95b6535420e701",
+    "scripts/export_builder_communication.py": "650d696de35bd9a0fb4ce77d7f93078813b8babd4ed5439d59a6966d093ceef1",
+    "Docs/b-third-entertainment-v1.md": "5f69f521386c051ce67b4b24d5cda79186f70f937316d25c64962a745258d513",
+    "house_design/b_ktv_stair_options.py": "aa80873e7072c942f144d29ca5d1e82982e215e353188e3a4b41c3e98b27260d",
+    "scripts/export_b_ktv_stair_options.py": "973fd2ca9472d0b1573d78fe2dc94f65acced4fff120ae54bf2f2cfa0387b617",
+    "Docs/b-ktv-stair-options-v1.md": "e994cd9439f526a99a8d6faea11eb5e90f4fcd01b6383a82f514849b29fc61a2",
+    "house_design/b_front_drainage_layout.py": "5e4dd9fb80d2c1acdd0c756d929220a398c154d9274ba910cb2c9d474bcaf218",
+    "scripts/export_b_front_drainage_layout.py": "999dca33f4b233c7ef7f760e160176d29cce941021a57e3888c04d2f153e124f",
+    "Docs/b-front-drainage-layout-v1.md": "6664d87277208e43b6c8022ca56b92fc207b82feb3d176a7106dbe7dfc215c11",
+    "inputs/b-claude-round3.json": "25c006e1d7741395f53a8ae369ac905f7956ca0a3f8f7d2a94cc1625137fbc6f",
+    "structured/coordination/b-claude-crosscheck-v1/review.json": "b2a3604da09beaf1ebb4f8ed50d0525004cf6592ede2bde756eb05ae9ada95a4",
+    "structured/coordination/b-fengshui-strict-v1/review.json": "e595361db8281be6daf361251afe0187824c7bcb99d556f930cf90f15bf2f954",
+    "structured/coordination/b-claude-crosscheck-v1/artifact-manifest.json": "32940e5ac7474e21fbe521a7a99d4c259b2bbaf9fcaa2e33acf67a0a5bad8197",
+    "inputs/b-claude-crosscheck.json": "d49320cef10eed1df0ece76c9e0ba17107c9d32630c25da26c48bf2350cc2a7d",
+    "inputs/references/b-claude-response-v2-provenance.json": "2c7c0cdc880c1d78a910a170edcfdc6b59c20865ae81fd6b041c72816656b32b",
+    "inputs/references/b-claude-response-v2-transcript-20261105.md": "67ad0a230f18b2495ebbbdc7f9c2986bc3a72eaf48eea846af3640a621bf51a7",
+    "house_design/b_claude_crosscheck.py": "9b157330308ec83bfc91d219d0bd0c632fd0ed0566e85b243209affa9a1daf20",
+    "house_design/b_fengshui_strict.py": "7f73ab7b7d84e7af976357a11cbf5ec78bb9550956b24973361a0a1dc6c6a2ab",
+    "house_design/abc_next_improvements.py": "9756b69f651f8431d361ffdc6f678e59edc1c3af0e9d8e9db782091366166568",
+    "house_design/c_coordination.py": "6d2c336496e0f1cabfabce3f3287b28ceecb13088d78f8cb0137d9ce14b689ff",
+    "scripts/export_b_claude_crosscheck.py": "c6bf43bf9b8018f74042ae3f64ef60483d3bde13898c448f2d82cef848890d3f",
+    "scripts/export_b_fengshui_strict.py": "b097e116689af7ae1f074a1482adfb895a44d32f790fabe6386cdeafcb88a67f",
+    "Docs/claude-b-fengshui-followup-v3.md": "ce877ccd31a13e8757b39abef592ead3b78c6117ff2214d90c2b97f7696ec1ea",
+    "scripts/review_b_fengshui_with_claude.py": "dc6b4b855656cbdee16990857abbb44b1f471a720f6799cd9bdee96f71f58b55",
+    "inputs/references/b-claude-round3-provenance-20261106.json": "215a2f40a924a0f3ddd8a1e5a8dfd4da1807175f79310755ff74f8c2a29b4a64",
+    "inputs/references/b-claude-round3-response-20261106.md": "7ec4b66feb30aed715aaef272678e819e2e685342a64f4c24a5b22c0410d159f",
+    "scripts/export_b_claude_round3.py": "be59ca0ded73f3f6a09e40580191eb2375849f3699b977dde887199e47a45e1d",
+    "Docs/b-claude-round3-v1.md": "a9a6fe163037a967962723738ca1535664fc7a54707f101af50066e0c35c68ff",
+    "house_design/b_front_drop_stair.py": "72f5d172e4d9f00383f94c979ac05b547a3f8b7c6ce8741c8b4411ce7e6061a8",
+    "scripts/export_b_front_drop_stair.py": "5a2b16355993e894b714aa0b115ab64025a23422bc045aaf0549e04a54a2a948",
+    "Docs/b-front-drop-stair-v1.md": "3e913493cbadb9f9d42f1fe43af8ed3d438b72bad518e0d97260e48d7db63bcc",
+    "Docs/claude-b-front-drop-brief-v1.md": "696313f200e9224c9e3cb6019432e45957855d5db4ee42d9c302ffc982b925a4",
+    "house_design/b_front_drop_claude.py": "3c40f654ba88f3aa2d2d18b1b3749f3c3cb87c2c15b40a4c2cfde2538e75b566",
+    "scripts/export_b_front_drop_claude.py": "22791815d04f66eac4390ad0eb3dcaadc83d31c974b280f621f83b62db996624",
+    "Docs/b-front-drop-claude-crosscheck-v1.md": "a559b3822f016e56d22e2081b0386fec7035b7a602613520e00e9cf0974e3bfe",
+    "Docs/claude-b-front-drop-followup-v2.md": "198843216d0c3678232bc7d1794d58a82a703956066b991c4af3870dd800a23b",
+    "scripts/review_b_fengshui_with_claude_v2.py": "1e704fb9747fb8c1aa64f887d0452fffc2908ebd0d699556ab5602f46b8e922d",
+    "house_design/b_front_drop_claude_round2.py": "dc5228fd30d5dd7dbbbc6b4b8155e790d8367095249f0cd9550f8633584e0eb7",
+    "scripts/export_b_front_drop_claude_round2.py": "b2e0ba359103952bae04a4a5f683f32550acdc8dd363a54dc80c883b1dda9b99",
+    "Docs/b-front-drop-claude-crosscheck-v2.md": "19452fd64b52c46b0df8d55cec84f5cee1868c6bf7249ec46344a1f498aed561",
+    "house_design/b_front_drop_conditions.py": "d32f44a3d94f9ce14c56aeba03b5b4f36bfb7c2c7ac59bd1c85727ac94c7a947",
+    "scripts/export_b_front_drop_conditions.py": "bc439d3913ffc0667e5ae7f399fa8c85f8c768a4bc6d4bde340d16830dd4abea",
+    "Docs/b-front-drop-builder-interface-v1.md": "83fe0296744b1a62e3546f1a3158096bf0c951e6f26ae586e39440329d026061"
+  },
+  "report_hash": "8fe65ae4a0b70974503d2edabd98ad138930e88f5212488802377596c76b799e"
+}

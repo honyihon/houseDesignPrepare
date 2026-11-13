@@ -1,0 +1,2469 @@
+{
+  "schema": "house-b-q3-roof-coordination-report-v1",
+  "date": "2026-11-10",
+  "config": {
+    "schema": "house-b-q3-roof-coordination-v1",
+    "date": "2026-11-10",
+    "adopted": false,
+    "q3_report": "structured/coordination/b-ktv-stair-options-v1/review.json",
+    "daily_report": "structured/coordination/b-roof-daily-use-v1/review.json",
+    "protected_controls": "inputs/abc-next-protected-controls.json",
+    "pinned_sources": {
+      "structured/coordination/b-ktv-stair-options-v1/review.json": "6116c9df09d442e29e16cc3eabc50aa1cd94b4d512fd3398b9105f1afdc34a7e",
+      "structured/coordination/b-ktv-stair-options-v1/artifact-manifest.json": "1e3b99e2ee0a4626b93c9aa133098f6fb85ea65d3f148b924c69bea3d6349346",
+      "structured/coordination/b-roof-daily-use-v1/review.json": "bdc0e9631be875bfe97b8d7e4bd55aa04770b1955c7347f5f9819f0df2b59a33",
+      "structured/coordination/b-roof-daily-use-v1/artifact-manifest.json": "98f60176faf8fa076c192c0a1ce98864978168a39fb366b62c96c8557d41f5da"
+    },
+    "frame_mm": [
+      6000,
+      17630
+    ],
+    "edge_budget_mm": 115,
+    "frame_each_side_mm": 115,
+    "roof_enclosure_mm": [
+      0,
+      3900,
+      2400,
+      5200
+    ],
+    "vestibule_floor_mm": [
+      115,
+      4015,
+      2170,
+      755
+    ],
+    "side_door": {
+      "a": [
+        2400,
+        3900
+      ],
+      "b": [
+        2400,
+        4900
+      ],
+      "hinge": "rear",
+      "opens": "right"
+    },
+    "daily_arrival_route_mm": [
+      [
+        1780,
+        5270
+      ],
+      [
+        1715,
+        5270
+      ],
+      [
+        1715,
+        2500
+      ],
+      [
+        3150,
+        2500
+      ]
+    ],
+    "inspection_prefix_mm": [
+      [
+        1780,
+        5270
+      ],
+      [
+        1780,
+        4400
+      ]
+    ],
+    "front_heat_pump_inspection_mm": [
+      [
+        1780,
+        5270
+      ],
+      [
+        1715,
+        5270
+      ],
+      [
+        1715,
+        1715
+      ]
+    ],
+    "ordinary_route_width_mm": 700,
+    "arrival_width_cases_mm": [
+      700,
+      800,
+      900
+    ],
+    "limits": [
+      "Q3的RF新到達與S1／S2設備、D1／D2桌架接成獨立同版比較，不改任何原ABC／3D、Q1／Q2／Q3或RF R／S／D來源，也不視為採用。",
+      "原研究RF梯核外框0／3900／2400／5200不擴大，前門沿D案1130mm左鉸鏈，側門沿原研究中心y4400／1000mm；不表示現場已有門或已獲准開洞。",
+      "Q3到達平台後移800mm，本案明確要求2200×1000mm完整新平台、前方乾式銜接地面及側門檻。完整平台、板厚、支承與同標高皆是新結構條件，不借舊保守右平台或來源畫面當核可。",
+      "RF右側原門前有乾式前室接新平台，因此不必僅為改梯就移RF側門；這與Q3三樓側門已移到y5270是不同樓層，不混用門位。",
+      "RF前室落在Q3左後KTV上方，腳步、門片振動、樓板及穿孔須納入聲學核對；不因平面接通就稱KTV隔音或屋頂安靜已成立。",
+      "只鋪列明到達／前室，後方2200×3260mm下樓梯洞保持；直接鋪滿梯核會壓到三樓上來的16個示意踏步，不能用完整房間地板封洞。",
+      "指定前室與到達板在平面不蓋列明3F踏步，只是局部篩檢；整座梯的淨高、梁、扶手、板洞、防火與頭部路徑均未核。",
+      "日常由前門去前平台，試線不進完整祭祀保護投影；側門只接必要設備巡檢，維持非日常保護用途，不擴張家規許可。",
+      "前／側門各三態共九組，S1／S2各自重算；前門全開才通日常到達與前熱泵新巡檢線，後設備等巡檢須側門全開，半開或關閉不當可用。",
+      "700／800／900mm指定日常試線在新完整平台條件內可容納，900mm前門扣框預算沒有額外工差；不當實際完成淨寬、輪椅、消防或整機搬運核可。",
+      "RF側門1000名義洞扣兩側115只給770mm預算，本輪巡檢用700mm，不把日常900mm結果套到後機位或側門。",
+      "既有D案桌架、S案設備、管井、天井與維修預留位置尺寸全部保留。D1折衣與通路分時，D2後濕設備零／65mm間隙仍緊迫，不因接通就稱全部已可安裝。",
+      "原S1前熱泵巡檢線會穿D1晾衣架，本案改由前門沿左側接近，不縮或移桌架；其餘設備巡檢重接側門。熱風、污氣、香火／新風回吸、散熱與實際操作姿勢尚未核，試線不證明空氣品質。",
+      "原前平台24㎡目標仍缺，本案前室是室內通行，不能算成戶外曬衣、把後區日常相加或抵三樓4㎡工作天井。",
+      "原研究RF梯核框12.48㎡不是已核屋突面積；即使外框不擴大，新前室／平台仍可能影響有效樓板、屋突與法規計算，須建築及結構同核。",
+      "Q3 KTV20.1889㎡仍只對指定隔音／井包／機櫃預算；加厚到150mm、聲閘或較大器材仍可能不足。原P3前排水、天井防水與RF全部設備性能問題未解。",
+      "若新到達／前室、門組或法規不成立，退回原Q2與其RF比較核對，不把本批結果套到不同樓梯或已填私人回覆；實際資料到齊後另作獨立回套。"
+    ]
+  },
+  "q3_report_hash": "a5e3e758fc5249a2c0768fd3b48d5d7448365c170820ccfbb529ca439ed59de2",
+  "daily_report_hash": "885c3ea5f7d08ba72463499dcffa1e427be0c8b03453401b819534fa73b37808",
+  "q3_primary_hash": "2021ee42930a2c609f120b354fc374ce7b6bdf1c949b9c9f1dec93f831666995",
+  "floor_requirements": {
+    "landing_mm": [
+      80,
+      4770,
+      2200,
+      1000
+    ],
+    "vestibule_mm": [
+      115,
+      4015,
+      2170,
+      755
+    ],
+    "side_threshold_mm": [
+      2280,
+      4015,
+      235,
+      770
+    ],
+    "front_threshold_polygon_mm": [
+      [
+        2165.0,
+        3785.0
+      ],
+      [
+        2165.0,
+        4015.0
+      ],
+      [
+        1265.0,
+        4015.0
+      ],
+      [
+        1265.0,
+        3785.0
+      ]
+    ],
+    "stairwell_keep_open_mm": [
+      80,
+      5770,
+      2200,
+      3260
+    ],
+    "covered_Q3_tread_ids": [],
+    "rejected_full_enclosure_cap_tread_ids": [
+      "left-1",
+      "right-1",
+      "left-2",
+      "right-2",
+      "left-3",
+      "right-3",
+      "left-4",
+      "right-4",
+      "left-5",
+      "right-5",
+      "left-6",
+      "right-6",
+      "left-7",
+      "right-7",
+      "left-8",
+      "right-8"
+    ],
+    "Q3_incoming_treads": [
+      {
+        "id": "left-1",
+        "rect_mm": [
+          80,
+          5770.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 7166.666666666667
+      },
+      {
+        "id": "right-1",
+        "rect_mm": [
+          1280,
+          7660.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 8666.666666666666
+      },
+      {
+        "id": "left-2",
+        "rect_mm": [
+          80,
+          6040.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 7333.333333333333
+      },
+      {
+        "id": "right-2",
+        "rect_mm": [
+          1280,
+          7390.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 8833.333333333334
+      },
+      {
+        "id": "left-3",
+        "rect_mm": [
+          80,
+          6310.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 7500.0
+      },
+      {
+        "id": "right-3",
+        "rect_mm": [
+          1280,
+          7120.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 9000.0
+      },
+      {
+        "id": "left-4",
+        "rect_mm": [
+          80,
+          6580.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 7666.666666666667
+      },
+      {
+        "id": "right-4",
+        "rect_mm": [
+          1280,
+          6850.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 9166.666666666666
+      },
+      {
+        "id": "left-5",
+        "rect_mm": [
+          80,
+          6850.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 7833.333333333333
+      },
+      {
+        "id": "right-5",
+        "rect_mm": [
+          1280,
+          6580.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 9333.333333333334
+      },
+      {
+        "id": "left-6",
+        "rect_mm": [
+          80,
+          7120.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 8000.0
+      },
+      {
+        "id": "right-6",
+        "rect_mm": [
+          1280,
+          6310.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 9500.0
+      },
+      {
+        "id": "left-7",
+        "rect_mm": [
+          80,
+          7390.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 8166.666666666666
+      },
+      {
+        "id": "right-7",
+        "rect_mm": [
+          1280,
+          6040.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 9666.666666666666
+      },
+      {
+        "id": "left-8",
+        "rect_mm": [
+          80,
+          7660.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 8333.333333333334
+      },
+      {
+        "id": "right-8",
+        "rect_mm": [
+          1280,
+          5770.0,
+          1000,
+          270.0
+        ],
+        "top_z_mm": 9833.333333333334
+      }
+    ],
+    "enclosure_nominal_sqm": 12.48,
+    "roof_floor_full_width_and_same_level_required_not_verified": true,
+    "entire_stair_headroom_slab_support_or_penthouse_legality_approved": false,
+    "original_RF_side_door_center_y_mm": 4400.001,
+    "side_door_moved": false,
+    "new_RF_stair_geometry_or_building_data_received": 0
+  },
+  "options": [
+    {
+      "id": "Q3-D1-front-heat-pump",
+      "title": "Q3 RF｜D1 前熱泵：先保設備檢修，折衣與通道分時",
+      "old_daily_option_id": "D1-front-heat-pump",
+      "equipment_option_id": "S1-front-heat-pump",
+      "equipment_reference_hash": "58567316e041f3bdff6b17b706f41fe0a4f7703b5731704e35616e3fead63709",
+      "daily_reference_hash": "f7bdfc37beeeecea46bc46f8c413440dfcb21df95200522a0261fa0ca22a267b",
+      "equipment_reservations": [
+        {
+          "id": "tank",
+          "label": "水塔／泵浦整組預留",
+          "rect_mm": [
+            3715,
+            14615,
+            1500,
+            2000
+          ],
+          "kind": "wet-equipment",
+          "actual_product": null
+        },
+        {
+          "id": "heat-pump",
+          "label": "熱泵整組預留",
+          "rect_mm": [
+            115,
+            115,
+            2000,
+            1250
+          ],
+          "kind": "wet-equipment",
+          "actual_product": null
+        },
+        {
+          "id": "rear-air-zone",
+          "label": "後浴廁空氣出口區／非污水通氣",
+          "rect_mm": [
+            1015,
+            13700,
+            1400,
+            1800
+          ],
+          "kind": "air-zone",
+          "actual_product": null
+        },
+        {
+          "id": "front-dirty-zone",
+          "label": "前污氣出口協調區",
+          "rect_mm": [
+            115,
+            1515,
+            700,
+            700
+          ],
+          "kind": "air-zone",
+          "actual_product": null
+        },
+        {
+          "id": "rear-soil-vent",
+          "label": "後400污水通氣井投影",
+          "rect_mm": [
+            5485,
+            15700,
+            400,
+            400
+          ],
+          "kind": "pipe-zone",
+          "actual_product": null
+        },
+        {
+          "id": "representative-slot-1",
+          "label": "representative-slot-1含維修預留",
+          "rect_mm": [
+            3270,
+            115,
+            900,
+            1350
+          ],
+          "body_mm": [
+            3270,
+            115,
+            900,
+            350
+          ],
+          "kind": "cooling",
+          "actual_product": null,
+          "new_purchase_count": null
+        },
+        {
+          "id": "representative-slot-2",
+          "label": "representative-slot-2含維修預留",
+          "rect_mm": [
+            4985,
+            115,
+            900,
+            1350
+          ],
+          "body_mm": [
+            4985,
+            115,
+            900,
+            350
+          ],
+          "kind": "cooling",
+          "actual_product": null,
+          "new_purchase_count": null
+        },
+        {
+          "id": "B-AC03",
+          "label": "B-AC03含維修預留",
+          "rect_mm": [
+            3715,
+            13085,
+            900,
+            1350
+          ],
+          "body_mm": [
+            3715,
+            14085,
+            900,
+            350
+          ],
+          "kind": "cooling",
+          "actual_product": null,
+          "new_purchase_count": "existing-ID-relocation-only"
+        },
+        {
+          "id": "B-AC04",
+          "label": "B-AC04含維修預留",
+          "rect_mm": [
+            4985,
+            13085,
+            900,
+            1350
+          ],
+          "body_mm": [
+            4985,
+            14085,
+            900,
+            350
+          ],
+          "kind": "cooling",
+          "actual_product": null,
+          "new_purchase_count": "existing-ID-relocation-only"
+        }
+      ],
+      "furniture": [
+        {
+          "id": "drying-rack",
+          "label": "1800×600移動晾衣架試排",
+          "rect_mm": [
+            4250,
+            1720,
+            600,
+            1800
+          ],
+          "operation_mm": [
+            3550,
+            1720,
+            700,
+            1800
+          ]
+        },
+        {
+          "id": "folding-table",
+          "label": "1200×450折衣桌試排",
+          "rect_mm": [
+            2315,
+            1515,
+            1200,
+            450
+          ],
+          "operation_mm": [
+            2315,
+            1965,
+            1200,
+            700
+          ]
+        }
+      ],
+      "front_door": {
+        "a": [
+          1150,
+          3900
+        ],
+        "b": [
+          2280,
+          3900
+        ],
+        "hinge": "left",
+        "opens": "inside"
+      },
+      "side_door": {
+        "a": [
+          2400,
+          3900
+        ],
+        "b": [
+          2400,
+          4900
+        ],
+        "hinge": "rear",
+        "opens": "right"
+      },
+      "routes": [
+        {
+          "id": "daily-arrival",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1715,
+              5270
+            ],
+            [
+              1715,
+              2500
+            ],
+            [
+              3150,
+              2500
+            ]
+          ],
+          "width_mm": 700,
+          "door": "front",
+          "use": "daily",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 0.0,
+          "protection_scope": "no-daily-entry-into-protection",
+          "shared_operation_ids": [
+            "folding-table"
+          ],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "rack-operation",
+          "points_mm": [
+            [
+              3150,
+              2500
+            ],
+            [
+              3900,
+              2500
+            ]
+          ],
+          "width_mm": 700,
+          "door": null,
+          "use": "daily",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 0.0,
+          "protection_scope": "no-daily-entry-into-protection",
+          "shared_operation_ids": [
+            "drying-rack",
+            "folding-table"
+          ],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "table-operation",
+          "points_mm": [
+            [
+              3150,
+              2500
+            ],
+            [
+              3050,
+              2500
+            ],
+            [
+              3050,
+              2315
+            ]
+          ],
+          "width_mm": 700,
+          "door": null,
+          "use": "daily",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 0.0,
+          "protection_scope": "no-daily-entry-into-protection",
+          "shared_operation_ids": [
+            "folding-table"
+          ],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "inspect-front-cooling",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1780,
+              4400
+            ],
+            [
+              2850,
+              4400
+            ],
+            [
+              5350,
+              4400
+            ],
+            [
+              5350,
+              1100
+            ],
+            [
+              3720,
+              1100
+            ]
+          ],
+          "width_mm": 700,
+          "door": "side",
+          "use": "necessary-inspection",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 2.415,
+          "protection_scope": "existing-necessary-inspection-premise-not-expanded",
+          "shared_operation_ids": [],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "inspect-rear-left-air",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1780,
+              4400
+            ],
+            [
+              2850,
+              4400
+            ],
+            [
+              5350,
+              4400
+            ],
+            [
+              5350,
+              10700
+            ],
+            [
+              550,
+              10700
+            ],
+            [
+              550,
+              14000
+            ],
+            [
+              665,
+              14000
+            ]
+          ],
+          "width_mm": 700,
+          "door": "side",
+          "use": "necessary-inspection",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 10.304,
+          "protection_scope": "existing-necessary-inspection-premise-not-expanded",
+          "shared_operation_ids": [],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "inspect-rear-cooling-03",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1780,
+              4400
+            ],
+            [
+              2850,
+              4400
+            ],
+            [
+              5350,
+              4400
+            ],
+            [
+              5350,
+              12700
+            ],
+            [
+              4165,
+              12700
+            ],
+            [
+              4165,
+              12735
+            ]
+          ],
+          "width_mm": 700,
+          "door": "side",
+          "use": "necessary-inspection",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 7.4741,
+          "protection_scope": "existing-necessary-inspection-premise-not-expanded",
+          "shared_operation_ids": [],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "inspect-rear-cooling-04",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1780,
+              4400
+            ],
+            [
+              2850,
+              4400
+            ],
+            [
+              5350,
+              4400
+            ],
+            [
+              5350,
+              12700
+            ],
+            [
+              5435,
+              12700
+            ],
+            [
+              5435,
+              12735
+            ]
+          ],
+          "width_mm": 700,
+          "door": "side",
+          "use": "necessary-inspection",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 6.944,
+          "protection_scope": "existing-necessary-inspection-premise-not-expanded",
+          "shared_operation_ids": [],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "inspect-tank-boundary",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1780,
+              4400
+            ],
+            [
+              2850,
+              4400
+            ],
+            [
+              5350,
+              4400
+            ],
+            [
+              5350,
+              12700
+            ],
+            [
+              3365,
+              12700
+            ],
+            [
+              3365,
+              15500
+            ]
+          ],
+          "width_mm": 700,
+          "door": "side",
+          "use": "necessary-inspection",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 7.9701,
+          "protection_scope": "existing-necessary-inspection-premise-not-expanded",
+          "shared_operation_ids": [],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "inspect-heat-pump-boundary",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1715,
+              5270
+            ],
+            [
+              1715,
+              1715
+            ]
+          ],
+          "width_mm": 700,
+          "door": "front",
+          "use": "necessary-inspection",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 0.0,
+          "protection_scope": "existing-necessary-inspection-premise-not-expanded",
+          "shared_operation_ids": [],
+          "actual_human_transport_or_religious_approval": "unknown"
+        }
+      ],
+      "door_states": [
+        {
+          "front": "open",
+          "side": "open",
+          "fixed_body_hits": [],
+          "leaf_pair_hit": false,
+          "route_blockers": {
+            "daily-arrival": [],
+            "rack-operation": [],
+            "table-operation": [],
+            "inspect-front-cooling": [],
+            "inspect-rear-left-air": [],
+            "inspect-rear-cooling-03": [],
+            "inspect-rear-cooling-04": [],
+            "inspect-tank-boundary": [],
+            "inspect-heat-pump-boundary": []
+          }
+        },
+        {
+          "front": "open",
+          "side": "half",
+          "fixed_body_hits": [],
+          "leaf_pair_hit": false,
+          "route_blockers": {
+            "daily-arrival": [],
+            "rack-operation": [],
+            "table-operation": [],
+            "inspect-front-cooling": [
+              "side"
+            ],
+            "inspect-rear-left-air": [
+              "side"
+            ],
+            "inspect-rear-cooling-03": [
+              "side"
+            ],
+            "inspect-rear-cooling-04": [
+              "side"
+            ],
+            "inspect-tank-boundary": [
+              "side"
+            ],
+            "inspect-heat-pump-boundary": []
+          }
+        },
+        {
+          "front": "open",
+          "side": "closed",
+          "fixed_body_hits": [],
+          "leaf_pair_hit": false,
+          "route_blockers": {
+            "daily-arrival": [],
+            "rack-operation": [],
+            "table-operation": [],
+            "inspect-front-cooling": [
+              "side"
+            ],
+            "inspect-rear-left-air": [
+              "side"
+            ],
+            "inspect-rear-cooling-03": [
+              "side"
+            ],
+            "inspect-rear-cooling-04": [
+              "side"
+            ],
+            "inspect-tank-boundary": [
+              "side"
+            ],
+            "inspect-heat-pump-boundary": []
+          }
+        },
+        {
+          "front": "half",
+          "side": "open",
+          "fixed_body_hits": [],
+          "leaf_pair_hit": false,
+          "route_blockers": {
+            "daily-arrival": [
+              "front"
+            ],
+            "rack-operation": [],
+            "table-operation": [],
+            "inspect-front-cooling": [],
+            "inspect-rear-left-air": [],
+            "inspect-rear-cooling-03": [],
+            "inspect-rear-cooling-04": [],
+            "inspect-tank-boundary": [],
+            "inspect-heat-pump-boundary": [
+              "front"
+            ]
+          }
+        },
+        {
+          "front": "half",
+          "side": "half",
+          "fixed_body_hits": [],
+          "leaf_pair_hit": false,
+          "route_blockers": {
+            "daily-arrival": [
+              "front"
+            ],
+            "rack-operation": [],
+            "table-operation": [],
+            "inspect-front-cooling": [
+              "side"
+            ],
+            "inspect-rear-left-air": [
+              "side"
+            ],
+            "inspect-rear-cooling-03": [
+              "side"
+            ],
+            "inspect-rear-cooling-04": [
+              "side"
+            ],
+            "inspect-tank-boundary": [
+              "side"
+            ],
+            "inspect-heat-pump-boundary": [
+              "front"
+            ]
+          }
+        },
+        {
+          "front": "half",
+          "side": "closed",
+          "fixed_body_hits": [],
+          "leaf_pair_hit": false,
+          "route_blockers": {
+            "daily-arrival": [
+              "front"
+            ],
+            "rack-operation": [],
+            "table-operation": [],
+            "inspect-front-cooling": [
+              "side"
+            ],
+            "inspect-rear-left-air": [
+              "side"
+            ],
+            "inspect-rear-cooling-03": [
+              "side"
+            ],
+            "inspect-rear-cooling-04": [
+              "side"
+            ],
+            "inspect-tank-boundary": [
+              "side"
+            ],
+            "inspect-heat-pump-boundary": [
+              "front"
+            ]
+          }
+        },
+        {
+          "front": "closed",
+          "side": "open",
+          "fixed_body_hits": [],
+          "leaf_pair_hit": false,
+          "route_blockers": {
+            "daily-arrival": [
+              "front"
+            ],
+            "rack-operation": [],
+            "table-operation": [],
+            "inspect-front-cooling": [],
+            "inspect-rear-left-air": [],
+            "inspect-rear-cooling-03": [],
+            "inspect-rear-cooling-04": [],
+            "inspect-tank-boundary": [],
+            "inspect-heat-pump-boundary": [
+              "front"
+            ]
+          }
+        },
+        {
+          "front": "closed",
+          "side": "half",
+          "fixed_body_hits": [],
+          "leaf_pair_hit": false,
+          "route_blockers": {
+            "daily-arrival": [
+              "front"
+            ],
+            "rack-operation": [],
+            "table-operation": [],
+            "inspect-front-cooling": [
+              "side"
+            ],
+            "inspect-rear-left-air": [
+              "side"
+            ],
+            "inspect-rear-cooling-03": [
+              "side"
+            ],
+            "inspect-rear-cooling-04": [
+              "side"
+            ],
+            "inspect-tank-boundary": [
+              "side"
+            ],
+            "inspect-heat-pump-boundary": [
+              "front"
+            ]
+          }
+        },
+        {
+          "front": "closed",
+          "side": "closed",
+          "fixed_body_hits": [],
+          "leaf_pair_hit": false,
+          "route_blockers": {
+            "daily-arrival": [
+              "front"
+            ],
+            "rack-operation": [],
+            "table-operation": [],
+            "inspect-front-cooling": [
+              "side"
+            ],
+            "inspect-rear-left-air": [
+              "side"
+            ],
+            "inspect-rear-cooling-03": [
+              "side"
+            ],
+            "inspect-rear-cooling-04": [
+              "side"
+            ],
+            "inspect-tank-boundary": [
+              "side"
+            ],
+            "inspect-heat-pump-boundary": [
+              "front"
+            ]
+          }
+        }
+      ],
+      "sampled_swing_body_hits": [],
+      "arrival_width_cases": [
+        {
+          "width_mm": 700,
+          "inside_required_full_platform_and_vestibule": true,
+          "body_hits": [],
+          "fully_open_front_door_hit": false,
+          "over_protected_sqm": 0.0,
+          "product_or_care_approval": "unknown"
+        },
+        {
+          "width_mm": 800,
+          "inside_required_full_platform_and_vestibule": true,
+          "body_hits": [],
+          "fully_open_front_door_hit": false,
+          "over_protected_sqm": 0.0,
+          "product_or_care_approval": "unknown"
+        },
+        {
+          "width_mm": 900,
+          "inside_required_full_platform_and_vestibule": true,
+          "body_hits": [],
+          "fully_open_front_door_hit": false,
+          "over_protected_sqm": 0.0,
+          "product_or_care_approval": "unknown"
+        }
+      ],
+      "front_open_outline_before_daily_furniture_sqm": 14.60895,
+      "front_open_outline_after_daily_furniture_sqm": 12.98895,
+      "arrival_shares_folding_operation": true,
+      "front_heat_pump_inspection_rerouted_around_drying_rack": true,
+      "prior_heat_pump_route_over_drying_rack_sqm": 0.42,
+      "full_enclosure_floor_cap_allowed": false,
+      "new_inspection_results_recomputed_not_inherited": true,
+      "RF24_goal_met_or_reduced": false,
+      "adopted": false,
+      "all_actual_devices_piping_or_products_approved": false
+    },
+    {
+      "id": "Q3-D2-rear-wet-pair",
+      "title": "Q3 RF｜D2 後熱泵：較好家務動線，後設備包絡緊",
+      "old_daily_option_id": "D2-rear-wet-pair",
+      "equipment_option_id": "S2-rear-wet-pair",
+      "equipment_reference_hash": "cebe0f0b92e52c600f8137b62ee5a0598bb707374950635342c27816b28562d5",
+      "daily_reference_hash": "afd963d818ce52de3e36a85237ff421b93e4c8fe2e774f7dd3c40a059c042551",
+      "equipment_reservations": [
+        {
+          "id": "tank",
+          "label": "水塔／泵浦整組預留",
+          "rect_mm": [
+            3715,
+            14500,
+            1770,
+            1700
+          ],
+          "kind": "wet-equipment",
+          "actual_product": null
+        },
+        {
+          "id": "heat-pump",
+          "label": "熱泵整組預留",
+          "rect_mm": [
+            3715,
+            16265,
+            2000,
+            1250
+          ],
+          "kind": "wet-equipment",
+          "actual_product": null
+        },
+        {
+          "id": "rear-air-zone",
+          "label": "後浴廁空氣出口區／非污水通氣",
+          "rect_mm": [
+            1015,
+            13700,
+            1400,
+            1800
+          ],
+          "kind": "air-zone",
+          "actual_product": null
+        },
+        {
+          "id": "front-dirty-zone",
+          "label": "前污氣出口協調區",
+          "rect_mm": [
+            115,
+            1515,
+            700,
+            700
+          ],
+          "kind": "air-zone",
+          "actual_product": null
+        },
+        {
+          "id": "rear-soil-vent",
+          "label": "後400污水通氣井投影",
+          "rect_mm": [
+            5485,
+            15700,
+            400,
+            400
+          ],
+          "kind": "pipe-zone",
+          "actual_product": null
+        },
+        {
+          "id": "representative-slot-1",
+          "label": "representative-slot-1含維修預留",
+          "rect_mm": [
+            3270,
+            115,
+            900,
+            1350
+          ],
+          "body_mm": [
+            3270,
+            115,
+            900,
+            350
+          ],
+          "kind": "cooling",
+          "actual_product": null,
+          "new_purchase_count": null
+        },
+        {
+          "id": "representative-slot-2",
+          "label": "representative-slot-2含維修預留",
+          "rect_mm": [
+            4985,
+            115,
+            900,
+            1350
+          ],
+          "body_mm": [
+            4985,
+            115,
+            900,
+            350
+          ],
+          "kind": "cooling",
+          "actual_product": null,
+          "new_purchase_count": null
+        },
+        {
+          "id": "B-AC03",
+          "label": "B-AC03含維修預留",
+          "rect_mm": [
+            3715,
+            13085,
+            900,
+            1350
+          ],
+          "body_mm": [
+            3715,
+            14085,
+            900,
+            350
+          ],
+          "kind": "cooling",
+          "actual_product": null,
+          "new_purchase_count": "existing-ID-relocation-only"
+        },
+        {
+          "id": "B-AC04",
+          "label": "B-AC04含維修預留",
+          "rect_mm": [
+            4985,
+            13085,
+            900,
+            1350
+          ],
+          "body_mm": [
+            4985,
+            14085,
+            900,
+            350
+          ],
+          "kind": "cooling",
+          "actual_product": null,
+          "new_purchase_count": "existing-ID-relocation-only"
+        }
+      ],
+      "furniture": [
+        {
+          "id": "drying-rack",
+          "label": "同1800×600移動晾衣架試排",
+          "rect_mm": [
+            4250,
+            1720,
+            600,
+            1800
+          ],
+          "operation_mm": [
+            3550,
+            1720,
+            700,
+            1800
+          ]
+        },
+        {
+          "id": "folding-table",
+          "label": "同1200×450折衣桌試排",
+          "rect_mm": [
+            115,
+            115,
+            1200,
+            450
+          ],
+          "operation_mm": [
+            115,
+            565,
+            1200,
+            700
+          ]
+        }
+      ],
+      "front_door": {
+        "a": [
+          1150,
+          3900
+        ],
+        "b": [
+          2280,
+          3900
+        ],
+        "hinge": "left",
+        "opens": "inside"
+      },
+      "side_door": {
+        "a": [
+          2400,
+          3900
+        ],
+        "b": [
+          2400,
+          4900
+        ],
+        "hinge": "rear",
+        "opens": "right"
+      },
+      "routes": [
+        {
+          "id": "daily-arrival",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1715,
+              5270
+            ],
+            [
+              1715,
+              2500
+            ],
+            [
+              3150,
+              2500
+            ]
+          ],
+          "width_mm": 700,
+          "door": "front",
+          "use": "daily",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 0.0,
+          "protection_scope": "no-daily-entry-into-protection",
+          "shared_operation_ids": [],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "rack-operation",
+          "points_mm": [
+            [
+              3150,
+              2500
+            ],
+            [
+              3900,
+              2500
+            ]
+          ],
+          "width_mm": 700,
+          "door": null,
+          "use": "daily",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 0.0,
+          "protection_scope": "no-daily-entry-into-protection",
+          "shared_operation_ids": [
+            "drying-rack"
+          ],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "table-operation",
+          "points_mm": [
+            [
+              3150,
+              2500
+            ],
+            [
+              1715,
+              2500
+            ],
+            [
+              1715,
+              1000
+            ],
+            [
+              715,
+              1000
+            ]
+          ],
+          "width_mm": 700,
+          "door": null,
+          "use": "daily",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 0.0,
+          "protection_scope": "no-daily-entry-into-protection",
+          "shared_operation_ids": [
+            "folding-table"
+          ],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "inspect-front-cooling",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1780,
+              4400
+            ],
+            [
+              2850,
+              4400
+            ],
+            [
+              5350,
+              4400
+            ],
+            [
+              5350,
+              1100
+            ],
+            [
+              3720,
+              1100
+            ]
+          ],
+          "width_mm": 700,
+          "door": "side",
+          "use": "necessary-inspection",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 2.415,
+          "protection_scope": "existing-necessary-inspection-premise-not-expanded",
+          "shared_operation_ids": [],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "inspect-rear-left-air",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1780,
+              4400
+            ],
+            [
+              2850,
+              4400
+            ],
+            [
+              5350,
+              4400
+            ],
+            [
+              5350,
+              10700
+            ],
+            [
+              550,
+              10700
+            ],
+            [
+              550,
+              14000
+            ],
+            [
+              665,
+              14000
+            ]
+          ],
+          "width_mm": 700,
+          "door": "side",
+          "use": "necessary-inspection",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 10.304,
+          "protection_scope": "existing-necessary-inspection-premise-not-expanded",
+          "shared_operation_ids": [],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "inspect-rear-cooling-03",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1780,
+              4400
+            ],
+            [
+              2850,
+              4400
+            ],
+            [
+              5350,
+              4400
+            ],
+            [
+              5350,
+              12700
+            ],
+            [
+              4165,
+              12700
+            ],
+            [
+              4165,
+              12735
+            ]
+          ],
+          "width_mm": 700,
+          "door": "side",
+          "use": "necessary-inspection",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 7.4741,
+          "protection_scope": "existing-necessary-inspection-premise-not-expanded",
+          "shared_operation_ids": [],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "inspect-rear-cooling-04",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1780,
+              4400
+            ],
+            [
+              2850,
+              4400
+            ],
+            [
+              5350,
+              4400
+            ],
+            [
+              5350,
+              12700
+            ],
+            [
+              5435,
+              12700
+            ],
+            [
+              5435,
+              12735
+            ]
+          ],
+          "width_mm": 700,
+          "door": "side",
+          "use": "necessary-inspection",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 6.944,
+          "protection_scope": "existing-necessary-inspection-premise-not-expanded",
+          "shared_operation_ids": [],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "inspect-tank-boundary",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1780,
+              4400
+            ],
+            [
+              2850,
+              4400
+            ],
+            [
+              5350,
+              4400
+            ],
+            [
+              5350,
+              12700
+            ],
+            [
+              3365,
+              12700
+            ],
+            [
+              3365,
+              15500
+            ]
+          ],
+          "width_mm": 700,
+          "door": "side",
+          "use": "necessary-inspection",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 7.9701,
+          "protection_scope": "existing-necessary-inspection-premise-not-expanded",
+          "shared_operation_ids": [],
+          "actual_human_transport_or_religious_approval": "unknown"
+        },
+        {
+          "id": "inspect-heat-pump-boundary",
+          "points_mm": [
+            [
+              1780,
+              5270
+            ],
+            [
+              1780,
+              4400
+            ],
+            [
+              2850,
+              4400
+            ],
+            [
+              5350,
+              4400
+            ],
+            [
+              5350,
+              12700
+            ],
+            [
+              3365,
+              12700
+            ],
+            [
+              3365,
+              16890
+            ]
+          ],
+          "width_mm": 700,
+          "door": "side",
+          "use": "necessary-inspection",
+          "inside_explicit_same_revision_surface": true,
+          "fixed_body_hits": [],
+          "void_or_guard_hit": false,
+          "over_protected_sqm": 7.9701,
+          "protection_scope": "existing-necessary-inspection-premise-not-expanded",
+          "shared_operation_ids": [],
+          "actual_human_transport_or_religious_approval": "unknown"
+        }
+      ],
+      "door_states": [
+        {
+          "front": "open",
+          "side": "open",
+          "fixed_body_hits": [],
+          "leaf_pair_hit": false,
+          "route_blockers": {
+            "daily-arrival": [],
+            "rack-operation": [],
+            "table-operation": [],
+            "inspect-front-cooling": [],
+            "inspect-rear-left-air": [],
+            "inspect-rear-cooling-03": [],
+            "inspect-rear-cooling-04": [],
+            "inspect-tank-boundary": [],
+            "inspect-heat-pump-boundary": []
+          }
+        },
+        {
+          "front": "open",
+          "side": "half",
+          "fixed_body_hits": [],
+          "leaf_pair_hit": false,
+          "route_blockers": {
+            "daily-arrival": [],
+            "rack-operation": [],
+            "table-operation": [],
+            "inspect-front-cooling": [
+              "side"
+            ],
+            "inspect-rear-left-air": [
+              "side"
+            ],
+            "inspect-rear-cooling-03": [
+              "side"
+            ],
+            "inspect-rear-cooling-04": [
+              "side"
+            ],
+            "inspect-tank-boundary": [
+              "side"
+            ],
+            "inspect-heat-pump-boundary": [
+              "side"
+            ]
+          }
+        },
+        {
+          "front": "open",
+          "side": "closed",
+          "fixed_body_hits": [],
+          "leaf_pair_hit": false,
+          "route_blockers": {
+            "daily-arrival": [],
+            "rack-operation": [],
+            "table-operation": [],
+            "inspect-front-cooling": [
+              "side"
+            ],
+            "inspect-rear-left-air": [
+              "side"
+            ],
+            "inspect-rear-cooling-03": [
+              "side"
+            ],
+            "inspect-rear-cooling-04": [
+              "side"
+            ],
+            "inspect-tank-boundary": [
+              "side"
+            ],
+            "inspect-heat-pump-boundary": [
+              "side"
+            ]
+          }
+        },
+        {
+          "front": "half",
+          "side": "open",
+          "fixed_body_hits": [],
+          "leaf_pair_hit": false,
+          "route_blockers": {
+            "daily-arrival": [
+              "front"
+            ],
+            "rack-operation": [],
+            "table-operation": [],
+            "inspect-front-cooling": [],
+            "inspect-rear-left-air": [],
+            "inspect-rear-cooling-03": [],
+            "inspect-rear-cooling-04": [],
+            "inspect-tank-boundary": [],
+            "inspect-heat-pump-boundary": []
+          }
+        },
+        {
+          "front": "half",
+          "side": "half",
+          "fixed_body_hits": [],
+          "leaf_pair_hit": false,
+          "route_blockers": {
+            "daily-arrival": [
+              "front"
+            ],
+            "rack-operation": [],
+            "table-operation": [],
+            "inspect-front-cooling": [
+              "side"
+            ],
+            "inspect-rear-left-air": [
+              "side"
+            ],
+            "inspect-rear-cooling-03": [
+              "side"
+            ],
+            "inspect-rear-cooling-04": [
+              "side"
+            ],
+            "inspect-tank-boundary": [
+              "side"
+            ],
+            "inspect-heat-pump-boundary": [
+              "side"
+            ]
+          }
+        },
+        {
+          "front": "half",
+          "side": "closed",
+          "fixed_body_hits": [],
+          "leaf_pair_hit": false,
+          "route_blockers": {
+            "daily-arrival": [
+              "front"
+            ],
+            "rack-operation": [],
+            "table-operation": [],
+            "inspect-front-cooling": [
+              "side"
+            ],
+            "inspect-rear-left-air": [
+              "side"
+            ],
+            "inspect-rear-cooling-03": [
+              "side"
+            ],
+            "inspect-rear-cooling-04": [
+              "side"
+            ],
+            "inspect-tank-boundary": [
+              "side"
+            ],
+            "inspect-heat-pump-boundary": [
+              "side"
+            ]
+          }
+        },
+        {
+          "front": "closed",
+          "side": "open",
+          "fixed_body_hits": [],
+          "leaf_pair_hit": false,
+          "route_blockers": {
+            "daily-arrival": [
+              "front"
+            ],
+            "rack-operation": [],
+            "table-operation": [],
+            "inspect-front-cooling": [],
+            "inspect-rear-left-air": [],
+            "inspect-rear-cooling-03": [],
+            "inspect-rear-cooling-04": [],
+            "inspect-tank-boundary": [],
+            "inspect-heat-pump-boundary": []
+          }
+        },
+        {
+          "front": "closed",
+          "side": "half",
+          "fixed_body_hits": [],
+          "leaf_pair_hit": false,
+          "route_blockers": {
+            "daily-arrival": [
+              "front"
+            ],
+            "rack-operation": [],
+            "table-operation": [],
+            "inspect-front-cooling": [
+              "side"
+            ],
+            "inspect-rear-left-air": [
+              "side"
+            ],
+            "inspect-rear-cooling-03": [
+              "side"
+            ],
+            "inspect-rear-cooling-04": [
+              "side"
+            ],
+            "inspect-tank-boundary": [
+              "side"
+            ],
+            "inspect-heat-pump-boundary": [
+              "side"
+            ]
+          }
+        },
+        {
+          "front": "closed",
+          "side": "closed",
+          "fixed_body_hits": [],
+          "leaf_pair_hit": false,
+          "route_blockers": {
+            "daily-arrival": [
+              "front"
+            ],
+            "rack-operation": [],
+            "table-operation": [],
+            "inspect-front-cooling": [
+              "side"
+            ],
+            "inspect-rear-left-air": [
+              "side"
+            ],
+            "inspect-rear-cooling-03": [
+              "side"
+            ],
+            "inspect-rear-cooling-04": [
+              "side"
+            ],
+            "inspect-tank-boundary": [
+              "side"
+            ],
+            "inspect-heat-pump-boundary": [
+              "side"
+            ]
+          }
+        }
+      ],
+      "sampled_swing_body_hits": [],
+      "arrival_width_cases": [
+        {
+          "width_mm": 700,
+          "inside_required_full_platform_and_vestibule": true,
+          "body_hits": [],
+          "fully_open_front_door_hit": false,
+          "over_protected_sqm": 0.0,
+          "product_or_care_approval": "unknown"
+        },
+        {
+          "width_mm": 800,
+          "inside_required_full_platform_and_vestibule": true,
+          "body_hits": [],
+          "fully_open_front_door_hit": false,
+          "over_protected_sqm": 0.0,
+          "product_or_care_approval": "unknown"
+        },
+        {
+          "width_mm": 900,
+          "inside_required_full_platform_and_vestibule": true,
+          "body_hits": [],
+          "fully_open_front_door_hit": false,
+          "over_protected_sqm": 0.0,
+          "product_or_care_approval": "unknown"
+        }
+      ],
+      "front_open_outline_before_daily_furniture_sqm": 17.10895,
+      "front_open_outline_after_daily_furniture_sqm": 15.48895,
+      "arrival_shares_folding_operation": false,
+      "front_heat_pump_inspection_rerouted_around_drying_rack": false,
+      "prior_heat_pump_route_over_drying_rack_sqm": 0.0,
+      "full_enclosure_floor_cap_allowed": false,
+      "new_inspection_results_recomputed_not_inherited": true,
+      "RF24_goal_met_or_reduced": false,
+      "adopted": false,
+      "all_actual_devices_piping_or_products_approved": false
+    }
+  ],
+  "protected_polygons_mm": [
+    [
+      [
+        6000.0,
+        3900.0
+      ],
+      [
+        2400.0,
+        3900.0
+      ],
+      [
+        2400.0,
+        9100.0
+      ],
+      [
+        0.0,
+        9100.0
+      ],
+      [
+        0.0,
+        11370.0
+      ],
+      [
+        6000.0,
+        11370.0
+      ],
+      [
+        6000.0,
+        9100.0
+      ]
+    ],
+    [
+      [
+        4670.0,
+        11370.0
+      ],
+      [
+        4670.0,
+        12970.0
+      ],
+      [
+        2640.0,
+        12970.0
+      ],
+      [
+        2640.0,
+        11370.0
+      ]
+    ]
+  ],
+  "R1_reference": {
+    "id": "R1-retained-strip",
+    "title": "R1 留RF左板帶／部分遮頂天井",
+    "court_floor_mm": [
+      0,
+      11370,
+      2400,
+      2130
+    ],
+    "court_floor_nominal_sqm": 5.112,
+    "floor_outline115_sqm": 4.123,
+    "rf_opening_mm": [
+      1100,
+      11470,
+      1300,
+      2030
+    ],
+    "rf_opening_sqm": 2.639,
+    "rf_opening_reduction_sqm": 2.473,
+    "rf_opening_reduction_fraction": 0.483764,
+    "rf_retained_strip_mm": [
+      0,
+      11370,
+      1100,
+      2130
+    ],
+    "rf_guard_polygons_mm": [
+      [
+        [
+          1000.0,
+          11370.0
+        ],
+        [
+          1000.0,
+          11470.0
+        ],
+        [
+          2500.0,
+          11470.0
+        ],
+        [
+          2500.0,
+          11370.0
+        ]
+      ],
+      [
+        [
+          1000.0,
+          13500.0
+        ],
+        [
+          1000.0,
+          13600.0
+        ],
+        [
+          2500.0,
+          13600.0
+        ],
+        [
+          2500.0,
+          13500.0
+        ]
+      ],
+      [
+        [
+          1000.0,
+          11470.0
+        ],
+        [
+          1000.0,
+          13500.0
+        ],
+        [
+          1100.0,
+          13500.0
+        ],
+        [
+          1100.0,
+          11470.0
+        ]
+      ],
+      [
+        [
+          2400.0,
+          11470.0
+        ],
+        [
+          2400.0,
+          13500.0
+        ],
+        [
+          2500.0,
+          13500.0
+        ],
+        [
+          2500.0,
+          11470.0
+        ]
+      ]
+    ],
+    "rf_front_collar_mm": [
+      1100,
+      11370,
+      1300,
+      100
+    ],
+    "rf_left_strip_clear_budget_mm": 885,
+    "rf_unobstructed_service_zone_before_equipment_and_walkways_sqm": 11.902,
+    "old_left_corridor_interrupted_by_void_or_guard": false,
+    "rf_routes": [
+      {
+        "id": "front-slots",
+        "width_mm": 700,
+        "points_mm": [
+          [
+            2850,
+            4400
+          ],
+          [
+            5350,
+            4400
+          ],
+          [
+            5350,
+            1100
+          ],
+          [
+            3720,
+            1100
+          ]
+        ],
+        "within_reserved_roof_surface": true,
+        "outside_sqm": 0.0,
+        "void_or_guard_hit": false,
+        "unit_hits": [],
+        "scope": "outside-RF-side-door-to-listed-units-only-not-stairs-or-machine-transport"
+      },
+      {
+        "id": "rear-left-unit",
+        "width_mm": 700,
+        "points_mm": [
+          [
+            2850,
+            4400
+          ],
+          [
+            5350,
+            4400
+          ],
+          [
+            5350,
+            10700
+          ],
+          [
+            550,
+            10700
+          ],
+          [
+            550,
+            16800
+          ]
+        ],
+        "within_reserved_roof_surface": true,
+        "outside_sqm": 0.0,
+        "void_or_guard_hit": false,
+        "unit_hits": [],
+        "scope": "outside-RF-side-door-to-listed-units-only-not-stairs-or-machine-transport"
+      },
+      {
+        "id": "rear-right-unit",
+        "width_mm": 700,
+        "points_mm": [
+          [
+            2850,
+            4400
+          ],
+          [
+            5350,
+            4400
+          ],
+          [
+            5350,
+            10700
+          ],
+          [
+            550,
+            10700
+          ],
+          [
+            550,
+            15500
+          ],
+          [
+            1870,
+            15500
+          ],
+          [
+            1870,
+            16800
+          ]
+        ],
+        "within_reserved_roof_surface": true,
+        "outside_sqm": 0.0,
+        "void_or_guard_hit": false,
+        "unit_hits": [],
+        "scope": "outside-RF-side-door-to-listed-units-only-not-stairs-or-machine-transport"
+      }
+    ],
+    "wet_3F_over_2F_master_sqm": 5.112,
+    "wet_3F_over_2F_bed_sqm": 0.0,
+    "wet_3F_over_shrine_or_backing_sqm": 0.0,
+    "wet_3F_over_palanquin_sqm": 0.0,
+    "rf_void_or_guard_over_protected_sqm": 0.0,
+    "rf_void_over_protected_sqm": 0.0,
+    "guard_protected_interface_requires_review": false,
+    "guard_family_or_structural_permission": "unknown-not-inferred-from-original-checks",
+    "direct_sky_opening_is_not_rainfall_or_effective_ventilation_area": true,
+    "working_court_outdoor_outline115_candidate_sqm": 4.123,
+    "indoor_dry_utility_outline115_sqm": 0,
+    "wet_equipment_in_dry_fallback": [],
+    "dry_fallback_effective_daylight_and_fresh_air": "unknown-no-new-side-window",
+    "floor3_other_rooms_and_all_furniture_doors_routes_unchanged": true,
+    "inherited_floor3_door_state_count": 81,
+    "inherited_door_results_scope": "identical-floor-geometry-only-no-new-supports-thresholds-or-product-proof",
+    "new_3F_supports_drawn": [],
+    "supports_proven_unnecessary": false,
+    "outdoor_work_balcony_legal_or_environmental_approval": "unknown",
+    "all_roof_equipment_fitted": false,
+    "adopted": false
+  },
+  "Q3_KTV_area_reference_sqm": 20.1889,
+  "front_door_nominal_mm": 1130,
+  "front_door_clear_budget_mm": 900,
+  "side_door_nominal_mm": 1000,
+  "side_door_clear_budget_mm": 770,
+  "RF_arrival_shift_from_original_mm": 800,
+  "old_RF_enclosure_or_side_aperture_moved": false,
+  "new_floor_slab_and_door_thresholds_required": true,
+  "new_solid_slab_over_incoming_stairwell_allowed": false,
+  "parent_daily_capacity": {
+    "scope": "fixed-frame-stair-and-protection-topology-only-not-global-impossibility",
+    "front_nominal_gross_sqm": 23.4,
+    "front_before_equipment_with_edge_budget_sqm": 21.83945,
+    "front_short_of24_before_equipment_sqm": 2.16055,
+    "disconnected_component_count": 2,
+    "rear_unconnected_area_before_equipment_sqm": 28.86365,
+    "components_mm": [
+      {
+        "outer": [
+          [
+            115.0,
+            115.0
+          ],
+          [
+            115.0,
+            3900.0
+          ],
+          [
+            2400.0,
+            3900.0
+          ],
+          [
+            5885.0,
+            3900.0
+          ],
+          [
+            5885.0,
+            115.0
+          ],
+          [
+            115.0,
+            115.0
+          ]
+        ],
+        "holes": []
+      },
+      {
+        "outer": [
+          [
+            115.0,
+            17515.0
+          ],
+          [
+            5885.0,
+            17515.0
+          ],
+          [
+            5885.0,
+            11370.0
+          ],
+          [
+            4670.0,
+            11370.0
+          ],
+          [
+            4670.0,
+            12970.0
+          ],
+          [
+            2640.0,
+            12970.0
+          ],
+          [
+            2640.0,
+            11370.0
+          ],
+          [
+            2500.0,
+            11370.0
+          ],
+          [
+            2500.0,
+            11470.0
+          ],
+          [
+            2500.0,
+            13500.0
+          ],
+          [
+            2500.0,
+            13600.0
+          ],
+          [
+            1000.0,
+            13600.0
+          ],
+          [
+            1000.0,
+            13500.0
+          ],
+          [
+            1000.0,
+            11470.0
+          ],
+          [
+            1000.0,
+            11370.0
+          ],
+          [
+            115.0,
+            11370.0
+          ],
+          [
+            115.0,
+            17515.0
+          ]
+        ],
+        "holes": []
+      }
+    ],
+    "front_and_rear_daily_areas_added_together": false,
+    "ordinary_route_through_protection_authorized": false,
+    "RF_deck_original_target_sqm": 24,
+    "RF_deck_original_min_sqm": 10,
+    "min10_is_owner_accepted_target": false,
+    "removing_equipment_or_changing_only_front_door_can_solve24": false
+  },
+  "RF_indoor_vestibule_added_to_outdoor_goal": false,
+  "original_Q3_non_RF_geometry_changed": false,
+  "first_floor_or_two_ground_entry_variants_changed": false,
+  "all_actual_devices_and_piping_fitted": false,
+  "protected_controls_unchanged": 149,
+  "actual_site_or_product_data_received": 0,
+  "primary_abc_or_3d_changed": false,
+  "adopted": false,
+  "all_original_requirements_met": false,
+  "rendered_qa": "not-run",
+  "professional_approval": "unknown",
+  "conclusion": "Q3可用明確新到達平台與前室接回原RF前門／側門，側門不必僅因改梯後移；S1／S2設備與D1／D2桌架原位保留，日常及巡檢門態全部重算。完整樓板／平台仍是結構條件，後梯井保留，900試線不等於成品或照護核可，RF24㎡及其他工程缺口仍保留。",
+  "source_hashes": {
+    "inputs/b-q3-roof-coordination.json": "76cc3c2626ef18574f6393301da71f136bd928871a71b3c327f94f748ef0cf23",
+    "structured/coordination/b-ktv-stair-options-v1/review.json": "6116c9df09d442e29e16cc3eabc50aa1cd94b4d512fd3398b9105f1afdc34a7e",
+    "structured/coordination/b-ktv-stair-options-v1/artifact-manifest.json": "1e3b99e2ee0a4626b93c9aa133098f6fb85ea65d3f148b924c69bea3d6349346",
+    "structured/coordination/b-roof-daily-use-v1/review.json": "bdc0e9631be875bfe97b8d7e4bd55aa04770b1955c7347f5f9819f0df2b59a33",
+    "structured/coordination/b-roof-daily-use-v1/artifact-manifest.json": "98f60176faf8fa076c192c0a1ce98864978168a39fb366b62c96c8557d41f5da",
+    "inputs/b-ktv-stair-options.json": "b09976ea14cf0021385e87f742b80b2bb3fc0baac50c5863b2c40bcf4dc6f020",
+    "structured/coordination/b-third-entertainment-v1/review.json": "568509636ce55cb56b21161cf69e91e3eab633806c97e260c2a30a7f6553b08a",
+    "structured/coordination/b-third-entertainment-v1/artifact-manifest.json": "81247bbf44718d66f247c3ab520173e24e3ae38c4102480f83d74b3ee189d4d8",
+    "structured/candidates/kaohsiung-house-options/c-stair-integration.json": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+    "inputs/b-third-entertainment.json": "07577a0dffe45c74f98ee93c75d0b35f30b75dec187050e3796775d4d73b45c8",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "structured/coordination/b-upper-replan-v1/review.json": "38897b7ca1da091dd62c85ab342abd4d1d1da220ec1dbad9a5f46e6611f4906d",
+    "structured/coordination/b-upper-replan-v1/artifact-manifest.json": "c1fe7bab76b8032224f7ce271671db0f94fb3ef91c702adc355fd1bcd6b8d915",
+    "structured/coordination/b-front-service-detail-v1/review.json": "a51324d7699cfba56479f83a5e4eaa24ef5c9d45782c302c79e5fe779d4f2edd",
+    "structured/coordination/b-front-service-detail-v1/artifact-manifest.json": "66b708543e5da68e23878d0063034d8ecb0fe693a658431b44160e5881c35234",
+    "inputs/references/b-owner-ritual-answers-20261106.json": "736f5a477ce1fbfd8e1bf460ecf49f9043a83635201d1598e3e1842e6460ddb9",
+    "structured/coordination/b-claude-round3-v1/review.json": "00baf0b3950e2593361e91698e4d72ac33e384edadd6da5a7d31b62e087b6223",
+    "inputs/requirements.json": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066",
+    "inputs/brief/B.json": "63ed4fc045fc6f2cc4021b8bd784cb7cc9fd46789155fc19aa1a55f33016e55a",
+    "inputs/planning-register.json": "140493058b145071afb472bf927860d48a43a6f4407b9b59e5a86705fbe058b0",
+    "house_design/b_third_entertainment.py": "f026a7665c1134dde6c3ec0f01032fdb0eb91d750e1f7af6ead8c845fbd1a5cc",
+    "scripts/export_b_third_entertainment.py": "67aa5888f2149271e9718c1a7cceea92cd6a96767e4fc5d2c5d4383aae713a2f",
+    "house_design/b_upper_replan.py": "a251d37dc84bd54b9292b6802180ca7fd66c679a7e43dc714b3fed160dc2e5c5",
+    "house_design/b_front_service_detail.py": "0e20c751c385d4e69a3ff679cb5b7890e71575f82fdef8195e49628690175c29",
+    "house_design/contracts.py": "2888419d49e8d8dbe8b8e99f6b8451363cd9020821c7fe3e703ab09779e202c3",
+    "house_design/project_status.py": "db73eb9b066353cc282e67dc15e4b430d9d4e4d398eafaf7eeec5f98af1acab0",
+    "scripts/export_b_upper_replan.py": "3a3cc271cf7d9fc20759d4bca17b582ab672f551981c6e8c1c20933192c09a3d",
+    "scripts/export_abc_next_improvements.py": "875c13027466776a6e1661dae369e45c823c661c5e0369d8ee95b6535420e701",
+    "scripts/export_builder_communication.py": "650d696de35bd9a0fb4ce77d7f93078813b8babd4ed5439d59a6966d093ceef1",
+    "Docs/b-third-entertainment-v1.md": "5f69f521386c051ce67b4b24d5cda79186f70f937316d25c64962a745258d513",
+    "house_design/b_ktv_stair_options.py": "aa80873e7072c942f144d29ca5d1e82982e215e353188e3a4b41c3e98b27260d",
+    "scripts/export_b_ktv_stair_options.py": "973fd2ca9472d0b1573d78fe2dc94f65acced4fff120ae54bf2f2cfa0387b617",
+    "Docs/b-ktv-stair-options-v1.md": "e994cd9439f526a99a8d6faea11eb5e90f4fcd01b6383a82f514849b29fc61a2",
+    "inputs/b-roof-daily-use.json": "1523cacb493ad739baf8ea5081211039e9c3b8a18bb0895d61014e3e6c45e57d",
+    "structured/coordination/b-roof-equipment-v1/review.json": "17bb6027323fea2b01896aeaa533e62903a60c5c9d5ca9e11e6848155c04cec1",
+    "structured/coordination/b-roof-equipment-v1/artifact-manifest.json": "f37bb8346f9ff487b6f52de5e86ed9fef67c45e6699683f00d2fa8b9065947bb",
+    "inputs/b-roof-equipment.json": "2fd8c130bd7e8c36e31f21f18885267d13d20cbc5d7538f8f3dfe2953565a0ff",
+    "structured/coordination/b-working-court-v1/review.json": "86fd21e80521907005a53fc506fff99b8c7421d709b7ca31e8a07d09e802a790",
+    "structured/coordination/b-working-court-v1/artifact-manifest.json": "b1908bbe5877e51f14eb0fa820b6b132c5513e664332d8c6489cda8154d05d24",
+    "inputs/abc-fresh-air-layout-options.json": "244a19fb3e44c81d6af95e8ee354836ca1f777cd7d2559cd312812ac6cb94ed7",
+    "inputs/abc-fresh-air-detail.json": "7a0967c5cff5eaa507e0a420a9c1e694255562ccdc69f511ae801472649a61ec",
+    "inputs/b-ventilation-detail.json": "523b9c931c4f36caea62072031fe2d3c82cbea852d4ddf33e86827443b3c10f8",
+    "inputs/b-working-court.json": "ef46a7852138a320e33b7b4131617991167bdaca9a942beb245e81aa6f6ac5eb",
+    "house_design/b_working_court.py": "4d9e54078c4fb2f0e708e72386b4a969f9e1ca8c44722da65ceaf1ab9d388a1d",
+    "scripts/export_b_working_court.py": "8c01671c899cb8bc78bcb5d83bcff5a5daa0a9e63e939b5a09da1bd5e361629f",
+    "Docs/b-working-court-v1.md": "7d9b72802381917a52b56b2197574b5f811b267307278428db617cd5ec31d2c2",
+    "house_design/b_roof_equipment.py": "43153d4164568ee8334d462cdd4441d3505e9586b693fef4a753054f6f5f3d29",
+    "scripts/export_b_roof_equipment.py": "b75856a2d235be9e3ac9d4d16733375a1a733949b8ab08f0638abdb94ed02105",
+    "Docs/b-roof-equipment-v1.md": "f2eeaea3227b5a70dac04426d21dd6603f10094452f9048a30eb5ac8eb1af156",
+    "house_design/b_roof_daily_use.py": "55b5282362fcffcd52cf3995a8fd573bb51dc82d75bc3742cf3364f9bc6c6449",
+    "scripts/export_b_roof_daily_use.py": "9171804153333794d0794f916c6993a2b1bcd7f91d49f5e1183be6112dff0fde",
+    "Docs/b-roof-daily-use-v1.md": "257b18c52d1283f08e861d7f012a9509ca1e725847b33ec7bf1f2c58e3decdce",
+    "house_design/b_q3_roof_coordination.py": "dc078ef03882484856fa145dd6b4e4fb4c5a059ce1867e5824925aad80da6c1f",
+    "scripts/export_b_q3_roof_coordination.py": "63c6d563adfaf5350464fed6c0a16f2e106927bd23a2668aeb575b1770cf74ea",
+    "Docs/b-q3-roof-coordination-v1.md": "e5ca8cc28994b8f364803c248ad5c790fce214ad0cb314b50ba6a9bfea8b3892"
+  },
+  "report_hash": "654ee674a408530032015e1d8200eb0512fdc224767ed8eb34cc8dd55afee0eb"
+}

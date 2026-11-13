@@ -1,0 +1,183 @@
+{
+  "schema": "house-project-next-steps-static-review-v1",
+  "date": "2026-11-06",
+  "status": "bounded-static-checks-completed-not-adoption",
+  "report_path": "structured/planning/project-next-steps/review.json",
+  "report_hash": "b41cb396532bcfd462eaa11ed691cc378f2f1ec1f96e4eb3fd0de6be162e5bca",
+  "report_sha256": "e3c1d44e3e82bf251a1374ef558473c9adb49872ab88743e8073dae1ada888ba",
+  "artifact_manifest_path": "structured/planning/project-next-steps/artifact-manifest.json",
+  "artifact_manifest_sha256": "405bd4ef40b4939633e61fdc2ed26e8c0ea6c67c9a44b8b853b7d671f19361fc",
+  "source_binding": {
+    "file_hashes_at": "structured/planning/project-next-steps/review.json#/file_hashes",
+    "file_hash_count": 235,
+    "all_current_file_bytes_match": true,
+    "manifest_artifact_hash_count": 4,
+    "all_artifact_bytes_match": true,
+    "artifact_total_including_manifest": 5,
+    "meaning": "完整報告及manifest的SHA256綁定來源；下列只是額外摘錄。舊重整紀錄仍按當時來源閱讀，未改其預期hash。"
+  },
+  "file_hashes": {
+    "house_design/project_next_steps.py": "0b75abe12f687a86dd9b4adf3a986e16945d427fd14225495d1bfd4daef67bd5",
+    "scripts/export_project_next_steps.py": "dd7d0d22b55cb7cdae21b0a211fbd9f9b09b69bb0b7fed1ee4918e3742a2df77",
+    "tests/test_project_next_steps.py": "dc837be6f8a27553f694645701cfccbbfabdce085a1f70c5f794d3c1de2f0940",
+    "Docs/project-next-steps-v1.md": "0347c0d52af3d07539bb999d23023bf67eef3a5c6fa06a3ce9e47e4d0e8925b6",
+    "inputs/project-status.json": "489e0cc5367d789122d6bc1a092404c41f8c81546e4705cb748972c3b84588df",
+    "README.md": "4a8ec32a0be449471ef04d21e49620df10666fd3b9ad2a95105e2c187eba2837",
+    "Docs/project-status-v1.md": "18b4848460fdb286140b007e36322e80ebed3fd14dd15f2acab3abe942ed4242",
+    "scripts/README.md": "b04133cdd66cf7247f0a4669d5b77a4cebb280d66e59ab40d755da849583351b"
+  },
+  "summary": {
+    "navigation_tasks": 14,
+    "by_building_nonexclusive": {
+      "A": 9,
+      "B": 9,
+      "C": 10
+    },
+    "deferred_choice_topics": 10,
+    "formal_requirement_count": 66,
+    "formal_register_count": 105,
+    "requirement_statuses": {
+      "candidate": 66
+    },
+    "register_statuses": {
+      "unknown": 105
+    }
+  },
+  "focus_map_coverage": {
+    "requirements": 51,
+    "register": 70,
+    "unrepresented_ids_preserved_in_report": true,
+    "meaning": "未列優先議題的51項需求及70項情境仍保留原狀態；不是已解決或刪除，不當完成率。"
+  },
+  "current_packages": [
+    {
+      "id": "fresh-air-planning",
+      "source_state": "declared-source-hashes-match",
+      "artifact_state": "declared-artifact-hashes-match",
+      "issues": []
+    },
+    {
+      "id": "kaohsiung-current",
+      "source_state": "declared-source-hashes-match",
+      "artifact_state": "not-declared",
+      "issues": []
+    },
+    {
+      "id": "fresh-air-detail",
+      "source_state": "declared-source-hashes-match",
+      "artifact_state": "declared-artifact-hashes-match",
+      "issues": []
+    },
+    {
+      "id": "fresh-air-layout",
+      "source_state": "declared-source-hashes-match",
+      "artifact_state": "declared-artifact-hashes-match",
+      "issues": []
+    },
+    {
+      "id": "fresh-air-basis",
+      "source_state": "declared-source-hashes-match",
+      "artifact_state": "declared-artifact-hashes-match",
+      "issues": []
+    },
+    {
+      "id": "b-ventilation-detail",
+      "source_state": "declared-source-hashes-match",
+      "artifact_state": "declared-artifact-hashes-match",
+      "issues": []
+    },
+    {
+      "id": "b-claude-round3",
+      "source_state": "declared-source-hashes-match",
+      "artifact_state": "declared-artifact-hashes-match",
+      "issues": []
+    }
+  ],
+  "checks": [
+    {
+      "command": "timeout 20s .venv/bin/ruff check house_design scripts tests --output-format concise",
+      "status": "passed",
+      "scope": "全Python靜態規則，不執行場景。"
+    },
+    {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_project_next_steps.py",
+      "status": "passed",
+      "tests_passed": 23,
+      "reported_seconds": 0.84
+    },
+    {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_project_status.py tests/test_repository_health.py tests/test_workflow_contracts.py",
+      "status": "passed",
+      "tests_passed": 44,
+      "reported_seconds": 0.79
+    },
+    {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_project_next_steps.py --check",
+      "status": "passed",
+      "artifacts": 5,
+      "formal_requirement_changes": 0,
+      "formal_register_changes": 0
+    },
+    {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/check_repository_health.py --check",
+      "status": "passed",
+      "files": 1279,
+      "public_json_syntax_checked": 189,
+      "markdown_files": 140,
+      "local_links": 789,
+      "issues": []
+    },
+    {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/check_project_status.py --check",
+      "status": "passed",
+      "scope": "現行7包來源相符，歷史差異仍列；不是render／專業核可。"
+    },
+    {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_abc_fresh_air_planning.py --check",
+      "status": "passed",
+      "actual_condition_values": 0,
+      "engineering_checks": {
+        "pending": 101
+      }
+    },
+    {
+      "method": "20秒內Node核235來源、4件產物與149份控制SHA256，對比81996e1的正式需求／情境原檔",
+      "status": "passed",
+      "formal_files_match_baseline": true,
+      "protected_controls": 149
+    },
+    {
+      "command": "timeout 20s git diff --check",
+      "status": "passed"
+    }
+  ],
+  "boundaries": {
+    "original_abc_or_3d_modified": false,
+    "formal_requirements_or_register_written": false,
+    "actual_engineering_values_received_here": 0,
+    "protected_controls_unchanged": 149,
+    "b_front_rear_versions_retained": true,
+    "c_closable_partitions_and_one_2f_washer_retained": true,
+    "product_selected": false,
+    "design_adopted": false,
+    "professional_approval": "unknown",
+    "committed_or_pushed_this_batch": false
+  },
+  "limitations": [
+    "只整理優先議題及來源；不是全建築參數化、一鍵自動設計或完整驗收。",
+    "14列以同一份project-status.json work_items為來源，新增三列為原大議題拆分，不是屋主新增需求。",
+    "原需求66項仍candidate，情境105項仍unknown；屋主局部答覆由專題證據保存，本表不代替正式決策流程。",
+    "舊C照護、A套衛等來源不同的比較仍保留歷史提示，不拼用各版優點當整案可施工。",
+    "目前沒有新增要求屋主立即回答的題目；10個可能取捨議題等完整資料與替代到齊後再談。",
+    "未做新市場／價格／法規／風水認證研究；所有建議沿既有比較，不指定採購或施工。"
+  ],
+  "not_run": [
+    "HTML／瀏覽器目視",
+    "WebGL",
+    "完整pytest／coverage",
+    "整套3D生成",
+    "轉圖／高解析渲染",
+    "外部AI",
+    "施工、法規、結構、消防、風水、照護及搬運簽認"
+  ]
+}

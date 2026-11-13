@@ -1,0 +1,166 @@
+{
+  "schema": "house-b-review-route-static-review-v1",
+  "date": "2026-11-10",
+  "scope": "Connect existing B Q3/RF engineering findings to SEQ-04 and BC-CMP-07 in the original decision page; distinguish known RF capacity conflict from pending evidence, preserve five conditional research routes, and add one blank nine-row reply form without new designs",
+  "report_hash": "ff83b11120555d2753895dee5456647f33fc2c73889225a04c5a2a92118687f6",
+  "source_and_artifact_sha256": {
+    "house_design/design_discussion_basis.py": "7cddcdaa47a8d55ad00cd65d0477d20f7a09402b61d3f1c190b400ca82cbe313",
+    "scripts/export_design_discussion_basis.py": "f42e5cbb281ef0fa3811df071385da9991b2b07efe37e4f7db823b8aba9ca17e",
+    "tests/test_design_discussion_basis.py": "63e35f4f4c2a94ad7636c4bcea4965c1b80b4d3a70298a911561c9b004ca772a",
+    "tests/test_project_next_steps.py": "dc837be6f8a27553f694645701cfccbbfabdce085a1f70c5f794d3c1de2f0940",
+    "tests/test_builder_communication.py": "5621666ecfa97b6eb72e6ec22321ac9bc367d5d8cb7f1d1f30d97a677b42f032",
+    "tests/test_project_status.py": "73098e7a96b4a2fa514019b39e7445b0af0f0cbd19a8ff29dee5ce660933145b",
+    "tests/test_repository_health.py": "ac385bd69d28d58f89a7e3ae415f1fbafd3196217acc255e5074c1ddad1d51f6",
+    "tests/test_b_q3_engineering_gates.py": "8f5f91b7a4ee620e03849806c5df7ae8ddc5948740c1c6cf9bcfc27614aeb746",
+    "inputs/design-discussion-basis.json": "2bff7c38cf77ee7c8496ca500e0419c71ce8cd91868d7e730034118d738cd3f1",
+    "inputs/project-status.json": "503d9b30106feefa5d6fc6755e2e3d467a167b5a7a9afa5f14d04bb94d7c8945",
+    "inputs/builder-communication-plan.json": "13270205de158fb4302f7cd3cb80539900e89c405504532d1f43fa9bc1cd5fd4",
+    "inputs/requirements.json": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066",
+    "inputs/planning-register.json": "140493058b145071afb472bf927860d48a43a6f4407b9b59e5a86705fbe058b0",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "Docs/b-review-route-v1.md": "e895485250ad68b7950944657f63ca6a02603b719208bad6606c3fffb8c9b230",
+    "Docs/project-status-v1.md": "a27cd3b470232d0b524632d443c9a5a9634b1c4cbe72364429fcfecb3ed7cbfe",
+    "Docs/design-discussion-basis-v1.md": "1e1ebecfd0d496b9651a3e96eb8a89e7dce0a0227a4c8526e8f331b0215257e3",
+    "README.md": "c24cdb7d32d233221f5024d6654dd07e1d2736e07d22144dd56aec610d1ff523",
+    "scripts/README.md": "264046fa6b993f555f1de0730f6b2a7a6d1f87e2e5490024dd55d1e2e352dcab",
+    "structured/coordination/b-q3-engineering-gates-v1/review.json": "7475b4253acac3eb07355e8261ac06507e76a037c2c1e113c8edd4d670f4bb88",
+    "structured/coordination/b-q3-engineering-gates-v1/artifact-manifest.json": "b026677ea63705191ab15e89c89f684477556544c70182242f43375ae1cb0f06",
+    "structured/coordination/b-q3-roof-coordination-v1/review.json": "432eb25dad0a37d1878a8c20e44675ed376beb86c60a9019d9bb6842d106d954",
+    "structured/coordination/b-q3-roof-coordination-v1/artifact-manifest.json": "f146adc25b67a5287cfd210f3aaa9e9398a28f3e507ecba09779b807f71eafcd",
+    "structured/planning/project-next-steps/review.json": "09fa5f7d175a12a47a79642cec7b7210ede89b9a56c908633b8c4e9f7b4fdacc",
+    "structured/planning/project-next-steps/artifact-manifest.json": "b07c5694242a8c70b7cb2c7b2596d50ab1d58ab424019e6030c1a4926ae5be69",
+    "structured/planning/builder-communication/review.json": "b0d93c95d91256ca65f236d354b808c431c527f3ac5063bc04429590945eb015",
+    "structured/planning/builder-communication/artifact-manifest.json": "21d2c1e67329ce5a11880f36cf4a3eee08fc61dd7deb5e2437c3df41e612fe2b",
+    "structured/planning/design-discussion-basis/review.json": "bd8e543d117e08ea4fd1d4112aef5a6bc69b24be0fa80638fc1fb54d237966eb",
+    "structured/planning/design-discussion-basis/artifact-manifest.json": "f9e8fb5995018bd18cf3e0394683e1d16cef35ce02d46ca5317dccabf9744ea0",
+    "structured/planning/design-discussion-basis/b-review-replies.csv": "8348727d70bc5da49f2515925b76fe7ac2106cee5329ee4ccadefda6517a3db7",
+    "structured/planning/design-discussion-basis/decision-sequence.html": "27758b7259efcfa9c3958e5105937ee070a528ea7e5549a51de154293c2abd26",
+    "structured/planning/design-discussion-basis/decision-sequence.csv": "7fe016402f525b3d714471ad3c3c93054210fac1855bae763f777f46262f9535",
+    "structured/planning/design-discussion-basis/index.html": "195c671dd0988231ee00e3c31eac9261c25ce5d1e0789b8868c237156e2d32c7",
+    "structured/planning/design-discussion-basis/archive-manifest.json": "e53ef83c49fdfb5c56fd44f7b504b6c0163b9b7729cbe9a6378769cfa451852c",
+    "structured/planning/design-discussion-basis/ABC-discussion-package.zip": "4914bb6884ebe76abda81260cbeb90ab657f9652f8d87580153aba7bf66bda6e"
+  },
+  "checks": {
+    "focused_tests": {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q --tb=short -p no:cacheprovider tests/test_design_discussion_basis.py tests/test_project_next_steps.py tests/test_builder_communication.py tests/test_project_status.py tests/test_repository_health.py tests/test_b_q3_engineering_gates.py",
+      "passed": 183,
+      "failed": 0,
+      "elapsed_seconds": 5.51,
+      "exit_code": 0
+    },
+    "ruff": {
+      "command": "timeout 20s .venv/bin/ruff check house_design/design_discussion_basis.py scripts/export_design_discussion_basis.py tests/test_design_discussion_basis.py",
+      "exit_code": 0
+    },
+    "exports_check": {
+      "scripts": [
+        "export_b_q3_engineering_gates.py",
+        "export_b_q3_roof_coordination.py",
+        "export_project_next_steps.py",
+        "export_builder_communication.py",
+        "export_design_discussion_basis.py"
+      ],
+      "individual_timeout_seconds": 20,
+      "all_exit_codes": 0
+    },
+    "complete_discussion_report_declared_source_hashes_verified": 300,
+    "pinned_engineering_file_hash_report_seal_and_declared_sources_verified": true,
+    "relevant_regressions_covered": [
+      "cross-building or missing route references rejected",
+      "unbound engineering basis or invalid checksum rejected",
+      "fallback approval fields rejected",
+      "changed engineering file, report seal or declared source stops handoff",
+      "a hypothetical positive engineering summary cannot erase known RF capacity conflict or grant adoption",
+      "all actual reply, choice, cost and release columns remain blank",
+      "offline ZIP links and anchors remain within the package",
+      "private share creation preserves existing answers"
+    ],
+    "protected_controls_unchanged": 149,
+    "current_index_source_packages_match": 7,
+    "historical_packages_with_source_drift_retained": 5,
+    "historical_browser_passed_reused": false,
+    "original_requirement_statuses": {
+      "candidate": 66
+    },
+    "original_register_statuses": {
+      "unknown": 105
+    },
+    "repository_health_before_this_evidence_file": {
+      "files": 1557,
+      "JSON_syntax_checked": 241,
+      "markdown_checked": 155,
+      "local_links_checked": 919,
+      "issues": [],
+      "writes_performed": false,
+      "browser_started": false
+    },
+    "packet": {
+      "SVG_drawings": 57,
+      "BC_comparisons": 7,
+      "CSV_forms": 14,
+      "HTML_pages": 10,
+      "files": 86,
+      "zip_entries": 84,
+      "zip_sha256": "4914bb6884ebe76abda81260cbeb90ab657f9652f8d87580153aba7bf66bda6e",
+      "private_snapshot": "design-discussion-015",
+      "snapshot_matches_public_files": true,
+      "previous_snapshots_overwritten": false
+    },
+    "git_diff_whitespace_exit_code": 0
+  },
+  "findings": {
+    "source_bound_B_review": {
+      "source_report_hash": "d9da1ea5deec1b4ae9d4ea42ce626b26339a4f1f92d1c930bde0263df985c698",
+      "source_sha256": "7475b4253acac3eb07355e8261ac06507e76a037c2c1e113c8edd4d670f4bb88",
+      "original_RF_target_sqm": 24,
+      "fixed_front_optimistic_upper_bound_sqm": 21.83945,
+      "known_RF_shortfall_sqm": 2.16055,
+      "known_capacity_conflict": true,
+      "all_positive_reply_text_would_resolve_capacity": false,
+      "actual_replies_imported": 0,
+      "whole_design_adoption_allowed_here": false,
+      "construction_release_allowed_here": false
+    },
+    "engineering_gate_basis_statuses": {
+      "BQG-01": "pending-evidence",
+      "BQG-02": "pending-evidence",
+      "BQG-03": "pending-evidence",
+      "BQG-04": "pending-evidence",
+      "BQG-05": "pending-evidence",
+      "BQG-06": "pending-evidence",
+      "BQG-07": "known-capacity-conflict",
+      "BQG-08": "pending-evidence",
+      "BQG-09": "pending-evidence"
+    },
+    "original_decision_sequence": "SEQ-04",
+    "original_comparison": "BC-CMP-07",
+    "original_builder_questions": [
+      "BC-07",
+      "BC-08",
+      "BC-09"
+    ],
+    "gate_IDs_reused_without_adding_formal_requirements": true,
+    "conditional_research_routes": 5,
+    "S1_D1_is_conditional_research_not_adoption": true,
+    "S2_D2_does_not_resolve_RF24_or_Q3_stairs": true,
+    "Q2_retained_as_research_baseline_not_a_compliant_fallback": true,
+    "Q2_extra100_KTV_sqm": 19.2079,
+    "Q2_same_additional_shaft_wrap_and_cabinet_KTV_sqm": 18.6129,
+    "RF24_full_building_replan_not_yet_designed": true,
+    "smaller_RF_not_accepted_or_automatically_selected": true,
+    "known_capacity_conflict_not_erased_by_positive_reply_text": true,
+    "actual_builder_replies_owner_choices_quotes_and_professional_releases_received": 0,
+    "new_room_door_stair_furniture_or_equipment_geometry_generated": false,
+    "existing_shrine_rules_and_rear_default_front_fallback_preserved": true,
+    "shared_costs_and_mutually_exclusive_alternatives_not_added_as_two_purchases": true,
+    "A_designer_and_C_care_requirements_used_to_cover_B_deficit": false
+  },
+  "rendered_or_browser_QA": "not-run",
+  "rasterization": "not-run",
+  "external_AI_invoked": false,
+  "actual_site_or_product_data_received": 0,
+  "primary_ABC_or_3D_changed": false,
+  "adopted": false,
+  "professional_religious_or_construction_approval": "unknown",
+  "commit_or_push_performed": false
+}

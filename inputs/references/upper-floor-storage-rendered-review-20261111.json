@@ -1,0 +1,794 @@
+{
+  "schema": "house-upper-floor-storage-rendered-review-v1",
+  "date": "2026-11-11",
+  "display_revision": 3,
+  "status": "passed-for-storage-viewer-display-scope",
+  "report_hash": "fe31ce2cfd602c0546ebc37b7889efab9934084fec35d423d87d1ba3f8dd7c0d",
+  "raw_evidence": {
+    "owner_run": "house-storage-3d-lkfOCT",
+    "archive": "inputs/private/storage-3d-qa-lkfOCT-001",
+    "result_sha256": "5b2a558d953fb154051ec46e643616dab789005c530ed53a2f64b2898aa808c6",
+    "tested_viewer_zip_sha256": "678ae172b98d0f066c01331c0748d50eabcfc007b5cbad2208e1e688f71fa0eb",
+    "originals_overwritten": false
+  },
+  "source_hashes": {
+    "structured/coordination/upper-floor-storage-v1/review.json": "b451dc7893dd9e50c8271b1a6b3e4104c9a66e1173294684b9dd9886d504a986",
+    "structured/coordination/upper-floor-storage-v1/artifact-manifest.json": "cfd6f64892bcf7a17cfd44f123878d74888474e0790eaa5dc2a67b4b8d833abf",
+    "house_design/upper_floor_storage_viewer.py": "741f2702d3fa400eaeee444ff7d4dbc75ae745549469e9c0f6f833c7090f7a82",
+    "scripts/export_upper_floor_storage_viewer.py": "b8a2f289ed60cca26fc7e4256450f9b6d84b7912b16a71ab405a2167a0b512d1",
+    "scripts/templates/upper-floor-storage-viewer.html": "de70b9e33700f9bc3de1966a35f8ce5f486b7a0501ddf9316338c7671551251e",
+    "scripts/templates/upper-floor-storage-viewer.js": "64fdb8099f75c64b539d9b1a00b40d03d518a2643fb9ea9ca536321054180ebf",
+    "scripts/check_storage_3d_playwright.cjs": "b0987f457ab8d06785097cd60719861fffe1832a14e078f2095a11943cfc50e1",
+    "assets/vendor/three/three.min.js": "170c6789f43217c96b3170f4b42fafe135de7f7cd48497a4218f9757ee1d49fa",
+    "assets/vendor/three/LICENSE": "852e0e8699169bf9f6fdc6bda3e682d078dcbc738b5d33e74df594721bff271d",
+    "assets/vendor/three/VERSION.txt": "b53092316ba2151657f6e9fc39bafec63c7ddb24b41fb236c2a982d936e97ba7",
+    "Docs/abc-upper-floor-storage-3d-v1.md": "76ddd2c6031e60f7dad93647e85d392e56375c7dc6a70b71d3dd9775b9920147",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "inputs/upper-floor-storage.json": "8218693505667bf3425590e36cee3b7d1ce3dae6d8db5cc8309b6567d142fc97",
+    "house_design/upper_floor_storage.py": "edb5744b685a0df71cf720e3682479dacfee570154609bc67e8e79759882d45d",
+    "scripts/export_upper_floor_storage.py": "fc8f2f5d0cca207720eedfd5cc244c433aca419e642844755ed55ae732e4df3e",
+    "Docs/abc-upper-floor-storage-v1.md": "cf53110b3e0fddcbe7bcccadd2ae9246392871ec58c910451fe63e18046a1dbd",
+    "structured/candidates/kaohsiung-house-options/c-stair-integration.json": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+    "structured/coordination/b-front-drainage-layout-v1/review.json": "fb352dcdc1c83aad3b4d4ced66804d328132bd411473b496676f53f849ac7711",
+    "structured/coordination/b-ktv-stair-options-v1/review.json": "6116c9df09d442e29e16cc3eabc50aa1cd94b4d512fd3398b9105f1afdc34a7e",
+    "structured/coordination/b-q3-roof-coordination-v1/review.json": "432eb25dad0a37d1878a8c20e44675ed376beb86c60a9019d9bb6842d106d954",
+    "structured/coordination/upper-floor-storage-v1/A-2F.svg": "62594227b7d9d0f0e0b619ea2d07feafde3d52e3e16fcd00a8f0cba09b69b11a",
+    "structured/coordination/upper-floor-storage-v1/A-3F.svg": "ae1e322f57e80ec0560361344a1699c58c2ec5610d1562878679e2657fbd609e",
+    "structured/coordination/upper-floor-storage-v1/A-RF.svg": "7edf851ef4b55b253220bf9d5daed5e4e345762ab51ce73922860830efd1df1a",
+    "structured/coordination/upper-floor-storage-v1/B-2F.svg": "1bd75596611d7b34ce5a9bffaa7928ef73a5359b038846bdcd55ed94e87cd9a8",
+    "structured/coordination/upper-floor-storage-v1/B-3F.svg": "eb7d55492ed1d8d0f8434158f1afaf40153aa04d0ee489d07ff06ed0b49d60fe",
+    "structured/coordination/upper-floor-storage-v1/B-RF-D1.svg": "8238854ecae7ae33bf6ce30d5fda7a5b868b0944e9e6e487e3e988a2bf75cc84",
+    "structured/coordination/upper-floor-storage-v1/B-RF-D2.svg": "4306fa2d5fcb8d3fe50f494feac1f48529dda454335e8fddbd4174b243d40469",
+    "structured/coordination/upper-floor-storage-v1/C-2F.svg": "052d417a3fee682ee1a7a4ca945d495ca203219d07ed923d52b8fe193785d31b",
+    "structured/coordination/upper-floor-storage-v1/C-3F.svg": "7e9f576236f2fae0bbc0c1d676d7dab1a190f5f6826d055e83fd73d2b323b64a",
+    "structured/coordination/upper-floor-storage-v1/C-RF.svg": "e3f9aea352605191967507be9523554513b2f266267ea1782bf7625b12a6658d"
+  },
+  "viewer_artifacts_sha256": {
+    "A-3F.svg": "ae1e322f57e80ec0560361344a1699c58c2ec5610d1562878679e2657fbd609e",
+    "viewer.js": "64fdb8099f75c64b539d9b1a00b40d03d518a2643fb9ea9ca536321054180ebf",
+    "A-2F.svg": "62594227b7d9d0f0e0b619ea2d07feafde3d52e3e16fcd00a8f0cba09b69b11a",
+    "B-3F.svg": "eb7d55492ed1d8d0f8434158f1afaf40153aa04d0ee489d07ff06ed0b49d60fe",
+    "C-2F.svg": "052d417a3fee682ee1a7a4ca945d495ca203219d07ed923d52b8fe193785d31b",
+    "B-RF-D1.svg": "8238854ecae7ae33bf6ce30d5fda7a5b868b0944e9e6e487e3e988a2bf75cc84",
+    "upper-floor-storage-3d.zip": "678ae172b98d0f066c01331c0748d50eabcfc007b5cbad2208e1e688f71fa0eb",
+    "README.md": "6e3c1ece5ceedb108f7afb7334ddc1b8717b0d0ec699887cae2a6c7a7a37dfd3",
+    "B-2F.svg": "1bd75596611d7b34ce5a9bffaa7928ef73a5359b038846bdcd55ed94e87cd9a8",
+    "archive-manifest.json": "efac1933553b78ae5911581fc765fff1bffe2743e5bd2c895f9ac2cee60bd7f2",
+    "C-RF.svg": "e3f9aea352605191967507be9523554513b2f266267ea1782bf7625b12a6658d",
+    "A-RF.svg": "7edf851ef4b55b253220bf9d5daed5e4e345762ab51ce73922860830efd1df1a",
+    "B-RF-D2.svg": "4306fa2d5fcb8d3fe50f494feac1f48529dda454335e8fddbd4174b243d40469",
+    "artifact-manifest.json": "147a7ff32c8a89411d79e0ac9759713c19bba73808aea14885b666cf99f8df63",
+    "review.json": "4182748ab5d7f6c23e762ed4109529f0f40fc6198f6349c06bf0abc531a4ae24",
+    "index.html": "3e94b45e2ae87213366c4a69a0061e824474fae56085e5e7e7e8ee9b0668dd6a",
+    "C-3F.svg": "7e9f576236f2fae0bbc0c1d676d7dab1a190f5f6826d055e83fd73d2b323b64a",
+    "vendor/three.min.js": "170c6789f43217c96b3170f4b42fafe135de7f7cd48497a4218f9757ee1d49fa",
+    "vendor/LICENSE": "852e0e8699169bf9f6fdc6bda3e682d078dcbc738b5d33e74df594721bff271d"
+  },
+  "automated": {
+    "status": "passed",
+    "checks": 204,
+    "failed": 0,
+    "cases": 20,
+    "variants": 10,
+    "distinct_floors": 9,
+    "viewports": [
+      {
+        "width": 1440,
+        "height": 1000
+      },
+      {
+        "width": 390,
+        "height": 844
+      }
+    ],
+    "browser_channel": "msedge",
+    "console_errors": [],
+    "closed": true,
+    "checks_include": [
+      "Exact source mesh dimensions, polygons and matching plan links.",
+      "Actual rendered orange cabinet pixels with names on and off.",
+      "Unclipped name DOM boxes that avoid the cabinet and one another.",
+      "First-viewport floor selector, exact dimensions and cabinet body.",
+      "Full-name list navigation and return to the same floor, with actual focus/position evidence.",
+      "Rotation, top, overview, final closeup and unchanged sources."
+    ]
+  },
+  "visual_review": {
+    "status": "completed-no-blocking-display-finding-in-returned-closeups",
+    "screenshots_reviewed": 20,
+    "scope": "Owner-produced final storage closeup screenshots only, one desktop and one mobile frame per variant.",
+    "findings": [],
+    "observations": [
+      "Orange cabinet and selected Chinese name remain readable in all returned frames.",
+      "Floor selector and exact proposed dimensions appear above the mobile scene.",
+      "No previously reported vertically squeezed names, blocking overlaps or cabinet-covering name boxes were observed.",
+      "Some surrounding objects and names are outside a storage closeup or omitted from dense scenes; the complete name list and whole-floor view remain available."
+    ],
+    "not_visually_proven_by_these_frames": [
+      "The full-floor overview/top/rotated views and scrolled list/return states have automated evidence but no separate screenshots in this run.",
+      "Source furniture and room footprints carry no invented wall, beam, stair or surrounding furniture heights."
+    ]
+  },
+  "cases": [
+    {
+      "id": "A-2F",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "screenshot": "A-2F-1440.png",
+      "screenshot_sha256": "bbd42a54e1bfd4ba43bedfc257fc334eed93c7adeab82b9e6efd44074a704b06",
+      "actual_mesh_size_mm": [
+        900,
+        1800,
+        450
+      ],
+      "actual_body_pixels": {
+        "method": "webgl-readPixels-rendered-cabinet-aabb",
+        "sampled": 11011,
+        "orange": 8569,
+        "ratio": 0.7782217782217782
+      },
+      "visible_labels": 22,
+      "navigation_heading_top_px": 15.703125,
+      "navigation_focus": "item-heading",
+      "return_focus": "case-select",
+      "case_unchanged_after_return": true,
+      "visual_review": {
+        "reviewed": true,
+        "selected_cabinet_visible": true,
+        "selected_name_and_dimensions_readable": true,
+        "floor_selector_visible": true,
+        "no_blocking_label_crop_overlap_or_cabinet_coverage_observed": true,
+        "surroundings_are_partial_source_footprints_in_storage_closeup": true
+      }
+    },
+    {
+      "id": "A-3F",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "screenshot": "A-3F-1440.png",
+      "screenshot_sha256": "27c7f928ea7e028a04618421e6ebc705a6c565b2be1e68a16ff9b75d41214b86",
+      "actual_mesh_size_mm": [
+        900,
+        1800,
+        450
+      ],
+      "actual_body_pixels": {
+        "method": "webgl-readPixels-rendered-cabinet-aabb",
+        "sampled": 11011,
+        "orange": 8569,
+        "ratio": 0.7782217782217782
+      },
+      "visible_labels": 8,
+      "navigation_heading_top_px": 15.703125,
+      "navigation_focus": "item-heading",
+      "return_focus": "case-select",
+      "case_unchanged_after_return": true,
+      "visual_review": {
+        "reviewed": true,
+        "selected_cabinet_visible": true,
+        "selected_name_and_dimensions_readable": true,
+        "floor_selector_visible": true,
+        "no_blocking_label_crop_overlap_or_cabinet_coverage_observed": true,
+        "surroundings_are_partial_source_footprints_in_storage_closeup": true
+      }
+    },
+    {
+      "id": "A-RF",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "screenshot": "A-RF-1440.png",
+      "screenshot_sha256": "0a21d97ef45baf2a5acae57b3117847d1c1654886bee88fcceb0f38ef9084fdd",
+      "actual_mesh_size_mm": [
+        900,
+        900,
+        450
+      ],
+      "actual_body_pixels": {
+        "method": "webgl-readPixels-rendered-cabinet-aabb",
+        "sampled": 26754,
+        "orange": 19426,
+        "ratio": 0.7260970322194812
+      },
+      "visible_labels": 14,
+      "navigation_heading_top_px": 289.703125,
+      "navigation_focus": "item-heading",
+      "return_focus": "case-select",
+      "case_unchanged_after_return": true,
+      "visual_review": {
+        "reviewed": true,
+        "selected_cabinet_visible": true,
+        "selected_name_and_dimensions_readable": true,
+        "floor_selector_visible": true,
+        "no_blocking_label_crop_overlap_or_cabinet_coverage_observed": true,
+        "surroundings_are_partial_source_footprints_in_storage_closeup": true
+      }
+    },
+    {
+      "id": "B-2F",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "screenshot": "B-2F-1440.png",
+      "screenshot_sha256": "2a8db9573d25663c31d1ada9a38c2a699f932950ffc3887dc49a6bf7899ad609",
+      "actual_mesh_size_mm": [
+        450,
+        1800,
+        1200
+      ],
+      "actual_body_pixels": {
+        "method": "webgl-readPixels-rendered-cabinet-aabb",
+        "sampled": 13640,
+        "orange": 10038,
+        "ratio": 0.7359237536656892
+      },
+      "visible_labels": 16,
+      "navigation_heading_top_px": 30.703125,
+      "navigation_focus": "item-heading",
+      "return_focus": "case-select",
+      "case_unchanged_after_return": true,
+      "visual_review": {
+        "reviewed": true,
+        "selected_cabinet_visible": true,
+        "selected_name_and_dimensions_readable": true,
+        "floor_selector_visible": true,
+        "no_blocking_label_crop_overlap_or_cabinet_coverage_observed": true,
+        "surroundings_are_partial_source_footprints_in_storage_closeup": true
+      }
+    },
+    {
+      "id": "B-3F",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "screenshot": "B-3F-1440.png",
+      "screenshot_sha256": "6ceb0e1d72b47e91b3a787bde4ab06f485b7955afb65962a5c7e1135e655bb49",
+      "actual_mesh_size_mm": [
+        450,
+        1800,
+        1200
+      ],
+      "actual_body_pixels": {
+        "method": "webgl-readPixels-rendered-cabinet-aabb",
+        "sampled": 13640,
+        "orange": 10038,
+        "ratio": 0.7359237536656892
+      },
+      "visible_labels": 13,
+      "navigation_heading_top_px": 222.703125,
+      "navigation_focus": "item-heading",
+      "return_focus": "case-select",
+      "case_unchanged_after_return": true,
+      "visual_review": {
+        "reviewed": true,
+        "selected_cabinet_visible": true,
+        "selected_name_and_dimensions_readable": true,
+        "floor_selector_visible": true,
+        "no_blocking_label_crop_overlap_or_cabinet_coverage_observed": true,
+        "surroundings_are_partial_source_footprints_in_storage_closeup": true
+      }
+    },
+    {
+      "id": "B-RF-D1",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "screenshot": "B-RF-D1-1440.png",
+      "screenshot_sha256": "714c873ec5bf3aa5097651d934909bafc46bd2e82b530ee22d8e523db63a95f0",
+      "actual_mesh_size_mm": [
+        1200,
+        900,
+        450
+      ],
+      "actual_body_pixels": {
+        "method": "webgl-readPixels-rendered-cabinet-aabb",
+        "sampled": 35838,
+        "orange": 24486,
+        "ratio": 0.6832412523020258
+      },
+      "visible_labels": 3,
+      "navigation_heading_top_px": 318.296875,
+      "navigation_focus": "item-heading",
+      "return_focus": "case-select",
+      "case_unchanged_after_return": true,
+      "visual_review": {
+        "reviewed": true,
+        "selected_cabinet_visible": true,
+        "selected_name_and_dimensions_readable": true,
+        "floor_selector_visible": true,
+        "no_blocking_label_crop_overlap_or_cabinet_coverage_observed": true,
+        "surroundings_are_partial_source_footprints_in_storage_closeup": true
+      }
+    },
+    {
+      "id": "B-RF-D2",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "screenshot": "B-RF-D2-1440.png",
+      "screenshot_sha256": "8a217c22904266724d30c3ac4159400ba0b423929c28d9b4c29019ee3a152e3f",
+      "actual_mesh_size_mm": [
+        1200,
+        900,
+        450
+      ],
+      "actual_body_pixels": {
+        "method": "webgl-readPixels-rendered-cabinet-aabb",
+        "sampled": 35838,
+        "orange": 24488,
+        "ratio": 0.6832970589876667
+      },
+      "visible_labels": 2,
+      "navigation_heading_top_px": 295.296875,
+      "navigation_focus": "item-heading",
+      "return_focus": "case-select",
+      "case_unchanged_after_return": true,
+      "visual_review": {
+        "reviewed": true,
+        "selected_cabinet_visible": true,
+        "selected_name_and_dimensions_readable": true,
+        "floor_selector_visible": true,
+        "no_blocking_label_crop_overlap_or_cabinet_coverage_observed": true,
+        "surroundings_are_partial_source_footprints_in_storage_closeup": true
+      }
+    },
+    {
+      "id": "C-2F",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "screenshot": "C-2F-1440.png",
+      "screenshot_sha256": "12b1267bcd2d58373332b130126cb093afbf30e74aa6298206456228b63b77cf",
+      "actual_mesh_size_mm": [
+        1200,
+        1800,
+        600
+      ],
+      "actual_body_pixels": {
+        "method": "webgl-readPixels-rendered-cabinet-aabb",
+        "sampled": 16068,
+        "orange": 11950,
+        "ratio": 0.743714214588001
+      },
+      "visible_labels": 17,
+      "navigation_heading_top_px": 15.703125,
+      "navigation_focus": "item-heading",
+      "return_focus": "case-select",
+      "case_unchanged_after_return": true,
+      "visual_review": {
+        "reviewed": true,
+        "selected_cabinet_visible": true,
+        "selected_name_and_dimensions_readable": true,
+        "floor_selector_visible": true,
+        "no_blocking_label_crop_overlap_or_cabinet_coverage_observed": true,
+        "surroundings_are_partial_source_footprints_in_storage_closeup": true
+      }
+    },
+    {
+      "id": "C-3F",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "screenshot": "C-3F-1440.png",
+      "screenshot_sha256": "fa6e67843852ace4eec048d42121fc8c595554e7a95d23f9d2fc80324776b75e",
+      "actual_mesh_size_mm": [
+        450,
+        1800,
+        1000
+      ],
+      "actual_body_pixels": {
+        "method": "webgl-readPixels-rendered-cabinet-aabb",
+        "sampled": 11622,
+        "orange": 8786,
+        "ratio": 0.7559800378592325
+      },
+      "visible_labels": 4,
+      "navigation_heading_top_px": 15.703125,
+      "navigation_focus": "item-heading",
+      "return_focus": "case-select",
+      "case_unchanged_after_return": true,
+      "visual_review": {
+        "reviewed": true,
+        "selected_cabinet_visible": true,
+        "selected_name_and_dimensions_readable": true,
+        "floor_selector_visible": true,
+        "no_blocking_label_crop_overlap_or_cabinet_coverage_observed": true,
+        "surroundings_are_partial_source_footprints_in_storage_closeup": true
+      }
+    },
+    {
+      "id": "C-RF",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "screenshot": "C-RF-1440.png",
+      "screenshot_sha256": "46354b9de276f4a26316ae209b77e7edff89509a30af765d9f67d873474cc28a",
+      "actual_mesh_size_mm": [
+        900,
+        900,
+        450
+      ],
+      "actual_body_pixels": {
+        "method": "webgl-readPixels-rendered-cabinet-aabb",
+        "sampled": 26754,
+        "orange": 19426,
+        "ratio": 0.7260970322194812
+      },
+      "visible_labels": 3,
+      "navigation_heading_top_px": 390.703125,
+      "navigation_focus": "item-heading",
+      "return_focus": "case-select",
+      "case_unchanged_after_return": true,
+      "visual_review": {
+        "reviewed": true,
+        "selected_cabinet_visible": true,
+        "selected_name_and_dimensions_readable": true,
+        "floor_selector_visible": true,
+        "no_blocking_label_crop_overlap_or_cabinet_coverage_observed": true,
+        "surroundings_are_partial_source_footprints_in_storage_closeup": true
+      }
+    },
+    {
+      "id": "A-2F",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "A-2F-390.png",
+      "screenshot_sha256": "27c573077ea10ba4468673dc300b67041cdfa00742ca8b6502335841f4db87b7",
+      "actual_mesh_size_mm": [
+        900,
+        1800,
+        450
+      ],
+      "actual_body_pixels": {
+        "method": "webgl-readPixels-rendered-cabinet-aabb",
+        "sampled": 13104,
+        "orange": 10152,
+        "ratio": 0.7747252747252747
+      },
+      "visible_labels": 11,
+      "navigation_heading_top_px": 15.875,
+      "navigation_focus": "item-heading",
+      "return_focus": "case-select",
+      "case_unchanged_after_return": true,
+      "visual_review": {
+        "reviewed": true,
+        "selected_cabinet_visible": true,
+        "selected_name_and_dimensions_readable": true,
+        "floor_selector_visible": true,
+        "no_blocking_label_crop_overlap_or_cabinet_coverage_observed": true,
+        "surroundings_are_partial_source_footprints_in_storage_closeup": true
+      }
+    },
+    {
+      "id": "A-3F",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "A-3F-390.png",
+      "screenshot_sha256": "28cb7be649b51c11a6de7be7c4d72656199f162c5e26dddafe48c645ad369e8d",
+      "actual_mesh_size_mm": [
+        900,
+        1800,
+        450
+      ],
+      "actual_body_pixels": {
+        "method": "webgl-readPixels-rendered-cabinet-aabb",
+        "sampled": 13104,
+        "orange": 10152,
+        "ratio": 0.7747252747252747
+      },
+      "visible_labels": 7,
+      "navigation_heading_top_px": 15.875,
+      "navigation_focus": "item-heading",
+      "return_focus": "case-select",
+      "case_unchanged_after_return": true,
+      "visual_review": {
+        "reviewed": true,
+        "selected_cabinet_visible": true,
+        "selected_name_and_dimensions_readable": true,
+        "floor_selector_visible": true,
+        "no_blocking_label_crop_overlap_or_cabinet_coverage_observed": true,
+        "surroundings_are_partial_source_footprints_in_storage_closeup": true
+      }
+    },
+    {
+      "id": "A-RF",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "A-RF-390.png",
+      "screenshot_sha256": "3ae4891dcf524241ac88443ca9ed46652877cb9edf719618ee6004678744a2b8",
+      "actual_mesh_size_mm": [
+        900,
+        900,
+        450
+      ],
+      "actual_body_pixels": {
+        "method": "webgl-readPixels-rendered-cabinet-aabb",
+        "sampled": 8000,
+        "orange": 5753,
+        "ratio": 0.719125
+      },
+      "visible_labels": 9,
+      "navigation_heading_top_px": 16.46875,
+      "navigation_focus": "item-heading",
+      "return_focus": "case-select",
+      "case_unchanged_after_return": true,
+      "visual_review": {
+        "reviewed": true,
+        "selected_cabinet_visible": true,
+        "selected_name_and_dimensions_readable": true,
+        "floor_selector_visible": true,
+        "no_blocking_label_crop_overlap_or_cabinet_coverage_observed": true,
+        "surroundings_are_partial_source_footprints_in_storage_closeup": true
+      }
+    },
+    {
+      "id": "B-2F",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "B-2F-390.png",
+      "screenshot_sha256": "6afe8c7388f948ea0a877933c4be74a2f0c5a5e5fee21ba490a54966664ab12e",
+      "actual_mesh_size_mm": [
+        450,
+        1800,
+        1200
+      ],
+      "actual_body_pixels": {
+        "method": "webgl-readPixels-rendered-cabinet-aabb",
+        "sampled": 16224,
+        "orange": 11880,
+        "ratio": 0.7322485207100592
+      },
+      "visible_labels": 8,
+      "navigation_heading_top_px": 16.46875,
+      "navigation_focus": "item-heading",
+      "return_focus": "case-select",
+      "case_unchanged_after_return": true,
+      "visual_review": {
+        "reviewed": true,
+        "selected_cabinet_visible": true,
+        "selected_name_and_dimensions_readable": true,
+        "floor_selector_visible": true,
+        "no_blocking_label_crop_overlap_or_cabinet_coverage_observed": true,
+        "surroundings_are_partial_source_footprints_in_storage_closeup": true
+      }
+    },
+    {
+      "id": "B-3F",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "B-3F-390.png",
+      "screenshot_sha256": "291f2a55eb2100986d3f6875697349af1bc92f3345947980b56bb54284c43a99",
+      "actual_mesh_size_mm": [
+        450,
+        1800,
+        1200
+      ],
+      "actual_body_pixels": {
+        "method": "webgl-readPixels-rendered-cabinet-aabb",
+        "sampled": 16224,
+        "orange": 11880,
+        "ratio": 0.7322485207100592
+      },
+      "visible_labels": 6,
+      "navigation_heading_top_px": 16.46875,
+      "navigation_focus": "item-heading",
+      "return_focus": "case-select",
+      "case_unchanged_after_return": true,
+      "visual_review": {
+        "reviewed": true,
+        "selected_cabinet_visible": true,
+        "selected_name_and_dimensions_readable": true,
+        "floor_selector_visible": true,
+        "no_blocking_label_crop_overlap_or_cabinet_coverage_observed": true,
+        "surroundings_are_partial_source_footprints_in_storage_closeup": true
+      }
+    },
+    {
+      "id": "B-RF-D1",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "B-RF-D1-390.png",
+      "screenshot_sha256": "9ef3c6fef4e03fb8f52f658b866aaf14fb91f404d61d5fc1d4b355ed29f349b3",
+      "actual_mesh_size_mm": [
+        1200,
+        900,
+        450
+      ],
+      "actual_body_pixels": {
+        "method": "webgl-readPixels-rendered-cabinet-aabb",
+        "sampled": 10692,
+        "orange": 7255,
+        "ratio": 0.6785447063224841
+      },
+      "visible_labels": 3,
+      "navigation_heading_top_px": 41.46875,
+      "navigation_focus": "item-heading",
+      "return_focus": "case-select",
+      "case_unchanged_after_return": true,
+      "visual_review": {
+        "reviewed": true,
+        "selected_cabinet_visible": true,
+        "selected_name_and_dimensions_readable": true,
+        "floor_selector_visible": true,
+        "no_blocking_label_crop_overlap_or_cabinet_coverage_observed": true,
+        "surroundings_are_partial_source_footprints_in_storage_closeup": true
+      }
+    },
+    {
+      "id": "B-RF-D2",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "B-RF-D2-390.png",
+      "screenshot_sha256": "5d62787316cf09d4c09068eeb6426f4cbc4ccf1091b2e6fc7d637ac25f372b17",
+      "actual_mesh_size_mm": [
+        1200,
+        900,
+        450
+      ],
+      "actual_body_pixels": {
+        "method": "webgl-readPixels-rendered-cabinet-aabb",
+        "sampled": 10692,
+        "orange": 7255,
+        "ratio": 0.6785447063224841
+      },
+      "visible_labels": 1,
+      "navigation_heading_top_px": 40.875,
+      "navigation_focus": "item-heading",
+      "return_focus": "case-select",
+      "case_unchanged_after_return": true,
+      "visual_review": {
+        "reviewed": true,
+        "selected_cabinet_visible": true,
+        "selected_name_and_dimensions_readable": true,
+        "floor_selector_visible": true,
+        "no_blocking_label_crop_overlap_or_cabinet_coverage_observed": true,
+        "surroundings_are_partial_source_footprints_in_storage_closeup": true
+      }
+    },
+    {
+      "id": "C-2F",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "C-2F-390.png",
+      "screenshot_sha256": "7c0dcfc8228a6193aae2f8c03e5bc06d22eb159abe61a933a746ee6aa99f011d",
+      "actual_mesh_size_mm": [
+        1200,
+        1800,
+        600
+      ],
+      "actual_body_pixels": {
+        "method": "webgl-readPixels-rendered-cabinet-aabb",
+        "sampled": 18928,
+        "orange": 14140,
+        "ratio": 0.7470414201183432
+      },
+      "visible_labels": 9,
+      "navigation_heading_top_px": 15.875,
+      "navigation_focus": "item-heading",
+      "return_focus": "case-select",
+      "case_unchanged_after_return": true,
+      "visual_review": {
+        "reviewed": true,
+        "selected_cabinet_visible": true,
+        "selected_name_and_dimensions_readable": true,
+        "floor_selector_visible": true,
+        "no_blocking_label_crop_overlap_or_cabinet_coverage_observed": true,
+        "surroundings_are_partial_source_footprints_in_storage_closeup": true
+      }
+    },
+    {
+      "id": "C-3F",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "C-3F-390.png",
+      "screenshot_sha256": "657223e4f1a59dac758fd8afc253655764be6d137c21b42212d87e4e78a69e67",
+      "actual_mesh_size_mm": [
+        450,
+        1800,
+        1000
+      ],
+      "actual_body_pixels": {
+        "method": "webgl-readPixels-rendered-cabinet-aabb",
+        "sampled": 13770,
+        "orange": 10405,
+        "ratio": 0.7556281771968046
+      },
+      "visible_labels": 3,
+      "navigation_heading_top_px": 16.46875,
+      "navigation_focus": "item-heading",
+      "return_focus": "case-select",
+      "case_unchanged_after_return": true,
+      "visual_review": {
+        "reviewed": true,
+        "selected_cabinet_visible": true,
+        "selected_name_and_dimensions_readable": true,
+        "floor_selector_visible": true,
+        "no_blocking_label_crop_overlap_or_cabinet_coverage_observed": true,
+        "surroundings_are_partial_source_footprints_in_storage_closeup": true
+      }
+    },
+    {
+      "id": "C-RF",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "screenshot": "C-RF-390.png",
+      "screenshot_sha256": "98d087723fcad80247b3a016f441bbd676ffe7d8134bcbcccb04eb5c5ba396f2",
+      "actual_mesh_size_mm": [
+        900,
+        900,
+        450
+      ],
+      "actual_body_pixels": {
+        "method": "webgl-readPixels-rendered-cabinet-aabb",
+        "sampled": 8000,
+        "orange": 5753,
+        "ratio": 0.719125
+      },
+      "visible_labels": 3,
+      "navigation_heading_top_px": 159.875,
+      "navigation_focus": "item-heading",
+      "return_focus": "case-select",
+      "case_unchanged_after_return": true,
+      "visual_review": {
+        "reviewed": true,
+        "selected_cabinet_visible": true,
+        "selected_name_and_dimensions_readable": true,
+        "floor_selector_visible": true,
+        "no_blocking_label_crop_overlap_or_cabinet_coverage_observed": true,
+        "surroundings_are_partial_source_footprints_in_storage_closeup": true
+      }
+    }
+  ],
+  "viewer_implementation_and_packaged_bytes_changed_after_run": false,
+  "protected_controls_unchanged": 149,
+  "formal_requirement_statuses": {
+    "candidate": 66
+  },
+  "formal_register_statuses": {
+    "unknown": 105
+  },
+  "remaining_design_limits": [
+    "Storage viewer is independent; cabinets are not integrated into the original main ABC 3D.",
+    "C-3F common storage is inside the master bedroom and requires entry for access.",
+    "B RF D1 and D2 remain independent; the original 24sqm platform target is unresolved.",
+    "Roof weather resistance, anchoring, loads, finished products, door movement, actual capacity and whole-route transport remain unverified.",
+    "This display review does not approve the whole design, laws, structure, fengshui, care or construction."
+  ],
+  "new_browser_or_webgl_started": false,
+  "external_ai_requests": false,
+  "adopted": false,
+  "professional_approval": "unknown",
+  "construction_release": false
+}

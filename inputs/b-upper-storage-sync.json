@@ -1,0 +1,50 @@
+{
+  "schema": "house-b-upper-storage-sync-v1",
+  "date": "2026-11-12",
+  "adopted": false,
+  "frame_mm": [
+    6000,
+    17630
+  ],
+  "default_entry": "b-rear-split",
+  "entry_options": [
+    "b-rear-split",
+    "b-front-split"
+  ],
+  "ground_use_states": [
+    "daily",
+    "ritual",
+    "carry"
+  ],
+  "roof_options": [
+    "Q3-D1-front-heat-pump",
+    "Q3-D2-rear-wet-pair"
+  ],
+  "storage_states": [
+    "original",
+    "storage"
+  ],
+  "sources": {
+    "floor2": "structured/coordination/b-front-drainage-layout-v1/review.json",
+    "floor3": "structured/coordination/b-ktv-stair-options-v1/review.json",
+    "roof": "structured/coordination/b-q3-roof-coordination-v1/review.json",
+    "storage": "structured/coordination/upper-floor-storage-v1/review.json",
+    "ground_snapshot": "structured/candidates/kaohsiung-house-options/c-stair-integration.json"
+  },
+  "pinned_sources": {
+    "structured/coordination/b-front-drainage-layout-v1/review.json": "fb352dcdc1c83aad3b4d4ced66804d328132bd411473b496676f53f849ac7711",
+    "structured/coordination/b-ktv-stair-options-v1/review.json": "6116c9df09d442e29e16cc3eabc50aa1cd94b4d512fd3398b9105f1afdc34a7e",
+    "structured/coordination/b-q3-roof-coordination-v1/review.json": "432eb25dad0a37d1878a8c20e44675ed376beb86c60a9019d9bb6842d106d954",
+    "structured/coordination/upper-floor-storage-v1/review.json": "b451dc7893dd9e50c8271b1a6b3e4104c9a66e1173294684b9dd9886d504a986",
+    "structured/candidates/kaohsiung-house-options/c-stair-integration.json": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e"
+  },
+  "scope": "Same-revision B upper-floor polygons, stairs, two roofs and storage overlays; frozen ground references retained. Static/vector and future-scene input only; no main-3D writes or rendering.",
+  "retained_goals": {
+    "land_limit_ping": 32,
+    "RF_deck_sqm": 24,
+    "KTV_usable_sqm": 20,
+    "ground_rear_default_front_fallback": true,
+    "shrine_street_facing_and_front_door": true,
+    "no_storage_in_dry_backing_room": true
+  }
+}

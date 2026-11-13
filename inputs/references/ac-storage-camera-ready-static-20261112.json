@@ -1,0 +1,304 @@
+{
+  "schema": "house-ac-storage-camera-ready-static-review-v1",
+  "date": "2026-11-12",
+  "scope": "A/C comparison-copy mobile panel resize/focus ordering and rendered-frame readiness. No model, cabinet or plan geometry changes.",
+  "display_revision": 3,
+  "report_hash": "5e438544eb98505d4640ba1eb24d1314530da30a9d2a4af68511553c54dc9f6e",
+  "source_hashes": {
+    "structured/coordination/upper-floor-storage-merge-review-v1/review.json": "73c79e56bba31bb5b235884248f0e6553f5e525bc8ac7a9a809f35703aa82dd5",
+    "structured/coordination/upper-floor-storage-v1/review.json": "b451dc7893dd9e50c8271b1a6b3e4104c9a66e1173294684b9dd9886d504a986",
+    "structured/candidates/kaohsiung-house-options/c-stair-integration.json": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+    "structured/candidates/kaohsiung-house-options-3d.html": "7eaf45705d3626a650e00414e027c8e9c5bd7f5a7d60eb1b56658f37273712a2",
+    "Docs/ac-upper-floor-storage-preview-v1.md": "8050465da7366422c1543a4bf464396e69db2bacd7ce05b88c12fb8d122526c3",
+    "scripts/templates/ac-storage-preview.js": "1e85388fe79917a6ec554709d7de367dcf916bea7400a997296156655f843959",
+    "scripts/export_ac_storage_preview.py": "93d613574f537df0567ac5082022df8654fa1fa9fbf9a8ef446613458821a4b8",
+    "scripts/check_ac_storage_preview_playwright.cjs": "de45baae463914af2de1444b6bd7abc49e67edb40218dcda262062ba4c76a501",
+    "house_design/ac_storage_preview.py": "1228f207ec78badac8f14404c5024a911b529a90c4a9d3237bd71cda415c71fe",
+    "house_design/contracts.py": "2888419d49e8d8dbe8b8e99f6b8451363cd9020821c7fe3e703ab09779e202c3",
+    "house_design/project_status.py": "db73eb9b066353cc282e67dc15e4b430d9d4e4d398eafaf7eeec5f98af1acab0",
+    "house_design/plan_readability.py": "db725fc882065df28b389f8e6eae76782a31ccf5d0d3e7a947ff378ed2c51176",
+    "scripts/merge_c_stair_into_3d.py": "a459ad1c078447b9b650805dc43bd1fefec9a49907059b42ff7239a1640c6e30",
+    "inputs/references/upper-floor-storage-rendered-review-20261111.json": "49a33a95e68b6993d2e704322c4dcb65b7e409f4dc7f758175471a4f22d180b0",
+    "Docs/abc-upper-floor-storage-merge-v1.md": "60583980ef95baa7f9ea531557aa1ae1aca23034069903b02a45ed8cd1a8b2e4",
+    "scripts/check_upper_floor_storage_merge.py": "93a7ac7c51ce007bd5274dd7d6c3c656ccc21bbaa862b92ae3c925fd04238011",
+    "house_design/upper_floor_storage.py": "edb5744b685a0df71cf720e3682479dacfee570154609bc67e8e79759882d45d",
+    "scripts/lib/model3d_plan.py": "90fc8b31396f4ccae9b7f6e8c6be0aa6249c12255005c6b09c70e63840d4027c",
+    "inputs/upper-floor-storage.json": "8218693505667bf3425590e36cee3b7d1ce3dae6d8db5cc8309b6567d142fc97",
+    "scripts/export_upper_floor_storage.py": "fc8f2f5d0cca207720eedfd5cc244c433aca419e642844755ed55ae732e4df3e",
+    "Docs/abc-upper-floor-storage-v1.md": "cf53110b3e0fddcbe7bcccadd2ae9246392871ec58c910451fe63e18046a1dbd",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "structured/coordination/b-front-drainage-layout-v1/review.json": "fb352dcdc1c83aad3b4d4ced66804d328132bd411473b496676f53f849ac7711",
+    "structured/coordination/b-ktv-stair-options-v1/review.json": "6116c9df09d442e29e16cc3eabc50aa1cd94b4d512fd3398b9105f1afdc34a7e",
+    "structured/coordination/b-q3-roof-coordination-v1/review.json": "432eb25dad0a37d1878a8c20e44675ed376beb86c60a9019d9bb6842d106d954"
+  },
+  "source_and_artifact_sha256": {
+    "Docs/abc-upper-floor-storage-merge-v1.md": "60583980ef95baa7f9ea531557aa1ae1aca23034069903b02a45ed8cd1a8b2e4",
+    "Docs/abc-upper-floor-storage-v1.md": "cf53110b3e0fddcbe7bcccadd2ae9246392871ec58c910451fe63e18046a1dbd",
+    "Docs/ac-upper-floor-storage-preview-v1.md": "8050465da7366422c1543a4bf464396e69db2bacd7ce05b88c12fb8d122526c3",
+    "Docs/design-discussion-basis-v1.md": "1d28d848a03ff61ad8297a8da149e2ad63260c85a43a6ada333105dd11d9a4a8",
+    "Docs/project-status-v1.md": "a1f104271a1ba38afd01a2610397470fb18ba683930c833f118674d15d2d3ca6",
+    "README.md": "7fd49bb4e42e23c451c24f2168926d405c9ea19534683195ed91d4b3e0d4c9e2",
+    "house_design/ac_storage_preview.py": "1228f207ec78badac8f14404c5024a911b529a90c4a9d3237bd71cda415c71fe",
+    "house_design/contracts.py": "2888419d49e8d8dbe8b8e99f6b8451363cd9020821c7fe3e703ab09779e202c3",
+    "house_design/design_discussion_basis.py": "79604b1213c9c04e8806bf0e46031896742708878b01f152fcb2777d35bb72d3",
+    "house_design/plan_readability.py": "db725fc882065df28b389f8e6eae76782a31ccf5d0d3e7a947ff378ed2c51176",
+    "house_design/project_status.py": "db73eb9b066353cc282e67dc15e4b430d9d4e4d398eafaf7eeec5f98af1acab0",
+    "house_design/upper_floor_storage.py": "edb5744b685a0df71cf720e3682479dacfee570154609bc67e8e79759882d45d",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "inputs/design-discussion-basis.json": "82f9b0b714f4205db5e97bcc3084a3e3bc0c30dc95bb88356262f3d54a9af0c5",
+    "inputs/project-status.json": "7c4d062d96f223356c6a1a328d53631eb5f254c14b28d211114344aacda8f345",
+    "inputs/references/upper-floor-storage-rendered-review-20261111.json": "49a33a95e68b6993d2e704322c4dcb65b7e409f4dc7f758175471a4f22d180b0",
+    "inputs/upper-floor-storage.json": "8218693505667bf3425590e36cee3b7d1ce3dae6d8db5cc8309b6567d142fc97",
+    "scripts/README.md": "ee8898f5bfcfe4f5110716b4e3789673b4c2d25bb78c18969cd7ed4f164ca90e",
+    "scripts/check_ac_storage_preview_playwright.cjs": "de45baae463914af2de1444b6bd7abc49e67edb40218dcda262062ba4c76a501",
+    "scripts/check_upper_floor_storage_merge.py": "93a7ac7c51ce007bd5274dd7d6c3c656ccc21bbaa862b92ae3c925fd04238011",
+    "scripts/export_ac_storage_preview.py": "93d613574f537df0567ac5082022df8654fa1fa9fbf9a8ef446613458821a4b8",
+    "scripts/export_design_discussion_basis.py": "3b3955bcf72530b584770f030601446eaf27beb52653a05e8bd7fd7da6fb3e1c",
+    "scripts/export_upper_floor_storage.py": "fc8f2f5d0cca207720eedfd5cc244c433aca419e642844755ed55ae732e4df3e",
+    "scripts/lib/model3d_plan.py": "90fc8b31396f4ccae9b7f6e8c6be0aa6249c12255005c6b09c70e63840d4027c",
+    "scripts/merge_c_stair_into_3d.py": "a459ad1c078447b9b650805dc43bd1fefec9a49907059b42ff7239a1640c6e30",
+    "scripts/templates/ac-storage-preview.js": "1e85388fe79917a6ec554709d7de367dcf916bea7400a997296156655f843959",
+    "structured/candidates/kaohsiung-house-options-3d.html": "7eaf45705d3626a650e00414e027c8e9c5bd7f5a7d60eb1b56658f37273712a2",
+    "structured/candidates/kaohsiung-house-options/c-stair-integration.json": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+    "structured/coordination/ac-storage-preview-v1/README.md": "dc40be082021aae0e008e2967368c3c41f9aecf571b11ac574982a8145220b97",
+    "structured/coordination/ac-storage-preview-v1/ac-storage-preview.zip": "626dd589d792ee644b78fe744de689fcd72ba84f3999eeb81cb601a96d66f2f9",
+    "structured/coordination/ac-storage-preview-v1/archive-manifest.json": "addd1c547143695a282d11a4ac42103f193ac00d73f4c7964e873659ea149816",
+    "structured/coordination/ac-storage-preview-v1/artifact-manifest.json": "83f88db05dfec26b6bd97930119862938572ceac31a2b30733e008fe7fc7b80b",
+    "structured/coordination/ac-storage-preview-v1/index.html": "bae85211aa9989a0b197893c1c3f173f8c6e8eace16732fd0d62ff6e6ee3c71a",
+    "structured/coordination/ac-storage-preview-v1/plans.html": "4982af7964e5dac1226e324d25ff113e3bdc5daedd8b5ba0003efa5a81351b76",
+    "structured/coordination/ac-storage-preview-v1/review.json": "a591ecf2f7ff340eca89f88d1b96df93c6f68c3e56ceb17b1ada8472ac392c82",
+    "structured/coordination/b-front-drainage-layout-v1/review.json": "fb352dcdc1c83aad3b4d4ced66804d328132bd411473b496676f53f849ac7711",
+    "structured/coordination/b-ktv-stair-options-v1/review.json": "6116c9df09d442e29e16cc3eabc50aa1cd94b4d512fd3398b9105f1afdc34a7e",
+    "structured/coordination/b-q3-roof-coordination-v1/review.json": "432eb25dad0a37d1878a8c20e44675ed376beb86c60a9019d9bb6842d106d954",
+    "structured/coordination/upper-floor-storage-merge-review-v1/review.json": "73c79e56bba31bb5b235884248f0e6553f5e525bc8ac7a9a809f35703aa82dd5",
+    "structured/coordination/upper-floor-storage-v1/review.json": "b451dc7893dd9e50c8271b1a6b3e4104c9a66e1173294684b9dd9886d504a986",
+    "structured/planning/builder-communication/artifact-manifest.json": "ac8c0d9da86319aad732b5074a1979efa85188f77889b5aa32b7472ee119150a",
+    "structured/planning/builder-communication/review.json": "0ee7dd269a4dca6f92da68155ac5248ac2f4affe703d9b8f4e9aecb6e212cb7c",
+    "structured/planning/design-discussion-basis/ABC-discussion-package.zip": "2ed8c0428718b24f04cae74fd6e83a7819a931b6156087a324e556e2f16036c3",
+    "structured/planning/design-discussion-basis/README.md": "4b3f451108fa34c0c20310912dabbcc8ed1cd31e163179b1547bc4ebb79fb820",
+    "structured/planning/design-discussion-basis/archive-manifest.json": "57dc7127319313fffb45b31a0b64d1a8f4d9fac3bcaf45c11b75c4e9c2cd8ab1",
+    "structured/planning/design-discussion-basis/artifact-manifest.json": "6a8b276248c0ec7719284db89bb253777a99fe84e6433f4c110ede3221fbea1f",
+    "structured/planning/design-discussion-basis/review.json": "5a413377d0ab71d10ede86d99c4d8a0778caf892afde90f3d55fa5d44b0cfb2b",
+    "structured/planning/project-next-steps/artifact-manifest.json": "8e14963aec3272042bbbd2890dac3608847e2c0dc58846522aa8d55e162e60de",
+    "structured/planning/project-next-steps/review.json": "5c0d3f7be9c7dea1258f93ad9383ea56bbdd8385f0e3da027bea824d13810c1f",
+    "tests/js/ac-storage-preview.test.cjs": "b696c3184a143b748d3bf3ed9a38a7f8adf7012f757f2725f7b2e62df729cf90",
+    "tests/test_ac_storage_preview.py": "ae01f7fff8acf8abb799444ec5c771c1181b2f7753520ba612dafb64c1ec11b8",
+    "tests/test_design_discussion_basis.py": "170e30e47aafbf774b492c554667e2f55251dbb228d9bd3d75686dfab228f92e"
+  },
+  "returned_failure": {
+    "archive": "inputs/private/ac-storage-qa-r23BET-001",
+    "status": "failed",
+    "report_hash": "482ba42bcc412ef11cb287590acaf885fab1dd338ee0d16e01d558ca9e68fe4c",
+    "source_hashes_verified_before_edit": 25,
+    "passed_assertions": 130,
+    "completed_cases": 16,
+    "completed_desktop_cases": 12,
+    "completed_mobile_cases": 4,
+    "screenshots": 26,
+    "browser_closed": true,
+    "files_sha256": {
+      "A-2F-floor-390.png": "6c08474066bc57067efca7ae5c3de4c7fb8586da063e15daee2828b0424f2e36",
+      "C-3F-floor-1440.png": "bd79c52e7b3d9111807c2fae4007905917ddb89a57f16646e33b92da1aaee319",
+      "A-RF-daily-1440.png": "c5cac5060e287e5e55e46b0176265440c8d299d4504571b4a0aac021ae49b500",
+      "C-RF-storage-1440.png": "e39ec12597374e5f0a8c7eded85757f3280692221cc3191c3d8e1fee817e8d70",
+      "A-2F-floor-1440.png": "4ca57353dc9256324e04385aea5232aa59e19489692dc85925c5919d1c22e7d1",
+      "C-2F-storage-1440.png": "713d86d66108fcd3a6647770569e54edb0be10296370dafbec2c2fa20ed4db06",
+      "A-RF-storage-390.png": "d4dc0c3e5a19d1b97dfb198dbdb0f21471fbe72f8025f8ee1d0fe5d0796c082e",
+      "C-2F-daily-1440.png": "00b9b84453040c61d34e09065ab0d7bbe07a658d0a018f76b8924704f0537b42",
+      "A-2F-storage-390.png": "9c5c65017342b858a71d31e76d64e0c88ebb78f56d46317cbb58b98e83131f87",
+      "A-RF-floor-1440.png": "16c0e4967dd8b09bec1bdbafce80e872544d6d01f63817772cb37b713d1bb48b",
+      "A-2F-storage-1440.png": "5210de46ded76d60667e693bdaa573331c70332b3f17a6bc0017f27ccf3fa5ac",
+      "A-3F-daily-1440.png": "b8aeb0a598103dbebbac231fdd481416168bf9d2ad9c612e7f3a5e9d6fbbc9e6",
+      "result.json": "abfe62b508183872028e44e53b0d125c0e69d0bcb4ad96591e7fb8b16ea48e34",
+      "A-3F-storage-1440.png": "08e402f76910e1f6ef2ef98f029756373501a796e44139cf6d4b4a59945e3cb6",
+      "preview-before-fix.zip": "584277a6b23d3ab0c71560b65fea07e5485f13f1bb8da6c5c479d7a7b2b9e1a2",
+      "C-3F-storage-1440.png": "908779cda781f8d3ac3b8b71f389b211884d7e98e9a61a47a75ee0fd47d9f77e",
+      "C-RF-floor-1440.png": "cefa7f2dfca191456ab8f7e48235170fbcca8e69875dc7da4a293bb046a0f12c",
+      "C-3F-daily-1440.png": "8e7059ddd90a1d128a2f44e6a1f9953acb05a8be27abbd98c50529cfcdd48446",
+      "A-2F-daily-1440.png": "47aaab222909db0a45359b028555ddc22bf0a259a5b409736ee30cc11f0f6f00",
+      "A-3F-storage-390.png": "bccc7daabe79e7c7ee22f2e8cf9b226cb11bad90d1066be8f347232070f64430",
+      "A-3F-daily-390.png": "520329632112ab65be0ed6dd4a949964863854a158d59a290626c1e3a78865ec",
+      "A-3F-floor-1440.png": "84b315c4fd01c71742f11a9dffb1fe1c5df0e29cd9f0b3713729ece581143ca0",
+      "failure.png": "ebb5dc742c4b939120da4d7488790833129f7f599ca59309eb816635b3abbb80",
+      "A-RF-storage-1440.png": "bf210c6ea14c9f52e4b7a67ff067195292d235f0e971b9be384280516ce725d6",
+      "A-2F-daily-390.png": "57ccca374c23c7087a396c2e459e5ef5ca982291743cc4a8da6542ed13557cc6",
+      "C-RF-daily-1440.png": "aa35eb64ed434534180ef0720f4934695ac4de37fd9d295153e6bd1bc497d94a",
+      "A-3F-floor-390.png": "ba99896904676f860f76fbbc839bd8919b25b15c6235098315bbf5277a67b38a",
+      "C-2F-floor-1440.png": "e52fa811bc9b6d31abab76a44aebd1608c8b01462b5b882c419886839e436a84"
+    },
+    "active_case": "A-RF storage mobile 390x844 after furniture names off and panel collapse",
+    "cause": "acStorageResize applied a room fit, then deferred cabinet fitting to the next animation frame. Fixed two-frame QA waiting sampled this intermediate view with focusPending=true.",
+    "geometry_mm": [
+      900,
+      450,
+      900
+    ],
+    "actual_bottom_mm": 10000,
+    "initial_projected_body_px": [
+      157.54561163942014,
+      194.23130356578167
+    ],
+    "failed_projected_body_px": [
+      39.81453748959163,
+      70.62667338312684
+    ],
+    "initial_body_pixel_ratio": 0.7040246673158066,
+    "failed_body_pixel_ratio": 0.6453252032520326,
+    "failed_focus_pending": true,
+    "console_errors": [],
+    "visual_review": {
+      "screenshots_reviewed": [
+        "A-RF-storage-390.png",
+        "failure.png"
+      ],
+      "other_screenshots_reviewed": false,
+      "observed": "Initial closeup has a readable cabinet; failed frame shows the whole platform and small cabinet."
+    },
+    "old_result_changed": false
+  },
+  "implemented": [
+    "Resize and cabinet framing finish in the same synchronous callback; full-floor navigation still uses the full-floor camera.",
+    "Record stage bounds, available area, camera pose/projection, scope and label controls after actual renderer draws.",
+    "Readiness requires the draw stamp and renderer size to match current state, with no pending resize/focus.",
+    "Browser QA waits for two consecutive matching ready states after interactions, then checks the original dimensions, elevations and body pixels.",
+    "Body validation additionally rejects focus-pending and stale/not-rendered views. No threshold reductions, forced interactions, longer timeout, skipped cases or automatic retries."
+  ],
+  "checks": {
+    "model_states_identical": 4,
+    "cabinet_definitions_identical": 6,
+    "floor_svg_bytes_identical": 16,
+    "old_browser_source_hashes_changed_only": [
+      "Docs/ac-upper-floor-storage-preview-v1.md",
+      "scripts/templates/ac-storage-preview.js",
+      "scripts/export_ac_storage_preview.py",
+      "scripts/check_ac_storage_preview_playwright.cjs",
+      "house_design/ac_storage_preview.py"
+    ],
+    "accepted_viewer_sources_unchanged": 30,
+    "accepted_viewer_artifacts_unchanged": 19,
+    "old_snapshot_036_zip_unchanged": true,
+    "packet_csv_svg_unchanged": 97,
+    "preview_source_hashes_verified": 25,
+    "packet_source_hashes_verified": 412,
+    "display_revision": 3,
+    "report_hash": "5e438544eb98505d4640ba1eb24d1314530da30a9d2a4af68511553c54dc9f6e",
+    "protected_controls_unchanged": 149,
+    "python": {
+      "passed": 193,
+      "failed": 0,
+      "runs": [
+        {
+          "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_ac_storage_preview.py",
+          "passed": 9,
+          "seconds": 0.97
+        },
+        {
+          "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q -p no:cacheprovider tests/test_design_discussion_basis.py tests/test_project_next_steps.py tests/test_builder_communication.py tests/test_project_status.py",
+          "passed": 184,
+          "seconds": 8.93
+        }
+      ]
+    },
+    "javascript": {
+      "command": "timeout 20s node --test tests/js/ac-storage-preview.test.cjs",
+      "passed": 7,
+      "failed": 0,
+      "elapsed_ms": 302.402726,
+      "scope": "File/model/pixel counterexamples, inline-script syntax and isolated actual generated label/resize/readiness functions with minimal mocks. No Three.js or scene execution.",
+      "new_regression_cases": [
+        "Room resize and cabinet frame run in order in the same callback; no extra animation callback exposes a room fit.",
+        "Whole-floor, different room and no-cabinet navigation preserve their normal camera behavior.",
+        "Pending flag clears after a resize exception.",
+        "Stale camera, stage, available area, scope, labels, pending work and actual render-size mismatch cannot be ready.",
+        "An approximately 40x71px cabinet and an otherwise valid stale frame remain rejected."
+      ]
+    },
+    "bounded_checks": [
+      {
+        "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m ruff check --no-cache house_design/ac_storage_preview.py scripts/export_ac_storage_preview.py tests/test_ac_storage_preview.py",
+        "exit_code": 0
+      },
+      {
+        "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_ac_storage_preview.py --check",
+        "exit_code": 0
+      },
+      {
+        "command": "timeout 20s node scripts/check_ac_storage_preview_playwright.cjs --preflight",
+        "exit_code": 0
+      },
+      {
+        "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_project_next_steps.py --check",
+        "exit_code": 0
+      },
+      {
+        "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_builder_communication.py --check",
+        "exit_code": 0
+      },
+      {
+        "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_design_discussion_basis.py --check",
+        "exit_code": 0
+      },
+      {
+        "command": "timeout 20s git diff --check",
+        "exit_code": 0
+      }
+    ]
+  },
+  "handoff": {
+    "snapshot": "inputs/private/design-discussion-037",
+    "files": 118,
+    "zip_entries": 116,
+    "zip_bytes": 1470695,
+    "zip_sha256": "2ed8c0428718b24f04cae74fd6e83a7819a931b6156087a324e556e2f16036c3",
+    "preview_files": 24,
+    "preview_zip_entries": 22,
+    "preview_zip_bytes": 667834,
+    "preview_zip_sha256": "626dd589d792ee644b78fe744de689fcd72ba84f3999eeb81cb601a96d66f2f9",
+    "snapshot_bytes_match_current_package": true,
+    "nested_archives_sha256": {
+      "ac-storage-preview.zip": "626dd589d792ee644b78fe744de689fcd72ba84f3999eeb81cb601a96d66f2f9",
+      "upper-floor-storage-3d.zip": "678ae172b98d0f066c01331c0748d50eabcfc007b5cbad2208e1e688f71fa0eb"
+    },
+    "old_snapshots_001_to036_written": false
+  },
+  "constraints": {
+    "original_main_3d_changed": false,
+    "accepted_storage_viewer_changed": false,
+    "B_not_imported_or_rebased": true,
+    "C3_shared_access_requires_entering_master": true,
+    "formal_requirement_statuses": {
+      "candidate": 66
+    },
+    "formal_register_statuses": {
+      "unknown": 105
+    },
+    "adopted": false,
+    "professional_approval": "unknown",
+    "construction_release": false
+  },
+  "rendered_qa": {
+    "status": "not-run-for-display-revision-3",
+    "browser_plugin": "absent",
+    "reason": "AGENTS.md reserves browser/WebGL/full-scene QA for the owner's separate terminal.",
+    "manual_command": "node '\\\\wsl.localhost\\Ubuntu\\root\\workspace\\houseDesignPrepare\\scripts\\check_ac_storage_preview_playwright.cjs'",
+    "expected_revision_message": "A/C storage display revision: 3",
+    "cases": 24,
+    "screenshots_expected": 36,
+    "owner_worker_timeout_seconds": 120,
+    "automatic_retry": false,
+    "page_identity": "not-run",
+    "blank_page": "not-run",
+    "framework_overlay": "not-run",
+    "console_health": "not-run",
+    "screenshots": "not-run",
+    "interaction_proof": "not-run",
+    "old_partial_pass_or_independent_pass_reused": false
+  },
+  "not_run": [
+    "Browser/WebGL or new screenshot capture",
+    "Full pytest or complete 3D runtime",
+    "External AI requests",
+    "Commit",
+    "Push"
+  ]
+}

@@ -1,0 +1,6150 @@
+{
+  "schema": "house-b-third-entertainment-report-v1",
+  "date": "2026-11-10",
+  "config": {
+    "schema": "house-b-third-entertainment-v1",
+    "date": "2026-11-10",
+    "adopted": false,
+    "upper_report": "structured/coordination/b-upper-replan-v1/review.json",
+    "service_report": "structured/coordination/b-front-service-detail-v1/review.json",
+    "ground_report": "structured/coordination/b-claude-round3-v1/review.json",
+    "protected_controls": "inputs/abc-next-protected-controls.json",
+    "pinned_sources": {
+      "structured/coordination/b-upper-replan-v1/review.json": "38897b7ca1da091dd62c85ab342abd4d1d1da220ec1dbad9a5f46e6611f4906d",
+      "structured/coordination/b-upper-replan-v1/artifact-manifest.json": "c1fe7bab76b8032224f7ce271671db0f94fb3ef91c702adc355fd1bcd6b8d915",
+      "structured/coordination/b-front-service-detail-v1/review.json": "a51324d7699cfba56479f83a5e4eaa24ef5c9d45782c302c79e5fe779d4f2edd",
+      "structured/coordination/b-front-service-detail-v1/artifact-manifest.json": "66b708543e5da68e23878d0063034d8ecb0fe693a658431b44160e5881c35234",
+      "inputs/references/b-owner-ritual-answers-20261106.json": "736f5a477ce1fbfd8e1bf460ecf49f9043a83635201d1598e3e1842e6460ddb9"
+    },
+    "frame_mm": [
+      6000,
+      17630
+    ],
+    "inset_mm": 115,
+    "additional_acoustic_insets_mm": [
+      0,
+      50,
+      100,
+      150,
+      200
+    ],
+    "primary_extra_inset_mm": 100,
+    "front_room_mm": [
+      0,
+      0,
+      6000,
+      3900
+    ],
+    "working_court_mm": [
+      0,
+      11370,
+      2400,
+      2130
+    ],
+    "guest_parts_mm": [
+      [
+        0,
+        14100,
+        3600,
+        3530
+      ],
+      [
+        0,
+        13500,
+        2400,
+        600
+      ]
+    ],
+    "rear_bath_mm": [
+      3600,
+      14500,
+      2400,
+      3130
+    ],
+    "front_furniture": [
+      {
+        "id": "sofa",
+        "label": "原1800×900候選沙發",
+        "rect_mm": [
+          3000,
+          2600,
+          1800,
+          900
+        ],
+        "operation_mm": [
+          3000,
+          1900,
+          1800,
+          700
+        ]
+      },
+      {
+        "id": "table",
+        "label": "原1200×600候選桌",
+        "rect_mm": [
+          3300,
+          1200,
+          1200,
+          600
+        ]
+      },
+      {
+        "id": "tv",
+        "label": "原1000×80螢幕候選／前牆",
+        "rect_mm": [
+          3500,
+          215,
+          1000,
+          80
+        ]
+      }
+    ],
+    "guest_furniture": [
+      {
+        "id": "bed",
+        "label": "原1800×2000客床轉向／床頭靠左",
+        "rect_mm": [
+          150,
+          15550,
+          2000,
+          1800
+        ]
+      },
+      {
+        "id": "wardrobe",
+        "label": "原1800×600櫃轉向",
+        "rect_mm": [
+          115,
+          13615,
+          600,
+          1800
+        ],
+        "operation_mm": [
+          715,
+          13615,
+          700,
+          1800
+        ]
+      }
+    ],
+    "bath_fixtures": [
+      {
+        "id": "basin",
+        "label": "原600×450面盆轉右牆",
+        "rect_mm": [
+          5435,
+          14615,
+          450,
+          600
+        ],
+        "operation_mm": [
+          4735,
+          14615,
+          700,
+          600
+        ]
+      },
+      {
+        "id": "toilet",
+        "label": "原450×700馬桶轉向左牆",
+        "rect_mm": [
+          3715,
+          14615,
+          700,
+          450
+        ],
+        "operation_mm": [
+          4415,
+          14615,
+          700,
+          450
+        ]
+      },
+      {
+        "id": "shower",
+        "label": "原900×900淋浴",
+        "rect_mm": [
+          4985,
+          16615,
+          900,
+          900
+        ],
+        "operation_mm": [
+          4285,
+          16615,
+          700,
+          900
+        ]
+      }
+    ],
+    "front_entry": {
+      "a": [
+        1150,
+        3900
+      ],
+      "b": [
+        2280,
+        3900
+      ],
+      "hinge": "right",
+      "opens": "inside"
+    },
+    "court_entry": {
+      "a": [
+        1150,
+        11370
+      ],
+      "b": [
+        2280,
+        11370
+      ],
+      "hinge": "left",
+      "opens": "inside"
+    },
+    "sliders": [
+      {
+        "id": "guest",
+        "a": [
+          2420,
+          14100
+        ],
+        "b": [
+          3550,
+          14100
+        ],
+        "leaf_width_mm": 660,
+        "leaf_thickness_mm": 45,
+        "track_y_mm": [
+          14215,
+          14300
+        ],
+        "closed_x_mm": [
+          2370,
+          2940
+        ],
+        "park_x_mm": [
+          1710,
+          1710
+        ]
+      },
+      {
+        "id": "bath",
+        "a": [
+          4435,
+          14500
+        ],
+        "b": [
+          5565,
+          14500
+        ],
+        "leaf_width_mm": 660,
+        "leaf_thickness_mm": 45,
+        "track_y_mm": [
+          14355,
+          14440
+        ],
+        "closed_x_mm": [
+          4385,
+          4955
+        ],
+        "park_x_mm": [
+          3725,
+          3725
+        ]
+      }
+    ],
+    "routes": [
+      {
+        "id": "front-entertainment",
+        "width_mm": 700,
+        "points_mm": [
+          [
+            1715,
+            4400
+          ],
+          [
+            1715,
+            2250
+          ],
+          [
+            3500,
+            2250
+          ]
+        ],
+        "expected_door": "front"
+      },
+      {
+        "id": "guest-arrival",
+        "width_mm": 700,
+        "points_mm": [
+          [
+            5335,
+            10800
+          ],
+          [
+            5335,
+            12270
+          ],
+          [
+            5335,
+            13535
+          ],
+          [
+            2985,
+            13535
+          ],
+          [
+            2985,
+            15100
+          ],
+          [
+            2600,
+            15100
+          ],
+          [
+            2600,
+            16450
+          ]
+        ],
+        "expected_door": "guest"
+      },
+      {
+        "id": "guest-wardrobe",
+        "width_mm": 700,
+        "points_mm": [
+          [
+            2985,
+            15100
+          ],
+          [
+            1800,
+            15100
+          ],
+          [
+            1800,
+            15065
+          ],
+          [
+            1065,
+            15065
+          ]
+        ],
+        "expected_door": null
+      },
+      {
+        "id": "rear-public-bath",
+        "width_mm": 700,
+        "points_mm": [
+          [
+            5335,
+            10800
+          ],
+          [
+            5335,
+            13935
+          ],
+          [
+            5000,
+            13935
+          ],
+          [
+            5000,
+            15325
+          ]
+        ],
+        "expected_door": "bath"
+      },
+      {
+        "id": "shower-operation",
+        "width_mm": 700,
+        "points_mm": [
+          [
+            5000,
+            15325
+          ],
+          [
+            5000,
+            16265
+          ],
+          [
+            4635,
+            16265
+          ],
+          [
+            4635,
+            17065
+          ]
+        ],
+        "expected_door": null
+      },
+      {
+        "id": "public-to-working-court",
+        "width_mm": 700,
+        "points_mm": [
+          [
+            1715,
+            10800
+          ],
+          [
+            1715,
+            12800
+          ]
+        ],
+        "expected_door": "court"
+      }
+    ],
+    "rf_candidate_slots_mm": [
+      [
+        3270,
+        100,
+        900,
+        350
+      ],
+      [
+        5020,
+        100,
+        900,
+        350
+      ]
+    ],
+    "rf_service_mm": [
+      [
+        3270,
+        100,
+        900,
+        1350
+      ],
+      [
+        5020,
+        100,
+        900,
+        1350
+      ]
+    ],
+    "rf_guard_budget_mm": 100,
+    "limits": [
+      "Q1保留現行後段，適合先比安靜閱讀／低音量劇院；不代表夜間聲學通過，也沒有取消原20㎡KTV需求。",
+      "Q2前側娛樂、後客房／公衛與工作天井只是獨立配置研究，未採用、未併主3D；原ABC、P1／P2／P3、兩個1F搬轎入口各三態及RF快照保留。",
+      "KTV20／客房12／3F公衛5／工作陽台4㎡及前側彈性14㎡原目標均列帳，未因研究方向改正式需求或把KTV14下限當20目標。",
+      "Q2三樓前側由12.753增為23.400㎡名義室內量體，增加10.647㎡；約32地坪外框不等於合法可建量，也不是日後可自行封陽台。",
+      "前側整塊娛樂須取消本層原景觀／設備配置，兩個代表機位另比RF前側；它們不是已確認兩台新機，也不重複加購或默認取代現有B-AC03／04。",
+      "後工作天井名義5.112㎡、115假設4.123㎡，需RF局部開口及護欄／防水／排水；因此是屋頂需改的條件案，不能說原RF完全不用動或已核工作陽台。",
+      "工作天井由公共起居區直接進入，不穿客房；1130名義外門、門檻防雨及實際完成淨寬未核，晾衣架與家務操作仍需另排。",
+      "RF天井會截斷原後機位區的直行入口，另列繞行700方塊；不含實際屋突門片、梯段、雨天防滑及整機搬運。所有原屋頂設備需求仍保留，未排滿不當空間已足。",
+      "額外0／50／100／150／200mm四面內縮只是聲學空間敏感度，沒有dB、隔音等級或產品；不能挑50mm就宣稱能唱歌，也不能將最薄案例當完工面積。",
+      "2F前管井仍須穿3F，Q2在娛樂室留同一400×400；不能因3F公衛移後就刪2F通氣井或宣稱P3騎樓排水缺口解除。",
+      "前KTV比後段少壓樓下主臥，但前外窗、梯核門、天花地坪及風管仍傳聲；使用時的窗門、消音與新風工作點須聲學／建築／機電同核，沒有低頻或鄰房噪音承諾。",
+      "兩個濕系統不混接：公衛污廢水／通氣與工作天井雨水分開核，400井預算不等於能容納全部管線。實際高程、降板、合法終端與2F／1F影響未知。",
+      "3F後公衛對齊2F套衛輪廓，避免新增浴廁壓主臥乾區；工作天井仍在2F部分梳妝／更衣乾區上方，需核防水、雨水及漏水維護，不能只因未壓床就說風水或防水成立。",
+      "神明堂／乾背櫃完整投影不放床、浴廁或娛樂；工作天井亦避武轎庫。明列平面避讓不當全案家規／風水核可，管線、穿孔及振動仍未核。",
+      "客床1800×2000、衣櫃1800×600、娛樂沙發／桌／螢幕及三件衛浴尺寸保留；不保證原器材全容納、座位數或實際門淨寬。",
+      "新增室內量體、屋頂機位／天井、聲學構造及關門新風都需正式資料；目前不要求屋主立刻接受縮KTV、取消陽台或搬到A／C。"
+    ]
+  },
+  "rear_control": {
+    "id": "floor-3",
+    "rooms": [
+      {
+        "id": "stair",
+        "label": "原同軸樓梯／平台，未改本體",
+        "polygon_mm": [
+          [
+            2400.0,
+            3900.0
+          ],
+          [
+            2400.0,
+            9100.0
+          ],
+          [
+            0.0,
+            9100.0
+          ],
+          [
+            0.0,
+            3900.0
+          ]
+        ],
+        "kind": "dry",
+        "items": [],
+        "shafts_mm": [],
+        "doors": [],
+        "windows_mm": []
+      },
+      {
+        "id": "quiet-living",
+        "label": "安靜起居／閱讀，禁睡及高活動",
+        "polygon_mm": [
+          [
+            6000.0,
+            3900.0
+          ],
+          [
+            2400.0,
+            3900.0
+          ],
+          [
+            2400.0,
+            9100.0
+          ],
+          [
+            0.0,
+            9100.0
+          ],
+          [
+            0.0,
+            11370.0
+          ],
+          [
+            6000.0,
+            11370.0
+          ],
+          [
+            6000.0,
+            9100.0
+          ]
+        ],
+        "kind": "dry",
+        "items": [
+          {
+            "id": "sofa",
+            "label": "原1800×900沙發",
+            "rect_mm": [
+              4950,
+              5700,
+              900,
+              1800
+            ],
+            "operation_mm": [
+              4250,
+              5700,
+              700,
+              1800
+            ]
+          },
+          {
+            "id": "table",
+            "label": "原1100×600茶几",
+            "rect_mm": [
+              3600,
+              6050,
+              600,
+              1100
+            ]
+          },
+          {
+            "id": "tv",
+            "label": "原1000×80電視",
+            "rect_mm": [
+              2550,
+              6200,
+              80,
+              1000
+            ]
+          }
+        ],
+        "shafts_mm": [],
+        "doors": [
+          {
+            "a": [
+              4200,
+              3900
+            ],
+            "b": [
+              5330,
+              3900
+            ],
+            "hinge": "right",
+            "opens": "inside",
+            "swing_rect_mm": [
+              4200,
+              3900,
+              1130,
+              1130
+            ]
+          }
+        ],
+        "windows_mm": []
+      },
+      {
+        "id": "dry-protection",
+        "label": "獨立乾保護室，禁床／濕管設備",
+        "polygon_mm": [
+          [
+            4670.0,
+            11370.0
+          ],
+          [
+            4670.0,
+            12970.0
+          ],
+          [
+            2640.0,
+            12970.0
+          ],
+          [
+            2640.0,
+            11370.0
+          ]
+        ],
+        "kind": "dry",
+        "items": [],
+        "shafts_mm": [],
+        "doors": [
+          {
+            "a": [
+              2850,
+              11370
+            ],
+            "b": [
+              3980,
+              11370
+            ],
+            "hinge": "left",
+            "opens": "inside",
+            "swing_rect_mm": [
+              2850,
+              11370,
+              1130,
+              1130
+            ]
+          }
+        ],
+        "windows_mm": []
+      },
+      {
+        "id": "public-bath",
+        "label": "前側有窗公衛",
+        "polygon_mm": [
+          [
+            3270.0,
+            0.0
+          ],
+          [
+            3270.0,
+            1980.0
+          ],
+          [
+            0.0,
+            1980.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "kind": "wet",
+        "items": [
+          {
+            "id": "shower",
+            "label": "原900×900淋浴移至前左",
+            "rect_mm": [
+              115,
+              115,
+              900,
+              900
+            ],
+            "operation_mm": [
+              1015,
+              115,
+              700,
+              900
+            ]
+          },
+          {
+            "id": "toilet",
+            "label": "原450×700馬桶轉向、背靠右實牆候選",
+            "rect_mm": [
+              2455,
+              1415,
+              700,
+              450
+            ],
+            "operation_mm": [
+              1755,
+              1165,
+              700,
+              700
+            ]
+          },
+          {
+            "id": "basin",
+            "label": "原600×450面盆",
+            "rect_mm": [
+              2555,
+              115,
+              600,
+              450
+            ],
+            "operation_mm": [
+              2555,
+              565,
+              600,
+              700
+            ]
+          }
+        ],
+        "shafts_mm": [
+          [
+            115,
+            1780,
+            400,
+            400
+          ]
+        ],
+        "doors": [],
+        "windows_mm": [
+          [
+            2050,
+            0,
+            1000,
+            0
+          ]
+        ]
+      },
+      {
+        "id": "front-open",
+        "label": "普通露台／景觀候選與獨立設備區",
+        "polygon_mm": [
+          [
+            6000.0,
+            3900.0
+          ],
+          [
+            6000.0,
+            0.0
+          ],
+          [
+            3270.0,
+            0.0
+          ],
+          [
+            3270.0,
+            3900.0
+          ]
+        ],
+        "kind": "dry",
+        "items": [],
+        "shafts_mm": [],
+        "doors": [],
+        "windows_mm": []
+      },
+      {
+        "id": "tea-foyer",
+        "label": "乾式前室／同軸濕管井，非無濕管室",
+        "polygon_mm": [
+          [
+            3270.0,
+            1980.0
+          ],
+          [
+            3270.0,
+            3900.0
+          ],
+          [
+            0.0,
+            3900.0
+          ],
+          [
+            0.0,
+            1980.0
+          ]
+        ],
+        "kind": "dry",
+        "items": [],
+        "shafts_mm": [
+          [
+            115,
+            1780,
+            400,
+            400
+          ]
+        ],
+        "doors": [],
+        "windows_mm": []
+      },
+      {
+        "id": "guest",
+        "label": "後左客房／乾擋板",
+        "polygon_mm": [
+          [
+            2640.0,
+            11370.0
+          ],
+          [
+            0.0,
+            11370.0
+          ],
+          [
+            0.0,
+            12970.0
+          ],
+          [
+            0.0,
+            17630.0
+          ],
+          [
+            2900.0,
+            17630.0
+          ],
+          [
+            2900.0,
+            12970.0
+          ],
+          [
+            2640.0,
+            12970.0
+          ]
+        ],
+        "kind": "bedroom",
+        "items": [
+          {
+            "id": "bed",
+            "label": "1800×2000客床轉向",
+            "rect_mm": [
+              150,
+              15100,
+              2000,
+              1800
+            ]
+          },
+          {
+            "id": "wardrobe",
+            "label": "1800×600櫃轉向",
+            "rect_mm": [
+              150,
+              13200,
+              600,
+              1800
+            ],
+            "operation_mm": [
+              750,
+              13200,
+              700,
+              1800
+            ]
+          },
+          {
+            "id": "screen",
+            "label": "100mm乾式遮擋板候選",
+            "rect_mm": [
+              115,
+              12970,
+              1685,
+              100
+            ]
+          }
+        ],
+        "shafts_mm": [],
+        "doors": [
+          {
+            "a": [
+              1105,
+              11370
+            ],
+            "b": [
+              2235,
+              11370
+            ],
+            "hinge": "left",
+            "opens": "inside",
+            "swing_rect_mm": [
+              1105,
+              11370,
+              1130,
+              1130
+            ]
+          }
+        ],
+        "windows_mm": [
+          [
+            250,
+            17630,
+            2400,
+            0
+          ]
+        ]
+      },
+      {
+        "id": "ktv-study",
+        "label": "後右娛樂候選（低於20㎡目標）",
+        "polygon_mm": [
+          [
+            6000.0,
+            17630.0
+          ],
+          [
+            6000.0,
+            11370.0
+          ],
+          [
+            4670.0,
+            11370.0
+          ],
+          [
+            4670.0,
+            12970.0
+          ],
+          [
+            2900.0,
+            12970.0
+          ],
+          [
+            2900.0,
+            17630.0
+          ]
+        ],
+        "kind": "high-activity",
+        "items": [
+          {
+            "id": "sofa",
+            "label": "1800×900沙發候選",
+            "rect_mm": [
+              3650,
+              16500,
+              1800,
+              900
+            ],
+            "operation_mm": [
+              3650,
+              15800,
+              1800,
+              700
+            ]
+          },
+          {
+            "id": "table",
+            "label": "1200×600桌候選",
+            "rect_mm": [
+              3950,
+              15000,
+              1200,
+              600
+            ]
+          },
+          {
+            "id": "tv",
+            "label": "1000×80壁掛螢幕候選",
+            "rect_mm": [
+              5750,
+              14200,
+              80,
+              1000
+            ]
+          }
+        ],
+        "shafts_mm": [
+          [
+            5485,
+            15700,
+            400,
+            400
+          ]
+        ],
+        "doors": [
+          {
+            "a": [
+              4770,
+              11370
+            ],
+            "b": [
+              5900,
+              11370
+            ],
+            "hinge": "right",
+            "opens": "inside",
+            "swing_rect_mm": [
+              4770,
+              11370,
+              1130,
+              1130
+            ]
+          }
+        ],
+        "windows_mm": [
+          [
+            3500,
+            17630,
+            2200,
+            0
+          ]
+        ]
+      }
+    ],
+    "areas": [
+      {
+        "id": "stair",
+        "label": "原同軸樓梯／平台，未改本體",
+        "nominal_sqm": 12.48,
+        "cases": [
+          {
+            "inset_each_mm": 80,
+            "outline_sqm": 11.2896,
+            "after_reserved_shafts_screens_sqm": 11.2896
+          },
+          {
+            "inset_each_mm": 115,
+            "outline_sqm": 10.7849,
+            "after_reserved_shafts_screens_sqm": 10.7849
+          },
+          {
+            "inset_each_mm": 150,
+            "outline_sqm": 10.29,
+            "after_reserved_shafts_screens_sqm": 10.29
+          }
+        ],
+        "net115_sqm": 10.7849
+      },
+      {
+        "id": "quiet-living",
+        "label": "安靜起居／閱讀，禁睡及高活動",
+        "nominal_sqm": 32.34,
+        "cases": [
+          {
+            "inset_each_mm": 80,
+            "outline_sqm": 30.2104,
+            "after_reserved_shafts_screens_sqm": 30.2104
+          },
+          {
+            "inset_each_mm": 115,
+            "outline_sqm": 29.2948,
+            "after_reserved_shafts_screens_sqm": 29.2948
+          },
+          {
+            "inset_each_mm": 150,
+            "outline_sqm": 28.389,
+            "after_reserved_shafts_screens_sqm": 28.389
+          }
+        ],
+        "net115_sqm": 29.2948
+      },
+      {
+        "id": "dry-protection",
+        "label": "獨立乾保護室，禁床／濕管設備",
+        "nominal_sqm": 3.248,
+        "cases": [
+          {
+            "inset_each_mm": 80,
+            "outline_sqm": 2.6928,
+            "after_reserved_shafts_screens_sqm": 2.6928
+          },
+          {
+            "inset_each_mm": 115,
+            "outline_sqm": 2.466,
+            "after_reserved_shafts_screens_sqm": 2.466
+          },
+          {
+            "inset_each_mm": 150,
+            "outline_sqm": 2.249,
+            "after_reserved_shafts_screens_sqm": 2.249
+          }
+        ],
+        "net115_sqm": 2.466
+      },
+      {
+        "id": "public-bath",
+        "label": "前側有窗公衛",
+        "nominal_sqm": 6.4746,
+        "cases": [
+          {
+            "inset_each_mm": 80,
+            "outline_sqm": 5.6602,
+            "after_reserved_shafts_screens_sqm": 5.6122
+          },
+          {
+            "inset_each_mm": 115,
+            "outline_sqm": 5.32,
+            "after_reserved_shafts_screens_sqm": 5.286
+          },
+          {
+            "inset_each_mm": 150,
+            "outline_sqm": 4.9896,
+            "after_reserved_shafts_screens_sqm": 4.97135
+          }
+        ],
+        "net115_sqm": 5.286
+      },
+      {
+        "id": "front-open",
+        "label": "普通露台／景觀候選與獨立設備區",
+        "nominal_sqm": 10.647,
+        "cases": [
+          {
+            "inset_each_mm": 80,
+            "outline_sqm": 9.6118,
+            "after_reserved_shafts_screens_sqm": 9.6118
+          },
+          {
+            "inset_each_mm": 115,
+            "outline_sqm": 9.175,
+            "after_reserved_shafts_screens_sqm": 9.175
+          },
+          {
+            "inset_each_mm": 150,
+            "outline_sqm": 8.748,
+            "after_reserved_shafts_screens_sqm": 8.748
+          }
+        ],
+        "net115_sqm": 9.175
+      },
+      {
+        "id": "tea-foyer",
+        "label": "乾式前室／同軸濕管井，非無濕管室",
+        "nominal_sqm": 6.2784,
+        "cases": [
+          {
+            "inset_each_mm": 80,
+            "outline_sqm": 5.4736,
+            "after_reserved_shafts_screens_sqm": 5.4256
+          },
+          {
+            "inset_each_mm": 115,
+            "outline_sqm": 5.1376,
+            "after_reserved_shafts_screens_sqm": 5.1036
+          },
+          {
+            "inset_each_mm": 150,
+            "outline_sqm": 4.8114,
+            "after_reserved_shafts_screens_sqm": 4.79315
+          }
+        ],
+        "net115_sqm": 5.1036
+      },
+      {
+        "id": "guest",
+        "label": "後左客房／乾擋板",
+        "nominal_sqm": 17.738,
+        "cases": [
+          {
+            "inset_each_mm": 80,
+            "outline_sqm": 16.298,
+            "after_reserved_shafts_screens_sqm": 16.1295
+          },
+          {
+            "inset_each_mm": 115,
+            "outline_sqm": 15.6841,
+            "after_reserved_shafts_screens_sqm": 15.5156
+          },
+          {
+            "inset_each_mm": 150,
+            "outline_sqm": 15.08,
+            "after_reserved_shafts_screens_sqm": 14.915
+          }
+        ],
+        "net115_sqm": 15.5156
+      },
+      {
+        "id": "ktv-study",
+        "label": "後右娛樂候選（低於20㎡目標）",
+        "nominal_sqm": 16.574,
+        "cases": [
+          {
+            "inset_each_mm": 80,
+            "outline_sqm": 15.102,
+            "after_reserved_shafts_screens_sqm": 14.942
+          },
+          {
+            "inset_each_mm": 115,
+            "outline_sqm": 14.4741,
+            "after_reserved_shafts_screens_sqm": 14.3141
+          },
+          {
+            "inset_each_mm": 150,
+            "outline_sqm": 13.856,
+            "after_reserved_shafts_screens_sqm": 13.71
+          }
+        ],
+        "net115_sqm": 14.3141
+      }
+    ],
+    "partition": {
+      "overlaps": [],
+      "unallocated_sqm": 0.0,
+      "outside_frame_sqm": 0.0
+    },
+    "fixtures": {
+      "body_hits": [],
+      "operation_body_hits": [],
+      "operation_shared": [],
+      "not_inside_115": [],
+      "shaft_body_hits": [],
+      "shaft_operation_hits": [],
+      "fully_open_door_body_hits": [],
+      "sampled_swing_body_hits": []
+    },
+    "routes": [
+      {
+        "id": "guest-arrival",
+        "width_mm": 700,
+        "points_mm": [
+          [
+            1670,
+            10800
+          ],
+          [
+            1670,
+            12270
+          ],
+          [
+            2175,
+            12270
+          ],
+          [
+            2175,
+            14500
+          ]
+        ],
+        "purpose": "客房乾擋板右繞一般試線；床尾僅635mm，並非700全環繞",
+        "within_model_floor": true,
+        "outside_sqm": 0.0,
+        "body_hits": [],
+        "shaft_hits": [],
+        "door_states": [
+          {
+            "angle_deg": 90,
+            "hits": []
+          },
+          {
+            "angle_deg": 45,
+            "hits": [
+              "guest:door-0"
+            ]
+          },
+          {
+            "angle_deg": 0,
+            "hits": [
+              "guest:door-0"
+            ]
+          }
+        ],
+        "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+      },
+      {
+        "id": "ktv-arrival",
+        "width_mm": 700,
+        "points_mm": [
+          [
+            5335,
+            10800
+          ],
+          [
+            5335,
+            12270
+          ],
+          [
+            5335,
+            13500
+          ],
+          [
+            3500,
+            13500
+          ],
+          [
+            3500,
+            16000
+          ]
+        ],
+        "purpose": "一般家具到達試線；聲學構造及設備未排",
+        "within_model_floor": true,
+        "outside_sqm": 0.0,
+        "body_hits": [],
+        "shaft_hits": [],
+        "door_states": [
+          {
+            "angle_deg": 90,
+            "hits": []
+          },
+          {
+            "angle_deg": 45,
+            "hits": [
+              "ktv-study:door-0"
+            ]
+          },
+          {
+            "angle_deg": 0,
+            "hits": [
+              "ktv-study:door-0"
+            ]
+          }
+        ],
+        "actual_access": "unknown-not-human-or-wheelchair-kinematics"
+      }
+    ],
+    "religious_projection": [
+      {
+        "room": "public-bath",
+        "kind": "wet",
+        "over_shrine_or_backing_sqm": 0.0,
+        "over_palanquin_sqm": 0.0,
+        "prohibited_overlap": false,
+        "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+      },
+      {
+        "room": "guest",
+        "kind": "bedroom",
+        "over_shrine_or_backing_sqm": 0.0,
+        "over_palanquin_sqm": 9.077,
+        "prohibited_overlap": false,
+        "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+      },
+      {
+        "room": "ktv-study",
+        "kind": "high-activity",
+        "over_shrine_or_backing_sqm": 0.0,
+        "over_palanquin_sqm": 1.3459,
+        "prohibited_overlap": false,
+        "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+      }
+    ],
+    "windows": [
+      {
+        "room": "public-bath",
+        "rect_mm": [
+          2050,
+          0,
+          1000,
+          0
+        ],
+        "on_room_boundary": true,
+        "legal_effective_opening": "unknown",
+        "side_boundary_assumed_open": false
+      },
+      {
+        "room": "guest",
+        "rect_mm": [
+          250,
+          17630,
+          2400,
+          0
+        ],
+        "on_room_boundary": true,
+        "legal_effective_opening": "unknown",
+        "side_boundary_assumed_open": false
+      },
+      {
+        "room": "ktv-study",
+        "rect_mm": [
+          3500,
+          17630,
+          2200,
+          0
+        ],
+        "on_room_boundary": true,
+        "legal_effective_opening": "unknown",
+        "side_boundary_assumed_open": false
+      }
+    ],
+    "bedroom_largest_axis_rect": {
+      "guest": {
+        "rect_mm": [
+          115.0,
+          11485.0,
+          2410.0,
+          6030.0
+        ],
+        "area_sqm": 14.5323,
+        "method": "orthogonal-vertex-grid-enumeration"
+      }
+    },
+    "front": {
+      "routes": [
+        {
+          "id": "public-arrival",
+          "width_mm": 900,
+          "points_mm": [
+            [
+              1715,
+              4400
+            ],
+            [
+              1715,
+              3335
+            ],
+            [
+              1715,
+              2585
+            ],
+            [
+              1715,
+              1415
+            ]
+          ],
+          "purpose": "梯廳經可關前室至公衛的一般900方塊；茶水操作與通行分時",
+          "within_model_floor": true,
+          "body_hits": [],
+          "shaft_hit": false,
+          "operation_shared": [
+            "public-bath:shower",
+            "public-bath:toilet"
+          ],
+          "actual_access": "unknown-rectangles-not-person-or-wheelchair-kinematics"
+        },
+        {
+          "id": "public-shower-operation",
+          "width_mm": 700,
+          "points_mm": [
+            [
+              1715,
+              1415
+            ],
+            [
+              1715,
+              665
+            ],
+            [
+              1365,
+              665
+            ]
+          ],
+          "purpose": "公衛內至淋浴操作帶的一般700方塊",
+          "within_model_floor": true,
+          "body_hits": [],
+          "shaft_hit": false,
+          "operation_shared": [
+            "public-bath:shower",
+            "public-bath:toilet"
+          ],
+          "actual_access": "unknown-rectangles-not-person-or-wheelchair-kinematics"
+        },
+        {
+          "id": "dry-maintenance",
+          "width_mm": 700,
+          "points_mm": [
+            [
+              1715,
+              4400
+            ],
+            [
+              1715,
+              2630
+            ],
+            [
+              465,
+              2630
+            ]
+          ],
+          "purpose": "梯廳至管井乾側檢修預留，不穿公衛；工具、拆管與操作高度尚未核",
+          "within_model_floor": true,
+          "body_hits": [],
+          "shaft_hit": false,
+          "operation_shared": [],
+          "actual_access": "unknown-rectangles-not-person-or-wheelchair-kinematics"
+        }
+      ],
+      "door_combinations": [
+        {
+          "states": {
+            "bath": "open",
+            "stair": "open"
+          },
+          "panels": [
+            {
+              "door": "bath",
+              "leaf": 1,
+              "rect_mm": [
+                2330,
+                1980,
+                660,
+                45
+              ]
+            },
+            {
+              "door": "bath",
+              "leaf": 2,
+              "rect_mm": [
+                2330,
+                2065,
+                660,
+                45
+              ]
+            },
+            {
+              "door": "stair",
+              "leaf": 1,
+              "rect_mm": [
+                440,
+                3770,
+                660,
+                45
+              ]
+            },
+            {
+              "door": "stair",
+              "leaf": 2,
+              "rect_mm": [
+                440,
+                3855,
+                660,
+                45
+              ]
+            }
+          ],
+          "route_blockers": [
+            {
+              "route": "public-arrival",
+              "doors": []
+            },
+            {
+              "route": "public-shower-operation",
+              "doors": []
+            },
+            {
+              "route": "dry-maintenance",
+              "doors": []
+            }
+          ],
+          "body_hits": [],
+          "shaft_hit": false,
+          "maintenance_hit": false,
+          "panel_overlap": false,
+          "clear_widths_mm": {
+            "bath": 900.0,
+            "stair": 900.0
+          },
+          "door_occupancy_in_tea_finish_sqm": 0.0198
+        },
+        {
+          "states": {
+            "bath": "open",
+            "stair": "half"
+          },
+          "panels": [
+            {
+              "door": "bath",
+              "leaf": 1,
+              "rect_mm": [
+                2330,
+                1980,
+                660,
+                45
+              ]
+            },
+            {
+              "door": "bath",
+              "leaf": 2,
+              "rect_mm": [
+                2330,
+                2065,
+                660,
+                45
+              ]
+            },
+            {
+              "door": "stair",
+              "leaf": 1,
+              "rect_mm": [
+                770.0,
+                3770,
+                660,
+                45
+              ]
+            },
+            {
+              "door": "stair",
+              "leaf": 2,
+              "rect_mm": [
+                1055.0,
+                3855,
+                660,
+                45
+              ]
+            }
+          ],
+          "route_blockers": [
+            {
+              "route": "public-arrival",
+              "doors": [
+                "stair"
+              ]
+            },
+            {
+              "route": "public-shower-operation",
+              "doors": []
+            },
+            {
+              "route": "dry-maintenance",
+              "doors": [
+                "stair"
+              ]
+            }
+          ],
+          "body_hits": [],
+          "shaft_hit": false,
+          "maintenance_hit": false,
+          "panel_overlap": false,
+          "clear_widths_mm": {
+            "bath": 900.0,
+            "stair": 450.0
+          },
+          "door_occupancy_in_tea_finish_sqm": 0.0198
+        },
+        {
+          "states": {
+            "bath": "open",
+            "stair": "closed"
+          },
+          "panels": [
+            {
+              "door": "bath",
+              "leaf": 1,
+              "rect_mm": [
+                2330,
+                1980,
+                660,
+                45
+              ]
+            },
+            {
+              "door": "bath",
+              "leaf": 2,
+              "rect_mm": [
+                2330,
+                2065,
+                660,
+                45
+              ]
+            },
+            {
+              "door": "stair",
+              "leaf": 1,
+              "rect_mm": [
+                1100,
+                3770,
+                660,
+                45
+              ]
+            },
+            {
+              "door": "stair",
+              "leaf": 2,
+              "rect_mm": [
+                1670,
+                3855,
+                660,
+                45
+              ]
+            }
+          ],
+          "route_blockers": [
+            {
+              "route": "public-arrival",
+              "doors": [
+                "stair"
+              ]
+            },
+            {
+              "route": "public-shower-operation",
+              "doors": []
+            },
+            {
+              "route": "dry-maintenance",
+              "doors": [
+                "stair"
+              ]
+            }
+          ],
+          "body_hits": [],
+          "shaft_hit": false,
+          "maintenance_hit": false,
+          "panel_overlap": false,
+          "clear_widths_mm": {
+            "bath": 900.0,
+            "stair": 0.0
+          },
+          "door_occupancy_in_tea_finish_sqm": 0.0198
+        },
+        {
+          "states": {
+            "bath": "half",
+            "stair": "open"
+          },
+          "panels": [
+            {
+              "door": "bath",
+              "leaf": 1,
+              "rect_mm": [
+                1715.0,
+                1980,
+                660,
+                45
+              ]
+            },
+            {
+              "door": "bath",
+              "leaf": 2,
+              "rect_mm": [
+                2000.0,
+                2065,
+                660,
+                45
+              ]
+            },
+            {
+              "door": "stair",
+              "leaf": 1,
+              "rect_mm": [
+                440,
+                3770,
+                660,
+                45
+              ]
+            },
+            {
+              "door": "stair",
+              "leaf": 2,
+              "rect_mm": [
+                440,
+                3855,
+                660,
+                45
+              ]
+            }
+          ],
+          "route_blockers": [
+            {
+              "route": "public-arrival",
+              "doors": [
+                "bath"
+              ]
+            },
+            {
+              "route": "public-shower-operation",
+              "doors": []
+            },
+            {
+              "route": "dry-maintenance",
+              "doors": []
+            }
+          ],
+          "body_hits": [],
+          "shaft_hit": false,
+          "maintenance_hit": false,
+          "panel_overlap": false,
+          "clear_widths_mm": {
+            "bath": 450.0,
+            "stair": 900.0
+          },
+          "door_occupancy_in_tea_finish_sqm": 0.0198
+        },
+        {
+          "states": {
+            "bath": "half",
+            "stair": "half"
+          },
+          "panels": [
+            {
+              "door": "bath",
+              "leaf": 1,
+              "rect_mm": [
+                1715.0,
+                1980,
+                660,
+                45
+              ]
+            },
+            {
+              "door": "bath",
+              "leaf": 2,
+              "rect_mm": [
+                2000.0,
+                2065,
+                660,
+                45
+              ]
+            },
+            {
+              "door": "stair",
+              "leaf": 1,
+              "rect_mm": [
+                770.0,
+                3770,
+                660,
+                45
+              ]
+            },
+            {
+              "door": "stair",
+              "leaf": 2,
+              "rect_mm": [
+                1055.0,
+                3855,
+                660,
+                45
+              ]
+            }
+          ],
+          "route_blockers": [
+            {
+              "route": "public-arrival",
+              "doors": [
+                "bath",
+                "stair"
+              ]
+            },
+            {
+              "route": "public-shower-operation",
+              "doors": []
+            },
+            {
+              "route": "dry-maintenance",
+              "doors": [
+                "stair"
+              ]
+            }
+          ],
+          "body_hits": [],
+          "shaft_hit": false,
+          "maintenance_hit": false,
+          "panel_overlap": false,
+          "clear_widths_mm": {
+            "bath": 450.0,
+            "stair": 450.0
+          },
+          "door_occupancy_in_tea_finish_sqm": 0.0198
+        },
+        {
+          "states": {
+            "bath": "half",
+            "stair": "closed"
+          },
+          "panels": [
+            {
+              "door": "bath",
+              "leaf": 1,
+              "rect_mm": [
+                1715.0,
+                1980,
+                660,
+                45
+              ]
+            },
+            {
+              "door": "bath",
+              "leaf": 2,
+              "rect_mm": [
+                2000.0,
+                2065,
+                660,
+                45
+              ]
+            },
+            {
+              "door": "stair",
+              "leaf": 1,
+              "rect_mm": [
+                1100,
+                3770,
+                660,
+                45
+              ]
+            },
+            {
+              "door": "stair",
+              "leaf": 2,
+              "rect_mm": [
+                1670,
+                3855,
+                660,
+                45
+              ]
+            }
+          ],
+          "route_blockers": [
+            {
+              "route": "public-arrival",
+              "doors": [
+                "bath",
+                "stair"
+              ]
+            },
+            {
+              "route": "public-shower-operation",
+              "doors": []
+            },
+            {
+              "route": "dry-maintenance",
+              "doors": [
+                "stair"
+              ]
+            }
+          ],
+          "body_hits": [],
+          "shaft_hit": false,
+          "maintenance_hit": false,
+          "panel_overlap": false,
+          "clear_widths_mm": {
+            "bath": 450.0,
+            "stair": 0.0
+          },
+          "door_occupancy_in_tea_finish_sqm": 0.0198
+        },
+        {
+          "states": {
+            "bath": "closed",
+            "stair": "open"
+          },
+          "panels": [
+            {
+              "door": "bath",
+              "leaf": 1,
+              "rect_mm": [
+                1100,
+                1980,
+                660,
+                45
+              ]
+            },
+            {
+              "door": "bath",
+              "leaf": 2,
+              "rect_mm": [
+                1670,
+                2065,
+                660,
+                45
+              ]
+            },
+            {
+              "door": "stair",
+              "leaf": 1,
+              "rect_mm": [
+                440,
+                3770,
+                660,
+                45
+              ]
+            },
+            {
+              "door": "stair",
+              "leaf": 2,
+              "rect_mm": [
+                440,
+                3855,
+                660,
+                45
+              ]
+            }
+          ],
+          "route_blockers": [
+            {
+              "route": "public-arrival",
+              "doors": [
+                "bath"
+              ]
+            },
+            {
+              "route": "public-shower-operation",
+              "doors": []
+            },
+            {
+              "route": "dry-maintenance",
+              "doors": []
+            }
+          ],
+          "body_hits": [],
+          "shaft_hit": false,
+          "maintenance_hit": false,
+          "panel_overlap": false,
+          "clear_widths_mm": {
+            "bath": 0.0,
+            "stair": 900.0
+          },
+          "door_occupancy_in_tea_finish_sqm": 0.0198
+        },
+        {
+          "states": {
+            "bath": "closed",
+            "stair": "half"
+          },
+          "panels": [
+            {
+              "door": "bath",
+              "leaf": 1,
+              "rect_mm": [
+                1100,
+                1980,
+                660,
+                45
+              ]
+            },
+            {
+              "door": "bath",
+              "leaf": 2,
+              "rect_mm": [
+                1670,
+                2065,
+                660,
+                45
+              ]
+            },
+            {
+              "door": "stair",
+              "leaf": 1,
+              "rect_mm": [
+                770.0,
+                3770,
+                660,
+                45
+              ]
+            },
+            {
+              "door": "stair",
+              "leaf": 2,
+              "rect_mm": [
+                1055.0,
+                3855,
+                660,
+                45
+              ]
+            }
+          ],
+          "route_blockers": [
+            {
+              "route": "public-arrival",
+              "doors": [
+                "bath",
+                "stair"
+              ]
+            },
+            {
+              "route": "public-shower-operation",
+              "doors": []
+            },
+            {
+              "route": "dry-maintenance",
+              "doors": [
+                "stair"
+              ]
+            }
+          ],
+          "body_hits": [],
+          "shaft_hit": false,
+          "maintenance_hit": false,
+          "panel_overlap": false,
+          "clear_widths_mm": {
+            "bath": 0.0,
+            "stair": 450.0
+          },
+          "door_occupancy_in_tea_finish_sqm": 0.0198
+        },
+        {
+          "states": {
+            "bath": "closed",
+            "stair": "closed"
+          },
+          "panels": [
+            {
+              "door": "bath",
+              "leaf": 1,
+              "rect_mm": [
+                1100,
+                1980,
+                660,
+                45
+              ]
+            },
+            {
+              "door": "bath",
+              "leaf": 2,
+              "rect_mm": [
+                1670,
+                2065,
+                660,
+                45
+              ]
+            },
+            {
+              "door": "stair",
+              "leaf": 1,
+              "rect_mm": [
+                1100,
+                3770,
+                660,
+                45
+              ]
+            },
+            {
+              "door": "stair",
+              "leaf": 2,
+              "rect_mm": [
+                1670,
+                3855,
+                660,
+                45
+              ]
+            }
+          ],
+          "route_blockers": [
+            {
+              "route": "public-arrival",
+              "doors": [
+                "bath",
+                "stair"
+              ]
+            },
+            {
+              "route": "public-shower-operation",
+              "doors": []
+            },
+            {
+              "route": "dry-maintenance",
+              "doors": [
+                "stair"
+              ]
+            }
+          ],
+          "body_hits": [],
+          "shaft_hit": false,
+          "maintenance_hit": false,
+          "panel_overlap": false,
+          "clear_widths_mm": {
+            "bath": 0.0,
+            "stair": 0.0
+          },
+          "door_occupancy_in_tea_finish_sqm": 0.0198
+        }
+      ],
+      "dry_maintenance_mm": [
+        115,
+        2180,
+        700,
+        900
+      ],
+      "maintenance_inside_tea_finish": true,
+      "maintenance_body_hits": [],
+      "maintenance_shaft_overlap": false,
+      "door_axis_over_toilet_body": false,
+      "sliders_product_fire_smoke_rescue_and_actual_clear": "unknown",
+      "full_panel_translation": {
+        "envelopes": [
+          {
+            "door": "bath",
+            "rect_mm": [
+              1100,
+              1980,
+              1890,
+              45
+            ]
+          },
+          {
+            "door": "bath",
+            "rect_mm": [
+              1670,
+              2065,
+              1320,
+              45
+            ]
+          },
+          {
+            "door": "stair",
+            "rect_mm": [
+              440,
+              3770,
+              1320,
+              45
+            ]
+          },
+          {
+            "door": "stair",
+            "rect_mm": [
+              440,
+              3855,
+              1890,
+              45
+            ]
+          }
+        ],
+        "body_hits": [],
+        "shaft_hit": false,
+        "maintenance_hit": false,
+        "outside_nominal_front_enclosure": false
+      },
+      "shared_shaft_within_enclosure_and_straddles_both_rooms": true,
+      "fixed_body_clearance_to_parked_panels_mm": {},
+      "fixed_body_clearance_to_full_panel_translation_mm": {},
+      "counter_operation_and_passage_simultaneous": false
+    },
+    "area_ledger": {
+      "unique_physical_shaft_count_per_floor": 1,
+      "room_references": 2,
+      "gross_reserved_shaft_sqm": 0.16,
+      "finish_losses_sqm": {
+        "public-bath": 0.034,
+        "tea-foyer": 0.034
+      },
+      "already_excluded_partition_budget_sqm": 0.092,
+      "not_a_statutory_area_method": true,
+      "areas115_sqm": {
+        "stair": 10.7849,
+        "quiet-living": 29.2948,
+        "dry-protection": 2.466,
+        "public-bath": 5.286,
+        "front-open": 9.175,
+        "tea-foyer": 5.1036,
+        "guest": 15.5156,
+        "ktv-study": 14.3141
+      },
+      "tea_after_worst_modeled_door_occupancy_sqm": 5.0838,
+      "full_panel_translation_reserved_in_tea_finish_sqm": 0.0396,
+      "tea_after_reserved_full_door_travel_sqm": 5.064
+    },
+    "unchanged_rooms_hash": "107f88bd8af9c956e97b0fa8e079defdd26f6fd81b55e804a077bb1f72f4c702"
+  },
+  "rear_service_sliders": [
+    {
+      "id": "bath",
+      "label": "公衛雙扇右疊候選",
+      "a": [
+        1150,
+        1980
+      ],
+      "b": [
+        2280,
+        1980
+      ],
+      "leaf_width_mm": 660,
+      "leaf_thickness_mm": 45,
+      "track_gap_mm": 40,
+      "track_y_mm": [
+        1980,
+        2065
+      ],
+      "closed_x_mm": [
+        1100,
+        1670
+      ],
+      "park_x_mm": [
+        2330,
+        2330
+      ],
+      "frame_budget_each_mm": 115,
+      "clear_target_mm": 900
+    },
+    {
+      "id": "stair",
+      "label": "梯廳／前室雙扇左疊候選",
+      "a": [
+        1150,
+        3900
+      ],
+      "b": [
+        2280,
+        3900
+      ],
+      "leaf_width_mm": 660,
+      "leaf_thickness_mm": 45,
+      "track_gap_mm": 40,
+      "track_y_mm": [
+        3770,
+        3855
+      ],
+      "closed_x_mm": [
+        1100,
+        1670
+      ],
+      "park_x_mm": [
+        440,
+        440
+      ],
+      "frame_budget_each_mm": 115,
+      "clear_target_mm": 900
+    }
+  ],
+  "front_option": {
+    "id": "floor-3",
+    "rooms": [
+      {
+        "id": "stair",
+        "label": "原同軸樓梯／平台，未改本體",
+        "polygon_mm": [
+          [
+            2400.0,
+            3900.0
+          ],
+          [
+            2400.0,
+            9100.0
+          ],
+          [
+            0.0,
+            9100.0
+          ],
+          [
+            0.0,
+            3900.0
+          ]
+        ],
+        "kind": "dry",
+        "items": [],
+        "shafts_mm": [],
+        "doors": [],
+        "windows_mm": []
+      },
+      {
+        "id": "quiet-living",
+        "label": "安靜起居／閱讀，禁睡及高活動",
+        "polygon_mm": [
+          [
+            6000.0,
+            3900.0
+          ],
+          [
+            2400.0,
+            3900.0
+          ],
+          [
+            2400.0,
+            9100.0
+          ],
+          [
+            0.0,
+            9100.0
+          ],
+          [
+            0.0,
+            11370.0
+          ],
+          [
+            6000.0,
+            11370.0
+          ],
+          [
+            6000.0,
+            9100.0
+          ]
+        ],
+        "kind": "dry",
+        "items": [
+          {
+            "id": "sofa",
+            "label": "原1800×900沙發",
+            "rect_mm": [
+              4950,
+              5700,
+              900,
+              1800
+            ],
+            "operation_mm": [
+              4250,
+              5700,
+              700,
+              1800
+            ]
+          },
+          {
+            "id": "table",
+            "label": "原1100×600茶几",
+            "rect_mm": [
+              3600,
+              6050,
+              600,
+              1100
+            ]
+          },
+          {
+            "id": "tv",
+            "label": "原1000×80電視",
+            "rect_mm": [
+              2550,
+              6200,
+              80,
+              1000
+            ]
+          }
+        ],
+        "shafts_mm": [],
+        "doors": [],
+        "windows_mm": []
+      },
+      {
+        "id": "dry-protection",
+        "label": "獨立乾保護室，禁床／濕管設備",
+        "polygon_mm": [
+          [
+            4670.0,
+            11370.0
+          ],
+          [
+            4670.0,
+            12970.0
+          ],
+          [
+            2640.0,
+            12970.0
+          ],
+          [
+            2640.0,
+            11370.0
+          ]
+        ],
+        "kind": "dry",
+        "items": [],
+        "shafts_mm": [],
+        "doors": [
+          {
+            "a": [
+              2850,
+              11370
+            ],
+            "b": [
+              3980,
+              11370
+            ],
+            "hinge": "left",
+            "opens": "inside",
+            "swing_rect_mm": [
+              2850,
+              11370,
+              1130,
+              1130
+            ]
+          }
+        ],
+        "windows_mm": []
+      },
+      {
+        "id": "front-entertainment",
+        "label": "前側娛樂／隔音空間候選",
+        "polygon_mm": [
+          [
+            6000.0,
+            0.0
+          ],
+          [
+            6000.0,
+            3900.0
+          ],
+          [
+            0.0,
+            3900.0
+          ],
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "kind": "high-activity",
+        "items": [
+          {
+            "id": "sofa",
+            "label": "原1800×900候選沙發",
+            "rect_mm": [
+              3000,
+              2600,
+              1800,
+              900
+            ],
+            "operation_mm": [
+              3000,
+              1900,
+              1800,
+              700
+            ]
+          },
+          {
+            "id": "table",
+            "label": "原1200×600候選桌",
+            "rect_mm": [
+              3300,
+              1200,
+              1200,
+              600
+            ]
+          },
+          {
+            "id": "tv",
+            "label": "原1000×80螢幕候選／前牆",
+            "rect_mm": [
+              3500,
+              215,
+              1000,
+              80
+            ]
+          }
+        ],
+        "shafts_mm": [
+          [
+            115,
+            1780,
+            400,
+            400
+          ]
+        ],
+        "doors": [
+          {
+            "a": [
+              1150,
+              3900
+            ],
+            "b": [
+              2280,
+              3900
+            ],
+            "hinge": "right",
+            "opens": "inside"
+          }
+        ],
+        "windows_mm": [
+          [
+            2050,
+            0,
+            1000,
+            0
+          ]
+        ]
+      },
+      {
+        "id": "guest",
+        "label": "後客房／偏位入口",
+        "polygon_mm": [
+          [
+            2400.0,
+            13500.0
+          ],
+          [
+            0.0,
+            13500.0
+          ],
+          [
+            0.0,
+            14100.0
+          ],
+          [
+            0.0,
+            17630.0
+          ],
+          [
+            3600.0,
+            17630.0
+          ],
+          [
+            3600.0,
+            14100.0
+          ],
+          [
+            2400.0,
+            14100.0
+          ]
+        ],
+        "kind": "bedroom",
+        "items": [
+          {
+            "id": "bed",
+            "label": "原1800×2000客床轉向／床頭靠左",
+            "rect_mm": [
+              150,
+              15550,
+              2000,
+              1800
+            ]
+          },
+          {
+            "id": "wardrobe",
+            "label": "原1800×600櫃轉向",
+            "rect_mm": [
+              115,
+              13615,
+              600,
+              1800
+            ],
+            "operation_mm": [
+              715,
+              13615,
+              700,
+              1800
+            ]
+          }
+        ],
+        "shafts_mm": [],
+        "doors": [],
+        "windows_mm": [
+          [
+            250,
+            17630,
+            2400,
+            0
+          ]
+        ]
+      },
+      {
+        "id": "rear-bath",
+        "label": "後側有窗公衛候選／對齊2F套衛",
+        "polygon_mm": [
+          [
+            6000.0,
+            14500.0
+          ],
+          [
+            6000.0,
+            17630.0
+          ],
+          [
+            3600.0,
+            17630.0
+          ],
+          [
+            3600.0,
+            14500.0
+          ]
+        ],
+        "kind": "wet",
+        "items": [
+          {
+            "id": "basin",
+            "label": "原600×450面盆轉右牆",
+            "rect_mm": [
+              5435,
+              14615,
+              450,
+              600
+            ],
+            "operation_mm": [
+              4735,
+              14615,
+              700,
+              600
+            ]
+          },
+          {
+            "id": "toilet",
+            "label": "原450×700馬桶轉向左牆",
+            "rect_mm": [
+              3715,
+              14615,
+              700,
+              450
+            ],
+            "operation_mm": [
+              4415,
+              14615,
+              700,
+              450
+            ]
+          },
+          {
+            "id": "shower",
+            "label": "原900×900淋浴",
+            "rect_mm": [
+              4985,
+              16615,
+              900,
+              900
+            ],
+            "operation_mm": [
+              4285,
+              16615,
+              700,
+              900
+            ]
+          }
+        ],
+        "shafts_mm": [
+          [
+            5485,
+            15700,
+            400,
+            400
+          ]
+        ],
+        "doors": [],
+        "windows_mm": [
+          [
+            4750,
+            17630,
+            900,
+            0
+          ]
+        ]
+      },
+      {
+        "id": "working-court",
+        "label": "需RF開口的工作天井候選",
+        "polygon_mm": [
+          [
+            2400.0,
+            11370.0
+          ],
+          [
+            2400.0,
+            13500.0
+          ],
+          [
+            0.0,
+            13500.0
+          ],
+          [
+            0.0,
+            11370.0
+          ]
+        ],
+        "kind": "wet",
+        "items": [],
+        "shafts_mm": [],
+        "doors": [
+          {
+            "a": [
+              1150,
+              11370
+            ],
+            "b": [
+              2280,
+              11370
+            ],
+            "hinge": "left",
+            "opens": "inside"
+          }
+        ],
+        "windows_mm": [],
+        "outdoor_status": "requires-new-RF-void-not-approved-work-balcony"
+      },
+      {
+        "id": "rear-access",
+        "label": "公共到達／不重算房間面積",
+        "polygon_mm": [
+          [
+            6000.0,
+            11370.0
+          ],
+          [
+            4670.0,
+            11370.0
+          ],
+          [
+            4670.0,
+            12970.0
+          ],
+          [
+            2640.0,
+            12970.0
+          ],
+          [
+            2640.0,
+            11370.0
+          ],
+          [
+            2400.0,
+            11370.0
+          ],
+          [
+            2400.0,
+            13500.0
+          ],
+          [
+            2400.0,
+            14100.0
+          ],
+          [
+            3600.0,
+            14100.0
+          ],
+          [
+            3600.0,
+            14500.0
+          ],
+          [
+            6000.0,
+            14500.0
+          ]
+        ],
+        "kind": "dry",
+        "items": [],
+        "shafts_mm": [],
+        "doors": [],
+        "windows_mm": []
+      }
+    ],
+    "areas": [
+      {
+        "id": "stair",
+        "label": "原同軸樓梯／平台，未改本體",
+        "nominal_sqm": 12.48,
+        "cases": [
+          {
+            "inset_each_mm": 80,
+            "outline_sqm": 11.2896,
+            "after_reserved_shafts_screens_sqm": 11.2896
+          },
+          {
+            "inset_each_mm": 115,
+            "outline_sqm": 10.7849,
+            "after_reserved_shafts_screens_sqm": 10.7849
+          },
+          {
+            "inset_each_mm": 150,
+            "outline_sqm": 10.29,
+            "after_reserved_shafts_screens_sqm": 10.29
+          }
+        ],
+        "net115_sqm": 10.7849
+      },
+      {
+        "id": "quiet-living",
+        "label": "安靜起居／閱讀，禁睡及高活動",
+        "nominal_sqm": 32.34,
+        "cases": [
+          {
+            "inset_each_mm": 80,
+            "outline_sqm": 30.2104,
+            "after_reserved_shafts_screens_sqm": 30.2104
+          },
+          {
+            "inset_each_mm": 115,
+            "outline_sqm": 29.2948,
+            "after_reserved_shafts_screens_sqm": 29.2948
+          },
+          {
+            "inset_each_mm": 150,
+            "outline_sqm": 28.389,
+            "after_reserved_shafts_screens_sqm": 28.389
+          }
+        ],
+        "net115_sqm": 29.2948
+      },
+      {
+        "id": "dry-protection",
+        "label": "獨立乾保護室，禁床／濕管設備",
+        "nominal_sqm": 3.248,
+        "cases": [
+          {
+            "inset_each_mm": 80,
+            "outline_sqm": 2.6928,
+            "after_reserved_shafts_screens_sqm": 2.6928
+          },
+          {
+            "inset_each_mm": 115,
+            "outline_sqm": 2.466,
+            "after_reserved_shafts_screens_sqm": 2.466
+          },
+          {
+            "inset_each_mm": 150,
+            "outline_sqm": 2.249,
+            "after_reserved_shafts_screens_sqm": 2.249
+          }
+        ],
+        "net115_sqm": 2.466
+      },
+      {
+        "id": "front-entertainment",
+        "label": "前側娛樂／隔音空間候選",
+        "nominal_sqm": 23.4,
+        "cases": [
+          {
+            "inset_each_mm": 80,
+            "outline_sqm": 21.8416,
+            "after_reserved_shafts_screens_sqm": 21.6816
+          },
+          {
+            "inset_each_mm": 115,
+            "outline_sqm": 21.1759,
+            "after_reserved_shafts_screens_sqm": 21.0159
+          },
+          {
+            "inset_each_mm": 150,
+            "outline_sqm": 20.52,
+            "after_reserved_shafts_screens_sqm": 20.374
+          }
+        ],
+        "net115_sqm": 21.0159
+      },
+      {
+        "id": "guest",
+        "label": "後客房／偏位入口",
+        "nominal_sqm": 14.148,
+        "cases": [
+          {
+            "inset_each_mm": 80,
+            "outline_sqm": 12.9368,
+            "after_reserved_shafts_screens_sqm": 12.9368
+          },
+          {
+            "inset_each_mm": 115,
+            "outline_sqm": 12.423,
+            "after_reserved_shafts_screens_sqm": 12.423
+          },
+          {
+            "inset_each_mm": 150,
+            "outline_sqm": 11.919,
+            "after_reserved_shafts_screens_sqm": 11.919
+          }
+        ],
+        "net115_sqm": 12.423
+      },
+      {
+        "id": "rear-bath",
+        "label": "後側有窗公衛候選／對齊2F套衛",
+        "nominal_sqm": 7.512,
+        "cases": [
+          {
+            "inset_each_mm": 80,
+            "outline_sqm": 6.6528,
+            "after_reserved_shafts_screens_sqm": 6.4928
+          },
+          {
+            "inset_each_mm": 115,
+            "outline_sqm": 6.293,
+            "after_reserved_shafts_screens_sqm": 6.133
+          },
+          {
+            "inset_each_mm": 150,
+            "outline_sqm": 5.943,
+            "after_reserved_shafts_screens_sqm": 5.797
+          }
+        ],
+        "net115_sqm": 6.133
+      },
+      {
+        "id": "working-court",
+        "label": "需RF開口的工作天井候選",
+        "nominal_sqm": 5.112,
+        "cases": [
+          {
+            "inset_each_mm": 80,
+            "outline_sqm": 4.4128,
+            "after_reserved_shafts_screens_sqm": 4.4128
+          },
+          {
+            "inset_each_mm": 115,
+            "outline_sqm": 4.123,
+            "after_reserved_shafts_screens_sqm": 4.123
+          },
+          {
+            "inset_each_mm": 150,
+            "outline_sqm": 3.843,
+            "after_reserved_shafts_screens_sqm": 3.843
+          }
+        ],
+        "net115_sqm": 4.123
+      },
+      {
+        "id": "rear-access",
+        "label": "公共到達／不重算房間面積",
+        "nominal_sqm": 7.54,
+        "cases": [
+          {
+            "inset_each_mm": 80,
+            "outline_sqm": 6.2328,
+            "after_reserved_shafts_screens_sqm": 6.2328
+          },
+          {
+            "inset_each_mm": 115,
+            "outline_sqm": 5.677,
+            "after_reserved_shafts_screens_sqm": 5.677
+          },
+          {
+            "inset_each_mm": 150,
+            "outline_sqm": 5.227,
+            "after_reserved_shafts_screens_sqm": 5.227
+          }
+        ],
+        "net115_sqm": 5.677
+      }
+    ],
+    "partition": {
+      "overlaps": [],
+      "unallocated_sqm": 0.0,
+      "outside_frame_sqm": 0.0
+    },
+    "fixtures": {
+      "body_hits": [],
+      "operation_body_hits": [],
+      "operation_shared": [
+        {
+          "a": "rear-bath:basin",
+          "b": "rear-bath:toilet",
+          "sqm": 0.171
+        }
+      ],
+      "not_inside_115": [],
+      "shaft_body_hits": [],
+      "shaft_operation_hits": [],
+      "fully_open_door_body_hits": [],
+      "sampled_swing_body_hits": []
+    },
+    "routes": [],
+    "religious_projection": [
+      {
+        "room": "front-entertainment",
+        "kind": "high-activity",
+        "over_shrine_or_backing_sqm": 0.0,
+        "over_palanquin_sqm": 0.0,
+        "prohibited_overlap": false,
+        "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+      },
+      {
+        "room": "guest",
+        "kind": "bedroom",
+        "over_shrine_or_backing_sqm": 0.0,
+        "over_palanquin_sqm": 10.4229,
+        "prohibited_overlap": false,
+        "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+      },
+      {
+        "room": "rear-bath",
+        "kind": "wet",
+        "over_shrine_or_backing_sqm": 0.0,
+        "over_palanquin_sqm": 0.0,
+        "prohibited_overlap": false,
+        "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+      },
+      {
+        "room": "working-court",
+        "kind": "wet",
+        "over_shrine_or_backing_sqm": 0.0,
+        "over_palanquin_sqm": 0.0,
+        "prohibited_overlap": false,
+        "family_rule_scope": "explicit-footprints-only-no-religious-certification"
+      }
+    ],
+    "windows": [
+      {
+        "room": "front-entertainment",
+        "rect_mm": [
+          2050,
+          0,
+          1000,
+          0
+        ],
+        "on_room_boundary": true,
+        "legal_effective_opening": "unknown",
+        "side_boundary_assumed_open": false
+      },
+      {
+        "room": "guest",
+        "rect_mm": [
+          250,
+          17630,
+          2400,
+          0
+        ],
+        "on_room_boundary": true,
+        "legal_effective_opening": "unknown",
+        "side_boundary_assumed_open": false
+      },
+      {
+        "room": "rear-bath",
+        "rect_mm": [
+          4750,
+          17630,
+          900,
+          0
+        ],
+        "on_room_boundary": true,
+        "legal_effective_opening": "unknown",
+        "side_boundary_assumed_open": false
+      }
+    ],
+    "bedroom_largest_axis_rect": {
+      "guest": {
+        "rect_mm": [
+          115.0,
+          14215.0,
+          3370.0,
+          3300.0
+        ],
+        "area_sqm": 11.121,
+        "method": "orthogonal-vertex-grid-enumeration"
+      }
+    },
+    "explicit_routes": [
+      {
+        "id": "front-entertainment",
+        "width_mm": 700,
+        "points_mm": [
+          [
+            1715,
+            4400
+          ],
+          [
+            1715,
+            2250
+          ],
+          [
+            3500,
+            2250
+          ]
+        ],
+        "expected_door": "front",
+        "within_model_floor": true,
+        "outside_sqm": 0.0,
+        "fixed_hits": [],
+        "shaft_hits": [],
+        "operation_shared": [
+          "front-entertainment:sofa"
+        ],
+        "actual_person_motion_and_door_clear": "unknown"
+      },
+      {
+        "id": "guest-arrival",
+        "width_mm": 700,
+        "points_mm": [
+          [
+            5335,
+            10800
+          ],
+          [
+            5335,
+            12270
+          ],
+          [
+            5335,
+            13535
+          ],
+          [
+            2985,
+            13535
+          ],
+          [
+            2985,
+            15100
+          ],
+          [
+            2600,
+            15100
+          ],
+          [
+            2600,
+            16450
+          ]
+        ],
+        "expected_door": "guest",
+        "within_model_floor": true,
+        "outside_sqm": 0.0,
+        "fixed_hits": [],
+        "shaft_hits": [],
+        "operation_shared": [],
+        "actual_person_motion_and_door_clear": "unknown"
+      },
+      {
+        "id": "guest-wardrobe",
+        "width_mm": 700,
+        "points_mm": [
+          [
+            2985,
+            15100
+          ],
+          [
+            1800,
+            15100
+          ],
+          [
+            1800,
+            15065
+          ],
+          [
+            1065,
+            15065
+          ]
+        ],
+        "expected_door": null,
+        "within_model_floor": true,
+        "outside_sqm": 0.0,
+        "fixed_hits": [],
+        "shaft_hits": [],
+        "operation_shared": [
+          "guest:wardrobe"
+        ],
+        "actual_person_motion_and_door_clear": "unknown"
+      },
+      {
+        "id": "rear-public-bath",
+        "width_mm": 700,
+        "points_mm": [
+          [
+            5335,
+            10800
+          ],
+          [
+            5335,
+            13935
+          ],
+          [
+            5000,
+            13935
+          ],
+          [
+            5000,
+            15325
+          ]
+        ],
+        "expected_door": "bath",
+        "within_model_floor": true,
+        "outside_sqm": 0.0,
+        "fixed_hits": [],
+        "shaft_hits": [],
+        "operation_shared": [
+          "rear-bath:basin",
+          "rear-bath:toilet"
+        ],
+        "actual_person_motion_and_door_clear": "unknown"
+      },
+      {
+        "id": "shower-operation",
+        "width_mm": 700,
+        "points_mm": [
+          [
+            5000,
+            15325
+          ],
+          [
+            5000,
+            16265
+          ],
+          [
+            4635,
+            16265
+          ],
+          [
+            4635,
+            17065
+          ]
+        ],
+        "expected_door": null,
+        "within_model_floor": true,
+        "outside_sqm": 0.0,
+        "fixed_hits": [],
+        "shaft_hits": [],
+        "operation_shared": [
+          "rear-bath:basin",
+          "rear-bath:toilet",
+          "rear-bath:shower"
+        ],
+        "actual_person_motion_and_door_clear": "unknown"
+      },
+      {
+        "id": "public-to-working-court",
+        "width_mm": 700,
+        "points_mm": [
+          [
+            1715,
+            10800
+          ],
+          [
+            1715,
+            12800
+          ]
+        ],
+        "expected_door": "court",
+        "within_model_floor": true,
+        "outside_sqm": 0.0,
+        "fixed_hits": [],
+        "shaft_hits": [],
+        "operation_shared": [],
+        "actual_person_motion_and_door_clear": "unknown"
+      }
+    ],
+    "independent_door_states": [
+      {
+        "states": {
+          "front": "open",
+          "guest": "open",
+          "bath": "open",
+          "court": "open"
+        },
+        "route_blockers": {
+          "front-entertainment": [],
+          "guest-arrival": [],
+          "guest-wardrobe": [],
+          "rear-public-bath": [],
+          "shower-operation": [],
+          "public-to-working-court": []
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "open",
+          "guest": "open",
+          "bath": "open",
+          "court": "half"
+        },
+        "route_blockers": {
+          "front-entertainment": [],
+          "guest-arrival": [],
+          "guest-wardrobe": [],
+          "rear-public-bath": [],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "open",
+          "guest": "open",
+          "bath": "open",
+          "court": "closed"
+        },
+        "route_blockers": {
+          "front-entertainment": [],
+          "guest-arrival": [],
+          "guest-wardrobe": [],
+          "rear-public-bath": [],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "open",
+          "guest": "open",
+          "bath": "half",
+          "court": "open"
+        },
+        "route_blockers": {
+          "front-entertainment": [],
+          "guest-arrival": [],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": []
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "open",
+          "guest": "open",
+          "bath": "half",
+          "court": "half"
+        },
+        "route_blockers": {
+          "front-entertainment": [],
+          "guest-arrival": [],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "open",
+          "guest": "open",
+          "bath": "half",
+          "court": "closed"
+        },
+        "route_blockers": {
+          "front-entertainment": [],
+          "guest-arrival": [],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "open",
+          "guest": "open",
+          "bath": "closed",
+          "court": "open"
+        },
+        "route_blockers": {
+          "front-entertainment": [],
+          "guest-arrival": [],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": []
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "open",
+          "guest": "open",
+          "bath": "closed",
+          "court": "half"
+        },
+        "route_blockers": {
+          "front-entertainment": [],
+          "guest-arrival": [],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "open",
+          "guest": "open",
+          "bath": "closed",
+          "court": "closed"
+        },
+        "route_blockers": {
+          "front-entertainment": [],
+          "guest-arrival": [],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "open",
+          "guest": "half",
+          "bath": "open",
+          "court": "open"
+        },
+        "route_blockers": {
+          "front-entertainment": [],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [],
+          "shower-operation": [],
+          "public-to-working-court": []
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "open",
+          "guest": "half",
+          "bath": "open",
+          "court": "half"
+        },
+        "route_blockers": {
+          "front-entertainment": [],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "open",
+          "guest": "half",
+          "bath": "open",
+          "court": "closed"
+        },
+        "route_blockers": {
+          "front-entertainment": [],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "open",
+          "guest": "half",
+          "bath": "half",
+          "court": "open"
+        },
+        "route_blockers": {
+          "front-entertainment": [],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": []
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "open",
+          "guest": "half",
+          "bath": "half",
+          "court": "half"
+        },
+        "route_blockers": {
+          "front-entertainment": [],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "open",
+          "guest": "half",
+          "bath": "half",
+          "court": "closed"
+        },
+        "route_blockers": {
+          "front-entertainment": [],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "open",
+          "guest": "half",
+          "bath": "closed",
+          "court": "open"
+        },
+        "route_blockers": {
+          "front-entertainment": [],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": []
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "open",
+          "guest": "half",
+          "bath": "closed",
+          "court": "half"
+        },
+        "route_blockers": {
+          "front-entertainment": [],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "open",
+          "guest": "half",
+          "bath": "closed",
+          "court": "closed"
+        },
+        "route_blockers": {
+          "front-entertainment": [],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "open",
+          "guest": "closed",
+          "bath": "open",
+          "court": "open"
+        },
+        "route_blockers": {
+          "front-entertainment": [],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [],
+          "shower-operation": [],
+          "public-to-working-court": []
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "open",
+          "guest": "closed",
+          "bath": "open",
+          "court": "half"
+        },
+        "route_blockers": {
+          "front-entertainment": [],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "open",
+          "guest": "closed",
+          "bath": "open",
+          "court": "closed"
+        },
+        "route_blockers": {
+          "front-entertainment": [],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "open",
+          "guest": "closed",
+          "bath": "half",
+          "court": "open"
+        },
+        "route_blockers": {
+          "front-entertainment": [],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": []
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "open",
+          "guest": "closed",
+          "bath": "half",
+          "court": "half"
+        },
+        "route_blockers": {
+          "front-entertainment": [],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "open",
+          "guest": "closed",
+          "bath": "half",
+          "court": "closed"
+        },
+        "route_blockers": {
+          "front-entertainment": [],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "open",
+          "guest": "closed",
+          "bath": "closed",
+          "court": "open"
+        },
+        "route_blockers": {
+          "front-entertainment": [],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": []
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "open",
+          "guest": "closed",
+          "bath": "closed",
+          "court": "half"
+        },
+        "route_blockers": {
+          "front-entertainment": [],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "open",
+          "guest": "closed",
+          "bath": "closed",
+          "court": "closed"
+        },
+        "route_blockers": {
+          "front-entertainment": [],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "half",
+          "guest": "open",
+          "bath": "open",
+          "court": "open"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [],
+          "guest-wardrobe": [],
+          "rear-public-bath": [],
+          "shower-operation": [],
+          "public-to-working-court": []
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "half",
+          "guest": "open",
+          "bath": "open",
+          "court": "half"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [],
+          "guest-wardrobe": [],
+          "rear-public-bath": [],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "half",
+          "guest": "open",
+          "bath": "open",
+          "court": "closed"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [],
+          "guest-wardrobe": [],
+          "rear-public-bath": [],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "half",
+          "guest": "open",
+          "bath": "half",
+          "court": "open"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": []
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "half",
+          "guest": "open",
+          "bath": "half",
+          "court": "half"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "half",
+          "guest": "open",
+          "bath": "half",
+          "court": "closed"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "half",
+          "guest": "open",
+          "bath": "closed",
+          "court": "open"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": []
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "half",
+          "guest": "open",
+          "bath": "closed",
+          "court": "half"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "half",
+          "guest": "open",
+          "bath": "closed",
+          "court": "closed"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "half",
+          "guest": "half",
+          "bath": "open",
+          "court": "open"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [],
+          "shower-operation": [],
+          "public-to-working-court": []
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "half",
+          "guest": "half",
+          "bath": "open",
+          "court": "half"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "half",
+          "guest": "half",
+          "bath": "open",
+          "court": "closed"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "half",
+          "guest": "half",
+          "bath": "half",
+          "court": "open"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": []
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "half",
+          "guest": "half",
+          "bath": "half",
+          "court": "half"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "half",
+          "guest": "half",
+          "bath": "half",
+          "court": "closed"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "half",
+          "guest": "half",
+          "bath": "closed",
+          "court": "open"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": []
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "half",
+          "guest": "half",
+          "bath": "closed",
+          "court": "half"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "half",
+          "guest": "half",
+          "bath": "closed",
+          "court": "closed"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "half",
+          "guest": "closed",
+          "bath": "open",
+          "court": "open"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [],
+          "shower-operation": [],
+          "public-to-working-court": []
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "half",
+          "guest": "closed",
+          "bath": "open",
+          "court": "half"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "half",
+          "guest": "closed",
+          "bath": "open",
+          "court": "closed"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "half",
+          "guest": "closed",
+          "bath": "half",
+          "court": "open"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": []
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "half",
+          "guest": "closed",
+          "bath": "half",
+          "court": "half"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "half",
+          "guest": "closed",
+          "bath": "half",
+          "court": "closed"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "half",
+          "guest": "closed",
+          "bath": "closed",
+          "court": "open"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": []
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "half",
+          "guest": "closed",
+          "bath": "closed",
+          "court": "half"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "half",
+          "guest": "closed",
+          "bath": "closed",
+          "court": "closed"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "closed",
+          "guest": "open",
+          "bath": "open",
+          "court": "open"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [],
+          "guest-wardrobe": [],
+          "rear-public-bath": [],
+          "shower-operation": [],
+          "public-to-working-court": []
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "closed",
+          "guest": "open",
+          "bath": "open",
+          "court": "half"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [],
+          "guest-wardrobe": [],
+          "rear-public-bath": [],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "closed",
+          "guest": "open",
+          "bath": "open",
+          "court": "closed"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [],
+          "guest-wardrobe": [],
+          "rear-public-bath": [],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "closed",
+          "guest": "open",
+          "bath": "half",
+          "court": "open"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": []
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "closed",
+          "guest": "open",
+          "bath": "half",
+          "court": "half"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "closed",
+          "guest": "open",
+          "bath": "half",
+          "court": "closed"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "closed",
+          "guest": "open",
+          "bath": "closed",
+          "court": "open"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": []
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "closed",
+          "guest": "open",
+          "bath": "closed",
+          "court": "half"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "closed",
+          "guest": "open",
+          "bath": "closed",
+          "court": "closed"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "closed",
+          "guest": "half",
+          "bath": "open",
+          "court": "open"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [],
+          "shower-operation": [],
+          "public-to-working-court": []
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "closed",
+          "guest": "half",
+          "bath": "open",
+          "court": "half"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "closed",
+          "guest": "half",
+          "bath": "open",
+          "court": "closed"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "closed",
+          "guest": "half",
+          "bath": "half",
+          "court": "open"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": []
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "closed",
+          "guest": "half",
+          "bath": "half",
+          "court": "half"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "closed",
+          "guest": "half",
+          "bath": "half",
+          "court": "closed"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "closed",
+          "guest": "half",
+          "bath": "closed",
+          "court": "open"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": []
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "closed",
+          "guest": "half",
+          "bath": "closed",
+          "court": "half"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "closed",
+          "guest": "half",
+          "bath": "closed",
+          "court": "closed"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "closed",
+          "guest": "closed",
+          "bath": "open",
+          "court": "open"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [],
+          "shower-operation": [],
+          "public-to-working-court": []
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "closed",
+          "guest": "closed",
+          "bath": "open",
+          "court": "half"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "closed",
+          "guest": "closed",
+          "bath": "open",
+          "court": "closed"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "closed",
+          "guest": "closed",
+          "bath": "half",
+          "court": "open"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": []
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "closed",
+          "guest": "closed",
+          "bath": "half",
+          "court": "half"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "closed",
+          "guest": "closed",
+          "bath": "half",
+          "court": "closed"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "closed",
+          "guest": "closed",
+          "bath": "closed",
+          "court": "open"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": []
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "closed",
+          "guest": "closed",
+          "bath": "closed",
+          "court": "half"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      },
+      {
+        "states": {
+          "front": "closed",
+          "guest": "closed",
+          "bath": "closed",
+          "court": "closed"
+        },
+        "route_blockers": {
+          "front-entertainment": [
+            "front"
+          ],
+          "guest-arrival": [
+            "guest"
+          ],
+          "guest-wardrobe": [],
+          "rear-public-bath": [
+            "bath"
+          ],
+          "shower-operation": [],
+          "public-to-working-court": [
+            "court"
+          ]
+        },
+        "body_hits": [],
+        "shaft_hits": [],
+        "panel_pair_hits": []
+      }
+    ],
+    "slider_full_translation": [
+      {
+        "door": "guest",
+        "rect_mm": [
+          1710,
+          14215,
+          1320,
+          45
+        ],
+        "within_planning_frame": true,
+        "shaft_hits": [],
+        "fixed_hits": []
+      },
+      {
+        "door": "guest",
+        "rect_mm": [
+          1710,
+          14300,
+          1890,
+          45
+        ],
+        "within_planning_frame": true,
+        "shaft_hits": [],
+        "fixed_hits": []
+      },
+      {
+        "door": "bath",
+        "rect_mm": [
+          3725,
+          14355,
+          1320,
+          45
+        ],
+        "within_planning_frame": true,
+        "shaft_hits": [],
+        "fixed_hits": []
+      },
+      {
+        "door": "bath",
+        "rect_mm": [
+          3725,
+          14440,
+          1890,
+          45
+        ],
+        "within_planning_frame": true,
+        "shaft_hits": [],
+        "fixed_hits": []
+      }
+    ],
+    "quiet_to_rear_connection": {
+      "a": [
+        4770,
+        11370
+      ],
+      "b": [
+        5900,
+        11370
+      ],
+      "operation": "no-leaf-open-passage-candidate-fire-and-structure-pending"
+    },
+    "explicit_door_shapes": {
+      "open": [
+        {
+          "door": "front",
+          "polygon_mm": [
+            [
+              2327.5,
+              2770.0
+            ],
+            [
+              2232.5,
+              2770.0
+            ],
+            [
+              2232.5,
+              3900.0
+            ],
+            [
+              2327.5,
+              3900.0
+            ],
+            [
+              2327.5,
+              2770.0
+            ]
+          ]
+        },
+        {
+          "door": "court",
+          "polygon_mm": [
+            [
+              1102.5,
+              12500.0
+            ],
+            [
+              1197.5,
+              12500.0
+            ],
+            [
+              1197.5,
+              11370.0
+            ],
+            [
+              1102.5,
+              11370.0
+            ],
+            [
+              1102.5,
+              12500.0
+            ]
+          ]
+        },
+        {
+          "door": "guest",
+          "polygon_mm": [
+            [
+              2370.0,
+              14215.0
+            ],
+            [
+              2370.0,
+              14260.0
+            ],
+            [
+              1710.0,
+              14260.0
+            ],
+            [
+              1710.0,
+              14215.0
+            ],
+            [
+              2370.0,
+              14215.0
+            ]
+          ]
+        },
+        {
+          "door": "guest",
+          "polygon_mm": [
+            [
+              2370.0,
+              14300.0
+            ],
+            [
+              2370.0,
+              14345.0
+            ],
+            [
+              1710.0,
+              14345.0
+            ],
+            [
+              1710.0,
+              14300.0
+            ],
+            [
+              2370.0,
+              14300.0
+            ]
+          ]
+        },
+        {
+          "door": "bath",
+          "polygon_mm": [
+            [
+              4385.0,
+              14355.0
+            ],
+            [
+              4385.0,
+              14400.0
+            ],
+            [
+              3725.0,
+              14400.0
+            ],
+            [
+              3725.0,
+              14355.0
+            ],
+            [
+              4385.0,
+              14355.0
+            ]
+          ]
+        },
+        {
+          "door": "bath",
+          "polygon_mm": [
+            [
+              4385.0,
+              14440.0
+            ],
+            [
+              4385.0,
+              14485.0
+            ],
+            [
+              3725.0,
+              14485.0
+            ],
+            [
+              3725.0,
+              14440.0
+            ],
+            [
+              4385.0,
+              14440.0
+            ]
+          ]
+        }
+      ],
+      "half": [
+        {
+          "door": "front",
+          "polygon_mm": [
+            [
+              1514.5569093655622,
+              3067.38176515284
+            ],
+            [
+              1447.3817651528402,
+              3134.5569093655627
+            ],
+            [
+              2246.412427893639,
+              3933.587572106361
+            ],
+            [
+              2313.587572106361,
+              3866.412427893639
+            ],
+            [
+              1514.5569093655622,
+              3067.38176515284
+            ]
+          ]
+        },
+        {
+          "door": "court",
+          "polygon_mm": [
+            [
+              1915.4430906344378,
+              12202.61823484716
+            ],
+            [
+              1982.6182348471598,
+              12135.443090634439
+            ],
+            [
+              1183.587572106361,
+              11336.41242789364
+            ],
+            [
+              1116.412427893639,
+              11403.58757210636
+            ],
+            [
+              1915.4430906344378,
+              12202.61823484716
+            ]
+          ]
+        },
+        {
+          "door": "guest",
+          "polygon_mm": [
+            [
+              2700.0,
+              14215.0
+            ],
+            [
+              2700.0,
+              14260.0
+            ],
+            [
+              2040.0,
+              14260.0
+            ],
+            [
+              2040.0,
+              14215.0
+            ],
+            [
+              2700.0,
+              14215.0
+            ]
+          ]
+        },
+        {
+          "door": "guest",
+          "polygon_mm": [
+            [
+              2985.0,
+              14300.0
+            ],
+            [
+              2985.0,
+              14345.0
+            ],
+            [
+              2325.0,
+              14345.0
+            ],
+            [
+              2325.0,
+              14300.0
+            ],
+            [
+              2985.0,
+              14300.0
+            ]
+          ]
+        },
+        {
+          "door": "bath",
+          "polygon_mm": [
+            [
+              4715.0,
+              14355.0
+            ],
+            [
+              4715.0,
+              14400.0
+            ],
+            [
+              4055.0,
+              14400.0
+            ],
+            [
+              4055.0,
+              14355.0
+            ],
+            [
+              4715.0,
+              14355.0
+            ]
+          ]
+        },
+        {
+          "door": "bath",
+          "polygon_mm": [
+            [
+              5000.0,
+              14440.0
+            ],
+            [
+              5000.0,
+              14485.0
+            ],
+            [
+              4340.0,
+              14485.0
+            ],
+            [
+              4340.0,
+              14440.0
+            ],
+            [
+              5000.0,
+              14440.0
+            ]
+          ]
+        }
+      ],
+      "closed": [
+        {
+          "door": "front",
+          "polygon_mm": [
+            [
+              1150.0,
+              3852.5
+            ],
+            [
+              1150.0,
+              3947.5
+            ],
+            [
+              2280.0,
+              3947.5
+            ],
+            [
+              2280.0,
+              3852.5
+            ],
+            [
+              1150.0,
+              3852.5
+            ]
+          ]
+        },
+        {
+          "door": "court",
+          "polygon_mm": [
+            [
+              2280.0,
+              11417.5
+            ],
+            [
+              2280.0,
+              11322.5
+            ],
+            [
+              1150.0,
+              11322.5
+            ],
+            [
+              1150.0,
+              11417.5
+            ],
+            [
+              2280.0,
+              11417.5
+            ]
+          ]
+        },
+        {
+          "door": "guest",
+          "polygon_mm": [
+            [
+              3030.0,
+              14215.0
+            ],
+            [
+              3030.0,
+              14260.0
+            ],
+            [
+              2370.0,
+              14260.0
+            ],
+            [
+              2370.0,
+              14215.0
+            ],
+            [
+              3030.0,
+              14215.0
+            ]
+          ]
+        },
+        {
+          "door": "guest",
+          "polygon_mm": [
+            [
+              3600.0,
+              14300.0
+            ],
+            [
+              3600.0,
+              14345.0
+            ],
+            [
+              2940.0,
+              14345.0
+            ],
+            [
+              2940.0,
+              14300.0
+            ],
+            [
+              3600.0,
+              14300.0
+            ]
+          ]
+        },
+        {
+          "door": "bath",
+          "polygon_mm": [
+            [
+              5045.0,
+              14355.0
+            ],
+            [
+              5045.0,
+              14400.0
+            ],
+            [
+              4385.0,
+              14400.0
+            ],
+            [
+              4385.0,
+              14355.0
+            ],
+            [
+              5045.0,
+              14355.0
+            ]
+          ]
+        },
+        {
+          "door": "bath",
+          "polygon_mm": [
+            [
+              5615.0,
+              14440.0
+            ],
+            [
+              5615.0,
+              14485.0
+            ],
+            [
+              4955.0,
+              14485.0
+            ],
+            [
+              4955.0,
+              14440.0
+            ],
+            [
+              5615.0,
+              14440.0
+            ]
+          ]
+        }
+      ]
+    },
+    "rear_door_openings_on_room_boundary": {
+      "guest": true,
+      "bath": true
+    },
+    "primary_acoustic_inset_mm": 215,
+    "working_court_public_access_without_guest": true,
+    "front_entry_clear_width_in_primary_frame_budget_mm": 700,
+    "front_furniture_parts_outside_primary": [],
+    "stair_upstream_platform_and_original_side_door": "unknown-not-revalidated",
+    "ordinary_route_width_mm": 700
+  },
+  "acoustic_space": {
+    "cases": [
+      {
+        "option": "rear",
+        "extra_each_face_mm": 0,
+        "area_sqm": 14.3141,
+        "goal20_met_in_model": false,
+        "min14_met_in_model": true,
+        "unchanged_furniture_parts_outside": [],
+        "acoustic_performance": "unknown-not-dB-or-selected-construction"
+      },
+      {
+        "option": "rear",
+        "extra_each_face_mm": 50,
+        "area_sqm": 13.4541,
+        "goal20_met_in_model": false,
+        "min14_met_in_model": false,
+        "unchanged_furniture_parts_outside": [],
+        "acoustic_performance": "unknown-not-dB-or-selected-construction"
+      },
+      {
+        "option": "rear",
+        "extra_each_face_mm": 100,
+        "area_sqm": 12.6141,
+        "goal20_met_in_model": false,
+        "min14_met_in_model": false,
+        "unchanged_furniture_parts_outside": [
+          "tv:rect_mm"
+        ],
+        "acoustic_performance": "unknown-not-dB-or-selected-construction"
+      },
+      {
+        "option": "rear",
+        "extra_each_face_mm": 150,
+        "area_sqm": 11.7941,
+        "goal20_met_in_model": false,
+        "min14_met_in_model": false,
+        "unchanged_furniture_parts_outside": [
+          "sofa:rect_mm",
+          "tv:rect_mm"
+        ],
+        "acoustic_performance": "unknown-not-dB-or-selected-construction"
+      },
+      {
+        "option": "rear",
+        "extra_each_face_mm": 200,
+        "area_sqm": 10.9941,
+        "goal20_met_in_model": false,
+        "min14_met_in_model": false,
+        "unchanged_furniture_parts_outside": [
+          "sofa:rect_mm",
+          "tv:rect_mm"
+        ],
+        "acoustic_performance": "unknown-not-dB-or-selected-construction"
+      },
+      {
+        "option": "front",
+        "extra_each_face_mm": 0,
+        "area_sqm": 21.0159,
+        "goal20_met_in_model": true,
+        "min14_met_in_model": true,
+        "unchanged_furniture_parts_outside": [],
+        "acoustic_performance": "unknown-not-dB-or-selected-construction"
+      },
+      {
+        "option": "front",
+        "extra_each_face_mm": 50,
+        "area_sqm": 20.1019,
+        "goal20_met_in_model": true,
+        "min14_met_in_model": true,
+        "unchanged_furniture_parts_outside": [],
+        "acoustic_performance": "unknown-not-dB-or-selected-construction"
+      },
+      {
+        "option": "front",
+        "extra_each_face_mm": 100,
+        "area_sqm": 19.2079,
+        "goal20_met_in_model": false,
+        "min14_met_in_model": true,
+        "unchanged_furniture_parts_outside": [],
+        "acoustic_performance": "unknown-not-dB-or-selected-construction"
+      },
+      {
+        "option": "front",
+        "extra_each_face_mm": 150,
+        "area_sqm": 18.3339,
+        "goal20_met_in_model": false,
+        "min14_met_in_model": true,
+        "unchanged_furniture_parts_outside": [
+          "tv:rect_mm"
+        ],
+        "acoustic_performance": "unknown-not-dB-or-selected-construction"
+      },
+      {
+        "option": "front",
+        "extra_each_face_mm": 200,
+        "area_sqm": 17.4799,
+        "goal20_met_in_model": false,
+        "min14_met_in_model": true,
+        "unchanged_furniture_parts_outside": [
+          "tv:rect_mm"
+        ],
+        "acoustic_performance": "unknown-not-dB-or-selected-construction"
+      }
+    ],
+    "front_extra_each_face_limit_for20_in_this_area_model_mm": 55.64310722547727,
+    "limit_is_not_a_permitted_product_thickness_or_acoustic_spec": true,
+    "internal_shaft_lining_airlock_silencer_and_equipment_not_fully_budgeted": true,
+    "floor_ceiling_door_seals_vents_and_low_frequency_performance": "unknown"
+  },
+  "rf_overlay": {
+    "original_roof_reference_hash": "bf2b55182782666d37117ae0b0c551f8e95308cdc02e9e0364da473133682e63",
+    "existing_units": [
+      {
+        "id": "B-AC03",
+        "rect_mm": [
+          1420.0,
+          17180.0,
+          900,
+          350
+        ]
+      },
+      {
+        "id": "B-AC04",
+        "rect_mm": [
+          80.0,
+          17180.0,
+          900,
+          350
+        ]
+      }
+    ],
+    "candidate_slots": [
+      {
+        "id": "representative-slot-1",
+        "rect_mm": [
+          3270,
+          100,
+          900,
+          350
+        ],
+        "service_mm": [
+          3270,
+          100,
+          900,
+          1350
+        ],
+        "actual_unit_identity": null,
+        "new_unit_purchase_count": null
+      },
+      {
+        "id": "representative-slot-2",
+        "rect_mm": [
+          5020,
+          100,
+          900,
+          350
+        ],
+        "service_mm": [
+          5020,
+          100,
+          900,
+          1350
+        ],
+        "actual_unit_identity": null,
+        "new_unit_purchase_count": null
+      }
+    ],
+    "original_roof_reference_changed": false,
+    "proposed_roof_overlay_requires_change": true,
+    "void_mm": [
+      0,
+      11370,
+      2400,
+      2130
+    ],
+    "void_sqm": 5.112,
+    "guard_budget_mm": 100,
+    "guard_budget_is_not_selected_handrail": true,
+    "void_over_existing_service_zone_sqm": 5.112,
+    "straight_old_rear_access_interrupted": true,
+    "alternative_routes": [
+      {
+        "id": "front-slots",
+        "points_mm": [
+          [
+            2850,
+            4400
+          ],
+          [
+            5350,
+            4400
+          ],
+          [
+            5350,
+            1100
+          ],
+          [
+            3720,
+            1100
+          ]
+        ],
+        "width_mm": 700,
+        "within_roof_frame": true,
+        "void_or_guard_hit": false,
+        "unit_hits": [],
+        "scope": "starts-outside-RF-side-door-not-stair-or-whole-machine-transport-proof"
+      },
+      {
+        "id": "rear-right-unit",
+        "points_mm": [
+          [
+            2850,
+            4400
+          ],
+          [
+            5350,
+            4400
+          ],
+          [
+            5350,
+            14000
+          ],
+          [
+            1870,
+            14000
+          ],
+          [
+            1870,
+            16800
+          ]
+        ],
+        "width_mm": 700,
+        "within_roof_frame": true,
+        "void_or_guard_hit": false,
+        "unit_hits": [],
+        "scope": "starts-outside-RF-side-door-not-stair-or-whole-machine-transport-proof"
+      },
+      {
+        "id": "rear-left-unit",
+        "points_mm": [
+          [
+            2850,
+            4400
+          ],
+          [
+            5350,
+            4400
+          ],
+          [
+            5350,
+            14000
+          ],
+          [
+            530,
+            14000
+          ],
+          [
+            530,
+            16800
+          ]
+        ],
+        "width_mm": 700,
+        "within_roof_frame": true,
+        "void_or_guard_hit": false,
+        "unit_hits": [],
+        "scope": "starts-outside-RF-side-door-not-stair-or-whole-machine-transport-proof"
+      }
+    ],
+    "slots_protected_projection_sqm": 0.0,
+    "slots_body_pair_hits": [],
+    "void_unit_hits": [],
+    "requires_roof_replan_structural_opening_legal_outdoor_and_drainage": true,
+    "all_existing_or_future_roof_equipment_fitted": false,
+    "roof_finalized_or_changed_in_primary": false,
+    "refrigerant_condensate_structure_wind_and_acoustic_isolation": "unknown"
+  },
+  "original_3f_requirement_ledger": [
+    {
+      "id": "B.floor-3.flex_b",
+      "original_status": "candidate",
+      "target_sqm": 14.0,
+      "min_sqm": 10.0,
+      "modeled_value_sqm": 29.2948,
+      "target_met_in_area_model_only": true,
+      "functional_or_legal_requirement_verified": false,
+      "legacy_band_or_service_core_changed": false
+    },
+    {
+      "id": "B.floor-3.ktv",
+      "original_status": "candidate",
+      "target_sqm": 20.0,
+      "min_sqm": 14.0,
+      "modeled_value_sqm": 19.2079,
+      "target_met_in_area_model_only": false,
+      "functional_or_legal_requirement_verified": false,
+      "legacy_band_or_service_core_changed": false
+    },
+    {
+      "id": "B.floor-3.bath_b3",
+      "original_status": "candidate",
+      "target_sqm": 5.0,
+      "min_sqm": 3.2,
+      "modeled_value_sqm": 6.133,
+      "target_met_in_area_model_only": true,
+      "functional_or_legal_requirement_verified": false,
+      "legacy_band_or_service_core_changed": true
+    },
+    {
+      "id": "B.floor-3.guest_b",
+      "original_status": "candidate",
+      "target_sqm": 12.0,
+      "min_sqm": 9.0,
+      "modeled_value_sqm": 12.423,
+      "target_met_in_area_model_only": true,
+      "functional_or_legal_requirement_verified": false,
+      "legacy_band_or_service_core_changed": false
+    },
+    {
+      "id": "B.floor-3.balcony_b3",
+      "original_status": "candidate",
+      "target_sqm": 4.0,
+      "min_sqm": 2.5,
+      "modeled_value_sqm": 4.123,
+      "target_met_in_area_model_only": true,
+      "functional_or_legal_requirement_verified": false,
+      "legacy_band_or_service_core_changed": true
+    }
+  ],
+  "fixed_rear_optimistic_bound": {
+    "inset_mm": 115,
+    "includes_original_dry_protection_and_rear_shaft": true,
+    "ignores_new_guest_KTV_partition_corridor_and_acoustic_layers": true,
+    "usable_upper_bound_sqm": 31.0171,
+    "guest12_plus_KTV20_sqm": 32,
+    "short_of_two_targets_sqm": 0.9829,
+    "scope": "only-fixed-rear-and-this-wall-budget-not-a-global-impossibility-proof"
+  },
+  "vertical_projections": [
+    {
+      "room": "front-entertainment",
+      "over_2F_master_sqm": 0.0,
+      "over_2F_bed_body_sqm": 0.0
+    },
+    {
+      "room": "rear-bath",
+      "over_2F_master_sqm": 0.0,
+      "over_2F_bed_body_sqm": 0.0
+    },
+    {
+      "room": "working-court",
+      "over_2F_master_sqm": 5.112,
+      "over_2F_bed_body_sqm": 0.0
+    }
+  ],
+  "old_rear_entertainment_over_2F_master_sqm": 9.062,
+  "new_front_enclosed_nominal_sqm": 23.4,
+  "additional_enclosed_nominal_over_P3_sqm": 10.647,
+  "second_floor_reference_hash": "d1df5f7bbafda008beebe6ad6be85f420c598d7ff140886e5d7879ebd497cd62",
+  "ground_and_roof_controls": [
+    {
+      "id": "b-rear-split",
+      "source_states_hash": "9dcdc1260d1f166595d32d45cf70cd236ae888e6ff465e59c384896e3e10848f",
+      "roof_reference_hash": "bf2b55182782666d37117ae0b0c551f8e95308cdc02e9e0364da473133682e63"
+    },
+    {
+      "id": "b-front-split",
+      "source_states_hash": "276d6e4f3d202aefd296ac856aaf0e6180205a93fffb7ad9d3e268a66ba162fd",
+      "roof_reference_hash": "bf2b55182782666d37117ae0b0c551f8e95308cdc02e9e0364da473133682e63"
+    }
+  ],
+  "protected_controls_unchanged": 149,
+  "front_2F_pipe_shaft_retained_mm": [
+    115,
+    1780,
+    400,
+    400
+  ],
+  "P3_front_gravity_drainage_resolved": false,
+  "preferred_acoustic_placement_for_research": "front-entertainment",
+  "complete_scheme_ready_or_adopted": false,
+  "all_original_requirements_met": false,
+  "adopted": false,
+  "professional_approval": "unknown",
+  "rendered_qa": "not-run",
+  "primary_abc_or_3d_changed": false,
+  "actual_site_or_product_data_received": 0,
+  "conclusion": "前置娛樂較能避樓下主臥及後客房，但需要更大的正式前室內量體、RF機位／天井及聲學新風合圖。100mm額外內縮仍未達20㎡，只保留優先研究方向；原後段與所有需求不取消。",
+  "source_hashes": {
+    "inputs/b-third-entertainment.json": "07577a0dffe45c74f98ee93c75d0b35f30b75dec187050e3796775d4d73b45c8",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "structured/coordination/b-upper-replan-v1/review.json": "38897b7ca1da091dd62c85ab342abd4d1d1da220ec1dbad9a5f46e6611f4906d",
+    "structured/coordination/b-upper-replan-v1/artifact-manifest.json": "c1fe7bab76b8032224f7ce271671db0f94fb3ef91c702adc355fd1bcd6b8d915",
+    "structured/coordination/b-front-service-detail-v1/review.json": "a51324d7699cfba56479f83a5e4eaa24ef5c9d45782c302c79e5fe779d4f2edd",
+    "structured/coordination/b-front-service-detail-v1/artifact-manifest.json": "66b708543e5da68e23878d0063034d8ecb0fe693a658431b44160e5881c35234",
+    "inputs/references/b-owner-ritual-answers-20261106.json": "736f5a477ce1fbfd8e1bf460ecf49f9043a83635201d1598e3e1842e6460ddb9",
+    "structured/coordination/b-claude-round3-v1/review.json": "00baf0b3950e2593361e91698e4d72ac33e384edadd6da5a7d31b62e087b6223",
+    "inputs/requirements.json": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066",
+    "inputs/brief/B.json": "63ed4fc045fc6f2cc4021b8bd784cb7cc9fd46789155fc19aa1a55f33016e55a",
+    "inputs/planning-register.json": "140493058b145071afb472bf927860d48a43a6f4407b9b59e5a86705fbe058b0",
+    "house_design/b_third_entertainment.py": "f026a7665c1134dde6c3ec0f01032fdb0eb91d750e1f7af6ead8c845fbd1a5cc",
+    "scripts/export_b_third_entertainment.py": "67aa5888f2149271e9718c1a7cceea92cd6a96767e4fc5d2c5d4383aae713a2f",
+    "house_design/b_upper_replan.py": "a251d37dc84bd54b9292b6802180ca7fd66c679a7e43dc714b3fed160dc2e5c5",
+    "house_design/b_front_service_detail.py": "0e20c751c385d4e69a3ff679cb5b7890e71575f82fdef8195e49628690175c29",
+    "house_design/contracts.py": "2888419d49e8d8dbe8b8e99f6b8451363cd9020821c7fe3e703ab09779e202c3",
+    "house_design/project_status.py": "db73eb9b066353cc282e67dc15e4b430d9d4e4d398eafaf7eeec5f98af1acab0",
+    "scripts/export_b_upper_replan.py": "3a3cc271cf7d9fc20759d4bca17b582ab672f551981c6e8c1c20933192c09a3d",
+    "scripts/export_abc_next_improvements.py": "875c13027466776a6e1661dae369e45c823c661c5e0369d8ee95b6535420e701",
+    "scripts/export_builder_communication.py": "650d696de35bd9a0fb4ce77d7f93078813b8babd4ed5439d59a6966d093ceef1",
+    "Docs/b-third-entertainment-v1.md": "5f69f521386c051ce67b4b24d5cda79186f70f937316d25c64962a745258d513"
+  },
+  "report_hash": "73787cd11a2b56a9db15bcef7082d1a233940d104c5ff5976108a68128bc8e5c"
+}

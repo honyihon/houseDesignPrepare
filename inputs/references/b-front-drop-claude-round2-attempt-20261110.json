@@ -1,0 +1,103 @@
+{
+  "schema": "house-b-front-drop-claude-failed-attempt-v1",
+  "date": "2026-11-10",
+  "scope": "Diagnose owner-run second-round CLI model rejection and prepare an isolated explicit-model runner; no new design response or inference request by agent",
+  "owner_run_attempt": {
+    "directory": "inputs/private/b-front-drop-claude-002",
+    "result_sha256": "e7883587f24d75670d8f09077fe928765eed280ffb0daf423d9bc48aec1f3bb1",
+    "stdout_sha256": "341b499794d1cf098a0379fe39c6f9a51310a25f98c75b741cb0f8aeb861f527",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "prompt_sha256": "198843216d0c3678232bc7d1794d58a82a703956066b991c4af3870dd800a23b",
+    "prompt_matches_current_followup": true,
+    "status": "cli-error-or-incomplete",
+    "exit_code": 1,
+    "elapsed_seconds": 3.226,
+    "stdout_is_error": true,
+    "stdout_subtype": "success",
+    "normalized_error": "HTTP 400: Invalid model name passed in model=claude-fable-5-2",
+    "error_reported_model": "claude-fable-5-2",
+    "response_received": false,
+    "raw_session_usage_and_credentials_published": false
+  },
+  "owner_model_choice": {
+    "label": "Opus 5.5",
+    "source": "current user clarification",
+    "prepared_explicit_id": "claude-opus-5-5",
+    "name_present_in_local_cli_binary": true,
+    "local_cli_binary_version": "2.1.322",
+    "api_model_availability_verified": false,
+    "automatic_model_substitution": false
+  },
+  "source_sha256": {
+    "scripts/review_b_fengshui_with_claude.py": "dc6b4b855656cbdee16990857abbb44b1f471a720f6799cd9bdee96f71f58b55",
+    "scripts/review_b_fengshui_with_claude_v2.py": "1e704fb9747fb8c1aa64f887d0452fffc2908ebd0d699556ab5602f46b8e922d",
+    "tests/test_claude_discussion_runner_v2.py": "2901c6fa6319b11a21a434431bba162c71d47e27092087b51fe810b406620e36",
+    "Docs/b-front-drop-claude-cli-recovery-v1.md": "c25d83e65ed00cef1f84a013208a01afdef32f9f4aaf43375516c3271d8d6ab1",
+    "Docs/claude-b-front-drop-followup-v2.md": "198843216d0c3678232bc7d1794d58a82a703956066b991c4af3870dd800a23b",
+    "inputs/references/b-front-drop-claude-static-review-20261110.json": "ef3cd0308743c87e26bbc2344409288cb0c19c521fbc0891a65ca73e02ef869f",
+    "structured/coordination/b-front-drop-claude-v1/review.json": "c86b042428bd3ccc0cd34aad2cd50430e8335560ca58ff1fd4f2076d00b63074",
+    "structured/coordination/b-front-drop-claude-v1/artifact-manifest.json": "944c3139e76ce5420d4e701fb54670e5bf0117e7b15bb8703de1241b21958446"
+  },
+  "checks": {
+    "ruff": {
+      "command": "timeout 20s .venv/bin/ruff check scripts/review_b_fengshui_with_claude_v2.py tests/test_claude_discussion_runner_v2.py",
+      "exit_code": 0
+    },
+    "focused_tests": {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q --tb=short -p no:cacheprovider tests/test_claude_discussion_runner_v2.py tests/test_b_front_drop_claude.py",
+      "passed": 31,
+      "failed": 0,
+      "elapsed_seconds": 0.77,
+      "exit_code": 0,
+      "external_cli_invocations": "mocked in tests"
+    },
+    "dry_run": {
+      "requested_model": "claude-opus-5-5",
+      "brief": "Docs/claude-b-front-drop-followup-v2.md",
+      "status": "prepared-without-inference",
+      "inference_requests": 0,
+      "files_written": 0,
+      "next_output_directory": "inputs/private/b-front-drop-claude-003",
+      "directory_not_created": true
+    },
+    "prior_study_evidence_bound_hashes_still_match": 111,
+    "current_index_packages_match": 7,
+    "historical_drift_packages_retained": 5,
+    "protected_controls_unchanged": 149,
+    "formal_requirement_statuses": {
+      "candidate": 66
+    },
+    "formal_register_statuses": {
+      "unknown": 105
+    }
+  },
+  "read_only_model_metadata_queries": {
+    "inference_requests": 0,
+    "http_statuses": [
+      401,
+      400
+    ],
+    "usable_model_list_received": false,
+    "credentials_echoed_or_written": false
+  },
+  "preserved": [
+    "v1 runner and all frozen research source hashes",
+    "001 response and 002 failed attempt",
+    "discussion snapshot 018 and older snapshots",
+    "ABC/3D, B front and rear variants, family rules and G4D conditional status"
+  ],
+  "second_round_completed": false,
+  "consensus": false,
+  "adopted": false,
+  "professional_approval": "unknown",
+  "not_run": [
+    "new external AI inference",
+    "automatic retry or fallback",
+    "browser/WebGL",
+    "full pytest",
+    "drawing or scene generation",
+    "global model configuration change",
+    "commit",
+    "push"
+  ]
+}

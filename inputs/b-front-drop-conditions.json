@@ -1,0 +1,80 @@
+{
+  "schema": "house-b-front-drop-conditions-v1",
+  "date": "2026-11-11",
+  "adopted": false,
+  "parent_report": "structured/coordination/b-front-drop-claude-v2/review.json",
+  "pinned_sources": {
+    "structured/coordination/b-front-drop-claude-v2/review.json": "a4cfefaf071414d0201a9cda4f46abc00c0438282425da007f6553637f99c0d9",
+    "structured/coordination/b-front-drop-claude-v2/artifact-manifest.json": "16903e9876951f6773e7069e9b89917e19df3e96dc1dcb53c82fe0819549b736"
+  },
+  "reference_case": "G4D-original-shaft-platform-and-stair-only",
+  "sequence_id": "SEQ-04",
+  "comparison_id": "BC-CMP-01",
+  "task_id": "B-WET-001",
+  "gates": [
+    {
+      "id": "BFD-01",
+      "topic": "合法接管與完整前出路線",
+      "roles": "建商統籌建築師／給排水設計及相關權責單位",
+      "deliver": "同版標明合法位置、通行／埋管權利、接入高程、覆土與地梁及檢修；未知保留，不以後巷存在當可排放。",
+      "before": "前量體、公衛／茶水及埋管方案鎖定前",
+      "if_unresolved": "暫不鎖定前濕區；沒有合法前終端時先查完整替代，不默認地下穿祭祀。"
+    },
+    {
+      "id": "BFD-02",
+      "topic": "騎樓到室內的上游高度",
+      "roles": "建築／結構與機電",
+      "deliver": "同一標高基準逐段給構造底、管頂及安裝／檢修包絡，尤其y3900界；不能把局部50外推全線。",
+      "before": "梁板、預埋及天花標高鎖定前",
+      "if_unresolved": "回前段濕區／支管拓樸比較，不抬地坪、放平坡或挑薄構造湊通過。"
+    },
+    {
+      "id": "BFD-03",
+      "topic": "梯下落差上下限",
+      "roles": "結構／機電與建築",
+      "deliver": "整個管件外框最不利梯底、有效落差、上下方包絡與完成淨高要求；不只給板厚或管心。",
+      "before": "梯板、前平台及管線開孔鎖定前",
+      "if_unresolved": "先G4D家族完整局部重核，前濕區重排其次，全梯鏡像最後；不直接選500或600。"
+    },
+    {
+      "id": "BFD-04",
+      "topic": "成品外擴與平台／門",
+      "roles": "機電／管件商、建築及門組廠商",
+      "deliver": "上凸、前後左右外擴、下凸、支架／包覆、安裝誤差各列；含兩門及平台完整動作，400不是管徑。",
+      "before": "管件及門組訂貨、平台收口前",
+      "if_unresolved": "退回完整包絡比較，不因只侵入幾毫米就放行，不減梯寬或平台。"
+    },
+    {
+      "id": "BFD-05",
+      "topic": "合流、水力與通氣",
+      "roles": "給排水設計／機電與管件商",
+      "deliver": "四器具真實排口、管徑坡度、合流與落差總成、通氣回保留井至RF及清掃；梯下管不得默認向上穿梯。",
+      "before": "套管、排水與通氣預埋前",
+      "if_unresolved": "不把四條假中心線當重疊實管；另核合規接法，不取消二樓通氣。"
+    },
+    {
+      "id": "BFD-06",
+      "topic": "清掃抽換、防火與防漏噪音",
+      "roles": "建築／消防／機電及施工保固窗口",
+      "deliver": "可拆檢修口、工具操作與汰換空間、防火區劃／封堵、漏水檢測及噪音措施，同版列供料施工與保固。",
+      "before": "防火封堵、包管及天花封板前",
+      "if_unresolved": "保持可檢修的待核介面，不以50mm假空間視為能操作。"
+    },
+    {
+      "id": "BFD-07",
+      "topic": "前後搬轎與施工期間",
+      "roles": "屋主、建商及實際搬運人員",
+      "deliver": "後巷預設與祭祀正門前搬備案各自含桿、人員、轉彎與門片演練；另列施工臨時障礙。",
+      "before": "入口門組、設備及施工動線鎖定前",
+      "if_unresolved": "兩版均保留，不用樓梯街門代替祭祀正門，也不延伸既有家規例外。"
+    },
+    {
+      "id": "BFD-08",
+      "topic": "同範圍估價與變更控制",
+      "roles": "建商統籌建築／結構／機電，屋主確認範圍",
+      "deliver": "局部深化與重排分項列費用、工期、可做／不能做及保固；RF24、Q3聲學及R1防水仍另列，不混為已解。",
+      "before": "報價確認、變更單及施工圖發行前",
+      "if_unresolved": "有具體同版衝突才請屋主選完整方案代價，不從繼續推定讓步或採用。"
+    }
+  ]
+}

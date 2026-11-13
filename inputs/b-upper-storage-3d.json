@@ -1,0 +1,50 @@
+{
+  "schema": "house-b-upper-storage-3d-v1",
+  "date": "2026-11-12",
+  "adopted": false,
+  "default_floor": "B-2F",
+  "default_state": "storage",
+  "boundary_display_height_mm": 1100,
+  "boundary_is_annotation_not_actual_wall": true,
+  "reference_option": "b-rear-split",
+  "reference_use": "daily",
+  "pinned_sources": {
+    "structured/coordination/b-upper-storage-sync-v1/review.json": "96412767b3d7865feb1c569ad43e20ea87413887e944acb11981d849657d655b",
+    "structured/coordination/b-upper-storage-sync-v1/artifact-manifest.json": "cae40f40c8ba9b61004e9897dde55c68c23a9795501e9365b2f7ee359fa6a4ba",
+    "structured/candidates/kaohsiung-house-options-3d.html": "7eaf45705d3626a650e00414e027c8e9c5bd7f5a7d60eb1b56658f37273712a2"
+  },
+  "height_references": {
+    "B-2F": {
+      "public-bath:basin": "B:floor-2:bath2:furniture:basin",
+      "public-bath:toilet": "B:floor-2:bath2:furniture:toilet",
+      "public-bath:shower": "B:floor-2:bath2:furniture:shower",
+      "private-bath:basin": "B:floor-2:master-bath2:furniture:basin",
+      "private-bath:toilet": "B:floor-2:master-bath2:furniture:toilet",
+      "private-bath:shower": "B:floor-2:master-bath2:furniture:shower",
+      "master:bed": "B:floor-2:master2:furniture:bed",
+      "master:wardrobe": "B:floor-2:master2:furniture:wardrobe",
+      "master:vanity": "B:floor-2:master2:furniture:vanity",
+      "quiet-living:sofa": "B:floor-2:living2-front:furniture:sofa",
+      "quiet-living:table": "B:floor-2:living2-front:furniture:table",
+      "quiet-living:tv": "B:floor-2:living2-front:furniture:tv"
+    },
+    "B-3F": {
+      "rear-bath:basin": "B:floor-3:bath3:furniture:basin",
+      "rear-bath:toilet": "B:floor-3:bath3:furniture:toilet",
+      "rear-bath:shower": "B:floor-3:bath3:furniture:shower",
+      "guest:bed": "B:floor-3:guest3:furniture:bed",
+      "guest:wardrobe": "B:floor-3:guest3:furniture:wardrobe",
+      "quiet-living:sofa": "B:floor-3:quiet-study-front:furniture:sofa",
+      "quiet-living:table": "B:floor-3:quiet-study-front:furniture:table",
+      "quiet-living:tv": "B:floor-3:quiet-study-front:furniture:tv",
+      "front-entertainment:sofa": "B:floor-3:quiet-study-front:furniture:sofa",
+      "front-entertainment:tv": "B:floor-3:quiet-study-front:furniture:tv"
+    }
+  },
+  "limits": [
+    "只有平面尺寸與指定舊模型物件相符才沿用其概念高度／安裝標高，不視為實測或選品。",
+    "未列高度的家具及設備只畫來源平面投影；RF預留框不當已選實體機器。",
+    "房界線框只是辨識空間的顯示標示，不代表牆高、厚度或施工牆。",
+    "原配置／收納及D1／D2分開；一樓兩入口各三態另附同源平面，不混成一個新一樓3D。"
+  ]
+}

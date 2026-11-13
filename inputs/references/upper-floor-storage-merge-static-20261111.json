@@ -1,0 +1,116 @@
+{
+  "schema": "house-upper-floor-storage-merge-static-review-v1",
+  "date": "2026-11-11",
+  "scope": "Read-only comparison of the actual embedded main-model floor data against ten storage cases; prepare six unapplied A/C insertions and identify four B whole-floor version mismatches.",
+  "report_hash": "c44da986b2d0919e8e94565e4c2f511367b4e5f2143057590f37d81c17c25ba0",
+  "source_and_artifact_sha256": {
+    "Docs/abc-upper-floor-storage-merge-v1.md": "60583980ef95baa7f9ea531557aa1ae1aca23034069903b02a45ed8cd1a8b2e4",
+    "scripts/check_upper_floor_storage_merge.py": "93a7ac7c51ce007bd5274dd7d6c3c656ccc21bbaa862b92ae3c925fd04238011",
+    "tests/test_upper_floor_storage_merge.py": "cfaed29062b104c6316bf27fd88ad1295b69521abe9500616297b4d0ad3dd388",
+    "structured/coordination/upper-floor-storage-merge-review-v1/review.json": "73c79e56bba31bb5b235884248f0e6553f5e525bc8ac7a9a809f35703aa82dd5",
+    "inputs/project-status.json": "6c8ff10775eaedafcf6462ff5be2925af8e741ad34723e95cf36a6854c72b6d5",
+    "inputs/design-discussion-basis.json": "87aac2285caa916016582f9811594141b6bd24d20a63e68e5fbb600f6890f0e4",
+    "Docs/project-status-v1.md": "1ef59b1236209d818f92bcd40fb38549ae033966a06331f157199aee82400ab4",
+    "Docs/design-discussion-basis-v1.md": "383a0c0641aad508ded4402cdca31a5981bcccd238396688f8bb6a466be4ba93",
+    "README.md": "abde120ad1be001edd1d8ca551d3b27482422fdd54ecf5db52fb4ca3bbce0da8",
+    "scripts/README.md": "f717801cb5bef72dabe8ec33ead30c0efbe064643fa877845dd1aef341c818f7",
+    "structured/planning/project-next-steps/review.json": "b767b0e4c02dfa1a31ef32229deaa5419c3dd125752daf7153b4b0cc378c5def",
+    "structured/planning/project-next-steps/artifact-manifest.json": "2bbee6da93370419f05347036f13512349e57e3290c7dd389eff5f700f7a4033",
+    "structured/planning/builder-communication/review.json": "ada79d06a255cb192d8c7b393e58c5331ff211d6e1a731ee05c2ffd87d3057ad",
+    "structured/planning/builder-communication/artifact-manifest.json": "34b8a6bc51cc9116c2e11380a18ab6b18bd23d53c1c997cbb980e7e5340205f6",
+    "structured/planning/design-discussion-basis/review.json": "8debfaf3acc766bab030a861ddd2ae852dce48fc52c86392450c77df7396261c",
+    "structured/planning/design-discussion-basis/artifact-manifest.json": "047b7050754178c7e2765d217cbabdcbb189a8f26899bd94de85820002c71ede",
+    "structured/planning/design-discussion-basis/archive-manifest.json": "729337581fb2fa30734d6e8b7e23548392f609456c4cceba47734dbccc248e91",
+    "structured/planning/design-discussion-basis/ABC-discussion-package.zip": "ab280474548f61bafe8a3cd49c9ffba5ba189f35d33358a677883d3668724df3"
+  },
+  "summary": {
+    "storage_cases": 10,
+    "floor_state_comparisons": 30,
+    "same_source_candidates": 6,
+    "whole_floor_rebase_required": 4,
+    "unapplied_insertions": 6
+  },
+  "checks": {
+    "bounded_checks": [
+      {
+        "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q --tb=short -p no:cacheprovider tests/test_upper_floor_storage_merge.py tests/test_design_discussion_basis.py tests/test_project_status.py",
+        "exit_code": 0
+      },
+      {
+        "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m ruff check scripts/check_upper_floor_storage_merge.py tests/test_upper_floor_storage_merge.py",
+        "exit_code": 0
+      },
+      {
+        "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/check_upper_floor_storage_merge.py",
+        "exit_code": 0
+      },
+      {
+        "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_upper_floor_storage_viewer.py --check",
+        "exit_code": 0
+      },
+      {
+        "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_project_next_steps.py --check",
+        "exit_code": 0
+      },
+      {
+        "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_builder_communication.py --check",
+        "exit_code": 0
+      },
+      {
+        "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/export_design_discussion_basis.py --check",
+        "exit_code": 0
+      },
+      {
+        "command": "timeout 20s git diff --check",
+        "exit_code": 0
+      }
+    ],
+    "focused_python_tests": {
+      "passed": 138,
+      "failed": 0,
+      "elapsed_seconds": 5.8
+    },
+    "meaningful_counterexamples": [
+      "A B cabinet can fit the old XY footprint in all six entry/use states while its full floor version still differs.",
+      "A matching target room does not hide a one-millimetre furniture change elsewhere on that floor.",
+      "An empty C2 dry reserve is a valid insertion host; no existing furniture is invented."
+    ],
+    "merge_report_source_hashes_verified": 15,
+    "protected_controls_unchanged": 149,
+    "accepted_storage_viewer_sources_unchanged": 30,
+    "accepted_storage_viewer_artifacts_unchanged": 19
+  },
+  "handoff": {
+    "snapshot": "inputs/private/design-discussion-034",
+    "files": 117,
+    "zip_entries": 115,
+    "zip_bytes": 805455,
+    "zip_sha256": "ab280474548f61bafe8a3cd49c9ffba5ba189f35d33358a677883d3668724df3",
+    "source_hashes_verified": 403,
+    "same_source_csv_and_svg_preserved": 97,
+    "old_snapshots_001_to033_written": false
+  },
+  "main_3d_changed": false,
+  "storage_viewer_changed": false,
+  "unapplied_insertions_applied": false,
+  "B_rear_entry_default_and_front_fallback_preserved": true,
+  "B_two_roof_storage_versions_preserved": true,
+  "formal_requirement_statuses": {
+    "candidate": 66
+  },
+  "formal_register_statuses": {
+    "unknown": 105
+  },
+  "new_browser_webgl_or_scene_runtime_started": false,
+  "old_display_pass_used_as_new_merge_approval": false,
+  "pending": [
+    "Create a same-source A/C six-floor storage insertion comparison.",
+    "Rebase B P4/Q3 floor and roof geometry, stairs, openings and equipment before adding the B cabinets.",
+    "Run appropriate new-viewer checks separately after actual scene changes; no new viewer was generated in this step."
+  ],
+  "adopted": false,
+  "professional_approval": "unknown",
+  "construction_release": false,
+  "commit": false,
+  "push": false
+}

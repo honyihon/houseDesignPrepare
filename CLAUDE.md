@@ -2,15 +2,29 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Current operating mode (2026-11-06)
+
+Prepare conditional plans now; integrate real site, structural and product data later. Start at
+[current project status](Docs/project-status-v1.md), not an old pipeline's "latest" output.
+Do not adopt a comparison, relax owner requirements or rewrite the primary HTML/3D from missing data.
+
+Follow [AGENTS.md](AGENTS.md): file/syntax/small tests only, each bounded to 20 seconds.
+Browser/WebGL, full pytest, complete scene generation and long external-model work are left to the
+owner's separate terminal unless explicitly requested for that turn. Stop after timeout/137/SIGKILL;
+do not retry in the background, install tools, or kill unrelated processes.
+
+The slash commands below belong to the historical HTML workflow. Do not invoke them automatically
+to fill missing outputs. Local permissions belong in ignored .claude/settings.local.json, never in Git.
+
 ## Project Overview
 
 Residential building design preparation toolchain for a three-building compound (A, B, C buildings + storage) in Taiwan. Converts interactive HTML floor-plan pages into structured JSON, then runs a Python pipeline that generates scored layout candidates, SVG floor-plan drawings, and print-ready PDF bundles. Domain language is Traditional Chinese (zh-TW); dimensions in mm and "ping" (tsubo) area units.
 
 ## Which data is authoritative
 
-The current confirmed condition is **three adjacent, separately reviewed
-parcels in Kaohsiung, each approximately 32 ping of land**. Thirty-two ping is
-parcel area, not a permitted floor footprint.
+The owner's planning target is **three adjacent parcels in Kaohsiung, each approximately
+32 ping of land**. Actual parcels and legal buildable conditions remain unconfirmed and
+must be reviewed separately. Thirty-two ping is parcel area, not a permitted floor footprint.
 
 Authority is split by data type:
 

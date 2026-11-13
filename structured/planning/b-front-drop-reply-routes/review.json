@@ -1,0 +1,660 @@
+{
+  "schema": "house-b-front-drop-reply-routes-report-v1",
+  "date": "2026-11-11",
+  "config": {
+    "schema": "house-b-front-drop-response-routes-v1",
+    "date": "2026-11-11",
+    "adopted": false,
+    "intake_report": "structured/coordination/b-front-drop-conditions-v1/review.json",
+    "pinned_sources": {
+      "structured/coordination/b-front-drop-conditions-v1/review.json": "7fbbdaba3f4682485adea8f079da677547afe2bce4c84be9bbfad5838340eb0f"
+    },
+    "sequence_id": "SEQ-04",
+    "comparison_id": "BC-CMP-01",
+    "task_id": "B-WET-001",
+    "response_routes": [
+      {
+        "id": "BFR-01",
+        "trigger_code": "terminal-not-available",
+        "priority": 1,
+        "title": "前接管／權利未取得可用依據",
+        "gate_ids": [
+          "BFD-01"
+        ],
+        "next_action": "先由建商統籌權利、接管位置／高程與完整替代路線；保留前濕區研究，不鎖定埋管或套管。",
+        "retained": "原家規、神桌、前後搬轎與面積目標保留。G4D、重排、G5都不能單靠換名解除共同終端問題。",
+        "not_authorized": "不默認地下穿祭祀、占騎樓、泵送或抬地坪；not-available是宣告待件，不證明全域無解。",
+        "quote_scope_ids": [
+          "BFC-01",
+          "BFC-05"
+        ],
+        "owner_decision_when": "正式權利與接管條件核清，仍須在完整合法替代案之間取捨時；現在不要求放寬。"
+      },
+      {
+        "id": "BFR-02",
+        "trigger_code": "terminal-arithmetic-conflict",
+        "priority": 2,
+        "title": "宣告埋管段的落差不足",
+        "gate_ids": [
+          "BFD-01",
+          "BFD-05"
+        ],
+        "next_action": "先核管內底基準、完整轉折與分段坡度；確有不足再研究合法接入或完整路線替代。",
+        "retained": "保上游及後端家規，不從上方管頂推地下管內底，也不把5190直線下界當實際線長。",
+        "not_authorized": "不自動放平坡、加泵、深挖穿地梁或授權排放。局部算式衝突不是全棟無解。",
+        "quote_scope_ids": [
+          "BFC-01",
+          "BFC-05"
+        ],
+        "owner_decision_when": "同版完整替代有權責單位及專業依據、費用工期已列明後。"
+      },
+      {
+        "id": "BFR-03",
+        "trigger_code": "upstream-conflict",
+        "priority": 3,
+        "title": "騎樓／上游包絡不足",
+        "gate_ids": [
+          "BFD-02",
+          "BFD-05",
+          "BFD-06"
+        ],
+        "next_action": "同版核上游真實排口與構造；先比較前段器具、支管／合流及通氣拓樸，必要時研究前濕區重排。",
+        "retained": "局部梯下落差不能改善上游；公衛／套衛外窗、面積與可關茶水前室目標保留，Q3前KTV本來已乾。",
+        "not_authorized": "不選薄板、小管、低淨高或取消不存在的KTV污水湊通過；G5也不自動解除這一段。",
+        "quote_scope_ids": [
+          "BFC-01",
+          "BFC-03",
+          "BFC-06"
+        ],
+        "owner_decision_when": "具體重排保住原目標後仍有明確代價，才交屋主比較；尚未有完成替代圖。"
+      },
+      {
+        "id": "BFR-04",
+        "trigger_code": "drop-interval-conflict",
+        "priority": 4,
+        "title": "梯下落差上下限無交集",
+        "gate_ids": [
+          "BFD-03",
+          "BFD-04",
+          "BFD-05"
+        ],
+        "next_action": "先核管件總成、實體頂底與檢修是否重複扣帳，再研究G4D局部家族；仍不容則前濕區重排，全梯鏡像最後。",
+        "retained": "原梯寬／級數／踏面、門與平台不減；d500／600皆不是預設選用，實際條件要同時滿足上方與下方。",
+        "not_authorized": "不因往下降能避梯底就自動壓低天花，不直接採G5或縮功能。",
+        "quote_scope_ids": [
+          "BFC-01",
+          "BFC-02",
+          "BFC-03",
+          "BFC-04"
+        ],
+        "owner_decision_when": "各完整同版案的功能、結構、管道、費用與工期可比較時；目前只是研究方向。"
+      },
+      {
+        "id": "BFR-05",
+        "trigger_code": "plan-envelope-conflict",
+        "priority": 5,
+        "title": "成品外框侵平台／保護或超原梯核",
+        "gate_ids": [
+          "BFD-04",
+          "BFD-06",
+          "BFD-07"
+        ],
+        "next_action": "由機電、門組與建築核完整外包及動作；比較局部總成／位置時同步重核新後緣梯底，不只修平面。",
+        "retained": "原平台、兩門、神桌／乾背與武轎庫保護、前後兩搬轎版本保留；相切不等於有施工餘量。",
+        "not_authorized": "不吞掉幾毫米平台、不自動移井或向上穿梯，不以局部方塊試線代替全程搬運。",
+        "quote_scope_ids": [
+          "BFC-01",
+          "BFC-02",
+          "BFC-06"
+        ],
+        "owner_decision_when": "完成包絡與兩版動作重核後仍需實際功能取捨時。"
+      },
+      {
+        "id": "BFR-06",
+        "trigger_code": "all-local-arithmetic-compatible",
+        "priority": 6,
+        "title": "四組局部數字相容，仍要整體核對",
+        "gate_ids": [
+          "BFD-01",
+          "BFD-02",
+          "BFD-03",
+          "BFD-04",
+          "BFD-05",
+          "BFD-06",
+          "BFD-07",
+          "BFD-08"
+        ],
+        "next_action": "沿原五步回覆流程核同版完整路線、水力通氣、權利、防火、清掃與搬運，再列費用／工期及施工圖發行條件。",
+        "retained": "只是宣告局部算式相容，RF24、Q3聲學及R1防水仍另案；屋主選擇、專業審查與發行分開。",
+        "not_authorized": "不標整案合格、不自動選d、不採購、不發行或併主3D。",
+        "quote_scope_ids": [
+          "BFC-01",
+          "BFC-02",
+          "BFC-06"
+        ],
+        "owner_decision_when": "完整方案與核對依據齊備才記屋主選擇，本工具不接受口頭可以代替。"
+      },
+      {
+        "id": "BFR-07",
+        "trigger_code": "partial-data",
+        "priority": 7,
+        "title": "尚有資料未到，保留未知",
+        "gate_ids": [
+          "BFD-01",
+          "BFD-02",
+          "BFD-03",
+          "BFD-04",
+          "BFD-05",
+          "BFD-06",
+          "BFD-07",
+          "BFD-08"
+        ],
+        "next_action": "逐組列缺欄與所需來源；可獨立做其他研究，不因資料未到要求屋主先讓步或立即補實測。",
+        "retained": "未知仍null，保留原研究及兩種搬轎版；不同圖號／標高基準不可混算。",
+        "not_authorized": "不把缺資料叫設計失敗，也不把未知當0或已通過。",
+        "quote_scope_ids": [
+          "BFC-01"
+        ],
+        "owner_decision_when": "沒有需要現在作的抽象取捨；等具體同版方案與完整代價。"
+      }
+    ],
+    "quote_scopes": [
+      {
+        "id": "BFC-01",
+        "kind": "common",
+        "title": "共通條件與同版核對",
+        "scope": "合法接管／權利、基地與標高、梁板／梯底及既有介面確認，統一版本與責任窗口。",
+        "pricing_rule": "共通工作只列一次；若已含在原契約，註明已含／折抵，不與替代案重複報價。"
+      },
+      {
+        "id": "BFC-02",
+        "kind": "exclusive-alternative",
+        "title": "G4D家族局部深化",
+        "scope": "有效落差與管件合流、支架包覆、通氣清掃、門／平台及檢修介面；不預選落差或機型。",
+        "pricing_rule": "在完整可核版本內報相對共通基準的差額；不與BFC-03／04當同時施作。"
+      },
+      {
+        "id": "BFC-03",
+        "kind": "exclusive-alternative",
+        "title": "前段濕區重排研究",
+        "scope": "2F公衛、茶水、井與乾檢修、門活動；必要時連核主臥／套衛、Q3保留井與RF通氣，不先縮原目標。",
+        "pricing_rule": "獨立完整方案才比較；先列研究設計費，施工價待圖，不把目前方向當已可蓋。"
+      },
+      {
+        "id": "BFC-04",
+        "kind": "exclusive-alternative",
+        "title": "G5全梯鏡像重大研究",
+        "scope": "1F至RF樓梯、到達／平台、門、結構、房間介面及全棟機電重核；神桌背牆規矩仍須守。",
+        "pricing_rule": "保留最後比較方向，尚無完整圖；不能因原水平管較短就估成一定較便宜。"
+      },
+      {
+        "id": "BFC-05",
+        "kind": "conditional-additional-scope",
+        "title": "合法終端／完整路線替代",
+        "scope": "權利、接入高程、地梁／覆土、清掃與復舊等完整路線；不預設前／後已有合法出口。",
+        "pricing_rule": "依實際合法路徑另列；說明與BFC-01已含項，未知量及價格留白，不批准開挖。"
+      },
+      {
+        "id": "BFC-06",
+        "kind": "verification-and-handoff",
+        "title": "樣品、足尺／搬運及工程交接",
+        "scope": "管件與門組成品資料、清掃抽換、兩版搬轎／施工動作、測試紀錄、防漏噪音與保固交接。",
+        "pricing_rule": "首裝、檢修與整機／管件汰換分列；說明由誰負責及是否已含，不以局部測試代全程。"
+      }
+    ]
+  },
+  "baseline_intake_report_hash": "8fe65ae4a0b70974503d2edabd98ad138930e88f5212488802377596c76b799e",
+  "evaluated_intake_report_hash": "8fe65ae4a0b70974503d2edabd98ad138930e88f5212488802377596c76b799e",
+  "condition_report_imported": false,
+  "condition_values_received": 0,
+  "reply_actions": [
+    {
+      "id": "BFR-01",
+      "trigger_code": "terminal-not-available",
+      "priority": 1,
+      "title": "前接管／權利未取得可用依據",
+      "gate_ids": [
+        "BFD-01"
+      ],
+      "next_action": "先由建商統籌權利、接管位置／高程與完整替代路線；保留前濕區研究，不鎖定埋管或套管。",
+      "retained": "原家規、神桌、前後搬轎與面積目標保留。G4D、重排、G5都不能單靠換名解除共同終端問題。",
+      "not_authorized": "不默認地下穿祭祀、占騎樓、泵送或抬地坪；not-available是宣告待件，不證明全域無解。",
+      "quote_scope_ids": [
+        "BFC-01",
+        "BFC-05"
+      ],
+      "owner_decision_when": "正式權利與接管條件核清，仍須在完整合法替代案之間取捨時；現在不要求放寬。",
+      "activated_for_declared_inputs": false,
+      "status": "not-triggered-by-current-inputs",
+      "front_terminal_precondition_state": "pending",
+      "downstream_action_is_conditional_on_terminal_review": false,
+      "selected_layout": null,
+      "owner_choice": null,
+      "professional_approval": "unknown",
+      "construction_release": false
+    },
+    {
+      "id": "BFR-02",
+      "trigger_code": "terminal-arithmetic-conflict",
+      "priority": 2,
+      "title": "宣告埋管段的落差不足",
+      "gate_ids": [
+        "BFD-01",
+        "BFD-05"
+      ],
+      "next_action": "先核管內底基準、完整轉折與分段坡度；確有不足再研究合法接入或完整路線替代。",
+      "retained": "保上游及後端家規，不從上方管頂推地下管內底，也不把5190直線下界當實際線長。",
+      "not_authorized": "不自動放平坡、加泵、深挖穿地梁或授權排放。局部算式衝突不是全棟無解。",
+      "quote_scope_ids": [
+        "BFC-01",
+        "BFC-05"
+      ],
+      "owner_decision_when": "同版完整替代有權責單位及專業依據、費用工期已列明後。",
+      "activated_for_declared_inputs": false,
+      "status": "not-triggered-by-current-inputs",
+      "front_terminal_precondition_state": "pending",
+      "downstream_action_is_conditional_on_terminal_review": false,
+      "selected_layout": null,
+      "owner_choice": null,
+      "professional_approval": "unknown",
+      "construction_release": false
+    },
+    {
+      "id": "BFR-03",
+      "trigger_code": "upstream-conflict",
+      "priority": 3,
+      "title": "騎樓／上游包絡不足",
+      "gate_ids": [
+        "BFD-02",
+        "BFD-05",
+        "BFD-06"
+      ],
+      "next_action": "同版核上游真實排口與構造；先比較前段器具、支管／合流及通氣拓樸，必要時研究前濕區重排。",
+      "retained": "局部梯下落差不能改善上游；公衛／套衛外窗、面積與可關茶水前室目標保留，Q3前KTV本來已乾。",
+      "not_authorized": "不選薄板、小管、低淨高或取消不存在的KTV污水湊通過；G5也不自動解除這一段。",
+      "quote_scope_ids": [
+        "BFC-01",
+        "BFC-03",
+        "BFC-06"
+      ],
+      "owner_decision_when": "具體重排保住原目標後仍有明確代價，才交屋主比較；尚未有完成替代圖。",
+      "activated_for_declared_inputs": false,
+      "status": "not-triggered-by-current-inputs",
+      "front_terminal_precondition_state": "pending",
+      "downstream_action_is_conditional_on_terminal_review": true,
+      "selected_layout": null,
+      "owner_choice": null,
+      "professional_approval": "unknown",
+      "construction_release": false
+    },
+    {
+      "id": "BFR-04",
+      "trigger_code": "drop-interval-conflict",
+      "priority": 4,
+      "title": "梯下落差上下限無交集",
+      "gate_ids": [
+        "BFD-03",
+        "BFD-04",
+        "BFD-05"
+      ],
+      "next_action": "先核管件總成、實體頂底與檢修是否重複扣帳，再研究G4D局部家族；仍不容則前濕區重排，全梯鏡像最後。",
+      "retained": "原梯寬／級數／踏面、門與平台不減；d500／600皆不是預設選用，實際條件要同時滿足上方與下方。",
+      "not_authorized": "不因往下降能避梯底就自動壓低天花，不直接採G5或縮功能。",
+      "quote_scope_ids": [
+        "BFC-01",
+        "BFC-02",
+        "BFC-03",
+        "BFC-04"
+      ],
+      "owner_decision_when": "各完整同版案的功能、結構、管道、費用與工期可比較時；目前只是研究方向。",
+      "activated_for_declared_inputs": false,
+      "status": "not-triggered-by-current-inputs",
+      "front_terminal_precondition_state": "pending",
+      "downstream_action_is_conditional_on_terminal_review": true,
+      "selected_layout": null,
+      "owner_choice": null,
+      "professional_approval": "unknown",
+      "construction_release": false
+    },
+    {
+      "id": "BFR-05",
+      "trigger_code": "plan-envelope-conflict",
+      "priority": 5,
+      "title": "成品外框侵平台／保護或超原梯核",
+      "gate_ids": [
+        "BFD-04",
+        "BFD-06",
+        "BFD-07"
+      ],
+      "next_action": "由機電、門組與建築核完整外包及動作；比較局部總成／位置時同步重核新後緣梯底，不只修平面。",
+      "retained": "原平台、兩門、神桌／乾背與武轎庫保護、前後兩搬轎版本保留；相切不等於有施工餘量。",
+      "not_authorized": "不吞掉幾毫米平台、不自動移井或向上穿梯，不以局部方塊試線代替全程搬運。",
+      "quote_scope_ids": [
+        "BFC-01",
+        "BFC-02",
+        "BFC-06"
+      ],
+      "owner_decision_when": "完成包絡與兩版動作重核後仍需實際功能取捨時。",
+      "activated_for_declared_inputs": false,
+      "status": "not-triggered-by-current-inputs",
+      "front_terminal_precondition_state": "pending",
+      "downstream_action_is_conditional_on_terminal_review": true,
+      "selected_layout": null,
+      "owner_choice": null,
+      "professional_approval": "unknown",
+      "construction_release": false
+    },
+    {
+      "id": "BFR-06",
+      "trigger_code": "all-local-arithmetic-compatible",
+      "priority": 6,
+      "title": "四組局部數字相容，仍要整體核對",
+      "gate_ids": [
+        "BFD-01",
+        "BFD-02",
+        "BFD-03",
+        "BFD-04",
+        "BFD-05",
+        "BFD-06",
+        "BFD-07",
+        "BFD-08"
+      ],
+      "next_action": "沿原五步回覆流程核同版完整路線、水力通氣、權利、防火、清掃與搬運，再列費用／工期及施工圖發行條件。",
+      "retained": "只是宣告局部算式相容，RF24、Q3聲學及R1防水仍另案；屋主選擇、專業審查與發行分開。",
+      "not_authorized": "不標整案合格、不自動選d、不採購、不發行或併主3D。",
+      "quote_scope_ids": [
+        "BFC-01",
+        "BFC-02",
+        "BFC-06"
+      ],
+      "owner_decision_when": "完整方案與核對依據齊備才記屋主選擇，本工具不接受口頭可以代替。",
+      "activated_for_declared_inputs": false,
+      "status": "not-triggered-by-current-inputs",
+      "front_terminal_precondition_state": "pending",
+      "downstream_action_is_conditional_on_terminal_review": true,
+      "selected_layout": null,
+      "owner_choice": null,
+      "professional_approval": "unknown",
+      "construction_release": false
+    },
+    {
+      "id": "BFR-07",
+      "trigger_code": "partial-data",
+      "priority": 7,
+      "title": "尚有資料未到，保留未知",
+      "gate_ids": [
+        "BFD-01",
+        "BFD-02",
+        "BFD-03",
+        "BFD-04",
+        "BFD-05",
+        "BFD-06",
+        "BFD-07",
+        "BFD-08"
+      ],
+      "next_action": "逐組列缺欄與所需來源；可獨立做其他研究，不因資料未到要求屋主先讓步或立即補實測。",
+      "retained": "未知仍null，保留原研究及兩種搬轎版；不同圖號／標高基準不可混算。",
+      "not_authorized": "不把缺資料叫設計失敗，也不把未知當0或已通過。",
+      "quote_scope_ids": [
+        "BFC-01"
+      ],
+      "owner_decision_when": "沒有需要現在作的抽象取捨；等具體同版方案與完整代價。",
+      "activated_for_declared_inputs": true,
+      "status": "research-next-action-only",
+      "front_terminal_precondition_state": "pending",
+      "downstream_action_is_conditional_on_terminal_review": false,
+      "selected_layout": null,
+      "owner_choice": null,
+      "professional_approval": "unknown",
+      "construction_release": false
+    }
+  ],
+  "missing_fields_by_group": {
+    "local-drop": [
+      "highest_package_top_before_drop_z_mm",
+      "lowest_package_bottom_before_drop_z_mm",
+      "lowest_soffit_over_complete_box_z_mm",
+      "finished_floor_z_mm",
+      "upper_installation_gap_mm",
+      "extra_upper_fitting_mm",
+      "additional_upper_reserve_mm",
+      "extra_lower_fitting_mm",
+      "operating_space_below_mm",
+      "required_finished_clear_height_mm"
+    ],
+    "upstream-gap": [
+      "pipe_package_top_z_mm",
+      "lowest_structure_z_mm",
+      "required_upper_gap_mm",
+      "extra_upper_fitting_mm",
+      "additional_reserve_mm"
+    ],
+    "front-terminal": [
+      "rights_record",
+      "connection_record",
+      "start_invert_z_mm",
+      "connection_invert_z_mm",
+      "horizontal_route_mm",
+      "slope_denominator",
+      "additional_fall_reserve_mm"
+    ],
+    "plan-envelope": [
+      "front_growth_mm",
+      "rear_growth_mm",
+      "left_growth_mm",
+      "right_growth_mm",
+      "shift_back_mm",
+      "required_platform_gap_mm"
+    ]
+  },
+  "front_terminal_precondition_state": "pending",
+  "active_action_ids": [
+    "BFR-07"
+  ],
+  "quote_scopes": [
+    {
+      "id": "BFC-01",
+      "kind": "common",
+      "title": "共通條件與同版核對",
+      "scope": "合法接管／權利、基地與標高、梁板／梯底及既有介面確認，統一版本與責任窗口。",
+      "pricing_rule": "共通工作只列一次；若已含在原契約，註明已含／折抵，不與替代案重複報價。",
+      "agreed_scope": null,
+      "fee_amount": null,
+      "currency": null,
+      "contract_inclusion_or_credit": null,
+      "construction_cost": null,
+      "schedule_days": null,
+      "owner_choice": null,
+      "accepted": false
+    },
+    {
+      "id": "BFC-02",
+      "kind": "exclusive-alternative",
+      "title": "G4D家族局部深化",
+      "scope": "有效落差與管件合流、支架包覆、通氣清掃、門／平台及檢修介面；不預選落差或機型。",
+      "pricing_rule": "在完整可核版本內報相對共通基準的差額；不與BFC-03／04當同時施作。",
+      "agreed_scope": null,
+      "fee_amount": null,
+      "currency": null,
+      "contract_inclusion_or_credit": null,
+      "construction_cost": null,
+      "schedule_days": null,
+      "owner_choice": null,
+      "accepted": false
+    },
+    {
+      "id": "BFC-03",
+      "kind": "exclusive-alternative",
+      "title": "前段濕區重排研究",
+      "scope": "2F公衛、茶水、井與乾檢修、門活動；必要時連核主臥／套衛、Q3保留井與RF通氣，不先縮原目標。",
+      "pricing_rule": "獨立完整方案才比較；先列研究設計費，施工價待圖，不把目前方向當已可蓋。",
+      "agreed_scope": null,
+      "fee_amount": null,
+      "currency": null,
+      "contract_inclusion_or_credit": null,
+      "construction_cost": null,
+      "schedule_days": null,
+      "owner_choice": null,
+      "accepted": false
+    },
+    {
+      "id": "BFC-04",
+      "kind": "exclusive-alternative",
+      "title": "G5全梯鏡像重大研究",
+      "scope": "1F至RF樓梯、到達／平台、門、結構、房間介面及全棟機電重核；神桌背牆規矩仍須守。",
+      "pricing_rule": "保留最後比較方向，尚無完整圖；不能因原水平管較短就估成一定較便宜。",
+      "agreed_scope": null,
+      "fee_amount": null,
+      "currency": null,
+      "contract_inclusion_or_credit": null,
+      "construction_cost": null,
+      "schedule_days": null,
+      "owner_choice": null,
+      "accepted": false
+    },
+    {
+      "id": "BFC-05",
+      "kind": "conditional-additional-scope",
+      "title": "合法終端／完整路線替代",
+      "scope": "權利、接入高程、地梁／覆土、清掃與復舊等完整路線；不預設前／後已有合法出口。",
+      "pricing_rule": "依實際合法路徑另列；說明與BFC-01已含項，未知量及價格留白，不批准開挖。",
+      "agreed_scope": null,
+      "fee_amount": null,
+      "currency": null,
+      "contract_inclusion_or_credit": null,
+      "construction_cost": null,
+      "schedule_days": null,
+      "owner_choice": null,
+      "accepted": false
+    },
+    {
+      "id": "BFC-06",
+      "kind": "verification-and-handoff",
+      "title": "樣品、足尺／搬運及工程交接",
+      "scope": "管件與門組成品資料、清掃抽換、兩版搬轎／施工動作、測試紀錄、防漏噪音與保固交接。",
+      "pricing_rule": "首裝、檢修與整機／管件汰換分列；說明由誰負責及是否已含，不以局部測試代全程。",
+      "agreed_scope": null,
+      "fee_amount": null,
+      "currency": null,
+      "contract_inclusion_or_credit": null,
+      "construction_cost": null,
+      "schedule_days": null,
+      "owner_choice": null,
+      "accepted": false
+    }
+  ],
+  "alternative_scope_ids_not_to_add_together": [
+    "BFC-02",
+    "BFC-03",
+    "BFC-04"
+  ],
+  "overall_quote_total": null,
+  "automatic_next_layout_selection": null,
+  "owner_decision_required_now": false,
+  "protected_controls_unchanged": 149,
+  "original_family_rules_changed": false,
+  "primary_abc_or_3d_changed": false,
+  "RF24_Q3_acoustics_R1_waterproofing_resolved": false,
+  "adopted": false,
+  "professional_approval": "unknown",
+  "construction_release": false,
+  "rendered_qa": "not-run",
+  "source_hashes": {
+    "inputs/b-front-drop-response-routes.json": "a7d122171a49567a2da070f3ef2d3a1521805696ecd50fd5743b4e729849f5ca",
+    "structured/coordination/b-front-drop-conditions-v1/review.json": "7fbbdaba3f4682485adea8f079da677547afe2bce4c84be9bbfad5838340eb0f",
+    "inputs/b-front-drop-conditions.json": "ab443b8e293c97005a54672df0073616a34c6c2b5ec652e8b9ea8643f7203869",
+    "structured/coordination/b-front-drop-claude-v2/review.json": "a4cfefaf071414d0201a9cda4f46abc00c0438282425da007f6553637f99c0d9",
+    "structured/coordination/b-front-drop-claude-v2/artifact-manifest.json": "16903e9876951f6773e7069e9b89917e19df3e96dc1dcb53c82fe0819549b736",
+    "inputs/b-front-drop-claude-round2.json": "09e370da3ca80afe19e6006fab4019e5a7086d9004c0a272e885a1e5611bc3e6",
+    "inputs/references/b-front-drop-claude-round2-20261110.json": "d88f246cde080f8122c636786f6c381d6412ed17e1b53099c4fd270d6d105c43",
+    "inputs/references/b-front-drop-claude-round2-20261110.md": "9da8fbe6623c1ff9ab9b67fc734fa3300f18dad18fc7b6426856b3a70990bb56",
+    "structured/coordination/b-front-drop-claude-v1/review.json": "c86b042428bd3ccc0cd34aad2cd50430e8335560ca58ff1fd4f2076d00b63074",
+    "structured/coordination/b-front-drop-claude-v1/artifact-manifest.json": "944c3139e76ce5420d4e701fb54670e5bf0117e7b15bb8703de1241b21958446",
+    "inputs/b-front-drop-claude-options.json": "372cca8eb782237a3fcb53be1fd339d6f25bf5901d00f745dc95ec50f4780aee",
+    "inputs/references/b-front-drop-claude-round1-20261110.json": "b0185113b171087ae39866e7c5b1ecb01f31378d3c66bb24ba909d01b91d90f8",
+    "inputs/references/b-front-drop-claude-round1-20261110.md": "6e51137c069d62837cb09b08dcbc8dcb641257ee2575f6b0a07479f57c5c5c90",
+    "structured/coordination/b-front-drop-stair-v1/review.json": "420c80017812b34f76105ffd2b642124b8853f448d41ded219c3c246a93478ca",
+    "structured/coordination/b-front-drop-stair-v1/artifact-manifest.json": "3ebf51748254d10232418339218abc67009dfbabc97883f18cdb618fbe4d4a85",
+    "inputs/b-front-drop-stair.json": "99d4fd07fcd4a8c1443478e90dd8c2410fddd635c5760901becfa635727159a4",
+    "structured/coordination/b-front-drainage-layout-v1/review.json": "fb352dcdc1c83aad3b4d4ced66804d328132bd411473b496676f53f849ac7711",
+    "structured/coordination/b-front-drainage-layout-v1/artifact-manifest.json": "79ec65f635322da82de8f7e9c646be793531d937a9a25cafb70d991ff6255635",
+    "structured/coordination/b-ktv-stair-options-v1/review.json": "6116c9df09d442e29e16cc3eabc50aa1cd94b4d512fd3398b9105f1afdc34a7e",
+    "structured/coordination/b-claude-round3-v1/review.json": "00baf0b3950e2593361e91698e4d72ac33e384edadd6da5a7d31b62e087b6223",
+    "structured/coordination/b-claude-round3-v1/artifact-manifest.json": "ad7327b07ef803ab57cf7390f84a3919da4165124a84e33288953981fa591062",
+    "inputs/b-front-drainage-layout.json": "8b21213448e73e770cfeac1203a41a53ff877890052d5aa1e5c5e35c4078853e",
+    "structured/coordination/b-front-service-detail-v1/review.json": "a51324d7699cfba56479f83a5e4eaa24ef5c9d45782c302c79e5fe779d4f2edd",
+    "structured/coordination/b-front-service-detail-v1/artifact-manifest.json": "66b708543e5da68e23878d0063034d8ecb0fe693a658431b44160e5881c35234",
+    "structured/coordination/b-ktv-stair-options-v1/artifact-manifest.json": "1e3b99e2ee0a4626b93c9aa133098f6fb85ea65d3f148b924c69bea3d6349346",
+    "inputs/b-front-service-detail.json": "48c1b0f31db2d9a6116cd81ba8a4b16ec9d2100c643275f8c553b0d400907e49",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "inputs/b-upper-replan.json": "83621a2af81211b06ff4dc2c9e8557641c1d551b05195605acd7a6ad7b1df3f5",
+    "house_design/b_upper_replan.py": "a251d37dc84bd54b9292b6802180ca7fd66c679a7e43dc714b3fed160dc2e5c5",
+    "scripts/export_b_upper_replan.py": "3a3cc271cf7d9fc20759d4bca17b582ab672f551981c6e8c1c20933192c09a3d",
+    "structured/coordination/b-upper-replan-v1/review.json": "38897b7ca1da091dd62c85ab342abd4d1d1da220ec1dbad9a5f46e6611f4906d",
+    "structured/coordination/b-upper-replan-v1/artifact-manifest.json": "c1fe7bab76b8032224f7ce271671db0f94fb3ef91c702adc355fd1bcd6b8d915",
+    "house_design/b_front_service_detail.py": "0e20c751c385d4e69a3ff679cb5b7890e71575f82fdef8195e49628690175c29",
+    "scripts/export_b_front_service_detail.py": "bf8d07a4a0c316fe69facbe5145b9091f0afd4d73e0a5998f4ba2c83d7a9253e",
+    "Docs/b-front-service-detail-v1.md": "bc04d48a087905f1d9735cb90dfde9da33b200627ce6d47adf3115f5648d280b",
+    "house_design/b_claude_round3.py": "040a7b75fc604dc147b471800ae4c1c8a57935182dcceea26591514b106ec9d0",
+    "house_design/contracts.py": "2888419d49e8d8dbe8b8e99f6b8451363cd9020821c7fe3e703ab09779e202c3",
+    "house_design/project_status.py": "db73eb9b066353cc282e67dc15e4b430d9d4e4d398eafaf7eeec5f98af1acab0",
+    "inputs/requirements.json": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066",
+    "inputs/planning-register.json": "140493058b145071afb472bf927860d48a43a6f4407b9b59e5a86705fbe058b0",
+    "inputs/b-ktv-stair-options.json": "b09976ea14cf0021385e87f742b80b2bb3fc0baac50c5863b2c40bcf4dc6f020",
+    "structured/coordination/b-third-entertainment-v1/review.json": "568509636ce55cb56b21161cf69e91e3eab633806c97e260c2a30a7f6553b08a",
+    "structured/coordination/b-third-entertainment-v1/artifact-manifest.json": "81247bbf44718d66f247c3ab520173e24e3ae38c4102480f83d74b3ee189d4d8",
+    "structured/candidates/kaohsiung-house-options/c-stair-integration.json": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+    "inputs/b-third-entertainment.json": "07577a0dffe45c74f98ee93c75d0b35f30b75dec187050e3796775d4d73b45c8",
+    "inputs/references/b-owner-ritual-answers-20261106.json": "736f5a477ce1fbfd8e1bf460ecf49f9043a83635201d1598e3e1842e6460ddb9",
+    "inputs/brief/B.json": "63ed4fc045fc6f2cc4021b8bd784cb7cc9fd46789155fc19aa1a55f33016e55a",
+    "house_design/b_third_entertainment.py": "f026a7665c1134dde6c3ec0f01032fdb0eb91d750e1f7af6ead8c845fbd1a5cc",
+    "scripts/export_b_third_entertainment.py": "67aa5888f2149271e9718c1a7cceea92cd6a96767e4fc5d2c5d4383aae713a2f",
+    "scripts/export_abc_next_improvements.py": "875c13027466776a6e1661dae369e45c823c661c5e0369d8ee95b6535420e701",
+    "scripts/export_builder_communication.py": "650d696de35bd9a0fb4ce77d7f93078813b8babd4ed5439d59a6966d093ceef1",
+    "Docs/b-third-entertainment-v1.md": "5f69f521386c051ce67b4b24d5cda79186f70f937316d25c64962a745258d513",
+    "house_design/b_ktv_stair_options.py": "aa80873e7072c942f144d29ca5d1e82982e215e353188e3a4b41c3e98b27260d",
+    "scripts/export_b_ktv_stair_options.py": "973fd2ca9472d0b1573d78fe2dc94f65acced4fff120ae54bf2f2cfa0387b617",
+    "Docs/b-ktv-stair-options-v1.md": "e994cd9439f526a99a8d6faea11eb5e90f4fcd01b6383a82f514849b29fc61a2",
+    "house_design/b_front_drainage_layout.py": "5e4dd9fb80d2c1acdd0c756d929220a398c154d9274ba910cb2c9d474bcaf218",
+    "scripts/export_b_front_drainage_layout.py": "999dca33f4b233c7ef7f760e160176d29cce941021a57e3888c04d2f153e124f",
+    "Docs/b-front-drainage-layout-v1.md": "6664d87277208e43b6c8022ca56b92fc207b82feb3d176a7106dbe7dfc215c11",
+    "inputs/b-claude-round3.json": "25c006e1d7741395f53a8ae369ac905f7956ca0a3f8f7d2a94cc1625137fbc6f",
+    "structured/coordination/b-claude-crosscheck-v1/review.json": "b2a3604da09beaf1ebb4f8ed50d0525004cf6592ede2bde756eb05ae9ada95a4",
+    "structured/coordination/b-fengshui-strict-v1/review.json": "e595361db8281be6daf361251afe0187824c7bcb99d556f930cf90f15bf2f954",
+    "structured/coordination/b-claude-crosscheck-v1/artifact-manifest.json": "32940e5ac7474e21fbe521a7a99d4c259b2bbaf9fcaa2e33acf67a0a5bad8197",
+    "inputs/b-claude-crosscheck.json": "d49320cef10eed1df0ece76c9e0ba17107c9d32630c25da26c48bf2350cc2a7d",
+    "inputs/references/b-claude-response-v2-provenance.json": "2c7c0cdc880c1d78a910a170edcfdc6b59c20865ae81fd6b041c72816656b32b",
+    "inputs/references/b-claude-response-v2-transcript-20261105.md": "67ad0a230f18b2495ebbbdc7f9c2986bc3a72eaf48eea846af3640a621bf51a7",
+    "house_design/b_claude_crosscheck.py": "9b157330308ec83bfc91d219d0bd0c632fd0ed0566e85b243209affa9a1daf20",
+    "house_design/b_fengshui_strict.py": "7f73ab7b7d84e7af976357a11cbf5ec78bb9550956b24973361a0a1dc6c6a2ab",
+    "house_design/abc_next_improvements.py": "9756b69f651f8431d361ffdc6f678e59edc1c3af0e9d8e9db782091366166568",
+    "house_design/c_coordination.py": "6d2c336496e0f1cabfabce3f3287b28ceecb13088d78f8cb0137d9ce14b689ff",
+    "scripts/export_b_claude_crosscheck.py": "c6bf43bf9b8018f74042ae3f64ef60483d3bde13898c448f2d82cef848890d3f",
+    "scripts/export_b_fengshui_strict.py": "b097e116689af7ae1f074a1482adfb895a44d32f790fabe6386cdeafcb88a67f",
+    "Docs/claude-b-fengshui-followup-v3.md": "ce877ccd31a13e8757b39abef592ead3b78c6117ff2214d90c2b97f7696ec1ea",
+    "scripts/review_b_fengshui_with_claude.py": "dc6b4b855656cbdee16990857abbb44b1f471a720f6799cd9bdee96f71f58b55",
+    "inputs/references/b-claude-round3-provenance-20261106.json": "215a2f40a924a0f3ddd8a1e5a8dfd4da1807175f79310755ff74f8c2a29b4a64",
+    "inputs/references/b-claude-round3-response-20261106.md": "7ec4b66feb30aed715aaef272678e819e2e685342a64f4c24a5b22c0410d159f",
+    "scripts/export_b_claude_round3.py": "be59ca0ded73f3f6a09e40580191eb2375849f3699b977dde887199e47a45e1d",
+    "Docs/b-claude-round3-v1.md": "a9a6fe163037a967962723738ca1535664fc7a54707f101af50066e0c35c68ff",
+    "house_design/b_front_drop_stair.py": "72f5d172e4d9f00383f94c979ac05b547a3f8b7c6ce8741c8b4411ce7e6061a8",
+    "scripts/export_b_front_drop_stair.py": "5a2b16355993e894b714aa0b115ab64025a23422bc045aaf0549e04a54a2a948",
+    "Docs/b-front-drop-stair-v1.md": "3e913493cbadb9f9d42f1fe43af8ed3d438b72bad518e0d97260e48d7db63bcc",
+    "Docs/claude-b-front-drop-brief-v1.md": "696313f200e9224c9e3cb6019432e45957855d5db4ee42d9c302ffc982b925a4",
+    "house_design/b_front_drop_claude.py": "3c40f654ba88f3aa2d2d18b1b3749f3c3cb87c2c15b40a4c2cfde2538e75b566",
+    "scripts/export_b_front_drop_claude.py": "22791815d04f66eac4390ad0eb3dcaadc83d31c974b280f621f83b62db996624",
+    "Docs/b-front-drop-claude-crosscheck-v1.md": "a559b3822f016e56d22e2081b0386fec7035b7a602613520e00e9cf0974e3bfe",
+    "Docs/claude-b-front-drop-followup-v2.md": "198843216d0c3678232bc7d1794d58a82a703956066b991c4af3870dd800a23b",
+    "scripts/review_b_fengshui_with_claude_v2.py": "1e704fb9747fb8c1aa64f887d0452fffc2908ebd0d699556ab5602f46b8e922d",
+    "house_design/b_front_drop_claude_round2.py": "dc5228fd30d5dd7dbbbc6b4b8155e790d8367095249f0cd9550f8633584e0eb7",
+    "scripts/export_b_front_drop_claude_round2.py": "b2e0ba359103952bae04a4a5f683f32550acdc8dd363a54dc80c883b1dda9b99",
+    "Docs/b-front-drop-claude-crosscheck-v2.md": "19452fd64b52c46b0df8d55cec84f5cee1868c6bf7249ec46344a1f498aed561",
+    "house_design/b_front_drop_conditions.py": "d32f44a3d94f9ce14c56aeba03b5b4f36bfb7c2c7ac59bd1c85727ac94c7a947",
+    "scripts/export_b_front_drop_conditions.py": "bc439d3913ffc0667e5ae7f399fa8c85f8c768a4bc6d4bde340d16830dd4abea",
+    "Docs/b-front-drop-builder-interface-v1.md": "83fe0296744b1a62e3546f1a3158096bf0c951e6f26ae586e39440329d026061",
+    "house_design/b_front_drop_reply_routes.py": "1910b27a8ee848a83af651357bcdad7a3f0740c1d7b7402182946bf9d210b9ec",
+    "scripts/export_b_front_drop_reply_routes.py": "b84adfc1c2840b12177a97e591848638642d84416b6ebb0a716b08cc1335744c",
+    "Docs/b-front-drop-response-routes-v1.md": "ee4e14027f2068aa0a5456ade5f9daf8d2a558310dd0040808cb56c2428df3fc"
+  },
+  "report_hash": "8ca77001c3e91cbf7c8a57ec54c110980a87ffad7afe07ae685cc6d9ee784faa"
+}

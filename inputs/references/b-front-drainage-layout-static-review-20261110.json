@@ -1,0 +1,403 @@
+{
+  "schema": "house-b-front-drainage-layout-static-review-v1",
+  "date": "2026-11-10",
+  "scope": "Independent P4 second-floor front bath/tea fixture re-layout, retained shaft and maintenance area, shifted bath slider, five routes, nine independent door states and complete-path drainage sensitivity; no main-scene merge",
+  "report_hash": "7942e22e54fc8e0c33b7de181765634eb0ab7fa4bf52900f055cb85f73d7c4e7",
+  "source_and_artifact_sha256": {
+    "inputs/b-front-drainage-layout.json": "8b21213448e73e770cfeac1203a41a53ff877890052d5aa1e5c5e35c4078853e",
+    "structured/coordination/b-front-service-detail-v1/review.json": "a51324d7699cfba56479f83a5e4eaa24ef5c9d45782c302c79e5fe779d4f2edd",
+    "structured/coordination/b-front-service-detail-v1/artifact-manifest.json": "66b708543e5da68e23878d0063034d8ecb0fe693a658431b44160e5881c35234",
+    "structured/coordination/b-ktv-stair-options-v1/review.json": "6116c9df09d442e29e16cc3eabc50aa1cd94b4d512fd3398b9105f1afdc34a7e",
+    "structured/coordination/b-ktv-stair-options-v1/artifact-manifest.json": "1e3b99e2ee0a4626b93c9aa133098f6fb85ea65d3f148b924c69bea3d6349346",
+    "inputs/b-front-service-detail.json": "48c1b0f31db2d9a6116cd81ba8a4b16ec9d2100c643275f8c553b0d400907e49",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "inputs/b-upper-replan.json": "83621a2af81211b06ff4dc2c9e8557641c1d551b05195605acd7a6ad7b1df3f5",
+    "house_design/b_upper_replan.py": "a251d37dc84bd54b9292b6802180ca7fd66c679a7e43dc714b3fed160dc2e5c5",
+    "scripts/export_b_upper_replan.py": "3a3cc271cf7d9fc20759d4bca17b582ab672f551981c6e8c1c20933192c09a3d",
+    "structured/coordination/b-upper-replan-v1/review.json": "38897b7ca1da091dd62c85ab342abd4d1d1da220ec1dbad9a5f46e6611f4906d",
+    "structured/coordination/b-upper-replan-v1/artifact-manifest.json": "c1fe7bab76b8032224f7ce271671db0f94fb3ef91c702adc355fd1bcd6b8d915",
+    "house_design/b_front_service_detail.py": "0e20c751c385d4e69a3ff679cb5b7890e71575f82fdef8195e49628690175c29",
+    "scripts/export_b_front_service_detail.py": "bf8d07a4a0c316fe69facbe5145b9091f0afd4d73e0a5998f4ba2c83d7a9253e",
+    "Docs/b-front-service-detail-v1.md": "bc04d48a087905f1d9735cb90dfde9da33b200627ce6d47adf3115f5648d280b",
+    "house_design/b_claude_round3.py": "040a7b75fc604dc147b471800ae4c1c8a57935182dcceea26591514b106ec9d0",
+    "house_design/contracts.py": "2888419d49e8d8dbe8b8e99f6b8451363cd9020821c7fe3e703ab09779e202c3",
+    "house_design/project_status.py": "db73eb9b066353cc282e67dc15e4b430d9d4e4d398eafaf7eeec5f98af1acab0",
+    "inputs/requirements.json": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066",
+    "inputs/planning-register.json": "140493058b145071afb472bf927860d48a43a6f4407b9b59e5a86705fbe058b0",
+    "inputs/b-ktv-stair-options.json": "b09976ea14cf0021385e87f742b80b2bb3fc0baac50c5863b2c40bcf4dc6f020",
+    "structured/coordination/b-third-entertainment-v1/review.json": "568509636ce55cb56b21161cf69e91e3eab633806c97e260c2a30a7f6553b08a",
+    "structured/coordination/b-third-entertainment-v1/artifact-manifest.json": "81247bbf44718d66f247c3ab520173e24e3ae38c4102480f83d74b3ee189d4d8",
+    "structured/candidates/kaohsiung-house-options/c-stair-integration.json": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+    "inputs/b-third-entertainment.json": "07577a0dffe45c74f98ee93c75d0b35f30b75dec187050e3796775d4d73b45c8",
+    "inputs/references/b-owner-ritual-answers-20261106.json": "736f5a477ce1fbfd8e1bf460ecf49f9043a83635201d1598e3e1842e6460ddb9",
+    "structured/coordination/b-claude-round3-v1/review.json": "00baf0b3950e2593361e91698e4d72ac33e384edadd6da5a7d31b62e087b6223",
+    "inputs/brief/B.json": "63ed4fc045fc6f2cc4021b8bd784cb7cc9fd46789155fc19aa1a55f33016e55a",
+    "house_design/b_third_entertainment.py": "f026a7665c1134dde6c3ec0f01032fdb0eb91d750e1f7af6ead8c845fbd1a5cc",
+    "scripts/export_b_third_entertainment.py": "67aa5888f2149271e9718c1a7cceea92cd6a96767e4fc5d2c5d4383aae713a2f",
+    "scripts/export_abc_next_improvements.py": "875c13027466776a6e1661dae369e45c823c661c5e0369d8ee95b6535420e701",
+    "scripts/export_builder_communication.py": "650d696de35bd9a0fb4ce77d7f93078813b8babd4ed5439d59a6966d093ceef1",
+    "Docs/b-third-entertainment-v1.md": "5f69f521386c051ce67b4b24d5cda79186f70f937316d25c64962a745258d513",
+    "house_design/b_ktv_stair_options.py": "aa80873e7072c942f144d29ca5d1e82982e215e353188e3a4b41c3e98b27260d",
+    "scripts/export_b_ktv_stair_options.py": "973fd2ca9472d0b1573d78fe2dc94f65acced4fff120ae54bf2f2cfa0387b617",
+    "Docs/b-ktv-stair-options-v1.md": "e994cd9439f526a99a8d6faea11eb5e90f4fcd01b6383a82f514849b29fc61a2",
+    "house_design/b_front_drainage_layout.py": "5e4dd9fb80d2c1acdd0c756d929220a398c154d9274ba910cb2c9d474bcaf218",
+    "scripts/export_b_front_drainage_layout.py": "999dca33f4b233c7ef7f760e160176d29cce941021a57e3888c04d2f153e124f",
+    "Docs/b-front-drainage-layout-v1.md": "6664d87277208e43b6c8022ca56b92fc207b82feb3d176a7106dbe7dfc215c11",
+    "tests/test_b_front_drainage_layout.py": "bad4e158a2e501681938a9a399c77be8d5eadb99b43c416161460a068d760e60",
+    "tests/test_b_front_service_detail.py": "9ec645d13a40438318cdd53e5295ce1a4d54fed80d06ab17ff4c5860b154333a",
+    "tests/test_design_discussion_basis.py": "976a751e58242aef1821ecf84b544f38833bd3f111f6a220b88258edb8e6c191",
+    "tests/test_project_next_steps.py": "dc837be6f8a27553f694645701cfccbbfabdce085a1f70c5f794d3c1de2f0940",
+    "tests/test_builder_communication.py": "5621666ecfa97b6eb72e6ec22321ac9bc367d5d8cb7f1d1f30d97a677b42f032",
+    "tests/test_project_status.py": "73098e7a96b4a2fa514019b39e7445b0af0f0cbd19a8ff29dee5ce660933145b",
+    "tests/test_repository_health.py": "ac385bd69d28d58f89a7e3ae415f1fbafd3196217acc255e5074c1ddad1d51f6",
+    "inputs/design-discussion-basis.json": "ad7b9f0a2bc52909a6e08a3213d90a1412377c76fdd0424d4eb9c4ced77b358a",
+    "inputs/project-status.json": "72c54582a81cdb68bd76b964d500df71815c11f249a8954e1a61e4dca5caecd0",
+    "README.md": "a8aecaa5a645c10f6602a0a6b40396ff01a9f7a54ee2ed814bad5976a919e766",
+    "Docs/project-status-v1.md": "400433eef26fad50024eca4beb56babc2cdb5b502a03611c380d16da47163cc2",
+    "Docs/design-discussion-basis-v1.md": "872c840044ca4941289d95b5808aeb2ce455b01302bd8b4a7339ad81f3ed76a2",
+    "scripts/README.md": "4e00b1a2d5bca714436d23f4530eff5785d653c13292b4cdb78221976da54c33",
+    "house_design/design_discussion_basis.py": "7cddcdaa47a8d55ad00cd65d0477d20f7a09402b61d3f1c190b400ca82cbe313",
+    "scripts/export_design_discussion_basis.py": "f42e5cbb281ef0fa3811df071385da9991b2b07efe37e4f7db823b8aba9ca17e",
+    "structured/coordination/b-front-drainage-layout-v1/P4-complete-drainage.svg": "81828258c2c2fdfc604621d9b867dae43136cd0e825bb97d462acea1732f897c",
+    "structured/coordination/b-front-drainage-layout-v1/P4-front-layout.svg": "04d6c45d1da129229af34585775913f29819d597f6da48ba146db06aaf6db9c6",
+    "structured/coordination/b-front-drainage-layout-v1/P4-nine-door-states.svg": "a0b3c0c26c08d6271255cd2a4ac984de042ac34e99ffe6c6c5517b7dfa3865f0",
+    "structured/coordination/b-front-drainage-layout-v1/actual-outlets.csv": "7b24585c3328351e35fa7502bd5936f2092c7ad107d05f466ea8517470be7a25",
+    "structured/coordination/b-front-drainage-layout-v1/artifact-manifest.json": "79ec65f635322da82de8f7e9c646be793531d937a9a25cafb70d991ff6255635",
+    "structured/coordination/b-front-drainage-layout-v1/door-states.csv": "b8767f3fd6403b8a2197d05cce4bb9e8418976edcf73d4dd873ff9b60f4caa4c",
+    "structured/coordination/b-front-drainage-layout-v1/drainage-lengths.csv": "b78998f30d6540c0e0c9505ef1864c3f7e1ad7b3d4a2b93ead70a7b57360a11c",
+    "structured/coordination/b-front-drainage-layout-v1/engineering-replies.csv": "845ef20ea0aeb35ca60b1aa4c5f98bb1014b2ab6d9acbeb65a01574764d82d46",
+    "structured/coordination/b-front-drainage-layout-v1/index.html": "ddb7acb9bfbd412a28d5b394954e559fb3c999b066391d2d64e731c4422006e5",
+    "structured/coordination/b-front-drainage-layout-v1/review.json": "fb352dcdc1c83aad3b4d4ced66804d328132bd411473b496676f53f849ac7711",
+    "structured/coordination/b-front-drainage-layout-v1/routes.csv": "631d9ac9c2a786c92a4cfc954df1ffe08b44711f3f2b9a0515cea72c113e4b0e",
+    "structured/coordination/b-front-drainage-layout-v1/section-scenarios.csv": "55031f594c350651243b707e759298057986ecfde1b94a80b75805755085869c",
+    "structured/planning/project-next-steps/review.json": "a9a2781c8f7033de4e096790cf14b781c2094f7ab5571d9ef080f78242b3cae4",
+    "structured/planning/project-next-steps/artifact-manifest.json": "0c9d7c392b7c455e98ee6a92df4e5a2cc544b60f40395ec12d4390c1bd13c887",
+    "structured/planning/builder-communication/review.json": "ef7d770cf9c4736bef65c7434dd8df093b8e80ece985c5dccbcf20ca396a16c4",
+    "structured/planning/builder-communication/artifact-manifest.json": "aed1de25ce50abc383dd8f3d6f13ed84ac78dbcd1610815a49579f86f750c972",
+    "structured/planning/design-discussion-basis/review.json": "4226f1f051b08bd4af333c18b748c9967f7d4f5246ca00ed678932efbed35a1e",
+    "structured/planning/design-discussion-basis/artifact-manifest.json": "21751c1f081603a9126b945495b050bc45249254c22935ce0178935a46dc9c96",
+    "structured/planning/design-discussion-basis/archive-manifest.json": "252cd7b2e0016bef3f98d88efc092f13e037ab506d715ebef4cf897e995391cc",
+    "structured/planning/design-discussion-basis/ABC-discussion-package.zip": "e76ba154c41226e114f15f3d40a1cf232ac4f7265e51d6736f1530981e05da83"
+  },
+  "checks": {
+    "focused_tests": {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q --tb=short -p no:cacheprovider tests/test_b_front_drainage_layout.py tests/test_b_front_service_detail.py tests/test_design_discussion_basis.py tests/test_project_next_steps.py tests/test_builder_communication.py tests/test_project_status.py tests/test_repository_health.py",
+      "passed": 191,
+      "failed": 0,
+      "elapsed_seconds": 6.73,
+      "exit_code": 0
+    },
+    "ruff": {
+      "command": "timeout 20s .venv/bin/ruff check house_design/b_front_drainage_layout.py scripts/export_b_front_drainage_layout.py tests/test_b_front_drainage_layout.py tests/test_design_discussion_basis.py",
+      "exit_code": 0
+    },
+    "exports_check": {
+      "scripts": [
+        "export_b_front_drainage_layout.py",
+        "export_b_front_service_detail.py",
+        "export_b_ktv_stair_options.py",
+        "export_b_q3_engineering_gates.py",
+        "export_project_next_steps.py",
+        "export_builder_communication.py",
+        "export_design_discussion_basis.py"
+      ],
+      "individual_timeout_seconds": 20,
+      "all_exit_codes": 0
+    },
+    "relevant_regressions_covered": [
+      "frozen parents and controls stay unchanged",
+      "no fixture body or operation area shrinks",
+      "bath panel translation, shaft and counter collisions rejected",
+      "turning too close to the open stair panel rejected",
+      "all nine door states distinguish fully open/half/closed",
+      "all five explicit routes checked on the same reference floor",
+      "thicker-finish area failures and longer shower branch retained",
+      "all four full paths, extra-depth and structure/pipe budgets evaluated together",
+      "source and artifact identities, offline handoff and blank actual outlet/reply fields checked"
+    ],
+    "protected_controls_unchanged": 149,
+    "current_index_source_packages_match": 7,
+    "historical_packages_with_source_drift_retained": 5,
+    "historical_browser_passed_reused": false,
+    "discussion_packet_report_sources_verified": 309,
+    "original_requirement_statuses": {
+      "candidate": 66
+    },
+    "original_register_statuses": {
+      "unknown": 105
+    },
+    "repository_health_before_this_evidence_file": {
+      "files": 1578,
+      "JSON_syntax_checked": 245,
+      "markdown_checked": 156,
+      "local_links_checked": 927,
+      "issues": [],
+      "writes_performed": false,
+      "browser_started": false
+    },
+    "packet": {
+      "SVG_drawings": 60,
+      "BC_comparisons": 7,
+      "CSV_forms": 14,
+      "files": 89,
+      "zip_entries": 87,
+      "zip_sha256": "e76ba154c41226e114f15f3d40a1cf232ac4f7265e51d6736f1530981e05da83",
+      "private_snapshot": "design-discussion-016",
+      "snapshot_matches_public_files": true,
+      "previous_snapshots_overwritten": false
+    },
+    "git_diff_whitespace_exit_code": 0
+  },
+  "findings": {
+    "scope_floor": "B floor-2 front only",
+    "moved_fixture_count": 4,
+    "original_fixture_body_and_operation_sizes_retained": true,
+    "room_boundaries_front_enclosure_windows_other_rooms_unchanged": true,
+    "bath_slider_shift_left_mm": 550,
+    "stair_slider_unchanged": true,
+    "shared_shaft_mm": [
+      115,
+      1780,
+      400,
+      400
+    ],
+    "dry_maintenance_mm": [
+      115,
+      2180,
+      700,
+      900
+    ],
+    "Q3_front_pipe_shaft_same_projection_not_a_complete_Q3_merge": true,
+    "areas_115_sqm": {
+      "stair": 10.7849,
+      "quiet-living": 29.2948,
+      "dry-protection": 2.466,
+      "public-bath": 5.286,
+      "front-open": 9.175,
+      "tea-foyer": 5.1036,
+      "master": 23.6651,
+      "private-bath": 6.133
+    },
+    "tea_after_full_panel_travel_sqm": 5.064,
+    "unique_shaft_per_floor": 1,
+    "body_margins_mm": {
+      "bath_full_travel_to_shaft_mm": 35,
+      "bath_full_travel_to_counter_mm": 25,
+      "arrival_to_shower_body_mm": 20,
+      "arrival_to_counter_body_mm": 40
+    },
+    "explicit_routes": 5,
+    "independent_two_door_states": 9,
+    "half_or_closed_doors_passed_as_open": false,
+    "toilet_door_axis_over_body": false,
+    "full_fengshui_or_product_approval": false,
+    "maintenance_tea_and_access_operations_simultaneous_verified": false,
+    "complete_drainage_paths": [
+      {
+        "option": "P4",
+        "fixture": "toilet",
+        "branch_points_mm": [
+          [
+            465,
+            340
+          ],
+          [
+            315,
+            340
+          ],
+          [
+            315,
+            1980
+          ]
+        ],
+        "offset_points_mm": [
+          [
+            315,
+            1980
+          ],
+          [
+            315,
+            4215
+          ],
+          [
+            315,
+            4215
+          ]
+        ],
+        "branch_length_mm": 1790,
+        "offset_length_mm": 2235,
+        "total_length_mm": 4025,
+        "hypothetical_total_fall_mm": 80.5,
+        "centerline_over_protected_footprints": false,
+        "actual_outlet_and_invert_known": false,
+        "pipe_envelope_and_bends_designed": false,
+        "P3_branch_length_mm": 2830,
+        "P3_total_length_mm": 5065,
+        "change_total_length_mm": -1040,
+        "P3_hypothetical_total_fall_mm": 101.3
+      },
+      {
+        "option": "P4",
+        "fixture": "basin",
+        "branch_points_mm": [
+          [
+            340,
+            1425
+          ],
+          [
+            315,
+            1425
+          ],
+          [
+            315,
+            1980
+          ]
+        ],
+        "offset_points_mm": [
+          [
+            315,
+            1980
+          ],
+          [
+            315,
+            4215
+          ],
+          [
+            315,
+            4215
+          ]
+        ],
+        "branch_length_mm": 580,
+        "offset_length_mm": 2235,
+        "total_length_mm": 2815,
+        "hypothetical_total_fall_mm": 56.3,
+        "centerline_over_protected_footprints": false,
+        "actual_outlet_and_invert_known": false,
+        "pipe_envelope_and_bends_designed": false,
+        "P3_branch_length_mm": 4180,
+        "P3_total_length_mm": 6415,
+        "change_total_length_mm": -3600,
+        "P3_hypothetical_total_fall_mm": 128.3
+      },
+      {
+        "option": "P4",
+        "fixture": "tea-counter",
+        "branch_points_mm": [
+          [
+            2405,
+            2435
+          ],
+          [
+            315,
+            2435
+          ],
+          [
+            315,
+            1980
+          ]
+        ],
+        "offset_points_mm": [
+          [
+            315,
+            1980
+          ],
+          [
+            315,
+            4215
+          ],
+          [
+            315,
+            4215
+          ]
+        ],
+        "branch_length_mm": 2545,
+        "offset_length_mm": 2235,
+        "total_length_mm": 4780,
+        "hypothetical_total_fall_mm": 95.6,
+        "centerline_over_protected_footprints": false,
+        "actual_outlet_and_invert_known": false,
+        "pipe_envelope_and_bends_designed": false,
+        "P3_branch_length_mm": 3445,
+        "P3_total_length_mm": 5680,
+        "change_total_length_mm": -900,
+        "P3_hypothetical_total_fall_mm": 113.6
+      },
+      {
+        "option": "P4",
+        "fixture": "shower",
+        "branch_points_mm": [
+          [
+            2085,
+            1375
+          ],
+          [
+            315,
+            1375
+          ],
+          [
+            315,
+            1980
+          ]
+        ],
+        "offset_points_mm": [
+          [
+            315,
+            1980
+          ],
+          [
+            315,
+            4215
+          ],
+          [
+            315,
+            4215
+          ]
+        ],
+        "branch_length_mm": 2375,
+        "offset_length_mm": 2235,
+        "total_length_mm": 4610,
+        "hypothetical_total_fall_mm": 92.2,
+        "centerline_over_protected_footprints": false,
+        "actual_outlet_and_invert_known": false,
+        "pipe_envelope_and_bends_designed": false,
+        "P3_branch_length_mm": 1665,
+        "P3_total_length_mm": 3900,
+        "change_total_length_mm": 710,
+        "P3_hypothetical_total_fall_mm": 78
+      }
+    ],
+    "illustrative_uniform_slope_denominator": 50,
+    "actual_outlet_or_invert_known": false,
+    "P3_best_case_minimum_budget_mm": 3471.7,
+    "P4_best_case_minimum_budget_mm": 3504.4,
+    "P4_best_case_margin_to3500_mm": 4.4,
+    "P4_best_case_plus25_extra_minimum_mm": 3479.4,
+    "section_scenarios": 27,
+    "hypothetical_scenarios_with_all_four_above_comparison_value": 1,
+    "required_legal_arcade_clearance_or_minimum_pipe_slope_selected": false,
+    "shortest_pipe_selection_used_to_hide_longer_shower": false,
+    "original_ground_candidate_mm": [
+      115,
+      4015,
+      400,
+      400
+    ],
+    "ground_candidate_occupies_original_stair_sqm": 0.16,
+    "ground_stair_void_and_complete_discharge_verified": false,
+    "direct_arcade_new_obstruction_allowed": false,
+    "pumps_macerators_raised_floors_or_smaller_drain_pipes_adopted": false,
+    "first_floor_rear_default_and_front_fallback_retained": true,
+    "shrine_backing_and_palanquin_rules_relaxed": false,
+    "third_floor_branches_vents_capacity_cleanouts_fire_and_terminal_complete": false,
+    "RF24_known_conflict_retained": true,
+    "Q3_stair_acoustics_R1_waterproofing_or_other_deficits_resolved": false
+  },
+  "rendered_or_browser_QA": "not-run",
+  "rasterization": "not-run",
+  "external_AI_invoked": false,
+  "actual_site_or_product_data_received": 0,
+  "primary_ABC_or_3D_changed": false,
+  "adopted": false,
+  "professional_religious_or_construction_approval": "unknown",
+  "commit_or_push_performed": false
+}

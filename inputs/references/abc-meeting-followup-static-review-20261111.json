@@ -1,0 +1,156 @@
+{
+  "schema": "house-abc-meeting-followup-static-review-v1",
+  "date": "2026-11-11",
+  "scope": "Extend existing six coordination actions with declared post-meeting reply/cost/owner-choice/document/issue record states; source-bound blank template and explicit private record summary only, no decisions or automatic close/release",
+  "report_hash": "ac6e6e2c510850298e1331f0f65b62073da5ef23abda0c9e53abf5820be52ee6",
+  "source_and_artifact_sha256": {
+    "inputs/abc-meeting-followup.json": "84cefb190c3de81539c2ac4c5d3c701335f4dd503953a61b8dac6f45e22e5e87",
+    "inputs/abc-coordination-agenda.json": "6256a19c4a4b7d01794f85130791ebf6dec9ccec37862054eaffbad4128f7cd2",
+    "inputs/builder-communication-plan.json": "13270205de158fb4302f7cd3cb80539900e89c405504532d1f43fa9bc1cd5fd4",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "house_design/abc_meeting_followup.py": "37cc0bad1b50bf0479fc7a457bddb6082300d02ef7e1f7f0b3ccf35ee800c852",
+    "scripts/export_abc_meeting_followup.py": "d88cf2c617c30d73b5fc0224653ac294ef5c13714d55bc8c2e49a6cb5d932099",
+    "Docs/abc-meeting-followup-v1.md": "3c5303435999f3c9ea71071d06810c82b77f15ae186d5e4fd69b3ba7d60737d1",
+    "tests/test_abc_meeting_followup.py": "ce2aaa32328a859e2fb0f3751f76cd56dc672d1add590dc1660c5a8c521cc02d",
+    "tests/test_design_discussion_basis.py": "a6eb64f7db6212ac309605acea0536736d616e05cedef9fb134c7e95f53395e3",
+    "tests/test_project_next_steps.py": "dc837be6f8a27553f694645701cfccbbfabdce085a1f70c5f794d3c1de2f0940",
+    "tests/test_builder_communication.py": "5621666ecfa97b6eb72e6ec22321ac9bc367d5d8cb7f1d1f30d97a677b42f032",
+    "tests/test_project_status.py": "73098e7a96b4a2fa514019b39e7445b0af0f0cbd19a8ff29dee5ce660933145b",
+    "tests/test_repository_health.py": "ac385bd69d28d58f89a7e3ae415f1fbafd3196217acc255e5074c1ddad1d51f6",
+    "house_design/design_discussion_basis.py": "51112d6d73c2e0402c06a4a352a3927d1d7a22aae8151b814f29c013008385fc",
+    "scripts/export_design_discussion_basis.py": "ae9933f4826ac1f6ed30a14f156521a2f3fde07a793611c30c82c269d33e0c31",
+    "inputs/design-discussion-basis.json": "53e49c8232557cc50502f799aacae5f062a0780456f7a4eb380882c02569f382",
+    "inputs/project-status.json": "2de3fa45113d2e4a9a3e7a49976620e64ebf2349ed95f793e5141bc752bebc2c",
+    "README.md": "fefef0a66c936794b198c57958bfc0f0020bafd30dcaec64095fe14f3b856f66",
+    "Docs/project-status-v1.md": "d3d7beb2f6c7f704e5146b3841032b7af69fa29ddf11ff045b11ae72335d8e1e",
+    "Docs/design-discussion-basis-v1.md": "502388fdd32521714dcc275234e1dd713616da679839cb641ec9776e901c4c02",
+    "scripts/README.md": "28c0d525588834c2bbbdd7b8b8ead20abd0035e5ba18fdeab9f7bdc51e57099a",
+    "scripts/check_repository_health.py": "fae5ced7c5195e31da94ce2c5d648535b27a9bfcbc8b2c88a9a8faa6b8d9c01f",
+    "structured/planning/project-next-steps/review.json": "07fcbeee948820dd31c6fedea9de3e77db6bcc04d420bcb5f38abf2e8e674ced",
+    "structured/planning/project-next-steps/artifact-manifest.json": "00a5ca35e8f7cad2d4b03e6d0ec7545afc69b7f426a281d88665f3d429129311",
+    "structured/planning/builder-communication/review.json": "d08e07a9748f0d3755367e55d58f4c0e30f6c20a5fc6cfa0d6905cf5f3deafc7",
+    "structured/planning/builder-communication/artifact-manifest.json": "597db5814e4268f00d05983387dc0030ebf1162cbec594229d4ff1f2f21172d8",
+    "structured/planning/design-discussion-basis/review.json": "5e81d9536096543f4cdac324c4dff1e869a52059081d4b4c5edee5a105f5d867",
+    "structured/planning/design-discussion-basis/artifact-manifest.json": "bb23fa6f4b14c0428e1314ba1ba49b164fc943ce606a5c7d364f6b9b9b17560b",
+    "structured/planning/design-discussion-basis/archive-manifest.json": "8e302a92e87ba22ed574e619d1cc409f973c1908df87ca3108cc780780e2ec64",
+    "structured/planning/design-discussion-basis/ABC-discussion-package.zip": "18610049e70fa45cc9b5c5e6dc77f78862620fc1308c0405050f97f06bf7f99e",
+    "structured/planning/design-discussion-basis/abc-coordination.html": "bc5bbde5be246dcc28b16eb6bcbf59755454e0b1e486131b566de461af7bacd9",
+    "structured/planning/design-discussion-basis/abc-coordination-actions.csv": "ef4aa92487b00188348b0c42fa2e724fae278f9cd6c4480ecd291d88cbb3372b",
+    "structured/planning/design-discussion-basis/abc-followup-records.json": "860cd69705ce35441ff288c8c18f713a4d4f90d9b777c0e264b04ef849702873",
+    "structured/planning/abc-meeting-followup/artifact-manifest.json": "46cc473f7950cb0baa53a189ca3c4cd8459eeeb8e6462683ce7ceeab1d79e726",
+    "structured/planning/abc-meeting-followup/followup-ledger.csv": "e5f7559c2fc32d960157a6311708186001a0f5b871250d6d3a142ace6ad2eb86",
+    "structured/planning/abc-meeting-followup/index.html": "72029ad6b85d684519dd77a4c56bb1ba019f193fdc172584e1f64fc267414981",
+    "structured/planning/abc-meeting-followup/record-template.json": "860cd69705ce35441ff288c8c18f713a4d4f90d9b777c0e264b04ef849702873",
+    "structured/planning/abc-meeting-followup/review.json": "c4bf064f9dfaaa12b906d5be17d68d09b79483965724f19bab3a68aff0fea1d0"
+  },
+  "checks": {
+    "focused_tests": {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q --tb=short -p no:cacheprovider tests/test_abc_meeting_followup.py tests/test_design_discussion_basis.py tests/test_project_next_steps.py tests/test_builder_communication.py tests/test_project_status.py tests/test_repository_health.py",
+      "passed": 223,
+      "failed": 0,
+      "elapsed_seconds": 6.56,
+      "exit_code": 0
+    },
+    "ruff": {
+      "command": "timeout 20s .venv/bin/ruff check house_design/abc_meeting_followup.py scripts/export_abc_meeting_followup.py tests/test_abc_meeting_followup.py house_design/design_discussion_basis.py scripts/export_design_discussion_basis.py tests/test_design_discussion_basis.py",
+      "exit_code": 0
+    },
+    "exports_check": {
+      "scripts": [
+        "export_abc_meeting_followup.py",
+        "export_project_next_steps.py",
+        "export_builder_communication.py",
+        "export_design_discussion_basis.py"
+      ],
+      "individual_timeout_seconds": 20,
+      "all_exit_codes": 0
+    },
+    "repository_health": {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B scripts/check_repository_health.py --check",
+      "files": 1697,
+      "public_json_checked": 278,
+      "markdown_checked": 169,
+      "local_links_checked": 1004,
+      "issues": [],
+      "exit_code": 0,
+      "scope": "Before adding this evidence file; bounded inventory, JSON and local Markdown links only"
+    },
+    "git_diff_check": {
+      "command": "timeout 20s git diff --check",
+      "exit_code": 0
+    },
+    "protected_controls_unchanged": 149,
+    "current_index_packages_match": 7,
+    "historical_drift_packages_retained": 5,
+    "packet_source_hashes_verified": 363,
+    "formal_requirement_statuses": {
+      "candidate": 66
+    },
+    "formal_register_statuses": {
+      "unknown": 105
+    },
+    "old_browser_passed_reused": false
+  },
+  "record_contract": {
+    "slots": 6,
+    "original_question_references_unchanged": true,
+    "public_meeting_reported": false,
+    "public_replies_reported": 0,
+    "private_record_imported": false,
+    "independent_record_axes": [
+      "received-reply-and-missing-data",
+      "cost-schedule-document",
+      "owner-choice-record",
+      "professional-document-record",
+      "drawing-release-record"
+    ],
+    "documents_recorded_are_not_content_or_authority_verified": true,
+    "not_received_does_not_create_choice_or_release": true,
+    "reported_reply_does_not_imply_meeting_occurred": true,
+    "no_deadline_without_agreed_contact": true,
+    "unknown_deadline_is_not_overdue": true,
+    "whole_project_blocked": false,
+    "automatic_closed_records": 0,
+    "automatic_fee_total": null,
+    "source_and_drawing_revision_required_for_declared_reply": true,
+    "documented_choice_review_and_release_require_independent_scope_source_date_fields": true,
+    "not_recorded_does_not_hide_reply_choice_or_issue_content": true,
+    "cross_building_and_source_revision_edits_rejected": true,
+    "explicit_private_file_only": true,
+    "old_records_inputs_results_and_public_template_not_overwritten": true,
+    "private_content_never_auto_imported_into_handoff": true
+  },
+  "handoff": {
+    "public_directory": "structured/planning/design-discussion-basis",
+    "private_snapshot_created": "inputs/private/design-discussion-023",
+    "files": 106,
+    "all_private_files_match_public": true,
+    "zip_entries": 104,
+    "zip_sha256": "18610049e70fa45cc9b5c5e6dc77f78862620fc1308c0405050f97f06bf7f99e",
+    "html_pages": 12,
+    "csv_forms": 18,
+    "svg_drawings": 69,
+    "bc_comparisons": 7,
+    "decision_items": 12,
+    "work_items": 14,
+    "existing_coordination_CSV_extended_not_new_question_list": true,
+    "older_snapshots_001_to022_own_artifacts_verified": 22,
+    "older_snapshots_written": false,
+    "old_evidence_overwritten": false
+  },
+  "not_run": [
+    "new external AI request",
+    "browser/WebGL",
+    "full pytest",
+    "new geometry or scene generation",
+    "actual meeting/private reply/price import",
+    "notifications or meeting invitations",
+    "commit",
+    "push"
+  ],
+  "adopted": false,
+  "primary_abc_or_3d_changed": false,
+  "original_family_rules_changed": false,
+  "professional_approval": "unknown",
+  "construction_release": false
+}

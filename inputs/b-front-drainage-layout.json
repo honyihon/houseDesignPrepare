@@ -1,0 +1,47 @@
+{
+  "schema": "house-b-front-drainage-layout-v1",
+  "date": "2026-11-10",
+  "adopted": false,
+  "parent_report": "structured/coordination/b-front-service-detail-v1/review.json",
+  "q3_report": "structured/coordination/b-ktv-stair-options-v1/review.json",
+  "protected_controls": "inputs/abc-next-protected-controls.json",
+  "pinned_sources": {
+    "structured/coordination/b-front-service-detail-v1/review.json": "a51324d7699cfba56479f83a5e4eaa24ef5c9d45782c302c79e5fe779d4f2edd",
+    "structured/coordination/b-front-service-detail-v1/artifact-manifest.json": "66b708543e5da68e23878d0063034d8ecb0fe693a658431b44160e5881c35234",
+    "structured/coordination/b-ktv-stair-options-v1/review.json": "6116c9df09d442e29e16cc3eabc50aa1cd94b4d512fd3398b9105f1afdc34a7e",
+    "structured/coordination/b-ktv-stair-options-v1/artifact-manifest.json": "1e3b99e2ee0a4626b93c9aa133098f6fb85ea65d3f148b924c69bea3d6349346"
+  },
+  "public_fixtures": [
+    {"id": "shower", "label": "原900×900淋浴移後右，向前操作", "rect_mm": [1635, 925, 900, 900], "operation_mm": [1635, 225, 900, 700]},
+    {"id": "toilet", "label": "原700×450馬桶移前左，背靠左牆", "rect_mm": [115, 115, 700, 450], "operation_mm": [815, 115, 700, 700]},
+    {"id": "basin", "label": "原600×450面盆轉向左牆", "rect_mm": [115, 1125, 450, 600], "operation_mm": [565, 1125, 700, 600]}
+  ],
+  "tea_furniture": [
+    {"id": "tea-counter", "label": "原1500×600濕茶水台橫放靠前牆", "rect_mm": [1655, 2135, 1500, 600], "operation_mm": [1655, 2735, 1500, 700]}
+  ],
+  "bath_slider": {"id": "bath", "label": "公衛同尺寸雙扇門左移550mm", "a": [600, 1980], "b": [1730, 1980], "leaf_width_mm": 660, "leaf_thickness_mm": 45, "track_gap_mm": 40, "track_y_mm": [1980, 2065], "closed_x_mm": [550, 1120], "park_x_mm": [1780, 1780], "frame_budget_each_mm": 115, "clear_target_mm": 900},
+  "routes": [
+    {"id": "public-arrival", "width_mm": 900, "points_mm": [[1715, 4400], [1715, 3285], [1165, 3285], [1165, 1415]], "purpose": "梯廳至公衛指定900方塊；轉折避全開梯門，泡茶及面盆操作與通行分時"},
+    {"id": "public-shower-operation", "width_mm": 700, "points_mm": [[1165, 1415], [1285, 1415], [1285, 575], [2085, 575]], "purpose": "至原900淋浴的前操作帶；700方塊，不當照護或實際淋浴門核可"},
+    {"id": "dry-maintenance", "width_mm": 700, "points_mm": [[1715, 4400], [1715, 3335], [465, 3335], [465, 2630]], "purpose": "繞茶水台後方到原乾側檢修區，維修時停止泡茶；工具與拆管高度未知"},
+    {"id": "toilet-operation", "width_mm": 700, "points_mm": [[1165, 1415], [1165, 465]], "purpose": "一般700方塊至馬桶前操作帶，非轉位照護核可"},
+    {"id": "basin-operation", "width_mm": 700, "points_mm": [[1165, 1415], [915, 1425]], "purpose": "一般700方塊至側牆面盆，與公衛到達分時"}
+  ],
+  "extra_below_original_pipe_budget_cases_mm": [0, 25, 50],
+  "limits": [
+    "P4只重排2F前公衛與茶水的器具／門位置，房間輪廓、前量體、兩窗方向、管井、乾檢修、梯門及其他房間不變；P1／P2／P3與原ABC／3D、兩種搬轎版保留，未採用。",
+    "同一400×400井維持115／1780，與Q3前KTV保留井同投影，不把本輪器具改動套到3F，亦不因此宣稱3F支管及全棟新風完成。",
+    "器具尺寸完全保留但4件座標調整，公衛門左移550mm；馬桶背靠左實牆，門中軸不穿馬桶本體，只是指定視線檢查，不是全案風水或梁位核可。",
+    "同115mm完成面模型保公衛5.286、茶水5.1036，扣完整門片移動仍5.064㎡；不是實際牆柱或法定面積，較厚完成面另列失敗案例。",
+    "前公衛兩扇660×45葉、40軌間及1130名義洞保原尺寸；全開目標900、半開450、關閉0，不把普通疊門當防火／隔煙／自閉或照護商品。",
+    "公衛門片全活動距管井35mm、疊包距茶水台25mm；900到達帶距淋浴及茶水台20／40mm，餘量緊，實際框、把手、五金、牆厚與工差均未核。",
+    "乾側700×900檢修不在茶水台上方，改從台後繞行。維修、泡茶與通行有操作帶共用，不能稱兩人同時可用；完整工具／拆管與衛生密封仍未知。",
+    "排水沿P3同一器具中心、先橫後縱＋2235偏移、統一1:50假設；不是實際排出口、彎頭、管徑、坡度或分段高程，不把支管短當重力排水完成。",
+    "WC／面盆／茶水總線縮短，淋浴總線比P3增加710mm；完整四線一起列，不能只挑改善項或只算偏移。",
+    "最有利200結構＋150管含支撐＋50檢修假設四線才都達3500比較值，最緊只多4.4mm；額外25mm深度就失守，不選薄梁或降低坡度湊通過。",
+    "額外深度只指原150管含支撐未包含的增量，不重複計同一彎頭／支架；實際分段接入標高與何處控制最低淨高須機電及結構剖面核對。",
+    "1F400×400落水候選仍占原梯核0.16㎡，並非可用空井；不直落騎樓、不借神明堂／乾背／武轎庫，不預設粉碎泵或抬地坪。",
+    "3F支管、立管匯流容量、通氣、合法終端、全程清掃及穿梁／防火未設計；前量體12.753㎡每層也仍待申照，不能宣稱32地坪內就可施工。",
+    "P4不解Q3聲學／樓梯、RF24㎡、R1天井防水乾衣及其他工程缺口。源頭排氣、一般新風、浴廁排氣、雨水及污水通氣仍分系統。"
+  ]
+}

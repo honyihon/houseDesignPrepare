@@ -1,0 +1,50 @@
+{
+  "schema": "house-b-front-drop-claude-options-v1",
+  "date": "2026-11-10",
+  "adopted": false,
+  "parent_report": "structured/coordination/b-front-drop-stair-v1/review.json",
+  "provenance": "inputs/references/b-front-drop-claude-round1-20261110.json",
+  "response": "inputs/references/b-front-drop-claude-round1-20261110.md",
+  "pinned_sources": {
+    "structured/coordination/b-front-drop-stair-v1/review.json": "420c80017812b34f76105ffd2b642124b8853f448d41ded219c3c246a93478ca",
+    "structured/coordination/b-front-drop-stair-v1/artifact-manifest.json": "3ebf51748254d10232418339218abc67009dfbabc97883f18cdb618fbe4d4a85",
+    "inputs/references/b-front-drop-claude-round1-20261110.md": "6e51137c069d62837cb09b08dcbc8dcb641257ee2575f6b0a07479f57c5c5c90"
+  },
+  "normal_stair_waist_cases_mm": [150, 200, 250, 300],
+  "extra_fitting_above_original_package_cases_mm": [0, 25, 50],
+  "separate_gap_above_package_to_soffit_mm": 50,
+  "chase_outward_growth_cases_mm": [0, 25, 50],
+  "candidates": [
+    {"id": "G4", "origin": "Claude第一輪", "label": "原梯回程下落管，未增加室內落差", "shaft_mm": [1280, 4990, 400, 400], "header_route_mm": [[315, 1980], [315, 3900], [1480, 3900], [1480, 5190]], "interior_vertical_drop_mm": 0, "drop_point_mm": null, "mirror_first_floor_stair": false},
+    {"id": "G4D", "origin": "Codex交叉核算後提案，待Claude第二輪", "label": "原梯保留，室內平台上方先落500再接梯下", "shaft_mm": [1280, 4990, 400, 400], "header_route_mm": [[315, 1980], [315, 3900], [315, 4700], [1480, 4700], [1480, 5190]], "interior_vertical_drop_mm": 500, "drop_point_mm": [315, 4700], "mirror_first_floor_stair": false},
+    {"id": "G5", "origin": "Claude第一輪", "label": "全梯鏡像的比較方向，未作全棟重排", "shaft_mm": [115, 4990, 400, 400], "header_route_mm": [[315, 1980], [315, 3900], [315, 5190]], "interior_vertical_drop_mm": 0, "drop_point_mm": null, "mirror_first_floor_stair": true}
+  ],
+  "claim_review": [
+    {"id": "CC-01", "topic": "原四線與G4／G5延長線算式", "assessment": "同口徑複算一致", "correction": "只對P4器具中心假排口及同起算、統一1:50模型成立，不是實際管線。"},
+    {"id": "CC-02", "topic": "騎樓與室內分段檢討", "assessment": "方向可保留，適用淨高待核", "correction": "到y3900茶水線4465／假預算3510.7，較全末端不同；3500是比較值，實際各區要求未確認。"},
+    {"id": "CC-03", "topic": "y3900、y4970必定有梁", "assessment": "缺少真實結構證據", "correction": "目前只知騎樓／室內與平台／梯段界線；有無梁、梁底及可穿越位置均未知，不能描述成已知梁。"},
+    {"id": "CC-04", "topic": "三樓KTV取消污水可減量", "assessment": "與現行Q3資料不符", "correction": "Q3前KTV只有沙發／桌／螢幕／機櫃，已無濕茶水；前井預留不代表有3F污水接入，不增加不存在的負荷，也不取消2F通氣。"},
+    {"id": "CC-05", "topic": "G4在高回程下，地面看似空閒", "assessment": "值得補核，原高程不足", "correction": "400外框比平台後緣只退20；還要比較整組管線頂部與最不利後緣梯底，不只比柱中心或踏面頂。"},
+    {"id": "CC-06", "topic": "G5鏡像保原階數便可沿用", "assessment": "重大改梯方向，未完成設計", "correction": "本輪只鏡像1F踏步投影作反例，2F到達、Q3及RF全部門梯與淨高要重核；不能繼承舊通行或原梯結果。"},
+    {"id": "CC-07", "topic": "污水在一般通路上方需重新決定", "assessment": "不新增一律禁止或默認許可", "correction": "屋主先前只明示搬轎通道上方不禁止污水；本提案避祭祀／乾背投影，不延伸成保護區可穿。一般樓梯上方仍核實際設計及家中規矩，不因模型猜測強迫現在選擇。"},
+    {"id": "CC-08", "topic": "前後合法終端及地下通行", "assessment": "必要先決條件", "correction": "地下前出路只有幾何下界5190／假坡103.8，接管權利／深度／覆土／地梁未知；後出路不能默認地下可穿祭祀。"},
+    {"id": "CC-09", "topic": "兩種搬轎版不受影響", "assessment": "只能說來源格局未改", "correction": "搬轎前門是神明堂朝街門，不是樓梯街門；本輪沒有重演含桿人員、施工期間或全程運動，不把不改圖說成無影響。"},
+    {"id": "CC-10", "topic": "4.4mm的餘量", "assessment": "數值換算一致，不能放行", "correction": "同1:50可抵220mm額外水平長，或任一新增厚度5mm即失守；不得據此選薄梁、小管或放平坡。"}
+  ],
+  "limits": [
+    "Claude第一輪回應已驗prompt／stdout／response雜湊並保存公開研究副本；結果摘要未標示模型名，不從用量資料推定回答模型。只有數字及問題範圍部分一致，沒有完整解法、全共識或採用。",
+    "G4／G5是Claude提議，G4D是Codex新增條件候選，尚未取得Claude第二輪回應。新管線只是獨立預先規劃，不改原ABC／3D、P4／Q3、兩種搬轎版及149控制。",
+    "原G0～G3仍不能直接套用，不代表回程梯下也無解；G4柱比平台後緣僅退20mm，超出400外框的包覆／五金增量25會碰平台。400是整組預留，不是實管直徑。",
+    "梯底只以24級／4m、270踏面之示意鼻線減法向板厚／cos比較，未提供真正梯板、台階構造、梯梁或平台梁；這是列明假設，不是實際可用高度。",
+    "管線應比管含支撐包絡頂部；原預算式的3504.4等數字包含管包絡與下方檢修，不能拿來當管頂。整組400前緣進管較中心再高4mm，採較高頂包絡核最不利後緣。",
+    "G4原案在150～300梯板例的管頂都高於後緣梯底，不能直接當已能進管。G4D只在室內平台上方新增500垂直落差，不向上泵、不抬地坪也不減梯寬；水力、通氣、清掃與降落處防火／噪音仍未設計。",
+    "50mm上方安裝間隔與原下方50mm檢修是不同面，不能重複充作同一餘量；另列0／25／50超出原包絡的接頭增量，不當原廠要求已知或真的不用額外接頭。",
+    "500垂直落差不當水平1:50坡度折算。新室內包管會降低平台上方空間；各區淨高要求未知，沒有把騎樓3500比較值套成全室法規，也不因管頂可避梯底就判通行／消防通過。",
+    "G4D不改善騎樓段：到y3900最有利預算3510.7mm，另需25仍降至3485.7；有無梁與管線是否能穿越此構造界線仍需正式剖面。",
+    "G5需要整棟樓梯／門／屋突重排，本輪只有1F鏡像剖面比較，未重設平台、門片、扶手或上層；70mm側門邊與起跑距離不當已可用。",
+    "所有新列管線包絡避已列祭祀／乾背與武轎庫投影；這不批准梁位、噪音、濕管穿孔、一般行走線上方家規或地下通行。搬運例外不延伸成神明堂地下可穿。",
+    "優先條件為合法前側終端與接管深度；5190mm只是落點至道路邊界直線下界。地下覆土、地梁套管、清掃、防水、權利、回填與修復全未知，不批准開挖或排放。",
+    "若只能後出，y9100～11370全寬保護帶至少2270mm不可默認地下豁免。資料到齊再決定必要取捨，現在不要求屋主放寬家規或取消功能。",
+    "Q3三樓前KTV本來沒有濕茶水，不藉取消不存在的污水取得解方；後公衛／工作天井、RF24㎡、聲學與全棟通氣排水仍未解。"
+  ]
+}

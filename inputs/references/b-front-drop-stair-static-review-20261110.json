@@ -1,0 +1,365 @@
+{
+  "schema": "house-b-front-drop-stair-static-review-v1",
+  "date": "2026-11-10",
+  "scope": "Bounded first-floor landing/tread screens for P4 original G0 and three explicit counterexamples; two local 700mm square routes, hypothetical vertical column and both ground versions/three states; no redesign or global impossibility claim",
+  "report_hash": "e2dc0bdd6cf5cc308c539d7a991cc72556502bf03a8ba4d8def11200cbc6249a",
+  "source_and_artifact_sha256": {
+    "inputs/b-front-drop-stair.json": "99d4fd07fcd4a8c1443478e90dd8c2410fddd635c5760901becfa635727159a4",
+    "structured/coordination/b-front-drainage-layout-v1/review.json": "fb352dcdc1c83aad3b4d4ced66804d328132bd411473b496676f53f849ac7711",
+    "structured/coordination/b-front-drainage-layout-v1/artifact-manifest.json": "79ec65f635322da82de8f7e9c646be793531d937a9a25cafb70d991ff6255635",
+    "structured/coordination/b-ktv-stair-options-v1/review.json": "6116c9df09d442e29e16cc3eabc50aa1cd94b4d512fd3398b9105f1afdc34a7e",
+    "structured/coordination/b-claude-round3-v1/review.json": "00baf0b3950e2593361e91698e4d72ac33e384edadd6da5a7d31b62e087b6223",
+    "structured/coordination/b-claude-round3-v1/artifact-manifest.json": "ad7327b07ef803ab57cf7390f84a3919da4165124a84e33288953981fa591062",
+    "inputs/b-front-drainage-layout.json": "8b21213448e73e770cfeac1203a41a53ff877890052d5aa1e5c5e35c4078853e",
+    "structured/coordination/b-front-service-detail-v1/review.json": "a51324d7699cfba56479f83a5e4eaa24ef5c9d45782c302c79e5fe779d4f2edd",
+    "structured/coordination/b-front-service-detail-v1/artifact-manifest.json": "66b708543e5da68e23878d0063034d8ecb0fe693a658431b44160e5881c35234",
+    "structured/coordination/b-ktv-stair-options-v1/artifact-manifest.json": "1e3b99e2ee0a4626b93c9aa133098f6fb85ea65d3f148b924c69bea3d6349346",
+    "inputs/b-front-service-detail.json": "48c1b0f31db2d9a6116cd81ba8a4b16ec9d2100c643275f8c553b0d400907e49",
+    "inputs/abc-next-protected-controls.json": "ffc055eb078e88ed6eccf32ac08596317d30564e8b74e65de7768fa79c60bf45",
+    "inputs/b-upper-replan.json": "83621a2af81211b06ff4dc2c9e8557641c1d551b05195605acd7a6ad7b1df3f5",
+    "house_design/b_upper_replan.py": "a251d37dc84bd54b9292b6802180ca7fd66c679a7e43dc714b3fed160dc2e5c5",
+    "scripts/export_b_upper_replan.py": "3a3cc271cf7d9fc20759d4bca17b582ab672f551981c6e8c1c20933192c09a3d",
+    "structured/coordination/b-upper-replan-v1/review.json": "38897b7ca1da091dd62c85ab342abd4d1d1da220ec1dbad9a5f46e6611f4906d",
+    "structured/coordination/b-upper-replan-v1/artifact-manifest.json": "c1fe7bab76b8032224f7ce271671db0f94fb3ef91c702adc355fd1bcd6b8d915",
+    "house_design/b_front_service_detail.py": "0e20c751c385d4e69a3ff679cb5b7890e71575f82fdef8195e49628690175c29",
+    "scripts/export_b_front_service_detail.py": "bf8d07a4a0c316fe69facbe5145b9091f0afd4d73e0a5998f4ba2c83d7a9253e",
+    "Docs/b-front-service-detail-v1.md": "bc04d48a087905f1d9735cb90dfde9da33b200627ce6d47adf3115f5648d280b",
+    "house_design/b_claude_round3.py": "040a7b75fc604dc147b471800ae4c1c8a57935182dcceea26591514b106ec9d0",
+    "house_design/contracts.py": "2888419d49e8d8dbe8b8e99f6b8451363cd9020821c7fe3e703ab09779e202c3",
+    "house_design/project_status.py": "db73eb9b066353cc282e67dc15e4b430d9d4e4d398eafaf7eeec5f98af1acab0",
+    "inputs/requirements.json": "7d27700ad835a3edd985e06ac0a229ea0aa7c0094fe302c88b21d32aa92bd066",
+    "inputs/planning-register.json": "140493058b145071afb472bf927860d48a43a6f4407b9b59e5a86705fbe058b0",
+    "inputs/b-ktv-stair-options.json": "b09976ea14cf0021385e87f742b80b2bb3fc0baac50c5863b2c40bcf4dc6f020",
+    "structured/coordination/b-third-entertainment-v1/review.json": "568509636ce55cb56b21161cf69e91e3eab633806c97e260c2a30a7f6553b08a",
+    "structured/coordination/b-third-entertainment-v1/artifact-manifest.json": "81247bbf44718d66f247c3ab520173e24e3ae38c4102480f83d74b3ee189d4d8",
+    "structured/candidates/kaohsiung-house-options/c-stair-integration.json": "bc1e2175f13cff043deeb725e190a3b59908810f58661d9efadec05efbca9a5e",
+    "inputs/b-third-entertainment.json": "07577a0dffe45c74f98ee93c75d0b35f30b75dec187050e3796775d4d73b45c8",
+    "inputs/references/b-owner-ritual-answers-20261106.json": "736f5a477ce1fbfd8e1bf460ecf49f9043a83635201d1598e3e1842e6460ddb9",
+    "inputs/brief/B.json": "63ed4fc045fc6f2cc4021b8bd784cb7cc9fd46789155fc19aa1a55f33016e55a",
+    "house_design/b_third_entertainment.py": "f026a7665c1134dde6c3ec0f01032fdb0eb91d750e1f7af6ead8c845fbd1a5cc",
+    "scripts/export_b_third_entertainment.py": "67aa5888f2149271e9718c1a7cceea92cd6a96767e4fc5d2c5d4383aae713a2f",
+    "scripts/export_abc_next_improvements.py": "875c13027466776a6e1661dae369e45c823c661c5e0369d8ee95b6535420e701",
+    "scripts/export_builder_communication.py": "650d696de35bd9a0fb4ce77d7f93078813b8babd4ed5439d59a6966d093ceef1",
+    "Docs/b-third-entertainment-v1.md": "5f69f521386c051ce67b4b24d5cda79186f70f937316d25c64962a745258d513",
+    "house_design/b_ktv_stair_options.py": "aa80873e7072c942f144d29ca5d1e82982e215e353188e3a4b41c3e98b27260d",
+    "scripts/export_b_ktv_stair_options.py": "973fd2ca9472d0b1573d78fe2dc94f65acced4fff120ae54bf2f2cfa0387b617",
+    "Docs/b-ktv-stair-options-v1.md": "e994cd9439f526a99a8d6faea11eb5e90f4fcd01b6383a82f514849b29fc61a2",
+    "house_design/b_front_drainage_layout.py": "5e4dd9fb80d2c1acdd0c756d929220a398c154d9274ba910cb2c9d474bcaf218",
+    "scripts/export_b_front_drainage_layout.py": "999dca33f4b233c7ef7f760e160176d29cce941021a57e3888c04d2f153e124f",
+    "Docs/b-front-drainage-layout-v1.md": "6664d87277208e43b6c8022ca56b92fc207b82feb3d176a7106dbe7dfc215c11",
+    "inputs/b-claude-round3.json": "25c006e1d7741395f53a8ae369ac905f7956ca0a3f8f7d2a94cc1625137fbc6f",
+    "structured/coordination/b-claude-crosscheck-v1/review.json": "b2a3604da09beaf1ebb4f8ed50d0525004cf6592ede2bde756eb05ae9ada95a4",
+    "structured/coordination/b-fengshui-strict-v1/review.json": "e595361db8281be6daf361251afe0187824c7bcb99d556f930cf90f15bf2f954",
+    "structured/coordination/b-claude-crosscheck-v1/artifact-manifest.json": "32940e5ac7474e21fbe521a7a99d4c259b2bbaf9fcaa2e33acf67a0a5bad8197",
+    "inputs/b-claude-crosscheck.json": "d49320cef10eed1df0ece76c9e0ba17107c9d32630c25da26c48bf2350cc2a7d",
+    "inputs/references/b-claude-response-v2-provenance.json": "2c7c0cdc880c1d78a910a170edcfdc6b59c20865ae81fd6b041c72816656b32b",
+    "inputs/references/b-claude-response-v2-transcript-20261105.md": "67ad0a230f18b2495ebbbdc7f9c2986bc3a72eaf48eea846af3640a621bf51a7",
+    "house_design/b_claude_crosscheck.py": "9b157330308ec83bfc91d219d0bd0c632fd0ed0566e85b243209affa9a1daf20",
+    "house_design/b_fengshui_strict.py": "7f73ab7b7d84e7af976357a11cbf5ec78bb9550956b24973361a0a1dc6c6a2ab",
+    "house_design/abc_next_improvements.py": "9756b69f651f8431d361ffdc6f678e59edc1c3af0e9d8e9db782091366166568",
+    "house_design/c_coordination.py": "6d2c336496e0f1cabfabce3f3287b28ceecb13088d78f8cb0137d9ce14b689ff",
+    "scripts/export_b_claude_crosscheck.py": "c6bf43bf9b8018f74042ae3f64ef60483d3bde13898c448f2d82cef848890d3f",
+    "scripts/export_b_fengshui_strict.py": "b097e116689af7ae1f074a1482adfb895a44d32f790fabe6386cdeafcb88a67f",
+    "Docs/claude-b-fengshui-followup-v3.md": "ce877ccd31a13e8757b39abef592ead3b78c6117ff2214d90c2b97f7696ec1ea",
+    "scripts/review_b_fengshui_with_claude.py": "dc6b4b855656cbdee16990857abbb44b1f471a720f6799cd9bdee96f71f58b55",
+    "inputs/references/b-claude-round3-provenance-20261106.json": "215a2f40a924a0f3ddd8a1e5a8dfd4da1807175f79310755ff74f8c2a29b4a64",
+    "inputs/references/b-claude-round3-response-20261106.md": "7ec4b66feb30aed715aaef272678e819e2e685342a64f4c24a5b22c0410d159f",
+    "scripts/export_b_claude_round3.py": "be59ca0ded73f3f6a09e40580191eb2375849f3699b977dde887199e47a45e1d",
+    "Docs/b-claude-round3-v1.md": "a9a6fe163037a967962723738ca1535664fc7a54707f101af50066e0c35c68ff",
+    "house_design/b_front_drop_stair.py": "72f5d172e4d9f00383f94c979ac05b547a3f8b7c6ce8741c8b4411ce7e6061a8",
+    "scripts/export_b_front_drop_stair.py": "5a2b16355993e894b714aa0b115ab64025a23422bc045aaf0549e04a54a2a948",
+    "Docs/b-front-drop-stair-v1.md": "3e913493cbadb9f9d42f1fe43af8ed3d438b72bad518e0d97260e48d7db63bcc",
+    "Docs/claude-b-front-drop-brief-v1.md": "696313f200e9224c9e3cb6019432e45957855d5db4ee42d9c302ffc982b925a4",
+    "tests/test_b_front_drop_stair.py": "9b089834b27ecba6fcd7f205f7e3f4f45a7b97ba6d5a105bd87a7aa79916ee69",
+    "tests/test_b_front_drainage_layout.py": "bad4e158a2e501681938a9a399c77be8d5eadb99b43c416161460a068d760e60",
+    "tests/test_design_discussion_basis.py": "f0c542b582a34f3b8852857d6679ff2b5b82410daeb14ff22c8f12297dbefd52",
+    "tests/test_project_next_steps.py": "dc837be6f8a27553f694645701cfccbbfabdce085a1f70c5f794d3c1de2f0940",
+    "tests/test_builder_communication.py": "5621666ecfa97b6eb72e6ec22321ac9bc367d5d8cb7f1d1f30d97a677b42f032",
+    "tests/test_project_status.py": "73098e7a96b4a2fa514019b39e7445b0af0f0cbd19a8ff29dee5ce660933145b",
+    "tests/test_repository_health.py": "ac385bd69d28d58f89a7e3ae415f1fbafd3196217acc255e5074c1ddad1d51f6",
+    "inputs/design-discussion-basis.json": "fd499c2706fc0a489938dfb333e6f9f5c15a2e09469af3deda149d81a0cc046b",
+    "inputs/project-status.json": "1b2a59844adebdfbfe1e6c5e4e5e1378c569b807d6ec67b7cf6f1a165274848f",
+    "README.md": "706bcbbbcc43c4883fff00ddec6b98652eb8fe00f87e4246a5ab07c34aa8ef28",
+    "Docs/project-status-v1.md": "6760f347ed1674da95b43420cac30e41f116eb98b09c8170f540d15478135422",
+    "Docs/design-discussion-basis-v1.md": "965f2a8e3a8d644c8bab1a72181f526c299224235ebbc6fdc8807d6183f6716e",
+    "scripts/README.md": "98201609e4783a8c90a800a5e05884dd8a69a6a796d678081c728f846404b440",
+    "house_design/design_discussion_basis.py": "7cddcdaa47a8d55ad00cd65d0477d20f7a09402b61d3f1c190b400ca82cbe313",
+    "scripts/export_design_discussion_basis.py": "f42e5cbb281ef0fa3811df071385da9991b2b07efe37e4f7db823b8aba9ca17e",
+    "structured/coordination/b-front-drop-stair-v1/artifact-manifest.json": "3ebf51748254d10232418339218abc67009dfbabc97883f18cdb618fbe4d4a85",
+    "structured/coordination/b-front-drop-stair-v1/candidate-conflicts.csv": "2a333e3307d7c543d9a51af92a5d5bd828897c6c645471a976de5cf2b4983956",
+    "structured/coordination/b-front-drop-stair-v1/design-consequences.svg": "89512c838c5696318b84761da1e03ba6998ec0452853dc23f61224271c395edb",
+    "structured/coordination/b-front-drop-stair-v1/engineering-replies.csv": "34227042b1880585bceb4fadb056f20530f5f2ef9aee456dcb4cfceb7176b7dc",
+    "structured/coordination/b-front-drop-stair-v1/ground-landing-candidates.svg": "bf355fe17018c8a2c8810afc2ff67c506f916d64efa62848a7a6cd38e99b1c38",
+    "structured/coordination/b-front-drop-stair-v1/ground-state-checks.csv": "81e6ee14efb2d07bbe2fe2d67e95e6f80975b75cf7ff9bd60135fb0b8e5765d4",
+    "structured/coordination/b-front-drop-stair-v1/index.html": "75878113824972dcfa7df9cb145c01b9d36fec7358a7dbec221b7bf74c59bc6e",
+    "structured/coordination/b-front-drop-stair-v1/review.json": "420c80017812b34f76105ffd2b642124b8853f448d41ded219c3c246a93478ca",
+    "structured/coordination/b-front-drop-stair-v1/stair-column-section.svg": "bbc53201abc1b0b2d75ee75138d5ec99ba009d835f9d8157bd1ca386acf66ec3",
+    "structured/coordination/b-front-drop-stair-v1/tread-column-hits.csv": "d49b5d8084cca72f26d0422d3c5d23b3d96decd5ebe18ec12cca38447063a5d5",
+    "structured/planning/project-next-steps/review.json": "bffc57575e03463e2b2fdbf9a3dc8d5aababfad93191406779f308c5d2ab3e2b",
+    "structured/planning/project-next-steps/artifact-manifest.json": "57a939e535da439c249367ed8d7e4c994b282eded3975f01e240070dba99ed08",
+    "structured/planning/builder-communication/review.json": "a03addb46c56509c436b8c2247545ad83283b1988118552797e7c3c69e37bd7d",
+    "structured/planning/builder-communication/artifact-manifest.json": "bf2d2d14a18618a4b8724a19b5d0f678ff3c849b4c45d996e2ca95c6788bb98f",
+    "structured/planning/design-discussion-basis/review.json": "83db1babf21d2666b101360ec6fa9201039bc0ceb679cb677eb767fe978575f3",
+    "structured/planning/design-discussion-basis/artifact-manifest.json": "4ab9f66081dc66810a9fcce7654332b91fca75b185a1d5247be56b35c6718854",
+    "structured/planning/design-discussion-basis/archive-manifest.json": "0ab840c3b30d3add2bdb08ca0a0bd2b6af9e6a2d80a5c42a69dfadf0088bbb27",
+    "structured/planning/design-discussion-basis/ABC-discussion-package.zip": "fad312c685593aa4c6ce49ce988c7009a62faae6a0dea518eb8c5d56f219cb3f"
+  },
+  "checks": {
+    "focused_tests": {
+      "command": "timeout 20s env PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -B -m pytest -q --tb=short -p no:cacheprovider tests/test_b_front_drop_stair.py tests/test_b_front_drainage_layout.py tests/test_design_discussion_basis.py tests/test_project_next_steps.py tests/test_builder_communication.py tests/test_project_status.py tests/test_repository_health.py",
+      "passed": 184,
+      "failed": 0,
+      "elapsed_seconds": 5.49,
+      "exit_code": 0
+    },
+    "ruff": {
+      "command": "timeout 20s .venv/bin/ruff check house_design/b_front_drop_stair.py scripts/export_b_front_drop_stair.py tests/test_b_front_drop_stair.py tests/test_design_discussion_basis.py",
+      "exit_code": 0
+    },
+    "exports_check": {
+      "scripts": [
+        "export_b_front_drop_stair.py",
+        "export_b_front_drainage_layout.py",
+        "export_b_ktv_stair_options.py",
+        "export_project_next_steps.py",
+        "export_builder_communication.py",
+        "export_design_discussion_basis.py"
+      ],
+      "individual_timeout_seconds": 20,
+      "all_exit_codes": 0
+    },
+    "relevant_regressions_covered": [
+      "frozen parent reports, ground variants and149 controls preserved",
+      "local routes confined to original landing before candidate insertion",
+      "G0 and G1 platform-route conflicts distinguished from empty furniture area",
+      "G2 central gap shortage and G3 tread column intersections",
+      "all six ground option/state sources and sacred/arcade/storage footprint checks retained",
+      "nominal widening cost not presented as legal or authorized design",
+      "mixed-source, moved G0, reduced shaft or route and off-platform route inputs rejected",
+      "report and artifact seals, blank professional replies and offline links checked"
+    ],
+    "protected_controls_unchanged": 149,
+    "current_index_source_packages_match": 7,
+    "historical_packages_with_source_drift_retained": 5,
+    "historical_browser_passed_reused": false,
+    "complete_discussion_packet_source_hashes_verified": 319,
+    "original_requirement_statuses": {
+      "candidate": 66
+    },
+    "original_register_statuses": {
+      "unknown": 105
+    },
+    "repository_health_before_this_evidence_file": {
+      "files": 1598,
+      "JSON_syntax_checked": 249,
+      "markdown_checked": 158,
+      "local_links_checked": 936,
+      "issues": [],
+      "writes_performed": false,
+      "browser_started": false
+    },
+    "packet": {
+      "SVG_drawings": 63,
+      "BC_comparisons": 7,
+      "CSV_forms": 14,
+      "files": 92,
+      "zip_entries": 90,
+      "zip_sha256": "fad312c685593aa4c6ce49ce988c7009a62faae6a0dea518eb8c5d56f219cb3f",
+      "private_snapshot": "design-discussion-017",
+      "snapshot_matches_public_files": true,
+      "previous_snapshots_overwritten": false
+    },
+    "git_diff_whitespace_exit_code": 0
+  },
+  "findings": {
+    "first_floor_landing_mm": [
+      80,
+      3970,
+      2200,
+      1000
+    ],
+    "first_floor_source_risers": 24,
+    "first_floor_source_height_mm": 4000,
+    "first_floor_source_flight_width_mm": 1000,
+    "local_platform_routes": 2,
+    "local_square_width_mm": 700,
+    "G0_not_a_free_shaft_in_original_landing": true,
+    "four_explicit_candidates": [
+      {
+        "id": "G0",
+        "label": "原前左入口平台候選",
+        "rect_mm": [
+          115,
+          4015,
+          400,
+          400
+        ],
+        "inside_nominal_stair_room": true,
+        "landing_overlap_sqm": 0.16,
+        "local_route_hits": [
+          {
+            "route": "street-to-left-flight",
+            "sqm": 0.084075
+          },
+          {
+            "route": "shrine-side-to-left-flight",
+            "sqm": 0.104025
+          }
+        ],
+        "tread_hits_in_hypothetical_vertical_column": [],
+        "status": "conflicts-listed-platform-routes",
+        "adopted": false,
+        "new_structural_hole_or_actual_pipe_route_approved": false
+      },
+      {
+        "id": "G1",
+        "label": "改右前角，僅作反例",
+        "rect_mm": [
+          1880,
+          4015,
+          400,
+          400
+        ],
+        "inside_nominal_stair_room": true,
+        "landing_overlap_sqm": 0.16,
+        "local_route_hits": [
+          {
+            "route": "shrine-side-to-left-flight",
+            "sqm": 0.146
+          }
+        ],
+        "tread_hits_in_hypothetical_vertical_column": [],
+        "status": "conflicts-listed-platform-routes",
+        "adopted": false,
+        "new_structural_hole_or_actual_pipe_route_approved": false
+      },
+      {
+        "id": "G2",
+        "label": "中央梯隙放400，僅作反例",
+        "rect_mm": [
+          980,
+          6000,
+          400,
+          400
+        ],
+        "inside_nominal_stair_room": true,
+        "landing_overlap_sqm": 0,
+        "local_route_hits": [],
+        "tread_hits_in_hypothetical_vertical_column": [
+          {
+            "id": "left-4",
+            "top_z_mm": 666.667,
+            "plan_overlap_sqm": 0.005
+          },
+          {
+            "id": "left-5",
+            "top_z_mm": 833.333,
+            "plan_overlap_sqm": 0.027
+          },
+          {
+            "id": "left-6",
+            "top_z_mm": 1000,
+            "plan_overlap_sqm": 0.008
+          },
+          {
+            "id": "right-6",
+            "top_z_mm": 3000,
+            "plan_overlap_sqm": 0.008
+          },
+          {
+            "id": "right-7",
+            "top_z_mm": 3166.667,
+            "plan_overlap_sqm": 0.027
+          },
+          {
+            "id": "right-8",
+            "top_z_mm": 3333.333,
+            "plan_overlap_sqm": 0.005
+          }
+        ],
+        "status": "intersects-listed-treads",
+        "adopted": false,
+        "new_structural_hole_or_actual_pipe_route_approved": false
+      },
+      {
+        "id": "G3",
+        "label": "左跑下方落管，僅作反例",
+        "rect_mm": [
+          115,
+          5500,
+          400,
+          400
+        ],
+        "inside_nominal_stair_room": true,
+        "landing_overlap_sqm": 0,
+        "local_route_hits": [],
+        "tread_hits_in_hypothetical_vertical_column": [
+          {
+            "id": "left-2",
+            "top_z_mm": 333.333,
+            "plan_overlap_sqm": 0.004
+          },
+          {
+            "id": "left-3",
+            "top_z_mm": 500,
+            "plan_overlap_sqm": 0.108
+          },
+          {
+            "id": "left-4",
+            "top_z_mm": 666.667,
+            "plan_overlap_sqm": 0.048
+          }
+        ],
+        "status": "intersects-listed-treads",
+        "adopted": false,
+        "new_structural_hole_or_actual_pipe_route_approved": false
+      }
+    ],
+    "central_gap_width_mm": 200,
+    "hypothetical_column_z_mm": [
+      0,
+      3504.4
+    ],
+    "column_top_is_P4_budget_plane_not_actual_invert": true,
+    "width_boundary": {
+      "source_flight_width_mm": 1000,
+      "source_stair_footprint_width_mm": 2200,
+      "source_gap_width_mm": 200,
+      "reserved_shaft_width_mm": 400,
+      "two_flights_plus_shaft_width_before_new_chase_walls_mm": 2400,
+      "minimum_extra_nominal_footprint_width_before_chase_walls_mm": 200,
+      "hypothetical_same_outer_edges_room_widening_mm": [
+        2400,
+        3900,
+        200,
+        5200
+      ],
+      "hypothetical_widening_over_sacred_front_sqm": 1.04,
+      "hypothetical_widening_approved_or_minimum_legal_stair_width_selected": false
+    },
+    "ground_option_states_checked": 6,
+    "original_rear_default_and_front_fallback_unchanged": true,
+    "full_transport_care_door_motion_and_headroom_revalidated": false,
+    "no_furniture_collision_implies_free_shaft": false,
+    "G0_projected_sacred_arcade_and_palanquin_overlap_sqm": 0,
+    "G0_platform_conflict_still_requires_replan": true,
+    "all_four_listed_candidates_have_local_conflicts": true,
+    "all_possible_building_or_pipe_topologies_proven_impossible": false,
+    "legal_stair_width_or_new_structural_holes_selected": false,
+    "P4_positive_section_budget_resolves_ground_platform_conflict": false,
+    "recommended_next_scope": "architect/structure/MEP jointly redesign chase, two entrance approaches and landing against actual beams/slabs while retaining stair widths, sacred protection and both ground variants",
+    "pumps_macerators_raised_floors_side_boundary_discharge_or_smaller_chase_adopted": false,
+    "Q3_RF24_acoustic_and_R1_waterproofing_deficits_resolved": false,
+    "Claude_brief_prepared": "Docs/claude-b-front-drop-brief-v1.md",
+    "external_Claude_discussion": "not-run; precise separate-terminal command provided under owner resource-safety rules",
+    "Claude_response_or_consensus_received": false
+  },
+  "rendered_or_browser_QA": "not-run",
+  "rasterization": "not-run",
+  "external_AI_invoked": false,
+  "actual_site_or_product_data_received": 0,
+  "primary_ABC_or_3D_changed": false,
+  "adopted": false,
+  "professional_religious_or_construction_approval": "unknown",
+  "commit_or_push_performed": false
+}
