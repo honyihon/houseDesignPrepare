@@ -238,6 +238,6 @@ def test_new_writer_does_not_touch_other_outputs(study, tmp_path):
     for p in (export.BOOTSTRAP, export.DISPLAY, "scripts/templates/bc-options-controls.html"):
         (tmp_path / p).write_text((ROOT / p).read_text())
     export.write_study(study, tmp_path)
-    written = [str(p.relative_to(tmp_path)) for p in tmp_path.rglob("*") if p.is_file() and not str(p.relative_to(tmp_path)).startswith("scripts/")]
+    written = [p.relative_to(tmp_path).as_posix() for p in tmp_path.rglob("*") if p.is_file() and not p.relative_to(tmp_path).as_posix().startswith("scripts/")]
     assert len(written) == 27
     assert all(p.startswith(export.OUT) for p in written)

@@ -39,7 +39,7 @@ for (const building of ['A', 'B', 'C']) {
         expect(boxes.planBottom).toBeLessThanOrEqual(boxes.roomTop);
         expect(boxes.scrollWidth).toBeLessThanOrEqual(boxes.width);
       } else {
-        await expect(page.locator('#floor-1 .visual-plan')).toHaveCSS('position', 'sticky');
+        await expect(page.locator('#floor-1 .visual-plan')).toHaveCSS('position', 'static');
       }
       await expect(detail).toBeVisible();
       if (building === 'C') {

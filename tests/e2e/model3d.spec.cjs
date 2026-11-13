@@ -262,6 +262,25 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 
     if (viewport.width < 860) await page.locator('#mobile-panel-toggle').click();
     focused = await page.evaluate(() => window.__htmlModel3dDebug());
     checkBodies(focused);
+    await assertNoFrameworkOverlay(page);
+    expectNoUnexpectedConsole(messages);
+    await context.close();
+  });
+
+  test(`room cutaway rotates and reloads without moving fixtures (${viewport.width}px)`, async ({ browser }) => {
+    const context = await browser.newContext({ viewport });
+    const page = await context.newPage();
+    const messages = monitorConsole(page);
+    await page.goto('/structured/candidates/model3d.html#mode=tour&building=A&floor=floor-2&room=A%3Afloor-2%3Amaster-bath&view=front&focus=room');
+    if (viewport.width < 860) await page.locator('#mobile-panel-toggle').click();
+    const focused = await page.evaluate(() => window.__htmlModel3dDebug());
+    const checkBodies = debug => {
+      expect(debug.roomCutaway.active).toBe(true);
+      expect(debug.roomCutaway.heightMm).toBe(550);
+      expect(debug.roomCutaway.fixtureSightlines).toHaveLength(3);
+      expect(debug.roomCutaway.fixtureSightlines.every(i => i.samples === 5 && i.unobstructedSamples >= 3)).toBe(true);
+    };
+    checkBodies(focused);
     const canvas = await page.locator('#canvas').boundingBox();
     await page.mouse.move(canvas.x + canvas.width * .15, canvas.y + canvas.height * .8);
     await page.mouse.down();
@@ -274,10 +293,10 @@ for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 
     await page.reload();
     checkBodies(await page.evaluate(() => window.__htmlModel3dDebug()));
     await page.locator('#room-overview').click();
-    restored = await page.evaluate(() => window.__htmlModel3dDebug());
+    const restored = await page.evaluate(() => window.__htmlModel3dDebug());
     expect(restored.roomCutaway.active).toBe(false);
     expect(restored.roomCutaway.parts).toEqual([]);
-    expect(restored.visibleRooms).toEqual(before.visibleRooms);
+    expect(restored.visibleRooms).toEqual(focused.visibleRooms);
     await assertNoFrameworkOverlay(page);
     expectNoUnexpectedConsole(messages);
     await context.close();
@@ -757,6 +776,8 @@ test('upstairs bathrooms and distributed A storage synchronize with current full
   for (const [building, key, count] of [
     ['A', 'master-bath', 3], ['A', 'walkin', 1], ['A', 'master', 4], ['B', 'bath2', 3], ['B', 'master-bath2', 3],
   ]) {
+    // A fresh-document deep link exercises load-time restoration, not a same-document hash edit.
+    await page.goto('about:blank');
     await page.goto(`/${building}buildingView.html#proposal-room-${key}`, { waitUntil: 'load' });
     const roomPanel = page.locator(`#proposal-room-${key}`);
     await expect(page.locator('#floor-2')).toHaveClass(/active/);

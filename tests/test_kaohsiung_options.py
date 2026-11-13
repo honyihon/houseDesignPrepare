@@ -47,7 +47,7 @@ def test_explicit_independent_scope_and_exact_historical_inputs(studies):
 def test_unexplained_parent_source_change_fails_before_new_plan(monkeypatch):
     cfg = json.loads((ROOT/export.SOURCE).read_text())
     real = export.sha256_file
-    monkeypatch.setattr(export, "sha256_file", lambda p: "0"*64 if str(p).endswith("inputs/requirements.json") else real(p))
+    monkeypatch.setattr(export, "sha256_file", lambda p: "0"*64 if Path(p).as_posix().endswith("inputs/requirements.json") else real(p))
     with pytest.raises(ContractError, match="Unexplained frozen source change"):
         export.frozen_base(cfg)
 

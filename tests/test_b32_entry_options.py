@@ -4,6 +4,7 @@ from __future__ import annotations
 import copy
 import json
 import re
+from pathlib import Path
 from xml.etree import ElementTree as ET
 
 import export_b32_entry_options as export
@@ -187,7 +188,7 @@ def test_display_revision_only_wraps_unchanged_source_vectors(study):
     assert 'data-display-revision="2"' in page
     assert page.count('data-plan-viewer=') == 2
     assert all(token not in page for token in ["__OPTIONS__", "__PLAN_VIEWER__", "__DISPLAY_REVISION__"])
-    assert "scripts/templates/b32-plan-viewer.js" in study["source_hashes"]
+    assert "scripts/templates/b32-plan-viewer.js" in {Path(p).as_posix() for p in study["source_hashes"]}
     for option in study["options"]:
         viewer = export.render_plan_viewer(option)
         floor = option["plans"]["floors"][0]

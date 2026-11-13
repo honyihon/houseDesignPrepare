@@ -91,7 +91,8 @@ test('imported answers remain visible and correction is an append-only draft', a
     fs.mkdirSync(path.dirname(target), { recursive: true });
     fs.copyFileSync(path.join(root, file), target);
   }
-  const workspace = JSON.parse(fs.readFileSync(path.join(output, 'owner-workspace.json'), 'utf8'));
+  execFileSync(python, ['-m', 'house_design', 'predesign', 'owner-workspace', '--root', fixture], { cwd: root });
+  const workspace = JSON.parse(fs.readFileSync(path.join(fixture, 'structured/predesign/owner-workspace.json'), 'utf8'));
   const file = path.join(fixture, 'test-draft.json');
   fs.writeFileSync(file, JSON.stringify({ schema: 'house-owner-draft-v1', project_id: workspace.project_id, source_hashes: workspace.source_hashes, record_hash: workspace.record_hash, rows: [{ id: 'TEST-record-1', kind: 'answer', target: 'PLAN-HOUSEHOLD-01', data: { answer: 'TEST ONLY / 已保存家庭討論' } }] }));
   execFileSync(python, ['-m', 'house_design', 'intake', 'owner-records-import', '--root', fixture, '--file', file, '--apply'], { cwd: root });

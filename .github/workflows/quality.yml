@@ -24,6 +24,9 @@ jobs:
           cache: pip
       - run: python -m pip install --upgrade pip
       - run: python -m pip install -e ".[dev]"
+      - name: Inspect native Windows artifact differences
+        if: runner.os == 'Windows'
+        run: python tests/platform_diagnostics.py
       - run: python -m pytest -q --tb=short
       - name: Concept pipeline smoke test
         shell: pwsh
