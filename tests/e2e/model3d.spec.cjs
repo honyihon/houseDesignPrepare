@@ -771,13 +771,11 @@ test('A elder bedroom restoration keeps care furniture, bathroom and reversible 
   expectNoUnexpectedConsole(messages);
 });
 
-test('upstairs bathrooms and distributed A storage synchronize with current full-size furniture', async ({ page }) => {
-  const messages = monitorConsole(page);
-  for (const [building, key, count] of [
-    ['A', 'master-bath', 3], ['A', 'walkin', 1], ['A', 'master', 4], ['B', 'bath2', 3], ['B', 'master-bath2', 3],
-  ]) {
-    // A fresh-document deep link exercises load-time restoration, not a same-document hash edit.
-    await page.goto('about:blank');
+for (const [building, key, count] of [
+  ['A', 'master-bath', 3], ['A', 'walkin', 1], ['A', 'master', 4], ['B', 'bath2', 3], ['B', 'master-bath2', 3],
+]) {
+  test(`upstairs ${building}/${key} synchronizes current full-size furniture and roundtrip links`, async ({ page }) => {
+    const messages = monitorConsole(page);
     await page.goto(`/${building}buildingView.html#proposal-room-${key}`, { waitUntil: 'load' });
     const roomPanel = page.locator(`#proposal-room-${key}`);
     await expect(page.locator('#floor-2')).toHaveClass(/active/);
@@ -826,9 +824,9 @@ test('upstairs bathrooms and distributed A storage synchronize with current full
     await page.locator('#info .info-link').click();
     await expect(page).toHaveURL(new RegExp(`${building}buildingView\\.html#proposal-room-${key}$`));
     await expect(page.locator(`#proposal-room-${key}`)).toHaveJSProperty('open', true);
-  }
-  expectNoUnexpectedConsole(messages);
-});
+    expectNoUnexpectedConsole(messages);
+  });
+}
 
 test('original HTML model mobile controls collapse to expose the 3D viewport', async ({ browser }) => {
   const context = await browser.newContext({ viewport: { width: 390, height: 844 } });
