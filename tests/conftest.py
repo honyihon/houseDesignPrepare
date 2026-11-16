@@ -20,9 +20,9 @@ for path in (ROOT, SCRIPTS):
 @pytest.fixture(scope="session", autouse=True)
 def canonical_export_process():
     """Exercise the supported canonical ZIP export context on every CI host."""
-    from house_design.reproducible_export import canonical_zip_metadata
+    from house_design.reproducible_export import canonical_export_context
 
-    with canonical_zip_metadata():
+    with canonical_export_context():
         yield
 
 
